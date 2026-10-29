@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 1,
+  "column": 7,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "492f52289b8b5b335142a6af86c8e3a84d7447d3c632b084f967811339910ed8",
+  "imageBytes": 24172400,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.json",
+  "sourceLedgerSha256": "9405663c8a253ab71e892b13af3eec5e35a9bd4e0d838a41762f64544ac369f5",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.png",
+    "imageSha256": "492f52289b8b5b335142a6af86c8e3a84d7447d3c632b084f967811339910ed8",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.json",
+        "sha256": "9405663c8a253ab71e892b13af3eec5e35a9bd4e0d838a41762f64544ac369f5",
+        "sourceReviewSha256": "9405663c8a253ab71e892b13af3eec5e35a9bd4e0d838a41762f64544ac369f5",
+        "completeness": [
+          [
+            "/parentProvenance/fullNativeCoverage",
+            true
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "status": "CANDIDATE_PENDING_ACTUAL_SAVED_NATIVE_QA",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.json",
+        "record": {
+          "status": "CANDIDATE_PENDING_ACTUAL_SAVED_NATIVE_QA",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-adopt-v1/selection.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "AUTHORIZED_NOT_COMMITTED"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/validate-base.json",
+        "record": {
+          "status": "PASS_EXPLICIT_M2_READER_FULL16M_REPLAY"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/index.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "sharedGeometryAccepted": false,
+          "formalAccepted": false,
+          "status": "PASS_ACTUAL_SAVED_CHANGED5_GEOMETRY_AND_28_RGB0_REUSE",
+          "geometryPendingCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/independent-saved-review.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "sharedGeometryAccepted": false,
+          "formalAccepted": false,
+          "status": "PASS_SAVED4096_FULL16M_AND_RETAINED33_GEOMETRY_ONLY"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/retained33-closure.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "sharedGeometryAccepted": false,
+          "formalAccepted": false,
+          "status": "PASS_RETAINED33_INTERNAL_GEOMETRY_MATERIAL_PENDING",
+          "geometryPendingCount": 0
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/independent-saved-review.json",
+    "sourceSha256": "a2af12b472e64d910f2dfe495e726aea10f60c486d043b9041052c0927f35bef",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.png",
+        "sha256": "492f52289b8b5b335142a6af86c8e3a84d7447d3c632b084f967811339910ed8"
+      },
+      "record": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.json",
+        "sha256": "9405663c8a253ab71e892b13af3eec5e35a9bd4e0d838a41762f64544ac369f5"
+      },
+      "reviewer": "/root/m4_contour_revision_proposal",
+      "reviewedAtUtc": "2026-10-23T17:05:01.596423+00:00",
+      "internalGeometryClosurePassed": true,
+      "internalClosurePassed": false,
+      "materialStatus": "PENDING",
+      "sharedGeometryAccepted": false,
+      "formalAccepted": false,
+      "wholeTileMaterialApproved": false,
+      "kind": "NW_M2_ACTUAL_SAVED_FINITE_REVIEW_V1",
+      "status": "PASS_SAVED4096_FULL16M_AND_RETAINED33_GEOMETRY_ONLY",
+      "finiteM2Only": true,
+      "finiteM2MaterialPassed": true,
+      "validateBase": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/validate-base.json",
+        "sha256": "c2a35e44c6c4e88fd78c26bdf6b3a6df838d4a5ae18b5929c97eb86f329f1995"
+      },
+      "qaIndex": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/index.json",
+        "sha256": "b970a30e440b4f406bec77ef66bd75c80016fe33375d2f55ec1cff03745114cb"
+      },
+      "retained33Closure": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/retained33-closure.json",
+        "sha256": "3bca5fef257c98dfb3194507cf8dd1944ed319933a33c5c258a3ac8476bf092f"
+      },
+      "nativeReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/native-review.json",
+        "sha256": "b58c8b18530ced1f0a61b35b72ed4d17a0a7b8638ad6090443cce55cd99e7640"
+      },
+      "nativeViewsManifest": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/native-views-manifest.json",
+        "sha256": "cc785ddd2da946be7d038301869677500ac56798f05af3d992e70ca6311c66a5"
+      },
+      "independentFull16MMechanicalProof": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/mechanical-proof.json",
+        "sha256": "64a226519aa8daf26eda3a7713164d0db3b3e0d39295da7355fbab375fca6e6d"
+      },
+      "savedNativeCrop": {
+        "image": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/saved-native1254.png",
+          "sha256": "e422ce9644557a899c85bccec8eb6c2927f50d5940f4ded9ddce66bd9e2bc78f"
+        },
+        "sourceRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/saved-native1254.png.source.json",
+          "sha256": "07f400540ada4cd8efd0eac9326de0416c1670bc5c68a78aea108ca90390126a"
+        },
+        "tileBoxHalfOpen": [
+          1550,
+          2600,
+          2804,
+          3854
+        ],
+        "rgbMismatchVersusPassedLiteral": 0,
+        "pngBytesEqualPassedLiteral": true,
+        "passedLiteral": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-actual-native-v1/literal-allM.QA1254.png",
+          "sha256": "e422ce9644557a899c85bccec8eb6c2927f50d5940f4ded9ddce66bd9e2bc78f"
+        },
+        "actuallyViewedThisReview": true,
+        "viewDetail": "original",
+        "nativeScale100Percent": true,
+        "visualFinding": "Full actual saved1254 viewed. Complete long M2 blue face, curved upper and lower rims, both side contacts and lower-left junction are continuous. No concrete new ring, outline cut, gold edge intrusion or AA teeth identified. Exact bytes and RGB match the previously approved finite M2 literal."
+      },
+      "sourcePins": {
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.png",
+          "sha256": "492f52289b8b5b335142a6af86c8e3a84d7447d3c632b084f967811339910ed8"
+        },
+        "record": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/m2-r01c07.json",
+          "sha256": "9405663c8a253ab71e892b13af3eec5e35a9bd4e0d838a41762f64544ac369f5"
+        },
+        "base": {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-m4-writer-v1/cand/m4-r01c07.png",
+            "sha256": "a0fcb50bc8576d11e4bfc0e958724941d5a198eceeca830f3d397f65d1d963ac"
+          },
+          "record": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-m4-writer-v1/cand/m4-r01c07.json",
+            "sha256": "b1b28ac964c2bd34a92ea224326d56f52b1698c335a1b8b2beb3376d483add62"
+          }
+        },
+        "raw": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/native/r01_c07_m2_blueface_material_20261023_a01.png",
+          "sha256": "439b976c15b6600d3bba9ed9d337239f07d5f0210c0f73e1754355c5e5df5eb8"
+        },
+        "generation": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/native/r01_c07_m2_blueface_material_20261023_a01.png.generation.json",
+          "sha256": "137ef50db796cf70729d3e9fde1d6afbb5ac354100145841b57f3d54fd2fd835"
+        },
+        "mask": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-r01c07-next-material-v1/control-v1/M.PROPOSAL.png",
+          "sha256": "9824371279633a72dc401c62336739836a4e47647348a90f60e7832c1607a971"
+        },
+        "passedLiteral": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-actual-native-v1/literal-allM.QA1254.png",
+          "sha256": "e422ce9644557a899c85bccec8eb6c2927f50d5940f4ded9ddce66bd9e2bc78f"
+        }
+      },
+      "stage": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/cand/stage.json",
+        "sha256": "116dfce35ba3d9c5c2d8eb3da52da65a5ae4e3a03b3f03ba1a70c4cbbea4224a"
+      },
+      "writerPlan": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-writer-v1/source-plan.json",
+        "sha256": "b7f3adbb59f3a7b729e65d328325cc7d00e376e649bf45f59f0e29e112ca7099"
+      },
+      "verifiedPixelCount": 16777216,
+      "selectedPixelCount": 106662,
+      "changedPixelCount": 106508,
+      "selectedRawMismatchPixels": 0,
+      "outsideBaseMismatchPixels": 0,
+      "outer115ChangedPixels": {
+        "north": 0,
+        "south": 0,
+        "west": 0,
+        "east": 0
+      },
+      "changedIndices": [
+        7,
+        10,
+        21,
+        22,
+        31
+      ],
+      "actualChangedPixelCountsInChangedIndexOrder": [
+        12322,
+        106508,
+        33924,
+        3901,
+        37825
+      ],
+      "freshNativeRangeFindings": [
+        {
+          "index": 7,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/07.actual-saved.NATIVE.png",
+            "sha256": "4851c22ef1af7fc422c55b1f05df4c09d4f6fd22c9652945261f5c5331c92d81"
+          },
+          "cropSourceRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/07.actual-saved.NATIVE.png.source.json",
+            "sha256": "18faea728744c47cff8a1d17ef4674ca615baf21fb6dd23a59adccf74a1f504e"
+          },
+          "tileCropBoxHalfOpen": [
+            1808,
+            1933,
+            2288,
+            3187
+          ],
+          "actualChangedPixels": 12322,
+          "geometry": "PASS",
+          "visualFinding": "Original native crop viewed in full. The M2 upper overlap visible at the lower end keeps its curved blue shoulder and fixed dark separation. Roof column continuity remains coherent through the range; rock, leaves, red beam and gold context show no new geometry discontinuity.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "nativeScale100Percent": true
+        },
+        {
+          "index": 10,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/10.actual-saved.NATIVE.png",
+            "sha256": "d09ea859bf59c17fe5a217370146e95c18fe8498af40f8b2959e182a68b2f7ff"
+          },
+          "cropSourceRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/10.actual-saved.NATIVE.png.source.json",
+            "sha256": "3ec72c07756386ec550671309b09701718b39734ec40e3636daecdeae5994387"
+          },
+          "tileCropBoxHalfOpen": [
+            1808,
+            2957,
+            2288,
+            4096
+          ],
+          "actualChangedPixels": 106508,
+          "geometry": "PASS",
+          "visualFinding": "Original native crop viewed in full. It contains the complete modified long blue face with both side rims, curved upper overlap, lower blue lip and sensitive lower-left junction. The softened vertical highlight follows the cylinder; its length, width, tilt and dark contact strokes remain continuous. No new ring, cut, edge growth or AA teeth identified.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "nativeScale100Percent": true
+        },
+        {
+          "index": 21,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/21.actual-saved.NATIVE.png",
+            "sha256": "51eab70f1a7eaa33ce4a1260a7ce6549e9de0f6d208297f8e05da9224ee337e1"
+          },
+          "cropSourceRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/21.actual-saved.NATIVE.png.source.json",
+            "sha256": "4f62a589bfabb0114aa1c29f62c51722e7477996d272de4c09c5ff640260bd4d"
+          },
+          "tileCropBoxHalfOpen": [
+            1024,
+            2832,
+            2048,
+            3312
+          ],
+          "actualChangedPixels": 33924,
+          "geometry": "PASS",
+          "visualFinding": "Original native crop viewed in full. The left portion of the M2 upper curved overlap joins the repeated roof surfaces without a step or false seam. The visible left blue rim and dark trough continue naturally; no new geometry break is present at this horizontal retained range.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "nativeScale100Percent": true
+        },
+        {
+          "index": 22,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/22.actual-saved.NATIVE.png",
+            "sha256": "601875d75281a7aaf7ef50f4d8e56a76630598d8abd6e5e79e011365b31c862a"
+          },
+          "cropSourceRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/22.actual-saved.NATIVE.png.source.json",
+            "sha256": "fc7942f756e6df560bb194502a360aebee4df510c527de84a59b8b5b4d0b0773"
+          },
+          "tileCropBoxHalfOpen": [
+            2048,
+            2832,
+            3072,
+            3312
+          ],
+          "actualChangedPixels": 3901,
+          "geometry": "PASS",
+          "visualFinding": "Original native crop viewed in full. The right portion of M2 upper shoulder and fixed dark side contact continue into the adjacent blue roof surface. The nearby existing gold body and its contact shadow remain coherent. No new cut, rim growth or outline discontinuity identified.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "nativeScale100Percent": true
+        },
+        {
+          "index": 31,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/31.actual-saved.NATIVE.png",
+            "sha256": "7e548e3a3a071edc3491d75dca2d8024d91476e798239fd9e62349357a4795a6"
+          },
+          "cropSourceRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-saved-native-v1/31.actual-saved.NATIVE.png.source.json",
+            "sha256": "6926b5f3952cdb758b9200014b150a22a01f88eef38dcbeb6e86c3f600218618"
+          },
+          "tileCropBoxHalfOpen": [
+            1808,
+            2832,
+            2288,
+            3312
+          ],
+          "actualChangedPixels": 37825,
+          "geometry": "PASS",
+          "visualFinding": "Original native junction crop viewed in full. The M2 top arc spans the retained junction with a continuous blue shoulder and dark overlap. The neighboring column contact and round roof rhythm keep their positions; no new crossing seam, ring or AA teeth identified.",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "nativeScale100Percent": true
+        }
+      ],
+      "originalActualFiniteReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-actual-native-v1/independent-native-review.json",
+        "sha256": "ac33b097dfa42650b4db9a9f0b6a062fcbb4c9b41fae40d7adec8ee1a29437cf"
+      },
+      "originalTypedFiniteBinding": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct23-m2-actual-native-v1/independent-native-binding-v1.json",
+        "sha256": "df5c0ed1d7f55eb2961ce5766692295dc20c21b70a2d41581fb1fa7e65aca112"
+      },
+      "summary": "Actual saved M2 candidate passes explicit typed source replay, independent full16M raw/base equation, exact saved native1254 literal equality and retained33 geometry closure. Five changed native ranges were freshly viewed PASS; all other28 are exact RGB0 and reuse prior M4 geometry PASS. Finite M2 material PASS is retained from byte-identical approved literal and confirmed on actual saved1254. Whole-tile material, full internal closure, shared geometry and formal acceptance remain pending or false.",
+      "actualModel": null,
+      "actualQuality": null,
+      "generatorInvocations": 0,
+      "new4096": 0,
+      "stageInvoked": false,
+      "adoptionPerformed": false,
+      "currentWrites": 0,
+      "rootApprovalClaimed": false,
+      "separateRootActualSavedReviewRequired": true,
+      "permissionsGranted": []
+    }
+  }
+}

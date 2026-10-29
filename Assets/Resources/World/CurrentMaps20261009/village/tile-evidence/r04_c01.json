@@ -1,0 +1,2524 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 4,
+  "column": 1,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945",
+  "imageBytes": 30209090,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.assembly.json",
+  "sourceLedgerSha256": "3206b93ab085e975b7e55acb2d6e1e1df080726f42f93f982bb98dd5abcce142",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r04_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+    "imageSha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.assembly.json",
+        "sha256": "3206b93ab085e975b7e55acb2d6e1e1df080726f42f93f982bb98dd5abcce142",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "tileInternalAccepted": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/source-replay-proof.json",
+        "record": {
+          "externalDiagnosticReplayMismatches": 0,
+          "wholeTileInternalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.assembly.json",
+        "record": {
+          "tileInternalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/diagnostics.manifest.json",
+        "record": {
+          "external": [
+            {
+              "id": "external-north-c01",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-north-c01.100pct.png",
+                "sha256": "05e032f71b849ee8d797eaa51588a72ed8f0612dec9ef1d1cc71158339ae4041"
+              },
+              "globalBox": [
+                0,
+                12088,
+                1024,
+                12488
+              ],
+              "axis": "y",
+              "globalSeam": 12288,
+              "sourceGate": "actual r03c01 native source, individual edge review only",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-north-c02",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-north-c02.100pct.png",
+                "sha256": "afc5ee75d89241d972da45da37b64c0ff78bb7fe8718e6363cad715b5ab38c53"
+              },
+              "globalBox": [
+                1024,
+                12088,
+                2048,
+                12488
+              ],
+              "axis": "y",
+              "globalSeam": 12288,
+              "sourceGate": "actual r03c01 native source, individual edge review only",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-north-c03",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-north-c03.100pct.png",
+                "sha256": "dd5eec72f27d724248409463167bfbda30b6a56828f4c62ae9694d35b26acf8e"
+              },
+              "globalBox": [
+                2048,
+                12088,
+                3072,
+                12488
+              ],
+              "axis": "y",
+              "globalSeam": 12288,
+              "sourceGate": "actual r03c01 native source, individual edge review only",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-north-c04",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-north-c04.100pct.png",
+                "sha256": "15dcf220aba6b6775fc6d0b090df157794cca1116505d35eaf6f6066f887e1ae"
+              },
+              "globalBox": [
+                3072,
+                12088,
+                4096,
+                12488
+              ],
+              "axis": "y",
+              "globalSeam": 12288,
+              "sourceGate": "actual r03c01 native source, individual edge review only",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-east-r01",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-east-r01.100pct.png",
+                "sha256": "e8fad85c4dedc287c586b6d52a4aebae50aecee142faec8a7ffc28d920077756"
+              },
+              "globalBox": [
+                3896,
+                12288,
+                4296,
+                13312
+              ],
+              "axis": "x",
+              "globalSeam": 4096,
+              "sourceGate": "actual current internally accepted r04c02 candidate/source-id",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-east-r02",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-east-r02.100pct.png",
+                "sha256": "89b04714da480b44df358bff8cac530b7f370fbbcd2bd1eec82e2d6853e28d99"
+              },
+              "globalBox": [
+                3896,
+                13312,
+                4296,
+                14336
+              ],
+              "axis": "x",
+              "globalSeam": 4096,
+              "sourceGate": "actual current internally accepted r04c02 candidate/source-id",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-east-r03",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-east-r03.100pct.png",
+                "sha256": "1066be60eec7a2be96438f5c3a42bd9500769c46fe27ecff35c8c40f7fbe6ccf"
+              },
+              "globalBox": [
+                3896,
+                14336,
+                4296,
+                15360
+              ],
+              "axis": "x",
+              "globalSeam": 4096,
+              "sourceGate": "actual current internally accepted r04c02 candidate/source-id",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-east-r04",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-east-r04.100pct.png",
+                "sha256": "8aa1582398656d21aebc32ddf04a5a74cc1e24939728c1ee4946d542657c1b81"
+              },
+              "globalBox": [
+                3896,
+                15360,
+                4296,
+                16384
+              ],
+              "axis": "x",
+              "globalSeam": 4096,
+              "sourceGate": "actual current internally accepted r04c02 candidate/source-id",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-south-c02",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-south-c02.100pct.png",
+                "sha256": "9367a25a0c0994275a4b151abffe971d3758a9b2d52b0aca999d414542b3b40f"
+              },
+              "globalBox": [
+                1024,
+                16184,
+                2048,
+                16584
+              ],
+              "axis": "y",
+              "globalSeam": 16384,
+              "sourceGate": "actual root-selected r05c01 top core",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            },
+            {
+              "id": "external-south-c03",
+              "diagnostic": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-south-c03.100pct.png",
+                "sha256": "5051603f633ffbccb76e24e2981393e191c9ab41f946edfd5c75ed5757a819e3"
+              },
+              "globalBox": [
+                2048,
+                16184,
+                3072,
+                16584
+              ],
+              "axis": "y",
+              "globalSeam": 16384,
+              "sourceGate": "actual root-selected r05c01 top core",
+              "parts": [
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                {
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "crop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "destination": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                }
+              ],
+              "replayPixels": 409600,
+              "replayMismatches": 0,
+              "operation": "actual native integer hardcut only"
+            }
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/diagnostics.manifest.json",
+    "sourceSha256": "03c26daeb3d053be84c6647c41720ab515b794b2a9953c4b49a09b809b5e5582",
+    "normalizedDocument": {
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+        "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+      },
+      "internal": [
+        {
+          "id": "V-r01-c01c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r01-c01c02.100pct.png",
+          "sha256": "eca0c8e6d7f0b205c35108bb425b804538d0891e249e96a347384f6b25041e47",
+          "candidateCrop": [
+            824,
+            0,
+            1224,
+            1024
+          ],
+          "globalBox": [
+            824,
+            12288,
+            1224,
+            13312
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 1024,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s01_s01",
+          "rightCore": "s01_s02"
+        },
+        {
+          "id": "V-r01-c02c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r01-c02c03.100pct.png",
+          "sha256": "e6c22f04c1e50ee0cabe9209020bdd43d7ce7f46a80c03c03e87586aa8a5f2e4",
+          "candidateCrop": [
+            1848,
+            0,
+            2248,
+            1024
+          ],
+          "globalBox": [
+            1848,
+            12288,
+            2248,
+            13312
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 2048,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s01_s02",
+          "rightCore": "s01_s03"
+        },
+        {
+          "id": "V-r01-c03c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r01-c03c04.100pct.png",
+          "sha256": "754c5170d66be31652178a161be566dbb0c426b235716375e7d12e792a0d7503",
+          "candidateCrop": [
+            2872,
+            0,
+            3272,
+            1024
+          ],
+          "globalBox": [
+            2872,
+            12288,
+            3272,
+            13312
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 3072,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s01_s03",
+          "rightCore": "s01_s04"
+        },
+        {
+          "id": "V-r02-c01c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r02-c01c02.100pct.png",
+          "sha256": "4c5b67efa9c5a93f73426f60681145a8a32a12178003ad2e4356beb849711338",
+          "candidateCrop": [
+            824,
+            1024,
+            1224,
+            2048
+          ],
+          "globalBox": [
+            824,
+            13312,
+            1224,
+            14336
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 1024,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s02_s01",
+          "rightCore": "s02_s02"
+        },
+        {
+          "id": "V-r02-c02c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r02-c02c03.100pct.png",
+          "sha256": "d3082e54466904ec38e5fa71fb841c777149c44fdc08c0302bf513a22df1203c",
+          "candidateCrop": [
+            1848,
+            1024,
+            2248,
+            2048
+          ],
+          "globalBox": [
+            1848,
+            13312,
+            2248,
+            14336
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 2048,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s02_s02",
+          "rightCore": "s02_s03"
+        },
+        {
+          "id": "V-r02-c03c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r02-c03c04.100pct.png",
+          "sha256": "fd8df52817887292b5fa257db7fae7a8a6ce059abf677757c696340e949d8cb5",
+          "candidateCrop": [
+            2872,
+            1024,
+            3272,
+            2048
+          ],
+          "globalBox": [
+            2872,
+            13312,
+            3272,
+            14336
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 3072,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s02_s03",
+          "rightCore": "s02_s04"
+        },
+        {
+          "id": "V-r03-c01c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r03-c01c02.100pct.png",
+          "sha256": "61c9ea01f4ab09a9fa1331dafdc824ac8ed15ce4455069c235411dda47706c88",
+          "candidateCrop": [
+            824,
+            2048,
+            1224,
+            3072
+          ],
+          "globalBox": [
+            824,
+            14336,
+            1224,
+            15360
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 1024,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s03_s01",
+          "rightCore": "s03_s02"
+        },
+        {
+          "id": "V-r03-c02c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r03-c02c03.100pct.png",
+          "sha256": "9b6871565a000ab1d67de79fc0b997e6819c2ab8a886ce9f467c0475531759aa",
+          "candidateCrop": [
+            1848,
+            2048,
+            2248,
+            3072
+          ],
+          "globalBox": [
+            1848,
+            14336,
+            2248,
+            15360
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 2048,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s03_s02",
+          "rightCore": "s03_s03"
+        },
+        {
+          "id": "V-r03-c03c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r03-c03c04.100pct.png",
+          "sha256": "e891f1fc4992e7624f04fe27da8eae9ab742218febf610a608d44c3ab9ec136e",
+          "candidateCrop": [
+            2872,
+            2048,
+            3272,
+            3072
+          ],
+          "globalBox": [
+            2872,
+            14336,
+            3272,
+            15360
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 3072,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s03_s03",
+          "rightCore": "s03_s04"
+        },
+        {
+          "id": "V-r04-c01c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r04-c01c02.100pct.png",
+          "sha256": "f7cceec4a43e9f5f2d63fca54eeb13622111dd94fcf5e59c467b57fab5ce56b9",
+          "candidateCrop": [
+            824,
+            3072,
+            1224,
+            4096
+          ],
+          "globalBox": [
+            824,
+            15360,
+            1224,
+            16384
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 1024,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s04_s01",
+          "rightCore": "s04_s02"
+        },
+        {
+          "id": "V-r04-c02c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r04-c02c03.100pct.png",
+          "sha256": "89efae1a1e2e9412b5da92cfd1fbb7115e4c3d2d4b001da8ce238046b7903628",
+          "candidateCrop": [
+            1848,
+            3072,
+            2248,
+            4096
+          ],
+          "globalBox": [
+            1848,
+            15360,
+            2248,
+            16384
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 2048,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s04_s02",
+          "rightCore": "s04_s03"
+        },
+        {
+          "id": "V-r04-c03c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/V-r04-c03c04.100pct.png",
+          "sha256": "535f4bc43cd96be8b89befa65de1f737116d66def9c1de2f382b78fa70b85251",
+          "candidateCrop": [
+            2872,
+            3072,
+            3272,
+            4096
+          ],
+          "globalBox": [
+            2872,
+            15360,
+            3272,
+            16384
+          ],
+          "kind": "internal-vertical",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 3072,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "leftCore": "s04_s03",
+          "rightCore": "s04_s04"
+        },
+        {
+          "id": "H-r01r02-c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r01r02-c01.100pct.png",
+          "sha256": "218b94523d9b36c7701cf2cbed052257e41f271ae070d1090ce0aa78ddfd297d",
+          "candidateCrop": [
+            0,
+            824,
+            1024,
+            1224
+          ],
+          "globalBox": [
+            0,
+            13112,
+            1024,
+            13512
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 13312,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s01_s01",
+          "bottomCore": "s02_s01"
+        },
+        {
+          "id": "H-r01r02-c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r01r02-c02.100pct.png",
+          "sha256": "45715240e56914dcfe48623d2e6798d0734a4995e208cdf08ebf444b85a294d2",
+          "candidateCrop": [
+            1024,
+            824,
+            2048,
+            1224
+          ],
+          "globalBox": [
+            1024,
+            13112,
+            2048,
+            13512
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 13312,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s01_s02",
+          "bottomCore": "s02_s02"
+        },
+        {
+          "id": "H-r01r02-c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r01r02-c03.100pct.png",
+          "sha256": "0da971178adbe5ca89efb75bec26f1ea8a869c4c2832028d3d3f5db60c53b4ac",
+          "candidateCrop": [
+            2048,
+            824,
+            3072,
+            1224
+          ],
+          "globalBox": [
+            2048,
+            13112,
+            3072,
+            13512
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 13312,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s01_s03",
+          "bottomCore": "s02_s03"
+        },
+        {
+          "id": "H-r01r02-c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r01r02-c04.100pct.png",
+          "sha256": "52a6b0cdbd16038d2c2fc3b67817d553057cf229dd51e1649d220c64235b57b8",
+          "candidateCrop": [
+            3072,
+            824,
+            4096,
+            1224
+          ],
+          "globalBox": [
+            3072,
+            13112,
+            4096,
+            13512
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 13312,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s01_s04",
+          "bottomCore": "s02_s04"
+        },
+        {
+          "id": "H-r02r03-c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r02r03-c01.100pct.png",
+          "sha256": "fc605bf2dca0eb86acee51462f3beaf66a0ad9e7bccaa17d947363d6238c92c9",
+          "candidateCrop": [
+            0,
+            1848,
+            1024,
+            2248
+          ],
+          "globalBox": [
+            0,
+            14136,
+            1024,
+            14536
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 14336,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s02_s01",
+          "bottomCore": "s03_s01"
+        },
+        {
+          "id": "H-r02r03-c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r02r03-c02.100pct.png",
+          "sha256": "78306a47a13999ac95953d1f7b5dc869db7b78d1b15a2bbe01589a888a200033",
+          "candidateCrop": [
+            1024,
+            1848,
+            2048,
+            2248
+          ],
+          "globalBox": [
+            1024,
+            14136,
+            2048,
+            14536
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 14336,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s02_s02",
+          "bottomCore": "s03_s02"
+        },
+        {
+          "id": "H-r02r03-c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r02r03-c03.100pct.png",
+          "sha256": "693bb56eb1b9ab7fc21797d82ef951910c7b1320e301d1a0121a84ab66dcf565",
+          "candidateCrop": [
+            2048,
+            1848,
+            3072,
+            2248
+          ],
+          "globalBox": [
+            2048,
+            14136,
+            3072,
+            14536
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 14336,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s02_s03",
+          "bottomCore": "s03_s03"
+        },
+        {
+          "id": "H-r02r03-c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r02r03-c04.100pct.png",
+          "sha256": "76008e5f3c1e327a56dc6ab8298193c0bee9ddb140578dd27f814f609175c964",
+          "candidateCrop": [
+            3072,
+            1848,
+            4096,
+            2248
+          ],
+          "globalBox": [
+            3072,
+            14136,
+            4096,
+            14536
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 14336,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s02_s04",
+          "bottomCore": "s03_s04"
+        },
+        {
+          "id": "H-r03r04-c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r03r04-c01.100pct.png",
+          "sha256": "3231fad7cc2d83294ba2366957826a7219e56eb7e23060529230f77a597e1891",
+          "candidateCrop": [
+            0,
+            2872,
+            1024,
+            3272
+          ],
+          "globalBox": [
+            0,
+            15160,
+            1024,
+            15560
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 15360,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s03_s01",
+          "bottomCore": "s04_s01"
+        },
+        {
+          "id": "H-r03r04-c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r03r04-c02.100pct.png",
+          "sha256": "066153f6fe3c3f709a225fe40f9e711d976281c610c89ab2effaa26d19fa3544",
+          "candidateCrop": [
+            1024,
+            2872,
+            2048,
+            3272
+          ],
+          "globalBox": [
+            1024,
+            15160,
+            2048,
+            15560
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 15360,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s03_s02",
+          "bottomCore": "s04_s02"
+        },
+        {
+          "id": "H-r03r04-c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r03r04-c03.100pct.png",
+          "sha256": "0c0a1360efcbb453d860e8fee827704842c48d71cbd456f675833a836d27a343",
+          "candidateCrop": [
+            2048,
+            2872,
+            3072,
+            3272
+          ],
+          "globalBox": [
+            2048,
+            15160,
+            3072,
+            15560
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 15360,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s03_s03",
+          "bottomCore": "s04_s03"
+        },
+        {
+          "id": "H-r03r04-c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/H-r03r04-c04.100pct.png",
+          "sha256": "d9b866f74caec03b90b06822a2f56362d00777b207b2b1ef62dcbff304c1e5cc",
+          "candidateCrop": [
+            3072,
+            2872,
+            4096,
+            3272
+          ],
+          "globalBox": [
+            3072,
+            15160,
+            4096,
+            15560
+          ],
+          "kind": "internal-horizontal",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 15360,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend",
+          "topCore": "s03_s04",
+          "bottomCore": "s04_s04"
+        },
+        {
+          "id": "J-r01-c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r01-c01.100pct.png",
+          "sha256": "9dafee92792be147b772c51fb6c20871ab9d6834194f01dad44a2c4056176577",
+          "candidateCrop": [
+            824,
+            824,
+            1224,
+            1224
+          ],
+          "globalBox": [
+            824,
+            13112,
+            1224,
+            13512
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            1024,
+            13312
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "J-r01-c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r01-c02.100pct.png",
+          "sha256": "dcc1805cca2866929f76eba2f278f9ba7f608b562fd1bc647589af2db151a81f",
+          "candidateCrop": [
+            1848,
+            824,
+            2248,
+            1224
+          ],
+          "globalBox": [
+            1848,
+            13112,
+            2248,
+            13512
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            2048,
+            13312
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "J-r01-c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r01-c03.100pct.png",
+          "sha256": "92edf566b8eebbe5e06b28e4cb3803316169de7e553b4f097fd3306cc2ee12ff",
+          "candidateCrop": [
+            2872,
+            824,
+            3272,
+            1224
+          ],
+          "globalBox": [
+            2872,
+            13112,
+            3272,
+            13512
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            3072,
+            13312
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "J-r02-c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r02-c01.100pct.png",
+          "sha256": "18ede771e06371dbf78bfe7287ed290288ba4ee4205932707f28a82100ace4d6",
+          "candidateCrop": [
+            824,
+            1848,
+            1224,
+            2248
+          ],
+          "globalBox": [
+            824,
+            14136,
+            1224,
+            14536
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            1024,
+            14336
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "J-r02-c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r02-c02.100pct.png",
+          "sha256": "5a6f4855f2d4e29205866ea44822e3f1dae62d743a312560287bf51d5b609e51",
+          "candidateCrop": [
+            1848,
+            1848,
+            2248,
+            2248
+          ],
+          "globalBox": [
+            1848,
+            14136,
+            2248,
+            14536
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            2048,
+            14336
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "J-r02-c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r02-c03.100pct.png",
+          "sha256": "18382676a2804495bd4d1c0f3236d8b232c15cd8dd2e247215413503a539545a",
+          "candidateCrop": [
+            2872,
+            1848,
+            3272,
+            2248
+          ],
+          "globalBox": [
+            2872,
+            14136,
+            3272,
+            14536
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            3072,
+            14336
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "J-r03-c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r03-c01.100pct.png",
+          "sha256": "982e27e4222b62fccc5ac4370eecd5f450afd9065c7be8a32de228711bf7bdc6",
+          "candidateCrop": [
+            824,
+            2872,
+            1224,
+            3272
+          ],
+          "globalBox": [
+            824,
+            15160,
+            1224,
+            15560
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            1024,
+            15360
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "J-r03-c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r03-c02.100pct.png",
+          "sha256": "5a34eba52921b70081771a184be3154e80aea8d0a53214e3691e6a3df66567e4",
+          "candidateCrop": [
+            1848,
+            2872,
+            2248,
+            3272
+          ],
+          "globalBox": [
+            1848,
+            15160,
+            2248,
+            15560
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            2048,
+            15360
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "J-r03-c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/J-r03-c03.100pct.png",
+          "sha256": "0117e20e16bb026826e2a1b5637359f85b742c3cf1378022335d40bf535d81d4",
+          "candidateCrop": [
+            2872,
+            2872,
+            3272,
+            3272
+          ],
+          "globalBox": [
+            2872,
+            15160,
+            3272,
+            15560
+          ],
+          "kind": "internal-four-core-junction",
+          "boundaryAxis": "xy",
+          "globalBoundaryValue": [
+            3072,
+            15360
+          ],
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        }
+      ],
+      "ownPerimeter": [
+        {
+          "id": "perimeter-north-c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-north-c01.100pct.png",
+          "sha256": "e168a246e2fbf0dcdd680a6d84b2b7ea41fe5a7ff7d004445d1ae978b6bcef0f",
+          "candidateCrop": [
+            0,
+            0,
+            1024,
+            200
+          ],
+          "globalBox": [
+            0,
+            12288,
+            1024,
+            12488
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 12288,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-south-c01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-south-c01.100pct.png",
+          "sha256": "b2c4b68a37f4c511f22b626a06e59fa60f4124c04d8e0e452e13c5dc6a72b4d8",
+          "candidateCrop": [
+            0,
+            3896,
+            1024,
+            4096
+          ],
+          "globalBox": [
+            0,
+            16184,
+            1024,
+            16384
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 16384,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-west-r01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-west-r01.100pct.png",
+          "sha256": "962b3b4f2689cf710f03c5658b4f4bfb21ed076a3b13ae3dc4c37444f2b955d3",
+          "candidateCrop": [
+            0,
+            0,
+            200,
+            1024
+          ],
+          "globalBox": [
+            0,
+            12288,
+            200,
+            13312
+          ],
+          "kind": "own-world-edge-perimeter",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 0,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-east-r01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-east-r01.100pct.png",
+          "sha256": "c3dc7177dc2a7a1b8ead1640d0cfbf7122b7ef32eb15e29860d6fdb99df7ac9b",
+          "candidateCrop": [
+            3896,
+            0,
+            4096,
+            1024
+          ],
+          "globalBox": [
+            3896,
+            12288,
+            4096,
+            13312
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 4096,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-north-c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-north-c02.100pct.png",
+          "sha256": "be29248d2364125fba8c77dad11c71a7a5f988f1d4915f2504016ac8b5c7bc05",
+          "candidateCrop": [
+            1024,
+            0,
+            2048,
+            200
+          ],
+          "globalBox": [
+            1024,
+            12288,
+            2048,
+            12488
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 12288,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-south-c02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-south-c02.100pct.png",
+          "sha256": "d04930601637e2a1fe21c06775857830a1291515bcc253c85a376384f14d084e",
+          "candidateCrop": [
+            1024,
+            3896,
+            2048,
+            4096
+          ],
+          "globalBox": [
+            1024,
+            16184,
+            2048,
+            16384
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 16384,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-west-r02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-west-r02.100pct.png",
+          "sha256": "ce90a27d5e074f57f67508b60e2dcd751f9405ed9962203ba193a0d66fd1f4ee",
+          "candidateCrop": [
+            0,
+            1024,
+            200,
+            2048
+          ],
+          "globalBox": [
+            0,
+            13312,
+            200,
+            14336
+          ],
+          "kind": "own-world-edge-perimeter",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 0,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-east-r02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-east-r02.100pct.png",
+          "sha256": "acd91ce05baea22f81e9869c2bc6b4a03e3cb7294a2b351818ca3757c7c554fa",
+          "candidateCrop": [
+            3896,
+            1024,
+            4096,
+            2048
+          ],
+          "globalBox": [
+            3896,
+            13312,
+            4096,
+            14336
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 4096,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-north-c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-north-c03.100pct.png",
+          "sha256": "7a2463bc96dee1a4185f026c751eeab04f6c135879a387e38cda38cc4d306d32",
+          "candidateCrop": [
+            2048,
+            0,
+            3072,
+            200
+          ],
+          "globalBox": [
+            2048,
+            12288,
+            3072,
+            12488
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 12288,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-south-c03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-south-c03.100pct.png",
+          "sha256": "5c50db559e948a85a1049037a20290065e59e5a4be4660dc0a4b94303e36f4ba",
+          "candidateCrop": [
+            2048,
+            3896,
+            3072,
+            4096
+          ],
+          "globalBox": [
+            2048,
+            16184,
+            3072,
+            16384
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 16384,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-west-r03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-west-r03.100pct.png",
+          "sha256": "cb11a1b1dbfe80a08383f4b3117ca0f5abb65eed9b77eccb25d268ce99415caf",
+          "candidateCrop": [
+            0,
+            2048,
+            200,
+            3072
+          ],
+          "globalBox": [
+            0,
+            14336,
+            200,
+            15360
+          ],
+          "kind": "own-world-edge-perimeter",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 0,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-east-r03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-east-r03.100pct.png",
+          "sha256": "69580636341a0a386fd4201be27f29b197799b954196238720b6c2c7bd709eb0",
+          "candidateCrop": [
+            3896,
+            2048,
+            4096,
+            3072
+          ],
+          "globalBox": [
+            3896,
+            14336,
+            4096,
+            15360
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 4096,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-north-c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-north-c04.100pct.png",
+          "sha256": "0506e1bcb3b88fe37cac1fed17b0c69fea8f38eefe3b40447daa19490245af89",
+          "candidateCrop": [
+            3072,
+            0,
+            4096,
+            200
+          ],
+          "globalBox": [
+            3072,
+            12288,
+            4096,
+            12488
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 12288,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-south-c04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-south-c04.100pct.png",
+          "sha256": "54b40ba3fe9403a7b47601233d6057a1eab5f84dee9d64659735a8f9bb8fa691",
+          "candidateCrop": [
+            3072,
+            3896,
+            4096,
+            4096
+          ],
+          "globalBox": [
+            3072,
+            16184,
+            4096,
+            16384
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "y",
+          "globalBoundaryValue": 16384,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-west-r04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-west-r04.100pct.png",
+          "sha256": "5c12ab5de9bc652a9653f77ef5df08c71212eae0faff2a91c77d37d4b75a82fa",
+          "candidateCrop": [
+            0,
+            3072,
+            200,
+            4096
+          ],
+          "globalBox": [
+            0,
+            15360,
+            200,
+            16384
+          ],
+          "kind": "own-world-edge-perimeter",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 0,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        },
+        {
+          "id": "perimeter-east-r04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/perimeter-east-r04.100pct.png",
+          "sha256": "3abee5fc63b8c5b877faf95cffc4d1c280f3d04e76d3a5b0b5cf11274a90af90",
+          "candidateCrop": [
+            3896,
+            3072,
+            4096,
+            4096
+          ],
+          "globalBox": [
+            3896,
+            15360,
+            4096,
+            16384
+          ],
+          "kind": "own-perimeter",
+          "boundaryAxis": "x",
+          "globalBoundaryValue": 4096,
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+            "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+          },
+          "operation": "integer crop only, no scale/color/blend"
+        }
+      ],
+      "external": [
+        {
+          "id": "external-north-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-north-c01.100pct.png",
+            "sha256": "05e032f71b849ee8d797eaa51588a72ed8f0612dec9ef1d1cc71158339ae4041"
+          },
+          "globalBox": [
+            0,
+            12088,
+            1024,
+            12488
+          ],
+          "axis": "y",
+          "globalSeam": 12288,
+          "sourceGate": "actual r03c01 native source, individual edge review only",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/native/r03_c01_s04_s01_v01.png",
+                "sha256": "ae4f71ac10b94b16647d8cba7de04c08fac1646486ff7ba2b0f9d3b39acc3d38"
+              },
+              "crop": [
+                115,
+                939,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                200
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                0,
+                0,
+                1024,
+                200
+              ],
+              "destination": [
+                0,
+                200,
+                1024,
+                400
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-north-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-north-c02.100pct.png",
+            "sha256": "afc5ee75d89241d972da45da37b64c0ff78bb7fe8718e6363cad715b5ab38c53"
+          },
+          "globalBox": [
+            1024,
+            12088,
+            2048,
+            12488
+          ],
+          "axis": "y",
+          "globalSeam": 12288,
+          "sourceGate": "actual r03c01 native source, individual edge review only",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/native/r03_c01_s04_s02_v01.png",
+                "sha256": "77862155065441a79cca14cdf9cb08ce2e29cc0acefa0c7ab76419758b6bbb13"
+              },
+              "crop": [
+                115,
+                939,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                200
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                1024,
+                0,
+                2048,
+                200
+              ],
+              "destination": [
+                0,
+                200,
+                1024,
+                400
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-north-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-north-c03.100pct.png",
+            "sha256": "dd5eec72f27d724248409463167bfbda30b6a56828f4c62ae9694d35b26acf8e"
+          },
+          "globalBox": [
+            2048,
+            12088,
+            3072,
+            12488
+          ],
+          "axis": "y",
+          "globalSeam": 12288,
+          "sourceGate": "actual r03c01 native source, individual edge review only",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/native/r03_c01_s04_s03_v01.png",
+                "sha256": "4a9ef25613ba1bb944f0cc9bda6313ab85882818c85e9f49b036ff2df2ca2fa5"
+              },
+              "crop": [
+                115,
+                939,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                200
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                2048,
+                0,
+                3072,
+                200
+              ],
+              "destination": [
+                0,
+                200,
+                1024,
+                400
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-north-c04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-north-c04.100pct.png",
+            "sha256": "15dcf220aba6b6775fc6d0b090df157794cca1116505d35eaf6f6066f887e1ae"
+          },
+          "globalBox": [
+            3072,
+            12088,
+            4096,
+            12488
+          ],
+          "axis": "y",
+          "globalSeam": 12288,
+          "sourceGate": "actual r03c01 native source, individual edge review only",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/native/r03_c01_s04_s04_v01.png",
+                "sha256": "3a1131ef8072a8991e623180cba8de698ff3dd64710172d6c99dc764d35cbbdb"
+              },
+              "crop": [
+                115,
+                939,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                200
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                3072,
+                0,
+                4096,
+                200
+              ],
+              "destination": [
+                0,
+                200,
+                1024,
+                400
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-east-r01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-east-r01.100pct.png",
+            "sha256": "e8fad85c4dedc287c586b6d52a4aebae50aecee142faec8a7ffc28d920077756"
+          },
+          "globalBox": [
+            3896,
+            12288,
+            4296,
+            13312
+          ],
+          "axis": "x",
+          "globalSeam": 4096,
+          "sourceGate": "actual current internally accepted r04c02 candidate/source-id",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                3896,
+                0,
+                4096,
+                1024
+              ],
+              "destination": [
+                0,
+                0,
+                200,
+                1024
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c02/repair-v3/r04_c02.candidate.png",
+                "sha256": "528a8d2881eeca78cd6157275d782df704a69e6a3e22bb2ee572a1fe7ba10210"
+              },
+              "crop": [
+                0,
+                0,
+                200,
+                1024
+              ],
+              "destination": [
+                200,
+                0,
+                400,
+                1024
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-east-r02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-east-r02.100pct.png",
+            "sha256": "89b04714da480b44df358bff8cac530b7f370fbbcd2bd1eec82e2d6853e28d99"
+          },
+          "globalBox": [
+            3896,
+            13312,
+            4296,
+            14336
+          ],
+          "axis": "x",
+          "globalSeam": 4096,
+          "sourceGate": "actual current internally accepted r04c02 candidate/source-id",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                3896,
+                1024,
+                4096,
+                2048
+              ],
+              "destination": [
+                0,
+                0,
+                200,
+                1024
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c02/repair-v3/r04_c02.candidate.png",
+                "sha256": "528a8d2881eeca78cd6157275d782df704a69e6a3e22bb2ee572a1fe7ba10210"
+              },
+              "crop": [
+                0,
+                1024,
+                200,
+                2048
+              ],
+              "destination": [
+                200,
+                0,
+                400,
+                1024
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-east-r03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-east-r03.100pct.png",
+            "sha256": "1066be60eec7a2be96438f5c3a42bd9500769c46fe27ecff35c8c40f7fbe6ccf"
+          },
+          "globalBox": [
+            3896,
+            14336,
+            4296,
+            15360
+          ],
+          "axis": "x",
+          "globalSeam": 4096,
+          "sourceGate": "actual current internally accepted r04c02 candidate/source-id",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                3896,
+                2048,
+                4096,
+                3072
+              ],
+              "destination": [
+                0,
+                0,
+                200,
+                1024
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c02/repair-v3/r04_c02.candidate.png",
+                "sha256": "528a8d2881eeca78cd6157275d782df704a69e6a3e22bb2ee572a1fe7ba10210"
+              },
+              "crop": [
+                0,
+                2048,
+                200,
+                3072
+              ],
+              "destination": [
+                200,
+                0,
+                400,
+                1024
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-east-r04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-east-r04.100pct.png",
+            "sha256": "8aa1582398656d21aebc32ddf04a5a74cc1e24939728c1ee4946d542657c1b81"
+          },
+          "globalBox": [
+            3896,
+            15360,
+            4296,
+            16384
+          ],
+          "axis": "x",
+          "globalSeam": 4096,
+          "sourceGate": "actual current internally accepted r04c02 candidate/source-id",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                3896,
+                3072,
+                4096,
+                4096
+              ],
+              "destination": [
+                0,
+                0,
+                200,
+                1024
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c02/repair-v3/r04_c02.candidate.png",
+                "sha256": "528a8d2881eeca78cd6157275d782df704a69e6a3e22bb2ee572a1fe7ba10210"
+              },
+              "crop": [
+                0,
+                3072,
+                200,
+                4096
+              ],
+              "destination": [
+                200,
+                0,
+                400,
+                1024
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-south-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-south-c02.100pct.png",
+            "sha256": "9367a25a0c0994275a4b151abffe971d3758a9b2d52b0aca999d414542b3b40f"
+          },
+          "globalBox": [
+            1024,
+            16184,
+            2048,
+            16584
+          ],
+          "axis": "y",
+          "globalSeam": 16384,
+          "sourceGate": "actual root-selected r05c01 top core",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                1024,
+                3896,
+                2048,
+                4096
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                200
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c01/reboot-native-worker/native/r05_c01_s01_s02_v01.png",
+                "sha256": "bb0a9dcde8e565d3607de1c2e5d0af38aae71ae11f4854d73f2a94d1a0de49ad"
+              },
+              "crop": [
+                115,
+                115,
+                1139,
+                315
+              ],
+              "destination": [
+                0,
+                200,
+                1024,
+                400
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        },
+        {
+          "id": "external-south-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/qa/external-south-c03.100pct.png",
+            "sha256": "5051603f633ffbccb76e24e2981393e191c9ab41f946edfd5c75ed5757a819e3"
+          },
+          "globalBox": [
+            2048,
+            16184,
+            3072,
+            16584
+          ],
+          "axis": "y",
+          "globalSeam": 16384,
+          "sourceGate": "actual root-selected r05c01 top core",
+          "parts": [
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r04_c01/reboot-missing12-worker/assembly/r04_c01.provisional16.png",
+                "sha256": "59dc613d667876e2cdbb819d6147eb78247eae86a2506c799d1768622088c945"
+              },
+              "crop": [
+                2048,
+                3896,
+                3072,
+                4096
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                200
+              ]
+            },
+            {
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c01/reboot-native-worker/native/r05_c01_s01_s03_v01.png",
+                "sha256": "6b192607c968b30c2fd9d8f335e0c556415b047ba2dc6398fdd8fa9e1cb2f35e"
+              },
+              "crop": [
+                115,
+                115,
+                1139,
+                315
+              ],
+              "destination": [
+                0,
+                200,
+                1024,
+                400
+              ]
+            }
+          ],
+          "replayPixels": 409600,
+          "replayMismatches": 0,
+          "operation": "actual native integer hardcut only"
+        }
+      ]
+    }
+  }
+}

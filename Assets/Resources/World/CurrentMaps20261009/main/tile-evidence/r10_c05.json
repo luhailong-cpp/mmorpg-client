@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 10,
+  "column": 5,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "d62da64b0a0a54481f5231322c0fa6d035f63c664e0e9cab2452dfd0308f2106",
+  "imageBytes": 17667383,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/southwest-census/v01/current-tiles.json",
+  "sourceLedgerSha256": "6345dad28b003b74d5fedb02f030085de75ff2163c926fba8391766561db8b7a",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c05",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.png",
+    "imageSha256": "d62da64b0a0a54481f5231322c0fa6d035f63c664e0e9cab2452dfd0308f2106",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/southwest-census/v01/current-tiles.json",
+        "sha256": "6345dad28b003b74d5fedb02f030085de75ff2163c926fba8391766561db8b7a",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/review-v1/current-256-coordinate-index.json",
+        "sha256": "73125ef57344f8b3746ab2223a0db4af4c53e439e86733dcf2434ab292f353bf",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "coverageState": "full_candidate_pending_QA",
+      "formalStatus": "not_accepted",
+      "internalStatus": "open_QA",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/assembly.json",
+        "record": {
+          "status": "merged_candidate_pending_cross_edge_visual_review",
+          "formalAcceptedCount": 0,
+          "remainingIssues": [
+            "north_vertical short bevel at worldy40734 remains pending.",
+            "south_vertical material consistency pending.",
+            "Broad dense woven stone material remains pending throughout affected existing candidates.",
+            "r10_c06 guide object fragment and red sliver pending.",
+            "r11_c06 G02/G06 paving geometry still requires review.",
+            "64 tile native coverage incomplete; formal acceptance0.",
+            "Remaining cross-region neighbors not yet available."
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa-review.json",
+        "record": {
+          "status": "integrated_v5_replay_verified_visual_pending",
+          "formalAcceptedCount": 0,
+          "locallyClosedIssuesAfterExactReplay": [
+            "r11_c06 G01 stair width",
+            "r11_c06 G01-object-plane red scrap support/contact",
+            "north_vertical first bevel y40507"
+          ],
+          "remainingIssues": [
+            "north_vertical y40734 short bevel",
+            "south_vertical material/brightness",
+            "broad dense scaly/woven stone material",
+            "r10_c06 guide fragment/red sliver",
+            "r11_c06 G02/G06 geometry",
+            "remaining tiles and outer native-neighbor visual acceptance"
+          ],
+          "wholeTileFormalAcceptance": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/southwest-census/v01/current-tiles.json",
+        "record": {
+          "coverageState": "full_candidate_pending_QA",
+          "formalStatus": "not_accepted",
+          "internalStatus": "open_QA",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/review-v1/current-256-coordinate-index.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "internalStatus": "open_QA",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/manifest.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa-review.json",
+    "sourceSha256": "969753d020d64dd7a6fb8d174d5ef78a1dfd16a5be474733bfdb5d332eb3c115",
+    "normalizedDocument": {
+      "createdAtUtc": "2026-10-11T11:10:35.969543+00:00",
+      "reviewer": "resume_crossedge_audit",
+      "status": "integrated_v5_replay_verified_visual_pending",
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/assembly.json",
+        "sha256": "58ac8a8ec39e4d71307a9b14464fd8e373d51020be1bc45ff57d51163e4f7a8a"
+      },
+      "tileChecks": [
+        {
+          "tile": "r11_c06",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c06.candidate.png",
+            "sha256": "6c00803b790f788eb888f3024c6582bb30a33db7e2397be09fbf1b05221ffc9d",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "context": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c06.candidate.context.png",
+            "sha256": "bc5240226c8e463645e134d5327f421a15bf43dc5e379880bb1351c53097d705",
+            "pixels": [
+              4326,
+              4326
+            ]
+          },
+          "declaredHashesMatch": true,
+          "expectedContextReplayFromV2Exact": true,
+          "coreEqualsContextCrop": true,
+          "outsideAllAddedMasksChangedPixels": 0,
+          "changedCorePixelsFromV2": 69798,
+          "changedContextPixelsFromV2": 89536,
+          "onePixelBoundaryChangeCountsFromV2": {
+            "north": 0,
+            "south": 0,
+            "west": 0,
+            "east": 0
+          },
+          "applications": [
+            {
+              "version": 3,
+              "id": "G01",
+              "maskPixelsInContext": 69798
+            },
+            {
+              "version": 4,
+              "id": "north-stair",
+              "maskPixelsInContext": 19777
+            },
+            {
+              "version": 5,
+              "id": "G01-object-plane",
+              "maskPixelsInContext": 10857
+            }
+          ]
+        },
+        {
+          "tile": "r10_c05",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.png",
+            "sha256": "d62da64b0a0a54481f5231322c0fa6d035f63c664e0e9cab2452dfd0308f2106",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "context": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.context.png",
+            "sha256": "8a007ef67e2fa358bb565f3e91253fa5b82ce522b5b658c8d7c3989e7012d7d4",
+            "pixels": [
+              4326,
+              4326
+            ]
+          },
+          "declaredHashesMatch": true,
+          "expectedContextReplayFromV2Exact": true,
+          "coreEqualsContextCrop": true,
+          "outsideAllAddedMasksChangedPixels": 0,
+          "changedCorePixelsFromV2": 218870,
+          "changedContextPixelsFromV2": 375603,
+          "onePixelBoundaryChangeCountsFromV2": {
+            "north": 0,
+            "south": 0,
+            "west": 0,
+            "east": 1355
+          },
+          "applications": [
+            {
+              "version": 4,
+              "id": "north-stair",
+              "maskPixelsInContext": 373813
+            },
+            {
+              "version": 5,
+              "id": "stair-first-bevel",
+              "maskPixelsInContext": 6741
+            }
+          ]
+        },
+        {
+          "tile": "r11_c05",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c05.candidate.png",
+            "sha256": "1761a7652cd0e5e93e62f01281e2192f9d4c9af08724a68930e8e2b05b0dca68",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "context": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c05.candidate.context.png",
+            "sha256": "8fa6ce4afa225260fc4ef140c2bd9c05cff122aef3b3fc9f80f7526cf4a6ffbc",
+            "pixels": [
+              4326,
+              4326
+            ]
+          },
+          "declaredHashesMatch": true,
+          "expectedContextReplayFromV2Exact": true,
+          "coreEqualsContextCrop": true,
+          "outsideAllAddedMasksChangedPixels": 0,
+          "changedCorePixelsFromV2": 0,
+          "changedContextPixelsFromV2": 14222,
+          "onePixelBoundaryChangeCountsFromV2": {
+            "north": 0,
+            "south": 0,
+            "west": 0,
+            "east": 0
+          },
+          "applications": [
+            {
+              "version": 4,
+              "id": "north-stair",
+              "maskPixelsInContext": 14346
+            }
+          ]
+        },
+        {
+          "tile": "r10_c06",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c06.candidate.png",
+            "sha256": "1253542fe8183ba2c18326ff785f2674bd35072cb3235ab3dc2a9c0fc347467f",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "context": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c06.candidate.context.png",
+            "sha256": "0b1ecf3e3f9fa2063e7bcfae3724ca78b725b5770127ece2eb1d5ee7d54f5401",
+            "pixels": [
+              4326,
+              4326
+            ]
+          },
+          "declaredHashesMatch": true,
+          "expectedContextReplayFromV2Exact": true,
+          "coreEqualsContextCrop": true,
+          "outsideAllAddedMasksChangedPixels": 0,
+          "changedCorePixelsFromV2": 354974,
+          "changedContextPixelsFromV2": 511513,
+          "onePixelBoundaryChangeCountsFromV2": {
+            "north": 0,
+            "south": 0,
+            "west": 1360,
+            "east": 0
+          },
+          "applications": [
+            {
+              "version": 4,
+              "id": "north-stair",
+              "maskPixelsInContext": 509801
+            },
+            {
+              "version": 5,
+              "id": "stair-first-bevel",
+              "maskPixelsInContext": 8541
+            }
+          ]
+        }
+      ],
+      "patchSequence": [
+        {
+          "version": 3,
+          "id": "G01",
+          "worldBox": [
+            20650,
+            42275,
+            21040,
+            42482
+          ],
+          "patchSha256": "1ef209e6da36c4256994741852888ffb74a484ea315a02387ba9c08dc73022ac",
+          "maskSha256": "1b6ea52e32665352dc414b2295dd3690e06b2bd42ff44181e0d265c00f413a20",
+          "evidenceHashesMatch": true
+        },
+        {
+          "version": 4,
+          "id": "north-stair",
+          "worldBox": [
+            19853,
+            39320,
+            21107,
+            40960
+          ],
+          "patchSha256": "e109e9f63fbcfb34214c38aef15af56053075dab8d8a78a980bd5847383ac48c",
+          "maskSha256": "fc669f5fa7365ec70bd6f8cac0e4326d2d4ff2fc87c2c52513ba788982ca2d11",
+          "evidenceHashesMatch": true
+        },
+        {
+          "version": 5,
+          "id": "G01-object-plane",
+          "worldBox": [
+            20850,
+            42315,
+            20980,
+            42470
+          ],
+          "patchSha256": "5fb18db0e4afb25403b6be75841df3cd6bd6f9ba4041e072e6a3eb0498d1ab04",
+          "maskSha256": "40d901dbdc66fc68c85c3bec0506004641c96ad97d37869b890ce0a86e90e3f2",
+          "evidenceHashesMatch": true
+        },
+        {
+          "version": 5,
+          "id": "stair-first-bevel",
+          "worldBox": [
+            20173,
+            40467,
+            20833,
+            40547
+          ],
+          "patchSha256": "91540ac4d0dc2653dbc46d3b690f57ad3a56b1409b87f4d2ff733f512c659d01",
+          "maskSha256": "395505467da9494cba04187eb08ecd7d38be6a24bed10c04be45a8877ca2ae85",
+          "evidenceHashesMatch": true
+        }
+      ],
+      "nativeSegments": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/east_horizontal.segment1.png",
+          "pixels": [
+            1024,
+            768
+          ],
+          "sha256": "e04b5a6770f033279101de65265cfa9deefbafd4f067542f6bfed0da72405cf8",
+          "pixelIdenticalToV2": false,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/east_horizontal.segment2.png",
+          "pixels": [
+            1024,
+            768
+          ],
+          "sha256": "18153cf0803da5cdf58494ed3bd5e8fd99941818281f044953f7b9bb8a994057",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/east_horizontal.segment3.png",
+          "pixels": [
+            1024,
+            768
+          ],
+          "sha256": "303a743f52ebcb5bbaf88a890e7ca2ba2c43e8aaf89eb4eaf417a571e3342bbd",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/east_horizontal.segment4.png",
+          "pixels": [
+            1024,
+            768
+          ],
+          "sha256": "110df983df07b4fcbc0c44cce689b59c8fce49f5af58ab71cf5d76a2eea31fad",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/north_vertical.segment1.png",
+          "pixels": [
+            768,
+            1024
+          ],
+          "sha256": "a1c5912382515b7e083f01bc48b22664cfa74fe663cd8b7bd009142abb7b15b2",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/north_vertical.segment2.png",
+          "pixels": [
+            768,
+            1024
+          ],
+          "sha256": "ef9543b97af1008ffe7c8cc35ea3f5d9d80988d31d1dfc1acb297087d7128776",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/north_vertical.segment3.png",
+          "pixels": [
+            768,
+            1024
+          ],
+          "sha256": "f29070bca9b6266018a41530a23c855f4ac3bb9e218177e0ebc76c3861b83193",
+          "pixelIdenticalToV2": false,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/north_vertical.segment4.png",
+          "pixels": [
+            768,
+            1024
+          ],
+          "sha256": "0a6cb836d42a1aa21ad587eec9430b0cb0c9c0e94a59256eb6c0cdd9cdbeee28",
+          "pixelIdenticalToV2": false,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/south_vertical.segment1.png",
+          "pixels": [
+            768,
+            1024
+          ],
+          "sha256": "2e458b15262a5f350dd087489d479273f28bdc1444cc9ec059f993f031ff456d",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/south_vertical.segment2.png",
+          "pixels": [
+            768,
+            1024
+          ],
+          "sha256": "a4350d480120a611be845c817a9cd5e16c3d7d3a709692844ac621147deca056",
+          "pixelIdenticalToV2": false,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/south_vertical.segment3.png",
+          "pixels": [
+            768,
+            1024
+          ],
+          "sha256": "c68c0f0ec72f0134fec2e996893d6cdc7a32d74afd5dc7653e44112ea1f343fa",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/south_vertical.segment4.png",
+          "pixels": [
+            768,
+            1024
+          ],
+          "sha256": "0e69857e543659e2680357a2e22114dce28c8032cbaffb4374aa40e8f9678e76",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/west_horizontal.segment1.png",
+          "pixels": [
+            1024,
+            768
+          ],
+          "sha256": "eb5ceda7212eb6c03950874eed446c9b1eb75b59425d1d633f01b02a5cc34aa8",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/west_horizontal.segment2.png",
+          "pixels": [
+            1024,
+            768
+          ],
+          "sha256": "115e27af2f098a05c13f06a55d31309f442a181838fa11c42dcfad49a17cdd6e",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/west_horizontal.segment3.png",
+          "pixels": [
+            1024,
+            768
+          ],
+          "sha256": "3520f7f3866bdff40e6293f9286068cfec1c6a32e98fb745bbb9fc517866862d",
+          "pixelIdenticalToV2": true,
+          "resized": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/west_horizontal.segment4.png",
+          "pixels": [
+            1024,
+            768
+          ],
+          "sha256": "b77955b4b50d39e2f2e8d3a5461ce24a0ce128ff58eadfcc20be12e5fef370ed",
+          "pixelIdenticalToV2": false,
+          "resized": false
+        }
+      ],
+      "sourceArtworkModified": false,
+      "formalAcceptedCount": 0,
+      "visualReviewMethod": "11 of16 actual-scale seam segments are pixel-identical to previously independently reviewed v2. All5 changed actual-scale segments were viewed again. G01-object-plane and first-bevel proposals had independent local visual acceptance before this exact integration replay.",
+      "visualReviewedChangedSegments": [
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/east_horizontal.segment1.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/north_vertical.segment3.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/north_vertical.segment4.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/south_vertical.segment2.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/qa/west_horizontal.segment4.png"
+      ],
+      "sharedEdges": [
+        {
+          "id": "west_horizontal",
+          "status": "pass_seam_continuity",
+          "overallSurfaceMaterial": "still_global_pending",
+          "finding": "Original accepted seam registration preserved. Changed pixels in segment4 are the reviewed staircase material patch above the seam; immediate bottom50 rows stay original and continuous."
+        },
+        {
+          "id": "east_horizontal",
+          "status": "pass_seam_continuity",
+          "overallSurfaceMaterial": "still_global_pending",
+          "finding": "Stone-base and parapet continue; changed segment1 shows the reviewed north staircase material; no new horizontal seam break."
+        },
+        {
+          "id": "north_vertical",
+          "status": "pending",
+          "finding": "Wood and long stair color join improve. First short bevel near worldy40507 closes locally. Short bevel near y40734 remains visible, and broad scaly material is not accepted."
+        },
+        {
+          "id": "south_vertical",
+          "status": "pending_material",
+          "geometry": "S1/S2 grout geometry remains repaired; no new break from G01/object change.",
+          "finding": "Reviewed segment2 has correct red scrap on horizontal tread and corrected stair width; broad brightness/texture mismatch remains."
+        }
+      ],
+      "locallyClosedIssuesAfterExactReplay": [
+        "r11_c06 G01 stair width",
+        "r11_c06 G01-object-plane red scrap support/contact",
+        "north_vertical first bevel y40507"
+      ],
+      "outer2x2EightBoundarySegments": [
+        {
+          "tile": "r10_c05",
+          "side": "north",
+          "pixelExactToV2": true,
+          "neighborVisualAcceptance": "pending"
+        },
+        {
+          "tile": "r10_c05",
+          "side": "west",
+          "pixelExactToV2": true,
+          "neighborVisualAcceptance": "pending"
+        },
+        {
+          "tile": "r10_c06",
+          "side": "north",
+          "pixelExactToV2": true,
+          "neighborVisualAcceptance": "pending"
+        },
+        {
+          "tile": "r10_c06",
+          "side": "east",
+          "pixelExactToV2": true,
+          "neighborVisualAcceptance": "pending"
+        },
+        {
+          "tile": "r11_c05",
+          "side": "south",
+          "pixelExactToV2": true,
+          "neighborVisualAcceptance": "pending"
+        },
+        {
+          "tile": "r11_c05",
+          "side": "west",
+          "pixelExactToV2": true,
+          "neighborVisualAcceptance": "pending"
+        },
+        {
+          "tile": "r11_c06",
+          "side": "south",
+          "pixelExactToV2": true,
+          "neighborVisualAcceptance": "pending"
+        },
+        {
+          "tile": "r11_c06",
+          "side": "east",
+          "pixelExactToV2": true,
+          "neighborVisualAcceptance": "pending"
+        }
+      ],
+      "contextNote": "r11 lower-row context PNG hashes change because the north-stair world patch also updates their north halos. r11_c05 core remains unchanged. Context changes are verified replay, not unintended core edits.",
+      "mechanicalPass": true,
+      "remainingIssues": [
+        "north_vertical y40734 short bevel",
+        "south_vertical material/brightness",
+        "broad dense scaly/woven stone material",
+        "r10_c06 guide fragment/red sliver",
+        "r11_c06 G02/G06 geometry",
+        "remaining tiles and outer native-neighbor visual acceptance"
+      ],
+      "wholeTileFormalAcceptance": false
+    }
+  }
+}

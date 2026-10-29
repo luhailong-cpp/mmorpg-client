@@ -1,0 +1,1176 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 5,
+  "column": 7,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "06c8fe6c07060849590065600565ba548f2d963fab70f45d49d579669fe916f9",
+  "imageBytes": 25860137,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c07_candidate-v3_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c07_candidate-v3_4096.native-repair.json",
+  "sourceLedgerSha256": "d7439ab41ceb0975de3eb8ffe0b5f804ca8880b03b81018defebfecce14ba5b0",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r05_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c07_candidate-v3_4096.png",
+    "imageSha256": "06c8fe6c07060849590065600565ba548f2d963fab70f45d49d579669fe916f9",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c07_candidate-v3_4096.native-repair.json",
+        "sha256": "d7439ab41ceb0975de3eb8ffe0b5f804ca8880b03b81018defebfecce14ba5b0",
+        "sourceReviewSha256": "d7439ab41ceb0975de3eb8ffe0b5f804ca8880b03b81018defebfecce14ba5b0",
+        "completeness": [
+          [
+            "/base/reverifiedProvenance/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "status": "candidate_pending_native_visual_and_boundary_review",
+      "coverageAssertions": {
+        "fullNativeCoverage": true,
+        "tilePixelCount": 16777216,
+        "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+        "baseCoverageRecomputedFromOriginalNatives": true,
+        "editTargetExactlyEqualsBaseCrop": true,
+        "editTargetExactlyEqualsRecordedAncestorCrop": true,
+        "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+        "applicationBaseDifferencesConfinedOutsideMask": true,
+        "guidePixelsUsedAsFinalArt": false,
+        "unassignedPixels": 0
+      },
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c07_candidate-v3_4096.native-repair.json",
+        "record": {
+          "status": "candidate_pending_native_visual_and_boundary_review",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "tilePixelCount": 16777216,
+            "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+            "baseCoverageRecomputedFromOriginalNatives": true,
+            "editTargetExactlyEqualsBaseCrop": true,
+            "editTargetExactlyEqualsRecordedAncestorCrop": true,
+            "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+            "applicationBaseDifferencesConfinedOutsideMask": true,
+            "guidePixelsUsedAsFinalArt": false,
+            "unassignedPixels": 0
+          },
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalGeometryReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_owner33_successor_20261020.json",
+            "sha256": "802049e91fdb0191bfc5dcd1637e51b9471cd9ce70443f223d92843519599b6c"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_owner33_successor_20261020.json",
+        "record": {
+          "geometryPending": 0,
+          "pendingIndices": [],
+          "formalAccepted": false,
+          "knownOtherPending": [
+            {
+              "kind": "short grey grout free end just above southern join",
+              "source": "r05_c07_s04_03_a02 quick bottom",
+              "approxQuickCoordinate": [
+                470,
+                230
+              ],
+              "status": "PENDING_EXTERNAL_OR_LOCAL_EDGE_REPAIR",
+              "formalAcceptance": false
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/qa_index.json",
+        "record": {
+          "visualAcceptance": false,
+          "geometryPending": 0,
+          "materialStatus": "PENDING_ALL",
+          "sharedEdgeStatus": "PENDING",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-adopt-v1/current-after.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalGeometryReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_owner33_successor_20261020.json",
+            "sha256": "802049e91fdb0191bfc5dcd1637e51b9471cd9ce70443f223d92843519599b6c"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct24-r04c02c03-bluebarrel-adopt-v1/current-before.json",
+        "record": {
+          "materialStatus": "PENDING",
+          "formalAccepted": false,
+          "sharedGeometryAccepted": false,
+          "internalGeometryReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_owner33_successor_20261020.json",
+            "sha256": "802049e91fdb0191bfc5dcd1637e51b9471cd9ce70443f223d92843519599b6c"
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/qa_index.json",
+    "sourceSha256": "ee85c334772da557a7e87c9a3d55a468805fa90421fd7b3afca77eedb6d92c38",
+    "normalizedDocument": {
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c07_candidate-v3_4096.png",
+        "sha256": "06c8fe6c07060849590065600565ba548f2d963fab70f45d49d579669fe916f9"
+      },
+      "record": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r05_c07_candidate-v3_4096.native-repair.json",
+        "sha256": "d7439ab41ceb0975de3eb8ffe0b5f804ca8880b03b81018defebfecce14ba5b0"
+      },
+      "priorReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v1_owner33_successor_20261020.json",
+        "sha256": "896628b1da4fc8539d70a596a0214be10fccfe3fa288cb0575e9011cd078c5f8"
+      },
+      "items": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r01_c01-c02_100pct.png",
+          "sha256": "05010a5fb5ebe3025673148c454c64fa0e3d86113aeae00b896cd314478bef71",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            0,
+            1264,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 0,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "完整石板T形接头连贯；较长竖缝形成完整板界，未见悬空线头。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r01_c02-c03_100pct.png",
+          "sha256": "7079c8976ae568c2f140da185ce6da382b63938ebe7889c92a5e6788fea2fa24",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            0,
+            2288,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 1,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "石板横缝与竖缝连贯，阴影过渡较强但未见几何阶差。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r01_c03-c04_100pct.png",
+          "sha256": "82899bc9af4e5e185cee02561570e458c186bbdb3c8e6cd1fab2308857bd319a",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            0,
+            3312,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 2,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "上下三组石板接头与低阶踏面连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r02_c01-c02_100pct.png",
+          "sha256": "930eb52c3c6a7574dd76cdceee2b163b362eeac241b39a23feb771d9b92bee56",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            909,
+            1264,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 3,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "五级石阶踏面、前脸及细缝高度连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r02_c02-c03_100pct.png",
+          "sha256": "6a7ccf92b30382c9f74d70bacd65d6451a364118f60416c87b65f0df3c4d32d3",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            909,
+            2288,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 4,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "石阶顶缘、立面和接头连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r02_c03-c04_100pct.png",
+          "sha256": "2046bc033f6096f92d8d4fe85a6fe3330a0d428d3ac64c6bf9436bb07f6bad2a",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            909,
+            3312,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 5,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "五级石阶和错列板缝均连续，未见明显错台。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/left-right_r03_c01-c02_100pct.png",
+          "sha256": "cd84ba170598f5c05c2d9890e2ae82af4a9c7045f54eb8155675f104da74313f",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            1933,
+            1264,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 6,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "补丁所及下部石板轮廓仍连贯，无新增边界断线。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r03_c01-c02_100pct.png",
+            "sha256": "42c29bd16b73e756754f45b262fa326dfb4cbbb760a4fd67b12610dec710eabf"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/left-right_r03_c02-c03_100pct.png",
+          "sha256": "bef93f49af3c0a6d5c7185c0029e26e01fabae21e79e89b3b34a072ca93ab6ab",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1933,
+            2288,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 7,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "原约(395,920)短尖钩已消除，斜缝连续接入水平石板边。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r03_c02-c03_100pct.png",
+            "sha256": "cda17e2b52c0efe280c3be7c94b201aab4827332407244dc7e1bc4c6b51624ab"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r03_c03-c04_100pct.png",
+          "sha256": "8bdf0df0f5d48715818f91608678ed1b9068ba0adaf6fa986eba99d6c932d79b",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1933,
+            3312,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 8,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "低阶立面与下方矩形石板接头连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/left-right_r04_c01-c02_100pct.png",
+          "sha256": "995c24a2954ed468a9da42bd6a17642e3623f1d44d96cc63482fffaf8fcc766e",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            2957,
+            1264,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 9,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "斜石板轮廓和接头在遮罩边缘连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r04_c01-c02_100pct.png",
+            "sha256": "736146d8c90c9af8c334d3174402f21c3468750474ecb3da0c4d3c49b287b241"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/left-right_r04_c02-c03_100pct.png",
+          "sha256": "8ba22220fbdcca1fbe39c553773ffd73266bbadb92da8cd5013c42a42cf18e9d",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2957,
+            2288,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 10,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "上侧斜缝与象牙白弧带几何保持连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r04_c02-c03_100pct.png",
+            "sha256": "3413a16fe7e411317fdde04909897dc5048c9b17ab56e92982964f7416c0ce6f"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/left-right_r04_c03-c04_100pct.png",
+          "sha256": "872feb7726af85dcd717cb233dca2633c240a655af2d8376c4ca42e734f01bcc",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2957,
+            3312,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 11,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "斜石板与下部云纹尖端衔接，未见大轮廓台阶。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r01-r02_x0000-1024_100pct.png",
+          "sha256": "a4ee81d7d320181ca4b64893c5b7e758c85f308de9cf738ffafbc7063b212819",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            784,
+            1024,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 12,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "上平台、首级踏面和立面轮廓连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r01-r02_x1024-2048_100pct.png",
+          "sha256": "99811ae564ffcfcc75e5906ee065fde77a468bdd34c02bdde134d0476e320cb1",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            784,
+            2048,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 13,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "上平台及首级石阶接缝连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r01-r02_x2048-3072_100pct.png",
+          "sha256": "0aa437ac5e7f2707b679e3fbbc19731db1533df6910ee07aaa0d6c6841da60d1",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            784,
+            3072,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 14,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "平台末行与首级踏面/立面均完整连贯。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r01-r02_x3072-4096_100pct.png",
+          "sha256": "cfcd26382b5d8698c25cb53aab8d9665f2fc1499b3283478a01725af0e0ddb61",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            784,
+            4096,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 15,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "上平台和第一阶横向高度一致。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r02-r03_x0000-1024_100pct.png",
+          "sha256": "9861618859b805155dc5ec02e1c92852e589b3dca2633261b757c8bfb5ad21f0",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            1808,
+            1024,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 16,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "宽阶立面接向下部短阶，几何无明显断口。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r02-r03_x1024-2048_100pct.png",
+          "sha256": "35e8a18ae249c1bfeed062c57dc03982c455345dded2a3081c4dd27d181e4e7c",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            1808,
+            2048,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 17,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "宽阶及短阶接头均连贯。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r02-r03_x2048-3072_100pct.png",
+          "sha256": "ed68bfb71a76c58c766b8bc63ab87197802d63c2a0c0332170d44d581aad37d4",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            1808,
+            3072,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 18,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "宽阶和末两级短阶轮廓连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r02-r03_x3072-4096_100pct.png",
+          "sha256": "f1639eb44d872e5aba7fa3aa0a1a8fa66a2176c8b08d661a4d50ae001740c0d6",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            1808,
+            4096,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 19,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "末段石阶高度、立面边影对应，无明显错位。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/top-bottom_r03-r04_x0000-1024_100pct.png",
+          "sha256": "003cafe08c9efed96abbacf0bcefbd49b35b46fa5da979a428479f9dde1529e8",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            2832,
+            1024,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 20,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "原约(630,25)尖钩已修顺；相连斜缝从左侧完整延伸到平台石缝。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r03-r04_x0000-1024_100pct.png",
+            "sha256": "0424e3ae4c606060ed4c9b84cba4d7a904815f4a5d639d8abdef5a388f05bb4a"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/top-bottom_r03-r04_x1024-2048_100pct.png",
+          "sha256": "72740adc379303fef48b2c277f29861ab0df9d3c4b65f6390e3969d898bcd5df",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            2832,
+            2048,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 21,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "原约(474,23)尖头消除，水平/斜向交点形成完整圆润石板边，修图裁边处未见断线。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r03-r04_x1024-2048_100pct.png",
+            "sha256": "0795118a7e45cfce670e2a70a628826e287989bc5367a8711e85823a239112d6"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/top-bottom_r03-r04_x2048-3072_100pct.png",
+          "sha256": "f6e8242290cf0a8e808a1eab8c8294ca1c94ae1333e336c74824a80583f76ca3",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            2832,
+            3072,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 22,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "同index7的勾缝在本段顶部已修顺，未见悬空线头。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r03-r04_x2048-3072_100pct.png",
+            "sha256": "9ee0e2c8525efd7e35da6fec1b28af879b4796eddbdefc45d08fb6a052c26718"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/top-bottom_r03-r04_x3072-4096_100pct.png",
+          "sha256": "cd93960d08d6c20d9a77af3ac8334926e682dd01e9156867b2f1171b6af2dde1",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            2832,
+            4096,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 23,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "矩形石板过渡到大斜石板，完整板界连贯。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r01-r02_c01-c02_100pct.png",
+          "sha256": "db5dc8081ef7ebdf675dbbb1f9a296b7b4072683f9864c5738701da5704436e5",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            784,
+            1264,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 24,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "四源交点的平台末行和首级石阶连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r01-r02_c02-c03_100pct.png",
+          "sha256": "652fff10dc657d21399e4aac6e29ed2eac344f017fcc08e1c123e34f3a602375",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            784,
+            2288,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 25,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "四源交点的踏面/立面轮廓连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r01-r02_c03-c04_100pct.png",
+          "sha256": "b26f91867a499b578a3325af70e80f48cfbb261a7a289901ec13465dba867f35",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            784,
+            3312,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 26,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "上平台与石阶前脸交点无明显几何断口。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r02-r03_c01-c02_100pct.png",
+          "sha256": "580c448fbbbeb0b6bcc0310a75d9d974d81f057c88add3b5230a6d267cb81248",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            1808,
+            1264,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 27,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "四源交点石阶立面和末级短阶轮廓连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r02-r03_c02-c03_100pct.png",
+          "sha256": "94b3c7aee9532e38be15c1132c5a77c359e294d70f8154d5f14d28134ee31966",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1808,
+            2288,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 28,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "石阶长边、石缝与下级短阶连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r02-r03_c03-c04_100pct.png",
+          "sha256": "10b8038dc1c14fdc7e86c57faf47dbcad49270b289f6fb3f2e1f3d3ecd0b1955",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1808,
+            3312,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 29,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "踏面立面与下级短阶衔接连贯。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/junction_r03-r04_c01-c02_100pct.png",
+          "sha256": "6a0c2ff2cbb9fd3ecd3f41b4ff1868c444e57ffec057760c5fed06c157742dd6",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            2832,
+            1264,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 30,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "斜石板交点及遮罩边缘无新增几何断口。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r03-r04_c01-c02_100pct.png",
+            "sha256": "0ed4a40ae47d6b4497970ee71c90cab136cefaf4d6cfde443f37531590be7c38"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05_c07_v3_delta_successor_20261020/junction_r03-r04_c02-c03_100pct.png",
+          "sha256": "82d7661021b54e6eba1479f81e87549ee769fed7819d6123666b60119fdc8662",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2832,
+            2288,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 31,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "同index7/22的交点短钩已消除，顶部边线连贯。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": true,
+          "previousCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r03-r04_c02-c03_100pct.png",
+            "sha256": "ec25bc1175dd9a51881c266962b6f46201d6c39faea1f480b2285005cbdcce97"
+          },
+          "actualViewedInCurrentDelta": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r05_c07_candidate-v1_4096/junction_r03-r04_c03-c04_100pct.png",
+          "sha256": "da15c1783572dd2177913c239dd51f60a4398da37d0cb71ad8013501fb7f1669",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2832,
+            3312,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 32,
+          "actualViewedAtOriginal": true,
+          "viewTool": "view_image detail=original",
+          "hashVerified": true,
+          "exactCandidateCrop": true,
+          "geometry": "PASS",
+          "geometryNote": "矩形板末行与下方斜石板边界连续。",
+          "material": "PENDING",
+          "materialNote": "原生矿物颗粒/菱形重复纹理、石面锐度与树影密度有变化；本裁片不给材质通过。",
+          "changedFromV1": false,
+          "geometryEvidenceReused": true,
+          "actualViewedInThisTurn": false,
+          "evidenceMethod": "exact unchanged crop hash; reuse v1 native visual PASS"
+        }
+      ],
+      "changedIndices": [
+        6,
+        7,
+        9,
+        10,
+        20,
+        21,
+        22,
+        30,
+        31
+      ],
+      "unchangedCount": 24,
+      "outer115ChangedPixels": {
+        "north": 0,
+        "south": 0,
+        "west": 0,
+        "east": 0
+      },
+      "visualAcceptance": false,
+      "geometryPass": 33,
+      "geometryPending": 0,
+      "allCurrentGeometryHasNativeVisualEvidence": true,
+      "allChangedNativeCropsViewed": true,
+      "materialStatus": "PENDING_ALL",
+      "sharedEdgeStatus": "PENDING",
+      "internalClosurePassed": false,
+      "formalAccepted": false
+    }
+  }
+}

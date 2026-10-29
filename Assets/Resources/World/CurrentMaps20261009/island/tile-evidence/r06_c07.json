@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 6,
+  "column": 7,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "a7d214babc20b80d5de28c2a812413d8d4bcd872a1442982d0e28d3f3dae3cb0",
+  "imageBytes": 29168194,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r06_r07_joint_shared_plan_20261021/held-draft-proposals/r06_c07_joint-east-arc-held-a01_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r06_r07_joint_shared_plan_20261021/held-draft-proposals/r06_c07_joint-east-arc-held-a01_4096.cross-native-repair.json",
+  "sourceLedgerSha256": "a8ee29530235fb5d24c77bfa164dab99cc7cca4e01f86204dcbede7d19d3867d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r06_r07_joint_shared_plan_20261021/held-draft-proposals/r06_c07_joint-east-arc-held-a01_4096.png",
+    "imageSha256": "a7d214babc20b80d5de28c2a812413d8d4bcd872a1442982d0e28d3f3dae3cb0",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r06_r07_joint_shared_plan_20261021/held-draft-proposals/r06_c07_joint-east-arc-held-a01_4096.cross-native-repair.json",
+        "sha256": "a8ee29530235fb5d24c77bfa164dab99cc7cca4e01f86204dcbede7d19d3867d",
+        "sourceReviewSha256": "a8ee29530235fb5d24c77bfa164dab99cc7cca4e01f86204dcbede7d19d3867d",
+        "completeness": [
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "coverageAssertions": {
+        "fullNativeCoverage": true,
+        "unassignedPixels": 0,
+        "sameCoordinateRawOrUnchangedBase": true
+      },
+      "formalAcceptedCount": 0,
+      "visualAcceptance": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r06_r07_joint_shared_plan_20261021/held-draft-proposals/r06_c07_joint-east-arc-held-a01_4096.cross-native-repair.json",
+        "record": {
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "unassignedPixels": 0,
+            "sameCoordinateRawOrUnchangedBase": true
+          },
+          "formalAcceptedCount": 0,
+          "visualAcceptance": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

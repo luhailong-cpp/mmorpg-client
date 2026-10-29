@@ -1,31 +1,23 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
-using UnityEngine;
 
 namespace MmorpgClient.World
 {
-    /// <summary>本次用户指定候选的开发版入口；不改变正式美术批准合同。</summary>
+    /// <summary>保留历史交付名称；用户指定的两份完整候选可用于所有构建，仍不声明美术验收。</summary>
     public static class QdaoLocalPlaytestContract
     {
         public const string Mode = "local-playtest-20260929-v1";
         public const string PendingReview = "pending_dynamic_review";
 
         public static bool Allows(string id, int version, string activationJson, byte[] manifestBytes)
-        {
-#if UNITY_EDITOR
-            const bool developmentBuild = true;
-#else
-            var developmentBuild = Debug.isDebugBuild;
-#endif
-            return MatchesPinnedDelivery(id, version, activationJson, manifestBytes, developmentBuild);
-        }
+            => MatchesPinnedDelivery(id, version, activationJson, manifestBytes);
 
-        // 明确传入构建类型便于覆盖发行版拒收；运行选择只能通过上面的实际构建类型入口。
+        // 发行版与编辑器使用同一锁定交付，不能因为构建类型不同让已保存的07/15人物消失。
         public static bool MatchesPinnedDelivery(string id, int version, string activationJson,
-            byte[] manifestBytes, bool developmentBuild)
+            byte[] manifestBytes)
         {
-            if (!developmentBuild || version != 14 || string.IsNullOrEmpty(activationJson) || manifestBytes == null)
+            if (version != 14 || string.IsNullOrEmpty(activationJson) || manifestBytes == null)
                 return false;
             string manifestHash;
             string activationHash;

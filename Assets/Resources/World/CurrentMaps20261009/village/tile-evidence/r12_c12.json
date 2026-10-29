@@ -1,0 +1,2137 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 12,
+  "column": 12,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "5e0124b21dbb3cf88263ae0810dfb510d4b0b71b8abcd01cd474b3d60f22adb5",
+  "imageBytes": 23809195,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/manifest.json",
+  "sourceLedgerSha256": "41511a31da90344455bd56a4eecbbb778279c58f8d95fd481624c5a67bcae02d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c12",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/candidate-4096.png",
+    "imageSha256": "5e0124b21dbb3cf88263ae0810dfb510d4b0b71b8abcd01cd474b3d60f22adb5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/manifest.json",
+        "sha256": "41511a31da90344455bd56a4eecbbb778279c58f8d95fd481624c5a67bcae02d",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/delivery-index-20261017-v2.json",
+        "sha256": "d0c549a23797632a721b562a9ebb18f967322abb7563c3ba120ec9acdfa4eb2c",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/manifest.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/adoption-review.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/delivery-index-20261017-v2.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "full_candidate_internal_QA_or_repairs_pending",
+          "canonicalStatus": "native_production_and_internal_QA",
+          "canonicalFormalAccepted": false,
+          "reviewStatusBasis": "current canonical owner selection; no new visual approval by indexer"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/manifest.json",
+    "sourceSha256": "41511a31da90344455bd56a4eecbbb778279c58f8d95fd481624c5a67bcae02d",
+    "normalizedDocument": {
+      "tile": "r12_c12",
+      "createdAt": "2026-10-17T13:20:57.512571+00:00",
+      "selection": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/selected-patches.json",
+      "sources": [
+        {
+          "patch": "p41",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p41-v2.png",
+          "sha256": "e7f3381571db376fa03295a08c0afc24b4af8d0af16d3a4a9175700474730781",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            0,
+            3072
+          ]
+        },
+        {
+          "patch": "p42",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p42-v1.png",
+          "sha256": "231a8ec93c73a83752502404e3abe8f8a7b2c510f8dd8597c04b85499a94e010",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            1024,
+            3072
+          ]
+        },
+        {
+          "patch": "p43",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p43-v1.png",
+          "sha256": "b6985b3ea041f9c730d92a19f8aa532e5c4ffb3a9c4b32d708c820d2a3caee0a",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            2048,
+            3072
+          ]
+        },
+        {
+          "patch": "p44",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p44-post-water-v3-native.png",
+          "sha256": "b74c7b9ee038224dac32f10b85f26faaae485ad156f94951ba69059733cd3e91",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            3072,
+            3072
+          ]
+        },
+        {
+          "patch": "p34",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p34-post-water-v3-native.png",
+          "sha256": "f8287a10ffab137ffc8ca9ad3f7eca6aaf951cdfacc2e2bf7e100c4bf00eb1ad",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            3072,
+            2048
+          ]
+        },
+        {
+          "patch": "p24",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p24-v1.png",
+          "sha256": "1533109935690902191a031b28038f36b9cfad6c5894a8be7321838b682c0a0c",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            3072,
+            1024
+          ]
+        },
+        {
+          "patch": "p14",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p14-v1.png",
+          "sha256": "96828ce4018e19ce136be2bc311a8cae674efa2642606c5e98acd76dd2b1c846",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            3072,
+            0
+          ]
+        },
+        {
+          "patch": "p13",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p13-v1.png",
+          "sha256": "e5dc98eec4edc82bd87e35f84ad2b9bd7769992684e0f17eb41eeea4ad93f15b",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            2048,
+            0
+          ]
+        },
+        {
+          "patch": "p23",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+          "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            2048,
+            1024
+          ]
+        },
+        {
+          "patch": "p33",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+          "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            2048,
+            2048
+          ]
+        },
+        {
+          "patch": "p32",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+          "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            1024,
+            2048
+          ]
+        },
+        {
+          "patch": "p22",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+          "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "patch": "p12",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p12-v2.png",
+          "sha256": "51e9c652229970b662b72f6cc1b0d1f25b2209656c549260adb19ba876de389b",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            1024,
+            0
+          ]
+        },
+        {
+          "patch": "p11",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p11-v1.png",
+          "sha256": "c394a28129ab339e7f0c7796627918b4edbc83d7829d26c8ffe585a3048ef778",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            0,
+            0
+          ]
+        },
+        {
+          "patch": "p21",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p21-v1.png",
+          "sha256": "6d0f54ad05ad3fcb0a57e53b7274e0f7b034b46e4b98d4cacfd0011820ac29ec",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            0,
+            1024
+          ]
+        },
+        {
+          "patch": "p31",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p31-v1.png",
+          "sha256": "a55fb8267a3ebf9eff7c718b1d3d7bbc5e28a3fa445499928540ed665e2cfa26",
+          "crop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destination": [
+            0,
+            2048
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p11--p12.png",
+          "sha256": "230bd1fef54b234ef575f1d6f5dc2279fa889c3600f8afb9ea9f36e02a1613b5",
+          "globalBox": [
+            45824,
+            45056,
+            46336,
+            46080
+          ],
+          "sources": [
+            {
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p12-v2.png",
+              "sha256": "51e9c652229970b662b72f6cc1b0d1f25b2209656c549260adb19ba876de389b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                0
+              ]
+            },
+            {
+              "patch": "p11",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p11-v1.png",
+              "sha256": "c394a28129ab339e7f0c7796627918b4edbc83d7829d26c8ffe585a3048ef778",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p11--p21.png",
+          "sha256": "0f767f3215c61b81cf4a49e17d5a714ca30c5fa6a828c3bfba512fe43ca983df",
+          "globalBox": [
+            45056,
+            45824,
+            46080,
+            46336
+          ],
+          "sources": [
+            {
+              "patch": "p11",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p11-v1.png",
+              "sha256": "c394a28129ab339e7f0c7796627918b4edbc83d7829d26c8ffe585a3048ef778",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p21-v1.png",
+              "sha256": "6d0f54ad05ad3fcb0a57e53b7274e0f7b034b46e4b98d4cacfd0011820ac29ec",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p12--p13.png",
+          "sha256": "545f174e58d97d7bcaef60d243fc4b176ece512887b666ee6e394441a1d24c99",
+          "globalBox": [
+            46848,
+            45056,
+            47360,
+            46080
+          ],
+          "sources": [
+            {
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p13-v1.png",
+              "sha256": "e5dc98eec4edc82bd87e35f84ad2b9bd7769992684e0f17eb41eeea4ad93f15b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                0
+              ]
+            },
+            {
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p12-v2.png",
+              "sha256": "51e9c652229970b662b72f6cc1b0d1f25b2209656c549260adb19ba876de389b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p12--p22.png",
+          "sha256": "ccdd8480ac527c2c37e8795b6a290c1729523e1d28a1598b0ce4bbf8571d614e",
+          "globalBox": [
+            46080,
+            45824,
+            47104,
+            46336
+          ],
+          "sources": [
+            {
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+              "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024
+              ]
+            },
+            {
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p12-v2.png",
+              "sha256": "51e9c652229970b662b72f6cc1b0d1f25b2209656c549260adb19ba876de389b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p13--p14.png",
+          "sha256": "b85bd51948a4b897696411253526f12b0a5ac5f300e6f317a5db5729bf6d407a",
+          "globalBox": [
+            47872,
+            45056,
+            48384,
+            46080
+          ],
+          "sources": [
+            {
+              "patch": "p14",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p14-v1.png",
+              "sha256": "96828ce4018e19ce136be2bc311a8cae674efa2642606c5e98acd76dd2b1c846",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                0
+              ]
+            },
+            {
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p13-v1.png",
+              "sha256": "e5dc98eec4edc82bd87e35f84ad2b9bd7769992684e0f17eb41eeea4ad93f15b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p13--p23.png",
+          "sha256": "a0f58a7ab9a5efab4820e0878cb426b073c15433d9471b57aedc71dd9ac19639",
+          "globalBox": [
+            47104,
+            45824,
+            48128,
+            46336
+          ],
+          "sources": [
+            {
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p13-v1.png",
+              "sha256": "e5dc98eec4edc82bd87e35f84ad2b9bd7769992684e0f17eb41eeea4ad93f15b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                0
+              ]
+            },
+            {
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+              "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p14--p24.png",
+          "sha256": "43b27b75db429dd4f4689acd96ece86d7854fe66c04eb370ad0f42bbf81c1db6",
+          "globalBox": [
+            48128,
+            45824,
+            49152,
+            46336
+          ],
+          "sources": [
+            {
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p24-v1.png",
+              "sha256": "1533109935690902191a031b28038f36b9cfad6c5894a8be7321838b682c0a0c",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                1024
+              ]
+            },
+            {
+              "patch": "p14",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p14-v1.png",
+              "sha256": "96828ce4018e19ce136be2bc311a8cae674efa2642606c5e98acd76dd2b1c846",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p21--p22.png",
+          "sha256": "c448f1d89f10ca60853b68018a7eb7319f6a790737aec0f1ff43a3c204753336",
+          "globalBox": [
+            45824,
+            46080,
+            46336,
+            47104
+          ],
+          "sources": [
+            {
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+              "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024
+              ]
+            },
+            {
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p21-v1.png",
+              "sha256": "6d0f54ad05ad3fcb0a57e53b7274e0f7b034b46e4b98d4cacfd0011820ac29ec",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p21--p31.png",
+          "sha256": "1c6d5a9d9ac71e681e19a59203f58666b4844484407bcefbefdcf9f2bc4a9498",
+          "globalBox": [
+            45056,
+            46848,
+            46080,
+            47360
+          ],
+          "sources": [
+            {
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p21-v1.png",
+              "sha256": "6d0f54ad05ad3fcb0a57e53b7274e0f7b034b46e4b98d4cacfd0011820ac29ec",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                1024
+              ]
+            },
+            {
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p31-v1.png",
+              "sha256": "a55fb8267a3ebf9eff7c718b1d3d7bbc5e28a3fa445499928540ed665e2cfa26",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p22--p23.png",
+          "sha256": "92bac9bd673bffad4563115b74870a259a9c23df6294521f533dfd4d90271350",
+          "globalBox": [
+            46848,
+            46080,
+            47360,
+            47104
+          ],
+          "sources": [
+            {
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+              "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024
+              ]
+            },
+            {
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+              "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p22--p32.png",
+          "sha256": "fdb13c1aac4eca3d4008fb11868905b6a092993e7247edd6d9c9aa3d2c898a3c",
+          "globalBox": [
+            46080,
+            46848,
+            47104,
+            47360
+          ],
+          "sources": [
+            {
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+              "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048
+              ]
+            },
+            {
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+              "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p23--p24.png",
+          "sha256": "571f9aa5c164f5574c4946eb622c2db65cdf6950c4c6a0a131bb86a631881029",
+          "globalBox": [
+            47872,
+            46080,
+            48384,
+            47104
+          ],
+          "sources": [
+            {
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p24-v1.png",
+              "sha256": "1533109935690902191a031b28038f36b9cfad6c5894a8be7321838b682c0a0c",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                1024
+              ]
+            },
+            {
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+              "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p23--p33.png",
+          "sha256": "e2b16a8f6c72445bd21732e7f00182186a96635cfbbca9633339eae72d063df9",
+          "globalBox": [
+            47104,
+            46848,
+            48128,
+            47360
+          ],
+          "sources": [
+            {
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+              "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024
+              ]
+            },
+            {
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+              "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p24--p34.png",
+          "sha256": "ef530e2f250d0f2567e4077c209e8d7c5ab06fb0f8daf25d06f31b799b709a95",
+          "globalBox": [
+            48128,
+            46848,
+            49152,
+            47360
+          ],
+          "sources": [
+            {
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p34-post-water-v3-native.png",
+              "sha256": "f8287a10ffab137ffc8ca9ad3f7eca6aaf951cdfacc2e2bf7e100c4bf00eb1ad",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                2048
+              ]
+            },
+            {
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p24-v1.png",
+              "sha256": "1533109935690902191a031b28038f36b9cfad6c5894a8be7321838b682c0a0c",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p31--p32.png",
+          "sha256": "b2559832ae66e150991d6deb69f2f0fbb3dfee52e32a3cedf6bbe1240e61782c",
+          "globalBox": [
+            45824,
+            47104,
+            46336,
+            48128
+          ],
+          "sources": [
+            {
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+              "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048
+              ]
+            },
+            {
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p31-v1.png",
+              "sha256": "a55fb8267a3ebf9eff7c718b1d3d7bbc5e28a3fa445499928540ed665e2cfa26",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p31--p41.png",
+          "sha256": "9befa3b1d34488f733eaecbac3b04cd353328bde5d83db66225f7fd38e8faf9c",
+          "globalBox": [
+            45056,
+            47872,
+            46080,
+            48384
+          ],
+          "sources": [
+            {
+              "patch": "p41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p41-v2.png",
+              "sha256": "e7f3381571db376fa03295a08c0afc24b4af8d0af16d3a4a9175700474730781",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                3072
+              ]
+            },
+            {
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p31-v1.png",
+              "sha256": "a55fb8267a3ebf9eff7c718b1d3d7bbc5e28a3fa445499928540ed665e2cfa26",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p32--p33.png",
+          "sha256": "ea8d99b6034fdeeafefde7c62ba718003a5ee71ec56658ac42cf4d7e1f542dd9",
+          "globalBox": [
+            46848,
+            47104,
+            47360,
+            48128
+          ],
+          "sources": [
+            {
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+              "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048
+              ]
+            },
+            {
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+              "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p32--p42.png",
+          "sha256": "427d59f199581c5f3a691bb46d20ed747d0c51458874992614d6c7dda790668b",
+          "globalBox": [
+            46080,
+            47872,
+            47104,
+            48384
+          ],
+          "sources": [
+            {
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p42-v1.png",
+              "sha256": "231a8ec93c73a83752502404e3abe8f8a7b2c510f8dd8597c04b85499a94e010",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                3072
+              ]
+            },
+            {
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+              "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p33--p34.png",
+          "sha256": "3068f1d2e5bff4d9064a084446a0f95f011cdf3ef146761fc29035295048a150",
+          "globalBox": [
+            47872,
+            47104,
+            48384,
+            48128
+          ],
+          "sources": [
+            {
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p34-post-water-v3-native.png",
+              "sha256": "f8287a10ffab137ffc8ca9ad3f7eca6aaf951cdfacc2e2bf7e100c4bf00eb1ad",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                2048
+              ]
+            },
+            {
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+              "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": false,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p33--p43.png",
+          "sha256": "3305bf40b9bcfda469c69fbf2d0649c5d6f875d85ba183dc1a419671e3edc9ee",
+          "globalBox": [
+            47104,
+            47872,
+            48128,
+            48384
+          ],
+          "sources": [
+            {
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p43-v1.png",
+              "sha256": "b6985b3ea041f9c730d92a19f8aa532e5c4ffb3a9c4b32d708c820d2a3caee0a",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                3072
+              ]
+            },
+            {
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+              "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p34--p44.png",
+          "sha256": "62b458f1dddcd906692cf7f462c47312b27b07f0674eb43322906c90ade6531b",
+          "globalBox": [
+            48128,
+            47872,
+            49152,
+            48384
+          ],
+          "sources": [
+            {
+              "patch": "p44",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p44-post-water-v3-native.png",
+              "sha256": "b74c7b9ee038224dac32f10b85f26faaae485ad156f94951ba69059733cd3e91",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                3072
+              ]
+            },
+            {
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p34-post-water-v3-native.png",
+              "sha256": "f8287a10ffab137ffc8ca9ad3f7eca6aaf951cdfacc2e2bf7e100c4bf00eb1ad",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p41--p42.png",
+          "sha256": "ac43e38af2ed430ec5d394368d9a96bfd8ba6f9564b7dec854b425116b17225d",
+          "globalBox": [
+            45824,
+            48128,
+            46336,
+            49152
+          ],
+          "sources": [
+            {
+              "patch": "p41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p41-v2.png",
+              "sha256": "e7f3381571db376fa03295a08c0afc24b4af8d0af16d3a4a9175700474730781",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                3072
+              ]
+            },
+            {
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p42-v1.png",
+              "sha256": "231a8ec93c73a83752502404e3abe8f8a7b2c510f8dd8597c04b85499a94e010",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                3072
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/p42--p43.png",
+          "sha256": "5d8585692dd67d5be80c2b25d0334c02cba20115be028270983e5b4055cd9a86",
+          "globalBox": [
+            46848,
+            48128,
+            47360,
+            49152
+          ],
+          "sources": [
+            {
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p42-v1.png",
+              "sha256": "231a8ec93c73a83752502404e3abe8f8a7b2c510f8dd8597c04b85499a94e010",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                3072
+              ]
+            },
+            {
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p43-v1.png",
+              "sha256": "b6985b3ea041f9c730d92a19f8aa532e5c4ffb3a9c4b32d708c820d2a3caee0a",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                3072
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p43--p44.png",
+          "sha256": "f0443033264f7be28a50a3c0d5988f05b77faae85c1ed55d1ca32a2c7c69d7e9",
+          "globalBox": [
+            47872,
+            48128,
+            48384,
+            49152
+          ],
+          "sources": [
+            {
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p43-v1.png",
+              "sha256": "b6985b3ea041f9c730d92a19f8aa532e5c4ffb3a9c4b32d708c820d2a3caee0a",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                3072
+              ]
+            },
+            {
+              "patch": "p44",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p44-post-water-v3-native.png",
+              "sha256": "b74c7b9ee038224dac32f10b85f26faaae485ad156f94951ba69059733cd3e91",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                3072
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": false,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/cross-r1-c1.png",
+          "sha256": "80841930ac63bb67600b0d0fc0a785fd5de68d2f0d25f11a00dd0d8192d69ac0",
+          "globalBox": [
+            45824,
+            45824,
+            46336,
+            46336
+          ],
+          "sources": [
+            {
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+              "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024
+              ]
+            },
+            {
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p12-v2.png",
+              "sha256": "51e9c652229970b662b72f6cc1b0d1f25b2209656c549260adb19ba876de389b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                0
+              ]
+            },
+            {
+              "patch": "p11",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p11-v1.png",
+              "sha256": "c394a28129ab339e7f0c7796627918b4edbc83d7829d26c8ffe585a3048ef778",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p21-v1.png",
+              "sha256": "6d0f54ad05ad3fcb0a57e53b7274e0f7b034b46e4b98d4cacfd0011820ac29ec",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/cross-r1-c2.png",
+          "sha256": "e6144568f8c678f2d9843615bde22e2751c9bfe0258ab448cde07812c511447e",
+          "globalBox": [
+            46848,
+            45824,
+            47360,
+            46336
+          ],
+          "sources": [
+            {
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p13-v1.png",
+              "sha256": "e5dc98eec4edc82bd87e35f84ad2b9bd7769992684e0f17eb41eeea4ad93f15b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                0
+              ]
+            },
+            {
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+              "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024
+              ]
+            },
+            {
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+              "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024
+              ]
+            },
+            {
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p12-v2.png",
+              "sha256": "51e9c652229970b662b72f6cc1b0d1f25b2209656c549260adb19ba876de389b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/cross-r1-c3.png",
+          "sha256": "92bc385d3f4b14cbfa5f8e30d1e834a7eae4f1356dcd8f85fc38a3c23b895092",
+          "globalBox": [
+            47872,
+            45824,
+            48384,
+            46336
+          ],
+          "sources": [
+            {
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p24-v1.png",
+              "sha256": "1533109935690902191a031b28038f36b9cfad6c5894a8be7321838b682c0a0c",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                1024
+              ]
+            },
+            {
+              "patch": "p14",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p14-v1.png",
+              "sha256": "96828ce4018e19ce136be2bc311a8cae674efa2642606c5e98acd76dd2b1c846",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                0
+              ]
+            },
+            {
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p13-v1.png",
+              "sha256": "e5dc98eec4edc82bd87e35f84ad2b9bd7769992684e0f17eb41eeea4ad93f15b",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                0
+              ]
+            },
+            {
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+              "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/cross-r2-c1.png",
+          "sha256": "337231f85e037b652145d586500206164187b4e6d3df6306dad5093865d998be",
+          "globalBox": [
+            45824,
+            46848,
+            46336,
+            47360
+          ],
+          "sources": [
+            {
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+              "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048
+              ]
+            },
+            {
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+              "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024
+              ]
+            },
+            {
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p21-v1.png",
+              "sha256": "6d0f54ad05ad3fcb0a57e53b7274e0f7b034b46e4b98d4cacfd0011820ac29ec",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                1024
+              ]
+            },
+            {
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p31-v1.png",
+              "sha256": "a55fb8267a3ebf9eff7c718b1d3d7bbc5e28a3fa445499928540ed665e2cfa26",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/cross-r2-c2.png",
+          "sha256": "b3c57f0f8f8926fe68f874d619a22e43a485826f67d0fe45bf249c3a30315021",
+          "globalBox": [
+            46848,
+            46848,
+            47360,
+            47360
+          ],
+          "sources": [
+            {
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+              "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024
+              ]
+            },
+            {
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+              "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048
+              ]
+            },
+            {
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+              "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048
+              ]
+            },
+            {
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p22-v1.png",
+              "sha256": "72d3d97903d3b0e0ae345a42b1169313992b7077d356388af2c69365a9c34d20",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/cross-r2-c3.png",
+          "sha256": "6f42f706bbb788546f920098bdcd13cfb623bc9fb898acb781f79bbd329b886a",
+          "globalBox": [
+            47872,
+            46848,
+            48384,
+            47360
+          ],
+          "sources": [
+            {
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p34-post-water-v3-native.png",
+              "sha256": "f8287a10ffab137ffc8ca9ad3f7eca6aaf951cdfacc2e2bf7e100c4bf00eb1ad",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                2048
+              ]
+            },
+            {
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p24-v1.png",
+              "sha256": "1533109935690902191a031b28038f36b9cfad6c5894a8be7321838b682c0a0c",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                1024
+              ]
+            },
+            {
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p23-v1.png",
+              "sha256": "93edd6f23e1d750469489c2544bfc4c2ad0b85f3311e46e97ab4fa0b89ed1cef",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024
+              ]
+            },
+            {
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+              "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/cross-r3-c1.png",
+          "sha256": "52feaf5faba319203f587195720e7473cbc00f5897795d4efab5111737bfabd2",
+          "globalBox": [
+            45824,
+            47872,
+            46336,
+            48384
+          ],
+          "sources": [
+            {
+              "patch": "p41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p41-v2.png",
+              "sha256": "e7f3381571db376fa03295a08c0afc24b4af8d0af16d3a4a9175700474730781",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                3072
+              ]
+            },
+            {
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p42-v1.png",
+              "sha256": "231a8ec93c73a83752502404e3abe8f8a7b2c510f8dd8597c04b85499a94e010",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                3072
+              ]
+            },
+            {
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+              "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048
+              ]
+            },
+            {
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p31-v1.png",
+              "sha256": "a55fb8267a3ebf9eff7c718b1d3d7bbc5e28a3fa445499928540ed665e2cfa26",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/cross-r3-c2.png",
+          "sha256": "5b8add7fab222de777d518ff3a6067cc81a3f4eaa2686dcfa7c2920cdcce66c4",
+          "globalBox": [
+            46848,
+            47872,
+            47360,
+            48384
+          ],
+          "sources": [
+            {
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p42-v1.png",
+              "sha256": "231a8ec93c73a83752502404e3abe8f8a7b2c510f8dd8597c04b85499a94e010",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                3072
+              ]
+            },
+            {
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p43-v1.png",
+              "sha256": "b6985b3ea041f9c730d92a19f8aa532e5c4ffb3a9c4b32d708c820d2a3caee0a",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                3072
+              ]
+            },
+            {
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+              "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048
+              ]
+            },
+            {
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p32-v1.png",
+              "sha256": "99e71e7f84f798e7c3c818950eec2b78c663c137882bdc3dc9583e60e0eabbca",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": true,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/cross-r3-c3.png",
+          "sha256": "dc7f16ac80517258f19af5d7b5c8ad628f3f6b9e4c618ca9bbca6632b0190e47",
+          "globalBox": [
+            47872,
+            47872,
+            48384,
+            48384
+          ],
+          "sources": [
+            {
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p43-v1.png",
+              "sha256": "b6985b3ea041f9c730d92a19f8aa532e5c4ffb3a9c4b32d708c820d2a3caee0a",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                3072
+              ]
+            },
+            {
+              "patch": "p44",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p44-post-water-v3-native.png",
+              "sha256": "b74c7b9ee038224dac32f10b85f26faaae485ad156f94951ba69059733cd3e91",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                3072
+              ]
+            },
+            {
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p34-post-water-v3-native.png",
+              "sha256": "f8287a10ffab137ffc8ca9ad3f7eca6aaf951cdfacc2e2bf7e100c4bf00eb1ad",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                2048
+              ]
+            },
+            {
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/native/p33-v1.png",
+              "sha256": "05744414beae7c94f739901780f3acf0cb190fc8cc41d1801137c70f31d5aa73",
+              "crop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "visualReview": "pending",
+          "reusedPixelsVerified": false,
+          "priorVisualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/qa/full-native-20261017-v1/independent-review.json"
+        }
+      ],
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/candidate-4096.png",
+      "candidateSha256": "5e0124b21dbb3cf88263ae0810dfb510d4b0b71b8abcd01cd474b3d60f22adb5",
+      "selectedCount": 16,
+      "changedBoxInTileFromV2": [
+        3082,
+        2975,
+        3833,
+        3311
+      ],
+      "resamplingApplied": false,
+      "unmodifiedNativeSourceCount": 14,
+      "AIEditedNativeSourceCount": 2,
+      "changedQA": [
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p33--p34.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p34--p44.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/p43--p44.png",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/processed/joint-post-20261017-v3/cross-r3-c3.png"
+      ],
+      "reusedUnchangedQA": 29,
+      "outer256PixelsUnchanged": true,
+      "internalReady": false,
+      "formalAccepted": false
+    }
+  }
+}

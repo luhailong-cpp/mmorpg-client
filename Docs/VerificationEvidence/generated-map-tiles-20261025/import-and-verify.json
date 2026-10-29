@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "maps": [
+    {
+      "key": "main",
+      "sceneId": 1,
+      "deliveredTiles": 178,
+      "totalSlots": 256,
+      "imageBytes": 4231320686,
+      "excludedTiles": 0,
+      "selectionPolicy": "all_generated_current_layout",
+      "wholeMapAccepted": false
+    },
+    {
+      "key": "village",
+      "sceneId": 3,
+      "deliveredTiles": 165,
+      "totalSlots": 196,
+      "imageBytes": 4290662985,
+      "excludedTiles": 0,
+      "selectionPolicy": "all_generated_current_layout",
+      "wholeMapAccepted": false
+    },
+    {
+      "key": "island",
+      "sceneId": 2,
+      "deliveredTiles": 176,
+      "totalSlots": 196,
+      "imageBytes": 4586414822,
+      "excludedTiles": 0,
+      "selectionPolicy": "all_generated_current_layout",
+      "wholeMapAccepted": false
+    }
+  ],
+  "imageBytes": 13108398493
+}

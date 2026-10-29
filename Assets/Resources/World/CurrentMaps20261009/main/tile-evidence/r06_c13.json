@@ -9,27 +9,107 @@
   "imageSha256": "7f8784be48316ee2083ceb420d97248f9143bdd274a6a381ef335214e7e64669",
   "imageBytes": 23748465,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c13/candidates/r06_c13.candidate.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
   "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
   "sourceLedgerSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
     "tile": "r06_c13",
-    "generatedNativeCount": 27,
-    "selectedCoreCount": 16,
-    "missingCoreCount": 0,
-    "fullyCovered4kCount": 1,
-    "internalPassed4kCount": 1,
-    "formalAcceptedCount": 0,
-    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c13/candidates/r06_c13.candidate.png",
-    "candidateSha256": "7f8784be48316ee2083ceb420d97248f9143bdd274a6a381ef335214e7e64669",
-    "workerStatus": "complete_4k_candidate_internal_and_north_seams_reviewed",
-    "nextPatch": null,
-    "fullInternalReview": null
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c13/candidates/r06_c13.candidate.png",
+    "imageSha256": "7f8784be48316ee2083ceb420d97248f9143bdd274a6a381ef335214e7e64669",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "sha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
+    ],
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "missingCoreCount": 0,
+      "formalAcceptedCount": 0,
+      "workerStatus": "complete_4k_candidate_internal_and_north_seams_reviewed",
+      "fullInternalReview": null
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r06_c13/candidates/r06_c13.candidate.png.generation.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "unverifiedReason": "Host tool does not disclose actual model or quality; composition does not establish them.",
+          "formalAcceptedCount": 0,
+          "status": "complete-4k-candidate-internal-visual-review-passed-with-P3-notes-not-formal-accepted"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "missingCoreCount": 0,
+          "formalAcceptedCount": 0,
+          "workerStatus": "complete_4k_candidate_internal_and_north_seams_reviewed",
+          "fullInternalReview": null
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/east-census/v20261013-01/current-tiles.json",
+        "record": {
+          "internalStatus": {
+            "workerStatus": "complete_4k_candidate_internal_and_north_seams_reviewed",
+            "internalArtQA": null,
+            "internalSeamQA": null,
+            "internalPassed4kCount": 1
+          },
+          "formalStatus": {
+            "formalAccepted": false,
+            "externalNeighborSeamQA": null,
+            "externalPassed4kCount": 0
+          },
+          "existingSelectedCoreCount": 1
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/qa/connected-2x2-20261010/17e623f15f6b0db05b2c/visual-review.json",
+        "record": {
+          "status": "connected_group_art_review_passed_with_documented_P3_cosmetics",
+          "formalAcceptedCount": 0,
+          "snapshotReason": "r06_c13 south gold cap added outside the 17 current group seam windows; its separate local review is retained."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/qa/connected-2x2-20261010/17e623f15f6b0db05b2c/manifest.json",
+        "record": {
+          "status": "exported_for_visual_review_not_acceptance",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/east-census/v20261013-02/current-tiles.json",
+        "record": {
+          "internalStatus": {
+            "workerStatus": "complete_4k_candidate_internal_and_north_seams_reviewed",
+            "internalArtQA": null,
+            "internalSeamQA": null,
+            "internalPassed4kCount": 1
+          },
+          "formalStatus": {
+            "formalAccepted": false,
+            "externalNeighborSeamQA": null,
+            "externalPassed4kCount": 0
+          },
+          "existingSelectedCoreCount": 16
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",

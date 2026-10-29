@@ -1,0 +1,1893 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 11,
+  "column": 4,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "0ab057a84d51c904b9e57c913442bd55f1d8ed1020dc5e6df1b2dfa9aa4854e3",
+  "imageBytes": 20478937,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/assembly.json",
+  "sourceLedgerSha256": "b634ed1f228abdc0b75c546fd971135e0280a029510ebd091e490b68468a7b8b",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r11_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.png",
+    "imageSha256": "0ab057a84d51c904b9e57c913442bd55f1d8ed1020dc5e6df1b2dfa9aa4854e3",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/assembly.json",
+        "sha256": "b634ed1f228abdc0b75c546fd971135e0280a029510ebd091e490b68468a7b8b",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/assembly.json",
+        "sha256": "b634ed1f228abdc0b75c546fd971135e0280a029510ebd091e490b68468a7b8b",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/review.json",
+        "record": {
+          "verifiedDistinctNativeSlots": 16,
+          "externalRegionFindings": [
+            {
+              "id": "left-row1",
+              "actuallyViewed": true,
+              "findings": [
+                "Neighbor blue inlay/pale border enters at different heights; slab phases and material tones mismatch."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "left-row2",
+              "actuallyViewed": true,
+              "findings": [
+                "Diagonal blue border and floor joints break at tile boundary with visible warm/cool phase change."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "left-row3",
+              "actuallyViewed": true,
+              "findings": [
+                "Several diagonal joints terminate at tile edge and false horizontal groove starts in this tile; tint discontinuity."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "left-row4",
+              "actuallyViewed": true,
+              "findings": [
+                "Neighbor blue band absent in target; large diagonal intersections and tone differ abruptly."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "top-col1",
+              "actuallyViewed": true,
+              "findings": [
+                "North native plain floor and vertical joint conflict with this tile diagonal blue-inlay border; major geometry mismatch held."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "top-col2",
+              "actuallyViewed": true,
+              "findings": [
+                "North native blue floor/building corner position conflicts with this tile blue inlay and wall footprint; major geometry mismatch held."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "top-col3",
+              "actuallyViewed": true,
+              "findings": [
+                "Wall broad face continues but tone changes horizontally and lower course line introduces a new division."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "top-col4",
+              "actuallyViewed": true,
+              "findings": [
+                "Foliage broadly matches but leaf identity and barrel outline/lighting visibly cut across tile boundary."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "right-row1",
+              "actuallyViewed": true,
+              "findings": [
+                "Right neighbor red banner starts abruptly beside foliage/open floor; prop footprint discontinuity."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "right-row2",
+              "actuallyViewed": true,
+              "findings": [
+                "Right neighbor red wooden prop and carved floor symbol start abruptly; this tile lacks matching adjoining segments."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "right-row3",
+              "actuallyViewed": true,
+              "findings": [
+                "Right neighbor blue inset reaches boundary without target continuation; diagonal grout ends and floor phase differ."
+              ],
+              "accepted": false
+            },
+            {
+              "id": "right-row4",
+              "actuallyViewed": true,
+              "findings": [
+                "Diagonal joints on both sides terminate at tile boundary at different heights; scale/tone mismatch."
+              ],
+              "accepted": false
+            }
+          ],
+          "externalPassed": false,
+          "formalAccepted": false,
+          "issues": [
+            "Multiple slab-phase and grout endpoint geometry failures; do not propagate affected edges.",
+            "Strong crosshatched floor microtexture and broad tint variation remain pending; broad quiet grey floor required.",
+            "p03_03 small slab grid and incompatible external boundaries held."
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/manifest.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/review.json",
+    "sourceSha256": "18451e56c6dc73b3157f08e0ae39dd746fff7686184892c15ff1366c451d485e",
+    "normalizedDocument": {
+      "tile": "r11_c04",
+      "reviewedAtUtc": "2026-10-19T15:28:03.979847+00:00",
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/assembly.json",
+        "sha256": "b634ed1f228abdc0b75c546fd971135e0280a029510ebd091e490b68468a7b8b"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.png",
+        "sha256": "0ab057a84d51c904b9e57c913442bd55f1d8ed1020dc5e6df1b2dfa9aa4854e3",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.context.png",
+        "sha256": "7aecde02b37a2c5288ef53d5dda1f33a4efe4e07708ac78a77370ce1bf48cc47",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "verifiedDistinctNativeSlots": 16,
+      "internalRegions": [
+        {
+          "name": "V1-row1",
+          "box": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "findings": [
+            "Blue inlay and pale floor diagonals meet, but blue slab tone and border-joint phases differ; coarse layout priority retained pending repair."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "c7e3aa3120a43396aa73d27e1f701f6532f09cbe26a03cc43326919b95ca3e6f"
+        },
+        {
+          "name": "V2-row1",
+          "box": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "findings": [
+            "Wall-course joints stop midway and opposite wall blocks shift vertically; horizontal ledge/step-like fragments are not continuous."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "efc03c8695ceb34cdeafa2a3a502561cccca717346c0b512c1ba7745281a299d"
+        },
+        {
+          "name": "V3-row1",
+          "box": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "findings": [
+            "Wall base, foliage and paper lie in matching general areas; narrow wall joints and floor-course endpoints remain visible and pending."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "4fc238ba91169f8e168dd187e512619ac9fd0784584af5aca447e3e55cafc170"
+        },
+        {
+          "name": "V1-row2",
+          "box": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "findings": [
+            "Diagonal grout forms floating disconnected ends instead of crossing seam continuously; tonal/material phase differs."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "d245e94445b43d4eb71a9a513fd1a3b42da29f1cb96600ed5dc0ddcc0c8b1acc"
+        },
+        {
+          "name": "V2-row2",
+          "box": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "findings": [
+            "Several diagonal grout ends disappear or reappear in middle of plain paving; paper cluster transition and slab course need reconstruction."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "19a5b22eb272b0e061879df74cc80614a14e6e2959fefa378da71b3f8ce5b766"
+        },
+        {
+          "name": "V3-row2",
+          "box": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "findings": [
+            "Two thin horizontal groove stubs and discontinuous diagonals near upper overlap; slab scale and crossings differ."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "56fb1bdbdb61248eba73236a65f498326ae42a3c44213675cd58c68713dbf8ad"
+        },
+        {
+          "name": "V1-row3",
+          "box": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "findings": [
+            "Invented horizontal boundary at top, diagonal joint kink and terminating diagonal stubs lower down."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "52fc8cf552e9666e8d903570055d0ae9ac6ee545cd64218d4378aa81c06cfaa1"
+        },
+        {
+          "name": "V2-row3",
+          "box": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "findings": [
+            "p03_03 smaller slab grid and thin partial diagonals mismatch large neighboring slabs; floating ends and abrupt scale change."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "752799a18cbe165b2a2caf2fbbe5433f0987cd95a87d436f6a9c39bda9077471"
+        },
+        {
+          "name": "V3-row3",
+          "box": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "findings": [
+            "Small-grid slab corners collide with much larger paving; multiple joint stubs and upper pale trim fragments remain."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "b99c14f5c81c29b5160ab286eeeca99cfe4ed2de332ac17b1264f945509db5a3"
+        },
+        {
+          "name": "V1-row4",
+          "box": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "findings": [
+            "Invented rectangular intersection endcap at lower crossing and floating horizontal grout near upper part; diagonal is not continuous."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "28c2cc40d11c1316abe2d44d87743a97d51edeb320705adaabebbeb6a91a1d83"
+        },
+        {
+          "name": "V2-row4",
+          "box": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "findings": [
+            "Upper horizontal grout ends abruptly beside differing slab junction; broad material/scale transition across rest of seam."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "bf985e99f7403ca5a8059f9e3a825b61f96bc1f350c0d69301efc88e2e239f75"
+        },
+        {
+          "name": "V3-row4",
+          "box": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "findings": [
+            "Large crossing generally aligns, but plain faces show noticeable tint/texture strip and upper corner remnant pending."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "0294430a5b91cbdc63d37bd2149c069d7dd39dd9fe3f423ae6ff51e6f35087a2"
+        },
+        {
+          "name": "H1-col1",
+          "box": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "findings": [
+            "Blue inlay/pale border geometry broadly continuous; two faint isolated diagonals terminate on floor and material grain differs."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "653f9b4422a63d7acba6d1c7a5d679ade667fa584ed02da8b74a4fd8f736cc49"
+        },
+        {
+          "name": "H1-col2",
+          "box": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "findings": [
+            "Large diagonal course broadly continuous, but paper cluster and short grout stubs/tonal phase pending."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "1f5a8a1fa67bf7fbca4726a47efa98e3af124619080fae7f26c6d016113b2cfe"
+        },
+        {
+          "name": "H1-col3",
+          "box": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "findings": [
+            "Long horizontal joint runs along guide boundary with unexpected blue-grey filled slab below; course/inlay remains wrong."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "8c04ba585542b6050a4f224f8a7e5c4b47e27722b7ae94c7e29d7fffffdbcd09"
+        },
+        {
+          "name": "H1-col4",
+          "box": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "findings": [
+            "Horizontal line along guide boundary and paper identity/placement change; dense texture and tone need unification."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "a3ea104856433983d8961234fdace6e0cd6ead9776b56a468ed1939d6c1fe57e"
+        },
+        {
+          "name": "H2-col1",
+          "box": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "findings": [
+            "Unintended long horizontal grout runs at row boundary; diagonal ends in an offset notch there."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "a59b7a2ec554b3b655b325b788fe1f9ff8a68c50b626e60d9086ceaf16567b5b"
+        },
+        {
+          "name": "H2-col2",
+          "box": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "findings": [
+            "Diagonal grout has a double-step/fork and two disconnected extensions; guide-boundary continuity failed."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "cc763cdeff7f8ae18077d11cdc314760b1da94bcf84658a34fa9e21849df7d3e"
+        },
+        {
+          "name": "H2-col3",
+          "box": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "findings": [
+            "Smaller grid below disagrees with large slab floor above, with partial crossing and disconnected diagonal ends."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "5bb6af392ad8573b043fe363d1349ce0ed60ad0cb8ca063a5c67283fbb78b41e"
+        },
+        {
+          "name": "H2-col4",
+          "box": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "findings": [
+            "Diagonal forms a dogleg/double notch on boundary; plain floor microtexture and tone remain dense."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "ee0818226c07f0c7f7b440f9e03f52a61cad23f04c56960f007e8d83226c01d6"
+        },
+        {
+          "name": "H3-col1",
+          "box": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "findings": [
+            "Broad plain floor has no major new object, but isolated diagonal end at upper-right and microtexture continuity pending."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "ef2a41874d03025f70f7b749a0e296175bfe6c1c6f6971af7c588a3ce6b77a9c"
+        },
+        {
+          "name": "H3-col2",
+          "box": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "findings": [
+            "New horizontal grout at guide strip boundary runs entire lower edge; diagonal course cut at this line."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "f2257862b43c09665ff5226a061e5d4dbd510da356e0986f74c26b94d412762e"
+        },
+        {
+          "name": "H3-col3",
+          "box": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "findings": [
+            "Smaller-grid top joints terminate before reaching large slab lower area; discontinuous short centre branch and scale change."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "c114e889b4caeedbb734968c5e256ff0e947d696cc3ac7b6ffbf4d658a5e1fc3"
+        },
+        {
+          "name": "H3-col4",
+          "box": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "findings": [
+            "Main diagonal joins with slight bevel/tonal change; overall dense micrograin remains pending."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "d3fb6ca8675bcbcc5933e3235ba8cb000e935e662fc97f55466abfe9850f6850"
+        },
+        {
+          "name": "corner-H1-V1",
+          "box": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Short thin diagonal branch terminates at main joint; material phase changes at crossing."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "79f6deae205ef50d212c3db18c0b01cf901b122ab0e597a965e89f05246972be"
+        },
+        {
+          "name": "corner-H1-V2",
+          "box": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Paper pile and several slab-joint endpoints cluster at intersection; course and scale pending."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "88ed98ca1f5980570f4042cffc9926de6e948830963ddfd4d9fad6f0238f42ac"
+        },
+        {
+          "name": "corner-H1-V3",
+          "box": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Two horizontal trim-like stubs in floor and red paper/course identity mismatch."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "156809635de4317ad442774a6a52ead77d333920bac747b54a7518d6ef5e0559"
+        },
+        {
+          "name": "corner-H2-V1",
+          "box": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Invented horizontal boundary separates diagonal joints; disconnected thin branches above."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "4229403decb82c22cdf771c4cc68bc185bf9e69b318bf94544eb16b8c36de27f"
+        },
+        {
+          "name": "corner-H2-V2",
+          "box": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Short diagonal branch extends from acute paving corner then terminates; scale/material phase differs."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "a01cb36432e501ed9e5c10db416538923b975d7803fe10969db89eabd612ff31"
+        },
+        {
+          "name": "corner-H2-V3",
+          "box": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Multiple isolated diagonal stubs and small-grid corner conflict with large neighboring slabs."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "9083424165507dae1759b2ec70574de6868408b957c4748738ee58c5b4927249"
+        },
+        {
+          "name": "corner-H3-V1",
+          "box": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Tiny isolated diagonal end remains above plain floor; microtexture continuation pending."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "9f8c8d33c49b779f3e57a0fcd50723ede2b56e629953874520413a7a0a0d6d84"
+        },
+        {
+          "name": "corner-H3-V2",
+          "box": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Wrong small-grid crossover above and horizontal guide-divider stub on left; diagonal slab scale changes."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "f4bb3699ca54a263f5da6c94dce1dec98f154a7b08d68bc902d66bb605ed6042"
+        },
+        {
+          "name": "corner-H3-V3",
+          "box": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "findings": [
+            "Upper slab triangle remains isolated while lower floor uses larger faces; tone/texture transition pending."
+          ],
+          "accepted": false,
+          "inputPixelsSha256": "7f0a4abe9bad80e449a98e26df2e937c4a4830490b5af8be96cb2b61213a769f"
+        }
+      ],
+      "nativePanels": [
+        {
+          "name": "V-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/V-row1.png",
+          "sha256": "6549e1d67fd2001fbee4399c454ed416d7fb38966e16485187399baf5edb3225",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "V-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/V-row2.png",
+          "sha256": "d1648e0876e3a2383327d58f638af6bf0fdf97f6d275d5f4cbdc8f4bb4d45850",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "V-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/V-row3.png",
+          "sha256": "364e05bc82d3a5aa377bfc380bc5c59603982d2e114edf27b7ac5f172f126501",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "V-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/V-row4.png",
+          "sha256": "bef1ac41386f5faac70cba4988f3bb0db30b9d56fb051f8e4e4225c0db363279",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "H1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/H1.png",
+          "sha256": "dc6c106f2cdc804b6f36516c3ba066034e51143da90bdd495e1cc64e3a8c9ca9",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "H2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/H2.png",
+          "sha256": "e140083257b6a047a7b3b10f9ad2307420dd4246ee19625a3f1589b0392aa387",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "H3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/H3.png",
+          "sha256": "dab7f1a1a0e0f8f56d59c7c77ae756ef5aad17acb2ac5255783f906397ac8d62",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "nine-corners",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/nine-corners.png",
+          "sha256": "0fad94cf67dd6d0a3faf7dcf96c272ff9a2f6dc77d1858380ba4f320142ca5d4",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "left-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/left-native-boundary.png",
+          "sha256": "fea0a7d82d407e397caf3ab92e1467ab7c1ed5d255a6290da4e8967a90a972e8",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "right-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/right-native-boundary.png",
+          "sha256": "a4d7298d268cc040751af71846bc34ac5f2f280b5a95e0af8acbc68ea6d6c43d",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "top-partial-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/top-partial-native-boundary.png",
+          "sha256": "f9a5e9f79743dbd4ec9cd6c03585c40cb95ee6c1bce04940a84aab84839db8db",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        }
+      ],
+      "neighborInputs": {
+        "left": {
+          "tile": "r11_c03",
+          "available": true,
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c03/repairs-20261019a/H3-scroll-whole-v01/r11_c03.candidate.png",
+            "sha256": "9569b68bf5f0c5d7b47375bc78d3095523da026ce0cf34589154e6db1a65a1ea",
+            "width": 4096,
+            "height": 4096,
+            "format": "PNG",
+            "mode": "RGB",
+            "sourceResampling": false
+          },
+          "formalAccepted": false
+        },
+        "topAndRight": [
+          {
+            "id": "right-row1",
+            "panel": "right-native-boundary",
+            "targetBox": [
+              3968,
+              0,
+              4096,
+              1024
+            ],
+            "neighbor": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c05.candidate.png",
+              "sha256": "1761a7652cd0e5e93e62f01281e2192f9d4c9af08724a68930e8e2b05b0dca68",
+              "pixels": [
+                4096,
+                4096
+              ]
+            },
+            "neighborBox": [
+              0,
+              0,
+              128,
+              1024
+            ],
+            "resampled": false
+          },
+          {
+            "id": "right-row2",
+            "panel": "right-native-boundary",
+            "targetBox": [
+              3968,
+              1024,
+              4096,
+              2048
+            ],
+            "neighbor": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c05.candidate.png",
+              "sha256": "1761a7652cd0e5e93e62f01281e2192f9d4c9af08724a68930e8e2b05b0dca68",
+              "pixels": [
+                4096,
+                4096
+              ]
+            },
+            "neighborBox": [
+              0,
+              1024,
+              128,
+              2048
+            ],
+            "resampled": false
+          },
+          {
+            "id": "right-row3",
+            "panel": "right-native-boundary",
+            "targetBox": [
+              3968,
+              2048,
+              4096,
+              3072
+            ],
+            "neighbor": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c05.candidate.png",
+              "sha256": "1761a7652cd0e5e93e62f01281e2192f9d4c9af08724a68930e8e2b05b0dca68",
+              "pixels": [
+                4096,
+                4096
+              ]
+            },
+            "neighborBox": [
+              0,
+              2048,
+              128,
+              3072
+            ],
+            "resampled": false
+          },
+          {
+            "id": "right-row4",
+            "panel": "right-native-boundary",
+            "targetBox": [
+              3968,
+              3072,
+              4096,
+              4096
+            ],
+            "neighbor": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r11_c05.candidate.png",
+              "sha256": "1761a7652cd0e5e93e62f01281e2192f9d4c9af08724a68930e8e2b05b0dca68",
+              "pixels": [
+                4096,
+                4096
+              ]
+            },
+            "neighborBox": [
+              0,
+              3072,
+              128,
+              4096
+            ],
+            "resampled": false
+          },
+          {
+            "id": "top-col1",
+            "panel": "top-partial-native-boundary",
+            "targetBox": [
+              0,
+              0,
+              1024,
+              128
+            ],
+            "neighborNative": {
+              "id": "p04_01",
+              "row": 4,
+              "column": 1,
+              "sourceTile": "r10_c04",
+              "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_01.png",
+              "nativeSha256": "8fd3067467aca05c6cc9a38aff7d936ca8f11599a8a17b26ea7499fbc26faec1",
+              "actualNativePixels": [
+                1254,
+                1254
+              ],
+              "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_01.png.generation.json",
+              "recordSha256": "a5bffb7d11032d0ec7ee84c5da943087430a65800ee3d62742d01add032661ee",
+              "selectionEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3"
+              },
+              "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/prompts/p04_01.restartb20261017-v02.prompt.txt",
+              "promptSha256": "874040a53d92747268c2e9c2d5113de59633fa31cad876b62eb1ce75e449e7c8",
+              "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/receipts/p04_01.restartb20261017-v02.receipt.json",
+              "receiptSha256": "77d690d27da54fa0c2498a51b9b97423da1d0b55f92976ec81a128a4f31c847c",
+              "requestEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/prompts/p04_01.restartb20261017-v02.request.json",
+                "sha256": "8994527c5c1bf08b818a500c1ae75c7707314e2fb7d6585c459cbf03bf0232f2"
+              },
+              "references": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/guides/p04_01.restartb20261017-v02.native-edit-seed.png",
+                  "sha256": "9b2ef406efb3cbaa50a57d78b1696cbdbd90e72c5f9cd3145035276c49d31336",
+                  "role": "actual native edit target with exact current native neighboring overlaps pasted; preserve all object geometry except specified repair"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+                  "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+                  "role": "approved whole-city geometry only; no full scene output"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+                  "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809",
+                  "role": "approved clean grey stone, daylight and material finish"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+                  "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63",
+                  "role": "current primary Daoist chibi style; copy no UI"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/pipeline-tools/native-quiet-gray-style-20261016-v01.png",
+                  "sha256": "109fd185bd87a09f03514be78eeeaa075c9e1ceac0852cae5534215f6fc24a21",
+                  "role": "quiet grey MATERIAL ONLY; no geometry"
+                }
+              ],
+              "neighborSources": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/native/p04_04.png",
+                  "sha256": "9bc1ca7ce54da1e8482370b808fcb149efc43791c38fb036f90ea9c3ec006fff",
+                  "role": "exact selected left native strip",
+                  "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/native/p04_04.png.generation.json",
+                  "generationRecordSha256": "b9b4741ca392e100bdee4e82456a2347d7b40170304abea5daa0f11baba81e0c",
+                  "sourceTile": "r10_c03",
+                  "sourcePatch": "p04_04",
+                  "selectionEvidence": {
+                    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/refinement/selection.json",
+                    "sha256": "fe892fd21f0e3983affa2bc76eff87ca275b700fb32ef839bf9656bb04f1b6a3"
+                  },
+                  "sourceCrop": [
+                    1024,
+                    0,
+                    1254,
+                    1254
+                  ],
+                  "sourceWorldBox": [
+                    12173,
+                    39821,
+                    12403,
+                    41075
+                  ],
+                  "sourceResampling": false,
+                  "targetBox": [
+                    0,
+                    0,
+                    230,
+                    1254
+                  ],
+                  "effectiveTargetBox": [
+                    0,
+                    230,
+                    230,
+                    1254
+                  ]
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p03_01.png",
+                  "sha256": "51c27de277ad1114567655ca2531b8a52049ac5cc60a72c8ba79ab8aae5fadba",
+                  "role": "exact selected top native strip",
+                  "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p03_01.png.generation.json",
+                  "generationRecordSha256": "cb8f042abb5fee90240a4cd8a33f5102790fd105caf6948d580833cd58b67587",
+                  "sourceTile": "r10_c04",
+                  "sourcePatch": "p03_01",
+                  "selectionEvidence": null,
+                  "sourceCrop": [
+                    0,
+                    1024,
+                    1254,
+                    1254
+                  ],
+                  "sourceWorldBox": [
+                    12173,
+                    39821,
+                    13427,
+                    40051
+                  ],
+                  "sourceResampling": false,
+                  "targetBox": [
+                    0,
+                    0,
+                    1254,
+                    230
+                  ],
+                  "effectiveTargetBox": [
+                    0,
+                    0,
+                    1254,
+                    230
+                  ]
+                }
+              ],
+              "cornerTreatment": {
+                "priority": "upper",
+                "pasteOrder": [
+                  "left when available",
+                  "upper when available"
+                ],
+                "bothSourcesPresent": true,
+                "blendingOrResampling": false,
+                "inputCornerMaxAbsDifference": 31,
+                "inputCornerMeanAbsDifference": 5.3779017013232515,
+                "visualReviewRequired": true
+              },
+              "coordinates": {
+                "id": "p04_01",
+                "row": 4,
+                "column": 1,
+                "coreWorldBox": [
+                  12288,
+                  39936,
+                  13312,
+                  40960
+                ],
+                "contextWorldBox": [
+                  12173,
+                  39821,
+                  13427,
+                  41075
+                ],
+                "nativeCoreBox": [
+                  115,
+                  115,
+                  1139,
+                  1139
+                ]
+              },
+              "configSnapshot": {
+                "schema_version": 1,
+                "model": "gpt-image-2.5-sunburst",
+                "quality": "max",
+                "builtin_product": "ChatGPT Images 2.5",
+                "selection": "latest_verified",
+                "preferred_route": "builtin",
+                "verified_on": "2026-10-10",
+                "sources": {
+                  "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+                  "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+                  "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+                }
+              },
+              "submittedParameters": {
+                "model": null,
+                "quality": null,
+                "transparent_background": false
+              },
+              "actualModel": null,
+              "actualQuality": null,
+              "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+              "formalAccepted": false,
+              "sourceResampling": false,
+              "generatedAt": "2026-10-17T10:46:01.854980+00:00"
+            },
+            "neighborBox": [
+              115,
+              1011,
+              1139,
+              1139
+            ],
+            "resampled": false
+          },
+          {
+            "id": "top-col2",
+            "panel": "top-partial-native-boundary",
+            "targetBox": [
+              1024,
+              0,
+              2048,
+              128
+            ],
+            "neighborNative": {
+              "id": "p04_02",
+              "row": 4,
+              "column": 2,
+              "sourceTile": "r10_c04",
+              "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_02.png",
+              "nativeSha256": "c69fd05fd31451f7a4139fd95a35b390167fc96215abdef8ec8c4667cbe61b23",
+              "actualNativePixels": [
+                1254,
+                1254
+              ],
+              "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_02.png.generation.json",
+              "recordSha256": "3565a4ef58a33c61e2e636a8a4db0edd87199d5eda23f8a9908f6f57d5db5a37",
+              "selectionEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3"
+              },
+              "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/prompts/p04_02.restartb20261017-v04.prompt.txt",
+              "promptSha256": "44f0ae12cc7a25724bf4bb06469707efb0d011af4b4987b6ac0e90dfbc02b9b8",
+              "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/receipts/p04_02.restartb20261017-v04.receipt.json",
+              "receiptSha256": "f4ab23c291e6e55ff6b5d226e0da53d7516ba61d4532f1fca48e77c2d05ea6b5",
+              "requestEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/prompts/p04_02.restartb20261017-v04.request.json",
+                "sha256": "025eeaaf509ed10528a98ae12819daa8b18388e1afc88b0196ac7ca7e55ae802"
+              },
+              "references": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/guides/p04_02.restartb20261017-v04.native-edit-seed.png",
+                  "sha256": "651d0b6afcd4eb82d439bf55943a3f7673b8e63f62725191c1058ad1b73ea2a5",
+                  "role": "actual native edit target plus exact current native neighboring strips; edit specified defect only"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+                  "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+                  "role": "approved whole-city geometry only; no full scene output"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+                  "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809",
+                  "role": "approved clean grey stone, daylight and material finish"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+                  "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63",
+                  "role": "current primary Daoist chibi style; copy no UI"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/pipeline-tools/native-quiet-gray-style-20261016-v01.png",
+                  "sha256": "109fd185bd87a09f03514be78eeeaa075c9e1ceac0852cae5534215f6fc24a21",
+                  "role": "quiet grey MATERIAL ONLY; no geometry or framing"
+                }
+              ],
+              "neighborSources": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_01.png",
+                  "sha256": "8fd3067467aca05c6cc9a38aff7d936ca8f11599a8a17b26ea7499fbc26faec1",
+                  "role": "exact selected left native strip",
+                  "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_01.png.generation.json",
+                  "generationRecordSha256": "a5bffb7d11032d0ec7ee84c5da943087430a65800ee3d62742d01add032661ee",
+                  "sourceTile": "r10_c04",
+                  "sourcePatch": "p04_01",
+                  "selectionEvidence": {
+                    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                    "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3"
+                  },
+                  "sourceCrop": [
+                    1024,
+                    0,
+                    1254,
+                    1254
+                  ],
+                  "sourceWorldBox": [
+                    13197,
+                    39821,
+                    13427,
+                    41075
+                  ],
+                  "sourceResampling": false,
+                  "targetBox": [
+                    0,
+                    0,
+                    230,
+                    1254
+                  ],
+                  "effectiveTargetBox": [
+                    0,
+                    230,
+                    230,
+                    1254
+                  ]
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/versions/restartb20261017-v03/p03_02.png",
+                  "sha256": "1371d0abfbe34d90208284c162644ca9da7171635eae825229befec6a9facc26",
+                  "role": "exact selected top native strip",
+                  "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/versions/restartb20261017-v03/p03_02.png.generation.json",
+                  "generationRecordSha256": "2d103e9065169a5274a3fb0f0422255e22cb366e7b5efae94cabacd4437f2a6f",
+                  "sourceTile": "r10_c04",
+                  "sourcePatch": "p03_02",
+                  "selectionEvidence": {
+                    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                    "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3",
+                    "selectedRecord": "refinement/versions/restartb20261017-v03/p03_02.png.generation.json"
+                  },
+                  "sourceCrop": [
+                    0,
+                    1024,
+                    1254,
+                    1254
+                  ],
+                  "sourceWorldBox": [
+                    13197,
+                    39821,
+                    14451,
+                    40051
+                  ],
+                  "sourceResampling": false,
+                  "targetBox": [
+                    0,
+                    0,
+                    1254,
+                    230
+                  ],
+                  "effectiveTargetBox": [
+                    0,
+                    0,
+                    1254,
+                    230
+                  ]
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_03.png",
+                  "sha256": "f12283b781e1682e250861acdaca23f6008611437a293275efa7b6e692eaaf51",
+                  "role": "exact selected right native strip; right edge priority",
+                  "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_03.png.generation.json",
+                  "generationRecordSha256": "358e7ccbc6d070258e3a846854471bcc4ab6eaaa739c5073197aa15f2372cded",
+                  "sourceTile": "r10_c04",
+                  "sourcePatch": "p04_03",
+                  "selectionEvidence": {
+                    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                    "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3"
+                  },
+                  "sourceCrop": [
+                    0,
+                    0,
+                    230,
+                    1254
+                  ],
+                  "sourceWorldBox": [
+                    14221,
+                    39821,
+                    14451,
+                    41075
+                  ],
+                  "sourceResampling": false,
+                  "targetBox": [
+                    1024,
+                    0,
+                    1254,
+                    1254
+                  ],
+                  "effectiveTargetBox": [
+                    1024,
+                    0,
+                    1254,
+                    1254
+                  ]
+                }
+              ],
+              "cornerTreatment": {
+                "priority": "left then top then explicit right/bottom strips; all exact native pixels",
+                "sourceResampling": false,
+                "visualReviewRequired": true
+              },
+              "coordinates": {
+                "id": "p04_02",
+                "row": 4,
+                "column": 2,
+                "coreWorldBox": [
+                  13312,
+                  39936,
+                  14336,
+                  40960
+                ],
+                "contextWorldBox": [
+                  13197,
+                  39821,
+                  14451,
+                  41075
+                ],
+                "nativeCoreBox": [
+                  115,
+                  115,
+                  1139,
+                  1139
+                ]
+              },
+              "configSnapshot": {
+                "schema_version": 1,
+                "model": "gpt-image-2.5-sunburst",
+                "quality": "max",
+                "builtin_product": "ChatGPT Images 2.5",
+                "selection": "latest_verified",
+                "preferred_route": "builtin",
+                "verified_on": "2026-10-10",
+                "sources": {
+                  "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+                  "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+                  "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+                }
+              },
+              "submittedParameters": {
+                "model": null,
+                "quality": null,
+                "transparent_background": false
+              },
+              "actualModel": null,
+              "actualQuality": null,
+              "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+              "formalAccepted": false,
+              "sourceResampling": false,
+              "generatedAt": "2026-10-17T22:24:15.119854+00:00"
+            },
+            "neighborBox": [
+              115,
+              1011,
+              1139,
+              1139
+            ],
+            "resampled": false
+          },
+          {
+            "id": "top-col3",
+            "panel": "top-partial-native-boundary",
+            "targetBox": [
+              2048,
+              0,
+              3072,
+              128
+            ],
+            "neighborNative": {
+              "id": "p04_03",
+              "row": 4,
+              "column": 3,
+              "sourceTile": "r10_c04",
+              "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_03.png",
+              "nativeSha256": "f12283b781e1682e250861acdaca23f6008611437a293275efa7b6e692eaaf51",
+              "actualNativePixels": [
+                1254,
+                1254
+              ],
+              "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_03.png.generation.json",
+              "recordSha256": "358e7ccbc6d070258e3a846854471bcc4ab6eaaa739c5073197aa15f2372cded",
+              "selectionEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3"
+              },
+              "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/prompts/p04_03.restartb20261017-v01.prompt.txt",
+              "promptSha256": "6643d486cb54950cd4c6cfa18b6240d2f68410b8d57e519646a99cdc274efca3",
+              "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/receipts/p04_03.restartb20261017-v01.receipt.json",
+              "receiptSha256": "7dc9e268abb9d2cee9761a21849ec791bad79907102968fca0dacdccb6c6f8e0",
+              "requestEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/prompts/p04_03.restartb20261017-v01.request.json",
+                "sha256": "2a291db20b1d73fc1f613f07433fe8fe4c849672467a81af4d57c6aef47a5b72"
+              },
+              "references": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/guides/p04_03.restartb20261017-v01.continuity-seed.png",
+                  "sha256": "da7ed7a5fcf21a5c95a0a273b66c7dc2d17f86135e2e47893e342abf80af3a48",
+                  "role": "edit target: coarse layout with exact native overlap strips; not final art"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+                  "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+                  "role": "approved whole-city geometry only; no full scene output"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+                  "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809",
+                  "role": "approved clean grey stone, daylight and material finish"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+                  "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63",
+                  "role": "current primary Daoist chibi style; copy no UI"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/pipeline-tools/native-quiet-gray-style-20261016-v01.png",
+                  "sha256": "109fd185bd87a09f03514be78eeeaa075c9e1ceac0852cae5534215f6fc24a21",
+                  "role": "quiet native grey stone MATERIAL ONLY; no geometry or framing"
+                }
+              ],
+              "neighborSources": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p03_03.png",
+                  "sha256": "315e7369f3d973b1fd8c6ff457fdf1cf2f64270ce9db6124b44d66511ea770d3",
+                  "role": "exact selected top native strip",
+                  "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p03_03.png.generation.json",
+                  "generationRecordSha256": "1af6e8bb0b4f2de82365d756bfe087e628211f5280393ddca70c40d226a38c5c",
+                  "sourceTile": "r10_c04",
+                  "sourcePatch": "p03_03",
+                  "selectionEvidence": null,
+                  "sourceCrop": [
+                    0,
+                    1024,
+                    1254,
+                    1254
+                  ],
+                  "sourceWorldBox": [
+                    14221,
+                    39821,
+                    15475,
+                    40051
+                  ],
+                  "sourceResampling": false,
+                  "targetBox": [
+                    0,
+                    0,
+                    1254,
+                    230
+                  ],
+                  "effectiveTargetBox": [
+                    0,
+                    0,
+                    1254,
+                    230
+                  ]
+                }
+              ],
+              "cornerTreatment": {
+                "priority": "upper",
+                "pasteOrder": [
+                  "left when available",
+                  "upper when available"
+                ],
+                "bothSourcesPresent": false,
+                "blendingOrResampling": false
+              },
+              "coordinates": {
+                "id": "p04_03",
+                "row": 4,
+                "column": 3,
+                "coreWorldBox": [
+                  14336,
+                  39936,
+                  15360,
+                  40960
+                ],
+                "contextWorldBox": [
+                  14221,
+                  39821,
+                  15475,
+                  41075
+                ],
+                "nativeCoreBox": [
+                  115,
+                  115,
+                  1139,
+                  1139
+                ]
+              },
+              "configSnapshot": {
+                "schema_version": 1,
+                "model": "gpt-image-2.5-sunburst",
+                "quality": "max",
+                "builtin_product": "ChatGPT Images 2.5",
+                "selection": "latest_verified",
+                "preferred_route": "builtin",
+                "verified_on": "2026-10-10",
+                "sources": {
+                  "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+                  "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+                  "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+                }
+              },
+              "submittedParameters": {
+                "model": null,
+                "quality": null,
+                "transparent_background": false
+              },
+              "actualModel": null,
+              "actualQuality": null,
+              "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+              "formalAccepted": false,
+              "sourceResampling": false,
+              "generatedAt": "2026-10-17T13:16:59.970044+00:00"
+            },
+            "neighborBox": [
+              115,
+              1011,
+              1139,
+              1139
+            ],
+            "resampled": false
+          },
+          {
+            "id": "top-col4",
+            "panel": "top-partial-native-boundary",
+            "targetBox": [
+              3072,
+              0,
+              4096,
+              128
+            ],
+            "neighborNative": {
+              "id": "p04_04",
+              "row": 4,
+              "column": 4,
+              "sourceTile": "r10_c04",
+              "nativeFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_04.png",
+              "nativeSha256": "edc1870317f21911f84b01592b63a355d7fd5056ac37172476994075615864a3",
+              "actualNativePixels": [
+                1254,
+                1254
+              ],
+              "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_04.png.generation.json",
+              "recordSha256": "451608fc57c114ea355b8a35f7306ead544f29b9ccf37cb7e81f271d5e8dc3ea",
+              "selectionEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3"
+              },
+              "promptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/prompts/p04_04.restartb20261017-v01.prompt.txt",
+              "promptSha256": "8eecfe06df10610ad16cf8330ff94ad85e6a9971715684be74a5a4478678200c",
+              "receiptFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/receipts/p04_04.restartb20261017-v01.receipt.json",
+              "receiptSha256": "4a43b26eb184cfd9d6b83d7776f48679eda3a85617d196977b06ef4d19efa1a3",
+              "requestEvidence": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/prompts/p04_04.restartb20261017-v01.request.json",
+                "sha256": "c932e90005871dc03841cdc92664a07251f0ad229e4b87b0c4810fb96d20619b"
+              },
+              "references": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/guides/p04_04.restartb20261017-v01.continuity-seed.png",
+                  "sha256": "d8fcb938a11708b38f958f057411cad9caef55b65971aad3ae47c89d58d45b12",
+                  "role": "edit target: coarse layout with exact native overlap strips; not final art"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+                  "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+                  "role": "approved whole-city geometry only; no full scene output"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+                  "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809",
+                  "role": "approved clean grey stone, daylight and material finish"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+                  "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63",
+                  "role": "current primary Daoist chibi style; copy no UI"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/pipeline-tools/native-quiet-gray-style-20261016-v01.png",
+                  "sha256": "109fd185bd87a09f03514be78eeeaa075c9e1ceac0852cae5534215f6fc24a21",
+                  "role": "quiet native grey stone MATERIAL ONLY; no geometry or framing"
+                }
+              ],
+              "neighborSources": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_03.png",
+                  "sha256": "f12283b781e1682e250861acdaca23f6008611437a293275efa7b6e692eaaf51",
+                  "role": "exact selected left native strip",
+                  "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p04_03.png.generation.json",
+                  "generationRecordSha256": "358e7ccbc6d070258e3a846854471bcc4ab6eaaa739c5073197aa15f2372cded",
+                  "sourceTile": "r10_c04",
+                  "sourcePatch": "p04_03",
+                  "selectionEvidence": {
+                    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                    "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3"
+                  },
+                  "sourceCrop": [
+                    1024,
+                    0,
+                    1254,
+                    1254
+                  ],
+                  "sourceWorldBox": [
+                    15245,
+                    39821,
+                    15475,
+                    41075
+                  ],
+                  "sourceResampling": false,
+                  "targetBox": [
+                    0,
+                    0,
+                    230,
+                    1254
+                  ],
+                  "effectiveTargetBox": [
+                    0,
+                    230,
+                    230,
+                    1254
+                  ]
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p03_04.png",
+                  "sha256": "50ca86256a6a4d10e2d72030775b8abc79742ba97feefe585a3474527d472cd6",
+                  "role": "exact selected top native strip",
+                  "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/native/p03_04.png.generation.json",
+                  "generationRecordSha256": "b7be8e4793d2f9c5fc5c719c0bb986f67e93c6e171b7e91e6ca9fd73893f347a",
+                  "sourceTile": "r10_c04",
+                  "sourcePatch": "p03_04",
+                  "selectionEvidence": {
+                    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/refinement/selection.json",
+                    "sha256": "8423b12549007ad3d818b8952f4690e8e24f4ff4963a5285cfbc60f9597139b3"
+                  },
+                  "sourceCrop": [
+                    0,
+                    1024,
+                    1254,
+                    1254
+                  ],
+                  "sourceWorldBox": [
+                    15245,
+                    39821,
+                    16499,
+                    40051
+                  ],
+                  "sourceResampling": false,
+                  "targetBox": [
+                    0,
+                    0,
+                    1254,
+                    230
+                  ],
+                  "effectiveTargetBox": [
+                    0,
+                    0,
+                    1254,
+                    230
+                  ]
+                }
+              ],
+              "cornerTreatment": {
+                "priority": "upper",
+                "pasteOrder": [
+                  "left when available",
+                  "upper when available"
+                ],
+                "bothSourcesPresent": true,
+                "blendingOrResampling": false,
+                "inputCornerMaxAbsDifference": 96,
+                "inputCornerMeanAbsDifference": 2.845406427221172,
+                "visualReviewRequired": true
+              },
+              "coordinates": {
+                "id": "p04_04",
+                "row": 4,
+                "column": 4,
+                "coreWorldBox": [
+                  15360,
+                  39936,
+                  16384,
+                  40960
+                ],
+                "contextWorldBox": [
+                  15245,
+                  39821,
+                  16499,
+                  41075
+                ],
+                "nativeCoreBox": [
+                  115,
+                  115,
+                  1139,
+                  1139
+                ]
+              },
+              "configSnapshot": {
+                "schema_version": 1,
+                "model": "gpt-image-2.5-sunburst",
+                "quality": "max",
+                "builtin_product": "ChatGPT Images 2.5",
+                "selection": "latest_verified",
+                "preferred_route": "builtin",
+                "verified_on": "2026-10-10",
+                "sources": {
+                  "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+                  "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+                  "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+                }
+              },
+              "submittedParameters": {
+                "model": null,
+                "quality": null,
+                "transparent_background": false
+              },
+              "actualModel": null,
+              "actualQuality": null,
+              "unverifiedReason": "Host-managed builtin exposes no actual model/quality values; configuration is a target only.",
+              "formalAccepted": false,
+              "sourceResampling": false,
+              "generatedAt": "2026-10-17T22:46:28.447306+00:00"
+            },
+            "neighborBox": [
+              115,
+              1011,
+              1139,
+              1139
+            ],
+            "resampled": false
+          }
+        ]
+      },
+      "externalRegionFindings": [
+        {
+          "id": "left-row1",
+          "actuallyViewed": true,
+          "findings": [
+            "Neighbor blue inlay/pale border enters at different heights; slab phases and material tones mismatch."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "left-row2",
+          "actuallyViewed": true,
+          "findings": [
+            "Diagonal blue border and floor joints break at tile boundary with visible warm/cool phase change."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "left-row3",
+          "actuallyViewed": true,
+          "findings": [
+            "Several diagonal joints terminate at tile edge and false horizontal groove starts in this tile; tint discontinuity."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "left-row4",
+          "actuallyViewed": true,
+          "findings": [
+            "Neighbor blue band absent in target; large diagonal intersections and tone differ abruptly."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "top-col1",
+          "actuallyViewed": true,
+          "findings": [
+            "North native plain floor and vertical joint conflict with this tile diagonal blue-inlay border; major geometry mismatch held."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "top-col2",
+          "actuallyViewed": true,
+          "findings": [
+            "North native blue floor/building corner position conflicts with this tile blue inlay and wall footprint; major geometry mismatch held."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "top-col3",
+          "actuallyViewed": true,
+          "findings": [
+            "Wall broad face continues but tone changes horizontally and lower course line introduces a new division."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "top-col4",
+          "actuallyViewed": true,
+          "findings": [
+            "Foliage broadly matches but leaf identity and barrel outline/lighting visibly cut across tile boundary."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "right-row1",
+          "actuallyViewed": true,
+          "findings": [
+            "Right neighbor red banner starts abruptly beside foliage/open floor; prop footprint discontinuity."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "right-row2",
+          "actuallyViewed": true,
+          "findings": [
+            "Right neighbor red wooden prop and carved floor symbol start abruptly; this tile lacks matching adjoining segments."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "right-row3",
+          "actuallyViewed": true,
+          "findings": [
+            "Right neighbor blue inset reaches boundary without target continuation; diagonal grout ends and floor phase differ."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "right-row4",
+          "actuallyViewed": true,
+          "findings": [
+            "Diagonal joints on both sides terminate at tile boundary at different heights; scale/tone mismatch."
+          ],
+          "accepted": false
+        }
+      ],
+      "nativeReviewCounts": {
+        "internal": 33,
+        "external": 12,
+        "total": 45
+      },
+      "southNeighbor": "r12_c04 not yet available; deferred, not passed",
+      "northNeighbor": "r10_c04 four current south-row native sources verified; full north tile remains14/16, no full north assembly claimed",
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "sourceResampling": false,
+      "issues": [
+        "Multiple slab-phase and grout endpoint geometry failures; do not propagate affected edges.",
+        "Strong crosshatched floor microtexture and broad tint variation remain pending; broad quiet grey floor required.",
+        "p03_03 small slab grid and incompatible external boundaries held."
+      ],
+      "productionDecision": "Preserve full16 candidate and all receipts. Continue independent original r12 missing tiles; later repair geometry with new explicit joint method. No failed region accepted."
+    }
+  }
+}

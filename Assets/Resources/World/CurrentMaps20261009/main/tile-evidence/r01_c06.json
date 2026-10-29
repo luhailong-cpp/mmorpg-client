@@ -1,0 +1,1401 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 1,
+  "column": 6,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e",
+  "imageBytes": 24811446,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/current-source-pointer.json",
+  "sourceLedgerSha256": "7ff2e2eef185b6c5862f8508d9077fff91613d685d117c9fe3bff49098536ba2",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+    "imageSha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/current-source-pointer.json",
+        "sha256": "7ff2e2eef185b6c5862f8508d9077fff91613d685d117c9fe3bff49098536ba2",
+        "completeness": [
+          "/baseCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "output_bound_native_coverage_or_complete_source_assembly",
+    "sourceStatus": {
+      "statusFile": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/continuation-status-20261020.json",
+        "sha256": "799a269bdf908ade0533386f605b631551b9105e6f67603e21e81fd48c64a471"
+      },
+      "currentInternalQA": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/review.json",
+        "sha256": "f4fb0a3dffa63767856f5b5a018562ae0b22669286689c9aab5f44fddad0e951"
+      },
+      "baseCoreCount": 16,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/pixel-proof.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/current-source-pointer.json",
+        "record": {
+          "statusFile": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/continuation-status-20261020.json",
+            "sha256": "799a269bdf908ade0533386f605b631551b9105e6f67603e21e81fd48c64a471"
+          },
+          "currentInternalQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/review.json",
+            "sha256": "f4fb0a3dffa63767856f5b5a018562ae0b22669286689c9aab5f44fddad0e951"
+          },
+          "baseCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/review.json",
+        "record": {
+          "fullInternalQAPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/qa/review.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/unchanged-south-qa-reuse.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/review.json",
+    "sourceSha256": "f4fb0a3dffa63767856f5b5a018562ae0b22669286689c9aab5f44fddad0e951",
+    "normalizedDocument": {
+      "createdAt": "2026-10-20T22:29:49.278036+00:00",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+        "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+      },
+      "cropReviews": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x1024-segment01.png",
+          "sha256": "8718d8c8d3f4e39c0ad8cfc2c0ee787c12b3b0caff97a39fe15265ff462229cd",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            864,
+            0,
+            1184,
+            1024
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x1024-segment01.png",
+              "sha256": "8718d8c8d3f4e39c0ad8cfc2c0ee787c12b3b0caff97a39fe15265ff462229cd"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x1024-segment02.png",
+          "sha256": "816ce5610d45b00271c7d09afdf80cb1ac36a0db583534a28f55638c49b7c973",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            864,
+            1024,
+            1184,
+            2048
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "needs_repair",
+          "formalAccepted": false,
+          "status": "needs_repair",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x1024-segment02.png",
+              "sha256": "816ce5610d45b00271c7d09afdf80cb1ac36a0db583534a28f55638c49b7c973"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x1024-segment03.png",
+          "sha256": "cb67109d0b0c8c9c2eac7a38d9b81b21063f7d569e9764091797429e25c02c9e",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            864,
+            2048,
+            1184,
+            3072
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "needs_repair",
+          "formalAccepted": false,
+          "status": "needs_repair",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x1024-segment03.png",
+              "sha256": "cb67109d0b0c8c9c2eac7a38d9b81b21063f7d569e9764091797429e25c02c9e"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x1024-segment04.png",
+          "sha256": "0a7ffa9a5f239222fc2e6ce3f19f29cf1b1db59c2c57363ed4473933c02d1cad",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            864,
+            3072,
+            1184,
+            4096
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x1024-segment04.png",
+              "sha256": "0a7ffa9a5f239222fc2e6ce3f19f29cf1b1db59c2c57363ed4473933c02d1cad"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x2048-segment01.png",
+          "sha256": "52ca9d2c4959df6fd4b75c516cc73b1284a673b90711e3801fbc15a2469d0cd2",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1888,
+            0,
+            2208,
+            1024
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x2048-segment01.png",
+              "sha256": "52ca9d2c4959df6fd4b75c516cc73b1284a673b90711e3801fbc15a2469d0cd2"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x2048-segment02.png",
+          "sha256": "376492de1f80abc3a34d2de5d71e3bd11af33efe5cd4a46bff5dc16e622f8c53",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1888,
+            1024,
+            2208,
+            2048
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x2048-segment02.png",
+              "sha256": "376492de1f80abc3a34d2de5d71e3bd11af33efe5cd4a46bff5dc16e622f8c53"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x2048-segment03.png",
+          "sha256": "d01f716a9873834ada1207d96f0e096a221cf33994e89ec0d50ce2fc25c0be23",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1888,
+            2048,
+            2208,
+            3072
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x2048-segment03.png",
+              "sha256": "d01f716a9873834ada1207d96f0e096a221cf33994e89ec0d50ce2fc25c0be23"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x2048-segment04.png",
+          "sha256": "414d8afe22b03e2fb691f14ab1bc5e1bd7f30030a856fda94e875bfa19678456",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1888,
+            3072,
+            2208,
+            4096
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x2048-segment04.png",
+              "sha256": "414d8afe22b03e2fb691f14ab1bc5e1bd7f30030a856fda94e875bfa19678456"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x3072-segment01.png",
+          "sha256": "e275ca4cb92f8147ada6aefc6ad6480f1d604d641e140c51165fedf1d1cb59c8",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2912,
+            0,
+            3232,
+            1024
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x3072-segment01.png",
+              "sha256": "e275ca4cb92f8147ada6aefc6ad6480f1d604d641e140c51165fedf1d1cb59c8"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x3072-segment02.png",
+          "sha256": "b9b5040f3d1853cfc537abe20672372f6ff1c9b034956f526899ad6f06c53875",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2912,
+            1024,
+            3232,
+            2048
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Fresh actual view of full native crop",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/qa/review.json",
+              "sha256": "726f2b2c8b098e59224788c2f6d3048b99a0cc44fbc48aba90a36f9d9bcd7f0d"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x3072-segment03.png",
+          "sha256": "fe2cad6e38506d594e1361d59e8e002fcec54e9bbd4a5001eb499c5e746b9886",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2912,
+            2048,
+            3232,
+            3072
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x3072-segment03.png",
+              "sha256": "fe2cad6e38506d594e1361d59e8e002fcec54e9bbd4a5001eb499c5e746b9886"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-x3072-segment04.png",
+          "sha256": "e43e230c6f107dc0ae3c1eff2869b3478ffdaae7db3e5dbde41ba67cbf09d004",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2912,
+            3072,
+            3232,
+            4096
+          ],
+          "rotationCCW90": true,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "needs_repair",
+          "formalAccepted": false,
+          "status": "needs_repair",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-x3072-segment04.png",
+              "sha256": "e43e230c6f107dc0ae3c1eff2869b3478ffdaae7db3e5dbde41ba67cbf09d004"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y1024-segment01.png",
+          "sha256": "1506bab8f0662f0bee797c92c42d0df1929eb72d99d3af66a3b8e5ba574c2dbb",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            0,
+            864,
+            1024,
+            1184
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y1024-segment01.png",
+              "sha256": "1506bab8f0662f0bee797c92c42d0df1929eb72d99d3af66a3b8e5ba574c2dbb"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y1024-segment02.png",
+          "sha256": "df9743bbf36a23c6d27f0834fe6ddf70ff9420b1b6777528ea0387d0c0b1acf0",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1024,
+            864,
+            2048,
+            1184
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y1024-segment02.png",
+              "sha256": "df9743bbf36a23c6d27f0834fe6ddf70ff9420b1b6777528ea0387d0c0b1acf0"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y1024-segment03.png",
+          "sha256": "a7063e4b46c0ebf17d75b034d62ce2a154e96370acaf5c6fb9588835802d5904",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2048,
+            864,
+            3072,
+            1184
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y1024-segment03.png",
+              "sha256": "a7063e4b46c0ebf17d75b034d62ce2a154e96370acaf5c6fb9588835802d5904"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y1024-segment04.png",
+          "sha256": "f632a451cc2d72367330667b1d3f3c51dfaaf92aa9fcbfc58efedaf1b4a7d25c",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            3072,
+            864,
+            4096,
+            1184
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y1024-segment04.png",
+              "sha256": "f632a451cc2d72367330667b1d3f3c51dfaaf92aa9fcbfc58efedaf1b4a7d25c"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y2048-segment01.png",
+          "sha256": "4b80f2b2c975a5f1e0f80f17941d05991e53d86abe6bf4e39d24a6b5cc6e593a",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            0,
+            1888,
+            1024,
+            2208
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y2048-segment01.png",
+              "sha256": "4b80f2b2c975a5f1e0f80f17941d05991e53d86abe6bf4e39d24a6b5cc6e593a"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y2048-segment02.png",
+          "sha256": "928ee469125abbb09d9f3ddb2fef6ff8bc058ece70f0b0b4e56306a6bb5ddf35",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1024,
+            1888,
+            2048,
+            2208
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "needs_repair",
+          "formalAccepted": false,
+          "status": "needs_repair",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y2048-segment02.png",
+              "sha256": "928ee469125abbb09d9f3ddb2fef6ff8bc058ece70f0b0b4e56306a6bb5ddf35"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y2048-segment03.png",
+          "sha256": "bd2be5a8dd25f99fdc4a81f147e0a1c4b8628f60ac3e95e3d4ffbdfee7e169a2",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2048,
+            1888,
+            3072,
+            2208
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y2048-segment03.png",
+              "sha256": "bd2be5a8dd25f99fdc4a81f147e0a1c4b8628f60ac3e95e3d4ffbdfee7e169a2"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y2048-segment04.png",
+          "sha256": "6fe7cec22024f4550e4778fd4c50585f688e1ebccd941de4b00f79a2564a9a1c",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            3072,
+            1888,
+            4096,
+            2208
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y2048-segment04.png",
+              "sha256": "6fe7cec22024f4550e4778fd4c50585f688e1ebccd941de4b00f79a2564a9a1c"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y3072-segment01.png",
+          "sha256": "fabc0bd5a199ef038c6153cef68948207ea70c1fc18dc1e94a877c7e1054719b",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            0,
+            2912,
+            1024,
+            3232
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y3072-segment01.png",
+              "sha256": "fabc0bd5a199ef038c6153cef68948207ea70c1fc18dc1e94a877c7e1054719b"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y3072-segment02.png",
+          "sha256": "806613a4518cc4ad0565f0fc8627537469a9474986dbce9dd1e703743106790b",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1024,
+            2912,
+            2048,
+            3232
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y3072-segment02.png",
+              "sha256": "806613a4518cc4ad0565f0fc8627537469a9474986dbce9dd1e703743106790b"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y3072-segment03.png",
+          "sha256": "76a4d20cbd841f45c250bafb052755b3ad53e221ee81121c4394c421e58e2cf0",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2048,
+            2912,
+            3072,
+            3232
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "needs_repair",
+          "formalAccepted": false,
+          "status": "needs_repair",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y3072-segment03.png",
+              "sha256": "76a4d20cbd841f45c250bafb052755b3ad53e221ee81121c4394c421e58e2cf0"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/internal-y3072-segment04.png",
+          "sha256": "01fc5b1f24a97c561a14c957f628738b2cc53075f7b10793528e87a2fdde8143",
+          "pixels": [
+            1024,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            3072,
+            2912,
+            4096,
+            3232
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/internal-y3072-segment04.png",
+              "sha256": "01fc5b1f24a97c561a14c957f628738b2cc53075f7b10793528e87a2fdde8143"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x1024-y1024.png",
+          "sha256": "4c80e2f1239a9eb19bf86f2d24064b1d15aa6742ee9ce55fa7fa06ebbf561e67",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            864,
+            864,
+            1184,
+            1184
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x1024-y1024.png",
+              "sha256": "4c80e2f1239a9eb19bf86f2d24064b1d15aa6742ee9ce55fa7fa06ebbf561e67"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x2048-y1024.png",
+          "sha256": "a33f729d6baced4805eaeb7dddf6ccf709d15932227c93e6df0125c39cede46d",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1888,
+            864,
+            2208,
+            1184
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x2048-y1024.png",
+              "sha256": "a33f729d6baced4805eaeb7dddf6ccf709d15932227c93e6df0125c39cede46d"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x3072-y1024.png",
+          "sha256": "9f689823a714720c4697f05c2dd254f9d5f4d9b80fe2ad913f614facefb1b71a",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2912,
+            864,
+            3232,
+            1184
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x3072-y1024.png",
+              "sha256": "9f689823a714720c4697f05c2dd254f9d5f4d9b80fe2ad913f614facefb1b71a"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x1024-y2048.png",
+          "sha256": "67701bd1c874dcca9dc571b348ba56ee3f12623322aad4c1063baaaee5f10de8",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            864,
+            1888,
+            1184,
+            2208
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "needs_repair",
+          "formalAccepted": false,
+          "status": "needs_repair",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x1024-y2048.png",
+              "sha256": "67701bd1c874dcca9dc571b348ba56ee3f12623322aad4c1063baaaee5f10de8"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x2048-y2048.png",
+          "sha256": "8a165e204468a93b029c209c9de857c79aaa45c4ce63802d4759afa30115641b",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1888,
+            1888,
+            2208,
+            2208
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x2048-y2048.png",
+              "sha256": "8a165e204468a93b029c209c9de857c79aaa45c4ce63802d4759afa30115641b"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x3072-y2048.png",
+          "sha256": "8c8e472d87a590adcc482064cb5a78de036dfbd001e6878e794d6201de681df9",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2912,
+            1888,
+            3232,
+            2208
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x3072-y2048.png",
+              "sha256": "8c8e472d87a590adcc482064cb5a78de036dfbd001e6878e794d6201de681df9"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x1024-y3072.png",
+          "sha256": "58cb06563bcd06d34eb5a3799eee111680731f20ec117c5d309ec7762663abee",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            864,
+            2912,
+            1184,
+            3232
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "needs_repair",
+          "formalAccepted": false,
+          "status": "needs_repair",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x1024-y3072.png",
+              "sha256": "58cb06563bcd06d34eb5a3799eee111680731f20ec117c5d309ec7762663abee"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x2048-y3072.png",
+          "sha256": "3f87bcdc3b644f72a197b38a250d696ad65f56d792cd2af88848786a170a4aa6",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            1888,
+            2912,
+            2208,
+            3232
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "passed",
+          "formalAccepted": false,
+          "status": "passed",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x2048-y3072.png",
+              "sha256": "3f87bcdc3b644f72a197b38a250d696ad65f56d792cd2af88848786a170a4aa6"
+            }
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/internal-qa/junction-x3072-y3072.png",
+          "sha256": "3dcb817d87325d2d939996ce4b720810ae3ae1a229ee3b4ec78c9c9d14e79217",
+          "pixels": [
+            320,
+            320
+          ],
+          "mode": "RGB",
+          "derivedFrom": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/wood-crossrail3072-20261020/trial-wood3072-fix01/candidate.png",
+            "sha256": "47cc31a5530c75b65faee483ab20bdd478f7147382bc8ab11abb55c01ac8615e"
+          },
+          "cropLTRB": [
+            2912,
+            2912,
+            3232,
+            3232
+          ],
+          "rotationCCW90": false,
+          "sourceResampled": false,
+          "nativePixelScale": 1,
+          "fullNativeCoverage": true,
+          "actuallyViewed": true,
+          "visualVerdict": "needs_repair",
+          "formalAccepted": false,
+          "status": "needs_repair",
+          "reviewMethod": "Exact identical native crop; previous actual QA reused",
+          "evidence": {
+            "review": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/review.json",
+              "sha256": "932bf1544dd6e7cfa416d12588ebd5954fbba4190a78170acd0b71a5a35f7d2f"
+            },
+            "oldCrop": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r01_c06/repair-batches/south-joint2048-20261020/trial-joint2048-fix02-face/internal-qa/junction-x3072-y3072.png",
+              "sha256": "3dcb817d87325d2d939996ce4b720810ae3ae1a229ee3b4ec78c9c9d14e79217"
+            }
+          }
+        }
+      ],
+      "counts": {
+        "passed": 25,
+        "needs_repair": 8,
+        "pending": 0
+      },
+      "reusedExactUnchangedCrops": [
+        "internal-x1024-segment01.png",
+        "internal-x1024-segment02.png",
+        "internal-x1024-segment03.png",
+        "internal-x1024-segment04.png",
+        "internal-x2048-segment01.png",
+        "internal-x2048-segment02.png",
+        "internal-x2048-segment03.png",
+        "internal-x2048-segment04.png",
+        "internal-x3072-segment01.png",
+        "internal-x3072-segment03.png",
+        "internal-x3072-segment04.png",
+        "internal-y1024-segment01.png",
+        "internal-y1024-segment02.png",
+        "internal-y1024-segment03.png",
+        "internal-y1024-segment04.png",
+        "internal-y2048-segment01.png",
+        "internal-y2048-segment02.png",
+        "internal-y2048-segment03.png",
+        "internal-y2048-segment04.png",
+        "internal-y3072-segment01.png",
+        "internal-y3072-segment02.png",
+        "internal-y3072-segment03.png",
+        "internal-y3072-segment04.png",
+        "junction-x1024-y1024.png",
+        "junction-x2048-y1024.png",
+        "junction-x3072-y1024.png",
+        "junction-x1024-y2048.png",
+        "junction-x2048-y2048.png",
+        "junction-x3072-y2048.png",
+        "junction-x1024-y3072.png",
+        "junction-x2048-y3072.png",
+        "junction-x3072-y3072.png"
+      ],
+      "freshChangedCrops": [
+        "internal-x3072-segment02.png"
+      ],
+      "fullInternalQAPassed": false,
+      "formalAccepted": false
+    }
+  }
+}

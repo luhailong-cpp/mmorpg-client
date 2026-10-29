@@ -242,7 +242,7 @@ public sealed partial class PetDimensionInfo : pb::IMessage<PetDimensionInfo>
   public const int ValueFieldNumber = 6;
   private ulong value_;
   /// <summary>
-  /// 面板显示值 = 自然成长 + 已分配
+  /// 面板显示值 = 自然成长 + 生效的已分配。加点不生效(已分配超过本版本总量或单项上限)时
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -257,7 +257,7 @@ public sealed partial class PetDimensionInfo : pb::IMessage<PetDimensionInfo>
   public const int CapFieldNumber = 7;
   private uint cap_;
   /// <summary>
-  /// 单项上限(0 = 不限)
+  /// 已分配部分按 0 计,allocated 仍是存储值(docs/design/player-pet.md §3.3)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1263,7 +1263,7 @@ public sealed partial class PetInfo : pb::IMessage<PetInfo>
   public const int RemainingPointsFieldNumber = 9;
   private uint remainingPoints_;
   /// <summary>
-  /// 剩余可分配
+  /// 剩余可分配 = 加点生效 ? max(0, 总量 − 宝宝池已分配 − 本版本解释不了的维度上的点) : 0
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

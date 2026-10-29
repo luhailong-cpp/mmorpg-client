@@ -307,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: MmorpgClient::MmorpgClient.UI.AppBootstrap
   worldCamera: {fileID: 5530806398236212388}
   directionalSun: {fileID: 4556184750194653185}
-  mapConfig: {fileID: 11400000, guid: 6aef98b5e7df8384ca8489d3c1247c6f, type: 2}
+  mapConfig: {fileID: 0}
 --- !u!114 &2945982964733791746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fc3e9685b4cc245b93f30c6ab4fbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: MmorpgClient::MmorpgClient.World.Tianyong.TianyongMapRuntime
-  config: {fileID: 11400000, guid: 6aef98b5e7df8384ca8489d3c1247c6f, type: 2}
+  config: {fileID: 0}
   worldCamera: {fileID: 5530806398236212388}
   directionalSun: {fileID: 4556184750194653185}
   initialTheme: 0

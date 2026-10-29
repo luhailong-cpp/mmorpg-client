@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 14,
+  "column": 10,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "57cc70da02634c59298b1542cc2796c3633c09be0d571d42d95dcec4adc8457a",
+  "imageBytes": 28395825,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c10.candidate-left-finish-oct17-v03.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c10.candidate-left-finish-oct17-v03.png.generation.json",
+  "sourceLedgerSha256": "223ddf3874e821099cb4ab9b87d5c12aff3333998e90953566d9b7a74b29be16",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c10",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c10.candidate-left-finish-oct17-v03.png",
+    "imageSha256": "57cc70da02634c59298b1542cc2796c3633c09be0d571d42d95dcec4adc8457a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c10.candidate-left-finish-oct17-v03.png.generation.json",
+        "sha256": "223ddf3874e821099cb4ab9b87d5c12aff3333998e90953566d9b7a74b29be16",
+        "completeness": [
+          "/fullCoverage",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c10.candidate-left-finish-oct17-v03.png.generation.json",
+        "sha256": "223ddf3874e821099cb4ab9b87d5c12aff3333998e90953566d9b7a74b29be16",
+        "completeness": [
+          "sourcesCount",
+          18
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c10-left-finish-oct17-v03/source-proof.json",
+        "sha256": "660f8572a35af1c02aaf1d6ca1f6a9a654f32f947dbd11af25220904a99bf53f",
+        "completeness": [
+          "sourcesCount",
+          18
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c10-final/proposal.json",
+        "sha256": "4fa5cac84b27b9532f79b29389ee99b1a27c0bb1454d94222f092b8b39e49795",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+        "sha256": "a6fcbeb17fea19f12f9c91241d9e5d9a0a1f3c3782854da01f054242c33270cd",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_southeast-receipt.json",
+        "sha256": "3fb8dd9f1428422d04529bc6fd134304452f60c1f3b5dc2a9972e3170871ff9b",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/island_southeast-execution.json",
+        "sha256": "b6a6750dff93543d5325c66a20ce2552e3f722eeec504acffdeee5a5a41beae4",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/current-zone-counts-20261013.json",
+        "sha256": "244a433deccc168110af117f5dc1df9109599f2eae0104c5cf295b0b1935df2d",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "full_candidate18sources_rightbottom_material_pending",
+      "externalPassed4kCount": 0,
+      "formalAcceptedCount": 0,
+      "pendingRepair": {
+        "j33-h43-water-phase": {
+          "status": "not_passed_stopped_after_two",
+          "actualCombinedSamePointCalls": 2,
+          "calls": [
+            "44v02",
+            "43v02"
+          ],
+          "finding": "Both target same lower-right dual-axis water phase; do not evade cap by changing another neighbor."
+        },
+        "v33-water-material": {
+          "status": "not_passed",
+          "directTargetedCalls": 1,
+          "sharedJunctionRepairCalls": 2,
+          "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c10-final/qa/review.json"
+        }
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c10.candidate-left-finish-oct17-v03.png.generation.json",
+        "record": {
+          "fullCoverage": true,
+          "status": "full_candidate_pending_internal_and_external_review"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r14_c10.json",
+        "record": {
+          "status": "full_candidate18sources_rightbottom_material_pending",
+          "externalPassed4kCount": 0,
+          "formalAcceptedCount": 0,
+          "pendingRepair": {
+            "j33-h43-water-phase": {
+              "status": "not_passed_stopped_after_two",
+              "actualCombinedSamePointCalls": 2,
+              "calls": [
+                "44v02",
+                "43v02"
+              ],
+              "finding": "Both target same lower-right dual-axis water phase; do not evade cap by changing another neighbor."
+            },
+            "v33-water-material": {
+              "status": "not_passed",
+              "directTargetedCalls": 1,
+              "sharedJunctionRepairCalls": 2,
+              "review": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c10-final/qa/review.json"
+            }
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c10-final/proposal.json",
+        "record": {
+          "status": "current_complete_sources_reconciled_material_pending_no_new_AI",
+          "reasonNoNewRepair": "No0attempt clearindependent defect among finitecurrentpendingcontacts. h43/j33 already two repaircalls via44v02 then43v02; v33 has direct43v02repair. Stale queue neverreissued.",
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c10-final/qa/review.json",
+        "record": {
+          "j13ExistingLocalStatus": "passed reused exacthash",
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-left-finish-oct17.json",
+        "record": {
+          "status": "worker_account_usage_limited_saved_outputs_recovered",
+          "externalPassed4kCount": 0,
+          "formalAcceptedCount": 0,
+          "pendingFindings": [
+            "h43",
+            "j33",
+            "v33"
+          ],
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c10-left-finish-oct17-v03/internal-review.json"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c10-left-finish-oct17-v03/internal-review.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "pendingFindings": [
+            "h43",
+            "j33",
+            "v33"
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c10-final/qa/review.json",
+    "sourceSha256": "14653590bf31db354395632ac7321809188b5c75e98e810709efd1f62c895196",
+    "normalizedDocument": {
+      "at": "2026-10-23T19:40:47.621830+00:00",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c10.candidate-left-finish-oct17-v03.png",
+        "sha256": "57cc70da02634c59298b1542cc2796c3633c09be0d571d42d95dcec4adc8457a"
+      },
+      "full4096CandidateViewed": true,
+      "fullViewDisplayResolution": [
+        1600,
+        1600
+      ],
+      "fullViewPurpose": "wholecontext only, not native4Kacceptance",
+      "actualNative1254Viewed": [
+        "43v01",
+        "43v02",
+        "44v01",
+        "44v02"
+      ],
+      "actualOriginalContactCutsViewed": [
+        "h43",
+        "v33",
+        "v34",
+        "j33"
+      ],
+      "actualOriginal512OldSourceComparisonsViewed": [
+        "old43-current44",
+        "current43-old44",
+        "old43-old44"
+      ],
+      "currentBestRetained": "Current43v02/44v02, no provenbetterwholesource old alternative.",
+      "sourceReplayMismatchedPixels": 0,
+      "hashReuse": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r14_c10-final/qa/hash-reuse.json",
+        "sha256": "c119110c7009ae3c9ab9c34181ad46ee02db199a447a171abfc59eb70d97daed"
+      },
+      "localPassedSeams": 22,
+      "totalSeams": 24,
+      "localPassedJunctions": 8,
+      "totalJunctions": 9,
+      "remainingFindings": [
+        {
+          "id": "h43",
+          "tileBox": [
+            2816,
+            3072,
+            3328,
+            4096
+          ],
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "finding": "At true x256 boundary finer small water facets on left become broad softer painted water facets on right. It is a straight material cut, not a geometric route discontinuity.",
+          "priorSamePointCalls": 2,
+          "repairRequests": [
+            "r14_c10_p44_v02",
+            "r14_c10_p43_v02"
+          ],
+          "noFurtherSamePointCall": true
+        },
+        {
+          "id": "v33",
+          "tileBox": [
+            2048,
+            2816,
+            3072,
+            3328
+          ],
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "finding": "Water facet scale/reflection grain changes across true y256 horizontal cut. Selected43v02 did not fully match fixed33 material.",
+          "priorDirectRepairCalls": 1,
+          "repairRequests": [
+            "r14_c10_p43_v02"
+          ],
+          "zeroAttemptIndependentPoint": false
+        },
+        {
+          "id": "j33",
+          "tileBox": [
+            2816,
+            2816,
+            3328,
+            3328
+          ],
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "finding": "Four-core cross retains visible lower-right coarse-water rectangle. Both43v01/44v01 and each mixed old/current native comparison retain straight material lines; no better complete old source selection is established.",
+          "priorSamePointCalls": 2,
+          "repairRequests": [
+            "r14_c10_p44_v02",
+            "r14_c10_p43_v02"
+          ],
+          "noFurtherSamePointCall": true
+        }
+      ],
+      "h32TwoCalls": "Existingjoint_h32_v01/v02 already2; currentboundedlegacycontribution had passed nativecontacts. No retry or new mask.",
+      "j13PriorCalls": 1,
+      "j13ExistingLocalStatus": "passed reused exacthash",
+      "legacyPreparingQueueIsNotActive": true,
+      "newAICalls": 0,
+      "wholeInternalPassed": false,
+      "wholeMaterialPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "rootOnlyAdopts": true,
+      "parentGlobalGitWritten": false
+    }
+  }
+}

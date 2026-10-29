@@ -1,0 +1,528 @@
+{
+  "schemaVersion": 1,
+  "observedAtUtc": "2026-10-25T09:35:46.928423+00:00",
+  "scope": "All 15 delivered character appearances and their existing archived actions; no image or mobile texture settings changed.",
+  "releaseFix": {
+    "identities": [
+      "07_moon_shadow_assassin_girl",
+      "15_water_dragon_scholar_boy"
+    ],
+    "buildTypeRestrictionRemoved": true,
+    "onlyExactPinnedDeliveriesAllowed": true,
+    "pendingVisualReviewMetadataPreserved": true,
+    "artworkApprovalClaimed": false
+  },
+  "resources": {
+    "observedAtUtc": "2026-10-25T09:32:17.565599+00:00",
+    "baselineHead": "2a7a5543f1b650101300264edbaca41301d49907",
+    "passed": true,
+    "characters": [
+      {
+        "id": "00_reference_topright_boy",
+        "version": 13,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "01_ice_sword_girl",
+        "version": 13,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "07_moon_shadow_assassin_girl",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "pending_dynamic_review",
+        "releaseSelection": "exact_pinned_delivery"
+      },
+      {
+        "id": "08_alchemy_prodigy_boy",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "09_bamboo_archer_girl",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "15_water_dragon_scholar_boy",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "pending_dynamic_review",
+        "releaseSelection": "exact_pinned_delivery"
+      },
+      {
+        "id": "20_star_formation_master_girl",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "02_fire_talisman_boy",
+        "version": 13,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "03_lotus_healer_girl",
+        "version": 13,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "04_mountain_guardian_boy",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "05_celestial_musician_girl",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "06_thunder_caster_boy",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "10_crimson_spear_girl",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "14_short_hair_snow_summoner_girl",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      },
+      {
+        "id": "17_ghost_script_calligrapher_boy",
+        "version": 14,
+        "baselinePngs": 137,
+        "actions": {
+          "run": 128,
+          "attack": 24,
+          "hit": 12,
+          "cast": 32
+        },
+        "actionClips": 14,
+        "visualReview": "passed",
+        "releaseSelection": "approved_contract"
+      }
+    ],
+    "baselinePngs": 2055,
+    "archivedActionPngs": 2940,
+    "totalActivePngs": 4995,
+    "actionClips": 210,
+    "totalActivePngBytes": 3788506725,
+    "sourceSha256Checked": true,
+    "activePngsMatchCommittedHeadBlobs": true,
+    "requiredMetadataTrackedAndPresent": true,
+    "hdIndicesChecked": 11,
+    "legacyReviewStrips": {
+      "trackedInHead": 32,
+      "sparseOmitted": 32,
+      "activeRuntimeUsesIndividualFrames": true,
+      "contentDownloaded": false,
+      "contentHashChecked": false,
+      "note": "The existing whole-contract checker reported these 32 unused review strips absent in this sparse worktree. Active 2055 baseline PNGs and 2940 archived frames were verified independently against delivery SHA256 and HEAD blob SHA1."
+    },
+    "allArtworkQaClaimedPassed": false,
+    "unityEngineExecuted": false,
+    "errors": []
+  },
+  "actionTotals": {
+    "run": 1920,
+    "attack": 360,
+    "hit": 180,
+    "cast": 480
+  },
+  "baselineTotals": {
+    "portrait": 15,
+    "idle": 120,
+    "walk": 1920
+  },
+  "inputContracts": [
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/00_reference_topright_boy/appearance.json",
+      "sha256": "e3c10eeee53fcd1a34591e2431ca7b13ce22383e8873174eabbf363f77afea78"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/00_reference_topright_boy/manifest.json",
+      "sha256": "2c326ade53a0a05899e397525cc55404242727917a9961d12e29cdfd19e46394"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/00_reference_topright_boy/validation.json",
+      "sha256": "a64b32af64f1f3d16530356f6c6c2a36961becd9718b0a604855d25a43017f50"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/01_ice_sword_girl/appearance.json",
+      "sha256": "07eb22dc9de64e665f94fbf9c003ee4a67e0e01d4ba61e18114e6a55d656cc8f"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/01_ice_sword_girl/manifest.json",
+      "sha256": "1250c568a803c55e95cc6374ff983cdcf0ccc78cb5d0395807f0357c33f2d729"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/01_ice_sword_girl/validation.json",
+      "sha256": "fac5b3630b713d703d4267805fba8cb0f77f2a23cc3a7ea9a1a7e82d50cd1e9d"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/07_moon_shadow_assassin_girl/appearance.json",
+      "sha256": "d36b6d673d3643e7050dcc71ab59c3d6c95d2b0a87f1a245e61b3e48b3f13b86"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/07_moon_shadow_assassin_girl/manifest.json",
+      "sha256": "8fe0405ab2d91a05bb7de9b47ce70148782245ad5b77b34d901d9f3695e40ac4"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/07_moon_shadow_assassin_girl/validation.json",
+      "sha256": "656c586691eed6820ff4eb06742b6e6639baad47fd55ad30c9c1ff46a21c2b14"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/08_alchemy_prodigy_boy/appearance.json",
+      "sha256": "50bfd9dc02a398fa92a78494be12a7de9b3cc2bf5370776356c25789b9b20eb4"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/08_alchemy_prodigy_boy/manifest.json",
+      "sha256": "a940c320191a5abde0d0c5924fe5f5a85daa10cb079f347f85ccb33dc51415a3"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/08_alchemy_prodigy_boy/validation.json",
+      "sha256": "907c4e7f1269a86b70f9dccfcb75dff4b035c500c061fb5ca8df305cd2af60dd"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/09_bamboo_archer_girl/appearance.json",
+      "sha256": "8598977226e542c2deb7acf7ad429969b3262c274a7c71d28eaa84d8bbfa925e"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/09_bamboo_archer_girl/manifest.json",
+      "sha256": "27671441f09be5adc4ab333c3a05e7614bda6ce497a2ab2b5555c4c96b3f4381"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/09_bamboo_archer_girl/validation.json",
+      "sha256": "9852e8e74a4e09a5eb5963bfbcbd2d9377d0a54ffd1449ccdb33f17931c43061"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/15_water_dragon_scholar_boy/appearance.json",
+      "sha256": "880c7b68549b18faa9b980d8de660ff4c10dfc9f8e0a9c8c33dea66911ebeb60"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/15_water_dragon_scholar_boy/manifest.json",
+      "sha256": "d4e604aa0d9f65e2b21415a315559d255b1eeef12e4b175a1a2f232f8760762b"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/15_water_dragon_scholar_boy/validation.json",
+      "sha256": "602436fdd5f9ec6b4ea77e96cca11b56390dc23b54e69e5d159d4cd159921dda"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/20_star_formation_master_girl/appearance.json",
+      "sha256": "95b8240c6bf4e4b1208c11c8e464839c46d63ef65ea58c14d481079cd0b0455c"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/20_star_formation_master_girl/manifest.json",
+      "sha256": "fba60600cc97d35754641009995ce682782995679da4c86bf1719e0f6d6df570"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/20_star_formation_master_girl/validation.json",
+      "sha256": "87aa587556b2237dbcbcad59cef8631db34245d8c51f8976dbfc90a7d58a0226"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/02_fire_talisman_boy/appearance.json",
+      "sha256": "4788818a7b80134bae6ebede557cb1c8158170493431d594512aa81ab6b50331"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/02_fire_talisman_boy/manifest.json",
+      "sha256": "5ec4bdd5fa0a760393174a7522c9960d80f5bd9682137f2e962745b291c3f3be"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/02_fire_talisman_boy/validation.json",
+      "sha256": "9b5684b0da63736ad3a3ba3e29dccddb6671b5501b5fe0cebd8d9daca31cdbcf"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/03_lotus_healer_girl/appearance.json",
+      "sha256": "4bee3fd6ede1a278396191ec8bc9f562fca680ae91bedd8a630cb83a6bc8333d"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/03_lotus_healer_girl/manifest.json",
+      "sha256": "a22f6256ecb15cc4d39dd9dc5272895aca4e875b354f7ac5aa88390a18ceb5e4"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV13/03_lotus_healer_girl/validation.json",
+      "sha256": "738934da3334a240d86667a99b0223ad105a05cace58eef86b1138234b0ef8a2"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/04_mountain_guardian_boy/appearance.json",
+      "sha256": "310ff2bacf024ca26fd19a9553790e113db458ac61a3f1c0c82b1be6de563497"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/04_mountain_guardian_boy/manifest.json",
+      "sha256": "705d65c5326c8f1427aa899186b012f2dc29cc6925b2259fb6eda9ee4f0477f0"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/04_mountain_guardian_boy/validation.json",
+      "sha256": "f4d0e09d411f9c0d982b199eb3508b9e374ccb28c1c9101abf0ed8dcad63577a"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/05_celestial_musician_girl/appearance.json",
+      "sha256": "2d7a3b3d2d9aa0edc67e1f2ab251f5b9c6770886873256b8efb38304dd6690c8"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/05_celestial_musician_girl/manifest.json",
+      "sha256": "921e53ad3e78741aaaf6aa68baac8736197de6f838eb11ed44378f1fe8ebc7d8"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/05_celestial_musician_girl/validation.json",
+      "sha256": "8865e46c9c83c619862cc1ceb251fd87e3242e916cc7fb631fb83596dbff7fab"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/06_thunder_caster_boy/appearance.json",
+      "sha256": "0e7fb8f1bc365085df9ad48f64784c90fa66f5d10351996fcb8ee011eefdfdf1"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/06_thunder_caster_boy/manifest.json",
+      "sha256": "5c776b444d434295d11db2e1dd820d81afb88796ed575a5d2c2c3e565cfa2cbf"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/06_thunder_caster_boy/validation.json",
+      "sha256": "0766c49f7fcb6960190a6a0fb9f26632aa4a43e5112bc60dada8376d9f5e4abb"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/10_crimson_spear_girl/appearance.json",
+      "sha256": "a10f49812b639b1c86bdaf1e271d3ed9c3aa507b1e70621c81ed80b3bc83c2c3"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/10_crimson_spear_girl/manifest.json",
+      "sha256": "1bd56d50f337ad22661e34dd31af308a1c6d282ed09a19082f5b807bfed2b786"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/10_crimson_spear_girl/validation.json",
+      "sha256": "7d9da3fc284cd6f51487e9a30a8b759021bbb90f1c7cd90f56e7f3b93a053b0f"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/14_short_hair_snow_summoner_girl/appearance.json",
+      "sha256": "6f2653608e7b5aaec81333b0c2192d4eb814a5328d0e1b447cebff91fec4504f"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/14_short_hair_snow_summoner_girl/manifest.json",
+      "sha256": "3b4f8671500363586af9a2fb63955bccd270d1119bd6c01cc5fa183d4bce1ec9"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/14_short_hair_snow_summoner_girl/validation.json",
+      "sha256": "2d3e258768a624f239d0239d3328f469b7fc7453c96866548c3278485163859b"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/17_ghost_script_calligrapher_boy/appearance.json",
+      "sha256": "4022e9c3e027507f79a66d7f517c18e1490085a4098632f9a771acf11d1ac93c"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/17_ghost_script_calligrapher_boy/manifest.json",
+      "sha256": "b51bea3176d82312cafd196e3a40a6b781accbf25f6267de17f2d37beeea0a02"
+    },
+    {
+      "path": "Assets/Resources/World/Characters/QdaoOriginalRosterV14/17_ghost_script_calligrapher_boy/validation.json",
+      "sha256": "7983715ab55237ca6784d69330484fc322870fc78259b9274952bfb161d5fe69"
+    }
+  ],
+  "archivedDelivery": {
+    "path": "tools/character_deliveries/archived_actions_20261005.json",
+    "rawSha256": "671b307d460d98dd713d8994af27f5b906addafafec282799d0affc928010cc1"
+  },
+  "compilation": [
+    {
+      "kind": "editor",
+      "sourceCount": 413,
+      "exitCode": 0,
+      "errors": []
+    },
+    {
+      "kind": "release",
+      "sourceCount": 413,
+      "exitCode": 0,
+      "errors": []
+    },
+    {
+      "kind": "tests",
+      "sourceCount": 4,
+      "exitCode": 0,
+      "errors": []
+    }
+  ],
+  "actualReleaseDllSha256": "d3c41719752c954f34f4f869945eef526bafdd4520127a365d77014e7b2f3fe7",
+  "managedReleaseChecks": {
+    "status": "passed",
+    "exitCode": 0,
+    "assertions": 339,
+    "actualProductionDll": true,
+    "productionAssemblyDefines": [
+      "UNITY_STANDALONE_WIN",
+      "UNITY_6000_0_OR_NEWER"
+    ],
+    "pinnedDeliveriesAllowed": 2,
+    "retainedIdentities": 15,
+    "retiredAliases": 17,
+    "covers": [
+      "Release Allows and exact pinned hash match",
+      "Wrong version and identity rejection",
+      "Manifest/activation mutation and fake approval rejection",
+      "Both review records remain pending_dynamic_review",
+      "Current identities remain stable for every profession/gender",
+      "Retired identities map to delivered new bodies",
+      "Empty old-role appearance uses eight profession/gender mappings",
+      "Unknown explicit identity is not replaced with another character"
+    ]
+  },
+  "pythonTests": {
+    "archivedActionImporter": 12,
+    "gitCheckoutByteContracts": 2,
+    "passed": 14,
+    "failed": 0
+  },
+  "sourceHashNormalization": "UTF-8 text bytes with CRLF replaced by LF; image, delivery contract and DLL hashes use original bytes.",
+  "sourceHashes": {
+    "Assets/Scripts/World/QdaoLocalPlaytestContract.cs": "e12fa979591bfcc4b9214984aa958d2cdfa143a0969cb0377679b8e2957efb66",
+    "Assets/Scripts/World/QdaoCharacterCatalog.cs": "d435ef9c55fb283831b06e987ac909eb186a50381ed9636477080f63b812f13a",
+    "Assets/Scripts/World/QdaoBoySpriteAnimator.cs": "d98cf6452d34a5895ae37c384b8feb0f6134195ee854474ba50a971ee7d34cf2",
+    "Assets/Scripts/World/QdaoActionResources.cs": "163e61461b210d77e0d5f8ae60fd71959986031d75e506b4e7ae8ca250705895",
+    "Assets/Scripts/World/ActorWorld.cs": "5cd69d7d93f8d3f3ffd24b17da5729061956f2c271177e72af59ea9039ec26dc",
+    "Assets/Scripts/Game/GameClient.cs": "f187e4bd282f1b3ba755f9c79d7385877ec38a397cd88562bed611a5d9ec0343",
+    "Assets/Scripts/UI/Ugui/Role/RoleFlowUi.cs": "c5b25519d45bb99be9ebd0ac46d3cd1e8e5cd770d01caec183abd10b169725d0",
+    "Assets/Scripts/UI/Ugui/Battle/BattleArtCatalog.cs": "7083706571cae452f07acae7f71be2b9d3e8393f7a5ffd62c5856fef374c28c1",
+    "Assets/Scripts/UI/Ugui/Battle/BattleUnitView.cs": "5cd2ad599dba9be6753e669be82af57cf75f38cb03926c52cabff78af66bfe9b",
+    "Assets/Tests/EditMode/Tianyong/QdaoLocalPlaytestDeliveryResourcesTests.cs": "a9e4fa137371fab1912735a8420e556fb05c23d71822212a5a84286e02c17923",
+    "Assets/Tests/EditMode/Tianyong/QdaoRoleAppearanceBindingTests.cs": "0e7b09f90c367f6018cbfa535fd6666198521408a1e6aee7248a80549947440f",
+    "Assets/Tests/EditMode/Tianyong/QdaoActionResourcesTests.cs": "df81e07620eb1c995ac1bf172c49c442c8e383601bb09f5b6049b5c54f943b7a",
+    "Assets/Tests/EditMode/Battle/BattleArchivedActionPlaybackTests.cs": "7956624b5897488abefbd8e79266bccd80dae8160baede4c703ad1250e7f02eb"
+  },
+  "runtimePaths": {
+    "creation": "RoleFlowUi.RefreshAppearanceChoices -> RetainedOriginalAll -> ResolveAppearance",
+    "accountAndWorld": "GameClient.ResolveCharacterId / scene AOI -> ResolveRole -> ActorWorld -> QdaoBoySpriteAnimator",
+    "worldRun": "QdaoBoySpriteAnimator.RenderArchivedActions -> QdaoActionResources.Acquire(id, run, eight directions)",
+    "battle": "BattleArtCatalog.LoadPlayerWalk / LoadCharacterAction -> archived run/attack/hit/cast E/W -> BattleUnitView"
+  },
+  "limitations": [
+    "Unity native engine and in-game login/rendering were not executed because the installed editor lacks com.unity.editor.headless entitlement.",
+    "Four Unity test source files compiled successfully; no EditMode or PlayMode execution is claimed.",
+    "Runtime selection contracts and mapping passed managed Release checks; GPU rendering, memory and animation appearance require the engine.",
+    "The whole-baseline checkout script reports 32 unused V13 review strips omitted by the local sparse checkout. They remain tracked in HEAD; no lazy download was triggered.",
+    "07 and 15 remain pending art/dynamic review; releasing their fixed complete delivery is not art approval."
+  ]
+}

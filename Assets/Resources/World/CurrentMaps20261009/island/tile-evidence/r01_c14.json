@@ -9,49 +9,77 @@
   "imageSha256": "505a8705793013fa077928c839fdf431444450a7c569c938c96e33e189f5b874",
   "imageBytes": 22660005,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/candidates/r01_c14.4096-candidate.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/progress.json",
-  "sourceLedgerSha256": "94fc4c1637dfea1083b38b80909ee782fdbf9bd5e0bf0915a42c6646aad69717",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/delivery-20261012/manifest.json",
+  "sourceLedgerSha256": "30cf61c6e73963aac2c7cd4bf3f061109560edea6cbaf9970162d85d6923d88c",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "tileId": "r01_c14",
-    "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/candidates/r01_c14.4096-candidate.png",
-    "sha256": "505a8705793013fa077928c839fdf431444450a7c569c938c96e33e189f5b874",
-    "dimensions": [
-      4096,
-      4096
+    "tile": "r01_c14",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/candidates/r01_c14.4096-candidate.png",
+    "imageSha256": "505a8705793013fa077928c839fdf431444450a7c569c938c96e33e189f5b874",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/delivery-20261012/manifest.json",
+        "sha256": "30cf61c6e73963aac2c7cd4bf3f061109560edea6cbaf9970162d85d6923d88c",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
     ],
-    "selectedCores": [
-      [
-        "r01_c14_p01_01_v2",
-        "r01_c14_p01_02_v1",
-        "r01_c14_p01_03_v1",
-        "r01_c14_p01_04_v1"
-      ],
-      [
-        "r01_c14_p02_01_v1",
-        "r01_c14_p02_02_v1",
-        "r01_c14_p02_03_v1",
-        "r01_c14_p02_04_v1"
-      ],
-      [
-        "r01_c14_p03_01_v1",
-        "r01_c14_p03_02_v1",
-        "r01_c14_p03_03_v1",
-        "r01_c14_p03_04_v2"
-      ],
-      [
-        "r01_c14_p04_01_v1",
-        "r01_c14_p04_02_v1",
-        "r01_c14_p04_03_v1",
-        "r01_c14_p04_04_v1"
-      ]
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "status": "candidate_awaiting_full_review",
+      "formalAccepted": false,
+      "externalEdges": "south/native available; other adjoining tiles require coordinated review"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/candidates/r01_c14.4096-candidate.png.assembly.json",
+        "record": {
+          "status": "candidate_awaiting_full_review",
+          "formalAccepted": false,
+          "externalEdges": "south/native available; other adjoining tiles require coordinated review"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/progress.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/current-selection-20261012.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/island-game-20261009/resume-20261016/northeast/snapshots/current-selection-20261012.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/island-game-20261009/resume-20261016/delivery-v01/current-4k-index.json",
+        "record": {
+          "formalAccepted": false,
+          "internalQA": "prior_internal_evidence_reused_current_candidate_hash_identical",
+          "externalQA": "only previously inspected unchanged edges reused; unavailable neighbors remain pending"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/island-game-20261009/resume-20261016/northeast/current-candidates.json",
+        "record": {
+          "status": "frozen_batch_review_complete_with_open_issues"
+        }
+      }
     ],
-    "formalAccepted": false
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/accelerated-northeast-coast/delivery-20261012/manifest.json",

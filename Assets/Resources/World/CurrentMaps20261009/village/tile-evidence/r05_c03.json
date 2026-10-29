@@ -9,23 +9,58 @@
   "imageSha256": "502810c424dcf6d7559af7f4711f61b1447b9cce63b033a8c3de5d3581eaa448",
   "imageBytes": 25910029,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c03/final-v1/r05_c03.candidate.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
-  "sourceLedgerSha256": "56f94c42783ea0fe7f6242cd96fedcd379cd752cfd99f2a521f4e9cd51b15e4c",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/r05_c03.root-qa.json",
+  "sourceLedgerSha256": "c253dcc0375b780a0f6e7607e8a36e655257244348a8d726c37cd4f908a88ceb",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
-    "candidate": "work-r05_c03/final-v1/r05_c03.candidate.png",
-    "candidateSha256": "502810c424dcf6d7559af7f4711f61b1447b9cce63b033a8c3de5d3581eaa448",
-    "internalAccepted": true,
-    "qa": "delivery-2x2/r05_c03.root-qa.json",
-    "qaSha256": "c253dcc0375b780a0f6e7607e8a36e655257244348a8d726c37cd4f908a88ceb",
-    "assembly": "work-r05_c03/final-v1/assembly.json",
-    "assemblySha256": "03777f45ce5a37756650192d5059854b0821a72a2f51fdb78fe9112126944877",
-    "formalAccepted": false
+    "tile": "r05_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c03/final-v1/r05_c03.candidate.png",
+    "imageSha256": "502810c424dcf6d7559af7f4711f61b1447b9cce63b033a8c3de5d3581eaa448",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/r05_c03.root-qa.json",
+        "sha256": "c253dcc0375b780a0f6e7607e8a36e655257244348a8d726c37cd4f908a88ceb",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
+    ],
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "status": "native-tile-complete-full-geometry-and-existing-north-QA-passed",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r05_c03/final-v1/assembly.json",
+        "record": {
+          "status": "native-tile-complete-full-geometry-and-existing-north-QA-passed",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+        "record": {
+          "internalAccepted": true,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/r05_c03.root-qa.json",
+        "record": {
+          "internalAccepted": true,
+          "northBoundaryAccepted": true,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/delivery-2x2/r05_c03.root-qa.json",

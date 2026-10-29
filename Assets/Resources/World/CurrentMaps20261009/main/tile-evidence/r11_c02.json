@@ -1,0 +1,1224 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 11,
+  "column": 2,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "f34d435c26652ce6ccab3460517b9187617fd6cc7af08c9aeb9129f5c0b5f463",
+  "imageBytes": 19789084,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/r11_c02.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/assembly.json",
+  "sourceLedgerSha256": "a706133faa568eac5c1e6effd944c8d61830c89b26d96f248b6b71c83f559728",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r11_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/r11_c02.candidate.png",
+    "imageSha256": "f34d435c26652ce6ccab3460517b9187617fd6cc7af08c9aeb9129f5c0b5f463",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/assembly.json",
+        "sha256": "a706133faa568eac5c1e6effd944c8d61830c89b26d96f248b6b71c83f559728",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/assembly.json",
+        "sha256": "a706133faa568eac5c1e6effd944c8d61830c89b26d96f248b6b71c83f559728",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "repaired_candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "repaired_candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/changed-native-qa-v01/worker-review-and-repair-queue.json",
+        "record": {
+          "externalLeftTopReusedCount": 8,
+          "externalPassed": false,
+          "formalAccepted": false,
+          "reviewStatus": "changed_native_actual_views_reviewed_prior_identical_reused",
+          "remainingIssues": [
+            "Historical actual 40 unchanged region reviews remain FAILED, not upgraded.",
+            "Stone grout stumps/angle differences, blue-rim jagged elbow, top paper truncation and broad warm/cool/density fronts remain.",
+            "Dense cellular/crosshatch surface finish still exceeds approved quiet stone material.",
+            "Gold eave is improved and single, exact approved footprint/cross-tile geometry remains pending independent external paired review.",
+            "East context last2px old fringe outside formalcore persists; east/south neighbors unavailable, no external pass."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/changed-native-qa-v01/worker-review-and-repair-queue.json",
+    "sourceSha256": "e1da1c618b8ba47f9321b950a561b7c473e4f849854ec8e812eaab699a6ae851",
+    "normalizedDocument": {
+      "tile": "r11_c02",
+      "createdAtUtc": "2026-10-18T19:47:20.708961+00:00",
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/assembly.json",
+        "sha256": "a706133faa568eac5c1e6effd944c8d61830c89b26d96f248b6b71c83f559728"
+      },
+      "core": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/r11_c02.candidate.png",
+        "sha256": "f34d435c26652ce6ccab3460517b9187617fd6cc7af08c9aeb9129f5c0b5f463",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/integrated-masked-20261012-v02/r11_c02.candidate.context.png",
+        "sha256": "44174cce9ad42e747be99b4153d71378e9ad9a9b5c7728700495c157e08180e9",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "priorManifest": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/manifest.json",
+        "sha256": "71e8a1c6c281096ff59dea89a08149dbb44a6e003bd4130cc1905a15a881f03d"
+      },
+      "priorReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+        "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+      },
+      "regions": [
+        {
+          "id": "V1-segments1-2-region1",
+          "sourceViewId": "V1-segments1-2",
+          "formalCoreBox": [
+            768,
+            0,
+            1280,
+            1024
+          ],
+          "oldRgbPixelsSha256": "1cddbe19114f4f55216725f76254156fab4d4f5aa275d9787fdefa9b1fcc0eec",
+          "newRgbPixelsSha256": "1cddbe19114f4f55216725f76254156fab4d4f5aa275d9787fdefa9b1fcc0eec",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V1-segments1-2.png",
+            "sha256": "492106d1eec024219d3c1d378f070d7717222ebfde2a61af5bbede24e7162cf1"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V1-segments1-2-region2",
+          "sourceViewId": "V1-segments1-2",
+          "formalCoreBox": [
+            768,
+            1024,
+            1280,
+            2048
+          ],
+          "oldRgbPixelsSha256": "2d6c9ed46c97f65456450d8065aff14240a6895bf9336dace5d322aa47589de0",
+          "newRgbPixelsSha256": "2d6c9ed46c97f65456450d8065aff14240a6895bf9336dace5d322aa47589de0",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V1-segments1-2.png",
+            "sha256": "492106d1eec024219d3c1d378f070d7717222ebfde2a61af5bbede24e7162cf1"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V1-segments3-4-region1",
+          "sourceViewId": "V1-segments3-4",
+          "formalCoreBox": [
+            768,
+            2048,
+            1280,
+            3072
+          ],
+          "oldRgbPixelsSha256": "d695c3b01b9bfb3e20369063f520f37f1437c94df3db5a0ab124c4f222e3299d",
+          "newRgbPixelsSha256": "d695c3b01b9bfb3e20369063f520f37f1437c94df3db5a0ab124c4f222e3299d",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V1-segments3-4.png",
+            "sha256": "6d56a9809c059f9f75ddb8ad9fc71a4354421cfcdc46d342baaac111c185009c"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V1-segments3-4-region2",
+          "sourceViewId": "V1-segments3-4",
+          "formalCoreBox": [
+            768,
+            3072,
+            1280,
+            4096
+          ],
+          "oldRgbPixelsSha256": "6ba3e2f21a9107116ff2426ca31ce5ef27952dcbfe2708134afd9c15826fabf9",
+          "newRgbPixelsSha256": "6ba3e2f21a9107116ff2426ca31ce5ef27952dcbfe2708134afd9c15826fabf9",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V1-segments3-4.png",
+            "sha256": "6d56a9809c059f9f75ddb8ad9fc71a4354421cfcdc46d342baaac111c185009c"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V2-segments1-2-region1",
+          "sourceViewId": "V2-segments1-2",
+          "formalCoreBox": [
+            1792,
+            0,
+            2304,
+            1024
+          ],
+          "oldRgbPixelsSha256": "a7cb089e42242a6703178a075bae4465865171788c5c5e0060efbccd961e685a",
+          "newRgbPixelsSha256": "a7cb089e42242a6703178a075bae4465865171788c5c5e0060efbccd961e685a",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V2-segments1-2.png",
+            "sha256": "99656b389fb9622d22af7cec4fe793d5b600d6bae33954e80332596d0cb4de28"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V2-segments1-2-region2",
+          "sourceViewId": "V2-segments1-2",
+          "formalCoreBox": [
+            1792,
+            1024,
+            2304,
+            2048
+          ],
+          "oldRgbPixelsSha256": "69dfeb8acab01c3116995ae2d9795fc8d4841bb751c52854037cc1bbec869770",
+          "newRgbPixelsSha256": "69dfeb8acab01c3116995ae2d9795fc8d4841bb751c52854037cc1bbec869770",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V2-segments1-2.png",
+            "sha256": "99656b389fb9622d22af7cec4fe793d5b600d6bae33954e80332596d0cb4de28"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V2-segments3-4-region1",
+          "sourceViewId": "V2-segments3-4",
+          "formalCoreBox": [
+            1792,
+            2048,
+            2304,
+            3072
+          ],
+          "oldRgbPixelsSha256": "5061b89a80a1da997a34218f10058a4627ec48328e4549004118ead80836b4e5",
+          "newRgbPixelsSha256": "5061b89a80a1da997a34218f10058a4627ec48328e4549004118ead80836b4e5",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V2-segments3-4.png",
+            "sha256": "ec361e3ef4da3aca7db583f492765eeb17934570f95ed43b86030a1d2e1aa1d1"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V2-segments3-4-region2",
+          "sourceViewId": "V2-segments3-4",
+          "formalCoreBox": [
+            1792,
+            3072,
+            2304,
+            4096
+          ],
+          "oldRgbPixelsSha256": "c46fc37505d60e0aeaf9b987f33ae03187596711e2a9f2e2d501e78ab862c4e5",
+          "newRgbPixelsSha256": "c46fc37505d60e0aeaf9b987f33ae03187596711e2a9f2e2d501e78ab862c4e5",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V2-segments3-4.png",
+            "sha256": "ec361e3ef4da3aca7db583f492765eeb17934570f95ed43b86030a1d2e1aa1d1"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V3-segments1-2-region1",
+          "sourceViewId": "V3-segments1-2",
+          "formalCoreBox": [
+            2816,
+            0,
+            3328,
+            1024
+          ],
+          "oldRgbPixelsSha256": "a1e876212261c1e0421122e0ec7eab8f2f2ed141e79f53bf8ad1ee7c0f2d68da",
+          "newRgbPixelsSha256": "a1e876212261c1e0421122e0ec7eab8f2f2ed141e79f53bf8ad1ee7c0f2d68da",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V3-segments1-2.png",
+            "sha256": "90491bf41d1ffb3f7ec1b6460267129b5ded06e6938cc8cbf0ea42c576561803"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V3-segments1-2-region2",
+          "sourceViewId": "V3-segments1-2",
+          "formalCoreBox": [
+            2816,
+            1024,
+            3328,
+            2048
+          ],
+          "oldRgbPixelsSha256": "ae9b9f1956b3f9402b4f979060b2c09911d90a5b7b2c92470a450bedfcf0b2e6",
+          "newRgbPixelsSha256": "ae9b9f1956b3f9402b4f979060b2c09911d90a5b7b2c92470a450bedfcf0b2e6",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V3-segments1-2.png",
+            "sha256": "90491bf41d1ffb3f7ec1b6460267129b5ded06e6938cc8cbf0ea42c576561803"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V3-segments3-4-region1",
+          "sourceViewId": "V3-segments3-4",
+          "formalCoreBox": [
+            2816,
+            2048,
+            3328,
+            3072
+          ],
+          "oldRgbPixelsSha256": "64bdde1b6f00d2a58502093d42ff06d7ed2ed999d566d320b51b809eb4f97c50",
+          "newRgbPixelsSha256": "64bdde1b6f00d2a58502093d42ff06d7ed2ed999d566d320b51b809eb4f97c50",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V3-segments3-4.png",
+            "sha256": "bae9deef3342520d23647ce3fb071246990287937f85839db4dc8930ffe1e1be"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "V3-segments3-4-region2",
+          "sourceViewId": "V3-segments3-4",
+          "formalCoreBox": [
+            2816,
+            3072,
+            3328,
+            4096
+          ],
+          "oldRgbPixelsSha256": "3d58bc2c2ca87e81fab59b9d3c1b77b4f12be2d520e53902685c30e915db8b15",
+          "newRgbPixelsSha256": "3d58bc2c2ca87e81fab59b9d3c1b77b4f12be2d520e53902685c30e915db8b15",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/V3-segments3-4.png",
+            "sha256": "bae9deef3342520d23647ce3fb071246990287937f85839db4dc8930ffe1e1be"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H1-segments1-2-region1",
+          "sourceViewId": "H1-segments1-2",
+          "formalCoreBox": [
+            0,
+            768,
+            1024,
+            1280
+          ],
+          "oldRgbPixelsSha256": "dc3085437893c3b5bb54d8f9e64927a600fcb078473a29f90a95344eea4fe460",
+          "newRgbPixelsSha256": "dc3085437893c3b5bb54d8f9e64927a600fcb078473a29f90a95344eea4fe460",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H1-segments1-2.png",
+            "sha256": "999a03be728ad69204ce6fa68a71ae9d48a83a3daf9b85b0714332398e889f95"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H1-segments1-2-region2",
+          "sourceViewId": "H1-segments1-2",
+          "formalCoreBox": [
+            1024,
+            768,
+            2048,
+            1280
+          ],
+          "oldRgbPixelsSha256": "80d4aebec97b6c83609508844e2a01f20568aa47d1161323b17b6dbad003e896",
+          "newRgbPixelsSha256": "80d4aebec97b6c83609508844e2a01f20568aa47d1161323b17b6dbad003e896",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H1-segments1-2.png",
+            "sha256": "999a03be728ad69204ce6fa68a71ae9d48a83a3daf9b85b0714332398e889f95"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H1-segments3-4-region1",
+          "sourceViewId": "H1-segments3-4",
+          "formalCoreBox": [
+            2048,
+            768,
+            3072,
+            1280
+          ],
+          "oldRgbPixelsSha256": "46b438f1fdb8aa726414da443dccf8bb0fe002b1d302c2d060c6f73b544d69f2",
+          "newRgbPixelsSha256": "46b438f1fdb8aa726414da443dccf8bb0fe002b1d302c2d060c6f73b544d69f2",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H1-segments3-4.png",
+            "sha256": "f29ebaa12da0cc3b0c724029e2e5396378cc1f06aea23bd8895e2891e04600b1"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H1-segments3-4-region2",
+          "sourceViewId": "H1-segments3-4",
+          "formalCoreBox": [
+            3072,
+            768,
+            4096,
+            1280
+          ],
+          "oldRgbPixelsSha256": "b198a02e1664286185b50722be25e641de0cf5eb1ab3481982964766e4ef8a05",
+          "newRgbPixelsSha256": "b198a02e1664286185b50722be25e641de0cf5eb1ab3481982964766e4ef8a05",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H1-segments3-4.png",
+            "sha256": "f29ebaa12da0cc3b0c724029e2e5396378cc1f06aea23bd8895e2891e04600b1"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H2-segments1-2-region1",
+          "sourceViewId": "H2-segments1-2",
+          "formalCoreBox": [
+            0,
+            1792,
+            1024,
+            2304
+          ],
+          "oldRgbPixelsSha256": "8da911ecedbbfd46082a2a8f1d376d38cc482065c583ffb88121f74a68a047c2",
+          "newRgbPixelsSha256": "8da911ecedbbfd46082a2a8f1d376d38cc482065c583ffb88121f74a68a047c2",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H2-segments1-2.png",
+            "sha256": "a9a45c553297852cdfec93c0715733c6de29a5489c2fc84f39f8a5f71b5f4244"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H2-segments1-2-region2",
+          "sourceViewId": "H2-segments1-2",
+          "formalCoreBox": [
+            1024,
+            1792,
+            2048,
+            2304
+          ],
+          "oldRgbPixelsSha256": "b14baff53d8b3805a738c87f7aa7f7628e69c307aa422b0f680482d598d38d1b",
+          "newRgbPixelsSha256": "b14baff53d8b3805a738c87f7aa7f7628e69c307aa422b0f680482d598d38d1b",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H2-segments1-2.png",
+            "sha256": "a9a45c553297852cdfec93c0715733c6de29a5489c2fc84f39f8a5f71b5f4244"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H2-segments3-4-region1",
+          "sourceViewId": "H2-segments3-4",
+          "formalCoreBox": [
+            2048,
+            1792,
+            3072,
+            2304
+          ],
+          "oldRgbPixelsSha256": "3d34f295828c67d15399d61002d33191e533c75f3d736e09c5106f15ff78ad5b",
+          "newRgbPixelsSha256": "3d34f295828c67d15399d61002d33191e533c75f3d736e09c5106f15ff78ad5b",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H2-segments3-4.png",
+            "sha256": "613c472d1881454982679b4d988d91466185ebb494dbc48eb74ef73504477380"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H2-segments3-4-region2",
+          "sourceViewId": "H2-segments3-4",
+          "formalCoreBox": [
+            3072,
+            1792,
+            4096,
+            2304
+          ],
+          "oldRgbPixelsSha256": "9e37cbf95c797c7c8c99a7d8c134a807ac555080212a4f5959ef82d9cca3b4de",
+          "newRgbPixelsSha256": "9e37cbf95c797c7c8c99a7d8c134a807ac555080212a4f5959ef82d9cca3b4de",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H2-segments3-4.png",
+            "sha256": "613c472d1881454982679b4d988d91466185ebb494dbc48eb74ef73504477380"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H3-segments1-2-region1",
+          "sourceViewId": "H3-segments1-2",
+          "formalCoreBox": [
+            0,
+            2816,
+            1024,
+            3328
+          ],
+          "oldRgbPixelsSha256": "5997766d2febb1c729d4acaff4f299ae101969306b3a3f62d947f4b71dc214bc",
+          "newRgbPixelsSha256": "5997766d2febb1c729d4acaff4f299ae101969306b3a3f62d947f4b71dc214bc",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H3-segments1-2.png",
+            "sha256": "3bae45c1c34fe371d90cb8f9b285ebd736c90b9e1282cffbcc5c86664a403d19"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H3-segments1-2-region2",
+          "sourceViewId": "H3-segments1-2",
+          "formalCoreBox": [
+            1024,
+            2816,
+            2048,
+            3328
+          ],
+          "oldRgbPixelsSha256": "f73f90e78c23cbe3b2a082bece1bc8bde404ea81cbb77606d3944d348e1cf9ef",
+          "newRgbPixelsSha256": "f73f90e78c23cbe3b2a082bece1bc8bde404ea81cbb77606d3944d348e1cf9ef",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H3-segments1-2.png",
+            "sha256": "3bae45c1c34fe371d90cb8f9b285ebd736c90b9e1282cffbcc5c86664a403d19"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H3-segments3-4-region1",
+          "sourceViewId": "H3-segments3-4",
+          "formalCoreBox": [
+            2048,
+            2816,
+            3072,
+            3328
+          ],
+          "oldRgbPixelsSha256": "f745046f9a407d01ae35c5b9467d532e86ba50dbdc165c7d256e54c0012a162a",
+          "newRgbPixelsSha256": "f745046f9a407d01ae35c5b9467d532e86ba50dbdc165c7d256e54c0012a162a",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H3-segments3-4.png",
+            "sha256": "e069f2c6db828bee6404da31ecc25dcb59952c009b6953a166a23b0a2350644a"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "H3-segments3-4-region2",
+          "sourceViewId": "H3-segments3-4",
+          "formalCoreBox": [
+            3072,
+            2816,
+            4096,
+            3328
+          ],
+          "oldRgbPixelsSha256": "5798afda4d4c63ae3e39451c136c4f94031ae0ee30177687c21c32f9a897e7a8",
+          "newRgbPixelsSha256": "491ebf0fcb7e8325650a35a58250c3d82a269175cee1594047c0c0fee5b4d8c7",
+          "byteIdentical": false,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H3-segments3-4.png",
+            "sha256": "e069f2c6db828bee6404da31ecc25dcb59952c009b6953a166a23b0a2350644a"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/changed-native-qa-v01/H3-segments3-4-region2.png",
+          "sha256": "ba0072914d69ce778a6cfa2a781533645aee394785220a5c65a6af41768507fb",
+          "viewed": false,
+          "sourceResampling": false,
+          "status": "changed_native_crop_pending_actual_view"
+        },
+        {
+          "id": "nine-intersections-region1",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "oldRgbPixelsSha256": "507038d276e658a8741ab6f34290da2b86e916aad0c65d1bfbf844ae8797b025",
+          "newRgbPixelsSha256": "507038d276e658a8741ab6f34290da2b86e916aad0c65d1bfbf844ae8797b025",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "nine-intersections-region2",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "oldRgbPixelsSha256": "ec23e1bd4aa939a1dd1d01764f278c92c65c14104cb4553cc4443e216208f6f5",
+          "newRgbPixelsSha256": "ec23e1bd4aa939a1dd1d01764f278c92c65c14104cb4553cc4443e216208f6f5",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "nine-intersections-region3",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "oldRgbPixelsSha256": "6c250c3f412d671f02347d34db46b17c7d148f586d2b272211e4c3f8dccc7008",
+          "newRgbPixelsSha256": "6c250c3f412d671f02347d34db46b17c7d148f586d2b272211e4c3f8dccc7008",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "nine-intersections-region4",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "oldRgbPixelsSha256": "acbec0c8541d2494348ccf8efc7ffdfcc464409aedd65a30c3edd6f0ea023b6b",
+          "newRgbPixelsSha256": "acbec0c8541d2494348ccf8efc7ffdfcc464409aedd65a30c3edd6f0ea023b6b",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "nine-intersections-region5",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "oldRgbPixelsSha256": "c8636687e0dd899198417390f5f48a9ac8e37ffeb6ddc19e9beed21a1c182137",
+          "newRgbPixelsSha256": "c8636687e0dd899198417390f5f48a9ac8e37ffeb6ddc19e9beed21a1c182137",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "nine-intersections-region6",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "oldRgbPixelsSha256": "cb85f052c993588137eaa06c5a53d28bc238b94f37c09da7712d1b7331d05fac",
+          "newRgbPixelsSha256": "cb85f052c993588137eaa06c5a53d28bc238b94f37c09da7712d1b7331d05fac",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "nine-intersections-region7",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "oldRgbPixelsSha256": "5c139f41fdfeaf308179cd982f20b3184c862c4cf1159ba51b5fb52e7382189d",
+          "newRgbPixelsSha256": "5c139f41fdfeaf308179cd982f20b3184c862c4cf1159ba51b5fb52e7382189d",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "nine-intersections-region8",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "oldRgbPixelsSha256": "733d7ad6d3cffc8e9b223ca895809766a73c5d24267bc023dfdf8e6db2466e2c",
+          "newRgbPixelsSha256": "733d7ad6d3cffc8e9b223ca895809766a73c5d24267bc023dfdf8e6db2466e2c",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "nine-intersections-region9",
+          "sourceViewId": "nine-intersections",
+          "formalCoreBox": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "oldRgbPixelsSha256": "24284c106fa2e3e1d4221c3129ae7f59e422fb6289b230e793280b8bae41891f",
+          "newRgbPixelsSha256": "24284c106fa2e3e1d4221c3129ae7f59e422fb6289b230e793280b8bae41891f",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/nine-intersections.png",
+            "sha256": "6229863433f53b71964b4c7f1db5da9fc6fbcdcdfbdccfbd0eb40db9ae0a8160"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "external-left-segments1-2-region1",
+          "sourceViewId": "external-left-segments1-2",
+          "formalCoreBox": [
+            0,
+            0,
+            256,
+            1024
+          ],
+          "oldRgbPixelsSha256": "15ad69d68e0ca96a947d96f0cfdb7d9c13cb092c28423070c305bb75d6575ca7",
+          "newRgbPixelsSha256": "15ad69d68e0ca96a947d96f0cfdb7d9c13cb092c28423070c305bb75d6575ca7",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/external-left-segments1-2.png",
+            "sha256": "abc701ddb60bec7f0b759907e5373b41300fc676993da2c274813c3ee6bf01b2"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "external-left-segments1-2-region2",
+          "sourceViewId": "external-left-segments1-2",
+          "formalCoreBox": [
+            0,
+            1024,
+            256,
+            2048
+          ],
+          "oldRgbPixelsSha256": "718e3f42434f6ab6000732440f34587010977c6775b6db21358182e852429321",
+          "newRgbPixelsSha256": "718e3f42434f6ab6000732440f34587010977c6775b6db21358182e852429321",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/external-left-segments1-2.png",
+            "sha256": "abc701ddb60bec7f0b759907e5373b41300fc676993da2c274813c3ee6bf01b2"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "external-left-segments3-4-region1",
+          "sourceViewId": "external-left-segments3-4",
+          "formalCoreBox": [
+            0,
+            2048,
+            256,
+            3072
+          ],
+          "oldRgbPixelsSha256": "42674a17aacfa130a74983603ea3b81309bb1790ec0a1c3f977420cf6368b2dc",
+          "newRgbPixelsSha256": "42674a17aacfa130a74983603ea3b81309bb1790ec0a1c3f977420cf6368b2dc",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/external-left-segments3-4.png",
+            "sha256": "3a7ffa314956b32d61d5e40ce9e04914638c5785eddc3ae2e09465a419d4f8a7"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "external-left-segments3-4-region2",
+          "sourceViewId": "external-left-segments3-4",
+          "formalCoreBox": [
+            0,
+            3072,
+            256,
+            4096
+          ],
+          "oldRgbPixelsSha256": "2e767f11fc1b5ff411f79429cfd11f481ff3749f4b5ad23f14b9ee2b05ad2ce4",
+          "newRgbPixelsSha256": "2e767f11fc1b5ff411f79429cfd11f481ff3749f4b5ad23f14b9ee2b05ad2ce4",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/external-left-segments3-4.png",
+            "sha256": "3a7ffa314956b32d61d5e40ce9e04914638c5785eddc3ae2e09465a419d4f8a7"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "external-top-segments1-2-region1",
+          "sourceViewId": "external-top-segments1-2",
+          "formalCoreBox": [
+            0,
+            0,
+            1024,
+            256
+          ],
+          "oldRgbPixelsSha256": "3554f5f5e181e1c07a67417f6a2dfb7773b0605f2c5916627a5bc96c48e31439",
+          "newRgbPixelsSha256": "3554f5f5e181e1c07a67417f6a2dfb7773b0605f2c5916627a5bc96c48e31439",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/external-top-segments1-2.png",
+            "sha256": "d2ca81dadb6e3e2e73185af8a414f5a2dce6a9a89f2ac9609eecff0768e79b20"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "external-top-segments1-2-region2",
+          "sourceViewId": "external-top-segments1-2",
+          "formalCoreBox": [
+            1024,
+            0,
+            2048,
+            256
+          ],
+          "oldRgbPixelsSha256": "405d627cc5f6b78642d33398e9db64d34eb6ce3292d55fd039f3191571d13b45",
+          "newRgbPixelsSha256": "405d627cc5f6b78642d33398e9db64d34eb6ce3292d55fd039f3191571d13b45",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/external-top-segments1-2.png",
+            "sha256": "d2ca81dadb6e3e2e73185af8a414f5a2dce6a9a89f2ac9609eecff0768e79b20"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "external-top-segments3-4-region1",
+          "sourceViewId": "external-top-segments3-4",
+          "formalCoreBox": [
+            2048,
+            0,
+            3072,
+            256
+          ],
+          "oldRgbPixelsSha256": "f5a4ede94a4a6c828a61dc41d1a31de9818431add294a22ee70f68722eaf9f1d",
+          "newRgbPixelsSha256": "f5a4ede94a4a6c828a61dc41d1a31de9818431add294a22ee70f68722eaf9f1d",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/external-top-segments3-4.png",
+            "sha256": "e62a2c8eb311a2e0eb4400dc4041409f43dafceef35891baca228d125b1071d5"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        },
+        {
+          "id": "external-top-segments3-4-region2",
+          "sourceViewId": "external-top-segments3-4",
+          "formalCoreBox": [
+            3072,
+            0,
+            4096,
+            256
+          ],
+          "oldRgbPixelsSha256": "2dc41ea698c3bdea9b70759190aa7a562eece79cb92c75810e6583e57c1f72cc",
+          "newRgbPixelsSha256": "2dc41ea698c3bdea9b70759190aa7a562eece79cb92c75810e6583e57c1f72cc",
+          "byteIdentical": true,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/external-top-segments3-4.png",
+            "sha256": "e62a2c8eb311a2e0eb4400dc4041409f43dafceef35891baca228d125b1071d5"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "status": "byte_identical_prior_actual_QA_reused"
+        }
+      ],
+      "changedViews": [
+        {
+          "id": "H3-segments3-4-region2",
+          "sourceViewId": "H3-segments3-4",
+          "formalCoreBox": [
+            3072,
+            2816,
+            4096,
+            3328
+          ],
+          "oldRgbPixelsSha256": "5798afda4d4c63ae3e39451c136c4f94031ae0ee30177687c21c32f9a897e7a8",
+          "newRgbPixelsSha256": "491ebf0fcb7e8325650a35a58250c3d82a269175cee1594047c0c0fee5b4d8c7",
+          "byteIdentical": false,
+          "priorView": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/H3-segments3-4.png",
+            "sha256": "e069f2c6db828bee6404da31ecc25dcb59952c009b6953a166a23b0a2350644a"
+          },
+          "priorActuallyViewedReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/pipeline/output/49a0b37007cbdd23/native-full-qa-20261018b-v01/worker-review-and-repair-queue.json",
+            "sha256": "1061f6925cecf7e53cc8b126c500ecbbc571f31962374ba8862a3a76ba7b1efb"
+          },
+          "accepted": false,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/changed-native-qa-v01/H3-segments3-4-region2.png",
+          "sha256": "ba0072914d69ce778a6cfa2a781533645aee394785220a5c65a6af41768507fb",
+          "viewed": true,
+          "sourceResampling": false,
+          "status": "changed_native_crop_pending_actual_view",
+          "findings": [
+            "H3column4 doubled gold curls replaced by one continuous eave and teal tile run; no hard cut at former native seam. Source full target and mask borders separately actually viewed.",
+            "Whole tile remains failed due unresolved historical grout/blue-elbow/paper/material issues."
+          ]
+        }
+      ],
+      "byteIdenticalReusedCount": 40,
+      "externalLeftTopReusedCount": 8,
+      "selfBorderViews": [
+        {
+          "id": "east-formal-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/changed-native-qa-v01/east-formal-row3.png",
+          "sha256": "efd354fff4e8991bc4e5bbc23ef9fa501b3f20dbd822b50372be6b8eb44c2c08",
+          "formalCoreBox": [
+            3840,
+            2048,
+            4096,
+            3072
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "notExternalComparison": true,
+          "accepted": false,
+          "findings": [
+            "Current formal side actually viewed at native pixels; one gold eave and continuous tiles/badge. Material phase remains; no adjacent east/south complete tile for actual pair, so no external pass."
+          ]
+        },
+        {
+          "id": "east-formal-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/changed-native-qa-v01/east-formal-row4.png",
+          "sha256": "dafe70c307b41b160fc00b55024df82364990742d924ac9539c9584c09d91c9e",
+          "formalCoreBox": [
+            3840,
+            3072,
+            4096,
+            4096
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "notExternalComparison": true,
+          "accepted": false,
+          "findings": [
+            "Current formal side actually viewed at native pixels; one gold eave and continuous tiles/badge. Material phase remains; no adjacent east/south complete tile for actual pair, so no external pass."
+          ]
+        },
+        {
+          "id": "south-formal-col4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/changed-native-qa-v01/south-formal-col4.png",
+          "sha256": "c3e7a576ac40e0ca618c2e0000ffb23fad3abb31a5655e2e1d98acf2055d71c7",
+          "formalCoreBox": [
+            3072,
+            3840,
+            4096,
+            4096
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "notExternalComparison": true,
+          "accepted": false,
+          "findings": [
+            "Current formal side actually viewed at native pixels; one gold eave and continuous tiles/badge. Material phase remains; no adjacent east/south complete tile for actual pair, so no external pass."
+          ]
+        }
+      ],
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "operation": "compare exact actual assembled crop RGB pixels, export only changed native regions; no overview/no resizing",
+      "reviewedAtUtc": "2026-10-18T20:00:33.938850+00:00",
+      "reviewStatus": "changed_native_actual_views_reviewed_prior_identical_reused",
+      "targetDuplicateCurlFixed": true,
+      "newBadgeBoundaryFixed": true,
+      "localTargetGeometryImproved": true,
+      "outsideTwoExplicitMasksPixelsUnchanged": true,
+      "outsideMasksChangedPixelCount": 0,
+      "totalChangedPixelsInContext": 719892,
+      "coreEqualsExactContextCrop": true,
+      "nativeMaskWindows": [
+        {
+          "cropContextBox": [
+            3072,
+            2500,
+            4326,
+            3754
+          ],
+          "maskPatchBox": [
+            600,
+            250,
+            1254,
+            1254
+          ],
+          "maxFeatherPixels": 2
+        },
+        {
+          "cropContextBox": [
+            3072,
+            3072,
+            4326,
+            4326
+          ],
+          "maskPatchBox": [
+            1000,
+            610,
+            1254,
+            960
+          ],
+          "maxFeatherPixels": 2
+        }
+      ],
+      "actualBoundedTargetAndBoundaryQa": [
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-unify-v01/masked-native-boundary-qa-v01/review.json",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c02/repairs-20261018b/eave-bracket-stitch-v01/masked-boundary-qa-v01/manifest.json"
+      ],
+      "remainingIssues": [
+        "Historical actual 40 unchanged region reviews remain FAILED, not upgraded.",
+        "Stone grout stumps/angle differences, blue-rim jagged elbow, top paper truncation and broad warm/cool/density fronts remain.",
+        "Dense cellular/crosshatch surface finish still exceeds approved quiet stone material.",
+        "Gold eave is improved and single, exact approved footprint/cross-tile geometry remains pending independent external paired review.",
+        "East context last2px old fringe outside formalcore persists; east/south neighbors unavailable, no external pass."
+      ],
+      "actualModel": null,
+      "actualQuality": null,
+      "modelEvidence": "Host built-in returned no model/quality; configuration is target only."
+    }
+  }
+}

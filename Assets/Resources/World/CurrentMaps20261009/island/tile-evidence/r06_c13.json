@@ -1,0 +1,1382 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 6,
+  "column": 13,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "9ef60fca0fa1a601365687ec9cd45c08aa62e691ad00e79f4844e6a4341e1357",
+  "imageBytes": 33195968,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c13-native-v1-20261017.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c13-native-v1-20261017.png.derivation.json",
+  "sourceLedgerSha256": "f98fd9c237cd4870c69b1d22688d892508d1ce95d8dd049735e64a81bfd50880",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c13-native-v1-20261017.png",
+    "imageSha256": "9ef60fca0fa1a601365687ec9cd45c08aa62e691ad00e79f4844e6a4341e1357",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c13-native-v1-20261017.png.derivation.json",
+        "sha256": "f98fd9c237cd4870c69b1d22688d892508d1ce95d8dd049735e64a81bfd50880",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c13-native-v1-20261017.png.derivation.json",
+        "sha256": "f98fd9c237cd4870c69b1d22688d892508d1ce95d8dd049735e64a81bfd50880",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r06_c13.json",
+        "sha256": "ef6c7c021de160b508f98c3d2a8177a5e2dfab90b3b596e5e72fddb80860211e",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r06_c13.json",
+        "sha256": "ef6c7c021de160b508f98c3d2a8177a5e2dfab90b3b596e5e72fddb80860211e",
+        "completeness": [
+          "missingCores",
+          0
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "baseCoverageMin": 1,
+      "baseCoverageMax": 1,
+      "status": "complete_native_candidate_internal_continuity_passed_layout_failed",
+      "internalReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-review.json",
+      "layoutAccepted": false,
+      "formalAccepted": false,
+      "pendingIssues": [
+        {
+          "id": "r06_c13-r06_c14-F1-post-scale",
+          "status": "cross_tile_joint_layout_repair_required",
+          "coordinates": [
+            "r06_c13_p01_04",
+            "r06_c14_p01_01"
+          ],
+          "reason": "p01_03 large ball post is close to its original layout crop. p01_04 right small complete ball post is inherited from r06_c14 p01_01. At equal native scale, left ball diameter is visually about 337 px versus right about 90 px; square caps about 480 versus 140 px (rough visual estimates, not segmentation measurements). The original p01_04 layout crop carries a broad right column/continuing wall, whereas native puts a small complete end-post lower in frame. Original whole-map/context does not support an abrupt 3.5x scale decrease in this short section.",
+          "auditFinding": "F1",
+          "repairConstraint": "Joint repair against original layout. Do not shrink p01_03 to the incorrect small anchor. Preserve existing images."
+        },
+        {
+          "id": "r06_c13-r06_c14-F2-secondary-post",
+          "status": "pending_related_topology_review",
+          "coordinates": [
+            "r06_c13_p02_04",
+            "r06_c14_p02_01_v2"
+          ],
+          "reason": "A second small ball post and short rail appears near p02_04 native x1120,y335; QA/prompt identify its right-anchor origin. Original layout crop instead shows planting/blossoms below the main wall without an obvious second parallel rail. Verify this footprint during F1 joint repair; this secondary issue remains pending, not a definitive deletion instruction.",
+          "auditFinding": "F2"
+        }
+      ],
+      "internalReview": "16_native_detail_24_seam_9_cross_continuity_passed_layout_F1_failed_F2_pending",
+      "internalReviewSha256": "99e5f549b2d223dda61d351df109173c6f94ba4095f7122b85e846c0cb3a1b8d",
+      "externalSeams": {
+        "upper": "pending_complete4096_boundary_review",
+        "left": "pending_complete4096_boundary_review",
+        "right": "pending_complete4096_boundary_review_and_F1_F2_joint_layout_repair",
+        "bottom": "pending_native_neighbor"
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c13-native-v1-20261017.png.derivation.json",
+        "record": {
+          "baseCoverageMin": 1,
+          "baseCoverageMax": 1,
+          "status": "complete_native_candidate_internal_continuity_passed_layout_failed",
+          "internalReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-review.json",
+          "layoutAccepted": false,
+          "formalAccepted": false,
+          "pendingIssues": [
+            {
+              "id": "r06_c13-r06_c14-F1-post-scale",
+              "status": "cross_tile_joint_layout_repair_required",
+              "coordinates": [
+                "r06_c13_p01_04",
+                "r06_c14_p01_01"
+              ],
+              "reason": "p01_03 large ball post is close to its original layout crop. p01_04 right small complete ball post is inherited from r06_c14 p01_01. At equal native scale, left ball diameter is visually about 337 px versus right about 90 px; square caps about 480 versus 140 px (rough visual estimates, not segmentation measurements). The original p01_04 layout crop carries a broad right column/continuing wall, whereas native puts a small complete end-post lower in frame. Original whole-map/context does not support an abrupt 3.5x scale decrease in this short section.",
+              "auditFinding": "F1",
+              "repairConstraint": "Joint repair against original layout. Do not shrink p01_03 to the incorrect small anchor. Preserve existing images."
+            },
+            {
+              "id": "r06_c13-r06_c14-F2-secondary-post",
+              "status": "pending_related_topology_review",
+              "coordinates": [
+                "r06_c13_p02_04",
+                "r06_c14_p02_01_v2"
+              ],
+              "reason": "A second small ball post and short rail appears near p02_04 native x1120,y335; QA/prompt identify its right-anchor origin. Original layout crop instead shows planting/blossoms below the main wall without an obvious second parallel rail. Verify this footprint during F1 joint repair; this secondary issue remains pending, not a definitive deletion instruction.",
+              "auditFinding": "F2"
+            }
+          ],
+          "internalReview": "16_native_detail_24_seam_9_cross_continuity_passed_layout_F1_failed_F2_pending",
+          "internalReviewSha256": "99e5f549b2d223dda61d351df109173c6f94ba4095f7122b85e846c0cb3a1b8d",
+          "externalSeams": {
+            "upper": "pending_complete4096_boundary_review",
+            "left": "pending_complete4096_boundary_review",
+            "right": "pending_complete4096_boundary_review_and_F1_F2_joint_layout_repair",
+            "bottom": "pending_native_neighbor"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-review.json",
+        "record": {
+          "status": "49_detail_and_continuity_checks_complete_layout_failed",
+          "pendingIssues": [
+            {
+              "id": "r06_c13-r06_c14-F1-post-scale",
+              "status": "cross_tile_joint_layout_repair_required",
+              "coordinates": [
+                "r06_c13_p01_04",
+                "r06_c14_p01_01"
+              ],
+              "reason": "p01_03 large ball post is close to its original layout crop. p01_04 right small complete ball post is inherited from r06_c14 p01_01. At equal native scale, left ball diameter is visually about 337 px versus right about 90 px; square caps about 480 versus 140 px (rough visual estimates, not segmentation measurements). The original p01_04 layout crop carries a broad right column/continuing wall, whereas native puts a small complete end-post lower in frame. Original whole-map/context does not support an abrupt 3.5x scale decrease in this short section.",
+              "auditFinding": "F1",
+              "repairConstraint": "Joint repair against original layout. Do not shrink p01_03 to the incorrect small anchor. Preserve existing images."
+            },
+            {
+              "id": "r06_c13-r06_c14-F2-secondary-post",
+              "status": "pending_related_topology_review",
+              "coordinates": [
+                "r06_c13_p02_04",
+                "r06_c14_p02_01_v2"
+              ],
+              "reason": "A second small ball post and short rail appears near p02_04 native x1120,y335; QA/prompt identify its right-anchor origin. Original layout crop instead shows planting/blossoms below the main wall without an obvious second parallel rail. Verify this footprint during F1 joint repair; this secondary issue remains pending, not a definitive deletion instruction.",
+              "auditFinding": "F2"
+            }
+          ],
+          "layoutAccepted": false,
+          "formalAccepted": false,
+          "internalContinuityStatus": "passed_16_native_detail_24_seam_9_cross",
+          "layoutStatus": "failed_F1_pending_F2",
+          "externalSeams": {
+            "upper": "pending_complete4096_boundary_review",
+            "left": "pending_complete4096_boundary_review",
+            "right": "pending_complete4096_boundary_review_and_F1_F2_joint_layout_repair",
+            "bottom": "pending_native_neighbor"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/production-resume-20261012.json",
+        "record": {
+          "internalReview": "16_native_detail_24_seam_9_cross_continuity_passed_layout_F1_failed_F2_pending",
+          "layoutStatus": {
+            "status": "layout_not_accepted_pending_cross_tile_post_scale_repair",
+            "audit": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-layout-audit-20261017.json",
+            "auditSha256": "7ec4e547bf66f40ff2c74a8a24b1d6d16bb232c112d4dbf44e17708e41d2b42d",
+            "findingIds": [
+              "F1",
+              "F2"
+            ],
+            "reviewedAtUtc": "2026-10-17T05:03:23.191Z",
+            "syncedAtUtc": "2026-10-17T09:15:05.822763+00:00"
+          },
+          "workingStatus": null,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-review.json",
+    "sourceSha256": "99e5f549b2d223dda61d351df109173c6f94ba4095f7122b85e846c0cb3a1b8d",
+    "normalizedDocument": {
+      "tileId": "r06_c13",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c13-native-v1-20261017.png",
+      "candidateSha256": "9ef60fca0fa1a601365687ec9cd45c08aa62e691ad00e79f4844e6a4341e1357",
+      "size": [
+        4096,
+        4096
+      ],
+      "createdAtUtc": "2026-10-17T11:12:49.595967+00:00",
+      "status": "49_detail_and_continuity_checks_complete_layout_failed",
+      "coreChecks": [
+        {
+          "id": "core-1-1",
+          "sourceId": "r06_c13_p01_01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p01_01.png",
+          "sourceSha256": "4c0760c4b889fc0fc689d3ab339c404cfd3d06ed61737926d894d64e4125955c",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_01.joins.json",
+          "reuseRecordSha256": "64e5089cba9257700f5dca5eb60ed971c42bccf8884e2a56047dbf0f034dc03e",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-1-2",
+          "sourceId": "r06_c13_p01_02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p01_02.png",
+          "sourceSha256": "a26c3d2c8eb871e20375b9349b070c45ce9d6f3b47e428471bc85effc57dd973",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_02.joins.json",
+          "reuseRecordSha256": "780fb6ba2c7ac74e76384918579a4a330f9f28f982a3615d0c7a81f48c2d68d6",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-1-3",
+          "sourceId": "r06_c13_p01_03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p01_03.png",
+          "sourceSha256": "ffd5603b9ca87b1e4995fe3e4758ff72db9b5fba128781db07bfd047f1919059",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_03.joins.json",
+          "reuseRecordSha256": "7210ca2caf5bf5b28bd3b383b26ced858d097009ff254ae79a9a216146d06390",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-1-4",
+          "sourceId": "r06_c13_p01_04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p01_04.png",
+          "sourceSha256": "bd3b48de990c7a79c5a09347c9fa12bffebca1d423edb1e06c3a9fb72edca22d",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_04.joins.json",
+          "reuseRecordSha256": "9a4fc49f7e3ac36ebc726737f261607bee059837f29e8959862584e71077e461",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "failed_F1_cross_tile_post_scale",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-2-1",
+          "sourceId": "r06_c13_p02_01_v2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p02_01_v2.png",
+          "sourceSha256": "951c51e2fb6cd06e6947f7bea3f0ed5e2ead1ef7209bf1bda92509289b575285",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_01_v2.joins.json",
+          "reuseRecordSha256": "499f4a712e529615578660cde1a964e2e02ccdb52e7e55127d6af005db2b2f95",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-2-2",
+          "sourceId": "r06_c13_p02_02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p02_02.png",
+          "sourceSha256": "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_02.joins.json",
+          "reuseRecordSha256": "70ece71e69d2222d380298b46c11721e037844c6f90928bed90138c6623c64f7",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-2-3",
+          "sourceId": "r06_c13_p02_03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p02_03.png",
+          "sourceSha256": "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_03.joins.json",
+          "reuseRecordSha256": "9ed2c00eb75aa7c2fe13c03e16900fbdc6de3f2c5b945ea2b1b7000eae17c85e",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-2-4",
+          "sourceId": "r06_c13_p02_04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p02_04.png",
+          "sourceSha256": "5aa60b488c67f3266efc09e295e987c503358482342d7bab528a770c9940ee43",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_04.joins.json",
+          "reuseRecordSha256": "e00fa035d4cab5aaa621bbe30d33398d4813a1e0fe7575bcd3a3ad4bbba6e9fe",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "pending_F2_secondary_post_topology",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-3-1",
+          "sourceId": "r06_c13_p03_01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p03_01.png",
+          "sourceSha256": "0a2f554fc059941ba5c944a52a8a4c6ddbe508f3277f479b78cb10b02ac1ee91",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_01.joins.json",
+          "reuseRecordSha256": "2e6de10df738c8c30a8b9746c86a0b9f673f2749adb301df3f51ab43e4daee23",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-3-2",
+          "sourceId": "r06_c13_p03_02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p03_02.png",
+          "sourceSha256": "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_02.joins.json",
+          "reuseRecordSha256": "94ffd7bf0bc3037fb359c97d9fb90f423dfc20e546fec885091afd66d08309c7",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-3-3",
+          "sourceId": "r06_c13_p03_03_v2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p03_03_v2.png",
+          "sourceSha256": "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_03_v2.joins.json",
+          "reuseRecordSha256": "a3590dc7efe73a374efdfebc0c7e45bb6baaed1936016a29abb12c0c316b876c",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-3-4",
+          "sourceId": "r06_c13_p03_04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p03_04.png",
+          "sourceSha256": "9d0033e8f2554aef2b27e2ac570ca6fbdf1cf9f4a00aae38b48b93db551e978b",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_04.joins.json",
+          "reuseRecordSha256": "e966cd75e76c377656624c712117ded2a66d49964361c4e213ce76e68b18072b",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-4-1",
+          "sourceId": "r06_c13_p04_01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p04_01.png",
+          "sourceSha256": "33bb60ae1487d54179da99187d3310570461f69ee3d167de788544240c7ea7f1",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_01.joins.json",
+          "reuseRecordSha256": "685b4a9bf1a0c7374e38ad60824e1244b82e876007697364188086488296c813",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-4-2",
+          "sourceId": "r06_c13_p04_02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p04_02.png",
+          "sourceSha256": "728d6ba16146417d9f58220051a69cee51ab865d2b337b94e7caf1216f4597cc",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_02.joins.json",
+          "reuseRecordSha256": "99e5e6b288d836e553f9a50e0095887ccc7ca34286b965b280893f3876fdf4ce",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-4-3",
+          "sourceId": "r06_c13_p04_03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p04_03.png",
+          "sourceSha256": "d7cd7d8129d6090c438517e5597010ecabda5b6d860dab6b4aaa33ca6ce88323",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_03.joins.json",
+          "reuseRecordSha256": "f376f7e8aec72021fc33fd4d5104af3e7b9a48b6b2e467d34e151b46e78da2ae",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        },
+        {
+          "id": "core-4-4",
+          "sourceId": "r06_c13_p04_04_v2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c13_p04_04_v2.png",
+          "sourceSha256": "d82db77e6828df594442084732d3f5226093d93d0fa796b81f4faae2cb971281",
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "reviewMethod": "reuse_hash_bound_native_visual_review",
+          "reuseRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_04_v2.joins.json",
+          "reuseRecordSha256": "3b39bd000f532e9dc0f61294e8fcdf51f483579ee27f97f48008450d27de2466",
+          "nativeDetailStatus": "passed_visual_100pct",
+          "layoutStatus": "quick_layout_previously_passed",
+          "formalAccepted": false
+        }
+      ],
+      "seamChecks": [
+        {
+          "id": "r06_c13_p01_01__r06_c13_p01_02",
+          "sourceIds": [
+            "r06_c13_p01_01",
+            "r06_c13_p01_02"
+          ],
+          "sourceSha256": [
+            "4c0760c4b889fc0fc689d3ab339c404cfd3d06ed61737926d894d64e4125955c",
+            "a26c3d2c8eb871e20375b9349b070c45ce9d6f3b47e428471bc85effc57dd973"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_02.joins.json",
+            "recordSha256": "780fb6ba2c7ac74e76384918579a4a330f9f28f982a3615d0c7a81f48c2d68d6",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_02.left.png",
+            "evidenceSha256": "b785d2413608997fe3c2e985b28a6fe98026138afb30b7d25d16064d22944653",
+            "side": "left",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p01_01__r06_c13_p02_01_v2",
+          "sourceIds": [
+            "r06_c13_p01_01",
+            "r06_c13_p02_01_v2"
+          ],
+          "sourceSha256": [
+            "4c0760c4b889fc0fc689d3ab339c404cfd3d06ed61737926d894d64e4125955c",
+            "951c51e2fb6cd06e6947f7bea3f0ed5e2ead1ef7209bf1bda92509289b575285"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_01_v2.joins.json",
+            "recordSha256": "499f4a712e529615578660cde1a964e2e02ccdb52e7e55127d6af005db2b2f95",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_01_v2.upper.png",
+            "evidenceSha256": "aa0510d93e06ca4f398183812847317048033907e229a00accd9301bd7b1ec49",
+            "side": "upper",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p01_02__r06_c13_p01_03",
+          "sourceIds": [
+            "r06_c13_p01_02",
+            "r06_c13_p01_03"
+          ],
+          "sourceSha256": [
+            "a26c3d2c8eb871e20375b9349b070c45ce9d6f3b47e428471bc85effc57dd973",
+            "ffd5603b9ca87b1e4995fe3e4758ff72db9b5fba128781db07bfd047f1919059"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_03.joins.json",
+            "recordSha256": "7210ca2caf5bf5b28bd3b383b26ced858d097009ff254ae79a9a216146d06390",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_03.left.png",
+            "evidenceSha256": "875f010a811794cf20dc88507ffe34bb5a43e0a6147fd9f6e07cc500ebf2674b",
+            "side": "left",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p01_02__r06_c13_p02_02",
+          "sourceIds": [
+            "r06_c13_p01_02",
+            "r06_c13_p02_02"
+          ],
+          "sourceSha256": [
+            "a26c3d2c8eb871e20375b9349b070c45ce9d6f3b47e428471bc85effc57dd973",
+            "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_02.joins.json",
+            "recordSha256": "70ece71e69d2222d380298b46c11721e037844c6f90928bed90138c6623c64f7",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_02.upper.png",
+            "evidenceSha256": "18b838146eec6dd2ed4e14f968d3e9bc4628290b1c52d9d4b240eea8d065a49a",
+            "side": "upper",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p01_03__r06_c13_p01_04",
+          "sourceIds": [
+            "r06_c13_p01_03",
+            "r06_c13_p01_04"
+          ],
+          "sourceSha256": [
+            "ffd5603b9ca87b1e4995fe3e4758ff72db9b5fba128781db07bfd047f1919059",
+            "bd3b48de990c7a79c5a09347c9fa12bffebca1d423edb1e06c3a9fb72edca22d"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_04.joins.json",
+            "recordSha256": "9a4fc49f7e3ac36ebc726737f261607bee059837f29e8959862584e71077e461",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p01_04.left.png",
+            "evidenceSha256": "55369282a5788965cd2aaf7b111a149ae1e01908fb692eaaa6e2a331a58ec402",
+            "side": "left",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p01_03__r06_c13_p02_03",
+          "sourceIds": [
+            "r06_c13_p01_03",
+            "r06_c13_p02_03"
+          ],
+          "sourceSha256": [
+            "ffd5603b9ca87b1e4995fe3e4758ff72db9b5fba128781db07bfd047f1919059",
+            "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_03.joins.json",
+            "recordSha256": "9ed2c00eb75aa7c2fe13c03e16900fbdc6de3f2c5b945ea2b1b7000eae17c85e",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_03.upper.png",
+            "evidenceSha256": "0b8e0a62204bfcc12862a74199f948c5a45fd7ffb87e9ddfc0eb951a867c81ec",
+            "side": "upper",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p01_04__r06_c13_p02_04",
+          "sourceIds": [
+            "r06_c13_p01_04",
+            "r06_c13_p02_04"
+          ],
+          "sourceSha256": [
+            "bd3b48de990c7a79c5a09347c9fa12bffebca1d423edb1e06c3a9fb72edca22d",
+            "5aa60b488c67f3266efc09e295e987c503358482342d7bab528a770c9940ee43"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_04.joins.json",
+            "recordSha256": "e00fa035d4cab5aaa621bbe30d33398d4813a1e0fe7575bcd3a3ad4bbba6e9fe",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_04.upper.png",
+            "evidenceSha256": "f74408cfb38ba8558cfc25e07e799776b66eeb1725db75336718e1a66c1107ff",
+            "side": "upper",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p02_01_v2__r06_c13_p02_02",
+          "sourceIds": [
+            "r06_c13_p02_01_v2",
+            "r06_c13_p02_02"
+          ],
+          "sourceSha256": [
+            "951c51e2fb6cd06e6947f7bea3f0ed5e2ead1ef7209bf1bda92509289b575285",
+            "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_02.joins.json",
+            "recordSha256": "70ece71e69d2222d380298b46c11721e037844c6f90928bed90138c6623c64f7",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_02.left.png",
+            "evidenceSha256": "7ccdcfc05869f203bc21cf157f30b02f18ace14022eedde8a71f5e878abf7ab2",
+            "side": "left",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p02_01_v2__r06_c13_p03_01",
+          "sourceIds": [
+            "r06_c13_p02_01_v2",
+            "r06_c13_p03_01"
+          ],
+          "sourceSha256": [
+            "951c51e2fb6cd06e6947f7bea3f0ed5e2ead1ef7209bf1bda92509289b575285",
+            "0a2f554fc059941ba5c944a52a8a4c6ddbe508f3277f479b78cb10b02ac1ee91"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_01.joins.json",
+            "recordSha256": "2e6de10df738c8c30a8b9746c86a0b9f673f2749adb301df3f51ab43e4daee23",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_01.upper.png",
+            "evidenceSha256": "f2efdb23b28b35a9817cd63c26d7801bb3c280c64683bf78371b91a496f5a1b2",
+            "side": "upper",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p02_02__r06_c13_p02_03",
+          "sourceIds": [
+            "r06_c13_p02_02",
+            "r06_c13_p02_03"
+          ],
+          "sourceSha256": [
+            "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b",
+            "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_02.joins.json",
+            "recordSha256": "70ece71e69d2222d380298b46c11721e037844c6f90928bed90138c6623c64f7",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_02.right.png",
+            "evidenceSha256": "61a28c9dc2b71adfaa394e2616f8373e3995c019668b7bdb644f7833ce04ed85",
+            "side": "right",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p02_02__r06_c13_p03_02",
+          "sourceIds": [
+            "r06_c13_p02_02",
+            "r06_c13_p03_02"
+          ],
+          "sourceSha256": [
+            "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b",
+            "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_02.joins.json",
+            "recordSha256": "94ffd7bf0bc3037fb359c97d9fb90f423dfc20e546fec885091afd66d08309c7",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_02.upper.png",
+            "evidenceSha256": "8b4d04da1e13e5f02a55a23eead172f6dffdf44b97d3823df170ba2e0ca8b374",
+            "side": "upper",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p02_03__r06_c13_p02_04",
+          "sourceIds": [
+            "r06_c13_p02_03",
+            "r06_c13_p02_04"
+          ],
+          "sourceSha256": [
+            "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3",
+            "5aa60b488c67f3266efc09e295e987c503358482342d7bab528a770c9940ee43"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_03.joins.json",
+            "recordSha256": "9ed2c00eb75aa7c2fe13c03e16900fbdc6de3f2c5b945ea2b1b7000eae17c85e",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p02_03.right.png",
+            "evidenceSha256": "76164d109bdd756f54b9c6e1b86813b87e048cc4cf648ac264cab3f52d2dff3e",
+            "side": "right",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p02_03__r06_c13_p03_03_v2",
+          "sourceIds": [
+            "r06_c13_p02_03",
+            "r06_c13_p03_03_v2"
+          ],
+          "sourceSha256": [
+            "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3",
+            "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_03_v2.joins.json",
+            "recordSha256": "a3590dc7efe73a374efdfebc0c7e45bb6baaed1936016a29abb12c0c316b876c",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_03_v2.upper-archive17.png",
+            "evidenceSha256": "7f6de6a13cae019ecdb3d433d14181d2d64173b147885fdc6718d7313613f382",
+            "side": "upper"
+          }
+        },
+        {
+          "id": "r06_c13_p02_04__r06_c13_p03_04",
+          "sourceIds": [
+            "r06_c13_p02_04",
+            "r06_c13_p03_04"
+          ],
+          "sourceSha256": [
+            "5aa60b488c67f3266efc09e295e987c503358482342d7bab528a770c9940ee43",
+            "9d0033e8f2554aef2b27e2ac570ca6fbdf1cf9f4a00aae38b48b93db551e978b"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_04.joins.json",
+            "recordSha256": "e966cd75e76c377656624c712117ded2a66d49964361c4e213ce76e68b18072b",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_04.upper.png",
+            "evidenceSha256": "67afcf3f31054df0915a53dc7054403c087d8f6151ebd7bf6014701ecf12097f",
+            "side": "upper",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p03_01__r06_c13_p03_02",
+          "sourceIds": [
+            "r06_c13_p03_01",
+            "r06_c13_p03_02"
+          ],
+          "sourceSha256": [
+            "0a2f554fc059941ba5c944a52a8a4c6ddbe508f3277f479b78cb10b02ac1ee91",
+            "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_02.joins.json",
+            "recordSha256": "94ffd7bf0bc3037fb359c97d9fb90f423dfc20e546fec885091afd66d08309c7",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_02.left.png",
+            "evidenceSha256": "a71881a9490c57de9dbf25b4b7bca935f576e34d6b16d0b4e12bab015c4f3752",
+            "side": "left",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p03_01__r06_c13_p04_01",
+          "sourceIds": [
+            "r06_c13_p03_01",
+            "r06_c13_p04_01"
+          ],
+          "sourceSha256": [
+            "0a2f554fc059941ba5c944a52a8a4c6ddbe508f3277f479b78cb10b02ac1ee91",
+            "33bb60ae1487d54179da99187d3310570461f69ee3d167de788544240c7ea7f1"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_01.joins.json",
+            "recordSha256": "685b4a9bf1a0c7374e38ad60824e1244b82e876007697364188086488296c813",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_01.upper.png",
+            "evidenceSha256": "e38c8fa0e3c4e8a0b00031648a06eb755694fa9d79a5cbfa227446c63e09228e",
+            "side": "upper",
+            "reuseScope": "passing named side only; excludes any failed side in source record"
+          }
+        },
+        {
+          "id": "r06_c13_p03_02__r06_c13_p03_03_v2",
+          "sourceIds": [
+            "r06_c13_p03_02",
+            "r06_c13_p03_03_v2"
+          ],
+          "sourceSha256": [
+            "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9",
+            "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_03_v2.joins.json",
+            "recordSha256": "a3590dc7efe73a374efdfebc0c7e45bb6baaed1936016a29abb12c0c316b876c",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_03_v2.left-archive17.png",
+            "evidenceSha256": "3e63285bb99b0c9cfd3e824a4c458e82b7addec6ec92dc20b34e8813ffa1cdb8",
+            "side": "left"
+          }
+        },
+        {
+          "id": "r06_c13_p03_02__r06_c13_p04_02",
+          "sourceIds": [
+            "r06_c13_p03_02",
+            "r06_c13_p04_02"
+          ],
+          "sourceSha256": [
+            "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9",
+            "728d6ba16146417d9f58220051a69cee51ab865d2b337b94e7caf1216f4597cc"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_02.joins.json",
+            "recordSha256": "99e5e6b288d836e553f9a50e0095887ccc7ca34286b965b280893f3876fdf4ce",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_02.upper-complete17.png",
+            "evidenceSha256": "6324235d44349998970241d39baf65928af1abcf73392d9a43437f1ac9b0776a",
+            "side": "upper"
+          }
+        },
+        {
+          "id": "r06_c13_p03_03_v2__r06_c13_p03_04",
+          "sourceIds": [
+            "r06_c13_p03_03_v2",
+            "r06_c13_p03_04"
+          ],
+          "sourceSha256": [
+            "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b",
+            "9d0033e8f2554aef2b27e2ac570ca6fbdf1cf9f4a00aae38b48b93db551e978b"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_03_v2.joins.json",
+            "recordSha256": "a3590dc7efe73a374efdfebc0c7e45bb6baaed1936016a29abb12c0c316b876c",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p03_03_v2.right-archive17.png",
+            "evidenceSha256": "8144ceff2101ee30a2211be5d35cd1cb7df659f828fb31477f554ccc3f4a283a",
+            "side": "right"
+          }
+        },
+        {
+          "id": "r06_c13_p03_03_v2__r06_c13_p04_03",
+          "sourceIds": [
+            "r06_c13_p03_03_v2",
+            "r06_c13_p04_03"
+          ],
+          "sourceSha256": [
+            "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b",
+            "d7cd7d8129d6090c438517e5597010ecabda5b6d860dab6b4aaa33ca6ce88323"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_03.joins.json",
+            "recordSha256": "f376f7e8aec72021fc33fd4d5104af3e7b9a48b6b2e467d34e151b46e78da2ae",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_03.upper-complete17.png",
+            "evidenceSha256": "347dd9cd40f246b4c77cb8ebbe5dc0797ce608e48994dcb89e2ed2912b3adb6d",
+            "side": "upper"
+          }
+        },
+        {
+          "id": "r06_c13_p03_04__r06_c13_p04_04_v2",
+          "sourceIds": [
+            "r06_c13_p03_04",
+            "r06_c13_p04_04_v2"
+          ],
+          "sourceSha256": [
+            "9d0033e8f2554aef2b27e2ac570ca6fbdf1cf9f4a00aae38b48b93db551e978b",
+            "d82db77e6828df594442084732d3f5226093d93d0fa796b81f4faae2cb971281"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_04_v2.joins.json",
+            "recordSha256": "3b39bd000f532e9dc0f61294e8fcdf51f483579ee27f97f48008450d27de2466",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_04_v2.upper-archive17.png",
+            "evidenceSha256": "1f9b72631f91f71987de698b2d5bda6a312a5b0dfb4a32581293d2df563acde1",
+            "side": "upper"
+          }
+        },
+        {
+          "id": "r06_c13_p04_01__r06_c13_p04_02",
+          "sourceIds": [
+            "r06_c13_p04_01",
+            "r06_c13_p04_02"
+          ],
+          "sourceSha256": [
+            "33bb60ae1487d54179da99187d3310570461f69ee3d167de788544240c7ea7f1",
+            "728d6ba16146417d9f58220051a69cee51ab865d2b337b94e7caf1216f4597cc"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_02.joins.json",
+            "recordSha256": "99e5e6b288d836e553f9a50e0095887ccc7ca34286b965b280893f3876fdf4ce",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_02.left-complete17.png",
+            "evidenceSha256": "ba8244d536c167b94df8cba1895f6081e695a037257ab5c1b4ad79355b0b9c5e",
+            "side": "left"
+          }
+        },
+        {
+          "id": "r06_c13_p04_02__r06_c13_p04_03",
+          "sourceIds": [
+            "r06_c13_p04_02",
+            "r06_c13_p04_03"
+          ],
+          "sourceSha256": [
+            "728d6ba16146417d9f58220051a69cee51ab865d2b337b94e7caf1216f4597cc",
+            "d7cd7d8129d6090c438517e5597010ecabda5b6d860dab6b4aaa33ca6ce88323"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_03.joins.json",
+            "recordSha256": "f376f7e8aec72021fc33fd4d5104af3e7b9a48b6b2e467d34e151b46e78da2ae",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_03.left-complete17.png",
+            "evidenceSha256": "05dc73d7bec78b4d663dc352e2a1d5d2f80127ca449a56746cc02ed7aa6fd880",
+            "side": "left"
+          }
+        },
+        {
+          "id": "r06_c13_p04_03__r06_c13_p04_04_v2",
+          "sourceIds": [
+            "r06_c13_p04_03",
+            "r06_c13_p04_04_v2"
+          ],
+          "sourceSha256": [
+            "d7cd7d8129d6090c438517e5597010ecabda5b6d860dab6b4aaa33ca6ce88323",
+            "d82db77e6828df594442084732d3f5226093d93d0fa796b81f4faae2cb971281"
+          ],
+          "status": "passed_visual_100pct_reused_hash_bound",
+          "reviewMethod": "reuse_unchanged_input_hashes",
+          "reuse": {
+            "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_03.joins.json",
+            "recordSha256": "f376f7e8aec72021fc33fd4d5104af3e7b9a48b6b2e467d34e151b46e78da2ae",
+            "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13_p04_03.right-complete17.png",
+            "evidenceSha256": "290afb4c77ceebfda6402c7c110a5e72e8aacf54962c39cb8fd3bd38c1938bb7",
+            "side": "right"
+          }
+        }
+      ],
+      "crossChecks": [
+        {
+          "id": "cross-1-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r1-c1-100pct.png",
+          "sha256": "948a54fb2dd7eedca69e01af95dd8c07aed5be05155d9b2013ac99ac5a7d6447",
+          "candidateCrop": [
+            768,
+            768,
+            1280,
+            1280
+          ],
+          "sourceIds": [
+            "r06_c13_p01_01",
+            "r06_c13_p01_02",
+            "r06_c13_p02_01_v2",
+            "r06_c13_p02_02"
+          ],
+          "sourceSha256": [
+            "4c0760c4b889fc0fc689d3ab339c404cfd3d06ed61737926d894d64e4125955c",
+            "a26c3d2c8eb871e20375b9349b070c45ce9d6f3b47e428471bc85effc57dd973",
+            "951c51e2fb6cd06e6947f7bea3f0ed5e2ead1ef7209bf1bda92509289b575285",
+            "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Paving joints and partial ball curve meet at the four-piece center without a visible offset."
+        },
+        {
+          "id": "cross-1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r1-c2-100pct.png",
+          "sha256": "be7a9714cfd027709279d27609225607cd409b207bfaeb5516ff5bc786f7201b",
+          "candidateCrop": [
+            1792,
+            768,
+            2304,
+            1280
+          ],
+          "sourceIds": [
+            "r06_c13_p01_02",
+            "r06_c13_p01_03",
+            "r06_c13_p02_02",
+            "r06_c13_p02_03"
+          ],
+          "sourceSha256": [
+            "a26c3d2c8eb871e20375b9349b070c45ce9d6f3b47e428471bc85effc57dd973",
+            "ffd5603b9ca87b1e4995fe3e4758ff72db9b5fba128781db07bfd047f1919059",
+            "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b",
+            "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Paving, coping and wall face remain continuous through center."
+        },
+        {
+          "id": "cross-1-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r1-c3-100pct.png",
+          "sha256": "b0f9ee075226587ad633b7036c71700298db3ecc75cf8d469b73006bac95b06f",
+          "candidateCrop": [
+            2816,
+            768,
+            3328,
+            1280
+          ],
+          "sourceIds": [
+            "r06_c13_p01_03",
+            "r06_c13_p01_04",
+            "r06_c13_p02_03",
+            "r06_c13_p02_04"
+          ],
+          "sourceSha256": [
+            "ffd5603b9ca87b1e4995fe3e4758ff72db9b5fba128781db07bfd047f1919059",
+            "bd3b48de990c7a79c5a09347c9fa12bffebca1d423edb1e06c3a9fb72edca22d",
+            "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3",
+            "5aa60b488c67f3266efc09e295e987c503358482342d7bab528a770c9940ee43"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Wall engraving, plinth and flowers remain continuous through center; does not clear F1/F2 whole-layout issues."
+        },
+        {
+          "id": "cross-2-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r2-c1-100pct.png",
+          "sha256": "251f928a51ceb02e6cf404713f6eb6119ac5ea7422483a30e08278a8376fed32",
+          "candidateCrop": [
+            768,
+            1792,
+            1280,
+            2304
+          ],
+          "sourceIds": [
+            "r06_c13_p02_01_v2",
+            "r06_c13_p02_02",
+            "r06_c13_p03_01",
+            "r06_c13_p03_02"
+          ],
+          "sourceSha256": [
+            "951c51e2fb6cd06e6947f7bea3f0ed5e2ead1ef7209bf1bda92509289b575285",
+            "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b",
+            "0a2f554fc059941ba5c944a52a8a4c6ddbe508f3277f479b78cb10b02ac1ee91",
+            "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Flower, leaf and branch shapes join through the four-piece center without visible straight cut, doubled contour or color block."
+        },
+        {
+          "id": "cross-2-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r2-c2-100pct.png",
+          "sha256": "75c72721a100ddc0355c903164860f12f824db68ec77872ae7203414b2740c55",
+          "candidateCrop": [
+            1792,
+            1792,
+            2304,
+            2304
+          ],
+          "sourceIds": [
+            "r06_c13_p02_02",
+            "r06_c13_p02_03",
+            "r06_c13_p03_02",
+            "r06_c13_p03_03_v2"
+          ],
+          "sourceSha256": [
+            "7b22c31cd8ba57155077932b92319ada6a83a0a79308a0fef7fe7a70dba7d22b",
+            "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3",
+            "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9",
+            "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Flower, leaf and branch shapes join through the four-piece center without visible straight cut, doubled contour or color block."
+        },
+        {
+          "id": "cross-2-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r2-c3-100pct.png",
+          "sha256": "ee55fcb9f46c139eafd6b3f64668717907082f75f6ac70f182689a96d00efb2b",
+          "candidateCrop": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "sourceIds": [
+            "r06_c13_p02_03",
+            "r06_c13_p02_04",
+            "r06_c13_p03_03_v2",
+            "r06_c13_p03_04"
+          ],
+          "sourceSha256": [
+            "c22bd0e3a3d03eba75af0de30e47f87d2328ab2e235e4e72157f6d87817b46b3",
+            "5aa60b488c67f3266efc09e295e987c503358482342d7bab528a770c9940ee43",
+            "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b",
+            "9d0033e8f2554aef2b27e2ac570ca6fbdf1cf9f4a00aae38b48b93db551e978b"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Flower, leaf and branch shapes join through the four-piece center without visible straight cut, doubled contour or color block."
+        },
+        {
+          "id": "cross-3-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r3-c1-100pct.png",
+          "sha256": "48b9725cb97fe4f1129b57705cb635ee73acb12a2754eab358adacfadcbbf8f6",
+          "candidateCrop": [
+            768,
+            2816,
+            1280,
+            3328
+          ],
+          "sourceIds": [
+            "r06_c13_p03_01",
+            "r06_c13_p03_02",
+            "r06_c13_p04_01",
+            "r06_c13_p04_02"
+          ],
+          "sourceSha256": [
+            "0a2f554fc059941ba5c944a52a8a4c6ddbe508f3277f479b78cb10b02ac1ee91",
+            "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9",
+            "33bb60ae1487d54179da99187d3310570461f69ee3d167de788544240c7ea7f1",
+            "728d6ba16146417d9f58220051a69cee51ab865d2b337b94e7caf1216f4597cc"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Flower, leaf and branch shapes join through the four-piece center without visible straight cut, doubled contour or color block."
+        },
+        {
+          "id": "cross-3-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r3-c2-100pct.png",
+          "sha256": "5ef260307e56210d5d1ab7d09b60d8277f20173680bb74b3b8c772a832a08c37",
+          "candidateCrop": [
+            1792,
+            2816,
+            2304,
+            3328
+          ],
+          "sourceIds": [
+            "r06_c13_p03_02",
+            "r06_c13_p03_03_v2",
+            "r06_c13_p04_02",
+            "r06_c13_p04_03"
+          ],
+          "sourceSha256": [
+            "09ff11e44eba0418cfad28f7880c92ae275f31b613fc4c5f07cc6ab3dbf104d9",
+            "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b",
+            "728d6ba16146417d9f58220051a69cee51ab865d2b337b94e7caf1216f4597cc",
+            "d7cd7d8129d6090c438517e5597010ecabda5b6d860dab6b4aaa33ca6ce88323"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Flower, leaf and branch shapes join through the four-piece center without visible straight cut, doubled contour or color block."
+        },
+        {
+          "id": "cross-3-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-final/cross-r3-c3-100pct.png",
+          "sha256": "b64129df1c67c28d6bf2916891499dc487d21bb24085466e5b82fa26ce71c17d",
+          "candidateCrop": [
+            2816,
+            2816,
+            3328,
+            3328
+          ],
+          "sourceIds": [
+            "r06_c13_p03_03_v2",
+            "r06_c13_p03_04",
+            "r06_c13_p04_03",
+            "r06_c13_p04_04_v2"
+          ],
+          "sourceSha256": [
+            "289437ba20cd08aed9b543a19d21d15fe3e1b49ec4a0b59feb9462d2bdec242b",
+            "9d0033e8f2554aef2b27e2ac570ca6fbdf1cf9f4a00aae38b48b93db551e978b",
+            "d7cd7d8129d6090c438517e5597010ecabda5b6d860dab6b4aaa33ca6ce88323",
+            "d82db77e6828df594442084732d3f5226093d93d0fa796b81f4faae2cb971281"
+          ],
+          "size": [
+            512,
+            512
+          ],
+          "inspectionScale": 1,
+          "resized": false,
+          "status": "passed_visual_100pct",
+          "reviewMethod": "direct_original_resolution_view",
+          "reviewer": "bridge_archive17b",
+          "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+          "note": "Flower, leaf and branch shapes join through the four-piece center without visible straight cut, doubled contour or color block."
+        }
+      ],
+      "counts": {
+        "core": 16,
+        "seam": 24,
+        "cross": 9,
+        "nativeDetailCorePassed": 16,
+        "internalSeamPassed": 24,
+        "crossPassed": 9,
+        "hashBoundCoreReused": 16,
+        "hashBoundSeamReused": 24,
+        "directCrossViewed": 9,
+        "layoutFailedCoreCount": 1,
+        "layoutPendingCoreCount": 1
+      },
+      "layoutAudit": {
+        "status": "layout_not_accepted_pending_cross_tile_post_scale_repair",
+        "audit": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-layout-audit-20261017.json",
+        "auditSha256": "7ec4e547bf66f40ff2c74a8a24b1d6d16bb232c112d4dbf44e17708e41d2b42d",
+        "findingIds": [
+          "F1",
+          "F2"
+        ],
+        "reviewedAtUtc": "2026-10-17T05:03:23.191Z",
+        "syncedAtUtc": "2026-10-17T09:15:05.822763+00:00"
+      },
+      "pendingIssues": [
+        {
+          "id": "r06_c13-r06_c14-F1-post-scale",
+          "status": "cross_tile_joint_layout_repair_required",
+          "coordinates": [
+            "r06_c13_p01_04",
+            "r06_c14_p01_01"
+          ],
+          "reason": "p01_03 large ball post is close to its original layout crop. p01_04 right small complete ball post is inherited from r06_c14 p01_01. At equal native scale, left ball diameter is visually about 337 px versus right about 90 px; square caps about 480 versus 140 px (rough visual estimates, not segmentation measurements). The original p01_04 layout crop carries a broad right column/continuing wall, whereas native puts a small complete end-post lower in frame. Original whole-map/context does not support an abrupt 3.5x scale decrease in this short section.",
+          "auditFinding": "F1",
+          "repairConstraint": "Joint repair against original layout. Do not shrink p01_03 to the incorrect small anchor. Preserve existing images."
+        },
+        {
+          "id": "r06_c13-r06_c14-F2-secondary-post",
+          "status": "pending_related_topology_review",
+          "coordinates": [
+            "r06_c13_p02_04",
+            "r06_c14_p02_01_v2"
+          ],
+          "reason": "A second small ball post and short rail appears near p02_04 native x1120,y335; QA/prompt identify its right-anchor origin. Original layout crop instead shows planting/blossoms below the main wall without an obvious second parallel rail. Verify this footprint during F1 joint repair; this secondary issue remains pending, not a definitive deletion instruction.",
+          "auditFinding": "F2"
+        }
+      ],
+      "layoutAccepted": false,
+      "formalAccepted": false,
+      "actualModel": null,
+      "modelEvidence": "Builtin imagegen; actual model not returned.",
+      "fullTileUpscaled": false,
+      "internalContinuityStatus": "passed_16_native_detail_24_seam_9_cross",
+      "layoutStatus": "failed_F1_pending_F2",
+      "reviewedAtUtc": "2026-10-17T11:35:48.286459+00:00",
+      "integrityRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c13-native-v1-20261017-integrity.json",
+      "wholeTileView": {
+        "method": "4096 candidate displayed at1600 for layout only",
+        "nativeDetailEvidence": "Hash-bound native source views and original-resolution joins/crosses",
+        "note": "Candidate visibly retains known post-scale and secondary-post layout issues; no formal acceptance."
+      },
+      "externalSeams": {
+        "upper": "pending_complete4096_boundary_review",
+        "left": "pending_complete4096_boundary_review",
+        "right": "pending_complete4096_boundary_review_and_F1_F2_joint_layout_repair",
+        "bottom": "pending_native_neighbor"
+      }
+    }
+  }
+}

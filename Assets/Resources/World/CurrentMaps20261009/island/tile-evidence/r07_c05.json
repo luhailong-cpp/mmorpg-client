@@ -1,0 +1,1068 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 7,
+  "column": 5,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "0d6bfc324d8c54d82290c300be151494fcc1dac9fddbf54d1347be48ebb75956",
+  "imageBytes": 25936919,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r06r07_c05_cap-v3_20261018/r07_c05_cap-v3_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c05_cap_v3_delta_root_20261018/qa_index.json",
+  "sourceLedgerSha256": "70dfbef3935dd5192479baa9c04a5b7e902d12bfff4b9bb45be90d36bb57348e",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c05",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r06r07_c05_cap-v3_20261018/r07_c05_cap-v3_4096.png",
+    "imageSha256": "0d6bfc324d8c54d82290c300be151494fcc1dac9fddbf54d1347be48ebb75956",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c05_cap_v3_delta_root_20261018/qa_index.json",
+        "sha256": "70dfbef3935dd5192479baa9c04a5b7e902d12bfff4b9bb45be90d36bb57348e",
+        "completeness": [
+          "/coverage/eachBandFullyCoveredAt100Percent",
+          true
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "native16_internal_geometry_pass_material_and_external_pending_cap_v3",
+      "formalAccepted": false,
+      "materialStatus": "PENDING"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/root-current-selection-20261012.json",
+        "record": {
+          "status": "native16_internal_geometry_pass_material_and_external_pending_cap_v3",
+          "formalAccepted": false,
+          "materialStatus": "PENDING"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c05_cap_v3_delta_root_20261018/qa_index.json",
+        "record": {
+          "coverage": {
+            "finalVerticalSeamBands": 3,
+            "finalHorizontalSeamBands": 3,
+            "eachBandFullyCoveredAt100Percent": true,
+            "junctionCount": 9,
+            "cropCount": 33
+          },
+          "visualStatus": "delta_pending"
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261025_025820.json",
+        "record": {
+          "acceptanceScope": "Complete native4096 candidate only; internal and formal acceptance remain false."
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261023_162255.json",
+        "record": {
+          "acceptanceScope": "Complete native4096 candidate only; internal and formal acceptance remain false."
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261023_170408.json",
+        "record": {
+          "acceptanceScope": "Complete native4096 candidate only; internal and formal acceptance remain false."
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261023_170813.json",
+        "record": {
+          "acceptanceScope": "Complete native4096 candidate only; internal and formal acceptance remain false."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c05_cap_v3_delta_root_20261018/qa_index.json",
+    "sourceSha256": "70dfbef3935dd5192479baa9c04a5b7e902d12bfff4b9bb45be90d36bb57348e",
+    "normalizedDocument": {
+      "tileId": "r07_c05",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r06r07_c05_cap-v3_20261018/r07_c05_cap-v3_4096.png",
+        "sha256": "0d6bfc324d8c54d82290c300be151494fcc1dac9fddbf54d1347be48ebb75956"
+      },
+      "record": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r06r07_c05_cap-v3_20261018/r07_c05_cap-v3_4096.cross-native-repair.json",
+        "sha256": "fc2ba8c342d80ed58fef686be2e046a8ed69dc218c2c0bd6dc186d684cd5f777"
+      },
+      "previousQa": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c05_v2_delta_root_20261018/qa_index.json",
+        "sha256": "d8d10f80a8af5c0d10feacb4466b346086ca0f145cef4e12dcb7044d0024cb90"
+      },
+      "seamAndJunctionCrops": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r01_c01-c02_100pct.png",
+          "sha256": "a08893bd547cadafa33cffeaae8a6e6340c4cbdc2649db21f99619fc98f7eba4",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            0,
+            1264,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 0,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c05_cap_v3_delta_root_20261018/left-right_r01_c02-c03_100pct.png",
+          "sha256": "8393b74d278109ae0918b0076e8c10d34bb5cbc87803898bda7037295247d224",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            0,
+            2288,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 1,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 140856,
+          "reusedUnchangedPreviousCrop": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r01_c03-c04_100pct.png",
+          "sha256": "0a2f19c7705a221fac7948fdd3e7912d748a4e18f463271de4c67053eb5955ed",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            0,
+            3312,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "index": 2,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r02_c01-c02_100pct.png",
+          "sha256": "d70aea7716fc863ee2e7be6cb803aa1833dfe3b9603fe6a0938b96dfe5b5fc76",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            909,
+            1264,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 3,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r02_c02-c03_100pct.png",
+          "sha256": "dbcee16c70bffdab6aaf180a93c37480a8808e472060f516170b5937f3e69b07",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            909,
+            2288,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 4,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r02_c03-c04_100pct.png",
+          "sha256": "b550fb3a1767cf9f0a5ed04462f5655c0b036e5121e7125ad5a26b9497f12fb5",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            909,
+            3312,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "index": 5,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r03_c01-c02_100pct.png",
+          "sha256": "c5275c007328e68449d66c558c813327db208550f19c7d4df84712d99c1776b1",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            1933,
+            1264,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 6,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r03_c02-c03_100pct.png",
+          "sha256": "2f60a4c8beb80902b37f3b7ebb44f246d4083af4114180dd37e150bde6234807",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1933,
+            2288,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 7,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r03_c03-c04_100pct.png",
+          "sha256": "fc22d87052358215fd00c54994026a1df83db0c3bd2bcece449701172f23041a",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1933,
+            3312,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "index": 8,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r04_c01-c02_100pct.png",
+          "sha256": "f3ad0104e49c3523c962dcdd05c6b190145e2ac62c1a561317351bad044253d9",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            2957,
+            1264,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 9,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r04_c02-c03_100pct.png",
+          "sha256": "16e750afc4d3ae660e5445ad937cc4ad2cf31944ce3af2b4b56322656d8d0ebd",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2957,
+            2288,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 10,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/left-right_r04_c03-c04_100pct.png",
+          "sha256": "6e5a33375e1c378247386ac829f7002bf5fa36860269c0bed7ac197bf33f35f8",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2957,
+            3312,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "index": 11,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r01-r02_x0000-1024_100pct.png",
+          "sha256": "5bc2d8ccd058744cb743e07f52fcc6a926454f71dc1531eb11ce4136a1a4be74",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            784,
+            1024,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 12,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r01-r02_x1024-2048_100pct.png",
+          "sha256": "e45eb7eadabdb5413777ea760bc6eeb36fd198d9bb1f158c8cd5aea66e7564fd",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            784,
+            2048,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 13,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r01-r02_x2048-3072_100pct.png",
+          "sha256": "abf60ecb2c1604a422d198c1f1d1d101024da6bb9afc34e73c3de11ce76916b0",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            784,
+            3072,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 14,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r01-r02_x3072-4096_100pct.png",
+          "sha256": "bc1f2039dc0c8dc36ecad60ab39f76bf6dfc325e46270f0f9f696ec690e32a6d",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            784,
+            4096,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 15,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r02-r03_x0000-1024_100pct.png",
+          "sha256": "3070ca9ca864e3d367d465f6e08a52c061385dc4a2e8d11ac0e3f8118391a2b8",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            1808,
+            1024,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 16,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r02-r03_x1024-2048_100pct.png",
+          "sha256": "37ee23186bc06f8497d23f7c08c284a0f00040df1f29a8b414ee39fee6856968",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            1808,
+            2048,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 17,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r02-r03_x2048-3072_100pct.png",
+          "sha256": "9080f5b18050b0426c572df99799b0bc35acf9aa6553abc3c282fb829e535263",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            1808,
+            3072,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 18,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r02-r03_x3072-4096_100pct.png",
+          "sha256": "527a65e1ffd524b0e3761ad64581d82d67afb3bb1ab53740fe27f64d9c6323ef",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            1808,
+            4096,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 19,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r03-r04_x0000-1024_100pct.png",
+          "sha256": "a24c0a3acd5d23e9a248444bb7d10a892c9f3bf1a31aa92174d9c93157268cd7",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            2832,
+            1024,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 20,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r03-r04_x1024-2048_100pct.png",
+          "sha256": "b6a6a2977524b619466bd00acecb8836de12ee37ca49afa56f6330c0e921fcef",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            2832,
+            2048,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 21,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/top-bottom_r03-r04_x2048-3072_100pct.png",
+          "sha256": "63357ca06f2e3e92531a9438e5e9b1e5ceb9975ddb979ae631e578fa88072080",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            2832,
+            3072,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 22,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c05_v2_delta_root_20261018/top-bottom_r03-r04_x3072-4096_100pct.png",
+          "sha256": "8787c91d0be495b4c7b632e805304fccaba5405e68ff8c4434def0834bc135be",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            2832,
+            4096,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 23,
+          "reusedUnchangedV1Crop": false,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r01-r02_c01-c02_100pct.png",
+          "sha256": "8569b1386f685d56b785958f1297737399138fdc4e6c4afb1b4e727d179cf624",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            784,
+            1264,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 24,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r01-r02_c02-c03_100pct.png",
+          "sha256": "23e9a614f870d844288d9cfa4cca5448573670f4e96371cdd4310e62305da75b",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            784,
+            2288,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 25,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r01-r02_c03-c04_100pct.png",
+          "sha256": "3396446411c9700da5cfd9e8a1c8156de5ecf3230cd58fd2c030a9f8c946603f",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            784,
+            3312,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "index": 26,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r02-r03_c01-c02_100pct.png",
+          "sha256": "5f5810775530bc1960a2ffaf56d48fc81bdde42e784449a31c2bc51378525067",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            1808,
+            1264,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 27,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r02-r03_c02-c03_100pct.png",
+          "sha256": "e668aee26b762925abea3d38b71ddd3f23290ffd8ff89b27418a847e2f7fae23",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1808,
+            2288,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 28,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r02-r03_c03-c04_100pct.png",
+          "sha256": "46449de7ec8c01514c32f17cb2a4b7a7e46ad1c1d6934ebc927d0cf6d967cea3",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1808,
+            3312,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "index": 29,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r03-r04_c01-c02_100pct.png",
+          "sha256": "c704bbbccca08fd55b71ea78b209b7624d1cc9b7caee9e471cd31f7a867470d2",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            2832,
+            1264,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 30,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r03-r04_c02-c03_100pct.png",
+          "sha256": "63d22000cc690e36b547e15e4fd2adde058669679a8fe863f9f1a90907eb9efb",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2832,
+            2288,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 31,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/junction_r03-r04_c03-c04_100pct.png",
+          "sha256": "259b8f772f19e756eadf899d795973552ca83ecc76869778a24836ca9065db23",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2832,
+            3312,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "index": 32,
+          "reusedUnchangedV1Crop": true,
+          "exactCurrentCandidateCropVerified": true,
+          "changedPixelCount": 0,
+          "reusedUnchangedPreviousCrop": true
+        }
+      ],
+      "coverage": {
+        "finalVerticalSeamBands": 3,
+        "finalHorizontalSeamBands": 3,
+        "eachBandFullyCoveredAt100Percent": true,
+        "junctionCount": 9,
+        "cropCount": 33
+      },
+      "strictNativeProof": {
+        "tileId": "r07_c05",
+        "tileOrigin": [
+          16384,
+          24576
+        ],
+        "fullNativeCoverage": true,
+        "verifiedPixelCount": 16777216,
+        "originalRawSourceCount": 16,
+        "rootAssembly": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c05_candidate-v1_4096.assembly.json",
+          "sha256": "09adeb48f8858a42eceb6a877f3c0fb20477f10f112f97002ca5d8b05cc4418e"
+        },
+        "rootProvenance": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/assembly_r07_c05_candidate-v1_4096/source_index_planes.npz",
+          "sha256": "0d161b4f3b7e7278b5b85e194610f62faedc8b9a4e4d7fa5048829e2cf10cd08"
+        },
+        "originalCellContributions": [
+          {
+            "sourceId": 0,
+            "pixelCount": 901360
+          },
+          {
+            "sourceId": 1,
+            "pixelCount": 1122505
+          },
+          {
+            "sourceId": 2,
+            "pixelCount": 1227534
+          },
+          {
+            "sourceId": 3,
+            "pixelCount": 1077584
+          },
+          {
+            "sourceId": 4,
+            "pixelCount": 1167765
+          },
+          {
+            "sourceId": 5,
+            "pixelCount": 1116062
+          },
+          {
+            "sourceId": 6,
+            "pixelCount": 785270
+          },
+          {
+            "sourceId": 7,
+            "pixelCount": 1004158
+          },
+          {
+            "sourceId": 8,
+            "pixelCount": 970057
+          },
+          {
+            "sourceId": 9,
+            "pixelCount": 1090415
+          },
+          {
+            "sourceId": 10,
+            "pixelCount": 1159317
+          },
+          {
+            "sourceId": 11,
+            "pixelCount": 1151406
+          },
+          {
+            "sourceId": 12,
+            "pixelCount": 957691
+          },
+          {
+            "sourceId": 13,
+            "pixelCount": 1031069
+          },
+          {
+            "sourceId": 14,
+            "pixelCount": 882584
+          },
+          {
+            "sourceId": 15,
+            "pixelCount": 1132439
+          }
+        ],
+        "priorRepairCount": 2,
+        "repairReferenceAvailability": [
+          {
+            "fullReferenceAvailability": true,
+            "references": [
+              {
+                "reference": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/guides/r07_c05_lantern_background_a01.native-crop.png",
+                  "sha256": "e1c932214a3fd19924d5353a992a88836ebf9170ae0ce5a15cbe61e318ff636a"
+                },
+                "available": true
+              },
+              {
+                "reference": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/penglai/penglai-natural-stone-wall-trees-v6.png",
+                  "sha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f"
+                },
+                "available": true
+              },
+              {
+                "reference": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/penglai/penglai-natural-stone-detail-v1.png",
+                  "sha256": "40ca8d6b5b062511ebd18dc0e278399644097ee10608000658f691796884c133"
+                },
+                "available": true
+              },
+              {
+                "reference": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+                  "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+                },
+                "available": true
+              }
+            ],
+            "missingReferenceDoesNotImplyMissingNativePixels": true
+          }
+        ],
+        "fullRepairReferenceAvailability": true,
+        "crossTileRepairOperations": [
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r06r07_c05_cap-v3_20261018/cap-v3.cross-native-operation.json",
+            "sha256": "de32f12227c68a16793d430546f6365e13d3a48c779e5472ad782b6fd6ac520e"
+          }
+        ],
+        "crossTileRepairReferenceAvailability": [
+          {
+            "fullReferenceAvailability": true,
+            "references": [
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/guides/r06r07_c05_north_cap_fix_a01.native-crop.png",
+                "sha256": "8bc90e0c40c6d61d8ea8c1581a539f979d8d8c4f44badf8339f9921ff26c7923"
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/penglai/penglai-natural-stone-wall-trees-v6.png",
+                "sha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f"
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/penglai/penglai-natural-stone-detail-v1.png",
+                "sha256": "40ca8d6b5b062511ebd18dc0e278399644097ee10608000658f691796884c133"
+              },
+              {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+                "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+              }
+            ]
+          }
+        ],
+        "lastCrossTileRepairSource": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/native/r06r07_c05_north_cap_fix_a01.png",
+          "sha256": "b401c28ebf18019768f13578db86bfc065d80c48a8a54e57d601e4e7f0940b4b",
+          "generationRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/native/r06r07_c05_north_cap_fix_a01.png.generation.json",
+            "sha256": "beba7a9ca93d2960eda344f240f4f5f5a4c7f4ebd16e0bfd52c4618ac73edc4c"
+          },
+          "prompt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/prompts/r06r07_c05_north_cap_fix_a01.prompt.txt",
+            "sha256": "edad50f526ed06cc1d3a552fb6d1cbc669d1a854ac45949f63c6352e0f37d138"
+          },
+          "receipt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/receipts/r06r07_c05_north_cap_fix_a01.receipt.json",
+            "sha256": "391bbd75d9ba153113ef87ce6b13e191d92ce00707d494252c61dc8c450555b5"
+          },
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "generationEvidence": {
+            "generatedAt": "2026-10-18T18:12:09.212357+00:00",
+            "tool": "image_gen.imagegen",
+            "route": "builtin",
+            "configSnapshot": {
+              "schema_version": 1,
+              "model": "gpt-image-2.5-sunburst",
+              "quality": "max",
+              "builtin_product": "ChatGPT Images 2.5",
+              "selection": "latest_verified",
+              "preferred_route": "builtin",
+              "verified_on": "2026-10-10",
+              "sources": {
+                "release": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+                "model": "https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst",
+                "quality": "https://developers.openai.com/api/reference/resources/images/methods/generate"
+              }
+            },
+            "submittedParameters": {
+              "model": null,
+              "quality": null,
+              "transparent_background": false
+            },
+            "actualModel": null,
+            "actualQuality": null,
+            "unverifiedReason": "Builtin host-managed route exposes no model or quality selector and returns no verifiable model/quality metadata. Config is a target only; explicit current user allows existing builtin fallback without paid API.",
+            "resizedAfterGeneration": false,
+            "finalArtUpscaled": false
+          },
+          "input": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/guides/r06r07_c05_north_cap_fix_a01.input.json",
+            "sha256": "a60e0660b57bb65daea7774a53b50bd5a9e26d4dc0b8a8ffaba6942007044d72"
+          },
+          "editTarget": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/guides/r06r07_c05_north_cap_fix_a01.native-crop.png",
+            "sha256": "8bc90e0c40c6d61d8ea8c1581a539f979d8d8c4f44badf8339f9921ff26c7923"
+          },
+          "cropDerivation": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/guides/r06r07_c05_north_cap_fix_a01.native-crop.derivation.json",
+            "sha256": "5c45156e0cae5c76408c911d4cbe191acb6e96b345b85f148f601a566ebf549d"
+          },
+          "references": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/guides/r06r07_c05_north_cap_fix_a01.native-crop.png",
+              "sha256": "8bc90e0c40c6d61d8ea8c1581a539f979d8d8c4f44badf8339f9921ff26c7923"
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/penglai/penglai-natural-stone-wall-trees-v6.png",
+              "sha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f"
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/penglai/penglai-natural-stone-detail-v1.png",
+              "sha256": "40ca8d6b5b062511ebd18dc0e278399644097ee10608000658f691796884c133"
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+              "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63"
+            }
+          ],
+          "globalBox": [
+            17884,
+            23949,
+            19138,
+            25203
+          ],
+          "currentCropExactlyMatchesEditTarget": true,
+          "ancestorCropReuse": false
+        },
+        "lastCrossTileRepairSelection": {
+          "tileId": "r07_c05",
+          "tileBox": [
+            1500,
+            0,
+            2754,
+            627
+          ],
+          "repairBox": [
+            0,
+            627,
+            1254,
+            1254
+          ],
+          "selectedPixelCount": 186283
+        }
+      },
+      "visualStatus": "delta_pending"
+    }
+  }
+}

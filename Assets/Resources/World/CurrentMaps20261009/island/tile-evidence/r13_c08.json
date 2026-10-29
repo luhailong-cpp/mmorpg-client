@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 13,
+  "column": 8,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "0febedc15237eb55b6b563c5c2481bfccd37a757cde1ebf1d44c770b515bbe8c",
+  "imageBytes": 24286635,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r13_c08-p44E-joint-geometry-final/tiles/r13_c08.candidate-p44-E-joint-geometry-v02.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r13_c08-p44E-joint-geometry-final/tiles/r13_c08.candidate-p44-E-joint-geometry-v02.png.generation.json",
+  "sourceLedgerSha256": "850b935f4f2494d6b5ce68fad15ad9cbdc6faee24da79ac63bb5b61b6f638023",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r13_c08-p44E-joint-geometry-final/tiles/r13_c08.candidate-p44-E-joint-geometry-v02.png",
+    "imageSha256": "0febedc15237eb55b6b563c5c2481bfccd37a757cde1ebf1d44c770b515bbe8c",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r13_c08-p44E-joint-geometry-final/tiles/r13_c08.candidate-p44-E-joint-geometry-v02.png.generation.json",
+        "sha256": "850b935f4f2494d6b5ce68fad15ad9cbdc6faee24da79ac63bb5b61b6f638023",
+        "sourceReviewSha256": "850b935f4f2494d6b5ce68fad15ad9cbdc6faee24da79ac63bb5b61b6f638023",
+        "completeness": [
+          [
+            "/derivedFrom",
+            "all sixteen native source offsets present"
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {},
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

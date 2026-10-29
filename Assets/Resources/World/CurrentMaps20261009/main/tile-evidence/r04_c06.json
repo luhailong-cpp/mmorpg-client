@@ -1,0 +1,1211 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 4,
+  "column": 6,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "f1688a2dd16baaaffe5f114a92aa06ae19cae6c7d83795792888e7da05811d25",
+  "imageBytes": 23614960,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate-manifest.json",
+  "sourceLedgerSha256": "0f9fd5a8aed8eb861e81bf6d1f05b6ceafe9bdb1f12a5972a7aed9620f68071b",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r04_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate.png",
+    "imageSha256": "f1688a2dd16baaaffe5f114a92aa06ae19cae6c7d83795792888e7da05811d25",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate-manifest.json",
+        "sha256": "0f9fd5a8aed8eb861e81bf6d1f05b6ceafe9bdb1f12a5972a7aed9620f68071b",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate-manifest.json",
+        "sha256": "0f9fd5a8aed8eb861e81bf6d1f05b6ceafe9bdb1f12a5972a7aed9620f68071b",
+        "completeness": [
+          "sourcesCount",
+          20
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "internalQAPassed": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate-manifest.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "internalQAPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/reviewed-status.json",
+        "record": {
+          "availableExternalSnapshot": {
+            "total": 12,
+            "passed": 7,
+            "needsRepair": 5
+          },
+          "externalSnapshotSource": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native16-independent-20261017-v1/qa-manifest.json",
+            "sha256": "f508781ba928388c85f8f06cd87870a5864f0313d964efe8f1af7fc6d53a36e5"
+          },
+          "additionalExternalSnapshotSource": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native19-lower-wall-20261017-v1/new-east-row1/manifest.json",
+            "sha256": "c228764abea33e75287fbc7334b4254f2939173079e55879b3a2cb74957da021"
+          },
+          "externalSnapshotSourcesStillHashEqual": true,
+          "layoutIssues": [
+            {
+              "id": "extra_teal_brackets",
+              "status": "partially_resolved",
+              "resolvedScope": "Main beam and brackets x>=1254 under large lantern removed using same-world native source; left-owner x1010..1254 remains pending"
+            },
+            {
+              "id": "curved_container_footprint",
+              "status": "resolved",
+              "source": "cylinder-footprint-fix02-20261017/native.png",
+              "finding": "Native body and single curved foot extended about135px to frame y715/tile y3557, consistent with approximate blurred layout footprint; lid, width and identity retained. Five actual boundary crops and full adopted perimeter passed.",
+              "approximateCandidateLTRB": [
+                3300,
+                2780,
+                3980,
+                3600
+              ],
+              "resolution": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/cylinder-footprint-fix02-20261017/independent-review-v3.json",
+                "sha256": "a44b49a9121b26b6b9dcb2404f7dcd006db579c8c2f08294313d42024253b683"
+              }
+            }
+          ],
+          "internalQAPassed": false,
+          "availableExternalQAPassed": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate-manifest.json",
+    "sourceSha256": "0f9fd5a8aed8eb861e81bf6d1f05b6ceafe9bdb1f12a5972a7aed9620f68071b",
+    "normalizedDocument": {
+      "tile": "r04_c06",
+      "worldBox": [
+        20480,
+        12288,
+        24576,
+        16384
+      ],
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/candidate.png",
+        "sha256": "f1688a2dd16baaaffe5f114a92aa06ae19cae6c7d83795792888e7da05811d25"
+      },
+      "sourceIndex": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native20-cylinder-footprint-20261017-v1/source-index.png",
+        "sha256": "06b0b6e6c0c8c41a28186fab925ed00050be95f768fbf28feebd8669a742057b"
+      },
+      "base": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native19-lower-wall-20261017-v1/candidate.png",
+        "sha256": "557c5edd726674c71b851648ebee0f5372aaa9ed09bfd5c7e122ab6a358a3899"
+      },
+      "baseManifest": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa-independent-20261017/native19-lower-wall-20261017-v1/candidate-manifest.json",
+        "sha256": "4bb2b65f68b6768be3ff6e5fb63cf31dc6804fd95af726afd466c7624fde039a"
+      },
+      "sources": [
+        {
+          "patch": "s01_01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_01_fix02.png",
+          "sha256": "7c73856f97d813041eaadaf62983191035113f4f5dfc0a79050e50f6409ba995",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_01_fix02.png",
+            "sha256": "7c73856f97d813041eaadaf62983191035113f4f5dfc0a79050e50f6409ba995",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_01_fix02.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s01_01_fix02.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s01_01_fix02.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s01_01_fix02.result.json"
+          },
+          "coordinates": {
+            "id": "s01_01",
+            "worldBoxWithHalo": [
+              20365,
+              12173,
+              21619,
+              13427
+            ],
+            "coreWorldBox": [
+              20480,
+              12288,
+              21504,
+              13312
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s01_01_fix02/review.json",
+            "sha256": "b6007092fd51833c1cec0664fb903d085c899bd95eba2e4710e429aa4c7adaf7"
+          },
+          "index": 1,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            0,
+            0,
+            1024,
+            1024
+          ]
+        },
+        {
+          "patch": "s01_02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_02_native01.png",
+          "sha256": "c96ca7e1b027c76c2394443ab8770a0dbaa315bd2c6c4dfe69b236f2d75d500a",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_02_native01.png",
+            "sha256": "c96ca7e1b027c76c2394443ab8770a0dbaa315bd2c6c4dfe69b236f2d75d500a",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_02_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s01_02_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s01_02_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s01_02_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s01_02",
+            "worldBoxWithHalo": [
+              21389,
+              12173,
+              22643,
+              13427
+            ],
+            "coreWorldBox": [
+              21504,
+              12288,
+              22528,
+              13312
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s01_02_native01/review.json",
+            "sha256": "936786cf1b5760f584eaba032ee4b1df5cb44058d48aba985e78b5bcdc0e3eae"
+          },
+          "index": 2,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            1024,
+            0,
+            2048,
+            1024
+          ]
+        },
+        {
+          "patch": "s01_03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_03_native02.png",
+          "sha256": "ca3656f811ef070b340d298dcbd9d30cab6ed2ba84139a8bd7b69c59a8760363",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_03_native02.png",
+            "sha256": "ca3656f811ef070b340d298dcbd9d30cab6ed2ba84139a8bd7b69c59a8760363",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_03_native02.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s01_03_native02.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s01_03_native02.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s01_03_native02.result.json"
+          },
+          "coordinates": {
+            "id": "s01_03",
+            "worldBoxWithHalo": [
+              22413,
+              12173,
+              23667,
+              13427
+            ],
+            "coreWorldBox": [
+              22528,
+              12288,
+              23552,
+              13312
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s01_03_native02/review.json",
+            "sha256": "d005545370f55f69fd9e585649ad862cd75a66a02290f043c2f4c3546ae75a25"
+          },
+          "index": 3,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            2048,
+            0,
+            3072,
+            1024
+          ]
+        },
+        {
+          "patch": "s01_04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_04_native01.png",
+          "sha256": "e85ae3389f2ca6d9f1ea98af3dbf1717591094518de14c4ba3bc3040c652510b",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_04_native01.png",
+            "sha256": "e85ae3389f2ca6d9f1ea98af3dbf1717591094518de14c4ba3bc3040c652510b",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s01_04_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s01_04_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s01_04_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s01_04_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s01_04",
+            "worldBoxWithHalo": [
+              23437,
+              12173,
+              24691,
+              13427
+            ],
+            "coreWorldBox": [
+              23552,
+              12288,
+              24576,
+              13312
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s01_04_native01/review.json",
+            "sha256": "aef2c941db370da933211d8ac550faaa32b422cd3bfe7ea272441739c35c1dd9"
+          },
+          "index": 4,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            3072,
+            0,
+            4096,
+            1024
+          ]
+        },
+        {
+          "patch": "s02_01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_01_native01.png",
+          "sha256": "a6234f9936321a5a362733fd7f88f1d6e90d9115d46134e7bcdc2c82cdd74e21",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_01_native01.png",
+            "sha256": "a6234f9936321a5a362733fd7f88f1d6e90d9115d46134e7bcdc2c82cdd74e21",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_01_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s02_01_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s02_01_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s02_01_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s02_01",
+            "worldBoxWithHalo": [
+              20365,
+              13197,
+              21619,
+              14451
+            ],
+            "coreWorldBox": [
+              20480,
+              13312,
+              21504,
+              14336
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s02_01_native01/review.json",
+            "sha256": "25c294de8079bd0809c32651d819b480194a133cb90077e6be0f63d3ae38768d"
+          },
+          "index": 5,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            0,
+            1024,
+            1024,
+            2048
+          ]
+        },
+        {
+          "patch": "s02_02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_02_fix01.png",
+          "sha256": "b86825b29b3b5492f4a6d507798f897f634f7faf56a94898fe9c634f1adbd555",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_02_fix01.png",
+            "sha256": "b86825b29b3b5492f4a6d507798f897f634f7faf56a94898fe9c634f1adbd555",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_02_fix01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s02_02_fix01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s02_02_fix01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s02_02_fix01.result.json"
+          },
+          "coordinates": {
+            "id": "s02_02",
+            "worldBoxWithHalo": [
+              21389,
+              13197,
+              22643,
+              14451
+            ],
+            "coreWorldBox": [
+              21504,
+              13312,
+              22528,
+              14336
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s02_02_fix01/review.json",
+            "sha256": "c41ab9db1d5a7c0488e4e830cd9d8a50f7884db2605e89c289913bcba2951ec0"
+          },
+          "index": 6,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            1024,
+            1024,
+            2048,
+            2048
+          ]
+        },
+        {
+          "patch": "s02_03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_03_fix02.png",
+          "sha256": "ee1c50bf26c0ecd99f49fead0bd469935603a7b2f20896c51be1c04c3cea0076",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_03_fix02.png",
+            "sha256": "ee1c50bf26c0ecd99f49fead0bd469935603a7b2f20896c51be1c04c3cea0076",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_03_fix02.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s02_03_fix02.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s02_03_fix02.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s02_03_fix02.result.json"
+          },
+          "coordinates": {
+            "id": "s02_03",
+            "worldBoxWithHalo": [
+              22413,
+              13197,
+              23667,
+              14451
+            ],
+            "coreWorldBox": [
+              22528,
+              13312,
+              23552,
+              14336
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s02_03_fix02/review.json",
+            "sha256": "b53e04d8b8316ded352851036801af7b465bf058065239fd99c1ab30e33dd6ac"
+          },
+          "index": 7,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            2048,
+            1024,
+            3072,
+            2048
+          ]
+        },
+        {
+          "patch": "s02_04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_04_native01.png",
+          "sha256": "28310348e93b37ade11fe51574d49b2749122edf70731b133bcc00f99ffc7a1d",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_04_native01.png",
+            "sha256": "28310348e93b37ade11fe51574d49b2749122edf70731b133bcc00f99ffc7a1d",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s02_04_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s02_04_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s02_04_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s02_04_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s02_04",
+            "worldBoxWithHalo": [
+              23437,
+              13197,
+              24691,
+              14451
+            ],
+            "coreWorldBox": [
+              23552,
+              13312,
+              24576,
+              14336
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s02_04_native01/review.json",
+            "sha256": "e8db9219803d8c3a90e3dcf91285e872fe60b9d4f9b9c002e988a3277d5190e6"
+          },
+          "index": 8,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            3072,
+            1024,
+            4096,
+            2048
+          ]
+        },
+        {
+          "patch": "s03_01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_01_native01.png",
+          "sha256": "773bcb15c836c235f935eae644eba2f520a402ccdf85964911ff27c1ec979e0a",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_01_native01.png",
+            "sha256": "773bcb15c836c235f935eae644eba2f520a402ccdf85964911ff27c1ec979e0a",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_01_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s03_01_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s03_01_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s03_01_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s03_01",
+            "worldBoxWithHalo": [
+              20365,
+              14221,
+              21619,
+              15475
+            ],
+            "coreWorldBox": [
+              20480,
+              14336,
+              21504,
+              15360
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s03_01_native01/review.json",
+            "sha256": "6c12f1ba926d651d3be9467d20c6cf51b9578bf2f66f5faecea876f5daefaaff"
+          },
+          "index": 9,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            0,
+            2048,
+            1024,
+            3072
+          ]
+        },
+        {
+          "patch": "s03_02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_02_fix01.png",
+          "sha256": "2975cc98ee2b33e7bb56000e93a55a271ecb0ff5e6a4f9ba71dec79d8494a373",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_02_fix01.png",
+            "sha256": "2975cc98ee2b33e7bb56000e93a55a271ecb0ff5e6a4f9ba71dec79d8494a373",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_02_fix01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s03_02_fix01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s03_02_fix01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s03_02_fix01.result.json"
+          },
+          "coordinates": {
+            "id": "s03_02",
+            "worldBoxWithHalo": [
+              21389,
+              14221,
+              22643,
+              15475
+            ],
+            "coreWorldBox": [
+              21504,
+              14336,
+              22528,
+              15360
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s03_02_fix01/review.json",
+            "sha256": "9ecdf61dbb466a00c7e70b584f5aa8d98ef37bd0b4a356c20a8ffc43e8e0adfd"
+          },
+          "index": 10,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            1024,
+            2048,
+            2048,
+            3072
+          ]
+        },
+        {
+          "patch": "s03_03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_03_native01.png",
+          "sha256": "b90f25ad3e041f035560b52176c2a50c2d8ac35de51e7e7150fa8a97f82c548e",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_03_native01.png",
+            "sha256": "b90f25ad3e041f035560b52176c2a50c2d8ac35de51e7e7150fa8a97f82c548e",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_03_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s03_03_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s03_03_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s03_03_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s03_03",
+            "worldBoxWithHalo": [
+              22413,
+              14221,
+              23667,
+              15475
+            ],
+            "coreWorldBox": [
+              22528,
+              14336,
+              23552,
+              15360
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s03_03_native01/review.json",
+            "sha256": "54d22da8cfc2b4a23f46eef0b92808660f748925d08671a5661a74a435d78124"
+          },
+          "index": 11,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            2048,
+            2048,
+            3072,
+            3072
+          ]
+        },
+        {
+          "patch": "s03_04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_04_native01.png",
+          "sha256": "3bce27f1730fa430e891481c8b0cc71dc26412c4ded242cde57c07c3559fdebf",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_04_native01.png",
+            "sha256": "3bce27f1730fa430e891481c8b0cc71dc26412c4ded242cde57c07c3559fdebf",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s03_04_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s03_04_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s03_04_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s03_04_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s03_04",
+            "worldBoxWithHalo": [
+              23437,
+              14221,
+              24691,
+              15475
+            ],
+            "coreWorldBox": [
+              23552,
+              14336,
+              24576,
+              15360
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s03_04_native01/review.json",
+            "sha256": "20a3123d3c13309ff13c059ab1c982c13305e9af75b309d4f722809f54620006"
+          },
+          "index": 12,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            3072,
+            2048,
+            4096,
+            3072
+          ]
+        },
+        {
+          "patch": "s04_01",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_01_fix02.png",
+          "sha256": "5263e9e0d9ecc5124037e8028f736bde9bbb97beb18b0efe81e225864d21cb21",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_01_fix02.png",
+            "sha256": "5263e9e0d9ecc5124037e8028f736bde9bbb97beb18b0efe81e225864d21cb21",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_01_fix02.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s04_01_fix02.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s04_01_fix02.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s04_01_fix02.result.json"
+          },
+          "coordinates": {
+            "id": "s04_01",
+            "worldBoxWithHalo": [
+              20365,
+              15245,
+              21619,
+              16499
+            ],
+            "coreWorldBox": [
+              20480,
+              15360,
+              21504,
+              16384
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s04_01_fix02/review.json",
+            "sha256": "b5df6fee8fcb2527f07f32f886528f5f48f888e0ff44f147dde426438e22078f"
+          },
+          "index": 13,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            0,
+            3072,
+            1024,
+            4096
+          ]
+        },
+        {
+          "patch": "s04_02",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_02_native01.png",
+          "sha256": "fb4fb6f8783f12f22548a3a3b253cdf245bd3cb64f753b51cf3009417d1d3774",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_02_native01.png",
+            "sha256": "fb4fb6f8783f12f22548a3a3b253cdf245bd3cb64f753b51cf3009417d1d3774",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_02_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s04_02_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s04_02_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s04_02_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s04_02",
+            "worldBoxWithHalo": [
+              21389,
+              15245,
+              22643,
+              16499
+            ],
+            "coreWorldBox": [
+              21504,
+              15360,
+              22528,
+              16384
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s04_02_native01/review.json",
+            "sha256": "e176798f6b9e3acb848b4b1deb19faa8457683b593e561515ab512e923ebdf17"
+          },
+          "index": 14,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            1024,
+            3072,
+            2048,
+            4096
+          ]
+        },
+        {
+          "patch": "s04_03",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_03_native01.png",
+          "sha256": "49211aec20b1b61da0d9e16d0d02bbe0046b1506116d56e4a2de347494a0d5da",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_03_native01.png",
+            "sha256": "49211aec20b1b61da0d9e16d0d02bbe0046b1506116d56e4a2de347494a0d5da",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_03_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s04_03_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s04_03_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s04_03_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s04_03",
+            "worldBoxWithHalo": [
+              22413,
+              15245,
+              23667,
+              16499
+            ],
+            "coreWorldBox": [
+              22528,
+              15360,
+              23552,
+              16384
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s04_03_native01/review.json",
+            "sha256": "7dc84964108e5817cc9537553de1ccb54a8e641caca7fb9bf41f7218b100ef9b"
+          },
+          "index": 15,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            2048,
+            3072,
+            3072,
+            4096
+          ]
+        },
+        {
+          "patch": "s04_04",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_04_native01.png",
+          "sha256": "42811a98f70c1a4cba7946930e58e09ba2272562ebb2153117902c81635819cf",
+          "validation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_04_native01.png",
+            "sha256": "42811a98f70c1a4cba7946930e58e09ba2272562ebb2153117902c81635819cf",
+            "generationRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/native/s04_04_native01.png.generation.json",
+            "prompt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/prompts/s04_04_native01.txt",
+            "request": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s04_04_native01.request.json",
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/receipts/s04_04_native01.result.json"
+          },
+          "coordinates": {
+            "id": "s04_04",
+            "worldBoxWithHalo": [
+              23437,
+              15245,
+              24691,
+              16499
+            ],
+            "coreWorldBox": [
+              23552,
+              15360,
+              24576,
+              16384
+            ],
+            "coreCrop": [
+              115,
+              115,
+              1139,
+              1139
+            ]
+          },
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/qa/source-review/s04_04_native01/review.json",
+            "sha256": "da9e877317bb5f1ae669005d3fe83ed5b6fc9d2e3d9668cee29e02d617bd2041"
+          },
+          "index": 16,
+          "sourceCoreLTRB": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "destinationLTRB": [
+            3072,
+            3072,
+            4096,
+            4096
+          ]
+        },
+        {
+          "index": 17,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/pier-and-brackets-20261017/brackets-01/native.png",
+          "sha256": "89158014f269e0dd668e348f778f1b6f813ea624a76a612e47a4f1c7493dbe0f",
+          "size": [
+            1254,
+            1254
+          ],
+          "sourceFrameTileLocalLTRB": [
+            1000,
+            0,
+            2254,
+            1254
+          ],
+          "worldFrameLTRB": [
+            21480,
+            12288,
+            22734,
+            13542
+          ],
+          "mask": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/pier-and-brackets-20261017/brackets-01/adoption-mask-v2.png",
+            "sha256": "ad883f835e1b0307be18ea0354b72ea16ef409f2871f7fa9c21cf27355ba005c"
+          }
+        },
+        {
+          "index": 18,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/wall-column-bridge01-20261017/native.png",
+          "sha256": "379321cb255d681db2577d0d041585abdd92ae5ad855ccc7434a85eb7367b779",
+          "size": [
+            1254,
+            1254
+          ],
+          "sourceFrameTileLocalLTRB": [
+            0,
+            397,
+            1254,
+            1651
+          ],
+          "worldFrameLTRB": [
+            20480,
+            12685,
+            21734,
+            13939
+          ],
+          "mask": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/wall-column-bridge01-20261017/proposal-v2-mask.png",
+            "sha256": "8680ce2797424d475a2fc5a8c0905daf9db2def78bad3c88c91b56c1223a9373"
+          },
+          "operation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/wall-column-bridge01-20261017/adoption-v2.json",
+            "sha256": "16d88c20c51225348e1b79fa4065048173b323170fe2ae571abec13b9d159337"
+          },
+          "ownerReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/wall-column-bridge01-20261017/root-review-v2.json",
+            "sha256": "05b3ca77657d0be34f1e638ada8a012688d4547f334740ff1857feeb695a153d"
+          }
+        },
+        {
+          "index": 19,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/lower-wall-south-context-20261017/native.png",
+          "sha256": "1b97decf75069f653653d5ddd1ef26404b7bc963f8ad45461dcdf081e310880b",
+          "size": [
+            1254,
+            1254
+          ],
+          "sourceFrameTileLocalLTRB": [
+            300,
+            2957,
+            1554,
+            4211
+          ],
+          "worldFrameLTRB": [
+            20780,
+            15245,
+            22034,
+            16499
+          ],
+          "mask": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/lower-wall-south-context-20261017/adoption-mask-v1.png",
+            "sha256": "d4f8be3abaabb76623245fe395c8769709406aab6912ec714b3a72a04e1c951e"
+          },
+          "operation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/lower-wall-south-context-20261017/adoption-v1.json",
+            "sha256": "edf3f8a7c5189bbfae44a6f59c77bbb6f9689ad08276b6d47449a2a8c8cdaa66"
+          },
+          "ownerReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/lower-wall-south-context-20261017/root-review-v1.json",
+            "sha256": "c48ee1a77b06bc889c74670f69583dac902f8266b2e3bb4ed6d74f190217238b"
+          }
+        },
+        {
+          "index": 20,
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/cylinder-footprint-fix02-20261017/native.png",
+          "sha256": "feb683a28ddc1b808d027c80c8c5c0befbfab5deaf04d3fdd15428e43a8d7b9c",
+          "size": [
+            1254,
+            1254
+          ],
+          "sourceFrameTileLocalLTRB": [
+            2842,
+            2842,
+            4096,
+            4096
+          ],
+          "worldFrameLTRB": [
+            23322,
+            15130,
+            24576,
+            16384
+          ],
+          "mask": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/cylinder-footprint-fix02-20261017/adoption-mask-v3.png",
+            "sha256": "0eb0392932601e61b4fc0212c7c9fdde3e2a82c641cf8745d2ec52ddbd3e10cb"
+          },
+          "operation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/cylinder-footprint-fix02-20261017/adoption-v3.json",
+            "sha256": "d809c3efee5c3bb7df9c0b5fc5427d0ccd18bee104e25fe2d3b5fcb73901fed2"
+          },
+          "ownerReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/cylinder-footprint-fix02-20261017/independent-review-v3.json",
+            "sha256": "a44b49a9121b26b6b9dcb2404f7dcd006db579c8c2f08294313d42024253b683"
+          }
+        }
+      ],
+      "sourceCount": 20,
+      "selectedCoreCount": 16,
+      "operations": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/pier-and-brackets-20261017/brackets-01/adoption-v2.json",
+          "sha256": "da91f4260913ddd1f8f5d03fb3cf345bdd9a9128aebf460be7cba35e02038827"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/wall-column-bridge01-20261017/adoption-v2.json",
+          "sha256": "16d88c20c51225348e1b79fa4065048173b323170fe2ae571abec13b9d159337"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/lower-wall-south-context-20261017/adoption-v1.json",
+          "sha256": "edf3f8a7c5189bbfae44a6f59c77bbb6f9689ad08276b6d47449a2a8c8cdaa66"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r04_c06/repair-batches/cylinder-footprint-fix02-20261017/adoption-v3.json",
+          "sha256": "d809c3efee5c3bb7df9c0b5fc5427d0ccd18bee104e25fe2d3b5fcb73901fed2"
+        }
+      ],
+      "sameWorldNativeCopy": true,
+      "resampled": false,
+      "feathered": false,
+      "colorAdjusted": false,
+      "pixelProof": {
+        "totalPixels": 16777216,
+        "allPixelsAccountedFor": true,
+        "checks": [
+          {
+            "index": 1,
+            "pixels": 1043716,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 2,
+            "pixels": 878215,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 3,
+            "pixels": 1048576,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 4,
+            "pixels": 1048576,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 5,
+            "pixels": 920272,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 6,
+            "pixels": 1048576,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 7,
+            "pixels": 1048576,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 8,
+            "pixels": 1048576,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 9,
+            "pixels": 1046081,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 10,
+            "pixels": 1047966,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 11,
+            "pixels": 1048576,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 12,
+            "pixels": 971548,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 13,
+            "pixels": 845266,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 14,
+            "pixels": 938411,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 15,
+            "pixels": 1048576,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 16,
+            "pixels": 734662,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 17,
+            "pixels": 170361,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 18,
+            "pixels": 133164,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 19,
+            "pixels": 316580,
+            "sameWorldNativeEquality": true
+          },
+          {
+            "index": 20,
+            "pixels": 390942,
+            "sameWorldNativeEquality": true
+          }
+        ]
+      },
+      "internalQAPassed": false,
+      "formalAccepted": false
+    }
+  }
+}

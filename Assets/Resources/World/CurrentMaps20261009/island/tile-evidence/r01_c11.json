@@ -1,0 +1,931 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 1,
+  "column": 11,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "f16b42d3b563263513e3b058da3e0d1b1eb899ffbd55ba621218ed9fc465af72",
+  "imageBytes": 25397565,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png.derivation.json",
+  "sourceLedgerSha256": "00f9709db5a7391b333f241799a419dc1850d866abf054f9a33e6217c536a3bd",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png",
+    "imageSha256": "f16b42d3b563263513e3b058da3e0d1b1eb899ffbd55ba621218ed9fc465af72",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png.derivation.json",
+        "sha256": "00f9709db5a7391b333f241799a419dc1850d866abf054f9a33e6217c536a3bd",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png.derivation.json",
+        "sha256": "00f9709db5a7391b333f241799a419dc1850d866abf054f9a33e6217c536a3bd",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v013.json",
+        "sha256": "0849eab2619e14f0ab561b21995f42c1fc95e884946e03732b8a1e619a1cdf04",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v014.json",
+        "sha256": "cfea3f975f5a2ea0608a336dcffe4c97873a3addda3b8ef001bf547271b60dd4",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v015.json",
+        "sha256": "e5e1770bce904b8bd3438f90a17c5891a19df0ce2595b2c1e27dff05975eb9fd",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "baseCoverageMin": 1,
+      "baseCoverageMax": 1,
+      "status": "complete_native_coverage_pending_whole_tile_and_external_review",
+      "formalAccepted": false,
+      "modelMetadataStatus": "未返回"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png.derivation.json",
+        "record": {
+          "baseCoverageMin": 1,
+          "baseCoverageMax": 1,
+          "status": "complete_native_coverage_pending_whole_tile_and_external_review",
+          "formalAccepted": false,
+          "modelMetadataStatus": "未返回"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v013.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v014.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v015.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": true,
+          "finalAcceptanceRef": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/qa/r01_c11-current49-final-20261023-v001.json",
+            "sha256": "65c69ef56f19b2e2838755c735ead7721c46f1ff47f9198682c2f2604f671a80"
+          },
+          "acceptanceValidOnlyForExactCandidateAndSelection": true,
+          "status": "formally_accepted_single_tile"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/qa/r01_c11-current49-final-20261023-v001.json",
+        "record": {
+          "status": "one_exact_tile_formally_accepted",
+          "formalAccepted": true,
+          "formalAcceptanceEligible": true,
+          "ownedBatchFormalAccepted": false,
+          "formalAcceptedTileCount": 1,
+          "globalFullMapAccepted": false,
+          "externalSegments": [
+            {
+              "coordinate": "r01_c11_p04_04",
+              "side": "bottom",
+              "neighborCoordinate": "r02_c11_p01_04",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p04_04",
+                  "id": "r01_c11_p04_04_v02",
+                  "sha256": "86aa6013af58d4478468431673f979b1919df25c926576863770e07efeb285ab"
+                },
+                {
+                  "coordinate": "r02_c11_p01_04",
+                  "id": "r02_c11_p01_04_v02",
+                  "sha256": "fd5dfd9e9f6b32a46860504e6c6c184ab7bac511326caa344fb17f2dd61ace70"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 0
+              },
+              "baselineSourceIds": [
+                "r01_c11_p04_04_v02",
+                "r02_c11_p01_04_v02"
+              ],
+              "baselineSourceSha256": [
+                "86aa6013af58d4478468431673f979b1919df25c926576863770e07efeb285ab",
+                "fd5dfd9e9f6b32a46860504e6c6c184ab7bac511326caa344fb17f2dd61ace70"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p04_04",
+              "side": "right",
+              "neighborCoordinate": "r01_c12_p04_01",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p04_04",
+                  "id": "r01_c11_p04_04_v02",
+                  "sha256": "86aa6013af58d4478468431673f979b1919df25c926576863770e07efeb285ab"
+                },
+                {
+                  "coordinate": "r01_c12_p04_01",
+                  "id": "r01_c12_p04_01_v02",
+                  "sha256": "3ef387a453ddf7496c88bfba9e18cebd4b309cbdd8e57abd76fad92553082626"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 1
+              },
+              "baselineSourceIds": [
+                "r01_c11_p04_04_v02",
+                "r01_c12_p04_01_v02"
+              ],
+              "baselineSourceSha256": [
+                "86aa6013af58d4478468431673f979b1919df25c926576863770e07efeb285ab",
+                "3ef387a453ddf7496c88bfba9e18cebd4b309cbdd8e57abd76fad92553082626"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p04_03",
+              "side": "bottom",
+              "neighborCoordinate": "r02_c11_p01_03",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p04_03",
+                  "id": "r01_c11_p04_03_v02",
+                  "sha256": "9a2a9c76e0b2fdced8c6a13a53fad03bf17398ded910ef1470e5e19d4081f279"
+                },
+                {
+                  "coordinate": "r02_c11_p01_03",
+                  "id": "r02_c11_p01_03_v02",
+                  "sha256": "f11af0c2f0c338874df78ae85648b1fd5826f299ac5aff1a2c7152aa3373b3ad"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 2
+              },
+              "baselineSourceIds": [
+                "r01_c11_p04_03_v02",
+                "r02_c11_p01_03_v02"
+              ],
+              "baselineSourceSha256": [
+                "9a2a9c76e0b2fdced8c6a13a53fad03bf17398ded910ef1470e5e19d4081f279",
+                "f11af0c2f0c338874df78ae85648b1fd5826f299ac5aff1a2c7152aa3373b3ad"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p04_02",
+              "side": "bottom",
+              "neighborCoordinate": "r02_c11_p01_02",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p04_02",
+                  "id": "r01_c11_p04_02_v02",
+                  "sha256": "ce9fa06188c13365ecc309a15129d6fd487ed089d3ce59bf3d7c5b0737959939"
+                },
+                {
+                  "coordinate": "r02_c11_p01_02",
+                  "id": "r02_c11_p01_02_v02",
+                  "sha256": "4455756d25ae492f0eac1fe3b752496c8d2a603c08701f0a5e5bce676ed43b3f"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 3
+              },
+              "baselineSourceIds": [
+                "r01_c11_p04_02_v02",
+                "r02_c11_p01_02_v02"
+              ],
+              "baselineSourceSha256": [
+                "ce9fa06188c13365ecc309a15129d6fd487ed089d3ce59bf3d7c5b0737959939",
+                "4455756d25ae492f0eac1fe3b752496c8d2a603c08701f0a5e5bce676ed43b3f"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p04_01",
+              "side": "bottom",
+              "neighborCoordinate": "r02_c11_p01_01",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p04_01",
+                  "id": "r01_c11_p04_01_v03",
+                  "sha256": "8be598e5fefeba27a29735f9547feef143f140cb268f8fb99ba99dcf357e8d25"
+                },
+                {
+                  "coordinate": "r02_c11_p01_01",
+                  "id": "r02_c11_p01_01_v02",
+                  "sha256": "228f87c1d994f048d010faa8036db1417f5a73166a23db329f41c289f9ce7060"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 4
+              },
+              "baselineSourceIds": [
+                "r01_c11_p04_01_v03",
+                "r02_c11_p01_01_v02"
+              ],
+              "baselineSourceSha256": [
+                "8be598e5fefeba27a29735f9547feef143f140cb268f8fb99ba99dcf357e8d25",
+                "228f87c1d994f048d010faa8036db1417f5a73166a23db329f41c289f9ce7060"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p04_01",
+              "side": "left",
+              "neighborCoordinate": "r01_c10_p04_04",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p04_01",
+                  "id": "r01_c11_p04_01_v03",
+                  "sha256": "8be598e5fefeba27a29735f9547feef143f140cb268f8fb99ba99dcf357e8d25"
+                },
+                {
+                  "coordinate": "r01_c10_p04_04",
+                  "id": "r01_c10_p04_04_v03",
+                  "sha256": "157063df4d29ea90586495c619be284e87d2eda9e683733446220bb54ee6c856"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 5
+              },
+              "baselineSourceIds": [
+                "r01_c11_p04_01_v03",
+                "r01_c10_p04_04_v03"
+              ],
+              "baselineSourceSha256": [
+                "8be598e5fefeba27a29735f9547feef143f140cb268f8fb99ba99dcf357e8d25",
+                "157063df4d29ea90586495c619be284e87d2eda9e683733446220bb54ee6c856"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p03_01",
+              "side": "left",
+              "neighborCoordinate": "r01_c10_p03_04",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p03_01",
+                  "id": "r01_c11_p03_01_v02",
+                  "sha256": "fe330f3c5682d0c04a39dca2d44f763f46045b875193998e7af202e70b632299"
+                },
+                {
+                  "coordinate": "r01_c10_p03_04",
+                  "id": "r01_c10_p03_04_v03",
+                  "sha256": "8dc7fd5b7568d62785e62e271d1cf6e2e5c5aca7ba2aac05dbce79dbeab6e508"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 6
+              },
+              "baselineSourceIds": [
+                "r01_c11_p03_01_v02",
+                "r01_c10_p03_04_v03"
+              ],
+              "baselineSourceSha256": [
+                "fe330f3c5682d0c04a39dca2d44f763f46045b875193998e7af202e70b632299",
+                "8dc7fd5b7568d62785e62e271d1cf6e2e5c5aca7ba2aac05dbce79dbeab6e508"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p03_04",
+              "side": "right",
+              "neighborCoordinate": "r01_c12_p03_01",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p03_04",
+                  "id": "r01_c11_p03_04_v08",
+                  "sha256": "1bb776d60fbd4e7e5d92e2370b50a635f59d6d18e954db6a061aa3ba4a6bfacd"
+                },
+                {
+                  "coordinate": "r01_c12_p03_01",
+                  "id": "r01_c12_p03_01_v05",
+                  "sha256": "0e2dd6d3554952d95eeaba0980ec4a693c19f14aea135b19bafb2eb9563cdac0"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 7
+              },
+              "baselineSourceIds": [
+                "r01_c11_p03_04_v03",
+                "r01_c12_p03_01_v05"
+              ],
+              "baselineSourceSha256": [
+                "8f650de3f83aaa3d41ee986b0466c5a5de5387cf6a6c5a52a3ba3ba8465b2e58",
+                "0e2dd6d3554952d95eeaba0980ec4a693c19f14aea135b19bafb2eb9563cdac0"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": false,
+              "worldBoundary": false,
+              "status": "passed_joint_right_delta_plus_water_unchanged_right_perimeter",
+              "geometryPass": true,
+              "appearancePass": true,
+              "deltaAuthorities": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/native/r01_c11_p03_04_v07.png.derivation.json",
+                  "sha256": "70746f394326297bc26a0cd9c5e3d08d8d007f272e0418b4393e3fb57bc740ad"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/joint-repairs/r01_c11_p02_04_p03_04-a01/review-v001.json",
+                  "sha256": "8bd762b2e2b6911449edad8d0b647d0de3f46e81cb62a6f7de599a9809169e8f",
+                  "region": "right"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/water-native-overlap/adoption-pixel-proof-v001.json",
+                  "sha256": "d806b760ad70e11f047eed9b531962ac52c8a044176485ee898280b96db21a59"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/water-native-overlap/proposal-qa-v001.json",
+                  "sha256": "d0612dca86e0e55fd2a01687327c17f10b698eb9ef84093102669f433553dc23"
+                }
+              ],
+              "reason": "v03->v07 top512 changes were covered by actual joint right pass against unchanged c12p03_01v05. Water v07->v08 right full-perimeter proof changedPixels=0; worker actually viewed that full perimeter. Parent-only view list is not expanded by this reuse.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p02_04",
+              "side": "right",
+              "neighborCoordinate": "r01_c12_p02_01",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p02_04",
+                  "id": "r01_c11_p02_04_v02",
+                  "sha256": "ff390bece3fd39a058e348eb3b8432ce80708aeb12fc4b07dff9a9e9be438efd"
+                },
+                {
+                  "coordinate": "r01_c12_p02_01",
+                  "id": "r01_c12_p02_01_v02",
+                  "sha256": "bb2a0973fd0b33174a7584d04fb0487cdd666ceb52c4a7b9b3828961f56476bc"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 8
+              },
+              "baselineSourceIds": [
+                "r01_c11_p02_04_v01",
+                "r01_c12_p02_01_v02"
+              ],
+              "baselineSourceSha256": [
+                "cf96a63027e0c7245845ee5d354a68ba03814cc9e16f71f80b54810b44c4daac",
+                "bb2a0973fd0b33174a7584d04fb0487cdd666ceb52c4a7b9b3828961f56476bc"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": false,
+              "worldBoundary": false,
+              "status": "passed_bounded_joint_right_delta",
+              "geometryPass": true,
+              "appearancePass": true,
+              "deltaAuthorities": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/native/r01_c11_p02_04_v02.png.derivation.json",
+                  "sha256": "f66d037ab0172cbca01e12d46f58bd4f8b4397971f570af05590f2eaac11a48b"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/joint-repairs/r01_c11_p02_04_p03_04-a01/review-v001.json",
+                  "sha256": "8bd762b2e2b6911449edad8d0b647d0de3f46e81cb62a6f7de599a9809169e8f",
+                  "region": "right"
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/joint-repairs/r01_c11_p02_04_p03_04-a01/root-retain-central-gain-review-v001.json",
+                  "sha256": "e00c867e8566571f661ea91535dfe0c8577aac389e5d75eee2a7c037c1f997e9"
+                }
+              ],
+              "reason": "v02 changes only own lower512; exact unchanged upper half retains baseline pass. Actual joint right1024 review covers every changed own lower-half pixel against the same c12p02_01v02 neighbor and explicitly passes appearance.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p02_01",
+              "side": "left",
+              "neighborCoordinate": "r01_c10_p02_04",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p02_01",
+                  "id": "r01_c11_p02_01_v02",
+                  "sha256": "77aff95e24f5da0138a23d7b027132222a7adc6bb66c779227b85006230b6feb"
+                },
+                {
+                  "coordinate": "r01_c10_p02_04",
+                  "id": "r01_c10_p02_04_v01",
+                  "sha256": "e73f4765fc25d601dfb3f13fce4f79d9e56e1ddb55061d3fd957efadcabceb03"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 9
+              },
+              "baselineSourceIds": [
+                "r01_c11_p02_01_v02",
+                "r01_c10_p02_04_v01"
+              ],
+              "baselineSourceSha256": [
+                "77aff95e24f5da0138a23d7b027132222a7adc6bb66c779227b85006230b6feb",
+                "e73f4765fc25d601dfb3f13fce4f79d9e56e1ddb55061d3fd957efadcabceb03"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p01_01",
+              "side": "top",
+              "neighborCoordinate": null,
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p01_01",
+                  "id": "r01_c11_p01_01_v01",
+                  "sha256": "34cc8c079bbbdda76640e1f25909f8462e431df7de82c06fce6dffac01dbbc35"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 10
+              },
+              "baselineSourceIds": [
+                "r01_c11_p01_01_v01"
+              ],
+              "baselineSourceSha256": [
+                "34cc8c079bbbdda76640e1f25909f8462e431df7de82c06fce6dffac01dbbc35"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": true,
+              "status": "world_boundary_no_adjacent_tile_join_required",
+              "geometryPass": null,
+              "appearancePass": null,
+              "joinPassNotApplicable": true,
+              "reason": "Top worldy0; no northern neighbor exists by14x14 coordinate contract. Do not count missing neighbor or turn this exemption into visual edge-finish acceptance. Native whole-tile top-edge finish remains part of parent whole-tile review.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "world_boundary_no_neighbor_join_required",
+              "worldEdgeWholeTileReview": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/parent-current49-review-v001.json",
+                "sha256": "69b3a9a68b91e9984eab0700fc3961e322065c0a9961c9cc3e77e9fee214eb64"
+              },
+              "nativeExternalJoinPassClaimed": false
+            },
+            {
+              "coordinate": "r01_c11_p01_01",
+              "side": "left",
+              "neighborCoordinate": "r01_c10_p01_04",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p01_01",
+                  "id": "r01_c11_p01_01_v01",
+                  "sha256": "34cc8c079bbbdda76640e1f25909f8462e431df7de82c06fce6dffac01dbbc35"
+                },
+                {
+                  "coordinate": "r01_c10_p01_04",
+                  "id": "r01_c10_p01_04_v03",
+                  "sha256": "1e508959b10cc54a90e3ca8ac9e1c4bc0103e8d316e37efa3205f7e797ffc78e"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 11
+              },
+              "baselineSourceIds": [
+                "r01_c11_p01_01_v01",
+                "r01_c10_p01_04_v03"
+              ],
+              "baselineSourceSha256": [
+                "34cc8c079bbbdda76640e1f25909f8462e431df7de82c06fce6dffac01dbbc35",
+                "1e508959b10cc54a90e3ca8ac9e1c4bc0103e8d316e37efa3205f7e797ffc78e"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            },
+            {
+              "coordinate": "r01_c11_p01_02",
+              "side": "top",
+              "neighborCoordinate": null,
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p01_02",
+                  "id": "r01_c11_p01_02_v01",
+                  "sha256": "06979268a554e7703432d82f563c4dfc9d9ca03d220332ae174470305ec33ca9"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 12
+              },
+              "baselineSourceIds": [
+                "r01_c11_p01_02_v01"
+              ],
+              "baselineSourceSha256": [
+                "06979268a554e7703432d82f563c4dfc9d9ca03d220332ae174470305ec33ca9"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": true,
+              "status": "world_boundary_no_adjacent_tile_join_required",
+              "geometryPass": null,
+              "appearancePass": null,
+              "joinPassNotApplicable": true,
+              "reason": "Top worldy0; no northern neighbor exists by14x14 coordinate contract. Do not count missing neighbor or turn this exemption into visual edge-finish acceptance. Native whole-tile top-edge finish remains part of parent whole-tile review.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "world_boundary_no_neighbor_join_required",
+              "worldEdgeWholeTileReview": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/parent-current49-review-v001.json",
+                "sha256": "69b3a9a68b91e9984eab0700fc3961e322065c0a9961c9cc3e77e9fee214eb64"
+              },
+              "nativeExternalJoinPassClaimed": false
+            },
+            {
+              "coordinate": "r01_c11_p01_03",
+              "side": "top",
+              "neighborCoordinate": null,
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p01_03",
+                  "id": "r01_c11_p01_03_v01",
+                  "sha256": "f9af8fdd76f89d8279e09a762e0cb1489f16253996b268e7066c64d30d33d530"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 13
+              },
+              "baselineSourceIds": [
+                "r01_c11_p01_03_v01"
+              ],
+              "baselineSourceSha256": [
+                "f9af8fdd76f89d8279e09a762e0cb1489f16253996b268e7066c64d30d33d530"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": true,
+              "status": "world_boundary_no_adjacent_tile_join_required",
+              "geometryPass": null,
+              "appearancePass": null,
+              "joinPassNotApplicable": true,
+              "reason": "Top worldy0; no northern neighbor exists by14x14 coordinate contract. Do not count missing neighbor or turn this exemption into visual edge-finish acceptance. Native whole-tile top-edge finish remains part of parent whole-tile review.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "world_boundary_no_neighbor_join_required",
+              "worldEdgeWholeTileReview": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/parent-current49-review-v001.json",
+                "sha256": "69b3a9a68b91e9984eab0700fc3961e322065c0a9961c9cc3e77e9fee214eb64"
+              },
+              "nativeExternalJoinPassClaimed": false
+            },
+            {
+              "coordinate": "r01_c11_p01_04",
+              "side": "top",
+              "neighborCoordinate": null,
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p01_04",
+                  "id": "r01_c11_p01_04_v01",
+                  "sha256": "886c667a815c9ce130f3d75b8cbda6a30570a1d77efd484317ff34f43bc66470"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 14
+              },
+              "baselineSourceIds": [
+                "r01_c11_p01_04_v01"
+              ],
+              "baselineSourceSha256": [
+                "886c667a815c9ce130f3d75b8cbda6a30570a1d77efd484317ff34f43bc66470"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": true,
+              "status": "world_boundary_no_adjacent_tile_join_required",
+              "geometryPass": null,
+              "appearancePass": null,
+              "joinPassNotApplicable": true,
+              "reason": "Top worldy0; no northern neighbor exists by14x14 coordinate contract. Do not count missing neighbor or turn this exemption into visual edge-finish acceptance. Native whole-tile top-edge finish remains part of parent whole-tile review.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "world_boundary_no_neighbor_join_required",
+              "worldEdgeWholeTileReview": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/parent-current49-review-v001.json",
+                "sha256": "69b3a9a68b91e9984eab0700fc3961e322065c0a9961c9cc3e77e9fee214eb64"
+              },
+              "nativeExternalJoinPassClaimed": false
+            },
+            {
+              "coordinate": "r01_c11_p01_04",
+              "side": "right",
+              "neighborCoordinate": "r01_c12_p01_01",
+              "currentSources": [
+                {
+                  "coordinate": "r01_c11_p01_04",
+                  "id": "r01_c11_p01_04_v01",
+                  "sha256": "886c667a815c9ce130f3d75b8cbda6a30570a1d77efd484317ff34f43bc66470"
+                },
+                {
+                  "coordinate": "r01_c12_p01_01",
+                  "id": "r01_c12_p01_01_v02",
+                  "sha256": "00edceb984ff0e6a80a767e7283628b232fef2c84524912e52b9f381ad4c6c41"
+                }
+              ],
+              "baselineAuthority": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/reviews-input/column11-external-current-audit-v004.json",
+                "sha256": "796984a80b0e27cecff93c711e49402661ae333ef7f711c78c63317e0165f649",
+                "entryIndex": 15
+              },
+              "baselineSourceIds": [
+                "r01_c11_p01_04_v01",
+                "r01_c12_p01_01_v02"
+              ],
+              "baselineSourceSha256": [
+                "886c667a815c9ce130f3d75b8cbda6a30570a1d77efd484317ff34f43bc66470",
+                "00edceb984ff0e6a80a767e7283628b232fef2c84524912e52b9f381ad4c6c41"
+              ],
+              "currentSourceHashesExactlyMatchBaseline": true,
+              "worldBoundary": false,
+              "status": "passed_reuse_same_current_source_hashes",
+              "geometryPass": true,
+              "appearancePass": true,
+              "reason": "Own and neighbor current selected hashes both match explicit local native-strip pass; no whole-neighbor-tile signoff implied.",
+              "requirementSatisfied": true,
+              "finalAuthorityMode": "reuse_prior_current_source_bound_pass_or_bounded_delta"
+            }
+          ],
+          "remainingRegionPhysicalIssues": 15,
+          "cumulativeThisTurnResolvedPhysicalIssues": 4
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/parent-current49-review-v001.json",
+        "record": {
+          "formalAccepted": true,
+          "acceptedOwnedTileCountAfterThisDecision": 1,
+          "ownedBatchFormalAccepted": false,
+          "globalFullMapAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/parent-current49-review-v001.json",
+    "sourceSha256": "69b3a9a68b91e9984eab0700fc3961e322065c0a9961c9cc3e77e9fee214eb64",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "recordedAtUtc": "2026-10-23T08:39:33.477980+00:00",
+      "reviewer": "/root",
+      "tile": "r01_c11",
+      "authoritySource": "Trusted explicit parent collaboration instruction to prepare this finalization after actual viewing; script execution publishes that declared decision.",
+      "actualViewTimeUtc": null,
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png",
+        "sha256": "f16b42d3b563263513e3b058da3e0d1b1eb899ffbd55ba621218ed9fc465af72"
+      },
+      "selection": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/selections/r01_c11/selection-v023.json",
+        "sha256": "0711e37718ec52996df7366955359cf71530ebfa4a47d0976f4496ea8d162c38"
+      },
+      "actualNativeWindowsViewed": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/p02_03__p02_04-full-contact-native384x1024.png",
+          "sha256": "eb27ee88f7c5b6988faee35dc69f9594b2f53f37a7a25dcddefd57ffd2804fa9",
+          "dimensions": [
+            384,
+            1024
+          ],
+          "tileLocalBox": [
+            2880,
+            1024,
+            3264,
+            2048
+          ],
+          "worldBox": [
+            43840,
+            1024,
+            44224,
+            2048
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png",
+            "sha256": "f16b42d3b563263513e3b058da3e0d1b1eb899ffbd55ba621218ed9fc465af72",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "resized": false,
+          "filtered": false,
+          "newModelGenerated": false,
+          "newModelCalls": 0,
+          "operation": "PIL.Image.crop only"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/j23-current-native512.png",
+          "sha256": "a3954ea1071b680ec1ded549cf9de37180f236714dc9ba5f4d1af7a1cfe212b4",
+          "dimensions": [
+            512,
+            512
+          ],
+          "tileLocalBox": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "worldBox": [
+            43776,
+            1792,
+            44288,
+            2304
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png",
+            "sha256": "f16b42d3b563263513e3b058da3e0d1b1eb899ffbd55ba621218ed9fc465af72",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "resized": false,
+          "filtered": false,
+          "newModelGenerated": false,
+          "newModelCalls": 0,
+          "operation": "PIL.Image.crop only"
+        }
+      ],
+      "wholeTileActuallyViewed": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r01_c11-v004.png",
+        "sha256": "f16b42d3b563263513e3b058da3e0d1b1eb899ffbd55ba621218ed9fc465af72",
+        "sourceDimensions": [
+          4096,
+          4096
+        ],
+        "hostDisplayedDimensionsDeclaredByParent": [
+          3200,
+          3200
+        ],
+        "nativePixelInspectionClaimed": false,
+        "meaning": "Parent actually viewed current whole tile through host downscaled4096-to3200 display. This is not a whole-tile1:1 native view."
+      },
+      "nativeWindowFindings": [
+        {
+          "requirement": "internal_seam",
+          "issueId": "r01_c11_p02_03__r01_c11_p02_04",
+          "tileLocalBox": [
+            2880,
+            1024,
+            3264,
+            2048
+          ],
+          "geometryPass": true,
+          "appearancePass": true,
+          "finding": "完整1024接触白色caustic贯通，无确认直线/折线贴块或断光。"
+        },
+        {
+          "requirement": "internal_crosspoint",
+          "tileLocalPoint": [
+            3072,
+            2048
+          ],
+          "tileLocalBox": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "geometryPass": true,
+          "appearancePass": true,
+          "finding": "当前j23原尺寸512窗口无硬四象限切口、重影或断光。"
+        }
+      ],
+      "wholeTileFinding": "当前完整tile显示未见新增布局断层、矩形拼贴或材质带。",
+      "documentaryAudit": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/qa/r01_c11-acceptance-eligibility-20261022-v001.json",
+        "sha256": "938cc49a616e2be078a71f96f7338fcb265c7f7ba293de4a05631ceb9831fc1d"
+      },
+      "independentCurrentWindowReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/status/finish-next-20261022/r01c11-acceptance-inputs/independent-current-two-window-review-v001.json",
+        "sha256": "57f906487350abff57989a52ade5b52ee73e5527912b30941e65d0fd4b40b5ab"
+      },
+      "otherRequiredChecks": "23 other internal seams,8 other internal crosspoints and12 external neighbor joins reuse the exact current-source-bound pass/delta records;4 top world boundaries need no adjacent join.",
+      "decision": "formal_accept_one_exact_r01_c11_tile_only",
+      "formalAccepted": true,
+      "acceptedOwnedTileCountAfterThisDecision": 1,
+      "ownedTileCount": 6,
+      "ownedBatchFormalAccepted": false,
+      "contractComplete": false,
+      "globalFullMapAccepted": false,
+      "sourceSelectionOrCandidateChanged": false
+    }
+  }
+}

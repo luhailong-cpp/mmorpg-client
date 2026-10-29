@@ -1,0 +1,634 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 15,
+  "column": 14,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "691dbdc49f3e1c3e30b8fb696efcaa9648fed86542f0e3779ef388ae3b8ec76b",
+  "imageBytes": 25603189,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/candidate/r15_c14-4k-north-orphan-v12-20261013.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/candidate/latest-assembly.json",
+  "sourceLedgerSha256": "8921e10ae226588e2bbd0ea8dba8e02801828d16b633b1c4a05e6742dfc84574",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": {
+    "north": "structure_pass_finish_pending",
+    "west": "structure_pass_finish_pending",
+    "east": "pending_neighbor_joint_review",
+    "south": "pending_neighbor_joint_review"
+  },
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r15_c14",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/candidate/r15_c14-4k-north-orphan-v12-20261013.png",
+    "imageSha256": "691dbdc49f3e1c3e30b8fb696efcaa9648fed86542f0e3779ef388ae3b8ec76b",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/candidate/latest-assembly.json",
+        "sha256": "8921e10ae226588e2bbd0ea8dba8e02801828d16b633b1c4a05e6742dfc84574",
+        "sourceReviewSha256": "8921e10ae226588e2bbd0ea8dba8e02801828d16b633b1c4a05e6742dfc84574",
+        "completeness": [
+          "Selected output path/SHA bound to this record",
+          "activeNativeCount=16 / coverageSourceCount=16; no missing cores reported"
+        ]
+      }
+    ],
+    "selectionBasis": "Exact candidate identity bound to complete native core record",
+    "sourceStatus": {
+      "status": "internal_structure_pass_external_finish_pending",
+      "internalArtQA": "pass_after_local_native_repair",
+      "externalNeighborSeamQA": {
+        "north": "structure_pass_finish_pending",
+        "west": "structure_pass_finish_pending",
+        "east": "pending_neighbor_joint_review",
+        "south": "pending_neighbor_joint_review"
+      },
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/candidate/latest-assembly.json",
+        "record": {
+          "status": "internal_structure_pass_external_finish_pending",
+          "internalArtQA": "pass_after_local_native_repair",
+          "externalNeighborSeamQA": {
+            "north": "structure_pass_finish_pending",
+            "west": "structure_pass_finish_pending",
+            "east": "pending_neighbor_joint_review",
+            "south": "pending_neighbor_joint_review"
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/progress.json",
+        "record": {
+          "status": "internal_structure_pass_external_finish_pending",
+          "formalAccepted": false,
+          "internalArtQA": "pass_after_local_native_repair",
+          "externalNeighborSeamQA": {
+            "north": "structure_pass_finish_pending",
+            "west": "structure_pass_finish_pending",
+            "east": "pending_neighbor_joint_review",
+            "south": "pending_neighbor_joint_review"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/north-orphan-v12-20261013/visual-qa.json",
+        "record": {
+          "internalArtQA": "pass_after_local_native_repair",
+          "externalNeighborSeamQA": {
+            "north": "structure_pass_finish_pending",
+            "west": "structure_pass_finish_pending",
+            "east": "pending_neighbor_joint_review",
+            "south": "pending_neighbor_joint_review"
+          },
+          "formalAccepted": false,
+          "carryForwardInternalQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/internal-repair-v4-20261012/visual-qa.json",
+            "sha256": "2247ff64dfff220dd0a394348ca4bddef97c608fda718a2a0a7a2afcd7d4321b"
+          },
+          "carryForwardReason": "Six complete internal seams and nine junctions already inspected at native pixels; current interior body exact unchanged from internal-pass candidate. North/west first261/180px seam endpoints covered by current 8 core-only joint segments. No repeat historical full-scan.",
+          "reviewedExternalEvidence": [
+            {
+              "edge": "north",
+              "segment": 1,
+              "tileRange": [
+                0,
+                1024
+              ],
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/north-joint-1-100pct.png",
+                "sha256": "1232b4ecaaadb17851529304d3488673b9a7046d37dbde30ddd1e9b1937f41d5"
+              },
+              "native100pct": true
+            },
+            {
+              "edge": "north",
+              "segment": 2,
+              "tileRange": [
+                1024,
+                2048
+              ],
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/north-joint-2-100pct.png",
+                "sha256": "ba3c0767dc85749c1ee33c694f33843875258126653e8336eb30f38900b100c4"
+              },
+              "native100pct": true
+            },
+            {
+              "edge": "north",
+              "segment": 3,
+              "tileRange": [
+                2048,
+                3072
+              ],
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/north-joint-3-100pct.png",
+                "sha256": "421fc5d8e2e2fd033c893f50f9938467be732a0add1a48fc940ecfa79ab67d6a"
+              },
+              "native100pct": true
+            },
+            {
+              "edge": "north",
+              "segment": 4,
+              "tileRange": [
+                3072,
+                4096
+              ],
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/north-joint-4-100pct.png",
+                "sha256": "30964b5cdffafce1c4e2a90fcd3a3d2a325954ebb449115358e06360942762fd"
+              },
+              "native100pct": true
+            },
+            {
+              "edge": "west",
+              "segment": 1,
+              "tileRange": [
+                0,
+                1024
+              ],
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/west-joint-1-100pct.png",
+                "sha256": "7d0e592d235369aec616abd832d68bca80420ac1e3112f7024af0045d3b65391"
+              },
+              "native100pct": true
+            },
+            {
+              "edge": "west",
+              "segment": 2,
+              "tileRange": [
+                1024,
+                2048
+              ],
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/west-joint-2-100pct.png",
+                "sha256": "b490f1fe2cb57c9206453feb1ec90aef0fcf263d10ac88b641ec2ec55cdd8695"
+              },
+              "native100pct": true
+            },
+            {
+              "edge": "west",
+              "segment": 3,
+              "tileRange": [
+                2048,
+                3072
+              ],
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/west-joint-3-100pct.png",
+                "sha256": "b1e2d902751ef3d4ae7daf4eb8148f4d541b18634e4eb848a8f8e3428d9dd09c"
+              },
+              "native100pct": true
+            },
+            {
+              "edge": "west",
+              "segment": 4,
+              "tileRange": [
+                3072,
+                4096
+              ],
+              "image": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/west-joint-4-100pct.png",
+                "sha256": "7c57d71566abc6b4dfe35c7787b401647daf435c12ffe4d6a954c1399ea6e2ac"
+              },
+              "native100pct": true
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/repairs/north-orphan-v12-20261013/composition.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "pending_visual_qa"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/candidate/selection-20261013.json",
+        "record": {
+          "status": "internal_structure_pass_external_finish_pending",
+          "internalArtQA": "pass_after_local_native_repair",
+          "externalNeighborSeamQA": {
+            "north": "structure_pass_finish_pending",
+            "west": "structure_pass_finish_pending",
+            "east": "pending_neighbor_joint_review",
+            "south": "pending_neighbor_joint_review"
+          },
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/north-orphan-v12-20261013/visual-qa.json",
+    "sourceSha256": "77d39ed0d5b181ad10a5641fe598b534937c85bc90f6d04bf0d21327cc8930bf",
+    "normalizedDocument": {
+      "tile": "r15_c14",
+      "reviewedAt": "2026-10-13T10:10:11.851317+00:00",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/candidate/r15_c14-4k-north-orphan-v12-20261013.png",
+        "sha256": "691dbdc49f3e1c3e30b8fb696efcaa9648fed86542f0e3779ef388ae3b8ec76b"
+      },
+      "context": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/candidate/r15_c14-context-4326-north-orphan-v12-20261013.png",
+        "sha256": "f256930de58dc9ac38255b95145806d05539ff9d2fc864e93dfaf06f4099af18"
+      },
+      "internalArtQA": "pass_after_local_native_repair",
+      "northStructureQA": "pass_after_native_orphan_removal",
+      "westStructureQA": "pass_after_native_inlay_end_cap",
+      "externalNeighborSeamQA": {
+        "north": "structure_pass_finish_pending",
+        "west": "structure_pass_finish_pending",
+        "east": "pending_neighbor_joint_review",
+        "south": "pending_neighbor_joint_review"
+      },
+      "formalAccepted": false,
+      "carryForwardInternalQA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/internal-repair-v4-20261012/visual-qa.json",
+        "sha256": "2247ff64dfff220dd0a394348ca4bddef97c608fda718a2a0a7a2afcd7d4321b"
+      },
+      "carryForwardFullSeamsAndJunctions": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/assembly-c7fe4d0fb7016f67422f/visual-qa.json",
+        "sha256": "25922716724a6d33824c105e574e2ae8e4b97ab8ab70f77ab2f2944edf7d0b72"
+      },
+      "carryForwardReason": "Six complete internal seams and nine junctions already inspected at native pixels; current interior body exact unchanged from internal-pass candidate. North/west first261/180px seam endpoints covered by current 8 core-only joint segments. No repeat historical full-scan.",
+      "reviewedExternalEvidence": [
+        {
+          "edge": "north",
+          "segment": 1,
+          "tileRange": [
+            0,
+            1024
+          ],
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/north-joint-1-100pct.png",
+            "sha256": "1232b4ecaaadb17851529304d3488673b9a7046d37dbde30ddd1e9b1937f41d5"
+          },
+          "native100pct": true
+        },
+        {
+          "edge": "north",
+          "segment": 2,
+          "tileRange": [
+            1024,
+            2048
+          ],
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/north-joint-2-100pct.png",
+            "sha256": "ba3c0767dc85749c1ee33c694f33843875258126653e8336eb30f38900b100c4"
+          },
+          "native100pct": true
+        },
+        {
+          "edge": "north",
+          "segment": 3,
+          "tileRange": [
+            2048,
+            3072
+          ],
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/north-joint-3-100pct.png",
+            "sha256": "421fc5d8e2e2fd033c893f50f9938467be732a0add1a48fc940ecfa79ab67d6a"
+          },
+          "native100pct": true
+        },
+        {
+          "edge": "north",
+          "segment": 4,
+          "tileRange": [
+            3072,
+            4096
+          ],
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/north-joint-4-100pct.png",
+            "sha256": "30964b5cdffafce1c4e2a90fcd3a3d2a325954ebb449115358e06360942762fd"
+          },
+          "native100pct": true
+        },
+        {
+          "edge": "west",
+          "segment": 1,
+          "tileRange": [
+            0,
+            1024
+          ],
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/west-joint-1-100pct.png",
+            "sha256": "7d0e592d235369aec616abd832d68bca80420ac1e3112f7024af0045d3b65391"
+          },
+          "native100pct": true
+        },
+        {
+          "edge": "west",
+          "segment": 2,
+          "tileRange": [
+            1024,
+            2048
+          ],
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/west-joint-2-100pct.png",
+            "sha256": "b490f1fe2cb57c9206453feb1ec90aef0fcf263d10ac88b641ec2ec55cdd8695"
+          },
+          "native100pct": true
+        },
+        {
+          "edge": "west",
+          "segment": 3,
+          "tileRange": [
+            2048,
+            3072
+          ],
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/west-joint-3-100pct.png",
+            "sha256": "b1e2d902751ef3d4ae7daf4eb8148f4d541b18634e4eb848a8f8e3428d9dd09c"
+          },
+          "native100pct": true
+        },
+        {
+          "edge": "west",
+          "segment": 4,
+          "tileRange": [
+            3072,
+            4096
+          ],
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/edge-geometry-v10-20261013/west-joint-4-100pct.png",
+            "sha256": "7c57d71566abc6b4dfe35c7787b401647daf435c12ffe4d6a954c1399ea6e2ac"
+          },
+          "native100pct": true
+        }
+      ],
+      "reviewedNewNativeEvidence": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/repairs/north-orphan-v12-20261013/detail-after-100pct.png",
+          "sha256": "6f85c6799b49760c22d2984ad3869775eb869464fe7d10429ed9dd2c5b6863cd"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/repairs/north-orphan-v12-20261013/after-core-only-native-1254.png",
+          "sha256": "f2ade7d480da38e08a91a18c4249b3ea6126f35f7ce4d7f20dc3d81a625108a7"
+        }
+      ],
+      "neighborSelections": {
+        "north": {
+          "schemaVersion": 2,
+          "tile": "r14_c14",
+          "status": "far_east_native_repair_published_remaining_north_west_pending",
+          "publishedAt": "2026-10-12T13:50:17.480956+00:00",
+          "candidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c14/candidate/r14_c14-4k-north-far-east-ledges-20261012-v1-root-reviewed.png",
+            "sha256": "7288055c3509f4603e3006cd23914d5c4acae499180bd79869aafcf40cde8af3",
+            "pixels": [
+              4096,
+              4096
+            ]
+          },
+          "context": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c14/candidate/r14_c14-context-4326-north-far-east-ledges-20261012-v1-root-reviewed.png",
+            "sha256": "e12be854d474e2c9a222a32b6031942000393c2bac765f97ab7b7fdbb21653e9",
+            "pixels": [
+              4326,
+              4326
+            ]
+          },
+          "manifest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c14/candidate/r14_c14-north-far-east-ledges-20261012-v1-selected-manifest.json",
+            "sha256": "f859f6bd2bbac3fc40d79a6bef46a4b30db0eba23e0b3f0fdafd1a9f8ffb7b55"
+          },
+          "initialAssembly": {
+            "schemaVersion": 1,
+            "tile": "r14_c14",
+            "status": "candidate_pending_internal_and_external_visual_review",
+            "manifest": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c14/candidate/r14_c14-assembly-8ff54f4e9ec7de483b1a.json",
+              "sha256": "56597f887761127268b9f1e8cfad460a6ec0b22fcc41cf3526877316be3bd011"
+            },
+            "assemblyIdentitySha256": "8ff54f4e9ec7de483b1a479fb50541d07f1a8b3d1cda75a6990f7a40ecd29096",
+            "context": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c14/candidate/r14_c14-context-4326-8ff54f4e9ec7de483b1a.png",
+              "sha256": "d2fc547c04e93cea90d70a8cb1cf9018257207f68d75ee9a9c69c7ac7d34e238",
+              "size": [
+                4326,
+                4326
+              ]
+            },
+            "candidate": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c14/candidate/r14_c14-4k-candidate-8ff54f4e9ec7de483b1a.png",
+              "sha256": "afb8859139b8321fbf3f6f96e2fd463de445b40ab2b1489e3226452893df1aed",
+              "size": [
+                4096,
+                4096
+              ]
+            },
+            "formalAccepted": false
+          },
+          "localPassedRepairs": [
+            "I01",
+            "I02",
+            "I03",
+            "I04",
+            "I05",
+            "I06",
+            "I07"
+          ],
+          "remainingInternal": [],
+          "reservedCorner": [
+            0,
+            0,
+            630,
+            630
+          ],
+          "reservedCornerUnchanged": true,
+          "externalNeighborSeamQA": "far_east_local_pass_old_north_endpoint_and_west_pending",
+          "formalAccepted": false,
+          "latestWestRepair": "west-lower-complete-joint-v2-20261011",
+          "rootLatestRepairQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r14_c14/repairs/north-far-east-ledges-20261012-v1/root-visual-qa-20261013.json",
+            "sha256": "a4fca82f281b8558d88b7e6f80b68762e8c3d0946ce2354b4fb5fa2c8c67169d"
+          },
+          "currentVersion": "north-far-east-ledges-20261012-v1",
+          "currentPatch": null,
+          "updatedAt": "2026-10-13T04:18:32.616142+00:00",
+          "nextStep": "Resolve old north x2842/2874 transition and frozen common corner through a verified GPT Image 2.5 route; no whole-edge acceptance."
+        },
+        "west": {
+          "schemaVersion": 2,
+          "tile": "r15_c13",
+          "status": "candidate_north_halo24_local_pass_pending_neighbor_review",
+          "manifest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/candidate/r15_c13-native-halo24-v4-20261012-manifest.json",
+            "sha256": "733231fce8a0efd25633aa3e3923d70f98820aba204d0109c7c402f7e0e33df8"
+          },
+          "candidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/candidate/r15_c13-4k-native-halo24-v4-20261012.png",
+            "sha256": "c7d01db8f1c02de10c81f230c68331021b5dc6e676190802ae2b9bdcf7e4e51f",
+            "size": [
+              4096,
+              4096
+            ]
+          },
+          "context": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/candidate/r15_c13-context-4326-native-halo24-v4-20261012.png",
+            "sha256": "b03ec9ec79491543de3a67afa23d9c15a73da7d842e35b615b9d153b3613cfc3",
+            "size": [
+              4326,
+              4326
+            ]
+          },
+          "formalAccepted": false,
+          "internalArtQA": "structure_pass_carried_forward_stone_finish_pass_affected_north_junctions_local_pass",
+          "externalNeighborSeamQA": "north_local_pass_with_texture_watch; east_south_west_joint_pending",
+          "visualQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/repairs-resume-20261012/local-qa/native-halo24-v4-visual-qa.json",
+            "sha256": "4b70bc02a9b67b209b0816ca44e4179eb9cb69422565186f032ac031653c758c"
+          },
+          "verification": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/repairs-resume-20261012/local-qa/native-halo24-v4-verification.json",
+            "sha256": "250eef4de3fa8e7d51a08ad40383ab81fee1f4173ee2b6988900968468b1e719"
+          },
+          "nativeActualOutputCount": 25,
+          "activeNativeCount": 16,
+          "activeRepairNativeCount": 1,
+          "reusedNeighborNativeCount": 4,
+          "unadoptedNewNativeCount": 7,
+          "remainingQA": [
+            {
+              "id": "north-independent-joint-review",
+              "status": "north_local_pass_with_texture_watch",
+              "tileBox": [
+                0,
+                0,
+                3254,
+                24
+              ],
+              "description": "Four native north quarters and three edge/internal junctions reviewed: original straight material band removed by actual r14 row4 native halo crop with saved 24px alpha; no visible geometry break or double edge. Root independent acceptance remains pending. This validates only this exact narrow use, not the full halo.",
+              "independentReview": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/repairs-resume-20261012/local-qa/root-independent-north-review-20261012.json",
+                "sha256": "cd186aec6b543f5907adb91a7519758941a9a4b224a596ba260fe45419e14acc"
+              }
+            },
+            {
+              "id": "other-neighbor-joints",
+              "status": "not_joint_reviewed",
+              "edges": [
+                "east",
+                "south",
+                "west"
+              ],
+              "description": "All four standalone outer edges inspected at native pixels; east/south/west require neighboring current candidates for full joint acceptance."
+            }
+          ],
+          "selectionReason": "Stone native repair plus verified native northern halo24 integer crop/alpha. No RGB correction or rejected northern source adopted.",
+          "replayScript": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/replay_native_halo24_v4_20261012.py",
+            "sha256": "876b448d653d0d41d60a097fa95cb98a84d5e643cabbc71b0d4fefb222d22154"
+          },
+          "latestAlternativeReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/repairs-resume-20261012/local-qa/retry1-vs-native-halo24-review.json",
+            "sha256": "ed41ef13d44c087614ea9d5a5220443490ea96f87d71df90d702acb429ac8913"
+          },
+          "independentNorthQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c13/repairs-resume-20261012/local-qa/root-independent-north-review-20261012.json",
+            "sha256": "cd186aec6b543f5907adb91a7519758941a9a4b224a596ba260fe45419e14acc"
+          },
+          "nextStep": "Continue east/south/west neighboring current-core joint review; north local review recorded."
+        }
+      },
+      "resolved": [
+        {
+          "id": "N01",
+          "result": "Raw blue inlay cut ends now have closed stone bevel caps."
+        },
+        {
+          "id": "W01",
+          "result": "Upper and middle blue inlay ends closed against immutable west core. WM2 native fix locally adopted at [0,1115,180,1530]."
+        },
+        {
+          "id": "N03",
+          "result": "Orphan upward-right diagonal grout at [3860,0,4096,261] removed; long diagonal joint retained. Native1254 last output applied only on new tile side."
+        }
+      ],
+      "remainingQA": [
+        {
+          "id": "N02-material",
+          "status": "deferred_not_passed",
+          "severity": "nonblocking_finish",
+          "box": [
+            0,
+            0,
+            3900,
+            180
+          ],
+          "description": "Some north joins retain a brush-grain/finish transition; existing grout and blue inlay end caps are closed. NM1 altered horizontal border geometry; NM2/NM3 had no clear finish gain, so all three are preserved unselected."
+        },
+        {
+          "id": "W02-material",
+          "status": "deferred_not_passed",
+          "severity": "nonblocking_finish",
+          "boxes": [
+            [
+              0,
+              0,
+              180,
+              180
+            ],
+            [
+              0,
+              1330,
+              180,
+              1800
+            ],
+            [
+              0,
+              2842,
+              180,
+              3981
+            ]
+          ],
+          "description": "Narrow vertical finish/value difference remains, clearest on lower walkway near y3390..3460. Current lantern, wall, inlay bevel and pavement joint topology continuous. Preserve protected south115."
+        },
+        {
+          "id": "layout-blue-inlay",
+          "status": "review_pending",
+          "box": [
+            0,
+            0,
+            3350,
+            2800
+          ],
+          "description": "Generated blue-grey inlay differs from layout-only paving. Flush ground; no character-size or capacity inference. Existing layout deviation carried forward."
+        },
+        {
+          "id": "east-south-joint",
+          "status": "pending_neighbor_review",
+          "edges": [
+            "east",
+            "south"
+          ],
+          "description": "Standalone edges previously reviewed; current adjacent selected core joint review pending. Do not infer formal acceptance."
+        }
+      ],
+      "verification": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c14/review/north-orphan-v12-20261013/replay-validation.json",
+        "sha256": "44083a58c0079e34a33043560af8924b0c1938fc7b04ad4ec98e8f7de062b38e"
+      },
+      "actualNativeOutputCount": 36,
+      "activeOriginalNativeCount": 16,
+      "repairNativeOutputsGenerated": 19,
+      "selectedRepairNativeSources": 14,
+      "unadoptedRepairOutputs": 5,
+      "actualModel": null,
+      "actualQuality": null,
+      "route": "builtin"
+    }
+  }
+}

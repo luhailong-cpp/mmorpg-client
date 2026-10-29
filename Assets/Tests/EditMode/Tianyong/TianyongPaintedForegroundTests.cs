@@ -1,3 +1,4 @@
+using MmorpgClient.World.CurrentMaps;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
@@ -129,88 +130,49 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void BuiltForeground_SortsBetweenNorthAndSouthActorsAndLeavesGroundEnabled()
+        public void CurrentMainGround_DrawsBelowActorsWithoutLegacyForegrounds()
         {
-            var parent = new GameObject("PaintedForegroundTest");
-            var cameraObject = new GameObject("PaintedForegroundTestCamera", typeof(Camera));
+            var parent = new GameObject("CurrentMapGroundOrdering");
             TianyongMapInstance map = null;
             try
             {
-                var camera = cameraObject.GetComponent<Camera>();
-                camera.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-                map = TianyongMapBuilder.Build(parent.transform, TianyongTheme.City, null);
-                Assert.That(map.Root.GetComponentsInChildren<TianyongPaintedForeground>().Length,
-                    Is.EqualTo(TianyongPaintedForeground.Cutouts.Count));
-                var renderer = FindCutoutRenderer(map, TianyongPaintedForeground.WestLampObjectName);
-                var northActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(163f, 0f, 189f), camera);
-                var southActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(167f, 0f, 182f), camera);
-                Assert.That(renderer.sortingOrder, Is.GreaterThan(northActor));
-                Assert.That(renderer.sortingOrder, Is.LessThan(southActor));
-                Assert.That(renderer.sharedMaterial.renderQueue, Is.EqualTo(3000));
-                Assert.That(renderer.GetComponent<Collider>(), Is.Null);
-
-                Assert.That(TianyongPaintedForeground.SetWestLampVisible(map.Root.transform, false), Is.True);
-                Assert.That(renderer.enabled, Is.False);
-                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.WestLampUpper.Name).enabled, Is.False);
-                var groundTiles = 0;
-                foreach (var ground in map.Root.GetComponentsInChildren<MeshRenderer>())
-                {
-                    if (!ground.name.StartsWith("Tile_r")) continue;
-                    groundTiles++;
-                    Assert.That(ground.enabled, Is.True);
-                }
-                Assert.That(groundTiles, Is.EqualTo(36));
-                Assert.That(TianyongPaintedForeground.SetWestLampVisible(map.Root.transform, true), Is.True);
-                Assert.That(renderer.enabled, Is.True);
-                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.WestLampUpper.Name).enabled, Is.True);
+                map = CurrentMapBuilder.Build(parent.transform, CurrentMapCatalog.Find("main"));
+                var ground = map.Root.transform.Find(CurrentMapBuilder.GroundName).GetComponent<MeshRenderer>();
+                Assert.That(ground.enabled, Is.True);
+                Assert.That(ground.sharedMaterial.renderQueue, Is.EqualTo((int)UnityEngine.Rendering.RenderQueue.Geometry));
+                Assert.That(ground.sharedMaterial.renderQueue, Is.LessThan((int)UnityEngine.Rendering.RenderQueue.Transparent));
+                Assert.That(ground.GetComponent<Collider>(), Is.Null);
+                Assert.That(map.Root.GetComponentsInChildren<TianyongPaintedForeground>(true), Is.Empty);
+                Assert.That(map.Root.transform.Find(TianyongPaintedCity.RootName), Is.Null);
+                Assert.That(map.Navigation.IsWalkable(CurrentMapCatalog.Find("main").Spawn), Is.True);
             }
-            finally
-            {
-                map?.Dispose();
-                Object.DestroyImmediate(cameraObject);
-                Object.DestroyImmediate(parent);
-            }
+            finally { map?.Dispose(); Object.DestroyImmediate(parent); }
         }
 
         [Test]
-        public void BuiltEastLamp_SortsBetweenNorthAndSouthActorsAndTogglesIndependently()
+        public void LegacyForegroundToggle_CannotMutateCurrentMapGroundOrNavigation()
         {
-            var parent = new GameObject("PaintedForegroundEastTest");
-            var cameraObject = new GameObject("PaintedForegroundEastTestCamera", typeof(Camera));
+            var parent = new GameObject("CurrentMapRejectLegacyAppearance");
             TianyongMapInstance map = null;
             try
             {
-                var camera = cameraObject.GetComponent<Camera>();
-                camera.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-                map = TianyongMapBuilder.Build(parent.transform, TianyongTheme.City, null);
-                var east = FindCutoutRenderer(map, TianyongPaintedForeground.EastLampObjectName);
-                var west = FindCutoutRenderer(map, TianyongPaintedForeground.WestLampObjectName);
-                // Same legal side position used by the festival acceptance drive.
-                var northActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(227f, 0f, 189f), camera);
-                var southActor = QdaoBoySpriteAnimator.WorldSortingOrder(new Vector3(233f, 0f, 182f), camera);
-                Assert.That(east.sortingOrder, Is.GreaterThan(northActor));
-                Assert.That(east.sortingOrder, Is.LessThan(southActor));
-                Assert.That(east.sharedMaterial.renderQueue, Is.EqualTo(3000));
-                Assert.That(east.GetComponent<Collider>(), Is.Null, "must not intercept click-to-move rays");
-
-                Assert.That(TianyongPaintedForeground.SetVisible(map.Root.transform,
-                    TianyongPaintedForeground.EastLampObjectName, false), Is.True);
-                Assert.That(east.enabled, Is.False);
-                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.EastLampUpper.Name).enabled, Is.False);
-                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.WestLampUpper.Name).enabled, Is.True);
-                Assert.That(west.enabled, Is.True, "toggling one cutout must leave the others alone");
-                Assert.That(TianyongPaintedForeground.SetVisible(map.Root.transform,
-                    TianyongPaintedForeground.EastLampObjectName, true), Is.True);
-                Assert.That(east.enabled, Is.True);
-                Assert.That(FindCutoutRenderer(map, TianyongPaintedForeground.EastLampUpper.Name).enabled, Is.True);
-                Assert.That(TianyongPaintedForeground.SetVisible(map.Root.transform, "NoSuchCutout", false), Is.False);
+                var main = CurrentMapCatalog.Find("main");
+                map = CurrentMapBuilder.Build(parent.transform, main);
+                var navigation = map.Navigation;
+                var ground = map.Root.transform.Find(CurrentMapBuilder.GroundName).GetComponent<MeshRenderer>();
+                var material = ground.sharedMaterial;
+                foreach (var name in new[] { TianyongPaintedForeground.EastLampObjectName, TianyongPaintedForeground.WestLampObjectName })
+                foreach (var visible in new[] { false, true })
+                {
+                    Assert.That(TianyongPaintedForeground.SetVisible(map.Root.transform, name, visible), Is.False);
+                    Assert.That(ground.enabled, Is.True);
+                    Assert.That(ground.sharedMaterial, Is.SameAs(material));
+                    Assert.That(map.Navigation, Is.SameAs(navigation));
+                    Assert.That(navigation.IsWalkable(main.Spawn), Is.True);
+                }
+                Assert.That(map.Root.GetComponentsInChildren<TianyongPaintedForeground>(true), Is.Empty);
             }
-            finally
-            {
-                map?.Dispose();
-                Object.DestroyImmediate(cameraObject);
-                Object.DestroyImmediate(parent);
-            }
+            finally { map?.Dispose(); Object.DestroyImmediate(parent); }
         }
 
         private static MeshRenderer FindCutoutRenderer(TianyongMapInstance map, string name)

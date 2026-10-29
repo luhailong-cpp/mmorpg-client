@@ -23,7 +23,7 @@ namespace MmorpgClient.Net.Generated
             RpcDone<global::GetActivityListResponse> done)
             => channel.CallMethod(GetActivityListMessageId, request, global::GetActivityListResponse.Parser, done);
 
-        public const uint ClaimActivityVitalityRewardMessageId = 345;
+        public const uint ClaimActivityVitalityRewardMessageId = 348;
         /// <summary>
         /// 重放同一请求同时承担查询恢复；已领取记录优先于当前周期及配置校验。
         /// </summary>

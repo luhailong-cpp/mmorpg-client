@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 1,
+  "column": 4,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "a73d18e8961b20bad064ae5dd37405b43210e71c1bcd32eb5fd3bbf3ac0646d8",
+  "imageBytes": 25677513,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c04_east_water_oct20b_a01_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c04_east_water_oct20b_a01_4096.repair.json",
+  "sourceLedgerSha256": "62c5edeba928d2b18edbad690bfc50cd8c1e39e2134b5c3f38e46330a285a822",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c04_east_water_oct20b_a01_4096.png",
+    "imageSha256": "a73d18e8961b20bad064ae5dd37405b43210e71c1bcd32eb5fd3bbf3ac0646d8",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c04_east_water_oct20b_a01_4096.repair.json",
+        "sha256": "62c5edeba928d2b18edbad690bfc50cd8c1e39e2134b5c3f38e46330a285a822",
+        "sourceReviewSha256": "62c5edeba928d2b18edbad690bfc50cd8c1e39e2134b5c3f38e46330a285a822",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c04_east_water_oct20b_a01_4096.png",
+            "sha256": "a73d18e8961b20bad064ae5dd37405b43210e71c1bcd32eb5fd3bbf3ac0646d8"
+          },
+          "operation": "binary original native shared-crop source ownership",
+          "allSelectedPixelsExactNative": true,
+          "allOtherPixelsExactlyBase": true,
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_treejunction_a01_4096.png",
+            "sha256": "31a63033f14a513a9d61650cab288c0fea3239b8b26db61d0828f77e34f2ce5c"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_treejunction_a01_4096.repair.json",
+        "sha256": "416721aff021d639233c13f1e93af8ef2a1b8d04bf1143fae116a2d1418e7608",
+        "sourceReviewSha256": "416721aff021d639233c13f1e93af8ef2a1b8d04bf1143fae116a2d1418e7608",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_treejunction_a01_4096.png",
+            "sha256": "31a63033f14a513a9d61650cab288c0fea3239b8b26db61d0828f77e34f2ce5c"
+          },
+          "operation": "binary original native shared-crop source ownership",
+          "allSelectedPixelsExactNative": true,
+          "allOtherPixelsExactlyBase": true,
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_topvertical-plus-horizontal-oct19-v01_4096.png",
+            "sha256": "b0fdbdf96d0100b7dfa1309fa3e80c6fbf7fa573e1003cfe32864e0d581d2c0a"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_topvertical-plus-horizontal-oct19-v01_4096.repair.json",
+        "sha256": "625b884e15b81fbcc06f589dc65b6548d39471a307dabe6f4cfd49e9131ee2ae",
+        "sourceReviewSha256": "625b884e15b81fbcc06f589dc65b6548d39471a307dabe6f4cfd49e9131ee2ae",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_topvertical-plus-horizontal-oct19-v01_4096.png",
+            "sha256": "b0fdbdf96d0100b7dfa1309fa3e80c6fbf7fa573e1003cfe32864e0d581d2c0a"
+          },
+          "operation": "exact binary union of independent native source branches",
+          "allMaskedPixelsExactlySource": true,
+          "allUnmaskedPixelsExactlyBase": true,
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s04_a01_4096.png",
+            "sha256": "00e306f0c51a4edb8ee2d94f3217d52aa8609dc0cd7317582d6d8c1214aa62d0"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s04_a01_4096.repair.json",
+        "sha256": "1f90cc7dd77694c02fff9ab6cd8d30ed6f5d7b22cfb4ba066d30fc59a45150d7",
+        "sourceReviewSha256": "1f90cc7dd77694c02fff9ab6cd8d30ed6f5d7b22cfb4ba066d30fc59a45150d7",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s04_a01_4096.png",
+            "sha256": "00e306f0c51a4edb8ee2d94f3217d52aa8609dc0cd7317582d6d8c1214aa62d0"
+          },
+          "operation": "binary original native shared-crop source ownership",
+          "allSelectedPixelsExactNative": true,
+          "allOtherPixelsExactlyBase": true,
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s03_a01_4096.png",
+            "sha256": "8c2de329ed6b1faabb33b5b9d0ca25b15797d5eda6dd5c430fb84166c53044e5"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s03_a01_4096.repair.json",
+        "sha256": "e513429895c01f29e1e90da192832965eb3b099171754ef393b4ef95aa4950b1",
+        "sourceReviewSha256": "e513429895c01f29e1e90da192832965eb3b099171754ef393b4ef95aa4950b1",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s03_a01_4096.png",
+            "sha256": "8c2de329ed6b1faabb33b5b9d0ca25b15797d5eda6dd5c430fb84166c53044e5"
+          },
+          "operation": "binary original native shared-crop source ownership",
+          "allSelectedPixelsExactNative": true,
+          "allOtherPixelsExactlyBase": true,
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s02_a01_4096.png",
+            "sha256": "5c610818d78ac055bf4e664acaf13eeac41d5ef87df0332ba6fa94491d6c281a"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s02_a01_4096.repair.json",
+        "sha256": "7fc0d8afc4ecee55e4e09e54e846a3de6367a653338efe715df77866bb34a1af",
+        "sourceReviewSha256": "7fc0d8afc4ecee55e4e09e54e846a3de6367a653338efe715df77866bb34a1af",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s02_a01_4096.png",
+            "sha256": "5c610818d78ac055bf4e664acaf13eeac41d5ef87df0332ba6fa94491d6c281a"
+          },
+          "operation": "binary original native shared-crop source ownership",
+          "allSelectedPixelsExactNative": true,
+          "allOtherPixelsExactlyBase": true,
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s01_a01_4096.png",
+            "sha256": "d0ce5c0a0b8040f36032c23cbe8e3570645e5a2244e222e5df073468ae61451d"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s01_a01_4096.repair.json",
+        "sha256": "d007dd03f2ed2e951b718804d9a65d0a60e4876846775d320196622b22cdce03",
+        "sourceReviewSha256": "d007dd03f2ed2e951b718804d9a65d0a60e4876846775d320196622b22cdce03",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c03_bridge_c03c04_s01_a01_4096.png",
+            "sha256": "d0ce5c0a0b8040f36032c23cbe8e3570645e5a2244e222e5df073468ae61451d"
+          },
+          "operation": "binary original native shared-crop source ownership",
+          "allSelectedPixelsExactNative": true,
+          "allOtherPixelsExactlyBase": true,
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_candidate-v20_4096.png",
+            "sha256": "b80ae0b43a75d5b9ebbb8da4c292fd6a654283e9fdfc4a9e3b356731dc22a8d0"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_candidate-v20_4096.png.generation.json",
+        "sha256": "0293d94a9d01db96cce3fa4af38e6f986c4cf3879101c0a857f4db9951a2929e",
+        "sourceReviewSha256": "0293d94a9d01db96cce3fa4af38e6f986c4cf3879101c0a857f4db9951a2929e",
+        "completeness": {
+          "output": null,
+          "operation": "mechanical original-pixel cross-tile native edit composition",
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_candidate-v1_4096.png",
+            "sha256": "8b50007e8982e0b1055e7fb5f6699bc3071334fbe121112bf823bcced296316f"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_candidate-v1_4096.assembly.json",
+        "sha256": "cd536b525475923b70f647ff6e257ac1fdc72178c92077f8a4e0d5943c8a199d",
+        "sourceReviewSha256": "cd536b525475923b70f647ff6e257ac1fdc72178c92077f8a4e0d5943c8a199d",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_candidate-v1_4096.png",
+            "sha256": "8b50007e8982e0b1055e7fb5f6699bc3071334fbe121112bf823bcced296316f"
+          },
+          "operation": "mechanical 4x4 native-patch assembly",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "paddedPixelCount": 18714276,
+            "tilePixelCount": 16777216,
+            "sourceContributionSum": 16777216,
+            "unassignedPixels": 0,
+            "all16SourcesContribute": true,
+            "allPaddedAndTilePixelsExactlyMatchUnmodifiedRecordedSourceCoordinates": true,
+            "allCompositePixelsExactlyMatchUnmodifiedOriginalRawSourceCoordinates": true,
+            "compositeCellCount": 0,
+            "nestedOriginalContributionSumsVerified": true,
+            "guidePixelsUsed": false
+          },
+          "sourceCount": 16
+        }
+      }
+    ],
+    "selectionBasis": "Output-pinned exact native repairs retain a complete 16-native-source base; lineage terminates at explicit zero-unassigned-pixel coverage.",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "pending_native_QA"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c04_r01_c04_east_water_oct20b_a01_4096.repair.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "pending_native_QA"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

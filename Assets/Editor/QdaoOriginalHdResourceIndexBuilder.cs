@@ -112,8 +112,9 @@ namespace MmorpgClient.Editor.Tianyong
             for (var i = 0; i < rows.Length; i++)
             {
                 var a = index.entries[i]; var b = rows[i];
+                // Timestamps belong to the producing machine, not the signed portable inventory.
                 if (a == null || a.path != b.path || a.assetGuid != b.assetGuid || a.sha256 != b.sha256 || a.width != b.width ||
-                    a.height != b.height || a.pixelsPerUnit != b.pixelsPerUnit || a.sourceBytes != b.sourceBytes || a.sourceWriteUtcTicks != b.sourceWriteUtcTicks) return false;
+                    a.height != b.height || a.pixelsPerUnit != b.pixelsPerUnit || a.sourceBytes != b.sourceBytes) return false;
             }
             return true;
         }

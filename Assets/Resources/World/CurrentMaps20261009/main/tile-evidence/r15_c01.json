@@ -1,0 +1,2055 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 15,
+  "column": 1,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+  "imageBytes": 21133223,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/r15_c01.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/assembly.json",
+  "sourceLedgerSha256": "80b26ec039d7460173e33b514e76a20cc351fa9ddad89cf1737c04a2cb5f04b3",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r15_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/r15_c01.candidate.png",
+    "imageSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/assembly.json",
+        "sha256": "80b26ec039d7460173e33b514e76a20cc351fa9ddad89cf1737c04a2cb5f04b3",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/assembly.json",
+        "sha256": "80b26ec039d7460173e33b514e76a20cc351fa9ddad89cf1737c04a2cb5f04b3",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/review.json",
+        "sha256": "ac7ec59fc90f248b3aeea039f57c9bb0d87a6409ef8df16cd0460e116c14e52a",
+        "completeness": [
+          "/summary/selectedNativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/review.json",
+        "record": {
+          "status": "full16_native_candidate_failed_internal_and_external_QA",
+          "availableExternalTopNativeChecks": [
+            {
+              "id": "T1-external-native-compare",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T1-external-native-compare.png",
+              "sha256": "3bba79f358dddea554db95a0cac904a61b092fcb2f7c0eea5b0dae83a2f9464a",
+              "pixels": [
+                1024,
+                500
+              ],
+              "upperNative": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_01.png",
+                "sha256": "79a19dad51cc4ab01bd8b5f9475c927c8bcc6facba2ed41c4169bf33b26d0732",
+                "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_01.png.generation.json",
+                "recordSha256": "d55444001fce88ff0fc648d455256ba7b9408e7a07879fca3369b933d8e468b6",
+                "sourceCrop": [
+                  115,
+                  1024,
+                  1139,
+                  1254
+                ]
+              },
+              "lowerNative": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p01_01.png",
+                "sha256": "27b35d55e75fc848ebdc576b48592c5504f94291fb191b3237f8bdf62120c5b6",
+                "sourceCrop": [
+                  115,
+                  0,
+                  1139,
+                  230
+                ]
+              },
+              "comparisonOnly": "same-world230 native context overlaps; upper candidate is failed, no formal pair acceptance inferred",
+              "resampling": false,
+              "actualViewedAtNativePixels": true,
+              "localOverlapNativeCompatible": true,
+              "externalPairedAccepted": false,
+              "observation": "Same-world native overlap is visually compatible in local red/gold/wood framing and scale. Upper full candidate is failed; no full paired or cross-tile acceptance inferred.",
+              "formalAccepted": false
+            },
+            {
+              "id": "T2-external-native-compare",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T2-external-native-compare.png",
+              "sha256": "41752a0d53718698d40f84736ed7dfb1203f37b690e36a2968bcacc5fcc5e0ad",
+              "pixels": [
+                1024,
+                500
+              ],
+              "upperNative": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_02.png",
+                "sha256": "0735c4441e372060151247792373a228e8f30cb5c2305312962a5e0d3c924d84",
+                "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_02.png.generation.json",
+                "recordSha256": "84f40f0de709291fc28e9296258d283c3afb53bdea4037883d2a23f808603d1d",
+                "sourceCrop": [
+                  115,
+                  1024,
+                  1139,
+                  1254
+                ]
+              },
+              "lowerNative": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p01_02.png",
+                "sha256": "716f21f67006604e73d612b042053059e95f610780dd850760f73c7bae374f59",
+                "sourceCrop": [
+                  115,
+                  0,
+                  1139,
+                  230
+                ]
+              },
+              "comparisonOnly": "same-world230 native context overlaps; upper candidate is failed, no formal pair acceptance inferred",
+              "resampling": false,
+              "actualViewedAtNativePixels": true,
+              "localOverlapNativeCompatible": true,
+              "externalPairedAccepted": false,
+              "observation": "Same-world native overlap is visually compatible in local red/gold/wood framing and scale. Upper full candidate is failed; no full paired or cross-tile acceptance inferred.",
+              "formalAccepted": false
+            },
+            {
+              "id": "T3-external-native-compare",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T3-external-native-compare.png",
+              "sha256": "e4618c23d2de4e56aba2e77b285ccf950a1592a1d5fb359ce4f4998a858ed80a",
+              "pixels": [
+                1024,
+                500
+              ],
+              "upperNative": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_03.png",
+                "sha256": "9afd6fff16d1e78fb2a476212a72af11f61b5ded7031f314509b5481569ad736",
+                "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_03.png.generation.json",
+                "recordSha256": "41d44ad1e1c6bb3fefce4976d4b968c0596a7fb8ad6173e791f045df2143a6d3",
+                "sourceCrop": [
+                  115,
+                  1024,
+                  1139,
+                  1254
+                ]
+              },
+              "lowerNative": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p01_03.png",
+                "sha256": "9cfe71a33af355ea77306de50aef80fca788bac518f5249192785e5e2cb6f546",
+                "sourceCrop": [
+                  115,
+                  0,
+                  1139,
+                  230
+                ]
+              },
+              "comparisonOnly": "same-world230 native context overlaps; upper candidate is failed, no formal pair acceptance inferred",
+              "resampling": false,
+              "actualViewedAtNativePixels": true,
+              "localOverlapNativeCompatible": true,
+              "externalPairedAccepted": false,
+              "observation": "Same-world native overlap is visually compatible in local red/gold/wood framing and scale. Upper full candidate is failed; no full paired or cross-tile acceptance inferred.",
+              "formalAccepted": false
+            },
+            {
+              "id": "T4-external-native-compare",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T4-external-native-compare.png",
+              "sha256": "cef912848b956ed526b94439f7e91651e63b9d14c8ecb7a7283ec1609a6806c1",
+              "pixels": [
+                1024,
+                500
+              ],
+              "upperNative": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_04.png",
+                "sha256": "1b381ad18199ebd4d4768f020d0bd44729de49c204d5799f30dade817a2750aa",
+                "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_04.png.generation.json",
+                "recordSha256": "8923dc24e996d07dd03eb1f20e70e4f00e258cc44bc48ad0d5f092dc61ce921a",
+                "sourceCrop": [
+                  115,
+                  1024,
+                  1139,
+                  1254
+                ]
+              },
+              "lowerNative": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p01_04.png",
+                "sha256": "ebea9d451c87464e02bfa0671c0acbddea17e22e795f40e1f18e6b375a10ae44",
+                "sourceCrop": [
+                  115,
+                  0,
+                  1139,
+                  230
+                ]
+              },
+              "comparisonOnly": "same-world230 native context overlaps; upper candidate is failed, no formal pair acceptance inferred",
+              "resampling": false,
+              "actualViewedAtNativePixels": true,
+              "localOverlapNativeCompatible": false,
+              "externalPairedAccepted": false,
+              "observation": "Upper source already ends lantern body with gold cap/tassel while lower source starts a large lamp body much lower. The deliberately held lamp-height geometry still mismatches strongly.",
+              "formalAccepted": false
+            }
+          ],
+          "externalMissing": {
+            "left": "outside art world x0 boundary, no left tile",
+            "right": "r15_c02 current selected native0 at startup; no paired full candidate",
+            "bottom": "r16_c01 current selected native0 at startup; no paired full candidate",
+            "crossTileIntersections": "not passed; neighbour complete candidates unavailable"
+          },
+          "blockingIssues": [
+            "V2-3/H2-2/H2-3/X2-2 red banner fold/silhouette rectangular steps",
+            "V3-3/X2-3 new raised horizontal wall strip ends freely; held before p0304 generation to avoid propagation",
+            "V1-3/X3-1 wall corner bevel width/dark slot phase changes",
+            "T4 external lamp body/cap height mismatch with r14c01 p0404, held failed",
+            "L2 p0201 red lantern fragment abrupt start below stone, held failed",
+            "Dense repetitive fine stone pigment across broad wall faces"
+          ],
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/review.json",
+    "sourceSha256": "ac7ec59fc90f248b3aeea039f57c9bb0d87a6409ef8df16cd0460e116c14e52a",
+    "normalizedDocument": {
+      "tile": "r15_c01",
+      "createdAtUtc": "2026-10-18T15:25:45.943231+00:00",
+      "status": "full16_native_candidate_failed_internal_and_external_QA",
+      "manifest": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/manifest.json",
+        "sha256": "e98c123b38e8006b40e88b104d9f895a519c0dd168306dd7708d836205d4bd0b"
+      },
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/assembly.json",
+        "sha256": "80b26ec039d7460173e33b514e76a20cc351fa9ddad89cf1737c04a2cb5f04b3"
+      },
+      "source": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/r15_c01.candidate.png",
+        "sha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+        "pixels": [
+          4096,
+          4096
+        ]
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/output/99446111fd57e472/r15_c01.candidate.context.png",
+        "sha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+        "pixels": [
+          4326,
+          4326
+        ]
+      },
+      "viewingEvidence": {
+        "internal24SeamsAnd9Intersections": true,
+        "nativeSelf230Edges16": true,
+        "availableTopNativeComparisons4": true,
+        "fullCandidateOverviewWasToolResizedForLayoutOnly": true,
+        "nativeCropsWereNotResampled": true
+      },
+      "internalChecks": [
+        {
+          "id": "V1-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V1-1.png",
+          "sha256": "43925f98eaa3ebdcabdfbce42a56c4fb056078eeec9e1662318ab8eaa3f476c7",
+          "cropBox": [
+            909,
+            0,
+            1139,
+            1024
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local red column, gold foot and diagonal stone cap retain scale and connect. Visible stone has repetitive small crosshatch/flaked pigment.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "43925f98eaa3ebdcabdfbce42a56c4fb056078eeec9e1662318ab8eaa3f476c7",
+            "cropBox": [
+              909,
+              0,
+              1139,
+              1024
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V1-2.png",
+          "sha256": "59552630975f43a6f8275a35b160adaadd0d753d35df8e14a5cf681dde186b94",
+          "cropBox": [
+            909,
+            1024,
+            1139,
+            2048
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Vertical wall corner and two horizontal courses meet locally. Broad stone faces retain dense small diagonal/cellular pigment.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "59552630975f43a6f8275a35b160adaadd0d753d35df8e14a5cf681dde186b94",
+            "cropBox": [
+              909,
+              1024,
+              1139,
+              2048
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V1-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V1-3.png",
+          "sha256": "f9e9947a12cfaf07af6378abd2e8ae4ef4485996b0ebf3a5e14c31cdc4f65629",
+          "cropBox": [
+            909,
+            2048,
+            1139,
+            3072
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": false,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Long vertical wall joint changes bevel width and develops a narrow dark discontinuity toward the lower part; dense fine pattern remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "f9e9947a12cfaf07af6378abd2e8ae4ef4485996b0ebf3a5e14c31cdc4f65629",
+            "cropBox": [
+              909,
+              2048,
+              1139,
+              3072
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V1-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V1-4.png",
+          "sha256": "56553c4f72827f603d08d89738cad52a89705c997f33e862afa729a4c7e1d3f7",
+          "cropBox": [
+            909,
+            3072,
+            1139,
+            4096
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local wall corner and main block courses connect; stone is covered with repetitive fine hatch.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "56553c4f72827f603d08d89738cad52a89705c997f33e862afa729a4c7e1d3f7",
+            "cropBox": [
+              909,
+              3072,
+              1139,
+              4096
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V2-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V2-1.png",
+          "sha256": "4bfec6a74c51665bd13f918ea72c48b774f11008edd6fb6c19834a3f9d85c3e1",
+          "cropBox": [
+            1933,
+            0,
+            2163,
+            1024
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Red door and stepped gold frame are locally joined at the native seam. Lower stone still has fine repetitive hatch.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "4bfec6a74c51665bd13f918ea72c48b774f11008edd6fb6c19834a3f9d85c3e1",
+            "cropBox": [
+              1933,
+              0,
+              2163,
+              1024
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V2-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V2-2.png",
+          "sha256": "e09dd6d9bc5b823647d8e034bb043753c66ec9475afcf3559ce81e00f20da4ef",
+          "cropBox": [
+            1933,
+            1024,
+            2163,
+            2048
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local horizontal pole, clasp, red cloth and wall courses retain scale across this vertical join; dense wall pigment remains. Wider cloth step is assessed in X2-2.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "e09dd6d9bc5b823647d8e034bb043753c66ec9475afcf3559ce81e00f20da4ef",
+            "cropBox": [
+              1933,
+              1024,
+              2163,
+              2048
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V2-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V2-3.png",
+          "sha256": "e0145c5961c7e00e33782eeebb0e47ab8a40b3d02a1a4525596b34aaac27b134",
+          "cropBox": [
+            1933,
+            2048,
+            2163,
+            3072
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": false,
+          "materialAccepted": true,
+          "localCropAccepted": false,
+          "observation": "The vertical red cloth fold and outer silhouette jump sideways in two rectangular steps near the upper part instead of continuing as a single fold.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "e0145c5961c7e00e33782eeebb0e47ab8a40b3d02a1a4525596b34aaac27b134",
+            "cropBox": [
+              1933,
+              2048,
+              2163,
+              3072
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V2-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V2-4.png",
+          "sha256": "204b6bbf3b594fc2e674c2e42bb86d8386fadc6d470cf647affa7814faff095b",
+          "cropBox": [
+            1933,
+            3072,
+            2163,
+            4096
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Plain red swallowtail hem and shadow are continuous locally; no added gold trim in selected v02. Adjacent stone retains dense fine pigment.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "204b6bbf3b594fc2e674c2e42bb86d8386fadc6d470cf647affa7814faff095b",
+            "cropBox": [
+              1933,
+              3072,
+              2163,
+              4096
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V3-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V3-1.png",
+          "sha256": "4d86b1aeafb400a0de8278d22833aceb63e168038cd2327dd14019635724de5f",
+          "cropBox": [
+            2957,
+            0,
+            3187,
+            1024
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Door gold edge and diagonal pale stone cap cross locally at consistent scale; stone fine hatch remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "4d86b1aeafb400a0de8278d22833aceb63e168038cd2327dd14019635724de5f",
+            "cropBox": [
+              2957,
+              0,
+              3187,
+              1024
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V3-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V3-2.png",
+          "sha256": "ac650ff99988596a0b9596dfb77efd4a222223913249c509570e354c1dd6a990",
+          "cropBox": [
+            2957,
+            1024,
+            3187,
+            2048
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local gold plaque edge is readable and connected; pale stone material remains dense and mottled.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "ac650ff99988596a0b9596dfb77efd4a222223913249c509570e354c1dd6a990",
+            "cropBox": [
+              2957,
+              1024,
+              3187,
+              2048
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V3-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V3-3.png",
+          "sha256": "88f56167ee94344581eb72024a004b8eef6f313f89fbf20c747be47c51980914",
+          "cropBox": [
+            2957,
+            2048,
+            3187,
+            3072
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": false,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Raised horizontal wall strip terminates freely in the wall field near the upper-right of this crop; stone fine pattern also fails.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "88f56167ee94344581eb72024a004b8eef6f313f89fbf20c747be47c51980914",
+            "cropBox": [
+              2957,
+              2048,
+              3187,
+              3072
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "V3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/V3-4.png",
+          "sha256": "9b13fe18153e73eda973c73b3f6d9565d55a428e14a1c50c6471eafd5f2aa920",
+          "cropBox": [
+            2957,
+            3072,
+            3187,
+            4096
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local vertical wall corner and horizontal course connect; broad shaded stone has repetitive fine hatch.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "9b13fe18153e73eda973c73b3f6d9565d55a428e14a1c50c6471eafd5f2aa920",
+            "cropBox": [
+              2957,
+              3072,
+              3187,
+              4096
+            ],
+            "pixels": [
+              230,
+              1024
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H1-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H1-1.png",
+          "sha256": "9c8e12504c8621fa2ed37da36a4d814d6b19827b8d80c6d30a915b03cccced4e",
+          "cropBox": [
+            0,
+            909,
+            1024,
+            1139
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Diagonal cap entrances and vertical wall joints connect locally; fine repetitive stone pigment remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "9c8e12504c8621fa2ed37da36a4d814d6b19827b8d80c6d30a915b03cccced4e",
+            "cropBox": [
+              0,
+              909,
+              1024,
+              1139
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H1-2.png",
+          "sha256": "11d1082f390c01e8385551a010792f77c258a1ee6152a8abb3316efd7b5bab1f",
+          "cropBox": [
+            1024,
+            909,
+            2048,
+            1139
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Main horizontal stone course and vertical joint connect locally; material is densely crosshatched.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "11d1082f390c01e8385551a010792f77c258a1ee6152a8abb3316efd7b5bab1f",
+            "cropBox": [
+              1024,
+              909,
+              2048,
+              1139
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H1-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H1-3.png",
+          "sha256": "102509a5f637fe5e60f7ccb38700208b64440ca26f6429b0d8e6d011d097d231",
+          "cropBox": [
+            2048,
+            909,
+            3072,
+            1139
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local stone corner/course transition follows the same projection; dense small stone pattern remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "102509a5f637fe5e60f7ccb38700208b64440ca26f6429b0d8e6d011d097d231",
+            "cropBox": [
+              2048,
+              909,
+              3072,
+              1139
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H1-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H1-4.png",
+          "sha256": "061ab58d9e0588aa29d7428ba2dc18b23f33e818f170d3e5bbc9b83da3a461dc",
+          "cropBox": [
+            3072,
+            909,
+            4096,
+            1139
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local gold lantern cap and tassel entrance are connected, with foliage behind. This does not clear the held external lamp-height mismatch; left stone remains mottled.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "061ab58d9e0588aa29d7428ba2dc18b23f33e818f170d3e5bbc9b83da3a461dc",
+            "cropBox": [
+              3072,
+              909,
+              4096,
+              1139
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H2-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H2-1.png",
+          "sha256": "9a61eb4a269a5090da59243cb1f326f7cbcb405c07541d7278baf547d20e7afe",
+          "cropBox": [
+            0,
+            1933,
+            1024,
+            2163
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local leaf silhouettes and long wall joints continue; repetitive fine wall pattern remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "9a61eb4a269a5090da59243cb1f326f7cbcb405c07541d7278baf547d20e7afe",
+            "cropBox": [
+              0,
+              1933,
+              1024,
+              2163
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H2-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H2-2.png",
+          "sha256": "9a06ff015b5e4b644009c91e19e7cd85a02d69278f5214439b9ff38503aeae18",
+          "cropBox": [
+            1024,
+            1933,
+            2048,
+            2163
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": false,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Red banner fold changes into an angular triangular/stepped shadow at the lower join; quiet stone requirement also fails.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "9a06ff015b5e4b644009c91e19e7cd85a02d69278f5214439b9ff38503aeae18",
+            "cropBox": [
+              1024,
+              1933,
+              2048,
+              2163
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H2-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H2-3.png",
+          "sha256": "e78f2fc4f2970e316d9b5d788f61f39784466dd8375e0126b4131a7b968301bd",
+          "cropBox": [
+            2048,
+            1933,
+            3072,
+            2163
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": false,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Narrow red edge at far left develops a visible sideways step near the lower join; broad stone pigment remains dense.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "e78f2fc4f2970e316d9b5d788f61f39784466dd8375e0126b4131a7b968301bd",
+            "cropBox": [
+              2048,
+              1933,
+              3072,
+              2163
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H2-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H2-4.png",
+          "sha256": "6e17cd05ac8d9b3da154cdfe44349253d2d7641e3858b794d7cb809e76ea9960",
+          "cropBox": [
+            3072,
+            1933,
+            4096,
+            2163
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local diagonal rail cap and shaded wall joints continue at the same thickness; dense cellular/crosshatch pigment remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "6e17cd05ac8d9b3da154cdfe44349253d2d7641e3858b794d7cb809e76ea9960",
+            "cropBox": [
+              3072,
+              1933,
+              4096,
+              2163
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H3-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H3-1.png",
+          "sha256": "ea4b993de1ef4b5eb9930ac1375189ff0747c0c3010f45df0897a091299e8d0a",
+          "cropBox": [
+            0,
+            2957,
+            1024,
+            3187
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local leaf edge and broad wall face continue without a hard horizontal cut; stone fine pattern remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "ea4b993de1ef4b5eb9930ac1375189ff0747c0c3010f45df0897a091299e8d0a",
+            "cropBox": [
+              0,
+              2957,
+              1024,
+              3187
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H3-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H3-2.png",
+          "sha256": "1e001d05866a565c26489a84235b350d2d28aa151a0059f5607da6086808c422",
+          "cropBox": [
+            1024,
+            2957,
+            2048,
+            3187
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Clipped lower gold disc, red folds and wall edge are locally continuous. Adjacent wall fine pigment remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "1e001d05866a565c26489a84235b350d2d28aa151a0059f5607da6086808c422",
+            "cropBox": [
+              1024,
+              2957,
+              2048,
+              3187
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H3-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H3-3.png",
+          "sha256": "7314f6cb93179ef3a9a6e93190b5e4b9baed845aa42af05453a734ab76c5597b",
+          "cropBox": [
+            2048,
+            2957,
+            3072,
+            3187
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local wall courses and clipped red banner edge continue; broad faces remain densely mottled.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "7314f6cb93179ef3a9a6e93190b5e4b9baed845aa42af05453a734ab76c5597b",
+            "cropBox": [
+              2048,
+              2957,
+              3072,
+              3187
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "H3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/H3-4.png",
+          "sha256": "06ea4c1e2dd4a6df253cf78b1ed042071d5805e16eca49a99d75cf9bcf2b6553",
+          "cropBox": [
+            3072,
+            2957,
+            4096,
+            3187
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Diagonal cap edge and shaded wall joints retain direction and thickness locally; dense small stone pattern remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "06ea4c1e2dd4a6df253cf78b1ed042071d5805e16eca49a99d75cf9bcf2b6553",
+            "cropBox": [
+              3072,
+              2957,
+              4096,
+              3187
+            ],
+            "pixels": [
+              1024,
+              230
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X1-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X1-1.png",
+          "sha256": "746369f366fcbe644574bd26af77131cd063e550d3e437c7b9e2e829956a5f3e",
+          "cropBox": [
+            768,
+            768,
+            1280,
+            1280
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Four-way stone cap/corner is locally coherent with no open object edge. Dense fine stone texture remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "746369f366fcbe644574bd26af77131cd063e550d3e437c7b9e2e829956a5f3e",
+            "cropBox": [
+              768,
+              768,
+              1280,
+              1280
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X1-2.png",
+          "sha256": "e1d6baacc96ab586396bbfafcf1bd37e64a65fcaad7a1f545bc8e04feac8804f",
+          "cropBox": [
+            1792,
+            768,
+            2304,
+            1280
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Broad block courses meet coherently at this four-way junction; small repetitive stone pigment remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "e1d6baacc96ab586396bbfafcf1bd37e64a65fcaad7a1f545bc8e04feac8804f",
+            "cropBox": [
+              1792,
+              768,
+              2304,
+              1280
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X1-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X1-3.png",
+          "sha256": "4fdf06cb9148a9473ae1dec89220b0f08ed4788a606e4301096a035a5092c88e",
+          "cropBox": [
+            2816,
+            768,
+            3328,
+            1280
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Diagonal wall course and clipped plaque edge retain scale. Stone material is densely patterned.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "4fdf06cb9148a9473ae1dec89220b0f08ed4788a606e4301096a035a5092c88e",
+            "cropBox": [
+              2816,
+              768,
+              3328,
+              1280
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X2-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X2-1.png",
+          "sha256": "39760e8f8f6d46a723c2cafb40276808f4de47da63014a24eaa88047900361bc",
+          "cropBox": [
+            768,
+            1792,
+            1280,
+            2304
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Local wall corner joint is connected; dense fine stone pattern remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "39760e8f8f6d46a723c2cafb40276808f4de47da63014a24eaa88047900361bc",
+            "cropBox": [
+              768,
+              1792,
+              1280,
+              2304
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X2-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X2-2.png",
+          "sha256": "2b9ed2ab61c89b33680e69082e61f513900f01fb3b776a594d879141c2de843a",
+          "cropBox": [
+            1792,
+            1792,
+            2304,
+            2304
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": false,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Red banner outer fold/silhouette has two rectangular lateral steps at the four-way join; surrounding wall fine pigment remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "2b9ed2ab61c89b33680e69082e61f513900f01fb3b776a594d879141c2de843a",
+            "cropBox": [
+              1792,
+              1792,
+              2304,
+              2304
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X2-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X2-3.png",
+          "sha256": "cf92816d993d93f0a69170271678478d72a0f4267d7672f70eedef7814fba9fb",
+          "cropBox": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": false,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "New projecting horizontal strip has an unsupported free end in the wall, with a separate thin groove above it; dense stone texture persists.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "cf92816d993d93f0a69170271678478d72a0f4267d7672f70eedef7814fba9fb",
+            "cropBox": [
+              2816,
+              1792,
+              3328,
+              2304
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X3-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X3-1.png",
+          "sha256": "5c1129a42263336d600806cdbd0520d9da06eb5b2316f49b02b5da9f39069232",
+          "cropBox": [
+            768,
+            2816,
+            1280,
+            3328
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": false,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Vertical wall corner has a dark narrow slot and bevel/phase changes near the junction; dense stone fine hatch remains.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "5c1129a42263336d600806cdbd0520d9da06eb5b2316f49b02b5da9f39069232",
+            "cropBox": [
+              768,
+              2816,
+              1280,
+              3328
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X3-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X3-2.png",
+          "sha256": "1f525bee29ad40c9d6eee376a2642b43013545abcbb4985be5cc2c97994e69ca",
+          "cropBox": [
+            1792,
+            2816,
+            2304,
+            3328
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Gold disc outline and long red fold are locally continuous; narrow adjacent stone still has repetitive fine texture.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "1f525bee29ad40c9d6eee376a2642b43013545abcbb4985be5cc2c97994e69ca",
+            "cropBox": [
+              1792,
+              2816,
+              2304,
+              3328
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        },
+        {
+          "id": "X3-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/X3-3.png",
+          "sha256": "fb40045a2079394ebd51badc769a338af0b4b2437fa98c1ed038b9f4c5627b57",
+          "cropBox": [
+            2816,
+            2816,
+            3328,
+            3328
+          ],
+          "pixels": [
+            512,
+            512
+          ],
+          "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+          "actualViewedAtNativePixels": true,
+          "geometryAndIdentityAccepted": true,
+          "materialAccepted": false,
+          "localCropAccepted": false,
+          "observation": "Main wall corner and block joints form a coherent local junction; shaded broad faces retain fine repetitive hatch.",
+          "reuseGuard": {
+            "sourceSha256": "3f34156b1f344b2fab153a68407d42586d06b1a60209718a3d66366358838a07",
+            "cropSha256": "fb40045a2079394ebd51badc769a338af0b4b2437fa98c1ed038b9f4c5627b57",
+            "cropBox": [
+              2816,
+              2816,
+              3328,
+              3328
+            ],
+            "pixels": [
+              512,
+              512
+            ],
+            "resampling": false
+          },
+          "wholeTileAcceptanceImplied": false
+        }
+      ],
+      "selfBoundaryChecks": [
+        {
+          "id": "T1-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T1-self230.png",
+          "sha256": "41f7e576d0d5eb5f37924450d334d30a15ab852e0b50a2b620778542c2226bbe",
+          "cropBox": [
+            115,
+            0,
+            1139,
+            230
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native 230px edge viewed. Existing red/gold/wood/leaf structure is locally readable; paired external acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "T2-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T2-self230.png",
+          "sha256": "a20c4c7c093dc74f01e4e4c0748b2d3d744d2c4dfd78c2d35f8406537bce0ecf",
+          "cropBox": [
+            1139,
+            0,
+            2163,
+            230
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native 230px edge viewed. Existing red/gold/wood/leaf structure is locally readable; paired external acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "T3-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T3-self230.png",
+          "sha256": "11a69c2d50a2c88e005e2241325abda158f25456e7dd678f24c952b6db5053e8",
+          "cropBox": [
+            2163,
+            0,
+            3187,
+            230
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native 230px edge viewed. Existing red/gold/wood/leaf structure is locally readable; paired external acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "T4-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T4-self230.png",
+          "sha256": "a1b515a63b4c568874b88aeee966afe6935d0af0d74cca0a6ee5613f7c035fde",
+          "cropBox": [
+            3187,
+            0,
+            4211,
+            230
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Native230 viewed; lamp-body height differs from upper failed source by intentional hold. External pairing is not accepted.",
+          "formalAccepted": false
+        },
+        {
+          "id": "B1-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/B1-self230.png",
+          "sha256": "fce388678b91dbc468ce899ebb64c4fa7b7ad0627ddbf23bc59a8e39c7d8566b",
+          "cropBox": [
+            115,
+            4096,
+            1139,
+            4326
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native230 edge viewed; stone has dense small repetitive hatch. Main cap/wall boundary is readable, external paired acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "B2-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/B2-self230.png",
+          "sha256": "1d505859d70ef979bf00d2bae79b33b8b04f4a14c75da619972d16550a34ae72",
+          "cropBox": [
+            1139,
+            4096,
+            2163,
+            4326
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native230 edge viewed; stone has dense small repetitive hatch. Main cap/wall boundary is readable, external paired acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "B3-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/B3-self230.png",
+          "sha256": "848cca80cbf7702ca825f4f794249ac64855c52e56c63aa50de811bc42a8e83c",
+          "cropBox": [
+            2163,
+            4096,
+            3187,
+            4326
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native230 edge viewed; stone has dense small repetitive hatch. Main cap/wall boundary is readable, external paired acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "B4-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/B4-self230.png",
+          "sha256": "d2d6699e82dc459b1de72a7e609df3153a24fc1d068c5e18f48d26357684eb2e",
+          "cropBox": [
+            3187,
+            4096,
+            4211,
+            4326
+          ],
+          "pixels": [
+            1024,
+            230
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native230 edge viewed; stone has dense small repetitive hatch. Main cap/wall boundary is readable, external paired acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "L1-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/L1-self230.png",
+          "sha256": "bfcc2bca611c58304f19085b180705c09c6d24025306cc90a01eaee63c10ad26",
+          "cropBox": [
+            0,
+            115,
+            230,
+            1139
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native 230px edge viewed. Existing red/gold/wood/leaf structure is locally readable; paired external acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "L2-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/L2-self230.png",
+          "sha256": "a954346361eb50ad482329c69200d6653ea75607949987e8cd9d6ca324f6d7de",
+          "cropBox": [
+            0,
+            1139,
+            230,
+            2163
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": false,
+          "externalPairedAccepted": false,
+          "observation": "Existing red lantern fragment begins abruptly against pale stone at upper part; this known failed source region remains held, not a boundary anchor.",
+          "formalAccepted": false
+        },
+        {
+          "id": "L3-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/L3-self230.png",
+          "sha256": "da2182cb3a689875fab2c9889390da75e802fb20e8592598425bc54c3113d513",
+          "cropBox": [
+            0,
+            2163,
+            230,
+            3187
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native230 edge viewed; stone has dense small repetitive hatch. Main cap/wall boundary is readable, external paired acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "L4-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/L4-self230.png",
+          "sha256": "45c908b80db47e1d15f8b15d939ebca5a392ef145295683a48a4cca0d82b3dd0",
+          "cropBox": [
+            0,
+            3187,
+            230,
+            4211
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native230 edge viewed; stone has dense small repetitive hatch. Main cap/wall boundary is readable, external paired acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "R1-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/R1-self230.png",
+          "sha256": "bc16380a0a3c2b20bc3bd4d5ee0ce4300a8de809df4f1b4358ac1acf9c14bf01",
+          "cropBox": [
+            4096,
+            115,
+            4326,
+            1139
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native 230px edge viewed. Existing red/gold/wood/leaf structure is locally readable; paired external acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "R2-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/R2-self230.png",
+          "sha256": "498cd827614ffe14d7126dbef045569a5ed564b4932d777b30f3fdb5b5663419",
+          "cropBox": [
+            4096,
+            1139,
+            4326,
+            2163
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native 230px edge viewed. Existing red/gold/wood/leaf structure is locally readable; paired external acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "R3-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/R3-self230.png",
+          "sha256": "34677a84070b24bc98b7b6dc92eea2b8eca26b9d930da97159c89c5351540837",
+          "cropBox": [
+            4096,
+            2163,
+            4326,
+            3187
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native230 edge viewed; stone has dense small repetitive hatch. Main cap/wall boundary is readable, external paired acceptance unavailable.",
+          "formalAccepted": false
+        },
+        {
+          "id": "R4-self230",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/R4-self230.png",
+          "sha256": "2775973c8d9bb90c24abfde4318c8712419e7047f36bef3483f534a8539a2515",
+          "cropBox": [
+            4096,
+            3187,
+            4326,
+            4211
+          ],
+          "pixels": [
+            230,
+            1024
+          ],
+          "sourceSha256": "5b8ca6e24bc50af7578f5d555bb336225bc57e00329b2d97a1ce36407293c1fe",
+          "actualViewedAtNativePixels": true,
+          "intrinsicNativeStructureStable": true,
+          "externalPairedAccepted": false,
+          "observation": "Actual native230 edge viewed; stone has dense small repetitive hatch. Main cap/wall boundary is readable, external paired acceptance unavailable.",
+          "formalAccepted": false
+        }
+      ],
+      "availableExternalTopNativeChecks": [
+        {
+          "id": "T1-external-native-compare",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T1-external-native-compare.png",
+          "sha256": "3bba79f358dddea554db95a0cac904a61b092fcb2f7c0eea5b0dae83a2f9464a",
+          "pixels": [
+            1024,
+            500
+          ],
+          "upperNative": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_01.png",
+            "sha256": "79a19dad51cc4ab01bd8b5f9475c927c8bcc6facba2ed41c4169bf33b26d0732",
+            "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_01.png.generation.json",
+            "recordSha256": "d55444001fce88ff0fc648d455256ba7b9408e7a07879fca3369b933d8e468b6",
+            "sourceCrop": [
+              115,
+              1024,
+              1139,
+              1254
+            ]
+          },
+          "lowerNative": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p01_01.png",
+            "sha256": "27b35d55e75fc848ebdc576b48592c5504f94291fb191b3237f8bdf62120c5b6",
+            "sourceCrop": [
+              115,
+              0,
+              1139,
+              230
+            ]
+          },
+          "comparisonOnly": "same-world230 native context overlaps; upper candidate is failed, no formal pair acceptance inferred",
+          "resampling": false,
+          "actualViewedAtNativePixels": true,
+          "localOverlapNativeCompatible": true,
+          "externalPairedAccepted": false,
+          "observation": "Same-world native overlap is visually compatible in local red/gold/wood framing and scale. Upper full candidate is failed; no full paired or cross-tile acceptance inferred.",
+          "formalAccepted": false
+        },
+        {
+          "id": "T2-external-native-compare",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T2-external-native-compare.png",
+          "sha256": "41752a0d53718698d40f84736ed7dfb1203f37b690e36a2968bcacc5fcc5e0ad",
+          "pixels": [
+            1024,
+            500
+          ],
+          "upperNative": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_02.png",
+            "sha256": "0735c4441e372060151247792373a228e8f30cb5c2305312962a5e0d3c924d84",
+            "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_02.png.generation.json",
+            "recordSha256": "84f40f0de709291fc28e9296258d283c3afb53bdea4037883d2a23f808603d1d",
+            "sourceCrop": [
+              115,
+              1024,
+              1139,
+              1254
+            ]
+          },
+          "lowerNative": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p01_02.png",
+            "sha256": "716f21f67006604e73d612b042053059e95f610780dd850760f73c7bae374f59",
+            "sourceCrop": [
+              115,
+              0,
+              1139,
+              230
+            ]
+          },
+          "comparisonOnly": "same-world230 native context overlaps; upper candidate is failed, no formal pair acceptance inferred",
+          "resampling": false,
+          "actualViewedAtNativePixels": true,
+          "localOverlapNativeCompatible": true,
+          "externalPairedAccepted": false,
+          "observation": "Same-world native overlap is visually compatible in local red/gold/wood framing and scale. Upper full candidate is failed; no full paired or cross-tile acceptance inferred.",
+          "formalAccepted": false
+        },
+        {
+          "id": "T3-external-native-compare",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T3-external-native-compare.png",
+          "sha256": "e4618c23d2de4e56aba2e77b285ccf950a1592a1d5fb359ce4f4998a858ed80a",
+          "pixels": [
+            1024,
+            500
+          ],
+          "upperNative": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_03.png",
+            "sha256": "9afd6fff16d1e78fb2a476212a72af11f61b5ded7031f314509b5481569ad736",
+            "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_03.png.generation.json",
+            "recordSha256": "41d44ad1e1c6bb3fefce4976d4b968c0596a7fb8ad6173e791f045df2143a6d3",
+            "sourceCrop": [
+              115,
+              1024,
+              1139,
+              1254
+            ]
+          },
+          "lowerNative": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p01_03.png",
+            "sha256": "9cfe71a33af355ea77306de50aef80fca788bac518f5249192785e5e2cb6f546",
+            "sourceCrop": [
+              115,
+              0,
+              1139,
+              230
+            ]
+          },
+          "comparisonOnly": "same-world230 native context overlaps; upper candidate is failed, no formal pair acceptance inferred",
+          "resampling": false,
+          "actualViewedAtNativePixels": true,
+          "localOverlapNativeCompatible": true,
+          "externalPairedAccepted": false,
+          "observation": "Same-world native overlap is visually compatible in local red/gold/wood framing and scale. Upper full candidate is failed; no full paired or cross-tile acceptance inferred.",
+          "formalAccepted": false
+        },
+        {
+          "id": "T4-external-native-compare",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/pipeline/qa/restart-20261018-v01/T4-external-native-compare.png",
+          "sha256": "cef912848b956ed526b94439f7e91651e63b9d14c8ecb7a7283ec1609a6806c1",
+          "pixels": [
+            1024,
+            500
+          ],
+          "upperNative": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_04.png",
+            "sha256": "1b381ad18199ebd4d4768f020d0bd44729de49c204d5799f30dade817a2750aa",
+            "recordFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c01/native/p04_04.png.generation.json",
+            "recordSha256": "8923dc24e996d07dd03eb1f20e70e4f00e258cc44bc48ad0d5f092dc61ce921a",
+            "sourceCrop": [
+              115,
+              1024,
+              1139,
+              1254
+            ]
+          },
+          "lowerNative": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p01_04.png",
+            "sha256": "ebea9d451c87464e02bfa0671c0acbddea17e22e795f40e1f18e6b375a10ae44",
+            "sourceCrop": [
+              115,
+              0,
+              1139,
+              230
+            ]
+          },
+          "comparisonOnly": "same-world230 native context overlaps; upper candidate is failed, no formal pair acceptance inferred",
+          "resampling": false,
+          "actualViewedAtNativePixels": true,
+          "localOverlapNativeCompatible": false,
+          "externalPairedAccepted": false,
+          "observation": "Upper source already ends lantern body with gold cap/tassel while lower source starts a large lamp body much lower. The deliberately held lamp-height geometry still mismatches strongly.",
+          "formalAccepted": false
+        }
+      ],
+      "externalMissing": {
+        "left": "outside art world x0 boundary, no left tile",
+        "right": "r15_c02 current selected native0 at startup; no paired full candidate",
+        "bottom": "r16_c01 current selected native0 at startup; no paired full candidate",
+        "crossTileIntersections": "not passed; neighbour complete candidates unavailable"
+      },
+      "summary": {
+        "selectedNativeCoreCount": 16,
+        "complete4096NativeCandidate": true,
+        "internalNativeCropCount": 33,
+        "internalLocalCropPassCount": 0,
+        "internalLocalCropFailedCount": 33,
+        "allInternalAccepted": false,
+        "allExternalAccepted": false,
+        "formalAccepted": false
+      },
+      "blockingIssues": [
+        "V2-3/H2-2/H2-3/X2-2 red banner fold/silhouette rectangular steps",
+        "V3-3/X2-3 new raised horizontal wall strip ends freely; held before p0304 generation to avoid propagation",
+        "V1-3/X3-1 wall corner bevel width/dark slot phase changes",
+        "T4 external lamp body/cap height mismatch with r14c01 p0404, held failed",
+        "L2 p0201 red lantern fragment abrupt start below stone, held failed",
+        "Dense repetitive fine stone pigment across broad wall faces"
+      ],
+      "repairPolicy": {
+        "p0402GoldBorderRemovedInSelectedV02": true,
+        "p0304InputExcludedP0303FailedBandBox": [
+          0,
+          230,
+          230,
+          400
+        ],
+        "allFailedRegionsRemainUnaccepted": true,
+        "nextIndependentMissingAllowed": true
+      },
+      "actualModel": null,
+      "actualQuality": null,
+      "route": "builtin included image_gen.imagegen",
+      "paidApiUsed": false,
+      "sourceResampling": false,
+      "maximumQuiltingFeatherPixels": 2,
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false
+    }
+  }
+}

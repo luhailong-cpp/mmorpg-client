@@ -9,27 +9,92 @@
   "imageSha256": "9919624d9d05bda3b9db79b2e724f9d5d4dcb03ba3c3739c6d618b7ab1358bc6",
   "imageBytes": 26498431,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c14/candidates/r07_c14.candidate.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
   "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
   "sourceLedgerSha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": "pending_or_not_formally_accepted",
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
     "tile": "r07_c14",
-    "generatedNativeCount": 20,
-    "selectedCoreCount": 16,
-    "missingCoreCount": 0,
-    "fullyCovered4kCount": 1,
-    "internalPassed4kCount": 1,
-    "formalAcceptedCount": 0,
-    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c14/candidates/r07_c14.candidate.png",
-    "candidateSha256": "9919624d9d05bda3b9db79b2e724f9d5d4dcb03ba3c3739c6d618b7ab1358bc6",
-    "workerStatus": "complete_candidate_internal_north_west_reviewed",
-    "nextPatch": null,
-    "fullInternalReview": null
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c14/candidates/r07_c14.candidate.png",
+    "imageSha256": "9919624d9d05bda3b9db79b2e724f9d5d4dcb03ba3c3739c6d618b7ab1358bc6",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "sha256": "a25bdf34308b9cfe8de2d663aa364642272f2e5345f1d4bc43f911e728f4c1d6",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
+    ],
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "status": "complete-candidate-internal-north-west-reviewed",
+      "selectedCoreCount": 16,
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c14/candidates/r07_c14.candidate.png.generation.json",
+        "record": {
+          "status": "complete-candidate-internal-north-west-reviewed",
+          "selectedCoreCount": 16,
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "missingCoreCount": 0,
+          "formalAcceptedCount": 0,
+          "workerStatus": "complete_candidate_internal_north_west_reviewed",
+          "fullInternalReview": null
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/east-census/v20261013-01/current-tiles.json",
+        "record": {
+          "internalStatus": {
+            "workerStatus": "complete_candidate_internal_north_west_reviewed",
+            "internalArtQA": null,
+            "internalSeamQA": null,
+            "internalPassed4kCount": 1
+          },
+          "formalStatus": {
+            "formalAccepted": false,
+            "externalNeighborSeamQA": null,
+            "externalPassed4kCount": 0
+          },
+          "existingSelectedCoreCount": 16
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c14/qa/final-review/source-replay.json",
+        "record": {
+          "status": "pass"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/qa/connected-group-r07_c13-r08_c14/b8d681f571f8430e473e/visual-review.json",
+        "record": {
+          "status": "passed_connected_group_shared_edges",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/qa/connected-group-r07_c13-r08_c14/b8d681f571f8430e473e/manifest.json",
+        "record": {
+          "status": "exported_for_visual_review_not_acceptance",
+          "formalAcceptedCount": 0
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/progress.json",

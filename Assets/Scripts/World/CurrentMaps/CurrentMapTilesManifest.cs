@@ -89,11 +89,18 @@ namespace MmorpgClient.World.CurrentMaps
 
         public Rect TileWorldRect(int row, int column)
         {
-            float width = worldRect.width / columns, height = worldRect.height / rows;
-            // 清单使用从 1 开始的行列；相邻边都由同一全局分界线计算，避免浮点累积接缝。
-            return Rect.MinMaxRect(worldRect.x + (column - 1) * width,
-                WorldRect.yMax - row * height, worldRect.x + column * width,
-                WorldRect.yMax - (row - 1) * height);
+            var bounds = WorldRect;
+            // 清单从西北开始编号。先按整图比例用double计算共享分界，再一次转float；
+            // 14格的单格宽高不能精确表示，先取float格长再相乘会把最后一行推出世界边界。
+            float west = column == 1 ? bounds.xMin :
+                (float)(worldRect.x + (double)worldRect.width * (column - 1) / columns);
+            float east = column == columns ? bounds.xMax :
+                (float)(worldRect.x + (double)worldRect.width * column / columns);
+            float south = row == rows ? bounds.yMin :
+                (float)(worldRect.y + worldRect.height - (double)worldRect.height * row / rows);
+            float north = row == 1 ? bounds.yMax :
+                (float)(worldRect.y + worldRect.height - (double)worldRect.height * (row - 1) / rows);
+            return Rect.MinMaxRect(west, south, east, north);
         }
 
         public static bool IsSha256(string value)

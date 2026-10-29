@@ -1,0 +1,697 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 11,
+  "column": 1,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "5091431a94c8717fadd6de0e4e719c1cb00021ec51380146a65ec92fa07465d5",
+  "imageBytes": 23269305,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/r11_c01.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/assembly.json",
+  "sourceLedgerSha256": "75947d6aa84b96874cbfea2903a8b9180b8e1a49d3148d80e6cdde6ae042fc38",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r11_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/r11_c01.candidate.png",
+    "imageSha256": "5091431a94c8717fadd6de0e4e719c1cb00021ec51380146a65ec92fa07465d5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/assembly.json",
+        "sha256": "75947d6aa84b96874cbfea2903a8b9180b8e1a49d3148d80e6cdde6ae042fc38",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/assembly.json",
+        "sha256": "75947d6aa84b96874cbfea2903a8b9180b8e1a49d3148d80e6cdde6ae042fc38",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/worker-review-and-repair-queue.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "rightAndBottomNeighborStatus": "native complete adjacent tile unavailable; pending root review",
+          "reviewStatus": "actual_native_views_reviewed_open_issues",
+          "issues": [
+            "All 24 internal segments and 9 intersections actually viewed at native pixels, no resized overview used as final evidence.",
+            "Hard H2 column2 foliage cutoff, internal grout dead ends/crossed stumps, blue-inlay slivers and stepped caps remain failed.",
+            "Dense fine crosshatching across paving exceeds approved quiet stone finish.",
+            "External boundaries not yet inspected in this review; right/bottom adjacent complete tiles currently absent. Internal/external/formal flags remain false."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/worker-review-and-repair-queue.json",
+    "sourceSha256": "7c527b59a5a9e2c6c3262453770ca1a7c6a2fa512323b02f6e81145ef2de28df",
+    "normalizedDocument": {
+      "tile": "r11_c01",
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/assembly.json",
+        "sha256": "75947d6aa84b96874cbfea2903a8b9180b8e1a49d3148d80e6cdde6ae042fc38"
+      },
+      "core": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/r11_c01.candidate.png",
+        "sha256": "5091431a94c8717fadd6de0e4e719c1cb00021ec51380146a65ec92fa07465d5",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/r11_c01.candidate.context.png",
+        "sha256": "9931b07ffddc63f6d28df7f37431fe67cd9989489df8114a7390eeda1d58e373",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "views": [
+        {
+          "id": "V1-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/V1-segments1-2.png",
+          "sha256": "525c87f352699bcb97b01a63231137a71cd0f8621c6d4284f3748c90027ff564",
+          "regions": [
+            {
+              "formalCoreBox": [
+                768,
+                0,
+                1280,
+                1024
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                768,
+                1024,
+                1280,
+                2048
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "V1 row1: horizontal grout ends bluntly inside stone and crosses existing diagonal without a consistent junction. Row2 foliage transition has no major new silhouette cut; retain only provisional."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "V1-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/V1-segments3-4.png",
+          "sha256": "03e8980f6e67e1791bc895758b11e4273ee2ae393a21b59434de099738e5dfa4",
+          "regions": [
+            {
+              "formalCoreBox": [
+                768,
+                2048,
+                1280,
+                3072
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                768,
+                3072,
+                1280,
+                4096
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Rows3/4 leafy branches cross with no clear rectangular seam at this crop; trunk/leaf sizes remain coherent. Local visual only; not tile acceptance."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "V2-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/V2-segments1-2.png",
+          "sha256": "16ee0e9fbeaae674e10dfbc28dcb56014eb21021ef22a8fd0db71b1c04e5c104",
+          "regions": [
+            {
+              "formalCoreBox": [
+                1792,
+                0,
+                2304,
+                1024
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                1792,
+                1024,
+                2304,
+                2048
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Row1 stone joints largely continue. Row2 lower-right joints form a narrow isolated triangular paving sliver and abrupt groove termination; stone crosshatching remains too busy."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "V2-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/V2-segments3-4.png",
+          "sha256": "07f383e82f65bbfe40dd37d357b1b011496043714bfe386e82f2c36a4e2d4877",
+          "regions": [
+            {
+              "formalCoreBox": [
+                1792,
+                2048,
+                2304,
+                3072
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                1792,
+                3072,
+                2304,
+                4096
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Row3 upper gray rim/shadow has a hard polygon cut. Row4 warm/pale material front and blue-gray inlay junction need unified phase; short double groove at lower rim."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "V3-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/V3-segments1-2.png",
+          "sha256": "224a414493625be10d40e3844b2ddbf247d483a11911046b78eac5aa3ed712a1",
+          "regions": [
+            {
+              "formalCoreBox": [
+                2816,
+                0,
+                3328,
+                1024
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                2816,
+                1024,
+                3328,
+                2048
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Row1 quiet paving phase broadly continues. Row2 upper thin diagonal grout dies within a slab and near seam paper/stone texture changes remain."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "V3-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/V3-segments3-4.png",
+          "sha256": "5346954c3b7f31ea3b6f0479a7a9d34225d865570279247fb944c85c5ba7ff95",
+          "regions": [
+            {
+              "formalCoreBox": [
+                2816,
+                2048,
+                3328,
+                3072
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                2816,
+                3072,
+                3328,
+                4096
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Row3 pale raised paving cap has unsupported end/step. Row4 blue inlay upper elbow has conflicting thin border geometry; fine crosshatched texture remains."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "H1-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/H1-segments1-2.png",
+          "sha256": "cc9882191380d549b43208fb5663016737d2d3c6474e0c6c3a1b4b673eb41a01",
+          "regions": [
+            {
+              "formalCoreBox": [
+                0,
+                768,
+                1024,
+                1280
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                1024,
+                768,
+                2048,
+                1280
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Column1 pale boundary curb and column2 leaf silhouette mostly continue through join; no obvious rectangular leaf cutoff in this band."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "H1-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/H1-segments3-4.png",
+          "sha256": "f920e97c50b2945d3fb03e848bd0b2f6d437adcfe1ae5f94a60974c43fff3c41",
+          "regions": [
+            {
+              "formalCoreBox": [
+                2048,
+                768,
+                3072,
+                1280
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                3072,
+                768,
+                4096,
+                1280
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Column3 diagonal/paper mostly coherent. Column4 lower diagonal groove has phase/material mismatch and faint isolated groove stroke."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "H2-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/H2-segments1-2.png",
+          "sha256": "73105ef6ccd36949d5e0c6f870fd4d647e711517b0ae71dbcf91e0905ce7770b",
+          "regions": [
+            {
+              "formalCoreBox": [
+                0,
+                1792,
+                1024,
+                2304
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                1024,
+                1792,
+                2048,
+                2304
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Column1 boundary wall/leaf mostly coherent. Column2 leaves show an unmistakable horizontal cutoff around view y653; right ground groove ends in a small crossed stump."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "H2-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/H2-segments3-4.png",
+          "sha256": "675749d531f5646818348d9941198717f6c770e0fdd1b001fae5f1bbb5682af9",
+          "regions": [
+            {
+              "formalCoreBox": [
+                2048,
+                1792,
+                3072,
+                2304
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                3072,
+                1792,
+                4096,
+                2304
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Columns3/4 have thin diagonal grout lines fading to dead ends on otherwise broad stone slabs; material remains dense cellular/crosshatched."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "H3-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/H3-segments1-2.png",
+          "sha256": "3e36d32d7de94a4edd4f12ef8c94ec6f832344c131fa10124968b754c32c7523",
+          "regions": [
+            {
+              "formalCoreBox": [
+                0,
+                2816,
+                1024,
+                3328
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                1024,
+                2816,
+                2048,
+                3328
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Column1 trunk and column2 leaf/ground silhouettes broadly continuous; local shadow variation retained provisional."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "H3-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/H3-segments3-4.png",
+          "sha256": "572b70ffa703e00e0c9f18a3072832e56d0c5ede91bd4a9404acb835f8590461",
+          "regions": [
+            {
+              "formalCoreBox": [
+                2048,
+                2816,
+                3072,
+                3328
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                3072,
+                2816,
+                4096,
+                3328
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "Column3 blue inlay starts with a small jagged pale cap. Column4 lower blue band transitions through a sliver/doubled elbow and different plane phase."
+          ],
+          "accepted": false
+        },
+        {
+          "id": "nine-intersections",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/native-full-qa-20261018-v01/nine-intersections.png",
+          "sha256": "abe42e406a48d52d16fd7506d25b3e66a50d338c8e5a9f0157bcb07903fb3d9a",
+          "regions": [
+            {
+              "formalCoreBox": [
+                896,
+                896,
+                1152,
+                1152
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                1920,
+                896,
+                2176,
+                1152
+              ],
+              "placement": [
+                256,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                2944,
+                896,
+                3200,
+                1152
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            },
+            {
+              "formalCoreBox": [
+                896,
+                1920,
+                1152,
+                2176
+              ],
+              "placement": [
+                0,
+                256
+              ]
+            },
+            {
+              "formalCoreBox": [
+                1920,
+                1920,
+                2176,
+                2176
+              ],
+              "placement": [
+                256,
+                256
+              ]
+            },
+            {
+              "formalCoreBox": [
+                2944,
+                1920,
+                3200,
+                2176
+              ],
+              "placement": [
+                512,
+                256
+              ]
+            },
+            {
+              "formalCoreBox": [
+                896,
+                2944,
+                1152,
+                3200
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            },
+            {
+              "formalCoreBox": [
+                1920,
+                2944,
+                2176,
+                3200
+              ],
+              "placement": [
+                256,
+                512
+              ]
+            },
+            {
+              "formalCoreBox": [
+                2944,
+                2944,
+                3200,
+                3200
+              ],
+              "placement": [
+                512,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "viewed": true,
+          "findings": [
+            "X1V1 foliage and X1V2/3 paper/paving broadly coherent; X2V1 leaves generally continuous. X2V2 narrow triangular slab and dead groove; X2V3 thin isolated diagonal. X3V1 trunk coherent, X3V2 crossed groove end, X3V3 stepped pale/blue rim. No formal pass."
+          ],
+          "accepted": false
+        }
+      ],
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "rightAndBottomNeighborStatus": "native complete adjacent tile unavailable; pending root review",
+      "reviewStatus": "actual_native_views_reviewed_open_issues",
+      "reviewedAtUtc": "2026-10-18T14:14:18.426119+00:00",
+      "issues": [
+        "All 24 internal segments and 9 intersections actually viewed at native pixels, no resized overview used as final evidence.",
+        "Hard H2 column2 foliage cutoff, internal grout dead ends/crossed stumps, blue-inlay slivers and stepped caps remain failed.",
+        "Dense fine crosshatching across paving exceeds approved quiet stone finish.",
+        "External boundaries not yet inspected in this review; right/bottom adjacent complete tiles currently absent. Internal/external/formal flags remain false."
+      ],
+      "actualModel": null,
+      "actualQuality": null,
+      "modelEvidence": "Built-in did not return actual model or quality. Historical configSnapshot is not model evidence."
+    }
+  }
+}

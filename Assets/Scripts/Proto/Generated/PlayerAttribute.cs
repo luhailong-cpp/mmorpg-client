@@ -259,7 +259,7 @@ public sealed partial class AttributeDimensionInfo : pb::IMessage<AttributeDimen
   public const int ValueFieldNumber = 6;
   private ulong value_;
   /// <summary>
-  /// 面板显示值 = 自然成长 + 已分配 + 外部加成。只是**点数**,不能反推收益:
+  /// 面板显示值 = 自然成长 + 生效的已分配 + 外部加成。只是**点数**,不能反推收益:
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -743,7 +743,7 @@ public sealed partial class AttributePoolInfo : pb::IMessage<AttributePoolInfo>
   public const int RemainingFieldNumber = 4;
   private uint remaining_;
   /// <summary>
-  /// 剩余可分配
+  /// 剩余可分配 = 池生效 ? max(0, total − 本池已分配 − 本版本解释不了的维度上的点) : 0(设计文档 §3.3)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

@@ -1,0 +1,1852 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 10,
+  "column": 7,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+  "imageBytes": 21318267,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/assembly.json",
+  "sourceLedgerSha256": "e5895fe93fbad0e42d18631fe707db7b1c3d644d620f963fb462a8dfc60981e8",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+    "imageSha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/assembly.json",
+        "sha256": "e5895fe93fbad0e42d18631fe707db7b1c3d644d620f963fb462a8dfc60981e8",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/assembly.json",
+        "sha256": "e5895fe93fbad0e42d18631fe707db7b1c3d644d620f963fb462a8dfc60981e8",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/southwest-census/v01/current-tiles.json",
+        "sha256": "6345dad28b003b74d5fedb02f030085de75ff2163c926fba8391766561db8b7a",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/review-v1/current-256-coordinate-index.json",
+        "sha256": "73125ef57344f8b3746ab2223a0db4af4c53e439e86733dcf2434ab292f353bf",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/southwest-census/v01/current-tiles.json",
+        "record": {
+          "coverageState": "full_candidate_pending_QA",
+          "formalStatus": "not_accepted",
+          "internalStatus": "open_QA",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/lane-review-and-repair-queue.json",
+        "record": {
+          "status": "local_native_QA_complete_with_open_repair_queue_generation_gated",
+          "formalAcceptedCount": 0,
+          "coverage": {
+            "completeTiles": 3,
+            "partialTile": "r10_c08",
+            "partialSelectedNativeCount": 2,
+            "missingNativePatchesInPartial": 14,
+            "coverageIsAcceptance": false
+          },
+          "externalEdgeCount": 6,
+          "externalPanelsViewedCount": 19
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/review-v1/current-256-coordinate-index.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "internalStatus": "open_QA",
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/lane-review-and-repair-queue.json",
+    "sourceSha256": "d09124d9b1568c258739a3dea6e529e9799ce0bf54e4d5d4d01d2bfe855e1897",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUtc": "2026-10-13T04:27:17.594734+00:00",
+      "scope": [
+        "r09_c07",
+        "r09_c08",
+        "r10_c07",
+        "r10_c08 partial p01_01+p01_02"
+      ],
+      "status": "local_native_QA_complete_with_open_repair_queue_generation_gated",
+      "newGenerationPerformedInThisReview": false,
+      "generatorCallsAfterModelGate": 0,
+      "apiUsed": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "formalAcceptedCount": 0,
+      "internalPassed": false,
+      "sourceResampling": false,
+      "globalCatalogOrProgressModified": false,
+      "sourceManifest": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/sources-and-panels.json",
+        "sha256": "236417bb8c442b4b1a5bbe47b44f609c6915e876c4e3d7c944e981a51a92868e"
+      },
+      "originalEvidenceIndex": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/original-evidence-index.json",
+        "sha256": "72a4dbe6999c24f8edb1c4704b0ae02ae654135ae0f2bd9162f2ab856ace9344"
+      },
+      "modelGate": [
+        {
+          "file": "docs/IMAGE_MODEL_REQUIREMENT.md",
+          "sha256": "6ec0c0b2f5d582a86b363632e93bd09f932df858f1d4476dd662dd62e7b54817"
+        },
+        {
+          "file": "AGENTS.md",
+          "sha256": "94b3d5f54a7f2bfb41a9a5f3e06f166d2e2f4bf24845813090974e59ac5dbbcf"
+        }
+      ],
+      "coverage": {
+        "completeTiles": 3,
+        "partialTile": "r10_c08",
+        "partialSelectedNativeCount": 2,
+        "missingNativePatchesInPartial": 14,
+        "coverageIsAcceptance": false
+      },
+      "viewedPanelCount": 26,
+      "unviewedGeneratedPanelCount": 12,
+      "viewedAtOriginalNativePixels": true,
+      "externalEdgeCount": 6,
+      "externalPanelsViewedCount": 19,
+      "selectedInternalPanelsViewedCount": 7,
+      "edges": [
+        {
+          "edge": "r09_c06--r09_c07",
+          "axis": "x",
+          "availableNativeLength": 4096,
+          "panels": [
+            "external-r09_c06--r09_c07-0000-1024",
+            "external-r09_c06--r09_c07-1024-2048",
+            "external-r09_c06--r09_c07-2048-3072",
+            "external-r09_c06--r09_c07-3072-4096"
+          ],
+          "overlapMeanAbsDifference": 46.59074459352355,
+          "overlapMaxAbsDifference": 254,
+          "overlapDifferentPixelFraction": 0.9999862007472826,
+          "overlapSourceBoxes": [
+            [
+              4096,
+              115,
+              4326,
+              4211
+            ],
+            [
+              0,
+              115,
+              230,
+              4211
+            ]
+          ],
+          "numericMetricsDoNotProveAcceptance": true,
+          "geometry": "Red rails, posts and pale edging cross the shared core boundary without a gross offset in the four inspected segments. This narrow border observation does not clear the whole structures.",
+          "material": "Dense crosshatch/cellular stone and differing broad red/stone paint finish remain. No obvious isolated tile-boundary color jump was found in these crops.",
+          "status": "inspected_material_open_no_overall_acceptance",
+          "formalAccepted": false,
+          "edgePassed": false
+        },
+        {
+          "edge": "r09_c07--r09_c08",
+          "axis": "x",
+          "availableNativeLength": 4096,
+          "panels": [
+            "external-r09_c07--r09_c08-0000-1024",
+            "external-r09_c07--r09_c08-1024-2048",
+            "external-r09_c07--r09_c08-2048-3072",
+            "external-r09_c07--r09_c08-3072-4096"
+          ],
+          "overlapMeanAbsDifference": 9.108788708673007,
+          "overlapMaxAbsDifference": 230,
+          "overlapDifferentPixelFraction": 0.994404933763587,
+          "overlapSourceBoxes": [
+            [
+              4096,
+              115,
+              4326,
+              4211
+            ],
+            [
+              0,
+              115,
+              230,
+              4211
+            ]
+          ],
+          "numericMetricsDoNotProveAcceptance": true,
+          "geometry": "Upper thin rim has a sharp polygonal step/jog in segment0. Segment2048..3072 shows an abrupt horizontal truncation/ledge near local y115, including pale/blue boundary rather than a single smooth curved rim. A small rim/bevel gap is visible near the right edge of segment3072..4096. These defects appear near the shared edge; do not assume all lie exactly on the x=4096 cut.",
+          "material": "Large cellular/scaly marks are visible on blue-grey stone, with varying pattern density and pale-face washes across the inspected area.",
+          "status": "failed_geometry_and_material",
+          "formalAccepted": false,
+          "edgePassed": false
+        },
+        {
+          "edge": "r10_c06--r10_c07",
+          "axis": "x",
+          "availableNativeLength": 4096,
+          "panels": [
+            "external-r10_c06--r10_c07-0000-1024",
+            "external-r10_c06--r10_c07-1024-2048",
+            "external-r10_c06--r10_c07-2048-3072",
+            "external-r10_c06--r10_c07-3072-4096"
+          ],
+          "overlapMeanAbsDifference": 9.456538722826087,
+          "overlapMaxAbsDifference": 239,
+          "overlapDifferentPixelFraction": 0.9988567849864131,
+          "overlapSourceBoxes": [
+            [
+              4096,
+              115,
+              4326,
+              4211
+            ],
+            [
+              0,
+              115,
+              230,
+              4211
+            ]
+          ],
+          "numericMetricsDoNotProveAcceptance": true,
+          "geometry": "Vertical pale edging, support foot and neighboring ground cross the core boundary without a gross offset in the four inspected segments. An abrupt horizontal structure cut appears in r10_c07 around core y1139, east of this shared boundary; it is a neighboring internal defect rather than proof the external x-edge alone failed.",
+          "material": "Pale/blue-grey faces retain dense crosshatch texture; source-side brush scale varies.",
+          "status": "inspected_material_open_neighbor_internal_failure",
+          "formalAccepted": false,
+          "edgePassed": false
+        },
+        {
+          "edge": "r09_c07--r10_c07",
+          "axis": "y",
+          "availableNativeLength": 4096,
+          "panels": [
+            "external-r09_c07--r10_c07-0000-1024",
+            "external-r09_c07--r10_c07-1024-2048",
+            "external-r09_c07--r10_c07-2048-3072",
+            "external-r09_c07--r10_c07-3072-4096"
+          ],
+          "overlapMeanAbsDifference": 5.571636520606884,
+          "overlapMaxAbsDifference": 213,
+          "overlapDifferentPixelFraction": 0.9967444378396739,
+          "overlapSourceBoxes": [
+            [
+              115,
+              4096,
+              4211,
+              4326
+            ],
+            [
+              115,
+              0,
+              4211,
+              230
+            ]
+          ],
+          "numericMetricsDoNotProveAcceptance": true,
+          "geometry": "The first two segments contain connected vertical stone/blue strips, but segment2048..3072 and segment3072..4096 show abrupt horizontal geometry replacement around r10_c07 core y115: slanted cream/blue meanders become upright strips/rectangular blocks. The mismatch lies 115px inside r10_c07, so exact border continuity cannot establish a coherent near-edge structure.",
+          "material": "Blue and pale painted texture changes conspicuously across nearby halo ownership transitions; dense cellular material persists.",
+          "status": "failed_near_edge_geometry_and_material",
+          "formalAccepted": false,
+          "edgePassed": false
+        },
+        {
+          "edge": "r09_c08--r10_c08",
+          "axis": "y",
+          "availableNativeLength": 2048,
+          "panels": [
+            "external-r09_c08--r10_c08-0000-1024",
+            "external-r09_c08--r10_c08-1024-2048"
+          ],
+          "overlapMeanAbsDifference": 5.987840381567029,
+          "overlapMaxAbsDifference": 69,
+          "overlapDifferentPixelFraction": 0.9943826426630434,
+          "overlapSourceBoxes": [
+            [
+              115,
+              4096,
+              2163,
+              4326
+            ],
+            [
+              115,
+              0,
+              2163,
+              230
+            ]
+          ],
+          "numericMetricsDoNotProveAcceptance": true,
+          "geometry": "Only top x0..2048 exists. Right/left curved boundaries continue through the actual shared edge, but p01_01 adds a full horizontal slab seam near r10_c08 core y135. p01_02 v02 removed its erroneous y230 native halo divider; lower sparse joint and fine border tangents still require complete-ring review.",
+          "material": "Strong cellular/crosshatch finish in dark-grey band and pale ivory face; slight wash-density change between top reference and new native interior.",
+          "status": "partial_edge_inspected_geometry_material_open",
+          "missingSpan": [
+            2048,
+            4096
+          ],
+          "formalAccepted": false,
+          "edgePassed": false
+        },
+        {
+          "edge": "r10_c07--r10_c08",
+          "axis": "x",
+          "availableNativeLength": 1024,
+          "panels": [
+            "external-r10_c07--r10_c08-0000-1024"
+          ],
+          "overlapMeanAbsDifference": 13.465020663496377,
+          "overlapMaxAbsDifference": 217,
+          "overlapDifferentPixelFraction": 0.9981148097826087,
+          "overlapSourceBoxes": [
+            [
+              4096,
+              115,
+              4326,
+              1139
+            ],
+            [
+              0,
+              115,
+              230,
+              1139
+            ]
+          ],
+          "numericMetricsDoNotProveAcceptance": true,
+          "geometry": "Only vertical y0..1024 exists. Blue-grey outer band and pale inner edge are connected across this shared edge. A new horizontal grey/blue segmentation is visible near r10_c08 core y135; grey band transitions and exact curve width need full-circle review.",
+          "material": "Dense cellular pattern remains; blue tone becomes grey in the lower part of the first native patch.",
+          "status": "partial_edge_inspected_geometry_material_open",
+          "missingSpan": [
+            1024,
+            4096
+          ],
+          "formalAccepted": false,
+          "edgePassed": false
+        }
+      ],
+      "panels": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c06--r09_c07-0000-1024.png",
+          "sha256": "d3ffa6244b553e6d5296acc9170de9b79681f19ea72d81fdfa09677690a591a1",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r09_c06--r09_c07",
+          "range": [
+            0,
+            1024
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c06/pipeline/output/8acb763a3ad68383/r09_c06.candidate.png",
+            "sha256": "876f4c3642df61b69e6878127d6a28478e16036872db3bf57ac0fafdc438f9a0",
+            "box": [
+              3904,
+              0,
+              4096,
+              1024
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              0,
+              0,
+              192,
+              1024
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c06--r09_c07-1024-2048.png",
+          "sha256": "d57dcd0248e6a5f8acdd14c950d1f8ac9928bf12eb4ff0dfe2c3e0c59c91956a",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r09_c06--r09_c07",
+          "range": [
+            1024,
+            2048
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c06/pipeline/output/8acb763a3ad68383/r09_c06.candidate.png",
+            "sha256": "876f4c3642df61b69e6878127d6a28478e16036872db3bf57ac0fafdc438f9a0",
+            "box": [
+              3904,
+              1024,
+              4096,
+              2048
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              0,
+              1024,
+              192,
+              2048
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c06--r09_c07-2048-3072.png",
+          "sha256": "b60d6752d909c5cae52138212839d6fa26298adfb1a1b3d25ce5295d3ec4bfca",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r09_c06--r09_c07",
+          "range": [
+            2048,
+            3072
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c06/pipeline/output/8acb763a3ad68383/r09_c06.candidate.png",
+            "sha256": "876f4c3642df61b69e6878127d6a28478e16036872db3bf57ac0fafdc438f9a0",
+            "box": [
+              3904,
+              2048,
+              4096,
+              3072
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              0,
+              2048,
+              192,
+              3072
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c06--r09_c07-3072-4096.png",
+          "sha256": "cc0cb0da0bdb97d782a70a26867acb84515e8f98687826d6e5c2c956cafa6f8a",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r09_c06--r09_c07",
+          "range": [
+            3072,
+            4096
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c06/pipeline/output/8acb763a3ad68383/r09_c06.candidate.png",
+            "sha256": "876f4c3642df61b69e6878127d6a28478e16036872db3bf57ac0fafdc438f9a0",
+            "box": [
+              3904,
+              3072,
+              4096,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              0,
+              3072,
+              192,
+              4096
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c07--r09_c08-0000-1024.png",
+          "sha256": "0a29a39c5d4e599c37328e9b43c75b6c364cf0785db25860b2ff81ca9f3cab34",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r09_c07--r09_c08",
+          "range": [
+            0,
+            1024
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              3904,
+              0,
+              4096,
+              1024
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "box": [
+              0,
+              0,
+              192,
+              1024
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c07--r09_c08-1024-2048.png",
+          "sha256": "11a1bfd66daf9265df5b3d0ebe83def16bd2219e0694bb4eccc91e0d8cadb0d7",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r09_c07--r09_c08",
+          "range": [
+            1024,
+            2048
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              3904,
+              1024,
+              4096,
+              2048
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "box": [
+              0,
+              1024,
+              192,
+              2048
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c07--r09_c08-2048-3072.png",
+          "sha256": "556adf75f739e6414116efdefb6486cae7803f3e34991feb3d857bdc91848793",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r09_c07--r09_c08",
+          "range": [
+            2048,
+            3072
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              3904,
+              2048,
+              4096,
+              3072
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "box": [
+              0,
+              2048,
+              192,
+              3072
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c07--r09_c08-3072-4096.png",
+          "sha256": "adc025e92eda0802ebe2b3df206f65e0eb3b7172ea175cd943e3074746db7701",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r09_c07--r09_c08",
+          "range": [
+            3072,
+            4096
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              3904,
+              3072,
+              4096,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "box": [
+              0,
+              3072,
+              192,
+              4096
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r10_c06--r10_c07-0000-1024.png",
+          "sha256": "ea9951a618bc2659f3201212e081e4b8893190ad83a5095d75d1e7a5e9f022f4",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r10_c06--r10_c07",
+          "range": [
+            0,
+            1024
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c06.candidate.png",
+            "sha256": "1253542fe8183ba2c18326ff785f2674bd35072cb3235ab3dc2a9c0fc347467f",
+            "box": [
+              3904,
+              0,
+              4096,
+              1024
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              0,
+              0,
+              192,
+              1024
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r10_c06--r10_c07-1024-2048.png",
+          "sha256": "e630482de7038f29e93d223be7f58d39aa50f0669d00a83d23e04f49e8c0e1ab",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r10_c06--r10_c07",
+          "range": [
+            1024,
+            2048
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c06.candidate.png",
+            "sha256": "1253542fe8183ba2c18326ff785f2674bd35072cb3235ab3dc2a9c0fc347467f",
+            "box": [
+              3904,
+              1024,
+              4096,
+              2048
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              0,
+              1024,
+              192,
+              2048
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r10_c06--r10_c07-2048-3072.png",
+          "sha256": "a14b8d6e8349a61a03bf48ac0fc5d5fdfb7514f846ed1f9fc484b40351a62448",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r10_c06--r10_c07",
+          "range": [
+            2048,
+            3072
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c06.candidate.png",
+            "sha256": "1253542fe8183ba2c18326ff785f2674bd35072cb3235ab3dc2a9c0fc347467f",
+            "box": [
+              3904,
+              2048,
+              4096,
+              3072
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              0,
+              2048,
+              192,
+              3072
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r10_c06--r10_c07-3072-4096.png",
+          "sha256": "ef795c22e64eef2bd184e593924299fdadfb99986ae84f47eed0cef8ebc8dfa4",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r10_c06--r10_c07",
+          "range": [
+            3072,
+            4096
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c06.candidate.png",
+            "sha256": "1253542fe8183ba2c18326ff785f2674bd35072cb3235ab3dc2a9c0fc347467f",
+            "box": [
+              3904,
+              3072,
+              4096,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              0,
+              3072,
+              192,
+              4096
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c07--r10_c07-0000-1024.png",
+          "sha256": "3994f4c6230fe80583f684f6435339ddc4ef6ff48bdecdae63a70a055acd4d1c",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "y",
+          "edge": "r09_c07--r10_c07",
+          "range": [
+            0,
+            1024
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              0,
+              3904,
+              1024,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              0,
+              0,
+              1024,
+              192
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c07--r10_c07-1024-2048.png",
+          "sha256": "94c3d7704b344d287a41fdf85061b55aa94fc9a1f2c335fb35e9a105f3190469",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "y",
+          "edge": "r09_c07--r10_c07",
+          "range": [
+            1024,
+            2048
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              1024,
+              3904,
+              2048,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              1024,
+              0,
+              2048,
+              192
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c07--r10_c07-2048-3072.png",
+          "sha256": "7185fb9671c8492beca469a4adda09e511ec2564fc0485bdeb6479a78ce593c7",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "y",
+          "edge": "r09_c07--r10_c07",
+          "range": [
+            2048,
+            3072
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              2048,
+              3904,
+              3072,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              2048,
+              0,
+              3072,
+              192
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c07--r10_c07-3072-4096.png",
+          "sha256": "e8df153bb538a9b72ed59184645c6a64cf9ff61247579644d26ac3622fb00253",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "y",
+          "edge": "r09_c07--r10_c07",
+          "range": [
+            3072,
+            4096
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "box": [
+              3072,
+              3904,
+              4096,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              3072,
+              0,
+              4096,
+              192
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c08--r10_c08-0000-1024.png",
+          "sha256": "65fe473cb9a1285a64843c173c0f158e36d2e8b3148341bb11ff81d10aa5d774",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "y",
+          "edge": "r09_c08--r10_c08",
+          "range": [
+            0,
+            1024
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "box": [
+              0,
+              3904,
+              1024,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/d31aa999288c3f9d/r10_c08.partial-p01_01-p01_02.png",
+            "sha256": "55338ce68be8860605168c195c54fb454caeff02d844e26d16ab7dfed672c9f8",
+            "box": [
+              0,
+              0,
+              1024,
+              192
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r09_c08--r10_c08-1024-2048.png",
+          "sha256": "27ce0851d02f65626ef206f016c781abad91dc7684899a98634398454e4ec463",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "y",
+          "edge": "r09_c08--r10_c08",
+          "range": [
+            1024,
+            2048
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "box": [
+              1024,
+              3904,
+              2048,
+              4096
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/d31aa999288c3f9d/r10_c08.partial-p01_01-p01_02.png",
+            "sha256": "55338ce68be8860605168c195c54fb454caeff02d844e26d16ab7dfed672c9f8",
+            "box": [
+              1024,
+              0,
+              2048,
+              192
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/external-r10_c07--r10_c08-0000-1024.png",
+          "sha256": "6a66082e90473911b9b4b509fab10f200295bd2d61ede316dfe8b855fdbfbb70",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "external-core-shared-edge",
+          "axis": "x",
+          "edge": "r10_c07--r10_c08",
+          "range": [
+            0,
+            1024
+          ],
+          "sourceA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "box": [
+              3904,
+              0,
+              4096,
+              1024
+            ]
+          },
+          "sourceB": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/d31aa999288c3f9d/r10_c08.partial-p01_01-p01_02.png",
+            "sha256": "55338ce68be8860605168c195c54fb454caeff02d844e26d16ab7dfed672c9f8",
+            "box": [
+              0,
+              0,
+              192,
+              1024
+            ]
+          },
+          "joinPosition": 192,
+          "operation": "exact native adjacent core crops pasted without blending",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c07-x1024-0000.png",
+          "sha256": "5aebd4f9ff03f66b00fc418679b35c8db3f5f6e248d713bd7a036eaf5bd910b9",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c07",
+          "axis": "x",
+          "seamPositionInCore": 1024,
+          "segmentStart": 0,
+          "boxInCore": [
+            832,
+            0,
+            1216,
+            1024
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c07-x2048-0000.png",
+          "sha256": "37ca1f2c3b930efe7995f223d457a4c33fa36b46180cde9e993e7b3ea7396dd9",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c07",
+          "axis": "x",
+          "seamPositionInCore": 2048,
+          "segmentStart": 0,
+          "boxInCore": [
+            1856,
+            0,
+            2240,
+            1024
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c07-x3072-0000.png",
+          "sha256": "07f14adc1b4ba805d7de97301c893bf946d3d7dca640ce567d83551c5cddf30d",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c07",
+          "axis": "x",
+          "seamPositionInCore": 3072,
+          "segmentStart": 0,
+          "boxInCore": [
+            2880,
+            0,
+            3264,
+            1024
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c07-y1024-2048.png",
+          "sha256": "39875ee08ceeea85d06c8208fbbbf0259aafbfb6181ca470292811b3803c1ed1",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c07",
+          "axis": "y",
+          "seamPositionInCore": 1024,
+          "segmentStart": 2048,
+          "boxInCore": [
+            2048,
+            832,
+            3072,
+            1216
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c07-y2048-2048.png",
+          "sha256": "e0ac323c114ada5e973613d3a9674a0e86b6730ab337570f0763e9c2937c5696",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c07",
+          "axis": "y",
+          "seamPositionInCore": 2048,
+          "segmentStart": 2048,
+          "boxInCore": [
+            2048,
+            1856,
+            3072,
+            2240
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c07-y3072-2048.png",
+          "sha256": "61add045632f8dbcfecfa2495767a61369d80e4f1470d407ec09786d8825bd08",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c07",
+          "axis": "y",
+          "seamPositionInCore": 3072,
+          "segmentStart": 2048,
+          "boxInCore": [
+            2048,
+            2880,
+            3072,
+            3264
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c07/repairs-resume-20261012/inner-rim-upper-v01/integrated/r09_c07.candidate.png",
+            "sha256": "4b348143d5998fe6f64f77a2da0a6ecef948b6704a172fc01966e5d9a8009221",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c08-x1024-0000.png",
+          "sha256": "a8c0bc1a38feeb15af61a6dda148b5c1c8a59982888e63b1e1437a170e0481c5",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c08",
+          "axis": "x",
+          "seamPositionInCore": 1024,
+          "segmentStart": 0,
+          "boxInCore": [
+            832,
+            0,
+            1216,
+            1024
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c08-x2048-0000.png",
+          "sha256": "30a76bee4c3d95c521ecea0ab97ca17c92bcdffc2dedf2059dec9d258cd3e57c",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c08",
+          "axis": "x",
+          "seamPositionInCore": 2048,
+          "segmentStart": 0,
+          "boxInCore": [
+            1856,
+            0,
+            2240,
+            1024
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c08-x3072-0000.png",
+          "sha256": "7e9cd739073b6b6da49b0af1ab0dd36e7aa892373e5913c6a341ad8180e4f9fe",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c08",
+          "axis": "x",
+          "seamPositionInCore": 3072,
+          "segmentStart": 0,
+          "boxInCore": [
+            2880,
+            0,
+            3264,
+            1024
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c08-y1024-0000.png",
+          "sha256": "bf5e5bdf68078310fc97a08fb12b1cd38d5a2d27dce4ff136cdcce64abdd541a",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c08",
+          "axis": "y",
+          "seamPositionInCore": 1024,
+          "segmentStart": 0,
+          "boxInCore": [
+            0,
+            832,
+            1024,
+            1216
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c08-y2048-0000.png",
+          "sha256": "56545517b3af179ca39dca309cd7722ba595c8b2145a0d98a5ec20501aebbf89",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c08",
+          "axis": "y",
+          "seamPositionInCore": 2048,
+          "segmentStart": 0,
+          "boxInCore": [
+            0,
+            1856,
+            1024,
+            2240
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r09_c08-y3072-0000.png",
+          "sha256": "cadbda14c9b642d954beba155d8bac7149a12a866dbd88c5cc1dae824d4e2182",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r09_c08",
+          "axis": "y",
+          "seamPositionInCore": 3072,
+          "segmentStart": 0,
+          "boxInCore": [
+            0,
+            2880,
+            1024,
+            3264
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c08/repairs-resume-20261012/lower-rim-elbow-v01/integrated/r09_c08.candidate.png",
+            "sha256": "eeb26350dc547e73b7e644cebc860c461119d2917a42007eac1ad0a50a75fa57",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r10_c07-x1024-2048.png",
+          "sha256": "7ba8d796a86a7df2b564a436c484686c106d506ef7175a7df7ce1f9f58b57037",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r10_c07",
+          "axis": "x",
+          "seamPositionInCore": 1024,
+          "segmentStart": 2048,
+          "boxInCore": [
+            832,
+            2048,
+            1216,
+            3072
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r10_c07-x2048-2048.png",
+          "sha256": "5000c8fe3871cf6a88acf525793ea7bea0516e8df3621fc0fdafbfe86de4e3a5",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r10_c07",
+          "axis": "x",
+          "seamPositionInCore": 2048,
+          "segmentStart": 2048,
+          "boxInCore": [
+            1856,
+            2048,
+            2240,
+            3072
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r10_c07-x3072-2048.png",
+          "sha256": "481c7b8db2e89b093ade520cad4c2ba0a4a38c51b79730c22a86a6bc979f367a",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r10_c07",
+          "axis": "x",
+          "seamPositionInCore": 3072,
+          "segmentStart": 2048,
+          "boxInCore": [
+            2880,
+            2048,
+            3264,
+            3072
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r10_c07-y1024-0000.png",
+          "sha256": "d0f93912642661ba59ffd792d05648c0a9ec8716c2a2ba4dc33606064d1e0454",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r10_c07",
+          "axis": "y",
+          "seamPositionInCore": 1024,
+          "segmentStart": 0,
+          "boxInCore": [
+            0,
+            832,
+            1024,
+            1216
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r10_c07-y2048-2048.png",
+          "sha256": "f24edcb7c6dba50df4f70978734586c6cc3c01894cfa12ddf40891fdd88e19cf",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r10_c07",
+          "axis": "y",
+          "seamPositionInCore": 2048,
+          "segmentStart": 2048,
+          "boxInCore": [
+            2048,
+            1856,
+            3072,
+            2240
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r10_c07-y3072-2048.png",
+          "sha256": "b1c96f51b3a5c8a29e0424882745c52550448478d1c27aaeb841d36022a5d955",
+          "pixels": [
+            1024,
+            384
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r10_c07",
+          "axis": "y",
+          "seamPositionInCore": 3072,
+          "segmentStart": 2048,
+          "boxInCore": [
+            2048,
+            2880,
+            3072,
+            3264
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/output/a53dc8484e14fa8d/r10_c07.candidate.png",
+            "sha256": "5d1facbd805be7ed8de03f666c2ad10697ff5bb869a8e457b49c44134a89eea1",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": false,
+          "reviewStatus": "generated_but_unviewed_pending"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/qa/right-lane-review-20261013-v01/internal-r10_c08-x1024-0000.png",
+          "sha256": "7b98acc4fb5925b1a7721e7a7dbeab19cce32cd2c1489e8b8ad6c37f1181bd6d",
+          "pixels": [
+            384,
+            1024
+          ],
+          "sourceResampling": false,
+          "kind": "selected-internal-seam",
+          "tile": "r10_c08",
+          "axis": "x",
+          "seamPositionInCore": 1024,
+          "segmentStart": 0,
+          "boxInCore": [
+            832,
+            0,
+            1216,
+            1024
+          ],
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/output/d31aa999288c3f9d/r10_c08.partial-p01_01-p01_02.png",
+            "sha256": "55338ce68be8860605168c195c54fb454caeff02d844e26d16ab7dfed672c9f8",
+            "width": 2048,
+            "height": 1024,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "operation": "exact native crop without resampling",
+          "actuallyViewedAtNativeSize": true,
+          "reviewStatus": "inspected_open_qa"
+        }
+      ],
+      "repairQueue": [
+        {
+          "priority": 1,
+          "id": "r09c07-cloud-rim-elbow",
+          "tile": "r09_c07",
+          "evidencePanels": [
+            "internal-r09_c07-x2048-0000"
+          ],
+          "problem": "The upper carved pale contour makes an abrupt right-angle horizontal/vertical elbow and then resumes a curve. Rebuild only after a verified GPT Image2.5 route is available, with the approved coarse shape as geometry reference.",
+          "kind": "geometry"
+        },
+        {
+          "priority": 1,
+          "id": "r09c07-r09c08-ring-step",
+          "tiles": [
+            "r09_c07",
+            "r09_c08"
+          ],
+          "evidencePanels": [
+            "external-r09_c07--r09_c08-0000-1024",
+            "external-r09_c07--r09_c08-2048-3072",
+            "external-r09_c07--r09_c08-3072-4096"
+          ],
+          "problem": "Resolve thin-rim jogs, horizontal truncation/ledge and tiny bevel gap coherently using both selected tile contexts; do not simply blur or quilt over geometry.",
+          "kind": "shared_near_edge_geometry"
+        },
+        {
+          "priority": 1,
+          "id": "r09c08-upper-ring-fork",
+          "tile": "r09_c08",
+          "evidencePanels": [
+            "internal-r09_c08-y1024-0000"
+          ],
+          "problem": "The pale/blue outer rim changes topology into a spur/fork and incomplete blue insert near the top-left of this segment; reconcile with approved ring outline.",
+          "kind": "geometry"
+        },
+        {
+          "priority": 1,
+          "id": "r10c07-top-halo-geometry",
+          "tile": "r10_c07",
+          "evidencePanels": [
+            "external-r09_c07--r10_c07-2048-3072",
+            "external-r09_c07--r10_c07-3072-4096"
+          ],
+          "problem": "At approximately core y115, slanted native-top meanders are cut into upright rectangular strip geometry. Plan coordinated exact-framing repair, keeping top outer intersections fixed.",
+          "kind": "near_edge_geometry"
+        },
+        {
+          "priority": 1,
+          "id": "r10c07-redcap-and-ground-deadends",
+          "tile": "r10_c07",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/qa/a53dc8484e14fa8d/full-candidate-review-20261013.json",
+          "problem": "Previously actually viewed red cap horizontal cut, p03_02 two ground seam dead ends, lower cloud-slab pointed notch, and inner cream rim fork remain unresolved. The previous review links exact native crops.",
+          "kind": "geometry"
+        },
+        {
+          "priority": 2,
+          "id": "r10c08-partial-curve-and-new-joints",
+          "tile": "r10_c08",
+          "evidencePanels": [
+            "external-r09_c08--r10_c08-0000-1024",
+            "external-r09_c08--r10_c08-1024-2048",
+            "internal-r10_c08-x1024-0000"
+          ],
+          "problem": "Review unexpected p01_01 full horizontal joint near core y135 and narrow wedge/curved-border kink in the internal x1024 strip. Preserve p01_02 v02 improvement, do not regenerate existing accepted-by-size coverage wholesale.",
+          "kind": "partial_geometry"
+        },
+        {
+          "priority": 2,
+          "id": "all-four-stone-material",
+          "tiles": [
+            "r09_c07",
+            "r09_c08",
+            "r10_c07",
+            "r10_c08"
+          ],
+          "problem": "Dense repetitive cells/crosshatch, scaly blue-grey marks and uneven wash density remain across all viewed native stone. Future model-verified native repairs must retain geometry and border pixels; no blur, recolor, resize or warp shortcut.",
+          "kind": "material"
+        },
+        {
+          "priority": 3,
+          "id": "unviewed-panels",
+          "problem": "Twelve generated selected-internal-seam panels were not viewed in this bounded review. Keep them explicitly pending, along with all other unselected internal segments, unavailable partial edges and whole-region acceptance.",
+          "kind": "inspection_pending"
+        }
+      ],
+      "priorActuallyViewedTargetedR10c07Review": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c07/pipeline/qa/a53dc8484e14fa8d/full-candidate-review-20261013.json",
+        "sha256": "48560759ab9ed209ca0588ba5bb86e89e1553822afbe4d9a2b12d0b6ff9002c3"
+      },
+      "nextGenerationRequest": {
+        "prepared": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c08/pipeline/prompts/p01_03.resume-sol-20261013.request.json",
+          "sha256": "4e18b4400cd3ec81b914694cabc9ea9defa063591630cac773e6b476ab818de3"
+        },
+        "coordinate": "r10_c08:p01_03",
+        "notCalled": true,
+        "reason": "Generation is gated by explicit verified GPT Image2.5 route requirement; no paid API authorization."
+      },
+      "limits": "No whole-tile internal pass, entire edge material pass or formal acceptance is asserted. Unviewed panels and unavailable spans are pending. Mechanical exact-native crop/paste and existing-source quilt<=2 only."
+    }
+  }
+}

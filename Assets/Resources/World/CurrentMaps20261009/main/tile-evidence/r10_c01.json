@@ -1,0 +1,515 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 10,
+  "column": 1,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "a682a5338fe061f7bda55664d8a56ef8c6f278cda1e5e08feac535f70338b4f6",
+  "imageBytes": 19672274,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/r10_c01.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/assembly.json",
+  "sourceLedgerSha256": "717a98663f1edf31c410b8ac6e0e8c24baaade24fd70f80c3809283a7e0fb400",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/r10_c01.candidate.png",
+    "imageSha256": "a682a5338fe061f7bda55664d8a56ef8c6f278cda1e5e08feac535f70338b4f6",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/assembly.json",
+        "sha256": "717a98663f1edf31c410b8ac6e0e8c24baaade24fd70f80c3809283a7e0fb400",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/assembly.json",
+        "sha256": "717a98663f1edf31c410b8ac6e0e8c24baaade24fd70f80c3809283a7e0fb400",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/worker-review-and-repair-queue.json",
+        "record": {
+          "coverage": {
+            "selectedNative": 16,
+            "expected": 16,
+            "nativePixels": [
+              1254,
+              1254
+            ],
+            "core": [
+              4096,
+              4096
+            ],
+            "context": [
+              4326,
+              4326
+            ],
+            "sourceResampling": false
+          },
+          "externalNativeRegionsViewed": 10,
+          "externalCompleteness": {
+            "top": "native provisional context available; notaccepted",
+            "right": "row1 nativeonly; rows2-4 missing",
+            "left": "outside main-city artworld",
+            "bottom": "neighbor native unavailable"
+          },
+          "issues": [
+            {
+              "id": "stand-floor-front",
+              "patches": [
+                "p03_04",
+                "p04_04"
+              ],
+              "status": "open",
+              "severity": "blocking-internal",
+              "evidence": [
+                "internal-H3",
+                "internal-V3",
+                "overview"
+              ],
+              "finding": "Visible vertical rectangular floor-tone front at p03_04 native x750; support left end is abruptly cut. Guidance-mask boundary remains visible in generated pixels.",
+              "action": "AI repair floor tone and support end using current native neighbors; retain geometry and all versions."
+            },
+            {
+              "id": "wall-shadow-steps",
+              "patches": [
+                "p01_03",
+                "p02_03",
+                "p02_04"
+              ],
+              "status": "open",
+              "severity": "blocking-internal",
+              "evidence": [
+                "internal-H1",
+                "internal-V3",
+                "internal-nine-corners"
+              ],
+              "finding": "Grey wall shadow under lantern forms hard polygonal steps; lighting plane continuity needs repair.",
+              "action": "Consolidated AI shadow/material repair preserving architecture."
+            },
+            {
+              "id": "right-upper-beam",
+              "patches": [
+                "p01_04"
+              ],
+              "neighbor": "r10_c02/p01_01",
+              "status": "open",
+              "severity": "blocking-external",
+              "evidence": [
+                "external-right-row1-only"
+              ],
+              "finding": "Upper wooden member is visibly at different vertical extents in the two native overlap strips; current c01 side contains a dead-ended beam stub. Lower stone band and sill are near-aligned but do not establish passage.",
+              "action": "Coordinate c01/c02 repair against approved forge geometry, then rebuild and inspect changed boundary only."
+            },
+            {
+              "id": "lantern-fringe-length",
+              "patches": [
+                "p01_03"
+              ],
+              "status": "open",
+              "severity": "layout",
+              "finding": "Remaining single tassel extends approximately to native y950 rather than coarse guide y820 after prior edit.",
+              "action": "Defer further same-point looping; repair in consolidated layout pass."
+            },
+            {
+              "id": "anvil-scoring",
+              "patches": [
+                "p02_04"
+              ],
+              "status": "open",
+              "severity": "finish",
+              "finding": "Anvil surface develops cracks/scoring inconsistent with quiet approved finish.",
+              "action": "AI surface repair preserving silhouette."
+            },
+            {
+              "id": "bottom-left-floor-border",
+              "patches": [
+                "p04_01"
+              ],
+              "status": "unconfirmed-layout",
+              "severity": "propagation-hold",
+              "finding": "Bluish L-shaped floor return near bottom-left needs support check against approved layout.",
+              "action": "Do not use this portion as r11_c01 seed until checked/repaired."
+            },
+            {
+              "id": "crate-box-corners",
+              "patches": [
+                "p02_02",
+                "p02_03",
+                "p03_02",
+                "p04_02"
+              ],
+              "status": "open",
+              "severity": "layout",
+              "finding": "Minor approximately 50-100 pixel footprint/corner deviations from coarse guides remain.",
+              "action": "Consolidated native layout review and necessary AI edit."
+            },
+            {
+              "id": "floor-paper-detail",
+              "patches": [
+                "p04_02",
+                "p04_03",
+                "p04_04"
+              ],
+              "status": "open",
+              "severity": "finish-layout",
+              "finding": "Interior red-paper clusters reduced/omitted and fine floor cellular texture is dense; some grout phase remains uncertain.",
+              "action": "Review against approved fragment and quiet stone reference; repair necessary areas."
+            },
+            {
+              "id": "top-overlap-tone",
+              "patches": [
+                "p01_01",
+                "p01_02",
+                "p01_03",
+                "p01_04"
+              ],
+              "status": "open-review",
+              "severity": "external",
+              "evidence": [
+                "external-top-cols-1-2",
+                "external-top-cols-3-4"
+              ],
+              "finding": "Major wall seams, fringe, gold lantern collar and wooden upright correspond in native top overlaps; visible local tone/texture differences remain. Upper tile is provisional and not accepted.",
+              "action": "Final external comparison after required repairs and confirmed upper sources."
+            }
+          ],
+          "externalPassed": false,
+          "formalAccepted": false,
+          "acceptanceState": "full-native-coverage; failed/open visual QA"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/worker-review-and-repair-queue.json",
+    "sourceSha256": "17eda88b29f5f581c5a713348910e24cb9c6fb86117956d75e103853dcd5cbf6",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "createdAtUtc": "2026-10-14T03:23:28.224104+00:00",
+      "tile": "r10_c01",
+      "worker": "sw_left_continue_20261013c",
+      "coverage": {
+        "selectedNative": 16,
+        "expected": 16,
+        "nativePixels": [
+          1254,
+          1254
+        ],
+        "core": [
+          4096,
+          4096
+        ],
+        "context": [
+          4326,
+          4326
+        ],
+        "sourceResampling": false
+      },
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/assembly.json",
+        "sha256": "717a98663f1edf31c410b8ac6e0e8c24baaade24fd70f80c3809283a7e0fb400"
+      },
+      "core": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/r10_c01.candidate.png",
+        "sha256": "a682a5338fe061f7bda55664d8a56ef8c6f278cda1e5e08feac535f70338b4f6",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/r10_c01.candidate.context.png",
+        "sha256": "bd5564f87739944369d92b63b4092f15a389a6304fad715093014ff5ad5ed605",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "qaConstructionManifest": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/manifest.json",
+        "sha256": "16e12f5bca736d9c8f3aef05a55626d351fdefbe6d50db812baa3ffa933d5014"
+      },
+      "views": [
+        {
+          "id": "overview",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/overview-QA-only-1600.png",
+          "sha256": "aa335e30b2147bee5723f249ae8ca37ecc334969bae325eb735a9aba416be3ba",
+          "qaOnly": true,
+          "viewed": true,
+          "detail": "original"
+        },
+        {
+          "id": "internal-V1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/internal-V1.png",
+          "sha256": "e06e0e1551b348cc5de6e2552bc496eb6f8008fab28695d21dc9811a32a090f7",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 4,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "internal-V2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/internal-V2.png",
+          "sha256": "df79268669c2b821fca1916b4eb1eda5144ffb7ab6f49f33c0b9fe4a71b81fdc",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 4,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "internal-V3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/internal-V3.png",
+          "sha256": "97607c0e64615c0e04715d91efad3a5460b78f963003995fd55bd75fd3040138",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 4,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "internal-H1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/internal-H1.png",
+          "sha256": "db76571616f7460e76ea7cc85be9787dfa642069f4aeecc801e5bbefea170cd3",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 4,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "internal-H2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/internal-H2.png",
+          "sha256": "4c7baea7a8f2519d8e35e82c549d0fa95ad8718051fe42c1311ed60454d4c63e",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 4,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "internal-H3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/internal-H3.png",
+          "sha256": "f6afdb25c3265408e92f0284e1e305e242ca6222f27ba11f440dadf436d92ca1",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 4,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "internal-nine-corners",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/internal-nine-corners.png",
+          "sha256": "cece4090be62ae201960012fd257303215895030f0f92eb95aebae5fbef3f38c",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 9,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "external-top-cols-1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/external-top-cols-1-2.png",
+          "sha256": "d9f191d51c43d493085abd2906657baaec45eef987d2e520808c4e3a7d117029",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 4,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "external-top-cols-3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/external-top-cols-3-4.png",
+          "sha256": "f6779f62e3ec82616ee755e4377bb2651a373202718b8c40615ec1c4385a9f19",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 4,
+          "nativeRegionResampling": false
+        },
+        {
+          "id": "external-right-row1-only",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c01/pipeline/output/3fa66685eea6dfa7/left-worker-qa-continue20261013c-v01/external-right-row1-only.png",
+          "sha256": "cdf1ff958f7375e5e71616f0e9e2bb64b267e99cab8f29de2ce4dfe6585a6741",
+          "viewed": true,
+          "detail": "original",
+          "nativeRegionCount": 2,
+          "nativeRegionResampling": false
+        }
+      ],
+      "visualInspectionComplete": true,
+      "actualNativeRegionsViewed": 43,
+      "internalNativeRegionsViewed": 33,
+      "externalNativeRegionsViewed": 10,
+      "externalCompleteness": {
+        "top": "native provisional context available; notaccepted",
+        "right": "row1 nativeonly; rows2-4 missing",
+        "left": "outside main-city artworld",
+        "bottom": "neighbor native unavailable"
+      },
+      "issues": [
+        {
+          "id": "stand-floor-front",
+          "patches": [
+            "p03_04",
+            "p04_04"
+          ],
+          "status": "open",
+          "severity": "blocking-internal",
+          "evidence": [
+            "internal-H3",
+            "internal-V3",
+            "overview"
+          ],
+          "finding": "Visible vertical rectangular floor-tone front at p03_04 native x750; support left end is abruptly cut. Guidance-mask boundary remains visible in generated pixels.",
+          "action": "AI repair floor tone and support end using current native neighbors; retain geometry and all versions."
+        },
+        {
+          "id": "wall-shadow-steps",
+          "patches": [
+            "p01_03",
+            "p02_03",
+            "p02_04"
+          ],
+          "status": "open",
+          "severity": "blocking-internal",
+          "evidence": [
+            "internal-H1",
+            "internal-V3",
+            "internal-nine-corners"
+          ],
+          "finding": "Grey wall shadow under lantern forms hard polygonal steps; lighting plane continuity needs repair.",
+          "action": "Consolidated AI shadow/material repair preserving architecture."
+        },
+        {
+          "id": "right-upper-beam",
+          "patches": [
+            "p01_04"
+          ],
+          "neighbor": "r10_c02/p01_01",
+          "status": "open",
+          "severity": "blocking-external",
+          "evidence": [
+            "external-right-row1-only"
+          ],
+          "finding": "Upper wooden member is visibly at different vertical extents in the two native overlap strips; current c01 side contains a dead-ended beam stub. Lower stone band and sill are near-aligned but do not establish passage.",
+          "action": "Coordinate c01/c02 repair against approved forge geometry, then rebuild and inspect changed boundary only."
+        },
+        {
+          "id": "lantern-fringe-length",
+          "patches": [
+            "p01_03"
+          ],
+          "status": "open",
+          "severity": "layout",
+          "finding": "Remaining single tassel extends approximately to native y950 rather than coarse guide y820 after prior edit.",
+          "action": "Defer further same-point looping; repair in consolidated layout pass."
+        },
+        {
+          "id": "anvil-scoring",
+          "patches": [
+            "p02_04"
+          ],
+          "status": "open",
+          "severity": "finish",
+          "finding": "Anvil surface develops cracks/scoring inconsistent with quiet approved finish.",
+          "action": "AI surface repair preserving silhouette."
+        },
+        {
+          "id": "bottom-left-floor-border",
+          "patches": [
+            "p04_01"
+          ],
+          "status": "unconfirmed-layout",
+          "severity": "propagation-hold",
+          "finding": "Bluish L-shaped floor return near bottom-left needs support check against approved layout.",
+          "action": "Do not use this portion as r11_c01 seed until checked/repaired."
+        },
+        {
+          "id": "crate-box-corners",
+          "patches": [
+            "p02_02",
+            "p02_03",
+            "p03_02",
+            "p04_02"
+          ],
+          "status": "open",
+          "severity": "layout",
+          "finding": "Minor approximately 50-100 pixel footprint/corner deviations from coarse guides remain.",
+          "action": "Consolidated native layout review and necessary AI edit."
+        },
+        {
+          "id": "floor-paper-detail",
+          "patches": [
+            "p04_02",
+            "p04_03",
+            "p04_04"
+          ],
+          "status": "open",
+          "severity": "finish-layout",
+          "finding": "Interior red-paper clusters reduced/omitted and fine floor cellular texture is dense; some grout phase remains uncertain.",
+          "action": "Review against approved fragment and quiet stone reference; repair necessary areas."
+        },
+        {
+          "id": "top-overlap-tone",
+          "patches": [
+            "p01_01",
+            "p01_02",
+            "p01_03",
+            "p01_04"
+          ],
+          "status": "open-review",
+          "severity": "external",
+          "evidence": [
+            "external-top-cols-1-2",
+            "external-top-cols-3-4"
+          ],
+          "finding": "Major wall seams, fringe, gold lantern collar and wooden upright correspond in native top overlaps; visible local tone/texture differences remain. Upper tile is provisional and not accepted.",
+          "action": "Final external comparison after required repairs and confirmed upper sources."
+        }
+      ],
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "acceptanceState": "full-native-coverage; failed/open visual QA",
+      "sourceImagesModifiedByReview": false,
+      "gitMutated": false,
+      "nextProduction": "Continue independent r10_c02 missing native patches; do not propagate unresolved r10_c01 bottom-left border."
+    }
+  }
+}

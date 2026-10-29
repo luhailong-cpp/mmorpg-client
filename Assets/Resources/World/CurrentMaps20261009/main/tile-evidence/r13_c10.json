@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 13,
+  "column": 10,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "56e87f25bc7b8d5ba331f61ddce385c817943efecae785b96f8009dcae1d9376",
+  "imageBytes": 25574060,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c10/candidate/r13_c10-4k-W01-upper-lintel-v1-20261020-2309.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c10/progress.json",
+  "sourceLedgerSha256": "87d6beb8f2c5dbbd085d58c5aa815707bfa6ad96e2dde04e334f3062a7971751",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": "pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c10",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c10/candidate/r13_c10-4k-W01-upper-lintel-v1-20261020-2309.png",
+    "imageSha256": "56e87f25bc7b8d5ba331f61ddce385c817943efecae785b96f8009dcae1d9376",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c10/progress.json",
+        "sha256": "87d6beb8f2c5dbbd085d58c5aa815707bfa6ad96e2dde04e334f3062a7971751",
+        "sourceReviewSha256": "87d6beb8f2c5dbbd085d58c5aa815707bfa6ad96e2dde04e334f3062a7971751",
+        "completeness": [
+          "Selected output path/SHA bound to this record",
+          "activeNativeCount=16 / coverageSourceCount=16; no missing cores reported"
+        ]
+      }
+    ],
+    "selectionBasis": "Exact candidate identity bound to complete native core record",
+    "sourceStatus": {
+      "status": "candidate_W01_upper_lintel_P01_B01_P02_upright_local_improvements_other_QA_pending",
+      "formalAccepted": false,
+      "internalArtQA": "W01_upper_lintel_localpass_lower_window_R01_P02_foundation_F01_material_pending",
+      "externalNeighborSeamQA": "pending"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c10/candidate/r13_c10-4k-W01-upper-lintel-v1-20261020-2309.png.generation.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c10/progress.json",
+        "record": {
+          "status": "candidate_W01_upper_lintel_P01_B01_P02_upright_local_improvements_other_QA_pending",
+          "formalAccepted": false,
+          "internalArtQA": "W01_upper_lintel_localpass_lower_window_R01_P02_foundation_F01_material_pending",
+          "externalNeighborSeamQA": "pending"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

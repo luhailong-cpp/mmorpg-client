@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 11,
+  "column": 12,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "98141f72b6b053e077dc71e337410ac70a1d65e2deb5d6e09222656f17bb11e2",
+  "imageBytes": 25520482,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r11_c12/candidate/r11_c12-4096-candidate-v8.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r11_c12/candidate/r11_c12-4096-candidate-v8.png.derivation.json",
+  "sourceLedgerSha256": "767e9be39ff40e314ae8f7fba8dd5232b55b7ee480764b168c867909014c14c5",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r11_c12",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r11_c12/candidate/r11_c12-4096-candidate-v8.png",
+    "imageSha256": "98141f72b6b053e077dc71e337410ac70a1d65e2deb5d6e09222656f17bb11e2",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r11_c12/candidate/r11_c12-4096-candidate-v8.png.derivation.json",
+        "sha256": "767e9be39ff40e314ae8f7fba8dd5232b55b7ee480764b168c867909014c14c5",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "externalQA": "pending"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r11_c12/candidate/r11_c12-4096-candidate-v8.png.derivation.json",
+        "record": {
+          "formalAccepted": false,
+          "externalQA": "pending"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/own-east-without-neighbor-source-20261023-v1/root-own-border-review.json",
+    "sourceSha256": "3cad5c5aaf00eeed0477587189d61137ecb8be057b9f02fbf91f928fd9bd98b2",
+    "normalizedDocument": {
+      "reviewedAtUtc": "2026-10-23T20:48:44.585440+00:00",
+      "records": [
+        {
+          "id": "E_r11_c12_03",
+          "file": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/own-east-without-neighbor-source-20261023-v1/own-r11_c12-east-segment3-native.png",
+            "sha256": "1aacaa454566d04ae5fb51d810ab2aa7614807d64d97788d708d4583402a08bf",
+            "bytes": 395668,
+            "sampledAtUtc": "2026-10-23T20:43:01.066996+00:00",
+            "dimensions": [
+              256,
+              1024
+            ],
+            "mode": "RGB"
+          },
+          "candidateCrop": [
+            3840,
+            2048,
+            4096,
+            3072
+          ],
+          "worldBox": [
+            48896,
+            43008,
+            49152,
+            44032
+          ],
+          "ownCurrentCandidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r11_c12/candidate/r11_c12-4096-candidate-v8.png",
+            "sha256": "98141f72b6b053e077dc71e337410ac70a1d65e2deb5d6e09222656f17bb11e2",
+            "bytes": 25520482,
+            "sampledAtUtc": "2026-10-21T22:43:54.108144+00:00",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "mode": "RGB"
+          },
+          "missingNeighbor": "r11_c13_p31",
+          "actualViewedNative": false,
+          "neighborPixelsIncluded": false,
+          "externalJoinPassed": false,
+          "ownPixelsActuallyViewed": true,
+          "additionalBlockingLocalArtifactConfirmed": false,
+          "observation": "Only current own border256 pixels viewed. Native sea pattern, diagonal deck/rope edge remain detailed; no additional definite source rectangle is established in this narrow view. Intersecting support/rail is partial and the real east receiver is missing, so whole-object and cross-boundary status stay unknown.",
+          "externalGeometry": "unknown_missing_actual_neighbor_CORE",
+          "externalMaterial": "unknown_missing_actual_neighbor_CORE",
+          "wholeObjectPassed": false
+        },
+        {
+          "id": "E_r11_c12_04",
+          "file": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/own-east-without-neighbor-source-20261023-v1/own-r11_c12-east-segment4-native.png",
+            "sha256": "9bb6aa35523a4fda0f1c5cfcc98b985ac1319080a2d98744ef71822766533e34",
+            "bytes": 326938,
+            "sampledAtUtc": "2026-10-23T20:43:01.104663+00:00",
+            "dimensions": [
+              256,
+              1024
+            ],
+            "mode": "RGB"
+          },
+          "candidateCrop": [
+            3840,
+            3072,
+            4096,
+            4096
+          ],
+          "worldBox": [
+            48896,
+            44032,
+            49152,
+            45056
+          ],
+          "ownCurrentCandidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r11_c12/candidate/r11_c12-4096-candidate-v8.png",
+            "sha256": "98141f72b6b053e077dc71e337410ac70a1d65e2deb5d6e09222656f17bb11e2",
+            "bytes": 25520482,
+            "sampledAtUtc": "2026-10-21T22:43:54.108144+00:00",
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "mode": "RGB"
+          },
+          "missingNeighbor": "r11_c13_p41",
+          "actualViewedNative": false,
+          "neighborPixelsIncluded": false,
+          "externalJoinPassed": false,
+          "ownPixelsActuallyViewed": true,
+          "additionalBlockingLocalArtifactConfirmed": false,
+          "observation": "Only current own border256 pixels viewed. Native sea pattern, diagonal deck/rope edge remain detailed; no additional definite source rectangle is established in this narrow view. Intersecting support/rail is partial and the real east receiver is missing, so whole-object and cross-boundary status stay unknown.",
+          "externalGeometry": "unknown_missing_actual_neighbor_CORE",
+          "externalMaterial": "unknown_missing_actual_neighbor_CORE",
+          "wholeObjectPassed": false
+        }
+      ],
+      "scope": "Pixel inspection coverage for own border only; not bilateral seam approval, no use of halo to fill missing actual sources.",
+      "knownMissing": [
+        "r11_c13_p31",
+        "r11_c13_p41"
+      ],
+      "sourceImagesChanged": 0,
+      "newImageCalls": 0,
+      "wholeTileInternalPassed": false,
+      "formalAccepted": false
+    }
+  }
+}

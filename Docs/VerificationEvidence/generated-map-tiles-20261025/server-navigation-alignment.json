@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-25T09:52:23.125428+00:00",
+  "scope": "Read-only inspection of existing local repositories and locally recorded Git refs; all paths are relative to their named repository.",
+  "resourceBatch": {
+    "frozenAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+    "selectedTileCount": 519,
+    "sameLayoutDetailLayer": true,
+    "navigationChangeRequiredForThisBatch": false,
+    "reason": "The batch retains the same layout identity and the existing client layout, navigation, source and walkmask files. Both server deliveries already match that navigation contract."
+  },
+  "coordinateContract": {
+    "worldRect": {
+      "x": 50,
+      "y": 0,
+      "width": 300,
+      "height": 300
+    },
+    "walkmaskResolution": 150,
+    "cellSize": 2,
+    "packedBytes": 2813,
+    "maskEncoding": "base64-msb-first-row-major-top-to-bottom",
+    "serverCoordinates": "server(x,y,z) = Unity(z,x,y)"
+  },
+  "repositories": {
+    "mmorpg": {
+      "head": "fea7f5e9be55017597752bf7b4ec433bd3e12850",
+      "navigationRoot": "data/scene_nav_bin/current_maps",
+      "locallyKnownOriginMain": "fea7f5e9be55017597752bf7b4ec433bd3e12850",
+      "headEqualsLocallyKnownOriginMain": true,
+      "files": [
+        {
+          "path": "data/scene_nav_bin/current_maps/main/source.json",
+          "bytes": 1536,
+          "sha256": "aef7d638887a14796957671efc55849b90a6f8d62bf703767e54505c50c984f7",
+          "gitBlobSha1": "4ba50be204a9298a5a7221d9d1aa90e15d6c8166",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "data/scene_nav_bin/current_maps/main/walkmask.txt",
+          "bytes": 3752,
+          "sha256": "bb8ac19e83bcf589e43365c1f03aee34692061ba401ca9dde3c9911171a6d2da",
+          "gitBlobSha1": "5627e709ddba0f1f9da494b85d5c8b5dff650b3b",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "data/scene_nav_bin/current_maps/island/source.json",
+          "bytes": 1545,
+          "sha256": "b2317a830e46f48249ab282a95737d01f6ec0e580ead03b1783cdbf98e32b9ab",
+          "gitBlobSha1": "e5fa2c73fe657199111b8f2d750e87d76d05b0e1",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "data/scene_nav_bin/current_maps/island/walkmask.txt",
+          "bytes": 3752,
+          "sha256": "d98e7483017c29326841d82248984fb9f80c94ee00732dcff2c6c63df159cce1",
+          "gitBlobSha1": "c45d7e985748ad10ec785458a19999835602738c",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "data/scene_nav_bin/current_maps/village/source.json",
+          "bytes": 1539,
+          "sha256": "e0e5f31149909814c7b18a6b732d7faf57eed71e17e8587b54da4a469d0e7a2e",
+          "gitBlobSha1": "c084f7d881fea5801d1f55c6d2564e4e0dbd9ecb",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "data/scene_nav_bin/current_maps/village/walkmask.txt",
+          "bytes": 3752,
+          "sha256": "78f204381c93914fd99dc05887ddf6558bc257c6e6d40f93d6f1d80d97d776c5",
+          "gitBlobSha1": "867eb270c77acabda2c7fabded50c1451905bb1d",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        }
+      ]
+    },
+    "xuanming-server-mmo": {
+      "head": "609050d30cc54144efe21353a65f282504506b1c",
+      "navigationRoot": "config-data/navmesh/current_maps",
+      "locallyKnownOriginMain": "609050d30cc54144efe21353a65f282504506b1c",
+      "headEqualsLocallyKnownOriginMain": true,
+      "files": [
+        {
+          "path": "config-data/navmesh/current_maps/main/source.json",
+          "bytes": 1536,
+          "sha256": "aef7d638887a14796957671efc55849b90a6f8d62bf703767e54505c50c984f7",
+          "gitBlobSha1": "4ba50be204a9298a5a7221d9d1aa90e15d6c8166",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "config-data/navmesh/current_maps/main/walkmask.txt",
+          "bytes": 3752,
+          "sha256": "bb8ac19e83bcf589e43365c1f03aee34692061ba401ca9dde3c9911171a6d2da",
+          "gitBlobSha1": "5627e709ddba0f1f9da494b85d5c8b5dff650b3b",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "config-data/navmesh/current_maps/island/source.json",
+          "bytes": 1545,
+          "sha256": "b2317a830e46f48249ab282a95737d01f6ec0e580ead03b1783cdbf98e32b9ab",
+          "gitBlobSha1": "e5fa2c73fe657199111b8f2d750e87d76d05b0e1",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "config-data/navmesh/current_maps/island/walkmask.txt",
+          "bytes": 3752,
+          "sha256": "d98e7483017c29326841d82248984fb9f80c94ee00732dcff2c6c63df159cce1",
+          "gitBlobSha1": "c45d7e985748ad10ec785458a19999835602738c",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "config-data/navmesh/current_maps/village/source.json",
+          "bytes": 1539,
+          "sha256": "e0e5f31149909814c7b18a6b732d7faf57eed71e17e8587b54da4a469d0e7a2e",
+          "gitBlobSha1": "c084f7d881fea5801d1f55c6d2564e4e0dbd9ecb",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        },
+        {
+          "path": "config-data/navmesh/current_maps/village/walkmask.txt",
+          "bytes": 3752,
+          "sha256": "78f204381c93914fd99dc05887ddf6558bc257c6e6d40f93d6f1d80d97d776c5",
+          "gitBlobSha1": "867eb270c77acabda2c7fabded50c1451905bb1d",
+          "trackedAtHead": true,
+          "workingBytesEqualHeadBlob": true,
+          "workingBytesEqualLocallyKnownOriginMainBlob": true
+        }
+      ]
+    }
+  },
+  "maps": [
+    {
+      "key": "main",
+      "sceneId": 1,
+      "clientResourceDirectory": "Assets/Resources/World/CurrentMaps20261009/main",
+      "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+      "clientNavigationJsonSha256": "ebd4e3bcd7239208c1e1cc152c83253de12ead041cf164ea8b42e8e45ed21848",
+      "walkmaskPackedSha256": "3cbbd52b44b25097b3e2b3e56bdc48a46dc29f8dc9dc3ac98c1038653cd50677",
+      "walkableCells": 6651,
+      "unitySpawn": {
+        "x": 199,
+        "y": 0,
+        "z": 133
+      },
+      "serverSpawn": {
+        "x": 133,
+        "y": 199,
+        "z": 0
+      },
+      "baseSceneNavBinFile": "data/scene_nav_bin/main_scene.bin",
+      "sourceAndWalkmaskByteIdenticalAcrossAllThreeRepositories": true,
+      "actualClientLayoutAndNavigationHashesMatchSource": true,
+      "cppNavBin": {
+        "path": "data/scene_nav_bin/main_scene.bin",
+        "bytes": 121728,
+        "sha256": "8a3243a2480419c06e0dbf7ce802eb68b121d9790f9bd6e9f115306873ddf1f5",
+        "actualBytesMatchExistingBakeManifest": true
+      }
+    },
+    {
+      "key": "island",
+      "sceneId": 2,
+      "clientResourceDirectory": "Assets/Resources/World/CurrentMaps20261009/island",
+      "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+      "clientNavigationJsonSha256": "3146e3ac7c1b6651668f8b9279e7e325bdb24dd8e1d1abc8723df6fe7b737065",
+      "walkmaskPackedSha256": "c9bb6b2af2b16ce18af2a16fba82635319d245176496ccc0dd16f258acd83b01",
+      "walkableCells": 4018,
+      "unitySpawn": {
+        "x": 195,
+        "y": 0,
+        "z": 173
+      },
+      "serverSpawn": {
+        "x": 173,
+        "y": 195,
+        "z": 0
+      },
+      "baseSceneNavBinFile": "data/scene_nav_bin/penglai_scene.bin",
+      "sourceAndWalkmaskByteIdenticalAcrossAllThreeRepositories": true,
+      "actualClientLayoutAndNavigationHashesMatchSource": true,
+      "cppNavBin": {
+        "path": "data/scene_nav_bin/penglai_scene.bin",
+        "bytes": 113936,
+        "sha256": "97de694834d8d64ae291058bd8ccb356545e72a7e27c88017c6c0536e471bf83",
+        "actualBytesMatchExistingBakeManifest": true
+      }
+    },
+    {
+      "key": "village",
+      "sceneId": 3,
+      "clientResourceDirectory": "Assets/Resources/World/CurrentMaps20261009/village",
+      "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+      "clientNavigationJsonSha256": "5e9c70cfd73ccb267f1a76691ad5fd1f12483b45b675d70319632adf73aca532",
+      "walkmaskPackedSha256": "ebc9ce6c613f963055d0d7118533ffe0466e32975dc71dc7dd9552cfb5d2361d",
+      "walkableCells": 4524,
+      "unitySpawn": {
+        "x": 201,
+        "y": 0,
+        "z": 147
+      },
+      "serverSpawn": {
+        "x": 147,
+        "y": 201,
+        "z": 0
+      },
+      "baseSceneNavBinFile": "data/scene_nav_bin/donghai_scene.bin",
+      "sourceAndWalkmaskByteIdenticalAcrossAllThreeRepositories": true,
+      "actualClientLayoutAndNavigationHashesMatchSource": true,
+      "cppNavBin": {
+        "path": "data/scene_nav_bin/donghai_scene.bin",
+        "bytes": 124888,
+        "sha256": "6fc006672b4c63d9a042ee0a3a94905a7dd42fecdf477e0accf73e31df64df87",
+        "actualBytesMatchExistingBakeManifest": true
+      }
+    }
+  ],
+  "cppLoadingEvidence": {
+    "bakeManifest": "data/scene_nav_bin/current_maps_20261009.json",
+    "bakeManifestMatchesCurrentLayoutAndMaskHashes": true,
+    "existingBakeRecordCellsPerMap": 22500,
+    "existingBakeRecordMismatchesPerMap": 0,
+    "bakerRerunDuringThisAudit": false,
+    "startup": "cpp/nodes/scene/main.cpp",
+    "loader": "cpp/libs/services/scene/spatial/system/navigation.cpp",
+    "behavior": "The scene startup configuration hook calls LoadNavBins, which loads each BaseScene nav_bin_file, probes its spawn and registers navigation by scene ID.",
+    "configuration": "bin/etc/base_deploy_config.yaml",
+    "configurationAssumption": "Configured table and data paths resolve from the normal bin working directory; actual running process configuration was not inspected."
+  },
+  "javaLoadingEvidence": {
+    "baseSceneTable": "config-data/tables/basescene.pb",
+    "baseSceneTableBytes": 1219,
+    "baseSceneTableSha256": "13e645420fecc53bf95f708450906f7f683a669ab8c7f8d9c3b5cc5008b3ce39",
+    "baseSceneRows": 21,
+    "tableHashAndSizeMatchManifest": true,
+    "threeSceneRecordsDecodedAndSpawnChecked": true,
+    "assembly": "game-scene/src/main/java/com/game/scene/SceneNodeConfiguration.java",
+    "mapping": "game-scene/src/main/java/com/game/scene/world/ConfigSceneTables.java",
+    "loader": "game-scene/src/main/java/com/game/scene/world/CurrentMapNavigation.java",
+    "behavior": "The configured table directory sibling navmesh/current_maps is loaded at startup; BaseScene nav filenames select main/island/village, with mask hash, dimensions, scene identity and spawn validation.",
+    "defaultTableDirectory": "config-data/tables",
+    "dockerDefinition": "deploy/docker/Dockerfile",
+    "dockerDefinitionCopiesNavigationDirectory": true
+  },
+  "limitations": {
+    "networkFetchPerformed": false,
+    "serverStarted": false,
+    "serverResourcesModified": false,
+    "runningProcessConfigurationInspected": false,
+    "liveDeploymentVerified": false,
+    "gameplayOrVisualAcceptancePerformed": false,
+    "wholeMapAccepted": false,
+    "note": "Local origin/main refs are not a live remote freshness check. Existing file alignment and loader wiring do not prove that any running server has loaded these files, nor visually validate the delivered detail tiles."
+  }
+}

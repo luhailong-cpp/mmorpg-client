@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 8,
+  "column": 4,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "3c6643baa8ddd9e9a853c832699cc3bff488e206b4548933bff3528390e12e94",
+  "imageBytes": 28623431,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/assembly.json",
+  "sourceLedgerSha256": "36821239fb42b33c3d3a8d54dfc68cb177b0fd44a05510d0299f141b26b340c1",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/candidate.png",
+    "imageSha256": "3c6643baa8ddd9e9a853c832699cc3bff488e206b4548933bff3528390e12e94",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/assembly.json",
+        "sha256": "36821239fb42b33c3d3a8d54dfc68cb177b0fd44a05510d0299f141b26b340c1",
+        "completeness": [
+          "/pixelProof/baseSelectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/assembly.json",
+        "sha256": "36821239fb42b33c3d3a8d54dfc68cb177b0fd44a05510d0299f141b26b340c1",
+        "completeness": [
+          "/baseSelectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/assembly.json",
+        "sha256": "36821239fb42b33c3d3a8d54dfc68cb177b0fd44a05510d0299f141b26b340c1",
+        "completeness": [
+          "missingNativePatches",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/assembly.json",
+        "sha256": "36821239fb42b33c3d3a8d54dfc68cb177b0fd44a05510d0299f141b26b340c1",
+        "completeness": [
+          "nativeSourcesCount",
+          26
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/native-pixel-proof.json",
+        "sha256": "fdf413783d737b9f68b1b3e1ca3dc3552ff3793b5437e24355ab671b72d50236",
+        "completeness": [
+          "/baseSelectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "baseSelectedCoreCount": 16,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/assembly.json",
+        "record": {
+          "baseSelectedCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c04/candidate/native-26-source-incremental-20261016T151921117369Z-8cf9a2f4d2262fd8/native-pixel-proof.json",
+        "record": {
+          "status": "passed_exact_same_world_native_pixels",
+          "baseSelectedCoreCount": 16,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

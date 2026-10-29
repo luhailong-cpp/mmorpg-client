@@ -204,6 +204,8 @@ namespace MmorpgClient.Game.Team
 
         public void Reset()
         {
+            // 重置会丢弃旧回调，已有持久写意图的执行结果随之不明。
+            if (_pendingActionRequest != null) _actionHadUncertainAttempt = true;
             // 零编号 gRPC 回包无法相关到已取消请求；同连接不得重用其槽位。
             if (Busy) RequiresReconnect = true;
             ++_generation;

@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 13,
+  "column": 3,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "999a6ca0d95108d587324fd0c785381f38add83db87db3c21e118154ff000479",
+  "imageBytes": 28776140,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-report.json",
+  "sourceLedgerSha256": "05708ede5cd772c68232cdc9c3ef254cf0cb23249316aa7476fc91f642c1c1e1",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-candidate-4096.png",
+    "imageSha256": "999a6ca0d95108d587324fd0c785381f38add83db87db3c21e118154ff000479",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-report.json",
+        "sha256": "05708ede5cd772c68232cdc9c3ef254cf0cb23249316aa7476fc91f642c1c1e1",
+        "completeness": [
+          "/baseCandidate/nativeSourceCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "output_bound_native_coverage_or_complete_source_assembly",
+    "sourceStatus": {
+      "externalTileSeamsPassed": false,
+      "formalAccepted": false,
+      "pendingExternal": [
+        "North border partially changed by native repair continuing to tile top; refresh pair against r12c03.",
+        "Other existing unaccepted outer pair dependencies retained."
+      ]
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-native-review-manifest.json",
+        "record": {
+          "actualVisualReviewPending": true
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-actual-native-review.json",
+        "record": {
+          "externalTileSeamsPassed": false,
+          "formalAccepted": false,
+          "pendingExternal": [
+            "North border partially changed by native repair continuing to tile top; refresh pair against r12c03.",
+            "Other existing unaccepted outer pair dependencies retained."
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "complete native candidate; one localized timber issue; outer edges pending",
+          "pendingRepairs": [],
+          "externalTileSeamsPassed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "complete native candidate; one localized timber issue; outer edges pending",
+          "pendingRepairs": [],
+          "externalTileSeamsPassed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/expansion-central-worker-map.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "complete native candidate; one localized timber issue; outer edges pending",
+          "pendingRepairs": [],
+          "externalTileSeamsPassed": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-native-review-manifest.json",
+    "sourceSha256": "1699ecc9f285aa6cfad0dfffff04a845f054f717c74c308e740862405f11b115",
+    "normalizedDocument": {
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-candidate-4096.png",
+        "role": "candidate-4096",
+        "sha256": "999a6ca0d95108d587324fd0c785381f38add83db87db3c21e118154ff000479",
+        "dimensions": [
+          4096,
+          4096
+        ]
+      },
+      "report": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-report.json",
+      "views": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-complete-repair-native100.png",
+          "role": "complete-repair",
+          "sha256": "86df38466b7e530bb3e20b560e2042a14483eecb18309fccb7e5ae86912b98d0",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "crop": [
+            2445,
+            0,
+            3699,
+            1254
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-boundary-top-native100.png",
+          "role": "boundary-top",
+          "sha256": "2db5513bbdd45a21d24cb42fd3941a9409dda5dcf60f629712328994465bf1d0",
+          "dimensions": [
+            610,
+            175
+          ],
+          "crop": [
+            2765,
+            0,
+            3375,
+            175
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-boundary-bottom-native100.png",
+          "role": "boundary-bottom",
+          "sha256": "71fccde9ee64cfafd3cb6947addddad9e5b5f8723697baa37a26189856a143e5",
+          "dimensions": [
+            610,
+            275
+          ],
+          "crop": [
+            2765,
+            425,
+            3375,
+            700
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-boundary-left-native100.png",
+          "role": "boundary-left",
+          "sha256": "bc6a534cc1bccf63c1f88dbb97ce9c719f5780a878d0a4da1ecec868e481e550",
+          "dimensions": [
+            275,
+            680
+          ],
+          "crop": [
+            2745,
+            0,
+            3020,
+            680
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-boundary-right-native100.png",
+          "role": "boundary-right",
+          "sha256": "308b7f633b96e3af94ecae47624579b73970f7b7bcbc82132c432bf33f86f4bc",
+          "dimensions": [
+            275,
+            680
+          ],
+          "crop": [
+            3120,
+            0,
+            3395,
+            680
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-corner-2845-0-native100.png",
+          "role": "corner-2845-0",
+          "sha256": "6003ebb0bacb3fcefe29229964a9b96b4e9c148cc035bf8aea775bc225949647",
+          "dimensions": [
+            360,
+            180
+          ],
+          "crop": [
+            2665,
+            0,
+            3025,
+            180
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-corner-3295-0-native100.png",
+          "role": "corner-3295-0",
+          "sha256": "f8428b60905e4cd3ef977d37130a5cc2e26fe804096b2ca47f88d1b1cd2ae8b8",
+          "dimensions": [
+            360,
+            180
+          ],
+          "crop": [
+            3115,
+            0,
+            3475,
+            180
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-corner-2845-600-native100.png",
+          "role": "corner-2845-600",
+          "sha256": "e1d31cf26a4327726034bc60bafffd3f755dd4e5708ac45ba67c5edadf214b5c",
+          "dimensions": [
+            360,
+            360
+          ],
+          "crop": [
+            2665,
+            420,
+            3025,
+            780
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r13-c03-wood-finish-v01-corner-3295-600-native100.png",
+          "role": "corner-3295-600",
+          "sha256": "cb4dc4f3edf467766cb7bd4cd4c5115c7bf4e7c41277e03650ec555c0d885b9b",
+          "dimensions": [
+            360,
+            360
+          ],
+          "crop": [
+            3115,
+            420,
+            3475,
+            780
+          ],
+          "native100Percent": true
+        }
+      ],
+      "actualVisualReviewPending": true
+    }
+  }
+}

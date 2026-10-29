@@ -1,0 +1,843 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 7,
+  "column": 3,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "ca295176c0b35366814428d79240195b8afa7e679fd6c74b4711f5e82b13fc53",
+  "imageBytes": 24627907,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c03_candidate-v7_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c03_candidate-v7_4096.native-repair.json",
+  "sourceLedgerSha256": "d1f5f14c68595980c0704d2add528f21cc30999242db72f392f801ef307aca53",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c03_candidate-v7_4096.png",
+    "imageSha256": "ca295176c0b35366814428d79240195b8afa7e679fd6c74b4711f5e82b13fc53",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c03_candidate-v7_4096.native-repair.json",
+        "sha256": "d1f5f14c68595980c0704d2add528f21cc30999242db72f392f801ef307aca53",
+        "sourceReviewSha256": "d1f5f14c68595980c0704d2add528f21cc30999242db72f392f801ef307aca53",
+        "completeness": [
+          [
+            "/base/reverifiedProvenance/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "status": "candidate_pending_native_visual_and_boundary_review",
+      "coverageAssertions": {
+        "fullNativeCoverage": true,
+        "tilePixelCount": 16777216,
+        "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+        "baseCoverageRecomputedFromOriginalNatives": true,
+        "editTargetExactlyEqualsBaseCrop": true,
+        "editTargetExactlyEqualsRecordedAncestorCrop": true,
+        "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+        "applicationBaseDifferencesConfinedOutsideMask": true,
+        "guidePixelsUsedAsFinalArt": false,
+        "unassignedPixels": 0
+      },
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c03_candidate-v7_4096.native-repair.json",
+        "record": {
+          "status": "candidate_pending_native_visual_and_boundary_review",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "tilePixelCount": 16777216,
+            "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+            "baseCoverageRecomputedFromOriginalNatives": true,
+            "editTargetExactlyEqualsBaseCrop": true,
+            "editTargetExactlyEqualsRecordedAncestorCrop": true,
+            "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+            "applicationBaseDifferencesConfinedOutsideMask": true,
+            "guidePixelsUsedAsFinalArt": false,
+            "unassignedPixels": 0
+          },
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/island-game-20261009/resume-20261016/delivery-v01/current-4k-index.json",
+        "record": {
+          "formalAccepted": false,
+          "internalQA": null,
+          "externalQA": null
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/island-game-20261009/resume-20261016/west/current-candidates.json",
+        "record": {
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+        "record": {
+          "formalAccepted": false,
+          "repairStatus": "32/33 native seam crops PASS; front gold/red eave local offset pending after two local attempts; 3 additional crop boundary checks PASS; other geometry fixes adopted. Final cross boundaries pending.",
+          "internalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/review.json",
+            "sha256": "cba961663ca7c7eab4632d1194d684ef5ed1915e8a3506c5048f65b9963a9f0d",
+            "bytes": 27472,
+            "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/review.json"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/review.json",
+        "record": {
+          "formalAccepted": false,
+          "pendingIssue": "gold eave step at tile(2208,600); second local repair failed to improve, deferred per AGENTS"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/review.json",
+    "sourceSha256": "cba961663ca7c7eab4632d1194d684ef5ed1915e8a3506c5048f65b9963a9f0d",
+    "normalizedDocument": {
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r07_c03_candidate-v7_4096.png",
+        "sha256": "ca295176c0b35366814428d79240195b8afa7e679fd6c74b4711f5e82b13fc53"
+      },
+      "reusedPassCount": 13,
+      "items": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r01_c01-c02_100pct.png",
+          "sha256": "b7cb1cbaeaf80725b4ca6139475a6fdceb2a2bdc33ec7601c3da4eee43f1bcf6",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            0,
+            1264,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r01_c02-c03_100pct.png",
+          "sha256": "54e56309b47ab82e33cb6ed08e75d7b912523655f438fa7e5c55b6f1820b2b5f",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            0,
+            2288,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "REPAIR_REQUIRED",
+          "note": "Gold coping and lower red fascia retain approximately 40px offset at tile2208,600. Second local repair source front_gold_cap_a02 did not materially improve; not adopted; defer this point per AGENTS while continuing other missing cores.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r01_c03-c04_100pct.png",
+          "sha256": "fd9a1b463df5b3a31563b2f2c55ea055dc5645371150801d6969be294fda6774",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            0,
+            3312,
+            1139
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r02_c01-c02_100pct.png",
+          "sha256": "39a786c5f6585546265457c775399a2a77de73df888d0c71d0f9e26234ecd65e",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            909,
+            1264,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r02_c02-c03_100pct.png",
+          "sha256": "a9b0be37464b9b370703aacd0738fe520e6b4d39559d3711be1742c03f6ebc42",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            909,
+            2288,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r02_c03-c04_100pct.png",
+          "sha256": "c75fd597d7c700511620f1b22b0491329d161c912bf46d5c222ae492b4befa17",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            909,
+            3312,
+            2163
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r03_c01-c02_100pct.png",
+          "sha256": "017e58a1c3952644dab860b31f2500e6ccc31984e1dca67276fc788f73c36f2b",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            1933,
+            1264,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r03_c02-c03_100pct.png",
+          "sha256": "c8f3477f62773471cda3ef6cf09a892d12a77c095c45f1ab7d9b6bed78a250fe",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1933,
+            2288,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r03_c03-c04_100pct.png",
+          "sha256": "e6198ce5c713f102d1506f5d14d633d991e7f6a9940813d8c2e7c56529c6fcb2",
+          "dimensions": [
+            480,
+            1254
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1933,
+            3312,
+            3187
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r04_c01-c02_100pct.png",
+          "sha256": "92b42efef5fcd99ef380fe899392f3a4c8bc88b3708a5f70d9c4582874e05ed7",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            784,
+            2957,
+            1264,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r04_c02-c03_100pct.png",
+          "sha256": "689444702b800bfdcaa901911bb5a0e7c95c607d18eed88c1d987e09c5f330ac",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2957,
+            2288,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/left-right_r04_c03-c04_100pct.png",
+          "sha256": "740de96beeb2a81ed2d2cbff86292e27fbc4ca51e14105cbe7a0f92a9bfda745",
+          "dimensions": [
+            480,
+            1139
+          ],
+          "role": "full-height segment of final left/right native seam",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2957,
+            3312,
+            4096
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r01-r02_x0000-1024_100pct.png",
+          "sha256": "2850548bd2f78e39fa5fb8ec56e99e35acc02ed1e07eff725f93f44d65bec84e",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            784,
+            1024,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r01-r02_x1024-2048_100pct.png",
+          "sha256": "bbfb51bf4d417c0dc2fb5914e1609eabbeb1b8ac4c685714e458c20e34cba5d3",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            784,
+            2048,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r01-r02_x2048-3072_100pct.png",
+          "sha256": "bf1e8fd31528f4c41bee1c09463402c5cf6805511dc543528b1d95c110bbdb64",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            784,
+            3072,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r01-r02_x3072-4096_100pct.png",
+          "sha256": "1544d47ed04bd0ad26cea1798c93a155a2d65872b3054bb829ed9bd5ade48a8e",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            784,
+            4096,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r02-r03_x0000-1024_100pct.png",
+          "sha256": "8544b29073ea372db42de270dc662b28acf9651f7a93678a6f147b010537940f",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            1808,
+            1024,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r02-r03_x1024-2048_100pct.png",
+          "sha256": "f452f24d2eb612ca9595da4f79d6a9a5b4526e331f0c7a6394810af8bd58f2c2",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            1808,
+            2048,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r02-r03_x2048-3072_100pct.png",
+          "sha256": "dec7a8fd2c2719801ad0013bdd95eaa65169a58dd466059a896f5a8b57c561ee",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            1808,
+            3072,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r02-r03_x3072-4096_100pct.png",
+          "sha256": "e858c818b044a368a0d244875bb334ad1b0fae94f6f5f733056d6d80962b7748",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            1808,
+            4096,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r03-r04_x0000-1024_100pct.png",
+          "sha256": "4335170791db8679cf6d222fc6f182e8899bc2c2efac1880611e268fb0e27caf",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            0,
+            2832,
+            1024,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r03-r04_x1024-2048_100pct.png",
+          "sha256": "2a19ed7b3fe06e51dd485104ff0e3726857f93a442548232f4d52c7919ba77bb",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            1024,
+            2832,
+            2048,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r03-r04_x2048-3072_100pct.png",
+          "sha256": "9a586d24ab8e4c9170908e8f95cd28b4c0513f192283a1e89c2878ce56c59cb9",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            2048,
+            2832,
+            3072,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/top-bottom_r03-r04_x3072-4096_100pct.png",
+          "sha256": "8a489fcbce7fc9540e883155de4ab2eacbcfa15fe96f0bc0f1d03eaba4643729",
+          "dimensions": [
+            1024,
+            480
+          ],
+          "role": "full-width segment of final top/bottom native seam",
+          "tileCropBoxHalfOpen": [
+            3072,
+            2832,
+            4096,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r01-r02_c01-c02_100pct.png",
+          "sha256": "a513b718d872f7c93e3c15b403d2998b043f7505221131095edc8252155de547",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            784,
+            1264,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r01-r02_c02-c03_100pct.png",
+          "sha256": "150f58aa89ef4a2c8c9cbedfebb8aca4ce64d92f558780c5de6be3aac4778bf0",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            784,
+            2288,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r01-r02_c03-c04_100pct.png",
+          "sha256": "dff5b604efbb00b3fc1a6d0dff0c6b8cd1b1f4abef7060e770fd8ada5ffb98f1",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            784,
+            3312,
+            1264
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r02-r03_c01-c02_100pct.png",
+          "sha256": "53b4645a3503be92ddee8f45622c33e83281e70ecb29b4bb0ee525c9d93302eb",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            1808,
+            1264,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r02-r03_c02-c03_100pct.png",
+          "sha256": "0c1ac093f4caa9fa2109a8602cb85b2455630354641bc7c83d99fa544cf376a7",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            1808,
+            2288,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r02-r03_c03-c04_100pct.png",
+          "sha256": "d2d7f35edc2ae0c0e6f0a13607e9c42924d33a3744ca37086cc59a1fa8db02f7",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            1808,
+            3312,
+            2288
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r03-r04_c01-c02_100pct.png",
+          "sha256": "cbadfc63058ab1b9d982142fe9df7ba496e20e8a4540d74a4f8f706cd6d033c6",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            784,
+            2832,
+            1264,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Full native crop inspected; architecture/door/plaster/steps/foliage contours continuous at this internal seam.",
+          "reusedUnchangedPass": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r03-r04_c02-c03_100pct.png",
+          "sha256": "dd33b4e7e48704f058973d5335903998e84d2745d666e2f54ae1d7dc80a5d826",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            1808,
+            2832,
+            2288,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/junction_r03-r04_c03-c04_100pct.png",
+          "sha256": "7a02854cb023235e6e74d3a6ab71bc3adfa1b00e502bab9dcb3b303f3e11913c",
+          "dimensions": [
+            480,
+            480
+          ],
+          "role": "four-source intersection; native scale",
+          "tileCropBoxHalfOpen": [
+            2832,
+            2832,
+            3312,
+            3312
+          ],
+          "nativeScale100Percent": true,
+          "ownerRootViewedAtNative100Percent": true,
+          "result": "PASS",
+          "note": "Hash-identical prior PASS reused.",
+          "reusedUnchangedPass": true
+        }
+      ],
+      "extraBoundaryCrops": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/cream_right_boundary.png",
+          "sha256": "f748987c63e40225525ebe1a8742df50da39e8fc1d4dbb8da36533027d34e679",
+          "box": [
+            1550,
+            850,
+            2150,
+            1580
+          ],
+          "result": "PASS",
+          "ownerRootViewedAtNative100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/door_lower_boundary.png",
+          "sha256": "aba3a948809b4bfc9862adaff856ea1b494cdfd4e9fbe6e10a2e358aaff0fec3",
+          "box": [
+            600,
+            2100,
+            1854,
+            2950
+          ],
+          "result": "PASS",
+          "ownerRootViewedAtNative100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r07_c03_v7_internal_review_20261013/side_lower_boundary.png",
+          "sha256": "c4f77684033028dd8a4aa4250bbb762acad4f04f706d714da977c19140cf151a",
+          "box": [
+            2842,
+            800,
+            4096,
+            1750
+          ],
+          "result": "PASS",
+          "ownerRootViewedAtNative100Percent": true
+        }
+      ],
+      "internalClosurePassed": false,
+      "formalAccepted": false,
+      "pendingIssue": "gold eave step at tile(2208,600); second local repair failed to improve, deferred per AGENTS",
+      "rejectedAdditionalSource": "native/r07_c03_front_gold_cap_a02.png",
+      "createdAtUtc": "2026-10-13T15:50:39.175950+00:00",
+      "passCropCount": 32,
+      "repairRequiredCropCount": 1,
+      "newViewedCropCount": 20,
+      "extraBoundaryPassCount": 3,
+      "completedAtUtc": "2026-10-13T17:40:40.342152+00:00"
+    }
+  }
+}

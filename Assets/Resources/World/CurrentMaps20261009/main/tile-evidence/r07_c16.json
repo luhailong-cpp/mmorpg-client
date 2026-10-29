@@ -1,0 +1,805 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 7,
+  "column": 16,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "77423d4e6f24b719035f7c6877c0a79928ae0b019c000e8616ef850bc88c45ee",
+  "imageBytes": 25653679,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/candidates/r07_c16.floor-cream-allgraywall-v8-20261022.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/tile-progress.json",
+  "sourceLedgerSha256": "4284d8994d519c12770d4ba1226233aa698601c0f92e59c5d836d37064ea329f",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c16",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/candidates/r07_c16.floor-cream-allgraywall-v8-20261022.png",
+    "imageSha256": "77423d4e6f24b719035f7c6877c0a79928ae0b019c000e8616ef850bc88c45ee",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/tile-progress.json",
+        "sha256": "4284d8994d519c12770d4ba1226233aa698601c0f92e59c5d836d37064ea329f",
+        "sourceReviewSha256": "4284d8994d519c12770d4ba1226233aa698601c0f92e59c5d836d37064ea329f",
+        "completeness": [
+          "Tile-local selectedCoreCount16; remainingCoreCount0; complete4096 candidate."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/candidates/r07_c16.floor-cream-allgraywall-v8-20261022.png.generation.json",
+        "sha256": "2700b281cf6e1ccfbebeeb37bc5a506760cec477819f403a39cb9dafc29707b7",
+        "sourceReviewSha256": "2700b281cf6e1ccfbebeeb37bc5a506760cec477819f403a39cb9dafc29707b7",
+        "completeness": [
+          "Output SHA binds complete native candidate or one bounded native overlay on hash-bound complete parent."
+        ]
+      }
+    ],
+    "selectionBasis": "output_sha_bound_full16_core_candidate_or_native_replacement_on_pinned_full16_base",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "remainingCoreCount": 0,
+      "formalAccepted": false,
+      "status": "internal_passed_external_edges_and_wholemap_pending",
+      "internalQaPassed": true
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/tile-progress.json",
+        "record": {
+          "status": "internal_passed_external_edges_and_wholemap_pending",
+          "selectedCoreCount": 16,
+          "northExternalState": "r06_c16 absent; first-row north remains unpainted layout guidance. Existing real north within r07_c16 is required for rows 2-4.",
+          "formalAcceptedCount": 0,
+          "remainingCoreCount": 0,
+          "pendingP1Count": 0,
+          "pendingP2Count": 0,
+          "fullInternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/resume-independent-NT12-20261022/whole-internal-selected7742-v1/independent-whole-internal-review.json",
+            "sha256": "33efd4fe43b2f5b17b5628f491ad0de5647494cf2a0b3cb9bd8cd0911a89369f"
+          },
+          "pendingRepairs": [],
+          "windowBottomCoverageAddendum": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-floor-cream-shortjoint-v6-20261021/window-bottom-coverage-addendum-20261022.json",
+          "internalAcceptanceReceipt": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/whole-internal-pass-owner-receipt.json",
+            "sha256": "7af3d256799c002c6f5d075bffc3dee6ae55c496d8e6f1a841d443275631d771"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/resume-independent-NT12-20261022/AB2-final-independent-v1/independent-final-local-review.json",
+        "record": {
+          "status": "INDEPENDENT-LOCAL-PASS-FULL-AB2-LOWER-GRAYWALL-COMPONENT-AND-ALL-LOCAL-PERIMETERS",
+          "producerCoverage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/boundary-coverage.json",
+            "sha256": "c4fda542af5a1feec0e948aec205768ca95e913b7d3ac6e1d3dbff28a98cef85"
+          },
+          "externalSouthR08c16Accepted": false,
+          "wholeMapAccepted": false,
+          "externalMessages": 0,
+          "newFormalAccepted": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/resume-independent-NT12-20261022/whole-internal-selected7742-v1/independent-whole-internal-review.json",
+        "record": {
+          "status": "whole-internal-pass-actual-owner-selected7742",
+          "standardInternalCoverage": {
+            "seams": 24,
+            "intersections": 9,
+            "passed": 33,
+            "failed": 0,
+            "unchangedExactRGBPassReuse": 24,
+            "unchangedFailureReused": 0,
+            "changedWindowsActuallyViewedByThisReviewerNative1to1": [
+              {
+                "id": "vertical-p23-p24-join-100pct",
+                "kind": "seam",
+                "tileBox": [
+                  2880,
+                  1024,
+                  3264,
+                  2048
+                ],
+                "nativeSize": [
+                  384,
+                  1024
+                ],
+                "currentRGBSHA256": "4f7ddb294474e0b52affd9436d599efdb75cec0067547228515baba49c3b50db",
+                "baselineRGBSHA256": "fe4d71c8ca48a8facc7300705dafae2df95e2291de21f3fe73cd902e38cbf8d0",
+                "changedPixels": 12891,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/vertical-p23-p24-join-100pct.png",
+                  "sha256": "f2d35bdfe621a83345cb1197cad64f20dda69e7a957958152c03a2f0319234bd"
+                },
+                "visualFinding": "实际384×1024原像素：长灰缝、斜向砌石端点和左侧叶影连续，未见北部原墙到A的矩形材质出口。",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              {
+                "id": "vertical-p33-p34-join-100pct",
+                "kind": "seam",
+                "tileBox": [
+                  2880,
+                  2048,
+                  3264,
+                  3072
+                ],
+                "nativeSize": [
+                  384,
+                  1024
+                ],
+                "currentRGBSHA256": "481a08ad584ea6728ea66d1b24e3dd61f2f68a293dba5ebd3cde1963778e9ce5",
+                "baselineRGBSHA256": "9fd3215df775f1e891925cfdda3048a0e7631261f0494223a8b02a4332da8aed",
+                "changedPixels": 23606,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/vertical-p33-p34-join-100pct.png",
+                  "sha256": "39c12559fae1629fa51cce9a9926c38d6cb5accba2a23811d96e027b0fc8caf6"
+                },
+                "visualFinding": "实际384×1024原像素：跨2048..3072的原叶、枝及其右侧墙接触保持，叶缘没有新直切或异常缺口。",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              {
+                "id": "vertical-p43-p44-join-100pct",
+                "kind": "seam",
+                "tileBox": [
+                  2880,
+                  3072,
+                  3264,
+                  4096
+                ],
+                "nativeSize": [
+                  384,
+                  1024
+                ],
+                "currentRGBSHA256": "bde0fe38a4ccf1384e0d4b9a11c5c4c870e0f320a4710073a03a1fa9677c9ad9",
+                "baselineRGBSHA256": "f8f8f1671eac85c3e91fa4ac4346d7f35d516a7229019c53834d52453f2ee416",
+                "changedPixels": 19834,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/vertical-p43-p44-join-100pct.png",
+                  "sha256": "24c5647a322a30f6df5c2f273d4184b63bf78967b800a6950b08a0429df0e03e"
+                },
+                "visualFinding": "实际384×1024原像素：下部枝叶遮挡跨3072保持连续，没有四分块明暗跳变。",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              {
+                "id": "horizontal-p23-p33-join-100pct",
+                "kind": "seam",
+                "tileBox": [
+                  2048,
+                  1856,
+                  3072,
+                  2240
+                ],
+                "nativeSize": [
+                  1024,
+                  384
+                ],
+                "currentRGBSHA256": "00add8e522935a0cfdc46955bd37998082d9c2b79c5bf1c5e987194068bdedf5",
+                "baselineRGBSHA256": "560c8bccec3b0698a979eec2511ed533fef814edcd7152b040f4293a7b711a3d",
+                "changedPixels": 802,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/horizontal-p23-p33-join-100pct.png",
+                  "sha256": "fecebe0f8c8d11657d2a1fe4779908663bc856bbdf6ffc71c671e9a0d7004095"
+                },
+                "visualFinding": "实际1024×384原像素：柱脚、米墙阴影、植物冠层和灰墙北段相接自然，无2048水平材质重置。",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              {
+                "id": "horizontal-p24-p34-join-100pct",
+                "kind": "seam",
+                "tileBox": [
+                  3072,
+                  1856,
+                  4096,
+                  2240
+                ],
+                "nativeSize": [
+                  1024,
+                  384
+                ],
+                "currentRGBSHA256": "cd32f72a0cf7fee6b206833ece2d1757bfc976392f9d11e72904a5fce013a69b",
+                "baselineRGBSHA256": "4748729f7b14babc9f9c46de414336ccd111ac715f5d16e6e86a2559938d14a6",
+                "changedPixels": 281896,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/horizontal-p24-p34-join-100pct.png",
+                  "sha256": "594209c684eed8459238f3e62cced76d128186101a2f6e8e9da77c8fecaf1135"
+                },
+                "visualFinding": "实际1024×384原像素：横跨灰墙的竖缝/斜缝、亮倒角和各完整石面延续，无2048水平割线。",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              {
+                "id": "horizontal-p33-p43-join-100pct",
+                "kind": "seam",
+                "tileBox": [
+                  2048,
+                  2880,
+                  3072,
+                  3264
+                ],
+                "nativeSize": [
+                  1024,
+                  384
+                ],
+                "currentRGBSHA256": "4ca824a3f94688d0a921cf4008fe1463c5e5321c00bcca412b22f9dbfe898c83",
+                "baselineRGBSHA256": "f4a62d87cb0748e3175bf78e6430e201472bb095ab67c7d756cbcce667b367ae",
+                "changedPixels": 883,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/horizontal-p33-p43-join-100pct.png",
+                  "sha256": "ba2c405a6ab3dc5914acc2bef510b9d41526c10f8fe811986d65264c2d4ca076"
+                },
+                "visualFinding": "实际1024×384原像素：3072附近叶/枝连续，未出现枝叶双边或横向拼贴口。",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              {
+                "id": "horizontal-p34-p44-join-100pct",
+                "kind": "seam",
+                "tileBox": [
+                  3072,
+                  2880,
+                  4096,
+                  3264
+                ],
+                "nativeSize": [
+                  1024,
+                  384
+                ],
+                "currentRGBSHA256": "66ecbd60a1f940a999c7d9e28aee3dcaf57e3581c32d8cab2ba5e332503b0677",
+                "baselineRGBSHA256": "5c8afe09d91d1e29d1f9c081ad9ccdaafdb7dc5c12c7e4fa8429e9158ba3bc5b",
+                "changedPixels": 192956,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/horizontal-p34-p44-join-100pct.png",
+                  "sha256": "a147286c5f6279a546f27b1747a7502cee4f4f013d4cfcaee93847c18b904c72"
+                },
+                "visualFinding": "实际1024×384原像素：原叶轮廓与B2墙面接触自然；3072处石面细节承接，无新增横向材质边。",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              {
+                "id": "intersection-r2-c3-100pct",
+                "kind": "intersection",
+                "tileBox": [
+                  2622,
+                  1598,
+                  3522,
+                  2498
+                ],
+                "nativeSize": [
+                  900,
+                  900
+                ],
+                "currentRGBSHA256": "2d2319a720cf214ea679747b2d864a3b7480418d95dddc99ee323fa03ac1d068",
+                "baselineRGBSHA256": "23d9010d52e27743efe5f5940f6caae9a5b416c8ee087728717f40b53236c875",
+                "changedPixels": 164246,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/intersection-r2-c3-100pct.png",
+                  "sha256": "93265dea699a884544ada87cc86c67c0ea8b676688984804ee326f7a176ac917"
+                },
+                "visualFinding": "实际900×900原像素：左侧成组植物、右侧整块石面及其灰缝跨四格连接，轮廓与透视一致。",
+                "geometry": "pass",
+                "material": "pass"
+              },
+              {
+                "id": "intersection-r3-c3-100pct",
+                "kind": "intersection",
+                "tileBox": [
+                  2622,
+                  2622,
+                  3522,
+                  3522
+                ],
+                "nativeSize": [
+                  900,
+                  900
+                ],
+                "currentRGBSHA256": "9c2880c7cdcacdef797b2ad69baa991967baf8dd84c2e8be9653894fbc287c78",
+                "baselineRGBSHA256": "11ecb52eea45f843e14c4b16c0cab23edc84c74f177be837e1400d5634908150",
+                "changedPixels": 40070,
+                "reuse": false,
+                "status": "pass",
+                "actuallyViewedByThisReviewerNative1to1": true,
+                "image": {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/intersection-r3-c3-100pct.png",
+                  "sha256": "2dae6b8ccbc7ae73b958ebbc89eb93faa14a8755ee914f7dd3eb552c3b957e4a"
+                },
+                "visualFinding": "实际900×900原像素：交点周围密集枝叶与右侧灰墙没有四象限拼合边；原植物层次保持。",
+                "geometry": "pass",
+                "material": "pass"
+              }
+            ],
+            "all33CurrentAndPriorCropRGBSHAIndependentlyRecomputed": true,
+            "unchangedReuseEvidence": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-topwall-v7-20261022/independent-current33-review-v2.json",
+              "sha256": "ce37957a4ff3a9d7ea2be27a1d82a337b4307419ec41c543a5996e2432a355e0"
+            },
+            "notSoleBasisForWholeInternalVerdict": true
+          },
+          "visualAcceptanceNotAutomaticFromNumericEquality": true,
+          "externalEdges": {
+            "acceptedByThisReview": false,
+            "southR08c16": "separately-pending-adjacent-native-edge-review",
+            "northWestEast": "原外沿状态沿用，未据内部QA扩签；本次不做全图外沿结论",
+            "externalPendingDoesNotAloneBlockThisInternalVerdict": true
+          },
+          "wholeMapAccepted": false,
+          "externalMessages": 0,
+          "globalAcceptedCountWrites": 0,
+          "formalAcceptedCountIncrementByThisTask": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/whole-internal-pass-owner-receipt.json",
+        "record": {
+          "status": "INTERNAL_PASS_ACTUAL_OWNER_SELECTED_NATIVE_COMPOSITE",
+          "independentWholeInternalQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/resume-independent-NT12-20261022/whole-internal-selected7742-v1/independent-whole-internal-review.json",
+            "sha256": "33efd4fe43b2f5b17b5628f491ad0de5647494cf2a0b3cb9bd8cd0911a89369f"
+          },
+          "selectedNativeCoreCount": 16,
+          "formalAccepted": false,
+          "newFormalAccepted": 0,
+          "wholeMapAccepted": false,
+          "externalEdges": "Separate pending; southr08c16adjacentjoin pending, other externalstatus notextended bythis internalQA",
+          "newAICallsForAcceptance": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/current33-delta/delta33-manifest.json",
+        "record": {
+          "coverage": {
+            "unchangedPass": 24,
+            "unchangedFail": 0,
+            "changedPending": 9
+          },
+          "automaticVisualAcceptance": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/root-whole-layout-and-lower-native-review.json",
+        "record": {
+          "externalEdges": "r08c16south sharedjoin remains separatelypending; c16easttrueworldedge no c17"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/resume-independent-NT12-20261022/AB2-final-independent-v1/independent-final-local-review.json",
+    "sourceSha256": "80f7baff3201b5b82f47b13eaca8b53f07de1f9e777e54b22b42cc0499280c20",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "reviewer": "resume_nt12_independent_20261022",
+      "atUtc": "2026-10-22T15:16:27.769790+00:00",
+      "status": "INDEPENDENT-LOCAL-PASS-FULL-AB2-LOWER-GRAYWALL-COMPONENT-AND-ALL-LOCAL-PERIMETERS",
+      "localOverallPassed": true,
+      "scope": {
+        "localSize": [
+          1254,
+          2296
+        ],
+        "tileBox": [
+          2842,
+          1800,
+          4096,
+          4096
+        ],
+        "doesNotCover": "whole4096/all33/fullmap/externalr08c16southjoin"
+      },
+      "sources": {
+        "current": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/candidates/r07_c16.floor-cream-shortjoint-v6-20261021.png",
+          "sha256": "c83b4d9e56634ee668420429042c8422b6b7b00c58dab8e7b156f7b38fe08080"
+        },
+        "A": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/r07walljoin-holeguide-20261021/native/A-holemethod-v1.png",
+          "sha256": "0aebfa0310e66c3de75929d159c6766393d51801b2231e5b183719db3b115e24"
+        },
+        "B2": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-B2-complete-anchor-native-20261022/graywall-B2-v1.png",
+          "sha256": "d874d65e54d7dd14c9a4557fc3f3a86d13f2182a075bd1063904843694058d68"
+        }
+      },
+      "actualNativeHostProvenance": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/resume-independent-NT12-20261022/AB2-final-independent-v1/actual-native-provenance.json",
+        "sha256": "89574adfbccf7d11b3714e3d84f8251bf0176627084ba6894fd088c398c50e2b"
+      },
+      "sourceMasks": {
+        "A": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/A-mask-native1254.png",
+          "sha256": "3844c1f84c65aa1e354aeb2c2f45b7444d085154e196d96ff6119b7ddb688198"
+        },
+        "B2": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/B2-mask-native1254.png",
+          "sha256": "7159803a249a29964f0918bf17507eb440b9a5c271b0b395efcb803ebaa0ee6d"
+        }
+      },
+      "sourceOwnerMap": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/source-owner-map-0current-1A-2B2.png",
+        "sha256": "fb828a7715b159fa39419b30ebbce2de02ae438431db9de020295026614d608a"
+      },
+      "actualLocalTrial": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/AB2-local-trial1254x2296.png",
+        "sha256": "8ea9813e4a07ec6f185e064baaad6c478acb1d5ab6a857fe4e7c3d36b783b9ac"
+      },
+      "actualCandidate4096Bound": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/candidates/r07_c16.floor-cream-allgraywall-v8-20261022.png",
+        "sha256": "77423d4e6f24b719035f7c6877c0a79928ae0b019c000e8616ef850bc88c45ee"
+      },
+      "actualRootCandidateRecipe": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/root-graywall-v8-20261022/composition.json",
+        "sha256": "413011ec3ef1b721fb467ec8daef32e3642ea11ecbcc92d5df4738d7adc0c990"
+      },
+      "rootCandidateLocalCropEqualsReviewedTrial": true,
+      "rootCandidateOutsideNativeUnionChangedPixels": 0,
+      "current94aaBase": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/candidates/r07_c16.floor-cream-topwall-v7-20261022.png",
+        "sha256": "94aa909d8e387564d83a946d6f4c386adb7e6dddbd7d520b24dd4c488c1dbf61"
+      },
+      "current94aaLowerDomainEqualsC83": true,
+      "producerFinalReceipt": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/final-local-QA-receipt.json",
+        "sha256": "a3f10c171a68acfa8df05de79821ffd77379a52f8520370a15fe95b78fb32e2c"
+      },
+      "producerCoverage": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/boundary-coverage.json",
+        "sha256": "c4fda542af5a1feec0e948aec205768ca95e913b7d3ac6e1d3dbff28a98cef85"
+      },
+      "independentSourceAndPerimeterReplay": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/resume-independent-NT12-20261022/AB2-final-independent-v1/numerical-source-perimeter-replay.json",
+        "sha256": "a19d0b148902631dfffba19c8b8daa014ecbf107866fdb12aa598522eccaf91b"
+      },
+      "replay": {
+        "referenceHashesVerified": 51,
+        "ASelectedPixels": 760869,
+        "B2SelectedPixels": 570513,
+        "currentSelectedPixels": 1547802,
+        "compositionMismatch": 0,
+        "ASelectedNativeMismatch": 0,
+        "B2SelectedNativeMismatch": 0,
+        "currentOutsideMasksMismatch": 0,
+        "originalLeaf1322392Changed": 0,
+        "originalWood24383Changed": 0,
+        "originalB2Foreground948125Changed": 0,
+        "wallHole6133UsesActualB2": true,
+        "wallHole6133Mismatch": 0,
+        "boundaryPixels": 76210,
+        "sixPixelSupportWithinLocal": 406373,
+        "uncoveredBoundaryPixels": 0,
+        "uncoveredSixPixelSupport": 0
+      },
+      "actuallyViewedCompleteAndBoundaryEvidence": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/whole-upper-trial-native.png",
+          "sha256": "85d12e3ab3bb72b40c3168fc88947b67f52e12860c40c28f68cee556965aa6db",
+          "localBox": [
+            0,
+            0,
+            1254,
+            900
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/whole-middle-trial-native.png",
+          "sha256": "52886c1fe6f0b65497270e73d1653f9f7ad4a9d506160c73a4fcca17debd7d46",
+          "localBox": [
+            0,
+            750,
+            1254,
+            1650
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/whole-lower-trial-native.png",
+          "sha256": "6d5a500962375b315df3d3a3a661eae635ae63757f6eff8cdd1a22af8eab9166",
+          "localBox": [
+            0,
+            1396,
+            1254,
+            2296
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/north-full-trial-native.png",
+          "sha256": "40b9d739395ede81e6b4c557eb20ad379dc0553642cc1ca10beacac30f822c70",
+          "localBox": [
+            0,
+            0,
+            1254,
+            340
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/AB2-seam-full-trial-native.png",
+          "sha256": "98a379b46077433c4b650212061f543efbb1780eb06a8eace3488b6a1f68ad4b",
+          "localBox": [
+            0,
+            1042,
+            1254,
+            1290
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/original-leaf-contact-trial-native.png",
+          "sha256": "6ed765eb93b384a0dedd89ea2af702cf28ecee9564f46003126d1037cba14088",
+          "localBox": [
+            680,
+            1102,
+            900,
+            1342
+          ],
+          "pixelScale": 1,
+          "actualViewReusedFromIndependentContact": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/joint747-trial-native.png",
+          "sha256": "a160adc6c84f9cb676649b6056be69f27d2470526cdb95afab996202cec792e2",
+          "localBox": [
+            710,
+            1042,
+            810,
+            1254
+          ],
+          "pixelScale": 1,
+          "actuallyViewedViaExactThirdPanel": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/joint747-A-B2-trial-native.png",
+            "sha256": "cfa57a43367ffb89491c37fb62afafe871488db6265170980cc715b050ceed37"
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/joint868-trial-native.png",
+          "sha256": "03c9e53588e2e9515512f9d7f54a715f46e083cc626fd15a7f46cf9cfce1c10c",
+          "localBox": [
+            820,
+            1042,
+            930,
+            1254
+          ],
+          "pixelScale": 1,
+          "actuallyViewedViaExactThirdPanel": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/joint868-A-B2-trial-native.png",
+            "sha256": "2790400a62afbe43b437a5d7111eeb29485cb370e6cc8f5fa3565d0db201675f"
+          }
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/east-upper-trial-native.png",
+          "sha256": "508f6efe0c564d288d1b7f0bb4f69b5e72719d3dc3d11f68e672a700cc303233",
+          "localBox": [
+            1050,
+            0,
+            1254,
+            1200
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/east-lower-trial-native.png",
+          "sha256": "5761ba08aee91905e756b4bafd24d8efaa4bc6710790ecccdd015ff11de615e2",
+          "localBox": [
+            1050,
+            1096,
+            1254,
+            2296
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/south-complete-trial-native.png",
+          "sha256": "39881a2fa49ada9ec8535d1c5158cdf223009d511e0be5963f1c4706b7504fd5",
+          "localBox": [
+            0,
+            2046,
+            1254,
+            2296
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/left-boundary-y0000-0480-native.png",
+          "sha256": "6e67a500f51dd7a4059b7cbeefc509f96e07a8f6340b2f0c8b65d30b9b3eaa1c",
+          "localBox": [
+            100,
+            0,
+            1000,
+            480
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/left-boundary-y0400-0880-native.png",
+          "sha256": "b5a1f62a2b1460ebaf3af54448ad40c52d2d8b42e423e025dae11139b8c00f06",
+          "localBox": [
+            100,
+            400,
+            1000,
+            880
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/left-boundary-y0800-1280-native.png",
+          "sha256": "f7a2c27e9a59cc001f4bce950c5cd07960b507e2eb1340ab2caf39901159c4da",
+          "localBox": [
+            100,
+            800,
+            1000,
+            1280
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/left-boundary-y1200-1680-native.png",
+          "sha256": "f4fc831aa8aa3566045b2c49d5c913eb438a2be950d58129ff760b76d0dd782d",
+          "localBox": [
+            100,
+            1200,
+            1000,
+            1680
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/left-boundary-y1600-2080-native.png",
+          "sha256": "a0bb6513b6c95a78b8d0f227ccce238403f53c6410cda376df5809dbedfbc92a",
+          "localBox": [
+            100,
+            1600,
+            1000,
+            2080
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/left-boundary-y1816-2296-native.png",
+          "sha256": "bd0a243cbdd2f2f69231283bbd60816ac3175ed921ae5a69e50efeeefddc66b0",
+          "localBox": [
+            100,
+            1816,
+            1000,
+            2296
+          ],
+          "pixelScale": 1,
+          "actuallyViewedDuringThisFullReview": true
+        }
+      ],
+      "actuallyViewedAdditionalNativeB2MaterialEvidence": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/B2-material-boundary-y212-native.png",
+          "sha256": "b8175ea4ee32fb70508a7722778d959c828028dbcd7bc4eb87f890a04ffadee3"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/B2-material-boundary-firstface-native.png",
+          "sha256": "83c279290965cd1e7daf562ffdb280b39389e23f4c9607b2939fa33f1d01d171"
+        }
+      ],
+      "sourceNativeGeometryViews": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/joint747-A-B2-trial-native.png",
+          "sha256": "cfa57a43367ffb89491c37fb62afafe871488db6265170980cc715b050ceed37"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r02_c10/qa/resume-wall-A-independent-20261021/AB2-local-v1/joint868-A-B2-trial-native.png",
+          "sha256": "2790400a62afbe43b437a5d7111eeb29485cb370e6cc8f5fa3565d0db201675f"
+        }
+      ],
+      "reusedIndependentContact": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r07_c16/qa/resume-independent-NT12-20261022/AB2-contact-semantic-independent-v1/independent-contact-review.json",
+        "sha256": "80ad17f9ae37ca62747b08a73625660cd3fd692484ca70e53f230206b98711be"
+      },
+      "visualFindings": [
+        {
+          "id": "whole-wall-course-and-material",
+          "verdict": "pass-local",
+          "finding": "Three complete overlapping native1254x900 fields were actually viewed. Stone courses remain continuous across the former2048/3072 defects; no displaced T endpoint, detached short joint, broad wrong-phase wall field or hard rectangle material boundary was found."
+        },
+        {
+          "id": "north-master-and-trueA-join",
+          "verdict": "pass-local",
+          "finding": "Full native north strip and upper whole field show natural continuity into the current upper wall master. This uses actual repainted A through the recorded binary path; the north248 is not claimed pixel-frozen."
+        },
+        {
+          "id": "AB2-747-and868",
+          "verdict": "pass-local",
+          "finding": "ActualA/B2/trial native triptychs and full1254x248 seam view show both correct dark courses retained. The former wrong755 phase and omitted868 branch are not present as blocking seams; no duplicated bright line at the A/B2 ownership transition was found."
+        },
+        {
+          "id": "original-leaf-and-branch-boundary",
+          "verdict": "pass-local",
+          "finding": "All six overlapping original-density left boundary strips and full contexts were viewed. Original leaves, branches and their contact shadows remain coherent along the entire wall; no new displaced foreground silhouette or broad gray triangle was found. Exact original recorded leaf/wood/foreground masks are preserved."
+        },
+        {
+          "id": "small-originalFG-contact",
+          "verdict": "nonblocking-retain-original",
+          "finding": "The separately hash-bound80ad independent native semantic judgment is reused without clearing141 uncertain pixels. Original AA/occlusion details remain acceptable at1:1; no further mask or leaf-contour modification is required for this contact."
+        },
+        {
+          "id": "6133-wall-hole-and-B2-body",
+          "verdict": "pass-local",
+          "finding": "Every true wall-only guide-hole point is actualB2 with no remaining magenta or old current wall pasted back. Complete middle/lower contexts and two additional native B2 material windows show no independently identifiable straight sourceY212 rectangle cut."
+        },
+        {
+          "id": "true-east-and-south-local-termination",
+          "verdict": "pass-local-with-south-external-pending",
+          "finding": "Both full-height east strips and complete south strip were viewed. Geometry/material remains coherent to true cityeastX4096/world65536 and local tilebottom4096. No external halo or c17 is used. The cross-tile r08c16 join is pending separately and is not treated as a natural stone endpoint or internal blocker."
+        },
+        {
+          "id": "coverage-and-candidate-binding",
+          "verdict": "pass-local",
+          "finding": "Actual displayed whole fields and focused views cover every local owner transition and six-pixel support band; no unseen local source perimeter remains. All inspected pixels replay exactly in root77423d4e candidate crop. This visual conclusion is independent of numerical equality alone."
+        }
+      ],
+      "blockingDefectsFound": [],
+      "requiredImageOrMaskChange": null,
+      "actualModel": null,
+      "actualQuality": null,
+      "hostMetadataNotInferredFromConfiguredTargets": true,
+      "whole4096LayoutReviewedByThisSubtask": false,
+      "wholeTile33ReviewedByThisSubtask": false,
+      "wholeTileInternalPassed": false,
+      "externalSouthR08c16Accepted": false,
+      "wholeMapAccepted": false,
+      "adoptedByThisSubtask": false,
+      "newImagegenCalls": 0,
+      "maskWrites": 0,
+      "selectedWrites": 0,
+      "candidate4096Writes": 0,
+      "otherOwnerWrites": 0,
+      "externalMessages": 0,
+      "newInternalPassed": 0,
+      "newFormalAccepted": 0
+    }
+  }
+}

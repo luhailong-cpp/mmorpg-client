@@ -9,12 +9,13 @@
   "imageSha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
   "imageBytes": 22381153,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
-  "sourceLedgerSha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",
+  "sourceLedgerSha256": "958c9a49df66e54164f0bbe6da0d8e523c55da8bdc9efc4d54939091d71612a7",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": {
     "status": "pending",
     "reviewedSides": [
@@ -34,61 +35,158 @@
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
     "tile": "r07_c04",
-    "selectedAvailable": 16,
-    "selectedUsable": 16,
-    "missingNativePatches": [],
-    "invalidSelected": [],
-    "completeCandidate": true,
-    "currentCompleteCandidate": true,
-    "internalQAPassed": true,
-    "formalAccepted": false,
-    "latestCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-minimum-error-b38cb951695e.png",
-    "candidateVariants": 3,
-    "qa": {
-      "internalPassed": false,
-      "formalPassed": false,
-      "status": "acceptance_stale_or_candidate_invalid"
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
+    "imageSha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",
+        "sha256": "958c9a49df66e54164f0bbe6da0d8e523c55da8bdc9efc4d54939091d71612a7",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
+    ],
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "status": "candidate_pending_visual_review",
+      "formalAccepted": false
     },
-    "bridgeCandidate": {
-      "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
-      "sha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
-      "pixels": [
-        4096,
-        4096
-      ],
-      "mode": "RGB"
-    },
-    "bridgeReview": {
-      "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",
-      "sha256": "958c9a49df66e54164f0bbe6da0d8e523c55da8bdc9efc4d54939091d71612a7",
-      "tile": "r07_c04",
-      "candidate": {
-        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/candidate.png",
-        "sha256": "12a5ba0622b6ba365a7e89971a7d7682065f1194bdefe6c2d6141c28cece9a20",
-        "pixels": [
-          4096,
-          4096
-        ],
-        "mode": "RGB"
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/candidate/r07_c04-candidate-native-bridges-2268d482e68c2928/assembly.json",
+        "record": {
+          "status": "candidate_pending_visual_review",
+          "formalAccepted": false
+        }
       },
-      "wholeZoneComplete": false
-    },
-    "outerBoundaryStatus": {
-      "status": "pending",
-      "reviewedSides": [
-        "north"
-      ],
-      "passedSides": [
-        "north"
-      ],
-      "pendingSides": [
-        "east",
-        "south",
-        "west"
-      ],
-      "worldBoundarySides": [],
-      "actuallyViewed": true
-    }
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "record": {
+          "internalQAPassed": true,
+          "formalAccepted": false,
+          "outerBoundaryStatus": {
+            "status": "pending",
+            "reviewedSides": [
+              "north"
+            ],
+            "passedSides": [
+              "north"
+            ],
+            "pendingSides": [
+              "east",
+              "south",
+              "west"
+            ],
+            "worldBoundarySides": [],
+            "actuallyViewed": true
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",
+        "record": {
+          "internalQA": {
+            "status": "passed",
+            "actuallyViewed": true,
+            "seamSegments": 24,
+            "junctions": 9,
+            "actuallyViewedThisRevision": 5,
+            "inheritedExactPassedOrNonblocking": 28
+          },
+          "externalQA": {
+            "status": "pending",
+            "reviewedSides": [
+              "north"
+            ],
+            "passedSides": [
+              "north"
+            ],
+            "pendingSides": [
+              "east",
+              "south",
+              "west"
+            ],
+            "worldBoundarySides": [],
+            "actuallyViewed": true
+          },
+          "northExternalQA": {
+            "status": "passed",
+            "actuallyViewed": true,
+            "seamSegments": 4,
+            "neighbor": "r06_c04"
+          },
+          "formalAccepted": false,
+          "remainingIssues": [
+            "No blocking internal or available-north seam issues. East neighbor being generated by root; south/west missing. Whole-zone acceptance not granted."
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress-before-local-resume-20261013.json",
+        "record": {
+          "internalQAPassed": true,
+          "formalAccepted": false,
+          "outerBoundaryStatus": {
+            "status": "pending",
+            "reviewedSides": [
+              "north"
+            ],
+            "passedSides": [
+              "north"
+            ],
+            "pendingSides": [
+              "east",
+              "south",
+              "west"
+            ],
+            "worldBoundarySides": [],
+            "actuallyViewed": true
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-review-20261013/main-city-game-20261009/northwest-census/v001/current-tiles.json",
+        "record": {
+          "internalQA": {
+            "status": "PASS_REUSED_CURRENT_EVIDENCE",
+            "formalAccepted": false,
+            "evidence": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",
+              "exists": true,
+              "sha256": "958c9a49df66e54164f0bbe6da0d8e523c55da8bdc9efc4d54939091d71612a7",
+              "bytes": 10446
+            },
+            "details": {
+              "status": "passed",
+              "actuallyViewed": true,
+              "seamSegments": 24,
+              "junctions": 9,
+              "actuallyViewedThisRevision": 5,
+              "inheritedExactPassedOrNonblocking": 28
+            },
+            "candidateMatchesCurrent": true
+          },
+          "externalQA": {
+            "status": "pending",
+            "reviewedSides": [
+              "north"
+            ],
+            "passedSides": [
+              "north"
+            ],
+            "pendingSides": [
+              "east",
+              "south",
+              "west"
+            ],
+            "worldBoundarySides": [],
+            "actuallyViewed": true
+          },
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c04/delivery-summary.json",

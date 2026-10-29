@@ -25,7 +25,9 @@ namespace MmorpgClient.World
 
         public bool Play(string action, string direction)
         {
-            if (_renderer == null) _renderer = gameObject.GetComponent<SpriteRenderer>() ?? gameObject.AddComponent<SpriteRenderer>();
+            // Unity 缺失组件的假 null 不受 ?? 检查，必须用组件查询结果判断。
+            if (_renderer == null && !gameObject.TryGetComponent(out _renderer))
+                _renderer = gameObject.AddComponent<SpriteRenderer>();
             if (action == _action && direction == _direction && _clip != null) return true;
             var next = QdaoPetCatalog.Acquire(_id, action, direction);
             if (next == null)

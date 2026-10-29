@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 3,
+  "column": 8,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "747a9ab6b3a2806e03f93452f547557a8d460afdca8a65ad7b909134fbc3cb32",
+  "imageBytes": 29323262,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/candidate/native16-20261019-27fbf1a1662121e1/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/current-status-20261019.json",
+  "sourceLedgerSha256": "a2f354a0284e13a2c17af9c012643640d818d75189c07c0a2951f44eae7ba0d1",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r03_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/candidate/native16-20261019-27fbf1a1662121e1/candidate.png",
+    "imageSha256": "747a9ab6b3a2806e03f93452f547557a8d460afdca8a65ad7b909134fbc3cb32",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/current-status-20261019.json",
+        "sha256": "a2f354a0284e13a2c17af9c012643640d818d75189c07c0a2951f44eae7ba0d1",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedAvailable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedUsable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/completeCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/currentCompleteCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "missingNativePatches",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/resume-checkpoint-20261019-native16-v01.json",
+        "sha256": "2b7c781e312fce7c8269412c6df54ba914d9f72ce0775746f6c289c36db5d9e1",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/current-status-20261019.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "record": {
+          "internalQAPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/resume-checkpoint-20261019-native16-v01.json",
+        "record": {
+          "status": "native16_coverage_complete_QA_needs_repairs",
+          "selectedCoreCount": 16,
+          "totalCoreCount": 16,
+          "missingCoreCount": 0,
+          "pending": [
+            {
+              "name": "v1024_r2",
+              "kind": "internal_vertical",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/v1024_r2.png",
+              "sha256": "3193ba38009563a2c09a65e6b0cbbcff37c2705c7504ce728a6474d07a3f7afc",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s02_01_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native and E/S/SE actually viewed. Horizontal blue road and existing red paper positions preserved. S large rectangular stone joints connect acceptably. E road has curb offset, different slab phase and tone against already flagged junction source; SE has rectangular grid conversion. Needs remain; healthy N edge independent.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native and E/S/SE actually viewed. Horizontal blue road and existing red paper positions preserved. S large rectangular stone joints connect acceptably. E road has curb offset, different slab phase and tone against already flagged junction source; SE has rectangular grid conversion. Needs remain; healthy N edge independent."
+            },
+            {
+              "name": "v1024_r3",
+              "kind": "internal_vertical",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/v1024_r3.png",
+              "sha256": "9f178d708f7dbe5cf1b75ccbb8eacf71e03c09abe819c7aa2a3642da4e6bfbba",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s03_01_native02/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Native and E/S/SE crops actually viewed. S continues broad stone field cleanly. E generated smaller rows meet taller neighboring rows at a new continuous vertical grout boundary; geometry transition and SE phase remain needs repair. Healthy N/W ground may anchor independent cores.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Native and E/S/SE crops actually viewed. S continues broad stone field cleanly. E generated smaller rows meet taller neighboring rows at a new continuous vertical grout boundary; geometry transition and SE phase remain needs repair. Healthy N/W ground may anchor independent cores."
+            },
+            {
+              "name": "v1024_r4",
+              "kind": "internal_vertical",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/v1024_r4.png",
+              "sha256": "affa83f88747d94be488bde27166df42d8da933256b56f0f08fc9aba36a5787d",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s04_01_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native and E/S/SE native crops viewed. Pale rectangular slab layout and S local join are usable. E horizontal courses have roughly15px phase steps and SE inherits a local texture/joint step. Keep needs; only healthy N/W interior edges may anchor independent pieces.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native and E/S/SE native crops viewed. Pale rectangular slab layout and S local join are usable. E horizontal courses have roughly15px phase steps and SE inherits a local texture/joint step. Keep needs; only healthy N/W interior edges may anchor independent pieces."
+            },
+            {
+              "name": "v2048_r2",
+              "kind": "internal_vertical",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/v2048_r2.png",
+              "sha256": "a7373bbef5e0dc1f15e7f9c6e54681fe0c226715eaf7d4abc01c143ace482d66",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s02_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Native and three crops actually viewed. W against excluded junction has mismatched diagonal endpoints. S shows a short T-end and slab-scale transition despite some continuous lines. SW has clipped grid and tone change. Healthy N/E remain independent. Keep needs.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Native and three crops actually viewed. W against excluded junction has mismatched diagonal endpoints. S shows a short T-end and slab-scale transition despite some continuous lines. SW has clipped grid and tone change. Healthy N/E remain independent. Keep needs."
+            },
+            {
+              "name": "v2048_r3",
+              "kind": "internal_vertical",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/v2048_r3.png",
+              "sha256": "80ad58a12f6a9553f2541269d3d9ecc009bde097362bfbbf96811a76b05eceb9",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s03_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Actually viewed full native and W/S/SW at 100 percent. W contains a small added diamond/short grout branch to accommodate misphased grid; S tonal band and SW shifted diamond remain needs repair. Healthy N/E interior remains usable; W/S defects excluded from propagation.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Actually viewed full native and W/S/SW at 100 percent. W contains a small added diamond/short grout branch to accommodate misphased grid; S tonal band and SW shifted diamond remain needs repair. Healthy N/E interior remains usable; W/S defects excluded from propagation."
+            },
+            {
+              "name": "v2048_r4",
+              "kind": "internal_vertical",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/v2048_r4.png",
+              "sha256": "718bf6512190049ee2d76f2a7ee0c4864c4bb4cbf2ffa2532083f0e79e179bbc",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s04_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native/W/S/SW actually viewed. Native diagonal courtyard field filled at fixed scene scale. W has short obsolete branch and stone-grid phase drift; S has an irregular notch and phase conflict near source x700,y1100. Keep needs, do not use W/S defective area as an anchor; independent N/E healthy edges remain usable.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native/W/S/SW actually viewed. Native diagonal courtyard field filled at fixed scene scale. W has short obsolete branch and stone-grid phase drift; S has an irregular notch and phase conflict near source x700,y1100. Keep needs, do not use W/S defective area as an anchor; independent N/E healthy edges remain usable."
+            },
+            {
+              "name": "v3072_r2",
+              "kind": "internal_vertical",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/v3072_r2.png",
+              "sha256": "0a61e518dc2a30aa0089667e46d09a8616ec0de4b72ea78e0544841991416b92",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s02_04_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Native and W/S/SW viewed at100 percent. S grout crossings remain continuous with compatible stone scale. W has material-density split and slight phase transition across core edge; SW carries it. N/E geometry healthy for independent completion.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Native and W/S/SW viewed at100 percent. S grout crossings remain continuous with compatible stone scale. W has material-density split and slight phase transition across core edge; SW carries it. N/E geometry healthy for independent completion."
+            },
+            {
+              "name": "h1024_c2",
+              "kind": "internal_horizontal",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/h1024_c2.png",
+              "sha256": "21777b91c4b3485f56c903934a575bf022e06471902d20562009ec98144069ba",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s01_02_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native and W/S/SW actually viewed. W pedestal ledges, paving, red paper and shadows continue cleanly. S road edging and courtyard grid fail against already flagged junction source; SW has rectangular phase/material transition. Preserve healthy W and E stair continuation; full S needs.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native and W/S/SW actually viewed. W pedestal ledges, paving, red paper and shadows continue cleanly. S road edging and courtyard grid fail against already flagged junction source; SW has rectangular phase/material transition. Preserve healthy W and E stair continuation; full S needs."
+            },
+            {
+              "name": "h1024_c3",
+              "kind": "internal_horizontal",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/h1024_c3.png",
+              "sha256": "7699b6eb3700eae8db124e92e6c7d80cf72d644fe66e92e444c4857a58da1496",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s01_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native and W/S/SW actually viewed. W pedestal/stair side boundary and shadows continuous. Existing cropped stairs and red scrap clusters preserved. S has a short T joint and phase transition, SW rectangular-to-diagonal endpoint conflict. Healthy E stair and ground usable; S needs remains.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native and W/S/SW actually viewed. W pedestal/stair side boundary and shadows continuous. Existing cropped stairs and red scrap clusters preserved. S has a short T joint and phase transition, SW rectangular-to-diagonal endpoint conflict. Healthy E stair and ground usable; S needs remains."
+            },
+            {
+              "name": "h2048_c2",
+              "kind": "internal_horizontal",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/h2048_c2.png",
+              "sha256": "6cd15d3476c1bf2fcd64501f59536475bba8c99d2ad0d2e0c6c71f459d382136",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Direct native-scale view of exact final candidate crop",
+              "finding": "Lower-left ivory curb is closer after edit, but blue inner edging remains displaced from fixed S road; clipped right diagonal joints and grid transition remain. No further propagation from s02_02; two precise edit attempts archived."
+            },
+            {
+              "name": "h2048_c3",
+              "kind": "internal_horizontal",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/h2048_c3.png",
+              "sha256": "945efef4a70a4e0a5e08a35a5c4575180f0053ee27679473a354cd10e99a37fb",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s02_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Native and three crops actually viewed. W against excluded junction has mismatched diagonal endpoints. S shows a short T-end and slab-scale transition despite some continuous lines. SW has clipped grid and tone change. Healthy N/E remain independent. Keep needs.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Native and three crops actually viewed. W against excluded junction has mismatched diagonal endpoints. S shows a short T-end and slab-scale transition despite some continuous lines. SW has clipped grid and tone change. Healthy N/E remain independent. Keep needs."
+            },
+            {
+              "name": "h3072_c3",
+              "kind": "internal_horizontal",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/h3072_c3.png",
+              "sha256": "ad75eac6a1b12851180fda227c43895d366192b8986b9a12a4e810954854f59a",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s03_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Actually viewed full native and W/S/SW at 100 percent. W contains a small added diamond/short grout branch to accommodate misphased grid; S tonal band and SW shifted diamond remain needs repair. Healthy N/E interior remains usable; W/S defects excluded from propagation.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Actually viewed full native and W/S/SW at 100 percent. W contains a small added diamond/short grout branch to accommodate misphased grid; S tonal band and SW shifted diamond remain needs repair. Healthy N/E interior remains usable; W/S defects excluded from propagation."
+            },
+            {
+              "name": "h3072_c4",
+              "kind": "internal_horizontal",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/h3072_c4.png",
+              "sha256": "262e0496b03c8f1b95b58df55630894ec2c0eb2ca194ef75e19a3f2fc156065f",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s03_04_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native and W/S/SW actually viewed. W grout is continuous with existing neighbor. S has disconnected diagonal ends and local erased joints across a horizontal band; SW inherits this defect. N/E healthy. S remains needs repair and excluded from future anchors.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native and W/S/SW actually viewed. W grout is continuous with existing neighbor. S has disconnected diagonal ends and local erased joints across a horizontal band; SW inherits this defect. N/E healthy. S remains needs repair and excluded from future anchors."
+            },
+            {
+              "name": "j1024_1024",
+              "kind": "internal_junction",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/j1024_1024.png",
+              "sha256": "5df198209d8b69dca422efe91304d8de0c5cdb4de48265776fde4cef2f63d08c",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s01_02_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native and W/S/SW actually viewed. W pedestal ledges, paving, red paper and shadows continue cleanly. S road edging and courtyard grid fail against already flagged junction source; SW has rectangular phase/material transition. Preserve healthy W and E stair continuation; full S needs.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native and W/S/SW actually viewed. W pedestal ledges, paving, red paper and shadows continue cleanly. S road edging and courtyard grid fail against already flagged junction source; SW has rectangular phase/material transition. Preserve healthy W and E stair continuation; full S needs."
+            },
+            {
+              "name": "j2048_1024",
+              "kind": "internal_junction",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/j2048_1024.png",
+              "sha256": "0a50ecfdf67732494fbd05ffff00f837ed474b4f776e0ffa64661f0de461a4d2",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s01_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native and W/S/SW actually viewed. W pedestal/stair side boundary and shadows continuous. Existing cropped stairs and red scrap clusters preserved. S has a short T joint and phase transition, SW rectangular-to-diagonal endpoint conflict. Healthy E stair and ground usable; S needs remains.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native and W/S/SW actually viewed. W pedestal/stair side boundary and shadows continuous. Existing cropped stairs and red scrap clusters preserved. S has a short T joint and phase transition, SW rectangular-to-diagonal endpoint conflict. Healthy E stair and ground usable; S needs remains."
+            },
+            {
+              "name": "j1024_2048",
+              "kind": "internal_junction",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/j1024_2048.png",
+              "sha256": "bc21390c9d176d84dbda9b76cdccf3bd6bc17fe056808f64ee30441a293ce452",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s02_01_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Full native and E/S/SE actually viewed. Horizontal blue road and existing red paper positions preserved. S large rectangular stone joints connect acceptably. E road has curb offset, different slab phase and tone against already flagged junction source; SE has rectangular grid conversion. Needs remain; healthy N edge independent.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Full native and E/S/SE actually viewed. Horizontal blue road and existing red paper positions preserved. S large rectangular stone joints connect acceptably. E road has curb offset, different slab phase and tone against already flagged junction source; SE has rectangular grid conversion. Needs remain; healthy N edge independent."
+            },
+            {
+              "name": "j2048_2048",
+              "kind": "internal_junction",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/j2048_2048.png",
+              "sha256": "b93a625ce741aee3584e61ff6f6f9de9faf52336f2dd73dff7e13bd91e1d1876",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s02_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Native and three crops actually viewed. W against excluded junction has mismatched diagonal endpoints. S shows a short T-end and slab-scale transition despite some continuous lines. SW has clipped grid and tone change. Healthy N/E remain independent. Keep needs.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Native and three crops actually viewed. W against excluded junction has mismatched diagonal endpoints. S shows a short T-end and slab-scale transition despite some continuous lines. SW has clipped grid and tone change. Healthy N/E remain independent. Keep needs."
+            },
+            {
+              "name": "j3072_2048",
+              "kind": "internal_junction",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/j3072_2048.png",
+              "sha256": "9e77d236f063b5ef63aab1850e825250ab5d8c2d72fcba91e0061278cf8b6ecb",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s02_04_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Native and W/S/SW viewed at100 percent. S grout crossings remain continuous with compatible stone scale. W has material-density split and slight phase transition across core edge; SW carries it. N/E geometry healthy for independent completion.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Native and W/S/SW viewed at100 percent. S grout crossings remain continuous with compatible stone scale. W has material-density split and slight phase transition across core edge; SW carries it. N/E geometry healthy for independent completion."
+            },
+            {
+              "name": "j1024_3072",
+              "kind": "internal_junction",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/j1024_3072.png",
+              "sha256": "21f78b3b50515628da4ac0754c99d6a802115ae6dddc1e04eeceef4255aa7e30",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s03_01_native02/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Native and E/S/SE crops actually viewed. S continues broad stone field cleanly. E generated smaller rows meet taller neighboring rows at a new continuous vertical grout boundary; geometry transition and SE phase remain needs repair. Healthy N/W ground may anchor independent cores.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Native and E/S/SE crops actually viewed. S continues broad stone field cleanly. E generated smaller rows meet taller neighboring rows at a new continuous vertical grout boundary; geometry transition and SE phase remain needs repair. Healthy N/W ground may anchor independent cores."
+            },
+            {
+              "name": "j2048_3072",
+              "kind": "internal_junction",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/native16-20261019-27fbf1a1662121e1/j2048_3072.png",
+              "sha256": "c4590d42c871d41b5d1548a24725dff528133a87a55fb0df7192bfa085894c17",
+              "status": "needs_repair",
+              "actuallyViewed": true,
+              "reviewMethod": "Exact unaltered RGB pixel hash reuse of previously actually viewed native-scale crop",
+              "reviewEvidence": [
+                {
+                  "reviewFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/qa/source-review/s03_03_native01/review.json",
+                  "crop": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "status": "needs_repair",
+                  "finding": "Actually viewed full native and W/S/SW at 100 percent. W contains a small added diamond/short grout branch to accommodate misphased grid; S tonal band and SW shifted diamond remain needs repair. Healthy N/E interior remains usable; W/S defects excluded from propagation.",
+                  "actuallyViewed": true
+                }
+              ],
+              "finding": "Actually viewed full native and W/S/SW at 100 percent. W contains a small added diamond/short grout branch to accommodate misphased grid; S tonal band and SW shifted diamond remain needs repair. Healthy N/E interior remains usable; W/S defects excluded from propagation."
+            },
+            "[additional entries retained in referenced document]"
+          ],
+          "unknownExternalSides": [
+            "north",
+            "west",
+            "east"
+          ],
+          "formalAccepted": false,
+          "fullTileInternalQAPassed": false,
+          "retainedSourceReason": "Current in-progress native sources, reference dependencies, and failed edit evidence remain necessary; final acceptance not reached"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/current-status-20261019.json",
+    "sourceSha256": "a2f354a0284e13a2c17af9c012643640d818d75189c07c0a2951f44eae7ba0d1",
+    "normalizedDocument": {
+      "atUtc": "2026-10-19T14:38:20.250936+00:00",
+      "tile": "r03_c08",
+      "currentCheckpoint": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/resume-checkpoint-20261019-native16-v01.json",
+        "sha256": "2b7c781e312fce7c8269412c6df54ba914d9f72ce0775746f6c289c36db5d9e1"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r03_c08/candidate/native16-20261019-27fbf1a1662121e1/candidate.png",
+        "sha256": "747a9ab6b3a2806e03f93452f547557a8d460afdca8a65ad7b909134fbc3cb32"
+      },
+      "counts": {
+        "internalTotal": 33,
+        "internalPassed": 12,
+        "internalNeeds": 21,
+        "southTotal": 7,
+        "southPassed": 2,
+        "southNeeds": 5,
+        "awaitingVisualReview": 0
+      },
+      "selectedCoreCount": 16,
+      "rawNativeOutputs": 19,
+      "generationInFlight": false,
+      "formalAccepted": false
+    }
+  }
+}

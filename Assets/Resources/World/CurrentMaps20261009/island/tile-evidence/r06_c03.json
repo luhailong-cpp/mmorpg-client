@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 6,
+  "column": 3,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "d78feb86c473201b8fe5809bf0808511ac219b65f5711b2790b508576095919c",
+  "imageBytes": 29451430,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-r05-r06-cross-v5/r06_c03_rail-ground-v1_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-r05-r06-cross-v5/r06_c03_rail-ground-v1_4096.cross-native-repair.json",
+  "sourceLedgerSha256": "44044606a00867207ad1f694121428cf973287cc8c74f0f951456353006ba00a",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-r05-r06-cross-v5/r06_c03_rail-ground-v1_4096.png",
+    "imageSha256": "d78feb86c473201b8fe5809bf0808511ac219b65f5711b2790b508576095919c",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-r05-r06-cross-v5/r06_c03_rail-ground-v1_4096.cross-native-repair.json",
+        "sha256": "44044606a00867207ad1f694121428cf973287cc8c74f0f951456353006ba00a",
+        "sourceReviewSha256": "44044606a00867207ad1f694121428cf973287cc8c74f0f951456353006ba00a",
+        "completeness": [
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "materialStatus": "PENDING",
+      "internalReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05r06_v7_internal_delta_closure_material_pending_20261016.json",
+        "sha256": "299c503ff53d1dd1a157e45009d3854baa44a719fac35f072f17f6f0f42e33a3",
+        "bytes": 237033,
+        "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05r06_v7_internal_delta_closure_material_pending_20261016.json"
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/current-adopted-20261012.json",
+        "record": {
+          "formalAccepted": false,
+          "materialStatus": "PENDING",
+          "internalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05r06_v7_internal_delta_closure_material_pending_20261016.json",
+            "sha256": "299c503ff53d1dd1a157e45009d3854baa44a719fac35f072f17f6f0f42e33a3",
+            "bytes": 237033,
+            "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05r06_v7_internal_delta_closure_material_pending_20261016.json"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/current_adopted_snapshot_batch_close_20261017.json",
+        "record": {
+          "formalAccepted": false,
+          "materialStatus": "PENDING",
+          "internalReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05r06_v7_internal_delta_closure_material_pending_20261016.json",
+            "sha256": "299c503ff53d1dd1a157e45009d3854baa44a719fac35f072f17f6f0f42e33a3",
+            "bytes": 237033,
+            "workspaceRelativePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r05r06_v7_internal_delta_closure_material_pending_20261016.json"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/connected-r05-r06-cross-v5/r06_c03_rail-ground-v1_4096.cross-native-repair.json",
+        "record": {
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "unassignedPixels": 0,
+            "sameCoordinateRawOrUnchangedBase": true
+          },
+          "formalAcceptedCount": 0,
+          "visualAcceptance": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

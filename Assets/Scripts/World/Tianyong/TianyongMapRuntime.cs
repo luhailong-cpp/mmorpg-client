@@ -206,7 +206,7 @@ namespace MmorpgClient.World.Tianyong
         {
             if (_map == null) return;
             _cameraController?.Tick(Time.deltaTime, !GameplayInputGate.IsPointerBlocked);
-            _map.UpdateCityTiles(worldCamera);
+            _map.UpdateCityTiles(worldCamera, GetFocusPosition());
         }
 
         private Vector3 GetFocusPosition()

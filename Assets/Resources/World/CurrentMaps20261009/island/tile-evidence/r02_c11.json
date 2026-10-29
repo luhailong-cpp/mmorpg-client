@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 2,
+  "column": 11,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "fafbf4c60683ecbc007fcbf5ee61fa58667dd2299aaaad59c2440cc33d9fa2db",
+  "imageBytes": 27114667,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r02_c11-v006.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r02_c11-v006.png.derivation.json",
+  "sourceLedgerSha256": "bfa3952cb870322c7a29f12421dee3bb6d9d834bdc65a9b6ed3dbebfd41bf319",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r02_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r02_c11-v006.png",
+    "imageSha256": "fafbf4c60683ecbc007fcbf5ee61fa58667dd2299aaaad59c2440cc33d9fa2db",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r02_c11-v006.png.derivation.json",
+        "sha256": "bfa3952cb870322c7a29f12421dee3bb6d9d834bdc65a9b6ed3dbebfd41bf319",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r02_c11-v006.png.derivation.json",
+        "sha256": "bfa3952cb870322c7a29f12421dee3bb6d9d834bdc65a9b6ed3dbebfd41bf319",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v012.json",
+        "sha256": "0173f7914b47269ac0d7236a80039816b59c85897c4a241211713ee5a9887c66",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v013.json",
+        "sha256": "0849eab2619e14f0ab561b21995f42c1fc95e884946e03732b8a1e619a1cdf04",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v014.json",
+        "sha256": "cfea3f975f5a2ea0608a336dcffe4c97873a3addda3b8ef001bf547271b60dd4",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v015.json",
+        "sha256": "e5e1770bce904b8bd3438f90a17c5891a19df0ce2595b2c1e27dff05975eb9fd",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "baseCoverageMin": 1,
+      "baseCoverageMax": 1,
+      "status": "complete_native_coverage_pending_whole_tile_and_external_review",
+      "formalAccepted": false,
+      "modelMetadataStatus": "未返回"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/candidates/r02_c11-v006.png.derivation.json",
+        "record": {
+          "baseCoverageMin": 1,
+          "baseCoverageMax": 1,
+          "status": "complete_native_coverage_pending_whole_tile_and_external_review",
+          "formalAccepted": false,
+          "modelMetadataStatus": "未返回"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v012.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v013.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v014.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-east-residences/delivery/current-candidates-v015.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

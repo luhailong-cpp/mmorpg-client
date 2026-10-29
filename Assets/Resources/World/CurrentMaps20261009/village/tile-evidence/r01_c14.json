@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 1,
+  "column": 14,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "d002709686c38c4a07a25c84b359d2ca6e4355886fabb1bda288433909cb6fcd",
+  "imageBytes": 19180912,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-mast-local-east-finish-b-v1.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-mast-local-east-finish-b-v1.png.derived.json",
+  "sourceLedgerSha256": "dac2707b8f4653cdd6a1bedf2e05963aeb0c9e9bbdd07eb33e3cb0e6e133c667",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c14",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-mast-local-east-finish-b-v1.png",
+    "imageSha256": "d002709686c38c4a07a25c84b359d2ca6e4355886fabb1bda288433909cb6fcd",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-mast-local-east-finish-b-v1.png.derived.json",
+        "sha256": "dac2707b8f4653cdd6a1bedf2e05963aeb0c9e9bbdd07eb33e3cb0e6e133c667",
+        "sourceReviewSha256": "dac2707b8f4653cdd6a1bedf2e05963aeb0c9e9bbdd07eb33e3cb0e6e133c667",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-mast-local-east-finish-b-v1.png",
+            "sha256": "d002709686c38c4a07a25c84b359d2ca6e4355886fabb1bda288433909cb6fcd"
+          },
+          "operation": "replace p42 exact retained core115,115,1139,1139; no scaling or blending",
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-east-inspection-v1.png",
+            "sha256": "e2f411884d79162d786da4f2cc2aafe9014e6361239e477366d4f03d00ac560d"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-east-inspection-v1.png.derived.json",
+        "sha256": "b52883c9615ec14246040c51714d3c398560d9603b6141b346785872ec67f26c",
+        "sourceReviewSha256": "b52883c9615ec14246040c51714d3c398560d9603b6141b346785872ec67f26c",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-east-inspection-v1.png",
+            "sha256": "e2f411884d79162d786da4f2cc2aafe9014e6361239e477366d4f03d00ac560d"
+          },
+          "operation": "Sixteen 1:1 crop[115,115,1139,1139] and opaque paste operations only",
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/native/r01_c14_p11-v1.png",
+            "sha256": "d63bdcecaaa053238d75d95edc4770e8850cc54ae58447258ee382d03a4bc134"
+          },
+          "mechanicalChecks": {
+            "selectedSourceCount": 16,
+            "allSelectedPngsDecode": true,
+            "allSelectedNativePixels": [
+              1254,
+              1254
+            ],
+            "allSelectedHashesMatchProvenance": true,
+            "allSelectedNativeCoordinateBoxesValidated": true,
+            "duplicateSelectedImagePaths": 0,
+            "corePastePixelEquality": true,
+            "filledPixels": 16777216,
+            "expectedPixels": 16777216,
+            "missingPixels": 0,
+            "overlapPixels": 0,
+            "candidatePngRoundTripDecodeAndPixelEquality": true,
+            "allQaPngRoundTripDecodeAndPixelEquality": true,
+            "verticalBoundaryStripCount": 12,
+            "horizontalBoundaryStripCount": 12,
+            "fourPatchJunctionCount": 9,
+            "nativeUpscalePerformed": false,
+            "finalResamplingPerformed": false,
+            "blendingPerformed": false,
+            "meaning": "Mechanical integrity only. Does not certify layout, seam geometry or visual quality."
+          }
+        }
+      }
+    ],
+    "selectionBasis": "New output has a continuous matching-SHA complete-base and native-patch chain to sixteen native source coordinates, no layout fill or upscaling. Local repair scope and pending art acceptance do not make the image partially generated.",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c14.candidate-mast-local-east-finish-b-v1.png.derived.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

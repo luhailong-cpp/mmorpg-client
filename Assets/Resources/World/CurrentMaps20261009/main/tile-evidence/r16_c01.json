@@ -1,0 +1,3995 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 16,
+  "column": 1,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+  "imageBytes": 20268603,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/proposal-assembly.json",
+  "sourceLedgerSha256": "952a5d96232f60938762d717b48d9b9dd50a846ead7ebb85507fc53860bdae54",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r16_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.png",
+    "imageSha256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/proposal-assembly.json",
+        "sha256": "952a5d96232f60938762d717b48d9b9dd50a846ead7ebb85507fc53860bdae54",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/proposal-assembly.json",
+        "sha256": "952a5d96232f60938762d717b48d9b9dd50a846ead7ebb85507fc53860bdae54",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.png.generation.json",
+        "record": {
+          "unverifiedReason": "Derived composition; native tool did not disclose actual model or quality."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/proposal-assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/independent-whole-internal-review.json",
+        "record": {
+          "wholeCandidateNativeCoverage": {
+            "method": "all 16 current 1024x1024 non-resampled core crops actually viewed via view_image detail original",
+            "fullCandidatePixelsCovered": 16777216,
+            "cores": [
+              {
+                "name": "core-r1-c1",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c1.png",
+                "sourceBox": [
+                  0,
+                  0,
+                  1024,
+                  1024
+                ],
+                "sha256": "722720b54ef3a86e4874d0da554eb75915071d53b7071f6175f46d23d60db193",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "aa55b378a7e252cbd1c9ca41ff2cb6f81cbc1025159896c7d19883800b792138",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "大块自然灰石面与右侧亮转角边清楚，斜向上沿及投影完整，无糊拉伸或拼贴。"
+              },
+              {
+                "name": "core-r1-c2",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c2.png",
+                "sourceBox": [
+                  1024,
+                  0,
+                  2048,
+                  1024
+                ],
+                "sha256": "a56c3b6ea823ee6ea8b4dc96b7679cae73891e9c24c95d16b0ce43ce3dbd1957",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "33bad400bb6f24a16c9170ee64f97b46f68915557d81aeccb10bf4a9aa2bae29",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "正面米灰墙石、水平腰线和竖缝层次清楚，材质干净，几何未变形。"
+              },
+              {
+                "name": "core-r1-c3",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c3.png",
+                "sourceBox": [
+                  2048,
+                  0,
+                  3072,
+                  1024
+                ],
+                "sha256": "a067c5cf2c82c24675c10986506f6c5157affc567bc1f5ef3f7e1fdc45e83321",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "395dc0f9724f05ed34898d6441d43152d0849e0cafd3259037b6ab4dc3466b40",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "亮侧转角与暗侧墙平面相接合理；两斜缝左端接入真实竖缝，石面尺度一致。"
+              },
+              {
+                "name": "core-r1-c4",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c4.png",
+                "sourceBox": [
+                  3072,
+                  0,
+                  4096,
+                  1024
+                ],
+                "sha256": "81eb7847a74a7416afccf577f05905f523bf675aa29a73cd30f5dca43eeb5482",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "3cfc07da81caae05208f84bdf435eb1a6bee43134c042b85c91b28d4d07f5196",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "两斜缝右端接入实际立角，原暗楔不再截缝；暗侧及右正面转折、投影保持连续。"
+              },
+              {
+                "name": "core-r2-c1",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c1.png",
+                "sourceBox": [
+                  0,
+                  1024,
+                  1024,
+                  2048
+                ],
+                "sha256": "650b3a572b0e60ad0ecf6c2448776785dcffc2be8dc18e6df5b7bbc973e72a6e",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "73f03d925ca8c8bdb14e5c16fef19c5383df2ddd69beb6d1995460f63dcca03e",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "大灰石面及斜向腰线、右侧转角组织完整，明暗与上方连续，无矩形补丁。"
+              },
+              {
+                "name": "core-r2-c2",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c2.png",
+                "sourceBox": [
+                  1024,
+                  1024,
+                  2048,
+                  2048
+                ],
+                "sha256": "9d65d4922b1b66ec3a5a67dbf50f63e20d20ea115e7fd7ec406d2094ad5ab6e3",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "6c004eb4033217586248d7db3085f742ceea37361f2893e95e260745b1ca95da",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "正面砖缝闭合，石块比例和圆润倒角一致，纹理清楚且无密集噪点。"
+              },
+              {
+                "name": "core-r2-c3",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c3.png",
+                "sourceBox": [
+                  2048,
+                  1024,
+                  3072,
+                  2048
+                ],
+                "sha256": "2987264321cf679ef7a6f1ea40580bdb5b845ae7a6afbe7e3450ed5718bd5a7f",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "6efae56f39644022aaf1b97136c2ffc505de4318be6f9e761b5b5fc3ffd4a8d0",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "亮转角立面、正面水平缝及暗面下斜边结构连续，材质与本块同向。"
+              },
+              {
+                "name": "core-r2-c4",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c4.png",
+                "sourceBox": [
+                  3072,
+                  1024,
+                  4096,
+                  2048
+                ],
+                "sha256": "d594056c2a8abf9a3b128902941375b781a5c069905b24af567f172b11f225ec",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "c90d64757d6caeb3be9d2ad65d59da0ce222557620813ce40f0e9ee14d9b3f8b",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "右侧大灰石面和墙脚折线保持几何，修补区域下沿无明显新接缝。"
+              },
+              {
+                "name": "core-r3-c1",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c1.png",
+                "sourceBox": [
+                  0,
+                  2048,
+                  1024,
+                  3072
+                ],
+                "sha256": "fc75e2722edc751d4abc2ddbc3b49f14cf408d74635fd424a6790624d7ffc570",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "4124660f8b394ae22795292dc1437d5a61db7448b8b57be241de3aa490e4ab2d",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "长斜腰线、亮转角和左下叶团自然衔接，投影仍附着墙面，轮廓清楚。"
+              },
+              {
+                "name": "core-r3-c2",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c2.png",
+                "sourceBox": [
+                  1024,
+                  2048,
+                  2048,
+                  3072
+                ],
+                "sha256": "6e4485c55b134fbb1fbbdb24f6135d525d29df64e2179814cea4c46c7156b08c",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "da71e355de89a24b83cc8b47b4041f3a7ec7107440be3ee4b97301266e17cd0b",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "正面墙面、亮水平腰线及靠墙树叶组织完整，叶团有层次且不出现复制直切。"
+              },
+              {
+                "name": "core-r3-c3",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c3.png",
+                "sourceBox": [
+                  2048,
+                  2048,
+                  3072,
+                  3072
+                ],
+                "sha256": "e5ac2630b3d7391a1a7a3cdda28bb6cdde9f5e786e26c0b1530e3403ef152597",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "a7ae713e9181d55d1d284cc0eab498317150cedae0b34592b3c78ae3a97022a0",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "墙角与地面交接、墙脚地砖透视及树叶连续，地面灰色材质干净。"
+              },
+              {
+                "name": "core-r3-c4",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c4.png",
+                "sourceBox": [
+                  3072,
+                  2048,
+                  4096,
+                  3072
+                ],
+                "sha256": "fa8d5b6b1139fb0814f0aa5db3741f0cc83234359106e7a2d5cf66e3d8a68ccf",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "10aaf73b646854cd7dd6eb947af7c8ce1c117a9121dad947d80101eb05700874",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "上方可走石面、亮边与暗侧立面透视连贯，石缝闭合，原生细节清楚。"
+              },
+              {
+                "name": "core-r4-c1",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c1.png",
+                "sourceBox": [
+                  0,
+                  3072,
+                  1024,
+                  4096
+                ],
+                "sha256": "e1e3fd33e03304adaf6ab2a75c5668711abab3c7fb2fc1bc74068fbb10ec4d55",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "b45370a38908f8e1d405327f213f584eef318878b0294b825c72b309d02c3c15",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "左侧靠墙叶团圆润饱满、叶片前后关系明确；右侧修缝T点及墙面没有截断。"
+              },
+              {
+                "name": "core-r4-c2",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c2.png",
+                "sourceBox": [
+                  1024,
+                  3072,
+                  2048,
+                  4096
+                ],
+                "sha256": "65755d6d42c22416fda282ff0a4865f70b1d9665616066c3945fdf2870af0708",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "0bec623a87717126c8ea8974e374efe9162a7af29b895bee487a3f6afbff35b1",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "树叶遮挡位置真实，修复横缝延续到叶下；墙面投影、叶片与下方橙色构件层次自然。"
+              },
+              {
+                "name": "core-r4-c3",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c3.png",
+                "sourceBox": [
+                  2048,
+                  3072,
+                  3072,
+                  4096
+                ],
+                "sha256": "b5f0af093f16e17e20145c8c51d1f7b73e3d9397761fa978251e8ce6aee3bbb5",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "964553dec2d77266f6b0879dd83ca2ec8875730cf0fce066880503e3022199e0",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "靠墙植被、橙色构件、墙脚与地砖连接合理，灰石轮廓清楚，没有新糊边或错层。"
+              },
+              {
+                "name": "core-r4-c4",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c4.png",
+                "sourceBox": [
+                  3072,
+                  3072,
+                  4096,
+                  4096
+                ],
+                "sha256": "710a610c138040354edbf69d32e093e4e83c132812838ec175410bb7f0c1f669",
+                "dimensions": [
+                  1024,
+                  1024
+                ],
+                "rawRGBSHA256": "c0b055afe216153677f073b72d7672353da0e6e40563d359ded42983fba18cbb",
+                "exactCandidateCrop": true,
+                "matchesDeclaredRawRGB": true,
+                "actualViewed": true,
+                "viewTool": "view_image",
+                "viewDetail": "original",
+                "resampled": false,
+                "status": "pass",
+                "conclusion": "墙角、小灌木和泥地过渡完整，石缝透视连贯；保留原布局和素材尺度。"
+              }
+            ],
+            "passed": 16,
+            "failed": 0
+          },
+          "resolvedIssues": [
+            {
+              "id": "I1-R1",
+              "originalIssueBox": [
+                858,
+                3150,
+                1410,
+                3230
+              ],
+              "status": "resolved",
+              "conclusion": "Actual T endpoint to foliage now continuous; no old port light/dark jump or unoccluded short gap."
+            },
+            {
+              "id": "I2-BASE",
+              "originalIssueBox": [
+                3080,
+                600,
+                3240,
+                850
+              ],
+              "status": "resolved",
+              "conclusion": "Old dark wedge no longer truncates either diagonal joint or bevel; actual endpoints connect."
+            }
+          ],
+          "issues": [],
+          "externalScope": {
+            "externalNeighborSeamsReviewed": false,
+            "clientMappingValidated": false,
+            "capacity5000Validated": false,
+            "formalAcceptance": false,
+            "limits": "This report certifies current whole tile internal seams, native layout/material/geometry and repair perimeters only. Coordinator must compare current source hashes, explicitly adopt and deduplicate statistics. External seam/game runtime/formal acceptance are separate."
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/independent-whole-internal-review.metadata-addendum.json",
+        "record": {
+          "originalWholeInternalQA": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/independent-whole-internal-review.json",
+            "sha256": "8a44f708e242a9cb1cb559fdcf901bb25c2419b393d3beb8193139c1a4a1bb4f"
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/independent-whole-internal-review.json",
+    "sourceSha256": "8a44f708e242a9cb1cb559fdcf901bb25c2419b393d3beb8193139c1a4a1bb4f",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "completedAtUtc": "2026-10-21T07:30:54.119551+00:00",
+      "executor": "/root/independent_whole_qa",
+      "task": "r16_c01 independent whole-current-candidate internal QA; no production or adoption authority",
+      "tile": "r16_c01",
+      "map": "main-city-game-20261009",
+      "proposal": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/proposal.json",
+        "sha256": "23b3a28e927cd0d7ccf00a2d5e69e2f2ab3151eed4c101977ed5e058f06da2f0"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.png",
+        "sha256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a"
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.context.png",
+        "sha256": "d1dc0b17af36697fce3900f194234ae9a5f9226ea927fda4518904968f830472"
+      },
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/proposal-assembly.json",
+        "sha256": "952a5d96232f60938762d717b48d9b9dd50a846ead7ebb85507fc53860bdae54"
+      },
+      "parentCandidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/output/b87b8a83a0673273/r16_c01.candidate.png",
+        "sha256": "7bf52faa0de4a723a5d5e8512892b7f4ab178d60bb3e24826bece424806f29c1"
+      },
+      "parentAssembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/output/b87b8a83a0673273/assembly.json",
+        "sha256": "d9e7d3638ba5c3c071d8b8391dc14d64ec40105297608ffd6cfd87ab2e83716f"
+      },
+      "priorIndependentQA": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/human-short-gap-closeout-20261021-0235/independent-QA-review/independent-whole-internal-review.json",
+        "sha256": "16ab3cbb3b3f4438cb88f800eeaee7481b63beee3b6b968f0bb362d67002082b"
+      },
+      "sourceProvenance": {
+        "machineVerification": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/independent-machine-verification.json",
+          "sha256": "b56d767f53a6db618d019c78212fa50a8fd441da4e4087102cf013d85f894696"
+        },
+        "source16": [
+          {
+            "id": "p01_01",
+            "row": 1,
+            "column": 1,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_01.png",
+              "sha256": "cc1155dee3eb5720f9470c1cedec1fd5de05e3640dd1b8953b52789bb3901b92",
+              "bytes": 1780880,
+              "mtimeNs": "1792338098366625800",
+              "role": "source p01_01 nativeFile",
+              "expectedSHA256": "cc1155dee3eb5720f9470c1cedec1fd5de05e3640dd1b8953b52789bb3901b92",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_01.png.generation.json",
+              "sha256": "def0689e214d0ea06b57ac01c9f9f8df9287db804629135d6d7930e3a3b6268e",
+              "bytes": 5817,
+              "mtimeNs": "1792339279218876500",
+              "role": "source p01_01 recordFile",
+              "expectedSHA256": "def0689e214d0ea06b57ac01c9f9f8df9287db804629135d6d7930e3a3b6268e",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_01.restart-20261018-v01.prompt.txt",
+              "sha256": "034f1724fd0ee4e1f564283329216f97734a734555eaacb27237d8d9f43a3827",
+              "bytes": 3253,
+              "mtimeNs": "1792337921432048000",
+              "role": "source p01_01 promptFile",
+              "expectedSHA256": "034f1724fd0ee4e1f564283329216f97734a734555eaacb27237d8d9f43a3827",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p01_01.restart-20261018-v01.receipt.json",
+              "sha256": "bf434ac560bf831a6e781710df042374d74aac61f0e0c9bcd8098b144f559f13",
+              "bytes": 4389,
+              "mtimeNs": "1792338672614488500",
+              "role": "source p01_01 receiptFile",
+              "expectedSHA256": "bf434ac560bf831a6e781710df042374d74aac61f0e0c9bcd8098b144f559f13",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p01_01",
+              "row": 1,
+              "column": 1,
+              "coreWorldBox": [
+                0,
+                61440,
+                1024,
+                62464
+              ],
+              "contextWorldBox": [
+                -115,
+                61325,
+                1139,
+                62579
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p01_02",
+            "row": 1,
+            "column": 2,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_02.png",
+              "sha256": "f178f2dd6fc65beba6d8739bd0abe3fb16d536f779c425f6707cff34cfb45383",
+              "bytes": 1793435,
+              "mtimeNs": "1792339530591121000",
+              "role": "source p01_02 nativeFile",
+              "expectedSHA256": "f178f2dd6fc65beba6d8739bd0abe3fb16d536f779c425f6707cff34cfb45383",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_02.png.generation.json",
+              "sha256": "993287f02432a9ef4ef88a462d5c7abf141e0b40bd440567b3bba8563d48331d",
+              "bytes": 7029,
+              "mtimeNs": "1792339966517970700",
+              "role": "source p01_02 recordFile",
+              "expectedSHA256": "993287f02432a9ef4ef88a462d5c7abf141e0b40bd440567b3bba8563d48331d",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_02.restart-20261018-v01.prompt.txt",
+              "sha256": "529836878dfef5e810295ef4f827879582c9ef0f2cf153fca87732907ff4731a",
+              "bytes": 3130,
+              "mtimeNs": "1792339280131690900",
+              "role": "source p01_02 promptFile",
+              "expectedSHA256": "529836878dfef5e810295ef4f827879582c9ef0f2cf153fca87732907ff4731a",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p01_02.restart-20261018-v01.receipt.json",
+              "sha256": "7a0bbfafbb141905ee5e6eaa8f4b19f9a5e8f3feed0aea91b2d55c2843383b31",
+              "bytes": 4389,
+              "mtimeNs": "1792339682544160800",
+              "role": "source p01_02 receiptFile",
+              "expectedSHA256": "7a0bbfafbb141905ee5e6eaa8f4b19f9a5e8f3feed0aea91b2d55c2843383b31",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p01_02",
+              "row": 1,
+              "column": 2,
+              "coreWorldBox": [
+                1024,
+                61440,
+                2048,
+                62464
+              ],
+              "contextWorldBox": [
+                909,
+                61325,
+                2163,
+                62579
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p01_03",
+            "row": 1,
+            "column": 3,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_03.png",
+              "sha256": "48cc69aef6a30e443156a06c00ca253be58938412abaf1323d8ff80809f769b1",
+              "bytes": 1812073,
+              "mtimeNs": "1792340550087322100",
+              "role": "source p01_03 nativeFile",
+              "expectedSHA256": "48cc69aef6a30e443156a06c00ca253be58938412abaf1323d8ff80809f769b1",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_03.png.generation.json",
+              "sha256": "2ed5eb66c0a744590cb301a937e8b4c2051d0840b22876fe862afda1ca62d152",
+              "bytes": 7031,
+              "mtimeNs": "1792340979972572800",
+              "role": "source p01_03 recordFile",
+              "expectedSHA256": "2ed5eb66c0a744590cb301a937e8b4c2051d0840b22876fe862afda1ca62d152",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_03.restart-20261018-v02.prompt.txt",
+              "sha256": "7def5893dc80b66216927a6be3dc846825373533f13f98e8506dfe8252c88416",
+              "bytes": 3589,
+              "mtimeNs": "1792340207130975100",
+              "role": "source p01_03 promptFile",
+              "expectedSHA256": "7def5893dc80b66216927a6be3dc846825373533f13f98e8506dfe8252c88416",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p01_03.restart-20261018-v02.receipt.json",
+              "sha256": "2814489795771bae9a0060c3f61036106a12ebd7fdf7b61ba0c07a7edf633462",
+              "bytes": 4389,
+              "mtimeNs": "1792340734669155000",
+              "role": "source p01_03 receiptFile",
+              "expectedSHA256": "2814489795771bae9a0060c3f61036106a12ebd7fdf7b61ba0c07a7edf633462",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p01_03",
+              "row": 1,
+              "column": 3,
+              "coreWorldBox": [
+                2048,
+                61440,
+                3072,
+                62464
+              ],
+              "contextWorldBox": [
+                1933,
+                61325,
+                3187,
+                62579
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p01_04",
+            "row": 1,
+            "column": 4,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_04.png",
+              "sha256": "b2728f916b300c4ee953dabbf391bae9eab9c830ccd2f8c3204f06b0e8569305",
+              "bytes": 1941035,
+              "mtimeNs": "1792342032718997400",
+              "role": "source p01_04 nativeFile",
+              "expectedSHA256": "b2728f916b300c4ee953dabbf391bae9eab9c830ccd2f8c3204f06b0e8569305",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_04.png.generation.json",
+              "sha256": "e7445fc38d6a71e0d8647053d11521f0fb460e51267a186fd0e9e43253c6c867",
+              "bytes": 7464,
+              "mtimeNs": "1792343258069781400",
+              "role": "source p01_04 recordFile",
+              "expectedSHA256": "e7445fc38d6a71e0d8647053d11521f0fb460e51267a186fd0e9e43253c6c867",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_04.restart-20261018-v02.prompt.txt",
+              "sha256": "c80b3eb92bb7326a5b1e736ff570e6e571423fad5d6a53e6b775067d46ccf486",
+              "bytes": 3279,
+              "mtimeNs": "1792341760093188800",
+              "role": "source p01_04 promptFile",
+              "expectedSHA256": "c80b3eb92bb7326a5b1e736ff570e6e571423fad5d6a53e6b775067d46ccf486",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p01_04.restart-20261018-v02.receipt.json",
+              "sha256": "b48a554f58966e8cafe4411fbee5bcbf6368673e808b53042411fcb6747f69df",
+              "bytes": 4821,
+              "mtimeNs": "1792342740549916600",
+              "role": "source p01_04 receiptFile",
+              "expectedSHA256": "b48a554f58966e8cafe4411fbee5bcbf6368673e808b53042411fcb6747f69df",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p01_04",
+              "row": 1,
+              "column": 4,
+              "coreWorldBox": [
+                3072,
+                61440,
+                4096,
+                62464
+              ],
+              "contextWorldBox": [
+                2957,
+                61325,
+                4211,
+                62579
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p02_01",
+            "row": 2,
+            "column": 1,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_01.png",
+              "sha256": "ec7209d57037138b062e6c27b96c2307f4d54198c50c1eacb4462e68c592b6d4",
+              "bytes": 1782722,
+              "mtimeNs": "1792344127511330700",
+              "role": "source p02_01 nativeFile",
+              "expectedSHA256": "ec7209d57037138b062e6c27b96c2307f4d54198c50c1eacb4462e68c592b6d4",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_01.png.generation.json",
+              "sha256": "2545fb04b783456ff01f182fae669d960ba09da7c62d642d516abede832df1ff",
+              "bytes": 5817,
+              "mtimeNs": "1792344837512003600",
+              "role": "source p02_01 recordFile",
+              "expectedSHA256": "2545fb04b783456ff01f182fae669d960ba09da7c62d642d516abede832df1ff",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_01.restart-20261018-v01.prompt.txt",
+              "sha256": "56a4c80a163a29e581c08b9680254638b1eca4253902c52fc6bec64a6226ca3c",
+              "bytes": 3101,
+              "mtimeNs": "1792343553977110400",
+              "role": "source p02_01 promptFile",
+              "expectedSHA256": "56a4c80a163a29e581c08b9680254638b1eca4253902c52fc6bec64a6226ca3c",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p02_01.restart-20261018-v01.receipt.json",
+              "sha256": "3d39318b8ff8ffce3a98d18543cfac3ac61289eda2766cf12f03a5c0711fdd32",
+              "bytes": 4389,
+              "mtimeNs": "1792344406131070000",
+              "role": "source p02_01 receiptFile",
+              "expectedSHA256": "3d39318b8ff8ffce3a98d18543cfac3ac61289eda2766cf12f03a5c0711fdd32",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p02_01",
+              "row": 2,
+              "column": 1,
+              "coreWorldBox": [
+                0,
+                62464,
+                1024,
+                63488
+              ],
+              "contextWorldBox": [
+                -115,
+                62349,
+                1139,
+                63603
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p02_02",
+            "row": 2,
+            "column": 2,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_02.png",
+              "sha256": "dd2866e25e941648dd84c2fc73cf129a78e129f48dea9d509f084d8fad85e2fc",
+              "bytes": 1881151,
+              "mtimeNs": "1792346802540334100",
+              "role": "source p02_02 nativeFile",
+              "expectedSHA256": "dd2866e25e941648dd84c2fc73cf129a78e129f48dea9d509f084d8fad85e2fc",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_02.png.generation.json",
+              "sha256": "9997d6daad8d97a6983f20de7a9586b21445b403785501dd8a78fca347b2ab10",
+              "bytes": 7029,
+              "mtimeNs": "1792347587880481600",
+              "role": "source p02_02 recordFile",
+              "expectedSHA256": "9997d6daad8d97a6983f20de7a9586b21445b403785501dd8a78fca347b2ab10",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_02.restart-20261018-v01.prompt.txt",
+              "sha256": "e4b1d36b551faf45021692f452fe421ace463b9b5f78227a34b31dd4a5428cdc",
+              "bytes": 3166,
+              "mtimeNs": "1792344838373257000",
+              "role": "source p02_02 promptFile",
+              "expectedSHA256": "e4b1d36b551faf45021692f452fe421ace463b9b5f78227a34b31dd4a5428cdc",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p02_02.restart-20261018-v01.receipt.json",
+              "sha256": "1e8b7980ce14ad8d108f1f92903cdbf25c1ac2be36147d734ca2826f34111b4c",
+              "bytes": 4389,
+              "mtimeNs": "1792347194264665500",
+              "role": "source p02_02 receiptFile",
+              "expectedSHA256": "1e8b7980ce14ad8d108f1f92903cdbf25c1ac2be36147d734ca2826f34111b4c",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p02_02",
+              "row": 2,
+              "column": 2,
+              "coreWorldBox": [
+                1024,
+                62464,
+                2048,
+                63488
+              ],
+              "contextWorldBox": [
+                909,
+                62349,
+                2163,
+                63603
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p02_03",
+            "row": 2,
+            "column": 3,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_03.png",
+              "sha256": "07bd0803d3d5e5166544adc2e1c85f3dd38c776c2eaad3203a7ef13ceb6bd9fd",
+              "bytes": 1989146,
+              "mtimeNs": "1792348085696471900",
+              "role": "source p02_03 nativeFile",
+              "expectedSHA256": "07bd0803d3d5e5166544adc2e1c85f3dd38c776c2eaad3203a7ef13ceb6bd9fd",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_03.png.generation.json",
+              "sha256": "19cc7108ffbae1827325fbf985c63b5e78d3ba2349534986165f4e3106999880",
+              "bytes": 7031,
+              "mtimeNs": "1792349007806671800",
+              "role": "source p02_03 recordFile",
+              "expectedSHA256": "19cc7108ffbae1827325fbf985c63b5e78d3ba2349534986165f4e3106999880",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_03.restart-20261018-v01.prompt.txt",
+              "sha256": "bfaa8556eb613b95cf5990e5af6dd5789a213d2579fc86dcf39ab4b00e80c42a",
+              "bytes": 3202,
+              "mtimeNs": "1792347588728674000",
+              "role": "source p02_03 promptFile",
+              "expectedSHA256": "bfaa8556eb613b95cf5990e5af6dd5789a213d2579fc86dcf39ab4b00e80c42a",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p02_03.restart-20261018-v01.receipt.json",
+              "sha256": "951b9a1854df110f6b58c15678c862278f5fc63957ed9e37fe60d58a96d59b75",
+              "bytes": 4389,
+              "mtimeNs": "1792348554712691900",
+              "role": "source p02_03 receiptFile",
+              "expectedSHA256": "951b9a1854df110f6b58c15678c862278f5fc63957ed9e37fe60d58a96d59b75",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p02_03",
+              "row": 2,
+              "column": 3,
+              "coreWorldBox": [
+                2048,
+                62464,
+                3072,
+                63488
+              ],
+              "contextWorldBox": [
+                1933,
+                62349,
+                3187,
+                63603
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p02_04",
+            "row": 2,
+            "column": 4,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_04.png",
+              "sha256": "b37de8bbd48ab67128854598c566eccde0fbbe3e9dfe2f61bcb1743155069778",
+              "bytes": 2175419,
+              "mtimeNs": "1792349583792245100",
+              "role": "source p02_04 nativeFile",
+              "expectedSHA256": "b37de8bbd48ab67128854598c566eccde0fbbe3e9dfe2f61bcb1743155069778",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_04.png.generation.json",
+              "sha256": "f783608b22d433369de6bc8ad11589571f52021e8dcb704e6e99acbf3728bbc7",
+              "bytes": 7031,
+              "mtimeNs": "1792351053549219300",
+              "role": "source p02_04 recordFile",
+              "expectedSHA256": "f783608b22d433369de6bc8ad11589571f52021e8dcb704e6e99acbf3728bbc7",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_04.restart-20261018-v02.prompt.txt",
+              "sha256": "973966402a59a6c558f0e254c6fb5d1a3bab7b8b7d4c62aa902ace5f4650b161",
+              "bytes": 3391,
+              "mtimeNs": "1792349009274017400",
+              "role": "source p02_04 promptFile",
+              "expectedSHA256": "973966402a59a6c558f0e254c6fb5d1a3bab7b8b7d4c62aa902ace5f4650b161",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p02_04.restart-20261018-v02.receipt.json",
+              "sha256": "bffe7cfde342ecd8ad0f988795252eb5eb482214e7d40811fc8556ad01658d56",
+              "bytes": 4389,
+              "mtimeNs": "1792350639724958500",
+              "role": "source p02_04 receiptFile",
+              "expectedSHA256": "bffe7cfde342ecd8ad0f988795252eb5eb482214e7d40811fc8556ad01658d56",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p02_04",
+              "row": 2,
+              "column": 4,
+              "coreWorldBox": [
+                3072,
+                62464,
+                4096,
+                63488
+              ],
+              "contextWorldBox": [
+                2957,
+                62349,
+                4211,
+                63603
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p03_01",
+            "row": 3,
+            "column": 1,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_01.png",
+              "sha256": "7cea3bf47aa5460d25eae6ceee2e3e7da6bcfbceebf765bbf13b541679c71b8d",
+              "bytes": 1897790,
+              "mtimeNs": "1792352452501509600",
+              "role": "source p03_01 nativeFile",
+              "expectedSHA256": "7cea3bf47aa5460d25eae6ceee2e3e7da6bcfbceebf765bbf13b541679c71b8d",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_01.png.generation.json",
+              "sha256": "b5a07c5cfcd9d539cef444378cdbedd5185b9052eba5cb387e29891610b75125",
+              "bytes": 5817,
+              "mtimeNs": "1792353303988717200",
+              "role": "source p03_01 recordFile",
+              "expectedSHA256": "b5a07c5cfcd9d539cef444378cdbedd5185b9052eba5cb387e29891610b75125",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_01.restart-20261018-v01.prompt.txt",
+              "sha256": "9925d57466f9e0d9c1d3dc0353a841f56cfb8730d998b5fe27576483ff0a0bc3",
+              "bytes": 3126,
+              "mtimeNs": "1792351847317253900",
+              "role": "source p03_01 promptFile",
+              "expectedSHA256": "9925d57466f9e0d9c1d3dc0353a841f56cfb8730d998b5fe27576483ff0a0bc3",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p03_01.restart-20261018-v01.receipt.json",
+              "sha256": "b8dbcfa6bbaddfc9c56a2b60cb6d9f23a4ff9121aa4de0ab3ed2047ead0e0132",
+              "bytes": 4389,
+              "mtimeNs": "1792352911563600500",
+              "role": "source p03_01 receiptFile",
+              "expectedSHA256": "b8dbcfa6bbaddfc9c56a2b60cb6d9f23a4ff9121aa4de0ab3ed2047ead0e0132",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p03_01",
+              "row": 3,
+              "column": 1,
+              "coreWorldBox": [
+                0,
+                63488,
+                1024,
+                64512
+              ],
+              "contextWorldBox": [
+                -115,
+                63373,
+                1139,
+                64627
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p03_02",
+            "row": 3,
+            "column": 2,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_02.png",
+              "sha256": "41793dc4c68a42e4e62026bc84ffa6a1e94a6757cf496b7b55c20d7378aab7dc",
+              "bytes": 1969676,
+              "mtimeNs": "1792353773227000800",
+              "role": "source p03_02 nativeFile",
+              "expectedSHA256": "41793dc4c68a42e4e62026bc84ffa6a1e94a6757cf496b7b55c20d7378aab7dc",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_02.png.generation.json",
+              "sha256": "70b06e5188f8bdee6244037947f645277d1fcf3a8ca6b3c5be3a311416a61f73",
+              "bytes": 7028,
+              "mtimeNs": "1792354875728119200",
+              "role": "source p03_02 recordFile",
+              "expectedSHA256": "70b06e5188f8bdee6244037947f645277d1fcf3a8ca6b3c5be3a311416a61f73",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_02.restart-20261018-v01.prompt.txt",
+              "sha256": "3a58307106043ffb3cc21e604f8d56abc4a0c2575ddbd28f21121397b187ff71",
+              "bytes": 3173,
+              "mtimeNs": "1792353304814538700",
+              "role": "source p03_02 promptFile",
+              "expectedSHA256": "3a58307106043ffb3cc21e604f8d56abc4a0c2575ddbd28f21121397b187ff71",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p03_02.restart-20261018-v01.receipt.json",
+              "sha256": "c069d11f8970e73632e7a789bc072a4b350dd5d697f6e3cde2013afb1c94f9f1",
+              "bytes": 4389,
+              "mtimeNs": "1792354227199451700",
+              "role": "source p03_02 receiptFile",
+              "expectedSHA256": "c069d11f8970e73632e7a789bc072a4b350dd5d697f6e3cde2013afb1c94f9f1",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p03_02",
+              "row": 3,
+              "column": 2,
+              "coreWorldBox": [
+                1024,
+                63488,
+                2048,
+                64512
+              ],
+              "contextWorldBox": [
+                909,
+                63373,
+                2163,
+                64627
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p03_03",
+            "row": 3,
+            "column": 3,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_03.png",
+              "sha256": "139f5d9f73a9bbd51fac1199ad71b287766f61bf9f0b3c1e604e4fedb249b720",
+              "bytes": 2122876,
+              "mtimeNs": "1792356314489561900",
+              "role": "source p03_03 nativeFile",
+              "expectedSHA256": "139f5d9f73a9bbd51fac1199ad71b287766f61bf9f0b3c1e604e4fedb249b720",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_03.png.generation.json",
+              "sha256": "9f9133528fcb754a816ca62cf85f080059d715b5801cc3ae6cc328be471990b8",
+              "bytes": 7030,
+              "mtimeNs": "1792375061286319900",
+              "role": "source p03_03 recordFile",
+              "expectedSHA256": "9f9133528fcb754a816ca62cf85f080059d715b5801cc3ae6cc328be471990b8",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_03.restart-20261018-v01.prompt.txt",
+              "sha256": "c9fb2b3d598a1e0f4bf216678d9c70e718a935647d83c2a149a16db24bc97d2d",
+              "bytes": 3198,
+              "mtimeNs": "1792354876602418700",
+              "role": "source p03_03 promptFile",
+              "expectedSHA256": "c9fb2b3d598a1e0f4bf216678d9c70e718a935647d83c2a149a16db24bc97d2d",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p03_03.restart-20261018-v01.receipt.json",
+              "sha256": "19ef7fd550bf618cd0c3e90a3d7217dcc0df6ec88c831b3790842d3c6495da33",
+              "bytes": 4389,
+              "mtimeNs": "1792356980061065700",
+              "role": "source p03_03 receiptFile",
+              "expectedSHA256": "19ef7fd550bf618cd0c3e90a3d7217dcc0df6ec88c831b3790842d3c6495da33",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p03_03",
+              "row": 3,
+              "column": 3,
+              "coreWorldBox": [
+                2048,
+                63488,
+                3072,
+                64512
+              ],
+              "contextWorldBox": [
+                1933,
+                63373,
+                3187,
+                64627
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p03_04",
+            "row": 3,
+            "column": 4,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_04.png",
+              "sha256": "73da29dbf7cc7064493504f6c35e823ba1c39e760a613f8fa1b7fe75142844bf",
+              "bytes": 2019818,
+              "mtimeNs": "1792375166077931000",
+              "role": "source p03_04 nativeFile",
+              "expectedSHA256": "73da29dbf7cc7064493504f6c35e823ba1c39e760a613f8fa1b7fe75142844bf",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_04.png.generation.json",
+              "sha256": "d9a02e45fbf7744c958bf2bb9b258124f08b0c805a518712b0cbcaba69a5edbf",
+              "bytes": 7037,
+              "mtimeNs": "1792375176991728500",
+              "role": "source p03_04 recordFile",
+              "expectedSHA256": "d9a02e45fbf7744c958bf2bb9b258124f08b0c805a518712b0cbcaba69a5edbf",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_04.restart-20261018c-v02.prompt.txt",
+              "sha256": "0551af6904aacacebc079b825bd0cf37e7f9ca4b933b591b3a26b96faa3f5fe2",
+              "bytes": 3729,
+              "mtimeNs": "1792375117953475700",
+              "role": "source p03_04 promptFile",
+              "expectedSHA256": "0551af6904aacacebc079b825bd0cf37e7f9ca4b933b591b3a26b96faa3f5fe2",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p03_04.restart-20261018c-v02.receipt.json",
+              "sha256": "82184487a5e3c85ddd82dff01b08c7aac4b37327bac5c835790a24bae6415281",
+              "bytes": 4395,
+              "mtimeNs": "1792375166576024700",
+              "role": "source p03_04 receiptFile",
+              "expectedSHA256": "82184487a5e3c85ddd82dff01b08c7aac4b37327bac5c835790a24bae6415281",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p03_04",
+              "row": 3,
+              "column": 4,
+              "coreWorldBox": [
+                3072,
+                63488,
+                4096,
+                64512
+              ],
+              "contextWorldBox": [
+                2957,
+                63373,
+                4211,
+                64627
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p04_01",
+            "row": 4,
+            "column": 1,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_01.png",
+              "sha256": "d13d4557d42cba887c669c36bf92986f89ffa5512c9c831e70f672370cc98958",
+              "bytes": 2082829,
+              "mtimeNs": "1792375272558341100",
+              "role": "source p04_01 nativeFile",
+              "expectedSHA256": "d13d4557d42cba887c669c36bf92986f89ffa5512c9c831e70f672370cc98958",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_01.png.generation.json",
+              "sha256": "6f50d646dad4d8ab520a01cb2575d472dd50a28617a44383016e5e16fa930246",
+              "bytes": 5822,
+              "mtimeNs": "1792375295651226200",
+              "role": "source p04_01 recordFile",
+              "expectedSHA256": "6f50d646dad4d8ab520a01cb2575d472dd50a28617a44383016e5e16fa930246",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_01.restart-20261018c-v01.prompt.txt",
+              "sha256": "1fb9f37920be18b1f836df29d87441c9343b60c9c5be73641afd5c89831c2944",
+              "bytes": 3310,
+              "mtimeNs": "1792375191650224200",
+              "role": "source p04_01 promptFile",
+              "expectedSHA256": "1fb9f37920be18b1f836df29d87441c9343b60c9c5be73641afd5c89831c2944",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p04_01.restart-20261018c-v01.receipt.json",
+              "sha256": "bfb0ce273f2a5d3580cdf21a0546c157d67050d2c62bc2e73911b12cc3c06eac",
+              "bytes": 4395,
+              "mtimeNs": "1792375273059585600",
+              "role": "source p04_01 receiptFile",
+              "expectedSHA256": "bfb0ce273f2a5d3580cdf21a0546c157d67050d2c62bc2e73911b12cc3c06eac",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p04_01",
+              "row": 4,
+              "column": 1,
+              "coreWorldBox": [
+                0,
+                64512,
+                1024,
+                65536
+              ],
+              "contextWorldBox": [
+                -115,
+                64397,
+                1139,
+                65651
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p04_02",
+            "row": 4,
+            "column": 2,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_02.png",
+              "sha256": "38ef0cc2a166ad2196eb9fd26d720ed350f23e9697ce33c75bbb90844ac1c368",
+              "bytes": 2126172,
+              "mtimeNs": "1792375392290085000",
+              "role": "source p04_02 nativeFile",
+              "expectedSHA256": "38ef0cc2a166ad2196eb9fd26d720ed350f23e9697ce33c75bbb90844ac1c368",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_02.png.generation.json",
+              "sha256": "f537e193675329c0e994d2be8685458e2c6a08216ad4fefaa11f09e0a4e1daad",
+              "bytes": 7032,
+              "mtimeNs": "1792375415178687600",
+              "role": "source p04_02 recordFile",
+              "expectedSHA256": "f537e193675329c0e994d2be8685458e2c6a08216ad4fefaa11f09e0a4e1daad",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_02.restart-20261018c-v01.prompt.txt",
+              "sha256": "857e87af3a4625bb96b4af568fb95b07b2a5242bf0e153c9aadaf1f6196098c5",
+              "bytes": 3268,
+              "mtimeNs": "1792375296546902500",
+              "role": "source p04_02 promptFile",
+              "expectedSHA256": "857e87af3a4625bb96b4af568fb95b07b2a5242bf0e153c9aadaf1f6196098c5",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p04_02.restart-20261018c-v01.receipt.json",
+              "sha256": "ee9f27fb10a9d91c5b8bbe5c5f4539f0105251bda7494b22d81d72483706ce8f",
+              "bytes": 4395,
+              "mtimeNs": "1792375392837474500",
+              "role": "source p04_02 receiptFile",
+              "expectedSHA256": "ee9f27fb10a9d91c5b8bbe5c5f4539f0105251bda7494b22d81d72483706ce8f",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p04_02",
+              "row": 4,
+              "column": 2,
+              "coreWorldBox": [
+                1024,
+                64512,
+                2048,
+                65536
+              ],
+              "contextWorldBox": [
+                909,
+                64397,
+                2163,
+                65651
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p04_03",
+            "row": 4,
+            "column": 3,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_03.png",
+              "sha256": "becd17434b94239143b3f610823b33e34430ab9ce0c7b1bfc4bb2d61607bf111",
+              "bytes": 2180544,
+              "mtimeNs": "1792375504539707500",
+              "role": "source p04_03 nativeFile",
+              "expectedSHA256": "becd17434b94239143b3f610823b33e34430ab9ce0c7b1bfc4bb2d61607bf111",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_03.png.generation.json",
+              "sha256": "fc88d999ff3d38d3666956eb5b0453cee9d89f03fec9f1bf874f744987ddc693",
+              "bytes": 7038,
+              "mtimeNs": "1792375541236418100",
+              "role": "source p04_03 recordFile",
+              "expectedSHA256": "fc88d999ff3d38d3666956eb5b0453cee9d89f03fec9f1bf874f744987ddc693",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_03.restart-20261018c-v01.prompt.txt",
+              "sha256": "7fae9c5d82065ab32d074e4a522cb1072c26609e71a4cca9e4fc752e0750ced7",
+              "bytes": 3356,
+              "mtimeNs": "1792375416659845100",
+              "role": "source p04_03 promptFile",
+              "expectedSHA256": "7fae9c5d82065ab32d074e4a522cb1072c26609e71a4cca9e4fc752e0750ced7",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p04_03.restart-20261018c-v01.receipt.json",
+              "sha256": "c32530ac927c76dee092a6d6856d236d88652214c1e6f5f47cc94ea27996c239",
+              "bytes": 4395,
+              "mtimeNs": "1792375505186378300",
+              "role": "source p04_03 receiptFile",
+              "expectedSHA256": "c32530ac927c76dee092a6d6856d236d88652214c1e6f5f47cc94ea27996c239",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p04_03",
+              "row": 4,
+              "column": 3,
+              "coreWorldBox": [
+                2048,
+                64512,
+                3072,
+                65536
+              ],
+              "contextWorldBox": [
+                1933,
+                64397,
+                3187,
+                65651
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          },
+          {
+            "id": "p04_04",
+            "row": 4,
+            "column": 4,
+            "nativeFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_04.png",
+              "sha256": "a0656e93c69ab449383cdf5f61129f9e843d2351ff067a8532bd2844f699f8bc",
+              "bytes": 2061025,
+              "mtimeNs": "1792375642912156900",
+              "role": "source p04_04 nativeFile",
+              "expectedSHA256": "a0656e93c69ab449383cdf5f61129f9e843d2351ff067a8532bd2844f699f8bc",
+              "matchesExpected": true
+            },
+            "recordFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_04.png.generation.json",
+              "sha256": "cefbc85a93538b7b10fff492dd3e5d7aa3a27469088607fb08e9d368ded21073",
+              "bytes": 7036,
+              "mtimeNs": "1792375663767555400",
+              "role": "source p04_04 recordFile",
+              "expectedSHA256": "cefbc85a93538b7b10fff492dd3e5d7aa3a27469088607fb08e9d368ded21073",
+              "matchesExpected": true
+            },
+            "promptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_04.restart-20261018c-v02.prompt.txt",
+              "sha256": "ac04533274cb46d77c7995fae92ec00c899741cb09e0cda1ee46f4d08a50b7d8",
+              "bytes": 3853,
+              "mtimeNs": "1792375562202603000",
+              "role": "source p04_04 promptFile",
+              "expectedSHA256": "ac04533274cb46d77c7995fae92ec00c899741cb09e0cda1ee46f4d08a50b7d8",
+              "matchesExpected": true
+            },
+            "receiptFile": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p04_04.restart-20261018c-v02.receipt.json",
+              "sha256": "87c85e95145127428f1dafc5df7c1e340063ca4f5d20addedb2ff279e39f56ee",
+              "bytes": 4395,
+              "mtimeNs": "1792375643488716200",
+              "role": "source p04_04 receiptFile",
+              "expectedSHA256": "87c85e95145127428f1dafc5df7c1e340063ca4f5d20addedb2ff279e39f56ee",
+              "matchesExpected": true
+            },
+            "decodedDimensions": [
+              1254,
+              1254
+            ],
+            "coordinates": {
+              "id": "p04_04",
+              "row": 4,
+              "column": 4,
+              "coreWorldBox": [
+                3072,
+                64512,
+                4096,
+                65536
+              ],
+              "contextWorldBox": [
+                2957,
+                64397,
+                4211,
+                65651
+              ],
+              "nativeCoreBox": [
+                115,
+                115,
+                1139,
+                1139
+              ]
+            },
+            "sizeMatches": true
+          }
+        ],
+        "overlayCount": 2,
+        "overlays": [
+          {
+            "id": "I1",
+            "sourceBox": [
+              450,
+              2550,
+              1704,
+              3804
+            ],
+            "nativeDimensions": [
+              1254,
+              1254
+            ],
+            "maskDimensions": [
+              1254,
+              1254
+            ],
+            "maskNonzeroLocalBox": [
+              396,
+              601,
+              940,
+              675
+            ],
+            "nativeSHA256": "296bfed0e865b388481604f705e11f412d0570ee46060b2935e65fa03d28e457",
+            "maskSHA256": "61d6568b9a2bee098319280a0f6e9e12235b9e0f09b5a4cdfe428cf25bfa2bd3",
+            "placementScale": 1,
+            "resampled": false
+          },
+          {
+            "id": "I2",
+            "sourceBox": [
+              2500,
+              100,
+              3754,
+              1354
+            ],
+            "nativeDimensions": [
+              1254,
+              1254
+            ],
+            "maskDimensions": [
+              1254,
+              1254
+            ],
+            "maskNonzeroLocalBox": [
+              300,
+              300,
+              820,
+              1110
+            ],
+            "nativeSHA256": "f945d22107338d007df521d2cfb1fb8e584bfdb9a6d8a75788424cb21c1a06b3",
+            "maskSHA256": "c78444a4a996123aec434e12a17aaa415130bbb5f38919533c2635618f398da4",
+            "placementScale": 1,
+            "resampled": false
+          }
+        ],
+        "actualReceipts": [
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I1-a01.receipt.json",
+            "sha256": "cd6c5caead40dc01a6eba01946585ec36ced85ac163a8b722e1d572ddf57d487"
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I2/I2-native-a01.receipt.json",
+            "sha256": "69348314627aac09a4ce29602fefef3d8ab7fcd820770deaa99ffdf6aac3cfef"
+          }
+        ],
+        "pinnedInputs": 177,
+        "allPinnedHashesMatch": true,
+        "actualModel": null,
+        "actualQuality": null,
+        "modelQualityEvidence": "tool receipts expose no actual model/quality; targets are not claimed as returned model metadata"
+      },
+      "independentCompositionChecks": {
+        "candidateDimensions": [
+          4096,
+          4096
+        ],
+        "contextDimensions": [
+          4326,
+          4326
+        ],
+        "fullRecompositionExactlyMatches": true,
+        "outsideMasksExactlyUnchanged": true,
+        "contextOutsideMasksExactlyUnchanged": true,
+        "contextCoreExactlyMatchesCandidate": true,
+        "outer115BandsExactlyUnchanged": true,
+        "changedPixels": 450925,
+        "maskUnionPixels": 461456,
+        "sourceResampling": false,
+        "repairs": [
+          {
+            "id": "I1",
+            "sourceBox": [
+              450,
+              2550,
+              1704,
+              3804
+            ],
+            "nativeDimensions": [
+              1254,
+              1254
+            ],
+            "maskDimensions": [
+              1254,
+              1254
+            ],
+            "maskNonzeroLocalBox": [
+              396,
+              601,
+              940,
+              675
+            ],
+            "nativeSHA256": "296bfed0e865b388481604f705e11f412d0570ee46060b2935e65fa03d28e457",
+            "maskSHA256": "61d6568b9a2bee098319280a0f6e9e12235b9e0f09b5a4cdfe428cf25bfa2bd3",
+            "placementScale": 1,
+            "resampled": false
+          },
+          {
+            "id": "I2",
+            "sourceBox": [
+              2500,
+              100,
+              3754,
+              1354
+            ],
+            "nativeDimensions": [
+              1254,
+              1254
+            ],
+            "maskDimensions": [
+              1254,
+              1254
+            ],
+            "maskNonzeroLocalBox": [
+              300,
+              300,
+              820,
+              1110
+            ],
+            "nativeSHA256": "f945d22107338d007df521d2cfb1fb8e584bfdb9a6d8a75788424cb21c1a06b3",
+            "maskSHA256": "c78444a4a996123aec434e12a17aaa415130bbb5f38919533c2635618f398da4",
+            "placementScale": 1,
+            "resampled": false
+          }
+        ]
+      },
+      "windows": [
+        {
+          "name": "V1-row1",
+          "sourceBox": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "currentRawRGBSHA256": "dfe3e16d26ed8b5014ea4a3717e5e6189305fc594c2019f2255da149d14ca9de",
+          "priorRawRGBSHA256": "dfe3e16d26ed8b5014ea4a3717e5e6189305fc594c2019f2255da149d14ca9de",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "浅色转角石材竖缝、腰线及斜向砖边连续，无截断或双边。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V2-row1",
+          "sourceBox": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "currentRawRGBSHA256": "7a0c8c4848e9c50cc04921d0f6981029bcce08acaca2a7bf26ee423931b530a6",
+          "priorRawRGBSHA256": "7a0c8c4848e9c50cc04921d0f6981029bcce08acaca2a7bf26ee423931b530a6",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "横向腰线与灰米石面穿越该竖边连续，未见矩形色带。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V3-row1",
+          "sourceBox": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "currentRawRGBSHA256": "dc6b675d5410ed48c3fa762bf855850e2bdff317eaa175da054fe90caa603e65",
+          "priorRawRGBSHA256": "e410be3b4fc5ab8fdfc83eb2e1dae622d31b44a434d02ea4d25f835cdf977b94",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "needs_repair",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "暗侧墙石两条斜向凹缝及亮倒角连续跨过x3072；旧暗楔没有再盖断石缝，无新增矩形色边。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V1-row2",
+          "sourceBox": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "currentRawRGBSHA256": "bf6f53d0ea73ac350101f149cde8ebfb2c58be5f4305bb2d06faabfac597ae13",
+          "priorRawRGBSHA256": "bf6f53d0ea73ac350101f149cde8ebfb2c58be5f4305bb2d06faabfac597ae13",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "转角竖缝及上下三块石边闭合，未见错层。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V2-row2",
+          "sourceBox": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "currentRawRGBSHA256": "2138675e362225277c65c08499bae0e448aabfcc640e2514dfa5ed368c2e5415",
+          "priorRawRGBSHA256": "2138675e362225277c65c08499bae0e448aabfcc640e2514dfa5ed368c2e5415",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "大石面、水平石缝与明暗连续，未见接缝色阶。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V3-row2",
+          "sourceBox": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "currentRawRGBSHA256": "0e968cc5c5874569ec52ea4aa0ed96a671ce1cb969ff14c0dea99c94b3d6686a",
+          "priorRawRGBSHA256": "b4b3eaec85e6d29837b508d825404b3e7239a42d0031e38d192a3e5114971d49",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "pass",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "暗侧长石面、竖角缝及墙脚斜边连续，修补下边界穿越本窗口后没有色带、双边或断层。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V1-row3",
+          "sourceBox": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "currentRawRGBSHA256": "628eb7ef10ef4e8e865bdf6e0f1ed9fecc6ed135296746e781c5e8739a46d49b",
+          "priorRawRGBSHA256": "628eb7ef10ef4e8e865bdf6e0f1ed9fecc6ed135296746e781c5e8739a46d49b",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "转角竖缝、亮色腰线及下方石块连续。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V2-row3",
+          "sourceBox": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "currentRawRGBSHA256": "cb6c7fbcf79f9c76c544a39e700db3d016a4522eea2297c71affe8485d1ab5e3",
+          "priorRawRGBSHA256": "cb6c7fbcf79f9c76c544a39e700db3d016a4522eea2297c71affe8485d1ab5e3",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "水平腰线和下方树叶组织连续，未见复制树簇或叶片直切。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V3-row3",
+          "sourceBox": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "currentRawRGBSHA256": "fb7323e59a47c3593a755e9c178c7cc3ecd3ed19f8d01c9edbf5fa4d21296f8c",
+          "priorRawRGBSHA256": "fb7323e59a47c3593a755e9c178c7cc3ecd3ed19f8d01c9edbf5fa4d21296f8c",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "墙脚斜边和地砖透视连续，无台阶式错位。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V1-row4",
+          "sourceBox": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "currentRawRGBSHA256": "12ff78de693f002f35056e4a76fa65acb04e14ddaea9d523eb6a33dc60906cb9",
+          "priorRawRGBSHA256": "2cdf470f731e512516c22e172a0dfa66f4af7669f625190505fff871695543cd",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "needs_repair",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "横缝在y3185附近连续跨过x1024；石面纹理、叶团和阴影层次统一，未见横缝悬空或明暗端口。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V2-row4",
+          "sourceBox": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "currentRawRGBSHA256": "1abee09fb560b9edf967718cc52d29668a02644018824570d2f88c40ae9f9c63",
+          "priorRawRGBSHA256": "1abee09fb560b9edf967718cc52d29668a02644018824570d2f88c40ae9f9c63",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "绿叶与橙色栏杆连续，无镜像/复制边界或重叠轮廓。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "V3-row4",
+          "sourceBox": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "currentRawRGBSHA256": "c67d1be8b5f628dd1e4033d2e01c0da6b50ff827a9d1e26c2d38d6190cf945dc",
+          "priorRawRGBSHA256": "c67d1be8b5f628dd1e4033d2e01c0da6b50ff827a9d1e26c2d38d6190cf945dc",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "暗墙下石缝和地砖斜线连续，无拼接错层。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H1-col1",
+          "sourceBox": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "currentRawRGBSHA256": "0dbdca40ec89e4f404bf3ec94eaf9210490f7c3a6020532c22938c3e37242b9c",
+          "priorRawRGBSHA256": "0dbdca40ec89e4f404bf3ec94eaf9210490f7c3a6020532c22938c3e37242b9c",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "浅灰墙面自然阴影及右侧转角连续，未见拼接硬带。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H1-col2",
+          "sourceBox": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "currentRawRGBSHA256": "1a5838a0d1f02cada50283e799c369ff58f8039963833eae85194e796c6366c1",
+          "priorRawRGBSHA256": "1a5838a0d1f02cada50283e799c369ff58f8039963833eae85194e796c6366c1",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "腰线上下石面、右侧竖缝及阴影连续。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H1-col3",
+          "sourceBox": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "currentRawRGBSHA256": "c002e3e88848cd5588a809a70e9012452f154e586b40519c751c44099ceaf23b",
+          "priorRawRGBSHA256": "e577578dfd22421073c8f3b066882e5e2b3f41e02878cce208a803d3e5e89174",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "pass",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "亮侧转角腰线、斜面倒角和暗侧竖缝在y1024上下连续，未见修补边界造成错层。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H1-col4",
+          "sourceBox": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "currentRawRGBSHA256": "19c1ef1d469734d4715b987ab17068d41e3dec2df771456fe805586964cc0ba5",
+          "priorRawRGBSHA256": "5126e0a00241253d97459ffb8be34d0be53b524d52c2f1f33214db975f9755ec",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "pass",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "暗侧竖角缝、灰色石面、投影及右侧斜缝连续；下方水平石缝跨y1024无错位或双缝。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H2-col1",
+          "sourceBox": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "currentRawRGBSHA256": "58df89c59e1378e05762ac9682fa5747a667110b3e7a11162d442aa09a184b79",
+          "priorRawRGBSHA256": "58df89c59e1378e05762ac9682fa5747a667110b3e7a11162d442aa09a184b79",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "斜石缝穿越横向检查边连续，右端转角闭合。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H2-col2",
+          "sourceBox": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "currentRawRGBSHA256": "607dfccdaccc11569ba482c42b87e371ccdf5cb1a89445635ef0d44e90a01162",
+          "priorRawRGBSHA256": "607dfccdaccc11569ba482c42b87e371ccdf5cb1a89445635ef0d44e90a01162",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "左侧小石块、大石面与上沿水平缝连续。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H2-col3",
+          "sourceBox": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "currentRawRGBSHA256": "f105f703faa090aaa4eed1189adfdd512ab5bd54e6615f3e304529968b431ba8",
+          "priorRawRGBSHA256": "f105f703faa090aaa4eed1189adfdd512ab5bd54e6615f3e304529968b431ba8",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "墙角亮边与右下墙脚斜边连续。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H2-col4",
+          "sourceBox": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "currentRawRGBSHA256": "462d42d902aa76e1b6de679d05d879c8e5561ebb170cc2af1b05e632e149c96c",
+          "priorRawRGBSHA256": "462d42d902aa76e1b6de679d05d879c8e5561ebb170cc2af1b05e632e149c96c",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "地面/墙脚转折的斜向石块衔接连续，无复制或错接。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H3-col1",
+          "sourceBox": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "currentRawRGBSHA256": "bf25623c61ad1b6efb2124c6e471d870a2d3d015d3ef99f3f70a7681e029d7e0",
+          "priorRawRGBSHA256": "d92d52d9e92cbe858576cd5b56d97bf150423d821ec5c808035c0c85b19c5fe5",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "needs_repair",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "斜向石边、亮转角与邻接暗面连续；本次横缝起点与真实转角接合，未见新缺口。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H3-col2",
+          "sourceBox": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "currentRawRGBSHA256": "37eca6441d1c3c31ff423bdb928dd312b458e6e87244c78bed141d88e0640fa1",
+          "priorRawRGBSHA256": "ebf599571bae71de92736de4cb8f32062f009638c74abf8918ab76b2f6c53873",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "pass",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "亮腰线和叶团均自然连续，y3185横缝向右进入真实叶片遮挡，无无遮拦的悬空末端。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H3-col3",
+          "sourceBox": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "currentRawRGBSHA256": "c63d22c8d97d890cc81452bc7693ab91b8182315c98ad2b7d1a6c613d17d3c16",
+          "priorRawRGBSHA256": "c63d22c8d97d890cc81452bc7693ab91b8182315c98ad2b7d1a6c613d17d3c16",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "树冠边缘、墙脚与地面石缝连接自然，无四分区错层。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "H3-col4",
+          "sourceBox": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "currentRawRGBSHA256": "9db01e703eed507c2b29d70726b8008d6c54b17e7a70053a7d51428004e92ff7",
+          "priorRawRGBSHA256": "9db01e703eed507c2b29d70726b8008d6c54b17e7a70053a7d51428004e92ff7",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "灰墙石缝及日光/阴影形状连续；补看1024×800宽框，未见拼接断边。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H1-V1",
+          "sourceBox": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "currentRawRGBSHA256": "6834dd297a7b15befa007474c7ccabd9545f30ca35df1650b9d6ebf585179705",
+          "priorRawRGBSHA256": "6834dd297a7b15befa007474c7ccabd9545f30ca35df1650b9d6ebf585179705",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "转角竖缝与水平接缝交接闭合，无四角错序。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H1-V2",
+          "sourceBox": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "currentRawRGBSHA256": "6114d55f4bc20f4ad743bd8f69c8e62ae2d5375cf51268ef5ccf57c7d6072e72",
+          "priorRawRGBSHA256": "6114d55f4bc20f4ad743bd8f69c8e62ae2d5375cf51268ef5ccf57c7d6072e72",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "大石面和亮色水平腰线连续，无交点色块。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H1-V3",
+          "sourceBox": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "currentRawRGBSHA256": "930c17df2086df3ae28ebd7c17257f2b4246f56eddb9ae137e21103ae16751d0",
+          "priorRawRGBSHA256": "8544bf2a6e59b4d5586837881cb5dbfd067ae058b3efd58a21009c7a68d42095",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "pass",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "暗侧石面、竖缝和投影在x3072/y1024交汇区域连续，没有四象限色差或几何断裂。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H2-V1",
+          "sourceBox": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "currentRawRGBSHA256": "45454cb25eb0a3e069429ce1771cfb91c3c381222c4ba242399ed76069d8115f",
+          "priorRawRGBSHA256": "45454cb25eb0a3e069429ce1771cfb91c3c381222c4ba242399ed76069d8115f",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "转角竖缝及石块四角连贯，无错层。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H2-V2",
+          "sourceBox": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "currentRawRGBSHA256": "66dae263b6ff4f7f019b245e2ce63c7698a43f6f0f1eff58ed715cd9355fbe0d",
+          "priorRawRGBSHA256": "66dae263b6ff4f7f019b245e2ce63c7698a43f6f0f1eff58ed715cd9355fbe0d",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "灰米石面纹理连续，无十字色阶或模糊融合带。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H2-V3",
+          "sourceBox": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "currentRawRGBSHA256": "da048382ce677a49ab89cfede6d61ee6ba58d2033a8e94997306eb3f9eb89e7e",
+          "priorRawRGBSHA256": "da048382ce677a49ab89cfede6d61ee6ba58d2033a8e94997306eb3f9eb89e7e",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "暗墙/地砖斜边转折连续。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H3-V1",
+          "sourceBox": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "currentRawRGBSHA256": "c1f4f618ca670d5d24ace20ac73b260363387ae4fbc7a47cf51f3d0e0e43fc2f",
+          "priorRawRGBSHA256": "0a72d5b97c63241a82b9965e7d42c66f5732069e246f0b3cebc5580e4c12cb87",
+          "equalsPriorIndependentlyReviewedPixels": false,
+          "priorStatus": "needs_repair",
+          "reuseAllowed": false,
+          "requiresActualView": true,
+          "actualViewed": true,
+          "status": "pass",
+          "conclusion": "亮腰线、转角倒角和修复横缝在x1024/y3072邻域组织连续，没有交汇错层或多重边。",
+          "reviewMethod": "current candidate exact native crop visually reviewed with view_image detail original",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H3-V2",
+          "sourceBox": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "currentRawRGBSHA256": "5899e0ea2e83039ee610938ceed11dea826acac0bedebb786866d0703c42398b",
+          "priorRawRGBSHA256": "5899e0ea2e83039ee610938ceed11dea826acac0bedebb786866d0703c42398b",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "叶片轮廓、深浅团簇与遮挡连续，无重复树或矩形叶片切口。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        },
+        {
+          "name": "corner-H3-V3",
+          "sourceBox": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "currentRawRGBSHA256": "b348b168c811d4d744e6387afa5069df5e47c70ac43e4c666080b1172418afac",
+          "priorRawRGBSHA256": "b348b168c811d4d744e6387afa5069df5e47c70ac43e4c666080b1172418afac",
+          "equalsPriorIndependentlyReviewedPixels": true,
+          "priorStatus": "pass",
+          "reuseAllowed": true,
+          "requiresActualView": false,
+          "actualViewed": false,
+          "status": "pass",
+          "conclusion": "地砖交缝、暗边与石面色阶连续，无交点错位。",
+          "reviewMethod": "reuse of previous independent pass only after independent raw RGB equality and prior pass status verification",
+          "sourceCandidateSHA256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+          "issueIds": []
+        }
+      ],
+      "windowStructure": {
+        "verticalSegments": 12,
+        "horizontalSegments": 12,
+        "junctions": 9,
+        "total": 33,
+        "reusedPriorIndependentPassAfterExactRGBBinding": 24,
+        "actualCurrentNativeVisualReview": 9,
+        "passed": 33,
+        "failed": 0
+      },
+      "wholeCandidateNativeCoverage": {
+        "method": "all 16 current 1024x1024 non-resampled core crops actually viewed via view_image detail original",
+        "fullCandidatePixelsCovered": 16777216,
+        "cores": [
+          {
+            "name": "core-r1-c1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c1.png",
+            "sourceBox": [
+              0,
+              0,
+              1024,
+              1024
+            ],
+            "sha256": "722720b54ef3a86e4874d0da554eb75915071d53b7071f6175f46d23d60db193",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "aa55b378a7e252cbd1c9ca41ff2cb6f81cbc1025159896c7d19883800b792138",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "大块自然灰石面与右侧亮转角边清楚，斜向上沿及投影完整，无糊拉伸或拼贴。"
+          },
+          {
+            "name": "core-r1-c2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c2.png",
+            "sourceBox": [
+              1024,
+              0,
+              2048,
+              1024
+            ],
+            "sha256": "a56c3b6ea823ee6ea8b4dc96b7679cae73891e9c24c95d16b0ce43ce3dbd1957",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "33bad400bb6f24a16c9170ee64f97b46f68915557d81aeccb10bf4a9aa2bae29",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "正面米灰墙石、水平腰线和竖缝层次清楚，材质干净，几何未变形。"
+          },
+          {
+            "name": "core-r1-c3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c3.png",
+            "sourceBox": [
+              2048,
+              0,
+              3072,
+              1024
+            ],
+            "sha256": "a067c5cf2c82c24675c10986506f6c5157affc567bc1f5ef3f7e1fdc45e83321",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "395dc0f9724f05ed34898d6441d43152d0849e0cafd3259037b6ab4dc3466b40",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "亮侧转角与暗侧墙平面相接合理；两斜缝左端接入真实竖缝，石面尺度一致。"
+          },
+          {
+            "name": "core-r1-c4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c4.png",
+            "sourceBox": [
+              3072,
+              0,
+              4096,
+              1024
+            ],
+            "sha256": "81eb7847a74a7416afccf577f05905f523bf675aa29a73cd30f5dca43eeb5482",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "3cfc07da81caae05208f84bdf435eb1a6bee43134c042b85c91b28d4d07f5196",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "两斜缝右端接入实际立角，原暗楔不再截缝；暗侧及右正面转折、投影保持连续。"
+          },
+          {
+            "name": "core-r2-c1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c1.png",
+            "sourceBox": [
+              0,
+              1024,
+              1024,
+              2048
+            ],
+            "sha256": "650b3a572b0e60ad0ecf6c2448776785dcffc2be8dc18e6df5b7bbc973e72a6e",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "73f03d925ca8c8bdb14e5c16fef19c5383df2ddd69beb6d1995460f63dcca03e",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "大灰石面及斜向腰线、右侧转角组织完整，明暗与上方连续，无矩形补丁。"
+          },
+          {
+            "name": "core-r2-c2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c2.png",
+            "sourceBox": [
+              1024,
+              1024,
+              2048,
+              2048
+            ],
+            "sha256": "9d65d4922b1b66ec3a5a67dbf50f63e20d20ea115e7fd7ec406d2094ad5ab6e3",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "6c004eb4033217586248d7db3085f742ceea37361f2893e95e260745b1ca95da",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "正面砖缝闭合，石块比例和圆润倒角一致，纹理清楚且无密集噪点。"
+          },
+          {
+            "name": "core-r2-c3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c3.png",
+            "sourceBox": [
+              2048,
+              1024,
+              3072,
+              2048
+            ],
+            "sha256": "2987264321cf679ef7a6f1ea40580bdb5b845ae7a6afbe7e3450ed5718bd5a7f",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "6efae56f39644022aaf1b97136c2ffc505de4318be6f9e761b5b5fc3ffd4a8d0",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "亮转角立面、正面水平缝及暗面下斜边结构连续，材质与本块同向。"
+          },
+          {
+            "name": "core-r2-c4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c4.png",
+            "sourceBox": [
+              3072,
+              1024,
+              4096,
+              2048
+            ],
+            "sha256": "d594056c2a8abf9a3b128902941375b781a5c069905b24af567f172b11f225ec",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "c90d64757d6caeb3be9d2ad65d59da0ce222557620813ce40f0e9ee14d9b3f8b",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "右侧大灰石面和墙脚折线保持几何，修补区域下沿无明显新接缝。"
+          },
+          {
+            "name": "core-r3-c1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c1.png",
+            "sourceBox": [
+              0,
+              2048,
+              1024,
+              3072
+            ],
+            "sha256": "fc75e2722edc751d4abc2ddbc3b49f14cf408d74635fd424a6790624d7ffc570",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "4124660f8b394ae22795292dc1437d5a61db7448b8b57be241de3aa490e4ab2d",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "长斜腰线、亮转角和左下叶团自然衔接，投影仍附着墙面，轮廓清楚。"
+          },
+          {
+            "name": "core-r3-c2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c2.png",
+            "sourceBox": [
+              1024,
+              2048,
+              2048,
+              3072
+            ],
+            "sha256": "6e4485c55b134fbb1fbbdb24f6135d525d29df64e2179814cea4c46c7156b08c",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "da71e355de89a24b83cc8b47b4041f3a7ec7107440be3ee4b97301266e17cd0b",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "正面墙面、亮水平腰线及靠墙树叶组织完整，叶团有层次且不出现复制直切。"
+          },
+          {
+            "name": "core-r3-c3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c3.png",
+            "sourceBox": [
+              2048,
+              2048,
+              3072,
+              3072
+            ],
+            "sha256": "e5ac2630b3d7391a1a7a3cdda28bb6cdde9f5e786e26c0b1530e3403ef152597",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "a7ae713e9181d55d1d284cc0eab498317150cedae0b34592b3c78ae3a97022a0",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "墙角与地面交接、墙脚地砖透视及树叶连续，地面灰色材质干净。"
+          },
+          {
+            "name": "core-r3-c4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c4.png",
+            "sourceBox": [
+              3072,
+              2048,
+              4096,
+              3072
+            ],
+            "sha256": "fa8d5b6b1139fb0814f0aa5db3741f0cc83234359106e7a2d5cf66e3d8a68ccf",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "10aaf73b646854cd7dd6eb947af7c8ce1c117a9121dad947d80101eb05700874",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "上方可走石面、亮边与暗侧立面透视连贯，石缝闭合，原生细节清楚。"
+          },
+          {
+            "name": "core-r4-c1",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c1.png",
+            "sourceBox": [
+              0,
+              3072,
+              1024,
+              4096
+            ],
+            "sha256": "e1e3fd33e03304adaf6ab2a75c5668711abab3c7fb2fc1bc74068fbb10ec4d55",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "b45370a38908f8e1d405327f213f584eef318878b0294b825c72b309d02c3c15",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "左侧靠墙叶团圆润饱满、叶片前后关系明确；右侧修缝T点及墙面没有截断。"
+          },
+          {
+            "name": "core-r4-c2",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c2.png",
+            "sourceBox": [
+              1024,
+              3072,
+              2048,
+              4096
+            ],
+            "sha256": "65755d6d42c22416fda282ff0a4865f70b1d9665616066c3945fdf2870af0708",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "0bec623a87717126c8ea8974e374efe9162a7af29b895bee487a3f6afbff35b1",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "树叶遮挡位置真实，修复横缝延续到叶下；墙面投影、叶片与下方橙色构件层次自然。"
+          },
+          {
+            "name": "core-r4-c3",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c3.png",
+            "sourceBox": [
+              2048,
+              3072,
+              3072,
+              4096
+            ],
+            "sha256": "b5f0af093f16e17e20145c8c51d1f7b73e3d9397761fa978251e8ce6aee3bbb5",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "964553dec2d77266f6b0879dd83ca2ec8875730cf0fce066880503e3022199e0",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "靠墙植被、橙色构件、墙脚与地砖连接合理，灰石轮廓清楚，没有新糊边或错层。"
+          },
+          {
+            "name": "core-r4-c4",
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c4.png",
+            "sourceBox": [
+              3072,
+              3072,
+              4096,
+              4096
+            ],
+            "sha256": "710a610c138040354edbf69d32e093e4e83c132812838ec175410bb7f0c1f669",
+            "dimensions": [
+              1024,
+              1024
+            ],
+            "rawRGBSHA256": "c0b055afe216153677f073b72d7672353da0e6e40563d359ded42983fba18cbb",
+            "exactCandidateCrop": true,
+            "matchesDeclaredRawRGB": true,
+            "actualViewed": true,
+            "viewTool": "view_image",
+            "viewDetail": "original",
+            "resampled": false,
+            "status": "pass",
+            "conclusion": "墙角、小灌木和泥地过渡完整，石缝透视连贯；保留原布局和素材尺度。"
+          }
+        ],
+        "passed": 16,
+        "failed": 0
+      },
+      "repairNativeViewsAndCompletePerimeter": [
+        {
+          "name": "I1-complete-region-perimeter",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/I1-complete-region-perimeter.png",
+          "sourceBox": [
+            800,
+            3100,
+            1450,
+            3280
+          ],
+          "sha256": "509bb7d0a7065f486d44b3a2a3bbce580a592cb2c28f3fb992cf5e06c870a5f0",
+          "dimensions": [
+            650,
+            180
+          ],
+          "rawRGBSHA256": "a6c8c429ac95037eb13a16b2c39bc120f36e2ab26270c56574ecd3eeff205b2a",
+          "exactCandidateCrop": true,
+          "matchesDeclaredRawRGB": true,
+          "actualViewed": true,
+          "viewTool": "view_image",
+          "viewDetail": "original",
+          "resampled": false,
+          "status": "pass",
+          "maskWorldNonzeroBox": [
+            846,
+            3151,
+            1390,
+            3225
+          ],
+          "conclusion": "已查看完整遮罩外周及真实端点。横缝从(858..870,3185)的实际T点接入，连续越过旧x959/960及x1024区域，沿墙面延伸至叶下。没有90–100px旧缺口、端口明暗跳变、双缝或无遮挡悬空末端。遮罩上/下/左/右外周没有可见新边。"
+        },
+        {
+          "name": "I2-complete-region-perimeter",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/I2-complete-region-perimeter.png",
+          "sourceBox": [
+            2730,
+            330,
+            3390,
+            1280
+          ],
+          "sha256": "0bf8c8a7ed60dd2bbb240707b85a12bbef288d47177c6fd061000584db22684f",
+          "dimensions": [
+            660,
+            950
+          ],
+          "rawRGBSHA256": "3cd428f74b2a503fe2d86193dd6f05d4977d58f632795cd8535f46a606404548",
+          "exactCandidateCrop": true,
+          "matchesDeclaredRawRGB": true,
+          "actualViewed": true,
+          "viewTool": "view_image",
+          "viewDetail": "original",
+          "resampled": false,
+          "status": "pass",
+          "maskWorldNonzeroBox": [
+            2800,
+            400,
+            3320,
+            1210
+          ],
+          "conclusion": "已查看整个修补矩形四周、左侧真实竖缝端点与右侧真实立角端点；原[3080,600,3240,850]暗楔未再截断两斜向石缝/倒角，两条均贯通。墙面投影和立角保持，遮罩四周无新增色带或几何错位。"
+        }
+      ],
+      "supplementalExactCropRecords": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/I2-exact-candidate.png",
+          "sha256": "7c4b2517e3d9dc5243d3a9bfd0c624a2ed9acae75761058d81c05c057363426d",
+          "sourceCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.png",
+            "sha256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a"
+          },
+          "sourceBox": [
+            3080,
+            330,
+            3250,
+            850
+          ],
+          "actualViewed": true,
+          "viewTool": "view_image",
+          "viewDetail": "original",
+          "resampled": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/I2-exact-oldCandidate.png",
+          "sha256": "1a0aa41523a980d6f5a44fb0f4e7ce510d10afdbb0a98c7d8e0625c8c9f15ae7",
+          "sourceCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/output/b87b8a83a0673273/r16_c01.candidate.png",
+            "sha256": "7bf52faa0de4a723a5d5e8512892b7f4ab178d60bb3e24826bece424806f29c1"
+          },
+          "sourceBox": [
+            3080,
+            330,
+            3250,
+            850
+          ],
+          "actualViewed": true,
+          "viewTool": "view_image",
+          "viewDetail": "original",
+          "resampled": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/I1-exact-candidate.png",
+          "sha256": "13112213952268f97540d7997d0f18425835faed3fe5de669a274ab7c96d4e4a",
+          "sourceCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.png",
+            "sha256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a"
+          },
+          "sourceBox": [
+            820,
+            3140,
+            1430,
+            3230
+          ],
+          "actualViewed": true,
+          "viewTool": "view_image",
+          "viewDetail": "original",
+          "resampled": false
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/independent-QA/I1-exact-oldCandidate.png",
+          "sha256": "fc4b7f358791d6f8b92d6bd50ef18d52f342b926506416a6d0ef956ca08dc1c8",
+          "sourceCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/output/b87b8a83a0673273/r16_c01.candidate.png",
+            "sha256": "7bf52faa0de4a723a5d5e8512892b7f4ab178d60bb3e24826bece424806f29c1"
+          },
+          "sourceBox": [
+            820,
+            3140,
+            1430,
+            3230
+          ],
+          "actualViewed": true,
+          "viewTool": "view_image",
+          "viewDetail": "original",
+          "resampled": false
+        }
+      ],
+      "resolvedIssues": [
+        {
+          "id": "I1-R1",
+          "originalIssueBox": [
+            858,
+            3150,
+            1410,
+            3230
+          ],
+          "status": "resolved",
+          "conclusion": "Actual T endpoint to foliage now continuous; no old port light/dark jump or unoccluded short gap."
+        },
+        {
+          "id": "I2-BASE",
+          "originalIssueBox": [
+            3080,
+            600,
+            3240,
+            850
+          ],
+          "status": "resolved",
+          "conclusion": "Old dark wedge no longer truncates either diagonal joint or bevel; actual endpoints connect."
+        }
+      ],
+      "issues": [],
+      "wholeInternalAssessment": {
+        "status": "pass",
+        "internalPassed": true,
+        "seamWindowsPassed": 33,
+        "coreChecksPassed": 16,
+        "completeRepairPerimetersPassed": 2,
+        "remainingBlockingDefects": 0,
+        "conclusion": "独立整块内部验收通过。当前候选两处目标缺陷均已解决；33个接缝/交汇窗口、16核心及两修补完整周边通过，来源与合成像素约束全部绑定。"
+      },
+      "inputRechecksAtCompletion": {
+        "allUnchanged": true,
+        "count": 177,
+        "inputs": [
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs.json",
+            "sha256": "40b75027a1a774046e63a7c45c3795ce29a266495cbc0995bcbe2851d228cccf",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/proposal.json",
+            "sha256": "23b3a28e927cd0d7ccf00a2d5e69e2f2ab3151eed4c101977ed5e058f06da2f0",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/composition-verification.json",
+            "sha256": "31bb7bfa4b363dce7ed3847055b56c0b2658979aa08e036236436a0d472f705c",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/proposal-assembly.json",
+            "sha256": "952a5d96232f60938762d717b48d9b9dd50a846ead7ebb85507fc53860bdae54",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "AGENTS.md",
+            "sha256": "3faeaca723d202c4660a52883360c0f0307cb2997eb5df38d31d11f9844590be",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "docs/r16c01-successor-20261021-0305/release.json",
+            "sha256": "acde4d017d45392ea23f2db5f8aff7075cbdfcaa952239795532f72fbca19bf2",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.png",
+            "sha256": "be56a1979fd07a1ec20c80a6f04db315e1754bddcee1c6e9831401276679a56a",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/r16_c01.proposal-v01.context.png",
+            "sha256": "d1dc0b17af36697fce3900f194234ae9a5f9226ea927fda4518904968f830472",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/output/b87b8a83a0673273/r16_c01.candidate.png",
+            "sha256": "7bf52faa0de4a723a5d5e8512892b7f4ab178d60bb3e24826bece424806f29c1",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/output/b87b8a83a0673273/r16_c01.candidate.context.png",
+            "sha256": "fa0e1d72f532cc04263b4f78915e51f675508e1632222863d6eb8fde140ce0a5",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/output/b87b8a83a0673273/assembly.json",
+            "sha256": "d9e7d3638ba5c3c071d8b8391dc14d64ec40105297608ffd6cfd87ab2e83716f",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/human-short-gap-closeout-20261021-0235/independent-QA-review/independent-whole-internal-review.json",
+            "sha256": "16ab3cbb3b3f4438cb88f800eeaee7481b63beee3b6b968f0bb362d67002082b",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/human-short-gap-closeout-20261021-0235/r16_c01.gap-only-proposal-v01.png",
+            "sha256": "d4f329d0d549386a0ced0b073f4cd532e529206ef4d18639f40bf98f539c6c6d",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I1-a01.receipt.json",
+            "sha256": "cd6c5caead40dc01a6eba01946585ec36ced85ac163a8b722e1d572ddf57d487",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I2/I2-native-a01.receipt.json",
+            "sha256": "69348314627aac09a4ce29602fefef3d8ab7fcd820770deaa99ffdf6aac3cfef",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_01.png",
+            "sha256": "cc1155dee3eb5720f9470c1cedec1fd5de05e3640dd1b8953b52789bb3901b92",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_01.png.generation.json",
+            "sha256": "def0689e214d0ea06b57ac01c9f9f8df9287db804629135d6d7930e3a3b6268e",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_01.restart-20261018-v01.prompt.txt",
+            "sha256": "034f1724fd0ee4e1f564283329216f97734a734555eaacb27237d8d9f43a3827",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p01_01.restart-20261018-v01.receipt.json",
+            "sha256": "bf434ac560bf831a6e781710df042374d74aac61f0e0c9bcd8098b144f559f13",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_01.restart-20261018-v01.request.json",
+            "sha256": "83148c64665b8833ee3cb11cb8fee986fb2ac1f702af9fd3fc2fbe87e1a77202",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_02.png",
+            "sha256": "f178f2dd6fc65beba6d8739bd0abe3fb16d536f779c425f6707cff34cfb45383",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_02.png.generation.json",
+            "sha256": "993287f02432a9ef4ef88a462d5c7abf141e0b40bd440567b3bba8563d48331d",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_02.restart-20261018-v01.prompt.txt",
+            "sha256": "529836878dfef5e810295ef4f827879582c9ef0f2cf153fca87732907ff4731a",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p01_02.restart-20261018-v01.receipt.json",
+            "sha256": "7a0bbfafbb141905ee5e6eaa8f4b19f9a5e8f3feed0aea91b2d55c2843383b31",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_02.restart-20261018-v01.request.json",
+            "sha256": "8d36ed5340d8d111ce82a3a24cf810b4c12b0c327f4ea003452a7e9c9b12eb97",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_03.png",
+            "sha256": "48cc69aef6a30e443156a06c00ca253be58938412abaf1323d8ff80809f769b1",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_03.png.generation.json",
+            "sha256": "2ed5eb66c0a744590cb301a937e8b4c2051d0840b22876fe862afda1ca62d152",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_03.restart-20261018-v02.prompt.txt",
+            "sha256": "7def5893dc80b66216927a6be3dc846825373533f13f98e8506dfe8252c88416",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p01_03.restart-20261018-v02.receipt.json",
+            "sha256": "2814489795771bae9a0060c3f61036106a12ebd7fdf7b61ba0c07a7edf633462",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_03.restart-20261018-v02.request.json",
+            "sha256": "0a6cdcb873f105cbd89da16cc59677c7c0a626ed4077e5a3d17eb6ded63e1b82",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_04.png",
+            "sha256": "b2728f916b300c4ee953dabbf391bae9eab9c830ccd2f8c3204f06b0e8569305",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p01_04.png.generation.json",
+            "sha256": "e7445fc38d6a71e0d8647053d11521f0fb460e51267a186fd0e9e43253c6c867",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_04.restart-20261018-v02.prompt.txt",
+            "sha256": "c80b3eb92bb7326a5b1e736ff570e6e571423fad5d6a53e6b775067d46ccf486",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p01_04.restart-20261018-v02.receipt.json",
+            "sha256": "b48a554f58966e8cafe4411fbee5bcbf6368673e808b53042411fcb6747f69df",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p01_04.restart-20261018-v02.request.json",
+            "sha256": "128396e4daeee1f40df032b3482f85882326e67908022a6e5b01ebc35def3e4c",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_01.png",
+            "sha256": "ec7209d57037138b062e6c27b96c2307f4d54198c50c1eacb4462e68c592b6d4",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_01.png.generation.json",
+            "sha256": "2545fb04b783456ff01f182fae669d960ba09da7c62d642d516abede832df1ff",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_01.restart-20261018-v01.prompt.txt",
+            "sha256": "56a4c80a163a29e581c08b9680254638b1eca4253902c52fc6bec64a6226ca3c",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p02_01.restart-20261018-v01.receipt.json",
+            "sha256": "3d39318b8ff8ffce3a98d18543cfac3ac61289eda2766cf12f03a5c0711fdd32",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_01.restart-20261018-v01.request.json",
+            "sha256": "9f25c9d5980042eff15a6ff8f88be06c713e89caf35b683ac227ac120fea9fa0",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_02.png",
+            "sha256": "dd2866e25e941648dd84c2fc73cf129a78e129f48dea9d509f084d8fad85e2fc",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_02.png.generation.json",
+            "sha256": "9997d6daad8d97a6983f20de7a9586b21445b403785501dd8a78fca347b2ab10",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_02.restart-20261018-v01.prompt.txt",
+            "sha256": "e4b1d36b551faf45021692f452fe421ace463b9b5f78227a34b31dd4a5428cdc",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p02_02.restart-20261018-v01.receipt.json",
+            "sha256": "1e8b7980ce14ad8d108f1f92903cdbf25c1ac2be36147d734ca2826f34111b4c",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_02.restart-20261018-v01.request.json",
+            "sha256": "be950c2bc27024f1416b0818d740ea1fb4b171584bdbd45758001267b6ea7b4a",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_03.png",
+            "sha256": "07bd0803d3d5e5166544adc2e1c85f3dd38c776c2eaad3203a7ef13ceb6bd9fd",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_03.png.generation.json",
+            "sha256": "19cc7108ffbae1827325fbf985c63b5e78d3ba2349534986165f4e3106999880",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_03.restart-20261018-v01.prompt.txt",
+            "sha256": "bfaa8556eb613b95cf5990e5af6dd5789a213d2579fc86dcf39ab4b00e80c42a",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p02_03.restart-20261018-v01.receipt.json",
+            "sha256": "951b9a1854df110f6b58c15678c862278f5fc63957ed9e37fe60d58a96d59b75",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_03.restart-20261018-v01.request.json",
+            "sha256": "4f379776faa55d44531b344b14bcae1785d96b01d50f6f876b494c0d002158a6",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_04.png",
+            "sha256": "b37de8bbd48ab67128854598c566eccde0fbbe3e9dfe2f61bcb1743155069778",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p02_04.png.generation.json",
+            "sha256": "f783608b22d433369de6bc8ad11589571f52021e8dcb704e6e99acbf3728bbc7",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_04.restart-20261018-v02.prompt.txt",
+            "sha256": "973966402a59a6c558f0e254c6fb5d1a3bab7b8b7d4c62aa902ace5f4650b161",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p02_04.restart-20261018-v02.receipt.json",
+            "sha256": "bffe7cfde342ecd8ad0f988795252eb5eb482214e7d40811fc8556ad01658d56",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p02_04.restart-20261018-v02.request.json",
+            "sha256": "3466d5d1c0e83ce811db151b2a1b7d333cf6853040a3f794421534d03929b1f5",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_01.png",
+            "sha256": "7cea3bf47aa5460d25eae6ceee2e3e7da6bcfbceebf765bbf13b541679c71b8d",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_01.png.generation.json",
+            "sha256": "b5a07c5cfcd9d539cef444378cdbedd5185b9052eba5cb387e29891610b75125",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_01.restart-20261018-v01.prompt.txt",
+            "sha256": "9925d57466f9e0d9c1d3dc0353a841f56cfb8730d998b5fe27576483ff0a0bc3",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p03_01.restart-20261018-v01.receipt.json",
+            "sha256": "b8dbcfa6bbaddfc9c56a2b60cb6d9f23a4ff9121aa4de0ab3ed2047ead0e0132",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_01.restart-20261018-v01.request.json",
+            "sha256": "c02983b5edd5c2b99532ea59a6fbc0e03c6856d1521fff6be8491f568069e10b",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_02.png",
+            "sha256": "41793dc4c68a42e4e62026bc84ffa6a1e94a6757cf496b7b55c20d7378aab7dc",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_02.png.generation.json",
+            "sha256": "70b06e5188f8bdee6244037947f645277d1fcf3a8ca6b3c5be3a311416a61f73",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_02.restart-20261018-v01.prompt.txt",
+            "sha256": "3a58307106043ffb3cc21e604f8d56abc4a0c2575ddbd28f21121397b187ff71",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p03_02.restart-20261018-v01.receipt.json",
+            "sha256": "c069d11f8970e73632e7a789bc072a4b350dd5d697f6e3cde2013afb1c94f9f1",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_02.restart-20261018-v01.request.json",
+            "sha256": "5fef0f753d0e6adca6b456c0aaf44e6107a5ed4111e8553df1f32ae1b49dddff",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_03.png",
+            "sha256": "139f5d9f73a9bbd51fac1199ad71b287766f61bf9f0b3c1e604e4fedb249b720",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_03.png.generation.json",
+            "sha256": "9f9133528fcb754a816ca62cf85f080059d715b5801cc3ae6cc328be471990b8",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_03.restart-20261018-v01.prompt.txt",
+            "sha256": "c9fb2b3d598a1e0f4bf216678d9c70e718a935647d83c2a149a16db24bc97d2d",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p03_03.restart-20261018-v01.receipt.json",
+            "sha256": "19ef7fd550bf618cd0c3e90a3d7217dcc0df6ec88c831b3790842d3c6495da33",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_03.restart-20261018-v01.request.json",
+            "sha256": "57e28c0c7f43e65f17b14a80938d3a951b4c3e96fe11bc6ee767a06c0943876f",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_04.png",
+            "sha256": "73da29dbf7cc7064493504f6c35e823ba1c39e760a613f8fa1b7fe75142844bf",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p03_04.png.generation.json",
+            "sha256": "d9a02e45fbf7744c958bf2bb9b258124f08b0c805a518712b0cbcaba69a5edbf",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_04.restart-20261018c-v02.prompt.txt",
+            "sha256": "0551af6904aacacebc079b825bd0cf37e7f9ca4b933b591b3a26b96faa3f5fe2",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p03_04.restart-20261018c-v02.receipt.json",
+            "sha256": "82184487a5e3c85ddd82dff01b08c7aac4b37327bac5c835790a24bae6415281",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p03_04.restart-20261018c-v02.request.json",
+            "sha256": "bd187a29f6138d09e3f56128783f193c61c1122988b15715f72d26746a68c4fa",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_01.png",
+            "sha256": "d13d4557d42cba887c669c36bf92986f89ffa5512c9c831e70f672370cc98958",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_01.png.generation.json",
+            "sha256": "6f50d646dad4d8ab520a01cb2575d472dd50a28617a44383016e5e16fa930246",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_01.restart-20261018c-v01.prompt.txt",
+            "sha256": "1fb9f37920be18b1f836df29d87441c9343b60c9c5be73641afd5c89831c2944",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p04_01.restart-20261018c-v01.receipt.json",
+            "sha256": "bfb0ce273f2a5d3580cdf21a0546c157d67050d2c62bc2e73911b12cc3c06eac",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_01.restart-20261018c-v01.request.json",
+            "sha256": "c62c3ff68565378e3e2ea12e97f00a9ca47cd2f62dd5425ecac428b336d51772",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_02.png",
+            "sha256": "38ef0cc2a166ad2196eb9fd26d720ed350f23e9697ce33c75bbb90844ac1c368",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_02.png.generation.json",
+            "sha256": "f537e193675329c0e994d2be8685458e2c6a08216ad4fefaa11f09e0a4e1daad",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_02.restart-20261018c-v01.prompt.txt",
+            "sha256": "857e87af3a4625bb96b4af568fb95b07b2a5242bf0e153c9aadaf1f6196098c5",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p04_02.restart-20261018c-v01.receipt.json",
+            "sha256": "ee9f27fb10a9d91c5b8bbe5c5f4539f0105251bda7494b22d81d72483706ce8f",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_02.restart-20261018c-v01.request.json",
+            "sha256": "3304e65381dd2f5f02857455dba4a7d93929696c84f590dfe52640b4a87951b5",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_03.png",
+            "sha256": "becd17434b94239143b3f610823b33e34430ab9ce0c7b1bfc4bb2d61607bf111",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_03.png.generation.json",
+            "sha256": "fc88d999ff3d38d3666956eb5b0453cee9d89f03fec9f1bf874f744987ddc693",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_03.restart-20261018c-v01.prompt.txt",
+            "sha256": "7fae9c5d82065ab32d074e4a522cb1072c26609e71a4cca9e4fc752e0750ced7",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p04_03.restart-20261018c-v01.receipt.json",
+            "sha256": "c32530ac927c76dee092a6d6856d236d88652214c1e6f5f47cc94ea27996c239",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_03.restart-20261018c-v01.request.json",
+            "sha256": "ef1454a016b987a048d3929567e98e75bc01b038a01cfac352b68b0bd757f0c0",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_04.png",
+            "sha256": "a0656e93c69ab449383cdf5f61129f9e843d2351ff067a8532bd2844f699f8bc",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/native/p04_04.png.generation.json",
+            "sha256": "cefbc85a93538b7b10fff492dd3e5d7aa3a27469088607fb08e9d368ded21073",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_04.restart-20261018c-v02.prompt.txt",
+            "sha256": "ac04533274cb46d77c7995fae92ec00c899741cb09e0cda1ee46f4d08a50b7d8",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/receipts/p04_04.restart-20261018c-v02.receipt.json",
+            "sha256": "87c85e95145127428f1dafc5df7c1e340063ca4f5d20addedb2ff279e39f56ee",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/prompts/p04_04.restart-20261018c-v02.request.json",
+            "sha256": "91ff632ddda706c5f05165803c82333da50db0d92f51239bbf509aae21086028",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/production-contract.json",
+            "sha256": "28443ade4c03c70dc7519e4e22601454521cbe05d43e8100f63724c4d96c99ac",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/native_pipeline.py",
+            "sha256": "672ee01bb316fec93f94672092cef0ac3f62752325e13794fc055c103e586776",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/pipeline-tools/quilt.py",
+            "sha256": "bbd3230545dce3bcedd638a54d01072451d2115ea7253b6c23b0ca2e7dba0385",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/coordinates.json",
+            "sha256": "f1da5fafa8a8831350c9d02d5c0f419dbce873f8840a643b908cd4ea0cf72916",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p01_01.restart-20261018-v01.png",
+            "sha256": "cc1155dee3eb5720f9470c1cedec1fd5de05e3640dd1b8953b52789bb3901b92",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p01_01.restart-20261018-v01.continuity-seed.png",
+            "sha256": "e40d188e7cd087db125428cccf96b2c205e48d74589a8048e7ad78a3fcccffc7",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-spring-natural-stone-v9.png",
+            "sha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/tianyong/tianyong-natural-stone-detail-v1.png",
+            "sha256": "c10e878611dc2f373159257f5fc42d26957f04e35f19dee78fe1658e364e4809",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel_20261005/daylight-only-20261009/user-references-20261009/mail-daoist-style.jpg",
+            "sha256": "c1ab2e50b271e5c5590a92fe68bd6cf7d2c64cbd0d369b25b4ff5c6619033b63",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p04_01.png",
+            "sha256": "216553f98b8e22ea81a44ecfade8bb84b9e167fa90b48cc5f2a674bf8bcbe497",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p04_01.png.generation.json",
+            "sha256": "8c31a8f5c79cd5d74f7b6023642abc1a84b8030d416cbdee1aae84ba43770bff",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p01_02.restart-20261018-v01.png",
+            "sha256": "f178f2dd6fc65beba6d8739bd0abe3fb16d536f779c425f6707cff34cfb45383",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p01_02.restart-20261018-v01.continuity-seed.png",
+            "sha256": "fef35b02754d77cca66e0bcaa645ba98a7267928dce747ef55d195f909f9231f",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p04_02.png",
+            "sha256": "30a4bd00014e84638b5042d0798d3b9271dc433eec5a266c6068974c6e47da27",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p04_02.png.generation.json",
+            "sha256": "37fee8c3dae6f39588e8164aa7497c3c42b843df538ed4d844d6d65f42df995a",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p01_03.restart-20261018-v02.png",
+            "sha256": "48cc69aef6a30e443156a06c00ca253be58938412abaf1323d8ff80809f769b1",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p01_03.restart-20261018-v02.continuity-seed.png",
+            "sha256": "3c6d8cf3a39c70d41300a3ebbcd09144de5e7cfe3a1abc99dec5b4a28be03d33",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p04_03.png",
+            "sha256": "347128b522bd205a056c03baa71bf1cb275e7089abcd0b70d1c4260e7a6c207e",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p04_03.png.generation.json",
+            "sha256": "5d0780919c0bb089c314747cec00db0d2bdfe7496d4cc89fb3cafda1351a4f34",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p01_04.restart-20261018-v02.png",
+            "sha256": "b2728f916b300c4ee953dabbf391bae9eab9c830ccd2f8c3204f06b0e8569305",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/guides/p01_04.layout-only.png",
+            "sha256": "a609ddfddbe5393ba460037e23c08cc6ca4dada94189a51a47a8860bc101f765",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p01_04.restart-20261018-v02.precise-left230.png",
+            "sha256": "ef3b32cf2f79c15e00ac2e5c2331e9f227f8143a53c65785d84f84602964c555",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p04_04.png",
+            "sha256": "a0025fb2ced166a7690b0f475dff9e587214645fc57b04e3101c700646d5de66",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c01/native/p04_04.png.generation.json",
+            "sha256": "6cfd5a6c6253d981dcea59c1fa0d4b65977362192f09d3b097ab87bd37e596f3",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p02_01.restart-20261018-v01.png",
+            "sha256": "ec7209d57037138b062e6c27b96c2307f4d54198c50c1eacb4462e68c592b6d4",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p02_01.restart-20261018-v01.continuity-seed.png",
+            "sha256": "9cc2723098537bc5e7d66a6504a982aaa4dd74e9dd0a3e85f605fbd3c8910cab",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p02_02.restart-20261018-v01.png",
+            "sha256": "dd2866e25e941648dd84c2fc73cf129a78e129f48dea9d509f084d8fad85e2fc",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p02_02.restart-20261018-v01.continuity-seed.png",
+            "sha256": "5bbf59b2f7498d9e1cd171c99b7045d0790b7d518600e48ced5786223d7e82a6",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p02_03.restart-20261018-v01.png",
+            "sha256": "07bd0803d3d5e5166544adc2e1c85f3dd38c776c2eaad3203a7ef13ceb6bd9fd",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p02_03.restart-20261018-v01.continuity-seed.png",
+            "sha256": "b089a8c827c3ee82ae55d18a3d5beb49fc52019427469cc8f09e16c4aa00e1ff",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p02_04.restart-20261018-v02.png",
+            "sha256": "b37de8bbd48ab67128854598c566eccde0fbbe3e9dfe2f61bcb1743155069778",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p02_04.restart-20261018-v02.continuity-seed.png",
+            "sha256": "c5438e7b426cfdf0c51c45f2ed3798b75d82ff4ecaa1f35cec64969cdc3fd174",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p03_01.restart-20261018-v01.png",
+            "sha256": "7cea3bf47aa5460d25eae6ceee2e3e7da6bcfbceebf765bbf13b541679c71b8d",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p03_01.restart-20261018-v01.continuity-seed.png",
+            "sha256": "bb586f4a119ab09dcab81c89184b148355adf768717ec13f96b3fe9603f3ed29",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p03_02.restart-20261018-v01.png",
+            "sha256": "41793dc4c68a42e4e62026bc84ffa6a1e94a6757cf496b7b55c20d7378aab7dc",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p03_02.restart-20261018-v01.continuity-seed.png",
+            "sha256": "18cc74138632658f436d05aafaa3615f71aa4c9422fcac353ac015180b7fecbb",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p03_03.restart-20261018-v01.png",
+            "sha256": "139f5d9f73a9bbd51fac1199ad71b287766f61bf9f0b3c1e604e4fedb249b720",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p03_03.restart-20261018-v01.continuity-seed.png",
+            "sha256": "2898b472c5503a2bca30e6c9861ef9f62ba1949e4dd2d92ec79ad7a63d3ff616",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p03_04.restart-20261018c-v02.png",
+            "sha256": "73da29dbf7cc7064493504f6c35e823ba1c39e760a613f8fa1b7fe75142844bf",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p03_04.restart-20261018c-v02.continuity-seed.png",
+            "sha256": "b3e141721d4c007063892955367e122acc64c4be91b66707ff10daac2eeebf8d",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p04_01.restart-20261018c-v01.png",
+            "sha256": "d13d4557d42cba887c669c36bf92986f89ffa5512c9c831e70f672370cc98958",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p04_01.restart-20261018c-v01.continuity-seed.png",
+            "sha256": "30c032e64be813d53d282feec1ba4fa031f01c386baa9e089b9f76e92e561533",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p04_02.restart-20261018c-v01.png",
+            "sha256": "38ef0cc2a166ad2196eb9fd26d720ed350f23e9697ce33c75bbb90844ac1c368",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p04_02.restart-20261018c-v01.continuity-seed.png",
+            "sha256": "ac40f79d8ecdf621de8ff7f49a298510afd9bc08f31913ce07b51241ffe0615d",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p04_03.restart-20261018c-v01.png",
+            "sha256": "becd17434b94239143b3f610823b33e34430ab9ce0c7b1bfc4bb2d61607bf111",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p04_03.restart-20261018c-v01.continuity-seed.png",
+            "sha256": "d517d89dc9bc1208e310978efb685bdbc1e661cc6fb7b4baa397c9b0ee4e097f",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/returns/p04_04.restart-20261018c-v02.png",
+            "sha256": "a0656e93c69ab449383cdf5f61129f9e843d2351ff067a8532bd2844f699f8bc",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/guides/p04_04.restart-20261018c-v02.continuity-seed.png",
+            "sha256": "20a41af5c559ca2dc2e14464b5e13fa151d15c99d4961e6f11bf4e919ffb058b",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I1-a01.native.png",
+            "sha256": "296bfed0e865b388481604f705e11f412d0570ee46060b2935e65fa03d28e457",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I1-full-course.mask.png",
+            "sha256": "61d6568b9a2bee098319280a0f6e9e12235b9e0f09b5a4cdfe428cf25bfa2bd3",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I2/I2-native-a01.png",
+            "sha256": "f945d22107338d007df521d2cfb1fb8e584bfdb9a6d8a75788424cb21c1a06b3",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I2/I2-full-plane-mask-a01.png",
+            "sha256": "c78444a4a996123aec434e12a17aaa415130bbb5f38919533c2635618f398da4",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I1-a01.native.png.generation.json",
+            "sha256": "3271b286d23eb93e509441e68117e43545b31c767f3a8d6010c2798065176798",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I2/I2-native-a01.png.generation.json",
+            "sha256": "50fbeeed276e32555fc615b3c619e633c7f636f8234719791ad2021c7c39177e",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/I2/I2-result-manifest.json",
+            "sha256": "3ecd6af5b6d5a0bf658f4e2ca0f30dcb0a0bba63314c6db2679cb975e5fef04c",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/V3-row1.png",
+            "sha256": "4a6f3db7df4377f551c065eea096c050ce1d0b015f61fafd394345937d4d4b29",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/V3-row2.png",
+            "sha256": "77fedda7220a07d7210c3124c396c91752f63c5232fd7e1a8d9968aaaac6106d",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/V1-row4.png",
+            "sha256": "6eca7cdbc97c4e261df45cd1dbb83574be3959a34acb69a4359c01230ef293af",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/H1-col3.png",
+            "sha256": "9d96cf6bdf4b95da8d97d55644d97d3091709a3ea0236c3219558997b63b8563",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/H1-col4.png",
+            "sha256": "4524ffc8636a59528ca0eb5318319fcf455487d163ee3a6d0ba23e503f7f7408",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/H3-col1.png",
+            "sha256": "ece0465dfef2854fab13966eeb2e65ef818e4f63a8806f976deb4928e012b88c",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/H3-col2.png",
+            "sha256": "a2d505933c38b3e92e01e4d8002c91ca8d98eae7225ce8c573cc999ea72ebe84",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/corner-H1-V3.png",
+            "sha256": "0901296f5298d810f6c7cdf0e81fb432e9805f03b8e00ad8a4a217c930efca61",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/corner-H3-V1.png",
+            "sha256": "aafdeaca55aafcf45589b6090504767b5b4ffe27bf2a1079c92fd70833f0c965",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c1.png",
+            "sha256": "722720b54ef3a86e4874d0da554eb75915071d53b7071f6175f46d23d60db193",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c2.png",
+            "sha256": "a56c3b6ea823ee6ea8b4dc96b7679cae73891e9c24c95d16b0ce43ce3dbd1957",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c3.png",
+            "sha256": "a067c5cf2c82c24675c10986506f6c5157affc567bc1f5ef3f7e1fdc45e83321",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r1-c4.png",
+            "sha256": "81eb7847a74a7416afccf577f05905f523bf675aa29a73cd30f5dca43eeb5482",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c1.png",
+            "sha256": "650b3a572b0e60ad0ecf6c2448776785dcffc2be8dc18e6df5b7bbc973e72a6e",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c2.png",
+            "sha256": "9d65d4922b1b66ec3a5a67dbf50f63e20d20ea115e7fd7ec406d2094ad5ab6e3",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c3.png",
+            "sha256": "2987264321cf679ef7a6f1ea40580bdb5b845ae7a6afbe7e3450ed5718bd5a7f",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r2-c4.png",
+            "sha256": "d594056c2a8abf9a3b128902941375b781a5c069905b24af567f172b11f225ec",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c1.png",
+            "sha256": "fc75e2722edc751d4abc2ddbc3b49f14cf408d74635fd424a6790624d7ffc570",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c2.png",
+            "sha256": "6e4485c55b134fbb1fbbdb24f6135d525d29df64e2179814cea4c46c7156b08c",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c3.png",
+            "sha256": "e5ac2630b3d7391a1a7a3cdda28bb6cdde9f5e786e26c0b1530e3403ef152597",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r3-c4.png",
+            "sha256": "fa8d5b6b1139fb0814f0aa5db3741f0cc83234359106e7a2d5cf66e3d8a68ccf",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c1.png",
+            "sha256": "e1e3fd33e03304adaf6ab2a75c5668711abab3c7fb2fc1bc74068fbb10ec4d55",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c2.png",
+            "sha256": "65755d6d42c22416fda282ff0a4865f70b1d9665616066c3945fdf2870af0708",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c3.png",
+            "sha256": "b5f0af093f16e17e20145c8c51d1f7b73e3d9397761fa978251e8ce6aee3bbb5",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/core-r4-c4.png",
+            "sha256": "710a610c138040354edbf69d32e093e4e83c132812838ec175410bb7f0c1f669",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/I1-complete-region-perimeter.png",
+            "sha256": "509bb7d0a7065f486d44b3a2a3bbce580a592cb2c28f3fb992cf5e06c870a5f0",
+            "matchesAuditStart": true
+          },
+          {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c01/pipeline/repairs/successor-20261021-0305/QA-inputs/I2-complete-region-perimeter.png",
+            "sha256": "0bf8c8a7ed60dd2bbb240707b85a12bbef288d47177c6fd061000584db22684f",
+            "matchesAuditStart": true
+          }
+        ]
+      },
+      "result": {
+        "wholeInternalPassed": true,
+        "internalPassed": true,
+        "externalPassed": false,
+        "formalAccepted": false,
+        "eligibleForCoordinatorCASAdoption": true,
+        "catalogAdoptedByThisAuditor": false,
+        "statisticsIncrementByThisAuditor": 0
+      },
+      "externalScope": {
+        "externalNeighborSeamsReviewed": false,
+        "clientMappingValidated": false,
+        "capacity5000Validated": false,
+        "formalAcceptance": false,
+        "limits": "This report certifies current whole tile internal seams, native layout/material/geometry and repair perimeters only. Coordinator must compare current source hashes, explicitly adopt and deduplicate statistics. External seam/game runtime/formal acceptance are separate."
+      },
+      "restrictionsObserved": {
+        "onlyIndependentQADirectoryWritten": true,
+        "nativeMaskCandidateModified": false,
+        "newAIRequests": 0,
+        "currentCatalogModified": false,
+        "gitModified": false,
+        "statisticsModified": false
+      }
+    }
+  }
+}

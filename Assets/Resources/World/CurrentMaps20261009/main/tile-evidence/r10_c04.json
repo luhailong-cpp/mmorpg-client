@@ -1,0 +1,2003 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 10,
+  "column": 4,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+  "imageBytes": 22998358,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/assembly.json",
+  "sourceLedgerSha256": "77a17a461d2de0416d3ef1a85d91b21a4e1e158c672b5e4054ffad0d32dae63f",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+    "imageSha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/assembly.json",
+        "sha256": "77a17a461d2de0416d3ef1a85d91b21a4e1e158c672b5e4054ffad0d32dae63f",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/assembly.json",
+        "sha256": "77a17a461d2de0416d3ef1a85d91b21a4e1e158c672b5e4054ffad0d32dae63f",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png.generation.json",
+        "record": {
+          "unverifiedReason": "Composite has sixteen source records; no single model invocation. Trace actual model/quality evidence per source.",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/manifest.json",
+        "record": {
+          "nativeExternalLogicalWindows": 16,
+          "formalAccepted": false,
+          "actualExternalNativeWindowsViewed": 16,
+          "externalPassed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/pipeline-tools/candidate-adoptions/newowner-r10_c04-candidate-20261020-v01.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/manifest.json",
+    "sourceSha256": "28bde99cfa65b9ac9c08adc0734a36d1e7431c31553936dbf9908aa89d3aff93",
+    "normalizedDocument": {
+      "tile": "r10_c04",
+      "createdAtUtc": "2026-10-20T19:43:52.227102+00:00",
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/assembly.json",
+      "assemblySha256": "77a17a461d2de0416d3ef1a85d91b21a4e1e158c672b5e4054ffad0d32dae63f",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+        "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "catalogAtExtraction": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "sha256": "e4d315c70b722f6c914f63f5a2418d965c4c583045a8f626e297f63f2f8651d0"
+      },
+      "neighbors": {
+        "north": {
+          "tile": "r09_c04",
+          "catalogEntry": {
+            "tile": "r09_c04",
+            "source": "native-current-reviewed-candidate",
+            "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c04/pipeline/output/214a45bdb9b55d2b/assembly.json",
+            "assemblySha256": "067993b2c88446bb102b94e5b784cc4ed669bcf8df9a1bd11cb10aa72a2ecddc",
+            "candidate": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c04/pipeline/output/214a45bdb9b55d2b/r09_c04.candidate.png",
+              "sha256": "bb436c6331815bcdb63b22e489a0af3feee7e1e3561478d6cbde4a2d5a30a502",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "context": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c04/pipeline/output/214a45bdb9b55d2b/r09_c04.candidate.context.png",
+              "sha256": "205fdd9d99ac5de11adfbb871fab2b9438755b3023ba34ab220e5242028208d6",
+              "width": 4326,
+              "height": 4326,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "coreWorldBox": [
+              12288,
+              32768,
+              16384,
+              36864
+            ],
+            "verifiedNativeSlots": 16,
+            "sourceResampling": false,
+            "internalPassed": false,
+            "externalPassed": false,
+            "formalAccepted": false,
+            "visualReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c04/pipeline/qa/recover20261013-v01/actual-review-and-repair-queue.json",
+            "visualReviewSha256": "8b39343eb7c130bda124f6f5501e34525b307bc855606dad18207b16f66a5ae0"
+          },
+          "hashVerified": true
+        },
+        "south": {
+          "tile": "r11_c04",
+          "catalogEntry": {
+            "tile": "r11_c04",
+            "source": "native-full16-worker-reviewed-candidate",
+            "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/assembly.json",
+            "assemblySha256": "b634ed1f228abdc0b75c546fd971135e0280a029510ebd091e490b68468a7b8b",
+            "candidate": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.png",
+              "sha256": "0ab057a84d51c904b9e57c913442bd55f1d8ed1020dc5e6df1b2dfa9aa4854e3",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "context": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.context.png",
+              "sha256": "7aecde02b37a2c5288ef53d5dda1f33a4efe4e07708ac78a77370ce1bf48cc47",
+              "width": 4326,
+              "height": 4326,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "coreWorldBox": [
+              12288,
+              40960,
+              16384,
+              45056
+            ],
+            "verifiedNativeSlots": 16,
+            "sourceResampling": false,
+            "internalPassed": false,
+            "externalPassed": false,
+            "formalAccepted": false,
+            "workerReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/full16-native-20261019a-v01/review.json",
+            "workerReviewSha256": "18451e56c6dc73b3157f08e0ae39dd746fff7686184892c15ff1366c451d485e",
+            "adoptionScope": "Actual output/context hashes and dimensions checked; actual worker visual QA remains failed. No acceptance inferred."
+          },
+          "hashVerified": true
+        },
+        "west": {
+          "tile": "r10_c03",
+          "catalogEntry": {
+            "tile": "r10_c03",
+            "source": "native-full16-worker-reviewed-candidate",
+            "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/pipeline/output/3ba14f4b65a994c2/assembly.json",
+            "assemblySha256": "df3198631cdd4bd5e118028368ff3867f80614f71bf91c2399aff360113fc675",
+            "candidate": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/pipeline/output/3ba14f4b65a994c2/r10_c03.candidate.png",
+              "sha256": "acdc64af295f132a614cc6b665d81f0942021cf10fe146c519b6bf8c944c34ba",
+              "width": 4096,
+              "height": 4096,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "context": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/pipeline/output/3ba14f4b65a994c2/r10_c03.candidate.context.png",
+              "sha256": "d931be3e02c7c0f231e63b6ef5dd1da3113d13c9f59681e30745b3fa64c26b66",
+              "width": 4326,
+              "height": 4326,
+              "mode": "RGB",
+              "format": "PNG",
+              "sourceResampling": false
+            },
+            "coreWorldBox": [
+              8192,
+              36864,
+              12288,
+              40960
+            ],
+            "verifiedNativeSlots": 16,
+            "sourceResampling": false,
+            "internalPassed": false,
+            "externalPassed": false,
+            "formalAccepted": false,
+            "workerReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/pipeline/output/3ba14f4b65a994c2/left-restart-changed-qa-20261017-v01/worker-review-and-repair-queue.json",
+            "workerReviewSha256": "309ab122e6d1a901cdc8798e42020761ed426931963f71ecd000711501b5f88e",
+            "adoptionScope": "Actual output/context hashes and dimensions checked; actual worker visual QA remains failed. No acceptance inferred."
+          },
+          "hashVerified": true
+        },
+        "east": {
+          "tile": "r10_c05",
+          "catalogEntry": {
+            "tile": "r10_c05",
+            "source": "integrated-v5",
+            "candidate": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.png",
+              "sha256": "d62da64b0a0a54481f5231322c0fa6d035f63c664e0e9cab2452dfd0308f2106",
+              "pixels": [
+                4096,
+                4096
+              ]
+            },
+            "context": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.context.png",
+              "sha256": "8a007ef67e2fa358bb565f3e91253fa5b82ce522b5b658c8d7c3989e7012d7d4",
+              "pixels": [
+                4326,
+                4326
+              ]
+            },
+            "coreWorldBox": [
+              16384,
+              36864,
+              20480,
+              40960
+            ],
+            "outsideMasksExact": true,
+            "coreEqualsContextCrop": true,
+            "activeOverlayContextPixels": 6741,
+            "formalAccepted": false,
+            "internalPassed": false
+          },
+          "hashVerified": true
+        }
+      },
+      "panels": [
+        {
+          "id": "V1-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/V1-segments1-2.png",
+          "sha256": "e3703fc7ebb84bb9c46681cacae1a10bdf00bc5cba9b3258123233234af26894",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "V1-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                768,
+                0,
+                1280,
+                1024
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "V1-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                768,
+                1024,
+                1280,
+                2048
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "local_geometry_continuous_material_held",
+          "observation": "Both floor seams have locally continuous slab lines/paper silhouettes; repetitive diamond microtexture and soft tonal patchwork remain unapproved."
+        },
+        {
+          "id": "V1-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/V1-segments3-4.png",
+          "sha256": "00927e7dda8a4c4ddbe7a3a9b847a40d6244ca29a5d2a09750bbb76361a596be",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "V1-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                768,
+                2048,
+                1280,
+                3072
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "V1-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                768,
+                3072,
+                1280,
+                4096
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_material",
+          "observation": "Floor grout stays continuous, but broad irregular floor tone/brushwork patches and repetitive diamond texture remain across both seam windows."
+        },
+        {
+          "id": "V2-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/V2-segments1-2.png",
+          "sha256": "c9b873741d195cab2c1adf5d870cc9302d735394da2434d0cff68b390743bf66",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "V2-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1792,
+                0,
+                2304,
+                1024
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "V2-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1792,
+                1024,
+                2304,
+                2048
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_geometry_and_material",
+          "observation": "Upper timber/support locally joins; second-row new source retains a hard top230 cut through the floor/gold motif and a change in cloth finish. Lower left cloth curve is smoother."
+        },
+        {
+          "id": "V2-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/V2-segments3-4.png",
+          "sha256": "58b2746eebfa980915346f51fef3317f4da453192fe5df86845095a5f141dc4d",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "V2-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1792,
+                2048,
+                2304,
+                3072
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "V2-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1792,
+                3072,
+                2304,
+                4096
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_geometry_and_material",
+          "observation": "Cloth edge/foliage locally continue in row3; lower white wall face has an abruptly terminated molding and a jagged tone/texture boundary in row4."
+        },
+        {
+          "id": "V3-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/V3-segments1-2.png",
+          "sha256": "4a8f8d5a4d55fcb5a4fb22ff22593789c1634b4a50559f6435bc0a634eb98e7e",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "V3-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2816,
+                0,
+                3328,
+                1024
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "V3-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2816,
+                1024,
+                3328,
+                2048
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "local_geometry_continuous_material_held",
+          "observation": "Deck board joints and red railing/post silhouettes join locally without a clear break; heavy finish and small grain/shading differences remain held."
+        },
+        {
+          "id": "V3-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/V3-segments3-4.png",
+          "sha256": "7fb6dcd23a3672d8476cf79a589e0aa79873f67c79874361d5d453999dcacbac",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "V3-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2816,
+                2048,
+                3328,
+                3072
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "V3-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2816,
+                3072,
+                3328,
+                4096
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_geometry_and_material",
+          "observation": "Stone bevel and shadow tones form jagged boundaries; lower wall molding/top edge changes height and stops across the join."
+        },
+        {
+          "id": "H1-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/H1-segments1-2.png",
+          "sha256": "1d3587ba6a1cbb99f3b5666cc9729510eb3b83ed23d3ba0493749d2d800a1b7a",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "H1-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                768,
+                1024,
+                1280
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "H1-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1024,
+                768,
+                2048,
+                1280
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_material",
+          "observation": "Ground joints and support edge join locally; diamond texture density and horizontal exposure/brushwork bands remain held."
+        },
+        {
+          "id": "H1-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/H1-segments3-4.png",
+          "sha256": "b3b51ecd750fb636b87a7571b8e1120fd08d4aaf7a873b3dc090baa593e229f3",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "H1-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2048,
+                768,
+                3072,
+                1280
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "H1-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3072,
+                768,
+                4096,
+                1280
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_geometry_and_material",
+          "observation": "Banner source retains a sharp horizontal cut through the upper motif and grey wedge; deck boards in segment4 locally join."
+        },
+        {
+          "id": "H2-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/H2-segments1-2.png",
+          "sha256": "b9a4b08550de75222b0a7eb31766e69ed51cf59c41404bab99f33672a2ad354a",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "H2-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                1792,
+                1024,
+                2304
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "H2-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1024,
+                1792,
+                2048,
+                2304
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "local_geometry_continuous_material_held",
+          "observation": "Floor joints, leaves and the improved cloth curve locally continue through the seam; repetitive microtexture and mottled tone bands remain unresolved."
+        },
+        {
+          "id": "H2-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/H2-segments3-4.png",
+          "sha256": "7efc412a8978cd84c816bcceece3932ed42d68741e1686c7860015e3feca0eb2",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "H2-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2048,
+                1792,
+                3072,
+                2304
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "H2-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3072,
+                1792,
+                4096,
+                2304
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_geometry_and_material",
+          "observation": "Lower banner gold/right edge still steps sideways at the end of the native overlap; post/stone connection retains small offsets. Segment4 railing is locally continuous."
+        },
+        {
+          "id": "H3-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/H3-segments1-2.png",
+          "sha256": "d5b0c40182a1bfd018c4a80c7b7454a2b8f2b3edbf5d32b07cb98213cada09a8",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "H3-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                2816,
+                1024,
+                3328
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "H3-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1024,
+                2816,
+                2048,
+                3328
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_material",
+          "observation": "Ground topology and leaves locally continue, but broad mottled tone/texture changes and repetitive stone diamond microtexture remain."
+        },
+        {
+          "id": "H3-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/H3-segments3-4.png",
+          "sha256": "ae99a1c97db6cb95241600d0ef243b05ef4dd95758982dab7493e6d62bffa546",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "H3-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2048,
+                2816,
+                3072,
+                3328
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "H3-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3072,
+                2816,
+                4096,
+                3328
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "local_geometry_continuous_material_held",
+          "observation": "Emerald base, foliage and pale coping silhouettes locally continue; floor/coping lighting changes and heavy finish remain held."
+        },
+        {
+          "id": "nine-intersections",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/nine-intersections.png",
+          "sha256": "00c705e510ff5627c15c896144a48818484f800309dce4bde2413c99cd1fbfc2",
+          "width": 768,
+          "height": 768,
+          "crops": [
+            {
+              "logicalWindow": "intersection-1-1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                896,
+                896,
+                1152,
+                1152
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "intersection-1-2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1920,
+                896,
+                2176,
+                1152
+              ],
+              "placement": [
+                256,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "intersection-1-3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2944,
+                896,
+                3200,
+                1152
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "intersection-2-1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                896,
+                1920,
+                1152,
+                2176
+              ],
+              "placement": [
+                0,
+                256
+              ]
+            },
+            {
+              "logicalWindow": "intersection-2-2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1920,
+                1920,
+                2176,
+                2176
+              ],
+              "placement": [
+                256,
+                256
+              ]
+            },
+            {
+              "logicalWindow": "intersection-2-3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2944,
+                1920,
+                3200,
+                2176
+              ],
+              "placement": [
+                512,
+                256
+              ]
+            },
+            {
+              "logicalWindow": "intersection-3-1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                896,
+                2944,
+                1152,
+                3200
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            },
+            {
+              "logicalWindow": "intersection-3-2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1920,
+                2944,
+                2176,
+                3200
+              ],
+              "placement": [
+                256,
+                512
+              ]
+            },
+            {
+              "logicalWindow": "intersection-3-3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2944,
+                2944,
+                3200,
+                3200
+              ],
+              "placement": [
+                512,
+                512
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_geometry_and_material",
+          "observation": "All nine native intersections viewed. Several floor joint crossings join locally, but floor/leaf finish changes remain; support/cloth and lower wall intersections retain tone/edge inconsistencies. No full intersection or tile acceptance inferred."
+        },
+        {
+          "id": "EXT-north-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/EXT-north-segments1-2.png",
+          "sha256": "d0dc8c7d0db78b7a8479ff7fbc90925d6433a25f52b9ba6ceff8fc8e2dbedbca",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "north-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c04/pipeline/output/214a45bdb9b55d2b/r09_c04.candidate.png",
+                "sha256": "bb436c6331815bcdb63b22e489a0af3feee7e1e3561478d6cbde4a2d5a30a502",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                3840,
+                1024,
+                4096
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "north-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                0,
+                1024,
+                256
+              ],
+              "placement": [
+                0,
+                256
+              ]
+            },
+            {
+              "logicalWindow": "north-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c04/pipeline/output/214a45bdb9b55d2b/r09_c04.candidate.png",
+                "sha256": "bb436c6331815bcdb63b22e489a0af3feee7e1e3561478d6cbde4a2d5a30a502",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1024,
+                3840,
+                2048,
+                4096
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            },
+            {
+              "logicalWindow": "north-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1024,
+                0,
+                2048,
+                256
+              ],
+              "placement": [
+                0,
+                768
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_external_geometry_and_material",
+          "observation": "Ground joint endpoints and stone tone differ. Segment2 joins northern plain floor into the start of a large timber/banner footprint, producing a structural cut."
+        },
+        {
+          "id": "EXT-north-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/EXT-north-segments3-4.png",
+          "sha256": "9943efddb3688afcf7a94738f730d35fe7f7d0b9357f5c068902f8a8842c3de7",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "north-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c04/pipeline/output/214a45bdb9b55d2b/r09_c04.candidate.png",
+                "sha256": "bb436c6331815bcdb63b22e489a0af3feee7e1e3561478d6cbde4a2d5a30a502",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2048,
+                3840,
+                3072,
+                4096
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "north-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2048,
+                0,
+                3072,
+                256
+              ],
+              "placement": [
+                0,
+                256
+              ]
+            },
+            {
+              "logicalWindow": "north-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r09_c04/pipeline/output/214a45bdb9b55d2b/r09_c04.candidate.png",
+                "sha256": "bb436c6331815bcdb63b22e489a0af3feee7e1e3561478d6cbde4a2d5a30a502",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3072,
+                3840,
+                4096,
+                4096
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            },
+            {
+              "logicalWindow": "north-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3072,
+                0,
+                4096,
+                256
+              ],
+              "placement": [
+                0,
+                768
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_external_geometry_and_material",
+          "observation": "Post/finial/rail footprint terminates against deck/vertical timber at the border; deck plank phases and grain scale differ across segment4."
+        },
+        {
+          "id": "EXT-south-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/EXT-south-segments1-2.png",
+          "sha256": "e759aa5cbe15608826c04ac08ab8a3f6aedbf6e8ed94cb02cdae1778b81d0702",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "south-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                3840,
+                1024,
+                4096
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "south-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.png",
+                "sha256": "0ab057a84d51c904b9e57c913442bd55f1d8ed1020dc5e6df1b2dfa9aa4854e3",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                0,
+                1024,
+                256
+              ],
+              "placement": [
+                0,
+                256
+              ]
+            },
+            {
+              "logicalWindow": "south-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1024,
+                3840,
+                2048,
+                4096
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            },
+            {
+              "logicalWindow": "south-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.png",
+                "sha256": "0ab057a84d51c904b9e57c913442bd55f1d8ed1020dc5e6df1b2dfa9aa4854e3",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                1024,
+                0,
+                2048,
+                256
+              ],
+              "placement": [
+                0,
+                768
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_external_geometry_and_material",
+          "observation": "First floor joint terminates into a different diagonal/curb layout below; segment2 plain floor meets the start of a large support/wall footprint. Stone finish and scale also differ."
+        },
+        {
+          "id": "EXT-south-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/EXT-south-segments3-4.png",
+          "sha256": "acd6021d28fb5a1d57d51a31c19ba0303856986a7b7589b2319bd931a4311454",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "south-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2048,
+                3840,
+                3072,
+                4096
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "south-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.png",
+                "sha256": "0ab057a84d51c904b9e57c913442bd55f1d8ed1020dc5e6df1b2dfa9aa4854e3",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                2048,
+                0,
+                3072,
+                256
+              ],
+              "placement": [
+                0,
+                256
+              ]
+            },
+            {
+              "logicalWindow": "south-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3072,
+                3840,
+                4096,
+                4096
+              ],
+              "placement": [
+                0,
+                512
+              ]
+            },
+            {
+              "logicalWindow": "south-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c04/pipeline/output/ab81c4cd49918739/r11_c04.candidate.png",
+                "sha256": "0ab057a84d51c904b9e57c913442bd55f1d8ed1020dc5e6df1b2dfa9aa4854e3",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3072,
+                0,
+                4096,
+                256
+              ],
+              "placement": [
+                0,
+                768
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "external_local_geometry_material_held",
+          "observation": "Wall face and festive cylinder/foliage shapes continue locally in these windows, but wall/leaf shading and material scale change. No complete external seam pass claimed."
+        },
+        {
+          "id": "EXT-west-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/EXT-west-segments1-2.png",
+          "sha256": "207a43010c8522d665eac3d95df78961b7aad8c66a595885d898933fb927e4e8",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "west-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/pipeline/output/3ba14f4b65a994c2/r10_c03.candidate.png",
+                "sha256": "acdc64af295f132a614cc6b665d81f0942021cf10fe146c519b6bf8c944c34ba",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3840,
+                0,
+                4096,
+                1024
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "west-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                0,
+                256,
+                1024
+              ],
+              "placement": [
+                256,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "west-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/pipeline/output/3ba14f4b65a994c2/r10_c03.candidate.png",
+                "sha256": "acdc64af295f132a614cc6b665d81f0942021cf10fe146c519b6bf8c944c34ba",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3840,
+                1024,
+                4096,
+                2048
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "west-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                1024,
+                256,
+                2048
+              ],
+              "placement": [
+                768,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_external_material",
+          "observation": "Ground remains ground across both joins, with local object/shadow continuity; floor exposure, diamond texture phase and shadow tones change across the selected candidate boundary."
+        },
+        {
+          "id": "EXT-west-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/EXT-west-segments3-4.png",
+          "sha256": "6b0aa1581533c9aebd36c6c27f041f62a03123ecd59ae37de7d9cb04444f27a1",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "west-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/pipeline/output/3ba14f4b65a994c2/r10_c03.candidate.png",
+                "sha256": "acdc64af295f132a614cc6b665d81f0942021cf10fe146c519b6bf8c944c34ba",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3840,
+                2048,
+                4096,
+                3072
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "west-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                2048,
+                256,
+                3072
+              ],
+              "placement": [
+                256,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "west-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c03/pipeline/output/3ba14f4b65a994c2/r10_c03.candidate.png",
+                "sha256": "acdc64af295f132a614cc6b665d81f0942021cf10fe146c519b6bf8c944c34ba",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3840,
+                3072,
+                4096,
+                4096
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "west-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                0,
+                3072,
+                256,
+                4096
+              ],
+              "placement": [
+                768,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_external_material",
+          "observation": "Paper/ground silhouettes locally remain continuous, but warm/cool stone exposure and texture phase change sharply across both candidate boundaries."
+        },
+        {
+          "id": "EXT-east-segments1-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/EXT-east-segments1-2.png",
+          "sha256": "2fa5837ee66b39691f0533dafb641bbe91ba3cbef86713e1c3c48d7145b0f9ef",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "east-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3840,
+                0,
+                4096,
+                1024
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "east-segment1",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.png",
+                "sha256": "d62da64b0a0a54481f5231322c0fa6d035f63c664e0e9cab2452dfd0308f2106",
+                "pixels": [
+                  4096,
+                  4096
+                ]
+              },
+              "sourceCrop": [
+                0,
+                0,
+                256,
+                1024
+              ],
+              "placement": [
+                256,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "east-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3840,
+                1024,
+                4096,
+                2048
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "east-segment2",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.png",
+                "sha256": "d62da64b0a0a54481f5231322c0fa6d035f63c664e0e9cab2452dfd0308f2106",
+                "pixels": [
+                  4096,
+                  4096
+                ]
+              },
+              "sourceCrop": [
+                0,
+                1024,
+                256,
+                2048
+              ],
+              "placement": [
+                768,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_external_geometry_and_material",
+          "observation": "Diagonal current deck boards meet horizontal boards in the adopted neighboring overlay; plank courses stop at the border and rail/shading profiles differ."
+        },
+        {
+          "id": "EXT-east-segments3-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/qa/full16-newowner-20261020-v01/EXT-east-segments3-4.png",
+          "sha256": "164512f080706303d97403e91d289ba3f55fac64699ec784749f2c8c5b3e0eff",
+          "width": 1024,
+          "height": 1024,
+          "crops": [
+            {
+              "logicalWindow": "east-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3840,
+                2048,
+                4096,
+                3072
+              ],
+              "placement": [
+                0,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "east-segment3",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.png",
+                "sha256": "d62da64b0a0a54481f5231322c0fa6d035f63c664e0e9cab2452dfd0308f2106",
+                "pixels": [
+                  4096,
+                  4096
+                ]
+              },
+              "sourceCrop": [
+                0,
+                2048,
+                256,
+                3072
+              ],
+              "placement": [
+                256,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "east-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r10_c04/pipeline/output/7993accc1dd596b3/r10_c04.candidate.png",
+                "sha256": "470770fd892fb58f65659c59cba1363cb98e049fb7259e6bbbb9f55557e7dabe",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "sourceCrop": [
+                3840,
+                3072,
+                4096,
+                4096
+              ],
+              "placement": [
+                512,
+                0
+              ]
+            },
+            {
+              "logicalWindow": "east-segment4",
+              "source": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/integrated-20261011/v5/r10_c05.candidate.png",
+                "sha256": "d62da64b0a0a54481f5231322c0fa6d035f63c664e0e9cab2452dfd0308f2106",
+                "pixels": [
+                  4096,
+                  4096
+                ]
+              },
+              "sourceCrop": [
+                0,
+                3072,
+                256,
+                4096
+              ],
+              "placement": [
+                768,
+                0
+              ]
+            }
+          ],
+          "sourceResampling": false,
+          "actuallyViewed": true,
+          "viewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+          "visualStatus": "failed_external_geometry_and_material",
+          "observation": "Current railing/stone steps terminate against different plain ground/wall-face geometry in the selected neighboring overlay, with incompatible coping and molding heights."
+        }
+      ],
+      "nativeInternalLogicalWindows": 33,
+      "nativeExternalLogicalWindows": 16,
+      "sourceResampling": false,
+      "gameArtModified": false,
+      "formalAccepted": false,
+      "actualInternalNativeWindowsViewed": 33,
+      "actualExternalNativeWindowsViewed": 16,
+      "reviewedAtUtc": "2026-10-20T20:18:26.778701+00:00",
+      "internalPassed": false,
+      "externalPassed": false
+    }
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 11,
+  "column": 1,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "69c497f4a46ad6bdf828f0443b6304adb7351a96b4e4d07d19408178533a1853",
+  "imageBytes": 28677693,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/c04-hardseam-west-r11c01-rb21-v04stone-candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/c04-hardseam-west-r11c01-rb21-v04stone-report.json",
+  "sourceLedgerSha256": "ace751dcb16270577432f320bbde2e13cd3e7a4593d7e4f8d67f444cd9347b71",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": true,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r11_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/c04-hardseam-west-r11c01-rb21-v04stone-candidate-4096.png",
+    "imageSha256": "69c497f4a46ad6bdf828f0443b6304adb7351a96b4e4d07d19408178533a1853",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/c04-hardseam-west-r11c01-rb21-v04stone-report.json",
+        "sha256": "ace751dcb16270577432f320bbde2e13cd3e7a4593d7e4f8d67f444cd9347b71",
+        "sourceReviewSha256": "ace751dcb16270577432f320bbde2e13cd3e7a4593d7e4f8d67f444cd9347b71",
+        "completeness": [
+          [
+            "/inputs",
+            "all sixteen native source row/column pairs present"
+          ],
+          [
+            "/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "fullCoreCoveragePassed": true,
+      "externalTileSeamsPassed": false,
+      "formalAccepted": false,
+      "pendingExternal": [
+        {
+          "edge": "north",
+          "segment": 4,
+          "issue": "Small hanging leaf clipped across existing r10c01/r11c01 outer seam; inherited outer edge remains pending"
+        },
+        {
+          "edge": "east",
+          "issue": "Four selected native edge pairs geometrically continuous, but east complete C04 tile not yet available for final pairing"
+        },
+        {
+          "edge": "south",
+          "issue": "r12_c01 no completed native neighbor; source19 touches bottom tile edge so outside seam remains pending"
+        }
+      ]
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/r11c01-native-complete-review-rb21.json",
+        "record": {
+          "fullCoreCoveragePassed": true,
+          "externalTileSeamsPassed": false,
+          "formalAccepted": false,
+          "pendingExternal": [
+            {
+              "edge": "north",
+              "segment": 4,
+              "issue": "Small hanging leaf clipped across existing r10c01/r11c01 outer seam; inherited outer edge remains pending"
+            },
+            {
+              "edge": "east",
+              "issue": "Four selected native edge pairs geometrically continuous, but east complete C04 tile not yet available for final pairing"
+            },
+            {
+              "edge": "south",
+              "issue": "r12_c01 no completed native neighbor; source19 touches bottom tile edge so outside seam remains pending"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/candidate-artifacts.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "externalTileSeamsPassed": false,
+          "formalAccepted": false,
+          "pendingExternal": [
+            {
+              "edge": "north",
+              "segment": 4,
+              "issue": "Small hanging leaf clipped across existing r10c01/r11c01 outer seam; inherited outer edge remains pending"
+            },
+            {
+              "edge": "east",
+              "issue": "Four selected native edge pairs geometrically continuous, but east complete C04 tile not yet available for final pairing"
+            },
+            {
+              "edge": "south",
+              "issue": "r12_c01 no completed native neighbor; source19 touches bottom tile edge so outside seam remains pending"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "externalTileSeamsPassed": false,
+          "formalAccepted": false,
+          "pendingExternal": [
+            {
+              "edge": "north",
+              "segment": 4,
+              "issue": "Small hanging leaf clipped across existing r10c01/r11c01 outer seam; inherited outer edge remains pending"
+            },
+            {
+              "edge": "east",
+              "issue": "Four selected native edge pairs geometrically continuous, but east complete C04 tile not yet available for final pairing"
+            },
+            {
+              "edge": "south",
+              "issue": "r12_c01 no completed native neighbor; source19 touches bottom tile edge so outside seam remains pending"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/c04-hardseam-west-r11c01-rb21-v04stone-report.json",
+        "record": {
+          "status": "candidate_pending_visual_QA; not formal"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/r11c01-native-complete-review-rb21.json",
+    "sourceSha256": "baa81feeee9206f504d50e76908c9e549f88ae292e1f54a95dbcde98db9f717b",
+    "normalizedDocument": {
+      "tile": "r11_c01",
+      "reviewedAtUtc": "2026-10-21T18:58:52.884605+00:00",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/c04-hardseam-west-r11c01-rb21-v04stone-candidate-4096.png",
+        "role": "native candidate with 16 base sources plus 3 AI local repair sources",
+        "sha256": "69c497f4a46ad6bdf828f0443b6304adb7351a96b4e4d07d19408178533a1853",
+        "dimensions": [
+          4096,
+          4096
+        ]
+      },
+      "sourceReport": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/c04-hardseam-west-r11c01-rb21-v04stone-report.json",
+        "sha256": "ace751dcb16270577432f320bbde2e13cd3e7a4593d7e4f8d67f444cd9347b71"
+      },
+      "initialFullReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/c04-hardseam-west-r11c01-rb21-v01-visual-review.json",
+        "sha256": "d664f1cb7b001988f833ee87e8f2540e796d159646b514b6f1c78753e7be2ed0",
+        "actuallyViewedFull1024Cores": 16,
+        "actuallyViewedSeamSegments": 24,
+        "actuallyViewedJunctions": 9,
+        "nativeMontages": 8
+      },
+      "actualRepairDeltaReview": {
+        "complete1254NativePatchViews": 3,
+        "allFourPerimetersPerRepair": true,
+        "perimeterSidesViewed": 12,
+        "allFourCornersPerRepair": true,
+        "cornerPairsViewed": 12,
+        "affectedJunctionsViewed": [
+          [
+            2048,
+            2048
+          ],
+          [
+            3072,
+            2048
+          ],
+          [
+            2048,
+            3072
+          ]
+        ],
+        "viewDerivations": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/reboot-20261021/west/qa/r11c01-repair-final-native-view-derivations.json",
+        "findings": [
+          "Cream blossom at J3072_2048 is complete without a clipped vertical petal edge",
+          "Both V2048 stone regions now have continuous natural stone planes/material",
+          "All repair perimeter/corner pairs are continuous; no new rectangle or texture boundary seen"
+        ]
+      },
+      "unchangedQAReuseProof": {
+        "north300PixelStripUnchanged": true,
+        "east300PixelStripUnchanged": true,
+        "west300PixelStripUnchanged": true,
+        "outsideSelectedRepairMasksUnchanged": true,
+        "evidence": {
+          "pixelCount": 16777216,
+          "mismatchedPixels": 0,
+          "sameGlobalCoordinateExact": true,
+          "sourceIdPixelCounts": {
+            "1": 1069355,
+            "2": 868957,
+            "3": 1047130,
+            "4": 1033538,
+            "5": 1074985,
+            "6": 1053733,
+            "7": 1091822,
+            "8": 1077105,
+            "9": 952381,
+            "10": 873485,
+            "11": 559344,
+            "12": 1168196,
+            "13": 967564,
+            "14": 942290,
+            "15": 858732,
+            "16": 990490,
+            "17": 97960,
+            "18": 482184,
+            "19": 567965
+          },
+          "unchangedOutsideRepairSelection": true,
+          "sourceInputsUnchanged": true,
+          "mandatoryCorePatchBoxes": [
+            [
+              430,
+              260,
+              870,
+              1174
+            ]
+          ],
+          "mandatoryCoreUsesRepairOnly": true,
+          "mandatoryTargetPatchBoxes": [
+            [
+              600,
+              300,
+              720,
+              1254
+            ]
+          ],
+          "mandatoryTargetsUseRepairOnly": true,
+          "diskRoundtripExact": true,
+          "interpolation": false,
+          "feathering": false,
+          "colorAdjustment": false,
+          "displacement": false
+        }
+      },
+      "fullCoreCoveragePassed": true,
+      "internalGeometryPassed": true,
+      "internalMaterialPassed": true,
+      "internalPassed": true,
+      "internalTileSeamsPassed": true,
+      "externalTileSeamsPassed": false,
+      "formalAccepted": false,
+      "pendingExternal": [
+        {
+          "edge": "north",
+          "segment": 4,
+          "issue": "Small hanging leaf clipped across existing r10c01/r11c01 outer seam; inherited outer edge remains pending"
+        },
+        {
+          "edge": "east",
+          "issue": "Four selected native edge pairs geometrically continuous, but east complete C04 tile not yet available for final pairing"
+        },
+        {
+          "edge": "south",
+          "issue": "r12_c01 no completed native neighbor; source19 touches bottom tile edge so outside seam remains pending"
+        }
+      ],
+      "westEdge": "outside-map border, no neighbor",
+      "actualModel": null,
+      "actualQuality": null,
+      "modelEvidence": "Each native AI source has config snapshot, exact persisted prompt/ref hashes and builtin host receipt; actual selectors/returned metadata absent, unknown null."
+    }
+  }
+}

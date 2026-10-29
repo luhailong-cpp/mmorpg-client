@@ -1,12 +1,18 @@
 # 完整主城的生产发布与校验
 
-## 当前部分分片交付（2026-10-21）
+## 当前部分分片交付（2026-10-25）
 
-用户要求先把已完成的分片放入现有正式联机地图。此次交付使用独立的 `CurrentMaps20261009/{main,village,island}/tiles.json` 合同，状态为 `partial_native_tiles`，保留原版布局底图填补缺块。源 PNG 原样提交，按当前布局 SHA、逐块最新检查状态和修订邻片依赖筛选；明确失败、过时版本和未闭合的依赖不得用历史通过数量补齐。
+用户要求把所有已生成的完整分片先放入现有正式联机地图，不等待接缝修复。此次交付使用独立的 `CurrentMaps20261009/{main,village,island}/tiles.json` 合同，状态为 `partial_native_tiles`，保留当前布局底图填补缺块。冻结审计显式指定 `selectionPolicy: all_generated_current_layout`，允许接缝失败、邻片待修或 QA 缺失的完整候选；原始 PNG 字节、完整解码、4096 RGB（或整张 alpha 为 255 的 RGBA）、布局 SHA 和图格身份仍须通过校验。过时布局、损坏文件、格位错误和含占位布局的未完工预览不会因此变成可交付完整图。
+
+每条审计必须明确 `internalQaPassed` 为 true、false 或 null，并保留实际 `formalAccepted`、`acceptanceStatus`、`externalStatus`。缺失 QA 时 `qaPath` 与 `qaSha256` 同为 null，不能声明内部通过或正式验收。无 `selectionPolicy` 的历史交付继续执行原严格内部 QA 规则；新策略仅改变本次部分交付的选择条件，不签发整图验收。
 
 `tools/import_completed_map_tiles.py` 导入已审计的交付清单，`--verify` 在只有客户端仓库的环境中核对图片、尺寸、哈希、字节数、元数据和来源证据。主城为 16×16 网格，渔村、八仙岛为 14×14；坐标从左上角起，清单行列从 1 开始。资源校验 CI 在 Windows 和 Linux 检出后执行这些检查。
 
-这条部分交付流程不修改下面旧 `CityTileManifest` 的完整数组校验，也不签发 `accepted_complete`。正式完整高清地图、外沿接缝和实机显存仍需各自验收。下面保留的是旧七外观完整交付工具的使用说明，不应把其中 2026-09 的库存或网格要求当成当前三张日景地图的状态。
+本批共 **519 张**原始 4096×4096 PNG：主城 **178 张**、渔村 **165 张**、八仙岛 **176 张**，合计 **13,108,398,493 字节**。资源导入及全量仓库校验已通过；内部 QA 为 131 张通过、50 张失败、338 张未确认，整图尚未验收，也未做实机画面验证。源图包含 518 张 RGB 和 1 张全不透明 RGBA，均保留原始 PNG 字节；具体证据见[本次资源记录](VerificationEvidence/generated-map-tiles-20261025/resources.json)。
+
+空间查询接入 Amit Patel / Red Blob Games 的 [CC0 C# 六边形实现](https://www.redblobgames.com/grids/hexagons/codegen/output/lib.cs)，与 C++ 服务端使用相同的 20 世界单位 flat-top 布局、零原点及半值远离零舍入。通过 `WorldCoordinateConverter` 将 Unity Z／X 对应到服务器 X／Y。玩家本格加六邻格形成七格周边候选，同时纳入相机真实视野覆盖的格子；方形分片按矩形与六边形多边形相交关系建立索引，跨格分片不能仅登记到中心所在格。初始化只处理元数据，原 16×16／14×14 分片保持不变，不把整图均分成九块。
+
+七格空间查询与纹理缓存上限是两个独立约束。当前加载器同时驻留和加载中的高清分片合计最多六张，最多两个并发请求；实际视野超过六张时其余位置显示当前底图。交付数量、来源和验证边界见[本次交付记录](VerificationEvidence/generated-map-tiles-20261025/README.md)。这条部分交付流程不修改下面旧 `CityTileManifest` 的完整数组校验，也不签发 `accepted_complete`。正式完整高清地图、外沿接缝和实机显存仍需各自验收。下面保留的是旧七外观完整交付工具的使用说明，不应把其中 2026-09 的库存或网格要求当成当前三张日景地图的状态。
 
 ## 历史完整交付流程
 

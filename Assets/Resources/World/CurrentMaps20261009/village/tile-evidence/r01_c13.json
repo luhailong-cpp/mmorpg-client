@@ -1,0 +1,896 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 1,
+  "column": 13,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "64c27e4862ae7aaeee37ed8036ffaa2d8fc9aba25ef1609dfabb933e378679d2",
+  "imageBytes": 20318746,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/r01_c13.candidate-mast-v2-trial4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/r01_c13.candidate-mast-v2-trial4096.png.derived.json",
+  "sourceLedgerSha256": "537cfaf5db633bd03065261a62a95feb8f5fce3ecf5950c8e01575cf31d0d9db",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/r01_c13.candidate-mast-v2-trial4096.png",
+    "imageSha256": "64c27e4862ae7aaeee37ed8036ffaa2d8fc9aba25ef1609dfabb933e378679d2",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/r01_c13.candidate-mast-v2-trial4096.png.derived.json",
+        "sha256": "537cfaf5db633bd03065261a62a95feb8f5fce3ecf5950c8e01575cf31d0d9db",
+        "completeness": "Individually reviewed full native source assembly or full-base repair chain."
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/trial-manifest.json",
+        "sha256": "537cfaf5db633bd03065261a62a95feb8f5fce3ecf5950c8e01575cf31d0d9db",
+        "completeness": "Individually reviewed full native source assembly or full-base repair chain."
+      }
+    ],
+    "selectionBasis": "independently_inspected_full16_or_no_gap_assembly_or_complete_base_native_repair_chain",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/r01_c13.candidate-mast-v2-trial4096.png.derived.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/trial-manifest.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/review49-trial.json",
+        "record": {
+          "pendingCount": 13,
+          "externalEdgesReviewed": false,
+          "formalAccepted": false,
+          "unverifiedReason": "Returned only image_url/output_hint; actual selectors/model/quality unavailable."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/trial-manifest.json",
+    "sourceSha256": "537cfaf5db633bd03065261a62a95feb8f5fce3ecf5950c8e01575cf31d0d9db",
+    "normalizedDocument": {
+      "createdAtUtc": "2026-10-20T14:29:17.791987+00:00",
+      "operation": "same-coordinate integer crop and opaque1:1 paste only; no resampling, feathering, filters or painting",
+      "base": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/guides/mast-boundary-anchors-v2.native1254.png",
+        "sha256": "cfaf390450b83d90ed25c64c010517bafdcac065c4ab37d752f5e0fa1b717cb1"
+      },
+      "aiSource": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/native/central-20-mast-resume20/r01_c13-mast-v2.png",
+        "sha256": "ee4827b868d2b31fa8f621586e638afff11872dfbd5e1f33102e25647a87c022"
+      },
+      "generationRecord": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/native/central-20-mast-resume20/r01_c13-mast-v2.png.generation.json",
+        "sha256": "837304654a9058da097d9a3c1fcbf48b1da449f6ac76a5db9cabbbe78f770e29"
+      },
+      "nativeBox": [
+        570,
+        290,
+        680,
+        1130
+      ],
+      "nativePasteAt": [
+        570,
+        290
+      ],
+      "candidateBox": [
+        2760,
+        2730,
+        2870,
+        3570
+      ],
+      "nativeTrial": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/mast-v2-trial.native1254.png",
+        "sha256": "496ce960ea455ce46b74071cb1ff010ff1e71b4728d38047ba2a805be9fe27ef"
+      },
+      "candidateTrial": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/r01_c13.candidate-mast-v2-trial4096.png",
+        "sha256": "64c27e4862ae7aaeee37ed8036ffaa2d8fc9aba25ef1609dfabb933e378679d2"
+      },
+      "baseCandidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/tiles/r01_c13.candidate-central-19-pennant-v3.png",
+        "sha256": "5122796d694570a9baf74462fada3d669dddf5305830aa3d80aa79b197b1ddb2"
+      },
+      "canonicalChanged": false,
+      "selected": false,
+      "formalAccepted": false,
+      "perimeters": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/qa/insert-top.native-1to1.png",
+          "sha256": "a36e472d467e3de740a2f9e8d76966b772044de48977393f36f40cf8d7982160",
+          "nativeCropBox": [
+            520,
+            242,
+            730,
+            338
+          ],
+          "pixelScale": 1,
+          "resized": false,
+          "operation": "integer native1:1 crop only",
+          "source": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/mast-v2-trial.native1254.png",
+            "sha256": "496ce960ea455ce46b74071cb1ff010ff1e71b4728d38047ba2a805be9fe27ef"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/qa/insert-bottom.native-1to1.png",
+          "sha256": "73764b1d58faaf6cab21ed6d42b40c55347ede2f1dffe9538903b055d1ee70ab",
+          "nativeCropBox": [
+            520,
+            1082,
+            730,
+            1178
+          ],
+          "pixelScale": 1,
+          "resized": false,
+          "operation": "integer native1:1 crop only",
+          "source": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/mast-v2-trial.native1254.png",
+            "sha256": "496ce960ea455ce46b74071cb1ff010ff1e71b4728d38047ba2a805be9fe27ef"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/qa/insert-left.native-1to1.png",
+          "sha256": "814ecdbc7ad6fff397f718d3421631bb7809b0e383434837c090c7c442cc0dae",
+          "nativeCropBox": [
+            522,
+            242,
+            618,
+            1178
+          ],
+          "pixelScale": 1,
+          "resized": false,
+          "operation": "integer native1:1 crop only",
+          "source": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/mast-v2-trial.native1254.png",
+            "sha256": "496ce960ea455ce46b74071cb1ff010ff1e71b4728d38047ba2a805be9fe27ef"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/qa/insert-right.native-1to1.png",
+          "sha256": "f2a60af8f6de9bf05c40f6d1ddf7f13835cb550019727e385a84f9080e484bd6",
+          "nativeCropBox": [
+            632,
+            242,
+            728,
+            1178
+          ],
+          "pixelScale": 1,
+          "resized": false,
+          "operation": "integer native1:1 crop only",
+          "source": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/mast-v2-trial.native1254.png",
+            "sha256": "496ce960ea455ce46b74071cb1ff010ff1e71b4728d38047ba2a805be9fe27ef"
+          }
+        }
+      ],
+      "outsideContributionPixelsIdentical": true,
+      "baseReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/review49-delta.json",
+        "sha256": "b3ed0c0cdc3887481406936b30b5af46ecb9afeba81790997b17e1a326824cc2"
+      },
+      "changedItems": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/core_p33.native-1to1.png",
+          "sha256": "115747203e7baf9b18374e29e84b11d1021007e3a0c807b678f9eac979c4bb07",
+          "candidateCrop": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Gold cap globaly~2530 near layout2515, pennant nearly level and tied correctly; height correction passed, no clear internal core material defect.",
+          "inputHashMatches": true,
+          "trialCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/qa/trial-core_p33.native-1to1.png",
+            "sha256": "d30988bb10f73625aaa1bef31115f05071e35e88095e746e2c92c0e389aedb78"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/core_p43.native-1to1.png",
+          "sha256": "912eb45fc0fb98c350fc557efa04c9401f20dcdb93cb2b04cca54d99f5cd1a85",
+          "candidateCrop": [
+            2048,
+            3072,
+            3072,
+            4096
+          ],
+          "oldStatus": "pending_mast_width_and_tone_step",
+          "oldNote": "Old mast width/tone step at row3/row4 persists; no claim it was repaired.",
+          "inputHashMatches": true,
+          "trialCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/qa/trial-core_p43.native-1to1.png",
+            "sha256": "0cdd1d2d3f25dae6841941f6b1c58aa5097745b042a3f3a406ca97be8d2138c5"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/h_p33_p43.native-1to1.png",
+          "sha256": "b035a10e2ef97e99de0762d3b976b98bee277af570d8b18579e9dc09a208b784",
+          "candidateCrop": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "oldStatus": "pending_mast_width_and_tone_step",
+          "oldNote": "At localy128 mast changes width~6px on right and wood tone; unchanged existing issue now correctly pending.",
+          "inputHashMatches": true,
+          "trialCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/qa/trial-h_p33_p43.native-1to1.png",
+            "sha256": "686329f4aaffb71ba59236558cc6bfd018d361826a8d1c301162b99c71cae375"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/junction_r3_c3.native-1to1.png",
+          "sha256": "6e79c7f99fa1155722fde81970facb6dd82b687150c87dd229c2ddc1f38f8d12",
+          "candidateCrop": [
+            2816,
+            2816,
+            3328,
+            3328
+          ],
+          "oldStatus": "pending_local_material_and_mast_step",
+          "oldNote": "Existing concentric-water material transition and mast step remain pending.",
+          "inputHashMatches": true,
+          "trialCrop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/records/resume-20261020/mast-v2/qa/trial-junction_r3_c3.native-1to1.png",
+            "sha256": "bfa54e129cc023899904c9e7f95989c72eecdabc88c9cec5aafc46665854c62a"
+          }
+        }
+      ],
+      "unchangedReused": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p11.native-1to1.png",
+          "sha256": "626f8ab7971194e29103d3cb7dc2401d616c7a8726a780301eee7b44815a574c",
+          "candidateCrop": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "oldStatus": "pending_local_material_or_layout",
+          "oldNote": "Core y~909 horizontal water-scale/density strip, clearest center-right.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p12.native-1to1.png",
+          "sha256": "df8fefd3199d9af45208bff47ab9c0ac818a95866757996418d0c47a559cad41",
+          "candidateCrop": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native original1:1 core inspected; water/boat/pennant structures and materials complete, no obvious internal defect. Seam QA separate.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p13.native-1to1.png",
+          "sha256": "2b6ba085db7a7da94258b18d86a462718c5d7a221d33e197cd31ea95464c6b06",
+          "candidateCrop": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "oldStatus": "pending_local_material_or_layout",
+          "oldNote": "Core x~350-900,y~420-900 has repeated concentric oval cell interiors, regular printed texture.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p14.native-1to1.png",
+          "sha256": "675632328d45d1e5774bdf388dc3347a55d17af5f38d53b0d1e1ea6667816107",
+          "candidateCrop": [
+            3072,
+            0,
+            4096,
+            1024
+          ],
+          "oldStatus": "pending_local_material_or_layout",
+          "oldNote": "Middle/lower cells repeat concentric ring interiors, material pending.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p21.native-1to1.png",
+          "sha256": "bc64adbe1147d9882b0d1456f059f51098475b89b164f334644503d7b5e35463",
+          "candidateCrop": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native original1:1 core inspected; water/boat/pennant structures and materials complete, no obvious internal defect. Seam QA separate.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p22.native-1to1.png",
+          "sha256": "7a0724aa6159abfcb92c52fbcc4cc0bc3d79fdd2a5bd56c23c1eb5f5779b8a77",
+          "candidateCrop": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native original1:1 core inspected; water/boat/pennant structures and materials complete, no obvious internal defect. Seam QA separate.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p23.native-1to1.png",
+          "sha256": "8a35030e9f4852cb4e1d545f12938437a827ed19bc7aa9cc234bdc0463cdb016",
+          "candidateCrop": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "oldStatus": "pending_local_material_or_layout",
+          "oldNote": "Core x~350-950,y~180-850 has concentrated repeated concentric oval interiors.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p24.native-1to1.png",
+          "sha256": "18734f010e4501b42051c2da182d8fcfb5b00c141f0b537b5974ba23f52285dc",
+          "candidateCrop": [
+            3072,
+            1024,
+            4096,
+            2048
+          ],
+          "oldStatus": "pending_local_material_or_layout",
+          "oldNote": "Middle cells repeat concentric ring interiors; minor texture transition near core y~909.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p31.native-1to1.png",
+          "sha256": "5ea7c763bd74fefec0a743fc9ee25af8bee1468c85aece4dc6f3e1797b9da4a2",
+          "candidateCrop": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native original1:1 core inspected; water/boat/pennant structures and materials complete, no obvious internal defect. Seam QA separate.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/core_p32.native-1to1.png",
+          "sha256": "08f1037f0f4fb0b84bb79f70876038ecb36feaa6ee4fba2d6581b1f1aa6079dc",
+          "candidateCrop": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Differential flag free tip now globaly~2468, near layout2483; shape and native sea internally complete.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p34.native-1to1.png",
+          "sha256": "bf880db9cb68b107160c73355740ffaca1629625b3dd6430cf65c12cbf46bf14",
+          "candidateCrop": [
+            3072,
+            2048,
+            4096,
+            3072
+          ],
+          "oldStatus": "pending_local_material_or_layout",
+          "oldNote": "Upper-left and lower half water cells repeat concentric inner circles, printed-pattern effect.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p41.native-1to1.png",
+          "sha256": "fa1a7039edea25326d24865e534218dc8d7c71abfa151cb5cd9c5eac2ab82464",
+          "candidateCrop": [
+            0,
+            3072,
+            1024,
+            4096
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native original1:1 core inspected; water/boat/pennant structures and materials complete, no obvious internal defect. Seam QA separate.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/core_p42.native-1to1.png",
+          "sha256": "673b979a0dd245a148a904cc7c3745de0d56a8bba6046a9be735a34235e892d2",
+          "candidateCrop": [
+            1024,
+            3072,
+            2048,
+            4096
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Changed upper-right water complete, no new internal defect.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/core_p44.native-1to1.png",
+          "sha256": "40041d8bb28549ab05d7c0a967097dc1417bc36ee55185a435ec9f9314e372b6",
+          "candidateCrop": [
+            3072,
+            3072,
+            4096,
+            4096
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native original1:1 core inspected; water/boat/pennant structures and materials complete, no obvious internal defect. Seam QA separate.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p11_p12.native-1to1.png",
+          "sha256": "ecaa844163db809d18e1a9be58f0d91af3f0b962186878fd3e506b17f402ad44",
+          "candidateCrop": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p12_p13.native-1to1.png",
+          "sha256": "120bdddf3f586154f2c97daa6c7c31c2135a8fb166783992939649450518edea",
+          "candidateCrop": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p13_p14.native-1to1.png",
+          "sha256": "cf88686075e36949d6b43336c4aceeab849d9119d135266e42b3055f45cf77e5",
+          "candidateCrop": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p21_p22.native-1to1.png",
+          "sha256": "2944e37c444153e5190fbc0a179864f3ad226d2ee26ac82d731fa9adf918d087",
+          "candidateCrop": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p22_p23.native-1to1.png",
+          "sha256": "86b7d4f5c8ae386119fdd64ca568a3970fbe03fccd61aa3f7c3198d9ff82cece",
+          "candidateCrop": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p23_p24.native-1to1.png",
+          "sha256": "0bd3c0f91495f5c15a6ff09bc9f05ea693a377ce704a9d2f2e9f8630e6c93468",
+          "candidateCrop": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p31_p32.native-1to1.png",
+          "sha256": "d908858e5e48494427d572edc40d77bcf3d1481ae3ae0d0276614028056ebce1",
+          "candidateCrop": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/v_p32_p33.native-1to1.png",
+          "sha256": "c5c151d328ca82c7d0cba22d445a9802d5dbc2af00565f5d1c874d825f8498a8",
+          "candidateCrop": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native1:1 changed seam/junction inspected; cloth/caustic endpoints continue without added break.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p33_p34.native-1to1.png",
+          "sha256": "260208b218e16315dcb1d3b5c263c484283d25afe9b74b1eed88607ebcfa3c8a",
+          "candidateCrop": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "oldStatus": "pending_local_material",
+          "oldNote": "Concentric water-cell interior rings appear prominently in right half while left has softer plain caustic cells; retain local material transition pending, geometry joins.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p41_p42.native-1to1.png",
+          "sha256": "9df095b3b323f7c507a930a71f5a32725ae14a8ecb669385b7a6597f4a393ab0",
+          "candidateCrop": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/v_p42_p43.native-1to1.png",
+          "sha256": "74a5fc1fde0c7bdc561cf6c17ad684f65eb6750e0bcc3633201040963845aa35",
+          "candidateCrop": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native1:1 changed seam/junction inspected; cloth/caustic endpoints continue without added break.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/v_p43_p44.native-1to1.png",
+          "sha256": "e47e0e9a791403d423b2f5b35e1d2ba64a054c3b9169ac04574640108404264e",
+          "candidateCrop": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p11_p21.native-1to1.png",
+          "sha256": "59feb9c0e70769862f214796d9c4ac7213e8b7c720ebd51bda859c7d012590f3",
+          "candidateCrop": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p12_p22.native-1to1.png",
+          "sha256": "2e511776544f66e59ab4eddaf147b73e2671cecdd08b11b4c65896eb15f4a0cc",
+          "candidateCrop": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p13_p23.native-1to1.png",
+          "sha256": "ca3474c30b7aaa22379a6521af740a5ab9ebc4d26d0d159f785b578bd680c992",
+          "candidateCrop": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p14_p24.native-1to1.png",
+          "sha256": "4d8d8b852d417d76be48ba6a6d1436a1092c7e4ead303baff7eb7f736ac886ff",
+          "candidateCrop": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p21_p31.native-1to1.png",
+          "sha256": "207a0b25ae09658b54e18679255d5a77d248662eda0ef2c3ba54bf5d76e146c5",
+          "candidateCrop": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p22_p32.native-1to1.png",
+          "sha256": "fff4f84ec07c02e83fff4425fc24bf3c7218593391ab153f027bd57f504e976b",
+          "candidateCrop": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p23_p33.native-1to1.png",
+          "sha256": "741803504c774fdc8cae024095f65ff96dd5c9255c53bf12a8bcb8d619f1aa82",
+          "candidateCrop": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "oldStatus": "pending_local_material",
+          "oldNote": "Ring-filled water cells above versus plainer native water below center create a local material regime change; no geometry displacement.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p24_p34.native-1to1.png",
+          "sha256": "17ca630fe7f0bf9f1cb170c3f6d1b19341886dfe49225152db3bf6f1d9ea22fc",
+          "candidateCrop": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p31_p41.native-1to1.png",
+          "sha256": "eac8efb12853b5caf10c283403436c02de9e39da4e06fb6bd77ff48b0b860e25",
+          "candidateCrop": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/h_p32_p42.native-1to1.png",
+          "sha256": "b5b8c36bbabf9756c0eefffcf02c7fa699acab944755bbe1c598874560e5e792",
+          "candidateCrop": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native1:1 changed seam/junction inspected; cloth/caustic endpoints continue without added break.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/h_p34_p44.native-1to1.png",
+          "sha256": "f75192ce3572d670d2da3e207f713fb27f80d44b0bde1ca19b73bc27c8c5eabb",
+          "candidateCrop": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "oldStatus": "pending_local_material",
+          "oldNote": "Ring-filled native water above changes to less patterned water below center, retain material transition pending.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/junction_r1_c1.native-1to1.png",
+          "sha256": "67d74cffb10f9724af135b280c306a605aad99948b465762f4f6e82a32234a33",
+          "candidateCrop": [
+            768,
+            768,
+            1280,
+            1280
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/junction_r1_c2.native-1to1.png",
+          "sha256": "e6589a806803afe6d993098b054fb3fd82dc7535cb0327a32a15f108709bbaa6",
+          "candidateCrop": [
+            1792,
+            768,
+            2304,
+            1280
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/junction_r1_c3.native-1to1.png",
+          "sha256": "4c3e447923edf1b527b0943e8ce0dea331b10fb7d15e4db79baf82816744dbc7",
+          "candidateCrop": [
+            2816,
+            768,
+            3328,
+            1280
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/junction_r2_c1.native-1to1.png",
+          "sha256": "ea92ff73a37710e51a4635721819f075483b2d180e6c3e75f7cbecaa6911ad44",
+          "candidateCrop": [
+            768,
+            1792,
+            1280,
+            2304
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/junction_r2_c2.native-1to1.png",
+          "sha256": "18190b94cb352a39716509b0bed65522cebb2d11fe82e354ab862bcd68721fa2",
+          "candidateCrop": [
+            1792,
+            1792,
+            2304,
+            2304
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/junction_r2_c3.native-1to1.png",
+          "sha256": "fff0f5aba86d5a86a2d443c7024eb3e6741eef6557abb84e0b24efba1c06512f",
+          "candidateCrop": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "oldStatus": "pending_local_material",
+          "oldNote": "Repeated concentric water-cell interior rings in upper/right quadrants differ from lower-left plainer water; caustic main endpoints remain connected.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-v1/junction_r3_c1.native-1to1.png",
+          "sha256": "329890c12944465ca26b193c6fd071cbfc29430a8d9d49ec8722cf0442e7f830",
+          "candidateCrop": [
+            768,
+            2816,
+            1280,
+            3328
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Inspected at native1:1; center seam/junction caustic endpoints or boat/pennant/mast silhouettes continue without visible blocking step. Interior pattern suitability is reviewed separately in core QA.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northeast/qa/r01_c13-central-19-pennant-v3/junction_r3_c2.native-1to1.png",
+          "sha256": "ebd39379b6454ec7f7926a722741b1c4913d98f362f3be2f038846f1df1a29c5",
+          "candidateCrop": [
+            1792,
+            2816,
+            2304,
+            3328
+          ],
+          "oldStatus": "passed",
+          "oldNote": "Native1:1 changed seam/junction inspected; cloth/caustic endpoints continue without added break.",
+          "inputHashMatches": true,
+          "inputPixelEqualityConfirmed": true
+        }
+      ],
+      "changedCount": 4,
+      "unchangedReusedCount": 45
+    }
+  }
+}

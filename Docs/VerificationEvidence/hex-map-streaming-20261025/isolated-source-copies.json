@@ -1,0 +1,2587 @@
+{
+  "schemaVersion": 1,
+  "rawSha256Meaning": "Exact source/copy bytes at preparation and compilation time; all pairs matched.",
+  "normalizedSha256Meaning": "UTF-8 text files (.cs/.asmdef/.meta/.json/.txt) normalize CRLF to LF; binary files retain raw bytes.",
+  "files": [
+    {
+      "source": "Assets/Scripts/App/CombatFxVerification.cs",
+      "testedCopy": "Assets/Runtime/App/CombatFxVerification.cs",
+      "rawSha256": "f21971928a70908bab0c1ce8f3816757a6b5ab5ebf19c9c17174b280698d5e9a",
+      "normalizedSha256": "24ae9a67af0e7b49b78e28f047542ba68e09c2dd436a77f4c80ccbe2d0e14392"
+    },
+    {
+      "source": "Assets/Scripts/App/DevAutoPilot.cs",
+      "testedCopy": "Assets/Runtime/App/DevAutoPilot.cs",
+      "rawSha256": "1e2f559aa13420a0a016ec892d5674025ff7e7ed3e0e88d58b137401d67fd15d",
+      "normalizedSha256": "aed7244ff633a0e8b2b15cf8e74a2038a73fc875ede5c68e56071723d35cb817"
+    },
+    {
+      "source": "Assets/Scripts/App/DevRoleUiDriver.cs",
+      "testedCopy": "Assets/Runtime/App/DevRoleUiDriver.cs",
+      "rawSha256": "0da88a4eedca4f0f6862496724a1a3dea530654217f73680d1d5aeae687d1138",
+      "normalizedSha256": "94ac8b616e0b58c6b439eade6bfafa41052f1a5c16982dd8b278de1e6c31be5c"
+    },
+    {
+      "source": "Assets/Scripts/App/DevTeamInvitationDriver.cs",
+      "testedCopy": "Assets/Runtime/App/DevTeamInvitationDriver.cs",
+      "rawSha256": "6d4615ba84744b72a22bf3f9141702e5044c91067365978fa2ce825d1a9ff6fb",
+      "normalizedSha256": "560eeb6676f1a619851c41f5a819c37fd6000afad98353041577f75b332d9e95"
+    },
+    {
+      "source": "Assets/Scripts/App/FestivalRegionAutoVerify.cs",
+      "testedCopy": "Assets/Runtime/App/FestivalRegionAutoVerify.cs",
+      "rawSha256": "ef39918501c9504219015a6a46bd8c134b210557d16d524c4155c4b3471afc85",
+      "normalizedSha256": "ef39918501c9504219015a6a46bd8c134b210557d16d524c4155c4b3471afc85"
+    },
+    {
+      "source": "Assets/Scripts/App/PresentationShowcase.cs",
+      "testedCopy": "Assets/Runtime/App/PresentationShowcase.cs",
+      "rawSha256": "2b46847b8fee37a7c90b5df112ee771c1a9ecc50b89abfc9887cdd1231f9bcb8",
+      "normalizedSha256": "e3842e04bc64e3161fea6d6ecaee64be230682827d042e5742807426527f0b8a"
+    },
+    {
+      "source": "Assets/Scripts/Core/Bootstrap.cs",
+      "testedCopy": "Assets/Runtime/Core/Bootstrap.cs",
+      "rawSha256": "5f77e2c0ffec38201b6fe5f4b9d969d18315f14b255d004c366a8522e820830e",
+      "normalizedSha256": "394ecd3fb9dfe528e8ceb10f84561875fd4aa61a14c100e489dd3b0fcb4b1f39"
+    },
+    {
+      "source": "Assets/Scripts/Core/ClientLaunchArguments.cs",
+      "testedCopy": "Assets/Runtime/Core/ClientLaunchArguments.cs",
+      "rawSha256": "216953a2af30495e527fd97cf0561db6899c7f464a9c76fc9c642649cf97642f",
+      "normalizedSha256": "07ad2b0679c702d63be63b82ce88a8c13856824a796b5dd930e7ff91c454b442"
+    },
+    {
+      "source": "Assets/Scripts/Core/ClientSettings.cs",
+      "testedCopy": "Assets/Runtime/Core/ClientSettings.cs",
+      "rawSha256": "18b0b7499bec1ca28100e84e60c12c5bef530654ce1154159db74c9b38c26ef5",
+      "normalizedSha256": "cfc455ec399daf61897abe2f49703dd750ccbbdce31304305bf494fef8100d6d"
+    },
+    {
+      "source": "Assets/Scripts/Core/MmorpgLogger.cs",
+      "testedCopy": "Assets/Runtime/Core/MmorpgLogger.cs",
+      "rawSha256": "884250d60b37fd1ec290a7853988db29fbc1f0fc20cd5b01af84045c44dc2c85",
+      "normalizedSha256": "152ee7b2a0114d86ab35955b11529d868909f7311df30a4380dc59c60597bd2e"
+    },
+    {
+      "source": "Assets/Scripts/Game/Attribute/AttributeClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Attribute/AttributeClient.cs",
+      "rawSha256": "47f04616811ef4453834d8cf707dac4880854ccb73f2da5431aff94d68d92e2d",
+      "normalizedSha256": "f2db474be01e396c9b88e015bb8b2d65574b04ca8047f38dca2e4102475c75d3"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/BattleClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/BattleClient.cs",
+      "rawSha256": "1dafa68e957fe8bb98dabab969ed6e5136b36f3a427c27818f532dd9784c323f",
+      "normalizedSha256": "f040b222e4c165fdc5c0f8d715c0e1e2fc160ace854509cd6554cb8eb84755d1"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/DirectRoutingBattleTransport.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/DirectRoutingBattleTransport.cs",
+      "rawSha256": "b9d5adb766aaef4bb561e68e8da71f628f561148c80a5cf52906ece5ac385a76",
+      "normalizedSha256": "0a3e77d6ab0bf37741653cf2b66888ec5e2ebfe6484e35b04241535c3170f7d8"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/GameClientBattleTransport.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/GameClientBattleTransport.cs",
+      "rawSha256": "3ade86f94f4ff294aa1ab7d97390888e8533c5b6090b0604d50e6afbab09ccf7",
+      "normalizedSha256": "43193259b57c3d9edfc2a026d55ddefb240c6e5968ba0f68d14f352b54c2e94e"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/IBattleChannel.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/IBattleChannel.cs",
+      "rawSha256": "b6695179e3ca4ff811049be0ab74744a9f4f22ec2960cb16a843ba13fe5c7605",
+      "normalizedSha256": "dd9112a81be09eeb1479afed160d88df0cd1f7048281f4a8695f2513f670f576"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/IBattleTransport.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/IBattleTransport.cs",
+      "rawSha256": "1d6c1b48ec5db432e20a7d76c5bf7afbac8c3baf6eb2d1048ac5e044aff7508b",
+      "normalizedSha256": "b7a18e9fd724c2683f834ccf771b0e836460731fa21bdac3c06d5e0c7bf0b1d9"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/IMatchJoinRecovery.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/IMatchJoinRecovery.cs",
+      "rawSha256": "5674cb3dfa290987228ba65b585e3c1cad5a7961d69462b234b6fb3b7f13b847",
+      "normalizedSha256": "29460b79cc3b9ed75d44d111e40e7c427175e3d865709a4192ede826f38d6300"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/Presentation/BattleSequencer.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/Presentation/BattleSequencer.cs",
+      "rawSha256": "e763c0c780832fde30a252423a258ee0bd4c553b9bc1949eabd8fc9923206e14",
+      "normalizedSha256": "4f0d4c3e9d62fc9d5042794282ae416a8c347a0760214800c4619f290abe7718"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/Presentation/BattleTempo.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/Presentation/BattleTempo.cs",
+      "rawSha256": "299bc0d928dd401fe8fd40bddc25458e0bb00d2cf113c606eb4cb9c53797120d",
+      "normalizedSha256": "5c74d5916d373ec937d4c81670eea7892020b2b4961126b5adc23e6e39735f04"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/Presentation/PlaybackBudget.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/Presentation/PlaybackBudget.cs",
+      "rawSha256": "8981d7f087ff3837db9acbc6dff184ef43706cf2669205f23f3adbc8d95bd315",
+      "normalizedSha256": "b304f8e98a58a92e10e4b949d808a184af9236f662262e3d836c2a646cb0b586"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/Presentation/TurnPlan.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/Presentation/TurnPlan.cs",
+      "rawSha256": "9b876009975eba52205cf3af7fcff2b51eaca70a3a80cfc9324e660c1bbef9cf",
+      "normalizedSha256": "c7914ae8e1b700dec18bc89281db8b6e1978b0ab6cf5953539d69887c2be1eba"
+    },
+    {
+      "source": "Assets/Scripts/Game/Battle/SpectateClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Battle/SpectateClient.cs",
+      "rawSha256": "ca665c23538684bfc58b5e700e0694c33f0124e523ddfe9748f6eab3343d571e",
+      "normalizedSha256": "baa49875ffb118901f235d3dbeb1ae8840b644d5ae5e7cefe7be85c3f70cf6e0"
+    },
+    {
+      "source": "Assets/Scripts/Game/GameClient.cs",
+      "testedCopy": "Assets/Runtime/Game/GameClient.cs",
+      "rawSha256": "eb1f35f4c2ff383a77e9770cdeb41227d395eb1055a56ee091218fd52535eb98",
+      "normalizedSha256": "f187e4bd282f1b3ba755f9c79d7385877ec38a397cd88562bed611a5d9ec0343"
+    },
+    {
+      "source": "Assets/Scripts/Game/Guild/GuildClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Guild/GuildClient.cs",
+      "rawSha256": "ffa5601eea6c217c8b8fa314698165ccde4535c52538440c578cd55719383a9f",
+      "normalizedSha256": "3b39d8cab7e77dbeea42e27e1f0cc15731b29944d43a0dda7b65f77ff3796dc9"
+    },
+    {
+      "source": "Assets/Scripts/Game/Jubaozhai/CommerceClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Jubaozhai/CommerceClient.cs",
+      "rawSha256": "ed18e41e2cf2e3e458841e305185fb986a435b33441f42b7a36d4bb2974f52b6",
+      "normalizedSha256": "f2e531abd4eefd664e25dae57a8dbfd08475925a75715cbf427a7000335607c7"
+    },
+    {
+      "source": "Assets/Scripts/Game/Jubaozhai/JubaozhaiClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Jubaozhai/JubaozhaiClient.cs",
+      "rawSha256": "0de67b7d05bc557be548c2e7c22d0c97fef49283e5c0c79e38559d86aafaa05e",
+      "normalizedSha256": "12f8a7f88549e2b621640ca186d09a27c6a930ed0ec427ab4bdadf84a89c5b64"
+    },
+    {
+      "source": "Assets/Scripts/Game/Jubaozhai/JubaozhaiModels.cs",
+      "testedCopy": "Assets/Runtime/Game/Jubaozhai/JubaozhaiModels.cs",
+      "rawSha256": "2c66bb0429dee285c3a0e859866f03b140d51d8c8981a746654be03cc025ebc3",
+      "normalizedSha256": "9527f40858e629a81f2d426670dd1fbb8e15653609ac0b390ef9d5edee7d983c"
+    },
+    {
+      "source": "Assets/Scripts/Game/Mail/MailClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Mail/MailClient.cs",
+      "rawSha256": "2781e56857eb6bf40653649b60229c69ef02314b5e5837ae53e01e0abb55fc64",
+      "normalizedSha256": "89e5da776afe24a9f4a727906cf5b2d2d3fa323a2d4d993fa2ff574f9aace844"
+    },
+    {
+      "source": "Assets/Scripts/Game/Mail/MailModels.cs",
+      "testedCopy": "Assets/Runtime/Game/Mail/MailModels.cs",
+      "rawSha256": "e4bd340f716a95fb2d8df4fc759304815ee797957f3548a79563e1b76a7309f5",
+      "normalizedSha256": "9dd0d6527b52272e0aeb91decfd9e2d28b1a209ff9c40c2fac91cf1655a46137"
+    },
+    {
+      "source": "Assets/Scripts/Game/Mail/MailUiState.cs",
+      "testedCopy": "Assets/Runtime/Game/Mail/MailUiState.cs",
+      "rawSha256": "555835decf7533de24b90c793702a70d3313d7538399175c8b6ffb59d797d59c",
+      "normalizedSha256": "7de4df199f0770c4e37609b3952a0d36e74f8c4507af0d7082d95d8a20a29889"
+    },
+    {
+      "source": "Assets/Scripts/Game/MysteryMerchant/MysteryMerchantClient.cs",
+      "testedCopy": "Assets/Runtime/Game/MysteryMerchant/MysteryMerchantClient.cs",
+      "rawSha256": "29735ac3872e175b3488d9dc5f320562b61accc66ef8d432d22fbf57ea597405",
+      "normalizedSha256": "bc4d5259da63003ebafb6e73fe4fe833ffed97cecf4ae9f90ef129b4ece65d45"
+    },
+    {
+      "source": "Assets/Scripts/Game/MysteryMerchant/MysteryMerchantModels.cs",
+      "testedCopy": "Assets/Runtime/Game/MysteryMerchant/MysteryMerchantModels.cs",
+      "rawSha256": "d688f654dbb551a6418c5c6d4e9dccaffeca2468bbe9f3be6d19bf5ea2f21675",
+      "normalizedSha256": "6bbe885170d3aee7ddf851f383de2068a3d29ac09bfcba426cc968b05c4c124a"
+    },
+    {
+      "source": "Assets/Scripts/Game/Pet/PetClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Pet/PetClient.cs",
+      "rawSha256": "a60eebcaebd2cf9242732caf2ce6cc531a4e3acaeb0e64e5444614d61a816202",
+      "normalizedSha256": "cb5fd578620d4e6387be22838d572b7510b2d6b40f473bc2f3c49321e3671d78"
+    },
+    {
+      "source": "Assets/Scripts/Game/PlayerFeatures/EquipDisplay.cs",
+      "testedCopy": "Assets/Runtime/Game/PlayerFeatures/EquipDisplay.cs",
+      "rawSha256": "93de5a3637d92ed07bf7d8c20b0f0316c1849bb1c189d58d3b4d44c772fdd232",
+      "normalizedSha256": "e35dc2fc2cef072f667af6edc89a2c2fe7ec9682de908291c31162993ea263b6"
+    },
+    {
+      "source": "Assets/Scripts/Game/PlayerFeatures/EquipShareText.cs",
+      "testedCopy": "Assets/Runtime/Game/PlayerFeatures/EquipShareText.cs",
+      "rawSha256": "768a3b4562e27da360d604092794fb7fe57da7b1c0a78349a23f88f25dce0bdf",
+      "normalizedSha256": "1b6a40737d75d381ec082b1adb4494a6dbcf197e28119a5ec0a98a5b61ba803a"
+    },
+    {
+      "source": "Assets/Scripts/Game/PlayerFeatures/PlayerFeaturesClient.cs",
+      "testedCopy": "Assets/Runtime/Game/PlayerFeatures/PlayerFeaturesClient.cs",
+      "rawSha256": "b745e225507531e1a279f71fdfb52bd02473eca5d3556a81e212780adb5e4795",
+      "normalizedSha256": "d593a30ee00fd3a1d38384a766d91576be3f7d0a90b960765e33077ad4752dad"
+    },
+    {
+      "source": "Assets/Scripts/Game/Rank/RankClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Rank/RankClient.cs",
+      "rawSha256": "502c1bb577dc13fc4b31ce7eb821ccd1bd04b6dc76f5190eb3a3a11cb31cc2b5",
+      "normalizedSha256": "462f5a2f66f76ca4ecbd41b2413fcd6c72982374008edb92ae2902e441358fe1"
+    },
+    {
+      "source": "Assets/Scripts/Game/Role/RoleNameRules.cs",
+      "testedCopy": "Assets/Runtime/Game/Role/RoleNameRules.cs",
+      "rawSha256": "3fe2f7cbd172aba8fabd2810206cf3260d540a527be3f3a9e54f82a25f294faa",
+      "normalizedSha256": "54d281ff0a4f10d92927601db40ae0b3d059b344369fb8602f0b09957cdc989c"
+    },
+    {
+      "source": "Assets/Scripts/Game/Skills/SkillBookClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Skills/SkillBookClient.cs",
+      "rawSha256": "51f78d98593fcda15ba57bb969d5d2bdbedc76d785625e65fab8122f971c0e36",
+      "normalizedSha256": "4139e69f7f906783d25c06a0be4c1fb494c67eb1070ba7f24f369a9b4a9f25a5"
+    },
+    {
+      "source": "Assets/Scripts/Game/Skills/SkillBookMapper.cs",
+      "testedCopy": "Assets/Runtime/Game/Skills/SkillBookMapper.cs",
+      "rawSha256": "d1be7141a59e48405b0a9c504e546c5d261447c994377827961d562d8051d74f",
+      "normalizedSha256": "54db9d0dc3bd3241df3f8ba28afa0a632030fac93955304a3a5f0b697ba0f54b"
+    },
+    {
+      "source": "Assets/Scripts/Game/Social/FriendClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Social/FriendClient.cs",
+      "rawSha256": "cd96f4bbca0ffe63b525c387846dda091ebd0763b99ae65dab9e747030c20e24",
+      "normalizedSha256": "9a64a907443c210dd4d26f039f90b9ea1b80519b8666850724d7a5c849ca2915"
+    },
+    {
+      "source": "Assets/Scripts/Game/Social/SocialClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Social/SocialClient.cs",
+      "rawSha256": "789341a7eb0abd1097570085fca9000193e9ed74c0ecb7fe93789fc8937c15a1",
+      "normalizedSha256": "beb52a85b9f984ec3268d84048f49d8467520619844b57db18639271301317a2"
+    },
+    {
+      "source": "Assets/Scripts/Game/Social/SocialState.cs",
+      "testedCopy": "Assets/Runtime/Game/Social/SocialState.cs",
+      "rawSha256": "6016d09b554ae65a615fb22ed9c17f2190fcbbc8402d92941d023e415fe56cc5",
+      "normalizedSha256": "f1008d604709b33428d759566e6bac64d9c53314f4d084a6028708fb3e3b94b0"
+    },
+    {
+      "source": "Assets/Scripts/Game/Sync/LandingSyncClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Sync/LandingSyncClient.cs",
+      "rawSha256": "647903d3bbb81a76a45f9b10e6f73d2d9c71f38ee99b46dbd9b5c8f5f7673e2e",
+      "normalizedSha256": "ff7221b8c1be87f1d3950e19d6b5335eb24853dd86d6e9a86851179fae25f4a1"
+    },
+    {
+      "source": "Assets/Scripts/Game/Sync/SyncDigestStore.cs",
+      "testedCopy": "Assets/Runtime/Game/Sync/SyncDigestStore.cs",
+      "rawSha256": "b5ed6401e49e2b959794ebe74dc0462b6cbffcce028bc9e8e64650237e6ac947",
+      "normalizedSha256": "85da62108ebcdfc8ee55480f978aff7353986b42a4a05e1809ab68f0c7fa5946"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamAppearanceTransport.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamAppearanceTransport.cs",
+      "rawSha256": "a6a1968e49978681e36018988e5e1932abfda26a0cb4c3d962f2b4ba02c2e444",
+      "normalizedSha256": "ff3b30486763dd5f2a98c89eae20597ef6a52d41d34bff5813563ad4a727886d"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamBackfillQueueSync.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamBackfillQueueSync.cs",
+      "rawSha256": "96e0f80962eebb09087870a58e0267de8dea60ce67637569b8fa49da35107b9e",
+      "normalizedSha256": "c14655db415d4f92a29847505636f196b2ab4e52ca2ba5cc00dca51dcc28b0f8"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamClient.ActionRecovery.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamClient.ActionRecovery.cs",
+      "rawSha256": "2976f2bbff1f2b41ed4218bc9e05597fc7536f6c2edcf21c8ceadd16aa06791e",
+      "normalizedSha256": "83728489a21b2e5f71de376340c20915297cf37dc9ef3a6fd511b7b958db90ba"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamClient.cs",
+      "rawSha256": "b8aee1e89661a3fc8f9893b7de6a9c0df041abcc76af62e5b31c66b6e049c041",
+      "normalizedSha256": "50b0c9370bf2fda3c57e432222af49bb54b8f51dfb1bfc13f949f2b3ad012ba7"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamFollowDriver.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamFollowDriver.cs",
+      "rawSha256": "a1e0f9a4b2b88b87e0b612ef9ff9acd9bcd3d764e12fcbf3907238b8e7029547",
+      "normalizedSha256": "1ce0a5131285239c9a06e93a4a9b93965f6ef2fac40584366acc2ed56e050660"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamFollowPlanner.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamFollowPlanner.cs",
+      "rawSha256": "247ae8c535e7095e5e14df8142dc2dd4c757a7a32ce70291a83800247a468510",
+      "normalizedSha256": "f5d6408c09697ca39b108145a395cfb34640f5b0d36e173741a2264b4a1f84e0"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamFollowTrail.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamFollowTrail.cs",
+      "rawSha256": "56e59858f07b27139f7e196b966c315dd106b3b7d38da98e9e461d0be2105d12",
+      "normalizedSha256": "adfd77399b52335a9d8b6fff0344d5bec6e22bfbdce1c5933caae82b5336a9e7"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamInvitationDirectory.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamInvitationDirectory.cs",
+      "rawSha256": "d2e5641aa8e38ddc723babe00507152240bf9390a7f7ec02c7cfcb1317767438",
+      "normalizedSha256": "06a22cf5e4a558ccbffd4898376f7f65a07a5e5e90d317130cacec250b6652f3"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamInvitationDirectory.GameClient.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamInvitationDirectory.GameClient.cs",
+      "rawSha256": "bbe902bb29d6a2534987796037786cab093e30116eace3f1d6a4666b0a806ba5",
+      "normalizedSha256": "f6286109403eced427a11063c9693f57871f291f250c0631ffeede357be124d8"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamModels.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamModels.cs",
+      "rawSha256": "1c956a6f80b5b1fa670d1d9fffd6ea23f6b05ee3008a6e458461abaca34a9952",
+      "normalizedSha256": "62a4498fedd6faca7c73ef69447ab9397d5583b3d92979236868b59cecede6d9"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamRegroupPolicy.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamRegroupPolicy.cs",
+      "rawSha256": "aa0bd428b4ba7ceeaa2ba21f9b500a5a859aa5465cd8eba59c8df726f6725493",
+      "normalizedSha256": "1194607b67d804ba000ca6bbfebb33159cf69a9302cc0beabb2b306a03f81759"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamUiState.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamUiState.cs",
+      "rawSha256": "ef8fdaeb537659d149a7abddb2304b3b355690a5f06394b182e6cafb9bdbb6ba",
+      "normalizedSha256": "e3383828bcc11f9eb155452c1f23ed026aa2c7c918dee0531ce47ac230ca6036"
+    },
+    {
+      "source": "Assets/Scripts/Game/Team/TeamViewMapper.cs",
+      "testedCopy": "Assets/Runtime/Game/Team/TeamViewMapper.cs",
+      "rawSha256": "d2373f6189382f49f8d229304d150d397fb738c84111e970c43ec47f7b621a92",
+      "normalizedSha256": "6b0d7b81ffbf19963b1c8788af94ac57e85f4a5decf63a9f73611bab83cfa080"
+    },
+    {
+      "source": "Assets/Scripts/Game/WorldTravel/CityTravelRequest.cs",
+      "testedCopy": "Assets/Runtime/Game/WorldTravel/CityTravelRequest.cs",
+      "rawSha256": "ea9d2faa9e6b447812f3cd5baaac9e4ab5d82104f19db2dadcc5528d02db7cd0",
+      "normalizedSha256": "ebc2bdf1ec730c61da5eb4b614283d417f2f94f1810cc8fe98795fbc9d71baae"
+    },
+    {
+      "source": "Assets/Scripts/Game/WorldTravel/SceneChannelClient.cs",
+      "testedCopy": "Assets/Runtime/Game/WorldTravel/SceneChannelClient.cs",
+      "rawSha256": "0de8b8b557ef6e21d56c5c82d88c9538f75d8b74e72c4c0b1b2968b7a96f0ebb",
+      "normalizedSha256": "3c2589ddc49a9c6477a4aaa133cf45b5c0a65f4a6f765b1feb12c4dd66323fd7"
+    },
+    {
+      "source": "Assets/Scripts/Game/WorldTravel/SceneChannelModels.cs",
+      "testedCopy": "Assets/Runtime/Game/WorldTravel/SceneChannelModels.cs",
+      "rawSha256": "5552a1487003f3d908ef0ece9016f0415d5d67aed7c279e03cb70a62f364430a",
+      "normalizedSha256": "6b0ec11f44623d366ddfe7ac9447c6902069f1ce9dfe1f2548f4f9f401c2f6a5"
+    },
+    {
+      "source": "Assets/Scripts/Game/WorldTravel/ZoneTravelClient.cs",
+      "testedCopy": "Assets/Runtime/Game/WorldTravel/ZoneTravelClient.cs",
+      "rawSha256": "d78490da8f1de45d052d42f3591af4cf1fa72a23d9f2ae30dab4d31dc025eca5",
+      "normalizedSha256": "9a99b6b56b50ca2ab6be66ae1cb7703eeb091afb6686a7d7f9719fd4c27d3e1f"
+    },
+    {
+      "source": "Assets/Scripts/Net/Adler32.cs",
+      "testedCopy": "Assets/Runtime/Net/Adler32.cs",
+      "rawSha256": "6c7d960bcd4936987ef4617086b165e8e9e85d38cb4453651bb855417ae10a7a",
+      "normalizedSha256": "1a66d1a8b4fa4e61241e62c55e8a4788a990f2c58523aab9be4d7e8424fbbe0a"
+    },
+    {
+      "source": "Assets/Scripts/Net/BattleDirectLink.cs",
+      "testedCopy": "Assets/Runtime/Net/BattleDirectLink.cs",
+      "rawSha256": "7a5d4fdc972ad345c14e25cdf22f3239fd586c574b617184b5647e887ed24f21",
+      "normalizedSha256": "0928e115ce29edc23f599582aa550a65dcdfeb9f8b9d311d653bf61e587e8ad4"
+    },
+    {
+      "source": "Assets/Scripts/Net/DurableRequestFileStore.cs",
+      "testedCopy": "Assets/Runtime/Net/DurableRequestFileStore.cs",
+      "rawSha256": "d0de7a5289e1063fa9357d0dbf230ba380f0c59dc5eba7e32245fbbe2b1e2906",
+      "normalizedSha256": "59991a829a71bacb8398cbefd0b32ce43e1a29e6efc707f211fac0e46e8c78ec"
+    },
+    {
+      "source": "Assets/Scripts/Net/FileMatchJoinRecovery.cs",
+      "testedCopy": "Assets/Runtime/Net/FileMatchJoinRecovery.cs",
+      "rawSha256": "968acdecc59d610a36688680efffc8a0e47484d632533640d7fceb452c917c6f",
+      "normalizedSha256": "288a2cb72d15458aff16a42bfc240615419ac96ca8e7e3c29fbd1ef074d15376"
+    },
+    {
+      "source": "Assets/Scripts/Net/GateTcpClient.cs",
+      "testedCopy": "Assets/Runtime/Net/GateTcpClient.cs",
+      "rawSha256": "5ffc4eac137f07d8083912f7201e03d676e44484fcba29e24ec114980c54c7b8",
+      "normalizedSha256": "5495090c16852542348ccac2cb65a3c799b243bee4a42e54ed3948e28994a557"
+    },
+    {
+      "source": "Assets/Scripts/Net/GatewayHttpClient.cs",
+      "testedCopy": "Assets/Runtime/Net/GatewayHttpClient.cs",
+      "rawSha256": "66e148dcf4b8ad42d32c6d104874446bbeb4ab816b4b4d457dae596d21c7e3a7",
+      "normalizedSha256": "69a8fc0be7b2ce80039b9374933ed48e6343b31a8e9fdd1061bad981ed84e0f6"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/BattleClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/BattleClientPlayerRpc.cs",
+      "rawSha256": "888e16c9ba9c6fbae12a2b03a91452599b37510ce74ef100b1ba971850750261",
+      "normalizedSha256": "a091a8d8aea6114daa0f586a19c8cfdf0beb656afd98c85eef8de46272b57dbc"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerChatRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/ClientPlayerChatRpc.cs",
+      "rawSha256": "6532126175beb29eaa97eba794ad8e8533ee95f91078ec3ddd5f8362b437b5cc",
+      "normalizedSha256": "fbf04540b01a1b8c6889aa8f7eb39cff4c646c2fd7b8edc69e1c09bd3c4ae5ba"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerFriendRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/ClientPlayerFriendRpc.cs",
+      "rawSha256": "bca44d37b41ce91a6fd62a2e27cbff16786fa7ed07334a6a9a96bfe84dc32216",
+      "normalizedSha256": "6ec073eaabda52a3fd0850831af687a28d5283a21d700f5b438d93002e01e586"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerJubaozhaiRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/ClientPlayerJubaozhaiRpc.cs",
+      "rawSha256": "baafd4e7ddfd3b25b15ff86fe56cc8ee031f22d9abdd60446d003f682215f712",
+      "normalizedSha256": "092f0e026c5852365aa9c5b2e0f2b8b1787bdd60b993bafa911763deaca87bd5"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerLoginRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/ClientPlayerLoginRpc.cs",
+      "rawSha256": "ddf796b2e7019f1723a85bfd2240a0f442ac879900c640bfd0952d2f5be14fad",
+      "normalizedSha256": "fb3a72fbfbc70c9d90ef2b7794e0dba3d4b64fdfcc0d7a5285102538db409205"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerMailRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/ClientPlayerMailRpc.cs",
+      "rawSha256": "6de156cb5974c5721d24f4542b4a63134ac0251e44cfda7239f10448ba986eb5",
+      "normalizedSha256": "f8a052b021e24175e40f92691978e138cb427dca3a2fb32f39a072935a41c0eb"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerRankRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/ClientPlayerRankRpc.cs",
+      "rawSha256": "f1308ffa25fa549f98f56a896d7fddee1301f0efeb45015655d1e6ad3ffeb8ed",
+      "normalizedSha256": "97dbeca44ae292b82021e9a280dddf1fb8edd202cc96811e804c712c0e7e0199"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/ClientPlayerTeamRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/ClientPlayerTeamRpc.cs",
+      "rawSha256": "dfe30c59981b53ba5ebfce7eea7df6035db21965dd6ace0f0b03fffa4248f7b1",
+      "normalizedSha256": "dd62e55bfd267190c3ef6cc850ae28bc1d3f06f33a859bdfda48f41c36b16d2b"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/GuildServiceRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/GuildServiceRpc.cs",
+      "rawSha256": "2e3613e1b3b077a3b46b8d6b29c7457ea21d43cbc51994fa07a9182c30a27577",
+      "normalizedSha256": "cd67033e022fe9dde0f94d3c6aeb7f63f33ea20dae5ed465bdfd3da5fc6a6d50"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/MatchServiceRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/MatchServiceRpc.cs",
+      "rawSha256": "5e1362640053b171d8338fbaa0f52034e945bdf9a55f8764db7ed8cbf6f89252",
+      "normalizedSha256": "9111ffffc359020ed47391aaf1ef145d107ed8d9a75a8ed1c9744accfe157085"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneActivityClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneActivityClientPlayerRpc.cs",
+      "rawSha256": "fbf2ea74546c3f175731364a97c1657c618d8f3a052be43ee0154d81885318da",
+      "normalizedSha256": "badaeb80bd25ec1f4741189c289276593690b2ced1bbe18dae47f91573ae4e61"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneAttributeClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneAttributeClientPlayerRpc.cs",
+      "rawSha256": "c3b33fb951fd8e7cded694cca5c54b2e56f3ff9dc1491df299532c52459a0fe1",
+      "normalizedSha256": "b12b4dc942722429b149f0aae97eadab83711b457f6c7916a116dc39f53b631f"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneBagClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneBagClientPlayerRpc.cs",
+      "rawSha256": "4658f026e3f4fa4472f8c12ba490b9ac8fc66dfe60c53d20a119948ad3ce6bdd",
+      "normalizedSha256": "5373e6e0630bbdfbebb9adebef13c795314c685f82e2bf390a26e9e3aa1e5440"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneClientPlayerCommonRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneClientPlayerCommonRpc.cs",
+      "rawSha256": "b7ec51b84b2ae882e34625a2314d6fbd6dd36ce4dd0aa9e83b9ef1a877f1e3c9",
+      "normalizedSha256": "112b36c82390f7d97f4b7f2804069fd3b391f88891d912817cf140016f437b98"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneCurrencyClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneCurrencyClientPlayerRpc.cs",
+      "rawSha256": "eae135f381151621c262ac71eacfb99bc419ce9d20398b37e1b8a7dba1ccc561",
+      "normalizedSha256": "4bd58b10fea0a659ba4e25716c7b520c6029075cc6fd2a0acd878c821d793960"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneMissionClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneMissionClientPlayerRpc.cs",
+      "rawSha256": "d1210f607f7ae18c5692790a5e16912f49ff5936dc09bcd6fd86c11d43704fa7",
+      "normalizedSha256": "2afe3274ce5bca7c8980445f7d159b8b82c24ea855bc46dcf9717e54948f84f1"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneMovementClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneMovementClientPlayerRpc.cs",
+      "rawSha256": "b23040a738aa9d4bb673cc300ca40a469a12efd2a41fb8ee9bd20467e3e311ab",
+      "normalizedSha256": "6e34330000c9fe0f6df755b183255e619f3b25e6838e4037e05419e48debc631"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneMysteryMerchantClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneMysteryMerchantClientPlayerRpc.cs",
+      "rawSha256": "24e874817609240ed657bc46af85ce866717509a2b2b637940889a17b584db92",
+      "normalizedSha256": "071548e50937a02e6502ea048d73915e7e4add2a4ede8fd5889c0210cc4c77fe"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/ScenePetClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/ScenePetClientPlayerRpc.cs",
+      "rawSha256": "eddec2072707eadec2ead55bb582d279613a2edc274b38f049017afb6d41d8d3",
+      "normalizedSha256": "62b54d4831e543e8148c0db47125cc8c1cc4a3533d188dd40ee14cdb42f9a2b9"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneSceneClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneSceneClientPlayerRpc.cs",
+      "rawSha256": "d928c46afd864308d4878b716e50d4c89f8505cba579d6c0d0ded9c02c732602",
+      "normalizedSha256": "e232d48ad5dc24f3534c2607053bb809c0b754e08d44a83ae93efdbbb5c4276a"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/Rpc/SceneSkillClientPlayerRpc.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/Rpc/SceneSkillClientPlayerRpc.cs",
+      "rawSha256": "97f52df255b97daa1aa69145905a4c8c61884e37754ffeb2f9991f7fbc137c08",
+      "normalizedSha256": "da9b18a1b2c03de12a69a87dd7bdc817f7cd168fac1fc96efc1716216f634c1d"
+    },
+    {
+      "source": "Assets/Scripts/Net/Generated/TipFaults.cs",
+      "testedCopy": "Assets/Runtime/Net/Generated/TipFaults.cs",
+      "rawSha256": "e1c36e1fe40a2aca74fdbea383f72e451bce0dcb36ba208f1b50f580c2ea505c",
+      "normalizedSha256": "86b9c380c402d5779c12092dc3e3c3080055c4f995038a7d07c198aa40996eb7"
+    },
+    {
+      "source": "Assets/Scripts/Net/IFramedConnection.cs",
+      "testedCopy": "Assets/Runtime/Net/IFramedConnection.cs",
+      "rawSha256": "490d32c70993e60d0ba747e1dc2c54ff18e728330218529b8ac7db754c36d940",
+      "normalizedSha256": "cf4bccdf99a14b45a4174084596719692d99b462c611c0d324f611896207d2b0"
+    },
+    {
+      "source": "Assets/Scripts/Net/MessageIds.cs",
+      "testedCopy": "Assets/Runtime/Net/MessageIds.cs",
+      "rawSha256": "fc5c85e7bc6faf7334e6ed3e3dfd6fb911793f1eb6231b7b204b41f737a6209f",
+      "normalizedSha256": "1d1a7b35c62aded7e7f4fd0fe8b2ae61603df35811f6585ead50e9fb8afde192"
+    },
+    {
+      "source": "Assets/Scripts/Net/MuduoCodec.cs",
+      "testedCopy": "Assets/Runtime/Net/MuduoCodec.cs",
+      "rawSha256": "3f7f1099c3944d837d4ef5b748305d544f5a6fcdeb14c90ffe02865e595feb37",
+      "normalizedSha256": "86f4f2921a3d811f61b7085c1cf84f6c9c55fcb3af2d4077163a10863d35dd25"
+    },
+    {
+      "source": "Assets/Scripts/Net/OutstandingCalls.cs",
+      "testedCopy": "Assets/Runtime/Net/OutstandingCalls.cs",
+      "rawSha256": "0dbbfd0f0c7dcd7bf2245a03e3bc0d7dd76110e9c0e284f2715bfd468e31d1bf",
+      "normalizedSha256": "a32dc122cd939775eabc9e250ce477853b32e80feb044d3cb32d8a987d702847"
+    },
+    {
+      "source": "Assets/Scripts/Net/RegionProbeClient.cs",
+      "testedCopy": "Assets/Runtime/Net/RegionProbeClient.cs",
+      "rawSha256": "cd661151f34e1ff475261ba6ec6cedf353bff399296677918c6423fda18decd7",
+      "normalizedSha256": "5777bd972cf3a6952f7d9f27ebe81072ac5b60347007dd60658fb2795a5c7007"
+    },
+    {
+      "source": "Assets/Scripts/Net/RpcStatus.cs",
+      "testedCopy": "Assets/Runtime/Net/RpcStatus.cs",
+      "rawSha256": "c0d5e8e2d61a062de9824d956077dd5f51bfab28e84b0e9304b0bcdd574375cd",
+      "normalizedSha256": "b353f4236b18de2c87f7c125ecedc008fa09121552c2b30ce31934eb9fbc93ca"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/ActorAttributeStateComp.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/ActorAttributeStateComp.cs",
+      "rawSha256": "6c8bc0c899a44c11a9af0e424a19d3df6aac5749eba92e43ee98ea90b1c29bf4",
+      "normalizedSha256": "d8ee3879de64d564ecc2cff5c21dc997a5afebed6fb5c485846ebabdc68a4c5f"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/ActorComp.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/ActorComp.cs",
+      "rawSha256": "3ea7dcdc2581a5a1f5b529df9610be078dfa4828cfb62fac3ab42ebcc06218b5",
+      "normalizedSha256": "cfdfffbcf34eae7f2a38c060c395d9e48df6361f2850da655bb8ac9a9bd53674"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/BaseComp.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/BaseComp.cs",
+      "rawSha256": "d2b29fcd83cd89b9b3e06c1f6fef163b80e578b497068abe7b13e6a207bf003e",
+      "normalizedSha256": "312f7ee67dbe3c19db49cb69ca73557f004196abf64f66c16e0dcdc5bef87701"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/BattleData.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/BattleData.cs",
+      "rawSha256": "aa0fdf009aeaf8e856fc4bd5cec5d8183ed6a86a9e44c727aae63059cccab461",
+      "normalizedSha256": "feaf9a3fd843d4eeb12d5dce825ef8c922f0d8fd3d354d2d81ce2944b3cafc25"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Chat.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Chat.cs",
+      "rawSha256": "79fb1c3d78ffdbb2e9277226bfce98abc2fb0b001ebbd16ae519e2d306289efb",
+      "normalizedSha256": "77b6ffa46b3e891a6a7a928a6970181730082af4d4fd19839afc9bb2524f712b"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/ClientPlayerCommon.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/ClientPlayerCommon.cs",
+      "rawSha256": "2be6496f80433cc0f9d5fbdffafea772638c03ccf1974b65169553c850ec18c0",
+      "normalizedSha256": "a90ed441b54cd78a69b9a63b81a7ab8a76758435e7559fcff6e1028b6f655a45"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Commerce.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Commerce.cs",
+      "rawSha256": "6a457bc95b88307ab5abf60bca8f665bf40f3b401a4ef9bb2e47bd048aaaa9ad",
+      "normalizedSha256": "f21540b684769dba5350a36cb99c959372f3a3fa18e83fcc6169e464128c9bf1"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Common.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Common.cs",
+      "rawSha256": "dec8144b7264d0c0d24f9490d32f92dca192c1ada94e43cdb5f9df03cf5e9015",
+      "normalizedSha256": "0cfafd5343828b1117b2cfb0fb71eec1ad09d84d988d01b99405197a51b8353e"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/CommonErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/CommonErrorTip.cs",
+      "rawSha256": "e147e1781b77ab03c8304e2ddfa31e51fbaf966133167f1e65d1e1beab09cc87",
+      "normalizedSha256": "dd95f304810969c6123ec35ee06b4ab1fea2cee047119f52e011495361181fed"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/CrossServerErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/CrossServerErrorTip.cs",
+      "rawSha256": "e51907947907267913323d3ebc738277d9aedeb36f18b3f278702e14eccc8fb4",
+      "normalizedSha256": "d7e142bc2b5bebf25405e64735def263a2eb1cf4c1b98a9070cb25250a5fe75d"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/CurrencyComp.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/CurrencyComp.cs",
+      "rawSha256": "3f006d3bf9e6dad2e364a579e20f6ed35274206fdd6d96d9c05575bb258d1083",
+      "normalizedSha256": "93a6185fec468a7995a809c0b37e436e6a1a8f4f80fc67febdf812e431a6c86a"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Empty.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Empty.cs",
+      "rawSha256": "cb9ef68b3cfc1472d54a05b78f104e133213af98e08de8c16f1e9151c4825472",
+      "normalizedSha256": "4a7cf0c44bac9edf6945279beeeae225c533f55910a4e51bfe37ba63330728fd"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/EquipErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/EquipErrorTip.cs",
+      "rawSha256": "76b597a845346e751c4a288c9b83bbd26b054c5d39ed67ad9650a3975d09f44f",
+      "normalizedSha256": "d9c59336a79c7d690300e23f00c6cd274d1580c05118f442c212c20d15b72e86"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Friend.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Friend.cs",
+      "rawSha256": "be9941ee75098e2088007889021bca28cee2bbbcfdaef158bea3e0b2bbf4b7f7",
+      "normalizedSha256": "e6e7b8c0a3ff5622c2f0dfa299152653082cc6935417ecc63fdf6812ed5d95ee"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/FriendErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/FriendErrorTip.cs",
+      "rawSha256": "770cfd5e44191e245ddeeb62b43074c5cca795f3a719b818c144b89c2d94b651",
+      "normalizedSha256": "c8948ac64bc4db48db578c61cce5fa965bfa6c4c514642b25209810cbd91a8ea"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Guild.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Guild.cs",
+      "rawSha256": "698a25beaf7a6624091b90a9f8d686c9713fb9a44dbb093fcab0ade97852a7ad",
+      "normalizedSha256": "e4ef3ab9f3ad4b511a3446e2db88d557eb005d7307b4d07ba06c117b052f953f"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/GuildErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/GuildErrorTip.cs",
+      "rawSha256": "edef6d2106a166baf5107fb0f1d4fe8516423bc5d5288549ad81ac028c45495f",
+      "normalizedSha256": "75d86c44cf86244503c95bec5590a35596b95a977395f67727f4387eb9de9a92"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Jubaozhai.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Jubaozhai.cs",
+      "rawSha256": "219693ac7a066b4eea6ddced7e133c40e50e6a065d0ee93aba8dbbb80e6d0290",
+      "normalizedSha256": "f1c0ef828518b744da7984a334c824cf944c4579ad080050a28d314f3324e7f2"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Login.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Login.cs",
+      "rawSha256": "d6097e58513aeb156482b0ee288381a0113e326b0cd16b47407fb6530acbbe51",
+      "normalizedSha256": "e3ba70f1d1d1e653c832381b2ae4d2fd471a31cd0636b9e831768e6df2535d08"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/LoginErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/LoginErrorTip.cs",
+      "rawSha256": "6e48ab2e1ea83ddd8e19058fa92e56a9bae45538957a6c7c04bc71795621c61c",
+      "normalizedSha256": "ce9fd2639a9b9762b69b80fc8565d228a2d7b6da951151c6643d6f233cdf2a80"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Mail.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Mail.cs",
+      "rawSha256": "5b7efc7b6542d0c664883979c1c78dc0c352665bb5e17dd2b67546bfbe3fcd0c",
+      "normalizedSha256": "b3d4758ae3b77a7859486194f6b349dcfedb5d0ea8ffa9b0b1efb38e82f1b57b"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/MailErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/MailErrorTip.cs",
+      "rawSha256": "6f98cc6dfb648a015689fc9e3b014f6205a889cc47313da32eda358f3fdcaa5c",
+      "normalizedSha256": "f8bb093496350c928bd06d9717bce9f057f9a9392d28675525fd574028896c04"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/MatchNetwork.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/MatchNetwork.cs",
+      "rawSha256": "fb7072ce060cba48b4af3605ab2caf8bedb9e108b548c849a278d3828981b3b6",
+      "normalizedSha256": "2c69895f0ab310264e4bb6530bc4018a69f1ada10df2c08177476d73c3805d26"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/MatchService.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/MatchService.cs",
+      "rawSha256": "b0032e0a523f9b509512a05fdd56ccb77642b09cb9cbb599ccf80ffc7e441b4f",
+      "normalizedSha256": "ef20f701ce5d6ed6533b553b413287fc0a08a272b7c60e96d5ab447ef230f902"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Message.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Message.cs",
+      "rawSha256": "33b18e5a563b1ce4fee004c457a3c018d180a45e5f04cade0ea59cf41fc8aecd",
+      "normalizedSha256": "4eef981723d1ee8dd4de979af3bde4a32f4f722090ec08a56dbba466f2c482e4"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/MysteryMerchantErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/MysteryMerchantErrorTip.cs",
+      "rawSha256": "5a59712e4337f95324f72cc3824fd21d612ffd6b531f8ce29c4a80f52c140e7b",
+      "normalizedSha256": "67d6ad19025739f907798aa41b1c7a89b3d1364e886dcb0172a70fc701e453e5"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerActivity.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerActivity.cs",
+      "rawSha256": "114f6bd195f9e78b8fbc35b6a48c1aa9bf44e5d96d047daddbd9b35f0a9ff4c6",
+      "normalizedSha256": "a753fb2d74ad501d47f7c21f09a76384b647d7e53ecfab607929e692dab0103c"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerAttribute.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerAttribute.cs",
+      "rawSha256": "1f7d08dc264dc9c38ed1e436997214c05be36184a2aace581f4c6a11a72acb50",
+      "normalizedSha256": "9e82d93990b0bd42df5791181a47d76837074efd53c141b1324130ca2a6ca31b"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerAttributeComp.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerAttributeComp.cs",
+      "rawSha256": "eb49ab7cf3ec78da4e83394a8c866a1ddbf77b03f9e044a1857932830f4fc8a7",
+      "normalizedSha256": "312cb8d0cc0d05ca5f6f9d3727070994bd262dcf8b72747e4dbfa306e77dd144"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerBag.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerBag.cs",
+      "rawSha256": "65895568cedea9e9dc743141a1de354ecd63ab8c555bb183c7da10d2ad435898",
+      "normalizedSha256": "18ce7a17f8910ff23854f0012ca5e1e4f10ff7e2278e0fc99367a770685d73e5"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerBattle.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerBattle.cs",
+      "rawSha256": "2c9cd451c20c1ee13fcc22843a0f0e241774fb26981bc6ee2a47a6e909d597fb",
+      "normalizedSha256": "1946321a6e3972b520cbb3d005d3f33eab2d48c9463cc1db8b56b76fe424a8de"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerCurrency.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerCurrency.cs",
+      "rawSha256": "b7df7795bd3ce85563f0cc121d231f0098c4325c652394aed07b96098ec80dc7",
+      "normalizedSha256": "831e5c68b2ab7f1f0b3c3825cd6ab65943df938c88bce284e10b271736179bd2"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerLifecycle.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerLifecycle.cs",
+      "rawSha256": "1253aeeaba6aa0603b729bbfd852ee9c9e1840bc93e840fd515b8b9c071703f8",
+      "normalizedSha256": "b5898e7b35d3cbd1bf455500403692b994ac417256b0f3db0e4865f71285d04a"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerMission.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerMission.cs",
+      "rawSha256": "fe8fd50f7e02d6640d34d70335acc860d33db4cbc98c79d2b184b131306adb62",
+      "normalizedSha256": "30b822e0deb683edc15b62646d4b4c086f5ef0e3d12e4d14ec24d053fdd6778f"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerMovement.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerMovement.cs",
+      "rawSha256": "eaafd0dd34444d73ac377abc9350f1525b46cd7f6a96e731187125d1643eb098",
+      "normalizedSha256": "5ba9ee45de22a206a31658f77dcfafe019da006d8113fc6ca7f64de709995049"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerMysteryMerchant.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerMysteryMerchant.cs",
+      "rawSha256": "a7e6ceed9abcba9f48478e81b729f28264a0787f42dcb05cb5104f62b7961eaf",
+      "normalizedSha256": "c0c258e216175b9a8d848d9bb6c9c487f32da322712faefa93a79fd9d4490d93"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerPet.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerPet.cs",
+      "rawSha256": "68b7d3f42c53b13d85a502ff1b2f55606d48b76c42dd5310bb11f352dcd5dafc",
+      "normalizedSha256": "0413c572b5231e3e27bef4b0ea1ff10b512e7d54279428a2969ec5a659380902"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerPetComp.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerPetComp.cs",
+      "rawSha256": "2df36759390feaf7a9ecbf6633c3c63a8466ea357093aa966964304f23ef64b5",
+      "normalizedSha256": "a5a9ff1968017b0e882435eca522c888838e822f02731483b4b4dd3764165515"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerScene.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerScene.cs",
+      "rawSha256": "b2a91f5630b19e24d6a22c0425c14a7fe8f6aff16487bab9fd417cea8065995a",
+      "normalizedSha256": "5596a38ab8cec24ca3334ec3db668003f74688b696a3457ac4b9cc0494959101"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerSkill.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerSkill.cs",
+      "rawSha256": "94cae09702b640816ee17dbf968f1cdeb4bf9f488feb7ce04c904b819ae65bf8",
+      "normalizedSha256": "1bcdbfabbca4cd96937cd5b94e7ae4e32fe04c70896c572ebceb03a4933ca76f"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/PlayerSkillComp.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/PlayerSkillComp.cs",
+      "rawSha256": "0ea54a18ec64d2756cf2870597de547af9a607bc26a0e30f1896413a4fbc2b81",
+      "normalizedSha256": "7b77e2d3c7287578237b0c17f78369cbcb616b2fef9ec6bf118b97bdf57d34d8"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/ProtoOption.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/ProtoOption.cs",
+      "rawSha256": "68ef2012781920f0616f15b0fcc1df49228288d5aa5558c359fe372e43b89205",
+      "normalizedSha256": "73c29ab54a1edd0976b22ec792c461001f92e9a6d19f71507da71e7c9ba1e85d"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Rank.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Rank.cs",
+      "rawSha256": "0f141fc7907cefbe85e56429feaa9f57d92a430db0f870edae046d40ebedeea2",
+      "normalizedSha256": "0ad29c3ecea2614b1c7ca0de6b831e34c4fe468b0b3632fb449b614561c3eeb1"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/RankErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/RankErrorTip.cs",
+      "rawSha256": "2c39e6cfdaae2c794d11aeffc69f62ebd49027baab9f331ee9b9a95b8080079a",
+      "normalizedSha256": "b3f015f7044d9c67abe609d4815ebbadf54471226f1ad636603074aa2d941eab"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/RpcMessage.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/RpcMessage.cs",
+      "rawSha256": "36c70363471ea180789d5d33cbd6e105f0e852f63104b520d8600340eb089187",
+      "normalizedSha256": "2514e3509fe2f5a99b520af4d3d8484ee70e4a40dc70f5d94d9913ad4b5b1e92"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/SceneErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/SceneErrorTip.cs",
+      "rawSha256": "ca44703447c94d9fda9a27243a5f9314e8d9bc5e1b567232d483053c195a088f",
+      "normalizedSha256": "bf2746ae8b7254ae5616dc140c18c3706a1bef6d3d64673c1854094eb1627d5a"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/SceneInfo.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/SceneInfo.cs",
+      "rawSha256": "913cfe14e1c5fc53de4dbea2272180c97cb4e6e3db4a0c5a6fdb2d93f8f914aa",
+      "normalizedSha256": "c6f21ee55a03e99584bfc8ee30e7b92229d18a01061d2e3a5e09f4e6919426b4"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/ServiceCallAuth.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/ServiceCallAuth.cs",
+      "rawSha256": "bf5ab8b594c1f6f1fd6accd019a334b30d86565c77fca089871ea1b3f2b3ad6a",
+      "normalizedSha256": "6ad22cfd4981334037b637181c41bf19f43234c52ec657dc71183961828ea62e"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Session.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Session.cs",
+      "rawSha256": "fcf35ac0b18d302fc5482229c4b76dc70fe300c66b5877a65e3b5d8101069106",
+      "normalizedSha256": "3c1f84f16f1eecab30761895544f96950d484270f9d218e2799e9a90ac90912b"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/SkillErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/SkillErrorTip.cs",
+      "rawSha256": "d251ce9d3bb135c3487d7d25566ed0fd882a8560e8cc6884937bc533c646d68c",
+      "normalizedSha256": "144f9978a099e5d6b65ea483e746edd33c79e87691baf18f201fce016a65fc86"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Team.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Team.cs",
+      "rawSha256": "da3d33d864e7538c7948964168db560f6c243b5e48f895229c816cb6d031b591",
+      "normalizedSha256": "eb652b395b3ab2a05266fd4d48cf5ed4edab5ddc5feffd9769ad286c883b890b"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/TeamErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/TeamErrorTip.cs",
+      "rawSha256": "744e9162bcbab668a22ef798f168e310cd2d3b0bf6dafbda91ab691c087d024c",
+      "normalizedSha256": "c214f9373ae7f3020a86ff7c6593ff878ef8356d6fad212a13a8e084dd296bed"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/Tip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/Tip.cs",
+      "rawSha256": "752569b78290550d44f41f90b7a41f09801ab29ac81d985362381b9b65cd229f",
+      "normalizedSha256": "5e24e92fd6edbd6ae1a61c2234c0b9931c70a8ab56e6d720e630501de2df506e"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/TradeErrorTip.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/TradeErrorTip.cs",
+      "rawSha256": "d5625d97a8f4e8792d50b72cab42c79acbc0d4ca7344ef56fcf215c7b89449c9",
+      "normalizedSha256": "a296a149f567f4d5d941a98b836c955c9cee45f9fb6fff84ed9b717f7cf5105c"
+    },
+    {
+      "source": "Assets/Scripts/Proto/Generated/UserAccounts.cs",
+      "testedCopy": "Assets/Runtime/Proto/Generated/UserAccounts.cs",
+      "rawSha256": "e3db0d01317f4038fa4852ce166db37e937128a5655d881940a0b46369bf4040",
+      "normalizedSha256": "02a69c6d444c4836cf18acf4f3dec028a5410fd27ce9ce68abf7961fff458727"
+    },
+    {
+      "source": "Assets/Scripts/Proto/TeamBackfillProtocol.cs",
+      "testedCopy": "Assets/Runtime/Proto/TeamBackfillProtocol.cs",
+      "rawSha256": "67036c727e530a1b79e87c30aac7ad2480da62a31e2a92e60ad2519665d2b8a7",
+      "normalizedSha256": "41ab38b82426cd96d935e3659c7288cbc783a17d095227f3a89b36940ac93329"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ActivityscheduleTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ActivityscheduleTable.cs",
+      "rawSha256": "160a1c3658f239cc72dbf7469b625d079f2b90d6806c8124edec321db308550b",
+      "normalizedSha256": "ae1534cd67981233edf4d75df48e7fceb2f972284ead0c21aee61f400f42ba41"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ActivityScheduleTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ActivityScheduleTableForeignKeys.cs",
+      "rawSha256": "d5536f8e2cd2e7a9403509dcc31a1bb96fa03e62e137d76ff15cc05bd78a3132",
+      "normalizedSha256": "5e7285b8af3cd00360bb22d5b197fc7fa8504340449e6886ea4e381499a99230"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ActivityScheduleTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ActivityScheduleTableManager.cs",
+      "rawSha256": "485d675f6d54ec895e8c0412d70f9ffddd8bd457a592827c4bc06173409a7379",
+      "normalizedSha256": "a656d722e9d759646f27e278ffce460f726843548b13ae26ade7b992368fa219"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ActoractioncombatstateTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ActoractioncombatstateTable.cs",
+      "rawSha256": "bd151365d8939283e48e9d011e17a73342d869ce92bdf6230c592a067cec7111",
+      "normalizedSha256": "8449b434825d78a36eaf8f139110f374d5797c0439f4b282fd34bbf89f89f6f9"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ActorActionCombatStateTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ActorActionCombatStateTableManager.cs",
+      "rawSha256": "423a2a569430966ca65993698911ca947f52ae2b4e75fa1310d6f4410feb27d8",
+      "normalizedSha256": "08e620ab5784073e441b43dcf10b90e7acd65e36a0970579fa7a288a2d794dfc"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ActoractionstateTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ActoractionstateTable.cs",
+      "rawSha256": "0f564f55d5fa6eb7c5fdf3353946970a02ffc503e66dadaf635058a319c4a7ed",
+      "normalizedSha256": "8f7e6217edf2b89c6aac18a5c91be9e5f903e7b66ae705550c487e92dcacd7e3"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ActorActionStateTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ActorActionStateTableManager.cs",
+      "rawSha256": "8245b997c25f235b9ba7b0992c457bc99761c5506ea0ecd6337f8358c786d660",
+      "normalizedSha256": "f4e7a97298e4bd04a8b7c3b5b1a4d77566515da8af2df61d542838f5ede7949d"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AllTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AllTable.cs",
+      "rawSha256": "bc221e5e00aefff9410449d8ace1146e92c05546949eaebe146b48fe14dc1432",
+      "normalizedSha256": "c75451a7cfa309c4cac3e21b677e21f35faf532b9cee8ecd88d7033e2f45803b"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeallocratioTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeallocratioTable.cs",
+      "rawSha256": "b57bbcf12ade7936f53ebcf3a4ddb4022cf381fe25123a3457839351f09163ce",
+      "normalizedSha256": "532a6508e07f3d3ad05d2abfb813db381e5b6f39a9e267551bb17f59c4865280"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeAllocRatioTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeAllocRatioTableForeignKeys.cs",
+      "rawSha256": "51ab125fde7fe605d2c484fbcf0d426a06b51deb5b9bf672dc9dbc564901c501",
+      "normalizedSha256": "14de7fe285547166ccc7e6485dcd714517e0a65dd20e6bb0f9d1357aeedf2df7"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeAllocRatioTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeAllocRatioTableManager.cs",
+      "rawSha256": "7084144cdd56e31a7f6777f184a4d14cd44849d7026d865829c40c4593061c2f",
+      "normalizedSha256": "e4d402f63f55e4d55fb321f649d1b0dc11c0b4c142424988e925b2918b7362a8"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeautoplanTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeautoplanTable.cs",
+      "rawSha256": "fc2c529defdce0558cec98a5fa9f5e04c3b5fd36319a99a33a6b6ca877e1ab82",
+      "normalizedSha256": "aaf9be00e236c9c74e2b38c00ab82e4b9be31bec9cee4965157229699782af2f"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeAutoPlanTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeAutoPlanTableForeignKeys.cs",
+      "rawSha256": "aa1b20d2f5871ec0845fdf0b535d84ce4d62223f191bbbe2f49e6bbaf407e6fd",
+      "normalizedSha256": "0c9e082f25cda4a8b30eeeca03da5faf7b3ed5a99d437000d8a90a728f597491"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeAutoPlanTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeAutoPlanTableManager.cs",
+      "rawSha256": "aa3ada2cad2370823f5262520e9c36aefcdbb0882ebd2ec0d9ffbbf1061839a6",
+      "normalizedSha256": "0d03384f54fc9cc43a5f2e7b299c67fd3c767e87b0219f0bfb276a95806c59b1"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributedimensionTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributedimensionTable.cs",
+      "rawSha256": "7296cea9167c272118a1ae62981cdc2114df7b6363a9e99b8906e3b92aac5b59",
+      "normalizedSha256": "1e2dec84ffb1b690e86186946b75b1eb498a9004ab190cda8b1f112efd856f28"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeDimensionTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeDimensionTableForeignKeys.cs",
+      "rawSha256": "da9ea4ebd4183253ca70c3292e95cabb5b863746f20b51388f4e47f30556a194",
+      "normalizedSha256": "99402f95f68949eeba4f663240232b31342c3703e9f321351c05754679486644"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeDimensionTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeDimensionTableManager.cs",
+      "rawSha256": "015a79ca7477b91459d44c48e06b017e514b566fbabbf6ecd7cac598042f9fd2",
+      "normalizedSha256": "d4be1ef88603d7ab687bee59f5e1103b1e450358b1b3d5fa44964ea531a3385b"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributepoolTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributepoolTable.cs",
+      "rawSha256": "116bd89b97823e6bdfed140624667148a33456f31f781bbc61e704887bae5086",
+      "normalizedSha256": "0aca98a28aca9fe2c9824623a3720d0bbef3eeb3d3fbc1809d443db5655e9f42"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributePoolTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributePoolTableManager.cs",
+      "rawSha256": "61fe6a693608c3a3dca7400f58952b2f0446550828fc79b2c364ff66caf45e19",
+      "normalizedSha256": "3a086cdd4f56598c9421b99af2273ee886fe75b4eb1e62ce6776a9b2681e0355"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeruleTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeruleTable.cs",
+      "rawSha256": "439ce6528e113221f190b3e00d773dbd74f2b7237d1e1f2875f70fa292a54609",
+      "normalizedSha256": "84c86b609b8d20f5971c155312cca32590cf4af3279a57de85478cceb7aedabe"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/AttributeRuleTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/AttributeRuleTableManager.cs",
+      "rawSha256": "4ae3ba81ca676a16212107f24a2a83263e79356c0159a7a602b9bb7bd5d45e19",
+      "normalizedSha256": "e90603089e6264525b8bd2ea294f270a26a4748ccabdc0bca85dce167ed706d4"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/BasesceneTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/BasesceneTable.cs",
+      "rawSha256": "f3d4e2cdc64fda209c50fcd70b89c820b2677d62977d579608f1923ed0396b40",
+      "normalizedSha256": "c07598252d9ec28d9a89ef11fa6eceadbec93eb470804ad8adf78d3e3bc51734"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/BaseSceneTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/BaseSceneTableManager.cs",
+      "rawSha256": "4edc9f71b864b6c55062932be3797fcd97fbef2dca6977af6ff5ef67f947ed12",
+      "normalizedSha256": "afbb8a07bcb69d4ab89669a61b7a221df3c2666d9529f988469554b81becbd14"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/BuffTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/BuffTable.cs",
+      "rawSha256": "5d88e875b7c25c7300c3f7253f56c28a1262aab6ba8582ea5aa397aa928b98a1",
+      "normalizedSha256": "f2382340db235899e781a0bbc9700ce6ed3c55dcc3c68e16b0f81d1ea081b552"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/BuffTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/BuffTableManager.cs",
+      "rawSha256": "d6aa5bf52463c929f3862bb5ae8de4feb3921cf26c0ed9f2744c93771e5cfb7a",
+      "normalizedSha256": "25b983e294de3b051824236645fc717591ea2ad254f00225d3f566dbce6556b7"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ClassTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ClassTable.cs",
+      "rawSha256": "3274c4717c4890aa4e175b83b88e794010848abfd2396f5161a70c141b8c6730",
+      "normalizedSha256": "07c7fc3559e1250539e5a53d6eb9b8290a82539b1177eca7a777e1f2e015fe30"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ClassTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ClassTableManager.cs",
+      "rawSha256": "38e38bdf1e7b5f3de54f72a1004539c8dee315ff8dd17579c52ab399e53cf5ba",
+      "normalizedSha256": "9d65c5d806c82f13c754e550aa394e694d9a805e1419b685af46922a5dea4669"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ConditionTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ConditionTable.cs",
+      "rawSha256": "a307651df53703ebc10e1b99f781ad42548d177d99fa5486c63846133bd894fc",
+      "normalizedSha256": "0af3edde2fb87e2c27204edf9581bdf67c17e88f37863b5df047831092984917"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ConditionTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ConditionTableManager.cs",
+      "rawSha256": "0a75d404d9fe40e743b14721067f2a8b1510f59487c235fc73f84027ccdb5b5a",
+      "normalizedSha256": "8cac51cf76d4f6bf6524756f04b262430d2afa33852174c90dd75c5815a13b5d"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/CooldownTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/CooldownTable.cs",
+      "rawSha256": "ab1d47777d1bb8925a2c55a3ee623f30ea9c1e174190c31da49c65a52fa92931",
+      "normalizedSha256": "cf7937ac339ec888cd74a854f530529e915f6e203c25d3bac2a0ea0c7e3476a8"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/CooldownTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/CooldownTableManager.cs",
+      "rawSha256": "74950fba9d5556b6a2c527fec5c33853fd8d5a3e4b8ee879c9c50906ab856fef",
+      "normalizedSha256": "d3a4b75348553c5d1505e3abfcf202fa465a899ce68944d68bdbbf96abedcb02"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/DungeonTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/DungeonTable.cs",
+      "rawSha256": "720b6292a8e5f07e3de1e0413f7d7c390b773ca247c4a76b130535850aaf2d30",
+      "normalizedSha256": "2d8f5b0b1767b318083999d967b09cfc1d140d541239ea22728746410e749d9c"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/DungeonTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/DungeonTableForeignKeys.cs",
+      "rawSha256": "66b7d2491f5ea13529378d5aaee9fb6549b277580ecd8dbe59dc5bd283a094ce",
+      "normalizedSha256": "0c3a2f4b6942aa9dd4fb9b78f0431dfd717c0af094cf497258278f57a2ba290b"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/DungeonTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/DungeonTableManager.cs",
+      "rawSha256": "f29a96a8b4f1d97449e3da0a1a970fa30e10a5ebf7e7c61df7369445aea59d0a",
+      "normalizedSha256": "0b07941092b7a1fbb299ea8135bb5b19326f57be48437f9f12bd0ac61da5fa04"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipaffixpoolTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipaffixpoolTable.cs",
+      "rawSha256": "249f579cfaf05992f1614baca0cbd87026046e69357f1774a57d716eca4813c6",
+      "normalizedSha256": "249f579cfaf05992f1614baca0cbd87026046e69357f1774a57d716eca4813c6"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipAffixPoolTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipAffixPoolTableForeignKeys.cs",
+      "rawSha256": "1638aa04910d8263fec43242c4fd7c57d53f404fcd4180c461c741d89ae39a34",
+      "normalizedSha256": "1638aa04910d8263fec43242c4fd7c57d53f404fcd4180c461c741d89ae39a34"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipAffixPoolTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipAffixPoolTableManager.cs",
+      "rawSha256": "5b97d2cb43bb7a6d6a25a814fcc10e66a780c9713c01cf8e1d0881acd4e40dbd",
+      "normalizedSha256": "5b97d2cb43bb7a6d6a25a814fcc10e66a780c9713c01cf8e1d0881acd4e40dbd"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipaffixruleTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipaffixruleTable.cs",
+      "rawSha256": "b935ace657eb3a1ba9d22e223dbdac8bee0d67a6cf947fc96db5b148d6d1e3a5",
+      "normalizedSha256": "b935ace657eb3a1ba9d22e223dbdac8bee0d67a6cf947fc96db5b148d6d1e3a5"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipAffixRuleTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipAffixRuleTableManager.cs",
+      "rawSha256": "dcdd26d819981cce40bf9e941a8b9ed9a3cf9df6497ef32fb4b0caddad1cf0be",
+      "normalizedSha256": "dcdd26d819981cce40bf9e941a8b9ed9a3cf9df6497ef32fb4b0caddad1cf0be"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipattributecapTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipattributecapTable.cs",
+      "rawSha256": "fe8c7952ba79d15ca972eaf0f86715d25348803dd6dd3e3bc0682b2a9ba13901",
+      "normalizedSha256": "fe8c7952ba79d15ca972eaf0f86715d25348803dd6dd3e3bc0682b2a9ba13901"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipAttributeCapTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipAttributeCapTableForeignKeys.cs",
+      "rawSha256": "edd6f8c1fb36f14d483cf770ff7546950042fd5adc03347e607e72d0b642a98c",
+      "normalizedSha256": "edd6f8c1fb36f14d483cf770ff7546950042fd5adc03347e607e72d0b642a98c"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipAttributeCapTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipAttributeCapTableManager.cs",
+      "rawSha256": "6aed3cbf2f6f9b00e6120f03a68dded3cfafea8d1fd3fe6a6e0100153a429642",
+      "normalizedSha256": "6aed3cbf2f6f9b00e6120f03a68dded3cfafea8d1fd3fe6a6e0100153a429642"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipattributeTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipattributeTable.cs",
+      "rawSha256": "4d6718c6209b2d502260c4d1bbea0f212c1dc7bdd4cdedc935fa01bd7218263d",
+      "normalizedSha256": "4d6718c6209b2d502260c4d1bbea0f212c1dc7bdd4cdedc935fa01bd7218263d"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipAttributeTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipAttributeTableManager.cs",
+      "rawSha256": "c3c0bd404bebd525a3cd22c6e2c16121a298a91f631984feeeef66b7fc4b6940",
+      "normalizedSha256": "c3c0bd404bebd525a3cd22c6e2c16121a298a91f631984feeeef66b7fc4b6940"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipenhanceTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipenhanceTable.cs",
+      "rawSha256": "cc664fe04cc71ed0baae62653400fb2da149bf1896cedf730e351ce2ebc806d9",
+      "normalizedSha256": "f1af0418cfb683af2119ac7dae901787f77577e15d14ca48934a24231c703879"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipEnhanceTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipEnhanceTableForeignKeys.cs",
+      "rawSha256": "abb9b473cc11905957d7d740aebd2893e569cbe884329e9152bb9c5099f95241",
+      "normalizedSha256": "f5802f2ffc3f7d168b0bcbb1a904281890149d28f37e0480b30646c0758f0806"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipEnhanceTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipEnhanceTableManager.cs",
+      "rawSha256": "03c57858cbe3fd6d387339356ce3458574ef0d9d29b03c814b2a7414274d002d",
+      "normalizedSha256": "266eb9bf117530304c7bf6d79aac8f2a760f0a0158f3b81bd0d4b7f76eae8f0a"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipgemsocketTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipgemsocketTable.cs",
+      "rawSha256": "68dd86f11a4a944e2788e2a354d195a597cdc247007bf05599c125989f1718b6",
+      "normalizedSha256": "99cf36c69075343478fffd78f3d4134c1af9298121eb62cae2ca1206c1be8c73"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipGemSocketTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipGemSocketTableManager.cs",
+      "rawSha256": "3eea86bedb01496aee0c0541ffca916608f53f2ced3f06adef253d3d8ca5f1a0",
+      "normalizedSha256": "047446975c4ddccfec6420fdad70ccd7b03d1cd2075a7c4b19f1a9deafebd5d7"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipgemTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipgemTable.cs",
+      "rawSha256": "641c574cefdfa6c2764db6089067f9e136b1fb3a1a57a7482778b6ed6681f1b7",
+      "normalizedSha256": "698bf8578e859f2bdc172015e581095754434d9882c1929cb65996aa04ef562f"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipGemTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipGemTableForeignKeys.cs",
+      "rawSha256": "aad04cbfedfba1ef50a3e15ae4113d1b9a47fe541c3acdf0d5d95c9792a165eb",
+      "normalizedSha256": "ec27fd434ee62389e8cf63b74811a5d4aa83de87b0aef118c17e378183edf6c0"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipGemTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipGemTableManager.cs",
+      "rawSha256": "bbd955135b3575cd6aefe683dce071da2b3ab272445aa119fc477534e17fd8f4",
+      "normalizedSha256": "abb0045e9df832fe9bb2ce45eac422cac05fb8d72b8a4d69726af91fff1c7dd0"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipslotTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipslotTable.cs",
+      "rawSha256": "a2e03bc9cb0b49241a6aa55f3051adc7802a39c038ab967275aa25d100ab8314",
+      "normalizedSha256": "a2e03bc9cb0b49241a6aa55f3051adc7802a39c038ab967275aa25d100ab8314"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/EquipSlotTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/EquipSlotTableManager.cs",
+      "rawSha256": "d4c1dd5b555906901c78ed3fcd837aa8662be5c8aeb018789ff31f3078c60063",
+      "normalizedSha256": "e221d43729f706d291f3b9ca87b684044fe17e91c8847c4a532de514f7c0febf"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GlobalvariableTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GlobalvariableTable.cs",
+      "rawSha256": "8c6763708d6e51e24b3a3e6e46368d7b3dfb556878548910ffa76b786c2b768b",
+      "normalizedSha256": "5d2d4b4507ca7d1e2d00648fac8fe2f6297c7d0d933bc153145f590653365ee9"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GlobalVariableTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GlobalVariableTableManager.cs",
+      "rawSha256": "fda0959c635289fc702f4fc3e4972095a30f8f166bd53f015f7e969066e0bcd4",
+      "normalizedSha256": "37403febba901a13781c92408adbca0f1fabf64ea63bfbf274b0941bcdca5aa1"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildactivityTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildactivityTable.cs",
+      "rawSha256": "11524c02bdd9215d7850e3685997b0bde30b2144b40ac97950a0f80fd0cc6360",
+      "normalizedSha256": "11524c02bdd9215d7850e3685997b0bde30b2144b40ac97950a0f80fd0cc6360"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildActivityTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildActivityTableForeignKeys.cs",
+      "rawSha256": "3c0daf3b23b91aa6d5d718be50a49582ca3a7dca17dcf83bb89abae6c22e32fc",
+      "normalizedSha256": "3c0daf3b23b91aa6d5d718be50a49582ca3a7dca17dcf83bb89abae6c22e32fc"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildActivityTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildActivityTableManager.cs",
+      "rawSha256": "0e5200f2e974d8f6c75217a846d87935f1806121d3fb2d32010ced88d9081c6c",
+      "normalizedSha256": "0e5200f2e974d8f6c75217a846d87935f1806121d3fb2d32010ced88d9081c6c"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuilddonateTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuilddonateTable.cs",
+      "rawSha256": "81c99f2c8eadda0cafa135e8a77419b9d1ac6bc5bc3abb9ee0a29d08247f4d7c",
+      "normalizedSha256": "1907f0f7ef801c3fb69d6ead54169e4c02a7a7c4828093f93be838f47db5bdd9"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildDonateTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildDonateTableManager.cs",
+      "rawSha256": "5c3e7b48751db1c21571deefa41d047af1ef1f09050b71ce2e3a89f42d77b353",
+      "normalizedSha256": "3de45e01638c579657a77e93d353816f7bd3836b831076bd9cec98235e5ddb61"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildlevelTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildlevelTable.cs",
+      "rawSha256": "e2444b49ac1b986d727488f3ae3ad34d803ee0fe39848896b8bc5fd88a178135",
+      "normalizedSha256": "2592abb452bc9a256475117742915b09700e81a45a663f804b9ce2a7f41c0568"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildLevelTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildLevelTableManager.cs",
+      "rawSha256": "869edc796a80257181d68ce41d6df3f5957d8cb55d2516a4102b38b256cc041e",
+      "normalizedSha256": "a10b25d2939adccf0a0c379a5cde4707dfb0cd1fa5208a8646d6a58edd5c5176"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildruleTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildruleTable.cs",
+      "rawSha256": "9d44e9d789b58a13065b8c578ae321dae09fac631d39f1fb26d7a19078b16401",
+      "normalizedSha256": "9d44e9d789b58a13065b8c578ae321dae09fac631d39f1fb26d7a19078b16401"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildRuleTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildRuleTableManager.cs",
+      "rawSha256": "3759f1cdb7085de510dcbad2a75740e63520b06ab30423d322422ba94e4957f1",
+      "normalizedSha256": "9b6e21c3184b24fe2e1b4d166efb5b38ca588219f786673311b756cc3f577908"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildshopTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildshopTable.cs",
+      "rawSha256": "d6069d9909de638212451602da735c03e1308fb63108f1a888e60b466867b2b2",
+      "normalizedSha256": "e0e312fb0156634e72d321a6269342c9339db192dd18351550887d1104b58ee8"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildShopTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildShopTableForeignKeys.cs",
+      "rawSha256": "d48a023946342523e72a543b08731fb5d76a22130131f6c0c3188052c396f776",
+      "normalizedSha256": "87cc9c069ac680e664ecc58263604a51a747dcf33d4c75f856f555a592cf1d64"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/GuildShopTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/GuildShopTableManager.cs",
+      "rawSha256": "c8033f15d82981f8efa22d67ce9974faaca808a68d3a291d454edce1415f9f4b",
+      "normalizedSha256": "4dfb89857aa67dcf0634797a2485e35db002ecdf0524e98cd2788ef6913bb1bf"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ItemTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ItemTable.cs",
+      "rawSha256": "ad1cbdc3e6921de5dcdcce51249791a82d8fd6d91930e3f86454eb65b9984ab9",
+      "normalizedSha256": "ad1cbdc3e6921de5dcdcce51249791a82d8fd6d91930e3f86454eb65b9984ab9"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ItemTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ItemTableForeignKeys.cs",
+      "rawSha256": "a1af7aa139e1b11029ec8a30a9529c71d9db4d7c2b56272c2f2f9ca1b4e5ad76",
+      "normalizedSha256": "a1af7aa139e1b11029ec8a30a9529c71d9db4d7c2b56272c2f2f9ca1b4e5ad76"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/ItemTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/ItemTableManager.cs",
+      "rawSha256": "3e1b9c2493cd94806ead3e4d0c64af9a62089f8759f2fa44e9e2a11b7c941a2b",
+      "normalizedSha256": "3e1b9c2493cd94806ead3e4d0c64af9a62089f8759f2fa44e9e2a11b7c941a2b"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MessagelimiterTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MessagelimiterTable.cs",
+      "rawSha256": "5e4af8f7a7c3a09be966b868bf163e8bb471ad11c0f6549a7eebdac1f23f5fae",
+      "normalizedSha256": "78fb6d8e6fa993c27eede970db914e861c72cae5fb4aae3e61b738d05d094bca"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MessageLimiterTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MessageLimiterTableManager.cs",
+      "rawSha256": "ba751ff2cbe83db1a287b63596c75679f495c458c9fe234733a0f45a1dc3094b",
+      "normalizedSha256": "c91f4714ca4df4112b9ebfbc88a6d1b914844f4f51e5b5808704033e76bd7cb4"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MirrorTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MirrorTable.cs",
+      "rawSha256": "11fcc33a1ecc6daacbaefc5f7a608e5eb6f579b236c5d76e46e4d184c9c36817",
+      "normalizedSha256": "3e899e808a6168562192a9286fe509452b512c72bf587fd73cee154521c0ddb7"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MirrorTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MirrorTableForeignKeys.cs",
+      "rawSha256": "6ca5c5cc99d9653ff4f9da79e31ce0b25210d0ad1a9f90940f7bbefb05654220",
+      "normalizedSha256": "84c51fd0362bb2d406e3389582e8b7c7ec9c60f1112f6b304df6dd511f647f41"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MirrorTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MirrorTableManager.cs",
+      "rawSha256": "e7038e9853e77899188782690b8849a5e33abb1d4d1b74307c4a22879ee1f850",
+      "normalizedSha256": "faba7115649f2bbde350202fc073a93de3485fde77012da540b548ad06b028e3"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MissionTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MissionTable.cs",
+      "rawSha256": "c3d9a9aa803f4d8adb27005de787a71172e81c4b21a408731c902166c5be4ff4",
+      "normalizedSha256": "5af1d569d8a946ee1d4134cef4b7aaff4bb11b7a0765e156ba85d6d938cba907"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MissionTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MissionTableForeignKeys.cs",
+      "rawSha256": "3ee58a3f11b52ee21f7888e226430c77122a669ba06e7169709e7fc7904eb5ef",
+      "normalizedSha256": "f0b3fe0f895ce09fdab042c7a46aa1ddffbc9e7360d12e7c2328010164af5ae7"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MissionTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MissionTableManager.cs",
+      "rawSha256": "f13432669b62fd82d8ba8a25acef980a4c69b4c50247ea8f486f3f8d182cffdb",
+      "normalizedSha256": "287538b05e5dc61a78ed5d0698069c9f3dcd10c1a717c1172d3adae21ec96223"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MonsterTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MonsterTable.cs",
+      "rawSha256": "b0e902536a7dbd52f5c3cf796ed62e5f3c9e9aa8c5473224adf22930edf28cd7",
+      "normalizedSha256": "404d7ea4ad49e20e2b543aae85452aa6475c77ce797b0615f34c85f62735d7de"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MonsterTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MonsterTableManager.cs",
+      "rawSha256": "c90449abebb7a1bfcae151c4500c0115375927978700f2504ed6ed363838553b",
+      "normalizedSha256": "0bfb5487af89c78ef2f497cace4e104937b6184f97e623a6df6fa4bf4f8e55a2"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MysterymerchantgoodsTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MysterymerchantgoodsTable.cs",
+      "rawSha256": "fd2ad8da863fb62a05b408a5553c2a9122e0c99f48edb8152c62a8c0847447a1",
+      "normalizedSha256": "bf42537078d865678e18a7c05267e65b4448f838e84f796f6856966b0814d3e8"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MysteryMerchantGoodsTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MysteryMerchantGoodsTableForeignKeys.cs",
+      "rawSha256": "91e5081a2b0836d22c915ecf02c24e2d1062779c055f0d0830026cc47f16f544",
+      "normalizedSha256": "fdfdecc5b8e2aed05a7fb0580ee507d4d386c01cf03f6a1f41edcda86f98e8e0"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MysteryMerchantGoodsTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MysteryMerchantGoodsTableManager.cs",
+      "rawSha256": "4115b65efe72d9e2cff8c9f5264782bf27751dcb215c0a8a5549b9334ea2da31",
+      "normalizedSha256": "3872a5a5aaa34d8143bd212e873632fbcfc3ddf5dd2c394a41413424a7317496"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MysterymerchantruleTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MysterymerchantruleTable.cs",
+      "rawSha256": "1fcf8a90bda34ed02534abb465c75028f29bf96fc767bbe1d987b44e17ad31ef",
+      "normalizedSha256": "f3a753cb7377af823872bc9dccaf1593da97c2645a87a6ceb70f70fd08166a58"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MysteryMerchantRuleTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MysteryMerchantRuleTableManager.cs",
+      "rawSha256": "f6f5e1f6cef31a9a57291a4c4b533bbd933352bb823af6591c96ebed72b33d38",
+      "normalizedSha256": "053beb9abcba591ee4d6c8da3374b83eacfcd2523989eb04d8dc85c77bc1dcbe"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MysterymerchantspotTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MysterymerchantspotTable.cs",
+      "rawSha256": "3a6bb562adcac1985a211913241da69f74b6647eb6aaec1898e3efff23b0579f",
+      "normalizedSha256": "a173c3b6a87b58b9f41c233c6438630dc2fd3e8343e57ee417da72b4b8020bb5"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/MysteryMerchantSpotTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/MysteryMerchantSpotTableManager.cs",
+      "rawSha256": "ba187b3928cdf499ea63d5493881857cacf5b6ff93ff5d78c644d3ee8cfba274",
+      "normalizedSha256": "e475a24cd71f255d9ce3a0c6daa38f555e91576f0a94d64be9105725b648f694"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/PetruleTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/PetruleTable.cs",
+      "rawSha256": "ffa548631bd43ae9e96b0c1910935f912270d9a885eb2a84e0fa1187f9ef16dc",
+      "normalizedSha256": "2b605f23d77414a1e1e7f2409257b79db00ee886b92bbf875be3a5974bae3301"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/PetRuleTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/PetRuleTableManager.cs",
+      "rawSha256": "9c4a6e34f66e94e5a1c95772b8b7c9e3b4799d28f27975a95281e0515547e220",
+      "normalizedSha256": "31a3727c653665f6f71f53b1642903d5da5c89e6e085a36bfe0adac84b2b6c8b"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/PetTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/PetTable.cs",
+      "rawSha256": "7f0670f41a10bc69d9b9764ad5889eec327a86f88df50f047a1084734bd983f4",
+      "normalizedSha256": "5ad2b8ff982627a0597a68b413e513ebdadded9071456d3828f8327b0db95fb8"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/PetTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/PetTableManager.cs",
+      "rawSha256": "1c6976636c605913a414ec4ffa229f832c35c5ac010b25e349f330be518e4261",
+      "normalizedSha256": "1de2c3ad0c422eb93bb4cd0bdf153ab17c502b8cbcb62a1de49c6de3d295444f"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/RewardTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/RewardTable.cs",
+      "rawSha256": "52f2abe43f5c9d512e3d9fad829e0d52963bba27b513796f678d4b57339b69ac",
+      "normalizedSha256": "b0693c529f835c9004e412ab0726b03591568aedfcff1753c035848ece235b8b"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/RewardTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/RewardTableManager.cs",
+      "rawSha256": "324f504061dfe058b5e5acbcec5aaa02262f3e1e6397f9487a482d2da0e16c1f",
+      "normalizedSha256": "e870fce4812aa0b5807236890d216c9a3181230bf1788dd12ef78e907b11742a"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/RolenameruleTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/RolenameruleTable.cs",
+      "rawSha256": "6ce3351e277ec0b46a099173c57ade9e922299c750bc3f9e9880a095185e1739",
+      "normalizedSha256": "e1d28bf204fca02ee8f40244fed3717287c6c91bb1bc3bf5a05d19661b3c3cc7"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/RoleNameRuleTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/RoleNameRuleTableManager.cs",
+      "rawSha256": "e92d3f3b7625d790f0c906db5f208d2200858e92e216336311f5a23323fc8d26",
+      "normalizedSha256": "4f5c9bc515a5719608c393b6c72c33fb750810a5eaa05ec4bad46ef3850abec1"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/SkillpermissionTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/SkillpermissionTable.cs",
+      "rawSha256": "dfac88d2e8d23581b83644f3c8ce704246b99af05ba144473466e85845039987",
+      "normalizedSha256": "863479887d22004c8e13f53aa8ad47609a47ae0a7b5855deb7686f10fbe2e742"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/SkillPermissionTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/SkillPermissionTableManager.cs",
+      "rawSha256": "a1763d0c2ac5d94bd4627583125845a5ffdf5fe5e580fd8349c1509bbde08c23",
+      "normalizedSha256": "0713e8e2b65fd3622ba801a6ec7daf8748d254fda6a28c189de4af16ec824b2c"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/SkillTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/SkillTable.cs",
+      "rawSha256": "a8af5c8e57482106c0ec6c81ba29c57fc55d4fc398645f8a8ce7c2dd8ffaf8ae",
+      "normalizedSha256": "88d2fbd9c1ba197efcced17d029ab269126ee4c6e4ab0daa9586605d916d9780"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/SkillTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/SkillTableManager.cs",
+      "rawSha256": "2e4b56e2f56780fda258b39e2b8074b88340b6bf4804b5bd7eb745a03b8a6876",
+      "normalizedSha256": "8d88345047a5c9a2ad343bdb7ece23c639fd3deb075dc5f18901dbaadf86e525"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/TestmultikeyTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/TestmultikeyTable.cs",
+      "rawSha256": "089419fb7bda1db4e6df839514a42f02d74d57d632ee3e56e6d4121f026bc1fe",
+      "normalizedSha256": "56cfea197fdb86e363e39ae69c8c0535f92eebd662e6e55096ea6ecc46395eeb"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/TestMultiKeyTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/TestMultiKeyTableForeignKeys.cs",
+      "rawSha256": "18d7b0618069160edc452fab90f7fc6b14365f75768b85e6133bb90cac65d86d",
+      "normalizedSha256": "f715f1f8dfc217f4b79d83a2a2c7e653e1cd12482802c02853e5d2707e149677"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/TestMultiKeyTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/TestMultiKeyTableManager.cs",
+      "rawSha256": "38b61cba52ec527a0ce956bf3f80d78d7cf72ad86516aa96baa659f9eb9ac916",
+      "normalizedSha256": "749aaeb76c039bb5591f2a06dbf87d342e5fc6419153c908910ef9779598eae1"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/TestTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/TestTable.cs",
+      "rawSha256": "47874e8b8ebca781043b8f74ded31d4935328cfac6efa30e90996bac8c663553",
+      "normalizedSha256": "03e2057334eadb37f56d00f2329a9dd7c97e28d0c1daba37e360f4c3a63426d6"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/TestTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/TestTableManager.cs",
+      "rawSha256": "028caa4a4503827adec9769ac42e6c1567694917233eed76055b99f920343fa5",
+      "normalizedSha256": "ac9104d54e7eb81cff6cdb056bf15ecb55952fcbf59baa091b086e46e86faec6"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/WorldTable.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/WorldTable.cs",
+      "rawSha256": "cd1c8a16ac05da660babb61c303afd3580920d379679281601345b5a51e155e6",
+      "normalizedSha256": "4047aab046939a1af25b0eea87e0a10bf5163d9c3a52fd65c29d3d409d7f220a"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/WorldTableForeignKeys.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/WorldTableForeignKeys.cs",
+      "rawSha256": "ef7618df0978496f369b6a5cf92a6a48aea5737be60fc3d0268079a539c0a41d",
+      "normalizedSha256": "6f43f0494d76abb3f8e428acf0a93ca149a3bfe798e60858b67332a0f563a448"
+    },
+    {
+      "source": "Assets/Scripts/Table/Generated/WorldTableManager.cs",
+      "testedCopy": "Assets/Runtime/Table/Generated/WorldTableManager.cs",
+      "rawSha256": "5cb084ead662109cd6a8619a86795e9bd99b36a5747932b32f130da44134a4e5",
+      "normalizedSha256": "0786cbfe5cb2d5ba3270d8f8995ca7a6449370443ba65ec1108c7b556b60979b"
+    },
+    {
+      "source": "Assets/Scripts/UI/AppBootstrap.cs",
+      "testedCopy": "Assets/Runtime/UI/AppBootstrap.cs",
+      "rawSha256": "b830fcaddf327300d45ae1c4e82cf97597ae36971984d34fc7fdc5ef9b53148c",
+      "normalizedSha256": "6fa41a13c24c220ec771c761d91850853f16f6c6fc9a547546a2f4a36a461c20"
+    },
+    {
+      "source": "Assets/Scripts/UI/SessionModel.cs",
+      "testedCopy": "Assets/Runtime/UI/SessionModel.cs",
+      "rawSha256": "e8217246479571628745c5d459544bbf7a24b7c64ab0d4013058c021561e8de3",
+      "normalizedSha256": "2d89118aa5bdcc7987977d1741a8f96260c479bf149ff4559d8081f7a42d086d"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Attribute/AttributeFidelityLayout.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Attribute/AttributeFidelityLayout.cs",
+      "rawSha256": "fbbdcc983042e151aef97bdd2ef2fc8d3c6cc001c08682c30224f988ac7d677e",
+      "normalizedSha256": "e76ac65d39f4a886f28bae6e50a4c8122d6e4c18b37ed501f1739298106afac6"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Attribute/AttributePanel.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Attribute/AttributePanel.cs",
+      "rawSha256": "30a4a6f6b969b3aa32178cb92fda5e463606fc3f9c03aab7c9fe3d35fa1d2a02",
+      "normalizedSha256": "6109c54190a2f1e07a4345009a8c96607f67878d88061027ab2c4cbae2a4427d"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Attribute/AttributePanel.Fidelity.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Attribute/AttributePanel.Fidelity.cs",
+      "rawSha256": "abc53802dd05bfe90eb18de76ea8dcb489c87eb491333991fa5289e5b83d6457",
+      "normalizedSha256": "abc038f4efac5500a2a6b36d1d96c0a922a5eaa2d404b10693bf2b178d414001"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Attribute/AttributeUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Attribute/AttributeUiRoot.cs",
+      "rawSha256": "856ea3da3438766f29457beb3c776c72e509534e5ffae8a3966ce19fe341d183",
+      "normalizedSha256": "12100c5a9f8f1ad4457cd0bedd3487ce2434865ab16cbf5c04a88d8f9d83271d"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Attribute/AttributeUiStyle.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Attribute/AttributeUiStyle.cs",
+      "rawSha256": "6609954376435820899c831c0231d707b7e94efd269102ae682a7372933484d7",
+      "normalizedSha256": "1828b19f86aa072c54a12f497b497414f586ce4ad07b11cd15f0b44e848ba5b3"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Attribute/AttributeUiWidgets.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Attribute/AttributeUiWidgets.cs",
+      "rawSha256": "c76cd9cdb5b37fab24a0bd337c2a73d566e92186850d2dddfae8a0558c44d020",
+      "normalizedSha256": "a05ba664401202dedde9d3f707d4b4707fe387bcb4e8704fedc8d7d44d0ba606"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Attribute/CharacterAttributeScrollFocus.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Attribute/CharacterAttributeScrollFocus.cs",
+      "rawSha256": "5257081eefd87fb3dcfcd45a866add488ce956b917d2f2c4aa0b40fdc42295de",
+      "normalizedSha256": "5f6fe3bf916b423686e4e69740ab485b7d8c1c32007bfe177915a5ad3f5565bc"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Attribute/CharacterAttributeVisuals.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Attribute/CharacterAttributeVisuals.cs",
+      "rawSha256": "03b6b2b720da94d7a0853e4237f5c43eabe77f603374e0a737e43c4d6fa25d1f",
+      "normalizedSha256": "960621b4e6a5c721fc63f6c26033c0c5bdf0b7a593f6e230291983e62840bb30"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleActionSpriteLeaseOwner.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleActionSpriteLeaseOwner.cs",
+      "rawSha256": "3b33fc54291fc3235494ec31e5c91d2e1be56c0e18395b7c5e7dc792d79493d1",
+      "normalizedSha256": "3b33fc54291fc3235494ec31e5c91d2e1be56c0e18395b7c5e7dc792d79493d1"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleArtCatalog.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleArtCatalog.cs",
+      "rawSha256": "6d334b80d073ad1306f3a35cd37892484cb7f48653547eb9abedfcd0c1feb75e",
+      "normalizedSha256": "7083706571cae452f07acae7f71be2b9d3e8393f7a5ffd62c5856fef374c28c1"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleChallengePopup.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleChallengePopup.cs",
+      "rawSha256": "4adb5a93343422918b2f497a84bf5bc913451021d6567e63600ec3597746d85b",
+      "normalizedSha256": "e22f8bdf7c0a0a698845e6df814f1e60d071fec12dd6b0698db62b32d66431d9"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleCommandRing.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleCommandRing.cs",
+      "rawSha256": "063e82bd82cebb2e3a4d0772f1e1472e64f8efda0049f0428da056e2a16c3bb1",
+      "normalizedSha256": "1204b9ccc3298d51e5554377371f1a8b33ca2adb7b7c3a63d1ff25f977b967b4"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleFidelityArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleFidelityArt.cs",
+      "rawSha256": "f4b0eff51fdd1fee70187b81e1c38b7706b8d1f30f990199054dd1676468c62c",
+      "normalizedSha256": "73d0e6f44b9e71696d042421e1d4000861f2af219e0d4d21c3e6db4e0e77f15c"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleFx.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleFx.cs",
+      "rawSha256": "5cdb9da47395adc574369ea7f0271ae605163831d07f14fa0845b69bf59820be",
+      "normalizedSha256": "785d8783212e989fc909d29ed033fa8be9ebabe8d2a8365c0769cd08d6b5f8c9"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleHud.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleHud.cs",
+      "rawSha256": "7491c57673c19fd80b9520c992004a2cf9718f6bfe1dcaa9ed28e5b69ecb5dca",
+      "normalizedSha256": "f50c53dd0ea5f4159957fd8f02b0dfa3acfea543624c26f2aa78237dea206b99"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleHudLogic.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleHudLogic.cs",
+      "rawSha256": "48e57d087c14eec6278f0e8338c02829152f27a534e5e99623628362af9fd675",
+      "normalizedSha256": "787ca51e7a35cc7516492d39f099a6340110733a9d38143c0e320b9a566c1f99"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattlePlateFollower.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattlePlateFollower.cs",
+      "rawSha256": "156b00d965ce2a29ddd93df0035330952728bbd64217216143fb6f4574f629c5",
+      "normalizedSha256": "6fa514780be72ef8cdb5714f5cd54945533fa1f7cac07a83b4517a986f9343d6"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattlePresenter.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattlePresenter.cs",
+      "rawSha256": "35e3c6f8444ab8110b9b853b13a48e6c5858d6d7e74c628fe3a70913063c818a",
+      "normalizedSha256": "18aab7451657a7d9579372f8047361071cbeba3464c9d057294674c23e2e4c1f"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleQueuePanel.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleQueuePanel.cs",
+      "rawSha256": "6639c2b88c12758f85a8b5aba7d76717bd08d8f368355bb3742f5578ed151b4e",
+      "normalizedSha256": "944a634ba323c4c4fc53cb7c9a2ce93696ea548f32f99e8d81aaf50587ec217d"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleResultPanel.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleResultPanel.cs",
+      "rawSha256": "4e8f0cad9e30c5a0b1601a5a41ab70b494f2ebd8defa070a2791be03cc0a1547",
+      "normalizedSha256": "705bc774c752b647c293f6bf084b03688efccf9ba236e8cf86629eed5927e330"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleScreen.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleScreen.cs",
+      "rawSha256": "e747b0e8cce2520667163c0a13e7912b68541643b9eee1d19324500bee42bf4d",
+      "normalizedSha256": "6637aa5d1b63585716a72e94e021c08d7635351dfb16409faca0eb0a0636e7d9"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleScreenFx.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleScreenFx.cs",
+      "rawSha256": "7ce85b0beaf38380c4b420e2e4941399ea02be40d984cc8e946ef6fa7ca906d0",
+      "normalizedSha256": "fa890a2cf721dd5bfde8596503c511264a6b9382ab29eebbd7ee23200935eec5"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleStage.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleStage.cs",
+      "rawSha256": "6465a78439e793047af73ef690c504846a2a1bceef44877fae42e38c5767438c",
+      "normalizedSha256": "af378069db981b473a7037e8175d3ecc4de2fce20f75b076aabaec5770cdcb04"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleUiRoot.cs",
+      "rawSha256": "1beddcc1c88733548169b795c3749bded1a797c5b0d85e8aefe6fa24a256c994",
+      "normalizedSha256": "66dfac5a1ec7f176c0ac874c80f7cdbf6de2c2ac1056ed16f232bfda31755add"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleUiStyle.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleUiStyle.cs",
+      "rawSha256": "184d0ef6ed5c3b39a7ecbb921e708afb7294129e30d0fc43c62ff57506fb5fa7",
+      "normalizedSha256": "c038b5889334a25893acf1b8d9695e6d676f95edc3041ad7f06b4f2887ed325a"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleUiWidgets.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleUiWidgets.cs",
+      "rawSha256": "294064d8c0382dc960f32190cc9ae234457646e3b8749d94493a9ebe011dfcc5",
+      "normalizedSha256": "7972a3cb51203fae7dca5d21dd4f0e5856465bf4f0993ca0df2952f7baeefe9e"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleUnitSlot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleUnitSlot.cs",
+      "rawSha256": "29f0a70952c983c2a7fc11920f55d5f8ead9998a6d90e76e451b9aaad3f00100",
+      "normalizedSha256": "bb45da0ba49d0e1c42b0317f811bf60c5ed7fb628fffb7ede110f28a4b1fc5bb"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/BattleUnitView.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/BattleUnitView.cs",
+      "rawSha256": "9a621e7a8c2a98bca22ca8f6a40a28e2a9fcf59e358e3c921f67215a1b36450b",
+      "normalizedSha256": "5cd2ad599dba9be6753e669be82af57cf75f38cb03926c52cabff78af66bfe9b"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/DamageNumber.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/DamageNumber.cs",
+      "rawSha256": "1c98f986bedfc7bdffa0c53c379d3b0790d07a3ea43cdcdf14f7aafb6a7c3da8",
+      "normalizedSha256": "1ec0db254c26c0afde4b1d7bbc873ce6238bd7a77cc5c9c40ef0649b25b473a4"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Battle/SpectatePanel.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Battle/SpectatePanel.cs",
+      "rawSha256": "2313f72416d1e7ad1128ff22f688c688ead51c8cffbf37652d8c824bd4a1a760",
+      "normalizedSha256": "848054fa0bc7b407a30ecfa774159b91379ae9e92b86e06cebaaf2d6aff3da50"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/CityTravelUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/CityTravelUiRoot.cs",
+      "rawSha256": "07ffc52ee4e01c349ea5591bc1c8bc95ac264203702aae1f1b33d34a3fe1f343",
+      "normalizedSha256": "97e4ccb3dbefd9a69cbb805d40c5ac751478dc4eb45117d6247521118cee5d5c"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/CityTravelWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/CityTravelWindow.cs",
+      "rawSha256": "ee1b2ea188ef9cbedce3f6d589a6933ca3345e1b6c658a5277e8cce59fcba777",
+      "normalizedSha256": "8ed1a8d6a94134a59a5f8b00cd043e0c997b195d3a90447e3a814b8b96f15f48"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipActionsDialog.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipActionsDialog.cs",
+      "rawSha256": "bfde450d453a4ce8b05ad781f7bd057dd55863be7583e604abe0cd7a274aa08e",
+      "normalizedSha256": "2de181e55052a02da01a391fd0f2a0462b0b033a31544ad051cb81ff6dbe629b"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipBagModel.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipBagModel.cs",
+      "rawSha256": "b17e77421215e905c06910bd3d989757194ef7d0be9fe002fb4585b66b3a1661",
+      "normalizedSha256": "687360e10c365e9a44bdf740975d4e59199aa8174d27f055d9f44bf193edfea3"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipDetailCard.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipDetailCard.cs",
+      "rawSha256": "fd849ace727c60726767709e2d582aae02d1bad5321141ff4e57c45d7f7b5c2b",
+      "normalizedSha256": "0bb6e676417f1e09ed4398b50f67d8de2c8176bb81ebd2d7f90cf543b9e97271"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipForgeDialog.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipForgeDialog.cs",
+      "rawSha256": "3d846e4558c8a536576b4814e0ee6d675013595b0cde0b5837e719ffdc2ce93e",
+      "normalizedSha256": "b8ee5b61c4518a6d0243975fcfc406e418d8432189217e4e99cf7d184ad10e9e"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipForgeSocketFocus.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipForgeSocketFocus.cs",
+      "rawSha256": "688f9d54dfa5d1d1c28f6dffa1215c31856a818c362d19b60d54197b05f8fc23",
+      "normalizedSha256": "2ecacc162685e067e347bc7fb2ba345ae1004c474009c4e400ff298252fdf497"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipForgeUiState.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipForgeUiState.cs",
+      "rawSha256": "09fdc866943f4d072d010bbab038330ca67c7fcdeb851cf3b7dc6f8427c0ad33",
+      "normalizedSha256": "e5c730d6338adbcf26c707f0a674b89b915a2faa7024b1cb47078633f008e032"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipTooltip.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipTooltip.cs",
+      "rawSha256": "e500150f5d819507683ae0b786ff8d2484da00da497536596014cd3601148ffc",
+      "normalizedSha256": "b6e1b9a5775ac65ad27485495f9e01bf9fa8cee838ff2ea20ea939cd487d0e64"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipUiSkin.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipUiSkin.cs",
+      "rawSha256": "4410ba14568fc1d33668ee0a934a2113b13a465fe872e741b34f70b081709bbf",
+      "normalizedSha256": "147f6f0de5425eec0cdd5a728b9a03ba740bcbc3ac241671fb44166dc753617d"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipUiStyle.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipUiStyle.cs",
+      "rawSha256": "35963b69f566147c8f7139cd98fcfc4f578c9d0d5fcb594318fe3cc535d3395e",
+      "normalizedSha256": "5f11ad3db8c0d3692dbb1df6458cde45550aadfc96faf65f5d8b16f59225e43c"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipWishDialog.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipWishDialog.cs",
+      "rawSha256": "831ee9b3f835212683b6c87b2f671f60d6e3fdd018e9905453472d21f55feed3",
+      "normalizedSha256": "0fc4cf922f7587c540a31308c143b2596874c58dd9add3bdfe3ea257f24096ae"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipWishDialogInput.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipWishDialogInput.cs",
+      "rawSha256": "afb036aaa608807549143d7cd578bdbdc04666789bf9627fcbfbf03d844c888d",
+      "normalizedSha256": "6ba73c597d99867a10d0383f1918a200c1b8a50e7cf66244d6041caac9c4fa44"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/EquipWishSelection.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/EquipWishSelection.cs",
+      "rawSha256": "4c0d243976229e9a97f5ef61f81f8036bab5a898ab44640e0234d9652cd50884",
+      "normalizedSha256": "3282532438e22074fe17e10b7a11dedb3841b81e921f2422f75dea1d4f372fcf"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/GameplayDesignFit.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/GameplayDesignFit.cs",
+      "rawSha256": "93890a281b3a83cebbae53ea84e376e29a4490a0666e183f3b6736fbd7ff748b",
+      "normalizedSha256": "b8b73fb23f8faf8373becf7f55b79650abd516efe2b6f65f938b4a0bdb217cfb"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/GameplayUiArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/GameplayUiArt.cs",
+      "rawSha256": "5cf284d67d805be351c862a950ab641d85153e24c043c2c5bffcea4c0757a89f",
+      "normalizedSha256": "c4556c3f0730975a7d307426e46298237c1e8da51c5918cb1209d639ddef936c"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/GameplayUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/GameplayUiRoot.cs",
+      "rawSha256": "2f0a7fe4b4b837ad346eacf354bdc4dd51ada5914e775acf0a69cd8d8479c9b6",
+      "normalizedSha256": "774888401f1d184b99dbed39fdc090abc75f8a63ba7a1f6572df473115e4bbef"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/GameplayWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/GameplayWindow.cs",
+      "rawSha256": "587fe782dc25a2017cd8ce8a6b5607040f1d4dee57320c728a14d4b34cbd35ed",
+      "normalizedSha256": "6ac6804b8d9ecb1047e81b7e312d97b0f77054ca2a8fab927852634596c32855"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/GameplayWindow.ExactLettering.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/GameplayWindow.ExactLettering.cs",
+      "rawSha256": "b504d320459814f8c8dfed0dcaf24db87b92b28f8273c9722effde7d60ae2b34",
+      "normalizedSha256": "f9884c6a6cee70c7805cf7521d2dba9a1fcdee7f8d4ec552829f757153f6e3fd"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/GameplayWindow.Fidelity.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/GameplayWindow.Fidelity.cs",
+      "rawSha256": "1e3a55db91a44a07a97497e25f9c9e12ac1da54b1e66a08fbef1933c4a74eb0f",
+      "normalizedSha256": "fc70092324c9c5258fe474050702f50702cfae16fe23033fb31aacc304d31ec3"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/MysteryMerchantUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/MysteryMerchantUiRoot.cs",
+      "rawSha256": "04263c839f6d71f8a54ee4de099f5748b826880ea6f701639c5ae886db5244f1",
+      "normalizedSha256": "2339088676167eab308b0d8fb326935d910a752d6cf3345a20d99e6d4127f6ab"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/MysteryMerchantWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/MysteryMerchantWindow.cs",
+      "rawSha256": "cd3ac5634a69356327da1b2823c85fe51b7b07043eecfd172a1e4aad85607fdd",
+      "normalizedSha256": "dcd5cf4736bffabeda0419f1a68f40aad6007dc68d56ea184263d37d2d22a217"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/SceneChannelUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/SceneChannelUiRoot.cs",
+      "rawSha256": "217d9cc125921161a5b7dbd7772d4b793632e72b917955ac473c592a53ac1af8",
+      "normalizedSha256": "1295e36048d100380f3ce4669b597eaab9dfeb8d683aa6c35878d4eb6b3dc879"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Gameplay/SceneChannelWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Gameplay/SceneChannelWindow.cs",
+      "rawSha256": "9c5f43fc1aa62e3569368cddecac97d196d1b1dc2ddee9f4a4a1921f5f384cf9",
+      "normalizedSha256": "bddf8d0f9c9c4ba640beaa67e5414176d8ba91dfddf631da29a1b911a61bf1cc"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Guild/GuildUiArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Guild/GuildUiArt.cs",
+      "rawSha256": "58e65b58a336e7e60af54fb6e9a727ac0144523c4d342d5ff4a07e2f4969ee23",
+      "normalizedSha256": "3df8f15e6513101ed0dee2da793ec27e7a16a9e36ea3372d1eb2504a991c3f59"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Guild/GuildUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Guild/GuildUiRoot.cs",
+      "rawSha256": "6bd3c94fa5d767e4801713180f3e730065b675fa30085d9a1556f80a55e08c9a",
+      "normalizedSha256": "fbe18411ead67c97a599df364211963ec7d46f02441bb7783887c72085923e7e"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Guild/GuildWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Guild/GuildWindow.cs",
+      "rawSha256": "0db9d50588cd4918641eeac06309ee8c4171e905d51092623ade4f73a59248bd",
+      "normalizedSha256": "7cb3366d1d25ebfc8f1d3c2383b7199ea9e2404be8aaec9eedc1ded1a80b78a4"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Jubaozhai/CommerceWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Jubaozhai/CommerceWindow.cs",
+      "rawSha256": "7400f2747beabd7da0fa9286248cb9baf8990662db4f3bd856668000688969f3",
+      "normalizedSha256": "36325faf157286628d04dd405f438a6c791a0f29d92f0a8be2178a88870b6eab"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Jubaozhai/JubaozhaiArt.cs",
+      "rawSha256": "a1a63013120c013de2570508349eba9e3f66159feb48e5654f09ad69eff7988e",
+      "normalizedSha256": "911b4fcf2ff8c7aeae03a5693595dc584724bf9afcd57151c3b85d9b78a0325e"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiDesignFit.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Jubaozhai/JubaozhaiDesignFit.cs",
+      "rawSha256": "647f2e439d476c19cef0c03f0c385d627d01b934faff45c51bc8a0f5b0fc815b",
+      "normalizedSha256": "1999204f024ac4b64cad967232aa4315e482c75bd12880192fda156127948444"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiPreviewHost.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Jubaozhai/JubaozhaiPreviewHost.cs",
+      "rawSha256": "7abe9d3c984f524dd28bacb914a6c1652b8c50a66d568291522e472c748116a8",
+      "normalizedSha256": "1755bdcb238a622d9f36001fca6163183116b1f8832454a01892672e842c3bce"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Jubaozhai/JubaozhaiUiRoot.cs",
+      "rawSha256": "f4fa8cc60df08507c37510405214305cdb31ac6a8552958780ddc3d7c9e501da",
+      "normalizedSha256": "67295eba51fbdbefb7acc9fd5fbd83cb49ad798611fc541d312b74f4c9599b9e"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Jubaozhai/JubaozhaiWindow.cs",
+      "rawSha256": "f857d8913be17d1119b3cf892b6631c0238a8816ef3e2c8260db0042024209b8",
+      "normalizedSha256": "9865b8b961421f3b676c31098ecd9b8405cbb25799a303259182ec2dc235499d"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Jubaozhai/JubaozhaiWindow.Fidelity.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Jubaozhai/JubaozhaiWindow.Fidelity.cs",
+      "rawSha256": "a919553f173c5db0b40843b1c1e1216d564329290d2e6fbe3174599bc648aac2",
+      "normalizedSha256": "1c2ca9ce516dbeb14a2ac785b816214894380c3ffda5cce8561301917e1a6c9e"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Mail/MailFidelityArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Mail/MailFidelityArt.cs",
+      "rawSha256": "c744adbef0eafc835ecd711ce05f9537316ee930aec2b15db5232b1b5af8e76c",
+      "normalizedSha256": "57e4293831ad8bcc38861127725dce10a86194542dc90450771446da161c2cde"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Mail/MailPreviewHost.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Mail/MailPreviewHost.cs",
+      "rawSha256": "b36898b0ff8816d3cbf747e64838774c6a82a163901088e8a9dc25661cddfc41",
+      "normalizedSha256": "34b3a197bd753882da09fae3f5d93da595411de53a309e857f793d8e86dfb386"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Mail/MailUiArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Mail/MailUiArt.cs",
+      "rawSha256": "b53ac9dc06be3b98e8a3e5732d3fc37fcc059b750830aa50f2e14e7504629bc6",
+      "normalizedSha256": "e5241b5a0d4dd11f97ca70c1d449e89ae34357cb5ea0fb8ee8b3744b532b6e91"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Mail/MailUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Mail/MailUiRoot.cs",
+      "rawSha256": "a397b4a8da919f4d4c44ae7165a8592814eac74243ad662854955aaea74278c0",
+      "normalizedSha256": "1235b7874eb35ec656dafd1685c2c614a04a6662da5671f8eabb42e07f7d45e5"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Mail/MailWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Mail/MailWindow.cs",
+      "rawSha256": "51fcb2958185eae80ee1e572b17752698c5c4f093bd94bf61c41b1fc6eef1ca0",
+      "normalizedSha256": "a375cc10a713bd7e2be51e7f3532b00da575a93f9c701d1d73012f5ce3832f5b"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Pet/PetArchivePreview.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Pet/PetArchivePreview.cs",
+      "rawSha256": "06fdc53c3dd795eb7cec3c94c12a80f5c3787b6e5996d816a37baf829aaa09cd",
+      "normalizedSha256": "06fdc53c3dd795eb7cec3c94c12a80f5c3787b6e5996d816a37baf829aaa09cd"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Pet/PetPanel.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Pet/PetPanel.cs",
+      "rawSha256": "e8b5dfb620d824c59efd7be4f91ef0e77f1ebf166a375acd79497d855620dc2d",
+      "normalizedSha256": "707c6d5b4ae63e38c7f6fe49f93542a3ae11a0f402f7c8a0f0deff51efa838d0"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Pet/PetPanel.Fidelity.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Pet/PetPanel.Fidelity.cs",
+      "rawSha256": "a0d9f6407ab4f2049de5f500e0ad1de43a0faf462fef68bed8199e485df4f19e",
+      "normalizedSha256": "48068098bcdc052d29b558aa788d892e5e80be3a3ae9ec76a37c40f20e825156"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Pet/PetUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Pet/PetUiRoot.cs",
+      "rawSha256": "0d4e7f928500bfa342e5cc8d056815497dec66cd2cf7ca44133e0c02e2db8d0c",
+      "normalizedSha256": "6e4f6b2eba2d0bd99261f6961113ab71545e8d6d74a777cffcd0f5a057106d53"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Pet/PetUiStyle.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Pet/PetUiStyle.cs",
+      "rawSha256": "95867f0fca5fd7a42da4040fcdf49b73253cb1c489fef925175814235f5cbc59",
+      "normalizedSha256": "80d1aa0785c321d0ac7e7ea3cb501d5b47c2a26784af58c1adf44b77b1284d59"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoCoreFidelityArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoCoreFidelityArt.cs",
+      "rawSha256": "7d70853eda50751e077684e1c37a4c1ba6ad211af02c0cd6a2815db58af04bc0",
+      "normalizedSha256": "1fef797aeb2aefaf25be4b7d6da76af6189b6b36d2351b7fd11ffce6f4088b87"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoRefreshArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoRefreshArt.cs",
+      "rawSha256": "f0883011602415a34228b8d15ef51ff7343785713d623b195e7ff57aef7b706b",
+      "normalizedSha256": "6102d7b98d5fb5c54989e7151a4f1b3e42be1b6285a5ec2026fc0d996d6ce188"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoServerSelectView.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoServerSelectView.cs",
+      "rawSha256": "f8ca6845159de53cd077b232b27197264f982799617ca001594fb2ca7f4c1120",
+      "normalizedSha256": "e73f8f1722c19856ae173b738e2092490d1458d6ae038f36dbdfa6bf951d0354"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoServerSelectView.LoginUtilities.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoServerSelectView.LoginUtilities.cs",
+      "rawSha256": "dcad38e60e8dbcacc7639c6f7dc062218ac2e070b12f91e9c05ab7dd8d268fda",
+      "normalizedSha256": "2227824cfad9a98d7d7727de39b380fac0f93ebfe06879e8867109990987f8bc"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoServerSelectView.Visuals.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoServerSelectView.Visuals.cs",
+      "rawSha256": "c95c93e1847de48fe757ee76ef493e8935bd7ce931f09b82779ae0841540bf71",
+      "normalizedSha256": "abc3d266544630d4d057cac6cb45781a4c9062c55bc65f52f866a08b607cfc4a"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoUguiFactory.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoUguiFactory.cs",
+      "rawSha256": "441130cb119ba344b8b4a95e3e25d57b14de311fb0d3ce5ebce12b7ae0b23edf",
+      "normalizedSha256": "73a80fdf6bc0073004937a543633a694137ce43fe45a36b520b987777cb88072"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoUguiRuntime.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoUguiRuntime.cs",
+      "rawSha256": "4d0507285e2406ea4c50ca4a844b6255b7d0ce358ba6010ef6e81d899826aa3c",
+      "normalizedSha256": "b2c738a26d33513831d06b9ce7aad34d48656dc81a9942da425703165c36eb14"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoUguiTheme.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoUguiTheme.cs",
+      "rawSha256": "7c9ea58b48cfe1d1f49ff25ddeea01db04a81b8a0598fc4be269b89fbb592576",
+      "normalizedSha256": "a47338116090527d51e8924225890f44712561758f0c498e75d39bd428ce6dd5"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/QdaoUguiTypography.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/QdaoUguiTypography.cs",
+      "rawSha256": "8225b0ac31109cf5cc02ccc6cf00b2b0ecb3ed1ccec0fd1772be367ab3bcc485",
+      "normalizedSha256": "070a1634bd53fb6093aba34c8042861805f43276abe540900788675149fd9a34"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Rank/RankUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Rank/RankUiRoot.cs",
+      "rawSha256": "2b1df41a81f3a3dc4151b03df56990d2d81fe8930297ebb8f3ea056fdbf67aa2",
+      "normalizedSha256": "53ee91284b743c44969f2efe0d0867af10c545783dde6f1a8f6527c509ab887e"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Rank/RankWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Rank/RankWindow.cs",
+      "rawSha256": "77fed4bde8d81cabff56ada0be3d4ced20fc7f4922768c3996ca2c8a20b621ba",
+      "normalizedSha256": "27c065778262361bac3ce09cdfa82d255c6fcdb5f2ad0cc7081f38e81c425e7f"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Role/RoleFlowUi.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Role/RoleFlowUi.cs",
+      "rawSha256": "e38b866d30fdd45f9a5851800709ee36e1bc7f03ad429b7965b60bb7f3f34af1",
+      "normalizedSha256": "c5b25519d45bb99be9ebd0ac46d3cd1e8e5cd770d01caec183abd10b169725d0"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Skills/SkillBookModels.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Skills/SkillBookModels.cs",
+      "rawSha256": "efdcf911daefd88f2fe83d9e9b559b6f09862eb3216ee1e09b9deae28c23e3e9",
+      "normalizedSha256": "36f332d614b32bc761090a06e9688ec0a4bfa69f58a865acd8ad0f809aeb5e92"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Skills/SkillCatalog.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Skills/SkillCatalog.cs",
+      "rawSha256": "fb44e21ee99c20ddfa4ab647b70c55795f4dfe8c83b645175ce1211ee549c513",
+      "normalizedSha256": "742265e1db226c493ec8009ea05d46477de3f4df5f47bc88e46c89fe22d73353"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Skills/SkillPanel.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Skills/SkillPanel.cs",
+      "rawSha256": "050df474525c1ce288701a75a8cef8d88f9e21e100d1ab41bd71f9baf0d99118",
+      "normalizedSha256": "0d8688bedb8405a69fa3ea53db9e277497cd0f49b4a086cb79d7e432ffb5e541"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Skills/SkillPanel.Fidelity.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Skills/SkillPanel.Fidelity.cs",
+      "rawSha256": "61f7f972da1a948f101f4d1f1e259234511089d077bc68a5dd23d9a8e0720b7a",
+      "normalizedSha256": "9f95271a6179d45666375fcdd2c95d9832bbe0fe8c5b4b65d41c35e016f3bb3d"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Skills/SkillRowFocusRelay.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Skills/SkillRowFocusRelay.cs",
+      "rawSha256": "e103c0bc572b480aa169fa76f78c44094101bec729d1ccff675310f7fa78d281",
+      "normalizedSha256": "b6ffce69cf877d064432a45ac5d15a378da965f79f60231f03ce9ef29fb0a1fa"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Skills/SkillUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Skills/SkillUiRoot.cs",
+      "rawSha256": "0aa5f4868d8584b1f1bea7d52aa12c0affd3d371716b643e53c1b0293b4b9f7a",
+      "normalizedSha256": "88f6ebbff156015db853e2d2c9aec7e952f05051dd98269ee3076b9bc841a0d0"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Social/FriendRequestsWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Social/FriendRequestsWindow.cs",
+      "rawSha256": "346bd6f05a5a644509d60f7cff45e6e05a6379fc1a3e0c146495b97d4afa2b9e",
+      "normalizedSha256": "be0ca67ca3b122531a86855587e2fd76d30138eb248547f51347a94e6be6dfbb"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Social/SocialComposerKeyboard.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Social/SocialComposerKeyboard.cs",
+      "rawSha256": "562a0927599d3d8bfc59fb1d254d676729d43041300af29b6faeb1efbf523dd1",
+      "normalizedSha256": "1b54a6bdbd4cde853425df23b561a3810755bbd302ace5fa62f0d97163ff1156"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Social/SocialPreviewHost.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Social/SocialPreviewHost.cs",
+      "rawSha256": "a534a48eab9eff755d47507bf83f107c7a970da347823868f9a0d95135e52737",
+      "normalizedSha256": "64ae0c2684d1dac90b0138ea21a486adade400e66a2d8a5e401a2f6c7b503f59"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Social/SocialUiArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Social/SocialUiArt.cs",
+      "rawSha256": "4346fbf2ce1f1d4cca4a7437cf0d1e823b10f5978c45203a9c80c6fc3d90e812",
+      "normalizedSha256": "e1b0c47911531d587666bdd193ed799759b541954a7dc4efee0c3bd96e1032b4"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Social/SocialUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Social/SocialUiRoot.cs",
+      "rawSha256": "0763bd01cd153a5df94a704403c7c420d27d9c6cf18ecca9f39f97185bb7cbb0",
+      "normalizedSha256": "742e14b9d66b96c7f7593ffd5d5dec9a6c992a02ea4dde99a9e3471e530e467a"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Social/SocialWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Social/SocialWindow.cs",
+      "rawSha256": "83ede2d6a1e9c4dd56479206e429a0f655bc4ba45fe48ba241633e155a04f7c3",
+      "normalizedSha256": "0092cf029d8b90b0b16bcc02cfd42cd8a803887bdff40a2037f00099db78a18e"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Social/SocialWindow.Fidelity.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Social/SocialWindow.Fidelity.cs",
+      "rawSha256": "9b1e882506d9a26d00cfe3411805e1e6f5ec3d1cbe16d112dbdbca434dd518d0",
+      "normalizedSha256": "26ed8003527f59a337c1d47a37c38053e26f0d9bd0eee963bfb78b052c30ea11"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Social/SocialWindow.FidelityPages.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Social/SocialWindow.FidelityPages.cs",
+      "rawSha256": "9b58876002296bf5e64c15d362cbd331d84f39044687ef06fb1d3b37260118df",
+      "normalizedSha256": "a5e8c288b7c07a5d9e2d67e25e8026a59a17ac6238c9f4715975d190d9eeca6d"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Team/TeamFollowUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Team/TeamFollowUiRoot.cs",
+      "rawSha256": "e6f41ac6d374d110b55bb012a36e74ce96abe8c7bf3e5d1a5b2460a300b49dc5",
+      "normalizedSha256": "b94f014790790e27369d8a25eb46e59de95ab6e817382aa04d2c355719e5f579"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Team/TeamInvitationWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Team/TeamInvitationWindow.cs",
+      "rawSha256": "0df339ede843dd9b0eb7a84f4da7c7fbd31b33e6a0c6d79541dd6b797d60ef47",
+      "normalizedSha256": "3ac72a60eb9f9fe7bf5c8da9ef4060b22e6d3056f5e0b2fcac51dd09fd3fd87b"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Team/TeamUiArt.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Team/TeamUiArt.cs",
+      "rawSha256": "dc247cfdf5df74bd1d671e819550b83e908bce702578e9fd13319b82b92d361e",
+      "normalizedSha256": "abc55a9710f16a8cddb42ec01aa0572625b5f748b94e032825a7e857e15ca5d0"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Team/TeamUiRoot.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Team/TeamUiRoot.cs",
+      "rawSha256": "e9a2cdb2c15573a397ff7179ce200a7a0b54062c04c947b9cb12ed3d9266f8fc",
+      "normalizedSha256": "8d69c4d34eb2046619a117c172964a1c7eff4a96740cf6356a65ea17f30527ae"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Team/TeamWindow.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Team/TeamWindow.cs",
+      "rawSha256": "3a8c2055b7f3a193f879137159228d51e68c57231a92c4cb5b26bb011e9c743d",
+      "normalizedSha256": "febc32dceafb3ad402d4cb765765b486378419029ed19870e7cff79d675a8b80"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Tween/RealtimeTween.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Tween/RealtimeTween.cs",
+      "rawSha256": "adf0b9f9a94ce5f3a4e1814586de25ca9d244f2752dac6581bafdc09037af142",
+      "normalizedSha256": "0b95a48c4a339c2b97b9cb6a5db960f52ffca626cc5fc46e6625395bac710466"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/Tween/RealtimeTween.EditorCapture.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/Tween/RealtimeTween.EditorCapture.cs",
+      "rawSha256": "f28be4aabff974e9779288bf1d71b8e0a7592172955b65e3c4be8caedd979a1b",
+      "normalizedSha256": "10cfc8705df8acdec7977d8f2cbeeabd9c04dfc03c67229e43833d98b77ea3a2"
+    },
+    {
+      "source": "Assets/Scripts/UI/Ugui/WorldHudNavigation.cs",
+      "testedCopy": "Assets/Runtime/UI/Ugui/WorldHudNavigation.cs",
+      "rawSha256": "f482b0dd2adc25329963b1b5e948351f576521fdbaa7e2a5046f853ab6aee30e",
+      "normalizedSha256": "e4cbf76d4d63b3cc4f5c447523fc8cb3e550df69d4980df15e8f1b84f3073257"
+    },
+    {
+      "source": "Assets/Scripts/World/ActorWorld.cs",
+      "testedCopy": "Assets/Runtime/World/ActorWorld.cs",
+      "rawSha256": "63524c6fd33e1654193f7e404def55a763fdcf4768d2fb9c135cbfa86418f45e",
+      "normalizedSha256": "5cd69d7d93f8d3f3ffd24b17da5729061956f2c271177e72af59ea9039ec26dc"
+    },
+    {
+      "source": "Assets/Scripts/World/CurrentMaps/CurrentMapBuilder.cs",
+      "testedCopy": "Assets/Runtime/World/CurrentMaps/CurrentMapBuilder.cs",
+      "rawSha256": "3fc8061f450a91d92dcb65ec8ef31f433509b1496755ef40418cf1917964fade",
+      "normalizedSha256": "3fc8061f450a91d92dcb65ec8ef31f433509b1496755ef40418cf1917964fade"
+    },
+    {
+      "source": "Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs",
+      "testedCopy": "Assets/Runtime/World/CurrentMaps/CurrentMapCatalog.cs",
+      "rawSha256": "0de48f27dc733c9e5988774368e82c4d00136372fa23ddb1e6ec35d55f3bfaeb",
+      "normalizedSha256": "0de48f27dc733c9e5988774368e82c4d00136372fa23ddb1e6ec35d55f3bfaeb"
+    },
+    {
+      "source": "Assets/Scripts/World/CurrentMaps/CurrentMapHexGrid.cs",
+      "testedCopy": "Assets/Runtime/World/CurrentMaps/CurrentMapHexGrid.cs",
+      "rawSha256": "bb6750ee31bd4d0e261bf7a702b2aae9ea421796fbc772a456838b8ebe615e8c",
+      "normalizedSha256": "bb6750ee31bd4d0e261bf7a702b2aae9ea421796fbc772a456838b8ebe615e8c"
+    },
+    {
+      "source": "Assets/Scripts/World/CurrentMaps/CurrentMapTilesManifest.cs",
+      "testedCopy": "Assets/Runtime/World/CurrentMaps/CurrentMapTilesManifest.cs",
+      "rawSha256": "f842a7a9834618bfd53d5b54b88c3e106edb04d7350684f4eaa7d9ba99fbed03",
+      "normalizedSha256": "7745660be344f698e520eb4844d6c163b0abcb1d5d03b70603675a9cdf63ca7d"
+    },
+    {
+      "source": "Assets/Scripts/World/CurrentMaps/CurrentMapTileStreaming.cs",
+      "testedCopy": "Assets/Runtime/World/CurrentMaps/CurrentMapTileStreaming.cs",
+      "rawSha256": "ee195bf2e2e8ed2a102517638adc96cf93eeea2b0419d47c6cb30fd19efb3a4b",
+      "normalizedSha256": "ee195bf2e2e8ed2a102517638adc96cf93eeea2b0419d47c6cb30fd19efb3a4b"
+    },
+    {
+      "source": "Assets/Scripts/World/CurrentMaps/RedBlobHexGrid.cs",
+      "testedCopy": "Assets/Runtime/World/CurrentMaps/RedBlobHexGrid.cs",
+      "rawSha256": "1f97fc9d84bc2ebe9d09bac7fb0700da9f9b29c77148ccba59649ff2f15fa2dc",
+      "normalizedSha256": "1f97fc9d84bc2ebe9d09bac7fb0700da9f9b29c77148ccba59649ff2f15fa2dc"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoActionResources.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoActionResources.cs",
+      "rawSha256": "163e61461b210d77e0d5f8ae60fd71959986031d75e506b4e7ae8ca250705895",
+      "normalizedSha256": "163e61461b210d77e0d5f8ae60fd71959986031d75e506b4e7ae8ca250705895"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoBoySpriteAnimator.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoBoySpriteAnimator.cs",
+      "rawSha256": "d230e858d5d99b7362c1c8deea8e6282258a3e2db111c6f2d3992dea06f53b85",
+      "normalizedSha256": "d98cf6452d34a5895ae37c384b8feb0f6134195ee854474ba50a971ee7d34cf2"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoCharacterCatalog.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoCharacterCatalog.cs",
+      "rawSha256": "2120bafb3666dd1d4d3f57e98317fc907585d3a6f14ee878546113938f868b4c",
+      "normalizedSha256": "67b924ba8a46c64cb809641d0009c6e11dff2d991fb0972f338d59012463b2f7"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoHdResources.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoHdResources.cs",
+      "rawSha256": "26b14023ada2fa45315cea5089213528d85d6e0a0563373743d6d286adc444e9",
+      "normalizedSha256": "fad870b534831adb0c89b555d52a1da3257d23666cb448ec76fba711ae17e80f"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoHdSpriteLeaseOwner.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoHdSpriteLeaseOwner.cs",
+      "rawSha256": "a6432d43f547fe18d338bec34f389707355801a4919db6e3dd80f1c06f6906a8",
+      "normalizedSha256": "3f564428a43752caf1703c632ec5e1054605222b1e74924927f924effa9e9f61"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoLocalPlaytestContract.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoLocalPlaytestContract.cs",
+      "rawSha256": "7b86a31d1440d04464b7deef120acdeed9e59809318cf716d309a8e7c430ef5d",
+      "normalizedSha256": "1810b4e05ce1e4acbb58b50fecf9476c24d519fd45855276bed4abc0bb03db85"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoMixedResolutionContract.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoMixedResolutionContract.cs",
+      "rawSha256": "c3858b3d5beb7674cf8f08966f908f2b2f91eb301766bbe46c24cc87acb56047",
+      "normalizedSha256": "9ac3b20da07f4f0b5da6c1afc0bed31245cb3b23b66f6629c387cb9df6cebcdb"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoOriginalHdResourceIndex.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoOriginalHdResourceIndex.cs",
+      "rawSha256": "76feb5ceac4bf401f3e0d104bbd7d94cef5cc2e1ea35a9851f7e86b7ecf98f16",
+      "normalizedSha256": "6d84b5c19321ebef50bcd0a8d2a3b35df87fd38a2f65cae29465b77243182440"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoPetCatalog.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoPetCatalog.cs",
+      "rawSha256": "338ee66edebd45181315e86839f44c584524522eeff64747cd7869694d5525fd",
+      "normalizedSha256": "338ee66edebd45181315e86839f44c584524522eeff64747cd7869694d5525fd"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoPetCompanion.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoPetCompanion.cs",
+      "rawSha256": "6debfd4e34c727f98c41c35b20959dca5187a009fdd5b18aa0c89a2fabad3ce5",
+      "normalizedSha256": "71d42e9d4d4e4bb9361d027ec75ce8c81784250f087c6e8f24181a4efb82401c"
+    },
+    {
+      "source": "Assets/Scripts/World/QdaoPetSpriteAnimator.cs",
+      "testedCopy": "Assets/Runtime/World/QdaoPetSpriteAnimator.cs",
+      "rawSha256": "7ed9793915ea44a9afb2e30a92bbc7f43d9a8534200578e698f42c916541061d",
+      "normalizedSha256": "4cf9c64a0b0596d7883530ff9d8e7e006946566449c2a761127e81cb33bbf69e"
+    },
+    {
+      "source": "Assets/Scripts/World/SkillFx.cs",
+      "testedCopy": "Assets/Runtime/World/SkillFx.cs",
+      "rawSha256": "b415dd95f9dc159e65e31272d99359bc92f235efbbddf24c18d59b4fd2858e1d",
+      "normalizedSha256": "4e752d527052b13e6b3d360f60a01385c33908269a937a7979899baada96c204"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/CityTileManifest.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/CityTileManifest.cs",
+      "rawSha256": "bd735567534554e07698e1f6e118c3872bca58c9a6dffb9b9d1bf2aadc9efac3",
+      "normalizedSha256": "12c73b04a777e48374a8371f372856eda838d6e883fcb3d213d8c66633c82745"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/CityTileStreaming.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/CityTileStreaming.cs",
+      "rawSha256": "1d48350a4e1d751d6e77f1f72a1514f131579c6cad40026469b39a85fd24b33e",
+      "normalizedSha256": "2a45f67e34274255c76faf548de70a6719731f618a61fbcee01b9a437f55bf96"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/FestivalRegionMap.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/FestivalRegionMap.cs",
+      "rawSha256": "e6c6c188e5d4c855f5627d2a8d4415769f33d6486ba8427c11feb3956af6796a",
+      "normalizedSha256": "10b10702dcf49b8d32c8c1f0169d60d26df7a646193a70015da9aba15d5b3b62"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/GameplayInputGate.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/GameplayInputGate.cs",
+      "rawSha256": "67932811a0ee570dfdab20e2df7fbc9f40ff85d5d718db3370fa657133321c67",
+      "normalizedSha256": "17de6fff06b9224f7ba4cf477e15f57b669d08dbf5f804756159d09da0a98efa"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/MysteryMerchantNpc.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/MysteryMerchantNpc.cs",
+      "rawSha256": "323e7836e821e0e69b8ab02d174d743460f8974aa64ca1daa3ec78ea62961ecf",
+      "normalizedSha256": "12cd89ea2fc1453f0a2c8081ed8703c2edaac2ce494f99a52b252af39d410795"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/NpcArtShowroom.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/NpcArtShowroom.cs",
+      "rawSha256": "2dd1eb64f8e266009c920c41517985714a67520e6ecfe309f14756e49d6c4136",
+      "normalizedSha256": "2627a393da03a2ec16336d8b72fafe16cebc7fbd9534c842952cc6295c044c59"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongCameraController.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongCameraController.cs",
+      "rawSha256": "6a87caa8512c31bfd3e888c8a86adf7d80dcab9ff9fd6706e72f9a1872c5fede",
+      "normalizedSha256": "65f2c7565e51dce99c549a8f3c66aeaa639d895360f9ab1f28bf8891c094e40a"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongCityNpcs.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongCityNpcs.cs",
+      "rawSha256": "18ffb5930ea32136b9d9511e6e18493c054d0416bd9d1c6767cdf28384a03ffd",
+      "normalizedSha256": "fbae2928e0568cfe7aea2233df7fbba144c3296de1840d0aa6c381525e44b689"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongClickMarker.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongClickMarker.cs",
+      "rawSha256": "29122345d47c178d717fd9493dc9e6ceb2024ad4bb672923c9e3160d6d1fea76",
+      "normalizedSha256": "17159a15d389be326234f87b2f3775362fc6c2c682ba04def9bc442eb5d43b80"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongLighting.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongLighting.cs",
+      "rawSha256": "9ddea85c87049c98ca8d529b9122b2244ef6fb807bbf196cc002967a5eb4b189",
+      "normalizedSha256": "b8f74253a728b3b7e98307426a50bace771b099c305b4b26662ec7afb2f4aa94"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongMapBuilder.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongMapBuilder.cs",
+      "rawSha256": "7f45f8e023ef8a1c587cbe89940b7d08779a9dc5e4af9c46f4011f7d57c0220b",
+      "normalizedSha256": "6dc923b6283b8987816de8021e066886ff01dc1b4b41e8b4eb0a16e6f36866aa"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongMapConfig.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongMapConfig.cs",
+      "rawSha256": "380d48510746006a6062f31a77f9fc1ec3f2f2980e5e5f1f7a117f82af49249f",
+      "normalizedSha256": "1ce05416cbbb7254cd62ec47ae3e1f0bcacc28fdd559c5cadf905d04695861b6"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongMapDefinition.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongMapDefinition.cs",
+      "rawSha256": "bbdf95a0d071be9099131dc7de04d880b15e70973ca56f8857c7f2e3360c1dc1",
+      "normalizedSha256": "a8034b71c774fcb7b99538106b71ce6aa47fdbeaa2e4d699ad81e322ec92dd86"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongMapRuntime.cs",
+      "rawSha256": "ebaacb6de252bd32bd8b7c5102a3f5d6c16d06858bcb81c8e86b66f93b4f9d85",
+      "normalizedSha256": "aeffbd943b916954368014bc6f54bdc1517e09a043fbea33b8ca3b71bb3d9f4f"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongNavigationGrid.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongNavigationGrid.cs",
+      "rawSha256": "ddfee561b220f29bc918655fa7bc137e4d2972a391710ce5e88348e3ac7e89cf",
+      "normalizedSha256": "c5e5424f6e5ad2c34dd0bf6216e7fdf3f77fbd6d0c30220fbeef3e1953810260"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongPaintedCity.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongPaintedCity.cs",
+      "rawSha256": "cceeb57d50d412ae54acb245dab12bd3b565344be0d24d973bb2fbbfb818dfc0",
+      "normalizedSha256": "977fbf4963b7b201a01e63bfa6ba4886fe7d07c562183a1b68bd8295d9070b73"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongPaintedForeground.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongPaintedForeground.cs",
+      "rawSha256": "33f153015fd3929069da5d431452baa34981b5f5eccf52b16aaa6eeda8b4159a",
+      "normalizedSha256": "e5d8cc55c111759b222b333b0b0d6dbeea014a357d750ed47e667d174a254dd3"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongPlayerController.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongPlayerController.cs",
+      "rawSha256": "653cbf861e04f15178870530c614642a0b55248d398df2eb92c77b1187e04219",
+      "normalizedSha256": "7c845b8ae1b5dc9d61717f6d0b84210e6ddbfd38e3c434f2376c627466ca222f"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongSandboxAutoDrive.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongSandboxAutoDrive.cs",
+      "rawSha256": "f40f8ee4512d9b751b22fe955885791d3cdedf4dc4cbd4b454ea630cb3ea46bb",
+      "normalizedSha256": "acd293acbf18e99385e277399105e3528400e18a6d7cc5f0e306d7d36cc14159"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongSandboxBootstrap.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongSandboxBootstrap.cs",
+      "rawSha256": "bae126b50a9985516fdc913abfef7ce9f4bf59cb07d4cb562e0035e8e79121f9",
+      "normalizedSha256": "e4331e216f45659cde229f9c311fb72206dbcd5a8510c6b506799e7ccc0dd9c4"
+    },
+    {
+      "source": "Assets/Scripts/World/Tianyong/TianyongSandboxHudVerification.cs",
+      "testedCopy": "Assets/Runtime/World/Tianyong/TianyongSandboxHudVerification.cs",
+      "rawSha256": "5b72616d9db86d469fe74174b84ec92363e8f81865bd4011dc5e4a11fc0287e0",
+      "normalizedSha256": "16dfb38898965a184e2369ff563a6c8dc1c42f746091ceaf868e5f218b49e0d4"
+    },
+    {
+      "source": "Assets/Scripts/World/WorldCoordinateConverter.cs",
+      "testedCopy": "Assets/Runtime/World/WorldCoordinateConverter.cs",
+      "rawSha256": "60b052ef408b0927547d3f504c59f5b0bd6d97195bfa88896b04270662f3edd0",
+      "normalizedSha256": "bd180b5bfcf93d89900c7818a8c45c19ad4ff890a41ae8a56903c6a6f3d810b6"
+    },
+    {
+      "source": "Assets/Scripts/World/WorldLabelBillboard.cs",
+      "testedCopy": "Assets/Runtime/World/WorldLabelBillboard.cs",
+      "rawSha256": "f2712c8aa22c6f61c3f02c43072c760adae60151dcad2debef5a37d1cc655ee0",
+      "normalizedSha256": "c631aa8b858b9bc99b7dc427960768e3f6165801495e5b382809a802dc580026"
+    },
+    {
+      "source": "Assets/Scripts/World/WorldNameplate.cs",
+      "testedCopy": "Assets/Runtime/World/WorldNameplate.cs",
+      "rawSha256": "cfe4c1354961c563260eeb2decbf15a0bc83b7c9ccc6e11b04e4c838ce261505",
+      "normalizedSha256": "2dfc6410cad6a9461350a681fa738a8291643c5f4d8e97becbf1e1a2a129b2ba"
+    },
+    {
+      "source": "Assets/Scripts/MmorpgClient.asmdef",
+      "testedCopy": "Assets/Runtime/MmorpgClient.asmdef",
+      "rawSha256": "98d948cd7613c89605222f09afa1f65d42c84a49b44ddb5da597c0d951a097a4",
+      "normalizedSha256": "7918d6558e7cc334dd3332cf6f0884d7c7314fbad9401d0c8874be6492a4bd94"
+    },
+    {
+      "source": "Assets/Plugins/Google.Protobuf.dll",
+      "testedCopy": "Assets/Plugins/Google.Protobuf.dll",
+      "rawSha256": "16921420d56ee464d4b4c43ba70c7300172e2cf3852f80cb91b71932569d3a5f",
+      "normalizedSha256": "16921420d56ee464d4b4c43ba70c7300172e2cf3852f80cb91b71932569d3a5f"
+    },
+    {
+      "source": "Assets/Plugins/Google.Protobuf.dll.meta",
+      "testedCopy": "Assets/Plugins/Google.Protobuf.dll.meta",
+      "rawSha256": "0ac7c714ebe8d5c56d9b779cecf1db801015f143b0b57bce4c42a32e12d7fa05",
+      "normalizedSha256": "437c331dcc398a3ea12ec7d3cf8a7c23828da2706235f6e396484bdeb5a94afa"
+    },
+    {
+      "source": "Assets/Editor/Tianyong/CityTile4KImporter.cs",
+      "testedCopy": "Assets/Editor/CityTile4KImporter.cs",
+      "rawSha256": "e5f178da2ea30f7c1e416dcf0babf37ee86f54439e5827437403b342315e2dbd",
+      "normalizedSha256": "1b083cbc6919ae6ff1ef03d902f832d9f36ff278b54ed753aa44cef084b76746"
+    },
+    {
+      "source": "Assets/Editor/CurrentMapTileImporter.cs",
+      "testedCopy": "Assets/Editor/CurrentMapTileImporter.cs",
+      "rawSha256": "42952c9a27e7499ce5dbcd4b204d876bd1116c70caf3294a167140ebd1c870cd",
+      "normalizedSha256": "42952c9a27e7499ce5dbcd4b204d876bd1116c70caf3294a167140ebd1c870cd"
+    },
+    {
+      "source": "Assets/Tests/EditMode/Tianyong/CityTileStreamingTests.cs",
+      "testedCopy": "Assets/Tests/CityTileStreamingTests.cs",
+      "rawSha256": "d28c2e1caf76a5985c4abdb44c5f7b9c7a10b6c806a14c3e2444a72b26c1c2fe",
+      "normalizedSha256": "7cef4c2ca31f822bba805713abd5422104a7dc14c7f5fe0066a24de34d6e1671"
+    },
+    {
+      "source": "Assets/Tests/EditMode/Tianyong/CurrentMapTileStreamingTests.cs",
+      "testedCopy": "Assets/Tests/CurrentMapTileStreamingTests.cs",
+      "rawSha256": "837dce8265b0048398eb469a8dab3177a731fbf3ce242e82f95bb1aeae5812d1",
+      "normalizedSha256": "ab1b99a47d70be640bd50ec55da02e27030ef4163e49e04de0433389296c8df9"
+    },
+    {
+      "source": "Assets/Tests/EditMode/Tianyong/CurrentMapHexGridTests.cs",
+      "testedCopy": "Assets/Tests/CurrentMapHexGridTests.cs",
+      "rawSha256": "db86a493a32e3face58b30df0751c2cbd146cc6548a586c443013a2d5ae32b4a",
+      "normalizedSha256": "db86a493a32e3face58b30df0751c2cbd146cc6548a586c443013a2d5ae32b4a"
+    },
+    {
+      "source": "Assets/Resources/World/CurrentMaps20261009/main/layout.png",
+      "testedCopy": "Assets/Resources/World/CurrentMaps20261009/main/layout.png",
+      "rawSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+      "normalizedSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7"
+    },
+    {
+      "source": "Assets/Resources/World/CurrentMaps20261009/main/layout.png.meta",
+      "testedCopy": "Assets/Resources/World/CurrentMaps20261009/main/layout.png.meta",
+      "rawSha256": "5c8a996d10216ee2d284fa7a30b23c166cc536e76a7bc36a27a9d845cacfa01d",
+      "normalizedSha256": "a4d92a494997a3b93b127355b68152ff79efd1b54d1bee0097d771da9fae1376"
+    },
+    {
+      "source": "Assets/Resources/World/CurrentMaps20261009/main/source.json",
+      "testedCopy": "Assets/Resources/World/CurrentMaps20261009/main/source.json",
+      "rawSha256": "aef7d638887a14796957671efc55849b90a6f8d62bf703767e54505c50c984f7",
+      "normalizedSha256": "aef7d638887a14796957671efc55849b90a6f8d62bf703767e54505c50c984f7"
+    },
+    {
+      "source": "Assets/Resources/World/CurrentMaps20261009/main/source.json.meta",
+      "testedCopy": "Assets/Resources/World/CurrentMaps20261009/main/source.json.meta",
+      "rawSha256": "14cf088a0350cd7cbe29a153bd6dbac834e1be5fc6f1f7c7e94a00df41848537",
+      "normalizedSha256": "c48dd440704af2da3455602874fd72bf9942f93aafba5f8f2a940034617dd3d9"
+    },
+    {
+      "source": "Assets/Resources/World/CurrentMaps20261009/main/walkmask.txt",
+      "testedCopy": "Assets/Resources/World/CurrentMaps20261009/main/walkmask.txt",
+      "rawSha256": "bb8ac19e83bcf589e43365c1f03aee34692061ba401ca9dde3c9911171a6d2da",
+      "normalizedSha256": "bb8ac19e83bcf589e43365c1f03aee34692061ba401ca9dde3c9911171a6d2da"
+    },
+    {
+      "source": "Assets/Resources/World/CurrentMaps20261009/main/walkmask.txt.meta",
+      "testedCopy": "Assets/Resources/World/CurrentMaps20261009/main/walkmask.txt.meta",
+      "rawSha256": "2f977beae8bd1428db5a55c2cdbea1aa591b765cc67781d5c45cf31a9534d367",
+      "normalizedSha256": "55d1593bc9f911071d5912e04f763cd360ad9f9e8b91da094af37bc4495c9387"
+    },
+    {
+      "source": "Assets/Editor/Tianyong/CityTileProductionVerification.cs",
+      "testedCopy": "Assets/Editor/CityTileProductionVerification.cs",
+      "rawSha256": "4a3ff1e28384d1dd4ca4189f1b66e04bd023c536fc4bc9cbc75d1b8dd2980b5d",
+      "normalizedSha256": "091ab6f22b321f3e6824ed5bad79532c921133449f4e999241376f0bb4854947"
+    },
+    {
+      "source": "tools/tests/CityTileImportVerificationTests.cs",
+      "testedCopy": "Assets/Tests/CityTileImportVerificationTests.cs",
+      "rawSha256": "450a8316b9231e0cf38cc0636d1dc17a299552a96f178d5a6a7e9eed7222987c",
+      "normalizedSha256": "5ad517c06711cea850be68cd79022337ae92c652f0eada6dab8845297dace8aa"
+    },
+    {
+      "source": "tools/tests/CurrentMapTileImportVerificationTests.cs",
+      "testedCopy": "Assets/Tests/CurrentMapTileImportVerificationTests.cs",
+      "rawSha256": "eb9603b4070342c5c3321a6da211336592ed7cb9ee4adba1196be85b8c0575c3",
+      "normalizedSha256": "eb9603b4070342c5c3321a6da211336592ed7cb9ee4adba1196be85b8c0575c3"
+    }
+  ]
+}

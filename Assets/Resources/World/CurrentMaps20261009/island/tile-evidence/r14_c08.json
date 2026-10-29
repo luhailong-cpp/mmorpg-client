@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 14,
+  "column": 8,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "d8d1a8c5a91e9117503ac2272d771d6538b361861fc7a57c91b72bcc94e40e7f",
+  "imageBytes": 25734608,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c08.candidate-p43-replacement-20261023-v02.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r14_c08.json",
+  "sourceLedgerSha256": "d765047c55a6c484e35e3f8719ec7ff7c03aff2b67465bf41ab0197177ea55dc",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c08.candidate-p43-replacement-20261023-v02.png",
+    "imageSha256": "d8d1a8c5a91e9117503ac2272d771d6538b361861fc7a57c91b72bcc94e40e7f",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r14_c08.json",
+        "sha256": "d765047c55a6c484e35e3f8719ec7ff7c03aff2b67465bf41ab0197177ea55dc",
+        "completeness": [
+          "/complete4K",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/source-proof.json",
+        "sha256": "e33a9bba89287107e7ffed2315db7d58d3e7b2d04901f816fc6f9b8a38a77a07",
+        "completeness": [
+          "/missingPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/source-proof.json",
+        "sha256": "e33a9bba89287107e7ffed2315db7d58d3e7b2d04901f816fc6f9b8a38a77a07",
+        "completeness": [
+          "/complete4KCoverage",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/source-proof.json",
+        "sha256": "e33a9bba89287107e7ffed2315db7d58d3e7b2d04901f816fc6f9b8a38a77a07",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "full_native16_candidate_north_east_phase_and_identity_pending",
+      "pendingRepair": [
+        {
+          "coordinate": "p11",
+          "reason": "Lower-left ivory arc requires approved silhouette check. Working coverage only.",
+          "passed": false
+        },
+        {
+          "coordinate": "p21",
+          "reason": "Two repairs removed invented dots but inlay width/tip still over-expanded. Best v02 selected working only; excluded from prepared p31 geometry anchors.",
+          "targetedRepairs": 2,
+          "passed": false
+        },
+        {
+          "coordinate": "p31",
+          "reason": "Raised side-face corrected by v02; shared flat-inlay width with p21 still requires whole approved silhouette review.",
+          "passed": false
+        },
+        {
+          "coordinate": "j11,j12",
+          "reason": "Geometry coherent; material/row phase at right-half y256 requires root confirmation.",
+          "passed": false
+        },
+        {
+          "coordinate": "p43",
+          "passed": false,
+          "actualNewReplacementReturns": 2,
+          "best": "reboot_replacement_v02",
+          "state": "working_native_selected_no_third_same_point_call",
+          "reason": "N divider phase, E row heights and adjacent corners unresolved; broad paving identity improved; no mask rescue."
+        }
+      ],
+      "externalPassed": false,
+      "formalAccepted": false,
+      "currentInternalReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/internal-review.json",
+        "sha256": "73586560fbdeb6cbb01d7747647af1e46d78092f92b560ae1dc0aa89965222d4"
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r14_c08.json",
+        "record": {
+          "status": "full_native16_candidate_north_east_phase_and_identity_pending",
+          "pendingRepair": [
+            {
+              "coordinate": "p11",
+              "reason": "Lower-left ivory arc requires approved silhouette check. Working coverage only.",
+              "passed": false
+            },
+            {
+              "coordinate": "p21",
+              "reason": "Two repairs removed invented dots but inlay width/tip still over-expanded. Best v02 selected working only; excluded from prepared p31 geometry anchors.",
+              "targetedRepairs": 2,
+              "passed": false
+            },
+            {
+              "coordinate": "p31",
+              "reason": "Raised side-face corrected by v02; shared flat-inlay width with p21 still requires whole approved silhouette review.",
+              "passed": false
+            },
+            {
+              "coordinate": "j11,j12",
+              "reason": "Geometry coherent; material/row phase at right-half y256 requires root confirmation.",
+              "passed": false
+            },
+            {
+              "coordinate": "p43",
+              "passed": false,
+              "actualNewReplacementReturns": 2,
+              "best": "reboot_replacement_v02",
+              "state": "working_native_selected_no_third_same_point_call",
+              "reason": "N divider phase, E row heights and adjacent corners unresolved; broad paving identity improved; no mask rescue."
+            }
+          ],
+          "externalPassed": false,
+          "formalAccepted": false,
+          "currentInternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/internal-review.json",
+            "sha256": "73586560fbdeb6cbb01d7747647af1e46d78092f92b560ae1dc0aa89965222d4"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/source-proof.json",
+        "record": {
+          "complete4KCoverage": true,
+          "layoutAccepted": false,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/internal-review.json",
+        "record": {
+          "completeNativeCoverage": true,
+          "newRemainingIssues": [
+            "v33 N divider phase",
+            "h43 E ivory slab row phase",
+            "j32",
+            "j33",
+            "SE map-bottom terminal"
+          ],
+          "priorRemainingIssues": [
+            {
+              "coordinate": "p11",
+              "reason": "Lower-left ivory arc requires approved silhouette check. Working coverage only.",
+              "passed": false
+            },
+            {
+              "coordinate": "p21",
+              "reason": "Two repairs removed invented dots but inlay width/tip still over-expanded. Best v02 selected working only; excluded from prepared p31 geometry anchors.",
+              "targetedRepairs": 2,
+              "passed": false
+            },
+            {
+              "coordinate": "p31",
+              "reason": "Raised side-face corrected by v02; shared flat-inlay width with p21 still requires whole approved silhouette review.",
+              "passed": false
+            },
+            {
+              "coordinate": "j11,j12",
+              "reason": "Geometry coherent; material/row phase at right-half y256 requires root confirmation.",
+              "passed": false
+            }
+          ],
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/contact-review.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/internal-review.json",
+    "sourceSha256": "73586560fbdeb6cbb01d7747647af1e46d78092f92b560ae1dc0aa89965222d4",
+    "normalizedDocument": {
+      "at": "2026-10-23T14:48:02.927288+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r14_c08.candidate-p43-replacement-20261023-v02.png",
+      "candidateSha256": "d8d1a8c5a91e9117503ac2272d771d6538b361861fc7a57c91b72bcc94e40e7f",
+      "rootIndependentSourceReplayMismatch": 0,
+      "sourceCount": 16,
+      "completeNativeCoverage": true,
+      "contactReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r14_c08-p43-replacement-20261023-v02/contact-review.json",
+      "localPassedSeams": 21,
+      "localPassedJunctions": 5,
+      "identityScope": "43 broad paved ground identity restored, no imported44 oval/flowerbed. Whole11/21/31 silhouette identity still unpassed.",
+      "newRemainingIssues": [
+        "v33 N divider phase",
+        "h43 E ivory slab row phase",
+        "j32",
+        "j33",
+        "SE map-bottom terminal"
+      ],
+      "priorRemainingIssues": [
+        {
+          "coordinate": "p11",
+          "reason": "Lower-left ivory arc requires approved silhouette check. Working coverage only.",
+          "passed": false
+        },
+        {
+          "coordinate": "p21",
+          "reason": "Two repairs removed invented dots but inlay width/tip still over-expanded. Best v02 selected working only; excluded from prepared p31 geometry anchors.",
+          "targetedRepairs": 2,
+          "passed": false
+        },
+        {
+          "coordinate": "p31",
+          "reason": "Raised side-face corrected by v02; shared flat-inlay width with p21 still requires whole approved silhouette review.",
+          "passed": false
+        },
+        {
+          "coordinate": "j11,j12",
+          "reason": "Geometry coherent; material/row phase at right-half y256 requires root confirmation.",
+          "passed": false
+        }
+      ],
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false
+    }
+  }
+}

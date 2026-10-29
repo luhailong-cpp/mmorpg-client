@@ -1,0 +1,1314 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 12,
+  "column": 9,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "8b783f6b7a3ec1bad7925dab3027af306bd14692264e7976619020eedb15dfbc",
+  "imageBytes": 27760873,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/candidate/r12_c09-G3-joint-resume-20261012-v3-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/combined-current-internal-evidence.json",
+  "sourceLedgerSha256": "dea158a3f4c0e5f894dc58d815842a495bd3b60a9a4153f8125d8beb0b4a2b60",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c09",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/candidate/r12_c09-G3-joint-resume-20261012-v3-4096.png",
+    "imageSha256": "8b783f6b7a3ec1bad7925dab3027af306bd14692264e7976619020eedb15dfbc",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/combined-current-internal-evidence.json",
+        "sha256": "dea158a3f4c0e5f894dc58d815842a495bd3b60a9a4153f8125d8beb0b4a2b60",
+        "sourceReviewSha256": "dea158a3f4c0e5f894dc58d815842a495bd3b60a9a4153f8125d8beb0b4a2b60",
+        "completeness": [
+          "Exact candidate fullcore evidence: completeCores.pass16, held0."
+        ]
+      }
+    ],
+    "selectionBasis": "hash_bound_full16_core_evidence",
+    "sourceStatus": {
+      "status": "full_native_candidate_joint_material_QA_pending",
+      "formalAccepted": false,
+      "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/internal-review.json",
+      "geometryBlockingIssues": [
+        "G3"
+      ],
+      "materialPending": true
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/selection-before-G3-metadata-correction-20261012.json",
+        "record": {
+          "status": "full_native_candidate_joint_material_QA_pending",
+          "formalAccepted": false,
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/internal-review.json",
+          "geometryBlockingIssues": [
+            "G3"
+          ],
+          "materialPending": true
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/selected-patches.json",
+        "record": {
+          "status": "full_native_current_complete16_and33_internal_pass_external_pending",
+          "formalAccepted": false,
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/combined-current-internal-evidence.json",
+          "geometryBlockingIssues": [],
+          "materialPending": false,
+          "G3MaterialStatus": "current_c09_scope_actual_pass_c10_endpoint_not_cleared",
+          "externalReady": false,
+          "currentInternalBoundaryReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-readiness-audit-20261024-v1/boundary-evidence-audit.json",
+            "sha256": "a50d649cc00fd426b9c520d86ad78c565b298d17c96bafc29c834c24722b2f9c"
+          },
+          "pendingIssues": [
+            {
+              "id": "external-current-native-review",
+              "status": "not_completed"
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/combined-current-internal-evidence.json",
+        "record": {
+          "externalReviewed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/current-internal-readiness-binding-20261024-v1.json",
+        "record": {
+          "externalReady": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/result.json",
+        "record": {
+          "status": "complete_current_fullcore_native_qa_pass_16_no_state_promotion"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-readiness-audit-20261024-v1/result.json",
+        "record": {
+          "status": "current33contacts_pass_complete_core_evidence_gap_no_ready_promotion",
+          "externalReviewed": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/fullcore-review.json",
+    "sourceSha256": "79c77daf57e713aa419266d5e4b4034be114285dc0f79d159016082dd8801e77",
+    "normalizedDocument": {
+      "atUtc": "2026-10-24T10:22:07.905262+00:00",
+      "tile": "r12_c09",
+      "selected": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/selected-patches.json",
+        "sha256": "458c50e254dd863ca5d0bf47daa1f8e246484f01e50ed3d73e6cfa7eaeeac2f1"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/candidate/r12_c09-G3-joint-resume-20261012-v3-4096.png",
+        "sha256": "8b783f6b7a3ec1bad7925dab3027af306bd14692264e7976619020eedb15dfbc"
+      },
+      "scope": "complete current cores, independent of contact verdicts",
+      "method": "15 individual full1024 original native views; p34 prior wholecore actual pass reused only after exact source/candidate/image hash and pixel replay",
+      "counts": {
+        "pass": 16,
+        "held": 0,
+        "freshActualOriginal": 15,
+        "exactPriorActualReuse": 1
+      },
+      "records": [
+        {
+          "patch": "p11",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p11-core-native-1024.png",
+            "sha256": "0bce804ca3c28284e39b0233eda44bf48a630c1c2fb5ce410e398dc5553a91dd"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p11-core-native-1024.png.derivation.json",
+            "sha256": "a29575f3e888c33dc6c73626e0987c6890042affe00d294aec01d995f794c24f"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/wall-joint-resume-20261012/p11-wall-rock-rail-color-v1.png",
+            "sha256": "0daabeb446567c0c8c231cf4734f7684c1535739e159f6178d1beab2d48d7f65"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "worldBox": [
+            32768,
+            45056,
+            33792,
+            46080
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/wall-joint-resume-20261012/p11-wall-rock-rail-color-v1.png.derivation.json",
+                "sha256": "7ce7359e06b1bdc0a36375392769728b9eea9a001ff8574f47cd0f21910f67eb"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "木立柱顶帽、两道横梁榫口和墙石厚度完整，未见悬空、融接或断头。"
+          },
+          "material": {
+            "pass": true,
+            "note": "柱身及梁面的木纹连续，墙石细纹与高光无穿面矩形截断。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "栏杆落在墙沿，后方铺地开敞，草簇位于墙缝与外侧。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "石块、木纹和小草细节有变化，未见克隆立柱或整块贴片复刻。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p12",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p12-core-native-1024.png",
+            "sha256": "4b373be7509beb17a59594632596149e61ca7b1dd2f8c54929fe623c7ce6cc6a"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p12-core-native-1024.png.derivation.json",
+            "sha256": "0556bd19a7815cc7467053d1ca2d079f4434faa310743b541575ce50196141ad"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p12-colorpass.png",
+            "sha256": "0ca8c7f7847af970a01650bbae91bfc3114e782d307dfbb83a9a351364c471f1"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "worldBox": [
+            33792,
+            45056,
+            34816,
+            46080
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p12-colorpass.png.derivation.json",
+                "sha256": "d5b3d4de02caec9f9b7ef00f365872ae24cc24bf407685b694b590d7fd4c3163"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "大铺砖错缝、圆角和下方两横栏边缘完整，没有异常重叠或融接。"
+          },
+          "material": {
+            "pass": true,
+            "note": "暖米灰铺地细纹分布连续，木梁亮边自然，未见修补框或密度重置。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "主体铺地可连续通过，栏杆与植物沿边分布，局部通行面未被占用。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "砖缝属于规则铺装模块；各砖斑纹有差异，未见整块纹理模板复制。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p13",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p13-core-native-1024.png",
+            "sha256": "02cf0620b35bf8699083702cd9db28ce35d6e593bb429025d954c02279ed6dc0"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p13-core-native-1024.png.derivation.json",
+            "sha256": "7dab4b2a3b8a5d3f1dfc454d722285d9bd0945881bfe9efa2ef249b89061cfbd"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p13-colorpass.png",
+            "sha256": "2a0bab0acc396757abc94928e4ac434b50c8ed3416d965f091d860fb491da001"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "worldBox": [
+            34816,
+            45056,
+            35840,
+            46080
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p13-colorpass.png.derivation.json",
+                "sha256": "1fc06bba81441ea3a1d43d6d23ce3a3000eca2300360f3cc5e6a0e8a4673188e"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "米黄大砖与灰石交界沿整块砖边及石缝形成，砖角、厚度与裂纹完整。"
+          },
+          "material": {
+            "pass": true,
+            "note": "单块石面细纹连续，色差顺物理砖面和光照变化，未见穿过石面的横切。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "两类铺地衔接为连续地面，没有断层、孤立洞口或障碍侵入。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "灰石的裂纹和斑纹分布不同，未见相同破损块反复粘贴。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p14",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p14-core-native-1024.png",
+            "sha256": "e34a1c6d4943a06a1ce75509a4db7229889137786f9db308ac4f7aeb7cee51bb"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p14-core-native-1024.png.derivation.json",
+            "sha256": "65f952a41157034b6e1ffe4b7e80094d0416c1b8830b1142d2e44a8024a107d6"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/joint-stairs/p14-stairs-joint-v2-candidate.png",
+            "sha256": "9a70613e673a9f0d9ce981c8408bc2953271180eae5077d5b0e8b7bf914b5546"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            3072,
+            0,
+            4096,
+            1024
+          ],
+          "worldBox": [
+            35840,
+            45056,
+            36864,
+            46080
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/joint-stairs/p14-stairs-joint-v2-candidate.png.derivation.json",
+                "sha256": "7fb88151dde18fd71905adffb6a207cbac4c2f91a8caaa3efe843da33e7f54b1"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "整片灰石铺装的圆角、亮棱和缝隙保持清楚，未见不合理台阶或双边。"
+          },
+          "material": {
+            "pass": true,
+            "note": "大砖内部颗粒、浅裂纹与明暗连续，未见轴向修补矩形或灰残。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "可见铺地开敞，砖缝方向一致，未见局部通路中断。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "铺装节律有意重复，斑纹和石边有变化，未见克隆贴片边界。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p21",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p21-core-native-1024.png",
+            "sha256": "48adec109b4ef5d67a3a535d0b6e2949ff29ffe514ced928196186ede1bff81c"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p21-core-native-1024.png.derivation.json",
+            "sha256": "f066ce00a040f9d2623f122471b4aae9edd1ff1d4c929f5b3dbaf1d003419c47"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/wall-joint-resume-20261012/p21-wall-rock-rail-color-v1.png",
+            "sha256": "cecbc8071d29d0586050d4f163fd527a4c933515654e147f5ce6f0e4b0a88596"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "worldBox": [
+            32768,
+            46080,
+            33792,
+            47104
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/wall-joint-resume-20261012/p21-wall-rock-rail-color-v1.png.derivation.json",
+                "sha256": "a4ac7f2a3a86f9dc449ecb6441efc204b2ac166ba67e5dab1fac5613c8ef5500"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "灌木叶片前后叠压、岸岩与墙石之间的深度关系清楚，无悬浮叶块。"
+          },
+          "material": {
+            "pass": true,
+            "note": "绿叶高光和深绿阴影自然，岩面与墙石细纹清楚，无模糊拼接。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "植被集中于墙外与岩缝内；本core未见被灌木截断的铺装通路。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "同种叶簇形成植物节律，但朝向、形状和亮暗不同，未见整团克隆或矩形贴边。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p22",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p22-core-native-1024.png",
+            "sha256": "7d11e4a9959003188dd1e4abd60955796d9b870225498961edc342928998bb42"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p22-core-native-1024.png.derivation.json",
+            "sha256": "3598d4a555480add5d2c79f1a62446f06bbc5655e2e36aeaacda0137d6f7205d"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p22-colorpass.png",
+            "sha256": "876de3c26b52448e619b937155949004a93e4248edf3e5e3bb4c4692019b9b34"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "worldBox": [
+            33792,
+            46080,
+            34816,
+            47104
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p22-colorpass.png.derivation.json",
+                "sha256": "b494da8a985e4d4ce5524101f4ed92a1ecbf0c4a4ca2e62a3d204acb423a413e"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "柱脚落在墙石之上，墙石与前景圆岩分层完整，未见浮空或轮廓融接。"
+          },
+          "material": {
+            "pass": true,
+            "note": "木纹、墙面灰石、圆岩受光面各自连续，未见材质半面重置。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "灌木位于栏杆外沿和石缝，局部墙沿与坡面组织合理。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "墙石、圆岩和草簇的细节与阴影有差别，未见相同模块的硬贴复制。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p23",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p23-core-native-1024.png",
+            "sha256": "8f3dc3734629953f020bfaa57ea04693bc66fa6810ac0ee70c638c6bf6a5accd"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p23-core-native-1024.png.derivation.json",
+            "sha256": "eb1d884e1963158fdc3a05c08e967443ccd686db0c96c492f5b7714eddaa94f6"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p23-colorpass.png",
+            "sha256": "f18875a7f089ffb4c911898a0abb73d43183367c969d4e5a194b0b0976e39460"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "worldBox": [
+            34816,
+            46080,
+            35840,
+            47104
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p23-colorpass.png.derivation.json",
+                "sha256": "cf95a00b52e001959e0e9dcaf9e05ad4a421f2449bedbf86cf0381ccea0bb8bf"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "栏杆末端短木柱与石质承台接合完整，下横梁终止关系清楚，墙面石块厚度一致。"
+          },
+          "material": {
+            "pass": true,
+            "note": "大墙石的纹理和阴影沿自身表面连续，木面未见颜色或纹理切框。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "栏杆在铺地边缘结束，右侧地面仍连续，未形成异常封闭或孤立端点。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "砖面、墙石与木纹形状不同，未见重复断头柱或同样裂纹贴片。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p24",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p24-core-native-1024.png",
+            "sha256": "ee84bd75c9a35c25f47022c685f65bd9efbcf689e15a50d7e6e62a7afcddb4d1"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p24-core-native-1024.png.derivation.json",
+            "sha256": "8695cda799d3d54bf97ae999624c84d6baa4367026f135e5f7d510219e591096"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/G3-joint-resume-20261012/p24-G3-native-v3.png",
+            "sha256": "f31fdadee6694b32bd6a464b24e3a594dd6e34cfcf1e83dc49293616a62a7e28"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            3072,
+            1024,
+            4096,
+            2048
+          ],
+          "worldBox": [
+            35840,
+            46080,
+            36864,
+            47104
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/G3-joint-resume-20261012/p24-G3-native-v3.png.derivation.json",
+                "sha256": "d3b791a121c0f91968e5b8fb504d853c355d6c6cdead12c212d3858f3b69601e"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "木立柱、石帽、金箍及圆钉完整，浅色横栏与支承／后侧阶面连接连贯，无悬空或明显断头。"
+          },
+          "material": {
+            "pass": true,
+            "note": "木、金属和浅灰石横栏的材质分界随物体边缘，core内未见finish修补框或突兀色阶。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "后侧阶面和栏杆方向相容，局部通行层级可辨，没有新增阻挡。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "横栏的规则重复属于结构模块，表面细纹与立柱细节未见整块克隆。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p31",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p31-core-native-1024.png",
+            "sha256": "292e9b9da75572618840ddce5287a2d581b2d8e0c4b8b83c86108fd96149c51c"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p31-core-native-1024.png.derivation.json",
+            "sha256": "96f7f64cfa3d828ae82dcbe61978ff1bc13b90e101b2c4eab0064d4505e5defc"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p31-colorpass.png",
+            "sha256": "58d2def3b960b271a44e54abb954f8424125cac6a1f9f2159f1b7fbd3d62563f"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "worldBox": [
+            32768,
+            47104,
+            33792,
+            48128
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p31-colorpass.png.derivation.json",
+                "sha256": "52dd39ad069fa98d9829731f694b43edde60cdd7d3247de0a9f5b44e357387c3"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "长形岸岩、相邻独立岩体及深缝轮廓完整，灌木层次自然，未见断裂轮廓。"
+          },
+          "material": {
+            "pass": true,
+            "note": "蓝灰岩面与暖高光沿曲面连续，细纹未见水平或竖直截断。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "岩缝与植被构成连续岸坡；本core不是铺装通行面，未见局部布局矛盾。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "平行岩体的形状及纹理有变化，叶簇亦有朝向差异，未见整块复制。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p32",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p32-core-native-1024.png",
+            "sha256": "0bb9b1d07e6143a7b43ea90ad86f1b76a4e2a06ef167fdc0ee7f16ada7bad616"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p32-core-native-1024.png.derivation.json",
+            "sha256": "43533a78d0595e76fa161f3f128bea643647d5bdca4dd6dd5da9e70b6728757a"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p32-colorpass.png",
+            "sha256": "48a7d2cbce4b8a0c0cd58fb9398b7cb6249e4593c1f498fbcb3bffe1b563588b"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "worldBox": [
+            33792,
+            47104,
+            34816,
+            48128
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p32-colorpass.png.derivation.json",
+                "sha256": "a370d4115f81e0b8313a457e1da7490be1e51c1c1ed1fd6cecce5a7430c495b1"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "中央深沟与前后圆岩的遮挡关系清楚，深缝延续到core边缘，无异常截头。"
+          },
+          "material": {
+            "pass": true,
+            "note": "大岩面受光、蓝灰底色和浅矿脉沿曲面变化，未见轴向材质重置。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "岩体组成连续岸坡及裂隙，不与可见设施或通路发生局部冲突。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "圆岩外形和裂纹网络不同，未见同一岩面模板直接复制。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p33",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p33-core-native-1024.png",
+            "sha256": "36071544cc4c2ded0b19423c8c369571ad5b2aaade0777d9a4a639bf47aea926"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p33-core-native-1024.png.derivation.json",
+            "sha256": "bd707975aceed76172d6bd099a02597eda7e74525154cb117bd24a931d2d615c"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p33-colorpass.png",
+            "sha256": "550dbfbdd21d3a665116bbde5a2d7a042afe018f3671a31a02fe74950ceaaa4e"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "worldBox": [
+            34816,
+            47104,
+            35840,
+            48128
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p33-colorpass.png.derivation.json",
+                "sha256": "ee5ecce2a8a9c8639f94545fe1f12823ad4c3dbe3e372adfe53167568948b6ed"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "圆岩相互叠压、后方墙石和草缝关系完整，未见悬浮或重复边。"
+          },
+          "material": {
+            "pass": true,
+            "note": "亮顶、暗侧和细碎石纹连续，色差符合不同受光面，无修补矩形。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "灌木生于墙岩接缝，局部岩坡组织连续，未见孤立空洞或设施错位。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "岩块大小及纹理不同，草簇虽同种但变化自然，未见像素式整团复刻。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p34",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-readiness-audit-20261024-v1/current-fullcore-p34.png",
+            "sha256": "c0efb7476812217b3606debaf9ecf35c679499ae7b4538b4bb3dbdc0c8c6df70"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-readiness-audit-20261024-v1/current-fullcore-p34.png.derivation.json",
+            "sha256": "8c505b0d8052d2883d5a6854f598b2d65438a85efd59250714d65ad6a0f9fcea"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/G3-joint-resume-20261012/p34-G3-native-v3.png",
+            "sha256": "1b57f31261f6f55cce4f0f65903cb52b9e32467b2e876bff491c067045fe7e21"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            3072,
+            2048,
+            4096,
+            3072
+          ],
+          "worldBox": [
+            35840,
+            47104,
+            36864,
+            48128
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/G3-joint-resume-20261012/p34-G3-native-v3.png.derivation.json",
+                "sha256": "c5140f9f9c17fdf08582898c4aa01228b6c181c5c568b5c625844a07341d5a88"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "prior actual wholecore pass reused from exact current finite audit; not newly viewed by this worker",
+          "actualOriginalNewlyViewed": false,
+          "priorActualOriginalPassReused": true,
+          "viewMethod": "same exact prior1024 image / source / current candidate crop, pixel replay0; finite audit actual wholecore pass reused",
+          "geometry": {
+            "pass": true,
+            "note": "复用已实际查看的完整p34 core：既有记录中柱、梁、木面沟槽和植被连通；当前source/candidate及1024原图均同哈希同像素。"
+          },
+          "material": {
+            "pass": true,
+            "note": "复用既有完整core材质pass：c09 G3木面沟槽和材质连续，未见本tile内阻塞性finish矩形切口。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "按既有完整core通过范围复用；不扩展为c10共享端点或全图布局验收。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "既有完整原生core pass按同像素复用；本工未重新查看该图，也未新增独立重复性结论。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": [],
+          "priorActualPassEvidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-readiness-audit-20261024-v1/result.json",
+            "sha256": "cefd43b308e6d3d2e67385515b990dfe607442588b19d4e7ac826b4fadd50bd6"
+          }
+        },
+        {
+          "patch": "p41",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p41-core-native-1024.png",
+            "sha256": "795618eea8e805704ed85b16d43595f1431686b788d7e77b160f455b98b2ccf0"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p41-core-native-1024.png.derivation.json",
+            "sha256": "334344e43647800e484b66016353737c641668d643b9d48dce4007c77803846d"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p41-colorpass.png",
+            "sha256": "25a08370337a7f75277221db3c61b892de5b255a441e2ed4360b421446dae99f"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            0,
+            3072,
+            1024,
+            4096
+          ],
+          "worldBox": [
+            32768,
+            48128,
+            33792,
+            49152
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p41-colorpass.png.derivation.json",
+                "sha256": "452dcecc57efb9d918b92ac49d5f64c9647e4e06fe6287a79e785828caf7f48f"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "大圆岩、右侧长崖与其间水道边缘清楚，白沫随湿岩轮廓分布，未见断头水线。"
+          },
+          "material": {
+            "pass": true,
+            "note": "前岩暖光与右崖冷灰因受光面分离，湿脚暗带和细纹自然，无整齐横切。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "窄水道连接前后岸岩，水与陆地分层合理；未见局部海岸布局冲突。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "岩纹、白沫和水花位置有变化，未见整段岸线或浪花模板复制。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p42",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p42-core-native-1024.png",
+            "sha256": "5d0867ca9ba6ddac403aa6b08d21fbe4623a4f2fdb4829e409e7873fd2ebc4af"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p42-core-native-1024.png.derivation.json",
+            "sha256": "0925344d7d3b32a7ac2cb42cef3837e4527fb4482fd7573e87b7855b8681e880"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p42-colorpass.png",
+            "sha256": "6fb8761b73cab1d2315793abc9ba9b95f24067a1fb393298da58eb94ed2acebd"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            1024,
+            3072,
+            2048,
+            4096
+          ],
+          "worldBox": [
+            33792,
+            48128,
+            34816,
+            49152
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p42-colorpass.png.derivation.json",
+                "sha256": "a6b978ee9a68c2bd2a59a531d505d235e09c0dd75b7db712a483dd5971d397f2"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "深沟、巨岩曲面及左下入水边缘完整，白沫与岩脚相接，没有双轮廓或几何台阶。"
+          },
+          "material": {
+            "pass": true,
+            "note": "冷灰石面、暖亮顶和潮湿暗边渐变合理，颗粒及浅裂纹未出现中途重置。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "水道位于岩脚，岸岩顺势排列，本core未见通路或设施关系异常。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "各岩体裂纹和曲面有差异，泡沫分布不规则，未见明显克隆贴片。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p43",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p43-core-native-1024.png",
+            "sha256": "6de4659a3bdd05149c1042984dab2c2764fa8b2349cedb3223efe8d3e913511d"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p43-core-native-1024.png.derivation.json",
+            "sha256": "64708e490b30e0850a96c710bff3221bd727d147dd31f3f3045c7cc5f09d651c"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p43-colorpass.png",
+            "sha256": "f88f6618566dfa798371a5febbf473f6ece78f0aca97dd12df47a4dd0b276794"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            2048,
+            3072,
+            3072,
+            4096
+          ],
+          "worldBox": [
+            34816,
+            48128,
+            35840,
+            49152
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p43-colorpass.png.derivation.json",
+                "sha256": "04684643736b9516284b50f903bbce2d9b4287846a7a0e1ca7a7fc6388eb2b97"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "多块圆岩前后叠压和中央窄深沟完整，未见相互穿插或被矩形裁断的边缘。"
+          },
+          "material": {
+            "pass": true,
+            "note": "暖光、灰底及褐色矿脉按曲面和裂纹分布，未见直线拼色或灰残。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "岩群组成连续岸坡，局部空间与阴影关系清楚，没有浮置设施或封堵通路。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "岩块与纹脉形态不同，未见一块岩面反复粘贴的重复边界。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        },
+        {
+          "patch": "p44",
+          "status": "pass",
+          "fullCorePass": true,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "nativeReviewImage": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p44-core-native-1024.png",
+            "sha256": "4dcf2ed8fa6914aae8b37b63f936db751e77745274d9c2523ea96bbc94f424df"
+          },
+          "nativeReviewImageDerivation": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/qa/current-fullcore-native-20261024-v1/p44-core-native-1024.png.derivation.json",
+            "sha256": "9f4073110bd0089a0e8a5c66d88c3630bc032f6b4189383aaf35b776d6908cce"
+          },
+          "source": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p44-colorpass.png",
+            "sha256": "6d80bcadf93b777ca53ea70da07da6d3cd7c61f611fd5a39468a14c5adde7011"
+          },
+          "sourceCropNative": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "candidateCropNative": [
+            3072,
+            3072,
+            4096,
+            4096
+          ],
+          "worldBox": [
+            35840,
+            48128,
+            36864,
+            49152
+          ],
+          "sourceProvenance": [
+            {
+              "derivation": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c09/processed/colorpass/p44-colorpass.png.derivation.json",
+                "sha256": "330fed051e62127de4ec6c978573f25bad33a1d30c09ee2840c21785308856cb"
+              }
+            }
+          ],
+          "actualModel": null,
+          "actualQuality": null,
+          "pixelReplayDifferentPixels": 0,
+          "judgmentBasis": "fresh individual full1024 original native view in this task",
+          "actualOriginalNewlyViewed": true,
+          "priorActualOriginalPassReused": false,
+          "viewMethod": "tools.view_image detail=original; individual full1024 PNG",
+          "geometry": {
+            "pass": true,
+            "note": "前后圆岩与夹缝灌木遮挡关系完整，叶片与岩边未见悬空、融接或断头。"
+          },
+          "material": {
+            "pass": true,
+            "note": "干石细纹、褐色矿脉和暖亮边连续，叶色层次清楚，未见修补色框。"
+          },
+          "localLayout": {
+            "pass": true,
+            "note": "植物集中在岩体夹缝，局部岸坡层次合理，未见侵入已铺装路面的对象。",
+            "scope": "only visible local structural, walkway, slope and coast coherence; no whole-map layout comparison"
+          },
+          "repetition": {
+            "pass": true,
+            "note": "同种叶簇的叶形、朝向和高光有变化；岩纹各异，未见整团硬贴或克隆石块。"
+          },
+          "blockingFindingIds": [],
+          "heldWorldBoxes": []
+        }
+      ],
+      "blockingFindings": [],
+      "heldWorldBoxes": [],
+      "noContactPassUsedAsSubstituteForFreshCoreInspection": true
+    }
+  }
+}

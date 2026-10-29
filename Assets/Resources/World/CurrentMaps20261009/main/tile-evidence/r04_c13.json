@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 4,
+  "column": 13,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "21690636c57477b3af488f19a035ed50a853bd01185f19dd2ae4aa5e277bb1cd",
+  "imageBytes": 23781499,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/root-stair-single-native-resume7-v002/r04_c13-candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/root-handoff-and-checkpoint-v063.json",
+  "sourceLedgerSha256": "5b89cbd1c6be7ebecc629fd4f4cf75cd2eca52bf0e096eda944fafa9dd4219d8",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r04_c13",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/root-stair-single-native-resume7-v002/r04_c13-candidate.png",
+    "imageSha256": "21690636c57477b3af488f19a035ed50a853bd01185f19dd2ae4aa5e277bb1cd",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/root-handoff-and-checkpoint-v063.json",
+        "sha256": "5b89cbd1c6be7ebecc629fd4f4cf75cd2eca52bf0e096eda944fafa9dd4219d8",
+        "sourceReviewSha256": "5b89cbd1c6be7ebecc629fd4f4cf75cd2eca52bf0e096eda944fafa9dd4219d8",
+        "completeness": [
+          "Specific tiles/r04_c13 record binds nativeCoreCount16 and full4096 candidate."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/root-stair-single-native-resume7-v002/r04_c13-candidate.png.generation.json",
+        "sha256": "b79a3c34034ed98d1b0498647ae76eea194a75a69dde9702120d215379655299",
+        "sourceReviewSha256": "b79a3c34034ed98d1b0498647ae76eea194a75a69dde9702120d215379655299",
+        "completeness": [
+          "Output and native-repair/base SHA bind; bounded native replacement preserves full base."
+        ]
+      }
+    ],
+    "selectionBasis": "output_sha_bound_full16_core_candidate_or_native_replacement_on_pinned_full16_base",
+    "sourceStatus": {
+      "nativeCoreCount": 16,
+      "formalAccepted": false,
+      "status": "complete_native_candidate_visual_QA_not_upgraded"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-tower-north/versions/root-stair-single-native-resume7-v002/r04_c13-candidate.png.generation.json",
+        "record": {
+          "unverifiedReason": "Host managed; tool has no model/quality selectors and returned no verified values."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

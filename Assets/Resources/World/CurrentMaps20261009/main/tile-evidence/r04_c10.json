@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 4,
+  "column": 10,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "1363973b6d6f66998df665e36cda2c26ef9c6d3146dff60d78f2acf6c2f2a33d",
+  "imageBytes": 27548393,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/r04_c10-local-v2.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/review-checkpoint-v2.json",
+  "sourceLedgerSha256": "2c0f2d443c43231c066782d51a46f57130629d18f0ec4f908bedfae5b5bd5e13",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r04_c10",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/r04_c10-local-v2.candidate.png",
+    "imageSha256": "1363973b6d6f66998df665e36cda2c26ef9c6d3146dff60d78f2acf6c2f2a33d",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/review-checkpoint-v2.json",
+        "sha256": "2c0f2d443c43231c066782d51a46f57130629d18f0ec4f908bedfae5b5bd5e13",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "complete_candidate_internal_pending_repairs",
+      "selectedCoreCount": 16,
+      "formalAcceptedCount": 0,
+      "pendingRepairGroups": [
+        {
+          "id": "cloud-junction",
+          "priority": "P2",
+          "issue": "Local v1 joins central cloud curves and removes principal rectangular cuts. Small lower-left rectangle endpoint and gray/cream grain phase remain; p31/p41 contour density relative to approved layout remains pending."
+        },
+        {
+          "id": "lantern-ribs",
+          "priority": "P2",
+          "issue": "Local v1 joined the two main ribs; v2 removes isolated half rib and extends broken grout. Main gold ribs now continuous inside repair. West paste edge x2842,y2910 retains an abrupt start of the extended grout and material rectangle; north sill and south paving grain phase persist. East outer edge needs neighbor check. Two local calls retained in cumulative counts; improved but unpassed."
+        },
+        {
+          "id": "top-paving-context",
+          "priority": "P2",
+          "issue": "Top-row paving retains horizontal y909 context strips and vertical rectangles; grout direction/spacing changes at r1 intersections, especially x1024/x2048 and x3072 curb/shadow patch."
+        },
+        {
+          "id": "blue-band-material",
+          "priority": "P2",
+          "issue": "Road is connected after p42 and p22 layout repairs, but brightness/grain/border phase changes at y2048, y3072, with narrow old-context slice at r3c2. Exact diagonal-road layout fidelity remains for full-map review."
+        },
+        {
+          "id": "foliage-and-ledges",
+          "priority": "P2",
+          "issue": "p24/p34 horizontal leaf/ledge cuts, p23/p24 and p33/p34 vertical pavement/planter grain phase; p14/p24 timber and plaster material shifts."
+        },
+        {
+          "id": "external-south",
+          "priority": "P2",
+          "issue": "Four south quick joins checked against r05_c10 current native/candidate context. p41 grain, p42 road phase, p43/p44 diagonal grout offsets remain unpassed."
+        }
+      ],
+      "externalTileSeams": "not passed",
+      "changedRegionQaStatus": "All three native local returns plus v1 eight surrounding edges and v2 four changed lamp edges visually inspected at 100%. Cloud v1 and lamp v2 selected as improved but unpassed. East lamp strip reaches tile border; no external eastern join claimed."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/r04_c10-local-v2.candidate.png.generation.json",
+        "record": {
+          "unverifiedReason": "Derived assembly; each native input has individual generation record; built-in actual model and quality undisclosed"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/review-checkpoint-v2.json",
+        "record": {
+          "status": "complete_candidate_internal_pending_repairs",
+          "selectedCoreCount": 16,
+          "formalAcceptedCount": 0,
+          "pendingRepairGroups": [
+            {
+              "id": "cloud-junction",
+              "priority": "P2",
+              "issue": "Local v1 joins central cloud curves and removes principal rectangular cuts. Small lower-left rectangle endpoint and gray/cream grain phase remain; p31/p41 contour density relative to approved layout remains pending."
+            },
+            {
+              "id": "lantern-ribs",
+              "priority": "P2",
+              "issue": "Local v1 joined the two main ribs; v2 removes isolated half rib and extends broken grout. Main gold ribs now continuous inside repair. West paste edge x2842,y2910 retains an abrupt start of the extended grout and material rectangle; north sill and south paving grain phase persist. East outer edge needs neighbor check. Two local calls retained in cumulative counts; improved but unpassed."
+            },
+            {
+              "id": "top-paving-context",
+              "priority": "P2",
+              "issue": "Top-row paving retains horizontal y909 context strips and vertical rectangles; grout direction/spacing changes at r1 intersections, especially x1024/x2048 and x3072 curb/shadow patch."
+            },
+            {
+              "id": "blue-band-material",
+              "priority": "P2",
+              "issue": "Road is connected after p42 and p22 layout repairs, but brightness/grain/border phase changes at y2048, y3072, with narrow old-context slice at r3c2. Exact diagonal-road layout fidelity remains for full-map review."
+            },
+            {
+              "id": "foliage-and-ledges",
+              "priority": "P2",
+              "issue": "p24/p34 horizontal leaf/ledge cuts, p23/p24 and p33/p34 vertical pavement/planter grain phase; p14/p24 timber and plaster material shifts."
+            },
+            {
+              "id": "external-south",
+              "priority": "P2",
+              "issue": "Four south quick joins checked against r05_c10 current native/candidate context. p41 grain, p42 road phase, p43/p44 diagonal grout offsets remain unpassed."
+            }
+          ],
+          "externalTileSeams": "not passed",
+          "changedRegionQaStatus": "All three native local returns plus v1 eight surrounding edges and v2 four changed lamp edges visually inspected at 100%. Cloud v1 and lamp v2 selected as improved but unpassed. East lamp strip reaches tile border; no external eastern join claimed."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/review-checkpoint-v2.json",
+    "sourceSha256": "2c0f2d443c43231c066782d51a46f57130629d18f0ec4f908bedfae5b5bd5e13",
+    "normalizedDocument": {
+      "schemaVersion": 2,
+      "tile": "r04_c10",
+      "reviewedAt": "2026-10-19T18:51:42.784495+00:00",
+      "status": "complete_candidate_internal_pending_repairs",
+      "candidateFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/r04_c10-local-v2.candidate.png",
+      "candidateSha256": "1363973b6d6f66998df665e36cda2c26ef9c6d3146dff60d78f2acf6c2f2a33d",
+      "assemblyManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/assembly.json",
+      "nativeCount": 21,
+      "selectedCoreCount": 16,
+      "completeCandidateCount": 1,
+      "internalPassed4kCount": 0,
+      "formalAcceptedCount": 0,
+      "reviewedInternalPairCount": 24,
+      "reviewedIntersectionCount": 9,
+      "reviewSheetManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/review-20261019/review-sheets.json",
+      "reviewedIntersections": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r1-c1-100pct.png",
+          "sha256": "4ffbf8b56afd22558f40135fbef5e3fa7ff81581a329c42f0563b7c06bbab01f"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r1-c2-100pct.png",
+          "sha256": "97796a51d6dbbb1df96e8262b0e732801c68c1d0032cd7dacc1d19507c70c9e7"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r1-c3-100pct.png",
+          "sha256": "9abb99fd7ba570cdbd905d731ba89070779ea5fcd91ec7ddce99cfdb49d84c1b"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r2-c1-100pct.png",
+          "sha256": "41e25c31a3af5d4e6ddab2892d14ea148def11ec0047178001a24f9536dbf2f3"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r2-c2-100pct.png",
+          "sha256": "e1df1f340b54acbc303a43b48d3734bc98031dd8259d679024a4341c52490d0e"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r2-c3-100pct.png",
+          "sha256": "d6c167dd9bd19e4136c19f15c60f950d2d679bf5477f18f514f0216ac3d64753"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r3-c1-100pct.png",
+          "sha256": "8643665b7721f6b967446ea64447c7774184c3473a4e4f069daf9c28b9e3469d"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r3-c2-100pct.png",
+          "sha256": "295534aa4bf122805c9bd440c392114e52800cd7f0aed3d29740479f96fd47fe"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/intersection-r3-c3-100pct.png",
+          "sha256": "a0cdd1c682518ab8910823bc4810ffc8e24cd0e997e8baf4e675a87ff8b06c62"
+        }
+      ],
+      "pendingRepairGroups": [
+        {
+          "id": "cloud-junction",
+          "priority": "P2",
+          "issue": "Local v1 joins central cloud curves and removes principal rectangular cuts. Small lower-left rectangle endpoint and gray/cream grain phase remain; p31/p41 contour density relative to approved layout remains pending."
+        },
+        {
+          "id": "lantern-ribs",
+          "priority": "P2",
+          "issue": "Local v1 joined the two main ribs; v2 removes isolated half rib and extends broken grout. Main gold ribs now continuous inside repair. West paste edge x2842,y2910 retains an abrupt start of the extended grout and material rectangle; north sill and south paving grain phase persist. East outer edge needs neighbor check. Two local calls retained in cumulative counts; improved but unpassed."
+        },
+        {
+          "id": "top-paving-context",
+          "priority": "P2",
+          "issue": "Top-row paving retains horizontal y909 context strips and vertical rectangles; grout direction/spacing changes at r1 intersections, especially x1024/x2048 and x3072 curb/shadow patch."
+        },
+        {
+          "id": "blue-band-material",
+          "priority": "P2",
+          "issue": "Road is connected after p42 and p22 layout repairs, but brightness/grain/border phase changes at y2048, y3072, with narrow old-context slice at r3c2. Exact diagonal-road layout fidelity remains for full-map review."
+        },
+        {
+          "id": "foliage-and-ledges",
+          "priority": "P2",
+          "issue": "p24/p34 horizontal leaf/ledge cuts, p23/p24 and p33/p34 vertical pavement/planter grain phase; p14/p24 timber and plaster material shifts."
+        },
+        {
+          "id": "external-south",
+          "priority": "P2",
+          "issue": "Four south quick joins checked against r05_c10 current native/candidate context. p41 grain, p42 road phase, p43/p44 diagonal grout offsets remain unpassed."
+        }
+      ],
+      "cumulativeRepairAttempts": {
+        "p42-layout-road": 1,
+        "p22-north-spur": 1,
+        "cloud-junction-local": 1,
+        "lantern-ribs-local": 2
+      },
+      "sourceAudit": {
+        "validSelectedNativeCount": 16,
+        "invalidSelectedSources": [],
+        "allReferenceBytesReverified": true
+      },
+      "actualModel": null,
+      "actualQuality": null,
+      "inflightGeneration": null,
+      "unsavedSuccessfulOutputs": 0,
+      "externalTileSeams": "not passed",
+      "baseReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/review-20261019/internal-review-v1.json",
+      "baseReviewSha256": "5361386866d69891073bd22a46c5af0db7f8f38f1915de3a335c7a56582fa03f",
+      "baseCandidateFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/core-baseline/9be56af964cc375bf0c7/r04_c10-core-baseline.candidate.png",
+      "baseCandidateSha256": "85399e749db94abfe5b35e637a98bd500e2291901277045ea11bac449d634842",
+      "coreNativeCount": 18,
+      "localRepairNativeCount": 3,
+      "localAssemblyManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/local-v2-assembly.json",
+      "selectedRepairs": [
+        {
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/native/repairs/cloud-junction-local-v1-20261019.png",
+          "sha256": "abba815f8b8029bc4d68c20b191a021bbf51870d1e76a0ce172bb7e3df0c5e15",
+          "paste": [
+            397,
+            2445
+          ],
+          "crop": [
+            0,
+            0,
+            1254,
+            1254
+          ]
+        },
+        {
+          "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/native/repairs/lantern-ribs-local-v2-20261019.png",
+          "sha256": "a9da52124d2e8d837fce2885ee4a9c0ae4265aa34a3b645d5dd7de22d6b6620e",
+          "paste": [
+            2842,
+            2445
+          ],
+          "crop": [
+            0,
+            0,
+            1254,
+            1254
+          ]
+        }
+      ],
+      "changedRegionQa": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/lantern-ribs-local-v2-20261019-north-100pct.png",
+          "crop": [
+            2742,
+            2345,
+            4096,
+            2545
+          ],
+          "sha256": "879ece04b313ff07a8c1755225472586fe30fd958a9a650d121e1b42a2e35a1b"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/lantern-ribs-local-v2-20261019-south-100pct.png",
+          "crop": [
+            2742,
+            3599,
+            4096,
+            3799
+          ],
+          "sha256": "059ae13833eedfd3a8a93d5f1271fee70d4988e4a4bf2ddcca46a6aef41dc668"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/lantern-ribs-local-v2-20261019-west-100pct.png",
+          "crop": [
+            2742,
+            2445,
+            2942,
+            3699
+          ],
+          "sha256": "2d095e6e332b391a0e7eb408a27ce2368735468c7ee38755890196a68997627a"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/lantern-ribs-local-v2-20261019-east-100pct.png",
+          "crop": [
+            3996,
+            2445,
+            4096,
+            3699
+          ],
+          "sha256": "a35619cb91e0e91240c9a2bec0eb8f405db6fd57e6fd45c49686b856532e68e3"
+        }
+      ],
+      "cloudChangedRegionQa": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/cloud-junction-local-v1-20261019-north-100pct.png",
+          "crop": [
+            297,
+            2345,
+            1751,
+            2545
+          ],
+          "sha256": "6f907b5ce5852aa5e9aa2f21ee3f8d3109d106172454c5dad51615213944927a"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/cloud-junction-local-v1-20261019-south-100pct.png",
+          "crop": [
+            297,
+            3599,
+            1751,
+            3799
+          ],
+          "sha256": "d61e1a161af2b85f6f032eb43412d128caafd9811d4fcd9bf3b0cb451e53333b"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/cloud-junction-local-v1-20261019-west-100pct.png",
+          "crop": [
+            297,
+            2445,
+            497,
+            3699
+          ],
+          "sha256": "8c614077e10bf995e0ad1d2172d5287a014dd21164cd38e4ab3ace12010f6729"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northeast/r04_c10/qa/local-repair-20261019/cloud-junction-local-v1-20261019-east-100pct.png",
+          "crop": [
+            1551,
+            2445,
+            1751,
+            3699
+          ],
+          "sha256": "a17867eefce3be45aed6f69a1ae6b8680462a723c81df466469383ad7e26f323"
+        }
+      ],
+      "changedRegionQaStatus": "All three native local returns plus v1 eight surrounding edges and v2 four changed lamp edges visually inspected at 100%. Cloud v1 and lamp v2 selected as improved but unpassed. East lamp strip reaches tile border; no external eastern join claimed.",
+      "unchangedReviewReuse": "Reuse baseline 24 joins and 9 intersections outside changed rectangles. Cloud v1 region unchanged by v2 and checked once."
+    }
+  }
+}

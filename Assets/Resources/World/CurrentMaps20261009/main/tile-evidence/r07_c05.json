@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 7,
+  "column": 5,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "63c5641eeca731cc026d0bc2beeb1d1c2e86b331c63c0954a9fafaa0ea9f3896",
+  "imageBytes": 26948585,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c05/reopened-layout-20261017/candidate-layout-restore-v1/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c05/reopened-layout-20261017/candidate-layout-restore-v1/assembly.json",
+  "sourceLedgerSha256": "369c4c8a8e25cecf386061b75cadb2bdb17104d68a62eed50ab67819b70d8518",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c05",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c05/reopened-layout-20261017/candidate-layout-restore-v1/candidate.png",
+    "imageSha256": "63c5641eeca731cc026d0bc2beeb1d1c2e86b331c63c0954a9fafaa0ea9f3896",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c05/reopened-layout-20261017/candidate-layout-restore-v1/assembly.json",
+        "sha256": "369c4c8a8e25cecf386061b75cadb2bdb17104d68a62eed50ab67819b70d8518",
+        "completeness": [
+          "nativeSourcesCount",
+          23
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c05/reopened-layout-20261017/candidate-layout-restore-v1/assembly.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

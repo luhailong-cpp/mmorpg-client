@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 12,
+  "column": 4,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "590748fe3702fad6f66df0fe19d28c407baf66766a9eb0028edeeea3aa5095b1",
+  "imageBytes": 28422983,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-beam-finish-v01-report.json",
+  "sourceLedgerSha256": "87a96b4db08b8d649c4c98651b256ebd3141b8f327895f53a03ea882964ce8f1",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-candidate-4096.png",
+    "imageSha256": "590748fe3702fad6f66df0fe19d28c407baf66766a9eb0028edeeea3aa5095b1",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-beam-finish-v01-report.json",
+        "sha256": "87a96b4db08b8d649c4c98651b256ebd3141b8f327895f53a03ea882964ce8f1",
+        "completeness": [
+          "/baseCandidate/nativeSourceCount",
+          18
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-report.json",
+        "sha256": "2ad3ea27475fbc0ce1c10f24f49aec1b95b3f344eed1c79904275e3aea6f5110",
+        "completeness": [
+          "/baseCandidate/nativeSourceCount",
+          17
+        ]
+      }
+    ],
+    "selectionBasis": "output_bound_native_coverage_or_complete_source_assembly",
+    "sourceStatus": {
+      "pendingRepairs": [
+        {
+          "issue": "Deck repair left boundary small beam-edge step retained from previous current review; unaffected by stair repair."
+        },
+        {
+          "issue": "Central lotus right stamen cluster still requires actual native identity/continuity check."
+        },
+        {
+          "issue": "All four outer tile edge pairs remain pending."
+        }
+      ],
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-native-review-manifest.json",
+        "record": {
+          "actualVisualReviewPending": true
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-actual-native-review.json",
+        "record": {
+          "pendingRepairs": [
+            {
+              "issue": "Deck repair left boundary small beam-edge step retained from previous current review; unaffected by stair repair."
+            },
+            {
+              "issue": "Central lotus right stamen cluster still requires actual native identity/continuity check."
+            },
+            {
+              "issue": "All four outer tile edge pairs remain pending."
+            }
+          ],
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "formalAccepted": false,
+          "internalStatus": "all24 internal segments and four repair perimeters inspected; localized geometry repairs pending",
+          "pendingRepairs": [
+            {
+              "issue": "Current inherited deck/beam lower edge source-change step; new precise repair held because its right beam perimeter shifts.",
+              "heldTrial": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-beam-finish-v01-hold-review.json"
+            },
+            {
+              "issue": "All four outer tile edge pairs remain pending."
+            }
+          ],
+          "externalTileSeamsPassed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "record": {
+          "formalAccepted": false,
+          "internalStatus": "all24 internal segments and four repair perimeters inspected; localized geometry repairs pending",
+          "pendingRepairs": [
+            {
+              "issue": "Current inherited deck/beam lower edge source-change step; new precise repair held because its right beam perimeter shifts.",
+              "heldTrial": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-beam-finish-v01-hold-review.json"
+            },
+            {
+              "issue": "All four outer tile edge pairs remain pending."
+            }
+          ],
+          "externalTileSeamsPassed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/expansion-central-worker-map.json",
+        "record": {
+          "formalAccepted": false,
+          "internalStatus": "all24 internal segments and four repair perimeters inspected; localized geometry repairs pending",
+          "pendingRepairs": [
+            {
+              "issue": "Current inherited deck/beam lower edge source-change step; new precise repair held because its right beam perimeter shifts.",
+              "heldTrial": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-beam-finish-v01-hold-review.json"
+            },
+            {
+              "issue": "All four outer tile edge pairs remain pending."
+            }
+          ],
+          "externalTileSeamsPassed": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-native-review-manifest.json",
+    "sourceSha256": "56482886892246e53b154a5dd32cdb9914a87669e9e5431a5cc6a55c64d99e4d",
+    "normalizedDocument": {
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-candidate-4096.png",
+        "role": "candidate-4096",
+        "sha256": "590748fe3702fad6f66df0fe19d28c407baf66766a9eb0028edeeea3aa5095b1",
+        "dimensions": [
+          4096,
+          4096
+        ]
+      },
+      "report": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-report.json",
+      "views": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-complete-repair-native100.png",
+          "role": "complete-repair",
+          "sha256": "eecd9a07270ad1cd990675f63c3bb041e6ab730d7f766a3c1b2945a7a93f6e65",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "crop": [
+            275,
+            1380,
+            1529,
+            2634
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-boundary-top-native100.png",
+          "role": "boundary-top",
+          "sha256": "a533f01d75de640b7c1f3b0391c63a8ebb33104fbac2f6c0414a6a4fa28a2b1c",
+          "dimensions": [
+            1060,
+            320
+          ],
+          "crop": [
+            395,
+            1480,
+            1455,
+            1800
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-boundary-bottom-native100.png",
+          "role": "boundary-bottom",
+          "sha256": "cf6bcb2b7d9bca09032dcf521ddccd22a7decc34e11571901d4757186b145c0a",
+          "dimensions": [
+            1060,
+            320
+          ],
+          "crop": [
+            395,
+            2260,
+            1455,
+            2580
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-boundary-left-native100.png",
+          "role": "boundary-left",
+          "sha256": "c9eb0def6083d1de04d8c631244d74d4a36037d92c406c507dc4e9b76f4dc958",
+          "dimensions": [
+            320,
+            1060
+          ],
+          "crop": [
+            375,
+            1500,
+            695,
+            2560
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-boundary-right-native100.png",
+          "role": "boundary-right",
+          "sha256": "10cd62aa76b1aaa52cc69b144e2a08d6fcae7e31ac4a74282b5853d1caa6438b",
+          "dimensions": [
+            320,
+            1060
+          ],
+          "crop": [
+            1155,
+            1500,
+            1475,
+            2560
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-corner-475-1580-native100.png",
+          "role": "corner-475-1580",
+          "sha256": "a36742bed8edd3e100dbed1ff8c747c669a2fa546c5d83fe22ec913f52f1c30b",
+          "dimensions": [
+            360,
+            360
+          ],
+          "crop": [
+            295,
+            1400,
+            655,
+            1760
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-corner-1375-1580-native100.png",
+          "role": "corner-1375-1580",
+          "sha256": "f7666f50149108658425b79321591feab964a05b86d04bbece18f0f718f0cb57",
+          "dimensions": [
+            360,
+            360
+          ],
+          "crop": [
+            1195,
+            1400,
+            1555,
+            1760
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-corner-475-2480-native100.png",
+          "role": "corner-475-2480",
+          "sha256": "81bc87e52505d5a0adccbb2c3ac1c3151156f8155d6ac8bf373a83ec531292d8",
+          "dimensions": [
+            360,
+            360
+          ],
+          "crop": [
+            295,
+            2300,
+            655,
+            2660
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-corner-1375-2480-native100.png",
+          "role": "corner-1375-2480",
+          "sha256": "b55c71b672b001006415b0bb282d253521fd9f5eeb58654c221179307f78bf22",
+          "dimensions": [
+            360,
+            360
+          ],
+          "crop": [
+            1195,
+            2300,
+            1555,
+            2660
+          ],
+          "native100Percent": true
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/central-finish-20261021/qa/c04-hardseam-central-r12-c04-stairturn-finish-v01-junction-1024-2048-native100.png",
+          "role": "junction-1024-2048",
+          "sha256": "6ae723fddef476d232435c3bbdec98da8a6cbebaf2597680c9457e1ba223d50a",
+          "dimensions": [
+            600,
+            600
+          ],
+          "crop": [
+            724,
+            1748,
+            1324,
+            2348
+          ],
+          "native100Percent": true
+        }
+      ],
+      "actualVisualReviewPending": true
+    }
+  }
+}

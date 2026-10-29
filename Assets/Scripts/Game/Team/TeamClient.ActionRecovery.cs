@@ -129,15 +129,20 @@ namespace MmorpgClient.Game.Team
         {
             if (_pendingActionRequest == null) return true;
             try {
-                ActionRecovery?.Clear(PlayerId, _pendingActionSaved);
-                _pendingActionRequest = null; _pendingActionSaved = null;
-                _actionHadUncertainAttempt = false;
+                ClearActionIntent();
                 return true;
             } catch (Exception) {
                 _actionRecoveryBlocked = true;
                 Status = failureMessage;
                 return false;
             }
+        }
+
+        private void ClearActionIntent()
+        {
+            ActionRecovery?.Clear(PlayerId, _pendingActionSaved);
+            _pendingActionRequest = null; _pendingActionSaved = null;
+            _actionHadUncertainAttempt = false;
         }
 
         private bool ReplayActionIntent(float now)

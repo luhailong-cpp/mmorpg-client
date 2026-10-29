@@ -1,0 +1,2092 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 6,
+  "column": 11,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221",
+  "imageBytes": 30814986,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c11-native-v2-local-working-20261018.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r06_c11.json",
+  "sourceLedgerSha256": "93aec4374a018efc6845a8146ebf5032e5aef6d62a59203de7b308d3a0633b2d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r06_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c11-native-v2-local-working-20261018.png",
+    "imageSha256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r06_c11.json",
+        "sha256": "93aec4374a018efc6845a8146ebf5032e5aef6d62a59203de7b308d3a0633b2d",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "coverage": "complete16 base; no uncovered pixels",
+      "internalReview": "not_passed_39pass_9failed_1pending",
+      "layoutAccepted": false,
+      "formalAccepted": false,
+      "internalReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-49QA.json"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c11-native-v2-local-working-20261018.png.derivation.json",
+        "record": {
+          "coverage": "complete16 base; no uncovered pixels",
+          "internalReview": "not_passed_39pass_9failed_1pending",
+          "layoutAccepted": false,
+          "formalAccepted": false,
+          "internalReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-49QA.json"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-49QA.json",
+        "record": {
+          "outstandingIssues": [
+            {
+              "id": "wall-coping-cut",
+              "status": "failed",
+              "affectedItems": [
+                "core-1-2",
+                "core-1-3",
+                "vertical-2-segment-1",
+                "cross-1-2"
+              ],
+              "finding": "Tile x2048 coping step persists; original mistaken passes corrected."
+            },
+            {
+              "id": "false-wall-termination",
+              "status": "failed",
+              "affectedItems": [
+                "core-2-2",
+                "horizontal-1-segment-2",
+                "cross-1-2"
+              ],
+              "finding": "Wall geometry still terminates abruptly near tile x1930,y1024 and lower in p0202. Left halo fix does not repair right-end notch."
+            },
+            {
+              "id": "wall-height-step",
+              "status": "failed",
+              "affectedItems": [
+                "core-2-3",
+                "vertical-3-segment-2",
+                "cross-2-3"
+              ],
+              "finding": "p0203v2 to p0204 wall foot/coping level mismatch remains."
+            },
+            {
+              "id": "halo-top-material",
+              "status": "pending",
+              "affectedItems": [
+                "vertical-1-segment-1"
+              ],
+              "finding": "Small upper material/sharpness transition remains after45px geometry repair."
+            }
+          ],
+          "externalSeams": "not formally accepted; known wrong north segment1 source/layout remains unresolved",
+          "internalAccepted": false,
+          "all49Accepted": false,
+          "layoutAccepted": false,
+          "formalAccepted": false,
+          "status": "complete49_current_working_candidate_has_failed_and_pending_items"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-49QA.json",
+    "sourceSha256": "c394df12d30c76dd2ffcc31b45bccb07e661f8a36e58ea42f0429d9cbd8b6caa",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tileId": "r06_c11",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c11-native-v2-local-working-20261018.png",
+      "inputSHA": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221",
+      "inputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221",
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "reviewedAtUtc": "2026-10-18T09:04:57.038447+00:00",
+      "reviewer": "/root/bridge_resume18/r06c11_qa",
+      "counts": {
+        "all49": {
+          "total": 49,
+          "pass": 39,
+          "failed": 9,
+          "pending": 1
+        },
+        "core16": {
+          "total": 16,
+          "pass": 12,
+          "failed": 4,
+          "pending": 0
+        },
+        "seam24": {
+          "total": 24,
+          "pass": 20,
+          "failed": 3,
+          "pending": 1
+        },
+        "cross9": {
+          "total": 9,
+          "pass": 7,
+          "failed": 2,
+          "pending": 0
+        }
+      },
+      "core16": [
+        {
+          "id": "core-1-1",
+          "status": "pass",
+          "source": "r06_c11_p01_01",
+          "inputSHA256": "17e1880a7352b2fcfcd031fe28c1479d76c1a8a78fdd69d83710c21a221be6e1",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-1-1-100pct.png",
+          "evidenceSHA256": "74cb1b8a35d8187847245195f3b82ea8539276e6256b69e1bc18eb00067a492f",
+          "candidateBox": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p01_01-quick-review.json",
+          "reviewSHA256": "431d98e9b0fd67dd0f3ab9e70ad91539b87ce8acbfc134591af8866caa6fe84c",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original tall wall/coping and narrow green base strip restored. Correct large pillar only clipped at far right. New source preserved; no false small posts copied.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-1-2",
+          "status": "failed",
+          "source": "r06_c11_p01_02",
+          "inputSHA256": "cc06cf99ff33d0694a1346a32bc07467d03ded6e7b0a59d657bbbce65cbd2ff8",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/core-1-2-100pct.png",
+          "evidenceSHA256": "ad54787cc320b34528865295a639b11f5c0e0cb17508f31e83b78d0e1b821999",
+          "candidateBox": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p01_02-quick-review.json",
+          "reviewSHA256": "c77955d18ae5579e33369331868b7ecbfa4e1e389b72612bc63eba56e6bb55ba",
+          "basis": "Direct current100pct visual review; changed crop verified pixel-identical to current working candidate.",
+          "finding": "The45px halo closes the left paved gap, but the right coping cut at tile x2048 remains. Prior wall-context correction is retained.",
+          "correctedBy": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/resume18-wall-context-addendum.json",
+          "reviewedThisVersion": true,
+          "reusedUnchangedPixels": false,
+          "overlaysAffectingCrop": [
+            {
+              "id": "same-world-wall-halo",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c11_p01_01.png",
+              "sha256": "17e1880a7352b2fcfcd031fe28c1479d76c1a8a78fdd69d83710c21a221be6e1",
+              "sourceCrop": [
+                1139,
+                115,
+                1184,
+                1139
+              ],
+              "tileLocalPaste": [
+                1024,
+                0,
+                1069,
+                1024
+              ],
+              "candidateOverlap": [
+                1024,
+                0,
+                1069,
+                1024
+              ]
+            }
+          ],
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-1-3",
+          "status": "failed",
+          "source": "r06_c11_p01_03_v2",
+          "inputSHA256": "77634d1b9d4b8589ef9c7fc0cdc46c5846143396ead13b40341af61ff9969256",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-1-3-100pct.png",
+          "evidenceSHA256": "ac1c20ce63cfb7ecbd4cddd504c7a1532e2b6d015d9db3a8c31890f3fa6e8af9",
+          "candidateBox": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p01_03_v2-quick-review.json",
+          "reviewSHA256": "17c36ca09f43beb8250ce441599df6bac1bc885ff29940ada1d65d3e6e74c2e9",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Left-edge coping continuation does not fit the current adjacent core; boundary geometry acceptance is withdrawn.",
+          "correctedBy": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/resume18-wall-context-addendum.json",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-1-4",
+          "status": "pass",
+          "source": "r06_c11_p01_04",
+          "inputSHA256": "17727cb7b54400d837e23b4ba7a166f4d15f88a911f2351aa2cf3e42d460a103",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-1-4-100pct.png",
+          "evidenceSHA256": "1f6cd56a753375df560fbd110b8693cdd2a7148172a10b4bf2de23323586b74d",
+          "candidateBox": [
+            3072,
+            0,
+            4096,
+            1024
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p01_04-quick-review.json",
+          "reviewSHA256": "1709e365e749f2fde43eab91b5852a499e6f9e1fab7af74d384044fb044e0b60",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Mapped cropped green drum/red barrel and lower timber support retained. Top membrane/gold-rim/barrel and right lantern/support/base joints continuous at1:1; fine native detail, no invented central road.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-2-1",
+          "status": "pass",
+          "source": "r06_c11_p02_01",
+          "inputSHA256": "e6db6a145fb6b2f0a2414e1b3761d2e054d6dda0b94eba09323acc080d2eec86",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-2-1-100pct.png",
+          "evidenceSHA256": "4768d2d79492db50d1495c7508a0892ab477f284ee78daf1d419d8a2667d493f",
+          "candidateBox": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_01-quick-review.json",
+          "reviewSHA256": "5e8e7eb3e84faf3f98c185270ccbaa8ec6a6b4900e00e348a2860002bda2dcbb",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Open plaza, wall-foot band and flat red paper clusters follow original. Full top/right core strips viewed native1:1; stone grid and wall/pillar lines continue without block cut. No false posts. Provisional until49.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-2-2",
+          "status": "failed",
+          "source": "r06_c11_p02_02",
+          "inputSHA256": "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-2-2-100pct.png",
+          "evidenceSHA256": "b4ad16891a789adc5a0e2b7ef8ecc60ed698d18abf2ed13a63be6f4c61f99042",
+          "candidateBox": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_02-quick-review.json",
+          "reviewSHA256": "20dc0cd8a6be66915d3aed9bf7ea3d1006b338b43ef412684bfd81f19e6fc9bc",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Top and right core-boundary strips continue, but full native image shows false vertical termination/step of diagonal wall aroundx1000,y330..540 before right anchor. Original pillar foot and red paper positions broadly retained. Working only; wall geometry pending. Do not use failed upper-right wall as new anchor.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-2-3",
+          "status": "failed",
+          "source": "r06_c11_p02_03_v2",
+          "inputSHA256": "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-2-3-100pct.png",
+          "evidenceSHA256": "e36f65e040a92913b700847458a8cbf8fffdb029fdd2868cd960c543a61f3ebc",
+          "candidateBox": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_03_v2-quick-review.json",
+          "reviewSHA256": "c760d37dcfa293d2c266829079fcac7262a3a2ee3226247f42bc0c0d5da4d84b",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Top join continuous; right joint has about150px coping/foot step because wall slope redrawn steeper and right230 anchor ignored. Not selected. Preserve version, repair to exact right anchor and original wall geometry.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-2-4",
+          "status": "pass",
+          "source": "r06_c11_p02_04",
+          "inputSHA256": "77930b8f7e6af993ca82bff43005aa737097dc96514fe50b35f412b2b590c467",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-2-4-100pct.png",
+          "evidenceSHA256": "effd6f0ea8dec3b1c581c3152c1973aa0e419f40c964468920fe5a3c4024303c",
+          "candidateBox": [
+            3072,
+            1024,
+            4096,
+            2048
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_04-quick-review.json",
+          "reviewSHA256": "3dbc0c469bbc98539ea7b0b473bcccf88770d1130e331ca82c446b47b07f834e",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original drum platform front and tall diagonal ivory wall retained; top wood/gold base and right large ball-post/coping continuous at1:1, no added post or paved replacement of wall.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-3-1",
+          "status": "pass",
+          "source": "r06_c11_p03_01",
+          "inputSHA256": "76f357fce8d99b174552be05a60bc9fabf50ddc921bea986ae2b9fdfffb15cad",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-3-1-100pct.png",
+          "evidenceSHA256": "fc0a49d91387a77f6d63f8a4eb40eb8135e1b26baee021b436098e7dbb4be1e4",
+          "candidateBox": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_01-quick-review.json",
+          "reviewSHA256": "778ed7f4dc1904d3428a0ffde6b487f70b30b84479efbcd1c42d9f9fdc549f34",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Open paving and upper-edge paper preserved; both native1:1 strips viewed, slab grid and paper edges continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-3-2",
+          "status": "pass",
+          "source": "r06_c11_p03_02",
+          "inputSHA256": "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/core-3-2-100pct.png",
+          "evidenceSHA256": "c760f36d88191cd416e9ab9a5a84c66fd968af302469bcb3caac6ea7b6cc8fce",
+          "candidateBox": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_02-quick-review.json",
+          "reviewSHA256": "51e8cefdb3202b6ecd20bc3f549b2ccabb5f1da49bf0ea0d6d6a78aa27521ceb",
+          "basis": "Direct current100pct visual review; changed crop verified pixel-identical to current working candidate.",
+          "finding": "Separate original red-paper footprint is restored. Current native core viewed; ROI four-edge and position review remains applicable.",
+          "reviewedThisVersion": true,
+          "reusedUnchangedPixels": false,
+          "overlaysAffectingCrop": [
+            {
+              "id": "restored-paper-cluster",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c11_p03_02_v2.png",
+              "sha256": "b21d69a3b28228b558eb580c5f206045d9f955ba6b6ca87248d62ddf8ccfacf3",
+              "sourceCrop": [
+                250,
+                320,
+                610,
+                510
+              ],
+              "tileLocalPaste": [
+                1159,
+                2253,
+                1519,
+                2443
+              ],
+              "candidateOverlap": [
+                1159,
+                2253,
+                1519,
+                2443
+              ]
+            }
+          ],
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-3-3",
+          "status": "pass",
+          "source": "r06_c11_p03_03",
+          "inputSHA256": "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-3-3-100pct.png",
+          "evidenceSHA256": "fff8405ee9286ffc00f40bdeb9266002ed0229a61c56438f46eaa24c97b858c7",
+          "candidateBox": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_03-quick-review.json",
+          "reviewSHA256": "65121c3d77dfb7bf64e567c4835f0152e271f2e7222b648c2598a4fa39e56bac",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original open paving and peach canopy footprint preserved. Full top/right strips viewed at 1:1: slab joints, mottling and branch shadow continue; flower contours at right core boundary intact. Candidate only, full49 pending.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-3-4",
+          "status": "pass",
+          "source": "r06_c11_p03_04",
+          "inputSHA256": "7c1ea5688556eef59da39b41313f7f3fa9d0ae3c21f0234467ac4b65691da647",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-3-4-100pct.png",
+          "evidenceSHA256": "ffce4d97757f50d40d625750a7b0afd77c0cb02a726fc51b62e2c241fd94242f",
+          "candidateBox": [
+            3072,
+            2048,
+            4096,
+            3072
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_04-quick-review.json",
+          "reviewSHA256": "4481c51de322319a518585a1ebba0038e406ce093cf54bdc4d46e38128b8ca60",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original wall lower edge, open paving and entering pink flowering canopy retained. Top/right full seam strips viewed at native1:1; coping, paving and leaves continue without visible cut. Provisional only; full49 pending.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-4-1",
+          "status": "pass",
+          "source": "r06_c11_p04_01",
+          "inputSHA256": "a4738553e8edb584f0d68f8e42ae4de668c51bf0dec88cf3315771b7605fd1cc",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-4-1-100pct.png",
+          "evidenceSHA256": "aa3c05da06469f5b103e75f40e03f2824f3210d19f308426fef0453e4e10f594",
+          "candidateBox": [
+            0,
+            3072,
+            1024,
+            4096
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_01-quick-review.json",
+          "reviewSHA256": "742dda540dedb007487927a393a72a541a26c90bfa324da9519c93cc1bfe3824",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original open paving with only existing lower-right peach fringe retained. Full top/right native1:1 strips viewed: stone joints, moss and branch shadow continue. Interior slab scale varies but no new structure; native crisp detail.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-4-2",
+          "status": "pass",
+          "source": "r06_c11_p04_02",
+          "inputSHA256": "c08a3d2976e3cc4d85c1da186c401d07f1f48d68f7e721538ccd8c5121763a3e",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-4-2-100pct.png",
+          "evidenceSHA256": "cce842c58f3a65cad7eae4f384ee375c611efa72a046f95aa0fc942be5f3997d",
+          "candidateBox": [
+            1024,
+            3072,
+            2048,
+            4096
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_02-quick-review.json",
+          "reviewSHA256": "d5f61794d1f88d293963be39def181767b6c02453f111c046e22b4259dcc706a",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Lower peach tree fringe follows original footprint, open paving retained. Both native1:1 top/right strips viewed; slab lines, branch shadow and flowers continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-4-3",
+          "status": "pass",
+          "source": "r06_c11_p04_03",
+          "inputSHA256": "64e55cc3ab7b748d82b9f7e032c98ac8253a57520c947ee5d8e93e0ac12faacc",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-4-3-100pct.png",
+          "evidenceSHA256": "907b4f479398c1e020c63bf12749bb19c80f469d3f177bc8932d06646e57acc5",
+          "candidateBox": [
+            2048,
+            3072,
+            3072,
+            4096
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_03-quick-review.json",
+          "reviewSHA256": "93d0c3dbbf47720b5d9fdac24c0b5e9c43423a092f443a097cc1523b36c7b745",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Peach canopy and paved upper-left boundary follow original footprint. Native top/right seam strips viewed: branch/flower contours and slab lines continuous, no abrupt core rectangle. Candidate until49.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "core-4-4",
+          "status": "pass",
+          "source": "r06_c11_p04_04",
+          "inputSHA256": "2fa5b6675a2e65b8f7e8258b3e103ae8d3a8ed1022ab5acccc7971c1b76bf2f8",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-4-4-100pct.png",
+          "evidenceSHA256": "5102e16adc849dbb5cc1c9c58739789f69edd95f6532a1a8293929c494c6ebaf",
+          "candidateBox": [
+            3072,
+            3072,
+            4096,
+            4096
+          ],
+          "candidatePixelsVerified": true,
+          "reusedReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_04-quick-review.json",
+          "reviewSHA256": "7fcf05f18a3d7d8f38d530c4cd76d436c6bcd0174415e3e13b770f3d4ffbf628",
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Existing flower canopy covers crop in original position; petal and branch scale continuous. Both full seam strips viewed at native1:1 with no severed blossom/branch line. Provisional; full49 pending.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        }
+      ],
+      "seam24": [
+        {
+          "id": "vertical-1-segment-1",
+          "edge": "r01c01-r01c02",
+          "status": "pending",
+          "inputSHA256": [
+            "17e1880a7352b2fcfcd031fe28c1479d76c1a8a78fdd69d83710c21a221be6e1",
+            "cc06cf99ff33d0694a1346a32bc07467d03ded6e7b0a59d657bbbce65cbd2ff8"
+          ],
+          "sources": [
+            "r06_c11_p01_01",
+            "r06_c11_p01_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/vertical-1-segment-1-100pct.png",
+          "evidenceSHA256": "ba56d3438f564119b67d4dd16281c4de99fd2ded141f18192c9a833d7da080f1",
+          "candidateBox": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p01_01-right-100pct.png",
+          "reusedQuickStripSHA256": "7ac74dc60a9cd49cf1e31b90ec057ebf9864858e4036a07bfb50cec90beee16f",
+          "basis": "Direct current100pct visual review; changed crop verified pixel-identical to current working candidate.",
+          "finding": "False paved gap removed and wall/post geometry connected. Top narrow grain/sharpness transition at the inserted strip boundary remains pending; no full-material acceptance.",
+          "reviewedThisVersion": true,
+          "reusedUnchangedPixels": false,
+          "overlaysAffectingCrop": [
+            {
+              "id": "same-world-wall-halo",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c11_p01_01.png",
+              "sha256": "17e1880a7352b2fcfcd031fe28c1479d76c1a8a78fdd69d83710c21a221be6e1",
+              "sourceCrop": [
+                1139,
+                115,
+                1184,
+                1139
+              ],
+              "tileLocalPaste": [
+                1024,
+                0,
+                1069,
+                1024
+              ],
+              "candidateOverlap": [
+                1024,
+                0,
+                1069,
+                1024
+              ]
+            }
+          ],
+          "priorV1_quickStripMatchesCandidatePixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-1-segment-2",
+          "edge": "r02c01-r02c02",
+          "status": "pass",
+          "inputSHA256": [
+            "e6db6a145fb6b2f0a2414e1b3761d2e054d6dda0b94eba09323acc080d2eec86",
+            "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026"
+          ],
+          "sources": [
+            "r06_c11_p02_01",
+            "r06_c11_p02_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-1-segment-2-100pct.png",
+          "evidenceSHA256": "9e3800c8d60ddbe6044d35b3f0931964f02ad2444887ebfbd5b9f03dd6f18616",
+          "candidateBox": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_01-right-100pct.png",
+          "reusedQuickStripSHA256": "9e3800c8d60ddbe6044d35b3f0931964f02ad2444887ebfbd5b9f03dd6f18616",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Paving and pillar-foot connection continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-1-segment-3",
+          "edge": "r03c01-r03c02",
+          "status": "pass",
+          "inputSHA256": [
+            "76f357fce8d99b174552be05a60bc9fabf50ddc921bea986ae2b9fdfffb15cad",
+            "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef"
+          ],
+          "sources": [
+            "r06_c11_p03_01",
+            "r06_c11_p03_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-1-segment-3-100pct.png",
+          "evidenceSHA256": "971f1886576428be3c143ee91638229f8c29b03ca0b5a748602601434d66dbad",
+          "candidateBox": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_01-right-100pct.png",
+          "reusedQuickStripSHA256": "971f1886576428be3c143ee91638229f8c29b03ca0b5a748602601434d66dbad",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Open paving and upper-edge paper preserved; both native1:1 strips viewed, slab grid and paper edges continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-1-segment-4",
+          "edge": "r04c01-r04c02",
+          "status": "pass",
+          "inputSHA256": [
+            "a4738553e8edb584f0d68f8e42ae4de668c51bf0dec88cf3315771b7605fd1cc",
+            "c08a3d2976e3cc4d85c1da186c401d07f1f48d68f7e721538ccd8c5121763a3e"
+          ],
+          "sources": [
+            "r06_c11_p04_01",
+            "r06_c11_p04_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-1-segment-4-100pct.png",
+          "evidenceSHA256": "62a546a1d13905b109582b284f8f965b6b782148bc14765ebe48a625d7a9c65d",
+          "candidateBox": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_01-right-100pct.png",
+          "reusedQuickStripSHA256": "62a546a1d13905b109582b284f8f965b6b782148bc14765ebe48a625d7a9c65d",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original open paving with only existing lower-right peach fringe retained. Full top/right native1:1 strips viewed: stone joints, moss and branch shadow continue. Interior slab scale varies but no new structure; native crisp detail.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-2-segment-1",
+          "edge": "r01c02-r01c03",
+          "status": "failed",
+          "inputSHA256": [
+            "cc06cf99ff33d0694a1346a32bc07467d03ded6e7b0a59d657bbbce65cbd2ff8",
+            "77634d1b9d4b8589ef9c7fc0cdc46c5846143396ead13b40341af61ff9969256"
+          ],
+          "sources": [
+            "r06_c11_p01_02",
+            "r06_c11_p01_03_v2"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-2-segment-1-100pct.png",
+          "evidenceSHA256": "181fb2e184377e3a72ffe36012c017db14134476554178aa8e710834107d3f1e",
+          "candidateBox": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p01_02-right-100pct.png",
+          "reusedQuickStripSHA256": "181fb2e184377e3a72ffe36012c017db14134476554178aa8e710834107d3f1e",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Confirmed discontinuity at tile x2048 around y835..970; original right-strip pass was a visual miss.",
+          "correctedBy": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/resume18-wall-context-addendum.json",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-2-segment-2",
+          "edge": "r02c02-r02c03",
+          "status": "pass",
+          "inputSHA256": [
+            "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026",
+            "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de"
+          ],
+          "sources": [
+            "r06_c11_p02_02",
+            "r06_c11_p02_03_v2"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-2-segment-2-100pct.png",
+          "evidenceSHA256": "c2d9dab4d6ff880d7c9331bda857b6ec2a77b4f4fe240508b901e7acd2ef9bc0",
+          "candidateBox": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_02-right-100pct.png",
+          "reusedQuickStripSHA256": "c2d9dab4d6ff880d7c9331bda857b6ec2a77b4f4fe240508b901e7acd2ef9bc0",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Exact boundary is continuous; p0202 wall failure is inside its core, excluded from this seam result.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-2-segment-3",
+          "edge": "r03c02-r03c03",
+          "status": "pass",
+          "inputSHA256": [
+            "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef",
+            "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b"
+          ],
+          "sources": [
+            "r06_c11_p03_02",
+            "r06_c11_p03_03"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-2-segment-3-100pct.png",
+          "evidenceSHA256": "dfc2da56e0a6d5c223790fd84cedd56323dfc92bb60dd75f57dfba78641d38bb",
+          "candidateBox": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_02-right-100pct.png",
+          "reusedQuickStripSHA256": "dfc2da56e0a6d5c223790fd84cedd56323dfc92bb60dd75f57dfba78641d38bb",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Paving top/right seam lines and paper edges continuous at native1:1. Two original red-paper footprints were consolidated into upper cluster: separate cluster centered around native(450,430) omitted. Nonblocking local layout issue; retain as working coverage and safe stone-boundary anchors, not layout acceptance.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-2-segment-4",
+          "edge": "r04c02-r04c03",
+          "status": "pass",
+          "inputSHA256": [
+            "c08a3d2976e3cc4d85c1da186c401d07f1f48d68f7e721538ccd8c5121763a3e",
+            "64e55cc3ab7b748d82b9f7e032c98ac8253a57520c947ee5d8e93e0ac12faacc"
+          ],
+          "sources": [
+            "r06_c11_p04_02",
+            "r06_c11_p04_03"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-2-segment-4-100pct.png",
+          "evidenceSHA256": "4859eaa837756e2baf5fc5e3002420496c503b31def02f5deb84fb7c39b9272a",
+          "candidateBox": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_02-right-100pct.png",
+          "reusedQuickStripSHA256": "4859eaa837756e2baf5fc5e3002420496c503b31def02f5deb84fb7c39b9272a",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Lower peach tree fringe follows original footprint, open paving retained. Both native1:1 top/right strips viewed; slab lines, branch shadow and flowers continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-3-segment-1",
+          "edge": "r01c03-r01c04",
+          "status": "pass",
+          "inputSHA256": [
+            "77634d1b9d4b8589ef9c7fc0cdc46c5846143396ead13b40341af61ff9969256",
+            "17727cb7b54400d837e23b4ba7a166f4d15f88a911f2351aa2cf3e42d460a103"
+          ],
+          "sources": [
+            "r06_c11_p01_03_v2",
+            "r06_c11_p01_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-3-segment-1-100pct.png",
+          "evidenceSHA256": "3efe01a40eb52a025fc3903f0b603735bf663b5236d1bccdc69d63de79296eac",
+          "candidateBox": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p01_03_v2-right-100pct.png",
+          "reusedQuickStripSHA256": "3efe01a40eb52a025fc3903f0b603735bf663b5236d1bccdc69d63de79296eac",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Drum and support join continuous; fine grain remains full49 concern.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-3-segment-2",
+          "edge": "r02c03-r02c04",
+          "status": "failed",
+          "inputSHA256": [
+            "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de",
+            "77930b8f7e6af993ca82bff43005aa737097dc96514fe50b35f412b2b590c467"
+          ],
+          "sources": [
+            "r06_c11_p02_03_v2",
+            "r06_c11_p02_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-3-segment-2-100pct.png",
+          "evidenceSHA256": "db38508c6c845069f2c12af078cf3594f897356d2b26052a34f59d19df039b0f",
+          "candidateBox": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_03_v2-right-100pct.png",
+          "reusedQuickStripSHA256": "db38508c6c845069f2c12af078cf3594f897356d2b26052a34f59d19df039b0f",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Known approximately150px wall coping/foot step. v3/v4 failed repairs not re-reviewed.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-3-segment-3",
+          "edge": "r03c03-r03c04",
+          "status": "pass",
+          "inputSHA256": [
+            "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b",
+            "7c1ea5688556eef59da39b41313f7f3fa9d0ae3c21f0234467ac4b65691da647"
+          ],
+          "sources": [
+            "r06_c11_p03_03",
+            "r06_c11_p03_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-3-segment-3-100pct.png",
+          "evidenceSHA256": "2e13465340dec133677a7856de60ea5226ed0df95d5d95dd92996b81b1a42d18",
+          "candidateBox": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_03-right-100pct.png",
+          "reusedQuickStripSHA256": "2e13465340dec133677a7856de60ea5226ed0df95d5d95dd92996b81b1a42d18",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original open paving and peach canopy footprint preserved. Full top/right strips viewed at 1:1: slab joints, mottling and branch shadow continue; flower contours at right core boundary intact. Candidate only, full49 pending.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "vertical-3-segment-4",
+          "edge": "r04c03-r04c04",
+          "status": "pass",
+          "inputSHA256": [
+            "64e55cc3ab7b748d82b9f7e032c98ac8253a57520c947ee5d8e93e0ac12faacc",
+            "2fa5b6675a2e65b8f7e8258b3e103ae8d3a8ed1022ab5acccc7971c1b76bf2f8"
+          ],
+          "sources": [
+            "r06_c11_p04_03",
+            "r06_c11_p04_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-3-segment-4-100pct.png",
+          "evidenceSHA256": "49a44784dd0dd61d7fee76eb3b676126c54673891f8800819ed625204ca8052e",
+          "candidateBox": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_03-right-100pct.png",
+          "reusedQuickStripSHA256": "49a44784dd0dd61d7fee76eb3b676126c54673891f8800819ed625204ca8052e",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Peach canopy and paved upper-left boundary follow original footprint. Native top/right seam strips viewed: branch/flower contours and slab lines continuous, no abrupt core rectangle. Candidate until49.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-1-segment-1",
+          "edge": "r01c01-r02c01",
+          "status": "pass",
+          "inputSHA256": [
+            "17e1880a7352b2fcfcd031fe28c1479d76c1a8a78fdd69d83710c21a221be6e1",
+            "e6db6a145fb6b2f0a2414e1b3761d2e054d6dda0b94eba09323acc080d2eec86"
+          ],
+          "sources": [
+            "r06_c11_p01_01",
+            "r06_c11_p02_01"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-1-segment-1-100pct.png",
+          "evidenceSHA256": "91301329f6fb63f4c2dd5d8d851b7a7389894ac5bec062ab923c1b48da150a9d",
+          "candidateBox": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_01-top-100pct.png",
+          "reusedQuickStripSHA256": "91301329f6fb63f4c2dd5d8d851b7a7389894ac5bec062ab923c1b48da150a9d",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Current wall foot/paving strip continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-1-segment-2",
+          "edge": "r01c02-r02c02",
+          "status": "failed",
+          "inputSHA256": [
+            "cc06cf99ff33d0694a1346a32bc07467d03ded6e7b0a59d657bbbce65cbd2ff8",
+            "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026"
+          ],
+          "sources": [
+            "r06_c11_p01_02",
+            "r06_c11_p02_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/horizontal-1-segment-2-100pct.png",
+          "evidenceSHA256": "eaefaaeaa7f52a08d492429aed6ae8f8d8b0d35f860754d22009936e327abfec",
+          "candidateBox": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_02-top-100pct.png",
+          "reusedQuickStripSHA256": "eaefaaeaa7f52a08d492429aed6ae8f8d8b0d35f860754d22009936e327abfec",
+          "basis": "Direct current100pct visual review; changed crop verified pixel-identical to current working candidate.",
+          "finding": "Left endpoint/pillar foot is repaired. The right portion still contains the false wall termination: near crop x906,y128 (tile x1930,y1024) the wall abruptly ends and flowers appear below the cut. Do not promote the whole strip merely because its changed left45px pass.",
+          "reviewedThisVersion": true,
+          "reusedUnchangedPixels": false,
+          "overlaysAffectingCrop": [
+            {
+              "id": "same-world-wall-halo",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c11_p01_01.png",
+              "sha256": "17e1880a7352b2fcfcd031fe28c1479d76c1a8a78fdd69d83710c21a221be6e1",
+              "sourceCrop": [
+                1139,
+                115,
+                1184,
+                1139
+              ],
+              "tileLocalPaste": [
+                1024,
+                0,
+                1069,
+                1024
+              ],
+              "candidateOverlap": [
+                1024,
+                896,
+                1069,
+                1024
+              ]
+            }
+          ],
+          "priorV1_quickStripMatchesCandidatePixels": false,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-1-segment-3",
+          "edge": "r01c03-r02c03",
+          "status": "pass",
+          "inputSHA256": [
+            "77634d1b9d4b8589ef9c7fc0cdc46c5846143396ead13b40341af61ff9969256",
+            "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de"
+          ],
+          "sources": [
+            "r06_c11_p01_03_v2",
+            "r06_c11_p02_03_v2"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-1-segment-3-100pct.png",
+          "evidenceSHA256": "598b5e7a6924f46e7216d8305b8e39fad2b1cc821e7cd8626987082bb6f80a15",
+          "candidateBox": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_03_v2-top-100pct.png",
+          "reusedQuickStripSHA256": "598b5e7a6924f46e7216d8305b8e39fad2b1cc821e7cd8626987082bb6f80a15",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Prior finding explicitly says top join continuous; failing right join stays separate.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-1-segment-4",
+          "edge": "r01c04-r02c04",
+          "status": "pass",
+          "inputSHA256": [
+            "17727cb7b54400d837e23b4ba7a166f4d15f88a911f2351aa2cf3e42d460a103",
+            "77930b8f7e6af993ca82bff43005aa737097dc96514fe50b35f412b2b590c467"
+          ],
+          "sources": [
+            "r06_c11_p01_04",
+            "r06_c11_p02_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-1-segment-4-100pct.png",
+          "evidenceSHA256": "5fc4dd097c25519c709c77111204b48c62468fc8ea6abb0ead11cbb71548e846",
+          "candidateBox": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p02_04-top-100pct.png",
+          "reusedQuickStripSHA256": "5fc4dd097c25519c709c77111204b48c62468fc8ea6abb0ead11cbb71548e846",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Wood/gold base and wall continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-2-segment-1",
+          "edge": "r02c01-r03c01",
+          "status": "pass",
+          "inputSHA256": [
+            "e6db6a145fb6b2f0a2414e1b3761d2e054d6dda0b94eba09323acc080d2eec86",
+            "76f357fce8d99b174552be05a60bc9fabf50ddc921bea986ae2b9fdfffb15cad"
+          ],
+          "sources": [
+            "r06_c11_p02_01",
+            "r06_c11_p03_01"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-2-segment-1-100pct.png",
+          "evidenceSHA256": "d756840fa991ee8fc1a480dfdd0646d2b7d06b301aff1b41a562e2f135e3f08b",
+          "candidateBox": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_01-top-100pct.png",
+          "reusedQuickStripSHA256": "d756840fa991ee8fc1a480dfdd0646d2b7d06b301aff1b41a562e2f135e3f08b",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Open paving and upper-edge paper preserved; both native1:1 strips viewed, slab grid and paper edges continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-2-segment-2",
+          "edge": "r02c02-r03c02",
+          "status": "pass",
+          "inputSHA256": [
+            "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026",
+            "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef"
+          ],
+          "sources": [
+            "r06_c11_p02_02",
+            "r06_c11_p03_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-2-segment-2-100pct.png",
+          "evidenceSHA256": "818b2c7ed952968fe527370b76fa51723a8c91aec087d209d75a55dc2f2f8e9a",
+          "candidateBox": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_02-top-100pct.png",
+          "reusedQuickStripSHA256": "818b2c7ed952968fe527370b76fa51723a8c91aec087d209d75a55dc2f2f8e9a",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Paving top/right seam lines and paper edges continuous at native1:1. Two original red-paper footprints were consolidated into upper cluster: separate cluster centered around native(450,430) omitted. Nonblocking local layout issue; retain as working coverage and safe stone-boundary anchors, not layout acceptance.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-2-segment-3",
+          "edge": "r02c03-r03c03",
+          "status": "pass",
+          "inputSHA256": [
+            "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de",
+            "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b"
+          ],
+          "sources": [
+            "r06_c11_p02_03_v2",
+            "r06_c11_p03_03"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-2-segment-3-100pct.png",
+          "evidenceSHA256": "35e662eeed05f567e37b762fb2922e6291eb289e7a0686566f7272e0aebc0fc5",
+          "candidateBox": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_03-top-100pct.png",
+          "reusedQuickStripSHA256": "35e662eeed05f567e37b762fb2922e6291eb289e7a0686566f7272e0aebc0fc5",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original open paving and peach canopy footprint preserved. Full top/right strips viewed at 1:1: slab joints, mottling and branch shadow continue; flower contours at right core boundary intact. Candidate only, full49 pending.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-2-segment-4",
+          "edge": "r02c04-r03c04",
+          "status": "pass",
+          "inputSHA256": [
+            "77930b8f7e6af993ca82bff43005aa737097dc96514fe50b35f412b2b590c467",
+            "7c1ea5688556eef59da39b41313f7f3fa9d0ae3c21f0234467ac4b65691da647"
+          ],
+          "sources": [
+            "r06_c11_p02_04",
+            "r06_c11_p03_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-2-segment-4-100pct.png",
+          "evidenceSHA256": "558779843ab97caa1d18a4e15503ec90205c1411e72c893b0f568cfb46d06437",
+          "candidateBox": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p03_04-top-100pct.png",
+          "reusedQuickStripSHA256": "558779843ab97caa1d18a4e15503ec90205c1411e72c893b0f568cfb46d06437",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Wall lower edge and paving continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-3-segment-1",
+          "edge": "r03c01-r04c01",
+          "status": "pass",
+          "inputSHA256": [
+            "76f357fce8d99b174552be05a60bc9fabf50ddc921bea986ae2b9fdfffb15cad",
+            "a4738553e8edb584f0d68f8e42ae4de668c51bf0dec88cf3315771b7605fd1cc"
+          ],
+          "sources": [
+            "r06_c11_p03_01",
+            "r06_c11_p04_01"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-3-segment-1-100pct.png",
+          "evidenceSHA256": "833ae62a67848620fa88583281a1b4aae4dc18a853d5611d6d6a847face81cc8",
+          "candidateBox": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_01-top-100pct.png",
+          "reusedQuickStripSHA256": "833ae62a67848620fa88583281a1b4aae4dc18a853d5611d6d6a847face81cc8",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Original open paving with only existing lower-right peach fringe retained. Full top/right native1:1 strips viewed: stone joints, moss and branch shadow continue. Interior slab scale varies but no new structure; native crisp detail.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-3-segment-2",
+          "edge": "r03c02-r04c02",
+          "status": "pass",
+          "inputSHA256": [
+            "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef",
+            "c08a3d2976e3cc4d85c1da186c401d07f1f48d68f7e721538ccd8c5121763a3e"
+          ],
+          "sources": [
+            "r06_c11_p03_02",
+            "r06_c11_p04_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-3-segment-2-100pct.png",
+          "evidenceSHA256": "ee89906cea55ab731d97465d69e9ab4d5cbeecfa254bba726fe8727b9042eb85",
+          "candidateBox": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_02-top-100pct.png",
+          "reusedQuickStripSHA256": "ee89906cea55ab731d97465d69e9ab4d5cbeecfa254bba726fe8727b9042eb85",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Lower peach tree fringe follows original footprint, open paving retained. Both native1:1 top/right strips viewed; slab lines, branch shadow and flowers continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-3-segment-3",
+          "edge": "r03c03-r04c03",
+          "status": "pass",
+          "inputSHA256": [
+            "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b",
+            "64e55cc3ab7b748d82b9f7e032c98ac8253a57520c947ee5d8e93e0ac12faacc"
+          ],
+          "sources": [
+            "r06_c11_p03_03",
+            "r06_c11_p04_03"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-3-segment-3-100pct.png",
+          "evidenceSHA256": "f0fe53b8cb038054df8fab030ef77d4fe83582075de6adc836cb4162bb3e31a8",
+          "candidateBox": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_03-top-100pct.png",
+          "reusedQuickStripSHA256": "f0fe53b8cb038054df8fab030ef77d4fe83582075de6adc836cb4162bb3e31a8",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Peach canopy and paved upper-left boundary follow original footprint. Native top/right seam strips viewed: branch/flower contours and slab lines continuous, no abrupt core rectangle. Candidate until49.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "horizontal-3-segment-4",
+          "edge": "r03c04-r04c04",
+          "status": "pass",
+          "inputSHA256": [
+            "7c1ea5688556eef59da39b41313f7f3fa9d0ae3c21f0234467ac4b65691da647",
+            "2fa5b6675a2e65b8f7e8258b3e103ae8d3a8ed1022ab5acccc7971c1b76bf2f8"
+          ],
+          "sources": [
+            "r06_c11_p03_04",
+            "r06_c11_p04_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-3-segment-4-100pct.png",
+          "evidenceSHA256": "1d1049550828d5b0d197dc89d0692d1c32608647d0e23c3d9857fd53bd96bc68",
+          "candidateBox": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "candidatePixelsVerified": true,
+          "reusedQuickStrip": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/r06_c11_p04_04-top-100pct.png",
+          "reusedQuickStripSHA256": "1d1049550828d5b0d197dc89d0692d1c32608647d0e23c3d9857fd53bd96bc68",
+          "quickStripMatchesCandidatePixels": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Flower branches/petals continue.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        }
+      ],
+      "cross9": [
+        {
+          "id": "cross-1-1",
+          "status": "pass",
+          "inputSHA256": [
+            "17e1880a7352b2fcfcd031fe28c1479d76c1a8a78fdd69d83710c21a221be6e1",
+            "cc06cf99ff33d0694a1346a32bc07467d03ded6e7b0a59d657bbbce65cbd2ff8",
+            "e6db6a145fb6b2f0a2414e1b3761d2e054d6dda0b94eba09323acc080d2eec86",
+            "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026"
+          ],
+          "sources": [
+            "r06_c11_p01_01",
+            "r06_c11_p01_02",
+            "r06_c11_p02_01",
+            "r06_c11_p02_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/cross-1-1-100pct.png",
+          "evidenceSHA256": "7cd8f2e499d6b920f46c380e1b4ce05d3a70e3502aa9f50b551b2e2419c5b5e9",
+          "candidateBox": [
+            768,
+            768,
+            1280,
+            1280
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Direct current100pct visual review; changed crop verified pixel-identical to current working candidate.",
+          "finding": "Direct current512px view: wall/post foot, engraving and paving remain connected after exact halo insertion.",
+          "reusedEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/resume18-existing-exact/cross-r1c1-current-512.png",
+          "reusedEvidenceSHA256": "6e0e587e78c9d4adfd925a990a5b3feedb17e95040b7fa36423c263337d65984",
+          "reviewedThisVersion": true,
+          "reusedUnchangedPixels": false,
+          "overlaysAffectingCrop": [
+            {
+              "id": "same-world-wall-halo",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c11_p01_01.png",
+              "sha256": "17e1880a7352b2fcfcd031fe28c1479d76c1a8a78fdd69d83710c21a221be6e1",
+              "sourceCrop": [
+                1139,
+                115,
+                1184,
+                1139
+              ],
+              "tileLocalPaste": [
+                1024,
+                0,
+                1069,
+                1024
+              ],
+              "candidateOverlap": [
+                1024,
+                768,
+                1069,
+                1024
+              ]
+            }
+          ],
+          "priorV1_reusedPixelsMatch": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "cross-1-2",
+          "status": "failed",
+          "inputSHA256": [
+            "cc06cf99ff33d0694a1346a32bc07467d03ded6e7b0a59d657bbbce65cbd2ff8",
+            "77634d1b9d4b8589ef9c7fc0cdc46c5846143396ead13b40341af61ff9969256",
+            "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026",
+            "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de"
+          ],
+          "sources": [
+            "r06_c11_p01_02",
+            "r06_c11_p01_03_v2",
+            "r06_c11_p02_02",
+            "r06_c11_p02_03_v2"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-1-2-100pct.png",
+          "evidenceSHA256": "5da8ceafdfafa00a7e7fe0ed023e0366d9bdea41e2e78f44373bd382a296e2ea",
+          "candidateBox": [
+            1792,
+            768,
+            2304,
+            1280
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "The intersection crop includes the coping discontinuity above its center, plus the previously known false lower wall termination below; center texture continuity did not justify acceptance.",
+          "reusedEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/resume18-existing-exact/cross-r1c2-current-512.png",
+          "reusedEvidenceSHA256": "5da8ceafdfafa00a7e7fe0ed023e0366d9bdea41e2e78f44373bd382a296e2ea",
+          "reusedPixelsMatch": true,
+          "correctedBy": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/resume18-wall-context-addendum.json",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "cross-1-3",
+          "status": "pass",
+          "inputSHA256": [
+            "77634d1b9d4b8589ef9c7fc0cdc46c5846143396ead13b40341af61ff9969256",
+            "17727cb7b54400d837e23b4ba7a166f4d15f88a911f2351aa2cf3e42d460a103",
+            "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de",
+            "77930b8f7e6af993ca82bff43005aa737097dc96514fe50b35f412b2b590c467"
+          ],
+          "sources": [
+            "r06_c11_p01_03_v2",
+            "r06_c11_p01_04",
+            "r06_c11_p02_03_v2",
+            "r06_c11_p02_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-1-3-100pct.png",
+          "evidenceSHA256": "95fd634e9415b74d6e79896d7244434dea59af4061df7846d2597eafa807e76e",
+          "candidateBox": [
+            2816,
+            768,
+            3328,
+            1280
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Red platform/gold trim/paving continuous across central 512x512 intersection.",
+          "reusedEvidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/resume18-existing-exact/cross-r1c3-current-512.png",
+          "reusedEvidenceSHA256": "95fd634e9415b74d6e79896d7244434dea59af4061df7846d2597eafa807e76e",
+          "reusedPixelsMatch": true,
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "cross-2-1",
+          "status": "pass",
+          "inputSHA256": [
+            "e6db6a145fb6b2f0a2414e1b3761d2e054d6dda0b94eba09323acc080d2eec86",
+            "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026",
+            "76f357fce8d99b174552be05a60bc9fabf50ddc921bea986ae2b9fdfffb15cad",
+            "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef"
+          ],
+          "sources": [
+            "r06_c11_p02_01",
+            "r06_c11_p02_02",
+            "r06_c11_p03_01",
+            "r06_c11_p03_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/cross-2-1-100pct.png",
+          "evidenceSHA256": "d65ac5453543912ce5c2ff2e9ea966adac97e010984582e007d3058f3f1edc39",
+          "candidateBox": [
+            768,
+            1792,
+            1280,
+            2304
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Direct current100pct visual review; changed crop verified pixel-identical to current working candidate.",
+          "finding": "Direct current512px view: changed bottom-right paper-ROI overlap preserves paving, moss and paper continuity.",
+          "reviewedThisVersion": true,
+          "reusedUnchangedPixels": false,
+          "overlaysAffectingCrop": [
+            {
+              "id": "restored-paper-cluster",
+              "source": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/native/r06_c11_p03_02_v2.png",
+              "sha256": "b21d69a3b28228b558eb580c5f206045d9f955ba6b6ca87248d62ddf8ccfacf3",
+              "sourceCrop": [
+                250,
+                320,
+                610,
+                510
+              ],
+              "tileLocalPaste": [
+                1159,
+                2253,
+                1519,
+                2443
+              ],
+              "candidateOverlap": [
+                1159,
+                2253,
+                1280,
+                2304
+              ]
+            }
+          ],
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "cross-2-2",
+          "status": "pass",
+          "inputSHA256": [
+            "375955cbde6db4d686daa9d394cdba944691ab087db65c6ace3e4c4026929026",
+            "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de",
+            "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef",
+            "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b"
+          ],
+          "sources": [
+            "r06_c11_p02_02",
+            "r06_c11_p02_03_v2",
+            "r06_c11_p03_02",
+            "r06_c11_p03_03"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-2-2-100pct.png",
+          "evidenceSHA256": "6f0a291aa0799c4202fab5661feb81dc31957341a838df35b7e2da35f7cea2fa",
+          "candidateBox": [
+            1792,
+            1792,
+            2304,
+            2304
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Slab grid and paper-edge fragments continue across center.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "cross-2-3",
+          "status": "failed",
+          "inputSHA256": [
+            "64e1503378f4b626ef9e68ebc37a0115109c490967094afd86a35026142890de",
+            "77930b8f7e6af993ca82bff43005aa737097dc96514fe50b35f412b2b590c467",
+            "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b",
+            "7c1ea5688556eef59da39b41313f7f3fa9d0ae3c21f0234467ac4b65691da647"
+          ],
+          "sources": [
+            "r06_c11_p02_03_v2",
+            "r06_c11_p02_04",
+            "r06_c11_p03_03",
+            "r06_c11_p03_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-2-3-100pct.png",
+          "evidenceSHA256": "fb3806d673941f7c641b1a696b13e46beac02fc7ebce11af158d09908bb11508",
+          "candidateBox": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Upper portion of intersection exposes inherited wall-foot height step at vertical x3072 seam. Paving center continuity does not resolve the wall failure.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "cross-3-1",
+          "status": "pass",
+          "inputSHA256": [
+            "76f357fce8d99b174552be05a60bc9fabf50ddc921bea986ae2b9fdfffb15cad",
+            "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef",
+            "a4738553e8edb584f0d68f8e42ae4de668c51bf0dec88cf3315771b7605fd1cc",
+            "c08a3d2976e3cc4d85c1da186c401d07f1f48d68f7e721538ccd8c5121763a3e"
+          ],
+          "sources": [
+            "r06_c11_p03_01",
+            "r06_c11_p03_02",
+            "r06_c11_p04_01",
+            "r06_c11_p04_02"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-3-1-100pct.png",
+          "evidenceSHA256": "78a54436995595c1e3a91c665bbc2bc5e8d33abc46d4ebc1d97cc71cc312dab2",
+          "candidateBox": [
+            768,
+            2816,
+            1280,
+            3328
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Paving groove and moss intersections align without central discontinuity.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "cross-3-2",
+          "status": "pass",
+          "inputSHA256": [
+            "332eb81b04b386754c74a2476cfd3fc263cc128a34e23c67bb25fbba790466ef",
+            "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b",
+            "c08a3d2976e3cc4d85c1da186c401d07f1f48d68f7e721538ccd8c5121763a3e",
+            "64e55cc3ab7b748d82b9f7e032c98ac8253a57520c947ee5d8e93e0ac12faacc"
+          ],
+          "sources": [
+            "r06_c11_p03_02",
+            "r06_c11_p03_03",
+            "r06_c11_p04_02",
+            "r06_c11_p04_03"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-3-2-100pct.png",
+          "evidenceSHA256": "633f8557dadacb6bf019fb166cc16f1137f89d19f58d6c230cba73bb4c106290",
+          "candidateBox": [
+            1792,
+            2816,
+            2304,
+            3328
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Slab contours, fine stone texture and entering shadow remain continuous.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        },
+        {
+          "id": "cross-3-3",
+          "status": "pass",
+          "inputSHA256": [
+            "a309cd1e817e997e9a456178aa208b0ce1098ef957cd4982314436ae17b56b8b",
+            "7c1ea5688556eef59da39b41313f7f3fa9d0ae3c21f0234467ac4b65691da647",
+            "64e55cc3ab7b748d82b9f7e032c98ac8253a57520c947ee5d8e93e0ac12faacc",
+            "2fa5b6675a2e65b8f7e8258b3e103ae8d3a8ed1022ab5acccc7971c1b76bf2f8"
+          ],
+          "sources": [
+            "r06_c11_p03_03",
+            "r06_c11_p03_04",
+            "r06_c11_p04_03",
+            "r06_c11_p04_04"
+          ],
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-3-3-100pct.png",
+          "evidenceSHA256": "09dda34d164929de213b604f92736e8edee616c4d88fb5fdd7d5c6c5aa21112d",
+          "candidateBox": [
+            2816,
+            2816,
+            3328,
+            3328
+          ],
+          "candidatePixelsVerified": true,
+          "basis": "Unchanged current-candidate pixels equal existing evidence crop; reuse prior visual result WITH wall-context addendum corrections.",
+          "finding": "Peach blossoms, leaves and branches continue across central four-core join.",
+          "reviewedThisVersion": false,
+          "reusedUnchangedPixels": true,
+          "candidateInputSHA256": "15f74e0cbebed84ca82a0c1deb3b82323f2d70325459e449cdcc15d5edad1221"
+        }
+      ],
+      "derivation": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r06_c11-native-v2-local-working-20261018.png.derivation.json",
+      "derivationSHA256": "90c98d0cd7f5bb80c1b56d0da7f5e6a83bead81839ea9ba29700f3b9d2b5a670",
+      "priorBaseQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-49QA.json",
+      "mandatoryCorrectionRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/resume18-wall-context-addendum.json",
+      "localRepairEvidence": [
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/paper-roi-review18.json",
+        "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-production-20261017/resume18-existing-qa.json"
+      ],
+      "pixelProofs": [
+        {
+          "id": "core-1-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-1-1-100pct.png",
+          "evidenceSHA256": "74cb1b8a35d8187847245195f3b82ea8539276e6256b69e1bc18eb00067a492f",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-1-2",
+          "changedFromBase": true,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/core-1-2-100pct.png",
+          "evidenceSHA256": "ad54787cc320b34528865295a639b11f5c0e0cb17508f31e83b78d0e1b821999",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-1-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-1-3-100pct.png",
+          "evidenceSHA256": "ac1c20ce63cfb7ecbd4cddd504c7a1532e2b6d015d9db3a8c31890f3fa6e8af9",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-1-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-1-4-100pct.png",
+          "evidenceSHA256": "1f6cd56a753375df560fbd110b8693cdd2a7148172a10b4bf2de23323586b74d",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-2-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-2-1-100pct.png",
+          "evidenceSHA256": "4768d2d79492db50d1495c7508a0892ab477f284ee78daf1d419d8a2667d493f",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-2-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-2-2-100pct.png",
+          "evidenceSHA256": "b4ad16891a789adc5a0e2b7ef8ecc60ed698d18abf2ed13a63be6f4c61f99042",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-2-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-2-3-100pct.png",
+          "evidenceSHA256": "e36f65e040a92913b700847458a8cbf8fffdb029fdd2868cd960c543a61f3ebc",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-2-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-2-4-100pct.png",
+          "evidenceSHA256": "effd6f0ea8dec3b1c581c3152c1973aa0e419f40c964468920fe5a3c4024303c",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-3-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-3-1-100pct.png",
+          "evidenceSHA256": "fc0a49d91387a77f6d63f8a4eb40eb8135e1b26baee021b436098e7dbb4be1e4",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-3-2",
+          "changedFromBase": true,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/core-3-2-100pct.png",
+          "evidenceSHA256": "c760f36d88191cd416e9ab9a5a84c66fd968af302469bcb3caac6ea7b6cc8fce",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-3-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-3-3-100pct.png",
+          "evidenceSHA256": "fff8405ee9286ffc00f40bdeb9266002ed0229a61c56438f46eaa24c97b858c7",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-3-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-3-4-100pct.png",
+          "evidenceSHA256": "ffce4d97757f50d40d625750a7b0afd77c0cb02a726fc51b62e2c241fd94242f",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-4-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-4-1-100pct.png",
+          "evidenceSHA256": "aa3c05da06469f5b103e75f40e03f2824f3210d19f308426fef0453e4e10f594",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-4-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-4-2-100pct.png",
+          "evidenceSHA256": "cce842c58f3a65cad7eae4f384ee375c611efa72a046f95aa0fc942be5f3997d",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-4-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-4-3-100pct.png",
+          "evidenceSHA256": "907b4f479398c1e020c63bf12749bb19c80f469d3f177bc8932d06646e57acc5",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "core-4-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/core-4-4-100pct.png",
+          "evidenceSHA256": "5102e16adc849dbb5cc1c9c58739789f69edd95f6532a1a8293929c494c6ebaf",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-1-segment-1",
+          "changedFromBase": true,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/vertical-1-segment-1-100pct.png",
+          "evidenceSHA256": "ba56d3438f564119b67d4dd16281c4de99fd2ded141f18192c9a833d7da080f1",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-1-segment-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-1-segment-2-100pct.png",
+          "evidenceSHA256": "9e3800c8d60ddbe6044d35b3f0931964f02ad2444887ebfbd5b9f03dd6f18616",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-1-segment-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-1-segment-3-100pct.png",
+          "evidenceSHA256": "971f1886576428be3c143ee91638229f8c29b03ca0b5a748602601434d66dbad",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-1-segment-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-1-segment-4-100pct.png",
+          "evidenceSHA256": "62a546a1d13905b109582b284f8f965b6b782148bc14765ebe48a625d7a9c65d",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-2-segment-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-2-segment-1-100pct.png",
+          "evidenceSHA256": "181fb2e184377e3a72ffe36012c017db14134476554178aa8e710834107d3f1e",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-2-segment-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-2-segment-2-100pct.png",
+          "evidenceSHA256": "c2d9dab4d6ff880d7c9331bda857b6ec2a77b4f4fe240508b901e7acd2ef9bc0",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-2-segment-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-2-segment-3-100pct.png",
+          "evidenceSHA256": "dfc2da56e0a6d5c223790fd84cedd56323dfc92bb60dd75f57dfba78641d38bb",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-2-segment-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-2-segment-4-100pct.png",
+          "evidenceSHA256": "4859eaa837756e2baf5fc5e3002420496c503b31def02f5deb84fb7c39b9272a",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-3-segment-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-3-segment-1-100pct.png",
+          "evidenceSHA256": "3efe01a40eb52a025fc3903f0b603735bf663b5236d1bccdc69d63de79296eac",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-3-segment-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-3-segment-2-100pct.png",
+          "evidenceSHA256": "db38508c6c845069f2c12af078cf3594f897356d2b26052a34f59d19df039b0f",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-3-segment-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-3-segment-3-100pct.png",
+          "evidenceSHA256": "2e13465340dec133677a7856de60ea5226ed0df95d5d95dd92996b81b1a42d18",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "vertical-3-segment-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/vertical-3-segment-4-100pct.png",
+          "evidenceSHA256": "49a44784dd0dd61d7fee76eb3b676126c54673891f8800819ed625204ca8052e",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-1-segment-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-1-segment-1-100pct.png",
+          "evidenceSHA256": "91301329f6fb63f4c2dd5d8d851b7a7389894ac5bec062ab923c1b48da150a9d",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-1-segment-2",
+          "changedFromBase": true,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/horizontal-1-segment-2-100pct.png",
+          "evidenceSHA256": "eaefaaeaa7f52a08d492429aed6ae8f8d8b0d35f860754d22009936e327abfec",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-1-segment-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-1-segment-3-100pct.png",
+          "evidenceSHA256": "598b5e7a6924f46e7216d8305b8e39fad2b1cc821e7cd8626987082bb6f80a15",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-1-segment-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-1-segment-4-100pct.png",
+          "evidenceSHA256": "5fc4dd097c25519c709c77111204b48c62468fc8ea6abb0ead11cbb71548e846",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-2-segment-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-2-segment-1-100pct.png",
+          "evidenceSHA256": "d756840fa991ee8fc1a480dfdd0646d2b7d06b301aff1b41a562e2f135e3f08b",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-2-segment-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-2-segment-2-100pct.png",
+          "evidenceSHA256": "818b2c7ed952968fe527370b76fa51723a8c91aec087d209d75a55dc2f2f8e9a",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-2-segment-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-2-segment-3-100pct.png",
+          "evidenceSHA256": "35e662eeed05f567e37b762fb2922e6291eb289e7a0686566f7272e0aebc0fc5",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-2-segment-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-2-segment-4-100pct.png",
+          "evidenceSHA256": "558779843ab97caa1d18a4e15503ec90205c1411e72c893b0f568cfb46d06437",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-3-segment-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-3-segment-1-100pct.png",
+          "evidenceSHA256": "833ae62a67848620fa88583281a1b4aae4dc18a853d5611d6d6a847face81cc8",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-3-segment-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-3-segment-2-100pct.png",
+          "evidenceSHA256": "ee89906cea55ab731d97465d69e9ab4d5cbeecfa254bba726fe8727b9042eb85",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-3-segment-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-3-segment-3-100pct.png",
+          "evidenceSHA256": "f0fe53b8cb038054df8fab030ef77d4fe83582075de6adc836cb4162bb3e31a8",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "horizontal-3-segment-4",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/horizontal-3-segment-4-100pct.png",
+          "evidenceSHA256": "1d1049550828d5b0d197dc89d0692d1c32608647d0e23c3d9857fd53bd96bc68",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-1-1",
+          "changedFromBase": true,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/cross-1-1-100pct.png",
+          "evidenceSHA256": "7cd8f2e499d6b920f46c380e1b4ce05d3a70e3502aa9f50b551b2e2419c5b5e9",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-1-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-1-2-100pct.png",
+          "evidenceSHA256": "5da8ceafdfafa00a7e7fe0ed023e0366d9bdea41e2e78f44373bd382a296e2ea",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-1-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-1-3-100pct.png",
+          "evidenceSHA256": "95fd634e9415b74d6e79896d7244434dea59af4061df7846d2597eafa807e76e",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-2-1",
+          "changedFromBase": true,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v2-local-working-20261018-changed/cross-2-1-100pct.png",
+          "evidenceSHA256": "d65ac5453543912ce5c2ff2e9ea966adac97e010984582e007d3058f3f1edc39",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-2-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-2-2-100pct.png",
+          "evidenceSHA256": "6f0a291aa0799c4202fab5661feb81dc31957341a838df35b7e2da35f7cea2fa",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-2-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-2-3-100pct.png",
+          "evidenceSHA256": "fb3806d673941f7c641b1a696b13e46beac02fc7ebce11af158d09908bb11508",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-3-1",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-3-1-100pct.png",
+          "evidenceSHA256": "78a54436995595c1e3a91c665bbc2bc5e8d33abc46d4ebc1d97cc71cc312dab2",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-3-2",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-3-2-100pct.png",
+          "evidenceSHA256": "633f8557dadacb6bf019fb166cc16f1137f89d19f58d6c230cba73bb4c106290",
+          "evidencePixelsEqualCurrentCandidate": true
+        },
+        {
+          "id": "cross-3-3",
+          "changedFromBase": false,
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r06_c11-native-v1-20261018-final/cross-3-3-100pct.png",
+          "evidenceSHA256": "09dda34d164929de213b604f92736e8edee616c4d88fb5fdd7d5c6c5aa21112d",
+          "evidencePixelsEqualCurrentCandidate": true
+        }
+      ],
+      "mechanicalSummary": {
+        "wholeCandidateEqualsBasePlusExactlyTwoRecordedNativeCrops": true,
+        "baseAndBothNativeSourceHashesVerified": true,
+        "all49EvidenceCropsEqualCurrentCandidate": true,
+        "unchangedCropsReused": 43,
+        "changedCropsDirectlyViewed": 6,
+        "changedCropIds": [
+          "core-1-2",
+          "core-3-2",
+          "vertical-1-segment-1",
+          "horizontal-1-segment-2",
+          "cross-1-1",
+          "cross-2-1"
+        ],
+        "jointSourceIncluded": false,
+        "resizedOrBlended": false
+      },
+      "outstandingIssues": [
+        {
+          "id": "wall-coping-cut",
+          "status": "failed",
+          "affectedItems": [
+            "core-1-2",
+            "core-1-3",
+            "vertical-2-segment-1",
+            "cross-1-2"
+          ],
+          "finding": "Tile x2048 coping step persists; original mistaken passes corrected."
+        },
+        {
+          "id": "false-wall-termination",
+          "status": "failed",
+          "affectedItems": [
+            "core-2-2",
+            "horizontal-1-segment-2",
+            "cross-1-2"
+          ],
+          "finding": "Wall geometry still terminates abruptly near tile x1930,y1024 and lower in p0202. Left halo fix does not repair right-end notch."
+        },
+        {
+          "id": "wall-height-step",
+          "status": "failed",
+          "affectedItems": [
+            "core-2-3",
+            "vertical-3-segment-2",
+            "cross-2-3"
+          ],
+          "finding": "p0203v2 to p0204 wall foot/coping level mismatch remains."
+        },
+        {
+          "id": "halo-top-material",
+          "status": "pending",
+          "affectedItems": [
+            "vertical-1-segment-1"
+          ],
+          "finding": "Small upper material/sharpness transition remains after45px geometry repair."
+        }
+      ],
+      "externalSeams": "not formally accepted; known wrong north segment1 source/layout remains unresolved",
+      "internalAccepted": false,
+      "all49Accepted": false,
+      "layoutAccepted": false,
+      "formalAccepted": false,
+      "status": "complete49_current_working_candidate_has_failed_and_pending_items",
+      "mutations": {
+        "artwork": false,
+        "selection": false,
+        "progress": false,
+        "oldQA": false,
+        "git": false,
+        "onlyNewQAReportAndScriptWritten": true
+      },
+      "derivationOriginalAtReviewSHA256": "f84f629fe37926222edb22b9765d083e76954a74126c160ee1099fff27350b41",
+      "postReviewMetadataNote": "Derivation review status and report pointer updated after visual QA; artwork and crop pixels unchanged."
+    }
+  }
+}

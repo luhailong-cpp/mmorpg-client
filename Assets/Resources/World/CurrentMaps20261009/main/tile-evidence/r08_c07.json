@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 8,
+  "column": 7,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "1fbf96e85d95eb9d982fd75eb4923c4a9578fc66fb6dddbc0c113a05f35be9c7",
+  "imageBytes": 28207617,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/candidate/r08_c07-native23-middle-paving-20261019-v15.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/candidate/r08_c07-native23-middle-paving-20261019-v15.png.generation.json",
+  "sourceLedgerSha256": "823266be56c97da585910e0dd24e6d53a1c71fc88257b2bcf295e2f11dd55d84",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/candidate/r08_c07-native23-middle-paving-20261019-v15.png",
+    "imageSha256": "1fbf96e85d95eb9d982fd75eb4923c4a9578fc66fb6dddbc0c113a05f35be9c7",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/candidate/r08_c07-native23-middle-paving-20261019-v15.png.generation.json",
+        "sha256": "823266be56c97da585910e0dd24e6d53a1c71fc88257b2bcf295e2f11dd55d84",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedAvailable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedUsable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/completeCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/currentCompleteCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "missingNativePatches",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/resume-checkpoint-20261019-native23-middle-paving-v15.json",
+        "sha256": "54967a3553b8af31533124b2db67465c23fa72307e9d9d8b9d57e0414247b6a9",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/candidate/r08_c07-native23-middle-paving-20261019-v15.png.generation.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "unverifiedReason": "Composite; host did not disclose backend model or quality on native generations.",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/current-status-20261019.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "record": {
+          "internalQAPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/resume-checkpoint-20261019-native23-middle-paving-v15.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "internalQA": {
+            "passed": 23,
+            "needsRepair": 10,
+            "total": 33
+          },
+          "externalQA": {
+            "north": {
+              "passed": 2,
+              "needsRepair": 5,
+              "total": 7
+            },
+            "east": {
+              "passed": 0,
+              "needsRepair": 7,
+              "total": 7
+            },
+            "historicalEastNeighborW160ReuseEvidence": null,
+            "currentEastBoundaryReview": {
+              "candidateSha256": "c6b2c3877ec1254ac9356b9a1a829769d8b4596517cc1ed7ccac2274171bb329",
+              "neighborSha256": "e80a371481d515a116ba1c35cbbb89e0a8d824b4a7438044e776e35e4c03ca92",
+              "actuallyRechecked": [
+                "east_seg3",
+                "east_seg4",
+                "east_joint3072"
+              ],
+              "unchangedChecksReused": 4,
+              "ownEastPixelsChanged": true,
+              "reusedForCandidateSha256": "1fbf96e85d95eb9d982fd75eb4923c4a9578fc66fb6dddbc0c113a05f35be9c7",
+              "allSevenCurrentEastCheckPixelsUnchangedAndReverified": true
+            }
+          },
+          "pending": [
+            {
+              "name": "h2048-c1",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/h2048-c1.png",
+              "sha256": "5698b039429511e7110a64bdcb30e77e6ee7dc0805b88166ffedd126cef4a5a8",
+              "finding": "Native1254; rounded cloud-scroll exterior and lower blue road continue approved footprint, E cloud/paving edge connects. S blue road joints align but horizontal texture density/tone discontinuity remains; mark needs. Left road bend differs slightly from soft geometry guide for later full layout check; upper edge healthy for next missing core."
+            },
+            {
+              "name": "h3072-c1",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/h3072-c1.png",
+              "sha256": "052242188589c2948c8365b2e28a19c8a75b5a9e18073d3194f9212ab08c224f",
+              "finding": "Resumed archived output actually inspected. Fix01 improves blue road lower boundary from y540 to about610 versus required600. E retains 10-15px blue ivory step and short disconnected horizontal grout; S red banner edge/material step remains. Selected best pending full repair; north/top edge remains usable for independent missing cores, east defect not a future guide for missing cores."
+            },
+            {
+              "name": "v1024-r3",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/v1024-r3.png",
+              "sha256": "a2528635d7d7228190e3405c25862eb50e121c74eb6ac74d8d93533dec2a4be6",
+              "finding": "Resumed archived output actually inspected. Fix01 improves blue road lower boundary from y540 to about610 versus required600. E retains 10-15px blue ivory step and short disconnected horizontal grout; S red banner edge/material step remains. Selected best pending full repair; north/top edge remains usable for independent missing cores, east defect not a future guide for missing cores."
+            },
+            {
+              "name": "v2048-r1",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native17-cloud-fork-20261019-v3/crops/v2048-r1.png",
+              "sha256": "c279c3ea945c68f48eb74f354aaab01bab82fb36db876aa69f49126289cfe34f",
+              "finding": "Lower cloud join now connects, but the pre-existing upper paving diagonal joint still changes angle/phase and material at the vertical seam. This lies outside the accepted cloud repair; retain needs_repair."
+            },
+            {
+              "name": "v3072-r2",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native23-middle-paving-20261019-v15/crops/v3072-r2.png",
+              "sha256": "ed4da39ee660ef07cb1db9eb58daf604a584c352ce1127e914dbb7e4bcc98bd4",
+              "finding": "Actual native 1:1 crop inspected. Existing vertical slab boundary and T joins in the middle/lower section now have continuous fine mortar/contact shading. The unmodified upper diagonal corner still makes a pointed thin wedge and changes slab angle/scale at j3072_1024; retain needs_repair for that separate exhausted geometry issue."
+            },
+            {
+              "name": "v3072-r4",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native22-lower-east-20261019-v14/crops/v3072-r4.png",
+              "sha256": "05bedc9cef01d82a5644580777f28c3dceb3333aaa5137425bbcbd3cdfa463fa",
+              "finding": "Actual native 1:1 crop inspected. Pale strip material to the left of the joint is improved. Pre-existing horizontal mortar level step and right-side stone-course phases remain; geometry is not accepted by this material-only repair."
+            },
+            {
+              "name": "j3072_1024",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native23-middle-paving-20261019-v15/crops/j3072_1024.png",
+              "sha256": "973d4a9e794f1c65f496ceefea9466eee421e91be68fa5b04914c07443eaaf8d",
+              "finding": "Actual native 1:1 crop inspected. Existing vertical slab boundary and T joins in the middle/lower section now have continuous fine mortar/contact shading. The unmodified upper diagonal corner still makes a pointed thin wedge and changes slab angle/scale at j3072_1024; retain needs_repair for that separate exhausted geometry issue."
+            },
+            {
+              "name": "j1024_2048",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/j1024_2048.png",
+              "sha256": "b927e9ad3d857e62c558c2710f9e210310affab3af7788fb023cf58d8f3425a8",
+              "finding": "Native 1:1 inspected. Blue road grout has disconnected horizontal ends about 30 px apart and a straight texture transition across the center."
+            },
+            {
+              "name": "j1024_3072",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/j1024_3072.png",
+              "sha256": "f89423c73410432980a1cf89cbe102c48131bbfa39db80bec0ca5f45186797d0",
+              "finding": "Native 1:1 inspected. Lower pale stones show an abrupt brush-scale transition at horizontal y160; mortar remains nearly aligned."
+            },
+            {
+              "name": "j3072_3072",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native22-lower-east-20261019-v14/crops/j3072_3072.png",
+              "sha256": "61e1671ed436f82ef3f855718836277ead1d916852b8fc0f5aa5b07b7d303ab0",
+              "finding": "Actual native 1:1 crop inspected. Pale strip material to the left of the joint is improved. Pre-existing horizontal mortar level step and right-side stone-course phases remain; geometry is not accepted by this material-only repair."
+            },
+            {
+              "name": "north_seg1",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/north_seg1.png",
+              "sha256": "a3716ca7c59ed8fd488e5a4e18635b90a32f306347adb132b6c800511012f395",
+              "finding": "Native1254. E cloud/rim joins and S paving/cloud joins continuous at native quick inspection. N mismatches frozen old Greek-key arc as expected, not copied. Upper cloud has broader outer rim/extra subdivision versus blurry approved guide; preserve layout concern for whole-tile review, not formal acceptance. This fills the final distinct core, with all issues still pending where recorded."
+            },
+            {
+              "name": "north_seg2",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/north_seg2.png",
+              "sha256": "7f30b7055dbcb7a25a599ee4250cf8ce573c2380daf4a8ff0c3cfd252e2a34be",
+              "finding": "Native1254; red ground-cylinder lower sliver stays outside core at top, three flat paper scraps, cloud outlines match layout. S cloud scroll silhouettes connect; E upper paving diagonals mostly connect but middle joint x1139 y615 has visible stepped connector/stone angle break. N frozen old slab orientation and wrong lantern remain incompatible as expected; no old lantern propagated. Keep N/E needs."
+            },
+            {
+              "name": "north_seg3",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/north_seg3.png",
+              "sha256": "b06e547328141360bbbc4984af2d03caa5e8efa5755fea6b186ebb689c6a8429",
+              "finding": "Full native and all3 original-scale crops actually viewed. E/NE preserve pedestal block and grout endpoints; north has an abrupt pedestal-left-silhouette jump inherited from old native19 layout conflict (old plinth about250px too far east), intentionally excluded in guide. Current crop follows approved layout and right native. No north acceptance; geometry conflict needs coordinated neighbor correction."
+            },
+            {
+              "name": "north_joint1024",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/north_joint1024.png",
+              "sha256": "798c35acd07be3e585ca9dcf961a33e3621fd533dc4025b7f52f994233ed15e9",
+              "finding": "Native 1:1 inspected. Historical northern arc and paving orientation/material conflict with the approved lower cloud; nearby boundary retains the old/new geometry mismatch."
+            },
+            {
+              "name": "north_joint2048",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/north_joint2048.png",
+              "sha256": "1f150a8618285795a745d1bca44c79ffc2c3a4e6d4bd4ea262958e4cd3be7d9e",
+              "finding": "Native 1:1 inspected. Old northern lantern shadow and diagonal stone phases end along the lower tile boundary without continuation."
+            },
+            {
+              "name": "east_seg1",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/east_seg1.png",
+              "sha256": "552561080ff3f259fce568c36125959c78eadc1abf9724870e34352098f07b9c",
+              "finding": "Native 1:1 inspected. Current east neighbor firecracker papers and rolled paper cylinders are sharply clipped at x160; stone scale/phase also changes. Layout conflict remains."
+            },
+            {
+              "name": "east_seg2",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/east_seg2.png",
+              "sha256": "c1dec012c161c870a099617aa2cba4c81cf524334440e86d6aaf334065c3b76e",
+              "finding": "Native 1:1 inspected. East neighbor stone rows differ in scale/phase; multiple short joints terminate and vertical tone change follows x160."
+            },
+            {
+              "name": "east_seg3",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native22-lower-east-20261019-v14/crops/east_seg3.png",
+              "sha256": "294b46c2835525ce11225485d068c6a9e020d17b35f128261cf3f84affb74f3c",
+              "finding": "Actual current native 1:1 east-neighbor join rechecked after own east strip material changed. Existing course-phase/height mismatch and texture mismatch between tiles remain; do not promote boundary acceptance. East neighbor read-only native18 full hash verified."
+            },
+            {
+              "name": "east_seg4",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native22-lower-east-20261019-v14/crops/east_seg4.png",
+              "sha256": "c817f8a3655083298c00e5b33bdbf58286e3a94948e5b6c9e4db3432c1975e17",
+              "finding": "Actual current native 1:1 east-neighbor join rechecked after own east strip material changed. Existing course-phase/height mismatch and texture mismatch between tiles remain; do not promote boundary acceptance. East neighbor read-only native18 full hash verified."
+            },
+            {
+              "name": "east_joint1024",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/qa/fulltile-native16-20261019-current-v1/crops/east_joint1024.png",
+              "sha256": "e0895c0ca771a949684f4ff209582f70b36541bd2334e35c827480192b1a5429",
+              "finding": "Native 1:1 inspected. Left diagonal pavement and right horizontal stone rows terminate at center, including two disconnected grout tails."
+            },
+            "[additional entries retained in referenced document]"
+          ],
+          "formalAccepted": false,
+          "fullTileAllBoundaryAccepted": false,
+          "latestAcceptedLocalRepair": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/repair-batches/middle-paving-join-20261019/adoption-20261019-v15.json"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/current-status-20261019.json",
+    "sourceSha256": "cee947311050f1bae5039d48691781b3220277d0c15a1956cb1d822f08493083",
+    "normalizedDocument": {
+      "tile": "r08_c07",
+      "checkpoint": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/resume-checkpoint-20261019-native23-middle-paving-v15.json",
+      "checkpointSha256": "54967a3553b8af31533124b2db67465c23fa72307e9d9d8b9d57e0414247b6a9",
+      "candidateFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c07/candidate/r08_c07-native23-middle-paving-20261019-v15.png",
+      "candidateSha256": "1fbf96e85d95eb9d982fd75eb4923c4a9578fc66fb6dddbc0c113a05f35be9c7",
+      "formalAccepted": false
+    }
+  }
+}

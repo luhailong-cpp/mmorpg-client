@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 7,
+  "column": 7,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "9ca6c25e11f454214aaf19c47756babae780b179a4ee2f61ff384bf28e4abcfe",
+  "imageBytes": 26088967,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c07/candidate/native20-local-repairs-20261016-v1/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c07/candidate/native20-local-repairs-20261016-v1/provenance.json",
+  "sourceLedgerSha256": "fad78f2d8778f7eea3516127cdc0cc5818039a4441c6ac7a0ad8028893c53d72",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c07/candidate/native20-local-repairs-20261016-v1/candidate.png",
+    "imageSha256": "9ca6c25e11f454214aaf19c47756babae780b179a4ee2f61ff384bf28e4abcfe",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c07/candidate/native20-local-repairs-20261016-v1/provenance.json",
+        "sha256": "fad78f2d8778f7eea3516127cdc0cc5818039a4441c6ac7a0ad8028893c53d72",
+        "sourceReviewSha256": "fad78f2d8778f7eea3516127cdc0cc5818039a4441c6ac7a0ad8028893c53d72",
+        "completeness": [
+          "Output SHA256 matches selected PNG",
+          "All sixteen native CORE coordinates (1..4,1..4) present; additional local native repairs retain full base"
+        ]
+      }
+    ],
+    "selectionBasis": "Direct output-bound native source grid covers all 16 core coordinates",
+    "sourceStatus": {},
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

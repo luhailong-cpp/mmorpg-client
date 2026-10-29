@@ -1,0 +1,278 @@
+{
+  "observedAtUtc": "2026-10-25T09:14:35.295131+00:00",
+  "status": "passed_exact_copy_compilation_only",
+  "sourceCopiesMatch": true,
+  "sourceFilesUnchangedDuringCompilation": true,
+  "compiledImplementationSubstitutes": 0,
+  "engineStarted": false,
+  "testsExecuted": false,
+  "compilation": [
+    {
+      "kind": "runtime",
+      "sourceCount": 413,
+      "exitCode": 0,
+      "errors": [],
+      "assemblySha256": "c5f842529869e1e904adb2af4d7598ea3734ded3eccd0ce56be8b14a67ffaa4e"
+    },
+    {
+      "kind": "editor",
+      "sourceCount": 3,
+      "exitCode": 0,
+      "errors": [],
+      "assemblySha256": "adc6e34c4cc9424ddd861f78c1cea9afaa6184c357a8b9d180da8941c5f5b194"
+    },
+    {
+      "kind": "tests",
+      "sourceCount": 5,
+      "exitCode": 0,
+      "errors": [],
+      "assemblySha256": "5ec8535ab8f78a31b87805d29945a92a8f89fe766995daf190657f21b546dca1"
+    }
+  ],
+  "copiedFiles": 430,
+  "copiedPngFiles": 1,
+  "copiedNativeTileImages": 0,
+  "copiedTileManifests": 0,
+  "schemaVersion": 1,
+  "preparation": {
+    "command": "pwsh -NoProfile -File tools/run_city_tiles_tests.ps1 -UnityExe <installed-Unity.exe> -EvidencePath <ignored-evidence-directory> -PrepareOnly",
+    "exitCode": 0,
+    "status": "prepared_only",
+    "runtimeSourceCount": 413,
+    "engineStarted": false,
+    "testsExecuted": false
+  },
+  "runner": {
+    "path": "tools/run_city_tiles_tests.ps1",
+    "normalizedSha256": "512de126ea84da46120d3bc091d3aa6a7564e253e9d24151821354cf37e54b07"
+  },
+  "sourceManifest": {
+    "path": "isolated-source-copies.json",
+    "sha256": "682fd94b396cb21e0844b7d00cbc4f603007b0487b6a1fcf27cccaa45c8d657d",
+    "files": 430
+  },
+  "resources": [
+    "Assets/Resources/World/CurrentMaps20261009/main/layout.png",
+    "Assets/Resources/World/CurrentMaps20261009/main/source.json",
+    "Assets/Resources/World/CurrentMaps20261009/main/walkmask.txt"
+  ],
+  "resourceMetadataCopied": true,
+  "realCurrentMapBuilderAndTianyongMapInstance": true,
+  "fakeWorldRectangleSourceCopied": false,
+  "protobufPluginCopied": true,
+  "originalRuntimeAssemblyDefinitionCopied": true,
+  "editorAssemblyReferences": [
+    "MmorpgClient"
+  ],
+  "testAssemblyReferences": [
+    "MmorpgClient",
+    "CityTileValidation.Editor"
+  ],
+  "packages": {
+    "com.unity.test-framework": {
+      "version": "1.8.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.ext.nunit": {
+      "version": "2.1.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.imgui": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.jsonserialize": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.ugui": {
+      "version": "2.6.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.ui": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.audio": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.physics2d": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.physicscore2d": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.physics": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.accessibility": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.adaptiveperformance": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.subsystems": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.ai": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.amd": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.androidjni": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.animation": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.assetbundle": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.cloth": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.director": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.hierarchy": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.hierarchycore": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.uielements": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.imageconversion": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.nvidia": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.particlesystem": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.screencapture": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.terrain": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.terrainphysics": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.tetgen": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.tilemap": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.timelinefoundation": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.uielementsnative": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.umbra": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.unityanalytics": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.unitywebrequest": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.unitywebrequestassetbundle": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.unitywebrequestaudio": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.unitywebrequesttexture": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.unitywebrequestwww": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.vectorgraphics": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.vehicles": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.video": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.wind": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    },
+    "com.unity.modules.xr": {
+      "version": "1.0.0",
+      "resolvedFrom": "installed_editor"
+    }
+  },
+  "compiler": {
+    "name": "Roslyn csc",
+    "sdkVersion": "10.0.401",
+    "languageVersion": "9",
+    "target": "library",
+    "defines": [
+      "UNITY_EDITOR",
+      "UNITY_STANDALONE_WIN",
+      "UNITY_6000_0_OR_NEWER"
+    ],
+    "unityVersion": "6000.6.0f1",
+    "references": [
+      "Installed Unity managed modules and netstandard 2.1",
+      "The copied Google.Protobuf.dll plugin",
+      "Installed editor template cache UnityEngine.UI, Unity.TextMeshPro and Unity test runner assemblies",
+      "Installed com.unity.ext.nunit assembly"
+    ],
+    "sourceFiles": "Only the exact copied source files listed in isolated-source-copies.json; no implementation substitutes."
+  },
+  "limitations": [
+    "Preparation and Roslyn compilation do not run the Unity package manager or native importer.",
+    "Unity EditMode, Resources async lifecycle, current pressure assertions, rendering and device memory were not executed.",
+    "Unity was not relaunched because the preceding probe lacked com.unity.editor.headless entitlement.",
+    "No published tiles.json or native 4096 artwork was copied to the isolated project."
+  ]
+}

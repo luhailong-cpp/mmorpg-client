@@ -9,12 +9,13 @@
   "imageSha256": "962ce4cbce8614b8b266a286c38afedb9bd02b997887ad6a73e4f209819991b0",
   "imageBytes": 29988154,
   "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-4k-material-repair-v2-20261013.png",
-  "sourceAuditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
-  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/progress.json",
-  "sourceLedgerSha256": "98c5e28f68c5c4221f16079d0ede81eea4afbd94fe26faf642b8c98d802df8b5",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/review/material-band-v2/visual-qa-v2.json",
+  "sourceLedgerSha256": "f48050e45aff6de8ea26ea35a57cad96491cc78d039e079c977b0d3f28aafa2c",
+  "selectionPolicy": "all_generated_current_layout",
   "internalQaPassed": true,
   "formalAccepted": false,
-  "acceptanceStatus": "internal_passed_external_pending",
+  "acceptanceStatus": "generated_complete_internal_passed_external_not_reaccepted",
   "externalStatus": {
     "north": "local_pass_with_texture_watch",
     "west": "local_pass_with_texture_watch",
@@ -24,41 +25,106 @@
   "normalization": "art repository paths are relative; source-host references are historical only",
   "sourceRecord": {
     "tile": "r16_c14",
-    "status": "internal_pass_north_west_local_pass_with_texture_watch_east_pending",
-    "updatedAt": "2026-10-13T16:20:36.640820+00:00",
-    "activeNativeCount": 16,
-    "formalAccepted": false,
-    "internalArtQA": "pass_with_texture_watch",
-    "externalNeighborSeamQA": {
-      "north": "local_pass_with_texture_watch",
-      "west": "local_pass_with_texture_watch",
-      "east": "pending_missing_r16_c15_neighbor",
-      "south": "canvas_outer_boundary_painted_edge_checked"
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-4k-material-repair-v2-20261013.png",
+    "imageSha256": "962ce4cbce8614b8b266a286c38afedb9bd02b997887ad6a73e4f209819991b0",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/review/material-band-v2/visual-qa-v2.json",
+        "sha256": "f48050e45aff6de8ea26ea35a57cad96491cc78d039e079c977b0d3f28aafa2c",
+        "completeness": "Exact PNG SHA256 matches the prior fully decoded original native tile; no image transformation."
+      }
+    ],
+    "selectionBasis": "exact_prior_complete_image_sha256",
+    "sourceStatus": {
+      "status": "pending_local_visual_QA",
+      "formalAccepted": false
     },
-    "worldSize": null,
-    "clientMappingValidated": false,
-    "capacity5000Validated": false,
-    "currentPatch": null,
-    "currentVersion": "p04_04_v20261013T084909_2b015e45",
-    "lastIngestedVersion": "p04_04_v20261013T084909_2b015e45",
-    "previousActiveVersion": null,
-    "actualNativeOutputCount": 18,
-    "missingNativeCount": 0,
-    "nextStep": "Independent neighbor QA; begin assigned r16_c15 when north r15_c15 south core edge is stable, using this unchanged structural east edge.",
-    "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-4k-material-repair-v2-20261013.png",
-    "context": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-context-4326-material-repair-v2-20261013.png",
-    "assemblyManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-material-repair-v2-20261013-manifest.json",
-    "complete4kCandidateCount": 1,
-    "internalGeometryQA": "pass",
-    "visualQA": {
-      "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/review/material-band-v2/visual-qa-v2.json",
-      "sha256": "f48050e45aff6de8ea26ea35a57cad96491cc78d039e079c977b0d3f28aafa2c"
-    },
-    "remainingFindings": [],
-    "candidateSha256": "962ce4cbce8614b8b266a286c38afedb9bd02b997887ad6a73e4f209819991b0",
-    "contextSha256": "7d23c58d8a9555cdd472bdb913696d0a30729d359afbc544fb0e2c5323be53d6",
-    "repairManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-material-repair-v2-20261013-manifest.json",
-    "activeRepairNativeCount": 1
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/r16_c14-material-repair-v2-20261013-manifest.json",
+        "record": {
+          "status": "pending_local_visual_QA",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/candidate/latest-assembly.json",
+        "record": {
+          "status": "internal_pass_north_west_local_pass_with_texture_watch_east_pending",
+          "internalArtQA": "pass_with_texture_watch",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_with_texture_watch",
+            "west": "local_pass_with_texture_watch",
+            "east": "pending_missing_r16_c15_neighbor",
+            "south": "canvas_outer_boundary_painted_edge_checked"
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/progress.json",
+        "record": {
+          "status": "internal_pass_north_west_local_pass_with_texture_watch_east_pending",
+          "formalAccepted": false,
+          "internalArtQA": "pass_with_texture_watch",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_with_texture_watch",
+            "west": "local_pass_with_texture_watch",
+            "east": "pending_missing_r16_c15_neighbor",
+            "south": "canvas_outer_boundary_painted_edge_checked"
+          },
+          "internalGeometryQA": "pass"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/review/material-band-v2/visual-qa-v2.json",
+        "record": {
+          "internalGeometryQA": "pass",
+          "internalArtQA": "pass_with_texture_watch",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_with_texture_watch",
+            "west": "local_pass_with_texture_watch",
+            "east": "pending_missing_r16_c15_neighbor",
+            "south": "canvas_outer_boundary_painted_edge_checked"
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/finish-owner-20261023/next-complete-tile-triage/report.json",
+        "record": {
+          "status": "ONE_COMPLETE_TILE_MISSING_MATERIAL_SCOPE_REVIEWED_FAILED_NO_ACCEPTANCE_CHANGE",
+          "selectionReason": "16 current sources, exact-current geometry/seam QA plus localized repair with no current internal geometry failure; fullcore material coverage was not documented by49-region QA. This was a finite missing scope to resolve.",
+          "hardStopsFailPending": {
+            "selectedTileDirectProgress": "no exact face stop named in direct progress; no whole-history retry authorization inferred",
+            "materialFailedNow": true,
+            "external": "Existing north/west local texture watch/east pending and south canvas-boundary records retained; no external review in this task.",
+            "otherTiles": "All direct failed/stopped/pending text and exact QA hash matches are preserved per tile in direct-current-inventory-audit.json. No stopped point selected for a call."
+          },
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261023_152824.json",
+        "record": {
+          "status": "current_geometry_evidence_preserved_material_failed_r16_c14",
+          "formalAccepted": false,
+          "internalArtQA": "current_full16core_material_failed_geometry_QA_reused_not_formal",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_with_texture_watch",
+            "west": "local_pass_with_texture_watch",
+            "east": "pending_missing_r16_c15_neighbor",
+            "south": "canvas_outer_boundary_painted_edge_checked"
+          },
+          "internalGeometryQA": "pass",
+          "materialAccepted": false,
+          "wholeTileAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
   },
   "qa": {
     "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c14/review/material-band-v2/visual-qa-v2.json",

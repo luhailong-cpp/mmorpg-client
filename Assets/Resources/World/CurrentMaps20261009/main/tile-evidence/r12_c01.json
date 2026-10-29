@@ -1,0 +1,1095 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 12,
+  "column": 1,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "c180c41d4709659197a74bed069f2f295383f586a64a7b47d74ba46c379726c2",
+  "imageBytes": 21870670,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/r12_c01.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/assembly.json",
+  "sourceLedgerSha256": "57e68b10a4af650d3655fe2ab49ee63f0f5dbba5ad7a3f2e839ee7df70c24d89",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/r12_c01.candidate.png",
+    "imageSha256": "c180c41d4709659197a74bed069f2f295383f586a64a7b47d74ba46c379726c2",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/assembly.json",
+        "sha256": "57e68b10a4af650d3655fe2ab49ee63f0f5dbba5ad7a3f2e839ee7df70c24d89",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/assembly.json",
+        "sha256": "57e68b10a4af650d3655fe2ab49ee63f0f5dbba5ad7a3f2e839ee7df70c24d89",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/review.json",
+        "record": {
+          "verifiedDistinctNativeSlots": 16,
+          "externalRegions": [
+            {
+              "id": "top-col1",
+              "actuallyViewed": true,
+              "geometryPassed": true,
+              "materialPassed": true,
+              "accepted": true,
+              "findings": [
+                "Native tree foliage and trunk broadly continue coherently across current top boundary; this local boundary passes."
+              ]
+            },
+            {
+              "id": "top-col2",
+              "actuallyViewed": true,
+              "geometryPassed": true,
+              "materialPassed": false,
+              "accepted": false,
+              "findings": [
+                "Tree edge and blue-grey/pale rim broadly align; strong stone micrograin and minor course phase remain pending."
+              ]
+            },
+            {
+              "id": "top-col3",
+              "actuallyViewed": true,
+              "geometryPassed": false,
+              "materialPassed": false,
+              "accepted": false,
+              "findings": [
+                "North small alternating blue/pale slab grid conflicts with south single broad blue inset and rim; major scale/geometry mismatch."
+              ]
+            },
+            {
+              "id": "top-col4",
+              "actuallyViewed": true,
+              "geometryPassed": false,
+              "materialPassed": false,
+              "accepted": false,
+              "findings": [
+                "North smaller slab courses intersect south larger slabs at incompatible positions; horizontal tone phase change."
+              ]
+            },
+            {
+              "id": "bottom-col1",
+              "actuallyViewed": true,
+              "geometryPassed": false,
+              "materialPassed": false,
+              "accepted": false,
+              "findings": [
+                "Large diagonals enter boundary at different positions; floor tone/material changes horizontally."
+              ]
+            },
+            {
+              "id": "bottom-col2",
+              "actuallyViewed": true,
+              "geometryPassed": false,
+              "materialPassed": false,
+              "accepted": false,
+              "findings": [
+                "Detached diagonal ends and mismatched diagonal location across current south neighbor."
+              ]
+            },
+            {
+              "id": "bottom-col3",
+              "actuallyViewed": true,
+              "geometryPassed": false,
+              "materialPassed": false,
+              "accepted": false,
+              "findings": [
+                "Large crossing/diagonal locations conflict and strong horizontal tint change."
+              ]
+            },
+            {
+              "id": "bottom-col4",
+              "actuallyViewed": true,
+              "geometryPassed": false,
+              "materialPassed": false,
+              "accepted": false,
+              "findings": [
+                "Blue-grey inset rim shifts, slab course differs and red folded paper identities/positions break across tile edge."
+              ]
+            }
+          ],
+          "externalPassed": false,
+          "formalAccepted": false,
+          "issues": [
+            "V2-row1/V1-row2 blue inset/rim stubs, multiple V-row3/4 grout endpoints and H1/H2/H3 local course failures.",
+            "Quieter pale-grey floor finish still required; dense mottled micrograin persists.",
+            "Current north cols3/4 and south all4 remain geometrically incompatible, held."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/review.json",
+    "sourceSha256": "e32eabc3757529b376fa5b0785b15b57d78881d52b72ec62978c7141cd00d924",
+    "normalizedDocument": {
+      "tile": "r12_c01",
+      "reviewedAtUtc": "2026-10-19T19:05:53.567814+00:00",
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/assembly.json",
+        "sha256": "57e68b10a4af650d3655fe2ab49ee63f0f5dbba5ad7a3f2e839ee7df70c24d89"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/r12_c01.candidate.png",
+        "sha256": "c180c41d4709659197a74bed069f2f295383f586a64a7b47d74ba46c379726c2",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/r12_c01.candidate.context.png",
+        "sha256": "1d8c4cc3add3e37e028d012193867ddec7499fac325561f070a7cccb214061b9",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "verifiedDistinctNativeSlots": 16,
+      "internalRegions": [
+        {
+          "name": "V1-row1",
+          "box": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Foliage, low stone tree border and blue-grey paving broadly align; local leaf identity and dense stone surface grain pending."
+          ],
+          "inputPixelsSha256": "a0fd17464e6be4c5fed56e2211d4b837b44b8ce97e041c5b34032afbc93c9bf8"
+        },
+        {
+          "name": "V2-row1",
+          "box": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Several diagonal grout ends float or stop across blue inset/pale rim; rim and pale-floor crossing phases differ."
+          ],
+          "inputPixelsSha256": "909501e6bf2b816868c590554be9ab4116a2dd081079c7e8c560ef764bf23935"
+        },
+        {
+          "name": "V3-row1",
+          "box": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "panel": "V-row1",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Broad plain palegrey paving has coherent visible diagonal across seam; broad texture and faint cracks need quieter material."
+          ],
+          "inputPixelsSha256": "48ceda72649a7167dc37af38e528f72a5ef3c30e525dc2b40a652d10595a035d"
+        },
+        {
+          "name": "V1-row2",
+          "box": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Pale border ends in a raised/rim notch and multiple blue-grey/pale slab joints terminate instead of joining."
+          ],
+          "inputPixelsSha256": "5fc8bcb65c567fbc49ef1bf07d0d2f0b4d7c7581ec162b826be7554f5cd42996"
+        },
+        {
+          "name": "V2-row2",
+          "box": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Broad plain pale-grey face with no added object or structural grout break; dense mottled material remains pending."
+          ],
+          "inputPixelsSha256": "1dbaf746131d7f8227b0e49a6c17402fbf55625d676672d9fc62fe671895efba"
+        },
+        {
+          "name": "V3-row2",
+          "box": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "panel": "V-row2",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Large diagonal floor course joins broadly, minor bevel shift and dense surface material remain pending."
+          ],
+          "inputPixelsSha256": "7bef64148b4f827026f1014f02fefc16d76c9aa67dcb49a9ab4f9bc640b5f8b3"
+        },
+        {
+          "name": "V1-row3",
+          "box": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Two diagonals stop in the middle of the overlap with a disconnected acute corner; course reconstruction needed."
+          ],
+          "inputPixelsSha256": "8d32471ba18a3bfce867356cc0b2cc8ef0415652652c08802eeaba66ced97107"
+        },
+        {
+          "name": "V2-row3",
+          "box": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "A small outlined diamond/endcap at upper diagonal crossing and another floating diagonal end are unapproved."
+          ],
+          "inputPixelsSha256": "a0219ceb777bc8bf815d6a54cc009b91ba1c80089b1753e213034823cd98b75b"
+        },
+        {
+          "name": "V3-row3",
+          "box": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "panel": "V-row3",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Faint crack-like branching crosses upper floor and surface/joint phase changes; do not propagate affected fine lines."
+          ],
+          "inputPixelsSha256": "87f53ece9514ae97b5a682f07467e3ab41fb284ed108d475331484cc24f444e8"
+        },
+        {
+          "name": "V1-row4",
+          "box": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Two parallel diagonal joints terminate at different heights; another detached diagonal below."
+          ],
+          "inputPixelsSha256": "813533bdada1c2e3613d062755579a372838915ded63220f617d6bca9f1562a3"
+        },
+        {
+          "name": "V2-row4",
+          "box": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Two diagonals float in upper floor and lower course makes a notch; tint/texture strip remains."
+          ],
+          "inputPixelsSha256": "229358c9e7e170c9a9f5620bcf8b18dd27b5e246bab5d42b866d62463c9ce670"
+        },
+        {
+          "name": "V3-row4",
+          "box": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "panel": "V-row4",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Upper diagonal ends abruptly and a short inset/notch occurs at lower rim course; dense surface/tint transition."
+          ],
+          "inputPixelsSha256": "8f2f6615ceb1f7875ec15bf02e82bab19d1f2c9ee0d2b681132346bacca7465e"
+        },
+        {
+          "name": "H1-col1",
+          "box": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Several paver grout stubs and a dogleg in pole outline occur across row join; old p0201 black halo also failed outside formal core."
+          ],
+          "inputPixelsSha256": "6383c36d684c278a2fe7a88c91511a3c4941b62738637479c38804026ebed272"
+        },
+        {
+          "name": "H1-col2",
+          "box": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Blue-grey inset rim and pale floor diagonals broadly continuous; subtle native grain/tone transition pending."
+          ],
+          "inputPixelsSha256": "055b2d61f6b3f2c2ab8e049197a237d9cc35cfd8de870a8d81f4d83f5a485389"
+        },
+        {
+          "name": "H1-col3",
+          "box": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Left diagonal crossing contains isolated short branch/end instead of continuing original large slab course."
+          ],
+          "inputPixelsSha256": "b03d33526a346cad72139a3f15952cd4f318b9082952d07bd19773a63361e38f"
+        },
+        {
+          "name": "H1-col4",
+          "box": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "panel": "H1",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Broad pale floor without structural joint break; painterly micrograin remains too dense."
+          ],
+          "inputPixelsSha256": "4598582b8252cb99be8deef62c2a26f78644d36c9cf1afb8dbe1e3f1124acaee"
+        },
+        {
+          "name": "H2-col1",
+          "box": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Three diagonal grout lines terminate before or after row boundary; no continuous large-slab course."
+          ],
+          "inputPixelsSha256": "c150d43763d54ca0952d9ff2e94ccb765ca9772e5cfcd632cb984ae2b71aed31"
+        },
+        {
+          "name": "H2-col2",
+          "box": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Broad plain floor with a continuous diagonal entering at right; dense mottled surface remains pending."
+          ],
+          "inputPixelsSha256": "70f3040b6c3ee2810f5a62a3f723bc4cb97013de8a5cd568fc7a853c2641f931"
+        },
+        {
+          "name": "H2-col3",
+          "box": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Acute lower-left short joint plus mismatched large slab branches across row transition."
+          ],
+          "inputPixelsSha256": "d6903b225890afdd300a194f39fb79b7fe48c6de1bf3ec323cf192f66972a9ac"
+        },
+        {
+          "name": "H2-col4",
+          "box": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "panel": "H2",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Main diagonal is broadly continuous, but microtexture and broad tone phase still visible."
+          ],
+          "inputPixelsSha256": "bb2c1396f759cd798c3b73639390831c4a1bac5ccee38bdbddce06a93efc44f4"
+        },
+        {
+          "name": "H3-col1",
+          "box": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Large diagonal intersection generally coherent; broad quiet material still needs unification."
+          ],
+          "inputPixelsSha256": "ec2eff2b74e9207acc1497bebb0859bf8720077b14dd311b8ae01a7c28232f09"
+        },
+        {
+          "name": "H3-col2",
+          "box": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Large crossing broadly continuous; dense grain and tonal phase remain pending."
+          ],
+          "inputPixelsSha256": "d385446611eec592e39b421b5c0e5c3ca8ef8e4fc4e60e3bdaca8d831649b0d0"
+        },
+        {
+          "name": "H3-col3",
+          "box": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Plain broad floor with no object or structural seam break; dense material/tint change remains pending."
+          ],
+          "inputPixelsSha256": "397af27f509fd3e5a2fc5762b013054fede653da897ce3b5c2108fafdf43d747"
+        },
+        {
+          "name": "H3-col4",
+          "box": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "panel": "H3",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Main diagonal has doubled/boxed notch near left; tiny false floor inset at course join."
+          ],
+          "inputPixelsSha256": "d0e5aacd7c1fda56625f54a95988cc8f491a799e1554204d4641ab3a6b9af973"
+        },
+        {
+          "name": "corner-H1-V1",
+          "box": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Thin branch stops beside blue-grey slab rim; course phase mismatch."
+          ],
+          "inputPixelsSha256": "339e267643871dc4af86df837666eb5938dc481058ef33c04d9f35c8ef6b2707"
+        },
+        {
+          "name": "corner-H1-V2",
+          "box": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Fourway floor crossing contains floating short ends."
+          ],
+          "inputPixelsSha256": "ccdfceeac4b039dd2bbe46bcc5aa2c5b1cbae2636ef3dbc4ce6c70b31e21b7f6"
+        },
+        {
+          "name": "corner-H1-V3",
+          "box": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Main diagonal generally coherent; material finish remains dense."
+          ],
+          "inputPixelsSha256": "ed8c130b4af7a922effe8f792b3c31d0b1278df07df04071ee74cafd304468ad"
+        },
+        {
+          "name": "corner-H2-V1",
+          "box": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Plain broad pale floor, no local structural discontinuity; material grain remains pending."
+          ],
+          "inputPixelsSha256": "4acc0d4f95c318810e91c1a1a22af5d840b1ed31fc49d26a2af463cd915fbd53"
+        },
+        {
+          "name": "corner-H2-V2",
+          "box": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Short angular joint/endcap extends from crossing while other branch absent."
+          ],
+          "inputPixelsSha256": "a9b6444c3397ff3e6d0c4a56debef8c53dcee85e1acf71e501cd711e47f672c3"
+        },
+        {
+          "name": "corner-H2-V3",
+          "box": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Fine crack-like X and tonal change remain; held as unapproved line detail."
+          ],
+          "inputPixelsSha256": "3f1236d6178792b09e2c423352f795c21ac27672e30f783953df32e439c4f9e5"
+        },
+        {
+          "name": "corner-H3-V1",
+          "box": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Plain broad floor joins, but material phase remains pending."
+          ],
+          "inputPixelsSha256": "3fdaf1a8b67388d160427cafe0cd64d08b45ab843094b87a0088691a474e8ece"
+        },
+        {
+          "name": "corner-H3-V2",
+          "box": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Detached diagonal end visible at intersection region."
+          ],
+          "inputPixelsSha256": "e55edf3a9bdf694d80ebf887b9ca36d092cf0cd4b68e9c2a284c0735cfed35e3"
+        },
+        {
+          "name": "corner-H3-V3",
+          "box": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Doubled box-like notch on main diagonal, incorrect course junction."
+          ],
+          "inputPixelsSha256": "c8315d12c0d5d48882d03b4b7137174fd249684db0e31b0a5ac3b3d2d0058149"
+        }
+      ],
+      "nativePanels": [
+        {
+          "name": "V-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/V-row1.png",
+          "sha256": "74769a43b3398b29f4afa889619a8fa8633079df81779d111f6e5fefbd9d7e5b",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "V-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/V-row2.png",
+          "sha256": "4d2e1ff17913480c8c465ae20563193aa0a62cf9dfeb1f8ed781551a1fc94006",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "V-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/V-row3.png",
+          "sha256": "8f0933ed0f940181c4ef1f5e7f71df5dc06385632ef05afe2dcc84a27277f873",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "V-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/V-row4.png",
+          "sha256": "73ff3f5625ea1912aca1b0a928c9d0ecefe41bcd25c45172993ad8af2469e206",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "H1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/H1.png",
+          "sha256": "23b2160b8159150ca5ce4f5d6e23080b6257d3a8080e376d89a9b54ec1b7f147",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "H2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/H2.png",
+          "sha256": "46dbe37df15f7036ea8eb1f591f7cf1b7a553cb384b3e5c678a96ee0283a946e",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "H3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/H3.png",
+          "sha256": "ee15654d7384a6ecda86d18cc0bc1b1597e85fae647e482b68e73e821757e0cd",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "nine-corners",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/nine-corners.png",
+          "sha256": "beb854336372b34fe07727f9f45fa606b836a71e571914cfcd6901b51e915695",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "top-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/top-native-boundary.png",
+          "sha256": "7300e37ce9b01adb0b17923bec0207f08598d7e77a4ca1456ace2a38f0c8cc34",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        },
+        {
+          "name": "bottom-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/bottom-native-boundary.png",
+          "sha256": "7ba04619bc740b1845f65153823e4467e8f01768de551a978bf7cbeffd02aae2",
+          "nativeResampling": false,
+          "actuallyViewed": true,
+          "nativeResolution": true
+        }
+      ],
+      "neighborInputs": {
+        "top": {
+          "tile": "r11_c01",
+          "available": true,
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r11_c01/pipeline/output/606a0b3dfbc55590/r11_c01.candidate.png",
+            "sha256": "5091431a94c8717fadd6de0e4e719c1cb00021ec51380146a65ec92fa07465d5",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "formalAccepted": false
+        },
+        "bottom": {
+          "tile": "r12_c01",
+          "assembly": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/assembly.json",
+            "sha256": "57e68b10a4af650d3655fe2ab49ee63f0f5dbba5ad7a3f2e839ee7df70c24d89"
+          },
+          "neighborTile": "r13_c01",
+          "candidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/r13_c01.candidate.png",
+            "sha256": "9131eee3e673898f9ffc039bdfd25e57bbac2276243aa74173f031342ca5ac51",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "neighborAssembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c01/pipeline/output/c58d2c67a663d940/assembly.json",
+          "regions": [
+            {
+              "id": "bottom-col1",
+              "targetBox": [
+                0,
+                3968,
+                1024,
+                4096
+              ],
+              "neighborBox": [
+                0,
+                0,
+                1024,
+                128
+              ],
+              "targetRgbPixelsSha256": "02519d261cb4442913c063b09b4c3bba68b82ceab05d8332723738ca91ff3040",
+              "neighborRgbPixelsSha256": "a949cc9d16bb0efb47fde610eff101f4f488c627cad6631e48a99fe9c4b60d1d"
+            },
+            {
+              "id": "bottom-col2",
+              "targetBox": [
+                1024,
+                3968,
+                2048,
+                4096
+              ],
+              "neighborBox": [
+                1024,
+                0,
+                2048,
+                128
+              ],
+              "targetRgbPixelsSha256": "7021c9f141dd3fab5b313c98649c04ad6e0a19d3fcc16d7d69eadcce0fe51e25",
+              "neighborRgbPixelsSha256": "a0261184f4c9b8f77d9047150150e5f3638de57ef1c05b926cd78c02ca4484f5"
+            },
+            {
+              "id": "bottom-col3",
+              "targetBox": [
+                2048,
+                3968,
+                3072,
+                4096
+              ],
+              "neighborBox": [
+                2048,
+                0,
+                3072,
+                128
+              ],
+              "targetRgbPixelsSha256": "0f004133e06d5d3f39a93b3349de5394859ec5ba7d342f001d822632eba4fca6",
+              "neighborRgbPixelsSha256": "eecba836e89e9b92e71dc52bb5de53d98c25acf65a338ebfcd147cd99617531f"
+            },
+            {
+              "id": "bottom-col4",
+              "targetBox": [
+                3072,
+                3968,
+                4096,
+                4096
+              ],
+              "neighborBox": [
+                3072,
+                0,
+                4096,
+                128
+              ],
+              "targetRgbPixelsSha256": "2087651817e66ed408e74347ca2e729116916fbcd59dfe6950a97ed9458422dd",
+              "neighborRgbPixelsSha256": "e0473da1e2a5408bb01d09d76d054476edc93a4dce3980b340c2087d199312ef"
+            }
+          ],
+          "panels": [
+            {
+              "name": "bottom-native-boundary",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r12_c01/pipeline/output/f051ba9d6bfd2c75/full16-native-20261019a-v01/bottom-native-boundary.png",
+              "sha256": "7ba04619bc740b1845f65153823e4467e8f01768de551a978bf7cbeffd02aae2",
+              "nativeResampling": false,
+              "actuallyViewed": true,
+              "nativeResolution": true
+            }
+          ],
+          "rightStatus": "r12_c02 currently guides only; external border pending, not passed",
+          "leftStatus": "art-world x0 outer boundary, no tile c0",
+          "sourceResampling": false,
+          "formalAccepted": false
+        }
+      },
+      "externalRegions": [
+        {
+          "id": "top-col1",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": true,
+          "accepted": true,
+          "findings": [
+            "Native tree foliage and trunk broadly continue coherently across current top boundary; this local boundary passes."
+          ]
+        },
+        {
+          "id": "top-col2",
+          "actuallyViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Tree edge and blue-grey/pale rim broadly align; strong stone micrograin and minor course phase remain pending."
+          ]
+        },
+        {
+          "id": "top-col3",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "North small alternating blue/pale slab grid conflicts with south single broad blue inset and rim; major scale/geometry mismatch."
+          ]
+        },
+        {
+          "id": "top-col4",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "North smaller slab courses intersect south larger slabs at incompatible positions; horizontal tone phase change."
+          ]
+        },
+        {
+          "id": "bottom-col1",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Large diagonals enter boundary at different positions; floor tone/material changes horizontally."
+          ]
+        },
+        {
+          "id": "bottom-col2",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Detached diagonal ends and mismatched diagonal location across current south neighbor."
+          ]
+        },
+        {
+          "id": "bottom-col3",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Large crossing/diagonal locations conflict and strong horizontal tint change."
+          ]
+        },
+        {
+          "id": "bottom-col4",
+          "actuallyViewed": true,
+          "geometryPassed": false,
+          "materialPassed": false,
+          "accepted": false,
+          "findings": [
+            "Blue-grey inset rim shifts, slab course differs and red folded paper identities/positions break across tile edge."
+          ]
+        }
+      ],
+      "nativeReviewCounts": {
+        "internal": 33,
+        "external": 8,
+        "total": 41
+      },
+      "rightNeighbor": "r12c02 guides only; pending native border, not passed",
+      "leftBoundary": "x0 art-world outer boundary, no c0 tile",
+      "additionalContextIssue": "p0201 original better interior source preserved, but missing black outside-world halo at x<115 still failed; AI margin edit shifted artwork and was rejected. Formal core geometry not replaced by that edit.",
+      "internalPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "sourceResampling": false,
+      "issues": [
+        "V2-row1/V1-row2 blue inset/rim stubs, multiple V-row3/4 grout endpoints and H1/H2/H3 local course failures.",
+        "Quieter pale-grey floor finish still required; dense mottled micrograin persists.",
+        "Current north cols3/4 and south all4 remain geometrically incompatible, held."
+      ],
+      "productionDecision": "Preserve full16 coverage and exact receipts; continue original independent r12c02-04. Geometry failures held; locally passed top-col1 does not establish tile acceptance."
+    }
+  }
+}

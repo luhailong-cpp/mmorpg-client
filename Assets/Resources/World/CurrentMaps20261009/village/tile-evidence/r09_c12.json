@@ -1,0 +1,3888 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 9,
+  "column": 12,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "953ccd3aaa7af70120f5cdb92e787ce392e4658c2d5aa1c49093492f0b2bcd75",
+  "imageBytes": 26676560,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/manifest.json",
+  "sourceLedgerSha256": "4ff1b160a6b114bd368847f4a59d6358382606139e63cfb88bf6cee976214bbc",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r09_c12",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/candidate-4096.png",
+    "imageSha256": "953ccd3aaa7af70120f5cdb92e787ce392e4658c2d5aa1c49093492f0b2bcd75",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/manifest.json",
+        "sha256": "4ff1b160a6b114bd368847f4a59d6358382606139e63cfb88bf6cee976214bbc",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "coverage_complete_internal_review_complete_repairs_pending"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/candidate-4096.png.derivation.json",
+        "record": {
+          "status": "candidate_only"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/manifest.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "coverage_complete_internal_review_complete_repairs_pending"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/manifest.json",
+    "sourceSha256": "4ff1b160a6b114bd368847f4a59d6358382606139e63cfb88bf6cee976214bbc",
+    "normalizedDocument": {
+      "tile": "r09_c12",
+      "createdAtUtc": "2026-10-20T18:34:19.353782+00:00",
+      "selection": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+      "selectionSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+      "selectedCount": 16,
+      "sources": [
+        {
+          "patch": "p11",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p11-v1.png",
+          "sha256": "c70692156e8fa9e450ef281336b330e98b88bdd4dd02994a6b908774fc7bb8a4",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p11-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p12",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p12-v1.png",
+          "sha256": "d2960b93f3c56dcc05c4878a350f59a0ed08773963e015b909b2f650f5d2d3ec",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p12-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p13",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p13-v1.png",
+          "sha256": "d4f8a39e46dfa104ddd637d424a944e15552a576381e9bdb1181fe4dce032c1e",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p13-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p14",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p14-v1.png",
+          "sha256": "bc24b2499c8dddad6935c984d4c02693ae7c214af8d3ae43cb3a2ebd3b38daf9",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p14-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p21",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p21-v3.png",
+          "sha256": "98be58ae645e6c8154f658357e17645ad3d6317618c63e98ac2541b0321ea41a",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p21-v3.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p22",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+          "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p23",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+          "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p24",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p24-v2.png",
+          "sha256": "1a2a83093a3b92a8c5da796d0d33acacb0511d706e24048e63914fad7e56d63f",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p24-v2.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p31",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p31-v3.png",
+          "sha256": "d0d9828856a77cf9bae176fad497500b90dabd6ecce3e56dfc445d8e5456ef7c",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p31-v3.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p32",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+          "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p33",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+          "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p34",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p34-v1.png",
+          "sha256": "b8771b25c204b741a5ef14bf3b02aa77777bb1f215f14baf332970700b7aa730",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p34-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p41",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p41-v1.png",
+          "sha256": "35eefb277e5b56fa188c4d75e1dc0ce5f7e8f32640c9d9481c3effa8c95ad36d",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p41-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p42",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p42-v1.png",
+          "sha256": "a850cae9a9351920f97397dfcec32f7ded00248a80270393a54b3396feb1512b",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p42-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p43",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p43-v1.png",
+          "sha256": "a11d094dc1b6d9375b7429f3f4815acb4ebc5eddf3e5917d9559efac43230277",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p43-v1.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        },
+        {
+          "patch": "p44",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p44-v2.png",
+          "sha256": "55170c71d484bccfe59b3d9f28e32ee6b590ea9415d6113e719c9ecad617cdfc",
+          "record": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p44-v2.png.generation.json",
+          "nativeDimensions": [
+            1254,
+            1254
+          ],
+          "coreCrop": [
+            115,
+            115,
+            1139,
+            1139
+          ],
+          "sourceChainVerified": true
+        }
+      ],
+      "evidence": [
+        {
+          "id": "h-r1-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r1-c1.png",
+          "sha256": "d47c37cc6973fa77a6d42563caeb969cb19ebceca77b1c71be8665c7121a6d95",
+          "globalBox": [
+            45824,
+            32768,
+            46336,
+            33792
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p11",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p11-v1.png",
+              "sha256": "c70692156e8fa9e450ef281336b330e98b88bdd4dd02994a6b908774fc7bb8a4",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                32768,
+                46080,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                32653,
+                46195,
+                33907
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p12-v1.png",
+              "sha256": "d2960b93f3c56dcc05c4878a350f59a0ed08773963e015b909b2f650f5d2d3ec",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                32768,
+                47104,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                32653,
+                47219,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p12-v1-quick/manifest.json",
+              "manifestSha256": "5620b3fb507f2df1947a8be23474977c2f6807af663bd2701bf0104ca22c68cf",
+              "finding": "Sail material and folds connect without silhouette break; weave phase and subtle brightness line pending.",
+              "status": "layout_usable_detail_pending",
+              "viewMethod": "native view_image"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r1-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r1-c2.png",
+          "sha256": "be5bb991a074c0dafbcccde390e20798e70bbbf0344f223dd7fabe07cb413a65",
+          "globalBox": [
+            46848,
+            32768,
+            47360,
+            33792
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p12-v1.png",
+              "sha256": "d2960b93f3c56dcc05c4878a350f59a0ed08773963e015b909b2f650f5d2d3ec",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                32768,
+                47104,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                32653,
+                47219,
+                33907
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p13-v1.png",
+              "sha256": "d4f8a39e46dfa104ddd637d424a944e15552a576381e9bdb1181fe4dce032c1e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                32768,
+                48128,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                32653,
+                48243,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p13-v1-quick/manifest.json",
+              "manifestSha256": "2b2afa58116c2cb5b5b654fc0a28491f77d508d6c6a15965d46f2d86504088c1",
+              "finding": "Water-only west edge has caustic phase/scale change; no hull discontinuity crosses core west edge. Local water texture pending.",
+              "status": "layout_usable_detail_pending",
+              "viewMethod": "native view_image"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r1-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r1-c3.png",
+          "sha256": "adace650e14cbf8f4c8735870dbd841166e1fdc7f49f8202fa91680bee81a0a8",
+          "globalBox": [
+            47872,
+            32768,
+            48384,
+            33792
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p13-v1.png",
+              "sha256": "d4f8a39e46dfa104ddd637d424a944e15552a576381e9bdb1181fe4dce032c1e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                32768,
+                48128,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                32653,
+                48243,
+                33907
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p14",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p14-v1.png",
+              "sha256": "bc24b2499c8dddad6935c984d4c02693ae7c214af8d3ae43cb3a2ebd3b38daf9",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                32768,
+                49152,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                32653,
+                49267,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p14-v1-quick/manifest.json",
+              "manifestSha256": "bddf598e12a635ef6c920607261c1c18d2ec7d13d47e0f89f9e0438198645992",
+              "finding": "Golden diagonal rim and diagonal inner plank connect; deck grooves near seam differ slightly, local material pending.",
+              "status": "layout_usable_detail_pending",
+              "viewMethod": "native view_image"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r2-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r2-c1.png",
+          "sha256": "e276fbcb38f69b36be8dda2f1e5462cdf2d6c1ba95cbb3be6c96c2929b432b85",
+          "globalBox": [
+            45824,
+            33792,
+            46336,
+            34816
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p21-v3.png",
+              "sha256": "98be58ae645e6c8154f658357e17645ad3d6317618c63e98ac2541b0321ea41a",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                33792,
+                46080,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                33677,
+                46195,
+                34931
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+              "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                33792,
+                47104,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                33677,
+                47219,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p21-v3-candidate-edges/manifest.json",
+              "manifestSha256": "da265f143dda67cc6ea995ce548c04a2e0592500764eef7dc8f4e0453db438c6",
+              "finding": "Central lower mast is now straight and extends through core bottom; original sail/gunwale layout retained. West small cloth lip remains from previous hold; north/east canvas weave/light phase pending, no new major contour break.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r2-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r2-c2.png",
+          "sha256": "ed578dee3f98d572d9a81b4569510a35eb19a696691b6f889a2c47decb6fa201",
+          "globalBox": [
+            46848,
+            33792,
+            47360,
+            34816
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+              "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                33792,
+                47104,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                33677,
+                47219,
+                34931
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+              "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                33792,
+                48128,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                33677,
+                48243,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p23-v1-quick/manifest.json",
+              "manifestSha256": "fac751c21d29a9176776e10a0f2ab140d718539acbd17ad6e77a48f83e0a837d",
+              "finding": "Hull broad contour continuous north; tiny lower-keel lip and plank phase pending. West caustic phase remains pending; no new large geometry step.",
+              "status": "layout_usable_detail_pending",
+              "viewMethod": "native view_image"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r2-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r2-c3.png",
+          "sha256": "d64d64d88e0e1fd2bf7e2c12b41ae9fdc64e6f416ee1b4a45f46c2b97e1e5bc9",
+          "globalBox": [
+            47872,
+            33792,
+            48384,
+            34816
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+              "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                33792,
+                48128,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                33677,
+                48243,
+                34931
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p24-v2.png",
+              "sha256": "1a2a83093a3b92a8c5da796d0d33acacb0511d706e24048e63914fad7e56d63f",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                33792,
+                49152,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                33677,
+                49267,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p24-v2-candidate-edges/manifest.json",
+              "manifestSha256": "aca79b8ca1ce82805a15fc9ec3fccb0ea66779263abbc958788dd9acbb9844aa",
+              "finding": "West lower golden strake and dark keel now continuous; north deck and mast layout usable. Teal panel edge/notch plus wear, woodgrain and caustic phase remain material/detail pending; no formal pass.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r3-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r3-c1.png",
+          "sha256": "d6944caf4a7e56052e6855c2f9ba88693692c69ceec6bd0f73db53687bb8a69a",
+          "globalBox": [
+            45824,
+            34816,
+            46336,
+            35840
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p31-v3.png",
+              "sha256": "d0d9828856a77cf9bae176fad497500b90dabd6ecce3e56dfc445d8e5456ef7c",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                34816,
+                46080,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                34701,
+                46195,
+                35955
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+              "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                34816,
+                47104,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                34701,
+                47219,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p31-v3-candidate-edges/manifest.json",
+              "manifestSha256": "e88635d1a0bd9fdbd00c5b0597d695e032c8b91d270334b927d27addb06c0def",
+              "finding": "New p21-v3 north and p41 south mast now continuous; north/south deck grain and mast texture seam pending. East gunwale continuous but clipped blue bundle shape/knot and local panel/wood joins need internal repair. West held hull/gunwale remains incompatible and unaccepted. Full internal QA required.",
+              "status": "local_bundle_join_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r3-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r3-c2.png",
+          "sha256": "f87d262633c1f47d691cf2332ea2e4b6c433a63cf40c79eee2450ef575be0ec1",
+          "globalBox": [
+            46848,
+            34816,
+            47360,
+            35840
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+              "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                34816,
+                47104,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                34701,
+                47219,
+                35955
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+              "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                34816,
+                48128,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                34701,
+                48243,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p32-v1-candidate-edges/manifest.json",
+              "manifestSha256": "287976e7a2f86db4048098e97fc3baa048f9e2a2a327b86fd0846f1a7a0f1c79",
+              "finding": "North sail hem/edge and gold boom keep layout; east golden gunwale crosses at matching height. Water caustic phase and canvas weave/edge thickness remain pending for native internal QA.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r3-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r3-c3.png",
+          "sha256": "999aa8d677d4a8268011b30afc589b4c5c2dc21d466b207bbfc57a02d96c152d",
+          "globalBox": [
+            47872,
+            34816,
+            48384,
+            35840
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+              "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                34816,
+                48128,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                34701,
+                48243,
+                35955
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p34-v1.png",
+              "sha256": "b8771b25c204b741a5ef14bf3b02aa77777bb1f215f14baf332970700b7aa730",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                34816,
+                49152,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                34701,
+                49267,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p33-v1-candidate-edges/manifest.json",
+              "manifestSha256": "0723e5939d3ecd716d597cd4379f4d35b187541c6f83ed92cdbe11e493718bd4",
+              "finding": "North/east are open water with no blocked silhouette; water caustic phase and brightness remain material pending. Existing cropped bowpost and lower-left gunwale footprint retained for row4 continuation.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r4-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r4-c1.png",
+          "sha256": "2a4dc7d6ce40b6b85629ed1030d30945b71c45388fe8ff2660d5091cac2cae71",
+          "globalBox": [
+            45824,
+            35840,
+            46336,
+            36864
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p41-v1.png",
+              "sha256": "35eefb277e5b56fa188c4d75e1dc0ce5f7e8f32640c9d9481c3effa8c95ad36d",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                35840,
+                46080,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                35725,
+                46195,
+                36979
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p42-v1.png",
+              "sha256": "a850cae9a9351920f97397dfcec32f7ded00248a80270393a54b3396feb1512b",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                35840,
+                47104,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                35725,
+                47219,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p41-v1-candidate-edges/manifest.json",
+              "manifestSha256": "db33cd45a5baef6d2a0ed01ef3dd4e2e4b2dd62cd66410bb5c39a6fd12b42b4e",
+              "finding": "Independent target layout with east gold gunwale and deck usable. West net support rope/mesh scale and boat hull remain major external geometry hold. South reserved mesh/wood mismatch held read-only. Small extra net fixing posts and paint wear are local pending repair, not an accepted final detail. North p31 unselected, no north pass inferred.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r4-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r4-c2.png",
+          "sha256": "bcac3e0109adbb02c81404c24472a8797afb09d2c06b3913e76394a9e3251cf4",
+          "globalBox": [
+            46848,
+            35840,
+            47360,
+            36864
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p42-v1.png",
+              "sha256": "a850cae9a9351920f97397dfcec32f7ded00248a80270393a54b3396feb1512b",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                35840,
+                47104,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                35725,
+                47219,
+                36979
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p43-v1.png",
+              "sha256": "a11d094dc1b6d9375b7429f3f4815acb4ebc5eddf3e5917d9559efac43230277",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                35840,
+                48128,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                35725,
+                48243,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p42-v1-candidate-edges/manifest.json",
+              "manifestSha256": "bdcf47fc7cac7d321f5c66c4c759bad65ab05004d01b6cf02be3f3910391c394",
+              "finding": "North mast/deck boundaries and east golden inner/outer rails connect at fixed positions. Deck grain, mast base texture, dark inner-panel color and teal plank seams remain material pending. South reserved joins remain unaccepted/read-only and were not generation anchors.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "h-r4-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/h-r4-c3.png",
+          "sha256": "a7f2837334dcfb920ce86aba92d676e873f48ad9c251f3136b9cce0e89dd71e9",
+          "globalBox": [
+            47872,
+            35840,
+            48384,
+            36864
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p43-v1.png",
+              "sha256": "a11d094dc1b6d9375b7429f3f4815acb4ebc5eddf3e5917d9559efac43230277",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                35840,
+                48128,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                35725,
+                48243,
+                36979
+              ],
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p44",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p44-v2.png",
+              "sha256": "55170c71d484bccfe59b3d9f28e32ee6b590ea9415d6113e719c9ecad617cdfc",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                35840,
+                49152,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                35725,
+                49267,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p43-v1-candidate-edges/manifest.json",
+              "manifestSha256": "a7d8c03db780c503ebcedd89c66b84bb85ded99da7ea24e700e3201d8781eb24",
+              "finding": "North bowpost shaft and clipped gold rim continue without break; east gold gunwale and outer hull curve connect. Woodgrain/teal paint wear still show local seam changes. South reserved wood/teal material mismatch and board joins remain held read-only, not propagated or accepted.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r1-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r1-c1.png",
+          "sha256": "37a80ac94e6261507f45cc1dd405ac1bd677f925c9ea553efb82cea5d0ffcce2",
+          "globalBox": [
+            45056,
+            33536,
+            46080,
+            34048
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p11",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p11-v1.png",
+              "sha256": "c70692156e8fa9e450ef281336b330e98b88bdd4dd02994a6b908774fc7bb8a4",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                32768,
+                46080,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                32653,
+                46195,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p21-v3.png",
+              "sha256": "98be58ae645e6c8154f658357e17645ad3d6317618c63e98ac2541b0321ea41a",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                33792,
+                46080,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                33677,
+                46195,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p21-v3-candidate-edges/manifest.json",
+              "manifestSha256": "da265f143dda67cc6ea995ce548c04a2e0592500764eef7dc8f4e0453db438c6",
+              "finding": "Central lower mast is now straight and extends through core bottom; original sail/gunwale layout retained. West small cloth lip remains from previous hold; north/east canvas weave/light phase pending, no new major contour break.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r1-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r1-c2.png",
+          "sha256": "ed661526b39e6fc53d868588fab92674e2d631840b320d173a45e93b36ecd504",
+          "globalBox": [
+            46080,
+            33536,
+            47104,
+            34048
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p12-v1.png",
+              "sha256": "d2960b93f3c56dcc05c4878a350f59a0ed08773963e015b909b2f650f5d2d3ec",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                32768,
+                47104,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                32653,
+                47219,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+              "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                33792,
+                47104,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                33677,
+                47219,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p22-v1-quick/manifest.json",
+              "manifestSha256": "3e1f9d274a860bf465b70bd37616285b8f776a20ddfde8ba75dc7ac7b0dca3b7",
+              "finding": "West sail lower edge and gold boom continuous; north vertical sail edge has small thickness/curve change, weave and water caustic phase pending.",
+              "status": "layout_usable_detail_pending",
+              "viewMethod": "native view_image"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r1-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r1-c3.png",
+          "sha256": "435a72779a49bc7c3949a5f1f5573cf1a8750d3de529df092507dd47c8b9f363",
+          "globalBox": [
+            47104,
+            33536,
+            48128,
+            34048
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p13-v1.png",
+              "sha256": "d4f8a39e46dfa104ddd637d424a944e15552a576381e9bdb1181fe4dce032c1e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                32768,
+                48128,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                32653,
+                48243,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+              "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                33792,
+                48128,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                33677,
+                48243,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p23-v1-quick/manifest.json",
+              "manifestSha256": "fac751c21d29a9176776e10a0f2ab140d718539acbd17ad6e77a48f83e0a837d",
+              "finding": "Hull broad contour continuous north; tiny lower-keel lip and plank phase pending. West caustic phase remains pending; no new large geometry step.",
+              "status": "layout_usable_detail_pending",
+              "viewMethod": "native view_image"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r1-c4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r1-c4.png",
+          "sha256": "35a20646781144adc16f9a1a3653aa431d37a31f81d7df61bc1b7bc3d5d7bd39",
+          "globalBox": [
+            48128,
+            33536,
+            49152,
+            34048
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p14",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p14-v1.png",
+              "sha256": "bc24b2499c8dddad6935c984d4c02693ae7c214af8d3ae43cb3a2ebd3b38daf9",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                32768,
+                49152,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                32653,
+                49267,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p24-v2.png",
+              "sha256": "1a2a83093a3b92a8c5da796d0d33acacb0511d706e24048e63914fad7e56d63f",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                33792,
+                49152,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                33677,
+                49267,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p24-v2-candidate-edges/manifest.json",
+              "manifestSha256": "aca79b8ca1ce82805a15fc9ec3fccb0ea66779263abbc958788dd9acbb9844aa",
+              "finding": "West lower golden strake and dark keel now continuous; north deck and mast layout usable. Teal panel edge/notch plus wear, woodgrain and caustic phase remain material/detail pending; no formal pass.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r2-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r2-c1.png",
+          "sha256": "5e9c45365d4798cfe248aeaaf58ba3cacefcd24ff2656d020872c57e7766482a",
+          "globalBox": [
+            45056,
+            34560,
+            46080,
+            35072
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p21-v3.png",
+              "sha256": "98be58ae645e6c8154f658357e17645ad3d6317618c63e98ac2541b0321ea41a",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                33792,
+                46080,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                33677,
+                46195,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p31-v3.png",
+              "sha256": "d0d9828856a77cf9bae176fad497500b90dabd6ecce3e56dfc445d8e5456ef7c",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                34816,
+                46080,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                34701,
+                46195,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p31-v3-candidate-edges/manifest.json",
+              "manifestSha256": "e88635d1a0bd9fdbd00c5b0597d695e032c8b91d270334b927d27addb06c0def",
+              "finding": "New p21-v3 north and p41 south mast now continuous; north/south deck grain and mast texture seam pending. East gunwale continuous but clipped blue bundle shape/knot and local panel/wood joins need internal repair. West held hull/gunwale remains incompatible and unaccepted. Full internal QA required.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r2-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r2-c2.png",
+          "sha256": "a01c3a963f2b3b43928ded1fa404d4956904e33f13ab9b5fc8f95ccf32951199",
+          "globalBox": [
+            46080,
+            34560,
+            47104,
+            35072
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+              "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                33792,
+                47104,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                33677,
+                47219,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+              "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                34816,
+                47104,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                34701,
+                47219,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p32-v1-candidate-edges/manifest.json",
+              "manifestSha256": "287976e7a2f86db4048098e97fc3baa048f9e2a2a327b86fd0846f1a7a0f1c79",
+              "finding": "North sail hem/edge and gold boom keep layout; east golden gunwale crosses at matching height. Water caustic phase and canvas weave/edge thickness remain pending for native internal QA.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r2-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r2-c3.png",
+          "sha256": "15f5ebf2f81237bb71afb9cd9a6b9351882da39781cd429910f771e0e6a4858a",
+          "globalBox": [
+            47104,
+            34560,
+            48128,
+            35072
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+              "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                33792,
+                48128,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                33677,
+                48243,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+              "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                34816,
+                48128,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                34701,
+                48243,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p33-v1-candidate-edges/manifest.json",
+              "manifestSha256": "0723e5939d3ecd716d597cd4379f4d35b187541c6f83ed92cdbe11e493718bd4",
+              "finding": "North/east are open water with no blocked silhouette; water caustic phase and brightness remain material pending. Existing cropped bowpost and lower-left gunwale footprint retained for row4 continuation.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r2-c4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r2-c4.png",
+          "sha256": "1760300ad6b8c872a6e995586f263baed70ce8830b651bc2a57c6197fa25a2ab",
+          "globalBox": [
+            48128,
+            34560,
+            49152,
+            35072
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p24-v2.png",
+              "sha256": "1a2a83093a3b92a8c5da796d0d33acacb0511d706e24048e63914fad7e56d63f",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                33792,
+                49152,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                33677,
+                49267,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p34-v1.png",
+              "sha256": "b8771b25c204b741a5ef14bf3b02aa77777bb1f215f14baf332970700b7aa730",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                34816,
+                49152,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                34701,
+                49267,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p34-v1-candidate-edges/manifest.json",
+              "manifestSha256": "e41a0815dddfdbd6e676ef73e2d6cb0d9b39562c6d426bd36fc9d1fcf4b495a4",
+              "finding": "North golden strake, navy keel and water boundary continue at correct slope; teal paint panel line and water caustic phase need final material review. Left bowpost sliver is in unselected halo only; no new core prop.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r3-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r3-c1.png",
+          "sha256": "753dbf7462720b4fc90a3619fff232f0495204dda7df2c3864e42d74b1edc44b",
+          "globalBox": [
+            45056,
+            35584,
+            46080,
+            36096
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p31-v3.png",
+              "sha256": "d0d9828856a77cf9bae176fad497500b90dabd6ecce3e56dfc445d8e5456ef7c",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                34816,
+                46080,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                34701,
+                46195,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p41-v1.png",
+              "sha256": "35eefb277e5b56fa188c4d75e1dc0ce5f7e8f32640c9d9481c3effa8c95ad36d",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                35840,
+                46080,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                35725,
+                46195,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p31-v3-candidate-edges/manifest.json",
+              "manifestSha256": "e88635d1a0bd9fdbd00c5b0597d695e032c8b91d270334b927d27addb06c0def",
+              "finding": "New p21-v3 north and p41 south mast now continuous; north/south deck grain and mast texture seam pending. East gunwale continuous but clipped blue bundle shape/knot and local panel/wood joins need internal repair. West held hull/gunwale remains incompatible and unaccepted. Full internal QA required.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r3-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r3-c2.png",
+          "sha256": "1bc5faefc90708f3a75374a477d817c86c109c6eec8c84b4146011475c6f45c8",
+          "globalBox": [
+            46080,
+            35584,
+            47104,
+            36096
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+              "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                34816,
+                47104,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                34701,
+                47219,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p42-v1.png",
+              "sha256": "a850cae9a9351920f97397dfcec32f7ded00248a80270393a54b3396feb1512b",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                35840,
+                47104,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                35725,
+                47219,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p42-v1-candidate-edges/manifest.json",
+              "manifestSha256": "bdcf47fc7cac7d321f5c66c4c759bad65ab05004d01b6cf02be3f3910391c394",
+              "finding": "North mast/deck boundaries and east golden inner/outer rails connect at fixed positions. Deck grain, mast base texture, dark inner-panel color and teal plank seams remain material pending. South reserved joins remain unaccepted/read-only and were not generation anchors.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r3-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r3-c3.png",
+          "sha256": "54e20991d72bd1d070c756ffbfa906b2a38247164cadad01cd03bc7248adfe85",
+          "globalBox": [
+            47104,
+            35584,
+            48128,
+            36096
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+              "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                34816,
+                48128,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                34701,
+                48243,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p43-v1.png",
+              "sha256": "a11d094dc1b6d9375b7429f3f4815acb4ebc5eddf3e5917d9559efac43230277",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                35840,
+                48128,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                35725,
+                48243,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p43-v1-candidate-edges/manifest.json",
+              "manifestSha256": "a7d8c03db780c503ebcedd89c66b84bb85ded99da7ea24e700e3201d8781eb24",
+              "finding": "North bowpost shaft and clipped gold rim continue without break; east gold gunwale and outer hull curve connect. Woodgrain/teal paint wear still show local seam changes. South reserved wood/teal material mismatch and board joins remain held read-only, not propagated or accepted.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "v-r3-c4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/v-r3-c4.png",
+          "sha256": "17eb9bbfcc5fe2490173b87c0b81b6fda00f21cba26aaab254011a347f15b1f4",
+          "globalBox": [
+            48128,
+            35584,
+            49152,
+            36096
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p34-v1.png",
+              "sha256": "b8771b25c204b741a5ef14bf3b02aa77777bb1f215f14baf332970700b7aa730",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                34816,
+                49152,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                34701,
+                49267,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p44",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p44-v2.png",
+              "sha256": "55170c71d484bccfe59b3d9f28e32ee6b590ea9415d6113e719c9ecad617cdfc",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                35840,
+                49152,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                35725,
+                49267,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "reused_unchanged_native_review",
+            "reusedFrom": {
+              "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/p44-v2-candidate-edges/manifest.json",
+              "manifestSha256": "169ba6e0b59cdfdd4ba98d3203fd2818dce5ad36f74473eefc4c8d9bebb0ff3e",
+              "finding": "Left post and small curved gold rim now follow cropped target footprint; north/east water layout usable. Water scale/caustic transitions remain pending. South reserved seam inspected read-only: wood edge/style and water phase pending, not an authorized north-extension anchor and not accepted.",
+              "status": "layout_usable_material_pending",
+              "viewMethod": "view_image at native pixels"
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r1-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r1-c1.png",
+          "sha256": "6bfec36fb56822bbb31eaea60b6fdca9d9acfc8f4ad55deb30bd9fc920075e25",
+          "globalBox": [
+            45696,
+            33408,
+            46464,
+            34176
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p11",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p11-v1.png",
+              "sha256": "c70692156e8fa9e450ef281336b330e98b88bdd4dd02994a6b908774fc7bb8a4",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                32768,
+                46080,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                32653,
+                46195,
+                33907
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p12-v1.png",
+              "sha256": "d2960b93f3c56dcc05c4878a350f59a0ed08773963e015b909b2f650f5d2d3ec",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                32768,
+                47104,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                32653,
+                47219,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p21-v3.png",
+              "sha256": "98be58ae645e6c8154f658357e17645ad3d6317618c63e98ac2541b0321ea41a",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                33792,
+                46080,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                33677,
+                46195,
+                34931
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+              "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                33792,
+                47104,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                33677,
+                47219,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Ivory canvas has visible weave, fold and illumination phase changes across both cut axes; no new object silhouette here. Material repair pending.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r1-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r1-c2.png",
+          "sha256": "c2047f7c7f401e5e4b6c3c27f84a4077254fc06d9425e1609888d6b1f443fc10",
+          "globalBox": [
+            46720,
+            33408,
+            47488,
+            34176
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p12",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p12-v1.png",
+              "sha256": "d2960b93f3c56dcc05c4878a350f59a0ed08773963e015b909b2f650f5d2d3ec",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                32768,
+                47104,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                32653,
+                47219,
+                33907
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p13-v1.png",
+              "sha256": "d4f8a39e46dfa104ddd637d424a944e15552a576381e9bdb1181fe4dce032c1e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                32768,
+                48128,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                32653,
+                48243,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+              "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                33792,
+                47104,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                33677,
+                47219,
+                34931
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+              "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                33792,
+                48128,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                33677,
+                48243,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Open water changes caustic scale/brightness across quartet; sail sliver and upper-right keel footprint intact. Water material pending.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r1-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r1-c3.png",
+          "sha256": "5a1711f17c70572c479fe8e515f90f2c9f5b809e97b0b968660b27bda39ba28c",
+          "globalBox": [
+            47744,
+            33408,
+            48512,
+            34176
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p13",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p13-v1.png",
+              "sha256": "d4f8a39e46dfa104ddd637d424a944e15552a576381e9bdb1181fe4dce032c1e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                32768,
+                48128,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                32653,
+                48243,
+                33907
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p14",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p14-v1.png",
+              "sha256": "bc24b2499c8dddad6935c984d4c02693ae7c214af8d3ae43cb3a2ebd3b38daf9",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                32768,
+                49152,
+                33792
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                32653,
+                49267,
+                33907
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+              "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                33792,
+                48128,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                33677,
+                48243,
+                34931
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p24-v2.png",
+              "sha256": "1a2a83093a3b92a8c5da796d0d33acacb0511d706e24048e63914fad7e56d63f",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                33792,
+                49152,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                33677,
+                49267,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Golden rails and teal side contour continue; small stepped paint-panel notch, woodgrain/teal wear and lower gold-strake edge thickness remain pending.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r2-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r2-c1.png",
+          "sha256": "85e0f4730eae49f38dc9b16d70fa0960233f3d5b22a32c7b411b33385ef2076d",
+          "globalBox": [
+            45696,
+            34432,
+            46464,
+            35200
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p21-v3.png",
+              "sha256": "98be58ae645e6c8154f658357e17645ad3d6317618c63e98ac2541b0321ea41a",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                33792,
+                46080,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                33677,
+                46195,
+                34931
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+              "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                33792,
+                47104,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                33677,
+                47219,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p31-v3.png",
+              "sha256": "d0d9828856a77cf9bae176fad497500b90dabd6ecce3e56dfc445d8e5456ef7c",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                34816,
+                46080,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                34701,
+                46195,
+                35955
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+              "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                34816,
+                47104,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                34701,
+                47219,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Sail lower hem and gold boom continue; lower gunwale curvature and canvas/wood/water phase transition remain visible. No pass inferred.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r2-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r2-c2.png",
+          "sha256": "1557f1c79811ef00a573a2465e4782c0569ad74f56952d5f510748ca2f9f2772",
+          "globalBox": [
+            46720,
+            34432,
+            47488,
+            35200
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p22-v1.png",
+              "sha256": "8952d2884c53ab992d7278083ddac44d42e04a53b79fe1d2991ffe1dcd3d4e51",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                33792,
+                47104,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                33677,
+                47219,
+                34931
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+              "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                33792,
+                48128,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                33677,
+                48243,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+              "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                34816,
+                47104,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                34701,
+                47219,
+                35955
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+              "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                34816,
+                48128,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                34701,
+                48243,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Sail edge/boom clipped at west, mostly open water; caustic lines and scale change at crossing, material pending.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r2-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r2-c3.png",
+          "sha256": "773f895403785a6c9d8cc831d4cba8b9c4edbfb349ad2e2a7b32cb45c3c3090a",
+          "globalBox": [
+            47744,
+            34432,
+            48512,
+            35200
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p23",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p23-v1.png",
+              "sha256": "a181a9f6a3791c95fd1db1af636fd7b98c3daa35b5938a60d819ae3c63b1eeaf",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                33792,
+                48128,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                33677,
+                48243,
+                34931
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p24",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p24-v2.png",
+              "sha256": "1a2a83093a3b92a8c5da796d0d33acacb0511d706e24048e63914fad7e56d63f",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                33792,
+                49152,
+                34816
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                33677,
+                49267,
+                34931
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+              "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                34816,
+                48128,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                34701,
+                48243,
+                35955
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p34-v1.png",
+              "sha256": "b8771b25c204b741a5ef14bf3b02aa77777bb1f215f14baf332970700b7aa730",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                34816,
+                49152,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                34701,
+                49267,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Upper-right golden strake/navy keel continuous; water phase/scale changes across x/y cuts remain visible.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r3-c1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r3-c1.png",
+          "sha256": "e9e70608f6f69dbcc81adfd7e6679d86830b92360f06e6708b1594a43f00838f",
+          "globalBox": [
+            45696,
+            35456,
+            46464,
+            36224
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p31-v3.png",
+              "sha256": "d0d9828856a77cf9bae176fad497500b90dabd6ecce3e56dfc445d8e5456ef7c",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                34816,
+                46080,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                34701,
+                46195,
+                35955
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+              "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                34816,
+                47104,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                34701,
+                47219,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p41-v1.png",
+              "sha256": "35eefb277e5b56fa188c4d75e1dc0ce5f7e8f32640c9d9481c3effa8c95ad36d",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                45056,
+                35840,
+                46080,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                44941,
+                35725,
+                46195,
+                36979
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p42-v1.png",
+              "sha256": "a850cae9a9351920f97397dfcec32f7ded00248a80270393a54b3396feb1512b",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                35840,
+                47104,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                35725,
+                47219,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Deck grooves and illumination show joined-board phase shifts, small plank-end/lip mismatch at crossing. Blue bundle above crossing is separately held at p31/p32.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r3-c2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r3-c2.png",
+          "sha256": "40aa395a7f6179e97451996caa486c148b61ac948cae0d2aace46ab2b9cae23a",
+          "globalBox": [
+            46720,
+            35456,
+            47488,
+            36224
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p32-v1.png",
+              "sha256": "0b0c532376935e3985854f4689d2301114d791e264cca1aa28170bc5e28a9f83",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                34816,
+                47104,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                34701,
+                47219,
+                35955
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+              "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                34816,
+                48128,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                34701,
+                48243,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p42-v1.png",
+              "sha256": "a850cae9a9351920f97397dfcec32f7ded00248a80270393a54b3396feb1512b",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                46080,
+                35840,
+                47104,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                45965,
+                35725,
+                47219,
+                36979
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p43-v1.png",
+              "sha256": "a11d094dc1b6d9375b7429f3f4815acb4ebc5eddf3e5917d9559efac43230277",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                35840,
+                48128,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                35725,
+                48243,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Inner diagonal golden rail is continuous; navy-teal panel changes abruptly to dark brown at vertical cut, with plank-edge and wear discontinuity. Material/local joint repair pending.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "id": "cross-r3-c3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/cross-r3-c3.png",
+          "sha256": "417a2ec0e6602e98ea77baaa1dad2949f873f30dfedf84b33fb09c99c65c5831",
+          "globalBox": [
+            47744,
+            35456,
+            48512,
+            36224
+          ],
+          "sources": [
+            {
+              "tile": "r09_c12",
+              "patch": "p33",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p33-v1.png",
+              "sha256": "c2fab8010f2a49a15134d8936fcfbc15c93bcc2cd18ac253a267d99bdc8cfc4e",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                34816,
+                48128,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                34701,
+                48243,
+                35955
+              ],
+              "sourceCrop": [
+                755,
+                755,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p34",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p34-v1.png",
+              "sha256": "b8771b25c204b741a5ef14bf3b02aa77777bb1f215f14baf332970700b7aa730",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                34816,
+                49152,
+                35840
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                34701,
+                49267,
+                35955
+              ],
+              "sourceCrop": [
+                115,
+                755,
+                499,
+                1139
+              ],
+              "destination": [
+                384,
+                0
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p43",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p43-v1.png",
+              "sha256": "a11d094dc1b6d9375b7429f3f4815acb4ebc5eddf3e5917d9559efac43230277",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                47104,
+                35840,
+                48128,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                46989,
+                35725,
+                48243,
+                36979
+              ],
+              "sourceCrop": [
+                755,
+                115,
+                1139,
+                499
+              ],
+              "destination": [
+                0,
+                384
+              ]
+            },
+            {
+              "tile": "r09_c12",
+              "patch": "p44",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/native/p44-v2.png",
+              "sha256": "55170c71d484bccfe59b3d9f28e32ee6b590ea9415d6113e719c9ecad617cdfc",
+              "selectedManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+              "selectedManifestSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+              "coordinatePlan": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/coordinate-plan.json",
+              "coordinatePlanSha256": "f113efc120d624d25a3a5b50f50a5620f8238927959090b3dca07a92bc812348",
+              "coreBoxGlobal": [
+                48128,
+                35840,
+                49152,
+                36864
+              ],
+              "nativeBoxGlobal": [
+                48013,
+                35725,
+                49267,
+                36979
+              ],
+              "sourceCrop": [
+                115,
+                115,
+                499,
+                499
+              ],
+              "destination": [
+                384,
+                384
+              ]
+            }
+          ],
+          "resamplingApplied": false,
+          "operation": "Exact selected 1024 core crops, hard join; no halo/resize/blend",
+          "review": {
+            "status": "viewed_native_pending_repairs",
+            "viewed": true,
+            "viewMethod": "view_image at native 768x768 pixels",
+            "finding": "Bowpost continuous but woodgrain/tone changes at horizontal cut; water caustic phase and scale differ across quartet.",
+            "internalReady": false,
+            "formalAccepted": false
+          }
+        }
+      ],
+      "missingQA": [],
+      "reusedReviewCount": 24,
+      "internalReady": false,
+      "formalAccepted": false,
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/qa/full-native-20261020-v1/candidate-4096.png",
+        "sha256": "953ccd3aaa7af70120f5cdb92e787ce392e4658c2d5aa1c49093492f0b2bcd75",
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "resamplingApplied": false,
+        "status": "candidate_only"
+      },
+      "nativeEvidenceCount": 33,
+      "nativeSeamsReusedByPixelHash": 24,
+      "nativeIntersectionsNewlyViewed": 9,
+      "allCurrentSourceChainsVerified": true,
+      "exactCandidateAndEvidenceReplayVerified": true,
+      "candidateOverviewViewed": true,
+      "candidateOverviewCaveat": "view_image resized4096 to1600 for overview only; native acceptance based on exact QA crops",
+      "reviewCompletedAtUtc": "2026-10-20T19:28:57.279575+00:00",
+      "status": "coverage_complete_internal_review_complete_repairs_pending"
+    }
+  }
+}

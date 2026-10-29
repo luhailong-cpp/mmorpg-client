@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 13,
+  "column": 7,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "b2347b772f066dcfdd59f4723e8d0081ca1e472709e37ab71534dc2c1673365e",
+  "imageBytes": 20734988,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/r13_c07.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/assembly.json",
+  "sourceLedgerSha256": "6ed1fb2269257f104a89165dc7f94935ca0c617d2645354163a3afb65a55c308",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/r13_c07.candidate.png",
+    "imageSha256": "b2347b772f066dcfdd59f4723e8d0081ca1e472709e37ab71534dc2c1673365e",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/assembly.json",
+        "sha256": "6ed1fb2269257f104a89165dc7f94935ca0c617d2645354163a3afb65a55c308",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/assembly.json",
+        "sha256": "6ed1fb2269257f104a89165dc7f94935ca0c617d2645354163a3afb65a55c308",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/review.json",
+        "record": {
+          "externalPanelsActuallyViewed": 12,
+          "missingExternalSources": [
+            {
+              "side": "bottom",
+              "tile": "r14_c07",
+              "patch": "p01_01",
+              "status": "native_absent_noanchorinvented"
+            },
+            {
+              "side": "bottom",
+              "tile": "r14_c07",
+              "patch": "p01_02",
+              "status": "native_absent_noanchorinvented"
+            },
+            {
+              "side": "bottom",
+              "tile": "r14_c07",
+              "patch": "p01_03",
+              "status": "native_absent_noanchorinvented"
+            },
+            {
+              "side": "bottom",
+              "tile": "r14_c07",
+              "patch": "p01_04",
+              "status": "native_absent_noanchorinvented"
+            }
+          ],
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/review.json",
+    "sourceSha256": "fa273dd88b5493e5891b3bb593a7ad47aaf2ecc6894063064dfd2e3fd5bce6c1",
+    "normalizedDocument": {
+      "tile": "r13_c07",
+      "reviewedAtUtc": "2026-10-19T01:54:44.442205+00:00",
+      "reviewer": "sw_right_resume_20261018c",
+      "manifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/manifest.json",
+      "manifestSha256": "d9477916c7c64f73a9baeb76795f43f73839e96cf68de798e0098f9d2b4e3010",
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/assembly.json",
+      "assemblySha256": "6ed1fb2269257f104a89165dc7f94935ca0c617d2645354163a3afb65a55c308",
+      "core": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/r13_c07.candidate.png",
+        "sha256": "b2347b772f066dcfdd59f4723e8d0081ca1e472709e37ab71534dc2c1673365e",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/output/81b14c6ceb30e3b0/r13_c07.candidate.context.png",
+        "sha256": "e3e2dd20b8a673f8ee01e1279a0d5f2cd2b9c9c6dda4c9c0e4a59ea7154d8f1e",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "selectedNativeCount": 16,
+      "internalSeamsActuallyViewed": 24,
+      "intersectionsActuallyViewed": 9,
+      "externalPanelsActuallyViewed": 12,
+      "checks": [
+        {
+          "id": "V1-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V1-row1.png",
+          "sha256": "425eb9b51946cff0d1e252b974ae578835c53c1ba000e1c353dc4b1b6f724e31",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Red vertical frame has jagged material/shape cut near lower part; wall tones change across quilt."
+        },
+        {
+          "id": "V1-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V1-row2.png",
+          "sha256": "e1bc0a0c4d66e0c267409de4b9c78ec494e2b0ac87266a742484c93cbaa35dbd",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Wall shading front and thin horizontal wall joint stops near crop right; shape mismatch remains."
+        },
+        {
+          "id": "V1-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V1-row3.png",
+          "sha256": "966885d430256eaa27768c9c951d4d6066ea42515b76d5571aafbedf4c26f74c",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Leaf scale and foliage/wood phase change across center; not accepted as clean coherent foliage."
+        },
+        {
+          "id": "V1-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V1-row4.png",
+          "sha256": "fe8fca8d7754cad7b1de1af14145a5833812ab4236328c03c0197f33075283e3",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Ground tone front and diagonal stone joints terminate/disagree near center."
+        },
+        {
+          "id": "V2-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V2-row1.png",
+          "sha256": "1dddcb57bfee5249ad99292e0cd225a17e55c2f03d9f07a87727cd3216269c20",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Lantern has conspicuous jagged illumination boundary down center; bottom foliage split."
+        },
+        {
+          "id": "V2-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V2-row2.png",
+          "sha256": "26f152e9105d520d3cf09087bb32c61c60e3bb9805ebe8e374a19df2684de88a",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Foliage scale and sharpness abruptly change, with a hard vertical transition."
+        },
+        {
+          "id": "V2-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V2-row3.png",
+          "sha256": "94c449a699d8a7e9a6c721db7de14e03ff5d62622be315595f7076c7a8f3c51f",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Red railing and brown panel structure remain inconsistent; hard material phase at seam."
+        },
+        {
+          "id": "V2-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V2-row4.png",
+          "sha256": "923a742b12c17ce1bbc591f58a1f38192e7dc2ae581b4bc50a83feb27a3418e6",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Wood cut at top and disconnected stone joint stubs in lower half."
+        },
+        {
+          "id": "V3-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V3-row1.png",
+          "sha256": "86f471e4e264d328b0c30a7b06f4d9620eb2074622aa10f444480e2c925dc160",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Several horizontal stone joints terminate at quilt; different joint topology."
+        },
+        {
+          "id": "V3-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V3-row2.png",
+          "sha256": "a18f84e3389012b3560d31ce4b42e37e163e392848df1dcdb3f383d93144c488",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Horizontal stone joints stop and diagonal joints begin at incompatible positions."
+        },
+        {
+          "id": "V3-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V3-row3.png",
+          "sha256": "cd402f7b2f3442cae46de75ba2c01a8dfff2055b232e2b98ce1c885b0c236d21",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Warm/cool jagged front and disconnected horizontal/diagonal stone joints."
+        },
+        {
+          "id": "V3-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/V3-row4.png",
+          "sha256": "ddb27affb2500f3e06d7f74a070d388d56429b0261b901084b1e31d5b2f29538",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Jagged material front and separated diagonal joint segments."
+        },
+        {
+          "id": "H1-col1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H1-col1.png",
+          "sha256": "0836edb385e0f0fd14e5005ec863102ff417804e773a69d7482497dd81cd1f3e",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Large jagged horizontal cuts through red frame, brown panel and cream wall."
+        },
+        {
+          "id": "H1-col2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H1-col2.png",
+          "sha256": "d26c6f981f64c9bff37ac81acf13985b398e39a9616fd537f49160bb3193326b",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Red frame interrupted by diagonal jagged shading cut; foliage identity changes at right."
+        },
+        {
+          "id": "H1-col3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H1-col3.png",
+          "sha256": "633d25c48119e0f0a5ff369084b0935af395d9c562b8197942ea273d2d0699ed",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Brown upper post meets red lower post at jagged boundary; stone joints dead-end."
+        },
+        {
+          "id": "H1-col4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H1-col4.png",
+          "sha256": "d9459585466d9b5386fba5aa7765ecc61e26d0190b7375335084fd78e22f155c",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Main diagonal crossing is coherent locally, but dense crosshatched stone and slight material front remain; no whole-tile acceptance."
+        },
+        {
+          "id": "H2-col1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H2-col1.png",
+          "sha256": "e0ebeb9db7f29eb1a630173e6b9c587310cd7b2ed974621ff3cd31e120e71b2c",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Cream wall diagonal joint ends at discontinuity above orange wall skirt; shadow phase changes."
+        },
+        {
+          "id": "H2-col2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H2-col2.png",
+          "sha256": "e9bc2a18fd2df99862dcbe5a180c0f1feb52e8daa73573dd842b154b739adf31",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Gold/red base and rail contain jagged steps, inconsistent support anatomy."
+        },
+        {
+          "id": "H2-col3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H2-col3.png",
+          "sha256": "218c7e995ddfd6d54a91e849aea5c8933b963eaf2430185c1cd3131482fbbe42",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Blue-grey paving cuts horizontally across brown/red timber; incompatible layout."
+        },
+        {
+          "id": "H2-col4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H2-col4.png",
+          "sha256": "5ffaacc099961168ee4872ae4e79f0de0bcf2a090a6b61499d4244ac4fb05851",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Diagonal stone joint segments fail to meet; jagged material boundary."
+        },
+        {
+          "id": "H3-col1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H3-col1.png",
+          "sha256": "7e4ce5ae52f48b5e0d1fb74c7f8d2657a19841629495f9dbd8efbe34dd1d594a",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Stone stair/railing profile and shading change at polygonal horizontal front."
+        },
+        {
+          "id": "H3-col2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H3-col2.png",
+          "sha256": "d9367974270cce9dcc075797be93e2d6eab62afe362729088f03e7cc715ff349",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Brown panel cut diagonally into red support; broken wood/rail anatomy."
+        },
+        {
+          "id": "H3-col3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H3-col3.png",
+          "sha256": "915a99a830704c29a4fa3fe4e376a0fb7a4d7ce6b7563c577dfc26fc2f9b7d62",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Brown panel lower edge jagged; gold lower piece and red wall phase mismatch."
+        },
+        {
+          "id": "H3-col4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/H3-col4.png",
+          "sha256": "cab3cc69c142b3e933ed9e44cc32e4fd8ad4b872bf3b8e11317309fca59fdec9",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Diagonal stone joints are parallel/disconnected across seam; tonal front."
+        },
+        {
+          "id": "X1024Y1024",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x1024_y1024.png",
+          "sha256": "f076ad6c0b78ed3e3f2660893489333edbf39ba714351c2e35434bbcb6be51bb",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Large jagged red-frame/cream-wall cut through intersection."
+        },
+        {
+          "id": "X2048Y1024",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x2048_y1024.png",
+          "sha256": "72731ec60171dba214eea29678d54bb9034a51ef1ce95703b5d06a1b589ff7e8",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Lantern foot/foliage changes from soft large leaves to crisp small leaves at vertical split."
+        },
+        {
+          "id": "X3072Y1024",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x3072_y1024.png",
+          "sha256": "6251774f60308fa5eb312c4b8cb43b8054b0e581a0806f588a75f75b925fd52b",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Horizontal stone joint dead-ends and diagonal joint is separate."
+        },
+        {
+          "id": "X1024Y2048",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x1024_y2048.png",
+          "sha256": "3ee7c39f34c717c7b3330f006c9c525873d7591eb827e1c1b28dbad52c103ff9",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Cream wall/plinth phase front and displaced stone bevel."
+        },
+        {
+          "id": "X2048Y2048",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x2048_y2048.png",
+          "sha256": "23b6586907a2d85b359d1143b51a9b41a49a0d24f304042bd36acee6a195507e",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Blue-grey paving abruptly covers timber area with horizontal cutoff; red skirt ends at jagged foliage."
+        },
+        {
+          "id": "X3072Y2048",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x3072_y2048.png",
+          "sha256": "c0e88c18c28f3fd087cf99f94170f5c8586a201321f56ce01d445cdeac4fbd26",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Parallel horizontal stone stubs and warm/cool front."
+        },
+        {
+          "id": "X1024Y3072",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x1024_y3072.png",
+          "sha256": "1d8e53d67f5720567afedeba0668a1bc9702496e6d9834f05062c16e27609611",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Center foliage/wood structure locally follows the same edge, but leaf scale/material discrepancy persists; not accepted."
+        },
+        {
+          "id": "X2048Y3072",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x2048_y3072.png",
+          "sha256": "432b8eaeddc820697607c547c1bb3495c4884518d4aa9bbf387abe1cfce4da77",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Brown panel jagged bottom and gold trim/wood split."
+        },
+        {
+          "id": "X3072Y3072",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/81b14c6ceb30e3b0/intersection_x3072_y3072.png",
+          "sha256": "58571c52fdd328f160f7bfcf3e01d0b946bf8d6dd74deed293f90d325a0036aa",
+          "actuallyViewedAtNativePixels": true,
+          "exactCandidateCropVerified": true,
+          "accepted": false,
+          "finding": "Stone diagonal ends stop at different positions, tonal phase front."
+        },
+        {
+          "id": "EXT-top-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-top-1.png",
+          "sha256": "1dde61c64351c918543fb8087f9875aa9fc95226f46afd431e7929753aca9744",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Neighbor roof/wood/lantern or stone joint positions disagree strongly at horizontal boundary.",
+          "neighborIdentity": {
+            "tile": "r12_c07",
+            "patch": "p04_01",
+            "nativeSha256": "dc457de24f55d6c5e93f7033b9110e542e212102a40253d264a6cb9c509a8247"
+          }
+        },
+        {
+          "id": "EXT-top-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-top-2.png",
+          "sha256": "0e271763c69b52857470fe7a14f5c0a3e8457cabaac39c4c2bd3adccc737fc7a",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Neighbor roof/wood/lantern or stone joint positions disagree strongly at horizontal boundary.",
+          "neighborIdentity": {
+            "tile": "r12_c07",
+            "patch": "p04_02",
+            "nativeSha256": "858bc785741b09b90ae73fede6db1b19044eec7927ebaa1b10e03a5ee51a2c9d"
+          }
+        },
+        {
+          "id": "EXT-top-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-top-3.png",
+          "sha256": "4855808e00c0317a98a4e7de31148d4895d166a8922fd6b92bc3b3d544663a86",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Neighbor roof/wood/lantern or stone joint positions disagree strongly at horizontal boundary.",
+          "neighborIdentity": {
+            "tile": "r12_c07",
+            "patch": "p04_03",
+            "nativeSha256": "0b744f159eb93adea0616db4e5ff35d53bc47f28948c2cb0b203f49dc84c6813"
+          }
+        },
+        {
+          "id": "EXT-top-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-top-4.png",
+          "sha256": "fd74e4c341776498ca28a334d8f9085415b39e69babad472fc0d44beab468406",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Neighbor roof/wood/lantern or stone joint positions disagree strongly at horizontal boundary.",
+          "neighborIdentity": {
+            "tile": "r12_c07",
+            "patch": "p04_04",
+            "nativeSha256": "3f8c810bc05dcdc0e127ce32f40bc72b0053852677242ab1ec4c69c2922ed2c2"
+          }
+        },
+        {
+          "id": "EXT-left-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-left-1.png",
+          "sha256": "2063e9099c85d690a4496c013fe3300c3244c1524ce1ea6f0207b643f5a10735",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Roof, red column, stair or stone edge positions disagree strongly at vertical boundary.",
+          "neighborIdentity": {
+            "tile": "r13_c06",
+            "patch": "p01_04",
+            "nativeSha256": "103292a2b92f59202f9a8eadee18018d0510a739798e78289af9b93399205bb2"
+          }
+        },
+        {
+          "id": "EXT-left-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-left-2.png",
+          "sha256": "22f8979a4bad9f337a4d6b491916bc0349e12c8482678b39ec6a7ede5056a2f1",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Roof, red column, stair or stone edge positions disagree strongly at vertical boundary.",
+          "neighborIdentity": {
+            "tile": "r13_c06",
+            "patch": "p02_04",
+            "nativeSha256": "88e2c874326bb607c4551f20123ae9381a83192db8a06ac1d2237bd342c684e3"
+          }
+        },
+        {
+          "id": "EXT-left-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-left-3.png",
+          "sha256": "d9d6bd11a451a07c7dae27743fbf73faae940738842c0b60d529f834a53209ff",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Roof, red column, stair or stone edge positions disagree strongly at vertical boundary.",
+          "neighborIdentity": {
+            "tile": "r13_c06",
+            "patch": "p03_04",
+            "nativeSha256": "4b6dece097090a92e9a808dbbb26e9c882ebba9190138379d96a08f045d15b0c"
+          }
+        },
+        {
+          "id": "EXT-left-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-left-4.png",
+          "sha256": "f421f7a57d3c385609c636160466c068fd8f2be7a6994f49b972adcd322719f8",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Roof, red column, stair or stone edge positions disagree strongly at vertical boundary.",
+          "neighborIdentity": {
+            "tile": "r13_c06",
+            "patch": "p04_04",
+            "nativeSha256": "6c0551900d040388ef4cea59819fd01cf71856d7b3c12df0860f678655e03c8d"
+          }
+        },
+        {
+          "id": "EXT-right-1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-right-1.png",
+          "sha256": "c3c32e6f47da05c21930059a44b0ebef44cd732acef279cdb7b95e49bdde04d9",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Stone joint topology and warm/cool surface phase disagree at vertical boundary.",
+          "neighborIdentity": {
+            "tile": "r13_c08",
+            "patch": "p01_01",
+            "nativeSha256": "87dd539a85f913821ddf0aac7d1beabf724f520a84c899d3f698cd68c2ccbf32"
+          }
+        },
+        {
+          "id": "EXT-right-2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-right-2.png",
+          "sha256": "810765bb803148eaa6f90c54c8e27076cd628e0a068cff7cd52fd2d6ec0a7e9f",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Stone joint topology and warm/cool surface phase disagree at vertical boundary.",
+          "neighborIdentity": {
+            "tile": "r13_c08",
+            "patch": "p02_01",
+            "nativeSha256": "ebd249909601b9266fc21036b698eda48db40ca1190c5bb568be21b3a74bdc00"
+          }
+        },
+        {
+          "id": "EXT-right-3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-right-3.png",
+          "sha256": "64941b3573b3838c999d7e3e704029e31deaac19d311c3179f4a3078b7f786d1",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Stone joint topology and warm/cool surface phase disagree at vertical boundary.",
+          "neighborIdentity": {
+            "tile": "r13_c08",
+            "patch": "p03_01",
+            "nativeSha256": "e8a39bdf12c9a65039d06bb1f7d80b2500588c76597f0922087ec25efd770161"
+          }
+        },
+        {
+          "id": "EXT-right-4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r13_c07/pipeline/qa/full16-native-20261018-v01/EXT-right-4.png",
+          "sha256": "80efae75dc226612d6e3fb2618438a37843336ba3e1664e6fd662796bd63b0e1",
+          "actuallyViewedAtNativePixels": true,
+          "accepted": false,
+          "finding": "Stone joint topology and warm/cool surface phase disagree at vertical boundary.",
+          "neighborIdentity": {
+            "tile": "r13_c08",
+            "patch": "p04_01",
+            "nativeSha256": "7aaf3dc3835566d06f72879adbaa3bd51bd21645202b20858810a54e66ed3947"
+          }
+        }
+      ],
+      "missingExternalSources": [
+        {
+          "side": "bottom",
+          "tile": "r14_c07",
+          "patch": "p01_01",
+          "status": "native_absent_noanchorinvented"
+        },
+        {
+          "side": "bottom",
+          "tile": "r14_c07",
+          "patch": "p01_02",
+          "status": "native_absent_noanchorinvented"
+        },
+        {
+          "side": "bottom",
+          "tile": "r14_c07",
+          "patch": "p01_03",
+          "status": "native_absent_noanchorinvented"
+        },
+        {
+          "side": "bottom",
+          "tile": "r14_c07",
+          "patch": "p01_04",
+          "status": "native_absent_noanchorinvented"
+        }
+      ],
+      "materialFinding": "Dense crosshatched stone, leaf scale/detail differences, visible polygonal tone boundaries; no accepted finish.",
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "sourceResampling": false,
+      "noUnchangedHistoricalRescan": true,
+      "noImageDeletion": true
+    }
+  }
+}

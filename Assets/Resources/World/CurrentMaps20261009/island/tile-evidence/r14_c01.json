@@ -1,0 +1,3201 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 14,
+  "column": 1,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "02b8739292ae778d878beee5d0f8524873ff5f96c142654628fada1746310a91",
+  "imageBytes": 22685587,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/r14c01-native-binary-overlap-v02-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/report.json",
+  "sourceLedgerSha256": "1b82b30d9c5b20b3df7f17be94e10ab558a546ec6aa62fee8581dfcdf2662c08",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/r14c01-native-binary-overlap-v02-4096.png",
+    "imageSha256": "02b8739292ae778d878beee5d0f8524873ff5f96c142654628fada1746310a91",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/report.json",
+        "sha256": "1b82b30d9c5b20b3df7f17be94e10ab558a546ec6aa62fee8581dfcdf2662c08",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/r14c01-native-binary-overlap-v02-4096.png.generation.json",
+        "record": {
+          "qaStatus": "GEOMETRY_COVERAGE16_MATERIAL_HOLD",
+          "materialAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/report.json",
+        "record": {
+          "geometryCoverageCoreCount": 16,
+          "materialAccepted": false,
+          "fullCoreAccepted": false,
+          "formalAccepted": false,
+          "externalEdges": "PENDING",
+          "qaStatus": "GEOMETRY_COVERAGE16_MATERIAL_HOLD"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "docs/MAP_REGION_COORDINATION_20261024/island-r14c01-existing-qa-reuse-20261024-v01.json",
+    "sourceSha256": "9c66c3bb150dc5c7a9631087a09ba6f140dbcdeaaf9694809ad28a1a2d33c99b",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "kind": "EXACT_R14C01_EXISTING_QA_REUSE_INDEX_NO_AI_NO_REVIEW",
+      "createdAtUtc": "2026-10-24T14:28:24.857995+00:00",
+      "actor": "/root/restart_ne_terminal",
+      "map": "island-game-20261009",
+      "tile": "r14_c01",
+      "originalSoleSourceWriterThreadId": "01a168b3-5e4d-7ff3-8148-7b0220bbdeaa",
+      "scope": "Text-only reuse inventory for exact current r14c01 target16, existing strictCORE4096 assembly QA and directly bound quickQA. No other tile/history PNG scan, media re-review, assembly, imagecall or production edit.",
+      "verdict": "EXISTING_STRICT_CORE_QA_INPUTS_CURRENT_REUSE_ALL_RECORDED_RESULTS_KEEP_MATERIAL_HOLDS_NO_INTERNAL_PASS",
+      "authority": {
+        "path": "docs/MAP_REGION_COORDINATION_20261024/ROOT_ISLAND_R14C01_COMPLETE_ASSEMBLY_FOLLOWTHROUGH_20261024_101936.json",
+        "sha256": "a26e81553464557d4baa77c782237d9ca7bff8af750e8e9ab9b920ceb0df0d29",
+        "bytes": 4076
+      },
+      "sourceVerificationBySibling": {
+        "path": "docs/MAP_REGION_COORDINATION_20261024/island-r14c01-current-existence-sourcepins-20261024-v01.json",
+        "sha256": "4e62647db73efafe679d83a65095d6083b87e42d1d7a5a79e32b9a66dbb368d8",
+        "bytes": 96943
+      },
+      "sourceVerificationScope": "Sibling independently checked target16 actual source/generation/quickQA hashes. This report verifies current target array, current QA JSON hashes, source/CORE placement bindings and native-input references without repeating source-media hash/QA work.",
+      "currentTargetSnapshot": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/current-native-map.json",
+        "sha256": "e000037983458a76c37ba8ef9c63a175456942fa3e5740422eeaaa8d685f6ee1",
+        "bytes": 92204
+      },
+      "canonicalUpdatedAtUtc": "2026-10-24T12:19:15.137219+00:00",
+      "targetArrayMatchesSiblingExactSnapshot": true,
+      "targetSourceSelectionSignature": {
+        "algorithm": "sha256",
+        "jsonEncoding": "UTF8 json.dumps(sort_keys=True,separators=comma-colon,ensure_ascii=False)",
+        "sha256": "e34378b306ecb37277707082f051771421328e9265df5284b16250bfbdfa55f6",
+        "payload": {
+          "map": "island-game-20261009",
+          "tile": "r14_c01",
+          "orderedRowMajor": [
+            {
+              "slot": "s01_01",
+              "stem": "r14_c01_s01_01_recovery23_v01",
+              "sha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                1024
+              ]
+            },
+            {
+              "slot": "s01_02",
+              "stem": "r14_c01_s01_02_recovery23_v01",
+              "sha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                0,
+                2048,
+                1024
+              ]
+            },
+            {
+              "slot": "s01_03",
+              "stem": "r14_c01_s01_03_recovery23_v02",
+              "sha256": "e84d858a9847f7ddade8aaf2d2d84fdcc7f0b01885d2cdbbc898dffa680e338e",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                0,
+                3072,
+                1024
+              ]
+            },
+            {
+              "slot": "s01_04",
+              "stem": "r14_c01_s01_04_recovery23_v01",
+              "sha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                0,
+                4096,
+                1024
+              ]
+            },
+            {
+              "slot": "s02_01",
+              "stem": "r14_c01_s02_01_recovery23_v01",
+              "sha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                1024,
+                1024,
+                2048
+              ]
+            },
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                1024,
+                2048,
+                2048
+              ]
+            },
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                1024,
+                3072,
+                2048
+              ]
+            },
+            {
+              "slot": "s02_04",
+              "stem": "r14_c01_s02_04_recovery23_v01",
+              "sha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                1024,
+                4096,
+                2048
+              ]
+            },
+            {
+              "slot": "s03_01",
+              "stem": "r14_c01_s03_01_recovery23_v01",
+              "sha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                2048,
+                1024,
+                3072
+              ]
+            },
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                2048,
+                2048,
+                3072
+              ]
+            },
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                2048,
+                3072,
+                3072
+              ]
+            },
+            {
+              "slot": "s03_04",
+              "stem": "r14_c01_s03_04_recovery23_v02",
+              "sha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                2048,
+                4096,
+                3072
+              ]
+            },
+            {
+              "slot": "s04_01",
+              "stem": "r14_c01_s04_01_recovery23_v01",
+              "sha256": "e9b8ace7c1f9f89fcab7860a60630398205ea263cf82c6f45c4f815423945514",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                3072,
+                1024,
+                4096
+              ]
+            },
+            {
+              "slot": "s04_02",
+              "stem": "r14_c01_s04_02_recovery23_v02",
+              "sha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                1024,
+                3072,
+                2048,
+                4096
+              ]
+            },
+            {
+              "slot": "s04_03",
+              "stem": "r14_c01_s04_03_recovery23_v01",
+              "sha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                2048,
+                3072,
+                3072,
+                4096
+              ]
+            },
+            {
+              "slot": "s04_04",
+              "stem": "r14_c01_s04_04_recovery23_v01",
+              "sha256": "27246316a2840d493de36c257aa8982500d48e90a987da11d8192eca69cd5b5b",
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                3072,
+                3072,
+                4096,
+                4096
+              ]
+            }
+          ]
+        },
+        "doesNotDependOnOtherCoordinatesCanonicalChanges": true
+      },
+      "noBroaderCurrentFileChangesInvalidateUnchangedTargetSignature": true,
+      "strictCandidate": {
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/r14c01-native-binary-core-v01-4096.png",
+          "sha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "bytes": 22643731,
+          "mtimeNs": "1792833893575457500",
+          "filesystemCreatedUtc": "2026-10-24T09:24:51.499205+00:00"
+        },
+        "generation": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/r14c01-native-binary-core-v01-4096.png.generation.json",
+          "sha256": "6c6df2b198f435bcdc86609a6a2afecac9978ede10baefe54891ac0aec651aae",
+          "bytes": 33120
+        },
+        "assemblyAndQAReport": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/report.json",
+          "sha256": "c16bd8520385e42db4e5b95a308b9c024123fd7d14c13d290fd0696833c11fe9",
+          "bytes": 69547
+        },
+        "candidateMediaHashFromSiblingVerifiedSourcePins": true,
+        "mediaRehashedHere": false,
+        "strictCOREOnly": true,
+        "operation": "hard binary0/1 contribution per source, exactly1 per outputpixel; strict1024CORE crops only; no blending, no scaling, no painting, no feathering",
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "createdAtUtc": "2026-10-24T09:25:04.636704+00:00",
+        "existingQACompletedAtUtc": "2026-10-24T10:24:01.602317+00:00",
+        "ordered16SourceAndPlacementBindingsMatchCurrent": true,
+        "allPixelSourceTraceAsExistingRecord": {
+          "checkedPixels": 16777216,
+          "mismatch": 0,
+          "unassignedPixels": 0,
+          "multipleSourcePixels": 0
+        },
+        "pixelTraceReplayedHere": false,
+        "layers": {
+          "qaStatus": "GEOMETRY_COVERAGE16_MATERIAL_HOLD",
+          "geometryCoverageCoreCount": 16,
+          "geometry": true,
+          "materialAccepted": false,
+          "fullCoreAccepted": false,
+          "internalTilePassed": false,
+          "externalEdges": "PENDING",
+          "formalAccepted": false
+        },
+        "nativeHostDisplayQualification": "Large2400 sheets and1800x1800 junctionsheet were resized by host, not used as native evidence. All24 segments reviewed in1200x1024/1024x1200 sheets, all9junctions in1800x600 rows without host resize.",
+        "actuallyInspectedNativeSegmentsAsRecorded": 24,
+        "actuallyInspectedNativeJunctionsAsRecorded": 9,
+        "nativeReviewSeamSheetPinsAsRecorded": [
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V1-native-rows12.png",
+            "sha256": "5e8af18865fd3d3f384ac99db945ce448a7ee74a3290aa4eac34518177eef96f",
+            "dimensions": [
+              1200,
+              1024
+            ],
+            "panes": [
+              "V1-R1",
+              "V1-R2"
+            ],
+            "order": "left-right, each600x1024, seamX300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V1-native-rows34.png",
+            "sha256": "b196be1d0c85f3a049e889e3c3bf359277e1b37c17702bbf3078dc9650d6462a",
+            "dimensions": [
+              1200,
+              1024
+            ],
+            "panes": [
+              "V1-R3",
+              "V1-R4"
+            ],
+            "order": "left-right, each600x1024, seamX300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V2-native-rows12.png",
+            "sha256": "cac15563ee86ea78722a143b9f00ad9caa2f41fcb8e1e104137f8c6a43999e44",
+            "dimensions": [
+              1200,
+              1024
+            ],
+            "panes": [
+              "V2-R1",
+              "V2-R2"
+            ],
+            "order": "left-right, each600x1024, seamX300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V2-native-rows34.png",
+            "sha256": "9b3b88bd2b6cd894263ee0eb9c00135957a0186dd315bd537170be72d280024e",
+            "dimensions": [
+              1200,
+              1024
+            ],
+            "panes": [
+              "V2-R3",
+              "V2-R4"
+            ],
+            "order": "left-right, each600x1024, seamX300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V3-native-rows12.png",
+            "sha256": "ec3d785c0078d154f6e83b53ecf884c60acc392d355f00cb5cf37074100a6537",
+            "dimensions": [
+              1200,
+              1024
+            ],
+            "panes": [
+              "V3-R1",
+              "V3-R2"
+            ],
+            "order": "left-right, each600x1024, seamX300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V3-native-rows34.png",
+            "sha256": "48c53ea453387cd0895a63a6b1a1fc3f5e747053edb69731bd49c904a4498ad5",
+            "dimensions": [
+              1200,
+              1024
+            ],
+            "panes": [
+              "V3-R3",
+              "V3-R4"
+            ],
+            "order": "left-right, each600x1024, seamX300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H1-native-columns12.png",
+            "sha256": "443185e62679450c00929cf49e2276580898b19092f41764290a7da13a3dc707",
+            "dimensions": [
+              1024,
+              1200
+            ],
+            "panes": [
+              "H1-C1",
+              "H1-C2"
+            ],
+            "order": "top-bottom, each1024x600, seamY300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H1-native-columns34.png",
+            "sha256": "3bd1733e176b06b67ebf2c165055625ec726d954cb74dc75e69e447c9facf245",
+            "dimensions": [
+              1024,
+              1200
+            ],
+            "panes": [
+              "H1-C3",
+              "H1-C4"
+            ],
+            "order": "top-bottom, each1024x600, seamY300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H2-native-columns12.png",
+            "sha256": "8346bdafa9f52da4ba88f20b42b9fc075d0ed46236e72b3ba9173e2d5097f632",
+            "dimensions": [
+              1024,
+              1200
+            ],
+            "panes": [
+              "H2-C1",
+              "H2-C2"
+            ],
+            "order": "top-bottom, each1024x600, seamY300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H2-native-columns34.png",
+            "sha256": "20b54b739cd0a6cb0be29a1ccca23b323e75f8432970c318a1ba6fbc64a34ccd",
+            "dimensions": [
+              1024,
+              1200
+            ],
+            "panes": [
+              "H2-C3",
+              "H2-C4"
+            ],
+            "order": "top-bottom, each1024x600, seamY300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H3-native-columns12.png",
+            "sha256": "77c21f1ad2d3463c03520b2723e1507fc5e30a58fa302ad622fa1600e1e52c17",
+            "dimensions": [
+              1024,
+              1200
+            ],
+            "panes": [
+              "H3-C1",
+              "H3-C2"
+            ],
+            "order": "top-bottom, each1024x600, seamY300",
+            "resampled": false
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H3-native-columns34.png",
+            "sha256": "2d2ca7358c3cea75929e2c426930f83707618c64f83ce46980e88400699cabce",
+            "dimensions": [
+              1024,
+              1200
+            ],
+            "panes": [
+              "H3-C3",
+              "H3-C4"
+            ],
+            "order": "top-bottom, each1024x600, seamY300",
+            "resampled": false
+          }
+        ],
+        "junctionEvidenceQualification": "Nine individual junction artifacts/hashes and actuallyViewedNative=true are stored. Existing report states 1800x600 row viewing without host resize. No distinct row-sheet pins are present in nativeReviewSheetsWithinHostDisplayLimit; this task adds no unrecorded view or result.",
+        "parentCurrentCandidatePointerAtSiblingAndCurrentSnapshot": null,
+        "privateCandidateIsNotSilentlyPromotedToParentCurrent": true
+      },
+      "sourceCoreQuickQA": [
+        {
+          "slot": "s01_01",
+          "stem": "r14_c01_s01_01_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s01_01_recovery23_v01.png",
+            "sha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2",
+            "bytes": 2031689,
+            "mtimeNs": "1792800416795037100",
+            "filesystemCreatedUtc": "2026-10-24T02:46:38.482653+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_01_recovery23_v01.png.generation.json",
+            "sha256": "48d800fc2d614b2f4ace71f3cee85241b2b6b7efe0e53134971184e2340a0b30",
+            "bytes": 7035,
+            "mtimeNs": "1792800416805907200",
+            "filesystemCreatedUtc": "2026-10-24T00:06:56.805388+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s01_01_recovery23_v01.quickQA.json",
+            "sha256": "1dc355a9f1641046385a17f78fde2b1636ad84123dd35e14b031b48049c143a7",
+            "bytes": 5094
+          },
+          "reviewedAtUtc": "2026-10-24T01:40:11.862620+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed this exact overview crop and adopted north candidate boundary. The ENTIRE frame is open turquoise/cyan tropical sea, no land or object anywhere. Preserve the exact fine bright white/aqua caustic polygons and blue-green water material entering from the top115px of the root-adopted native4096 candidate25a90; continue those ripple paths naturally into all new lower water at the same small native texture scale and daylight. The remainder of the guide is a flat/low-detail LAYOUT COLOR ONLY, not finished water: redraw every part into coherent sharp hand-painted flowing sea detail with subtle depth variation. Do not create a horizontal strip, texture-scale cutoff or color band at y115; do not enlarge wave cells. No beach, shoreline, rock, foam island, lily pad, tree, boat, building, UI, text, border or black margin. Even the outer left halo beyond map canvas must remain continuous water, opaque, no empty area.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual1254 native and1024x600 top trueCORE contact at seamY300 viewed original. Entire frame remains open cyan/turquoise water; fine caustic paths, daylight and ripple scale continue from adopted r13c01 candidate25a90. No new shore/object/black margin, no obvious horizontal line at the original115guide boundary or realCORE contact. North guide used candidate legal115 only, no source13 predicted halo. Other absent neighbors and all external acceptance remain pending; native anchor bytes repainted, no pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s01_02",
+          "stem": "r14_c01_s01_02_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s01_02_recovery23_v01.png",
+            "sha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e",
+            "bytes": 1998162,
+            "mtimeNs": "1792806235886033600",
+            "filesystemCreatedUtc": "2026-10-24T02:46:38.493682+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_02_recovery23_v01.png.generation.json",
+            "sha256": "76b3d3f5955b4e4b5f5d32710e43ed074ffe23cafc8eab85273908b69986a054",
+            "bytes": 9277,
+            "mtimeNs": "1792806235901592800",
+            "filesystemCreatedUtc": "2026-10-24T01:43:55.901593+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s01_02_recovery23_v01.quickQA.json",
+            "sha256": "d6a1f981e6375fb28558c4a7d2e86c8434c71a38d81179ee83c4164f4d420d0b",
+            "bytes": 5757
+          },
+          "reviewedAtUtc": "2026-10-24T01:46:40.280268+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s01_01",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_01_recovery23_v01.png",
+              "recordedSha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2",
+              "currentSourceSha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact tiny crop and guide: whole frame is open aqua/cyan sea, no shore/object. Preserve fine caustic polygons from north legal115 of adopted candidate25a90 and left230 context of passed s01c01, matching same native ripple scale/light. Left context contains actual115 neighboringCORE plus115 prediction beyond it; that prediction is guidance, not accepted finishedCORE. The upper-left intersection must continue existing water naturally, never a rectangular density island. Redraw blurry layout-only remainder into equally sharp clean hand-painted water with continuous fine bright lines, no horizontal/vertical band or pasted texture, no land, foam sheet, rock, boat, letters, UI or border.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual fullnative1254 return and all recorded trueCORE contact views viewed at original resolution. Open cyan/aqua water follows existing caustic paths at the same fine native scale, no added land/object/black border or obvious straight texture/color cutoff at realCORE contact or internal context transition. Original native halo beyond selectedCORE is prediction guidance only; missing neighbor edges and complete tile/junction/outer acceptance remain pending. Anchors repainted, no exact pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s01_03",
+          "stem": "r14_c01_s01_03_recovery23_v02",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s01_03_recovery23_v02.png",
+            "sha256": "e84d858a9847f7ddade8aaf2d2d84fdcc7f0b01885d2cdbbc898dffa680e338e",
+            "bytes": 1962812,
+            "mtimeNs": "1792807913638409000",
+            "filesystemCreatedUtc": "2026-10-24T04:20:17.799240+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_03_recovery23_v02.png.generation.json",
+            "sha256": "913060f90d9f3cce45292be210602ab317648140ca425d1b24db4ef2456c204b",
+            "bytes": 11506,
+            "mtimeNs": "1792807913652865700",
+            "filesystemCreatedUtc": "2026-10-24T02:11:53.652348+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s01_03_recovery23_v02.quickQA.json",
+            "sha256": "4db96c9ef8e96c956c24a9d050827211454b137e2af0bc4c1157a3c64f662143",
+            "bytes": 7653
+          },
+          "reviewedAtUtc": "2026-10-24T02:19:21.815123+00:00",
+          "qualificationAtUtc": "2026-10-24T03:29:12.382692+00:00",
+          "status": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s01_02",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_02_recovery23_v01.png",
+              "recordedSha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e",
+              "currentSourceSha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s01_04",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_04_recovery23_v01.png",
+              "recordedSha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425",
+              "currentSourceSha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Targeted sole correction for actual northCORE seam: exact tiny layout remains all open cyan/aqua sea. Revised guide now gives adopted north candidate25a90 legal top115px PRIORITY across the entire width, including both upper corners, over the left/right neighboring predicted halos. Actually viewed revised guide. Preserve every north entering bright caustic path at native original scale and extend through y115 into the new CORE with NO horizontal texture-density cutoff or hard line. Side230 contexts below y115 retain existing water; their inside-target115 is prediction guidance, not acceptedCORE. Connect all bright paths naturally into central sharp water with subtle smooth native-scale variation. No new foam, shore, rock, land, object, rectangle, text, frame or black. Do not merely move seam to y230; full new water must be continuous.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": false,
+            "assemblyReportValue": false,
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": {
+              "direction": "right",
+              "globalX": 3072,
+              "globalYRange": [
+                53248,
+                53478
+              ],
+              "viewSeamX": 300,
+              "viewYRange": [
+                0,
+                230
+              ],
+              "kind": "caustic/brightness discontinuity only; no waterbody/shore/object/layout error"
+            }
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": false,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "HOLD after actual fullnative1254 and all3 trueCORE pair views at original. North-priority guide improves original north-left cutoff, but right trueCORE seamX300 now shows a localized vertical caustic discontinuity in upper section (about y0..230); north/side joining is not fully resolved. Two attempts at this coordinate used; stop this point, preserve best variants/evidence, no propagation, no internal/fulltile acceptance.\n\nQualified geometry only on actual viewed all-water layout; no shore/land/object/waterbody-boundary error. Right caustic cut remains material HOLD. Candidate true means working geometry only, material/fullCore/internal/formal false. No unrestricted reference propagation."
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s01_04",
+          "stem": "r14_c01_s01_04_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s01_04_recovery23_v01.png",
+            "sha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425",
+            "bytes": 1814140,
+            "mtimeNs": "1792800416793466500",
+            "filesystemCreatedUtc": "2026-10-24T02:46:38.488501+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_04_recovery23_v01.png.generation.json",
+            "sha256": "51ce8dba6a937de6aeaf749b4da7f2eb71db97976c643bf2d249e8dfff694b8b",
+            "bytes": 7042,
+            "mtimeNs": "1792800416804874500",
+            "filesystemCreatedUtc": "2026-10-24T00:06:56.804355+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s01_04_recovery23_v01.quickQA.json",
+            "sha256": "a4ee14ebd3e4a1fc9190fb0f33e6e14c25045e22053777add10965afecd6ba5d",
+            "bytes": 4928
+          },
+          "reviewedAtUtc": "2026-10-24T01:40:12.325611+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed this exact overview crop and adopted north candidate boundary. This tiny coordinate is open turquoise/cyan sea over the WHOLE frame. Continue original fine bright white/aqua caustic lines and blue-green water shapes entering from top115px of adopted native4096 candidate25a90, at the identical original native ripple scale. The tiny bright surf/light streak already entering at extreme upper-right may continue briefly into the same water and taper naturally; do not invent a new large foam sheet or any shore/rock. The rest of the guide is low-detail layout color ONLY: paint new sharp coherent sea detail throughout. No straight horizontal seam/color band or abrupt ripple-density change at y115; no enlargement or repeated rectangular texture. No rock, beach, land, cliff, lily pad, boat, figure, building, UI, text or frame.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual1254 native and1024x600 top trueCORE contact at seamY300 viewed original. Large aqua caustic polygons and small upper-right bright light streak continue naturally from adopted r13c01 candidate25a90; all sea, no extra foam sheet/shore/rock/object or straight transition. North input was legal candidate115 only; no source13 invalid halo. Other absent neighbors/outer acceptance pending, native anchor bytes repainted, no pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s02_01",
+          "stem": "r14_c01_s02_01_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s02_01_recovery23_v01.png",
+            "sha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59",
+            "bytes": 1979437,
+            "mtimeNs": "1792806235896883900",
+            "filesystemCreatedUtc": "2026-10-24T02:46:38.497478+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_01_recovery23_v01.png.generation.json",
+            "sha256": "58bf492dc20ed1a515f3ca0c522dde0dab45e67f5a06376ddfe01e9b04a315c5",
+            "bytes": 6994,
+            "mtimeNs": "1792806235912120400",
+            "filesystemCreatedUtc": "2026-10-24T01:43:55.911600+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s02_01_recovery23_v01.quickQA.json",
+            "sha256": "ee35816a244b8546a5a544dc70e60125825a2c6b2a9a12f3d61b5cb1c459bdf0",
+            "bytes": 4740
+          },
+          "reviewedAtUtc": "2026-10-24T01:46:40.795437+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s01_01",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_01_recovery23_v01.png",
+              "recordedSha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2",
+              "currentSourceSha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact tiny crop and guide: ENTIRE frame is open turquoise/cyan sea. Continue the exact bright white/aqua caustic paths and fine native water texture from upper230 context of passed s01c01. First115 is neighboring actualCORE, next115 is original predicted halo only, not acceptedCORE. Keep water detail native scale through actual y115 CORE contact and y230 context-to-new transition, no color band/texture density cutoff, no added land/foam/rock/objects. Blurry remainder and left outsidecanvas guide edge extension are layout only; newly paint sharp coherent water across full1254, no black/empty margin.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual fullnative1254 return and all recorded trueCORE contact views viewed at original resolution. Open cyan/aqua water follows existing caustic paths at the same fine native scale, no added land/object/black border or obvious straight texture/color cutoff at realCORE contact or internal context transition. Original native halo beyond selectedCORE is prediction guidance only; missing neighbor edges and complete tile/junction/outer acceptance remain pending. Anchors repainted, no exact pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s02_02",
+          "stem": "r14_c01_s02_02_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s02_02_recovery23_v01.png",
+            "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7",
+            "bytes": 2048514,
+            "mtimeNs": "1792806746178277300",
+            "filesystemCreatedUtc": "2026-10-24T02:46:38.502201+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_02_recovery23_v01.png.generation.json",
+            "sha256": "09d218acc7d2cbbe3b2b94e17ca9a4c5d7e12d2a82bd5ce4e28ac8824bdfacf5",
+            "bytes": 9231,
+            "mtimeNs": "1792806746189666900",
+            "filesystemCreatedUtc": "2026-10-24T01:52:26.189667+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s02_02_recovery23_v01.quickQA.json",
+            "sha256": "7720dce26cc312221d8f1f83360eaf6abf390899d78b1eb99216e16de152e632",
+            "bytes": 5528
+          },
+          "reviewedAtUtc": "2026-10-24T01:58:16.729620+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s01_02",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_02_recovery23_v01.png",
+              "recordedSha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e",
+              "currentSourceSha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s02_01",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_01_recovery23_v01.png",
+              "recordedSha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59",
+              "currentSourceSha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact overview tinycrop and coordinateguide: whole frame is open turquoise/cyan water. Continue fine bright aqua/white caustic paths from top passed s01c02 and left passed s02c01, same original native texture scale and daylight. Existing sharp230strips contain115neighborCORE plus115prediction only; preserve coherent water at actual y115/x115 CORE contacts and avoid a new boundary at230. Blurry remainder is lowres layout only, repaint into sharp clean hand-painted water. No invented land, cliff, shore, rock, foam, lilies, boat, UI, text or frame; no rectangular density patch.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after fullnative1254 and top/left original trueCORE pair views. Fine white/aqua caustic lines and turquoise water retain native scale through both actual contacts, without clear straight cuts, band, inserted scenery or rectangle. Fullnative internal230 context transition also visually continuous. Prediction halos remain guidance only, absent neighbors, fulltile/junction and outer acceptance pending; no pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s02_03",
+          "stem": "r14_c01_s02_03_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s02_03_recovery23_v01.png",
+            "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0",
+            "bytes": 1966887,
+            "mtimeNs": "1792810087984837100",
+            "filesystemCreatedUtc": "2026-10-24T04:20:17.805835+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_03_recovery23_v01.png.generation.json",
+            "sha256": "48357eeea8b8ae948deef18dee7fb010eb07b2b06a9eea40dc7e232b03104818",
+            "bytes": 9238,
+            "mtimeNs": "1792810087995637500",
+            "filesystemCreatedUtc": "2026-10-24T02:48:07.995637+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s02_03_recovery23_v01.quickQA.json",
+            "sha256": "02ba56c528a5776ebd0614b2ffe20b6784064a9a2613f47ee14f9c8f9d674a07",
+            "bytes": 5645
+          },
+          "reviewedAtUtc": "2026-10-24T03:00:07.923589+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s02_02",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_02_recovery23_v01.png",
+              "recordedSha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7",
+              "currentSourceSha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s02_04",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_04_recovery23_v01.png",
+              "recordedSha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4",
+              "currentSourceSha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed precise tinycrop and guide: whole frame open turquoise/cyan sea. Continue original water caustics from passed left s02c02 and right s02c04, matching entering bright paths and smoothly varying original native scale. Only side strips supplied; NO north source, because s01c03 is HOLD and excluded; do not duplicate/import it. Side230 context includes115actual neighborCORE plus115prediction only, never accepted newCORE. Paint all blurry center newly with sharp coherent hand-painted water, no horizontal/vertical density band, rectangle, land, foam sheet, rock, shore, object, UI or text.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual fullnative1254 and all recorded original trueCORE contactviews. Existing bluegreen water scale/light and white caustic paths continue without obvious straight cutoff at supplied actualCORE contacts or internal230context transition. No added land/foam/objects/blackmargin. Native halos remain predictions, no pixel-lock; missing neighbor/tile/junction/outer checks pending. North neighbor s01c03 is HOLD/excluded; north trueCORE contact remains explicitly pending and this candidate does not resolve that junction.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s02_04",
+          "stem": "r14_c01_s02_04_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s02_04_recovery23_v01.png",
+            "sha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4",
+            "bytes": 1776588,
+            "mtimeNs": "1792808801445864200",
+            "filesystemCreatedUtc": "2026-10-24T02:46:38.510771+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_04_recovery23_v01.png.generation.json",
+            "sha256": "54666046419ef9a6a93424a99e74ecdcb9e3d435de7b58c7ae8f7edda4b976a2",
+            "bytes": 6997,
+            "mtimeNs": "1792808801456810000",
+            "filesystemCreatedUtc": "2026-10-24T02:26:41.456294+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s02_04_recovery23_v01.quickQA.json",
+            "sha256": "c7091ab651de6151f3b8a729257be2d74b21fe93a9813b1aa937758463b45f52",
+            "bytes": 4563
+          },
+          "reviewedAtUtc": "2026-10-24T02:37:30.104918+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s01_04",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s01_04_recovery23_v01.png",
+              "recordedSha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425",
+              "currentSourceSha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact tinycrop and guide: entire frame is open cyan/turquoise sea. Continue the larger native aqua caustic polygons and bright flowing paths entering upper230 from passed s01c04 at identical scale and daylight, without a straight stripe at actualCORE y115 or context endy230. This context contains115 neighboring actualCORE plus115 predictedhalo only; not accepted newCORE. Lowdetail remainder is layout color, redraw into equally sharp coherent clean hand-painted sea, no new white foam sheet, land, rocks, shore, objects, UI/text/frame.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after fullnative1254 and all recorded original trueCORE contactviews. Cyan/turquoise water caustics continue in scale/path/light with no clear realCORE hard cut or internal230strip boundary, no new land/object/blackmargin. Original halos are prediction guidance only. Missing neighbors and complete tile/junction/outer checks remain pending; exact native anchor bytes are repainted, no pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s03_01",
+          "stem": "r14_c01_s03_01_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s03_01_recovery23_v01.png",
+            "sha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f",
+            "bytes": 1912426,
+            "mtimeNs": "1792807999799347400",
+            "filesystemCreatedUtc": "2026-10-24T02:46:38.506482+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_01_recovery23_v01.png.generation.json",
+            "sha256": "59b4a127741a7b1a031141bea93ceb408b0fd5378b53b091827a786884969eac",
+            "bytes": 6993,
+            "mtimeNs": "1792807999810005200",
+            "filesystemCreatedUtc": "2026-10-24T02:13:19.809489+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s03_01_recovery23_v01.quickQA.json",
+            "sha256": "b86cdfb4cd4c19c11ffeeae6fba462d125e573d0c12a2b21fe631e4893062cf4",
+            "bytes": 4612
+          },
+          "reviewedAtUtc": "2026-10-24T02:19:22.278632+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s02_01",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_01_recovery23_v01.png",
+              "recordedSha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59",
+              "currentSourceSha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact overview tinycrop and guide: entire frame is open turquoise/cyan sea. Continue original bright white/aqua caustic paths and fine flowing native texture from passed upper s02c01; upper230 context contains neighboring actual115CORE plus original predicted115 only. Preserve same native ripple scale through y115 actualCORE join and y230 internal transition, no horizontal stripe or density cutoff. Blurry rest and outsidecanvas left edgeextension guide are layout only; newly paint coherent sharp water to all borders. No land, rock, shore, foam sheet, lilies, building, boat, UI, letters or black/empty margins.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual fullnative1254 and original top trueCORE pair seamY300. Pure turquoise water retains fine caustic paths at native scale through actualCORE contact and original230context transition; no clear straight cutoff/stripe/land/object/black margin. Native halo prediction guidance only, other missing neighbors/tile-junction/outer acceptance pending, no pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s03_02",
+          "stem": "r14_c01_s03_02_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s03_02_recovery23_v01.png",
+            "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b",
+            "bytes": 2048942,
+            "mtimeNs": "1792808801454221500",
+            "filesystemCreatedUtc": "2026-10-24T02:46:38.513422+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_02_recovery23_v01.png.generation.json",
+            "sha256": "0995680d694516eed43a874ad78ad4505c32413c112dee6c608239aa1ab849d7",
+            "bytes": 9230,
+            "mtimeNs": "1792808801468238000",
+            "filesystemCreatedUtc": "2026-10-24T02:26:41.467721+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s03_02_recovery23_v01.quickQA.json",
+            "sha256": "0a0a6d04557a410ebd6650d84c1b7e09bd86dfb99ecd4007494f235f75ad1a8a",
+            "bytes": 5468
+          },
+          "reviewedAtUtc": "2026-10-24T02:37:30.608718+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s02_02",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_02_recovery23_v01.png",
+              "recordedSha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7",
+              "currentSourceSha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s03_01",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_01_recovery23_v01.png",
+              "recordedSha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f",
+              "currentSourceSha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact tinycrop and native guide: all open turquoise/cyan water. Continue fine bright white/aqua caustic paths from passed top s02c02 and left s03c01 preserving same native scale, daylight, bluegreen translucency. Each230strip contains115 neighboringCORE plus115 prediction guidance only. Keep actual x115/y115 contacts and inside230context transitions naturally connected, not rectangular density islands or abrupt color bands. Repaint blurry layout-only center into sharp native detail, no shore/land/rocks/foam/props/boat/UI/text/border.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after fullnative1254 and all recorded original trueCORE contactviews. Cyan/turquoise water caustics continue in scale/path/light with no clear realCORE hard cut or internal230strip boundary, no new land/object/blackmargin. Original halos are prediction guidance only. Missing neighbors and complete tile/junction/outer checks remain pending; exact native anchor bytes are repainted, no pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s03_03",
+          "stem": "r14_c01_s03_03_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s03_03_recovery23_v01.png",
+            "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d",
+            "bytes": 2051775,
+            "mtimeNs": "1792811848452962600",
+            "filesystemCreatedUtc": "2026-10-24T04:20:17.815460+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_03_recovery23_v01.png.generation.json",
+            "sha256": "5bc0ea4fc8ded781a48907fab3415f2179d042ddb7096f26bf831d14f41a36b0",
+            "bytes": 9235,
+            "mtimeNs": "1792811848469092200",
+            "filesystemCreatedUtc": "2026-10-24T03:17:28.468560+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s03_03_recovery23_v01.quickQA.json",
+            "sha256": "57afb0b2bb53df41f6074f877062a0bfb199f4974d29b53659a1f432f1c8d918",
+            "bytes": 5451
+          },
+          "reviewedAtUtc": "2026-10-24T03:29:11.422919+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s02_03",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_03_recovery23_v01.png",
+              "recordedSha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0",
+              "currentSourceSha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s03_02",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_02_recovery23_v01.png",
+              "recordedSha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b",
+              "currentSourceSha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact tinycrop and native guide: entire frame is open aqua/cyan sea. Continue passed top s02c03 and left s03c02 fine white/aqua caustic paths, exact native texture scale/light/color. Each230context includes115actualneighborCORE and115original prediction only; these predictions are guidance not acceptednewCORE. New sharp center must join naturally at actual x115/y115 CORE contacts and at contextend230 with no straight density/color band. Blurry remainder is layout only; no land/rock/shore/foam sheet/objects/boat/UI/letters/border.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual fullnative1254 and original top/left trueCORE pairviews. All open turquoise water, native-scale caustic paths remain visually continuous at actualCORE contacts and internal230context edges; no obvious straight strip/cutoff or added land/object/blackmargin. Native halos prediction only; absent neighbors, fulltile/junction/outer acceptance remain pending; no pixel-lock claim.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s03_04",
+          "stem": "r14_c01_s03_04_recovery23_v02",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s03_04_recovery23_v02.png",
+            "sha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db",
+            "bytes": 2039577,
+            "mtimeNs": "1792816992458428400",
+            "filesystemCreatedUtc": "2026-10-24T12:19:15.285156+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_04_recovery23_v02.png.generation.json",
+            "sha256": "c0f240d9936e7a4f139d3ebf81f766c7aee4eb449b39ac939ac8d06917b85811",
+            "bytes": 9232,
+            "mtimeNs": "1792816992471903800",
+            "filesystemCreatedUtc": "2026-10-24T04:43:12.470874+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s03_04_recovery23_v02.quickQA.json",
+            "sha256": "5ade7c04756e84ac6f48c5f8481b62493e8d52ad19bc1b2dd791b5afa4aa70d8",
+            "bytes": 6223
+          },
+          "reviewedAtUtc": "2026-10-24T08:51:33.466485+00:00",
+          "qualificationAtUtc": null,
+          "status": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s02_04",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s02_04_recovery23_v01.png",
+              "recordedSha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4",
+              "currentSourceSha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s03_03",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_03_recovery23_v01.png",
+              "recordedSha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d",
+              "currentSourceSha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Sole targeted correction, actual revisedguide viewed. Whole frame remains opencyan/turquoise sea, no geometry change. Top passed s02c04 native230context now takes priority over left predictedhalo in upper-left230square; top115 is neighbor actualCORE, following115 is original prediction guidance only, NOT acceptedCORE. Preserve north caustic paths through actualCORE y115 and internaly230 with NO horizontal cutoff at leftmostx115..230 of finalimage; continue left actualwater too. Smooth native-scale change from finer left to larger top/right polygons, never straightbands/rectangles. Repaint blurry center as sharp coherent handpainted sea. No added land/shore/rocks/foam/objects/UI/text/frame.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": false,
+            "assemblyReportValue": false,
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": {
+              "direction": "left",
+              "globalX": 3072,
+              "globalYRange": [
+                55296,
+                55526
+              ],
+              "viewSeamX": 300,
+              "viewYRange": [
+                0,
+                230
+              ]
+            }
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": false,
+            "limitedCleanBandGuidanceAllowed": true,
+            "finding": "HOLD_MATERIAL after actual fullnative1254 and top/left realCORE pairviews. Reordered top230 context improves top boundary but left trueCORE seamX300 upper y0..230 has caustic/material discontinuity. Entire layout is open water with no shore/object/waterbody geometry error. This coordinate has2 attempts, STOP preserved. Working geometry only may be qualified under current root release; no fullCore/internal/formal or unrestricted material propagation.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s04_01",
+          "stem": "r14_c01_s04_01_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s04_01_recovery23_v01.png",
+            "sha256": "e9b8ace7c1f9f89fcab7860a60630398205ea263cf82c6f45c4f815423945514",
+            "bytes": 1938876,
+            "mtimeNs": "1792810087993021100",
+            "filesystemCreatedUtc": "2026-10-24T04:20:17.811244+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s04_01_recovery23_v01.png.generation.json",
+            "sha256": "8baee5003a3014ffa8f358d1102fb6a44c0e49feeed20ed6cdf3646e1ce1df25",
+            "bytes": 6993,
+            "mtimeNs": "1792810088003312800",
+            "filesystemCreatedUtc": "2026-10-24T02:48:08.003313+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s04_01_recovery23_v01.quickQA.json",
+            "sha256": "50dc24110d200f62ccad7b8f542b7117de4f1056e189f3eab8370f5e9d6b5d1f",
+            "bytes": 4734
+          },
+          "reviewedAtUtc": "2026-10-24T03:00:08.444610+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s03_01",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_01_recovery23_v01.png",
+              "recordedSha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f",
+              "currentSourceSha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact tinycrop and guide: entire frame pure turquoise/cyan sea; this is bottom-left world border but water continues beyond it. Continue fine bright aqua/white caustic paths from passed upper s03c01 at exact native scale, daylight and color. Upper230 context includes115 actual neighboringCORE plus115 predictedhalo only. Preserve actual y115 CORE join and internal230 transition with no stripes/density cutoff. Left and bottom outsidecanvas guide extensions are lowdetail layout only; newly paint sharp coherent continuous water across full1254 with no black/empty margin, shore, rock, foam island, object, UI or border.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual fullnative1254 and all recorded original trueCORE contactviews. Existing bluegreen water scale/light and white caustic paths continue without obvious straight cutoff at supplied actualCORE contacts or internal230context transition. No added land/foam/objects/blackmargin. Native halos remain predictions, no pixel-lock; missing neighbor/tile/junction/outer checks pending. South and left world-edge water has native detail without black margin; external acceptance still pending.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s04_02",
+          "stem": "r14_c01_s04_02_recovery23_v02",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s04_02_recovery23_v02.png",
+            "sha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546",
+            "bytes": 1995568,
+            "mtimeNs": "1792814386460975000",
+            "filesystemCreatedUtc": "2026-10-24T08:41:53.367946+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s04_02_recovery23_v02.png.generation.json",
+            "sha256": "f242e986452c4122a2e6597cb044f16a7299e05f398ac563f694f0e0d976cfd3",
+            "bytes": 9230,
+            "mtimeNs": "1792814386472652000",
+            "filesystemCreatedUtc": "2026-10-24T03:59:46.472652+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s04_02_recovery23_v02.quickQA.json",
+            "sha256": "fd7917762ad7c1767ecae64f22168ff89493508f840abd0cd389ca661dc132d7",
+            "bytes": 5676
+          },
+          "reviewedAtUtc": "2026-10-24T04:26:42.104819+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s03_02",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_02_recovery23_v01.png",
+              "recordedSha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b",
+              "currentSourceSha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s04_01",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s04_01_recovery23_v01.png",
+              "recordedSha256": "e9b8ace7c1f9f89fcab7860a60630398205ea263cf82c6f45c4f815423945514",
+              "currentSourceSha256": "e9b8ace7c1f9f89fcab7860a60630398205ea263cf82c6f45c4f815423945514",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "SOLE targeted correction. Actual guide viewed, whole frame pure cyan/turquoise water with original bright fine caustics, bottom worldborder remains water. Previous return altered LEFT anchor causing a vertical brightness/path discontinuity at actual CORE x115 (pair seamx300), especially nativey215..635. Preserve left230 strip caustic paths and bluegreen color precisely; extend each line from x115 to x230 and into new center without kinks/cutoffs. Keep top230 native water coherent too; no moving seam to x230/y230, no rectangular patches. These230 contexts include115 neighboring actualCORE plus115 prediction only, not acceptedCORE. Repaint blurry rest sharp at same native scale; no new land/foam/shore/rocks/objects/UI/text/blackmargin.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual native1254 and original top/left trueCORE pairviews. Targeted v02 improves left discontinuity from v01: bright paths and bluegreen water remain connected at seamX300 without the prior clear vertical brightness plane, top also continuous. Fullnative230context-to-new transition visually acceptable. No land/object/blackmargin, halos prediction only, fulltile/junction/outer acceptance pending; no exactpixel lock.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s04_03",
+          "stem": "r14_c01_s04_03_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s04_03_recovery23_v01.png",
+            "sha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289",
+            "bytes": 2246374,
+            "mtimeNs": "1792817147246594100",
+            "filesystemCreatedUtc": "2026-10-24T12:19:15.317340+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s04_03_recovery23_v01.png.generation.json",
+            "sha256": "af6e2404e7c7804f1312e30b23c5d8d953b9c38b931ff556b2f73955ebec16d9",
+            "bytes": 9235,
+            "mtimeNs": "1792817147265769800",
+            "filesystemCreatedUtc": "2026-10-24T04:45:47.265242+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s04_03_recovery23_v01.quickQA.json",
+            "sha256": "d176e885d1bf436e6b18ec12693077874673ead05590c8d206e8de3d70af2ba8",
+            "bytes": 6095
+          },
+          "reviewedAtUtc": "2026-10-24T08:51:34.021928+00:00",
+          "qualificationAtUtc": null,
+          "status": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s03_03",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_03_recovery23_v01.png",
+              "recordedSha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d",
+              "currentSourceSha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s04_02",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s04_02_recovery23_v02.png",
+              "recordedSha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546",
+              "currentSourceSha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact tinycrop and guide: entire frame open aqua/cyan sea, bottom worldedge still water beyondcanvas. Continue fine white/aqua caustics and bluegreen daylight from passed top s03c03 and left s04c02v02, original native detail scale. Each230 context contains115neighbor actualCORE plus115predictedhalo only. Keep actual x115/y115 CORE and230 internal transitions connected, no straightcut/colorband/density rectangle. Bottomlowdetail outsidecanvas guide is layout only, paint sharp native water across all1254. No land/shore/rock/foam island/objects/UI/text/frame/blackmargin.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": false,
+            "assemblyReportValue": false,
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": {
+              "direction": "left",
+              "globalX": 2048,
+              "globalYRange": [
+                56320,
+                56550
+              ],
+              "viewSeamX": 300,
+              "viewYRange": [
+                0,
+                230
+              ]
+            }
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": false,
+            "limitedCleanBandGuidanceAllowed": true,
+            "finding": "HOLD_MATERIAL after actual fullnative1254 and top/left realCORE pairviews. Entire layout remains open turquoise sea with no object/shore/waterbody geometry error. Left trueCORE seamX300 has subtle vertical brightness/caustic discontinuity, especially y0..230; top context and right portion are visually coherent. Geometry working candidate only; full material/fullCore/internal/formal acceptance false, no unrestricted propagation.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        },
+        {
+          "slot": "s04_04",
+          "stem": "r14_c01_s04_04_recovery23_v01",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/native/r14_c01_s04_04_recovery23_v01.png",
+            "sha256": "27246316a2840d493de36c257aa8982500d48e90a987da11d8192eca69cd5b5b",
+            "bytes": 2070595,
+            "mtimeNs": "1792832542114851800",
+            "filesystemCreatedUtc": "2026-10-24T12:19:15.323577+00:00"
+          },
+          "originalGeneration": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s04_04_recovery23_v01.png.generation.json",
+            "sha256": "bd73230b3f507483310e37bd9089a89fbea97b2569d5a407df43a43f293dc23c",
+            "bytes": 9913,
+            "mtimeNs": "1792832542127248100",
+            "filesystemCreatedUtc": "2026-10-24T09:02:22.126731+00:00"
+          },
+          "quickQA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c01_s04_04_recovery23_v01.quickQA.json",
+            "sha256": "4bf49378fd2e8a18bda0f7da4d6ac401ec0777575c07beb2461ce13ac72dd84e",
+            "bytes": 5885
+          },
+          "reviewedAtUtc": "2026-10-24T09:24:50.184339+00:00",
+          "qualificationAtUtc": null,
+          "status": "PASS_CANDIDATE",
+          "actuallyViewedNativeRecorded": true,
+          "currentNativeHashBound": true,
+          "quickQAHashUnchangedFromSourceHelper": true,
+          "intraTargetNativeInputBindings": [
+            {
+              "slot": "s03_04",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s03_04_recovery23_v02.png",
+              "recordedSha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db",
+              "currentSourceSha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db",
+              "matchesCurrent": true
+            },
+            {
+              "slot": "s04_03",
+              "recordedPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/native/r14_c01_s04_03_recovery23_v01.png",
+              "recordedSha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289",
+              "currentSourceSha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289",
+              "matchesCurrent": true
+            }
+          ],
+          "singleSourceLayout": {
+            "quickQAObservedOpenWater": true,
+            "assemblyReportGeometry": true,
+            "layoutObserved": "Actually viewed exact tinycrop and nativeguide: wholeframe open aqua/cyan sea, world bottomedge remains continuous water. Top is passed-geometry s03c04v02 bottom230 clean band and left is s04c03v01 right230 clean band, deliberately outside their recorded upper-left materialHOLD areas. These limited bands were actually viewed clean; neither entire source nor their material is declared passed. Each230 context includes115actualneighborCORE plus115prediction guidance only. Preserve bright caustic paths/native scale/light at x115/y115 actualCORE contacts and at230 internal transitions, smoothly varying fine left to larger top/right texture, no straightcut/colorband/rectangle. Blurry middle/bottomedge guide is layoutonly; paint sharp coherent hand-painted water. No land, shore, foam island, rocks, props, UI/text/frame/blackmargin.\n"
+          },
+          "material": {
+            "quickQAExplicitFlag": null,
+            "assemblyReportValue": "quickPASS only",
+            "fullCoreAcceptedInAssemblyReport": false,
+            "pendingBoundary": null
+          },
+          "limits": {
+            "internalTilePassed": false,
+            "formalAccepted": false,
+            "materialPropagationAllowed": null,
+            "limitedCleanBandGuidanceAllowed": null,
+            "finding": "PASS_CANDIDATE after actual native1254 and original top/left trueCORE pairviews. Pure aqua/cyan sea, entering caustic paths/native texture remain connected at both actualCORE contacts and inside230context transitions, no clear straight cut, land/object or blackmargin. Input used only clean bottom230/right230 bands of geometry-only sources, outside known upper-left materialHOLD, not unrestricted material propagation or acceptance of those whole sources; extra115 remained prediction guidance. Fulltile/junction/outer acceptance pending, no pixel-lock.\n"
+          },
+          "reuse": "Reuse source-specific quickQA observations at their original scope; final assembled seam/junction results below take precedence for target16 internal contacts. PASS_CANDIDATE is not fullCORE/material/internal PASS."
+        }
+      ],
+      "sourceQuickQASummary": {
+        "currentNativeAndQABindingsMatched": 16,
+        "passCandidateCount": 13,
+        "geometryOnlyMaterialHoldSlots": [
+          "s01_03",
+          "s03_04",
+          "s04_03"
+        ],
+        "layoutGeometry16": "Existing assembly record explicitly geometry=true for all16 open-water sources; reused observation only.",
+        "material": "13 source extension quickPASS only; s01_03/s03_04/s04_03 explicit material=false. No whole16/fullCORE material acceptance.",
+        "nullQuickQAFlagsAreNotInferredTrue": true,
+        "fullCoreAcceptedCountInExistingAssemblyReport": 0,
+        "stopPreserved": [
+          "s01_03v02 samepoint two-attempt STOP",
+          "s03_04v02 samepoint two-attempt STOP"
+        ],
+        "limitedBandGuidance": "Existing s03_04 bottom230/s04_03 right230 guidance for s04_04 excludes upper-leftHOLD; its 115 neighborCORE+115 prediction remains guidance, not unrestricted material propagation."
+      },
+      "internal24Seams": [
+        {
+          "id": "V1-R1",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V1-R1.png",
+            "sha256": "96f7343e8fe2fd7449d11e8d2ba396681aff41948f215861cbd2d78a58851ff6",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              724,
+              0,
+              1324,
+              1024
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/0",
+          "inputSources": [
+            {
+              "slot": "s01_01",
+              "stem": "r14_c01_s01_01_recovery23_v01",
+              "sha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2"
+            },
+            {
+              "slot": "s01_02",
+              "stem": "r14_c01_s01_02_recovery23_v01",
+              "sha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V1-R2",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V1-R2.png",
+            "sha256": "682135c15d2a4f4e5f17afcce3a81041421794bef05ab36d36f94d4de479492f",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              724,
+              1024,
+              1324,
+              2048
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/1",
+          "inputSources": [
+            {
+              "slot": "s02_01",
+              "stem": "r14_c01_s02_01_recovery23_v01",
+              "sha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59"
+            },
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V1-R3",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V1-R3.png",
+            "sha256": "fd623d2680938dca0822b3f06ea9e04ccbc72005bb5cd3c86ed3bf78fc0fb05e",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              724,
+              2048,
+              1324,
+              3072
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/2",
+          "inputSources": [
+            {
+              "slot": "s03_01",
+              "stem": "r14_c01_s03_01_recovery23_v01",
+              "sha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f"
+            },
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V1-R4",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V1-R4.png",
+            "sha256": "0172390941d51e7f9b405c4c341425757a0259972f43976dab5bf7b38c69a824",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              724,
+              3072,
+              1324,
+              4096
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/3",
+          "inputSources": [
+            {
+              "slot": "s04_01",
+              "stem": "r14_c01_s04_01_recovery23_v01",
+              "sha256": "e9b8ace7c1f9f89fcab7860a60630398205ea263cf82c6f45c4f815423945514"
+            },
+            {
+              "slot": "s04_02",
+              "stem": "r14_c01_s04_02_recovery23_v02",
+              "sha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V2-R1",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V2-R1.png",
+            "sha256": "07185abb19fb2112ebef97c1562f4f9d9f0dd11a8ecc1228ef1d50bea11d164a",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              1748,
+              0,
+              2348,
+              1024
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/4",
+          "inputSources": [
+            {
+              "slot": "s01_02",
+              "stem": "r14_c01_s01_02_recovery23_v01",
+              "sha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e"
+            },
+            {
+              "slot": "s01_03",
+              "stem": "r14_c01_s01_03_recovery23_v02",
+              "sha256": "e84d858a9847f7ddade8aaf2d2d84fdcc7f0b01885d2cdbbc898dffa680e338e"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V2-R2",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V2-R2.png",
+            "sha256": "5a2da931f2c84289c8691961e7fafd591e8f2501c8dcee05454e86a6da7dd08e",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              1748,
+              1024,
+              2348,
+              2048
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/5",
+          "inputSources": [
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7"
+            },
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V2-R3",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V2-R3.png",
+            "sha256": "4b425a5fba22707ea9ef3e666373ce8cee687f7f5da5a52831082947f7cbe557",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              1748,
+              2048,
+              2348,
+              3072
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/6",
+          "inputSources": [
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b"
+            },
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V2-R4",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V2-R4.png",
+            "sha256": "04615daac145e7ebc38dc9b9324ab2c07ab6f57b36551c21e727c90e3d8ed594",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              1748,
+              3072,
+              2348,
+              4096
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/7",
+          "inputSources": [
+            {
+              "slot": "s04_02",
+              "stem": "r14_c01_s04_02_recovery23_v02",
+              "sha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546"
+            },
+            {
+              "slot": "s04_03",
+              "stem": "r14_c01_s04_03_recovery23_v01",
+              "sha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Upper brightness/caustic cut at x2048,y3072..3302 tile-local",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V3-R1",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V3-R1.png",
+            "sha256": "391776b934b64a55338612fda2e340b50aef12045289ca35877d1425058e3f83",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              2772,
+              0,
+              3372,
+              1024
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/8",
+          "inputSources": [
+            {
+              "slot": "s01_03",
+              "stem": "r14_c01_s01_03_recovery23_v02",
+              "sha256": "e84d858a9847f7ddade8aaf2d2d84fdcc7f0b01885d2cdbbc898dffa680e338e"
+            },
+            {
+              "slot": "s01_04",
+              "stem": "r14_c01_s01_04_recovery23_v01",
+              "sha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Upper caustic/brightness cut at x3072,y0..230 tile-local",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V3-R2",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V3-R2.png",
+            "sha256": "6fca007603d3cc7a6bb664ed88e0f51088eb3e09d6f9d5cdb96f9bedf7a28487",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              2772,
+              1024,
+              3372,
+              2048
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/9",
+          "inputSources": [
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0"
+            },
+            {
+              "slot": "s02_04",
+              "stem": "r14_c01_s02_04_recovery23_v01",
+              "sha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V3-R3",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V3-R3.png",
+            "sha256": "ff1e0ae3d0cfbf4123cb3d1345911410c05e7c6f74438f2ff84a36d1a4936552",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              2772,
+              2048,
+              3372,
+              3072
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/10",
+          "inputSources": [
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d"
+            },
+            {
+              "slot": "s03_04",
+              "stem": "r14_c01_s03_04_recovery23_v02",
+              "sha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Upper caustic cut at x3072,y2048..2278 tile-local",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "V3-R4",
+          "kind": "vertical segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/V3-R4.png",
+            "sha256": "5224680b1a82e5c2864d53263534773a8b384582289d581b4882240f136d728e",
+            "dimensions": [
+              600,
+              1024
+            ],
+            "tileBox": [
+              2772,
+              3072,
+              3372,
+              4096
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/11",
+          "inputSources": [
+            {
+              "slot": "s04_03",
+              "stem": "r14_c01_s04_03_recovery23_v01",
+              "sha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289"
+            },
+            {
+              "slot": "s04_04",
+              "stem": "r14_c01_s04_04_recovery23_v01",
+              "sha256": "27246316a2840d493de36c257aa8982500d48e90a987da11d8192eca69cd5b5b"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H1-C1",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H1-C1.png",
+            "sha256": "afe19a14a850d6a8dc78b22613b527c5adf1b5f8d5a975b050f6a56e697127df",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              0,
+              724,
+              1024,
+              1324
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/12",
+          "inputSources": [
+            {
+              "slot": "s01_01",
+              "stem": "r14_c01_s01_01_recovery23_v01",
+              "sha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2"
+            },
+            {
+              "slot": "s02_01",
+              "stem": "r14_c01_s02_01_recovery23_v01",
+              "sha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H1-C2",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H1-C2.png",
+            "sha256": "ebbced4ba65a2f87f7c481d28c2383d704322002ad2bb432fa0fe514849334ba",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              1024,
+              724,
+              2048,
+              1324
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/13",
+          "inputSources": [
+            {
+              "slot": "s01_02",
+              "stem": "r14_c01_s01_02_recovery23_v01",
+              "sha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e"
+            },
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H1-C3",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H1-C3.png",
+            "sha256": "f9988aedf7872780946337a8e53a4292097b78ca8dad50948de938f42c36d30b",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              2048,
+              724,
+              3072,
+              1324
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/14",
+          "inputSources": [
+            {
+              "slot": "s01_03",
+              "stem": "r14_c01_s01_03_recovery23_v02",
+              "sha256": "e84d858a9847f7ddade8aaf2d2d84fdcc7f0b01885d2cdbbc898dffa680e338e"
+            },
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Horizontal water texture mismatch between s01c03 and s02c03, y1024,x2048..3072",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H1-C4",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H1-C4.png",
+            "sha256": "8224fe317cb21ad9d40f53126659e9cb66178f52cb549a7e32dfe62be9ab6c44",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              3072,
+              724,
+              4096,
+              1324
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/15",
+          "inputSources": [
+            {
+              "slot": "s01_04",
+              "stem": "r14_c01_s01_04_recovery23_v01",
+              "sha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425"
+            },
+            {
+              "slot": "s02_04",
+              "stem": "r14_c01_s02_04_recovery23_v01",
+              "sha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H2-C1",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H2-C1.png",
+            "sha256": "8bbab3d362a4ae00d82c20407b7d47e0bdbd7e53bb1f954ad5ae4151f8a5d49c",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              0,
+              1748,
+              1024,
+              2348
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/16",
+          "inputSources": [
+            {
+              "slot": "s02_01",
+              "stem": "r14_c01_s02_01_recovery23_v01",
+              "sha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59"
+            },
+            {
+              "slot": "s03_01",
+              "stem": "r14_c01_s03_01_recovery23_v01",
+              "sha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H2-C2",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H2-C2.png",
+            "sha256": "65858f9084e2e717e8b6af39fb6d1062311c3633e78a134f09657e6305acf0f2",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              1024,
+              1748,
+              2048,
+              2348
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/17",
+          "inputSources": [
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7"
+            },
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H2-C3",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H2-C3.png",
+            "sha256": "ed94f3a0f42e6aedee953b700a665b898e90fcb590e33cae36a7b61ba809d092",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              2048,
+              1748,
+              3072,
+              2348
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/18",
+          "inputSources": [
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0"
+            },
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H2-C4",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H2-C4.png",
+            "sha256": "b112274e22c200fbea2202e89382886350e8ac0e5bf773b27db49e5376a93e3f",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              3072,
+              1748,
+              4096,
+              2348
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/19",
+          "inputSources": [
+            {
+              "slot": "s02_04",
+              "stem": "r14_c01_s02_04_recovery23_v01",
+              "sha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4"
+            },
+            {
+              "slot": "s03_04",
+              "stem": "r14_c01_s03_04_recovery23_v02",
+              "sha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Local corner material inconsistency, y2048 nearx3072..3302",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H3-C1",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H3-C1.png",
+            "sha256": "706129512c099cc2ec752afbdd07cdec254282ddd72a7758bada401f2e856b22",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              0,
+              2772,
+              1024,
+              3372
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/20",
+          "inputSources": [
+            {
+              "slot": "s03_01",
+              "stem": "r14_c01_s03_01_recovery23_v01",
+              "sha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f"
+            },
+            {
+              "slot": "s04_01",
+              "stem": "r14_c01_s04_01_recovery23_v01",
+              "sha256": "e9b8ace7c1f9f89fcab7860a60630398205ea263cf82c6f45c4f815423945514"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H3-C2",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H3-C2.png",
+            "sha256": "7941d3bf9a03c69455aa73b641dc571bac26d59ef5476fda0e32353bf2c15a49",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              1024,
+              2772,
+              2048,
+              3372
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/21",
+          "inputSources": [
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b"
+            },
+            {
+              "slot": "s04_02",
+              "stem": "r14_c01_s04_02_recovery23_v02",
+              "sha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H3-C3",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H3-C3.png",
+            "sha256": "4216bce56e28512b3bc73ebd2913f7673699335077722641979b525e4ef0415f",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              2048,
+              2772,
+              3072,
+              3372
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/22",
+          "inputSources": [
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d"
+            },
+            {
+              "slot": "s04_03",
+              "stem": "r14_c01_s04_03_recovery23_v01",
+              "sha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Local corner material inconsistency y3072 nearx2048..2278",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "H3-C4",
+          "kind": "horizontal segment",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/H3-C4.png",
+            "sha256": "4b0be651b7fdcb57c25ee9d177997e957e5eaff026adeb610d7ff745de5cbafa",
+            "dimensions": [
+              1024,
+              600
+            ],
+            "tileBox": [
+              3072,
+              2772,
+              4096,
+              3372
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/23",
+          "inputSources": [
+            {
+              "slot": "s03_04",
+              "stem": "r14_c01_s03_04_recovery23_v02",
+              "sha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db"
+            },
+            {
+              "slot": "s04_04",
+              "stem": "r14_c01_s04_04_recovery23_v01",
+              "sha256": "27246316a2840d493de36c257aa8982500d48e90a987da11d8192eca69cd5b5b"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Local corner caustic inconsistency y3072 nearx3072..3302",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        }
+      ],
+      "internal9Junctions": [
+        {
+          "id": "J11",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J11.png",
+            "sha256": "cb169844758bb434443c231e83347a0623aa968869408127d5e7a9becfbd30cb",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              724,
+              724,
+              1324,
+              1324
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/24",
+          "inputSources": [
+            {
+              "slot": "s01_01",
+              "stem": "r14_c01_s01_01_recovery23_v01",
+              "sha256": "607a76789504a50f991f5c1e83cf96e537076d33c961e48675b82ddbd74769b2"
+            },
+            {
+              "slot": "s01_02",
+              "stem": "r14_c01_s01_02_recovery23_v01",
+              "sha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e"
+            },
+            {
+              "slot": "s02_01",
+              "stem": "r14_c01_s02_01_recovery23_v01",
+              "sha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59"
+            },
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "J12",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J12.png",
+            "sha256": "edc7520189403bc76cff4b56651439f3a69fee02fc509e2193122e6ecf43dfee",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              1748,
+              724,
+              2348,
+              1324
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/25",
+          "inputSources": [
+            {
+              "slot": "s01_02",
+              "stem": "r14_c01_s01_02_recovery23_v01",
+              "sha256": "fdd0cdf47a2ba899f33bf5e1a71039ef61009747548663151eb7d1deb9806f1e"
+            },
+            {
+              "slot": "s01_03",
+              "stem": "r14_c01_s01_03_recovery23_v02",
+              "sha256": "e84d858a9847f7ddade8aaf2d2d84fdcc7f0b01885d2cdbbc898dffa680e338e"
+            },
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7"
+            },
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Junction incident to recorded materialHOLD arms",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "J13",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J13.png",
+            "sha256": "d35babe729b60c6e2214aca6baf650147dcb29c8d8191c04d08b3595d19494c7",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              2772,
+              724,
+              3372,
+              1324
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/26",
+          "inputSources": [
+            {
+              "slot": "s01_03",
+              "stem": "r14_c01_s01_03_recovery23_v02",
+              "sha256": "e84d858a9847f7ddade8aaf2d2d84fdcc7f0b01885d2cdbbc898dffa680e338e"
+            },
+            {
+              "slot": "s01_04",
+              "stem": "r14_c01_s01_04_recovery23_v01",
+              "sha256": "1972f13fefb81c3f91876584d0a4df63316a04fcb4e63e1bdc415a7f6a2e2425"
+            },
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0"
+            },
+            {
+              "slot": "s02_04",
+              "stem": "r14_c01_s02_04_recovery23_v01",
+              "sha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Junction incident to recorded materialHOLD arms",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "J21",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J21.png",
+            "sha256": "48f001d72f216f6bc3141ab13a07f711e8d9f4cc39f7988614e6af7d8b5ee759",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              724,
+              1748,
+              1324,
+              2348
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/27",
+          "inputSources": [
+            {
+              "slot": "s02_01",
+              "stem": "r14_c01_s02_01_recovery23_v01",
+              "sha256": "652d79410f5e3a59574524d03566f79d4f663640cfa8af2cfdb5fd288703eb59"
+            },
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7"
+            },
+            {
+              "slot": "s03_01",
+              "stem": "r14_c01_s03_01_recovery23_v01",
+              "sha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f"
+            },
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "J22",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J22.png",
+            "sha256": "bbed6449561fd561a7038333b12e3bc82c88ff335b0d1d222356ac68c3e83e5d",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              1748,
+              1748,
+              2348,
+              2348
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/28",
+          "inputSources": [
+            {
+              "slot": "s02_02",
+              "stem": "r14_c01_s02_02_recovery23_v01",
+              "sha256": "f630c81119664bff2d4120d7a313b9c2512bbc974ce7b75f6b3890f9ba27e2a7"
+            },
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0"
+            },
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b"
+            },
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "J23",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J23.png",
+            "sha256": "2ba4b16319d7b470adc2a668f976ad83c9fca40756535ec68b6b1f449bfb5b28",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              2772,
+              1748,
+              3372,
+              2348
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/29",
+          "inputSources": [
+            {
+              "slot": "s02_03",
+              "stem": "r14_c01_s02_03_recovery23_v01",
+              "sha256": "a694e09d266d4fc1f38916f9e865dca904d956eb23a6fd1a90f9ade35c87a1b0"
+            },
+            {
+              "slot": "s02_04",
+              "stem": "r14_c01_s02_04_recovery23_v01",
+              "sha256": "412d1c168020fe143228ce4ff1447df39d97c527c31fb73d7543cade2e06d6d4"
+            },
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d"
+            },
+            {
+              "slot": "s03_04",
+              "stem": "r14_c01_s03_04_recovery23_v02",
+              "sha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Junction incident to recorded materialHOLD arms",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "J31",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J31.png",
+            "sha256": "cbb96bf82f3737af5daeba02692a8559eaa291d6c877eafb1525ac339206ce1a",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              724,
+              2772,
+              1324,
+              3372
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/30",
+          "inputSources": [
+            {
+              "slot": "s03_01",
+              "stem": "r14_c01_s03_01_recovery23_v01",
+              "sha256": "195ec8e87e622517180fd40cf05eea37121957c93b0216a3a5a9a09aa43d040f"
+            },
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b"
+            },
+            {
+              "slot": "s04_01",
+              "stem": "r14_c01_s04_01_recovery23_v01",
+              "sha256": "e9b8ace7c1f9f89fcab7860a60630398205ea263cf82c6f45c4f815423945514"
+            },
+            {
+              "slot": "s04_02",
+              "stem": "r14_c01_s04_02_recovery23_v02",
+              "sha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": true,
+          "status": "PASS_LOCAL_NATIVE",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Pure sea, caustic paths/color locally continuous; no shore/object geometry issue",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "J32",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J32.png",
+            "sha256": "61cd8c37891b9d4e851bd082df81bd418c85844efb5f3a1730bcb76df7158a81",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              1748,
+              2772,
+              2348,
+              3372
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/31",
+          "inputSources": [
+            {
+              "slot": "s03_02",
+              "stem": "r14_c01_s03_02_recovery23_v01",
+              "sha256": "7d847e8aa0ab4602aeddd02f9f6c49138bafc58bda74e13e0f11cc52458c310b"
+            },
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d"
+            },
+            {
+              "slot": "s04_02",
+              "stem": "r14_c01_s04_02_recovery23_v02",
+              "sha256": "14adb4b8f29075af4bb73ceb78abdec4f3ea86e9eec107fc3f4221e304e96546"
+            },
+            {
+              "slot": "s04_03",
+              "stem": "r14_c01_s04_03_recovery23_v01",
+              "sha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Junction incident to recorded materialHOLD arms",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        },
+        {
+          "id": "J33",
+          "kind": "junction",
+          "evidenceArtifactAsRecorded": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v01/J33.png",
+            "sha256": "b0ca718f1279898edbd9c26244771ee6d8faa8bad7dfce431bec7d2225ef620f",
+            "dimensions": [
+              600,
+              600
+            ],
+            "tileBox": [
+              2772,
+              2772,
+              3372,
+              3372
+            ]
+          },
+          "evidenceHashVerification": "Stored in current verified QA JSON; media not reopened or rehashed by this task.",
+          "qaRecordJsonPointer": "/nativeViews/32",
+          "inputSources": [
+            {
+              "slot": "s03_03",
+              "stem": "r14_c01_s03_03_recovery23_v01",
+              "sha256": "d34789a61795cafd3e1b9537d700bbfbf0a10c868c050f406cfb5213387f046d"
+            },
+            {
+              "slot": "s03_04",
+              "stem": "r14_c01_s03_04_recovery23_v02",
+              "sha256": "14b62da80483777f6650ef0c85738234a24037ac4ca49dba5f6da2f87becb6db"
+            },
+            {
+              "slot": "s04_03",
+              "stem": "r14_c01_s04_03_recovery23_v01",
+              "sha256": "326987cecb84224318a6db7b59bd042878c13c3a786822f14621cc3d153fa289"
+            },
+            {
+              "slot": "s04_04",
+              "stem": "r14_c01_s04_04_recovery23_v01",
+              "sha256": "27246316a2840d493de36c257aa8982500d48e90a987da11d8192eca69cd5b5b"
+            }
+          ],
+          "allInputsMatchCurrentTarget16": true,
+          "candidateSha256": "34ff2837092e8976ae523d5c8ad65019cd720956b5e84058320aa4cd58d2a290",
+          "geometry": true,
+          "material": false,
+          "status": "MATERIAL_HOLD",
+          "actuallyViewedNativeRecorded": true,
+          "finding": "Junction incident to recorded materialHOLD arms",
+          "reuseExistingRecord": true,
+          "newVisualCheck": false
+        }
+      ],
+      "internalSummary": {
+        "geometryRecordedTrue": 33,
+        "seams": {
+          "recorded": 24,
+          "passLocalNative": [
+            "V1-R1",
+            "V1-R2",
+            "V1-R3",
+            "V1-R4",
+            "V2-R1",
+            "V2-R2",
+            "V2-R3",
+            "V3-R2",
+            "V3-R4",
+            "H1-C1",
+            "H1-C2",
+            "H1-C4",
+            "H2-C1",
+            "H2-C2",
+            "H2-C3",
+            "H3-C1",
+            "H3-C2"
+          ],
+          "materialHold": [
+            "V2-R4",
+            "V3-R1",
+            "V3-R3",
+            "H1-C3",
+            "H2-C4",
+            "H3-C3",
+            "H3-C4"
+          ],
+          "unknown": [],
+          "notChecked": []
+        },
+        "junctions": {
+          "recorded": 9,
+          "passLocalNative": [
+            "J11",
+            "J21",
+            "J22",
+            "J31"
+          ],
+          "materialHold": [
+            "J12",
+            "J13",
+            "J23",
+            "J32",
+            "J33"
+          ],
+          "unknown": [],
+          "notChecked": []
+        },
+        "materialHoldDomains": {
+          "V3-R1": "Upper caustic/brightness cut at x3072,y0..230 tile-local",
+          "V3-R3": "Upper caustic cut at x3072,y2048..2278 tile-local",
+          "V2-R4": "Upper brightness/caustic cut at x2048,y3072..3302 tile-local",
+          "H1-C3": "Horizontal water texture mismatch between s01c03 and s02c03, y1024,x2048..3072",
+          "H2-C4": "Local corner material inconsistency, y2048 nearx3072..3302",
+          "H3-C3": "Local corner material inconsistency y3072 nearx2048..2278",
+          "H3-C4": "Local corner caustic inconsistency y3072 nearx3072..3302"
+        },
+        "junctionHoldsAreIncidentToRecordedMaterialHoldArms": "Do not count the five junctionHOLDs as five newlydiscovered repairpoints or as new generation permission.",
+        "internalTilePassed": false,
+        "externalEdges": "PENDING",
+        "formalAccepted": false,
+        "newInternalPass": 0,
+        "newFormalPass": 0,
+        "newCoreCount": 0
+      },
+      "overlapV02DistinctEvidence": {
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/r14c01-native-binary-overlap-v02-4096.png",
+          "sha256": "02b8739292ae778d878beee5d0f8524873ff5f96c142654628fada1746310a91",
+          "bytes": 22685587,
+          "mtimeNs": "1792837448557206900",
+          "filesystemCreatedUtc": "2026-10-24T10:24:05.632706+00:00"
+        },
+        "generation": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/r14c01-native-binary-overlap-v02-4096.png.generation.json",
+          "sha256": "253962eb0a418eeee8eb1c48436609eb8edfd5f2e1c8cfab540073b8835ffbae",
+          "bytes": 33185
+        },
+        "assemblyAndQAReport": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c01-native-binary-v02/report.json",
+          "sha256": "1b82b30d9c5b20b3df7f17be94e10ab558a546ec6aa62fee8581dfcdf2662c08",
+          "bytes": 466169
+        },
+        "operation": "Original1254 RGB native sources only, sameglobalcoordinates, binary0/1 selection with minimal absolute-pixel-error paths inside230native overlap; no blending/feathering/rescaling/painting/additionalAI. Native halo remains a source prediction, postselectionQA required.",
+        "strictCOREOnly": false,
+        "nativeHaloPredictionSelectionUsed": true,
+        "layers": {
+          "qaStatus": "GEOMETRY_COVERAGE16_MATERIAL_HOLD",
+          "geometryCoverageCoreCount": 16,
+          "geometry": true,
+          "materialAccepted": false,
+          "fullCoreAccepted": false,
+          "internalTilePassed": false,
+          "externalEdges": "PENDING",
+          "formalAccepted": false
+        },
+        "completedQAAtUtc": "2026-10-24T14:05:27.654170+00:00",
+        "holdsAsRecorded": {
+          "V3-R1": "Local water-caustic density/brightness change remains in upper 230 pixels of the source-overlap boundary; same-coordinate pixel choice improves the strict CORE seam but does not establish material acceptance.",
+          "V3-R3": "Upper overlap corner shows a change in caustic phase/density near tile-local x3072,y2048..2278.",
+          "V2-R4": "Upper overlap corner brightness/caustic phase remains unresolved near tile-local x2048,y3072..3302.",
+          "H1-C3": "Caustic scale/phase transition remains locally noticeable across the overlap; no shoreline or object geometry exists here.",
+          "H2-C4": "Left overlap corner retains a difference in water-caustic density/brightness.",
+          "H3-C3": "Left overlap corner retains a water-caustic phase/density difference.",
+          "H3-C4": "Left overlap corner retains a water-caustic scale/brightness difference."
+        },
+        "reuseLimit": "Separate same-coordinate binary230overlap candidate, not strictCORE identity. Its local observations do not upgrade strictcandidate or grant material/internal PASS."
+      },
+      "remaining": [
+        "Original SW parent currentworking candidate pointer/receipt is not bound in examined current target snapshot; only original parent may reference/select existing strictcandidate under its established flow.",
+        "Seven explicit materialHOLD seamdomains and five incident junctionHOLDs remain unresolved; no new review/call/repair authorized here.",
+        "FullCORE material acceptance remains false; internalTilePassed remains false; external edges remain PENDING; formalAccepted remains false."
+      ],
+      "precedence": "If original parent subsequently publishes a source-bound receipt/current QA for the same target signature, that actual parent report takes precedence. Reuse unchanged valid checks; do not repeat these33 media checks or rebuild the tile.",
+      "operations": {
+        "AI": 0,
+        "newPNG": 0,
+        "assembly": 0,
+        "pixelReplay": 0,
+        "viewImage": 0,
+        "sourceMediaHashRepeats": 0,
+        "productionQAWrites": 0,
+        "productionSourceWrites": 0,
+        "currentOrSelectionWrites": 0,
+        "globalStateWrites": 0,
+        "crossChatMessages": 0,
+        "gitWrites": 0,
+        "allSTOPAndUNKNOWNUntouched": true,
+        "onlyWrittenArtifact": "docs/MAP_REGION_COORDINATION_20261024/island-r14c01-existing-qa-reuse-20261024-v01.json"
+      }
+    }
+  }
+}

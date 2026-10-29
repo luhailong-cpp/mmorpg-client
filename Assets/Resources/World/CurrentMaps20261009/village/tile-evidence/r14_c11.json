@@ -1,0 +1,1324 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 14,
+  "column": 11,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "69544f0ba755d71162e86b54b9decf044bdeb52e06021d10f5e849a412de2405",
+  "imageBytes": 22167891,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/candidate-4096.png.derivation.json",
+  "sourceLedgerSha256": "e8e0238ffc3184e93d4af4ada68e87551a0bae8a2194aca7b89c53c34d3f5d5b",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/candidate-4096.png",
+    "imageSha256": "69544f0ba755d71162e86b54b9decf044bdeb52e06021d10f5e849a412de2405",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/candidate-4096.png.derivation.json",
+        "sha256": "e8e0238ffc3184e93d4af4ada68e87551a0bae8a2194aca7b89c53c34d3f5d5b",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/selected-patches.json",
+        "sha256": "8597f37102b404eba2449885dcd9604a434450bcb6d3d5ddd56a48ac3ef96b55",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/current-combined-internal-review.json",
+        "sha256": "6333cbabdf4bb5111fb514266c86957d9fac7f7a95d1858f1206a716aaf72f48",
+        "completeness": [
+          "/fullCoreActualReviewCoverage",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/fresh-native-review-v2/result.json",
+        "sha256": "90e504eafd51eb701aec37b02f8f2da8271364506f4b029ba8e613a54eaa2694",
+        "completeness": [
+          "/distinctCompleteCoreCoverageCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/candidate.json",
+        "sha256": "26fd45349799d188d167c6684358f2aed38bf780b709065d8f8999193117a435",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/selected-patches.json",
+        "sha256": "8597f37102b404eba2449885dcd9604a434450bcb6d3d5ddd56a48ac3ef96b55",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/current-combined-internal-review.json",
+        "sha256": "6333cbabdf4bb5111fb514266c86957d9fac7f7a95d1858f1206a716aaf72f48",
+        "completeness": [
+          "/fullCoreActualReviewCoverage",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "candidate_ready_for_eight_boundary_and_full_core_actual_visual_review",
+      "formalAccepted": false,
+      "externalReviewPerformed": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/candidate-4096.png.derivation.json",
+        "record": {
+          "unchangedCoreCount": 15,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/result.json",
+        "record": {
+          "status": "candidate_ready_for_eight_boundary_and_full_core_actual_visual_review",
+          "formalAccepted": false,
+          "externalReviewPerformed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/selected-patches.json",
+        "record": {
+          "status": "source_complete_internal_external_ready_formal_pending",
+          "formalAccepted": false,
+          "materialPending": false,
+          "internalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/current-combined-internal-review.json",
+          "pendingIssues": [],
+          "nativeCoreCount": 16,
+          "closedSpecificRepeatIssues": [
+            "p21/p22",
+            "p11/p12",
+            "p32 versus old p31/p33 right-quarter network",
+            "p31/p33 remaining large caustic skeleton repetition"
+          ],
+          "currentInternalBoundaryReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/current-combined-internal-review.json",
+            "sha256": "6333cbabdf4bb5111fb514266c86957d9fac7f7a95d1858f1206a716aaf72f48"
+          },
+          "supersededInternalPendingIssues": {
+            "issues": [
+              {
+                "id": "water-density-horizontal",
+                "status": "pending",
+                "severity": "material_nonblocking_layout",
+                "location": "internal horizontal joins y54272, y55296, y56320; strongest p31/p41, p32/p42, p33/p43",
+                "description": "Small caustic loops and bright glints change density across some horizontal core joins. Geometry and water continuity remain valid, but uniform final water surface is not yet accepted.",
+                "currentPartialResolution": "Current p12/p22 native seam and its two crossing endpoints passed after both unique-water replacements; lower-row joins and deferred p31/p41 remain pending."
+              },
+              {
+                "id": "water-density-vertical",
+                "status": "pending",
+                "severity": "material_nonblocking_layout",
+                "location": "p12/p13 and some lower-row vertical joins",
+                "description": "Local caustic scale and saturation transitions remain visible at native scale; preserve all current sources for later bounded polish.",
+                "currentPartialResolution": "Current p12/p13 native seam passed local parent+independent review; other lower-row vertical joins remain pending."
+              },
+              {
+                "id": "p31-p41-two-attempts",
+                "status": "pending_deferred_after_two",
+                "description": "Two 1254 native AI joint repairs did not remove density transition without new perimeter artifact; canonical original remains best selected."
+              }
+            ],
+            "currentDisposition": "No artificial straight grid boundary reproduced in current33 actual/native or exact-SHA reused observations. Old repair methods remain closed, and no failed old candidate is adopted.",
+            "currentReview": {
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/current-remaining-internal-20261023-v1/result.json",
+              "sha256": "dc0bc17178078015501d47e7e16c164f67bf2bc19ca511e7f65b6bd4698329fe"
+            }
+          },
+          "resolvedPendingIssues": [
+            {
+              "id": "external-west-material",
+              "status": "pending",
+              "severity": "material_nonblocking_layout",
+              "location": "r14_c10/r14_c11 four segments plus y54272,y55296,y56320 crossings",
+              "description": "No shoreline or object discontinuity; small water pattern/density differences remain. West material acceptance is pending.",
+              "resolvedAtUtc": "2026-10-23T14:01:02.244732+00:00",
+              "resolutionReview": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/current-external-native-20261023-v1/result.json",
+                "sha256": "bfb5a7b6c16c82a25508b6b60d55b79025be94b6a82333b48711f060bea8dc92"
+              }
+            },
+            {
+              "id": "external-north-material",
+              "status": "pending",
+              "description": "North r13_c11 now has16selected cores; four seams plus3crosses viewed and source-hash checked. Stone/foam continuity near east end is usable; water scale/tone remains pending.",
+              "currentPartialResolution": "Current p12 north segment plus its two crossings passed only this local native scope; other north material observations remain pending.",
+              "resolvedAtUtc": "2026-10-23T14:01:02.244732+00:00",
+              "resolutionReview": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/current-external-native-20261023-v1/result.json",
+                "sha256": "bfb5a7b6c16c82a25508b6b60d55b79025be94b6a82333b48711f060bea8dc92"
+              }
+            },
+            {
+              "id": "external-east",
+              "status": "pending_current_native_review",
+              "description": "East r14_c12 now has16selected cores; old missing-source snapshot is superseded. Current exact outside material review is still required, and no east acceptance is inferred.",
+              "resolvedAtUtc": "2026-10-23T14:01:02.244732+00:00",
+              "resolutionReview": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/current-external-native-20261023-v1/result.json",
+                "sha256": "bfb5a7b6c16c82a25508b6b60d55b79025be94b6a82333b48711f060bea8dc92"
+              }
+            },
+            {
+              "id": "water-large-network-repeat-p31-p33",
+              "status": "pending_repair",
+              "scope": "remaining unchanged current p31/p33 source cores",
+              "patches": [
+                "p31",
+                "p33"
+              ],
+              "localRegion": [
+                740,
+                0,
+                1024,
+                1024
+              ],
+              "description": "The matching multi-level star/oval skeleton in the right portions of p31 and p33 remains visible in actual native comparison. Both sources are unchanged. New p32 no longer repeats that layout; this does not clear the remaining p31/p33 repeat.",
+              "approximateRepeatedLocalLandmarks": [
+                [
+                  800,
+                  96
+                ],
+                [
+                  826,
+                  132
+                ],
+                [
+                  740,
+                  177
+                ],
+                [
+                  770,
+                  225
+                ],
+                [
+                  848,
+                  301
+                ],
+                [
+                  960,
+                  212
+                ],
+                [
+                  1010,
+                  555
+                ],
+                [
+                  1015,
+                  650
+                ],
+                [
+                  960,
+                  856
+                ]
+              ],
+              "nativeEvidence": [
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/p31-proposed-native-core-100pct.png",
+                  "sha256": "a687cb62877f2752611bd22fec9907f56737bece0518b0ca58ba2096a89dbd6f",
+                  "patch": "p31",
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "sourceCrop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "actualNativeView": true,
+                  "detail": "original",
+                  "differentPixelsAgainstProposedSourceCore": 0
+                },
+                {
+                  "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/p33-proposed-native-core-100pct.png",
+                  "sha256": "d5aff24d17f04d25d5d54b1af6bfd36bd78a587f21794771d12d2f0384e1164c",
+                  "patch": "p33",
+                  "source": {
+                    "file": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  "sourceCrop": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "actualNativeView": true,
+                  "detail": "original",
+                  "differentPixelsAgainstProposedSourceCore": 0
+                }
+              ],
+              "resolvedAtUtc": "2026-10-23T14:01:02.244732+00:00",
+              "resolutionReview": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/fresh-native-review-v2/result.json",
+                "sha256": "90e504eafd51eb701aec37b02f8f2da8271364506f4b029ba8e613a54eaa2694"
+              }
+            }
+          ],
+          "externalReady": true,
+          "currentExternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/current-external-native-20261023-v1/result.json",
+            "sha256": "bfb5a7b6c16c82a25508b6b60d55b79025be94b6a82333b48711f060bea8dc92"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/current-combined-internal-review.json",
+        "record": {
+          "fullCoreActualReviewCoverage": 16,
+          "externalReady": true,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/fresh-native-review-v2/result.json",
+        "record": {
+          "status": "independent_native_review_pass_for_local_adoption_and_internal_readiness_recommendation",
+          "currentNativeBoundaryContinuityPendingCount": 0,
+          "distinctCompleteCoreCoverageCount": 16,
+          "formalAccepted": false,
+          "externalReviewPerformed": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/candidate.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "currentInternalReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/current-combined-internal-review.json",
+          "currentInternalReviewSha256": "6333cbabdf4bb5111fb514266c86957d9fac7f7a95d1858f1206a716aaf72f48",
+          "pendingIssues": [],
+          "externalReady": true,
+          "formalAccepted": false,
+          "materialPending": false,
+          "closedSpecificIssues": [
+            "p21/p22 repetition",
+            "p11/p12 repetition"
+          ],
+          "currentInternalBoundaryReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/current-remaining-internal-20261023-v1/result.json",
+            "sha256": "dc0bc17178078015501d47e7e16c164f67bf2bc19ca511e7f65b6bd4698329fe"
+          },
+          "currentExternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/current-external-native-20261023-v1/result.json",
+            "sha256": "bfb5a7b6c16c82a25508b6b60d55b79025be94b6a82333b48711f060bea8dc92"
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/current-combined-internal-review.json",
+    "sourceSha256": "6333cbabdf4bb5111fb514266c86957d9fac7f7a95d1858f1206a716aaf72f48",
+    "normalizedDocument": {
+      "createdAtUtc": "2026-10-23T14:01:02.244732+00:00",
+      "tile": "r14_c11",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/candidate-4096.png",
+        "sha256": "69544f0ba755d71162e86b54b9decf044bdeb52e06021d10f5e849a412de2405"
+      },
+      "sourcePins": [
+        {
+          "patch": "p11",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p11-v1.png",
+          "sha256": "e77aac347160d959719d61cf7e7c60d82c63a184e5e7c4f946fba85d8735f79d",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p12",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/candidate-qa-v1/p12-unique-native-true-halo.png",
+          "sha256": "77fe02f044bb9b6648911d87daa84e963bbe1dce11320e31cab5614bc51ebf97",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p13",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p13-v1.png",
+          "sha256": "23ed903436747decf03955928ab97d205c66c1380eb77ccf8f444a3cd82ba275",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p14",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p14-v1.png",
+          "sha256": "2c63e42187f03d0300091b5acba8e43a26db8a35d47388390b47df66b49cdeeb",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p21",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p21-v1.png",
+          "sha256": "408839537380638aef7f099cd45726be193d3a3cb7eb0c7da6f8bd3547345c76",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p22",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p22-20261022/candidate-qa-v1/p22-unique-native-true-halo.png",
+          "sha256": "e2143b5e9baca6f1a37a7a2b33c033fcba589c8cd53f0630911183fb2cc1d1a2",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p23",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p23-v1.png",
+          "sha256": "096cdc21f3e96599d73c1ba5f1a0e7ccd03d88194c45670d82f84a19e15e41ce",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p31",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p31-v1.png",
+          "sha256": "2248b249720a0e13ba1439400eebfda833d7f6515813d2759723bb1af9ff1fe5",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p24",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p24-v1.png",
+          "sha256": "827aff3297b8d3b15332c42a1639b15ecce9d3d89c62f5d1a55c6519d88a45be",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p32",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/p32-unique-native-true-halo.png",
+          "sha256": "2c3a552741d268353f87548832b7a256ae12467f23926b528b64bff24e8775a5",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p41",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p41-v1.png",
+          "sha256": "c4ab89321f9bcbe7d1b42b33dc1c8c4aa621ab28034581f8ed5827a20fa4877a",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p33",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/p33-unique-native-true-halo.png",
+          "sha256": "23663f86523ac896e926954a3c6d7132526e85a661a8f05bfecc20a60e055121",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p42",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p42-v1.png",
+          "sha256": "7c9247888406f9e2952bc83af956051a3a03e6719f0c093099841027724eb319",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p34",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p34-v1.png",
+          "sha256": "ec26d6d4335ea312400d80c982511d1712d8d5c799c048226f88fa45780eb997",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p43",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p43-v1.png",
+          "sha256": "d25be200b46717475f4f44ec8c998e9dfbf7e37b3a788bc29a4a9a60965d4d0f",
+          "coreReplayDifferentPixels": 0
+        },
+        {
+          "patch": "p44",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/native/p44-v1.png",
+          "sha256": "86736673dd154c8f4184a27f40217a98f9db4778155f2ceb924cf6b30fc113b3",
+          "coreReplayDifferentPixels": 0
+        }
+      ],
+      "evidence": [
+        {
+          "id": "cross-r1-c1",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/candidate-qa-v1/internal-cross-x41984-y54272-100pct.png",
+          "sha256": "593e81706717eb6812272436e939189f801f1cb527e97a3f9156639c3844d219",
+          "globalBox": [
+            41728,
+            54016,
+            42240,
+            54528
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Current actual parent native view, with independent central seam or full-cross counterpart",
+          "independentReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/candidate-qa-v1/result.json",
+          "independentReviewSha256": "16e1fd7ec78385cf310fbc40ce9c94c167ed22ffcdf871cdd72d3d95245d8aa7",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "actualSha256": "593e81706717eb6812272436e939189f801f1cb527e97a3f9156639c3844d219",
+          "reusedPass": true,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Existing actual native pass reused only for the exact same source-bound current pixels. Prior review path/hash retained above.",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "cross-r1-c2",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/candidate-qa-v1/internal-cross-x43008-y54272-100pct.png",
+          "sha256": "27294e4f3ba115029c18993b6b29c535b0aa99d32220fc9333bc0ee77abf9ac5",
+          "globalBox": [
+            42752,
+            54016,
+            43264,
+            54528
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Current actual parent native view, with independent central seam or full-cross counterpart",
+          "independentReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/candidate-qa-v1/result.json",
+          "independentReviewSha256": "16e1fd7ec78385cf310fbc40ce9c94c167ed22ffcdf871cdd72d3d95245d8aa7",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "actualSha256": "27294e4f3ba115029c18993b6b29c535b0aa99d32220fc9333bc0ee77abf9ac5",
+          "reusedPass": true,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Existing actual native pass reused only for the exact same source-bound current pixels. Prior review path/hash retained above.",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "cross-r1-c3",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/cross-r1-c3.png",
+          "sha256": "66e1b11f07650df704bb9fe70e086c250bed57f5276bf090d65cceb0952aa07d",
+          "globalBox": [
+            43776,
+            54016,
+            44288,
+            54528
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "66e1b11f07650df704bb9fe70e086c250bed57f5276bf090d65cceb0952aa07d",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "At world(44032,54272), left foam and right curved caustics are connected. Density changes run diagonally, without a rectangular four-quadrant tone/phase boundary.",
+          "viewer": "secondary_read_only_native_cross_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "cross-r2-c1",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/cross-r2-c1-100pct.png",
+          "sha256": "0fa1c31f3e951189a53a12c7a9e179e4f53c960d3b97699f84ec7e20af126209",
+          "globalBox": [
+            41728,
+            55040,
+            42240,
+            55552
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "currentReviewAction": "actual_native_original_detail_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0,
+          "actualViewDetail": "original",
+          "currentVisualObservation": "World(41984,55296): bright curved chains cross both central axes. Four quadrants have irregular natural caustic-size variation without a grid-shaped tone/density edge or broken branch.",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          }
+        },
+        {
+          "id": "cross-r2-c2",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/cross-r2-c2-100pct.png",
+          "sha256": "7a673bc707d8b5330cf9239af48779091670cde1a994605415aa89b5067ee0b4",
+          "globalBox": [
+            42752,
+            55040,
+            43264,
+            55552
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "reviewAction": "needs_actual_native_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pending_actual_native_review",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "cross-r2-c3",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/cross-r2-c3-100pct.png",
+          "sha256": "14baccb4b282546385bdf3a27f865c4946525a58be4344fce284de769d040574",
+          "globalBox": [
+            43776,
+            55040,
+            44288,
+            55552
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "reviewAction": "needs_actual_native_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pending_actual_native_review",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "cross-r3-c1",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/cross-r3-c1-100pct.png",
+          "sha256": "874b938afd30a3b625b009ef1c52a5cb7e4c672637e8a2268338f0acf596bee2",
+          "globalBox": [
+            41728,
+            56064,
+            42240,
+            56576
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "currentReviewAction": "actual_native_original_detail_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0,
+          "actualViewDetail": "original",
+          "currentVisualObservation": "World(41984,56320): broader lower-left cells and denser right loops transition through curved branches; both axes remain continuous without a rectangular density step.",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          }
+        },
+        {
+          "id": "cross-r3-c2",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/cross-r3-c2-100pct.png",
+          "sha256": "83e4721fecd2e247f2d8bcce75ff731da604323298899216fb4ffb8c5c272422",
+          "globalBox": [
+            42752,
+            56064,
+            43264,
+            56576
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "reviewAction": "needs_actual_native_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pending_actual_native_review",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "cross-r3-c3",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/cross-r3-c3-100pct.png",
+          "sha256": "203933cc6d9058931fd27024b488ed2acdaf62cb6db8e609229f64fe2ef36557",
+          "globalBox": [
+            43776,
+            56064,
+            44288,
+            56576
+          ],
+          "dimensions": [
+            512,
+            512
+          ],
+          "reviewAction": "needs_actual_native_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pending_actual_native_review",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p11--p12",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/parent-native-strips-512-v1/p11--p12-100pct.png",
+          "sha256": "d6a29b026ca71cbfcb121ddefa6dd85c35ba5ed5fdfa3af96fc9e1036325c59b",
+          "globalBox": [
+            41728,
+            53248,
+            42240,
+            54272
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Current actual parent native view, with independent central seam or full-cross counterpart",
+          "independentReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/candidate-qa-v1/result.json",
+          "independentReviewSha256": "16e1fd7ec78385cf310fbc40ce9c94c167ed22ffcdf871cdd72d3d95245d8aa7",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "actualSha256": "d6a29b026ca71cbfcb121ddefa6dd85c35ba5ed5fdfa3af96fc9e1036325c59b",
+          "reusedPass": true,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Existing actual native pass reused only for the exact same source-bound current pixels. Prior review path/hash retained above.",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p11--p21",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p11--p21.png",
+          "sha256": "207ded965094add27d48c45e2b430c9bce3127b3ae98fa26d40aedd5f7e7f7c1",
+          "globalBox": [
+            40960,
+            54016,
+            41984,
+            54528
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "207ded965094add27d48c45e2b430c9bce3127b3ae98fa26d40aedd5f7e7f7c1",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Larger cells above and smaller loops below join through curved diagonal branches. There is no full-width straight density/tone cutoff or phase restart at y54272.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p12--p13",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/parent-native-strips-512-v1/p12--p13-100pct.png",
+          "sha256": "2013d7bcf5271b4db83ebbf3efc764c9468b749fe409dbbaec4164ffdca1e489",
+          "globalBox": [
+            42752,
+            53248,
+            43264,
+            54272
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Current actual parent native view, with independent central seam or full-cross counterpart",
+          "independentReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/candidate-qa-v1/result.json",
+          "independentReviewSha256": "16e1fd7ec78385cf310fbc40ce9c94c167ed22ffcdf871cdd72d3d95245d8aa7",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "actualSha256": "2013d7bcf5271b4db83ebbf3efc764c9468b749fe409dbbaec4164ffdca1e489",
+          "reusedPass": true,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Existing actual native pass reused only for the exact same source-bound current pixels. Prior review path/hash retained above.",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p12--p22",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/parent-native-strips-512-v1/p12--p22-100pct.png",
+          "sha256": "082ead5842d3b4a6ea04b8c53cbac5ba94f14d7d163a87eb6d0367f04bdd48c5",
+          "globalBox": [
+            41984,
+            54016,
+            43008,
+            54528
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Current actual parent native view, with independent central seam or full-cross counterpart",
+          "independentReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p12-20261022/candidate-qa-v1/result.json",
+          "independentReviewSha256": "16e1fd7ec78385cf310fbc40ce9c94c167ed22ffcdf871cdd72d3d95245d8aa7",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "actualSha256": "082ead5842d3b4a6ea04b8c53cbac5ba94f14d7d163a87eb6d0367f04bdd48c5",
+          "reusedPass": true,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Existing actual native pass reused only for the exact same source-bound current pixels. Prior review path/hash retained above.",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p13--p14",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p13--p14.png",
+          "sha256": "ab23a739071b1ef21b9af795260a2b21e3c7eb5f6fba3b69312d7e568414630a",
+          "globalBox": [
+            43776,
+            53248,
+            44288,
+            54272
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "ab23a739071b1ef21b9af795260a2b21e3c7eb5f6fba3b69312d7e568414630a",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Foam arcs and cyan/blue water continue through the x44032 midpoint; the rock and foam transition follows the curved shoreline, without a rectangular material edge.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p13--p23",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p13--p23.png",
+          "sha256": "61b0424114c94beab87bdc0c9e86dd9f92ae4a4d7f14238f5a84c03f2d9c79c8",
+          "globalBox": [
+            43008,
+            54016,
+            44032,
+            54528
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "61b0424114c94beab87bdc0c9e86dd9f92ae4a4d7f14238f5a84c03f2d9c79c8",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Broad caustic cells, fine loops and the right-hand foam remain connected across y54272. Density changes follow diagonal/arced wave structures, not a horizontal step.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p14--p24",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p14--p24.png",
+          "sha256": "a7ebf9306426102893c299682b29be9add535daebf15fbe2b5027ae3826611d2",
+          "globalBox": [
+            44032,
+            54016,
+            45056,
+            54528
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "a7ebf9306426102893c299682b29be9add535daebf15fbe2b5027ae3826611d2",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "The large cells above mix into finer lower loops across y54272; the right-hand foam bends continuously. No aligned full-width tone or caustic cutoff.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p21--p22",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p22-20261022/candidate-qa-v1/west-p21--p22-100pct.png",
+          "sha256": "fc87efc28da8e40187e301d8ac937f1c0edc4d0482267cb0ed11e7d48774d08f",
+          "globalBox": [
+            41728,
+            54272,
+            42240,
+            55296
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "independentReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p22-20261022/independent-qa-v1/result.json",
+          "independentReviewSha256": "27291d5516656ca8c9e7253ba68be91a35cce043cf6c9d40f58013bafc0a3e3a",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "fc87efc28da8e40187e301d8ac937f1c0edc4d0482267cb0ed11e7d48774d08f",
+          "reusedPass": true,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Existing actual native pass reused only for the exact same source-bound current pixels. Prior review path/hash retained above.",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p21--p31",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p21--p31.png",
+          "sha256": "a420536c056587408998529dcb1195776b314fdab7087a6be073ac33929a185b",
+          "globalBox": [
+            40960,
+            55040,
+            41984,
+            55552
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "a420536c056587408998529dcb1195776b314fdab7087a6be073ac33929a185b",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Multiple diagonal oval chains and star branches connect through y55296; denser small loops below occur in uneven lobes, without a straight rectangular boundary.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p22--p23",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p22-20261022/candidate-qa-v1/east-p22--p23-100pct.png",
+          "sha256": "415765ead4278f62f9c9db69fed920cf71056fa30692a2bc4d56ea97ce7af95c",
+          "globalBox": [
+            42752,
+            54272,
+            43264,
+            55296
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "independentReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p22-20261022/independent-qa-v1/result.json",
+          "independentReviewSha256": "27291d5516656ca8c9e7253ba68be91a35cce043cf6c9d40f58013bafc0a3e3a",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "415765ead4278f62f9c9db69fed920cf71056fa30692a2bc4d56ea97ce7af95c",
+          "reusedPass": true,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Existing actual native pass reused only for the exact same source-bound current pixels. Prior review path/hash retained above.",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p22--p32",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/p22--p32-100pct.png",
+          "sha256": "d0abbb3e00a7830e3c1880e77ee54fc60b2f3c439f3e5366355aceab5f6297e9",
+          "globalBox": [
+            41984,
+            55040,
+            43008,
+            55552
+          ],
+          "dimensions": [
+            1024,
+            512
+          ],
+          "currentReviewAction": "actual_native_original_detail_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0,
+          "actualViewDetail": "original",
+          "currentVisualObservation": "World y55296,x41984..43008: bright star branches and oval caustic chains cross the horizontal center; the larger cell network transitions through curved lobes. No straight rectangular density/tone cutoff, gap or phase restart was observed.",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          }
+        },
+        {
+          "id": "p23--p24",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p23--p24.png",
+          "sha256": "6adbdbc1067435166a099c6a8984e9e365278752de13e7b01cf02dc92dfe6199",
+          "globalBox": [
+            43776,
+            54272,
+            44288,
+            55296
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "6adbdbc1067435166a099c6a8984e9e365278752de13e7b01cf02dc92dfe6199",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "The vertical x44032 midpoint is crossed by oval chains and broad diagonal cells. Brightness and scale differences track the curved water structures, not a vertical strip.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p23--p33",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/p23--p33-100pct.png",
+          "sha256": "e8a964c95accc560703b2306ace43b940719950e2b5b831743d7ea5e88dd96ba",
+          "globalBox": [
+            43008,
+            55040,
+            44032,
+            55552
+          ],
+          "dimensions": [
+            1024,
+            512
+          ],
+          "reviewAction": "needs_actual_native_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pending_actual_native_review",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p24--p34",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p24--p34.png",
+          "sha256": "15cc03c6fde6b5c5a7c201bfaef1cb419edba3327aba8a7f44e39e6e73c75d0e",
+          "globalBox": [
+            44032,
+            55040,
+            45056,
+            55552
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "15cc03c6fde6b5c5a7c201bfaef1cb419edba3327aba8a7f44e39e6e73c75d0e",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "The fine blue field and several bright diagonal branches span y55296. Mixed large/small caustic cells remain continuous, without a full-width cutoff.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p31--p32",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/p31--p32-100pct.png",
+          "sha256": "92cf40ac909b11260ff4f6374c53953385fc0c7c67c95a97d8e1b63f2735c6c0",
+          "globalBox": [
+            41728,
+            55296,
+            42240,
+            56320
+          ],
+          "dimensions": [
+            512,
+            1024
+          ],
+          "currentReviewAction": "actual_native_original_detail_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0,
+          "actualViewDetail": "original",
+          "currentVisualObservation": "World x41984,y55296..56320: multiple oblique oval chains and highlight branches continue across the center. The new right-side cell arrangement differs while joining naturally; no vertical hard edge or aligned saturation strip was observed.",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          }
+        },
+        {
+          "id": "p31--p41",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p31--p41.png",
+          "sha256": "5a747366b621332e662092c026fc0f83b1f779a7c6bcb43c99138ad875999a4e",
+          "globalBox": [
+            40960,
+            56064,
+            41984,
+            56576
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "5a747366b621332e662092c026fc0f83b1f779a7c6bcb43c99138ad875999a4e",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "At world y56320 the bright branches and oval chains cross the boundary continuously. Fine-loop density and larger cells vary along irregular diagonal areas, rather than stopping at the horizontal core boundary. Confirmed in the additional1024x1024 current-native context and independently.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p32--p33",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/p32--p33-100pct.png",
+          "sha256": "600471e2dcebfab2ffcf5c7ad52daa673077a5ca90a403401a6663f4245744fb",
+          "globalBox": [
+            42752,
+            55296,
+            43264,
+            56320
+          ],
+          "dimensions": [
+            512,
+            1024
+          ],
+          "reviewAction": "needs_actual_native_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pending_actual_native_review",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p32--p42",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/p32--p42-100pct.png",
+          "sha256": "69762adf4dc3045d25821ed7149637c3c45239dd01dd589b47b4ba2acd0ae78d",
+          "globalBox": [
+            41984,
+            56064,
+            43008,
+            56576
+          ],
+          "dimensions": [
+            1024,
+            512
+          ],
+          "currentReviewAction": "actual_native_original_detail_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0,
+          "actualViewDetail": "original",
+          "currentVisualObservation": "World y56320,x41984..43008: the lower broad cells expand along slanted curves while small loops and bright branches connect across the center. No full-width horizontal cutoff or pasted rectangular texture edge.",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          }
+        },
+        {
+          "id": "p33--p34",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/p33--p34-100pct.png",
+          "sha256": "c52b5d045d5b71c096845b12b6c2e366eeca2b5be3bce4349664c62641c7b28c",
+          "globalBox": [
+            43776,
+            55296,
+            44288,
+            56320
+          ],
+          "dimensions": [
+            512,
+            1024
+          ],
+          "reviewAction": "needs_actual_native_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pending_actual_native_review",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p33--p43",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/candidate-qa-v1/p33--p43-100pct.png",
+          "sha256": "0cbb1e8d7195fc3f007f99824b3a605f93f133afffb6d3ae1e3f14878afbc64a",
+          "globalBox": [
+            43008,
+            56064,
+            44032,
+            56576
+          ],
+          "dimensions": [
+            1024,
+            512
+          ],
+          "reviewAction": "needs_actual_native_view",
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pending_actual_native_review",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p34--p44",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p34--p44.png",
+          "sha256": "4d8caee122533fec5fb9e7160ac4e903614cbca6923fafeb13e77bfa43fb0c30",
+          "globalBox": [
+            44032,
+            56064,
+            45056,
+            56576
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "4d8caee122533fec5fb9e7160ac4e903614cbca6923fafeb13e77bfa43fb0c30",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Dense upper loops and broad lower cells blend through slanted branches at y56320. No rectangular boundary or caustic phase restart.",
+          "viewer": "current_remaining_internal_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p41--p42",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p41--p42.png",
+          "sha256": "50660cbcf45405a8a4dcbdee18beeec65af0aa92616621827de25035f700d74d",
+          "globalBox": [
+            41728,
+            56320,
+            42240,
+            57344
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "50660cbcf45405a8a4dcbdee18beeec65af0aa92616621827de25035f700d74d",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Along x41984,y56320..57344, multiple ellipses and diagonal highlight chains cross the center. The fine blue field has no vertical hard cut.",
+          "viewer": "secondary_read_only_native_cross_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p42--p43",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p42--p43.png",
+          "sha256": "7ef9798916dbd738baf42875e2444938699b8e76e0a4402207d73b100408d361",
+          "globalBox": [
+            42752,
+            56320,
+            43264,
+            57344
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "7ef9798916dbd738baf42875e2444938699b8e76e0a4402207d73b100408d361",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Along x43008,y56320..57344, several upper/lower networks connect through the center. Local scale differences do not align to a vertical phase restart.",
+          "viewer": "secondary_read_only_native_cross_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        },
+        {
+          "id": "p43--p44",
+          "image": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/p43--p44.png",
+          "sha256": "ea977617560c75192e66e7b7f774069a952e9150ca21d1188c93983adee0da51",
+          "globalBox": [
+            43776,
+            56320,
+            44288,
+            57344
+          ],
+          "pixelReplayVsCurrentCandidateDifferentPixels": 0,
+          "basis": "Reuse prior actually viewed observation/status after current proposed candidate crop pixel identity; pending stays pending.",
+          "priorReview": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/qa/complete-20261013-v1/visual-review.json",
+          "priorReviewSha256": "50b0f47fd3ee113dc5afb8f07f4b2ef2c26474ede1a0362bbe7208b428b01308",
+          "materialStatus": "pass_for_boundary_continuity_only",
+          "reusedFromReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p32-20261023/candidate-qa-v1/current-combined-internal-review.json",
+            "sha256": "db23f460216893c6dba536b9b761f311843592d19b62ea3955e328373dc25db1"
+          },
+          "actualSha256": "ea977617560c75192e66e7b7f774069a952e9150ca21d1188c93983adee0da51",
+          "reusedPass": false,
+          "actuallyViewedThisTask": false,
+          "boundaryContinuityStatus": "pass_exact_pixel_reuse",
+          "reviewAction": "reuse_actual_pass_after_current_hash_and_pixel_identity",
+          "currentVisualObservation": "Along x44032,y56320..57344, narrow and broad cells alternate while highlights extend through the center, without a continuous density/tone boundary.",
+          "viewer": "secondary_read_only_native_cross_reviewer",
+          "currentReviewAction": "reuse_prior_actual_native_pass_after_current_source_hash_and_pixel_identity",
+          "pixelReplayVsProposedCandidateDifferentPixels": 0
+        }
+      ],
+      "all33CurrentEvidenceReplayDifferentPixels": 0,
+      "currentNativeBoundaryContinuityPassedCount": 33,
+      "changedNativeViews": 8,
+      "unchangedActualPassReuses": 25,
+      "freshIndependentInternal": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/fresh-native-review-v2/result.json",
+        "sha256": "90e504eafd51eb701aec37b02f8f2da8271364506f4b029ba8e613a54eaa2694"
+      },
+      "fullCoreActualReviewCoverage": 16,
+      "coreMaterialReady": true,
+      "internalReady": true,
+      "externalReady": true,
+      "formalAccepted": false,
+      "parentReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r14_c11/reboot-water-unique-p33-20261023/parent-native-review-and-readiness.json",
+        "sha256": "3b8537733163ec008c811e37b58099b692ee28e0602498a171e2f4f34917b04c"
+      }
+    }
+  }
+}

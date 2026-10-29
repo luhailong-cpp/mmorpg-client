@@ -1,0 +1,1234 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 10,
+  "column": 8,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "36080299e04ffa5713f7d90bdfff42cfd03bb97574689f267f70eb7580913049",
+  "imageBytes": 23723499,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/final-source-replay-audit.json",
+  "sourceLedgerSha256": "a2652c78b1b054db3ab99a9b558cf992ce1c30f4b7e0ee8df10ec71ea5a6e087",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/candidate-4096.png",
+    "imageSha256": "36080299e04ffa5713f7d90bdfff42cfd03bb97574689f267f70eb7580913049",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/final-source-replay-audit.json",
+        "sha256": "a2652c78b1b054db3ab99a9b558cf992ce1c30f4b7e0ee8df10ec71ea5a6e087",
+        "sourceReviewSha256": "a2652c78b1b054db3ab99a9b558cf992ce1c30f4b7e0ee8df10ec71ea5a6e087",
+        "completeness": [
+          "all16SourceCoreToCandidateDifferentPixels=0; hash-bound full16CORE replay."
+        ]
+      }
+    ],
+    "selectionBasis": "all16_native_source_core_replay",
+    "sourceStatus": {
+      "status": "reject_local_G3_v2_right_endpoint_steps_closed_2_of_2",
+      "internal33Review": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/internal-33-incremental-review.json",
+        "sha256": "b702c45bcede2c118de0b2af84cd4739c7bfd7b65c393deca2b8ca40ba8f8a38"
+      },
+      "externalReadyRecommended": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/result.json",
+        "record": {
+          "status": "reject_local_G3_v2_right_endpoint_steps_closed_2_of_2",
+          "internal33Review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/internal-33-incremental-review.json",
+            "sha256": "b702c45bcede2c118de0b2af84cd4739c7bfd7b65c393deca2b8ca40ba8f8a38"
+          },
+          "externalReadyRecommended": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/internal-33-incremental-review.json",
+        "record": {
+          "reason": "G3/newcore review pending;C2p44 unchanged held",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/independent-review.json",
+        "record": {
+          "status": "reject_local_G3_v2_right_endpoint_steps_closed_2_of_2",
+          "wholeCoreStatus": "held_new_ROI_boundary_adoption_defects",
+          "wholeCoreCounts": {
+            "pass": 14,
+            "held": 2,
+            "heldPatches": [
+              "p43",
+              "p44"
+            ]
+          },
+          "externalReadyRecommended": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/internal-33-incremental-review.json",
+    "sourceSha256": "b702c45bcede2c118de0b2af84cd4739c7bfd7b65c393deca2b8ca40ba8f8a38",
+    "normalizedDocument": {
+      "atUtc": "2026-10-24T08:24:51.486104+00:00",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/reboot-g3-gunwale-20261024/fixed-endpoints-v2/candidate-qa-v1/candidate-4096.png",
+        "sha256": "36080299e04ffa5713f7d90bdfff42cfd03bb97574689f267f70eb7580913049"
+      },
+      "priorActualReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+        "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+      },
+      "entries": [
+        {
+          "id": "p11--p12",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p11--p12.png",
+            "sha256": "247f9b1a09fff8b4d7c2eb9bb67d5c0b82cba939885a148f284a8f77c22f8af9"
+          },
+          "worldBox": [
+            29440,
+            36864,
+            29952,
+            37888
+          ],
+          "tileBox": [
+            768,
+            0,
+            1280,
+            1024
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "石板接边、裂纹和色斑连续，无直竖色界。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p12--p13",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p12--p13.png",
+            "sha256": "cc2a92f4e2559b15e59aa656c752cd3a13549c51132eed1dc192a30bf76c29dc"
+          },
+          "worldBox": [
+            30464,
+            36864,
+            30976,
+            37888
+          ],
+          "tileBox": [
+            1792,
+            0,
+            2304,
+            1024
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "货架梁、木箱与袋罐结构连续；梁上阴影沿实物方向变化，无网格截断。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p13--p14",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p13--p14.png",
+            "sha256": "85cb2b349b6964633de78b6116a3641e560306ade82b8317fbe5826455ee88e3"
+          },
+          "worldBox": [
+            31488,
+            36864,
+            32000,
+            37888
+          ],
+          "tileBox": [
+            2816,
+            0,
+            3328,
+            1024
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "灯笼、桶沿及暗部背景连接自然；中心接线未见轮廓或色块跳变。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p21--p22",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p21--p22.png",
+            "sha256": "ff7d5a819e219659f92b2c89acf04c38671140878e533e11f1028fb366373657"
+          },
+          "worldBox": [
+            29440,
+            37888,
+            29952,
+            38912
+          ],
+          "tileBox": [
+            768,
+            1024,
+            1280,
+            2048
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "石板与船舷接点顺接；木梁亮边、深浅面及阴影连续。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p22--p23",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p22--p23.png",
+            "sha256": "9648d82d96d5311b75585328f5d1298deb876220fbd959c026b6f8b69c032a5c"
+          },
+          "worldBox": [
+            30464,
+            37888,
+            30976,
+            38912
+          ],
+          "tileBox": [
+            1792,
+            1024,
+            2304,
+            2048
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "甲板缝、铆钉、篷布弧线与织纹连续，无中线材质突变。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p23--p24",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p23--p24.png",
+            "sha256": "c13f488cf96124cd666f6ddb535163115b6175debdf6fa4bb462a2c94d658c3a"
+          },
+          "worldBox": [
+            31488,
+            37888,
+            32000,
+            38912
+          ],
+          "tileBox": [
+            2816,
+            1024,
+            3328,
+            2048
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "甲板横纹、桶影与绳圈背景连续，无直竖裁切带。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p31--p32",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p31--p32.png",
+            "sha256": "16be737ca5a742824e7d68d90818242d7007324c30a2a19b68008a1789e80311"
+          },
+          "worldBox": [
+            29440,
+            38912,
+            29952,
+            39936
+          ],
+          "tileBox": [
+            768,
+            2048,
+            1280,
+            3072
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "船内横梁与板缝穿越中心线，木纹尺度及阴影连续。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p32--p33",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p32--p33.png",
+            "sha256": "08d5c82612b3a5723889f39c4ce6230b4acddd9a57a83c4cc17a254c0095211a"
+          },
+          "worldBox": [
+            30464,
+            38912,
+            30976,
+            39936
+          ],
+          "tileBox": [
+            1792,
+            2048,
+            2304,
+            3072
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "篷布织纹、针脚、弧线与下沿连接自然，无直竖密度界。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p33--p34",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p33--p34.png",
+            "sha256": "5ffbe88a1c46ab8dff9194eb67938ce65af7438e2ca44a0614a7b1a621e357f4"
+          },
+          "worldBox": [
+            31488,
+            38912,
+            32000,
+            39936
+          ],
+          "tileBox": [
+            2816,
+            2048,
+            3328,
+            3072
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "篷布右沿、船肋和蓝布座面连续；木材明暗无矩形边。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p41--p42",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p41--p42.png",
+            "sha256": "4e75465bef3c9fda28844ff3254e8fdf1571ba79935cfca048efbf9b8e5a8b2b"
+          },
+          "worldBox": [
+            29440,
+            39936,
+            29952,
+            40960
+          ],
+          "tileBox": [
+            768,
+            3072,
+            1280,
+            4096
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "船壳斜板缝与木纹顺接，无轮廓阶跃。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p42--p43",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p42--p43.png",
+            "sha256": "cc0acc9ddf2834fc05cb5d0aab78e146ed62042ba89c4df8ef7574994ba01614"
+          },
+          "worldBox": [
+            30464,
+            39936,
+            30976,
+            40960
+          ],
+          "tileBox": [
+            1792,
+            3072,
+            2304,
+            4096
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "横梁、地板和船舷高光穿越中心线；物件阴影自然，当前边带通过。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p43--p44",
+          "kind": "vertical",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p43--p44.png",
+            "sha256": "896f2cd5d5318a38932cd7aaa8df64013d0e2052676e5540223bddce98626430"
+          },
+          "worldBox": [
+            31488,
+            39936,
+            32000,
+            40960
+          ],
+          "tileBox": [
+            2816,
+            3072,
+            3328,
+            4096
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "蓝布折褶、凳梁及地板连接连续；此512宽边带不覆盖核心内G3/C2采纳线。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p11--p21",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p11--p21.png",
+            "sha256": "02e16f40580bb4088089ddb60004cb25c368fcee37dabcc78d3c1e70e92d6433"
+          },
+          "worldBox": [
+            28672,
+            37632,
+            29696,
+            38144
+          ],
+          "tileBox": [
+            0,
+            768,
+            1024,
+            1280
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "木桩竖边、木纹与石板阴影连续，无横向截断。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p12--p22",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p12--p22.png",
+            "sha256": "138930f04c19774faf6fe075a58916bd84c7f13e4616e1f72020c8081dc6428a"
+          },
+          "worldBox": [
+            29696,
+            37632,
+            30720,
+            38144
+          ],
+          "tileBox": [
+            1024,
+            768,
+            2048,
+            1280
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "石板砖缝与灰米色材质连续，未见横向色带。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p13--p23",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p13--p23.png",
+            "sha256": "bb1db92190ae465accd7caf9c9d1bd5e434b4663c9b2a9a5dfefdc3b8d88842f"
+          },
+          "worldBox": [
+            30720,
+            37632,
+            31744,
+            38144
+          ],
+          "tileBox": [
+            2048,
+            768,
+            3072,
+            1280
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "桶板、金属箍弧线与背景结构连续，无横向台阶。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p14--p24",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p14--p24.png",
+            "sha256": "00a343c76324e32399b6d407cb458aaa78ce4ccdbcd6834a39e234e856a3bf70"
+          },
+          "worldBox": [
+            31744,
+            37632,
+            32768,
+            38144
+          ],
+          "tileBox": [
+            3072,
+            768,
+            4096,
+            1280
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "椅腿、蓝布、红柱和石板连续；不据此判北外缝通过。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p21--p31",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p21--p31.png",
+            "sha256": "040b5a7926617fadc78309dfd779d946e67438a387a29477420d9248753d4f25"
+          },
+          "worldBox": [
+            28672,
+            38656,
+            29696,
+            39168
+          ],
+          "tileBox": [
+            0,
+            1792,
+            1024,
+            2304
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "船内肋骨、船壳板缝及梁体顺接，亮边连续。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p22--p32",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p22--p32.png",
+            "sha256": "ec8815c914986fb51546aa5948b24fdcd5ce259d4a7b6bd64d893d58c8327558"
+          },
+          "worldBox": [
+            29696,
+            38656,
+            30720,
+            39168
+          ],
+          "tileBox": [
+            1024,
+            1792,
+            2048,
+            2304
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "篷布弧线、织纹和支架连接自然，密度无横跳。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p23--p33",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p23--p33.png",
+            "sha256": "be87879176e9d936b86007a40779b790cb2ccfd19e77c56c986e7b0f1a5461d7"
+          },
+          "worldBox": [
+            30720,
+            38656,
+            31744,
+            39168
+          ],
+          "tileBox": [
+            2048,
+            1792,
+            3072,
+            2304
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "篷顶木弧、针脚和布纹连续，无网格横界。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p24--p34",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p24--p34.png",
+            "sha256": "0876b248220d246ff8757452b202c27b19f9a1c5870f0532339f014661bf7bf1"
+          },
+          "worldBox": [
+            31744,
+            38656,
+            32768,
+            39168
+          ],
+          "tileBox": [
+            3072,
+            1792,
+            4096,
+            2304
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "甲板缝、木纹和舷边连续，未见矩形材质切换。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p31--p41",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p31--p41.png",
+            "sha256": "524be7004840f1fcf8508791ce5ae1ee05c6df0fd80c3e222e047d3831a5b742"
+          },
+          "worldBox": [
+            28672,
+            39680,
+            29696,
+            40192
+          ],
+          "tileBox": [
+            0,
+            2816,
+            1024,
+            3328
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "弯曲船肋、板缝和投影顺接；高光走势连续。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p32--p42",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p32--p42.png",
+            "sha256": "10d63f03076934eb126c128a0e0d9e4bc8e7275a405cea01b94e69bd80e6bb17"
+          },
+          "worldBox": [
+            29696,
+            39680,
+            30720,
+            40192
+          ],
+          "tileBox": [
+            1024,
+            2816,
+            2048,
+            3328
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "船内座梁、支脚和地板连续，无横向切片痕。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p33--p43",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p33--p43.png",
+            "sha256": "8a1667f4fd8020d31341b21ac4674d5d556021eb54d09debb22a2d7ed799da39"
+          },
+          "worldBox": [
+            30720,
+            39680,
+            31744,
+            40192
+          ],
+          "tileBox": [
+            2048,
+            2816,
+            3072,
+            3328
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "篷布下沿、支脚与蓝布凳连续；证据未覆盖更下方G3采纳边。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "p34--p44",
+          "kind": "horizontal",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/p34--p44.png",
+            "sha256": "996cf87e7634cf897f6fa0b5aef07cfbf2493d485da15cd402ce164851737f30"
+          },
+          "worldBox": [
+            31744,
+            39680,
+            32768,
+            40192
+          ],
+          "tileBox": [
+            3072,
+            2816,
+            4096,
+            3328
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "蓝布折边、凳沿与船壳木纹顺接，当前水平网格边通过。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r1-c1",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r1-c1.png",
+            "sha256": "dc5fcb99eb5828cee9a82e28e1b205dacc90cd31dc27f1c9e97adccf1f3ba8e2"
+          },
+          "worldBox": [
+            29440,
+            37632,
+            29952,
+            38144
+          ],
+          "tileBox": [
+            768,
+            768,
+            1280,
+            1280
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "四核石板砖缝、裂纹与光照连续，无十字密度界。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r1-c2",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r1-c2.png",
+            "sha256": "feeed9e85b0f196dd7117d793831f67653caa364ae69fa27fdf68d7ed9c75fb0"
+          },
+          "worldBox": [
+            30464,
+            37632,
+            30976,
+            38144
+          ],
+          "tileBox": [
+            1792,
+            768,
+            2304,
+            1280
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "棚柱脚、石地与甲板交点几何自然，材质无十字块界。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r1-c3",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r1-c3.png",
+            "sha256": "23de212878db34a6caa84e68f9273173397e789538fb44440d5f14165b48ea88"
+          },
+          "worldBox": [
+            31488,
+            37632,
+            32000,
+            38144
+          ],
+          "tileBox": [
+            2816,
+            768,
+            3328,
+            1280
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "桶、绳圈、石地和甲板交点连续，无裁切角。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r2-c1",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r2-c1.png",
+            "sha256": "404af5d583f872f7bbd9d9b77a31d6a54a9ae1a801750f4e68780567129d51fc"
+          },
+          "worldBox": [
+            29440,
+            38656,
+            29952,
+            39168
+          ],
+          "tileBox": [
+            768,
+            1792,
+            1280,
+            2304
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "船壳横板与肋骨连接自然，木纹和阴影连续。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r2-c2",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r2-c2.png",
+            "sha256": "7b6f3bf9eb046164eaac90eba993d630c877ff859d0b6a6f59eba532dfdb488b"
+          },
+          "worldBox": [
+            30464,
+            38656,
+            30976,
+            39168
+          ],
+          "tileBox": [
+            1792,
+            1792,
+            2304,
+            2304
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "篷布与弧形木肋的针脚、纹理与明暗连续。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r2-c3",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r2-c3.png",
+            "sha256": "0e281b7168fb1b7e09ebcf406ce7af42bc7298310bd5d82f72c11cd6d7d88f27"
+          },
+          "worldBox": [
+            31488,
+            38656,
+            32000,
+            39168
+          ],
+          "tileBox": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "篷布边、凳木与甲板交点自然，无十字跳变。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r3-c1",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r3-c1.png",
+            "sha256": "851a3ee0b485e0176fddfe18c98fc36242dd86aab50b93923a72051afac3a301"
+          },
+          "worldBox": [
+            29440,
+            39680,
+            29952,
+            40192
+          ],
+          "tileBox": [
+            768,
+            2816,
+            1280,
+            3328
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "舷沿高光和船壳斜板纹连续，无十字阶跃。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r3-c2",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r3-c2.png",
+            "sha256": "f809ce56ad4d4a58506bb103d15bca6ea85b19bd64bc35fd68a1f161bb234f02"
+          },
+          "worldBox": [
+            30464,
+            39680,
+            30976,
+            40192
+          ],
+          "tileBox": [
+            1792,
+            2816,
+            2304,
+            3328
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "篷架脚、地板与横梁交点连续，无矩形材质拼角。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        },
+        {
+          "id": "cross-r3-c3",
+          "kind": "cross",
+          "evidence": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/cross-r3-c3.png",
+            "sha256": "19b5e454e4c44b50482eddb53196ccefbca612c9e4e96913795680e4077c81c1"
+          },
+          "worldBox": [
+            31488,
+            39680,
+            32000,
+            40192
+          ],
+          "tileBox": [
+            2816,
+            2816,
+            3328,
+            3328
+          ],
+          "actuallyViewed": true,
+          "displayMethod": "tools.view_image detail=original",
+          "geometryStatus": "pass_current_view",
+          "materialStatus": "pass_current_view",
+          "status": "pass_reused_exact_current_pixels",
+          "finding": "蓝布折褶、凳面、布边与木肋连接自然，无十字断裂。",
+          "wholeTilePassImplied": false,
+          "priorActualReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c08/qa/current-native-internal-20261023-v1/independent-review.json",
+            "sha256": "5b5c894e8211f7b686982d889f9076bb65b82c00ecdd672a0c70219a9583484c"
+          },
+          "actuallyViewedThisTask": false,
+          "priorVsCurrentCandidateDifferentPixels": 0,
+          "newVsPriorDifferentPixels": 0
+        }
+      ],
+      "count": 33,
+      "pass": 33,
+      "held": 0,
+      "changedActualViews": 0,
+      "exactPriorActualPassReuseCount": 33,
+      "wholeTileInternalReady": false,
+      "reason": "G3/newcore review pending;C2p44 unchanged held",
+      "formalAccepted": false
+    }
+  }
+}

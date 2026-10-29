@@ -75,6 +75,48 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void FirstAttemptRateLimitClearsIntentAndAllowsDifferentWrite()
+        {
+            Assert.That(_client.Create(), Is.True);
+            Assert.That(_store.Load(10), Is.Not.Empty);
+            _net.Fail("server tip=" + (uint)common_error.KRateLimitExceeded);
+            Assert.That(_store.Load(10), Is.Empty);
+            _now += 1f;
+            Assert.That(_client.ApplyJoin(99), Is.True);
+        }
+
+        [Test]
+        public void RateLimitAfterReconstructionPreservesEarlierUnknownIntent()
+        {
+            Assert.That(_client.Create(), Is.True);
+            string original = _store.Load(10);
+            _net.Fail("rpc timeout");
+            Recreate();
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls[_net.Calls.Count - 1].Id, Is.EqualTo(MessageIds.CreateTeam));
+            _net.Fail("server tip=" + (uint)common_error.KRateLimitExceeded);
+            Assert.That(_store.Load(10), Is.EqualTo(original));
+            _now += 1f;
+            Assert.That(_client.ApplyJoin(99), Is.False);
+            Assert.That(_store.Load(10), Is.EqualTo(original));
+        }
+
+        [Test]
+        public void FaultReplyThenRateLimitDoesNotEraseUnknownIntent()
+        {
+            Assert.That(_client.Create(), Is.True);
+            string original = _store.Load(10);
+            _net.Reply(new TeamResponse { ErrorMessage = new TipInfoMessage { Id = (uint)team_error.KTeamInternal } });
+            _now += 1f;
+            Assert.That(_client.Create(), Is.True);
+            _net.Fail("server tip=" + (uint)common_error.KRateLimitExceeded);
+            Assert.That(_store.Load(10), Is.EqualTo(original));
+            _now += 1f;
+            Assert.That(_client.ApplyJoin(99), Is.False);
+            Assert.That(_store.Load(10), Is.EqualTo(original));
+        }
+
+        [Test]
         public void DamagedRecoveryRecordIsPreservedAndBlocksWrites()
         {
             _store.Save(10, "damaged-original");

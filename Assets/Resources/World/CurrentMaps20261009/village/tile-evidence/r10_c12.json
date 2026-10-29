@@ -1,0 +1,643 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 10,
+  "column": 12,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "f9acb152ec71bf7b886548a66bb39c3ad2f42296b2b99b05fbf114475038e7af",
+  "imageBytes": 27982966,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/candidate/r10_c12-4096-candidate-v4.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/candidate/r10_c12-4096-candidate-v4.png.derivation.json",
+  "sourceLedgerSha256": "fddb1a85d132057bad35f3db40f1acbdf2b410df67fd0b2d7efc1f66f88270e3",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c12",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/candidate/r10_c12-4096-candidate-v4.png",
+    "imageSha256": "f9acb152ec71bf7b886548a66bb39c3ad2f42296b2b99b05fbf114475038e7af",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/candidate/r10_c12-4096-candidate-v4.png.derivation.json",
+        "sha256": "fddb1a85d132057bad35f3db40f1acbdf2b410df67fd0b2d7efc1f66f88270e3",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "externalQA": "pending"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/candidate/r10_c12-4096-candidate-v4.png.derivation.json",
+        "record": {
+          "formalAccepted": false,
+          "externalQA": "pending"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/candidate/r10_c12-4096-candidate-v4.png.generation.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-native-contact-matrix-20261023-v1/coverage.json",
+        "record": {
+          "status": "all24_current_GM_contact_windows_pass_only",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-native-contact-matrix-20261023-v1/source-proof-and-views.json",
+        "record": {
+          "reviewStatus": "24 native contact windows prepared,unviewed do not countpass"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-current-internal-scope-20261022-v1/current-source-and-QA-scope.json",
+    "sourceSha256": "5f3964c4e742784ace46fce54fcc214082c085bbb7bd0351f1966f0778396768",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "stateSha256": "aa9e744ad589a9bc9bc67d9c475fb4d269f056ea6e33d1c0dbba60cab6be3f26",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/candidate/r10_c12-4096-candidate-v4.png",
+        "sha256": "f9acb152ec71bf7b886548a66bb39c3ad2f42296b2b99b05fbf114475038e7af",
+        "bytes": 27982966,
+        "sampledAtUtc": "2026-10-19T09:38:04.947790+00:00",
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "candidateHashVerified": true,
+      "sourceCount": 16,
+      "sources": [
+        {
+          "key": "r10_c12_p11",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p11-v2.png",
+          "sha256": "b82c7082f2c480ae5e54bfc6c586fb58054a6626b8fec67932f6fcfbf3d3cad2",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-fast-v1/top-row-v1.json"
+          },
+          "noQaPointerDoesNotMeanPass": false,
+          "coreWorldBox": [
+            45056,
+            36864,
+            46080,
+            37888
+          ]
+        },
+        {
+          "key": "r10_c12_p12",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p12-v2.png",
+          "sha256": "594c59bb0e29fc97e8af21503c8669c51d23cf86b0556f3a0c275b86086fe97f",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-fast-v1/top-row-v1.json"
+          },
+          "noQaPointerDoesNotMeanPass": false,
+          "coreWorldBox": [
+            46080,
+            36864,
+            47104,
+            37888
+          ]
+        },
+        {
+          "key": "r10_c12_p13",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p13-v1.png",
+          "sha256": "2e4cf9c6c2d2bd018998898e61ab2f1ce53b0dac08bc130313a34e8c7bde7086",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-fast-v1/top-row-v1.json"
+          },
+          "noQaPointerDoesNotMeanPass": false,
+          "coreWorldBox": [
+            47104,
+            36864,
+            48128,
+            37888
+          ]
+        },
+        {
+          "key": "r10_c12_p14",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p14-v2.png",
+          "sha256": "250c3bc8b2018d02a3c4e79e811459fb82f16801bd34e4cd0f2714bf9cb32bcf",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-fast-v1/top-row-v1.json"
+          },
+          "noQaPointerDoesNotMeanPass": false,
+          "coreWorldBox": [
+            48128,
+            36864,
+            49152,
+            37888
+          ]
+        },
+        {
+          "key": "r10_c12_p21",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p21-v3.png",
+          "sha256": "6e142dd9e21815da235ea67270a57648b22149dfecfaeab237eb9ce2001f6941",
+          "actualCurrentFileHashVerified": true,
+          "status": "G01_internal_floor_seam_pending_after_two_joint_attempts",
+          "qaPointers": {},
+          "noQaPointerDoesNotMeanPass": true,
+          "coreWorldBox": [
+            45056,
+            37888,
+            46080,
+            38912
+          ]
+        },
+        {
+          "key": "r10_c12_p22",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p22-v2.png",
+          "sha256": "03270008fcbc27ab4d52feee228a1a5f0cb5be29fe4065606fffd0cd44135941",
+          "actualCurrentFileHashVerified": true,
+          "status": "G01_internal_floor_seam_pending_after_two_joint_attempts",
+          "qaPointers": {},
+          "noQaPointerDoesNotMeanPass": true,
+          "coreWorldBox": [
+            46080,
+            37888,
+            47104,
+            38912
+          ]
+        },
+        {
+          "key": "r10_c12_p23",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p23-v1.png",
+          "sha256": "76f0629aafc5387826f121ca8875c48aa58041d72cc1c889344803fa503c7374",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {},
+          "noQaPointerDoesNotMeanPass": true,
+          "coreWorldBox": [
+            47104,
+            37888,
+            48128,
+            38912
+          ]
+        },
+        {
+          "key": "r10_c12_p24",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p24-v1.png",
+          "sha256": "d06d61c64e9fbd42ee6c29e812b48ed7b5322e645996a7998cc69e81f05328b8",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {},
+          "noQaPointerDoesNotMeanPass": true,
+          "coreWorldBox": [
+            48128,
+            37888,
+            49152,
+            38912
+          ]
+        },
+        {
+          "key": "r10_c12_p31",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p31-M04-top-band-20261019-v1-derived.png",
+          "sha256": "59a6c2e4e82b700ac0649edb9d1c6b683b7e4c701f9aecbec9d042055b5bcf9e",
+          "actualCurrentFileHashVerified": true,
+          "status": "M04_top_band_material_improved_bottom_y1139_whole_column_pending",
+          "qaPointers": {
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-top-band-20261019-v1/review.json",
+            "rootReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-top-band-20261019-v1/root-review-acceptance.json"
+          },
+          "noQaPointerDoesNotMeanPass": false,
+          "coreWorldBox": [
+            45056,
+            38912,
+            46080,
+            39936
+          ]
+        },
+        {
+          "key": "r10_c12_p32",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p32-M04-top-band-20261019-v1-derived.png",
+          "sha256": "092219fcaff5110e903d7cb579f161451ce64e1ac813a60c219606f04d140cc5",
+          "actualCurrentFileHashVerified": true,
+          "status": "M04_top_band_material_improved_bottom_y1139_whole_column_pending",
+          "qaPointers": {
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-top-band-20261019-v1/review.json",
+            "rootReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-top-band-20261019-v1/root-review-acceptance.json"
+          },
+          "noQaPointerDoesNotMeanPass": false,
+          "coreWorldBox": [
+            46080,
+            38912,
+            47104,
+            39936
+          ]
+        },
+        {
+          "key": "r10_c12_p33",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p33-v1.png",
+          "sha256": "aaa3213d204b5852513c821ec60938628de6639445708a733d6e676aa2a3ba19",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {},
+          "noQaPointerDoesNotMeanPass": true,
+          "coreWorldBox": [
+            47104,
+            38912,
+            48128,
+            39936
+          ]
+        },
+        {
+          "key": "r10_c12_p34",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p34-v1.png",
+          "sha256": "7211c69d62334884b33f2f1606ede863fcfc9119d8d7207cc3abe8669c90e3bc",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {},
+          "noQaPointerDoesNotMeanPass": true,
+          "coreWorldBox": [
+            48128,
+            38912,
+            49152,
+            39936
+          ]
+        },
+        {
+          "key": "r10_c12_p41",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p41-G02-cloth-material-20261019-v1-derived.png",
+          "sha256": "a00386de9fdf55e6963d0346c5d475889fb457bf8bffa78b439b57c5ba4f247f",
+          "actualCurrentFileHashVerified": true,
+          "status": "G02_cloth_material_improvement_only_original_short_hardline_and_whole_geometry_pending",
+          "qaPointers": {
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/G02-right-cloth-material-adoption-20261019-v1/root-partial-material-review.json",
+            "rootReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-bottom-band-20261019-v1/root-review-acceptance.json"
+          },
+          "noQaPointerDoesNotMeanPass": false,
+          "coreWorldBox": [
+            45056,
+            39936,
+            46080,
+            40960
+          ]
+        },
+        {
+          "key": "r10_c12_p42",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p42-M04-bottom-band-20261019-v1-derived.png",
+          "sha256": "727b0a85a3e768668edb02ec7ca6cdaff02010531c30b497c633f6b41e7b5255",
+          "actualCurrentFileHashVerified": true,
+          "status": "M04_bottom_band_local_material_improved_old_L_boundary_whole_column_internal_external_QA_pending",
+          "qaPointers": {
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-bottom-band-20261019-v1/review.json",
+            "rootReviewRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-bottom-band-20261019-v1/root-review-acceptance.json"
+          },
+          "noQaPointerDoesNotMeanPass": false,
+          "coreWorldBox": [
+            46080,
+            39936,
+            47104,
+            40960
+          ]
+        },
+        {
+          "key": "r10_c12_p43",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p43-v1.png",
+          "sha256": "ec2c35a50a6cc6c482226f81d89827301eb702bee5e4d991f2c6f0b25bd232d9",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {},
+          "noQaPointerDoesNotMeanPass": true,
+          "coreWorldBox": [
+            47104,
+            39936,
+            48128,
+            40960
+          ]
+        },
+        {
+          "key": "r10_c12_p44",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p44-v2.png",
+          "sha256": "a0177d278781f4ed55fab5da5491d79b0d7b3076f5bf085a9b884bead1226cdb",
+          "actualCurrentFileHashVerified": true,
+          "status": "usable_for_continuation_pending_full_QA",
+          "qaPointers": {},
+          "noQaPointerDoesNotMeanPass": true,
+          "coreWorldBox": [
+            48128,
+            39936,
+            49152,
+            40960
+          ]
+        }
+      ],
+      "selectedQaRecords": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-fast-v1/top-row-v1.json",
+          "sha256": "08eebc2a98817a5d1971f142b20fe9c6d2ed97a10f336eac2271f9ed66fc034c",
+          "currentSelectedHashesExplicitlyInRecord": [
+            "r10_c12_p11",
+            "r10_c12_p12",
+            "r10_c12_p13",
+            "r10_c12_p14"
+          ],
+          "summary": {
+            "reviewScope": "first fast layout/native edge checks only; full seam evidence after whole tile",
+            "findings": {
+              "p11": "Single original tall wood trunk and cropped left rack/net plus hull retained; broad lower foot pending full layout QA.",
+              "p12": "v2 removes added top rope and restores original cropped bottom-right bollard cap.",
+              "p13": "Original curved hull exits on right, incoming bands and lower-left existing cap retained. Hull lower curvature pending full tile review.",
+              "p14": "v2 successfully replaces duplicate vessel with open turquoise sea; only native left fragment retained. Fine water texture/color variation pending full QA."
+            },
+            "formalAccepted": false
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-top-band-20261019-v1/review.json",
+          "sha256": "5fd5ff891c09733de83a2ab73f55ae0017e27de545a0d3f816573f9afed7e172",
+          "currentSelectedHashesExplicitlyInRecord": [],
+          "summary": {
+            "scope": "Independent M04 upper source band at local y115 only; old whole-L and lower y1139 unchanged",
+            "verdict": "localized_top_band_material_improvement_proposed_pending_root_native_visual_review",
+            "observations": [
+              {
+                "atNative": [
+                  113,
+                  100,
+                  465,
+                  130
+                ],
+                "finding": "Prior full straight source tone/grain discontinuity at y115 is visibly reduced in proposal."
+              },
+              {
+                "atNative": [
+                  113,
+                  55,
+                  465,
+                  213
+                ],
+                "finding": "Only the complete visible material cross-section is replaced at the top band. Outer contour rim and natural lateral shadow edges remain original."
+              },
+              {
+                "atNative": [
+                  85,
+                  25,
+                  495,
+                  250
+                ],
+                "finding": "No obvious full straight new rectangular boundary visible at upper/lower selected seam paths in native100pct comparison."
+              },
+              {
+                "atNative": [
+                  80,
+                  30,
+                  515,
+                  250
+                ],
+                "finding": "Original post diameter, contour and adjacent water/deck physical geometry retained by exact binary exterior exclusion."
+              }
+            ],
+            "unresolved": [
+              "Lower original band near y1139 remains pending by design",
+              "Whole column and tile internal/perimeter/geometry QA not passed by this proposal"
+            ],
+            "wholeColumnPassed": false,
+            "formalAccepted": false
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-top-band-20261019-v1/root-review-acceptance.json",
+          "sha256": "10e08e1ae34ff48179e42221eb55c3f9edaf9a7ecc0d816841f33b838fcb40c9",
+          "currentSelectedHashesExplicitlyInRecord": [],
+          "summary": {
+            "rootVerdict": "top y115 crosscut visibly improved; physical column contour preserved; no new full rectangular horizontal band seen",
+            "limits": "top band material improvement only; lower y1139, whole column and whole map remain unpassed; no4096 assembly"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/G02-right-cloth-material-adoption-20261019-v1/root-partial-material-review.json",
+          "sha256": "34f28a8f5911465a571532ffef27aea0d223e57901d2f00e004174ee09fa5412",
+          "currentSelectedHashesExplicitlyInRecord": [],
+          "summary": {
+            "scope": "Best existing non-propagating upper blue-cloth material/hem improvement only, not whole G02 acceptance",
+            "formalAccepted": false
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-bottom-band-20261019-v1/root-review-acceptance.json",
+          "sha256": "1a74ef0d95094e350c503d65e9c87c78e92deb091202be4a283baf5a807dad9c",
+          "currentSelectedHashesExplicitlyInRecord": [],
+          "summary": {
+            "rootVerdict": "old horizontal band improved; post foot, waterline and occluders fixed; localized material selection allowed",
+            "limits": "material improvement only; original L boundary, whole column and internal/external QA remain pending; no4096 assembly"
+          }
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/r10_c12-M04-bottom-band-20261019-v1/review.json",
+          "sha256": "7f00507aa9dd9c42e69b42951b264b7db5968763cd79809b52d3e0b7adae28d8",
+          "currentSelectedHashesExplicitlyInRecord": [],
+          "summary": {
+            "scope": "Independent lower material band worldY40960, prior target y1139/new native target y630 only",
+            "verdict": "localized_bottom_band_material_improvement_proposed_pending_root_visual_review",
+            "remainingQA": "Root visual review of this proposal, whole column geometry and source-join QA still pending",
+            "observations": [
+              {
+                "atNative": [
+                  166,
+                  615,
+                  466,
+                  645
+                ],
+                "finding": "Old straight horizontal source grain/tone discontinuity at y630 is visibly reduced."
+              },
+              {
+                "atNative": [
+                  166,
+                  580,
+                  466,
+                  698
+                ],
+                "finding": "Full unoccluded physical wood face is copied with binary native mask; no obvious full new straight rectangular return band in inspected boundaries."
+              },
+              {
+                "atNative": [
+                  110,
+                  535,
+                  166,
+                  735
+                ],
+                "finding": "Real foreground bright plank and blue/ivory oval remain exact original pixels."
+              },
+              {
+                "atNative": [
+                  140,
+                  705,
+                  495,
+                  830
+                ],
+                "finding": "Original feet, physical outer contours, waterline, foam/reflections remain exact original pixels."
+              }
+            ],
+            "wholeColumnPassed": false,
+            "formalAccepted": false
+          }
+        }
+      ],
+      "newActualNativeWindow": {
+        "classification": "native QA-only current internal core seam",
+        "operation": "exact integer candidate crop, no resize/generation",
+        "worldBox": [
+          48128,
+          37632,
+          49152,
+          38144
+        ],
+        "joinLocalY": 256,
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/candidate/r10_c12-4096-candidate-v4.png",
+          "sha256": "f9acb152ec71bf7b886548a66bb39c3ad2f42296b2b99b05fbf114475038e7af",
+          "bytes": 27982966,
+          "sampledAtUtc": "2026-10-19T09:38:04.947790+00:00",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "mode": "RGB"
+        },
+        "candidateHashVerified": true,
+        "currentSources": [
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p14-v2.png",
+            "sha256": "250c3bc8b2018d02a3c4e79e811459fb82f16801bd34e4cd0f2714bf9cb32bcf",
+            "bytes": 1871507,
+            "sampledAtUtc": "2026-10-13T20:12:15.587428+00:00",
+            "dimensions": [
+              1254,
+              1254
+            ],
+            "mode": "RGB",
+            "geometry": {
+              "tile": "r10_c12",
+              "patch": "p14",
+              "coreGlobalBox": [
+                48128,
+                36864,
+                49152,
+                37888
+              ],
+              "nativeGlobalBox": [
+                48013,
+                36749,
+                49267,
+                38003
+              ],
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "tilePasteAt": [
+                3072,
+                0
+              ],
+              "expectedNativeDimensions": [
+                1254,
+                1254
+              ]
+            },
+            "version": 2,
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/requests/p14-v2.receipt.json",
+            "reviewStatus": "usable_for_continuation_pending_full_QA",
+            "continuationAllowed": {
+              "east": true,
+              "south": true
+            },
+            "qaRecord": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-fast-v1/top-row-v1.json"
+          },
+          {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/native/p24-v1.png",
+            "sha256": "d06d61c64e9fbd42ee6c29e812b48ed7b5322e645996a7998cc69e81f05328b8",
+            "bytes": 1852016,
+            "sampledAtUtc": "2026-10-14T01:18:15.419268+00:00",
+            "dimensions": [
+              1254,
+              1254
+            ],
+            "mode": "RGB",
+            "geometry": {
+              "tile": "r10_c12",
+              "patch": "p24",
+              "coreGlobalBox": [
+                48128,
+                37888,
+                49152,
+                38912
+              ],
+              "nativeGlobalBox": [
+                48013,
+                37773,
+                49267,
+                39027
+              ],
+              "coreCrop": [
+                115,
+                115,
+                1139,
+                1139
+              ],
+              "tilePasteAt": [
+                3072,
+                1024
+              ],
+              "expectedNativeDimensions": [
+                1254,
+                1254
+              ]
+            },
+            "version": 1,
+            "receipt": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c12/requests/p24-v1.receipt.json",
+            "reviewStatus": "usable_for_continuation_pending_full_QA",
+            "continuationAllowed": {
+              "east": true,
+              "south": true
+            }
+          }
+        ],
+        "output": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/qa/r10_c12-current-internal-scope-20261022-v1/p14-p24-current-water-core-seam-QA-only.png",
+          "sha256": "f89a0c3f4800b91757add200db1d5447cdebf62b655a820f3bea82aeb478f5b6",
+          "dimensions": [
+            1024,
+            512
+          ]
+        },
+        "newImageCalls": 0
+      },
+      "M04ReviewAssignedElsewhere": true,
+      "M04NoNewActualImageViewByThisTask": true,
+      "otherTilesSourceFilesRead": false,
+      "stateMutated": false,
+      "newImageCalls": 0
+    }
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-25T09:01:27.120921+00:00",
+  "selectionPolicy": "all_generated_current_layout",
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "sourceInventoryReport": "docs/MAP_PERIODIC_REPORT_20261025_025820.json",
+  "frozenAudit": {
+    "sha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+    "documentBytes": 10278973,
+    "frozenAtUtc": "2026-10-25T08:57:53.573790+00:00",
+    "selectedCount": 519,
+    "imageBytes": 13108398493,
+    "inventorySha256": "10e9ea367ea5a0e81da407ad6f67c74c23da1fc80c0c420b614891d80a7438de"
+  },
+  "maps": {
+    "main": {
+      "sceneId": 1,
+      "rows": 16,
+      "columns": 16,
+      "tilePixels": 4096,
+      "deliveredTileCount": 178,
+      "deliveredImageBytes": 4231320686,
+      "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+      "productionContractPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/production-contract.json",
+      "productionContractSha256": "28443ade4c03c70dc7519e4e22601454521cbe05d43e8100f63724c4d96c99ac",
+      "manifestPath": "Assets/Resources/World/CurrentMaps20261009/main/tiles.json",
+      "unavailableFullTileCoordinates": 78,
+      "deltaFromPrevious151": {
+        "newCoordinate": {
+          "count": 151,
+          "imageBytes": 3581422848
+        },
+        "updatedCoordinate": {
+          "count": 2,
+          "imageBytes": 45037886
+        },
+        "unchangedImage": {
+          "count": 25,
+          "imageBytes": 604859952
+        }
+      }
+    },
+    "village": {
+      "sceneId": 3,
+      "rows": 14,
+      "columns": 14,
+      "tilePixels": 4096,
+      "deliveredTileCount": 165,
+      "deliveredImageBytes": 4290662985,
+      "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+      "productionContractPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/production-contract.json",
+      "productionContractSha256": "6f22d6bc766af216a8b2b00a5b5c834224ad69748c42beed3be61741ee13c99a",
+      "manifestPath": "Assets/Resources/World/CurrentMaps20261009/village/tiles.json",
+      "unavailableFullTileCoordinates": 31,
+      "deltaFromPrevious151": {
+        "newCoordinate": {
+          "count": 96,
+          "imageBytes": 2486652359
+        },
+        "updatedCoordinate": {
+          "count": 11,
+          "imageBytes": 270745276
+        },
+        "unchangedImage": {
+          "count": 58,
+          "imageBytes": 1533265350
+        }
+      }
+    },
+    "island": {
+      "sceneId": 2,
+      "rows": 14,
+      "columns": 14,
+      "tilePixels": 4096,
+      "deliveredTileCount": 176,
+      "deliveredImageBytes": 4586414822,
+      "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+      "productionContractPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/production-contract.json",
+      "productionContractSha256": "8c7d0558a34ea58195be0b8f4164368cad28e8c8e638746083a8bd8ce67bc416",
+      "manifestPath": "Assets/Resources/World/CurrentMaps20261009/island/tiles.json",
+      "unavailableFullTileCoordinates": 20,
+      "deltaFromPrevious151": {
+        "newCoordinate": {
+          "count": 121,
+          "imageBytes": 3209016148
+        },
+        "updatedCoordinate": {
+          "count": 9,
+          "imageBytes": 248056897
+        },
+        "unchangedImage": {
+          "count": 46,
+          "imageBytes": 1129341777
+        }
+      }
+    }
+  },
+  "previousDelivery": {
+    "selectedCount": 151,
+    "imageBytes": 3829816647,
+    "auditSha256": "7bb781259dcb8854d0a125b10d2111abd80f3a794586b64268b12d15c96a939b",
+    "allPreviousCoordinatesRetained": true,
+    "sourceArtFilesMissing": 0
+  },
+  "deltaFromPrevious151": {
+    "newCoordinate": {
+      "count": 368,
+      "imageBytes": 9277091355
+    },
+    "updatedCoordinate": {
+      "count": 22,
+      "imageBytes": 563840059
+    },
+    "unchangedImage": {
+      "count": 129,
+      "imageBytes": 3267467079
+    }
+  },
+  "qa": {
+    "internalPassed": 131,
+    "internalFailed": 50,
+    "internalUnconfirmed": 338,
+    "missingQaDocument": 164,
+    "deliveryFormalAcceptedCount": 0,
+    "wholeMapAccepted": false,
+    "sourceFormalStatusPreservedInTileEvidence": true,
+    "meaning": "Complete native pixel coverage and valid PNG do not imply seam, material, external-neighbor, whole-map, or runtime visual acceptance."
+  },
+  "originalImagePolicy": {
+    "originalPngBytesPreserved": true,
+    "sourceArtModified": false,
+    "downsampled": false,
+    "reencoded": false,
+    "gitLfsRequired": false,
+    "colorModes": {
+      "RGB": 518,
+      "RGBA": 1
+    },
+    "rgbaAlphaExtrema": [
+      255,
+      255
+    ],
+    "rgbaAlphaEntireImageVerified": true
+  },
+  "sourceValidation": {
+    "selectedImageCount": 519,
+    "imageSha256Computed": true,
+    "gitBlobSha1Computed": true,
+    "allPngChunkCrcPassed": true,
+    "allImagesFullyDecoded": true,
+    "allImages4096Squared": true,
+    "imageSizeAndModificationTimeStableBeforeFreeze": true,
+    "independentProofDocumentSha256Rechecked": true,
+    "uniqueMapCoordinates": true,
+    "sameProductionLayoutContractsAsExistingClient": true,
+    "syntheticSelectedCount": 0
+  },
+  "selectionRules": [
+    "Use the most recent demonstrably complete original4096 candidate per current-layout coordinate within the fixed inventory.",
+    "Include complete candidates with failed, held, pending, or unknown art and seam QA.",
+    "Exclude synthetic validation fixtures and test outputs.",
+    "Exclude partial native CORE assemblies filled with layout/overview pixels. A partial repair on a complete base remains a complete image.",
+    "Final selected is authoritative. rejectedCandidates in the frozen audit retains historical screening decisions, including decisions later corrected; it is not the final exclusion set."
+  ],
+  "finalExcludedCoordinates": 0,
+  "unavailableCompleteTileCoordinates": 129,
+  "otherCurrentMapLayoutsFound": 0,
+  "clientImportVerification": {
+    "status": "passed",
+    "operation": "import_then_builtin_full_repository_verify",
+    "exitCode": 0,
+    "exitCodeObservedBy": "integrating task",
+    "completionObservedAtUtc": "2026-10-25T09:42:46.505193+00:00",
+    "sourceLogLastModifiedAtUtc": "2026-10-25T09:36:37.334735+00:00",
+    "commandPortableEquivalent": "python tools/import_completed_map_tiles.py --audit .codex-artifacts/map-all-generated-20261025/all-generated-map-tiles-20261025-audit.json --art-root ../image",
+    "workingDirectory": "repository root",
+    "cleanCheckoutVerificationCommand": "python tools/import_completed_map_tiles.py --verify --project .",
+    "cleanCheckoutVerificationRequiresArtRepository": false,
+    "normalizedLogPath": "Docs/VerificationEvidence/generated-map-tiles-20261025/import-and-verify.json",
+    "normalizedLogSha256": "84d1ec37ca6dc25b90c17a4753414d363837b3b7deb79e4d7cd655cfb228ca47",
+    "logNormalization": "UTF-8 without BOM; CRLF and CR normalized to LF; content otherwise unchanged",
+    "verifiedImageCount": 519,
+    "verifiedImageBytes": 13108398493,
+    "threeManifestsMatchFrozenAuditSha256": true,
+    "allPngChunkCrcPassed": true,
+    "allImagesFullyDecoded": true,
+    "allImageHashesAndSizesMatch": true,
+    "note": "Repository integrity verification passed. It does not establish Unity engine import, runtime rendering, seam, or whole-map art acceptance."
+  },
+  "runtimeVisualValidation": {
+    "performed": false,
+    "wholeMapAccepted": false
+  },
+  "updatedAtUtc": "2026-10-25T09:42:46.505193+00:00",
+  "layoutAndNavigationPreservation": {
+    "status": "passed",
+    "checkedAtUtc": "2026-10-25T09:42:46.505193+00:00",
+    "referenceCommit": "7595fe6e2b4f8e5672eab4efb8c07102a7ecc1a4",
+    "referenceScope": "Locally fetched origin/main baseline before this resource batch; no new network freshness assertion.",
+    "comparisonCommand": "git diff --name-only 7595fe6e2b4f8e5672eab4efb8c07102a7ecc1a4 -- <the twelve paths listed in files>",
+    "changedFiles": [],
+    "files": [
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/island/layout.png",
+        "baselineGitBlobSha1": "2ef72decddc7e69dd9ef7219425a9f76609775ba",
+        "baselineGitBytes": 3206352,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/island/navigation.json",
+        "baselineGitBlobSha1": "48348e6c6ac5dd31ec13a89ea61caf61db36ebf6",
+        "baselineGitBytes": 49427,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/island/source.json",
+        "baselineGitBlobSha1": "e5fa2c73fe657199111b8f2d750e87d76d05b0e1",
+        "baselineGitBytes": 1545,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/island/walkmask.txt",
+        "baselineGitBlobSha1": "c45d7e985748ad10ec785458a19999835602738c",
+        "baselineGitBytes": 3752,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/main/layout.png",
+        "baselineGitBlobSha1": "a82f275cb87ee104ff235b5f02cab2e3bff140be",
+        "baselineGitBytes": 3260448,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/main/navigation.json",
+        "baselineGitBlobSha1": "c50b340aa220422902d02cbea391e5abcaff1751",
+        "baselineGitBytes": 43456,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/main/source.json",
+        "baselineGitBlobSha1": "4ba50be204a9298a5a7221d9d1aa90e15d6c8166",
+        "baselineGitBytes": 1536,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/main/walkmask.txt",
+        "baselineGitBlobSha1": "5627e709ddba0f1f9da494b85d5c8b5dff650b3b",
+        "baselineGitBytes": 3752,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/village/layout.png",
+        "baselineGitBlobSha1": "0929920b3766de05a228c50714c4cd3e25db7671",
+        "baselineGitBytes": 3373466,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/village/navigation.json",
+        "baselineGitBlobSha1": "11559b99eabd4207b778b366eb25c9e1b9691a54",
+        "baselineGitBytes": 48728,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/village/source.json",
+        "baselineGitBlobSha1": "c084f7d881fea5801d1f55c6d2564e4e0dbd9ecb",
+        "baselineGitBytes": 1539,
+        "unchangedFromReference": true
+      },
+      {
+        "path": "Assets/Resources/World/CurrentMaps20261009/village/walkmask.txt",
+        "baselineGitBlobSha1": "867eb270c77acabda2c7fabded50c1451905bb1d",
+        "baselineGitBytes": 3752,
+        "unchangedFromReference": true
+      }
+    ],
+    "baseMapVerification": {
+      "command": "python tools/import_current_maps.py --verify --project .",
+      "exitCode": 0,
+      "ok": true,
+      "performedAfterTileImport": true,
+      "maps": [
+        {
+          "key": "main",
+          "sceneId": 1,
+          "spawnWorld": {
+            "x": 199,
+            "y": 0,
+            "z": 133
+          },
+          "walkableCells": 6651,
+          "packedSha256": "3cbbd52b44b25097b3e2b3e56bdc48a46dc29f8dc9dc3ac98c1038653cd50677"
+        },
+        {
+          "key": "village",
+          "sceneId": 3,
+          "spawnWorld": {
+            "x": 201,
+            "y": 0,
+            "z": 147
+          },
+          "walkableCells": 4524,
+          "packedSha256": "ebc9ce6c613f963055d0d7118533ffe0466e32975dc71dc7dd9552cfb5d2361d"
+        },
+        {
+          "key": "island",
+          "sceneId": 2,
+          "spawnWorld": {
+            "x": 195,
+            "y": 0,
+            "z": 173
+          },
+          "walkableCells": 4018,
+          "packedSha256": "c9bb6b2af2b16ce18af2a16fba82635319d245176496ccc0dd16f258acd83b01"
+        }
+      ]
+    },
+    "scope": "Existing layout, navigation polygon source, scene identity and walkmask are unchanged by this art-detail delivery. This is a repository comparison, not a live server or runtime observation."
+  }
+}

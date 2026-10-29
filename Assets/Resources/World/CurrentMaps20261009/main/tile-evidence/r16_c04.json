@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 16,
+  "column": 4,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "46524eedd83686f481dc956f8caf46b8c64338bb0b5fbe08f6bd016ecee9d8d3",
+  "imageBytes": 19380722,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/r16_c04.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/assembly.json",
+  "sourceLedgerSha256": "250eab3578b9f6522a56e7204398961e244aaf54ad44af91792bef5f7d330ebd",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r16_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/r16_c04.candidate.png",
+    "imageSha256": "46524eedd83686f481dc956f8caf46b8c64338bb0b5fbe08f6bd016ecee9d8d3",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/assembly.json",
+        "sha256": "250eab3578b9f6522a56e7204398961e244aaf54ad44af91792bef5f7d330ebd",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "full16_native_candidate_QA_pending",
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/r16_c04.candidate.png.generation.json",
+        "record": {
+          "acceptance": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c04/pipeline/direct-continue-20261022-assembled-v01/assembly.json",
+        "record": {
+          "status": "full16_native_candidate_QA_pending",
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261022_0210/citySW-two-complete-candidates-root-bounded-coverage-readonly-20261022.json",
+        "record": {
+          "latestQualityStatus": {
+            "r16_c04": {
+              "actuallyViewedInternalWindows": 33,
+              "passed": 0,
+              "failed": 33,
+              "internalAccepted": false
+            },
+            "r16_c03": {
+              "status": "dirty10_review_complete_later_than_checkpoint",
+              "dirtyPassed": 0,
+              "dirtyFailed": 10,
+              "reusedFailed": 23,
+              "internalAccepted": false,
+              "result": {
+                "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r16_c03/pipeline/direct-continue-20261022-bottom-native-v01/assembled-bottom-v01/result.json",
+                "sha256": "4b396521b3694c95a4486733faadb545dc690cb682d5c603ba5bbed3ea823df3"
+              }
+            }
+          },
+          "scopeLimits": {
+            "otherHistoricalVersionsScanned": false,
+            "unrelated31RawOutputsHashed": false,
+            "newPNGFilesWritten": 0,
+            "productionFileWrites": 0,
+            "currentSelectedCatalogWrites": 0,
+            "globalStatisticsWrites": 0,
+            "sharedGitOperations": 0,
+            "newImagegenCalls": 0,
+            "noEntireMapOrPackageRebuild": true,
+            "allActualImageChecksLimitedToTwoCandidatesAndNecessaryNativeDependencies": true
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

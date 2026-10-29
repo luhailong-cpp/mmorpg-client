@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 13,
+  "column": 12,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "9d7782b49fb08038dda76cfa5ce660bb55d30b3629b4ad5ecfb4aa8c38ed2538",
+  "imageBytes": 25675390,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c12/candidate/r13_c12-4k-C03-one-lower-grout-v1-20261020-2309.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c12/progress.json",
+  "sourceLedgerSha256": "fd5580959025b9fa11fcb1b5348daf6d97da644e96d9006bfcfe76bb9ece8f83",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": "east_pending_local_south_geometry_pass_finish_pending",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r13_c12",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c12/candidate/r13_c12-4k-C03-one-lower-grout-v1-20261020-2309.png",
+    "imageSha256": "9d7782b49fb08038dda76cfa5ce660bb55d30b3629b4ad5ecfb4aa8c38ed2538",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c12/progress.json",
+        "sha256": "fd5580959025b9fa11fcb1b5348daf6d97da644e96d9006bfcfe76bb9ece8f83",
+        "sourceReviewSha256": "fd5580959025b9fa11fcb1b5348daf6d97da644e96d9006bfcfe76bb9ece8f83",
+        "completeness": [
+          "Selected output path/SHA bound to this record",
+          "activeNativeCount=16 / coverageSourceCount=16; no missing cores reported"
+        ]
+      }
+    ],
+    "selectionBasis": "Exact candidate identity bound to complete native core record",
+    "sourceStatus": {
+      "status": "candidate_C02_L02_partial_C03_one_grout_selected_other_internal_defects_pending",
+      "formalAccepted": false,
+      "internalArtQA": "failed_other_local_defects_C03_one_T_join_localpass",
+      "externalNeighborSeamQA": "east_pending_local_south_geometry_pass_finish_pending"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c12/candidate/r13_c12-4k-C03-one-lower-grout-v1-20261020-2309.png.generation.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r13_c12/progress.json",
+        "record": {
+          "status": "candidate_C02_L02_partial_C03_one_grout_selected_other_internal_defects_pending",
+          "formalAccepted": false,
+          "internalArtQA": "failed_other_local_defects_C03_one_T_join_localpass",
+          "externalNeighborSeamQA": "east_pending_local_south_geometry_pass_finish_pending"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

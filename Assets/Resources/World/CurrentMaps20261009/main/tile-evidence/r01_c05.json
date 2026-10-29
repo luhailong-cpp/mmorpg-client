@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 1,
+  "column": 5,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "bed653a1862bf0054856d237fcd80d9cc6fe0513a112bf83545e7a8ffb54537a",
+  "imageBytes": 26501108,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r01_c05/candidate/r01_c05-selection-v032-native4096-v001.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r01_c05/candidate/r01_c05-selection-v032-native4096-v001.png.generation.json",
+  "sourceLedgerSha256": "044056c5815388911813a25dbd29f03532c16ae0e30208f9f1be8b178cf4ac2d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c05",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r01_c05/candidate/r01_c05-selection-v032-native4096-v001.png",
+    "imageSha256": "bed653a1862bf0054856d237fcd80d9cc6fe0513a112bf83545e7a8ffb54537a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r01_c05/candidate/r01_c05-selection-v032-native4096-v001.png.generation.json",
+        "sha256": "044056c5815388911813a25dbd29f03532c16ae0e30208f9f1be8b178cf4ac2d",
+        "completeness": [
+          "derivedFromCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "output_bound_native_coverage_or_complete_source_assembly",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/city-yamen-north/r01_c05/candidate/r01_c05-selection-v032-native4096-v001.png.generation.json",
+        "record": {
+          "unverifiedReason": "Derived only; original builtin tool did not disclose actual model/quality."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

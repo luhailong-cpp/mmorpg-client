@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 10,
+  "column": 10,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "c95da16a15d8c187e4b3602304fff60bca332c73eb3378ba90ef985507dbcba7",
+  "imageBytes": 23283644,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c10-j22-concentrated-round2/qa/v02/r10_c10.candidate-j22-round2-v02.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c10-j22-concentrated-round2/qa/v02/source-proof.json",
+  "sourceLedgerSha256": "7bd95d8776d95b5ce5057fa03a3cad07f35f55d5c85c1e292aebf24220acea1d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c10",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c10-j22-concentrated-round2/qa/v02/r10_c10.candidate-j22-round2-v02.png",
+    "imageSha256": "c95da16a15d8c187e4b3602304fff60bca332c73eb3378ba90ef985507dbcba7",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r10_c10-j22-concentrated-round2/qa/v02/source-proof.json",
+        "sha256": "7bd95d8776d95b5ce5057fa03a3cad07f35f55d5c85c1e292aebf24220acea1d",
+        "completeness": [
+          "sourcesCount",
+          21
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {},
+    "sourceQaRecords": [],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

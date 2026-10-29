@@ -1,0 +1,716 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 16,
+  "column": 16,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "e7c4c2ec482ce257b7bf029b89f2b91567882dac02381bd8a6efcddfff69f261",
+  "imageBytes": 24786488,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-4k-reviewed-local-repairs-20261016.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-assembly-reviewed-local-repairs-20261016.json",
+  "sourceLedgerSha256": "189bafa319de310a062db69a2c4593df7f26b4dacbae5bc9762fe6b04185e513",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r16_c16",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-4k-reviewed-local-repairs-20261016.png",
+    "imageSha256": "e7c4c2ec482ce257b7bf029b89f2b91567882dac02381bd8a6efcddfff69f261",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-assembly-reviewed-local-repairs-20261016.json",
+        "sha256": "189bafa319de310a062db69a2c4593df7f26b4dacbae5bc9762fe6b04185e513",
+        "sourceReviewSha256": "189bafa319de310a062db69a2c4593df7f26b4dacbae5bc9762fe6b04185e513",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-4k-reviewed-local-repairs-20261016.png",
+            "sha256": "e7c4c2ec482ce257b7bf029b89f2b91567882dac02381bd8a6efcddfff69f261"
+          },
+          "operation": null,
+          "base": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-4k-candidate-101a9801efaf54800416.png",
+            "sha256": "fa9ff5a51638c2664c2ffe690d93fd7fc5ca8bfc911867cdb532c13069f7fc5e"
+          },
+          "outsideMaskExact": true,
+          "independentReverseOrderChannelReplayExact": true,
+          "resampling": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-assembly-101a9801efaf54800416.json",
+        "sha256": "872759818284ae5833a5494efcef190774b80f9fb6cecfb3ab72aed8e70d0473",
+        "sourceReviewSha256": "872759818284ae5833a5494efcef190774b80f9fb6cecfb3ab72aed8e70d0473",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-4k-candidate-101a9801efaf54800416.png",
+            "sha256": "fa9ff5a51638c2664c2ffe690d93fd7fc5ca8bfc911867cdb532c13069f7fc5e"
+          },
+          "operation": null,
+          "base": null,
+          "nativeSourceCount": 16,
+          "all16LogicalCoordinatesPresent": true,
+          "parameters": {
+            "grid": [
+              4,
+              4
+            ],
+            "order": "row-major",
+            "tileGlobalCoreBox": [
+              61440,
+              61440,
+              65536,
+              65536
+            ],
+            "tileGlobalContextBox": [
+              61325,
+              61325,
+              65651,
+              65651
+            ],
+            "nativePixels": [
+              1254,
+              1254
+            ],
+            "corePixels": 1024,
+            "haloPerSide": 115,
+            "adjacentOverlap": 230,
+            "assembledSize": [
+              4326,
+              4326
+            ],
+            "finalCropBox": [
+              115,
+              115,
+              4211,
+              4211
+            ],
+            "method": "minimum-error seam; horizontal row joins, then vertical strip joins",
+            "algorithm": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/assemble_candidate.py",
+              "sha256": "708c802b0bb23854bdb99107434bf6dbdc0275ccfb4b8b0345aa8f087595136c",
+              "function": "append_patch"
+            },
+            "featherRadiusPixels": 2.0,
+            "blendArithmetic": "(left*(255-alpha)+right*alpha+127)//255, uint32",
+            "sourceResampling": false,
+            "sourceUpscaling": false,
+            "registration": false,
+            "colorMatching": false,
+            "globalBlur": false,
+            "sharpening": false,
+            "layoutOnlyPixelsComposited": false
+          }
+        }
+      }
+    ],
+    "selectionBasis": "New output has a continuous matching-SHA complete-base and native-patch chain to sixteen native source coordinates, no layout fill or upscaling. Local repair scope and pending art acceptance do not make the image partially generated.",
+    "sourceStatus": {
+      "status": "complete_native_candidate_with_explicit_pending_repairs",
+      "pending": [
+        {
+          "id": "W02",
+          "status": "failed_deferred_after_two_native_attempts",
+          "box": [
+            0,
+            2380,
+            650,
+            3110
+          ],
+          "description": "Original lower west coping height mismatch retained; both native repairs failed geometry/boundary QA."
+        },
+        {
+          "id": "I01-lower",
+          "status": "failed_deferred_after_two_native_attempts",
+          "box": [
+            3150,
+            2710,
+            3470,
+            3190
+          ],
+          "description": "Original lower right wrap retained. Second correction still50px disconnected; not selected."
+        },
+        {
+          "id": "W03_W04",
+          "status": "pending_material_and_wall_grid",
+          "description": "West gold-to-stone transition and middle slab grid/material still unpassed."
+        },
+        {
+          "id": "M01",
+          "status": "pending_nonblocking_lighting_finish",
+          "box": [
+            1975,
+            1050,
+            3160,
+            1160
+          ],
+          "description": "Front wall horizontal shadow band."
+        },
+        {
+          "id": "W01-watch",
+          "status": "improved_local_best_with_closure_and_material_watch",
+          "description": "Closed short coping end adopted after root native-scale check; entire west edge remains failed."
+        }
+      ],
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-assembly-reviewed-local-repairs-20261016.json",
+        "record": {
+          "status": "complete_native_candidate_with_explicit_pending_repairs",
+          "pending": [
+            {
+              "id": "W02",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                0,
+                2380,
+                650,
+                3110
+              ],
+              "description": "Original lower west coping height mismatch retained; both native repairs failed geometry/boundary QA."
+            },
+            {
+              "id": "I01-lower",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                3150,
+                2710,
+                3470,
+                3190
+              ],
+              "description": "Original lower right wrap retained. Second correction still50px disconnected; not selected."
+            },
+            {
+              "id": "W03_W04",
+              "status": "pending_material_and_wall_grid",
+              "description": "West gold-to-stone transition and middle slab grid/material still unpassed."
+            },
+            {
+              "id": "M01",
+              "status": "pending_nonblocking_lighting_finish",
+              "box": [
+                1975,
+                1050,
+                3160,
+                1160
+              ],
+              "description": "Front wall horizontal shadow band."
+            },
+            {
+              "id": "W01-watch",
+              "status": "improved_local_best_with_closure_and_material_watch",
+              "description": "Closed short coping end adopted after root native-scale check; entire west edge remains failed."
+            }
+          ],
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/latest-assembly.json",
+        "record": {
+          "status": "complete_native_candidate_with_explicit_pending_repairs",
+          "formalAccepted": false,
+          "internalRasterSeamQA": "continuous_on_reviewed_final_segments",
+          "internalArtQA": "pending_lower_right_course_and_lighting_finish",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_after_N02_final_core_pair_review",
+            "west": "failed_W02_with_W03_W04_pending_and_W01_watch",
+            "east": "map_border",
+            "south": "map_border"
+          },
+          "pendingRepairs": [
+            {
+              "id": "W02",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                0,
+                2380,
+                650,
+                3110
+              ],
+              "description": "Original lower west coping height mismatch retained; both native repairs failed geometry/boundary QA."
+            },
+            {
+              "id": "I01-lower",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                3150,
+                2710,
+                3470,
+                3190
+              ],
+              "description": "Original lower right wrap retained. Second correction still50px disconnected; not selected."
+            },
+            {
+              "id": "W03_W04",
+              "status": "pending_material_and_wall_grid",
+              "description": "West gold-to-stone transition and middle slab grid/material still unpassed."
+            },
+            {
+              "id": "M01",
+              "status": "pending_nonblocking_lighting_finish",
+              "box": [
+                1975,
+                1050,
+                3160,
+                1160
+              ],
+              "description": "Front wall horizontal shadow band."
+            },
+            {
+              "id": "W01-watch",
+              "status": "improved_local_best_with_closure_and_material_watch",
+              "description": "Closed short coping end adopted after root native-scale check; entire west edge remains failed."
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/batch-checkpoints/four-tile-final-20261016T120406Z/before/r16_c16/progress.json",
+        "record": {
+          "status": "complete_native_candidate_with_explicit_pending_repairs",
+          "formalAccepted": false,
+          "internalArtQA": "pending_lower_right_course_and_lighting_finish",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_after_N02",
+            "west": "failed_W02_plus_W03_W04_pending",
+            "east": "map_border",
+            "south": "map_border"
+          },
+          "pendingRepairs": [
+            {
+              "id": "W02",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                0,
+                2380,
+                650,
+                3110
+              ],
+              "description": "Original lower west coping height mismatch retained; both native repairs failed geometry/boundary QA."
+            },
+            {
+              "id": "I01-lower",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                3150,
+                2710,
+                3470,
+                3190
+              ],
+              "description": "Original lower right wrap retained. Second correction still50px disconnected; not selected."
+            },
+            {
+              "id": "W03_W04",
+              "status": "pending_material_and_wall_grid",
+              "description": "West gold-to-stone transition and middle slab grid/material still unpassed."
+            },
+            {
+              "id": "M01",
+              "status": "pending_nonblocking_lighting_finish",
+              "box": [
+                1975,
+                1050,
+                3160,
+                1160
+              ],
+              "description": "Front wall horizontal shadow band."
+            },
+            {
+              "id": "W01-watch",
+              "status": "improved_local_best_with_closure_and_material_watch",
+              "description": "Closed short coping end adopted after root native-scale check; entire west edge remains failed."
+            }
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/review/root-final-batch-20261016/root-selected-repairs-qa.json",
+        "record": {
+          "internalArtQA": "pending_lower_right_course_and_lighting_finish",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_after_N02",
+            "west": "failed_W02_plus_W03_W04_pending",
+            "east": "map_border",
+            "south": "map_border"
+          },
+          "pending": [
+            {
+              "id": "W02",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                0,
+                2380,
+                650,
+                3110
+              ],
+              "description": "Original lower west coping height mismatch retained; both native repairs failed geometry/boundary QA."
+            },
+            {
+              "id": "I01-lower",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                3150,
+                2710,
+                3470,
+                3190
+              ],
+              "description": "Original lower right wrap retained. Second correction still50px disconnected; not selected."
+            },
+            {
+              "id": "W03_W04",
+              "status": "pending_material_and_wall_grid",
+              "description": "West gold-to-stone transition and middle slab grid/material still unpassed."
+            },
+            {
+              "id": "M01",
+              "status": "pending_nonblocking_lighting_finish",
+              "box": [
+                1975,
+                1050,
+                3160,
+                1160
+              ],
+              "description": "Front wall horizontal shadow band."
+            },
+            {
+              "id": "W01-watch",
+              "status": "improved_local_best_with_closure_and_material_watch",
+              "description": "Closed short coping end adopted after root native-scale check; entire west edge remains failed."
+            }
+          ],
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/progress.json",
+        "record": {
+          "status": "complete_native_candidate_with_explicit_pending_repairs",
+          "formalAccepted": false,
+          "internalArtQA": "pending_lower_right_course_and_lighting_finish",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_after_N02_final_core_pair_review",
+            "west": "failed_W02_with_W03_W04_pending_and_W01_watch",
+            "east": "map_border",
+            "south": "map_border"
+          },
+          "pendingRepairs": [
+            {
+              "id": "W02",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                0,
+                2380,
+                650,
+                3110
+              ],
+              "description": "Original lower west coping height mismatch retained; both native repairs failed geometry/boundary QA."
+            },
+            {
+              "id": "I01-lower",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                3150,
+                2710,
+                3470,
+                3190
+              ],
+              "description": "Original lower right wrap retained. Second correction still50px disconnected; not selected."
+            },
+            {
+              "id": "W03_W04",
+              "status": "pending_material_and_wall_grid",
+              "description": "West gold-to-stone transition and middle slab grid/material still unpassed."
+            },
+            {
+              "id": "M01",
+              "status": "pending_nonblocking_lighting_finish",
+              "box": [
+                1975,
+                1050,
+                3160,
+                1160
+              ],
+              "description": "Front wall horizontal shadow band."
+            },
+            {
+              "id": "W01-watch",
+              "status": "improved_local_best_with_closure_and_material_watch",
+              "description": "Closed short coping end adopted after root native-scale check; entire west edge remains failed."
+            }
+          ],
+          "internalRasterSeamQA": "continuous_on_reviewed_final_segments"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/review/root-final-batch-20261016/root-final-evidence-qa-20261016.json",
+        "record": {
+          "internalRasterSeamQA": "continuous_on_reviewed_final_segments",
+          "internalArtQA": "pending_lower_right_course_and_lighting_finish",
+          "externalNeighborSeamQA": {
+            "north": "local_pass_after_N02",
+            "west": "failed_W02_plus_W03_W04_pending",
+            "east": "map_border",
+            "south": "map_border"
+          },
+          "pending": [
+            {
+              "id": "W02",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                0,
+                2380,
+                650,
+                3110
+              ],
+              "description": "Original lower west coping height mismatch retained; both native repairs failed geometry/boundary QA."
+            },
+            {
+              "id": "I01-lower",
+              "status": "failed_deferred_after_two_native_attempts",
+              "box": [
+                3150,
+                2710,
+                3470,
+                3190
+              ],
+              "description": "Original lower right wrap retained. Second correction still50px disconnected; not selected."
+            },
+            {
+              "id": "W03_W04",
+              "status": "pending_material_and_wall_grid",
+              "description": "West gold-to-stone transition and middle slab grid/material still unpassed."
+            },
+            {
+              "id": "M01",
+              "status": "pending_nonblocking_lighting_finish",
+              "box": [
+                1975,
+                1050,
+                3160,
+                1160
+              ],
+              "description": "Front wall horizontal shadow band."
+            },
+            {
+              "id": "W01-watch",
+              "status": "improved_local_best_with_closure_and_material_watch",
+              "description": "Closed short coping end adopted after root native-scale check; entire west edge remains failed."
+            }
+          ],
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-assembly-reviewed-local-repairs-20261016.json",
+    "sourceSha256": "189bafa319de310a062db69a2c4593df7f26b4dacbae5bc9762fe6b04185e513",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tile": "r16_c16",
+      "createdAtUtc": "2026-10-16T10:46:54.834659+00:00",
+      "status": "complete_native_candidate_with_explicit_pending_repairs",
+      "parentAssembly": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-assembly-101a9801efaf54800416.json",
+        "sha256": "872759818284ae5833a5494efcef190774b80f9fb6cecfb3ab72aed8e70d0473"
+      },
+      "base": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-4k-candidate-101a9801efaf54800416.png",
+        "sha256": "fa9ff5a51638c2664c2ffe690d93fd7fc5ca8bfc911867cdb532c13069f7fc5e"
+      },
+      "baseContext": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-context-4326-101a9801efaf54800416.png",
+        "sha256": "0077d5993a0c159014140a26cc91332092b3352a76d815bba8b0ac0d113da7c7"
+      },
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-4k-reviewed-local-repairs-20261016.png",
+        "sha256": "e7c4c2ec482ce257b7bf029b89f2b91567882dac02381bd8a6efcddfff69f261",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "context": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/candidate/r16_c16-context-reviewed-local-repairs-20261016.png",
+        "sha256": "980b023be9034d29acaf6ef198faf4d1cbfd68373109797af0b22715880068fb",
+        "size": [
+          4326,
+          4326
+        ]
+      },
+      "selectedRepairs": [
+        {
+          "id": "N02",
+          "source": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/north-corner-20261016/actual-native-fbe23948c5ac3e56.png",
+            "sha256": "fbe23948c5ac3e560b9b93e6da3e22de124968d81747a1ca1dde351e8951e8a3"
+          },
+          "receipt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/north-corner-20261016/receipt.json",
+            "sha256": "7811c36e9056af0780941070bbaf9bbbf420e9129783bd50a655da6a97e8121f"
+          },
+          "alpha": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/north-corner-20261016/trial-v1/alpha-crop.png",
+            "sha256": "575ee0fd710003b34b41f7ba2475f7f91d1f851f70622343eb7f0573601df330"
+          },
+          "nativeCrop": [
+            300,
+            320,
+            900,
+            920
+          ],
+          "destinationCoreBox": [
+            1050,
+            0,
+            1650,
+            600
+          ],
+          "manifest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/north-corner-20261016/trial-v1/composition.json",
+            "sha256": "e7412e7a98e94b68b21777ddd59b46e2a015955bbbbdf6603d3ae1513519c6b0"
+          }
+        },
+        {
+          "id": "W01",
+          "source": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/west-joints-20261016/W01-v1/native.png",
+            "sha256": "4b3f912168b452cc8b375f401fc105f7405e8fe322819ec2d9fe8e8ee08ae439"
+          },
+          "receipt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/west-joints-20261016/W01-v1/receipt.json",
+            "sha256": "955eb500d78661b77611364029a9ce6ac9c6f357bb6bcbfb3979f46071c56dfa"
+          },
+          "alpha": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/west-joints-20261016/W01-v1/compact-mask-v2/alpha.png",
+            "sha256": "4541407c989cfe55f77c940737610ac9b342d2c80090f08f4b0cd68a0ed34c54"
+          },
+          "nativeCrop": [
+            400,
+            200,
+            740,
+            480
+          ],
+          "destinationCoreBox": [
+            0,
+            0,
+            340,
+            280
+          ],
+          "manifest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/west-joints-20261016/W01-v1/compact-mask-v2/composition.json",
+            "sha256": "3f22a0558aa481f9da11d6f7e2f680473bfec76006c54e779fc3b79ae342498e"
+          }
+        },
+        {
+          "id": "I01-upper",
+          "source": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/right-courses-20261016/upper/attempt2/actual-native-a51fad637608632f.png",
+            "sha256": "a51fad637608632f9f220654de89fe3ecc253cde00a5ae5346139a5df76fcba0"
+          },
+          "receipt": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/right-courses-20261016/upper/attempt2/receipt.json",
+            "sha256": "c644a49f043ba2de43b7e76178a0dafb0c90d867c3648417c330cabeeaa4e79b"
+          },
+          "alpha": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/right-courses-20261016/trial-mask-v3/refined-v1/upper-alpha.png",
+            "sha256": "f1dab5b9933f3eb23cd3a7f77a02228ea8d5a32dcfcc32f0e4736ec2bd9353ed"
+          },
+          "minimumErrorPaths": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/right-courses-20261016/trial-mask-v3/refined-v1/upper-minimum-error-paths.npz",
+            "sha256": "a00107bf6758fb900f0157732d063b69f3e136238d18d3152c9f3ca51022e4d1"
+          },
+          "destinationCoreBox": [
+            2842,
+            1320,
+            4096,
+            2574
+          ],
+          "nativeCrop": [
+            0,
+            0,
+            1254,
+            1254
+          ],
+          "maskMethod": "Min-error top cut, narrow min-error bottom path constrained at/above native bottom shadow. Original wall pixels resumed below that path. Left alpha6, top alpha6, bottom alpha2.",
+          "resampling": false,
+          "RGBColorCorrection": false,
+          "manifest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/repairs/right-courses-20261016/trial-mask-v3/selected-operation-proposal.json",
+            "sha256": "5b737d86b2cc4082375c2286658c60c3d78d211a1505077d01b032711903ec89"
+          }
+        }
+      ],
+      "selectedNativeCount": 16,
+      "selectedRepairCount": 3,
+      "blendArithmetic": "(old*(255-alpha)+native*alpha+127)//255 RGB integer",
+      "masksDisjoint": true,
+      "outsideMaskExact": true,
+      "independentReverseOrderChannelReplayExact": true,
+      "resampling": false,
+      "RGBColorCorrection": false,
+      "contextPolicy": "Original halo retained; core updated exactly. External QA uses actual neighboring cores.",
+      "visualQA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r16_c16/review/root-final-batch-20261016/root-selected-repairs-qa.json",
+        "sha256": "7f087d97735f3a7bcba83f33fd2f5cb11f4a955364b140d99fa247e3f4c06303"
+      },
+      "pending": [
+        {
+          "id": "W02",
+          "status": "failed_deferred_after_two_native_attempts",
+          "box": [
+            0,
+            2380,
+            650,
+            3110
+          ],
+          "description": "Original lower west coping height mismatch retained; both native repairs failed geometry/boundary QA."
+        },
+        {
+          "id": "I01-lower",
+          "status": "failed_deferred_after_two_native_attempts",
+          "box": [
+            3150,
+            2710,
+            3470,
+            3190
+          ],
+          "description": "Original lower right wrap retained. Second correction still50px disconnected; not selected."
+        },
+        {
+          "id": "W03_W04",
+          "status": "pending_material_and_wall_grid",
+          "description": "West gold-to-stone transition and middle slab grid/material still unpassed."
+        },
+        {
+          "id": "M01",
+          "status": "pending_nonblocking_lighting_finish",
+          "box": [
+            1975,
+            1050,
+            3160,
+            1160
+          ],
+          "description": "Front wall horizontal shadow band."
+        },
+        {
+          "id": "W01-watch",
+          "status": "improved_local_best_with_closure_and_material_watch",
+          "description": "Closed short coping end adopted after root native-scale check; entire west edge remains failed."
+        }
+      ],
+      "actualModel": null,
+      "formalAccepted": false
+    }
+  }
+}

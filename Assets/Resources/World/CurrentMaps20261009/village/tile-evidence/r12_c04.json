@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 12,
+  "column": 4,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "a52ba53e69851a6f35f452f807679a83d2a9833d417820c9678fa3066cfc2a95",
+  "imageBytes": 28422141,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v11.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v11.manifest.json",
+  "sourceLedgerSha256": "6d8a797ad0ccb103afacefc477f6664c03a68c1aba1f2273563f278ecb0d64fb",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r12_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v11.png",
+    "imageSha256": "a52ba53e69851a6f35f452f807679a83d2a9833d417820c9678fa3066cfc2a95",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v11.manifest.json",
+        "sha256": "6d8a797ad0ccb103afacefc477f6664c03a68c1aba1f2273563f278ecb0d64fb",
+        "sourceReviewSha256": "6d8a797ad0ccb103afacefc477f6664c03a68c1aba1f2273563f278ecb0d64fb",
+        "completeness": [
+          "Hash-bound bounded native crop over full4096 base; no resizing or feathering."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v1.manifest.json",
+        "sha256": "694a71af3d724019870b4c31a9a450045fbee93bfb6afc1d81f16372adf2418f",
+        "sourceReviewSha256": "694a71af3d724019870b4c31a9a450045fbee93bfb6afc1d81f16372adf2418f",
+        "completeness": [
+          "Initial full4096 native source assembly; later manifests preserve base except bounded native replacement."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v7.manifest.json",
+        "sha256": "66d6a0da4210225a08b4e551f463d3199cab40ab2885baafdcd369e717d7923e",
+        "sourceReviewSha256": "66d6a0da4210225a08b4e551f463d3199cab40ab2885baafdcd369e717d7923e",
+        "completeness": [
+          "Referenced intermediate native crop/paste base version."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v6.manifest.json",
+        "sha256": "146b5c1217de8b4e0d9235842b7a614229a36e8898dbe3de3efb47c592f8dff5",
+        "sourceReviewSha256": "146b5c1217de8b4e0d9235842b7a614229a36e8898dbe3de3efb47c592f8dff5",
+        "completeness": [
+          "Referenced intermediate native crop/paste base version."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v5.manifest.json",
+        "sha256": "773e974f76974cf6b77b2b4c48e09d653a3c5a50a7cd6d7d140155379daf6326",
+        "sourceReviewSha256": "773e974f76974cf6b77b2b4c48e09d653a3c5a50a7cd6d7d140155379daf6326",
+        "completeness": [
+          "Referenced intermediate native crop/paste base version."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v4.manifest.json",
+        "sha256": "bb026e3e2fff7d84def16cdbe2f988a34d494fab1a33e9d86de0364112ab7cc1",
+        "sourceReviewSha256": "bb026e3e2fff7d84def16cdbe2f988a34d494fab1a33e9d86de0364112ab7cc1",
+        "completeness": [
+          "Referenced intermediate native crop/paste base version."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v3.manifest.json",
+        "sha256": "6347e52473e74dd4ce3b926ba2e030ebb6ea9cb2e3b5c21953ec6a759e4299d9",
+        "sourceReviewSha256": "6347e52473e74dd4ce3b926ba2e030ebb6ea9cb2e3b5c21953ec6a759e4299d9",
+        "completeness": [
+          "Referenced intermediate native crop/paste base version."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v2.manifest.json",
+        "sha256": "ab4b00359b265103131de5f38ade12c324e5fcfe3085fec06a5f61a4ac294755",
+        "sourceReviewSha256": "ab4b00359b265103131de5f38ade12c324e5fcfe3085fec06a5f61a4ac294755",
+        "completeness": [
+          "Referenced intermediate native crop/paste base version."
+        ]
+      }
+    ],
+    "selectionBasis": "bounded_native_repair_chain_to16core_base",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v11.manifest.json",
+        "record": {
+          "status": "pending_internal_qa"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v11.manifest.json",
+    "sourceSha256": "6d8a797ad0ccb103afacefc477f6664c03a68c1aba1f2273563f278ecb0d64fb",
+    "normalizedDocument": {
+      "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v11.png",
+      "sha256": "a52ba53e69851a6f35f452f807679a83d2a9833d417820c9678fa3066cfc2a95",
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "baseSource": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/candidates/r12_c04-4096-v7.png",
+      "baseSha256": "2bb27243e8ec9fe775201ca9e63c18f9f49d4d8697589b43ce887c2deab848c7",
+      "nativeOverlay": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-southwest-lower-bank/seam-native/r12_c04_seam_x2048_y1024_v3.png",
+      "overlaySha256": "b277bd45dd4069f7c0d4963a16603ec9a5262e83b0edb53a55426bfde962bec5",
+      "sourceCrop": [
+        115,
+        115,
+        1139,
+        1139
+      ],
+      "destinationCore": [
+        1536,
+        512,
+        2560,
+        1536
+      ],
+      "method": "unaltered native pixel hard crop/paste; no resizing or feathering",
+      "status": "pending_internal_qa"
+    }
+  }
+}

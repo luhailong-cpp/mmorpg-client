@@ -2,6 +2,7 @@
 import io
 import json
 from pathlib import Path, PureWindowsPath
+import shutil
 import struct
 import sys
 import tempfile
@@ -79,6 +80,43 @@ class CompletedMapTileTests(unittest.TestCase):
         change(value)
         tiles.write_json(path, value, self.project)
 
+    def make_audit(self, internal_passed, *, policy=tiles.GENERATED_SELECTION, qa_missing=False):
+        art = self.project / 'art'
+        art.mkdir(exist_ok=True)
+        audit = dict(schemaVersion=1, frozen=True, selected=[], excluded=[], contracts={})
+        if policy is not None:
+            audit['selectionPolicy'] = policy
+        for key, (scene, grid) in tiles.MAPS.items():
+            folder = art / key
+            folder.mkdir(exist_ok=True)
+            layout_sha = tiles.base_maps.MAPS[key][3]
+            contract = folder / 'contract.json'
+            contract.write_bytes(tiles.json_bytes(dict(layoutSha256=layout_sha)))
+            audit['contracts'][key] = dict(path=str(contract), sha256=tiles.file_digest(contract),
+                                           layoutSha256=layout_sha, rows=grid, columns=grid)
+            image = folder / 'r01_c01.png'
+            image.write_bytes(self.png)
+            qa = folder / 'qa.json'
+            qa.write_bytes(tiles.json_bytes(dict(internalPassed=internal_passed,
+                                                failures=['seam_not_repaired'] if internal_passed is False else [])))
+            ledger = folder / 'progress.json'
+            current = dict(internalQAPassed=internal_passed, accepted=False)
+            ledger.write_bytes(tiles.json_bytes(current))
+            audit['selected'].append(dict(
+                mapKey=key, sceneId=scene, row=1, column=1, layoutSha256=layout_sha,
+                dimensions=[4096, 4096], eligible=True, sourcePath=str(image),
+                imageSha256=tiles.digest(self.png), bytes=len(self.png),
+                qaPath=None if qa_missing else str(qa),
+                qaSha256=None if qa_missing else tiles.file_digest(qa),
+                ledgerPath=str(ledger), ledgerSha256=tiles.file_digest(ledger),
+                internalQaPassed=internal_passed, formalAccepted=False,
+                acceptanceStatus='generated_qa_missing' if qa_missing else 'generated_seams_unrepaired',
+                externalStatus=None if qa_missing else {'passed': False, 'reason': 'seam_not_repaired'},
+                currentRecord=current))
+        audit_path = self.project / 'audit.json'
+        audit_path.write_bytes(tiles.json_bytes(audit))
+        return art, audit_path
+
     def assert_structural_failure(self, change, pattern):
         self.mutate_manifest(change)
         # These tests target manifest constraints, not the PNG decoder tested
@@ -92,6 +130,46 @@ class CompletedMapTileTests(unittest.TestCase):
         self.assertEqual([m['deliveredTiles'] for m in result], [1, 1, 1])
         self.assertEqual([m['totalSlots'] for m in result], [256, 196, 196])
         self.assertFalse(any(m['wholeMapAccepted'] for m in result))
+
+    def test_selected_map_verifies_sparse_payload_and_retains_base_checks(self):
+        for key in ('village', 'island'):
+            (self.project / tiles.DELIVERY / key / 'tiles/r01_c01.png').unlink()
+        with patch.object(tiles.base_maps, 'verify') as verify_base:
+            with patch.object(tiles, 'inspect_png', wraps=tiles.inspect_png) as inspect:
+                result = tiles.verify(self.project, map_key='main')
+            verify_base.assert_called_once_with(self.project.resolve())
+        self.assertEqual([item['key'] for item in result], ['main'])
+        self.assertEqual(inspect.call_count, 1)
+        self.assertEqual(inspect.call_args.args[0],
+                         self.project.resolve() / tiles.DELIVERY / 'main/tiles/r01_c01.png')
+        # Omitting the selector still requires every delivered map payload.
+        with self.assertRaisesRegex(ValueError, 'image byte count mismatch'):
+            tiles.verify(self.project, verify_base=False)
+
+    def test_selected_map_does_not_skip_image_hash_or_manifest_validation(self):
+        path = self.project / tiles.DELIVERY / 'main/tiles/r01_c01.png'
+        changed = bytearray(self.png)
+        changed[-1] ^= 1
+        path.write_bytes(changed)
+        with self.assertRaisesRegex(ValueError, 'image SHA mismatch'):
+            tiles.verify(self.project, verify_base=False, map_key='main')
+        path.write_bytes(self.png)
+        self.mutate_manifest(lambda manifest: manifest.update(layoutSha256='b' * 64))
+        with self.assertRaisesRegex(ValueError, 'stale layout'):
+            tiles.verify(self.project, verify_base=False, map_key='main')
+
+    def test_map_selector_rejects_unknown_map_and_import_mode(self):
+        with self.assertRaisesRegex(ValueError, 'Unknown map selected'):
+            tiles.verify(self.project, verify_base=False, map_key='missing')
+        with patch.object(sys, 'argv', ['import_completed_map_tiles.py', '--map', 'main',
+                                       '--audit', 'unused-audit.json']):
+            with patch.object(tiles, 'import_tiles') as import_tiles:
+                with patch('sys.stderr', new=io.StringIO()) as errors:
+                    with self.assertRaises(SystemExit) as raised:
+                        tiles.main()
+                self.assertEqual(raised.exception.code, 2)
+                self.assertIn('--map is only supported with --verify', errors.getvalue())
+                import_tiles.assert_not_called()
 
     def test_duplicate_slot_rejected(self):
         self.assert_structural_failure(lambda m: m['tiles'].append(m['tiles'][0].copy()), 'duplicate tile slot')
@@ -122,6 +200,112 @@ class CompletedMapTileTests(unittest.TestCase):
         self.mutate_manifest(lambda m: m['tiles'][0].update(externalStatus=False, evidenceSha256=evidence_sha))
         with patch.object(tiles, 'inspect_png'):
             tiles.verify(self.project, verify_base=False)
+
+    def test_generated_delivery_preserves_failed_and_missing_qa_without_changing_pixels(self):
+        for internal_passed, missing in ((False, False), (None, True)):
+            with self.subTest(internalQaPassed=internal_passed, qaMissing=missing):
+                art, audit_path = self.make_audit(internal_passed, qa_missing=missing)
+                with patch.object(tiles.base_maps, 'verify'):
+                    result = tiles.import_tiles(self.project, art, audit_path)
+                self.assertEqual([item['selectionPolicy'] for item in result],
+                                 [tiles.GENERATED_SELECTION] * 3)
+                for key in tiles.MAPS:
+                    folder = self.project / tiles.DELIVERY / key
+                    manifest = tiles.read_json(folder / 'tiles.json')
+                    record = manifest['tiles'][0]
+                    evidence = tiles.read_json(folder / record['evidencePath'])
+                    self.assertIs(record['internalQaPassed'], internal_passed)
+                    self.assertIs(evidence['internalQaPassed'], internal_passed)
+                    self.assertFalse(record['formalAccepted'])
+                    self.assertFalse(manifest['wholeMapAccepted'])
+                    self.assertEqual(manifest['coverageStatus'],
+                                     'all_generated_current_layout_seams_not_required')
+                    self.assertEqual((folder / 'tiles/r01_c01.png').read_bytes(), self.png)
+                    if missing:
+                        self.assertIsNone(record['sourceQaPath'])
+                        self.assertIsNone(record['sourceQaSha256'])
+                        self.assertIsNone(evidence['qa'])
+                    else:
+                        self.assertEqual(evidence['qa']['normalizedDocument']['failures'],
+                                         ['seam_not_repaired'])
+                # Offline validation already ran as part of import_tiles, which
+                # never asks the art tree for anything inside verify().
+
+    def test_original_strict_import_still_rejects_failed_qa(self):
+        art, audit_path = self.make_audit(False, policy=None)
+        with patch.object(tiles.base_maps, 'verify'):
+            with self.assertRaisesRegex(ValueError, 'strict selection requires passed internal QA'):
+                tiles.import_tiles(self.project, art, audit_path)
+
+    def test_generated_audit_cannot_default_unknown_qa_to_passed(self):
+        art, audit_path = self.make_audit(None, qa_missing=True)
+        audit = tiles.read_json(audit_path)
+        del audit['selected'][0]['internalQaPassed']
+        audit_path.write_bytes(tiles.json_bytes(audit))
+        with patch.object(tiles.base_maps, 'verify'):
+            with self.assertRaisesRegex(ValueError, 'must record the actual QA state'):
+                tiles.import_tiles(self.project, art, audit_path)
+
+    def test_long_artwork_paths_import_without_leaking_windows_io_prefixes(self):
+        art, audit_path = self.make_audit(True)
+        long_folder = art.joinpath(*(['native-evidence-' + 'x' * 55] * 4))
+        tiles.access_path(long_folder).mkdir(parents=True)
+        # The cleanup target is this test's owned art directory, resolved and
+        # checked before the extended-path recursive cleanup is registered.
+        tiles.canonical_path(art).relative_to(tiles.canonical_path(self.project))
+        self.addCleanup(shutil.rmtree, tiles.access_path(art))
+        audit = tiles.read_json(audit_path)
+        record = next(item for item in audit['selected'] if item['mapKey'] == 'main')
+        for field in ('sourcePath', 'qaPath', 'ledgerPath'):
+            old = Path(record[field])
+            target = long_folder / old.name
+            tiles.access_path(target).write_bytes(tiles.access_path(old).read_bytes())
+            record[field] = str(target)
+        qa = tiles.read_json(Path(record['qaPath']))
+        qa['imagePath'] = str(tiles.access_path(record['sourcePath']))
+        tiles.access_path(record['qaPath']).write_bytes(tiles.json_bytes(qa))
+        record['qaSha256'] = tiles.file_digest(Path(record['qaPath']))
+        contract = audit['contracts']['main']
+        long_contract = long_folder / 'contract.json'
+        tiles.access_path(long_contract).write_bytes(tiles.access_path(contract['path']).read_bytes())
+        contract['path'] = str(long_contract)
+        long_audit = long_folder / 'frozen-audit.json'
+        tiles.access_path(long_audit).write_bytes(tiles.json_bytes(audit))
+        self.assertGreater(len(str(long_audit)), 260)
+        with patch.object(tiles.base_maps, 'verify'):
+            tiles.import_tiles(self.project, art, long_audit)
+        folder = self.project / tiles.DELIVERY / 'main'
+        evidence = tiles.read_json(folder / 'tile-evidence/r01_c01.json')
+        expected = Path(record['sourcePath']).relative_to(art).as_posix()
+        self.assertEqual(evidence['sourcePath'], expected)
+        self.assertEqual(evidence['qa']['normalizedDocument']['imagePath'], expected)
+        self.assertNotIn('\\\\?\\', json.dumps(evidence))
+        self.assertNotIn('//?/', json.dumps(evidence))
+        self.assertEqual((folder / 'tiles/r01_c01.png').read_bytes(), self.png)
+        with self.assertRaisesRegex(ValueError, 'outside the specified artwork repository'):
+            tiles.source_relative(tiles.access_path(self.project / 'outside.png'), art)
+
+    def test_missing_qa_cannot_claim_passed_or_formally_accepted(self):
+        art, audit_path = self.make_audit(None, qa_missing=True)
+        record = tiles.read_json(audit_path)['selected'][0]
+        for change in ({'internalQaPassed': True}, {'formalAccepted': True}):
+            with self.subTest(change=change):
+                with self.assertRaisesRegex(ValueError, 'missing QA cannot claim acceptance|formal acceptance requires'):
+                    tiles.audit_qa(dict(record, **change), tiles.GENERATED_SELECTION, art, 'main/r01_c01')
+
+    def test_verify_cannot_opt_out_of_qa_with_an_unknown_policy(self):
+        self.assert_structural_failure(lambda m: m.update(selectionPolicy='skip_all_checks'),
+                                       'Unknown tile selection policy')
+
+    def test_failed_qa_requires_explicit_generated_policy_in_offline_manifest(self):
+        folder = self.project / tiles.DELIVERY / 'main'
+        evidence_path = folder / 'tile-evidence/r01_c01.json'
+        evidence = tiles.read_json(evidence_path)
+        evidence['internalQaPassed'] = False
+        evidence_sha = tiles.write_json(evidence_path, evidence, self.project)
+        self.assert_structural_failure(
+            lambda m: m['tiles'][0].update(internalQaPassed=False, evidenceSha256=evidence_sha),
+            'incomplete QA evidence')
 
     def test_tampered_qa_evidence_rejected(self):
         path = self.project / tiles.DELIVERY / 'main/tile-evidence/r01_c01.json'
@@ -165,6 +349,23 @@ class CompletedMapTileTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'image SHA mismatch'):
             tiles.inspect_png(path, '0' * 64, len(self.png))
 
+    def test_opaque_rgba_preserves_original_png_bytes(self):
+        path = self.project / 'opaque.png'
+        with Image.new('RGBA', (4096, 4096), (73, 112, 99, 255)) as image:
+            image.save(path, format='PNG')
+        original = path.read_bytes()
+        tiles.inspect_png(path, tiles.digest(original), len(original))
+        self.assertEqual(path.read_bytes(), original)
+
+    def test_rgba_with_one_nonopaque_pixel_is_rejected(self):
+        path = self.project / 'transparent.png'
+        with Image.new('RGBA', (4096, 4096), (73, 112, 99, 255)) as image:
+            image.putpixel((4095, 4095), (73, 112, 99, 254))
+            image.save(path, format='PNG')
+        original = path.read_bytes()
+        with self.assertRaisesRegex(ValueError, 'must be fully opaque'):
+            tiles.inspect_png(path, tiles.digest(original), len(original))
+
     def test_qa_normalization_keeps_source_hash_separate(self):
         art = self.project / 'art'
         art.mkdir()
@@ -201,6 +402,20 @@ class CompletedMapTileTests(unittest.TestCase):
             'resolvedForwardSlashes': 'tile.png',
             'shortDifferentCase': 'tile.png',
             'outsideRoot': 'source-host/C/Users/RUNNER~1/AppData/Local/Temp/map-test/art-other/tile.png',
+        })
+
+    def test_extended_windows_prefixes_are_not_archived(self):
+        root = PureWindowsPath('C:/artwork')
+        art_root = MagicMock(spec=Path)
+        art_root.absolute.return_value = root
+        art_root.resolve.return_value = root
+        self.assertEqual(tiles.normalize_source_references({
+            'image': r'\\?\C:\artwork\native\tile.png',
+            'forward': '//?/C:/artwork/qa.json',
+            'outside': r'\\?\D:\original-host\tile.png',
+        }, art_root), {
+            'image': 'native/tile.png', 'forward': 'qa.json',
+            'outside': 'source-host/D/original-host/tile.png',
         })
 
 

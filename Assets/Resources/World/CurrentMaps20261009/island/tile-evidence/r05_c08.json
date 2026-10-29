@@ -1,0 +1,1308 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 5,
+  "column": 8,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "f3b98ccb5df4f835fc800b5c9de253d353471dd6c5e98ed61d145d22804d13cf",
+  "imageBytes": 25339772,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r05_c08-native-v2-resume20-20261020.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r05_c08-native-v2-resume20-20261020.png.derivation.json",
+  "sourceLedgerSha256": "6a761f81df4c39f04fab102fa3b35d0d69e4becf628bd847afe577f2505abfcc",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r05_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r05_c08-native-v2-resume20-20261020.png",
+    "imageSha256": "f3b98ccb5df4f835fc800b5c9de253d353471dd6c5e98ed61d145d22804d13cf",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r05_c08-native-v2-resume20-20261020.png.derivation.json",
+        "sha256": "6a761f81df4c39f04fab102fa3b35d0d69e4becf628bd847afe577f2505abfcc",
+        "completeness": [
+          "/completeCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r05_c08-native-v2-resume20-20261020.png.derivation.json",
+        "sha256": "6a761f81df4c39f04fab102fa3b35d0d69e4becf628bd847afe577f2505abfcc",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "layoutAccepted": false,
+      "externalSeamsPassed": false,
+      "wholeMapAccepted": false,
+      "formalAccepted": false,
+      "amendmentReason": "More precise reading of original-coordinate guide, not production acceptance."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r05_c08-native-v2-resume20-20261020.png.derivation.json",
+        "record": {
+          "layoutAccepted": false,
+          "externalSeamsPassed": false,
+          "fullMapAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/full49-review-v2.json",
+        "record": {
+          "layoutAccepted": false,
+          "externalSeamsPassed": false,
+          "wholeMapAccepted": false,
+          "formalAccepted": false,
+          "amendmentReason": "More precise reading of original-coordinate guide, not production acceptance."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/full49-review-v2.json",
+    "sourceSha256": "dc287149d007812659b609793e1008d77721af9e42dea7c1d9c366904dd84573",
+    "normalizedDocument": {
+      "tile": "r05_c08",
+      "reviewedAtUtc": "2026-10-20T16:34:54.685332+00:00",
+      "candidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r05_c08-native-v2-resume20-20261020.png",
+      "candidateSha256": "f3b98ccb5df4f835fc800b5c9de253d353471dd6c5e98ed61d145d22804d13cf",
+      "summary": {
+        "failed": 18,
+        "pending": 20,
+        "passed": 11
+      },
+      "items": [
+        {
+          "id": "core-1-1",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-1-1.png",
+          "sha256": "d5d66aef62e07638d73014bbadd805ea7deebebae9b84ac6ab674b751993b9f9",
+          "box": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "sources": [
+            "r05_c08_p01_01"
+          ],
+          "status": "failed_material",
+          "note": "Road slab faces show dense regular diagonal tessellation/crackle; broad geometry retained.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_01": "0bb35becdc767649d6c43e5b9deca16c91c033122fa2c352cbf6406c4c6cd88e"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-1-2",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-1-2.png",
+          "sha256": "abf5f60a76976c6b69af7b1fae042efc50a53c396e7d93296378ff56b38ac7c5",
+          "box": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "sources": [
+            "r05_c08_p01_02_v2"
+          ],
+          "status": "failed_material",
+          "note": "Ivory path and left paving show repetitive diagonal scale texture; calm stone material not resolved.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_02_v2": "71e27f5290975d82e31952ed1586457bad54a53b17f78f8d8ddeecca33e9b5c0"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-1-3",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-1-3.png",
+          "sha256": "f9c76434e987a9649b5c2683d0f2b6505a528d377c381d7b533acc2cc59b910d",
+          "box": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "sources": [
+            "r05_c08_p01_03_v2"
+          ],
+          "status": "pending_material",
+          "note": "Sphere and garden geometry locally readable; dense faceted stone rendering needs material acceptance.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_03_v2": "b881b82c3d4e6933ca79069c526cd69300e449940b89e0823bebd1b763b36744"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-1-4",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-1-4.png",
+          "sha256": "abfe2e4ce1528b89e58ff2481d1fa1beea8b329ab39ad5410e62aebe4f4bf408",
+          "box": [
+            3072,
+            0,
+            4096,
+            1024
+          ],
+          "sources": [
+            "r05_c08_p01_04"
+          ],
+          "status": "local_pass",
+          "note": "Local garden and stepping stones remain coherent, no interior hard rectangle seen.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_04": "c26003da97b5a28e95242ec0dc0d2a0b04b332fbd50defe00e7aea0ced1c2aed"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-2-1",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-2-1.png",
+          "sha256": "8d08392af5cded775174a27b4ef730e8d66c8f397cf8a789cd6d5c8c44a4d5d2",
+          "box": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "sources": [
+            "r05_c08_p02_01_v3"
+          ],
+          "status": "failed_material",
+          "note": "Stair risers retain repetitive diamond pattern across large surfaces.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_01_v3": "41ecc67f1d6c5a19ad98a5eac6f22a28f06491bd12502d1c46ae5a589024f090"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-2-2",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-2-2.png",
+          "sha256": "ccbba8d2ed5f2f5075a686b6ab575ab6d35fdf4afcdb51ff896041396cf0458f",
+          "box": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "sources": [
+            "r05_c08_p02_02"
+          ],
+          "status": "failed_material",
+          "note": "Stair riser diamond lattice and crackle remain too regular.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-2-3",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-2-3.png",
+          "sha256": "c50de33b24d9895eb381559fcc991662febedcfbc6718125c2f3358582c25697",
+          "box": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "sources": [
+            "r05_c08_p02_03_v2"
+          ],
+          "status": "failed_layout_material",
+          "note": "Post left margin narrows relative to source layout and upper-left anchor transition persists.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-2-4",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-2-4-v2.png",
+          "sha256": "851787b77d34aeb779ba5806258c890cecd825776f1c0c5793eeb399c502daef",
+          "box": [
+            3072,
+            1024,
+            4096,
+            2048
+          ],
+          "sources": [
+            "r05_c08_p02_04_v2_resume20"
+          ],
+          "status": "local_pass",
+          "note": "Straight internal x1024 native source band removed; stone/plant contour retained without blur.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_04_v2_resume20": "4e2bab405f9a98ea58dae7b3e237250d2a36abf34fe092e9ba5d36c3456946d3"
+          },
+          "priorFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-2-4.png",
+          "priorStatus": "failed_material_boundary",
+          "reviewMode": "changed input, native crop actually viewed"
+        },
+        {
+          "id": "core-3-1",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-3-1.png",
+          "sha256": "342771f9bede951f9c496940a86d07ca2c604fe7e732f333d5d4f2972873c9bb",
+          "box": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "sources": [
+            "r05_c08_p03_01_v2"
+          ],
+          "status": "pending_layout",
+          "note": "Single diagonal edging present but its exact placement against original footprint still needs repair comparison.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_01_v2": "9baaf0b14c20c6c2faf23aa59bc456c74a465a45081bc5acaa7642cc4b41d3b7"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-3-2",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-3-2.png",
+          "sha256": "2bd694ed79b4ac8ea4d31316af56240d07c597718a56009b9dec65986a2ad746",
+          "box": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "sources": [
+            "r05_c08_p03_02"
+          ],
+          "status": "pending_layout",
+          "note": "Original local guide contains an ambiguous warm upper walkway as well as lower divider. Exact contour/width not established; earlier assertion that all upper edging is absent is withdrawn. Existing join discontinuities remain failed separately.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e"
+          },
+          "priorDecision": {
+            "status": "failed_layout",
+            "note": "Extra cream band at lower edge propagates a second road divider absent from this coordinate layout."
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-3-3",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-3-3.png",
+          "sha256": "d132d1f94a60ba1cb74727215cdddaec275049280d0cfaa778e7f15346fa5857",
+          "box": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "sources": [
+            "r05_c08_p03_03"
+          ],
+          "status": "pending_material",
+          "note": "Post base/garden locally coherent; shaft faceting remains pending material and neighbor boundary closure.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-3-4",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-3-4.png",
+          "sha256": "01f6d08a905aa8f852de718c9bc320519cd3fb9c2040e591814725c75ebe5ba9",
+          "box": [
+            3072,
+            2048,
+            4096,
+            3072
+          ],
+          "sources": [
+            "r05_c08_p03_04"
+          ],
+          "status": "failed_material_boundary",
+          "note": "Straight left source band aroundx115 gives abrupt leaf density/scale boundary.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_04": "b1673d3f6c605c2ad8da49a1f3646617720acd2d0dc1f012d8598b8b31502979"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-4-1",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-4-1.png",
+          "sha256": "d38b06089c84eeba96f7e3ade1bee0cde38315974830395e52e3a2ad64cf0c2d",
+          "box": [
+            0,
+            3072,
+            1024,
+            4096
+          ],
+          "sources": [
+            "r05_c08_p04_01"
+          ],
+          "status": "pending_layout",
+          "note": "Original local guide contains an ambiguous warm upper walkway as well as lower divider. Exact contour/width not established; earlier assertion that all upper edging is absent is withdrawn. Existing join discontinuities remain failed separately.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p04_01": "75b0a54e791f9376f87cdb3eddb98cdd705ce660b15ea0bf101163aadf1de3b1"
+          },
+          "priorDecision": {
+            "status": "failed_layout",
+            "note": "Upper duplicate cream strip inherited from upper source conflicts with original single lower divider."
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-4-2",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-4-2.png",
+          "sha256": "cd01154b8ecf0d9a7f1b17c8955015c598e08caee50f95cec13f01a15244272b",
+          "box": [
+            1024,
+            3072,
+            2048,
+            4096
+          ],
+          "sources": [
+            "r05_c08_p04_02"
+          ],
+          "status": "pending_material",
+          "note": "Correct one lower divider footprint candidate; broad gray slabs still have conspicuous repeated brush/crackle.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p04_02": "92b6be98bc444b69029ee30bbd262850af6f0484119315b742928f5e7616b9e1"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-4-3",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-4-3.png",
+          "sha256": "0beb9a175dc4c879e07eaf67fc3eace20eb424111996703eb0db9ad3e695d15d",
+          "box": [
+            2048,
+            3072,
+            3072,
+            4096
+          ],
+          "sources": [
+            "r05_c08_p04_03"
+          ],
+          "status": "pending_layout",
+          "note": "Broad ivory diagonal strip retained, raised riser height not verified against original flat-sidewalk geometry.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p04_03": "bf7815a81f04380f0a74d3567ac5f28516e74396d4ed3f97598cc05fe9ce65ad"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "core-4-4",
+          "kind": "core",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/core-4-4.png",
+          "sha256": "0bb7720ab0ee61a18ae5723f92c5a0f79be4f15d97b5907aa62aa790ff37059f",
+          "box": [
+            3072,
+            3072,
+            4096,
+            4096
+          ],
+          "sources": [
+            "r05_c08_p04_04"
+          ],
+          "status": "pending_layout",
+          "note": "Diagonal broad sidewalk and planted edge readable; elevation/width requires layout confirmation.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p04_04": "1cac7176e81b54b8d2d1b4ad2fc25818156d92ca81eaeacd627128252ac7b707"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-1-1",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-1-1.png",
+          "sha256": "935c8c8e440229d97c6768e9df479553ea8869fc9c71abe270a3120719bd76f1",
+          "box": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "sources": [
+            "r05_c08_p01_01",
+            "r05_c08_p01_02_v2"
+          ],
+          "status": "pending_material",
+          "note": "Mortar endpoints locally connect, repetitive diagonal texture spans the join.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_01": "0bb35becdc767649d6c43e5b9deca16c91c033122fa2c352cbf6406c4c6cd88e",
+            "r05_c08_p01_02_v2": "71e27f5290975d82e31952ed1586457bad54a53b17f78f8d8ddeecca33e9b5c0"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-1-1",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-1-1.png",
+          "sha256": "4bb0ab87c4463200029fbef3d0458254b0da7b7fd02f93a8b145c15c2919eb5d",
+          "box": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "sources": [
+            "r05_c08_p01_01",
+            "r05_c08_p02_01_v3"
+          ],
+          "status": "pending_layout",
+          "note": "Upper road to first stair transition coincides with source boundary; source-layout step position still pending.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_01": "0bb35becdc767649d6c43e5b9deca16c91c033122fa2c352cbf6406c4c6cd88e",
+            "r05_c08_p02_01_v3": "41ecc67f1d6c5a19ad98a5eac6f22a28f06491bd12502d1c46ae5a589024f090"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-1-2",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-1-2.png",
+          "sha256": "57aea245323ce49dbffee67783da0a04be06cab3840797ed2fa52956577cb04f",
+          "box": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "sources": [
+            "r05_c08_p02_01_v3",
+            "r05_c08_p02_02"
+          ],
+          "status": "pending_material",
+          "note": "Stair treads remain aligned but riser surface density changes around source cut.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_01_v3": "41ecc67f1d6c5a19ad98a5eac6f22a28f06491bd12502d1c46ae5a589024f090",
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-1-2",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-1-2.png",
+          "sha256": "cfe6dc7f1b5d6145aa48b5e9498de9c359490f8896e277761745484fcc3e2fd5",
+          "box": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "sources": [
+            "r05_c08_p01_02_v2",
+            "r05_c08_p02_02"
+          ],
+          "status": "pending_layout",
+          "note": "Ivory path to stair top transition requires footprint/width confirmation.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_02_v2": "71e27f5290975d82e31952ed1586457bad54a53b17f78f8d8ddeecca33e9b5c0",
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-1-3",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-1-3.png",
+          "sha256": "b0bcc764addec3c2c8b0b989a2f346a9fa707b7939d530f577e6f72622ccac41",
+          "box": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "sources": [
+            "r05_c08_p03_01_v2",
+            "r05_c08_p03_02"
+          ],
+          "status": "failed_material_boundary",
+          "note": "Road texture strength changes on source boundary and several mortar endpoints kink.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_01_v2": "9baaf0b14c20c6c2faf23aa59bc456c74a465a45081bc5acaa7642cc4b41d3b7",
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-1-3",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-1-3.png",
+          "sha256": "bf464f7273998e6ccf9f02f16fdf8acbae9f3bf05d3b82da772832fe9e0df93e",
+          "box": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "sources": [
+            "r05_c08_p01_03_v2",
+            "r05_c08_p02_03_v2"
+          ],
+          "status": "local_pass",
+          "note": "Sphere/post shaft silhouette remains continuous across horizontal join.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_03_v2": "b881b82c3d4e6933ca79069c526cd69300e449940b89e0823bebd1b763b36744",
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-1-4",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-1-4.png",
+          "sha256": "e4e6ef351e737f9293010a416253bd6c3808d2b24dd82c680aa0482278e5ec8c",
+          "box": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "sources": [
+            "r05_c08_p04_01",
+            "r05_c08_p04_02"
+          ],
+          "status": "failed_geometry",
+          "note": "Upper duplicate cream strip ends at source boundary while lower divider widths/mortar do not exactly meet.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p04_01": "75b0a54e791f9376f87cdb3eddb98cdd705ce660b15ea0bf101163aadf1de3b1",
+            "r05_c08_p04_02": "92b6be98bc444b69029ee30bbd262850af6f0484119315b742928f5e7616b9e1"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-1-4",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-1-4-v2.png",
+          "sha256": "9846a120e626b30b2176db660106daa61f8f2ad94390f615d147f6c1bda21a3a",
+          "box": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "sources": [
+            "r05_c08_p01_04",
+            "r05_c08_p02_04_v2_resume20"
+          ],
+          "status": "local_pass",
+          "note": "Upper stepping stones/grass join retains prior local continuity.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_04": "c26003da97b5a28e95242ec0dc0d2a0b04b332fbd50defe00e7aea0ced1c2aed",
+            "r05_c08_p02_04_v2_resume20": "4e2bab405f9a98ea58dae7b3e237250d2a36abf34fe092e9ba5d36c3456946d3"
+          },
+          "priorFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-1-4.png",
+          "priorStatus": "local_pass",
+          "reviewMode": "changed input, native crop actually viewed"
+        },
+        {
+          "id": "v-2-1",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-2-1.png",
+          "sha256": "ebfe187c2cd3ef0d7d848197cdae03a1263914ec3b9f1d67dcd6b8c95a35291e",
+          "box": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "sources": [
+            "r05_c08_p01_02_v2",
+            "r05_c08_p01_03_v2"
+          ],
+          "status": "local_pass",
+          "note": "Ivory walkway and garden stones meet without a visible hard cut in this crop.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_02_v2": "71e27f5290975d82e31952ed1586457bad54a53b17f78f8d8ddeecca33e9b5c0",
+            "r05_c08_p01_03_v2": "b881b82c3d4e6933ca79069c526cd69300e449940b89e0823bebd1b763b36744"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-2-1",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-2-1.png",
+          "sha256": "2fdf12b7e145b6a20912eedc28d4ce9eb3f5792d95b8f4bcd6e40a98f65dade6",
+          "box": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "sources": [
+            "r05_c08_p02_01_v3",
+            "r05_c08_p03_01_v2"
+          ],
+          "status": "pending_material",
+          "note": "Stair geometry connected, diamond density still pending material.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_01_v3": "41ecc67f1d6c5a19ad98a5eac6f22a28f06491bd12502d1c46ae5a589024f090",
+            "r05_c08_p03_01_v2": "9baaf0b14c20c6c2faf23aa59bc456c74a465a45081bc5acaa7642cc4b41d3b7"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-2-2",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-2-2.png",
+          "sha256": "47762af6197f22310b3ef046e09a7a1d54864021552affeb9de050c064e61b19",
+          "box": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "sources": [
+            "r05_c08_p02_02",
+            "r05_c08_p02_03_v2"
+          ],
+          "status": "failed_material_boundary",
+          "note": "Ivory/step surface transition has a rectangular source-density seam near post approach.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c",
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-2-2",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-2-2.png",
+          "sha256": "4c07ef419d142a489eedd4e0a6a9627d9489bcf30d7622b4341b19fdd3767a76",
+          "box": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "sources": [
+            "r05_c08_p02_02",
+            "r05_c08_p03_02"
+          ],
+          "status": "pending_material",
+          "note": "Stair horizontal geometry connected; repetitive riser texture remains.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c",
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-2-3",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-2-3.png",
+          "sha256": "f9d6286358a2be97f2095dddb6bd957a25d7bb1b7e4619f483766d9707bfe02d",
+          "box": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "sources": [
+            "r05_c08_p03_02",
+            "r05_c08_p03_03"
+          ],
+          "status": "pending_layout",
+          "note": "Curving ivory flat path joins locally; width/curvature against original remains unconfirmed.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e",
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-2-3",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-2-3.png",
+          "sha256": "cbc29758c1d32f667dd1775f2b72d39b54c66aacdc47a8eb76413d353466bf7d",
+          "box": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "sources": [
+            "r05_c08_p02_03_v2",
+            "r05_c08_p03_03"
+          ],
+          "status": "local_pass",
+          "note": "Post shaft and step geometry connect locally.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e",
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-2-4",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-2-4.png",
+          "sha256": "2cd11651451a2b877c38202740ef52ef9a40e820fbed16316e145555136a41bc",
+          "box": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "sources": [
+            "r05_c08_p04_02",
+            "r05_c08_p04_03"
+          ],
+          "status": "failed_geometry",
+          "note": "Gray road on left meets broad elevated ivory band on right with incompatible height and contour.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p04_02": "92b6be98bc444b69029ee30bbd262850af6f0484119315b742928f5e7616b9e1",
+            "r05_c08_p04_03": "bf7815a81f04380f0a74d3567ac5f28516e74396d4ed3f97598cc05fe9ce65ad"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-2-4",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-2-4-v2.png",
+          "sha256": "cf2b5b3f82d3fcc9bcedf880ba56bcd54c3b5defe6439083eee44a7588cf68fa",
+          "box": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "sources": [
+            "r05_c08_p02_04_v2_resume20",
+            "r05_c08_p03_04"
+          ],
+          "status": "failed_material_boundary",
+          "note": "Lower horizontal source still has large flower/leaf to thin spiky foliage scale jump; not fixed by this edit.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_04_v2_resume20": "4e2bab405f9a98ea58dae7b3e237250d2a36abf34fe092e9ba5d36c3456946d3",
+            "r05_c08_p03_04": "b1673d3f6c605c2ad8da49a1f3646617720acd2d0dc1f012d8598b8b31502979"
+          },
+          "priorFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-2-4.png",
+          "priorStatus": "failed_material_boundary",
+          "reviewMode": "changed input, native crop actually viewed"
+        },
+        {
+          "id": "v-3-1",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-3-1.png",
+          "sha256": "e89d85d296e0895f69e1340f8174b0afc502395aaaabf7e341f68721bf3fc3e6",
+          "box": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "sources": [
+            "r05_c08_p01_03_v2",
+            "r05_c08_p01_04"
+          ],
+          "status": "local_pass",
+          "note": "Garden stepping stones and plants continue across local join.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_03_v2": "b881b82c3d4e6933ca79069c526cd69300e449940b89e0823bebd1b763b36744",
+            "r05_c08_p01_04": "c26003da97b5a28e95242ec0dc0d2a0b04b332fbd50defe00e7aea0ced1c2aed"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-3-1",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-3-1.png",
+          "sha256": "ecd539a8e3fe47f5455195c2cbd37e9db1687328467e1086d2dfdcd51dfcf42c",
+          "box": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "sources": [
+            "r05_c08_p03_01_v2",
+            "r05_c08_p04_01"
+          ],
+          "status": "pending_layout",
+          "note": "Original local guide contains an ambiguous warm upper walkway as well as lower divider. Exact contour/width not established; earlier assertion that all upper edging is absent is withdrawn. Existing join discontinuities remain failed separately.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_01_v2": "9baaf0b14c20c6c2faf23aa59bc456c74a465a45081bc5acaa7642cc4b41d3b7",
+            "r05_c08_p04_01": "75b0a54e791f9376f87cdb3eddb98cdd705ce660b15ea0bf101163aadf1de3b1"
+          },
+          "priorDecision": {
+            "status": "failed_layout",
+            "note": "Join continues duplicate upper cream road divider rather than original single lower divider."
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-3-2",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-3-2-v2.png",
+          "sha256": "5f47af96f2a944f0b6115402824c8a36a0e36068d0831612433e0c250d08460d",
+          "box": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "sources": [
+            "r05_c08_p02_03_v2",
+            "r05_c08_p02_04_v2_resume20"
+          ],
+          "status": "local_pass",
+          "note": "No new hard vertical seam; stones/leaves locally connect at prior join.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e",
+            "r05_c08_p02_04_v2_resume20": "4e2bab405f9a98ea58dae7b3e237250d2a36abf34fe092e9ba5d36c3456946d3"
+          },
+          "priorFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-3-2.png",
+          "priorStatus": "pending_material",
+          "reviewMode": "changed input, native crop actually viewed"
+        },
+        {
+          "id": "h-3-2",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-3-2.png",
+          "sha256": "2365a1b1d7d11ee61a5c70b2cb51d5b6f162718de8e6a55777a309bcfde6adec",
+          "box": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "sources": [
+            "r05_c08_p03_02",
+            "r05_c08_p04_02"
+          ],
+          "status": "failed_geometry",
+          "note": "Cream band from upper patch truncates against plain gray lower patch, with unmatched mortar endpoints.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e",
+            "r05_c08_p04_02": "92b6be98bc444b69029ee30bbd262850af6f0484119315b742928f5e7616b9e1"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-3-3",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-3-3.png",
+          "sha256": "ef378b263f41424e8a3f3aa3092f4235992aa8adc5cfcb0938851cc70e0c1e30",
+          "box": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "sources": [
+            "r05_c08_p03_03",
+            "r05_c08_p03_04"
+          ],
+          "status": "failed_material_boundary",
+          "note": "Abrupt large dark leaves to small bright spiky foliage at source cut.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0",
+            "r05_c08_p03_04": "b1673d3f6c605c2ad8da49a1f3646617720acd2d0dc1f012d8598b8b31502979"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-3-3",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-3-3.png",
+          "sha256": "21d378ee059f2036a03c570ce51474d5397590eb805152f4e3092551b8f06aa3",
+          "box": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "sources": [
+            "r05_c08_p03_03",
+            "r05_c08_p04_03"
+          ],
+          "status": "local_pass",
+          "note": "Ivory walkway/garden curb locally continues across join.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0",
+            "r05_c08_p04_03": "bf7815a81f04380f0a74d3567ac5f28516e74396d4ed3f97598cc05fe9ce65ad"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "v-3-4",
+          "kind": "vertical",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/v-3-4.png",
+          "sha256": "201f27e6eb8a01d963c3c94928c94b88ab6ad1367416938e072e337ccfe08743",
+          "box": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "sources": [
+            "r05_c08_p04_03",
+            "r05_c08_p04_04"
+          ],
+          "status": "pending_layout",
+          "note": "Ivory band angle locally continues; riser height and thickness still unresolved.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p04_03": "bf7815a81f04380f0a74d3567ac5f28516e74396d4ed3f97598cc05fe9ce65ad",
+            "r05_c08_p04_04": "1cac7176e81b54b8d2d1b4ad2fc25818156d92ca81eaeacd627128252ac7b707"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "h-3-4",
+          "kind": "horizontal",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/h-3-4.png",
+          "sha256": "23e8b6859bc3641a1862b95c52233a09c3cac438db83cca44381f03d2c98b500",
+          "box": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "sources": [
+            "r05_c08_p03_04",
+            "r05_c08_p04_04"
+          ],
+          "status": "failed_material_boundary",
+          "note": "Dense large-flower source above meets short uniform grass source below at hard horizontal cut.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_04": "b1673d3f6c605c2ad8da49a1f3646617720acd2d0dc1f012d8598b8b31502979",
+            "r05_c08_p04_04": "1cac7176e81b54b8d2d1b4ad2fc25818156d92ca81eaeacd627128252ac7b707"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "x-1-1",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-1-1.png",
+          "sha256": "05e609eda3bc6f4f56c6794d3fa936a8f5af66f803a95b6e95b46d36a9eb66ea",
+          "box": [
+            768,
+            768,
+            1280,
+            1280
+          ],
+          "sources": [
+            "r05_c08_p01_01",
+            "r05_c08_p01_02_v2",
+            "r05_c08_p02_01_v3",
+            "r05_c08_p02_02"
+          ],
+          "status": "pending_material",
+          "note": "Road/step four-way junction locally connected; material lattice remains.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_01": "0bb35becdc767649d6c43e5b9deca16c91c033122fa2c352cbf6406c4c6cd88e",
+            "r05_c08_p01_02_v2": "71e27f5290975d82e31952ed1586457bad54a53b17f78f8d8ddeecca33e9b5c0",
+            "r05_c08_p02_01_v3": "41ecc67f1d6c5a19ad98a5eac6f22a28f06491bd12502d1c46ae5a589024f090",
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "x-1-2",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-1-2.png",
+          "sha256": "c9a42446ab0e29508859ae434e78e2b38d640934e246062c0e1e819dcf85990c",
+          "box": [
+            1792,
+            768,
+            2304,
+            1280
+          ],
+          "sources": [
+            "r05_c08_p01_02_v2",
+            "r05_c08_p01_03_v2",
+            "r05_c08_p02_02",
+            "r05_c08_p02_03_v2"
+          ],
+          "status": "pending_layout",
+          "note": "Path/stair transition locally readable but width/material footprint unresolved.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_02_v2": "71e27f5290975d82e31952ed1586457bad54a53b17f78f8d8ddeecca33e9b5c0",
+            "r05_c08_p01_03_v2": "b881b82c3d4e6933ca79069c526cd69300e449940b89e0823bebd1b763b36744",
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c",
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "x-1-3",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-1-3-v2.png",
+          "sha256": "4db2559b9903f630cf9e0326c1af90fa7055572d3a6071db33ab970f67606c3a",
+          "box": [
+            2816,
+            768,
+            3328,
+            1280
+          ],
+          "sources": [
+            "r05_c08_p01_03_v2",
+            "r05_c08_p01_04",
+            "r05_c08_p02_03_v2",
+            "r05_c08_p02_04_v2_resume20"
+          ],
+          "status": "local_pass",
+          "note": "Sphere-side stone/garden crossing remains coherent.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p01_03_v2": "b881b82c3d4e6933ca79069c526cd69300e449940b89e0823bebd1b763b36744",
+            "r05_c08_p01_04": "c26003da97b5a28e95242ec0dc0d2a0b04b332fbd50defe00e7aea0ced1c2aed",
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e",
+            "r05_c08_p02_04_v2_resume20": "4e2bab405f9a98ea58dae7b3e237250d2a36abf34fe092e9ba5d36c3456946d3"
+          },
+          "priorFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-1-3.png",
+          "priorStatus": "local_pass",
+          "reviewMode": "changed input, native crop actually viewed"
+        },
+        {
+          "id": "x-2-1",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-2-1.png",
+          "sha256": "55168dbf03be8468a5a06ad4fe932c0ac9dbd2c2b053e83fe377765ddbe62cc0",
+          "box": [
+            768,
+            1792,
+            1280,
+            2304
+          ],
+          "sources": [
+            "r05_c08_p02_01_v3",
+            "r05_c08_p02_02",
+            "r05_c08_p03_01_v2",
+            "r05_c08_p03_02"
+          ],
+          "status": "pending_material",
+          "note": "Stair/landing geometry continuous, stone material still overly regular.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_01_v3": "41ecc67f1d6c5a19ad98a5eac6f22a28f06491bd12502d1c46ae5a589024f090",
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c",
+            "r05_c08_p03_01_v2": "9baaf0b14c20c6c2faf23aa59bc456c74a465a45081bc5acaa7642cc4b41d3b7",
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "x-2-2",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-2-2.png",
+          "sha256": "8e634a71110fef20df698cce32e0790dc786bbfc7cf50e23c62037cd60bf0cc7",
+          "box": [
+            1792,
+            1792,
+            2304,
+            2304
+          ],
+          "sources": [
+            "r05_c08_p02_02",
+            "r05_c08_p02_03_v2",
+            "r05_c08_p03_02",
+            "r05_c08_p03_03"
+          ],
+          "status": "local_pass",
+          "note": "Curved path and stair/landing contours connect locally in this crossing.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_02": "5ec57e526c3ac4f1f176e98e76a73b4f532307eb09f3e4257814659103c4914c",
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e",
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e",
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "x-2-3",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-2-3-v2.png",
+          "sha256": "1ce8435122c7b2d46b5a1175ec1101985673c4ed1c69bd9c12c435af3b46a7d1",
+          "box": [
+            2816,
+            1792,
+            3328,
+            2304
+          ],
+          "sources": [
+            "r05_c08_p02_03_v2",
+            "r05_c08_p02_04_v2_resume20",
+            "r05_c08_p03_03",
+            "r05_c08_p03_04"
+          ],
+          "status": "failed_material_boundary",
+          "note": "Lower-right foliage L-shaped scale transition remains from other sources.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p02_03_v2": "09e841752cbef5ea53446496d43c247cd8f889558b584eba6514cf9d20a3fd8e",
+            "r05_c08_p02_04_v2_resume20": "4e2bab405f9a98ea58dae7b3e237250d2a36abf34fe092e9ba5d36c3456946d3",
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0",
+            "r05_c08_p03_04": "b1673d3f6c605c2ad8da49a1f3646617720acd2d0dc1f012d8598b8b31502979"
+          },
+          "priorFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-2-3.png",
+          "priorStatus": "failed_material_boundary",
+          "reviewMode": "changed input, native crop actually viewed"
+        },
+        {
+          "id": "x-3-1",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-3-1.png",
+          "sha256": "e6f04afe925854d24705a38d8243e802f02a8d2f2a93a322a881a8198bfad6fb",
+          "box": [
+            768,
+            2816,
+            1280,
+            3328
+          ],
+          "sources": [
+            "r05_c08_p03_01_v2",
+            "r05_c08_p03_02",
+            "r05_c08_p04_01",
+            "r05_c08_p04_02"
+          ],
+          "status": "failed_geometry",
+          "note": "Cream divider and adjacent mortar truncate/kink at crossing of four sources.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_01_v2": "9baaf0b14c20c6c2faf23aa59bc456c74a465a45081bc5acaa7642cc4b41d3b7",
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e",
+            "r05_c08_p04_01": "75b0a54e791f9376f87cdb3eddb98cdd705ce660b15ea0bf101163aadf1de3b1",
+            "r05_c08_p04_02": "92b6be98bc444b69029ee30bbd262850af6f0484119315b742928f5e7616b9e1"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "x-3-2",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-3-2.png",
+          "sha256": "d67a0154204dcfd148a22da24e56835536ae9d8e766ddd1614328f64e29d3d96",
+          "box": [
+            1792,
+            2816,
+            2304,
+            3328
+          ],
+          "sources": [
+            "r05_c08_p03_02",
+            "r05_c08_p03_03",
+            "r05_c08_p04_02",
+            "r05_c08_p04_03"
+          ],
+          "status": "failed_geometry",
+          "note": "Gray road/ivory path/broad raised strip fail to form one coherent ground contour.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_02": "544dfb230002a49c4fa7fa13c2a455bb368d799138357aa14e6ac3a0df6af20e",
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0",
+            "r05_c08_p04_02": "92b6be98bc444b69029ee30bbd262850af6f0484119315b742928f5e7616b9e1",
+            "r05_c08_p04_03": "bf7815a81f04380f0a74d3567ac5f28516e74396d4ed3f97598cc05fe9ce65ad"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        },
+        {
+          "id": "x-3-3",
+          "kind": "cross",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r05_c08-production-resume20/x-3-3.png",
+          "sha256": "0886a90c6c36e1971a22b22f0388c51fcb57e02a5eb703968566d4e0a6a330e5",
+          "box": [
+            2816,
+            2816,
+            3328,
+            3328
+          ],
+          "sources": [
+            "r05_c08_p03_03",
+            "r05_c08_p03_04",
+            "r05_c08_p04_03",
+            "r05_c08_p04_04"
+          ],
+          "status": "failed_material_boundary",
+          "note": "Vegetation scale jump persists beside garden curb crossing.",
+          "actualNativeVisualInspection": true,
+          "sourceHashes": {
+            "r05_c08_p03_03": "eab130e6e74bcaf3cc0dace7818f08afc7ec88d6d0c4aa7914b2d9b9e0b54ba0",
+            "r05_c08_p03_04": "b1673d3f6c605c2ad8da49a1f3646617720acd2d0dc1f012d8598b8b31502979",
+            "r05_c08_p04_03": "bf7815a81f04380f0a74d3567ac5f28516e74396d4ed3f97598cc05fe9ce65ad",
+            "r05_c08_p04_04": "1cac7176e81b54b8d2d1b4ad2fc25818156d92ca81eaeacd627128252ac7b707"
+          },
+          "reviewMode": "reused unchanged exact source SHA and crop SHA"
+        }
+      ],
+      "inspectionEvidence": "All16 core crops individually viewed at1024 plus12 vertical/12horizontal/9crosses at unscaled native plates <=1536px. Initial2048 plates resized by host are overview only and not counted as native evidence.",
+      "internalPassed": false,
+      "layoutAccepted": false,
+      "externalSeamsPassed": false,
+      "wholeMapAccepted": false,
+      "formalAccepted": false,
+      "amendedAtUtc": "2026-10-20T15:45:52.434840+00:00",
+      "amendmentReason": "More precise reading of original-coordinate guide, not production acceptance.",
+      "changedNativeSource": "r05_c08_p02_04_v2_resume20",
+      "newlyInspectedItems": 6,
+      "unchangedReusedItems": 43
+    }
+  }
+}

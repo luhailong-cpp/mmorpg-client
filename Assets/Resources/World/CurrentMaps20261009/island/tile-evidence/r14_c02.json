@@ -1,0 +1,1292 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 14,
+  "column": 2,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+  "imageBytes": 23422493,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/r14c02-strict-core-v01-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/report.json",
+  "sourceLedgerSha256": "fc3178f75794e08ac27013221bba656c085e4e5b64e60cefc55202eecc7acaf9",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r14_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/r14c02-strict-core-v01-4096.png",
+    "imageSha256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/report.json",
+        "sha256": "fc3178f75794e08ac27013221bba656c085e4e5b64e60cefc55202eecc7acaf9",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "geometryCoverageCoreCount": 16,
+      "materialAccepted": false,
+      "fullCoreAccepted": false,
+      "formalAccepted": false,
+      "externalEdges": "PENDING",
+      "qaStatus": "NATIVE16_GEOMETRY_JOIN_HOLD_MATERIAL_HOLD",
+      "externalTileSeamsPassed": false,
+      "externalEdgesPassed": false,
+      "pendingExternal": "All outer tile edges pending; no game-current mount."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/r14c02-strict-core-v01-4096.png.generation.json",
+        "record": {
+          "unverifiedReason": "Mechanical derived candidate, no new image model call; actual model/quality evidence belongs to each retained native source record.",
+          "formalAccepted": false,
+          "qaStatus": "NATIVE16_GEOMETRY_JOIN_HOLD_MATERIAL_HOLD",
+          "materialAccepted": false,
+          "fullCoreAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/report.json",
+        "record": {
+          "geometryCoverageCoreCount": 16,
+          "materialAccepted": false,
+          "fullCoreAccepted": false,
+          "formalAccepted": false,
+          "externalEdges": "PENDING",
+          "qaStatus": "NATIVE16_GEOMETRY_JOIN_HOLD_MATERIAL_HOLD",
+          "externalTileSeamsPassed": false,
+          "externalEdgesPassed": false,
+          "pendingExternal": "All outer tile edges pending; no game-current mount."
+        }
+      },
+      {
+        "path": "docs/MAP_REGION_COORDINATION_20261024/island-continue-20261025_012357/sw-r14c02-V12-native-observations-20261025T054211Z.json",
+        "record": {
+          "acceptanceLimits": {
+            "sourceMaterialHoldsNotCleared": true,
+            "anchorExcludedBoxesUnchanged": true,
+            "fullCoreAccepted": false,
+            "internalTilePassed": false,
+            "externalEdges": "NOT_ASSESSED_HERE",
+            "formalAccepted": false,
+            "gameCurrentPermission": false,
+            "CASPermission": false,
+            "producerQAUnmodified": true,
+            "globalCountsUnmodified": true,
+            "newCompleteIncrement": 0
+          }
+        }
+      },
+      {
+        "path": "docs/MAP_REGION_COORDINATION_20261024/island-continue-20261025_012357/sw-r14c02-J9-native-observations-v01.json",
+        "record": {
+          "scopeLimits": [
+            "J9only. V12/H12 delegated to separate reviewers. No unviewedID marked viewed.",
+            "PASS_LOCAL belongs only to this exact native meeting and candidateSHA. All6 prior source materialHOLD/exclusions, pending fullentity material/wholeinternal/external/formal states remain.",
+            "Fine uncertain phase stays unpassed; no claimed exact displacement or new macro coastline failure. No new repairROI/mask/source changes/retrybudget.",
+            "Review is regional independentactualQA incoordinationdocs only. Originalsoleparent remains productionQA/current writer. Root already registered technicalcomplete+1; this doesnotadd anothercount."
+          ]
+        }
+      },
+      {
+        "path": "docs/MAP_REGION_COORDINATION_20261024/human-window-recovery-20261024_221111/HEARTBEAT20_CURRENT_AND_SW_INTAKE_20261025_011321.json",
+        "record": {
+          "producerQAStatus": "PENDING24_SEGMENTS9_JUNCTIONS_NATIVE_VIEWS",
+          "producerMaterialAccepted": false,
+          "producerFullCOREAccepted": false,
+          "producerFormalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "docs/MAP_REGION_COORDINATION_20261024/island-continue-20261025_012357/sw-r14c02-H12-native-actual-review-v01.json",
+    "sourceSha256": "e80ac58ee41909b4162076d0e601ee662292ea2b90238426ca5761e41191aa13",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "kind": "SW_R14C02_12_HORIZONTAL_SEGMENTS_ACTUAL_NATIVE_VISUAL_REVIEW_ONLY",
+      "reviewedAtUtc": "2026-10-25T05:42:37.270077+00:00",
+      "scope": {
+        "map": "island-game-20261009",
+        "tile": "r14_c02",
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/r14c02-strict-core-v01-4096.png",
+          "sha256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "bytes": 23422493,
+          "mtimeNs": "1792904517124677700",
+          "mtimeUtc": "2026-10-25T05:01:57.124678+00:00",
+          "stableDuringRead": true,
+          "expectedSha256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "expectedShaMatches": true,
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "mode": "RGB",
+          "format": "PNG",
+          "fullyDecoded": true
+        },
+        "tileWorldBox": [
+          4096,
+          53248,
+          8192,
+          57344
+        ],
+        "ids": [
+          "H1-C1",
+          "H1-C2",
+          "H1-C3",
+          "H1-C4",
+          "H2-C1",
+          "H2-C2",
+          "H2-C3",
+          "H2-C4",
+          "H3-C1",
+          "H3-C2",
+          "H3-C3",
+          "H3-C4"
+        ],
+        "actualSheetViews": 6,
+        "actualNativePaneViews": 12,
+        "originalDetailRequested": true,
+        "newPNG": 0,
+        "noVOrJReview": true,
+        "noWholeEntityOriginalLayoutOrExteriorReview": true
+      },
+      "readOnlyIntake": {
+        "assignmentPacket": {
+          "path": "docs/MAP_REGION_COORDINATION_20261024/island-continue-20261025_012357/sw-r14c02-qa-current-20261025T053319Z.json",
+          "sha256": "cf6fd6e8e5df4b9fde4b30d524a3add6e4d13ca4223e3aac6dc1a47fd41f227e",
+          "bytes": 28568
+        },
+        "producerAssemblyReport": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/report.json",
+          "sha256": "0cff14774366058929835f9972afc424ada8f826a481c74aa3e894c44348bfd2",
+          "bytes": 74613
+        },
+        "existingHActualResultsAtIntake": false,
+        "intakeEvidence": "Exact candidate directory contained report/readiness/claim/generation JSON only; canonical report had all12H actuallyViewedNativefalse. No same-candidate H actual result in this coordination round at intake.",
+        "newSourceImageHashesOr16CoreReplay": false,
+        "existingMechanicalProofReusedOnly": "The known0pixel replay and registered complete inventory are provenance only; all visual verdicts below come from actual sheet views."
+      },
+      "candidateBinding": {
+        "expectedCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+        "candidateStatAfterViews": {
+          "bytes": 23422493,
+          "mtimeNs": "1792904517124677700"
+        },
+        "matchesPriorVerifiedExactStat": true,
+        "candidatePngRehashedOrReplayed": false,
+        "sheetHashesActuallyMatchedAfterViews": true
+      },
+      "reviewDefinitions": {
+        "PASS": "Only this native600px-high horizontal contact shows no clearly observed local discontinuity on the named axis; never whole-source, full-core, internal-tile or target-style acceptance.",
+        "HOLD": "A specific visible local discontinuity remains and prevents passing that contact axis.",
+        "uncertain": "Visible texture/phase evidence is insufficient to establish a fixed physical geometry conclusion; no PASS and no invented macro geometry failure.",
+        "materialAxis": "Local boundary color/paint-grain/foam/reflection continuity. This review does not reopen or clear the prior source finish HOLDs.",
+        "coordinates": "Native pixel coordinates estimated from actual original-detail view; tolerance20px. They locate observations, not masks, source-authority polygons or production repair domains.",
+        "paneJoinNotDefect": "SheetY600 is the contact-sheet top/bottom layout boundary, not a candidate seam; actual reviewed seams are sheetY300/900."
+      },
+      "reviewSheets": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H1-columns12.png",
+          "sha256": "c2cce1aa406528de013f6d9afbd18ece9a9a78eb4069bde4347b29e80958f87a",
+          "bytes": 1694432,
+          "dimensions": [
+            1024,
+            1200
+          ],
+          "mode": "RGB",
+          "panes": [
+            "H1-C1",
+            "H1-C2"
+          ],
+          "order": "top-bottom",
+          "eachPaneSize": [
+            1024,
+            600
+          ],
+          "eachPaneSeamY": 300,
+          "sheetSeamY": [
+            300,
+            900
+          ],
+          "actualViewTool": "view_image",
+          "requestedDetail": "original",
+          "actuallyViewedOriginal": true,
+          "reviewerViewedBothPanes": true,
+          "newRenderOrResize": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H1-columns34.png",
+          "sha256": "e009f66af3d8b410a8be10311c3d6fec4a82d11734b7262b67df01a9f1665a1b",
+          "bytes": 1964620,
+          "dimensions": [
+            1024,
+            1200
+          ],
+          "mode": "RGB",
+          "panes": [
+            "H1-C3",
+            "H1-C4"
+          ],
+          "order": "top-bottom",
+          "eachPaneSize": [
+            1024,
+            600
+          ],
+          "eachPaneSeamY": 300,
+          "sheetSeamY": [
+            300,
+            900
+          ],
+          "actualViewTool": "view_image",
+          "requestedDetail": "original",
+          "actuallyViewedOriginal": true,
+          "reviewerViewedBothPanes": true,
+          "newRenderOrResize": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H2-columns12.png",
+          "sha256": "72f2f1f17d55c7c609023e4261a5c71455697e83dc9dddbf4b9d456e72096c3c",
+          "bytes": 1596900,
+          "dimensions": [
+            1024,
+            1200
+          ],
+          "mode": "RGB",
+          "panes": [
+            "H2-C1",
+            "H2-C2"
+          ],
+          "order": "top-bottom",
+          "eachPaneSize": [
+            1024,
+            600
+          ],
+          "eachPaneSeamY": 300,
+          "sheetSeamY": [
+            300,
+            900
+          ],
+          "actualViewTool": "view_image",
+          "requestedDetail": "original",
+          "actuallyViewedOriginal": true,
+          "reviewerViewedBothPanes": true,
+          "newRenderOrResize": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H2-columns34.png",
+          "sha256": "5d7cf154241316849d3b57332bb57cc116785d20292a6f7cba2c1fda27ce8f2f",
+          "bytes": 1528607,
+          "dimensions": [
+            1024,
+            1200
+          ],
+          "mode": "RGB",
+          "panes": [
+            "H2-C3",
+            "H2-C4"
+          ],
+          "order": "top-bottom",
+          "eachPaneSize": [
+            1024,
+            600
+          ],
+          "eachPaneSeamY": 300,
+          "sheetSeamY": [
+            300,
+            900
+          ],
+          "actualViewTool": "view_image",
+          "requestedDetail": "original",
+          "actuallyViewedOriginal": true,
+          "reviewerViewedBothPanes": true,
+          "newRenderOrResize": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H3-columns12.png",
+          "sha256": "e4367b5d8bd15ca620e70b1825c3da39101020a7c369b0f27b67dd4a1e4c5af9",
+          "bytes": 1704032,
+          "dimensions": [
+            1024,
+            1200
+          ],
+          "mode": "RGB",
+          "panes": [
+            "H3-C1",
+            "H3-C2"
+          ],
+          "order": "top-bottom",
+          "eachPaneSize": [
+            1024,
+            600
+          ],
+          "eachPaneSeamY": 300,
+          "sheetSeamY": [
+            300,
+            900
+          ],
+          "actualViewTool": "view_image",
+          "requestedDetail": "original",
+          "actuallyViewedOriginal": true,
+          "reviewerViewedBothPanes": true,
+          "newRenderOrResize": false
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H3-columns34.png",
+          "sha256": "1eb44648b22a62ae41642ff754822209214b1420dd9cce02cbea1c74389218b4",
+          "bytes": 1668642,
+          "dimensions": [
+            1024,
+            1200
+          ],
+          "mode": "RGB",
+          "panes": [
+            "H3-C3",
+            "H3-C4"
+          ],
+          "order": "top-bottom",
+          "eachPaneSize": [
+            1024,
+            600
+          ],
+          "eachPaneSeamY": 300,
+          "sheetSeamY": [
+            300,
+            900
+          ],
+          "actualViewTool": "view_image",
+          "requestedDetail": "original",
+          "actuallyViewedOriginal": true,
+          "reviewerViewedBothPanes": true,
+          "newRenderOrResize": false
+        }
+      ],
+      "results": [
+        {
+          "id": "H1-C1",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H1-columns12.png",
+            "sha256": "c2cce1aa406528de013f6d9afbd18ece9a9a78eb4069bde4347b29e80958f87a",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 0,
+          "paneOriginInSheet": [
+            0,
+            0
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 300,
+          "candidateTileBox": [
+            0,
+            724,
+            1024,
+            1324
+          ],
+          "candidateSeamY": 1024,
+          "candidateSeamXRange": [
+            0,
+            1024
+          ],
+          "worldSeamY": 54272,
+          "worldSeamXRange": [
+            4096,
+            5120
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "HOLD",
+          "material": "HOLD",
+          "combined": "HOLD",
+          "geometryObservation": "接缝两侧水光网的亮线/蓝色块在y300形成水平截换，左至中部的连续反光弧段没有保持同一相位。",
+          "materialObservation": "上侧较大的平滑蓝块与下侧较密、小的水光分片在接缝处切换，横向画面颗粒与明暗线可见。",
+          "defectOrUncertainFocusCoordinates": {
+            "paneBoxApprox": [
+              0,
+              278,
+              650,
+              332
+            ],
+            "sheetBoxApprox": [
+              0,
+              278,
+              650,
+              332
+            ],
+            "candidateTileBoxApprox": [
+              0,
+              1002,
+              650,
+              1056
+            ],
+            "worldBoxApprox": [
+              4096,
+              54250,
+              4746,
+              54304
+            ],
+            "coordinateTolerancePixels": 20,
+            "notAnEditMaskOrExactCurve": true
+          },
+          "noDefectFoundMeansLocalOnly": false,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H1-C2",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H1-columns12.png",
+            "sha256": "c2cce1aa406528de013f6d9afbd18ece9a9a78eb4069bde4347b29e80958f87a",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 1,
+          "paneOriginInSheet": [
+            0,
+            600
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 900,
+          "candidateTileBox": [
+            1024,
+            724,
+            2048,
+            1324
+          ],
+          "candidateSeamY": 1024,
+          "candidateSeamXRange": [
+            1024,
+            2048
+          ],
+          "worldSeamY": 54272,
+          "worldSeamXRange": [
+            5120,
+            6144
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "uncertain",
+          "material": "HOLD",
+          "combined": "HOLD",
+          "geometryObservation": "白泡沫与水光都高度不规则；可见相位改变，但本窗不足以把它定为新的固定实体几何断裂，几何不放行。",
+          "materialObservation": "接缝处深蓝/白泡沫区域切为较青、较平的水面，尤其右半泡沫亮度和疏密在sheetY900附近改变，仍有横向拼接感。",
+          "defectOrUncertainFocusCoordinates": {
+            "paneBoxApprox": [
+              200,
+              278,
+              1024,
+              340
+            ],
+            "sheetBoxApprox": [
+              200,
+              878,
+              1024,
+              940
+            ],
+            "candidateTileBoxApprox": [
+              1224,
+              1002,
+              2048,
+              1064
+            ],
+            "worldBoxApprox": [
+              5320,
+              54250,
+              6144,
+              54312
+            ],
+            "coordinateTolerancePixels": 20,
+            "notAnEditMaskOrExactCurve": true
+          },
+          "noDefectFoundMeansLocalOnly": false,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H1-C3",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H1-columns34.png",
+            "sha256": "e009f66af3d8b410a8be10311c3d6fec4a82d11734b7262b67df01a9f1665a1b",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 0,
+          "paneOriginInSheet": [
+            0,
+            0
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 300,
+          "candidateTileBox": [
+            2048,
+            724,
+            3072,
+            1324
+          ],
+          "candidateSeamY": 1024,
+          "candidateSeamXRange": [
+            2048,
+            3072
+          ],
+          "worldSeamY": 54272,
+          "worldSeamXRange": [
+            6144,
+            7168
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "PASS",
+          "material": "PASS",
+          "combined": "PASS",
+          "geometryObservation": "在此600高窗口内，岩脚的主要斜轮廓及其前方泡沫走向跨y300继续，未见可确指的接缝轮廓跳步。",
+          "materialObservation": "本接缝附近岩面块色、蓝水和白泡沫画法保持局部一致，未见清楚的整条横向材质截换；仅限本段接缝连续性。",
+          "defectOrUncertainFocusCoordinates": null,
+          "noDefectFoundMeansLocalOnly": true,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H1-C4",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H1-columns34.png",
+            "sha256": "e009f66af3d8b410a8be10311c3d6fec4a82d11734b7262b67df01a9f1665a1b",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 1,
+          "paneOriginInSheet": [
+            0,
+            600
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 900,
+          "candidateTileBox": [
+            3072,
+            724,
+            4096,
+            1324
+          ],
+          "candidateSeamY": 1024,
+          "candidateSeamXRange": [
+            3072,
+            4096
+          ],
+          "worldSeamY": 54272,
+          "worldSeamXRange": [
+            7168,
+            8192
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "HOLD",
+          "material": "HOLD",
+          "combined": "HOLD",
+          "geometryObservation": "接缝上下白泡沫/深蓝水斑的可见轮廓相位被截换，横切处的浅青斑块不能逐段衔接上方蓝水/泡沫轮廓。",
+          "materialObservation": "sheetY900形成明显的横向色阶带：上方较深蓝、高对比且厚白泡沫，下方较浅青、疏淡的水斑与泡沫；整段接触仍HOLD。",
+          "defectOrUncertainFocusCoordinates": {
+            "paneBoxApprox": [
+              0,
+              276,
+              1024,
+              345
+            ],
+            "sheetBoxApprox": [
+              0,
+              876,
+              1024,
+              945
+            ],
+            "candidateTileBoxApprox": [
+              3072,
+              1000,
+              4096,
+              1069
+            ],
+            "worldBoxApprox": [
+              7168,
+              54248,
+              8192,
+              54317
+            ],
+            "coordinateTolerancePixels": 20,
+            "notAnEditMaskOrExactCurve": true
+          },
+          "noDefectFoundMeansLocalOnly": false,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H2-C1",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H2-columns12.png",
+            "sha256": "72f2f1f17d55c7c609023e4261a5c71455697e83dc9dddbf4b9d456e72096c3c",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 0,
+          "paneOriginInSheet": [
+            0,
+            0
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 300,
+          "candidateTileBox": [
+            0,
+            1748,
+            1024,
+            2348
+          ],
+          "candidateSeamY": 2048,
+          "candidateSeamXRange": [
+            0,
+            1024
+          ],
+          "worldSeamY": 55296,
+          "worldSeamXRange": [
+            4096,
+            5120
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "PASS",
+          "material": "PASS",
+          "combined": "PASS",
+          "geometryObservation": "反光网的主要弧线和亮支路跨y300可连续追踪，未见明确轮廓截断/错位。",
+          "materialObservation": "水色、反光网尺度和笔触在此接缝处延续；局部连续不等于全水面材质通过。",
+          "defectOrUncertainFocusCoordinates": null,
+          "noDefectFoundMeansLocalOnly": true,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H2-C2",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H2-columns12.png",
+            "sha256": "72f2f1f17d55c7c609023e4261a5c71455697e83dc9dddbf4b9d456e72096c3c",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 1,
+          "paneOriginInSheet": [
+            0,
+            600
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 900,
+          "candidateTileBox": [
+            1024,
+            1748,
+            2048,
+            2348
+          ],
+          "candidateSeamY": 2048,
+          "candidateSeamXRange": [
+            1024,
+            2048
+          ],
+          "worldSeamY": 55296,
+          "worldSeamXRange": [
+            5120,
+            6144
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "PASS",
+          "material": "PASS",
+          "combined": "PASS",
+          "geometryObservation": "水光网在本段上下保持可跟踪的弧线连接，没有可确指的直线截断或形状台阶。",
+          "materialObservation": "此窗未发现以y300为界的明确横向水色/颗粒跳变；只记局部接缝连续。",
+          "defectOrUncertainFocusCoordinates": null,
+          "noDefectFoundMeansLocalOnly": true,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H2-C3",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H2-columns34.png",
+            "sha256": "5d7cf154241316849d3b57332bb57cc116785d20292a6f7cba2c1fda27ce8f2f",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 0,
+          "paneOriginInSheet": [
+            0,
+            0
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 300,
+          "candidateTileBox": [
+            2048,
+            1748,
+            3072,
+            2348
+          ],
+          "candidateSeamY": 2048,
+          "candidateSeamXRange": [
+            2048,
+            3072
+          ],
+          "worldSeamY": 55296,
+          "worldSeamXRange": [
+            6144,
+            7168
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "PASS",
+          "material": "PASS",
+          "combined": "PASS",
+          "geometryObservation": "亮色水光分支在y300两侧接续，未见新的固定轮廓错接。",
+          "materialObservation": "小尺度蓝色分片与反光亮线在接触处一致，没有明确接缝色带；不评整片水面风格。",
+          "defectOrUncertainFocusCoordinates": null,
+          "noDefectFoundMeansLocalOnly": true,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H2-C4",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H2-columns34.png",
+            "sha256": "5d7cf154241316849d3b57332bb57cc116785d20292a6f7cba2c1fda27ce8f2f",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 1,
+          "paneOriginInSheet": [
+            0,
+            600
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 900,
+          "candidateTileBox": [
+            3072,
+            1748,
+            4096,
+            2348
+          ],
+          "candidateSeamY": 2048,
+          "candidateSeamXRange": [
+            3072,
+            4096
+          ],
+          "worldSeamY": 55296,
+          "worldSeamXRange": [
+            7168,
+            8192
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "uncertain",
+          "material": "HOLD",
+          "combined": "HOLD",
+          "geometryObservation": "只有不规则水光/色块可比；接缝附近纹理相位改变可见，但没有足够实体轮廓证据区分几何错接和反光材质变化。",
+          "materialObservation": "y300附近上侧较大、较平滑的青蓝水斑转成下侧较细密、碎三角状的水光颗粒，横向密度/色阶界仍需保留HOLD。",
+          "defectOrUncertainFocusCoordinates": {
+            "paneBoxApprox": [
+              0,
+              279,
+              1024,
+              338
+            ],
+            "sheetBoxApprox": [
+              0,
+              879,
+              1024,
+              938
+            ],
+            "candidateTileBoxApprox": [
+              3072,
+              2027,
+              4096,
+              2086
+            ],
+            "worldBoxApprox": [
+              7168,
+              55275,
+              8192,
+              55334
+            ],
+            "coordinateTolerancePixels": 20,
+            "notAnEditMaskOrExactCurve": true
+          },
+          "noDefectFoundMeansLocalOnly": false,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H3-C1",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H3-columns12.png",
+            "sha256": "e4367b5d8bd15ca620e70b1825c3da39101020a7c369b0f27b67dd4a1e4c5af9",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 0,
+          "paneOriginInSheet": [
+            0,
+            0
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 300,
+          "candidateTileBox": [
+            0,
+            2772,
+            1024,
+            3372
+          ],
+          "candidateSeamY": 3072,
+          "candidateSeamXRange": [
+            0,
+            1024
+          ],
+          "worldSeamY": 56320,
+          "worldSeamXRange": [
+            4096,
+            5120
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "uncertain",
+          "material": "HOLD",
+          "combined": "HOLD",
+          "geometryObservation": "左半水光弧在接缝附近的可见相位有疑点；未看到可据以新增宏观实体几何失败的固定边界，几何结论保留uncertain。",
+          "materialObservation": "左至中部y300附近出现较宽蓝块与下方较细的反光网/明暗分片切换，仍能辨出水平画面密度边界。",
+          "defectOrUncertainFocusCoordinates": {
+            "paneBoxApprox": [
+              0,
+              280,
+              570,
+              338
+            ],
+            "sheetBoxApprox": [
+              0,
+              280,
+              570,
+              338
+            ],
+            "candidateTileBoxApprox": [
+              0,
+              3052,
+              570,
+              3110
+            ],
+            "worldBoxApprox": [
+              4096,
+              56300,
+              4666,
+              56358
+            ],
+            "coordinateTolerancePixels": 20,
+            "notAnEditMaskOrExactCurve": true
+          },
+          "noDefectFoundMeansLocalOnly": false,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H3-C2",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H3-columns12.png",
+            "sha256": "e4367b5d8bd15ca620e70b1825c3da39101020a7c369b0f27b67dd4a1e4c5af9",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 1,
+          "paneOriginInSheet": [
+            0,
+            600
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 900,
+          "candidateTileBox": [
+            1024,
+            2772,
+            2048,
+            3372
+          ],
+          "candidateSeamY": 3072,
+          "candidateSeamXRange": [
+            1024,
+            2048
+          ],
+          "worldSeamY": 56320,
+          "worldSeamXRange": [
+            5120,
+            6144
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "PASS",
+          "material": "PASS",
+          "combined": "PASS",
+          "geometryObservation": "亮色水光环和细支路在接触线两侧延续，未见明确局部轮廓断裂。",
+          "materialObservation": "此窗接缝处水色及细水光颗粒一致，没有明确横向材质硬带；只限本段。",
+          "defectOrUncertainFocusCoordinates": null,
+          "noDefectFoundMeansLocalOnly": true,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H3-C3",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H3-columns34.png",
+            "sha256": "1eb44648b22a62ae41642ff754822209214b1420dd9cce02cbea1c74389218b4",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 0,
+          "paneOriginInSheet": [
+            0,
+            0
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 300,
+          "candidateTileBox": [
+            2048,
+            2772,
+            3072,
+            3372
+          ],
+          "candidateSeamY": 3072,
+          "candidateSeamXRange": [
+            2048,
+            3072
+          ],
+          "worldSeamY": 56320,
+          "worldSeamXRange": [
+            6144,
+            7168
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "PASS",
+          "material": "PASS",
+          "combined": "PASS",
+          "geometryObservation": "本段水光亮线跨y300继续，未见明确截断、突然折步或缺口。",
+          "materialObservation": "水色、分片尺度及反光强度在本接缝处相容，局部材质连续。",
+          "defectOrUncertainFocusCoordinates": null,
+          "noDefectFoundMeansLocalOnly": true,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        },
+        {
+          "id": "H3-C4",
+          "kind": "horizontal internal segment",
+          "sourceCandidateSHA256": "780eb4b608a939467f9ed061d2ca72fe1509bbb777ce9b52600fd5e1c8bf5aa8",
+          "sheet": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14c02-strict-core-v01/H3-columns34.png",
+            "sha256": "1eb44648b22a62ae41642ff754822209214b1420dd9cce02cbea1c74389218b4",
+            "dimensions": [
+              1024,
+              1200
+            ]
+          },
+          "paneIndexTop0Bottom1": 1,
+          "paneOriginInSheet": [
+            0,
+            600
+          ],
+          "paneDimensions": [
+            1024,
+            600
+          ],
+          "paneSeamY": 300,
+          "sheetSeamY": 900,
+          "candidateTileBox": [
+            3072,
+            2772,
+            4096,
+            3372
+          ],
+          "candidateSeamY": 3072,
+          "candidateSeamXRange": [
+            3072,
+            4096
+          ],
+          "worldSeamY": 56320,
+          "worldSeamXRange": [
+            7168,
+            8192
+          ],
+          "actuallyViewedNative": true,
+          "geometry": "PASS",
+          "material": "PASS",
+          "combined": "PASS",
+          "geometryObservation": "左右可辨水光支路和蓝色水斑跨接缝衔接，未见明确结构性接缝缺口。",
+          "materialObservation": "此窗未见接缝专属的色相/明度/粒度硬切，局部连续；不解除旧源材质HOLD。",
+          "defectOrUncertainFocusCoordinates": null,
+          "noDefectFoundMeansLocalOnly": true,
+          "newMacroGeometryFailureClaimed": false,
+          "sourceFullMaterialAcceptance": false,
+          "wholeTileOrExternalPass": false
+        }
+      ],
+      "counts": {
+        "geometry": {
+          "HOLD": 2,
+          "uncertain": 3,
+          "PASS": 7
+        },
+        "material": {
+          "HOLD": 5,
+          "PASS": 7
+        },
+        "combined": {
+          "HOLD": 5,
+          "PASS": 7
+        }
+      },
+      "preservedSixSourceMaterialHoldsAndExclusions": [
+        {
+          "stem": "r14_c02_s01_01_recovery23_v01",
+          "sourceSHA256FromExistingIntake": "119337b146bc95833cf81424a19aac484d396750e6c2f0f09f3f095521d25c26",
+          "quickQAStatus": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "quickQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c02_s01_01_recovery23_v01.quickQA.json",
+          "quickQASha256FromExistingIntake": "0db57bf5d071060f25cb32b181e758096932ba3cbca2d785648ab113da6cc9a1",
+          "anchorExcludedNativeBoxes": [
+            [
+              115,
+              115,
+              415,
+              1139
+            ],
+            [
+              115,
+              839,
+              1139,
+              1139
+            ]
+          ],
+          "materialAccepted": false,
+          "fullCoreAccepted": false
+        },
+        {
+          "stem": "r14_c02_s01_04_recovery23_v01",
+          "sourceSHA256FromExistingIntake": "8e6d0ad4f0c74e3e2f0974cce4f2339ac0b8c30f3eb9d9c2e50abf9b7e22faeb",
+          "quickQAStatus": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "quickQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c02_s01_04_recovery23_v01.quickQA.json",
+          "quickQASha256FromExistingIntake": "0fd36a8ee3346852bee34853fe47daf72d258bad49cb206e7b7bb437627012e2",
+          "anchorExcludedNativeBoxes": [
+            [
+              839,
+              115,
+              1139,
+              1139
+            ]
+          ],
+          "materialAccepted": false,
+          "fullCoreAccepted": false
+        },
+        {
+          "stem": "r14_c02_s02_01_recovery23_v02",
+          "sourceSHA256FromExistingIntake": "b5263eecde0b57e04667fb87d8a30b090c04591f23896624f006a948ceb0babc",
+          "quickQAStatus": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "quickQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c02_s02_01_recovery23_v02.quickQA.json",
+          "quickQASha256FromExistingIntake": "49387b64e83291b1857f5fadef60059c219b97656e6a2922b113e50caea2f282",
+          "anchorExcludedNativeBoxes": [
+            [
+              115,
+              115,
+              415,
+              1139
+            ]
+          ],
+          "materialAccepted": false,
+          "fullCoreAccepted": false
+        },
+        {
+          "stem": "r14_c02_s02_02_recovery23_v01",
+          "sourceSHA256FromExistingIntake": "80559280f5eb588e89c7e48be44a27bd00c3a0759445d739c3c49ca4732f6e57",
+          "quickQAStatus": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "quickQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c02_s02_02_recovery23_v01.quickQA.json",
+          "quickQASha256FromExistingIntake": "c5554aeef7156112e8e878a00709f9a15989f14e8568c5a66093ac2e1dffe1f9",
+          "anchorExcludedNativeBoxes": [
+            [
+              115,
+              115,
+              415,
+              1139
+            ]
+          ],
+          "materialAccepted": false,
+          "fullCoreAccepted": false
+        },
+        {
+          "stem": "r14_c02_s02_03_recovery23_v01",
+          "sourceSHA256FromExistingIntake": "3cf232b1e3b845b54b6fe6a8fd49e1f74a88deecc620c37883a589ea108f43d0",
+          "quickQAStatus": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "quickQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c02_s02_03_recovery23_v01.quickQA.json",
+          "quickQASha256FromExistingIntake": "7c476e8ac7a98cf5c8772b2d8da22fe458cb9ea2b6132882b6760bb8897addff",
+          "anchorExcludedNativeBoxes": [
+            [
+              115,
+              115,
+              415,
+              1139
+            ],
+            [
+              839,
+              115,
+              1139,
+              1139
+            ]
+          ],
+          "materialAccepted": false,
+          "fullCoreAccepted": false
+        },
+        {
+          "stem": "r14_c02_s02_04_recovery23_v01",
+          "sourceSHA256FromExistingIntake": "71b50abea796895ed5a918761585901e2ad3da8c27ea84da121db867fe2c2792",
+          "quickQAStatus": "WORKING_GEOMETRY_CANDIDATE_MATERIAL_HOLD",
+          "quickQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/continue-20261023/west/qa/r14_c02_s02_04_recovery23_v01.quickQA.json",
+          "quickQASha256FromExistingIntake": "e61da383a751125a0b773631050c0cb4abecb3cc5a38095bf260734d90cb27e8",
+          "anchorExcludedNativeBoxes": [
+            [
+              839,
+              115,
+              1139,
+              1139
+            ],
+            [
+              115,
+              839,
+              1139,
+              1139
+            ]
+          ],
+          "materialAccepted": false,
+          "fullCoreAccepted": false
+        }
+      ],
+      "scopeVerdict": {
+        "all12HorizontalGeometryPassed": false,
+        "all12HorizontalMaterialPassed": false,
+        "horizontalScopeCompleteActualReview": true,
+        "newMacroGeometryFailureCount": 0,
+        "wholeTileInternalPassed": false,
+        "wholeTileMaterialAccepted": false,
+        "externalPassed": false,
+        "formalAccepted": false,
+        "originalSWSoleWriterRetained": true,
+        "producerPointersModified": false,
+        "rootCounterIncrement": 0,
+        "newRepairBudgetOrCallAuthorized": false,
+        "qualification": "Seven locally continuous H contacts do not clear the five held H contacts or any prior six source finish exclusions. V12/J9 remain separately assigned. This is a finite readonly actual-native contact review only."
+      },
+      "operations": {
+        "viewImageOriginalCalls": 6,
+        "newImageGeneration": 0,
+        "newPNGRenderCropOrResize": 0,
+        "oldSourcePNGReadsOrHashes": 0,
+        "producerSourceOrStateWrites": 0,
+        "selectionCurrentOrGlobalWrites": 0,
+        "messagesToProducerChat": 0,
+        "coordinationReportWrites": 1
+      }
+    }
+  }
+}

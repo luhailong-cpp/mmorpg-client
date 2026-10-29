@@ -1,0 +1,884 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 1,
+  "column": 4,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "2ae6a980cc4f1ff3c8ca53b593503bd2589bcf85b5057a48150508a5bb7e382a",
+  "imageBytes": 29232766,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/r01_c04.provisional.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/verification.json",
+  "sourceLedgerSha256": "b5738d97ef84983ba99ca94cd9c8b9739f3081aa793e7b5bb08f7df2b9b61036",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r01_c04",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/r01_c04.provisional.png",
+    "imageSha256": "2ae6a980cc4f1ff3c8ca53b593503bd2589bcf85b5057a48150508a5bb7e382a",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/verification.json",
+        "sha256": "b5738d97ef84983ba99ca94cd9c8b9739f3081aa793e7b5bb08f7df2b9b61036",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/r01_c04.assembly.json",
+        "sha256": "9b0b336ac082544166fc71e2094a601897cee2ea74e6252f3a6a48635d768e3c",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/r01_c04.assembly.json",
+        "sha256": "9b0b336ac082544166fc71e2094a601897cee2ea74e6252f3a6a48635d768e3c",
+        "completeness": [
+          "/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/r01_c04.assembly.json",
+        "sha256": "9b0b336ac082544166fc71e2094a601897cee2ea74e6252f3a6a48635d768e3c",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/concentrated-qa.json",
+        "sha256": "71fe062d4f713d1aca99718506f370df8ca8e3b6ee1727ddbabfac9263bab56a",
+        "completeness": [
+          "/uniqueNativeCoreCoverage",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "nativeCoreCount": 16,
+      "rootSelectedCoreCount": 0,
+      "internalAccepted": false,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/verification.json",
+        "record": {
+          "visualReviewPending": true,
+          "internalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/r01_c04.assembly.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "rootSelectedCoreCount": 0,
+          "internalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c05/parent-native-20261022/checkpoint.json",
+        "record": {
+          "wholeNeighborInternalAccepted": false,
+          "knownOtherJoinsRemainPending": true
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/concentrated-qa.json",
+        "record": {
+          "uniqueNativeCoreCoverage": 16,
+          "pendingInternalJoinCount": 21,
+          "junctionsPending": 9,
+          "externalSouth": "4 full paired CORE joins pending; s04s04v03 south stone tone/grain remains pending",
+          "externalWest": "current r01c03 worker pending full16 pairing",
+          "externalEast": "not paired with produced neighbor",
+          "internalAccepted": false,
+          "formalAccepted": false,
+          "wholeMapAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HB20_LATE_VILLAGE_NW_LOCAL_QA_RECLASSIFICATION_20261023_091453.json",
+        "record": {
+          "wholeNeighborInternalAccepted": false,
+          "knownOtherJoinsRemainPending": true
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/concentrated-qa.json",
+    "sourceSha256": "71fe062d4f713d1aca99718506f370df8ca8e3b6ee1727ddbabfac9263bab56a",
+    "normalizedDocument": {
+      "atUtc": "2026-10-22T13:07:40.317278+00:00",
+      "tile": "r01_c04",
+      "assembly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/r01_c04.assembly.json",
+        "sha256": "9b0b336ac082544166fc71e2094a601897cee2ea74e6252f3a6a48635d768e3c"
+      },
+      "verification": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/verification.json",
+        "sha256": "b5738d97ef84983ba99ca94cd9c8b9739f3081aa793e7b5bb08f7df2b9b61036"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/r01_c04.provisional.png",
+        "sha256": "2ae6a980cc4f1ff3c8ca53b593503bd2589bcf85b5057a48150508a5bb7e382a"
+      },
+      "uniqueNativeCoreCoverage": 16,
+      "returnedVersions": 19,
+      "rootSelected": 0,
+      "sourceIdPixelReplayMismatch": 0,
+      "inputUnchangedDiagnosticsReused": 44,
+      "changedDiagnosticsViewed": 5,
+      "coreLayout": "16 locally usable with pending joins; v03 replaces historically rejected waterfall v02",
+      "independentBaselineReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+        "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+      },
+      "items": [
+        {
+          "kind": "vertical-r01-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r01-c01.100pct.png",
+            "sha256": "18abcd8d377c07bfc2ad378f46ac98984d21c1ebc9a1915e4aa774aa7d7a062e"
+          },
+          "status": "repair-hold",
+          "observation": "x=200 接线贯穿绿叶/花簇；上半叶片轮廓被直切，y约700..900的粗枝在接线处色阶和纹理突变。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r01-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r01-c02.100pct.png",
+            "sha256": "07f7f0fed139af5705dfd84e28455edd79ca60fef75aa5c4a8441e89d28402ba"
+          },
+          "status": "repair-hold",
+          "observation": "x=200 的整段岩石出现直线明暗/颗粒变化；数条石裂到线处换方向或终止，底部黄绿叶也有切口。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r01-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r01-c03.100pct.png",
+            "sha256": "d6b976d50c6b35fbda2ae1747b7a044bcec54b7d773dc673bb3e9dc1f650dff2"
+          },
+          "status": "repair-hold",
+          "observation": "上部左侧水面与右侧岩壁在接线的水/岩端点错层；中部水纹及下部暖石的光泽和裂纹在x=200直线跳变。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r02-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r02-c01.100pct.png",
+            "sha256": "ff755ad2e5090e1d07a968016b26d5f79da1856000081d0611870872d0ed4d0c"
+          },
+          "status": "repair-hold",
+          "observation": "上半绿冠在x=200有叶形与阴影突变，尤其白花附近；下半桃花大体相接，但不能抵消上半完整接线问题。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r02-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r02-c02.100pct.png",
+            "sha256": "1b4b79ed833fd744439e147a7b1f5165f235b4eb96e22257f6fed8e5e84c7ac5"
+          },
+          "status": "material-hold",
+          "observation": "枝叶大体能接；下半岩面在x=200仍有窄直线色调/纹理差，底部圆石亮面在接线两侧不完全连续。额外整数细节裁剪已查看。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r02-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r02-c03.100pct.png",
+            "sha256": "fd8567d8a208be0f23d7c7680c2f51f1dfe14922b85e4b9c7d580eda60f5396e"
+          },
+          "status": "repair-hold",
+          "observation": "x=200贯穿大岩体的直线光照/笔触边；中部裂纹及下部灰石边缘在接线处中断。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r03-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r03-c01.100pct.png",
+            "sha256": "bbccab90ee361d9f8185d462b577b0a26955f8014af78c68c9a126afcc8a85b9"
+          },
+          "status": "local-pass",
+          "observation": "完整1024长度中桃花到黄叶、枝条和底部暖石的主要轮廓可连续追踪；细节裁剪中未见明确直线硬断。此项仅局部视觉观察。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": "root complete1024 actual view also available"
+        },
+        {
+          "kind": "vertical-r03-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r03-c02.100pct.png",
+            "sha256": "858b9b21f5538f7c8ca032c9123c572ea94a89386a0c77b01c0223d365e7848a"
+          },
+          "status": "repair-hold",
+          "observation": "接线上端岩石左右暖灰色差清楚；上方石裂与小叶团在x=200不连续。中下枝干轮廓较连贯。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r03-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r03-c03.100pct.png",
+            "sha256": "ce9034727adcb00e785e453861a3a9f7d2291bdd648dccda0aea4080a793c20c"
+          },
+          "status": "repair-hold",
+          "observation": "x=200从上部石缝到花叶均有直切，靠下横枝在接线处高度/方向发生跳变；大叶轮廓被截断。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r04-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r04-c01.100pct.png",
+            "sha256": "4a604fed3349ee63844331f217de479c7231201ac7505ffc319bfffe99061bfc"
+          },
+          "status": "material-hold",
+          "observation": "石与绿冠的总体分区可接，但上端岩石和中下绿冠在x=200留有直线材质/光照差，局部细叶剪断。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r04-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/vertical-r04-c02.100pct.png",
+            "sha256": "12e7a4ac848b5cf887fe0466a38da30ab16586c7aaeb3e6f75a7aaa0415259fe"
+          },
+          "status": "repair-hold",
+          "observation": "中下部左侧露石在x=200变为右侧暗叶；粗枝纹理与叶形在直线处跳变，尤其y约600..850。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "vertical-r04-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/vertical-r04-c03.100pct.png",
+            "sha256": "0824ed05b6cb172f36162767508f178bd487893814f31b3c2b84a3d79f420cde"
+          },
+          "status": "local-pass",
+          "observation": "Root viewed full1024 west hardcut for v03; trunk and major leaves continuous, independent review corroborates no geometry break. Local west join only.",
+          "reviewedBy": "root actual native view, plus v03 independent review where applicable",
+          "reused": false
+        },
+        {
+          "kind": "horizontal-r01-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r01-c01.100pct.png",
+            "sha256": "64603b04bdaa66f8d5b4a4d0ffeb816be0de55b93f4aa2bbd9f078e9e7bcf42b"
+          },
+          "status": "repair-hold",
+          "observation": "y=200横线切过多朵桃花；上半花瓣/枝条与下半的轮廓和色调错接，左中最清楚。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r01-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r01-c02.100pct.png",
+            "sha256": "f7b9c56c05e681f332d1238db0834f22b77e96c20423760aaafe7b4e422511af"
+          },
+          "status": "repair-hold",
+          "observation": "y=200贯穿绿叶，形成可见横向明暗带；中左叶尖及右侧花叶轮廓在横线上被切换。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r01-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r01-c03.100pct.png",
+            "sha256": "c60cb6f1b96ec15de4d6e4f14a4d0b1a268f29047af2ac55b83387dfec07b42f"
+          },
+          "status": "material-hold",
+          "observation": "岩壁总体形状能接，但y=200处中部灰岩与左侧花叶仍有窄横线色阶/笔触变化。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r01-c04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r01-c04.100pct.png",
+            "sha256": "551f75e24a14e4c9c50abfa6ca6ce2f13acbef88c2e48f651ca1c0c35b48d187"
+          },
+          "status": "repair-hold",
+          "observation": "左侧岩体在y=200有清楚的形状/纹理切换；水面横向色阶和白色水纹也在同一直线跳变。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r02-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r02-c01.100pct.png",
+            "sha256": "093049914a9d9b9ae2d9622b993b423a80cfb0d09af563559b0251bc98d013c3"
+          },
+          "status": "repair-hold",
+          "observation": "y=200穿过密集桃花，白粉花瓣在多处接线处被直切或错位；中央和偏右花簇最明显。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r02-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r02-c02.100pct.png",
+            "sha256": "0960c2e88a607a19d779c2b9ed3cba60db45c16c1423e260223493111a64a53d"
+          },
+          "status": "local-pass",
+          "observation": "完整1024观察中桃花、中央横枝、绿叶到右侧岩面分区能相接；中央额外细节裁剪未见明确硬直线断口。仅局部视觉观察。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": "root complete1024 actual view also available"
+        },
+        {
+          "kind": "horizontal-r02-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r02-c03.100pct.png",
+            "sha256": "bbafc649a3648e8afa08ffbec03ccb735dcf65387fdcf851a57a908f241938b7"
+          },
+          "status": "material-hold",
+          "observation": "暖灰岩主轮廓延续，但y=200附近石面小纹理与光照出现横带，左侧岩面和中央大石均可见。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r02-c04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r02-c04.100pct.png",
+            "sha256": "3ac95f03b44e125990c4e7a1fc17eb010867a4dc62b3796252f3c87afb7ec77e"
+          },
+          "status": "repair-hold",
+          "observation": "y=200贯穿瀑布，有明显横向蓝色阶/水纹切换；左边石壁端点和纹理亦不连续。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r03-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r03-c01.100pct.png",
+            "sha256": "f4b4f756da3894a4cf2f93f6623026f945571798a3aa466746d04a005baf8d24"
+          },
+          "status": "repair-hold",
+          "observation": "y=200上方偏黄叶冠在下方突变为较绿叶冠；右侧石面也有同线的纹理/裂纹突变。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r03-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r03-c02.100pct.png",
+            "sha256": "928a9a1de59b0ae0b35ce2c7dd7cbbc3794f5c73757a07cc30fa9a597b2706ad"
+          },
+          "status": "repair-hold",
+          "observation": "y=200整线清楚；左侧暖石亮面与石裂上下不接，右侧大叶和花簇在横线处截断。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r03-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/horizontal-r03-c03.100pct.png",
+            "sha256": "a29375358da0cac3148342b8332b502c2bbff3f96c36d0367799867393143671"
+          },
+          "status": "material-hold",
+          "observation": "大枝干大体连贯，但中右暗叶/阴影在y=200出现轻微横向色块切换。额外整数细节裁剪已查看；不据此放行。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "horizontal-r03-c04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/horizontal-r03-c04.100pct.png",
+            "sha256": "f78afc531b797ef69cffdd24e1c16013d3c7a864657c2e4d7f9d90b456a1fe86"
+          },
+          "status": "material-hold",
+          "observation": "Root viewed full1024 north hardcut for v03. Old water-to-solid-rock error removed, small foam/foliage material variations remain pending.",
+          "reviewedBy": "root actual native view, plus v03 independent review where applicable",
+          "reused": false
+        },
+        {
+          "kind": "junction-r01-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/junction-r01-c01.100pct.png",
+            "sha256": "403e0a9bfb13c8fb2d3e2d7435cb838a1eb6d9817f26b23db93f2bb962c16cd4"
+          },
+          "status": "repair-hold",
+          "observation": "中心十字处上方暗树/下方亮叶，横线切叶，竖线枝干与叶片错位，形成可见四块拼接。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "junction-r01-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/junction-r01-c02.100pct.png",
+            "sha256": "959ff3a664769fe9f84bc3b2ab002b981cc42553daab94ceffa5357b0322f53b"
+          },
+          "status": "repair-hold",
+          "observation": "中心左侧y=200切过亮黄叶，右上岩体与下方花叶之间仍见横向色阶，竖向石/叶接线可追踪。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "junction-r01-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/junction-r01-c03.100pct.png",
+            "sha256": "25d76f1a6637da774c0a98317a844c6ef0290a22e330d2cd493eaf516b89fc37"
+          },
+          "status": "repair-hold",
+          "observation": "四块暖石在中心交点的裂纹、投影和亮面不连续，中心十字可见，右侧水/石边缘有错层。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "junction-r02-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/junction-r02-c01.100pct.png",
+            "sha256": "d8ffc74f8510de4f42132c32c01a12fe228062ba4f43c82a48b6908d6fbd2677"
+          },
+          "status": "repair-hold",
+          "observation": "中心横线切过白粉桃花；上方竖线花簇也有切换，局部花瓣断口清楚。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "junction-r02-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/junction-r02-c02.100pct.png",
+            "sha256": "79e4536eb3bfa73fe76f8a96f8c98fb7940601db37f7ecce0faccf0fdd738c68"
+          },
+          "status": "repair-hold",
+          "observation": "中心右侧岩面有横线色阶，竖线左右岩/叶纹理不一致，石裂与小叶在中心附近不连。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "junction-r02-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/junction-r02-c03.100pct.png",
+            "sha256": "a2b27a6ddfbddcd1c475c56e28fcd2d7b285d69158d46cc2e101713572e3b066"
+          },
+          "status": "repair-hold",
+          "observation": "中心十字处大石光照与形状错接，横线和竖线均能直接看见，下方花叶也被裁切。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "junction-r03-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/junction-r03-c01.100pct.png",
+            "sha256": "1bd26d3557a480b21f3423456cab104e94962d52f0a5e0516c0299d253972d44"
+          },
+          "status": "repair-hold",
+          "observation": "主要问题是y=200暖石横线，石裂与亮面上下跳变；不能由局部竖接较顺推为交点通过。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "junction-r03-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/junction-r03-c02.100pct.png",
+            "sha256": "e20fe1029df59721c51ff3bef32a97800dcf55d079ed46a5ab814aa1149b8983"
+          },
+          "status": "repair-hold",
+          "observation": "y=200横线截过亮叶/花簇，中心附近上下叶团身份变化清楚。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "junction-r03-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/junction-r03-c03.100pct.png",
+            "sha256": "587f10090508397ec3bc2cb190c760fde44f6d4593b36deb3be3d5d7c05a7a3d"
+          },
+          "status": "repair-hold",
+          "observation": "Root viewed actual400x400 new junction; top/left cuts still interrupt leaf lobes and shading. Remains pending.",
+          "reviewedBy": "root actual native view, plus v03 independent review where applicable",
+          "reused": false
+        },
+        {
+          "kind": "perimeter-north-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-north-c01.100pct.png",
+            "sha256": "259f9b5bcf6460a71d5f4ec59289f8263e0f2aa7fe6e0d9945f3c74311266620"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "完整可见段为绿叶与棕枝，笔触清晰；没有文字、空白或图框。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-south-c01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-south-c01.100pct.png",
+            "sha256": "b0e34b5a92816ad778a62ff15a26b7f297f1e5dbd343fcb20d527016e4abf54d"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "绿冠、白花和分枝可见，细节清晰；不含另一侧外邻像素。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-north-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-north-c02.100pct.png",
+            "sha256": "ea2271590dd046b20c70a0bc232c0899ae65ad7ea9a72c03e417c1c55a99da2b"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "左为亮绿白花，右为暖灰石，材质清晰；没有文字、空白或图框。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-south-c02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-south-c02.100pct.png",
+            "sha256": "19a9470791a7fc7bfa922f037dc9b8b85d29293c7850bf6cac4c7dd2df52321e"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "绿叶、树枝和小露石可见，细节清晰；不含另一侧外邻像素。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-north-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-north-c03.100pct.png",
+            "sha256": "6adc859ae20f4e3f71d9832c9825dc5a5faa66d78bf8042ebc0670061b12e990"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "绿冠、暖石与蓝水白沫同时可见，形体清楚；没有文字、空白或图框。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-south-c03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-south-c03.100pct.png",
+            "sha256": "a96d1b7abde854f0ec6529306b1ef8a95014593895a677a48fca343d22fad385"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "亮绿花叶连续分布，清晰无空白；不含另一侧外邻像素。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-north-c04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-north-c04.100pct.png",
+            "sha256": "13739e94a01c9e41965958c4008e5a704020e91bbd42034510ff09812cec40e6"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "灰岩、暖灰圆石和少量叶，画面清楚；没有文字、空白或图框。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-south-c04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/perimeter-south-c04.100pct.png",
+            "sha256": "771fcb8617d4805bdb366fc30cd2bfec10928f2d0d15821f582ca234bcd99588"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "Root viewed full1024 native perimeter; sharp rock/leaf detail. Actual external south hardcut remains material-hold.",
+          "reviewedBy": "root actual native view, plus v03 independent review where applicable",
+          "reused": false
+        },
+        {
+          "kind": "perimeter-west-r01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-west-r01.100pct.png",
+            "sha256": "9a7b0156d4755ed44a64dd1608796a8201fffa748472f87ff0fa6a4812ab89a9"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "完整1024为绿叶和棕枝，可见边自身清晰；未包含西侧邻块。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-east-r01",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-east-r01.100pct.png",
+            "sha256": "971317a564e169f4bf5795d9667bce4527593e7248134b52ade8a99a17f0aa25"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "上段灰岩，下段蓝水，细节清晰；未包含东侧邻块。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-west-r02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-west-r02.100pct.png",
+            "sha256": "6257cc6738557026a604bbcf7fa5137210050869d2f7476ba41f222f37b09c93"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "完整1024为桃花/枝叶，可见边自身清晰；未包含西侧邻块。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-east-r02",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-east-r02.100pct.png",
+            "sha256": "87cb3271401b50c7299b057093aa68311aa7d2c0a265f350c7e9171f2b700f3d"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "完整1024为蓝色瀑布与白沫，细节清晰；未包含东侧邻块。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-west-r03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-west-r03.100pct.png",
+            "sha256": "68056c1e9cc10ab2730ae0fe235218be157e49a1b5546bb1647235da07673350"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "完整1024由桃花转黄绿花叶，细节清晰；未包含西侧邻块。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-east-r03",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-east-r03.100pct.png",
+            "sha256": "6b5319e4f3baa7cde70e9beda9af31e89bc3fcfd0ca29f86a00e7b957c3b1543"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "瀑布与下端水花可见，细节清晰；未包含东侧邻块。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-west-r04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v01/perimeter-west-r04.100pct.png",
+            "sha256": "e727b1bce38b2da9603ec3a599724f23179e9b321545de698f8fe3308495a775"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "完整1024为绿冠和棕枝，细节清晰；未包含西侧邻块。",
+          "reused": true,
+          "frozenReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/qa/native16-review-20261022/review.json",
+            "sha256": "d5d31b53ff3ec4261b55642a531eb05dd23f2b93eb23cc39de3387e913ebd4e7"
+          },
+          "rootConfirmation": null
+        },
+        {
+          "kind": "perimeter-east-r04",
+          "diagnostic": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/work-r01_c04/parent-native-20261021/assembly/native16-v02/perimeter-east-r04.100pct.png",
+            "sha256": "371c97bb237543487ae130d2c0c9b10bffc466eba3913dd0adb7c4920d3ef203"
+          },
+          "status": "single-side-visible-quality-only",
+          "observation": "Root viewed full1024 native perimeter; localized top foam then gray rock/leaf. No paired eastern tile source test, external unaccepted.",
+          "reviewedBy": "root actual native view, plus v03 independent review where applicable",
+          "reused": false
+        }
+      ],
+      "locallyPassedInternalJoinCount": 3,
+      "pendingInternalJoinCount": 21,
+      "internalJoinCount": 24,
+      "junctionsPending": 9,
+      "externalSouth": "4 full paired CORE joins pending; s04s04v03 south stone tone/grain remains pending",
+      "externalWest": "current r01c03 worker pending full16 pairing",
+      "externalEast": "not paired with produced neighbor",
+      "north": "map outer boundary visible, not an external neighbor seam",
+      "internalAccepted": false,
+      "formalAccepted": false,
+      "wholeMapAccepted": false
+    }
+  }
+}

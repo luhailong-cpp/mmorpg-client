@@ -1,3 +1,4 @@
+using MmorpgClient.World.CurrentMaps;
 using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
 using UnityEngine;
@@ -37,38 +38,34 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void ProductionCityBuild_OwnsOneNpcLayer_AndDisposeRebuildDoesNotLeak()
+        public void CurrentMainBuild_OwnsItsVisuals_AndDisposeRebuildDoesNotLeak()
         {
-            var parent = new GameObject("NpcLifecycleTestRoot");
+            var parent = new GameObject("CurrentMapLifecycleTestRoot");
             TianyongMapInstance map = null;
             try
             {
-                map = TianyongMapBuilder.Build(parent.transform, TianyongTheme.City, null);
-                var layer = map.Root.GetComponentInChildren<TianyongCityNpcs>(true);
-                Assert.That(layer, Is.Not.Null);
-                Assert.That(layer.Count, Is.EqualTo(23));
-                Assert.That(layer.transform.parent, Is.SameAs(map.Root.transform));
-                Assert.That(layer.GetComponentsInChildren<Collider>(true), Is.Empty,
-                    "visual NPCs must not alter click-to-move or navigation collisions");
-                Assert.That(TianyongCityNpcs.Build(map), Is.SameAs(layer));
-                Assert.That(map.Root.GetComponentsInChildren<TianyongCityNpcs>(true).Length, Is.EqualTo(1));
-                var firstSprite = layer.transform.GetChild(0).Find("sprite").GetComponent<SpriteRenderer>().sprite;
+                var definition = CurrentMapCatalog.Find("main");
+                map = CurrentMapBuilder.Build(parent.transform, definition);
+                var firstRoot = map.Root;
+                var ground = firstRoot.transform.Find(CurrentMapBuilder.GroundName);
+                Assert.That(ground, Is.Not.Null);
+                var firstMaterial = ground.GetComponent<MeshRenderer>().sharedMaterial;
+                Assert.That(firstMaterial.mainTexture, Is.SameAs(definition.LoadTexture()));
+                Assert.That(firstRoot.GetComponentsInChildren<CurrentMapTileStreaming>(true).Length, Is.EqualTo(1));
+                Assert.That(firstRoot.GetComponentsInChildren<TianyongCityNpcs>(true), Is.Empty,
+                    "当前布局不能注入与其导航不匹配的旧城NPC摆放");
+                Assert.That(map.Navigation.IsWalkable(definition.Spawn), Is.True);
                 map.Dispose();
                 map = null;
-                Assert.That(layer == null, Is.True, "map disposal must destroy its NPC layer");
-                Assert.That(firstSprite == null, Is.True, "map disposal must destroy runtime-created NPC sprites");
+                Assert.That(firstRoot == null, Is.True);
+                Assert.That(firstMaterial == null, Is.True, "地图拥有的运行时材质必须释放");
+                Assert.That(parent.transform.childCount, Is.Zero);
+                map = CurrentMapBuilder.Build(parent.transform, definition);
+                Assert.That(parent.transform.childCount, Is.EqualTo(1));
+                Assert.That(parent.GetComponentsInChildren<CurrentMapTileStreaming>(true).Length, Is.EqualTo(1));
                 Assert.That(parent.GetComponentsInChildren<TianyongCityNpcs>(true), Is.Empty);
-
-                map = TianyongMapBuilder.Build(parent.transform, TianyongTheme.City, null);
-                var rebuilt = parent.GetComponentsInChildren<TianyongCityNpcs>(true);
-                Assert.That(rebuilt.Length, Is.EqualTo(1));
-                Assert.That(rebuilt[0].Count, Is.EqualTo(23));
             }
-            finally
-            {
-                map?.Dispose();
-                Object.DestroyImmediate(parent);
-            }
+            finally { map?.Dispose(); Object.DestroyImmediate(parent); }
         }
 
         [TestCase(TianyongTheme.Market)]

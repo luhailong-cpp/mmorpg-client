@@ -1,0 +1,711 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 8,
+  "column": 3,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "0e61e3d43fd6f0931b53c40082689bb9739750bd007bc13b867a6c8575e4805c",
+  "imageBytes": 25346669,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/trace.json",
+  "sourceLedgerSha256": "bb2489d43c547bd6b90b926c0239669e41948db6043958181b6283ddcd783160",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": false,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_internal_qa_failed",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c03",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/candidate-4096.png",
+    "imageSha256": "0e61e3d43fd6f0931b53c40082689bb9739750bd007bc13b867a6c8575e4805c",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/trace.json",
+        "sha256": "bb2489d43c547bd6b90b926c0239669e41948db6043958181b6283ddcd783160",
+        "sourceReviewSha256": "bb2489d43c547bd6b90b926c0239669e41948db6043958181b6283ddcd783160",
+        "completeness": [
+          "Hash-bound full4096 base plus fixed-mask native replacement; visual QA FAIL is retained."
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/human-resume-1021-221439-upperroof_wholeobject/whole-cell-selection-v2/trace.json",
+        "sha256": "3bda9e25db8cdecd22095807962056b0b93168bf2fc1e91a6641fe4e726618af",
+        "sourceReviewSha256": "3bda9e25db8cdecd22095807962056b0b93168bf2fc1e91a6641fe4e726618af",
+        "completeness": [
+          "Full parent whole-cell selection trace."
+        ]
+      }
+    ],
+    "selectionBasis": "full_base_fixed_native_replacement_qa_failed",
+    "sourceStatus": {
+      "internalQaPassed": false,
+      "formalAccepted": false,
+      "status": "Whole tile FAIL;33pass/6fail standard39 plus3 extra failed perimeter checks; complete native coverage."
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/independent-four-windows-and-perimeter-review.json",
+        "record": {
+          "status": "FOUR_OLD_FAILED_WINDOWS_PASS_EXACT_CANDIDATE_EXTRA_PERIMETER_REMAINS_FAILED",
+          "confirmedStandardWindowStatusDelta": {
+            "oldFailedToPassed": [
+              2,
+              3,
+              21,
+              33
+            ],
+            "netConfirmedPassGain": 4,
+            "other8ChangedWindowsNotVisuallyJudgedHere": true
+          },
+          "wholeTileAccepted": false,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/independent-four-windows-and-perimeter-review.json",
+    "sourceSha256": "7ea730702b6a150e038b081a3e7f4c1cba9508d11c49306a7d2defd71b2a7271",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "atUtc": "2026-10-23T10:50:49.550749+00:00",
+      "reviewer": "/root/r08_whole_group_plan",
+      "status": "FOUR_OLD_FAILED_WINDOWS_PASS_EXACT_CANDIDATE_EXTRA_PERIMETER_REMAINS_FAILED",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/candidate-4096.png",
+        "sha256": "0e61e3d43fd6f0931b53c40082689bb9739750bd007bc13b867a6c8575e4805c"
+      },
+      "source": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/native.png",
+        "sha256": "33b477a81d674e82376368d1adcee7ef3b90ec79fab6ebd998751cf5e61600bb"
+      },
+      "trace": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/trace.json",
+        "sha256": "bb2489d43c547bd6b90b926c0239669e41948db6043958181b6283ddcd783160"
+      },
+      "readbackReused": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/readback.json",
+        "sha256": "93b29b194e19da5ecc4c1bb34629e62982a65ee917791d0333b045a2d9038eb6"
+      },
+      "fixedSupportMask": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/fixed-copy-mask.npy",
+        "sha256": "90e1393db484250367c281804995b6f3d298b6df279dcb8fb564cdf5d3e81718"
+      },
+      "previous39": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/human-resume-1021-221439-root/r08c03-working-v2-incremental39.json",
+        "sha256": "aabc9894cb7a32a5ec84be248729d41f56904cad29c808d034d4b10a903aaf19"
+      },
+      "preflight": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/changed-windows-preflight.json",
+        "sha256": "8ffcef734e3369b0da6cca3f153f8a53a990392737da09a8d7f3423440b61774"
+      },
+      "reviewedWindows": [
+        {
+          "index": 2,
+          "status": "passed",
+          "view": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/q02.png",
+            "sha256": "53e0aaf52cb2271c9e4d28f016f7d1146cc6645406d41c561b6a8e67749b0664"
+          },
+          "ownBoxHalfOpen": [
+            679,
+            1600,
+            1369,
+            2500
+          ],
+          "actuallyViewedEntireNativeWindow": true,
+          "exactDifferencesFromActual0e61Candidate": 0,
+          "finding": "Former clipped/shifted glaze, doubled lip and dark false join are cleared. The entire stored native window shows continuous curved lips, side grooves and glaze; no definite new perimeter hook occurs inside this exact window."
+        },
+        {
+          "index": 3,
+          "status": "passed",
+          "view": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/q03.png",
+            "sha256": "4a03d79e2660db308396206032162af372adc1c832d578c25eb507f495674e02"
+          },
+          "ownBoxHalfOpen": [
+            679,
+            2400,
+            1369,
+            3300
+          ],
+          "actuallyViewedEntireNativeWindow": true,
+          "exactDifferencesFromActual0e61Candidate": 0,
+          "finding": "Former clipped/shifted glaze, doubled lip and dark false join are cleared. The entire stored native window shows continuous curved lips, side grooves and glaze; no definite new perimeter hook occurs inside this exact window."
+        },
+        {
+          "index": 21,
+          "status": "passed",
+          "view": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/q21.png",
+            "sha256": "47ca3395b637e7a41aa3b097a05dc9be689be77cb078d97a67bc51b627a8dc59"
+          },
+          "ownBoxHalfOpen": [
+            800,
+            1703,
+            1700,
+            2393
+          ],
+          "actuallyViewedEntireNativeWindow": true,
+          "exactDifferencesFromActual0e61Candidate": 0,
+          "finding": "Former clipped/shifted glaze, doubled lip and dark false join are cleared. The entire stored native window shows continuous curved lips, side grooves and glaze; no definite new perimeter hook occurs inside this exact window."
+        },
+        {
+          "index": 33,
+          "status": "passed",
+          "view": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/q33.png",
+            "sha256": "9c117303232820e0e2c2794f71dc21c5ecb3aef870d07fa35121764641d584ee"
+          },
+          "ownBoxHalfOpen": [
+            574,
+            1598,
+            1474,
+            2498
+          ],
+          "actuallyViewedEntireNativeWindow": true,
+          "exactDifferencesFromActual0e61Candidate": 0,
+          "finding": "Former clipped/shifted glaze, doubled lip and dark false join are cleared. The entire stored native window shows continuous curved lips, side grooves and glaze; no definite new perimeter hook occurs inside this exact window."
+        }
+      ],
+      "actualChangedWindowCount": 12,
+      "actualChangedWindowIndices": [
+        2,
+        3,
+        7,
+        8,
+        20,
+        21,
+        22,
+        25,
+        26,
+        33,
+        34,
+        36
+      ],
+      "changedWindowCountsMatchRootPreflightExactly": true,
+      "actualChangedWindows": [
+        {
+          "index": 2,
+          "box": [
+            679,
+            1600,
+            1369,
+            2500
+          ],
+          "changedPixels": 221042
+        },
+        {
+          "index": 3,
+          "box": [
+            679,
+            2400,
+            1369,
+            3300
+          ],
+          "changedPixels": 212898
+        },
+        {
+          "index": 7,
+          "box": [
+            1703,
+            1600,
+            2393,
+            2500
+          ],
+          "changedPixels": 746
+        },
+        {
+          "index": 8,
+          "box": [
+            1703,
+            2400,
+            2393,
+            3300
+          ],
+          "changedPixels": 746
+        },
+        {
+          "index": 20,
+          "box": [
+            0,
+            1703,
+            900,
+            2393
+          ],
+          "changedPixels": 18116
+        },
+        {
+          "index": 21,
+          "box": [
+            800,
+            1703,
+            1700,
+            2393
+          ],
+          "changedPixels": 231602
+        },
+        {
+          "index": 22,
+          "box": [
+            1600,
+            1703,
+            2500,
+            2393
+          ],
+          "changedPixels": 5662
+        },
+        {
+          "index": 25,
+          "box": [
+            0,
+            2727,
+            900,
+            3417
+          ],
+          "changedPixels": 2064
+        },
+        {
+          "index": 26,
+          "box": [
+            800,
+            2727,
+            1700,
+            3417
+          ],
+          "changedPixels": 36052
+        },
+        {
+          "index": 33,
+          "box": [
+            574,
+            1598,
+            1474,
+            2498
+          ],
+          "changedPixels": 266644
+        },
+        {
+          "index": 34,
+          "box": [
+            1598,
+            1598,
+            2498,
+            2498
+          ],
+          "changedPixels": 13541
+        },
+        {
+          "index": 36,
+          "box": [
+            574,
+            2622,
+            1474,
+            3522
+          ],
+          "changedPixels": 105051
+        }
+      ],
+      "actualUnchangedWindowCount": 27,
+      "unchangedWindowDecodedEvidence": [
+        {
+          "index": 0,
+          "box": [
+            679,
+            0,
+            1369,
+            900
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "e491b67af8bc38fc05fb84fea608eaf78d55cdc799f1706955b3195b18add45e"
+        },
+        {
+          "index": 1,
+          "box": [
+            679,
+            800,
+            1369,
+            1700
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "ad7b2a2f4120cb85d115f16bbd0745d25057feb5f17d76cae8de4d870462c62d"
+        },
+        {
+          "index": 4,
+          "box": [
+            679,
+            3196,
+            1369,
+            4096
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "5f8209848713e93b80f5bf48e672841d2ed816f8b5eab4531febf3491bb9b39a"
+        },
+        {
+          "index": 5,
+          "box": [
+            1703,
+            0,
+            2393,
+            900
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "d339cbbaf032931bfe71a1c22e4dcb4974fb3dbe58b232e106e249ff96ab5fcf"
+        },
+        {
+          "index": 6,
+          "box": [
+            1703,
+            800,
+            2393,
+            1700
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "193f9647b8124ee28afff16d6155cab3f92c5c6bd1a1b53b76c88cdfe604a9d2"
+        },
+        {
+          "index": 9,
+          "box": [
+            1703,
+            3196,
+            2393,
+            4096
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "4faa70738dd1da06b1689e2813e14ef4305d20a32b0dedfabb78c7cc26f006c6"
+        },
+        {
+          "index": 10,
+          "box": [
+            2727,
+            0,
+            3417,
+            900
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "296b1f3064485d553f261e0fa710c3fa7171122d9f69f47075ebff602123604a"
+        },
+        {
+          "index": 11,
+          "box": [
+            2727,
+            800,
+            3417,
+            1700
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "0b55329e9f76d2f35885ed0e42b8b27fb2f8f60a2ffd09a761f98b4c4ef3156b"
+        },
+        {
+          "index": 12,
+          "box": [
+            2727,
+            1600,
+            3417,
+            2500
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "adae8b5af32f2706a4ed7fd13850cd0f54810a2161ac7ae1acc49d67d1b15e9c"
+        },
+        {
+          "index": 13,
+          "box": [
+            2727,
+            2400,
+            3417,
+            3300
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "035bb9b729ec958744e3967a4e2283bf3c480123e8f0f4a469caaa845df00e87"
+        },
+        {
+          "index": 14,
+          "box": [
+            2727,
+            3196,
+            3417,
+            4096
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "a01322c8c3271f4a0746d8498fd35b1c1812341fab3eaa008241664d4406c56f"
+        },
+        {
+          "index": 15,
+          "box": [
+            0,
+            679,
+            900,
+            1369
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "e7d57eb90141b8aa80c8b09000b548458509d26e59d0376227a4026724bea9b1"
+        },
+        {
+          "index": 16,
+          "box": [
+            800,
+            679,
+            1700,
+            1369
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "4712c23c95d74b22e540d13c703c8dc95916f20dfd9bd671fb6ab87d84dd8b9d"
+        },
+        {
+          "index": 17,
+          "box": [
+            1600,
+            679,
+            2500,
+            1369
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "3e7a33c857aea15670d7878b0578a0ad10f755963333cbaab56c450d95ba8873"
+        },
+        {
+          "index": 18,
+          "box": [
+            2400,
+            679,
+            3300,
+            1369
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "bd51350884b8e134219f59581a73663d7b72527a3f60625f8d965bb62ad1f8fd"
+        },
+        {
+          "index": 19,
+          "box": [
+            3196,
+            679,
+            4096,
+            1369
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "d56359a77d1c8e83701239ac89998276d345ae07adb3377917b9389bb4870646"
+        },
+        {
+          "index": 23,
+          "box": [
+            2400,
+            1703,
+            3300,
+            2393
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "ec8dde55fd6d98b70a15f393d7e83af3c78e3be9f19dccd46a5d1fce93770a40"
+        },
+        {
+          "index": 24,
+          "box": [
+            3196,
+            1703,
+            4096,
+            2393
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "62e914035df55d0df6529e72ee2cd36cdc08f7cebd56b21dfc497e66692db1ed"
+        },
+        {
+          "index": 27,
+          "box": [
+            1600,
+            2727,
+            2500,
+            3417
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "79b29f4255824f8cc60650dc63f0a6b135bd263367eb2ce087818ffb525e51b1"
+        },
+        {
+          "index": 28,
+          "box": [
+            2400,
+            2727,
+            3300,
+            3417
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "71b0fba18206c32d708170a68b79f75a1ed1420f02c3cbc8b445061a3b67cc0a"
+        },
+        {
+          "index": 29,
+          "box": [
+            3196,
+            2727,
+            4096,
+            3417
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "331cde41c72dfa327898423062ebdfb003eb4780766604417d5470dfa5381df3"
+        },
+        {
+          "index": 30,
+          "box": [
+            574,
+            574,
+            1474,
+            1474
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "7fb9ea1cd814b2272649d99fe3666a0ca38eeb4a65c776d7567be9c4ea0e3f27"
+        },
+        {
+          "index": 31,
+          "box": [
+            1598,
+            574,
+            2498,
+            1474
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "a4e80013a353693c112cad9f13e1018f6cddab8ff12d6ade922fcbb8960ccc71"
+        },
+        {
+          "index": 32,
+          "box": [
+            2622,
+            574,
+            3522,
+            1474
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "ec033d0c1466e015e5fb97ee7d6e6334534cbb728431ed1edff651aec109d9b3"
+        },
+        {
+          "index": 35,
+          "box": [
+            2622,
+            1598,
+            3522,
+            2498
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "541c438253f1d3b655eb17802852e36c361ff58afb2a3c29c86356f4c8b54415"
+        },
+        {
+          "index": 37,
+          "box": [
+            1598,
+            2622,
+            2498,
+            3522
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "8ee54040e9ac711beacbeb806cc56de89b0695378e0882ef72061d6eb9b1bdaf"
+        },
+        {
+          "index": 38,
+          "box": [
+            2622,
+            2622,
+            3522,
+            3522
+          ],
+          "changedPixels": 0,
+          "decodedRGBSHA256": "3f93dcc8badb993dfcbc1e20c3d3aa05119852cb476b8fe2e5037db3ee376446"
+        }
+      ],
+      "extraPerimeterFailures": [
+        {
+          "name": "p1",
+          "status": "failed",
+          "view": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/p1.png",
+            "sha256": "11809b81e4088c5aeebbb65dbbfc444a555a071028d1345230e92df5e5c6dba6"
+          },
+          "rawBoxHalfOpen": [
+            1005,
+            760,
+            1110,
+            850
+          ],
+          "ownBoxHalfOpen": [
+            1605,
+            2560,
+            1710,
+            2650
+          ],
+          "actuallyViewedEntireNativeBeforeLeftAfterRight": true,
+          "exactDifferencesFromActualPanels": 0,
+          "finding": "A small new hooked/pointed lip or glaze-contact fragment is present in the after panel. This extra perimeter failure is retained independently of standard39 window counts."
+        },
+        {
+          "name": "p2",
+          "status": "failed",
+          "view": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/p2.png",
+            "sha256": "4d5e6b09faf68926ddc4be1e0349d2483d5273eb16d4e53d36373ec739bad886"
+          },
+          "rawBoxHalfOpen": [
+            855,
+            860,
+            955,
+            955
+          ],
+          "ownBoxHalfOpen": [
+            1455,
+            2660,
+            1555,
+            2755
+          ],
+          "actuallyViewedEntireNativeBeforeLeftAfterRight": true,
+          "exactDifferencesFromActualPanels": 0,
+          "finding": "A small new hooked/pointed lip or glaze-contact fragment is present in the after panel. This extra perimeter failure is retained independently of standard39 window counts."
+        },
+        {
+          "name": "p3",
+          "status": "failed",
+          "view": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/manual-finish-20261022/alpha-guided-group-v1/c1/p3.png",
+            "sha256": "3dfcf9448be7cc019a56ba95cc0c74373e9f4b94f62f5d45b12f82bb714680f4"
+          },
+          "rawBoxHalfOpen": [
+            725,
+            950,
+            820,
+            1030
+          ],
+          "ownBoxHalfOpen": [
+            1325,
+            2750,
+            1420,
+            2830
+          ],
+          "actuallyViewedEntireNativeBeforeLeftAfterRight": true,
+          "exactDifferencesFromActualPanels": 0,
+          "finding": "A small new hooked/pointed lip or glaze-contact fragment is present in the after panel. This extra perimeter failure is retained independently of standard39 window counts."
+        }
+      ],
+      "p3VsQ03BoundaryCheck": "P3 crop begins atownX1325; q03 ends atownX1369 (P3 localX44). A display-only4x nearest-pixel inspection marked that exact localX44 edge. The newly visible P3 hook lies to its right, so its crop overlapsq03 while the actual hook does not. q03 was judged from its entire exact native window, not by ignoring an in-window failure.",
+      "workingImprovementOpinion": "Exact0e61 is a genuine unadopted working improvement on windows2/3/21/33 relative to749. A tentative33pass/6fail standard39 result is supported only if root also finishes the other8 changed-window reviews without regressions; this independent review does not pre-approve those8. In all cases preserve P1/P2/P3 as extra failed perimeter checks, whole tileFAIL, formal0, and no selected/current adoption.",
+      "confirmedStandardWindowStatusDelta": {
+        "oldFailedToPassed": [
+          2,
+          3,
+          21,
+          33
+        ],
+        "netConfirmedPassGain": 4,
+        "other8ChangedWindowsNotVisuallyJudgedHere": true
+      },
+      "wholeTileAccepted": false,
+      "formalAccepted": false,
+      "automaticWorkingOrSelectedAdoption": false,
+      "newPNGWritten": 0,
+      "newAICalls": 0,
+      "maskEdits": 0,
+      "composes": 0,
+      "selectedCurrentOrSharedMetadataWrites": 0,
+      "GitTouched": false
+    }
+  }
+}

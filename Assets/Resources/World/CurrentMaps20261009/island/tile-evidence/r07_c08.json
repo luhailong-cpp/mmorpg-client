@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 7,
+  "column": 8,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "b0558f58569f7e19128be848bb30ab5127e0f89d14c2e19bfa5d366dbd3c5cd7",
+  "imageBytes": 21538074,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/r07_c08-current16-working4096-19c48852.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/manifest.json",
+  "sourceLedgerSha256": "7bb32a9d77a7c98d68423307e8bddf9749dbad8a6db5acb4d59131e24112150a",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/r07_c08-current16-working4096-19c48852.png",
+    "imageSha256": "b0558f58569f7e19128be848bb30ab5127e0f89d14c2e19bfa5d366dbd3c5cd7",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/manifest.json",
+        "sha256": "7bb32a9d77a7c98d68423307e8bddf9749dbad8a6db5acb4d59131e24112150a",
+        "completeness": [
+          "/coverage/uncoveredPixels",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/result.json",
+        "sha256": "b7cb7a016d9508191ff625493343bb390cb201efb7222fcf6a7d0a610246f423",
+        "completeness": [
+          "/coverage/uncoveredPixels",
+          0
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "coverage": {
+        "sourceCount": 16,
+        "uniqueCoordinates": 16,
+        "minNativeContributions": 1,
+        "maxNativeContributions": 1,
+        "coveredPixels": 16777216,
+        "uncoveredPixels": 0,
+        "decodedDestinationCropMatches": 16
+      },
+      "prior49AcceptanceInherited": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/r07_c08-current16-working4096-19c48852.png.generation.json",
+        "record": {
+          "unverifiedReason": "No model is called for this assembly. Original model/quality evidence is inherited separately from each pinned source record; unknown source values remain unconfirmed.",
+          "status": "current_selected_working_candidate_unaccepted",
+          "layoutAccepted": false,
+          "materialAccepted": false,
+          "externalSeamsPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/manifest.json",
+        "record": {
+          "coverage": {
+            "sourceCount": 16,
+            "uniqueCoordinates": 16,
+            "minNativeContributions": 1,
+            "maxNativeContributions": 1,
+            "coveredPixels": 16777216,
+            "uncoveredPixels": 0,
+            "decodedDestinationCropMatches": 16
+          },
+          "prior49AcceptanceInherited": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/result.json",
+        "record": {
+          "status": "one_current_selected16_working4096_assembled_exact_native_pixels_unaccepted",
+          "coverage": {
+            "sourceCount": 16,
+            "uniqueCoordinates": 16,
+            "minNativeContributions": 1,
+            "maxNativeContributions": 1,
+            "coveredPixels": 16777216,
+            "uncoveredPixels": 0,
+            "decodedDestinationCropMatches": 16
+          },
+          "externalMessages": false,
+          "layoutAccepted": false,
+          "materialAccepted": false,
+          "externalSeamsPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/overview-review.json",
+        "record": {
+          "layoutAccepted": false,
+          "materialAccepted": false,
+          "externalSeamsPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r07_c08.json",
+        "record": {
+          "formalAccepted": false,
+          "layoutAccepted": false,
+          "externalSeamsPassed": false,
+          "status": "sixteen_best_working_sources;three_further_finish_replacements;C11v3_unselected;C33v2_UNKNOWN",
+          "pendingIssues": [
+            "Material remains failed/held, including dense white veins in latest lower sources",
+            "Known bad unselected r07c09 p0301/p0401 exterior sources not used as anchors",
+            "Original full widths/curvature, full49 internal and whole exterior still unaccepted",
+            "Ten other working slots are not necessarily missing art; use actualGeneratedCorePositions",
+            "p0301v2 clean native material adopted as best working source only; neighboring p0302 height/double-edge failed and N/S density transition held. Full-edge/geometry anchor not approved.",
+            "C41/C22/C21 v2 selected for locally cleaner material only; C21/C22 seam inset width/phase pending, old C23 cloud/C32 height and other surrounding dense material still failed. No 49-gate or whole-source anchor promotion.",
+            "24 current: C23 unsupported cloud motif removed and C32 tall curb reduced to thin floor joint; adopted for concrete geometry improvement. Dense material, precise heights/widths and8 contacts remain failed/held. Prior complete49 is pinned to its earlier source grid.",
+            "24 current: C11v2 reduces oversized ivory lobe and is adopted as better working. C13/C24 exact geometry differences remain within coarse-original1–2pixel uncertainty in latest scope; their old fine-joint/height holds persist, 0media submitted in closed shape3 lease. Dense stone material and current source-grid49 remain unresolved.",
+            "24 current: C12/C13/C24v2 adopted for definite face-finish improvement while keeping current coarse footprints as provisional working design. C12 faint cells, exact narrow bands/height/curve and all staged/final contacts remain held. Sixteen working slots do not imply accepted tile; no current-grid49 rebuild yet, several older source faces still need finish consistency. Shape3zero-media geometry skips retain their original evidence/lifecycle.",
+            "25 current: C14/C34/C42/C43 first-finish replacements adopted working only. C33 attempted v2 UNKNOWN with no positive return; keep old v1 selected and no resubmit. 19c48852/b0558f58 exact4096 is now prior-grid source-bound evidence, not current. Existing full49 remains earlier grid. All fine joints, curve widths, material consistency and exterior gates held.",
+            "25 current: C44v2/C23v3/C32v3 adopted for definite finish improvement; broad cloud tones and fine geometry contacts remain held. C11v3 returned but unselected; current C11v2 kept with large gray mottle issue. All real attempts/corrections counted; no next correction budget allocated. UNKNOWN C33 unchanged. Next current-grid selective49; earlier4096/49 remain bound to earlier grids."
+          ]
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r07_c08.json",
+        "record": {
+          "formalAccepted": false,
+          "layoutAccepted": false,
+          "externalSeamsPassed": false,
+          "status": "sixteen_best_working_sources;three_further_finish_replacements;C11v3_unselected;C33v2_UNKNOWN",
+          "pendingIssues": [
+            "Material remains failed/held, including dense white veins in latest lower sources",
+            "Known bad unselected r07c09 p0301/p0401 exterior sources not used as anchors",
+            "Original full widths/curvature, full49 internal and whole exterior still unaccepted",
+            "Ten other working slots are not necessarily missing art; use actualGeneratedCorePositions",
+            "p0301v2 clean native material adopted as best working source only; neighboring p0302 height/double-edge failed and N/S density transition held. Full-edge/geometry anchor not approved.",
+            "C41/C22/C21 v2 selected for locally cleaner material only; C21/C22 seam inset width/phase pending, old C23 cloud/C32 height and other surrounding dense material still failed. No 49-gate or whole-source anchor promotion.",
+            "24 current: C23 unsupported cloud motif removed and C32 tall curb reduced to thin floor joint; adopted for concrete geometry improvement. Dense material, precise heights/widths and8 contacts remain failed/held. Prior complete49 is pinned to its earlier source grid.",
+            "24 current: C11v2 reduces oversized ivory lobe and is adopted as better working. C13/C24 exact geometry differences remain within coarse-original1–2pixel uncertainty in latest scope; their old fine-joint/height holds persist, 0media submitted in closed shape3 lease. Dense stone material and current source-grid49 remain unresolved.",
+            "24 current: C12/C13/C24v2 adopted for definite face-finish improvement while keeping current coarse footprints as provisional working design. C12 faint cells, exact narrow bands/height/curve and all staged/final contacts remain held. Sixteen working slots do not imply accepted tile; no current-grid49 rebuild yet, several older source faces still need finish consistency. Shape3zero-media geometry skips retain their original evidence/lifecycle.",
+            "25 current: C14/C34/C42/C43 first-finish replacements adopted working only. C33 attempted v2 UNKNOWN with no positive return; keep old v1 selected and no resubmit. 19c48852/b0558f58 exact4096 is now prior-grid source-bound evidence, not current. Existing full49 remains earlier grid. All fine joints, curve widths, material consistency and exterior gates held.",
+            "25 current: C44v2/C23v3/C32v3 adopted for definite finish improvement; broad cloud tones and fine geometry contacts remain held. C11v3 returned but unselected; current C11v2 kept with large gray mottle issue. All real attempts/corrections counted; no next correction budget allocated. UNKNOWN C33 unchanged. Next current-grid selective49; earlier4096/49 remain bound to earlier grids."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/manifest.json",
+    "sourceSha256": "7bb32a9d77a7c98d68423307e8bddf9749dbad8a6db5acb4d59131e24112150a",
+    "normalizedDocument": {
+      "atUtc": "2026-10-25T05:24:56.912185+00:00",
+      "tile": "r07_c08",
+      "map": "island-game-20261009",
+      "worldBox": [
+        28672,
+        24576,
+        32768,
+        28672
+      ],
+      "sourceSignature": "19c4885276c91783ba0d28ecb148c0011a26bb8dc51dab872bbf66373132a9e3",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/r07_c08-current16-working4096-19c48852.png",
+        "sha256": "b0558f58569f7e19128be848bb30ab5127e0f89d14c2e19bfa5d366dbd3c5cd7"
+      },
+      "candidateDimensions": [
+        4096,
+        4096
+      ],
+      "candidateMode": "RGB",
+      "candidateOpaque": true,
+      "candidateGenerationRecord": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/r07_c08-current16-working4096-19c48852.png.generation.json",
+        "sha256": "706b4d351603623cb395b48231b7e895e02ed17fe4309a97a3c7c67e84851dac"
+      },
+      "sourceGrid": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-current16-working25-root/source-grid.json",
+        "sha256": "379e0137a174584021e86178f0ee6dbc94974078de8569165feb4407e7175fcb"
+      },
+      "sourceEvidencePinsVerified": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-flat2-independent-QA24/result.json",
+          "sha256": "05c710ce776277b0420d47b533e17c94c8ec25554752e06406254cb648597a30"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-matte-next3-native24-worker/r07_c08_p01_02_v2_human24.QA.json",
+          "sha256": "4ac96f5e28329f07fceb4317f54244e6425e868957462a5e401f30294c0c96d7"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-matte-next3-native24-worker/r07_c08_p01_03_v2_human24.QA.json",
+          "sha256": "241e99500baf18bc708d4d307c8a1ff241c4b87d1210d030da02ca5bddb7184d"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-matte-next3-native24-worker/r07_c08_p02_04_v2_human24.QA.json",
+          "sha256": "09c1425e0401adc8e75ec3b9670dc4b66888f7584c39c1731c2f86af2f3c2adb"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-matte3-selective-QA23/result.json",
+          "sha256": "21866ee79f09c009f83aa9f40e7fb007f14523100c39bb5d67e4ef1b25491cd4"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-matte3-selective-QA23/source-grid.json",
+          "sha256": "23e228601f64284ed0ee9c3c9577e8c0c9ab9d18790b7b6bba0a6088602b8e3d"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/human-resume21-221439/r07c08-shape3-native24-worker/r07_c08_p01_01_v2_human24.QA.json",
+          "sha256": "9870f0bd0e8ba6bfe03b90d92d8828d24cfa158359e254434e246d46622938fc"
+        }
+      ],
+      "selectionBefore": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r07_c08.json",
+        "sha256": "840d39c44af14ae2af4543c5277c138f3dc46c33312429a20a4f3c4f78158794"
+      },
+      "selectionAfter": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r07_c08.json",
+        "sha256": "840d39c44af14ae2af4543c5277c138f3dc46c33312429a20a4f3c4f78158794"
+      },
+      "canonicalSelectionUnchanged": true,
+      "candidateMatchesCurrentSelectionAtCompletion": true,
+      "coverage": {
+        "sourceCount": 16,
+        "uniqueCoordinates": 16,
+        "minNativeContributions": 1,
+        "maxNativeContributions": 1,
+        "coveredPixels": 16777216,
+        "uncoveredPixels": 0,
+        "decodedDestinationCropMatches": 16
+      },
+      "operations": {
+        "newImageCalls": 0,
+        "newNativeSources": 0,
+        "newNativePositionGain": 0,
+        "newPNGFiles": 1,
+        "resize": 0,
+        "blend": 0,
+        "full49OrInspectionCropRebuild": 0,
+        "sourceNativeOrGenerationWrites": 0,
+        "selectionOrProgressWrites": 0,
+        "gitWrites": 0,
+        "externalMessages": 0
+      },
+      "artQALimits": {
+        "layoutAccepted": false,
+        "internalPassed": false,
+        "externalSeamsPassed": false,
+        "formalAccepted": false,
+        "componentRestrictions": {
+          "r07_c08_p03_04_v1_human23": "Original-supported coarse flat ground/inlay and checked local contact geometry only; material is not an approved anchor",
+          "r07_c08_p03_03_v1_human23": "Original-supported coarse flat ground/inlay and checked local contact geometry only; material is not an approved anchor",
+          "r07_c08_p04_04_v1_human23": "Original-supported coarse flat ground/inlay and checked local contact geometry only; material is not an approved anchor",
+          "r07_c08_p04_03_v1_human23": "Original-supported coarse flat ground/inlay and checked local contact geometry only; material is not an approved anchor",
+          "r07_c08_p04_02_v1_human23": "Original-supported coarse flat ground/inlay and checked local contact geometry only; material is not an approved anchor",
+          "r07_c08_p02_03_v2_human24": "Specific unsupported geometry removed; whole footprint, height, material and contacts still unaccepted; no whole-source conditioning anchor.",
+          "r07_c08_p03_02_v2_human24": "Specific unsupported geometry removed; whole footprint, height, material and contacts still unaccepted; no whole-source conditioning anchor.",
+          "r07_c08_p01_01_v2_human24": "Specific coarse enlarged lobe reduced within original footprint support; precise arc, matte finish and all neighboring contacts remain held; no whole-source conditioning anchor.",
+          "r07_c08_p01_02_v2_human24": "Reduced large surface flakes for working finish only. Current coarse contour retained as provisional design within source uncertainty; no precise original boundary/height or current seam pass; no whole-source conditioning anchor.",
+          "r07_c08_p01_03_v2_human24": "Reduced large surface flakes for working finish only. Current coarse contour retained as provisional design within source uncertainty; no precise original boundary/height or current seam pass; no whole-source conditioning anchor.",
+          "r07_c08_p02_04_v2_human24": "Reduced large surface flakes for working finish only. Current coarse contour retained as provisional design within source uncertainty; no precise original boundary/height or current seam pass; no whole-source conditioning anchor."
+        },
+        "wholeSourceGeometryAnchorAllowed": false,
+        "wholeSourceMaterialAnchorAllowed": false
+      },
+      "prior49AcceptanceInherited": false,
+      "currentGridFull49Performed": false,
+      "workingCandidatePurpose": "Source-bound full coverage of current16 selected working versions for continued art repair and review, not a finished-game or accepted-tile export.",
+      "registrationOrMembershipIncrement": 0,
+      "wholeOwnerComplete": false,
+      "overviewVisualInspection": "pending actual local-image view; no native seam PASS may be inferred"
+    }
+  }
+}

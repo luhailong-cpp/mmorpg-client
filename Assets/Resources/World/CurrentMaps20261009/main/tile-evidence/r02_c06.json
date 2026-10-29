@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 2,
+  "column": 6,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "94f92785732baddc5ead863a17b9f3f158e7b61f39aff416c7ec0976369c7da5",
+  "imageBytes": 26994879,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/repair-batches/north-wall-20261020/trial-north-wall-fix01-stone-face/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/candidate/native16-20261019-9df886c5a8d8f848/pixelproof.json",
+  "sourceLedgerSha256": "aad1ae3aa296b8a1eedeae227d0ebbc22e12010f467683cd7b114a674fc87c3f",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r02_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/repair-batches/north-wall-20261020/trial-north-wall-fix01-stone-face/candidate.png",
+    "imageSha256": "94f92785732baddc5ead863a17b9f3f158e7b61f39aff416c7ec0976369c7da5",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/candidate/native16-20261019-9df886c5a8d8f848/pixelproof.json",
+        "sha256": "aad1ae3aa296b8a1eedeae227d0ebbc22e12010f467683cd7b114a674fc87c3f",
+        "sourceReviewSha256": "aad1ae3aa296b8a1eedeae227d0ebbc22e12010f467683cd7b114a674fc87c3f",
+        "completeness": [
+          "16 native core pixel checks cover 16,777,216 pixels",
+          "base image SHA256=5fbf67e9a7fafa4850cbb68f16e1fb90648ef8b4095bc2205e03b7ac37098a92"
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/repair-batches/north-wall-20261020/trial-north-wall-fix01-stone-face/candidate.png.derivation.json",
+        "sha256": "3d914ec3ab1697eb0d6d673498f1b00046173837b7bb952bd25f0f355d91052b",
+        "sourceReviewSha256": "3d914ec3ab1697eb0d6d673498f1b00046173837b7bb952bd25f0f355d91052b",
+        "completeness": [
+          "Selected output is a bounded native repair of complete base SHA256=5fbf67e9a7fafa4850cbb68f16e1fb90648ef8b4095bc2205e03b7ac37098a92"
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/repair-batches/north-wall-20261020/trial-north-wall-fix01-stone-face/pixel-proof.json",
+        "sha256": "24a2834f19b8d7597b7caf1cfd000f902a202c093a042e1a58c2ed157fb2e5df",
+        "sourceReviewSha256": "24a2834f19b8d7597b7caf1cfd000f902a202c093a042e1a58c2ed157fb2e5df",
+        "completeness": [
+          "Selected output is a bounded native repair of complete base SHA256=5fbf67e9a7fafa4850cbb68f16e1fb90648ef8b4095bc2205e03b7ac37098a92"
+        ]
+      }
+    ],
+    "selectionBasis": "Complete 16-core base plus source-bound local repair",
+    "sourceStatus": {},
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r02_c06/repair-batches/north-wall-20261020/trial-north-wall-fix01-stone-face/pixel-proof.json",
+        "record": {
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

@@ -54,6 +54,7 @@
 ExportedObj/
 .consulo/
 *.csproj
+!tools/tests/character_availability/CharacterAvailability.csproj
 *.unityproj
 *.sln
 *.slnx

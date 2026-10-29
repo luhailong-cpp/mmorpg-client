@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 15,
+  "column": 11,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "e516cd352fd8de52b5da2382ec7e8904d07e80516b5f410ec79978ccb88648f8",
+  "imageBytes": 23159412,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/candidate4096-proposal.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/progress.json",
+  "sourceLedgerSha256": "ff677d9f2edf0b355d256375c267ba8ef6b2a4d4d0b597b706b05b4fff9d9c55",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": "failed_east_south_pending_finish_north_missing_west",
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r15_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/candidate4096-proposal.png",
+    "imageSha256": "e516cd352fd8de52b5da2382ec7e8904d07e80516b5f410ec79978ccb88648f8",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/progress.json",
+        "sha256": "ff677d9f2edf0b355d256375c267ba8ef6b2a4d4d0b597b706b05b4fff9d9c55",
+        "sourceReviewSha256": "ff677d9f2edf0b355d256375c267ba8ef6b2a4d4d0b597b706b05b4fff9d9c55",
+        "completeness": [
+          "Selected output path/SHA bound to this record",
+          "activeNativeCount=16 / coverageSourceCount=16; no missing cores reported"
+        ]
+      }
+    ],
+    "selectionBasis": "Exact candidate identity bound to complete native core record",
+    "sourceStatus": {
+      "status": "candidate_complete_limited_repairs_pending",
+      "formalAccepted": false,
+      "internalArtQA": "failed_M01_red_upright_localpass_other_inherited_items_pending",
+      "externalNeighborSeamQA": "failed_east_south_pending_finish_north_missing_west",
+      "effectiveInternalQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/effective-internal-qa-closed-batch.json"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/candidate4096-proposal.png.generation.json",
+        "record": {
+          "unverifiedReason": "Host-managed built-in source does not disclose actual model/quality. Composition adds none.",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/progress.json",
+        "record": {
+          "status": "candidate_complete_limited_repairs_pending",
+          "formalAccepted": false,
+          "internalArtQA": "failed_M01_red_upright_localpass_other_inherited_items_pending",
+          "externalNeighborSeamQA": "failed_east_south_pending_finish_north_missing_west",
+          "effectiveInternalQA": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/effective-internal-qa-closed-batch.json"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/actual-qa.json",
+        "record": {
+          "status": "local_pass_proposal_ready_for_root_CAS",
+          "formalAccepted": false,
+          "unverifiedReason": "The built-in native generation and PNG disclose no actual model/quality; masked composition adds no model evidence."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/effective-internal-qa-closed-batch.json",
+        "record": {
+          "status": "M01_localpass_only_other_inherited_items_and_external_pending",
+          "wholeTileInternalAccepted": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/repairs/R03-one-gold-rib-v1-20261022-0435/proposal-v1/actual-qa.json",
+        "record": {
+          "status": "rejected_lower_fixed_endpoint_not_rejoined",
+          "formalAccepted": false,
+          "overallInternalArtQA": "failed_other_inherited_items_pending",
+          "unverifiedReason": "Built-in returned native and PNG disclose no actual model/quality."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/repairs/L02-contour-polygon-proposal-v2-20261022/actual-qa.json",
+        "record": {
+          "status": "rejected_second_attempt_fixed_endpoint_rejoin_failure_stop_same_point",
+          "formalAccepted": false,
+          "newWholeInternalAccepted": 0,
+          "newFormalAccepted": 0
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/actual-qa.json",
+    "sourceSha256": "8dce68a80d77c895227293646faf4eed654ea40945ceccc20f9763151834dea4",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tile": "r15_c11",
+      "point": "M01 lower red upright face material join only",
+      "reviewer": "/root/r15_remaining_geometry",
+      "checkedAtUtc": "2026-10-22T04:07:40.899585+00:00",
+      "status": "local_pass_proposal_ready_for_root_CAS",
+      "selected": false,
+      "formalAccepted": false,
+      "generationTerminal": "root_returned_native_archived",
+      "native": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/repairs/M01-upright-material-v1-20261022-0405/native1254.png",
+        "sha256": "bf234b2b83f2176e45537f9f279e6b2fa325f75639d35798f527383de2c9636f",
+        "generationRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/repairs/M01-upright-material-v1-20261022-0405/native1254.png.generation.json",
+          "sha256": "b7665857274f45ef3c8d6d74f7697b31567222725630307b3b99f9bf61911a7d"
+        }
+      },
+      "source": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/candidate/r15_c11-4k-W01-wall-joint-v1-20261020-2309.png",
+        "sha256": "749d224eefe50c34f980a3e8876a42552186374cbb84596e398009a7ee2b76d1"
+      },
+      "sourceContext": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/candidate/r15_c11-context-W01-wall-joint-v1-20261020-2309.png",
+        "sha256": "042e6184d1e3c3ab6dd9e3bb318aa4eda06fb30221024958b47ba2ea1906daed"
+      },
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/candidate4096-proposal.png",
+        "sha256": "e516cd352fd8de52b5da2382ec7e8904d07e80516b5f410ec79978ccb88648f8"
+      },
+      "context": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/context4326-proposal.png",
+        "sha256": "b8c381254eb2e0fc50c744cd9221322638df5c070cf5a44f9132553a647464bf"
+      },
+      "compositionRecord": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/composition-spec.json",
+        "sha256": "70d2b32c1c7ffaf28ffa0f0306a3d8e5a902f015e56f4f180218e31c5a43d5da"
+      },
+      "targetCropBoxIn4096": [
+        2440,
+        2500,
+        3694,
+        3754
+      ],
+      "changedBBoxIn4096": [
+        3063,
+        3132,
+        3168,
+        3259
+      ],
+      "changedPixels": 12649,
+      "mask": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/red-face-polygon-alpha1254.png",
+        "sha256": "17faf666be1a68e216715835675bc76d506e8cfd3faa1e0727998b2fdfd9a111",
+        "size": [
+          1254,
+          1254
+        ],
+        "ramp": "linear polygon distance6px;top/bottom16px; no image blur",
+        "nonzeroBBoxInTarget": [
+          623,
+          631,
+          728,
+          759
+        ]
+      },
+      "closedRedFacePolygonIn4096": [
+        [
+          3063,
+          3131
+        ],
+        [
+          3166,
+          3131
+        ],
+        [
+          3167,
+          3155
+        ],
+        [
+          3167,
+          3235
+        ],
+        [
+          3165,
+          3259
+        ],
+        [
+          3063,
+          3259
+        ]
+      ],
+      "actualViews": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/repairs/M01-upright-material-v1-20261022-0405/native1254.png",
+          "sha256": "bf234b2b83f2176e45537f9f279e6b2fa325f75639d35798f527383de2c9636f",
+          "size": [
+            1254,
+            1254
+          ],
+          "actuallyViewed": true,
+          "viewTool": "functions.view_image(detail=original)",
+          "displayResized": false,
+          "purpose": "full returned native1254,actual view before composition"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/before-mask-surround-100pct.png",
+          "sha256": "d4f67000bfb760fd24e7edbb1975e0868e167703f9b35d63323376d96c7be223",
+          "size": [
+            240,
+            250
+          ],
+          "actuallyViewed": true,
+          "viewTool": "functions.view_image(detail=original)",
+          "displayResized": false,
+          "purpose": "source surrounding full planned mask",
+          "cropBoxIn4096": [
+            3010,
+            3080,
+            3250,
+            3330
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/native-mask-surround-100pct.png",
+          "sha256": "9ca2ec1664132af837f3ac2dabf6fed53bcff9fb630e081fd219791ecb0969a6",
+          "size": [
+            240,
+            250
+          ],
+          "actuallyViewed": true,
+          "viewTool": "functions.view_image(detail=original)",
+          "displayResized": false,
+          "purpose": "returned native surrounding full planned mask",
+          "cropBoxIn4096": [
+            3010,
+            3080,
+            3250,
+            3330
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/before-all-mask-perimeter-100pct.png",
+          "sha256": "4a92d8bc3136af4d2d84d0abbb31a8ba2baf9f5540ccc894e326fde37f422c61",
+          "size": [
+            300,
+            280
+          ],
+          "actuallyViewed": true,
+          "viewTool": "functions.view_image(detail=original)",
+          "displayResized": false,
+          "purpose": "complete before repair and all perimeter sides",
+          "cropBoxIn4096": [
+            2980,
+            3060,
+            3280,
+            3340
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/after-all-mask-perimeter-100pct.png",
+          "sha256": "537797763a80a261f2e3b4ce0ddfa8e1540934685b819e1567bd34701c75df91",
+          "size": [
+            300,
+            280
+          ],
+          "actuallyViewed": true,
+          "viewTool": "functions.view_image(detail=original)",
+          "displayResized": false,
+          "purpose": "complete after repair and all perimeter sides",
+          "cropBoxIn4096": [
+            2980,
+            3060,
+            3280,
+            3340
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/after-target1254-proposal.png",
+          "sha256": "131fba50e9971fccffabe6cc6152bd90759b8eef65d4e8d1c9b506e7ad388a67",
+          "size": [
+            1254,
+            1254
+          ],
+          "actuallyViewed": true,
+          "viewTool": "functions.view_image(detail=original)",
+          "displayResized": false,
+          "purpose": "full locally composed target, no whole-native adoption",
+          "cropBoxIn4096": [
+            2440,
+            2500,
+            3694,
+            3754
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/review/human-resume-20261021-221439/M01-native-proposal-v1/red-face-polygon-alpha1254.png",
+          "sha256": "17faf666be1a68e216715835675bc76d506e8cfd3faa1e0727998b2fdfd9a111",
+          "size": [
+            1254,
+            1254
+          ],
+          "actuallyViewed": true,
+          "viewTool": "functions.view_image(detail=original)",
+          "displayResized": false,
+          "purpose": "actual adopted-mask alpha only"
+        }
+      ],
+      "finding": "The broad horizontal red-lacquer value/texture cut at y3187 is removed within the selected red upright faces. Vertical grain and the existing dark molded groove now pass continuously through that row. The complete300x280 after crop includes every mask edge and all four surrounding margins; no new visible horizontal/vertical join, doubled groove, shifted face edge or blurred patch was found at the polygon perimeter. The composite uses only the small red-face polygon from the returned native at integer1:1 alignment. The gold side frame, red silhouette, roof and stone foot remain exact source pixels.",
+      "perimeterFindings": {
+        "top": "Transition closes into original red grain above the old cut; no new horizontal boundary.",
+        "bottom": "Transition closes into original red grain below; no new cutoff or smear.",
+        "left": "Existing dark vertical face/groove retained; no doubled line or lateral displacement.",
+        "right": "Mask stops before the gold boundary; red-face join closes without repainting the original gold or side panel."
+      },
+      "importantRemaining": "The adjacent narrow gold frame retains its original tiny width/edge/material discontinuity at this row, visibly outside the selected red-face polygon. This local pass does not clear that gold-frame point, roof/lantern/silhouette issues, cross-tile external seams, or whole-tile internal acceptance.",
+      "invariants": {
+        "outsideMaskExact": true,
+        "allFour384pxEdgesExact": true,
+        "G01Exact": true,
+        "W01Exact": true,
+        "D01Exact": true,
+        "sourceContextHaloExact": true,
+        "candidateEqualsContextCore": true,
+        "resized": false,
+        "resampled": false,
+        "imageBlur": false,
+        "registration": false,
+        "colorMatching": false,
+        "goldEdgeAndStoneFootOutsideMask": true
+      },
+      "currentUnchangedAtQA": {
+        "progress": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/progress.json",
+          "sha256": "5c2259787ecb4e1f2720f1578447602c032c973b3e5221d94dc53047f9f2331e"
+        },
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/candidate/r15_c11-4k-W01-wall-joint-v1-20261020-2309.png",
+          "sha256": "749d224eefe50c34f980a3e8876a42552186374cbb84596e398009a7ee2b76d1"
+        },
+        "context": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southeast/r15_c11/candidate/r15_c11-context-W01-wall-joint-v1-20261020-2309.png",
+          "sha256": "042e6184d1e3c3ab6dd9e3bb318aa4eda06fb30221024958b47ba2ea1906daed"
+        },
+        "expectedProgressSha256": "5c2259787ecb4e1f2720f1578447602c032c973b3e5221d94dc53047f9f2331e",
+        "CASByRootOnly": true
+      },
+      "qaReuse": "Current full24-segment/9-junction source QA is reusable outside the exact changed polygon. This new local QA covers the changed polygon and all perimeter joins. No full-history/internal re-scan performed; overall internalArtQA remains failed_other_inherited_items_pending.",
+      "heldAndSelected": {
+        "G01Exact": true,
+        "W01Exact": true,
+        "legacyD01ExactAndHeld": true,
+        "L02Untouched": true,
+        "outer384Exact": true
+      },
+      "agentActions": {
+        "newAICalls": 0,
+        "compositionProposals": 1,
+        "currentOrProgressWrites": 0,
+        "sharedExecutionWrites": 0,
+        "gitWrites": 0,
+        "adopted": 0
+      },
+      "actualModel": null,
+      "actualQuality": null,
+      "unverifiedReason": "The built-in native generation and PNG disclose no actual model/quality; masked composition adds no model evidence."
+    }
+  }
+}

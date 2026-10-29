@@ -1,0 +1,1239 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 15,
+  "column": 8,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "19f826829db058dff9a7caf9c91a54fbec6ee1b7a8c6593e076e7c76467edd54",
+  "imageBytes": 20138895,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/r15_c08.candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/assembly.json",
+  "sourceLedgerSha256": "11a9021aa873fde9f87bf9d14f5ac8bab627629de24a853062ca9750190a27c8",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r15_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/r15_c08.candidate.png",
+    "imageSha256": "19f826829db058dff9a7caf9c91a54fbec6ee1b7a8c6593e076e7c76467edd54",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/assembly.json",
+        "sha256": "11a9021aa873fde9f87bf9d14f5ac8bab627629de24a853062ca9750190a27c8",
+        "completeness": [
+          "/complete4kCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/assembly.json",
+        "sha256": "11a9021aa873fde9f87bf9d14f5ac8bab627629de24a853062ca9750190a27c8",
+        "completeness": [
+          "nativeSourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false,
+      "status": "candidate_pending_visual_and_external_QA",
+      "formalAcceptedCount": 0
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/assembly.json",
+        "record": {
+          "formalAccepted": false,
+          "status": "candidate_pending_visual_and_external_QA",
+          "formalAcceptedCount": 0
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/current-candidates.json",
+        "record": {
+          "verifiedNativeSlots": 16,
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/worker-review.json",
+        "record": {
+          "externalNativeRegionCount": 8,
+          "internalRegionReviews": [
+            {
+              "name": "V1-row1",
+              "box": [
+                896,
+                0,
+                1152,
+                1024
+              ],
+              "panel": "V-row1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold eave/teal tile shape and direction discontinuous.",
+              "candidateRegionRgbSha256": "508924c8a13a93dbc53f9de0baef48b57bfc3eb3e3e5e14c17fa7b196e98e1ec"
+            },
+            {
+              "name": "V2-row1",
+              "box": [
+                1920,
+                0,
+                2176,
+                1024
+              ],
+              "panel": "V-row1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold eave height steps at jagged material frontier.",
+              "candidateRegionRgbSha256": "3715f414b1c3b82e658b7016200065321c67f1ed8d20ad3f15f373c3539794cb"
+            },
+            {
+              "name": "V3-row1",
+              "box": [
+                2944,
+                0,
+                3200,
+                1024
+              ],
+              "panel": "V-row1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold ornament/eave and teal row angle/ends interrupt.",
+              "candidateRegionRgbSha256": "34acb6f091ede09497b87eaa1e9a54eddffb8a04ec4c192a0a560adad20027d3"
+            },
+            {
+              "name": "V1-row2",
+              "box": [
+                896,
+                1024,
+                1152,
+                2048
+              ],
+              "panel": "V-row2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Roof tile angle/diameter changes between separate planes; no supported junction.",
+              "candidateRegionRgbSha256": "04009395b5480682e8208bf91a6589d4172438ff40a902c6d8dc98e65f0f178d"
+            },
+            {
+              "name": "V2-row2",
+              "box": [
+                1920,
+                1024,
+                2176,
+                2048
+              ],
+              "panel": "V-row2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Vertical tube widths/row ends split at boundary.",
+              "candidateRegionRgbSha256": "c648f88f16d8b6a67f66234e73df95ae05defcc13afb1f2bd911195d472e366c"
+            },
+            {
+              "name": "V3-row2",
+              "box": [
+                2944,
+                1024,
+                3200,
+                2048
+              ],
+              "panel": "V-row2",
+              "actualViewed": true,
+              "accepted": true,
+              "issue": "Pure teal cylindrical roof courses/row ends continue without a visible break in this bounded native window.",
+              "candidateRegionRgbSha256": "ea2962d528b1ed8f5e1c7d8b9003e49618c4c2760a85c4976ae490134bb56d87"
+            },
+            {
+              "name": "V1-row3",
+              "box": [
+                896,
+                2048,
+                1152,
+                3072
+              ],
+              "panel": "V-row3",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold eave, tile endcap and wooden brackets have conflicting profiles.",
+              "candidateRegionRgbSha256": "541f7c0e67b9bcc66b677331724128822d36be20c6fe284855997cbe875b0feb"
+            },
+            {
+              "name": "V2-row3",
+              "box": [
+                1920,
+                2048,
+                2176,
+                3072
+              ],
+              "panel": "V-row3",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Roof rows clipped by texture front and beam/bracket profiles step.",
+              "candidateRegionRgbSha256": "3f0ee7a1987381f06d05c300abfb480537c4aaed2b047dff76896ccc77f4b82c"
+            },
+            {
+              "name": "V3-row3",
+              "box": [
+                2944,
+                2048,
+                3200,
+                3072
+              ],
+              "panel": "V-row3",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Roof end/beam lip heights and wood material step.",
+              "candidateRegionRgbSha256": "70032fa1c51eaa2fc64bd8f78f843372946d6e4b69ae62e975c60fe24517dfce"
+            },
+            {
+              "name": "V1-row4",
+              "box": [
+                896,
+                3072,
+                1152,
+                4096
+              ],
+              "panel": "V-row4",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Roof course diameter/direction and red beam profile split.",
+              "candidateRegionRgbSha256": "4af950fde0db6f3db196cfaecaa5f6cde23797aafda95ca28ceae37a6e6e482f"
+            },
+            {
+              "name": "V2-row4",
+              "box": [
+                1920,
+                3072,
+                2176,
+                4096
+              ],
+              "panel": "V-row4",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Roof plane changes orientation/scale at jagged front, added gold edge.",
+              "candidateRegionRgbSha256": "c05989609547c95a09b944c48d305a5416f0b0e9d18d6bcbe584ce5d8ca47133"
+            },
+            {
+              "name": "V3-row4",
+              "box": [
+                2944,
+                3072,
+                3200,
+                4096
+              ],
+              "panel": "V-row4",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold upright is cut by incompatible shadow roof; eave courses step.",
+              "candidateRegionRgbSha256": "dbf2593efe864ede267625b0a0ccca4fcc917ef73a848b4e9a47b1e645a2d00b"
+            },
+            {
+              "name": "H1-col1",
+              "box": [
+                0,
+                896,
+                1024,
+                1152
+              ],
+              "panel": "H1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Added gold course/support and tile-angle front across join.",
+              "candidateRegionRgbSha256": "be19b4d11379710053f988bc7169dc2afca4fa43a3aa973f3547767568600460"
+            },
+            {
+              "name": "H1-col2",
+              "box": [
+                1024,
+                896,
+                2048,
+                1152
+              ],
+              "panel": "H1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold vertical ridge width and roof course phase break.",
+              "candidateRegionRgbSha256": "4deb090f2a179d9e1728966f25abe92947f1616ab8b3b0bb7276afb821f33aaf"
+            },
+            {
+              "name": "H1-col3",
+              "box": [
+                2048,
+                896,
+                3072,
+                1152
+              ],
+              "panel": "H1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Roof row ends cut at jagged phase frontier.",
+              "candidateRegionRgbSha256": "ad38c22275dc1eed18aa013f81a8ac45a3b9d681583ab9a78a345fd9f7bda8a1"
+            },
+            {
+              "name": "H1-col4",
+              "box": [
+                3072,
+                896,
+                4096,
+                1152
+              ],
+              "panel": "H1",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Roof direction/diameter differs from independent upper tile.",
+              "candidateRegionRgbSha256": "ba41b51eb2bbd7972416b1594acfe4dbb8f20d7ab4a2c243a488bae208670966"
+            },
+            {
+              "name": "H2-col1",
+              "box": [
+                0,
+                1920,
+                1024,
+                2176
+              ],
+              "panel": "H2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold cap/curl profile changes and tiles interrupt.",
+              "candidateRegionRgbSha256": "bf7bf891e8b6621f3041c141db77c731f5057ff87c343166da755ae5d1b6f885"
+            },
+            {
+              "name": "H2-col2",
+              "box": [
+                1024,
+                1920,
+                2048,
+                2176
+              ],
+              "panel": "H2",
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold crest and roof rows cut at texture front.",
+              "candidateRegionRgbSha256": "2402938a07064d2dbabb58539b904852e267310691452f464932db628c562f2e"
+            },
+            {
+              "name": "H2-col3",
+              "box": [
+                2048,
+                1920,
+                3072,
+                2176
+              ],
+              "panel": "H2",
+              "actualViewed": true,
+              "accepted": true,
+              "issue": "Pure teal roof column widths and native row-end phases continue in this bounded window.",
+              "candidateRegionRgbSha256": "d0392dee9dc0346f26724dcf23155fb166e7d736cb0e29ee8b27d27d23d256b2"
+            },
+            {
+              "name": "H2-col4",
+              "box": [
+                3072,
+                1920,
+                4096,
+                2176
+              ],
+              "panel": "H2",
+              "actualViewed": true,
+              "accepted": true,
+              "issue": "Pure teal roof courses continue in this bounded window, without an invented divider.",
+              "candidateRegionRgbSha256": "f754da09c5becb5044a1d6c5a67026147a3a46a774bf89bfc3be427e3131334e"
+            },
+            "[additional entries retained in referenced document]"
+          ],
+          "externalRegionReviews": [
+            {
+              "side": "left",
+              "segment": 1,
+              "neighbor": "r15_c07",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+                "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Ground major diagonal joints do not connect; gold small foot/width and material differ."
+            },
+            {
+              "side": "left",
+              "segment": 2,
+              "neighbor": "r15_c07",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+                "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold eave course and tile row angle/phase discontinuous."
+            },
+            {
+              "side": "left",
+              "segment": 3,
+              "neighbor": "r15_c07",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+                "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Teal course angle/diameter and row-end heights change."
+            },
+            {
+              "side": "left",
+              "segment": 4,
+              "neighbor": "r15_c07",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+                "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold eave/roof/beam/lantern cap geometry differs."
+            },
+            {
+              "side": "top",
+              "segment": 1,
+              "neighbor": "r14_c08",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c08/pipeline/output/e1ad67c2e416d4a0/r14_c08.candidate.png",
+                "sha256": "df64f448cbef63b6b17a93f1b317161791853c18581b2c31d2bf3abd3cab2e8f",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Ground diagonal joint stops and gold clipped profile differs."
+            },
+            {
+              "side": "top",
+              "segment": 2,
+              "neighbor": "r14_c08",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c08/pipeline/output/e1ad67c2e416d4a0/r14_c08.candidate.png",
+                "sha256": "df64f448cbef63b6b17a93f1b317161791853c18581b2c31d2bf3abd3cab2e8f",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold curl/eave shape and ground blue-border plan differs."
+            },
+            {
+              "side": "top",
+              "segment": 3,
+              "neighbor": "r14_c08",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c08/pipeline/output/e1ad67c2e416d4a0/r14_c08.candidate.png",
+                "sha256": "df64f448cbef63b6b17a93f1b317161791853c18581b2c31d2bf3abd3cab2e8f",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold curl placement/scale differs with material frontier."
+            },
+            {
+              "side": "top",
+              "segment": 4,
+              "neighbor": "r14_c08",
+              "neighborCandidate": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c08/pipeline/output/e1ad67c2e416d4a0/r14_c08.candidate.png",
+                "sha256": "df64f448cbef63b6b17a93f1b317161791853c18581b2c31d2bf3abd3cab2e8f",
+                "width": 4096,
+                "height": 4096,
+                "mode": "RGB",
+                "format": "PNG",
+                "sourceResampling": false
+              },
+              "actualViewed": true,
+              "accepted": false,
+              "issue": "Gold eave/ornament layers and hue/frontier differ."
+            }
+          ],
+          "selectedCoverageOnly": true,
+          "internalAccepted": false,
+          "externalAccepted": false,
+          "formalAccepted": false,
+          "boundedInternalRegionsAccepted": 4,
+          "pendingRepairGroups": [
+            "Gold eave/ridges/curls/clamps and beam brackets depart from original exact shape.",
+            "Teal roof tile direction/diameter/row ends conflict across independent pieces.",
+            "Gold/wood/teal jagged material frontiers remain.",
+            "Current top/left external grout/roof/gold/lantern geometry mismatches."
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/worker-review.json",
+    "sourceSha256": "8aa403a61164938298ada9efa10948cbf74820cfdcb623d94cc172f03f8dc3c3",
+    "normalizedDocument": {
+      "tile": "r15_c08",
+      "atUtc": "2026-10-19T17:06:24.341409+00:00",
+      "assembly": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/assembly.json",
+      "assemblySha256": "11a9021aa873fde9f87bf9d14f5ac8bab627629de24a853062ca9750190a27c8",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/r15_c08.candidate.png",
+        "sha256": "19f826829db058dff9a7caf9c91a54fbec6ee1b7a8c6593e076e7c76467edd54",
+        "width": 4096,
+        "height": 4096,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "context": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/r15_c08.candidate.context.png",
+        "sha256": "4a35609f30a7b27743c3dc81fa8a1698a510408d58aed8007cd701b9704f4ab6",
+        "width": 4326,
+        "height": 4326,
+        "mode": "RGB",
+        "format": "PNG",
+        "sourceResampling": false
+      },
+      "qaManifest": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/manifest.json",
+      "qaManifestSha256": "f298f9c8c2980d933c3d5d90a4fdd51fb9a6c23186f565a2d05a7d10d87f85f8",
+      "actualViewedNativePanels": [
+        {
+          "name": "V-row1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/V-row1.png",
+          "sha256": "9f31233905bc46aa32f37fdced0a7e79c00c2df0200af55b0189cc1b2d38c1c1",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/V-row2.png",
+          "sha256": "3caf599b18d96dce0808d3568e6e39bbb79778a70afae6d4486d66459dcb34ff",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/V-row3.png",
+          "sha256": "eca297c1438fa2519e651dd62a2911190ac2e52685f424fa7d1e24421f640c94",
+          "nativeResampling": false
+        },
+        {
+          "name": "V-row4",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/V-row4.png",
+          "sha256": "5431becfcda4b732bb2b2d3822037668121d4f9436e917a0e1a2cff47c138b57",
+          "nativeResampling": false
+        },
+        {
+          "name": "H1",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/H1.png",
+          "sha256": "5f257fddff7bd6e61ed2872e76f7f5fc815f522656cefa857c0cd708845683be",
+          "nativeResampling": false
+        },
+        {
+          "name": "H2",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/H2.png",
+          "sha256": "3c5b209bece5ab3467d86b0d8f024af1f8a97e63a0f20fb3b9a907b9c67d91f1",
+          "nativeResampling": false
+        },
+        {
+          "name": "H3",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/H3.png",
+          "sha256": "f958867dd92f3373fe1c4138038184cf49162dd6e2b4bf23a593e4761527b49c",
+          "nativeResampling": false
+        },
+        {
+          "name": "nine-corners",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/nine-corners.png",
+          "sha256": "4a5d50adf2523676c784e47802024675ba2993d50213a27b1b4dbd198602ab18",
+          "nativeResampling": false
+        },
+        {
+          "name": "left-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/left-native-boundary.png",
+          "sha256": "5d64ef483673baa6a009fc7d417ae2f4f801aa1b3110e78d33eccd8a0dfced7c",
+          "nativeResampling": false
+        },
+        {
+          "name": "top-native-boundary",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/top-native-boundary.png",
+          "sha256": "22b305dcb63c443b36ea9e3b696a1ae4d00d27dba362bcbe725aa1e25a2ab530",
+          "nativeResampling": false
+        }
+      ],
+      "internalNativeRegionCount": 33,
+      "externalNativeRegionCount": 8,
+      "actualNativeResolutionViewed": true,
+      "nativePanelsResampled": false,
+      "overviewViewedForLayoutOnly": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c08/pipeline/output/c10406432a98462f/full16-native-20261019d-v01/overview-QA-only-1600.png",
+        "sha256": "ab941d175e836471657ed25b01b7955186fab43729532d032979de0f3ac5edb1",
+        "qaOnly": true,
+        "resized": true,
+        "finalArtwork": false
+      },
+      "internalRegionReviews": [
+        {
+          "name": "V1-row1",
+          "box": [
+            896,
+            0,
+            1152,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold eave/teal tile shape and direction discontinuous.",
+          "candidateRegionRgbSha256": "508924c8a13a93dbc53f9de0baef48b57bfc3eb3e3e5e14c17fa7b196e98e1ec"
+        },
+        {
+          "name": "V2-row1",
+          "box": [
+            1920,
+            0,
+            2176,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold eave height steps at jagged material frontier.",
+          "candidateRegionRgbSha256": "3715f414b1c3b82e658b7016200065321c67f1ed8d20ad3f15f373c3539794cb"
+        },
+        {
+          "name": "V3-row1",
+          "box": [
+            2944,
+            0,
+            3200,
+            1024
+          ],
+          "panel": "V-row1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold ornament/eave and teal row angle/ends interrupt.",
+          "candidateRegionRgbSha256": "34acb6f091ede09497b87eaa1e9a54eddffb8a04ec4c192a0a560adad20027d3"
+        },
+        {
+          "name": "V1-row2",
+          "box": [
+            896,
+            1024,
+            1152,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof tile angle/diameter changes between separate planes; no supported junction.",
+          "candidateRegionRgbSha256": "04009395b5480682e8208bf91a6589d4172438ff40a902c6d8dc98e65f0f178d"
+        },
+        {
+          "name": "V2-row2",
+          "box": [
+            1920,
+            1024,
+            2176,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Vertical tube widths/row ends split at boundary.",
+          "candidateRegionRgbSha256": "c648f88f16d8b6a67f66234e73df95ae05defcc13afb1f2bd911195d472e366c"
+        },
+        {
+          "name": "V3-row2",
+          "box": [
+            2944,
+            1024,
+            3200,
+            2048
+          ],
+          "panel": "V-row2",
+          "actualViewed": true,
+          "accepted": true,
+          "issue": "Pure teal cylindrical roof courses/row ends continue without a visible break in this bounded native window.",
+          "candidateRegionRgbSha256": "ea2962d528b1ed8f5e1c7d8b9003e49618c4c2760a85c4976ae490134bb56d87"
+        },
+        {
+          "name": "V1-row3",
+          "box": [
+            896,
+            2048,
+            1152,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold eave, tile endcap and wooden brackets have conflicting profiles.",
+          "candidateRegionRgbSha256": "541f7c0e67b9bcc66b677331724128822d36be20c6fe284855997cbe875b0feb"
+        },
+        {
+          "name": "V2-row3",
+          "box": [
+            1920,
+            2048,
+            2176,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof rows clipped by texture front and beam/bracket profiles step.",
+          "candidateRegionRgbSha256": "3f0ee7a1987381f06d05c300abfb480537c4aaed2b047dff76896ccc77f4b82c"
+        },
+        {
+          "name": "V3-row3",
+          "box": [
+            2944,
+            2048,
+            3200,
+            3072
+          ],
+          "panel": "V-row3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof end/beam lip heights and wood material step.",
+          "candidateRegionRgbSha256": "70032fa1c51eaa2fc64bd8f78f843372946d6e4b69ae62e975c60fe24517dfce"
+        },
+        {
+          "name": "V1-row4",
+          "box": [
+            896,
+            3072,
+            1152,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof course diameter/direction and red beam profile split.",
+          "candidateRegionRgbSha256": "4af950fde0db6f3db196cfaecaa5f6cde23797aafda95ca28ceae37a6e6e482f"
+        },
+        {
+          "name": "V2-row4",
+          "box": [
+            1920,
+            3072,
+            2176,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof plane changes orientation/scale at jagged front, added gold edge.",
+          "candidateRegionRgbSha256": "c05989609547c95a09b944c48d305a5416f0b0e9d18d6bcbe584ce5d8ca47133"
+        },
+        {
+          "name": "V3-row4",
+          "box": [
+            2944,
+            3072,
+            3200,
+            4096
+          ],
+          "panel": "V-row4",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold upright is cut by incompatible shadow roof; eave courses step.",
+          "candidateRegionRgbSha256": "dbf2593efe864ede267625b0a0ccca4fcc917ef73a848b4e9a47b1e645a2d00b"
+        },
+        {
+          "name": "H1-col1",
+          "box": [
+            0,
+            896,
+            1024,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Added gold course/support and tile-angle front across join.",
+          "candidateRegionRgbSha256": "be19b4d11379710053f988bc7169dc2afca4fa43a3aa973f3547767568600460"
+        },
+        {
+          "name": "H1-col2",
+          "box": [
+            1024,
+            896,
+            2048,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold vertical ridge width and roof course phase break.",
+          "candidateRegionRgbSha256": "4deb090f2a179d9e1728966f25abe92947f1616ab8b3b0bb7276afb821f33aaf"
+        },
+        {
+          "name": "H1-col3",
+          "box": [
+            2048,
+            896,
+            3072,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof row ends cut at jagged phase frontier.",
+          "candidateRegionRgbSha256": "ad38c22275dc1eed18aa013f81a8ac45a3b9d681583ab9a78a345fd9f7bda8a1"
+        },
+        {
+          "name": "H1-col4",
+          "box": [
+            3072,
+            896,
+            4096,
+            1152
+          ],
+          "panel": "H1",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof direction/diameter differs from independent upper tile.",
+          "candidateRegionRgbSha256": "ba41b51eb2bbd7972416b1594acfe4dbb8f20d7ab4a2c243a488bae208670966"
+        },
+        {
+          "name": "H2-col1",
+          "box": [
+            0,
+            1920,
+            1024,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold cap/curl profile changes and tiles interrupt.",
+          "candidateRegionRgbSha256": "bf7bf891e8b6621f3041c141db77c731f5057ff87c343166da755ae5d1b6f885"
+        },
+        {
+          "name": "H2-col2",
+          "box": [
+            1024,
+            1920,
+            2048,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold crest and roof rows cut at texture front.",
+          "candidateRegionRgbSha256": "2402938a07064d2dbabb58539b904852e267310691452f464932db628c562f2e"
+        },
+        {
+          "name": "H2-col3",
+          "box": [
+            2048,
+            1920,
+            3072,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "accepted": true,
+          "issue": "Pure teal roof column widths and native row-end phases continue in this bounded window.",
+          "candidateRegionRgbSha256": "d0392dee9dc0346f26724dcf23155fb166e7d736cb0e29ee8b27d27d23d256b2"
+        },
+        {
+          "name": "H2-col4",
+          "box": [
+            3072,
+            1920,
+            4096,
+            2176
+          ],
+          "panel": "H2",
+          "actualViewed": true,
+          "accepted": true,
+          "issue": "Pure teal roof courses continue in this bounded window, without an invented divider.",
+          "candidateRegionRgbSha256": "f754da09c5becb5044a1d6c5a67026147a3a46a774bf89bfc3be427e3131334e"
+        },
+        {
+          "name": "H3-col1",
+          "box": [
+            0,
+            2944,
+            1024,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold/wood eave and underlying roof geometry step.",
+          "candidateRegionRgbSha256": "d9dc5e5dc7a8e9322606b1a86ddb5658b5527161d945906065dcd3eb50724811"
+        },
+        {
+          "name": "H3-col2",
+          "box": [
+            1024,
+            2944,
+            2048,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Shadow roof widths/phase break and brighter lower plane differs.",
+          "candidateRegionRgbSha256": "6e77a7d152cea21a5f6ab1b0a8c34e84d22dc3e35d097e7c96cd039c8e968ed6"
+        },
+        {
+          "name": "H3-col3",
+          "box": [
+            2048,
+            2944,
+            3072,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Dark roof changes from cylindrical courses into inconsistent diagonal plane; cut upright.",
+          "candidateRegionRgbSha256": "6ff63d433bed55bd72aa088865d8703b007e84d8febb8948340896a6c456b0b7"
+        },
+        {
+          "name": "H3-col4",
+          "box": [
+            3072,
+            2944,
+            4096,
+            3200
+          ],
+          "panel": "H3",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold/roof layer geometry differs at join.",
+          "candidateRegionRgbSha256": "e62791235bbd725d34c281fb265114fad2278baebe0145796a7d3e5f05e04ae9"
+        },
+        {
+          "name": "corner-H1-V1",
+          "box": [
+            896,
+            896,
+            1152,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Conflicting roof tile plane/phase.",
+          "candidateRegionRgbSha256": "24ccfc55f04629482131595b9fd8712a512e60780d282e3b162260b426016dbe"
+        },
+        {
+          "name": "corner-H1-V2",
+          "box": [
+            1920,
+            896,
+            2176,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof row-end phase and tube width mismatch.",
+          "candidateRegionRgbSha256": "f7ebfc01344a7322b009e5060ad6204e5889877695932fe29ffa9f6de3e82d67"
+        },
+        {
+          "name": "corner-H1-V3",
+          "box": [
+            2944,
+            896,
+            3200,
+            1152
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Teal row-end/frontier interruption.",
+          "candidateRegionRgbSha256": "14aa8e79be1d71870aabcbf0a753472e6ed713dcb1ccc878c6deb5c7c60faa31"
+        },
+        {
+          "name": "corner-H2-V1",
+          "box": [
+            896,
+            1920,
+            1152,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold/roof tile plane junction differs.",
+          "candidateRegionRgbSha256": "8ace80971f4660eaa3b344b5668e2c6ed82541ca3f099170afadccf7b61ab6ba"
+        },
+        {
+          "name": "corner-H2-V2",
+          "box": [
+            1920,
+            1920,
+            2176,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Teal courses cut at jagged frontier.",
+          "candidateRegionRgbSha256": "41d1ca5bd341e3b5267f6ec49db6da924486d3c776d9c99b9234dfee8813d528"
+        },
+        {
+          "name": "corner-H2-V3",
+          "box": [
+            2944,
+            1920,
+            3200,
+            2176
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": true,
+          "issue": "Pure teal course and row-end phase continue across this bounded native intersection.",
+          "candidateRegionRgbSha256": "e284e96d6cdc415950989ce5dd2ef20997067c9f36e42bd445f6e27ae79b4fab"
+        },
+        {
+          "name": "corner-H3-V1",
+          "box": [
+            896,
+            2944,
+            1152,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Wood bracket/roof geometry and material step.",
+          "candidateRegionRgbSha256": "610bddc0c64a4b8a9f234560333f4d080e786e9e95c43f7f87705424892dddab"
+        },
+        {
+          "name": "corner-H3-V2",
+          "box": [
+            1920,
+            2944,
+            2176,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Shadow roof plane and material frontier differ.",
+          "candidateRegionRgbSha256": "8715d029fb1fc66780771ec5483862b6cffcda92baa83f8d8eebbd35c317622f"
+        },
+        {
+          "name": "corner-H3-V3",
+          "box": [
+            2944,
+            2944,
+            3200,
+            3200
+          ],
+          "panel": "nine-corners",
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Roof shadow cuts gold upright; tile orientation inconsistent.",
+          "candidateRegionRgbSha256": "415654b8dee95b57fba9822b056801465459006ab44d1ba7e5cbc010d89b895a"
+        }
+      ],
+      "externalRegionReviews": [
+        {
+          "side": "left",
+          "segment": 1,
+          "neighbor": "r15_c07",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+            "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Ground major diagonal joints do not connect; gold small foot/width and material differ."
+        },
+        {
+          "side": "left",
+          "segment": 2,
+          "neighbor": "r15_c07",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+            "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold eave course and tile row angle/phase discontinuous."
+        },
+        {
+          "side": "left",
+          "segment": 3,
+          "neighbor": "r15_c07",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+            "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Teal course angle/diameter and row-end heights change."
+        },
+        {
+          "side": "left",
+          "segment": 4,
+          "neighbor": "r15_c07",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r15_c07/pipeline/output/8a18189ec8a22881/r15_c07.candidate.png",
+            "sha256": "28341ec897c647dab991da31fe5c063415c2d014c36b167fb69139dec64345da",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold eave/roof/beam/lantern cap geometry differs."
+        },
+        {
+          "side": "top",
+          "segment": 1,
+          "neighbor": "r14_c08",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c08/pipeline/output/e1ad67c2e416d4a0/r14_c08.candidate.png",
+            "sha256": "df64f448cbef63b6b17a93f1b317161791853c18581b2c31d2bf3abd3cab2e8f",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Ground diagonal joint stops and gold clipped profile differs."
+        },
+        {
+          "side": "top",
+          "segment": 2,
+          "neighbor": "r14_c08",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c08/pipeline/output/e1ad67c2e416d4a0/r14_c08.candidate.png",
+            "sha256": "df64f448cbef63b6b17a93f1b317161791853c18581b2c31d2bf3abd3cab2e8f",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold curl/eave shape and ground blue-border plan differs."
+        },
+        {
+          "side": "top",
+          "segment": 3,
+          "neighbor": "r14_c08",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c08/pipeline/output/e1ad67c2e416d4a0/r14_c08.candidate.png",
+            "sha256": "df64f448cbef63b6b17a93f1b317161791853c18581b2c31d2bf3abd3cab2e8f",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold curl placement/scale differs with material frontier."
+        },
+        {
+          "side": "top",
+          "segment": 4,
+          "neighbor": "r14_c08",
+          "neighborCandidate": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/southwest/r14_c08/pipeline/output/e1ad67c2e416d4a0/r14_c08.candidate.png",
+            "sha256": "df64f448cbef63b6b17a93f1b317161791853c18581b2c31d2bf3abd3cab2e8f",
+            "width": 4096,
+            "height": 4096,
+            "mode": "RGB",
+            "format": "PNG",
+            "sourceResampling": false
+          },
+          "actualViewed": true,
+          "accepted": false,
+          "issue": "Gold eave/ornament layers and hue/frontier differ."
+        }
+      ],
+      "unavailableSides": [
+        "right r15_c09 current source not supplied",
+        "bottom r16_c08 not yet produced"
+      ],
+      "selectedCoverageOnly": true,
+      "geometryPropagationAllowed": false,
+      "actualModel": null,
+      "actualQuality": null,
+      "internalAccepted": false,
+      "externalAccepted": false,
+      "formalAccepted": false,
+      "boundedInternalRegionsAccepted": 4,
+      "pendingRepairGroups": [
+        "Gold eave/ridges/curls/clamps and beam brackets depart from original exact shape.",
+        "Teal roof tile direction/diameter/row ends conflict across independent pieces.",
+        "Gold/wood/teal jagged material frontiers remain.",
+        "Current top/left external grout/roof/gold/lantern geometry mismatches."
+      ],
+      "positiveChanges": [
+        "Invented grey-ground diamond grids and blue inset courses removed in p01_01/02/03.",
+        "Invented lower-left window/slats and engraved bracket spiral removed in p03_04.",
+        "Pure teal p02_03 source gave four acceptable bounded native join/intersection windows."
+      ],
+      "noImageDeleted": true,
+      "rootCatalogModified": false
+    }
+  }
+}

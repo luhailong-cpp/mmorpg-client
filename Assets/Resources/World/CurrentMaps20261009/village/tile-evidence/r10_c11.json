@@ -1,0 +1,345 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 10,
+  "column": 11,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "f6d150a22d7bf44fc419ad2511091f6a8d0b6e4e18c3ab044a672ae851df035c",
+  "imageBytes": 29010501,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/candidate/r10_c11-4096-candidate-v10.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/candidate/r10_c11-4096-candidate-v10.png.derivation.json",
+  "sourceLedgerSha256": "33b28de02c578e6aa6bc64f25635907e556a6c639be820ba8c9c7a28b114b023",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r10_c11",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/candidate/r10_c11-4096-candidate-v10.png",
+    "imageSha256": "f6d150a22d7bf44fc419ad2511091f6a8d0b6e4e18c3ab044a672ae851df035c",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/candidate/r10_c11-4096-candidate-v10.png.derivation.json",
+        "sha256": "33b28de02c578e6aa6bc64f25635907e556a6c639be820ba8c9c7a28b114b023",
+        "completeness": [
+          "sourcesCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/candidate/r10_c11-4096-candidate-v10.png.derivation.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/candidate/r10_c11-4096-candidate-v10.png.generation.json",
+        "record": {
+          "unverifiedReason": "Multi-source unscaled assembly; not one newly generated4096 image."
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/p31-two-complete-brown-faces-material-20261023-v1/incremental-current-qa-coverage.json",
+    "sourceSha256": "300b64d9ae1c31642c062e265738df5c6376cad6116255949e0878149b906b39",
+    "normalizedDocument": {
+      "recordedAtUtc": "2026-10-24T00:00:12.923713+00:00",
+      "baselineDetailedQa": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/resume/current-native-qa-20261023-v1/checkpoint.json",
+        "sha256": "6172630f1b1bcc55c5d979508221091e7536f9947f063d7de4588728cd095de2",
+        "bytes": 17198,
+        "sampledAtUtc": "2026-10-24T00:00:12.924231+00:00"
+      },
+      "currentCandidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/candidate/r10_c11-4096-candidate-v10.png",
+        "sha256": "f6d150a22d7bf44fc419ad2511091f6a8d0b6e4e18c3ab044a672ae851df035c",
+        "bytes": 29010501,
+        "sampledAtUtc": "2026-10-23T23:47:37.503130+00:00",
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "currentR10C11SourcePins": {
+        "r10_c11_p11": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p11-v3.png",
+          "sha256": "bf40e08bd61427455424e6a2b713dbb5198e1039efb5100ca410dddf63b340e8"
+        },
+        "r10_c11_p12": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p12-v2.png",
+          "sha256": "f41ddaae2b885f152c23298e88903abf65b1325b642bfc6afff32d49ffc5e1ea"
+        },
+        "r10_c11_p21": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p21-redcloth-20261018-v2-derived.png",
+          "sha256": "dec40de9f268df9d4e42120322a2efbcd99887d663068a2283809a97249fdd3f"
+        },
+        "r10_c11_p13": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p13-v4.png",
+          "sha256": "7087fb9728a86d30eff91882a0688f1332f6196107e3e511bd40f96b7edc9586"
+        },
+        "r10_c11_p31": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p31-two-complete-brown-faces-20261023-v1-derived.png",
+          "sha256": "e6331bc5d59bf0c2290f502319b52e4361e338c5617aaa56e2f7be28369bae4f"
+        },
+        "r10_c11_p41": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p41-M03-north-brown-20261019-v1-derived.png",
+          "sha256": "a7a922b42d542ff2cb93376ba621aea371a9dcb35747df1443bb17c3fb33614f"
+        },
+        "r10_c11_p22": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p22-v1.png",
+          "sha256": "1c25a4621888b0cbc5e15220cd30d758550df38982001a6b00b04d61c7b77084"
+        },
+        "r10_c11_p14": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p14-v2.png",
+          "sha256": "0627a6e0269fa67e34441313d004067ada9c108d00c45261071b17324af0478a"
+        },
+        "r10_c11_p32": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p32-v1.png",
+          "sha256": "04ee3410b9aaf96340246b692f0b66882499ca0cb1a3c0a06540b0444092e9bc"
+        },
+        "r10_c11_p42": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p42-connected-wood-union-20261022-v1-derived.png",
+          "sha256": "555b5765baebd26b5aa002b69e999f27585fd7aa97427b5b09f61a4a7d5d53a7"
+        },
+        "r10_c11_p23": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p23-v2.png",
+          "sha256": "6a8cb37a0a51509e3dc297409134c4ee93c705dd53a33478ea123e9908246284"
+        },
+        "r10_c11_p33": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p33-complete-blue-face-20261023-v1-derived.png",
+          "sha256": "c03b3a8e9d85a24b1f1c1365e620074306e1b091d16e531a6e3003c00d55e844"
+        },
+        "r10_c11_p24": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p24-v1.png",
+          "sha256": "059fc83a413adf40addae78837560b1cb117eb6d4e390e089984feb27eacbdcd"
+        },
+        "r10_c11_p43": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p43-complete-blue-face-20261023-v1-derived.png",
+          "sha256": "855dcf7dd47df5ddbe0ab40d4b4b0aef60b29e54696dcfeb13711831b5413ab6"
+        },
+        "r10_c11_p34": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p34-complete-blue-face-20261023-v1-derived.png",
+          "sha256": "05963358f5dd29a617f5121cf087372e16a6cde7f4bc2e8731d00d49c188b851"
+        },
+        "r10_c11_p44": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/r10_c11/native/p44-complete-blue-face-20261023-v1-derived.png",
+          "sha256": "8630af3860edc2b7656440d2b1853f0220b6fe929015f589222745a7cd7fcd7a"
+        }
+      },
+      "currentR10C11ContactQa": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/p31-two-complete-brown-faces-material-20261023-v1/incremental-contact-coverage.json",
+        "sha256": "d86e4ccbf14061feefaad3e950ad97bdfe0f3e41fc08b0e071a76c00bec6c152",
+        "bytes": 10645,
+        "sampledAtUtc": "2026-10-24T00:00:12.924747+00:00"
+      },
+      "all24InternalContactWindowsExactPrevious": true,
+      "all4CandidateOwnBorder256BandsExactPrevious": true,
+      "all16OwnIntertileContactWindowsExactPrevious": true,
+      "allOwnSidesOf30ExternalWindowsExactPrevious": true,
+      "externalNeighborSelectorVerification": [
+        {
+          "tile": "r09_c11",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c11/selected-patches.json",
+          "previousVerifiedSha256": "467279e80e2907fec2f98875593bf37272964d247c4b33183a5dae3af93124ee",
+          "currentSha256": "467279e80e2907fec2f98875593bf37272964d247c4b33183a5dae3af93124ee",
+          "unchanged": true
+        },
+        {
+          "tile": "r09_c12",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r09_c12/selected-patches.json",
+          "previousVerifiedSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+          "currentSha256": "2b68ace633985b03c6a9529cadbf1ad9a5d6cb2dc69af9b4c321ba57175050c6",
+          "unchanged": true
+        },
+        {
+          "tile": "r10_c10",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c10/selected-patches.json",
+          "previousVerifiedSha256": "9ea1b3692d172495decd3d00ab980114835e76f639c92a92574179fa5a696af7",
+          "currentSha256": "9ea1b3692d172495decd3d00ab980114835e76f639c92a92574179fa5a696af7",
+          "unchanged": true
+        },
+        {
+          "tile": "r11_c10",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r11_c10/selected-patches.json",
+          "previousVerifiedSha256": "c1e79764e1403122c26135485a61e7b08603047634c25de878b8ffac8a2d2828",
+          "currentSha256": "c1e79764e1403122c26135485a61e7b08603047634c25de878b8ffac8a2d2828",
+          "unchanged": true
+        },
+        {
+          "tile": "r10_c13",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r10_c13/selected-patches.json",
+          "previousVerifiedSha256": "70a9d6f3da6f2439fb6c637dc96cbce47abde93f210f5d739f34bdcb81b6a040",
+          "currentSha256": "70a9d6f3da6f2439fb6c637dc96cbce47abde93f210f5d739f34bdcb81b6a040",
+          "unchanged": true
+        },
+        {
+          "tile": "r11_c13",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r11_c13/selected-patches.json",
+          "previousVerifiedSha256": "66473dc84bedea01b05718a58dc693ceedcd8dc820c5c7061d0c3eb76d5fff9a",
+          "currentSha256": "66473dc84bedea01b05718a58dc693ceedcd8dc820c5c7061d0c3eb76d5fff9a",
+          "unchanged": true
+        },
+        {
+          "tile": "r12_c11",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c11/selected-patches.json",
+          "previousVerifiedSha256": "8c924771c09ab536cfa0e1352561cf74231dfccbd57629d548ee87c429086f4a",
+          "currentSha256": "8c924771c09ab536cfa0e1352561cf74231dfccbd57629d548ee87c429086f4a",
+          "unchanged": true
+        },
+        {
+          "tile": "r12_c12",
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southeast/r12_c12/selected-patches.json",
+          "previousVerifiedSha256": "ab1800accad7eecb41a21b04c0605a31d279720e30ac440163a340e6e9a78c78",
+          "currentSha256": "ab1800accad7eecb41a21b04c0605a31d279720e30ac440163a340e6e9a78c78",
+          "unchanged": true
+        }
+      ],
+      "staleExternalNeighborTiles": [],
+      "externalQaReuse": "All30 existing external source pins and verdicts reused only for selectors unchanged in this check; stale entries remainunknown until exact current sources rechecked.",
+      "other63CenterPixelsExactPrevious": true,
+      "oneChangedCenterRechecked": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/village-east-shipyard/joint-repairs/p31-two-complete-brown-faces-material-20261023-v1/root-mapped-candidate-acceptance.json",
+        "sha256": "f014ca5ada8e77ef076e6b16aeee8d07723cdb015775fb31edc8af7d72e49ca6",
+        "bytes": 1784,
+        "sampledAtUtc": "2026-10-24T00:00:12.925265+00:00"
+      },
+      "centerP31Decision": "B1/B2 complete visible faces material passed; frozen rail residual stays pending, no complete-center pass.",
+      "currentInternalContactCounts": {
+        "required": 96,
+        "reviewed": 96,
+        "geometryPass": 95,
+        "geometryFail": 1,
+        "materialPass": 89,
+        "materialFail": 7,
+        "unknown": 0
+      },
+      "retainedCenterCounts": {
+        "reviewed": 64,
+        "geometryPass": 64,
+        "materialPass": 59,
+        "materialFail": 4,
+        "materialUnknown": 1
+      },
+      "retainedOwnIntertileCounts": {
+        "geometryContact": {
+          "pass": 15,
+          "fail": 1,
+          "unknown": 0
+        },
+        "materialContact": {
+          "pass": 15,
+          "fail": 1,
+          "unknown": 0
+        },
+        "geometryWithinWindow": {
+          "pass": 15,
+          "fail": 1,
+          "unknown": 0
+        },
+        "materialWithinWindow": {
+          "pass": 11,
+          "fail": 2,
+          "unknown": 3
+        }
+      },
+      "retainedExternalCountsWhenNoStale": {
+        "geometryActualContact": {
+          "pass": 17,
+          "fail": 13,
+          "unknown": 2
+        },
+        "materialActualContact": {
+          "pass": 7,
+          "fail": 19,
+          "unknown": 6
+        },
+        "geometryFull512Context": {
+          "pass": 16,
+          "fail": 13,
+          "unknown": 3
+        },
+        "materialFull512Context": {
+          "pass": 7,
+          "fail": 19,
+          "unknown": 6
+        }
+      },
+      "missingActualNeighborCores": [
+        {
+          "ownTile": "r11_c12",
+          "side": "E",
+          "segment": 3,
+          "neighbor": "r11_c13_p31",
+          "worldContactRange": [
+            49152,
+            43008,
+            49152,
+            44032
+          ],
+          "status": "unknown_current_selector_has_no_source"
+        },
+        {
+          "ownTile": "r11_c12",
+          "side": "E",
+          "segment": 4,
+          "neighbor": "r11_c13_p41",
+          "worldContactRange": [
+            49152,
+            44032,
+            49152,
+            45056
+          ],
+          "status": "unknown_current_selector_has_no_source"
+        }
+      ],
+      "all4TilePixelInspectionWindowCoverageRemains": {
+        "r10_c11": {
+          "pixelsWithinRecordedInspectionWindows": 16777216,
+          "tilePixels": 16777216,
+          "uncoveredPixels": 0,
+          "meaning": "Geometric union of actual/cached native view windows, including own-only strips for missing neighbors. This is inspection coverage, never visual approval or whole-object/formal acceptance."
+        },
+        "r10_c12": {
+          "pixelsWithinRecordedInspectionWindows": 16777216,
+          "tilePixels": 16777216,
+          "uncoveredPixels": 0,
+          "meaning": "Geometric union of actual/cached native view windows, including own-only strips for missing neighbors. This is inspection coverage, never visual approval or whole-object/formal acceptance."
+        },
+        "r11_c11": {
+          "pixelsWithinRecordedInspectionWindows": 16777216,
+          "tilePixels": 16777216,
+          "uncoveredPixels": 0,
+          "meaning": "Geometric union of actual/cached native view windows, including own-only strips for missing neighbors. This is inspection coverage, never visual approval or whole-object/formal acceptance."
+        },
+        "r11_c12": {
+          "pixelsWithinRecordedInspectionWindows": 16777216,
+          "tilePixels": 16777216,
+          "uncoveredPixels": 0,
+          "meaning": "Geometric union of actual/cached native view windows, including own-only strips for missing neighbors. This is inspection coverage, never visual approval or whole-object/formal acceptance."
+        }
+      },
+      "knownCurrentImageToolCallsInFlight": 0,
+      "globalInflightClaimed": false,
+      "internalReady": 0,
+      "formalAccepted": 0,
+      "productionComplete": false,
+      "archiveEligible": false
+    }
+  }
+}

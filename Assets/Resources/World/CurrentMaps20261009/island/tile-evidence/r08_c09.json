@@ -1,0 +1,848 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 8,
+  "column": 9,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "4d2553268e93be92a8785ea29380e50b06bbef891d1e8146cf889b7c76d7cf23",
+  "imageBytes": 28532681,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c09.candidate-p31-grass-20261023-v02.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+  "sourceLedgerSha256": "a6fcbeb17fea19f12f9c91241d9e5d9a0a1f3c3782854da01f054242c33270cd",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c09",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c09.candidate-p31-grass-20261023-v02.png",
+    "imageSha256": "4d2553268e93be92a8785ea29380e50b06bbef891d1e8146cf889b7c76d7cf23",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+        "sha256": "a6fcbeb17fea19f12f9c91241d9e5d9a0a1f3c3782854da01f054242c33270cd",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_southeast-receipt.json",
+        "sha256": "3fb8dd9f1428422d04529bc6fd134304452f60c1f3b5dc2a9972e3170871ff9b",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/island_southeast-execution.json",
+        "sha256": "b6a6750dff93543d5325c66a20ce2552e3f722eeec504acffdeee5a5a41beae4",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/current-zone-counts-20261013.json",
+        "sha256": "244a433deccc168110af117f5dc1df9109599f2eae0104c5cf295b0b1935df2d",
+        "completeness": [
+          "/fullyCovered",
+          true
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "status": "full_candidate_local_improvement_other_contacts_pending",
+      "pendingRepair": {
+        "p44_E": {
+          "status": "deferred_not_passed",
+          "bestExistingVersion": "v02",
+          "unsuccessfulRepairs": [
+            "v02",
+            "v03"
+          ],
+          "nativePoint": [
+            1139,
+            224
+          ],
+          "issue": "Paving joint terminates at east core boundary. v03 also adds vertical tone/material step; do not select it. Work independent remaining cores before returning to this point."
+        },
+        "p12_E": {
+          "status": "not_passed",
+          "nativePoint": [
+            1139,
+            415
+          ],
+          "repairAttempt": 2,
+          "preparedVersion": "v02",
+          "preparedCenteredRepair": "r08_c09_p12E_joint_v01",
+          "firstRepair": "p12_v02 failed to improve the local joint",
+          "centeredTrial": "geometry improved, four-edge material acceptance pending; not adopted",
+          "secondAttemptReturned": true
+        },
+        "31-32-grass-material": {
+          "status": "deferred_not_passed_STOP2",
+          "repairAttempts": 2,
+          "reason": "h31,j21,j31 material remain unpassed; local leaf clarity improved; STOP after two",
+          "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r08_c09/qa/join-31-32.png",
+          "point": "31-32-grass-material",
+          "actualTargetedReturns": 2,
+          "review": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/review.json",
+            "sha256": "6e21232b11d2a569661b9c7fa6c1ab2a331199f11c979cf6856c55f5f0196f9c"
+          },
+          "furtherSamePointGenerationAllowed": false
+        }
+      },
+      "currentInternalReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c09-p31-grass-20261023-v02/internal-review.json",
+        "sha256": "e34b0846c3938a4fb8543f3a5ae5130cfd3a010ecb0c60b58ee4f587938c46a2"
+      }
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress-r08_c09.json",
+        "record": {
+          "status": "full_candidate_local_improvement_other_contacts_pending",
+          "pendingRepair": {
+            "p44_E": {
+              "status": "deferred_not_passed",
+              "bestExistingVersion": "v02",
+              "unsuccessfulRepairs": [
+                "v02",
+                "v03"
+              ],
+              "nativePoint": [
+                1139,
+                224
+              ],
+              "issue": "Paving joint terminates at east core boundary. v03 also adds vertical tone/material step; do not select it. Work independent remaining cores before returning to this point."
+            },
+            "p12_E": {
+              "status": "not_passed",
+              "nativePoint": [
+                1139,
+                415
+              ],
+              "repairAttempt": 2,
+              "preparedVersion": "v02",
+              "preparedCenteredRepair": "r08_c09_p12E_joint_v01",
+              "firstRepair": "p12_v02 failed to improve the local joint",
+              "centeredTrial": "geometry improved, four-edge material acceptance pending; not adopted",
+              "secondAttemptReturned": true
+            },
+            "31-32-grass-material": {
+              "status": "deferred_not_passed_STOP2",
+              "repairAttempts": 2,
+              "reason": "h31,j21,j31 material remain unpassed; local leaf clarity improved; STOP after two",
+              "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261021/r08_c09/qa/join-31-32.png",
+              "point": "31-32-grass-material",
+              "actualTargetedReturns": 2,
+              "review": {
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/review.json",
+                "sha256": "6e21232b11d2a569661b9c7fa6c1ab2a331199f11c979cf6856c55f5f0196f9c"
+              },
+              "furtherSamePointGenerationAllowed": false
+            }
+          },
+          "currentInternalReview": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c09-p31-grass-20261023-v02/internal-review.json",
+            "sha256": "e34b0846c3938a4fb8543f3a5ae5130cfd3a010ecb0c60b58ee4f587938c46a2"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/review.json",
+        "record": {
+          "sameGrassPointStatus": "not_passed_stopped_after_two",
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c09-p31-grass-20261023-v02/source-proof.json",
+        "record": {
+          "coreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c09-p31-grass-20261023-v02/internal-review.json",
+        "record": {
+          "sameGrassPointStatus": "not_passed_stopped_after_two",
+          "externalPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/progress.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "status": "full_candidate_pending_local_repair_or_review"
+        }
+      },
+      {
+        "path": "docs/map-reboot-20261021-0752/island_southeast-receipt.json",
+        "record": {
+          "externalPassed": false,
+          "formalAccepted": false,
+          "status": "full_candidate_pending_local_repair_or_review"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/review.json",
+    "sourceSha256": "6e21232b11d2a569661b9c7fa6c1ab2a331199f11c979cf6856c55f5f0196f9c",
+    "normalizedDocument": {
+      "at": "2026-10-24T01:21:21.537069+00:00",
+      "decision": "propose_v02_partial_localgrasspaint_improvement_only",
+      "native": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+        "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d"
+      },
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/tiles/r08_c09.candidate-p31-grass-20261023-v02.png",
+        "sha256": "4d2553268e93be92a8785ea29380e50b06bbef891d1e8146cf889b7c76d7cf23"
+      },
+      "targetNativeBox": [
+        900,
+        115,
+        1139,
+        630
+      ],
+      "actualCallsAtGrassPoint": 2,
+      "v01Rejected": "a169fee2 newlargeleafclumps/expandedfootprints",
+      "v02ExistingSmallLeafFootprintsPreserved": true,
+      "v02FineEdgePaintImproved": true,
+      "allGrassMaterialSolved": false,
+      "newHardRectangularBoundaryObserved": false,
+      "largeYellowFlowerRetained": true,
+      "bothRedTubesRetained": true,
+      "tubeOutlineMetrics": {
+        "method": "Diagnostic redhue threshold only, no imageediting",
+        "rows": [
+          {
+            "nativeY": 1100,
+            "oldRedLeft": 736,
+            "newRedLeft": 737,
+            "delta": 1
+          },
+          {
+            "nativeY": 1120,
+            "oldRedLeft": 725,
+            "newRedLeft": 725,
+            "delta": 0
+          },
+          {
+            "nativeY": 1138,
+            "oldRedLeft": 717,
+            "newRedLeft": 716,
+            "delta": -1
+          }
+        ]
+      },
+      "nativeROIComparisonActualViewed": [
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/grass-ROI-before.png",
+          "sha256": "93ef4fba9d5479f507aabfe84a4d3a69f1547fc425a19d034e6b79ae5e8349d3"
+        },
+        {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/grass-ROI-v02.png",
+          "sha256": "25160012b4cbd3b7191ce94bfa7c6f74fdbd0b2d922d8a7c13036b1c1338ee97"
+        }
+      ],
+      "actual8ChangedCutsViewed": [
+        {
+          "id": "N",
+          "contact": "v21",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/N.png",
+          "sha256": "2e8a1a6bd9a1cd154208343dc5df550fbf76e282ff689e49a2c2ac6c96f487f9",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "derivedFrom": [
+            {
+              "coordinate": "21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p21_v01.png",
+              "sha256": "d294616b63321b92675627caf7f1f14c2880f7038045cb26658bc771b36c20c5",
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                256
+              ]
+            },
+            {
+              "coordinate": "31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+              "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d",
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256,
+                1024,
+                512
+              ]
+            }
+          ],
+          "operation": "Actual selected nativepixels1to1; true cuts at256, no blending/resize/repaint.",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "finding": "Largeyellowflower and establishedgrass contour/positions continue; grasspaint granularity is not a wholematerialacceptance. No new straight rectangular patch boundary observed."
+        },
+        {
+          "id": "S",
+          "contact": "v31",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/S.png",
+          "sha256": "c5b31b36b76600899ae7938d43db306d4dca007271c20a71853a667de2eec790",
+          "dimensions": [
+            1024,
+            512
+          ],
+          "derivedFrom": [
+            {
+              "coordinate": "31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+              "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d",
+              "sourceCrop": [
+                115,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                1024,
+                256
+              ]
+            },
+            {
+              "coordinate": "41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p41_reboot_v01.png",
+              "sha256": "d2acb0b61d3fe09c7d0b83640ad30cc1454d2c6804305a2b2702e00b8e26d074",
+              "sourceCrop": [
+                115,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256,
+                1024,
+                512
+              ]
+            }
+          ],
+          "operation": "Actual selected nativepixels1to1; true cuts at256, no blending/resize/repaint.",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": true,
+          "passed": true,
+          "finding": "Adopted sharp redtube, floral motif, goldbands and perspective retained and meet fixed41; sampledredleftdelta +1,0,-1px only."
+        },
+        {
+          "id": "E",
+          "contact": "h31",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/E.png",
+          "sha256": "fccf8614d4ec3756b91e70560b21f44a053a93312f72c21381ed23b7f2e7fe1a",
+          "dimensions": [
+            512,
+            1024
+          ],
+          "derivedFrom": [
+            {
+              "coordinate": "31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+              "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                256,
+                1024
+              ]
+            },
+            {
+              "coordinate": "32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p32_v01.png",
+              "sha256": "e3b2ed4af45dc020fd4d24110421c5286afa3444afec3a5ce2dbf9298dac6bef",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0,
+                512,
+                1024
+              ]
+            }
+          ],
+          "operation": "Actual selected nativepixels1to1; true cuts at256, no blending/resize/repaint.",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "finding": "Existinggreenclumps remain in place and are clearer than baseline. Paintedgrass texture/facet scale still differs from fixedsharp32; h31 remains unpassed."
+        },
+        {
+          "id": "W",
+          "contact": "external-W",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/W.png",
+          "sha256": "1321e77041b198c4cb3b6ead14b2f5558efae243cf4fd4e053c93d1509b40aee",
+          "dimensions": [
+            512,
+            1024
+          ],
+          "derivedFrom": [
+            {
+              "coordinate": "r08_c08-current",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c08.candidate-paving-best-20261023-v01.png",
+              "sha256": "641d3343729b09ec581777767e6e393087307226b4e98476f97fd3dee313f86a",
+              "sourceCrop": [
+                3840,
+                2048,
+                4096,
+                3072
+              ],
+              "destination": [
+                0,
+                0,
+                256,
+                1024
+              ],
+              "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c08-paving-best-20261023-v01/source-proof.json"
+            },
+            {
+              "coordinate": "31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+              "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0,
+                512,
+                1024
+              ]
+            }
+          ],
+          "operation": "Actual selected nativepixels1to1; true cuts at256, no blending/resize/repaint.",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": true,
+          "passed": true,
+          "finding": "Current641d westfoliage andyellowflower contours remain locallycoherent."
+        },
+        {
+          "id": "NW",
+          "contact": "external-NW",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/NW.png",
+          "sha256": "5bf5ea0963dcf91861e6e025f61504363a4563577aaf45ce65f22b00dcc10208",
+          "dimensions": [
+            512,
+            512
+          ],
+          "derivedFrom": [
+            {
+              "coordinate": "r08_c08-current",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c08.candidate-paving-best-20261023-v01.png",
+              "sha256": "641d3343729b09ec581777767e6e393087307226b4e98476f97fd3dee313f86a",
+              "sourceCrop": [
+                3840,
+                1792,
+                4096,
+                2048
+              ],
+              "destination": [
+                0,
+                0,
+                256,
+                256
+              ],
+              "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c08-paving-best-20261023-v01/source-proof.json"
+            },
+            {
+              "coordinate": "21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p21_v01.png",
+              "sha256": "d294616b63321b92675627caf7f1f14c2880f7038045cb26658bc771b36c20c5",
+              "sourceCrop": [
+                115,
+                883,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0,
+                512,
+                256
+              ]
+            },
+            {
+              "coordinate": "r08_c08-current",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c08.candidate-paving-best-20261023-v01.png",
+              "sha256": "641d3343729b09ec581777767e6e393087307226b4e98476f97fd3dee313f86a",
+              "sourceCrop": [
+                3840,
+                2048,
+                4096,
+                2304
+              ],
+              "destination": [
+                0,
+                256,
+                256,
+                512
+              ],
+              "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c08-paving-best-20261023-v01/source-proof.json"
+            },
+            {
+              "coordinate": "31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+              "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                371
+              ],
+              "destination": [
+                256,
+                256,
+                512,
+                512
+              ]
+            }
+          ],
+          "operation": "Actual selected nativepixels1to1; true cuts at256, no blending/resize/repaint.",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "finding": "Leaf/flower geometry retained; externalwholematerial not accepted."
+        },
+        {
+          "id": "SW",
+          "contact": "external-SW",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/SW.png",
+          "sha256": "f42ec5e3bc09dd855bba0535b392f6eb542b352ee1877c4bf081912bb7a9990b",
+          "dimensions": [
+            512,
+            512
+          ],
+          "derivedFrom": [
+            {
+              "coordinate": "r08_c08-current",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c08.candidate-paving-best-20261023-v01.png",
+              "sha256": "641d3343729b09ec581777767e6e393087307226b4e98476f97fd3dee313f86a",
+              "sourceCrop": [
+                3840,
+                2816,
+                4096,
+                3072
+              ],
+              "destination": [
+                0,
+                0,
+                256,
+                256
+              ],
+              "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c08-paving-best-20261023-v01/source-proof.json"
+            },
+            {
+              "coordinate": "31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+              "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d",
+              "sourceCrop": [
+                115,
+                883,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0,
+                512,
+                256
+              ]
+            },
+            {
+              "coordinate": "r08_c08-current",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/tiles/r08_c08.candidate-paving-best-20261023-v01.png",
+              "sha256": "641d3343729b09ec581777767e6e393087307226b4e98476f97fd3dee313f86a",
+              "sourceCrop": [
+                3840,
+                3072,
+                4096,
+                3328
+              ],
+              "destination": [
+                0,
+                256,
+                256,
+                512
+              ],
+              "sourceProof": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/qa/r08_c08-paving-best-20261023-v01/source-proof.json"
+            },
+            {
+              "coordinate": "41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p41_reboot_v01.png",
+              "sha256": "d2acb0b61d3fe09c7d0b83640ad30cc1454d2c6804305a2b2702e00b8e26d074",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                371
+              ],
+              "destination": [
+                256,
+                256,
+                512,
+                512
+              ]
+            }
+          ],
+          "operation": "Actual selected nativepixels1to1; true cuts at256, no blending/resize/repaint.",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": null,
+          "passed": false,
+          "finding": "Lowerleaf/dirtgeometry retained; externalwholematerial not accepted."
+        },
+        {
+          "id": "NE",
+          "contact": "j21",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/NE.png",
+          "sha256": "0f13c4ae4d731a19dd6ec39f9ec75e073679b28a12b6073ffaeb51bdd6b05339",
+          "dimensions": [
+            512,
+            512
+          ],
+          "derivedFrom": [
+            {
+              "coordinate": "21",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p21_v01.png",
+              "sha256": "d294616b63321b92675627caf7f1f14c2880f7038045cb26658bc771b36c20c5",
+              "sourceCrop": [
+                883,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                256,
+                256
+              ]
+            },
+            {
+              "coordinate": "22",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p22_v01.png",
+              "sha256": "46b463217518105c2034e85b8c5beca96435344d7d21bd904b62443c21b20d4a",
+              "sourceCrop": [
+                115,
+                883,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0,
+                512,
+                256
+              ]
+            },
+            {
+              "coordinate": "31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+              "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256,
+                256,
+                512
+              ]
+            },
+            {
+              "coordinate": "32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p32_v01.png",
+              "sha256": "e3b2ed4af45dc020fd4d24110421c5286afa3444afec3a5ce2dbf9298dac6bef",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                371
+              ],
+              "destination": [
+                256,
+                256,
+                512,
+                512
+              ]
+            }
+          ],
+          "operation": "Actual selected nativepixels1to1; true cuts at256, no blending/resize/repaint.",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "finding": "Sharper31greenstilldiffers in brush-scale from32; do not promotej21material."
+        },
+        {
+          "id": "SE",
+          "contact": "j31",
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/SE.png",
+          "sha256": "aab47192bc144c958e5720dd36851fe8d7a531256a8bc0a40b92c93c1e4222f0",
+          "dimensions": [
+            512,
+            512
+          ],
+          "derivedFrom": [
+            {
+              "coordinate": "31",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/native/r08_c09_p31_grass_v02.png",
+              "sha256": "7a4d0c2123912f377ad5370a893d232d6fb93be663e7b5c301ec3a18faf5153d",
+              "sourceCrop": [
+                883,
+                883,
+                1139,
+                1139
+              ],
+              "destination": [
+                0,
+                0,
+                256,
+                256
+              ]
+            },
+            {
+              "coordinate": "32",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p32_v01.png",
+              "sha256": "e3b2ed4af45dc020fd4d24110421c5286afa3444afec3a5ce2dbf9298dac6bef",
+              "sourceCrop": [
+                115,
+                883,
+                371,
+                1139
+              ],
+              "destination": [
+                256,
+                0,
+                512,
+                256
+              ]
+            },
+            {
+              "coordinate": "41",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p41_reboot_v01.png",
+              "sha256": "d2acb0b61d3fe09c7d0b83640ad30cc1454d2c6804305a2b2702e00b8e26d074",
+              "sourceCrop": [
+                883,
+                115,
+                1139,
+                371
+              ],
+              "destination": [
+                0,
+                256,
+                256,
+                512
+              ]
+            },
+            {
+              "coordinate": "42",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/native/r08_c09_p42_v01.png",
+              "sha256": "f67dff223833483e74223186ca004bc4a8b367854941e50a07516d3fdf13b282",
+              "sourceCrop": [
+                115,
+                115,
+                371,
+                371
+              ],
+              "destination": [
+                256,
+                256,
+                512,
+                512
+              ]
+            }
+          ],
+          "operation": "Actual selected nativepixels1to1; true cuts at256, no blending/resize/repaint.",
+          "actualOriginalPixelsViewed": true,
+          "geometryPassed": true,
+          "materialPassed": false,
+          "passed": false,
+          "finding": "Tube/stonecontours intact; inherited31-32materialpoint remains unpassed, no newwholejunctionpass."
+        }
+      ],
+      "frozen28": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/frozen28.json",
+        "sha256": "0c46aec1c8628f50787543c040b5bb1a6049c5fc2c19b03a3dcfb74ca4e9967a"
+      },
+      "sourceProof": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southeast/reboot-20261023/r08_c09-p31-grass-final/qa/v02/source-proof.json",
+        "sha256": "ca5ada15972120fdbc017f5c3eed4257f6fb6d4e74c9486013accbe40440c86f"
+      },
+      "sourceReplayMismatchedPixels": 0,
+      "other15CoresExactPreserved": true,
+      "sameGrassPointStatus": "not_passed_stopped_after_two",
+      "furtherSamePointGenerationAllowed": false,
+      "wholeInternalPassed": false,
+      "wholeMaterialPassed": false,
+      "externalPassed": false,
+      "formalAccepted": false,
+      "rootOnlyAdopts": true,
+      "parentGlobalGitWritten": false,
+      "existingStopPointsRetained": [
+        "p12E2callsSTOP",
+        "p44E2callsSTOP"
+      ]
+    }
+  }
+}

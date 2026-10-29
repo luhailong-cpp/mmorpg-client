@@ -1,0 +1,876 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "village",
+  "sceneId": 3,
+  "row": 8,
+  "column": 2,
+  "layoutSha256": "cf450f0afe784b4700f2dfc19b3af35867765403e8f1d81741e78b3116583d42",
+  "imageSha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+  "imageBytes": 27712140,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c02_v2_resume1021.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/current-tile-ledger.json",
+  "sourceLedgerSha256": "64d78a0eec5eecd87237c208efd7c04ef9e3cb8ca3fd8d79ceff5383adf431e4",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": {
+    "west": {
+      "status": "passed",
+      "currentSource": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+        "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "fixedWest": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c01_v1.png",
+        "sha256": "9ce664cd454846b0b3366cb65eac1710627aab55a1c22f41124e950145744073"
+      },
+      "windows": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-west-native-1019b-01.png",
+          "sha256": "106a97708f5945f71b564701ebe7b42181f40449c9290e0cb967e0d45949130e",
+          "size": [
+            690,
+            900
+          ],
+          "sourceBoxes": [
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ],
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ]
+          ],
+          "status": "passed",
+          "side": "west",
+          "index": 0,
+          "sourceA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c01_v1.png",
+            "sha256": "9ce664cd454846b0b3366cb65eac1710627aab55a1c22f41124e950145744073"
+          },
+          "sourceB": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-joint-1020/composed-v5/candidate-4096.png",
+            "sha256": "fce100114f8ad374e7c6405cd7c406c40aae73e978de55a337059ceca8ac5f0c",
+            "size": [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ]
+          },
+          "exactPixelsEqualPrior": true,
+          "actuallyViewed": false,
+          "viewMethod": "functions.view_image detail original",
+          "finding": "Stone outlines, low-contrast joints and small ground growth remain continuous across the join.",
+          "exactCurrentContactPixelsEqual": true,
+          "basis": "Hash-bound prior passed full native contact exactly equals current contact."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-west-native-1019b-02.png",
+          "sha256": "76b8a6d6f9eeb444c8045ab2208b675350a55dc34b6ff76bd1e90035634c1847",
+          "size": [
+            690,
+            900
+          ],
+          "sourceBoxes": [
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ],
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ]
+          ],
+          "status": "passed",
+          "side": "west",
+          "index": 1,
+          "sourceA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c01_v1.png",
+            "sha256": "9ce664cd454846b0b3366cb65eac1710627aab55a1c22f41124e950145744073"
+          },
+          "sourceB": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-joint-1020/composed-v5/candidate-4096.png",
+            "sha256": "fce100114f8ad374e7c6405cd7c406c40aae73e978de55a337059ceca8ac5f0c",
+            "size": [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ]
+          },
+          "exactPixelsEqualPrior": true,
+          "actuallyViewed": false,
+          "viewMethod": "functions.view_image detail original",
+          "finding": "Tree trunk and yellow-green canopy show no definite straight colour or shape cut across the reviewed edge strip.",
+          "exactCurrentContactPixelsEqual": true,
+          "basis": "Hash-bound prior passed full native contact exactly equals current contact."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/west-W3-current-native.png",
+          "sha256": "2247a89571da48fd2deb335f4b1881267b8262ab11077843d9b1cc7868d1b7be",
+          "index": 2,
+          "status": "passed",
+          "sourceBoxes": [
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ],
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ]
+          ],
+          "actuallyViewed": true,
+          "viewMethod": "functions.view_image detail original",
+          "finding": "The former vertical split through the yellow leaf cluster is absent; individual leaf outlines and shading continue across the actual fixed-west/current-east contact. The adjoining W3 contact was also viewed because its last 20 pixels overlap the edit."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/west-W4-current-native.png",
+          "sha256": "0ae92c1353ee8ddeb383ecf6fe539df25656cf29bef32aab54a24665cc42a26f",
+          "index": 3,
+          "status": "passed",
+          "sourceBoxes": [
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ],
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ]
+          ],
+          "actuallyViewed": true,
+          "viewMethod": "functions.view_image detail original",
+          "finding": "The former vertical split through the yellow leaf cluster is absent; individual leaf outlines and shading continue across the actual fixed-west/current-east contact. The adjoining W3 contact was also viewed because its last 20 pixels overlap the edit."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-west-native-1019b-05.png",
+          "sha256": "0e6d4511418ef3b17069eb0199ec18362b5758d20c18a4dd0866f7c9260d3707",
+          "size": [
+            690,
+            900
+          ],
+          "sourceBoxes": [
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ],
+            [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ]
+          ],
+          "status": "passed",
+          "side": "west",
+          "index": 4,
+          "sourceA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c01_v1.png",
+            "sha256": "9ce664cd454846b0b3366cb65eac1710627aab55a1c22f41124e950145744073"
+          },
+          "sourceB": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-joint-1020/composed-v5/candidate-4096.png",
+            "sha256": "fce100114f8ad374e7c6405cd7c406c40aae73e978de55a337059ceca8ac5f0c",
+            "size": [
+              "[nested source detail retained in referenced document]",
+              "[nested source detail retained in referenced document]"
+            ]
+          },
+          "exactPixelsEqualPrior": true,
+          "actuallyViewed": false,
+          "viewMethod": "functions.view_image detail original",
+          "finding": "Pink blossom clusters, slender twigs and dark green leaves continue through the seam without a definite hard cut in this strip.",
+          "exactCurrentContactPixelsEqual": true,
+          "basis": "Hash-bound prior passed full native contact exactly equals current contact."
+        }
+      ],
+      "passedWindowCount": 5,
+      "failedWindowCount": 0,
+      "sourceHashesVerified": true
+    },
+    "south": {
+      "side": "south",
+      "sourceA": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/candidate-4096.png",
+        "sha256": "af023eb22bd58e8e674ce4024c9e40f4f97789f7c9f4bb3eca4ccbc7bf0d16be",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "sourceB": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png",
+        "sha256": "978f4b704836eed4de01c600684332ca9f22adcc72da6a7e68c0257f22b04574",
+        "expectedSha256Matched": true,
+        "dimensions": [
+          4096,
+          4096
+        ],
+        "mode": "RGB"
+      },
+      "priorReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+        "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+      },
+      "priorStatus": "visual_pass_against_current_candidate_only_neighbor_internal_pending",
+      "evidence": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/r08_c02--r09_c02-four-segments-native.png",
+        "sha256": "7ab3deb8c1fd2d044d223d75d14a9ffc32f28276cb9bf832683c950ec45d1722",
+        "dimensions": [
+          1024,
+          1024
+        ]
+      },
+      "exactContactPixelsEqual": true,
+      "currentContactPixelSha256": "c0f866a555fd5961c73692d64a8c3c3a27fc199a6fc124b1cc092fac94ceb39f",
+      "priorContactPixelSha256": "c0f866a555fd5961c73692d64a8c3c3a27fc199a6fc124b1cc092fac94ceb39f",
+      "status": "passed",
+      "acceptanceBasis": "Exact decoded current 4-segment native contact equals the complete 2026-10-20 visual-passed contact; both prior source hashes verified.",
+      "actuallyViewedThisTurn": false,
+      "exactPixelsEqualV5": true,
+      "edgeBand": [
+        0,
+        3968,
+        4096,
+        4096
+      ],
+      "currentEdgePixelSha256": "adce126673e9589046b2e8ac667cbc2bb951050041a35d7915129522d752e4f5",
+      "inheritedFromAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+        "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+      },
+      "currentSource": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+        "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "exactReviewedEdgePixelsUnchanged": true
+    },
+    "north": {
+      "side": "north",
+      "neighbor": "r07_c02",
+      "status": "pending_missing_stable_current_neighbor_pointer",
+      "readEvidence": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/current-artifacts.json",
+          "sha256": "3d3ba94e1dcabab0ebbb3689528fc42aef95d6b28ff30c19d7619b38a33cd054"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+          "sha256": "09d4eaa4215338615622c64f7f7c004d1b16e253a29e0fe0badf400441917ff2"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/coordinate-inventory-current.json",
+          "sha256": "2cd858795df0e0d0885d8ad0f7982897c1d2c01935ccd046a0cdc1cf8bda5e87"
+        }
+      ],
+      "finding": "No current r07_c02 pointer in current-artifacts/progress; this zone has no current-tile-ledger or art-delivery-index at read time. Inventory dated 2026-10-12 includes r07_c02 in missingNativeWholeCoordinates; inventory age prevents claiming it is current completion proof.",
+      "ownerOtherZoneWritten": false,
+      "inheritedFromAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+        "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+      },
+      "currentSource": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+        "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "exactReviewedEdgePixelsUnchanged": true,
+      "edgeBand": [
+        0,
+        0,
+        4096,
+        128
+      ]
+    },
+    "east": {
+      "side": "east",
+      "neighbor": "r08_c03",
+      "status": "pending_source_under_review",
+      "finding": "Root is assembling and reviewing the new r08_c03 a/b/c native returns. No external east acceptance is inferred from the old pending ledger source.",
+      "inheritedFromAudit": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+        "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+      },
+      "currentSource": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+        "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      "exactReviewedEdgePixelsUnchanged": true,
+      "edgeBand": [
+        3968,
+        0,
+        4096,
+        4096
+      ]
+    }
+  },
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c02",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c02_v2_resume1021.png",
+    "imageSha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/current-tile-ledger.json",
+        "sha256": "64d78a0eec5eecd87237c208efd7c04ef9e3cb8ca3fd8d79ceff5383adf431e4",
+        "sourceReviewSha256": "64d78a0eec5eecd87237c208efd7c04ef9e3cb8ca3fd8d79ceff5383adf431e4",
+        "completeness": [
+          "This tile current4096 SHA matches selected output; nativeSlots16 and coverage full."
+        ]
+      }
+    ],
+    "selectionBasis": "hash_bound_full_native16_current_ledger",
+    "sourceStatus": {
+      "nativeSlots": 16,
+      "coverage": "full",
+      "internalQa": "passed",
+      "outerEdgesPending": true,
+      "externalQa": {
+        "west": {
+          "status": "passed",
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+            "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+            "size": [
+              4096,
+              4096
+            ]
+          },
+          "fixedWest": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c01_v1.png",
+            "sha256": "9ce664cd454846b0b3366cb65eac1710627aab55a1c22f41124e950145744073"
+          },
+          "windows": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-west-native-1019b-01.png",
+              "sha256": "106a97708f5945f71b564701ebe7b42181f40449c9290e0cb967e0d45949130e",
+              "size": [
+                "[nested source detail retained in referenced document]",
+                "[nested source detail retained in referenced document]"
+              ],
+              "sourceBoxes": [
+                "[nested source detail retained in referenced document]",
+                "[nested source detail retained in referenced document]"
+              ],
+              "status": "passed",
+              "side": "west",
+              "index": 0,
+              "sourceA": {
+                "path": "[nested source detail retained in referenced document]",
+                "sha256": "[nested source detail retained in referenced document]"
+              },
+              "sourceB": {
+                "path": "[nested source detail retained in referenced document]",
+                "sha256": "[nested source detail retained in referenced document]",
+                "size": "[nested source detail retained in referenced document]"
+              },
+              "exactPixelsEqualPrior": true,
+              "actuallyViewed": false,
+              "viewMethod": "functions.view_image detail original",
+              "finding": "Stone outlines, low-contrast joints and small ground growth remain continuous across the join.",
+              "exactCurrentContactPixelsEqual": true,
+              "basis": "Hash-bound prior passed full native contact exactly equals current contact."
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-west-native-1019b-02.png",
+              "sha256": "76b8a6d6f9eeb444c8045ab2208b675350a55dc34b6ff76bd1e90035634c1847",
+              "size": [
+                "[nested source detail retained in referenced document]",
+                "[nested source detail retained in referenced document]"
+              ],
+              "sourceBoxes": [
+                "[nested source detail retained in referenced document]",
+                "[nested source detail retained in referenced document]"
+              ],
+              "status": "passed",
+              "side": "west",
+              "index": 1,
+              "sourceA": {
+                "path": "[nested source detail retained in referenced document]",
+                "sha256": "[nested source detail retained in referenced document]"
+              },
+              "sourceB": {
+                "path": "[nested source detail retained in referenced document]",
+                "sha256": "[nested source detail retained in referenced document]",
+                "size": "[nested source detail retained in referenced document]"
+              },
+              "exactPixelsEqualPrior": true,
+              "actuallyViewed": false,
+              "viewMethod": "functions.view_image detail original",
+              "finding": "Tree trunk and yellow-green canopy show no definite straight colour or shape cut across the reviewed edge strip.",
+              "exactCurrentContactPixelsEqual": true,
+              "basis": "Hash-bound prior passed full native contact exactly equals current contact."
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/west-W3-current-native.png",
+              "sha256": "2247a89571da48fd2deb335f4b1881267b8262ab11077843d9b1cc7868d1b7be",
+              "index": 2,
+              "status": "passed",
+              "sourceBoxes": [
+                "[nested source detail retained in referenced document]",
+                "[nested source detail retained in referenced document]"
+              ],
+              "actuallyViewed": true,
+              "viewMethod": "functions.view_image detail original",
+              "finding": "The former vertical split through the yellow leaf cluster is absent; individual leaf outlines and shading continue across the actual fixed-west/current-east contact. The adjoining W3 contact was also viewed because its last 20 pixels overlap the edit."
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/west-W4-current-native.png",
+              "sha256": "0ae92c1353ee8ddeb383ecf6fe539df25656cf29bef32aab54a24665cc42a26f",
+              "index": 3,
+              "status": "passed",
+              "sourceBoxes": [
+                "[nested source detail retained in referenced document]",
+                "[nested source detail retained in referenced document]"
+              ],
+              "actuallyViewed": true,
+              "viewMethod": "functions.view_image detail original",
+              "finding": "The former vertical split through the yellow leaf cluster is absent; individual leaf outlines and shading continue across the actual fixed-west/current-east contact. The adjoining W3 contact was also viewed because its last 20 pixels overlap the edit."
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/r08c02-west-native-1019b-05.png",
+              "sha256": "0e6d4511418ef3b17069eb0199ec18362b5758d20c18a4dd0866f7c9260d3707",
+              "size": [
+                "[nested source detail retained in referenced document]",
+                "[nested source detail retained in referenced document]"
+              ],
+              "sourceBoxes": [
+                "[nested source detail retained in referenced document]",
+                "[nested source detail retained in referenced document]"
+              ],
+              "status": "passed",
+              "side": "west",
+              "index": 4,
+              "sourceA": {
+                "path": "[nested source detail retained in referenced document]",
+                "sha256": "[nested source detail retained in referenced document]"
+              },
+              "sourceB": {
+                "path": "[nested source detail retained in referenced document]",
+                "sha256": "[nested source detail retained in referenced document]",
+                "size": "[nested source detail retained in referenced document]"
+              },
+              "exactPixelsEqualPrior": true,
+              "actuallyViewed": false,
+              "viewMethod": "functions.view_image detail original",
+              "finding": "Pink blossom clusters, slender twigs and dark green leaves continue through the seam without a definite hard cut in this strip.",
+              "exactCurrentContactPixelsEqual": true,
+              "basis": "Hash-bound prior passed full native contact exactly equals current contact."
+            }
+          ],
+          "passedWindowCount": 5,
+          "failedWindowCount": 0,
+          "sourceHashesVerified": true
+        },
+        "south": {
+          "side": "south",
+          "sourceA": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/candidate-4096.png",
+            "sha256": "af023eb22bd58e8e674ce4024c9e40f4f97789f7c9f4bb3eca4ccbc7bf0d16be",
+            "size": [
+              4096,
+              4096
+            ]
+          },
+          "sourceB": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png",
+            "sha256": "978f4b704836eed4de01c600684332ca9f22adcc72da6a7e68c0257f22b04574",
+            "expectedSha256Matched": true,
+            "dimensions": [
+              4096,
+              4096
+            ],
+            "mode": "RGB"
+          },
+          "priorReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+            "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+          },
+          "priorStatus": "visual_pass_against_current_candidate_only_neighbor_internal_pending",
+          "evidence": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/r08_c02--r09_c02-four-segments-native.png",
+            "sha256": "7ab3deb8c1fd2d044d223d75d14a9ffc32f28276cb9bf832683c950ec45d1722",
+            "dimensions": [
+              1024,
+              1024
+            ]
+          },
+          "exactContactPixelsEqual": true,
+          "currentContactPixelSha256": "c0f866a555fd5961c73692d64a8c3c3a27fc199a6fc124b1cc092fac94ceb39f",
+          "priorContactPixelSha256": "c0f866a555fd5961c73692d64a8c3c3a27fc199a6fc124b1cc092fac94ceb39f",
+          "status": "passed",
+          "acceptanceBasis": "Exact decoded current 4-segment native contact equals the complete 2026-10-20 visual-passed contact; both prior source hashes verified.",
+          "actuallyViewedThisTurn": false,
+          "exactPixelsEqualV5": true,
+          "edgeBand": [
+            0,
+            3968,
+            4096,
+            4096
+          ],
+          "currentEdgePixelSha256": "adce126673e9589046b2e8ac667cbc2bb951050041a35d7915129522d752e4f5",
+          "inheritedFromAudit": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+            "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+          },
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+            "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+            "size": [
+              4096,
+              4096
+            ]
+          },
+          "exactReviewedEdgePixelsUnchanged": true
+        },
+        "north": {
+          "side": "north",
+          "neighbor": "r07_c02",
+          "status": "pending_missing_stable_current_neighbor_pointer",
+          "readEvidence": [
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/current-artifacts.json",
+              "sha256": "3d3ba94e1dcabab0ebbb3689528fc42aef95d6b28ff30c19d7619b38a33cd054"
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/progress.json",
+              "sha256": "09d4eaa4215338615622c64f7f7c004d1b16e253a29e0fe0badf400441917ff2"
+            },
+            {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/northwest/coordinate-inventory-current.json",
+              "sha256": "2cd858795df0e0d0885d8ad0f7982897c1d2c01935ccd046a0cdc1cf8bda5e87"
+            }
+          ],
+          "finding": "No current r07_c02 pointer in current-artifacts/progress; this zone has no current-tile-ledger or art-delivery-index at read time. Inventory dated 2026-10-12 includes r07_c02 in missingNativeWholeCoordinates; inventory age prevents claiming it is current completion proof.",
+          "ownerOtherZoneWritten": false,
+          "inheritedFromAudit": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+            "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+          },
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+            "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+            "size": [
+              4096,
+              4096
+            ]
+          },
+          "exactReviewedEdgePixelsUnchanged": true,
+          "edgeBand": [
+            0,
+            0,
+            4096,
+            128
+          ]
+        },
+        "east": {
+          "side": "east",
+          "neighbor": "r08_c03",
+          "status": "pending_source_under_review",
+          "finding": "Root is assembling and reviewing the new r08_c03 a/b/c native returns. No external east acceptance is inferred from the old pending ledger source.",
+          "inheritedFromAudit": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+            "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+          },
+          "currentSource": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+            "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+            "size": [
+              4096,
+              4096
+            ]
+          },
+          "exactReviewedEdgePixelsUnchanged": true,
+          "edgeBand": [
+            3968,
+            0,
+            4096,
+            4096
+          ]
+        }
+      },
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c02_v2_resume1021.png.generation.json",
+        "record": {
+          "unverifiedReason": "No AI invocation for export or selected existing-halo repair; original per-source evidence remains in provenance."
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c02_v2_resume1021.png.provenance.json",
+        "record": {
+          "status": "art_accepted",
+          "acceptanceScope": {
+            "scope": "internal_joins_and_verified_west_contact_only",
+            "internalQa": "passed",
+            "internalWindowCount": 39,
+            "westContact": "passed_5_of_5",
+            "outerEdgesPending": true,
+            "formalTileAccepted": false,
+            "wholeMapAccepted": false,
+            "externalQa": {
+              "west": {
+                "status": "passed",
+                "currentSource": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+                  "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "fixedWest": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/tiles/r08_c01_v1.png",
+                  "sha256": "9ce664cd454846b0b3366cb65eac1710627aab55a1c22f41124e950145744073"
+                },
+                "windows": [
+                  {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]",
+                    "size": "[nested source detail retained in referenced document]",
+                    "sourceBoxes": "[nested source detail retained in referenced document]",
+                    "status": "[nested source detail retained in referenced document]",
+                    "side": "[nested source detail retained in referenced document]",
+                    "index": "[nested source detail retained in referenced document]",
+                    "sourceA": "[nested source detail retained in referenced document]",
+                    "sourceB": "[nested source detail retained in referenced document]",
+                    "exactPixelsEqualPrior": "[nested source detail retained in referenced document]",
+                    "actuallyViewed": "[nested source detail retained in referenced document]",
+                    "viewMethod": "[nested source detail retained in referenced document]",
+                    "finding": "[nested source detail retained in referenced document]",
+                    "exactCurrentContactPixelsEqual": "[nested source detail retained in referenced document]",
+                    "basis": "[nested source detail retained in referenced document]"
+                  },
+                  {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]",
+                    "size": "[nested source detail retained in referenced document]",
+                    "sourceBoxes": "[nested source detail retained in referenced document]",
+                    "status": "[nested source detail retained in referenced document]",
+                    "side": "[nested source detail retained in referenced document]",
+                    "index": "[nested source detail retained in referenced document]",
+                    "sourceA": "[nested source detail retained in referenced document]",
+                    "sourceB": "[nested source detail retained in referenced document]",
+                    "exactPixelsEqualPrior": "[nested source detail retained in referenced document]",
+                    "actuallyViewed": "[nested source detail retained in referenced document]",
+                    "viewMethod": "[nested source detail retained in referenced document]",
+                    "finding": "[nested source detail retained in referenced document]",
+                    "exactCurrentContactPixelsEqual": "[nested source detail retained in referenced document]",
+                    "basis": "[nested source detail retained in referenced document]"
+                  },
+                  {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]",
+                    "index": "[nested source detail retained in referenced document]",
+                    "status": "[nested source detail retained in referenced document]",
+                    "sourceBoxes": "[nested source detail retained in referenced document]",
+                    "actuallyViewed": "[nested source detail retained in referenced document]",
+                    "viewMethod": "[nested source detail retained in referenced document]",
+                    "finding": "[nested source detail retained in referenced document]"
+                  },
+                  {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]",
+                    "index": "[nested source detail retained in referenced document]",
+                    "status": "[nested source detail retained in referenced document]",
+                    "sourceBoxes": "[nested source detail retained in referenced document]",
+                    "actuallyViewed": "[nested source detail retained in referenced document]",
+                    "viewMethod": "[nested source detail retained in referenced document]",
+                    "finding": "[nested source detail retained in referenced document]"
+                  },
+                  {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]",
+                    "size": "[nested source detail retained in referenced document]",
+                    "sourceBoxes": "[nested source detail retained in referenced document]",
+                    "status": "[nested source detail retained in referenced document]",
+                    "side": "[nested source detail retained in referenced document]",
+                    "index": "[nested source detail retained in referenced document]",
+                    "sourceA": "[nested source detail retained in referenced document]",
+                    "sourceB": "[nested source detail retained in referenced document]",
+                    "exactPixelsEqualPrior": "[nested source detail retained in referenced document]",
+                    "actuallyViewed": "[nested source detail retained in referenced document]",
+                    "viewMethod": "[nested source detail retained in referenced document]",
+                    "finding": "[nested source detail retained in referenced document]",
+                    "exactCurrentContactPixelsEqual": "[nested source detail retained in referenced document]",
+                    "basis": "[nested source detail retained in referenced document]"
+                  }
+                ],
+                "passedWindowCount": 5,
+                "failedWindowCount": 0,
+                "sourceHashesVerified": true
+              },
+              "south": {
+                "side": "south",
+                "sourceA": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/candidate-4096.png",
+                  "sha256": "af023eb22bd58e8e674ce4024c9e40f4f97789f7c9f4bb3eca4ccbc7bf0d16be",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "sourceB": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/delivery-20261018-v1/r09_c02.png",
+                  "sha256": "978f4b704836eed4de01c600684332ca9f22adcc72da6a7e68c0257f22b04574",
+                  "expectedSha256Matched": true,
+                  "dimensions": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ],
+                  "mode": "RGB"
+                },
+                "priorReview": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/review.json",
+                  "sha256": "72b753ee4e9ee166a634d997f153528983d5c562c46babaca5adb88aff917909"
+                },
+                "priorStatus": "visual_pass_against_current_candidate_only_neighbor_internal_pending",
+                "evidence": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261016/village_more_20261016/qa/external-originals-20261020-v1/r08_c02--r09_c02-four-segments-native.png",
+                  "sha256": "7ab3deb8c1fd2d044d223d75d14a9ffc32f28276cb9bf832683c950ec45d1722",
+                  "dimensions": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "exactContactPixelsEqual": true,
+                "currentContactPixelSha256": "c0f866a555fd5961c73692d64a8c3c3a27fc199a6fc124b1cc092fac94ceb39f",
+                "priorContactPixelSha256": "c0f866a555fd5961c73692d64a8c3c3a27fc199a6fc124b1cc092fac94ceb39f",
+                "status": "passed",
+                "acceptanceBasis": "Exact decoded current 4-segment native contact equals the complete 2026-10-20 visual-passed contact; both prior source hashes verified.",
+                "actuallyViewedThisTurn": false,
+                "exactPixelsEqualV5": true,
+                "edgeBand": [
+                  0,
+                  3968,
+                  4096,
+                  4096
+                ],
+                "currentEdgePixelSha256": "adce126673e9589046b2e8ac667cbc2bb951050041a35d7915129522d752e4f5",
+                "inheritedFromAudit": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+                  "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+                },
+                "currentSource": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+                  "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "exactReviewedEdgePixelsUnchanged": true
+              },
+              "north": {
+                "side": "north",
+                "neighbor": "r07_c02",
+                "status": "pending_missing_stable_current_neighbor_pointer",
+                "readEvidence": [
+                  {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  },
+                  {
+                    "path": "[nested source detail retained in referenced document]",
+                    "sha256": "[nested source detail retained in referenced document]"
+                  }
+                ],
+                "finding": "No current r07_c02 pointer in current-artifacts/progress; this zone has no current-tile-ledger or art-delivery-index at read time. Inventory dated 2026-10-12 includes r07_c02 in missingNativeWholeCoordinates; inventory age prevents claiming it is current completion proof.",
+                "ownerOtherZoneWritten": false,
+                "inheritedFromAudit": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+                  "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+                },
+                "currentSource": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+                  "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "exactReviewedEdgePixelsUnchanged": true,
+                "edgeBand": [
+                  0,
+                  0,
+                  4096,
+                  128
+                ]
+              },
+              "east": {
+                "side": "east",
+                "neighbor": "r08_c03",
+                "status": "pending_source_under_review",
+                "finding": "Root is assembling and reviewing the new r08_c03 a/b/c native returns. No external east acceptance is inferred from the old pending ledger source.",
+                "inheritedFromAudit": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-1020-r08c02/v6/art-audit.json",
+                  "sha256": "1fadcc273ecfd3e56acc7e60ede3a16c34003184e034c0bc70a80e8e211d81ac"
+                },
+                "currentSource": {
+                  "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/fishing-village-game-20261009/southwest/qa/resume-manual-1021-west/existing-halo-composed-v1/candidate-4096.png",
+                  "sha256": "eb62483aea51ede125ce9398ba517acb15256faa12c21eee97055553931b09c6",
+                  "size": [
+                    "[nested source detail retained in referenced document]",
+                    "[nested source detail retained in referenced document]"
+                  ]
+                },
+                "exactReviewedEdgePixelsUnchanged": true,
+                "edgeBand": [
+                  3968,
+                  0,
+                  4096,
+                  4096
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

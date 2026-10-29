@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 7,
+  "column": 12,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "ee96b9f285cc67971643c728170b74dde418538a930983c5c5d71db52a2330cd",
+  "imageBytes": 23349675,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c12-native-v2-local-working-20261018.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c12-native-v2-local-working-20261018.png.derivation.json",
+  "sourceLedgerSha256": "afabe76d56949fa7e0152809f7230fdd908d2eddf4f41c3c1093364196b1a3af",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r07_c12",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c12-native-v2-local-working-20261018.png",
+    "imageSha256": "ee96b9f285cc67971643c728170b74dde418538a930983c5c5d71db52a2330cd",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c12-native-v2-local-working-20261018.png.derivation.json",
+        "sha256": "afabe76d56949fa7e0152809f7230fdd908d2eddf4f41c3c1093364196b1a3af",
+        "completeness": [
+          "/coverage",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c12-native-v2-local-working-20261018.png.derivation.json",
+        "sha256": "afabe76d56949fa7e0152809f7230fdd908d2eddf4f41c3c1093364196b1a3af",
+        "completeness": [
+          "/baseCoverageGap",
+          0
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "coverage": 16,
+      "baseCoverageGap": 0,
+      "status": "best_visual_working_candidate_unaccepted",
+      "formalAccepted": false,
+      "layoutAccepted": false,
+      "internalReview": "failed_bottom_wood_seam_and_other_pending"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c12-native-v2-local-working-20261018.png.derivation.json",
+        "record": {
+          "coverage": 16,
+          "baseCoverageGap": 0,
+          "status": "best_visual_working_candidate_unaccepted",
+          "formalAccepted": false,
+          "layoutAccepted": false,
+          "internalReview": "failed_bottom_wood_seam_and_other_pending"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/selection-r07_c12.json",
+        "record": {
+          "formalAccepted": false,
+          "pendingIssues": [
+            {
+              "id": "r07_c12_p01_02_eave_height",
+              "status": "pending_whole_tile_original_layout",
+              "note": "Native eave transition near left y700 vs approximate guide y800; inspect coherent full building before original-layout acceptance."
+            },
+            {
+              "id": "r07_c12_p01_04_v3_main_curve",
+              "status": "best_after_geometry_improvements_original_boundary_residual_pending",
+              "samples": [
+                {
+                  "edge": "rightNative",
+                  "original": 598,
+                  "v3": 555
+                },
+                {
+                  "edge": "rightCore",
+                  "original": 827,
+                  "v3": 757
+                },
+                {
+                  "edge": "bottomCore",
+                  "original": 871,
+                  "v3": 797
+                },
+                {
+                  "edge": "bottomNative",
+                  "original": 734,
+                  "v3": 623
+                }
+              ],
+              "note": "False top band/full premature curl removed, main right eave improved but remains43-111px inside original; do not propagate wrong curved band as exact layout."
+            },
+            {
+              "id": "row1_upper_material",
+              "status": "pending_minor_material",
+              "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c12-roof-row1-independent-20261018.json",
+              "note": "Current p0102v3 and p0103 upper joins geometrically continuous; local highlight/material restart remains pending."
+            },
+            {
+              "id": "p0101_eave_and_lantern",
+              "status": "failed_best_existing_retained_after_two_repairs",
+              "selected": "r07_c12_p01_01_v2",
+              "note": "v2 right eave remains100-150px low; v3 raises eave but creates internal fascia step and shrinks/moves lantern, not selected. Original lantern spans next row, all current p0101 versions too small/high. Follow original for p0201; do not propagate wrong lantern."
+            },
+            {
+              "id": "p0203_false_gold_scroll_and_small_lantern",
+              "status": "gold_resolved_by_wide_native_roi_other_layout_pending",
+              "selected": "r07_c12_p02_03",
+              "note": "False gold removed by selected wide native ROI. Small lantern is largely outside final core, not propagated to p0204. Whole original layout still pending."
+            },
+            {
+              "id": "p0203_gold_roi",
+              "status": "obsolete_narrow_roi_not_applied",
+              "note": "Old narrow ROI was rejected; wider separately reviewed native ROI is applied in selection.",
+              "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c12-gate-local-review18/p0203-gold-roi-working.png.derivation.json"
+            },
+            {
+              "id": "p0201_upper_lantern_step",
+              "status": "failed_geometry",
+              "note": "Correctly enlarged p0201 lantern exposes old p0101 too-small globe at upper boundary. Pillar continues; retain upper lantern geometry failure."
+            },
+            {
+              "id": "p0204_upper_material",
+              "status": "pending_minor_material",
+              "note": "Blue roof and gold boundary locally continuous at current upper join; painting/highlight differences and original p0104 residual remain."
+            },
+            {
+              "id": "p0303_redpaper_layout",
+              "status": "failed_original_crop_extent",
+              "note": "Original diamond should be more cropped by upper/left edges; current source paints nearly whole diamond. Lower door/threshold kept for independent row4 continuation; upper joint must be repaired later."
+            },
+            {
+              "id": "p0202_internal_eave_step",
+              "status": "failed_geometry",
+              "note": "Internal native x1024 y0..280 hard step; independent row23 report."
+            },
+            {
+              "id": "p0302_redpaper_and_upper_stairs",
+              "status": "failed_geometry",
+              "note": "Internal x1024 y175..345 red paper hard cut, upper row red paper missing; threshold draws extra stair edges."
+            },
+            {
+              "id": "row4_three_stair_layout",
+              "status": "failed_geometry",
+              "note": "c1 extra upper stair edge and lower nose heights; c2 stair slopes/spacing, c1/c2 and c2/c3 joints; c3 first/middle stair placement improved but not accepted; c4 bottom red fragment position still low; c2 upper seam and first two upper crossings unresolved",
+              "evidence": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/qa/r07_c12-row4-bridge18/final-local-qa/index.json"
+            },
+            {
+              "id": "redpaper_joint_bottom_wood",
+              "status": "failed_geometry",
+              "workingCandidate": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northeast/tiles/r07_c12-native-v2-local-working-20261018.png",
+              "note": "Redpaper shape improved; y2752 ROI bottom door grooves shift15..25px; requires native correction, no blend."
+            }
+          ],
+          "internalStatus": "full49_reviewed_not_accepted",
+          "layoutAccepted": false,
+          "resolvedIssues": [
+            {
+              "id": "p0203_false_gold_scroll",
+              "status": "resolved_by_native_ROI",
+              "overlay": "r07_c12_p02_03-gold-removal-wide-roi-20261018",
+              "originalCandidateRetained": true
+            }
+          ],
+          "workingStatus": "redpaper_shape_improved_bottom_wood_seam_failed_lantern_improved_eave_stairs_pending"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": null
+}

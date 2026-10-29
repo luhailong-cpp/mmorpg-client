@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 8,
+  "column": 1,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "06a8532811253173d8c5ddf17eb05c3e3e6fdccde47a744f750d1ba0404bd9d2",
+  "imageBytes": 30999359,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-candidate-4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-report.json",
+  "sourceLedgerSha256": "6065b8a1ded274dbc6df1f15e902d647bd879a2a2b8c192ec698eeb0c93f5bd7",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-candidate-4096.png",
+    "imageSha256": "06a8532811253173d8c5ddf17eb05c3e3e6fdccde47a744f750d1ba0404bd9d2",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-report.json",
+        "sha256": "6065b8a1ded274dbc6df1f15e902d647bd879a2a2b8c192ec698eeb0c93f5bd7",
+        "sourceReviewSha256": "6065b8a1ded274dbc6df1f15e902d647bd879a2a2b8c192ec698eeb0c93f5bd7",
+        "completeness": [
+          [
+            "/inputs",
+            "all sixteen native source row/column pairs present"
+          ],
+          [
+            "/validation",
+            {
+              "pixelCount": 16777216,
+              "mismatchedPixels": 0
+            }
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "acceptanceScope": "complete native4096 candidate; internal and whole-map acceptance false"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-manifest.json",
+        "record": {
+          "status": "qa_candidates_written"
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261025_025820.json",
+        "record": {
+          "acceptanceScope": "complete native4096 candidate; internal and whole-map acceptance false"
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261023_162255.json",
+        "record": {
+          "acceptanceScope": "complete native4096 candidate; internal and whole-map acceptance false"
+        }
+      },
+      {
+        "path": "docs/MAP_PERIODIC_REPORT_20261023_170408.json",
+        "record": {
+          "acceptanceScope": "complete native4096 candidate; internal and whole-map acceptance false"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-report.json",
+        "record": {
+          "status": "QA native repair candidate; pending visual review; not formal acceptance"
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-manifest.json",
+    "sourceSha256": "54581880c0ecc165432a2029a604fc1c772a8927a0189229b3a5757a5ae861dc",
+    "normalizedDocument": {
+      "status": "qa_candidates_written",
+      "createdAtUtc": "2026-10-17T13:38:46.484729+00:00",
+      "artworkWritten": true,
+      "repairGlobalBox": [
+        150,
+        31000,
+        1404,
+        32254
+      ],
+      "selectedPixels": 336841,
+      "repairRois": [
+        [
+          0,
+          430,
+          780,
+          900
+        ]
+      ],
+      "mandatoryTargets": [
+        [
+          40,
+          590,
+          600,
+          770
+        ]
+      ],
+      "flushOuterEdges": [],
+      "sharedSelectionMask": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-repair-local-selection-mask.png",
+        "sha256": "93e49a838cb1429cd3a6a40156299dd3b4b882cc9b82193796548034fa4e558c",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "binaryValues": [
+          0,
+          255
+        ],
+        "nativeGlobalBox": [
+          150,
+          31000,
+          1404,
+          32254
+        ],
+        "scale": "1:1"
+      },
+      "allInputsUnchanged": true,
+      "distributedSelectedPixelsExact": true,
+      "tiles": [
+        {
+          "tile": "r08_c01",
+          "candidate": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-candidate-4096.png",
+            "sha256": "06a8532811253173d8c5ddf17eb05c3e3e6fdccde47a744f750d1ba0404bd9d2",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "sourceIdMask": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-source-id-mask.png",
+            "sha256": "b639c2a161c415a0f223c6fde7f45d70036c4f3cc4479b9e9d8b02c93c450ad4",
+            "dimensions": [
+              4096,
+              4096
+            ]
+          },
+          "report": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-report.json",
+            "sha256": "6065b8a1ded274dbc6df1f15e902d647bd879a2a2b8c192ec698eeb0c93f5bd7"
+          },
+          "repairSourceId": 17,
+          "validation": {
+            "pixelCount": 16777216,
+            "mismatchedPixels": 0,
+            "sameGlobalCoordinateExact": true,
+            "sourceIdPixelCounts": {
+              "1": 1050854,
+              "2": 1101949,
+              "3": 931222,
+              "4": 1096941,
+              "5": 928191,
+              "6": 968175,
+              "7": 1095776,
+              "8": 1047737,
+              "9": 952513,
+              "10": 1010636,
+              "11": 1226849,
+              "12": 1045911,
+              "13": 965127,
+              "14": 1002944,
+              "15": 998259,
+              "16": 1017291,
+              "17": 336841
+            },
+            "sourceInputsAndRecordsUnchanged": true,
+            "interpolation": false,
+            "feathering": false,
+            "colorAdjustment": false,
+            "displacement": false,
+            "unchangedOutsideRepairSelection": true,
+            "mandatoryCoreUsesRepairOnly": true,
+            "mandatoryTargetsUseRepairOnly": true,
+            "repairPixelCount": 336841,
+            "diskRoundtripExact": true,
+            "mandatoryCorePatchBoxes": [
+              [
+                25,
+                455,
+                755,
+                875
+              ]
+            ],
+            "mandatoryTargetPatchBoxes": [
+              [
+                40,
+                590,
+                600,
+                770
+              ]
+            ]
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-repair-local-selection-mask.png",
+          "sha256": "93e49a838cb1429cd3a6a40156299dd3b4b882cc9b82193796548034fa4e558c",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "binaryValues": [
+            0,
+            255
+          ],
+          "nativeGlobalBox": [
+            150,
+            31000,
+            1404,
+            32254
+          ],
+          "scale": "1:1"
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-repair-area-base-left-candidate-right-100pct.png",
+          "sha256": "2ecf22531c23240c457582f5f356ddaad2d3662092abf4e5ba1406523e19edbd",
+          "dimensions": [
+            2508,
+            1254
+          ],
+          "nativeGlobalBox": [
+            150,
+            31000,
+            1404,
+            32254
+          ],
+          "scale": "1:1",
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-roi1-top-base-first-candidate-second-100pct.png",
+          "sha256": "d396990994520244a1884f165f49330a582273caf8f735e36e9d83d06466e001",
+          "dimensions": [
+            980,
+            450
+          ],
+          "nativeGlobalBox": [
+            50,
+            31330,
+            1030,
+            31555
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-roi1-bottom-base-first-candidate-second-100pct.png",
+          "sha256": "996697867c1e44b634d3dfd51014559be8f532b2e63c97580bc1e2299be9c20a",
+          "dimensions": [
+            980,
+            450
+          ],
+          "nativeGlobalBox": [
+            50,
+            31775,
+            1030,
+            32000
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-roi1-left-base-first-candidate-second-100pct.png",
+          "sha256": "9766bd721fcf3bb1916d74e1292fe9ef6e5a9da1d6d164f349eddef31eed3a1f",
+          "dimensions": [
+            450,
+            670
+          ],
+          "nativeGlobalBox": [
+            50,
+            31330,
+            275,
+            32000
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-roi1-right-base-first-candidate-second-100pct.png",
+          "sha256": "6d6c839b7d1537d9feb79ed367cc997d5328e8ebdf4948f368df0fc62c7da543",
+          "dimensions": [
+            450,
+            670
+          ],
+          "nativeGlobalBox": [
+            805,
+            31330,
+            1030,
+            32000
+          ],
+          "scale": "1:1",
+          "outsideRoiPaddingPixels": 100,
+          "transparentPixels": "Outside supplied base tiles only."
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-candidate-4096.png",
+          "sha256": "06a8532811253173d8c5ddf17eb05c3e3e6fdccde47a744f750d1ba0404bd9d2",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-source-id-mask.png",
+          "sha256": "b639c2a161c415a0f223c6fde7f45d70036c4f3cc4479b9e9d8b02c93c450ad4",
+          "dimensions": [
+            4096,
+            4096
+          ]
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/southwest/qa/north-c01-waterband-v01-r08_c01-repair-selection-mask.png",
+          "sha256": "d01f0309eedc9f897576c643b17ce8a15ca81a4a8645bc20bc9c395ff7104daa",
+          "dimensions": [
+            4096,
+            4096
+          ],
+          "binaryValues": [
+            0,
+            255
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1222 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 3,
+  "column": 7,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "e63b8afa364f0bc3944afb3ef432d9c951c14036b2a2ffebef6c7a97d0010bd4",
+  "imageBytes": 23131320,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/r03_c07_A2_complete_contour_proposal1_4096.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/r03_c07_A2_complete_contour_proposal1_4096.native-repair.json",
+  "sourceLedgerSha256": "234c309ded57db925010b22dd85127f28b9027bf4dfca11c50c8e388d20ff1b3",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r03_c07",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/r03_c07_A2_complete_contour_proposal1_4096.png",
+    "imageSha256": "e63b8afa364f0bc3944afb3ef432d9c951c14036b2a2ffebef6c7a97d0010bd4",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/r03_c07_A2_complete_contour_proposal1_4096.native-repair.json",
+        "sha256": "234c309ded57db925010b22dd85127f28b9027bf4dfca11c50c8e388d20ff1b3",
+        "sourceReviewSha256": "234c309ded57db925010b22dd85127f28b9027bf4dfca11c50c8e388d20ff1b3",
+        "completeness": [
+          [
+            "/base/reverifiedProvenance/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/fullNativeCoverage",
+            true
+          ],
+          [
+            "/coverageAssertions/unassignedPixels",
+            0
+          ]
+        ]
+      }
+    ],
+    "selectionBasis": "output-bound no-gap or sixteen-native-source evidence",
+    "sourceStatus": {
+      "geometryPending": [
+        0,
+        2,
+        3,
+        5,
+        6,
+        13,
+        15,
+        17,
+        24,
+        26,
+        27
+      ],
+      "geometryGainAccepted": 0,
+      "materialStatus": "PENDING",
+      "sharedAccepted": false,
+      "formalAccepted": false,
+      "status": "HOLD_KEEP_CURRENT_C_ONLY_NOT_AN_ADOPTABLE_CANDIDATE"
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/internal33-held-proposal-review.json",
+        "record": {
+          "geometryPending": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            13,
+            15,
+            17,
+            24,
+            26,
+            27
+          ],
+          "geometryGainAccepted": 0,
+          "materialStatus": "PENDING",
+          "sharedAccepted": false,
+          "formalAccepted": false,
+          "status": "HOLD_KEEP_CURRENT_C_ONLY_NOT_AN_ADOPTABLE_CANDIDATE"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/final-held-review.json",
+        "record": {
+          "status": "HOLD_AFTER_SECOND_ACTUAL_A_CALL_STOP_A_RETRIES_KEEP_CURRENT_C_ONLY_22_OF_33",
+          "internal33DeltaReview": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/internal33-held-proposal-review.json",
+            "sha256": "2106a7693b5f2422cb77041b5fe635304348802395e9440da4c64bee73cec1e2"
+          },
+          "acceptedGeometryGain": 0,
+          "currentProductionGeometryPending": 11,
+          "sharedAccepted": false,
+          "formalAccepted": false,
+          "allMaterialStatus": "PENDING"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/complete-perimeter-review.json",
+        "record": {
+          "status": "FAILED_FULL_CONTOUR_PERIMETER_NOT_ADOPTABLE",
+          "coverageIndex": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/full-mask-perimeter-native480/index.json",
+            "sha256": "7f6b9bbd51f3dc67353804c03fead07adf0f369625fb2b0137cc795dc5b15064"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/r03_c07_A2_complete_contour_proposal1_4096.native-repair.json",
+        "record": {
+          "status": "candidate_pending_native_visual_and_boundary_review",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "tilePixelCount": 16777216,
+            "allOutputPixelsExactlyMatchUnchangedBaseOrRawRepairAtDeclaredCoordinates": true,
+            "baseCoverageRecomputedFromOriginalNatives": true,
+            "editTargetExactlyEqualsBaseCrop": true,
+            "editTargetExactlyEqualsRecordedAncestorCrop": true,
+            "selectedEditTargetPixelsExactlyEqualApplicationBase": true,
+            "applicationBaseDifferencesConfinedOutsideMask": true,
+            "guidePixelsUsedAsFinalArt": false,
+            "unassignedPixels": 0
+          },
+          "formalAcceptedCount": 0
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/internal33-held-proposal-review.json",
+    "sourceSha256": "2106a7693b5f2422cb77041b5fe635304348802395e9440da4c64bee73cec1e2",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "tileId": "r03_c07",
+      "atUtc": "2026-10-22T08:01:02.313132+00:00",
+      "reviewer": "/root/resume_roof_same_raw",
+      "candidate": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/r03_c07_A2_complete_contour_proposal1_4096.png",
+        "sha256": "e63b8afa364f0bc3944afb3ef432d9c951c14036b2a2ffebef6c7a97d0010bd4"
+      },
+      "record": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/r03_c07_A2_complete_contour_proposal1_4096.native-repair.json",
+        "sha256": "234c309ded57db925010b22dd85127f28b9027bf4dfca11c50c8e388d20ff1b3"
+      },
+      "priorReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+        "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+      },
+      "items": [
+        {
+          "index": 0,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/00.png",
+            "sha256": "cc8ed84c29052ce4c80cfd75b79cedc74962bf7a3ac2856d6b3e0dcb688df7a0",
+            "tileCropBoxHalfOpen": [
+              784,
+              0,
+              1264,
+              1139
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "A second rear round crown is visible behind the main front ball below the tassel; duplicate crown/post semantics remain pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 0
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 1,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/01.png",
+            "sha256": "e0499b71f15c2b4741d9b43b59b8fef9d2bd32b370fa809470144e1a69fe1799",
+            "tileCropBoxHalfOpen": [
+              1808,
+              0,
+              2288,
+              1139
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Vertical plank and groove contours remain continuous. Angular shadow/paint phase at about tile (2048,1007) is a material issue, not counted as a displaced contour.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 1
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 2,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/02.png",
+            "sha256": "7342e9cbe0883f22a09c959a2195a5883f263a45688ec9d32a36b79bbe79be6b",
+            "tileCropBoxHalfOpen": [
+              2832,
+              0,
+              3312,
+              1139
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "The old mid-side bite is removed but the retained original bottom-corner pixels and returned lower-right border form a duplicated gold corner tongue and an isolated original red-tip patch. The wider wood-plane collar also makes a short step where it crosses the neighboring vertical groove. Complete contour closure fails.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 3,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/03.png",
+            "sha256": "7b43f8cc8aeea7048f8783b90a01f895d13f0b8f2c53b14cd7a806ef98ab18d8",
+            "tileCropBoxHalfOpen": [
+              784,
+              909,
+              1264,
+              2163
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "Upper duplicate rear crown remains visible, and an additional small ball crown appears near the lower end of this crop. No geometry closure is claimed.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 3
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 4,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/04.png",
+            "sha256": "f1f9c2a01e22f6c84c520012e979cdd06d1993d1665a5d086a9c59bb23902477",
+            "tileCropBoxHalfOpen": [
+              1808,
+              909,
+              2288,
+              2163
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Stone stair and plank silhouettes continue. The abrupt angular wood shadow near the top remains material pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 4
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 5,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/05.png",
+            "sha256": "9b9f0dc82f62c16c37f8a2e8e31f7c4766a3214995b2e80bcc3779102e8feb47",
+            "tileCropBoxHalfOpen": [
+              2832,
+              909,
+              3312,
+              2163
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "The middle wood groove is straightened, but its lower connection at crop-local y915/tile y1115 to the fixed original clean groove/gold-foot anchor creates a new short horizontal offset. Original gold-foot pixels remain exact, yet the incoming groove is not closed.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 6,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/06.png",
+            "sha256": "808e2d8563e6ef8cc9567c54ee50ee701a3ac6a3fb3d791805ba2db35a829f11",
+            "tileCropBoxHalfOpen": [
+              784,
+              1933,
+              1264,
+              3187
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "The lower free-ended slab groove at tile(927,3077) is removed and the true vertical rim is continuous. This full crop still contains the lower rounded crown and its separate support at approximately tile(1117,2125), whose layout/semantic role remains unresolved. Root has clarified that low-resolution layout alone does not prove it is extra. C does not edit that object; preserve whole-item pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 6
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 7,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/07.png",
+            "sha256": "05626b013a668a9754f8f7dbee94d75cccd825f496ec726ff1614ec93d7940e7",
+            "tileCropBoxHalfOpen": [
+              1808,
+              1933,
+              2288,
+              3187
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Major stair noses and stone joint contours continue across the native source boundary; stone paint phase remains pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 7
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 8,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/08.png",
+            "sha256": "715279e496efb292d8170d9432ebbd5417976fb4a33f01b8d7724241dce89ac9",
+            "tileCropBoxHalfOpen": [
+              2832,
+              1933,
+              3312,
+              3187
+            ],
+            "dimensions": [
+              480,
+              1254
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Major stair contours and joints continue; a vertical stone paint phase change in the lower portion remains material pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 8
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 9,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/09.png",
+            "sha256": "19857fa8d25dbd5c4abe02281d69bc6a644155f75d528109232c625ce4d7aa5c",
+            "tileCropBoxHalfOpen": [
+              784,
+              2957,
+              1264,
+              4096
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "The complete former free-ended horizontal groove/highlight is absent. The broad slab face is continuous, and its right vertical rim retains its base pixels, straight continuation, width and contact with the stairs. The remaining irregular stone-tone patch is material pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 9
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 10,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/10.png",
+            "sha256": "4e222601030304d384cd2582c159856d087f1659ce7b815a03c812880321e468",
+            "tileCropBoxHalfOpen": [
+              1808,
+              2957,
+              2288,
+              4096
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Stair noses and slab joints continue across the source boundary. Stone texture, lighting and paint phase are not accepted by this geometry check.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 10
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 11,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/11.png",
+            "sha256": "56cf11ba8ae788d9f6cb9f3e6e35e85b33f3cf63d8538e70b145d06c0dc547c8",
+            "tileCropBoxHalfOpen": [
+              2832,
+              2957,
+              3312,
+              4096
+            ],
+            "dimensions": [
+              480,
+              1139
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Stair noses and slab joints continue across the source boundary; visible vertical paint phase remains material pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 11
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 12,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/12.png",
+            "sha256": "cfd5cef1831fc8fc0e55af590a34bfb63853856a0a8b0dacffab64d2b1be676e",
+            "tileCropBoxHalfOpen": [
+              0,
+              784,
+              1024,
+              1264
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Visible pillar, stair, slab and tassel contours continue locally. This partial crop alone does not resolve the duplicate crown visible in indices 0,3,13,24.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 12
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 13,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/13.png",
+            "sha256": "502767a997dc5885e5f29ea26b949bc80e39c2c9c40035f0360930b8b3f98333",
+            "tileCropBoxHalfOpen": [
+              1024,
+              784,
+              2048,
+              1264
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "The rear round crown/rectangular duplicate post is visible at the left edge behind the front crown; preserve as pending semantic geometry.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 13
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 14,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/14.png",
+            "sha256": "29973bafc344f8545a491437bec1d9fec04f7b57216e877a0f5ad12109c39fde",
+            "tileCropBoxHalfOpen": [
+              2048,
+              784,
+              3072,
+              1264
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "This complete changed native crop retains continuous floor, door-foot edge and visible plank outlines. Changed wood-paint bands remain material pending. This local item pass does not adopt the globally held proposal.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 15,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/15.png",
+            "sha256": "6368447a148f30f2222412ebdc653ae7af176a6ee43528aa8617ac9ec15e7f01",
+            "tileCropBoxHalfOpen": [
+              3072,
+              784,
+              4096,
+              1264
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "The leftmost incoming wood groove meets the retained original gold-foot region with a short horizontal step. The golden relief front and stair remain fixed, but the full groove endpoint is not closed.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 16,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/16.png",
+            "sha256": "8e38431f929f6dc76373b87a81f2054cb9fe172e62f6f842ba98d2dc63cf19b3",
+            "tileCropBoxHalfOpen": [
+              0,
+              1808,
+              1024,
+              2288
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Main pillar foot and nearby stair noses continue locally. The extra ball lies outside this segment, in indices 3,6,17,27.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 16
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 17,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/17.png",
+            "sha256": "a7bcb80b04a61fc48769e6442d0ed975e198d88bdf13f9e33159a47f61edb75f",
+            "tileCropBoxHalfOpen": [
+              1024,
+              1808,
+              2048,
+              2288
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "An additional small ball and round seat sit on the railing beside the main pillar foot at about (1117,2125); the original layout does not establish this extra crown.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 17
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 18,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/18.png",
+            "sha256": "045e428b5624389f58a90f24743b2ba807b44919d0813a41073adc9a39e5211c",
+            "tileCropBoxHalfOpen": [
+              2048,
+              1808,
+              3072,
+              2288
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Main paving stone and joint boundaries continue locally; material and scale phase remain pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 18
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 19,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/19.png",
+            "sha256": "e2bf0f04ee7f37c2baa2f662350a8199d3660e6f733eb1fd5c8ff778885a85a6",
+            "tileCropBoxHalfOpen": [
+              3072,
+              1808,
+              4096,
+              2288
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Main paving stone and joint boundaries continue locally; material and scale phase remain pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 19
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 20,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/20.png",
+            "sha256": "8b0f7190a6f5a9f8ba34a949e7af85f052897dc57eb45f4906129cb24545a335",
+            "tileCropBoxHalfOpen": [
+              0,
+              2832,
+              1024,
+              3312
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "The false short horizontal groove no longer starts inside the slab face. The broad slab and left border remain structurally continuous across this native row3/row4 seam crop. Ivory texture/source-tone mismatch remains material pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 20
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 21,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/21.png",
+            "sha256": "2c0e5ed34203947823888cd67b493877cdac6218bb406807ddd8507cc81dcaf1",
+            "tileCropBoxHalfOpen": [
+              1024,
+              2832,
+              2048,
+              3312
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "This additional actually changed crop contains one selected tile-x1024 column at its left edge. The retained vertical rim, stair tread/riser silhouettes and slab joints remain continuous. Prior geometry pass is preserved after direct native view.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 21
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 22,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/22.png",
+            "sha256": "bcacd04fad8550fc869a5449065e6c8374f30ff0a9fbff2ee5531cee8228944d",
+            "tileCropBoxHalfOpen": [
+              2048,
+              2832,
+              3072,
+              3312
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Major stair nosing, slab joints and side contours continue; visible paint/stone phase changes remain pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 22
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 23,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/23.png",
+            "sha256": "bd1c0a4c0ad382f1ace297b1be310c230df6553ca924171e63b27ae4840de2fc",
+            "tileCropBoxHalfOpen": [
+              3072,
+              2832,
+              4096,
+              3312
+            ],
+            "dimensions": [
+              1024,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Major stair nosing, slab joints and side contours continue; visible paint/stone phase changes remain pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 23
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 24,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/24.png",
+            "sha256": "8718b6c68b1fe2e1cd9b9112578d0a3fbc82aa106b293c7bb3bf30bca5705e70",
+            "tileCropBoxHalfOpen": [
+              784,
+              784,
+              1264,
+              1264
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "Two round crowns overlap under the tassel, with the rear crown attached to a duplicate-looking post; geometry/semantic closure is pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 24
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 25,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/25.png",
+            "sha256": "fcbe936bfccda0b6437a85df5119b9973391ff736ff3fe8575a9d0162f89f38a",
+            "tileCropBoxHalfOpen": [
+              1808,
+              784,
+              2288,
+              1264
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "The black plank groove remains connected; the angular shadow edge is abrupt but no contour displacement is established. Material remains pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 25
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 26,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/26.png",
+            "sha256": "4497d5a21e460f1addfe50246750b8e316db5d4afaa9ba8329d17b6aa3cc436d",
+            "tileCropBoxHalfOpen": [
+              2832,
+              784,
+              3312,
+              1264
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "The bottom-diamond corner at the top of this native junction has the retained old tip/new edge mismatch, and the lower wood-groove endpoint has a new offset before the gold foot. Both geometry failures remain pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": true,
+          "viewDetail": "original",
+          "qaReused": false,
+          "reuseFrom": null,
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 27,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/27.png",
+            "sha256": "50f57c4c3479bd699c7c52869cf44961da4f6e3f854151fb5d2f8b237fc698de",
+            "tileCropBoxHalfOpen": [
+              784,
+              1808,
+              1264,
+              2288
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PENDING",
+          "geometryAssessment": "Extra small crown and round seat at the main pillar foot remain unsupported by the original slab/railing layout.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 27
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 28,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/28.png",
+            "sha256": "52a52d07222f54852a59fcd58226769d2af860ddd581f5c60c2c6c3805e6b6f4",
+            "tileCropBoxHalfOpen": [
+              1808,
+              1808,
+              2288,
+              2288
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Paving joint boundaries continue through this junction; stone material remains pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 28
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 29,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/29.png",
+            "sha256": "bfa2c457026216c95e6df248d25adfd9995bb4c145fa8efe3fc0760eeefe8357",
+            "tileCropBoxHalfOpen": [
+              2832,
+              1808,
+              3312,
+              2288
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Paving joint boundaries continue through this junction; stone material remains pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 29
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 30,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/30.png",
+            "sha256": "3fd30df7929073ec7c0735aed37e580b26172a4c641d9f0c75e78c7163723f90",
+            "tileCropBoxHalfOpen": [
+              784,
+              2832,
+              1264,
+              3312
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS",
+          "geometryAssessment": "At the four-source junction, the former short free-ended horizontal recess is gone. Slab/true vertical rim/stair contact is closed and no replacement crack, doubled rim or horizontal step is visible. An irregular stone-material patch remains pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 30
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 31,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/31.png",
+            "sha256": "bf9ea2eafdd44cc409101752f35f2e64108e66aef0ddbe74ae03abf97a2624b0",
+            "tileCropBoxHalfOpen": [
+              1808,
+              2832,
+              2288,
+              3312
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Major stair nosing, slab joints and side contours continue; visible paint/stone phase changes remain pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 31
+          },
+          "allCurrentPixelsAndHashVerified": true
+        },
+        {
+          "index": 32,
+          "crop": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_A_full_contour_execute_a02_20261022/fixed33/32.png",
+            "sha256": "7f2ca216db6ab714c93285461008c8ef3b122fc539af11daa683f1ebe4909b5f",
+            "tileCropBoxHalfOpen": [
+              2832,
+              2832,
+              3312,
+              3312
+            ],
+            "dimensions": [
+              480,
+              480
+            ],
+            "nativeScale100Percent": true
+          },
+          "geometry": "PASS_LOCAL",
+          "geometryAssessment": "Major stair nosing, slab joints and side contours continue; visible paint/stone phase changes remain pending.",
+          "material": "PENDING",
+          "actuallyViewedThisReview": false,
+          "viewDetail": "original",
+          "qaReused": true,
+          "reuseFrom": {
+            "review": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r03_c07_repair_C_human_resume_20261021/mask_v2/internal33-review.json",
+              "sha256": "a12db4b3a22fdc0cd55ca73d38476a574893d5690ba04edb6e48ac4ea2324444"
+            },
+            "itemIndex": 32
+          },
+          "allCurrentPixelsAndHashVerified": true
+        }
+      ],
+      "actualChangedIndices": [
+        2,
+        5,
+        14,
+        15,
+        26
+      ],
+      "newNativeViews": 5,
+      "hashIdenticalQAReused": 28,
+      "geometryPassedInHeldProposal": 22,
+      "geometryPending": [
+        0,
+        2,
+        3,
+        5,
+        6,
+        13,
+        15,
+        17,
+        24,
+        26,
+        27
+      ],
+      "geometryGainAccepted": 0,
+      "productionGeometryPassedStill": 22,
+      "internalGeometryClosurePassed": false,
+      "internalClosurePassed": false,
+      "materialStatus": "PENDING",
+      "sharedAccepted": false,
+      "formalAccepted": false,
+      "productionLedgerModified": false,
+      "status": "HOLD_KEEP_CURRENT_C_ONLY_NOT_AN_ADOPTABLE_CANDIDATE"
+    }
+  }
+}

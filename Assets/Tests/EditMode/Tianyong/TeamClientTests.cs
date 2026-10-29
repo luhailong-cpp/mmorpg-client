@@ -507,6 +507,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             Loaded();
             Assert.That(_client.Kick(11), Is.True);
+            byte[] originalKick = _net.Calls[_net.Calls.Count - 1].Request.ToByteArray();
             _net.Reply(Response(null, team_error.KTeamInternal));
             Assert.That(_client.Snapshot.TeamId, Is.EqualTo(100UL), "服务端读取失败时不清本地快照");
             Assert.That(_client.Snapshot.Members.Count, Is.EqualTo(3));
@@ -515,11 +516,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
             _now += 0.5f;
             int calls = _net.Calls.Count;
-            var originalKick = (KickMemberRequest)_net.Calls[calls - 1].Request;
             Assert.That(_client.Leave(), Is.False, "fault 没有确认原操作结果，不能换成另一笔写请求");
             Assert.That(_net.Calls.Count, Is.EqualTo(calls));
             Assert.That(_client.Kick(11), Is.True, "允许使用原请求号核实结果");
-            Assert.That(LastRequest<KickMemberRequest>().ToByteArray(), Is.EqualTo(originalKick.ToByteArray()));
+            Assert.That(LastRequest<KickMemberRequest>().ToByteArray(), Is.EqualTo(originalKick));
+            _net.Reply(Response(LeaderView(2), team_error.KTeamStateChanged));
+            _now += 0.5f;
+            Assert.That(_client.Leave(), Is.True);
             _net.Reply(Response(new TeamView { MembershipEpoch = 6, ServerTimeMs = 2000 }, team_error.KTeamHasNotTeamId));
             Assert.That(_client.HasTeam, Is.False);
             Assert.That(_client.Snapshot.MembershipEpoch, Is.EqualTo(6UL));

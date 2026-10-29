@@ -1,0 +1,932 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 8,
+  "column": 6,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "b2fc0c9d268c0312718137895c2d75466d95e81789f1db92644b0877f50fae8b",
+  "imageBytes": 26971672,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/candidate.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/current-source-pointer.json",
+  "sourceLedgerSha256": "f046e033b0f3fac0a5d2b51a1261e5aa8848d1d4b58573f44ef5e5cca20d422d",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c06",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/candidate.png",
+    "imageSha256": "b2fc0c9d268c0312718137895c2d75466d95e81789f1db92644b0877f50fae8b",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/current-source-pointer.json",
+        "sha256": "f046e033b0f3fac0a5d2b51a1261e5aa8848d1d4b58573f44ef5e5cca20d422d",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/city_northwest-execution.json",
+        "sha256": "adef657522689b97e8e9d70b9da503575014048a4da3ead31d9c005628dc2d10",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/human-resume-20261021-221439/current-checkpoint-after-local-adoption.json",
+        "sha256": "3c1cc8f9f2fb5d73b09b202ae9cd8c5bf6995c0e1b86f7a2927f16b288e9b822",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_002209.json",
+        "sha256": "f64bf61dd54e4b73a476d6f562abe804ae7c48fcf4a973e4386a8716f3ec233a",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_011222.json",
+        "sha256": "914fc8fddbb170fb67d76bd5e6cc542442cd92413d06ea90f483420a0b13107f",
+        "completeness": [
+          "/selectedCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "selectedCoreCount": 16,
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/pixel-proof.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/current-source-pointer.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/qa/root-full-review.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_HUMAN_RESUME_20261021_221439/city_northwest-execution.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/human-resume-20261021-221439/current-checkpoint-after-local-adoption.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "docs/MAP_CHAT_REPLACEMENT_20261020_0515/snapshots/HEARTBEAT20_METADATA_READONLY_20261022_002209.json",
+        "record": {
+          "selectedCoreCount": 16,
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/qa/root-full-review.json",
+    "sourceSha256": "1da91af98b6000e7c07b530d0c2249a4228b1a2429c24760700816ac2bd1dd13",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "atUtc": "2026-10-22T03:32:36.753990+00:00",
+      "reviewer": "city_northwest/root exact33 cache verification plus independent local review",
+      "candidate": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/candidate.png",
+        "sha256": "b2fc0c9d268c0312718137895c2d75466d95e81789f1db92644b0877f50fae8b",
+        "bytes": 26971672,
+        "mtimeNs": "1792636501117276500"
+      },
+      "baseReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/reboot-blue-strip-20261021/fix01/proposal-binary-v2-occlusion/qa/root-review.json",
+        "sha256": "30c85d9746a3fc7682af93347b58373ccf339562be709197ab891096a8f7638c"
+      },
+      "producerReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/reboot-blue-strip-20261021/fix01/proposal-binary-v2-occlusion/qa/review.json",
+        "sha256": "9596f35d28b1d079629ad8d49f9866c7f88b1b78eb4bde6e19e234425d9b9d4a"
+      },
+      "counts": {
+        "internalTotal": 33,
+        "passed": 24,
+        "needsRepair": 9,
+        "unreviewed": 0,
+        "changedActuallyViewed": 0,
+        "unchangedExactReuse": 33
+      },
+      "checks": [
+        {
+          "name": "v1024_r1",
+          "priorName": "internal-x1024-segment01",
+          "tileBox": [
+            864,
+            0,
+            1184,
+            1024
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "94b2d6db7f053a2b52d4710495131ff3349658bed136377cf9e1e95a95deb43a",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x1024-segment01.png",
+            "sha256": "a62e8bca76467987cf4813aeb90192f8e573b53e46d1522eb05cdfb63ead9288"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v1024_r2",
+          "priorName": "internal-x1024-segment02",
+          "tileBox": [
+            864,
+            1024,
+            1184,
+            2048
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "6c35beafd7a4f6ee4862d6c71a069d6bf7a8a8dd49323fac62bca1d6bcf69cf0",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x1024-segment02.png",
+            "sha256": "1cafbaecce72d90153bfdb85157cea507d14f49b185b6127c580b38461e58ab6"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v1024_r3",
+          "priorName": "internal-x1024-segment03",
+          "tileBox": [
+            864,
+            2048,
+            1184,
+            3072
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "0942ec3e0d4e107183ca36a5992ffaf90afae3242b093c77a86659e6ecb88b52",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x1024-segment03.png",
+            "sha256": "c718791671f232c417ab705e22f7c59bf84fb256e50d320d40ec2479c7cf1174"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v1024_r4",
+          "priorName": "internal-x1024-segment04",
+          "tileBox": [
+            864,
+            3072,
+            1184,
+            4096
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "3312fe0379b68b59f254eecbe4275148412fe136b67b0f61489f1b8849a4ad21",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x1024-segment04.png",
+            "sha256": "a2bb22cbc04089b3ab7316f26d12088432ac027baa736217f83e253600400151"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v2048_r1",
+          "priorName": "internal-x2048-segment01",
+          "tileBox": [
+            1888,
+            0,
+            2208,
+            1024
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "0373c45bc227873a47c7779f9219466eaad99f1e4ba1694a9dca8c7ea59f0339",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x2048-segment01.png",
+            "sha256": "1f7ee1f00c32aa4e9b74396961302426a464aea30bbe9fc322c916ce9859e635"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v2048_r2",
+          "priorName": "internal-x2048-segment02",
+          "tileBox": [
+            1888,
+            1024,
+            2208,
+            2048
+          ],
+          "status": "needs_repair",
+          "finding": "Ivory diagonal border bevel and grout widths step at native junction.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "dcefcf7ff8a7fea1a79fb029e4bc2f9507a8bbcaf03c2424c2b86334faa3d102",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x2048-segment02.png",
+            "sha256": "8545e121052f34bdd6c0242c57a8aafefe42122ccf92b671f9096be89f8d387c"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v2048_r3",
+          "priorName": "internal-x2048-segment03",
+          "tileBox": [
+            1888,
+            2048,
+            2208,
+            3072
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "f542e3b06853fdd9afd9bc042f020f26a3f3bb4029ff3903d6a8973bcedc730f",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x2048-segment03.png",
+            "sha256": "c61b44fc0f535906438a2e2bdebf30c9ba4917e629292f4a58a3a20e415abd1a"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v2048_r4",
+          "priorName": "internal-x2048-segment04",
+          "tileBox": [
+            1888,
+            3072,
+            2208,
+            4096
+          ],
+          "status": "needs_repair",
+          "finding": "Diagonal fitted-stone joint makes a small unsupported offset near the upper crossing.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "e474d460c1e285732f16e45b618d42e3b19b937ad28db6951440a4238b18636b",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x2048-segment04.png",
+            "sha256": "97f2b27271549c7492a7cec1b5205967b525c954eb21aeaeec1479af80a49ed7"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v3072_r1",
+          "priorName": "internal-x3072-segment01",
+          "tileBox": [
+            2912,
+            0,
+            3232,
+            1024
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "13bbd0b5e13570a6a8f97e7d2e2b414c9a9eb4593c810da61683dd42a5728140",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x3072-segment01.png",
+            "sha256": "188c64f1251eb204101d4d42eb62a8386c086c96340ee6233c999c09399efb7a"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v3072_r2",
+          "priorName": "internal-x3072-segment02",
+          "tileBox": [
+            2912,
+            1024,
+            3232,
+            2048
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "2e0a021ed0a0d142a5e23fa9d03fccced5ab5b25854194e7186edd347478fa89",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x3072-segment02.png",
+            "sha256": "23be0c6466d236126482c97ebfaf94a55f8b4449779215d317efc9bc373eb662"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "v3072_r3",
+          "priorName": "internal-x3072-segment03",
+          "tileBox": [
+            2912,
+            2048,
+            3232,
+            3072
+          ],
+          "status": "needs_repair",
+          "finding": "Extra blue stripe removed in changed region, but old straightx3072 stone-face/grout/diagonal geometry cutoff remains from tile[3040,2170,3135,2570]. Preserve needs; this repair does not pass the entire vertical strip.",
+          "pixelsEqualBase": false,
+          "pixelSha256": "821c71d2eafd390144124e790e6f0ba95b4c289a2bdf6ae8bbbf0184998076eb",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/reboot-blue-strip-20261021/fix01/proposal-binary-v2-occlusion/qa/v3072_r3.png",
+            "sha256": "204b31aa951e4f0b9cb98d8681b4abe9c87de84efd0c6c0c7aedcad5cd1cf285"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": true,
+          "reviewBasis": "Actual native crop viewed",
+          "independentRootBasis": "Actual original-pixel changed crop viewed by root"
+        },
+        {
+          "name": "v3072_r4",
+          "priorName": "internal-x3072-segment04",
+          "tileBox": [
+            2912,
+            3072,
+            3232,
+            4096
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "f5f1c8bd585023a3e6827d6cedd57ca24321ec27f3a90b1bb83d5f45d8fca487",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-x3072-segment04.png",
+            "sha256": "4c7aff29458983ba80fe76eab542d32f9c45e0dfb0973241b7dc9f5deef690bf"
+          },
+          "priorQAViewOrientation": "lossless90degCCW_for_viewing",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h1024_c1",
+          "priorName": "internal-y1024-segment01",
+          "tileBox": [
+            0,
+            864,
+            1024,
+            1184
+          ],
+          "status": "passed",
+          "finding": "Exact prior reviewed crop retained; original status unchanged.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "4f74d1703774275294cb84a2c684e526d4ed8f54eefebb20569205b0ce4db455",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y1024-segment01.png",
+            "sha256": "b37703a7a530e9be6ba8f8368b450468859d49c8c450733a7f6936d8f99ca73f"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h1024_c2",
+          "priorName": "internal-y1024-segment02",
+          "tileBox": [
+            1024,
+            864,
+            2048,
+            1184
+          ],
+          "status": "needs_repair",
+          "finding": "Ivory strip above row join does not connect to diagonal border starting below it; layout requires repair.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "1b46b70481dc289eb894a67ece22a87bd814550c9757b75dbb1f0f538792286b",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y1024-segment02.png",
+            "sha256": "7b00648e9739955fcda77e0dc4697bd5a9a1af010dbb4f4a8d51c2bd6bd1aff6"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h1024_c3",
+          "priorName": "internal-y1024-segment03",
+          "tileBox": [
+            2048,
+            864,
+            3072,
+            1184
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "5d0798d18a204bbb3cfc7a0d8849e20e2479397277035e202c0505077a9182f5",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y1024-segment03.png",
+            "sha256": "37a381ab48f0c787924275f860ff415c50f90d3245626920388f246d7c8b5384"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h1024_c4",
+          "priorName": "internal-y1024-segment04",
+          "tileBox": [
+            3072,
+            864,
+            4096,
+            1184
+          ],
+          "status": "passed",
+          "finding": "Exact prior reviewed crop retained; original status unchanged.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "bafe45e03475f1c86a64a509e130ffda098920fe0d55290f40f41ba5095c7f4c",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y1024-segment04.png",
+            "sha256": "adc1f342b5a3f596d9bb7d2d12a3d0fea67b7f9440f7a4ddd12a1a353b654f10"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h2048_c1",
+          "priorName": "internal-y2048-segment01",
+          "tileBox": [
+            0,
+            1888,
+            1024,
+            2208
+          ],
+          "status": "passed",
+          "finding": "Exact prior reviewed crop retained; original status unchanged.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "fb82c6e64280c5e89c73042a1ed62a07bee6df40aed4908f54acb85bb3081adf",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y2048-segment01.png",
+            "sha256": "7e1df174cd0c56243fdda1351c815c09e65d0daeab20f404586ee67330cf88ea"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h2048_c2",
+          "priorName": "internal-y2048-segment02",
+          "tileBox": [
+            1024,
+            1888,
+            2048,
+            2208
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "3dd91cdf8160001e19dce3324800ca8bd4f6eea60152aef1cd44bb505d9a8d7a",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y2048-segment02.png",
+            "sha256": "11b7def3a7bc5455fd5cf080ad1d7d8578ccb4192c67305f582c6620f0a87a57"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h2048_c3",
+          "priorName": "internal-y2048-segment03",
+          "tileBox": [
+            2048,
+            1888,
+            3072,
+            2208
+          ],
+          "status": "needs_repair",
+          "finding": "New small lower/right anchor contribution has no observed new source edge. Original beveled diagonal border height/width discontinuity near the center remains unmodified and needs.",
+          "pixelsEqualBase": false,
+          "pixelSha256": "35265a45dba4d5e5418265a6b67bdfdc2b25d94d12b6a49dbbb550594e307fe0",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/reboot-blue-strip-20261021/fix01/proposal-binary-v2-occlusion/qa/h2048_c3.png",
+            "sha256": "34a8784b997c7af8cbbaeae2542ebdee779b9ceda73216198851628274457967"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": true,
+          "reviewBasis": "Actual native crop viewed",
+          "independentRootBasis": "Actual original-pixel changed crop viewed by root"
+        },
+        {
+          "name": "h2048_c4",
+          "priorName": "internal-y2048-segment04",
+          "tileBox": [
+            3072,
+            1888,
+            4096,
+            2208
+          ],
+          "status": "passed",
+          "finding": "Pale paving, grout and real upper broad blue-band border continue through changed lower portion. No new horizontal source cutoff introduced.",
+          "pixelsEqualBase": false,
+          "pixelSha256": "dd027c8e366557700c9a21920fa993c2cf3b9210d396f26a9f82739e95b67ac8",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/reboot-blue-strip-20261021/fix01/proposal-binary-v2-occlusion/qa/h2048_c4.png",
+            "sha256": "93e824de82c9373b3f8f388cda558fd85f2e06c57d7b6374240acd551aaea0d2"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": true,
+          "reviewBasis": "Actual native crop viewed",
+          "independentRootBasis": "Actual original-pixel changed crop viewed by root"
+        },
+        {
+          "name": "h3072_c1",
+          "priorName": "internal-y3072-segment01",
+          "tileBox": [
+            0,
+            2912,
+            1024,
+            3232
+          ],
+          "status": "needs_repair",
+          "finding": "Exact prior reviewed crop retained; original status unchanged.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "ed0a9df6c97ba944cd96ed4d53a6acfafb3b9b2c28d6e21e415b74d6ad8fcc5b",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y3072-segment01.png",
+            "sha256": "a0f422a11fba5b0649e05fa1dde7767c2cfa7b0d296e5b49d2bb3b8e176b7bfa"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h3072_c2",
+          "priorName": "internal-y3072-segment02",
+          "tileBox": [
+            1024,
+            2912,
+            2048,
+            3232
+          ],
+          "status": "passed",
+          "finding": "Exact prior reviewed crop retained; original status unchanged.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "db4fcb14ba644605262eb24d0ae61cc35bc7299ddf81525b1d3b0cd33686df17",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y3072-segment02.png",
+            "sha256": "523419b85934266e794cd34f5499d71060cb88bafc71e425675add32b459e8cb"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h3072_c3",
+          "priorName": "internal-y3072-segment03",
+          "tileBox": [
+            2048,
+            2912,
+            3072,
+            3232
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "658b2d826c08c983817bb6ffaa7a032c15198d8b112079dd81058bcf99da067c",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y3072-segment03.png",
+            "sha256": "115261cb8f0a07c204effe7934155b500c02f5d5c295f6289ce18b79b2220660"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "h3072_c4",
+          "priorName": "internal-y3072-segment04",
+          "tileBox": [
+            3072,
+            2912,
+            4096,
+            3232
+          ],
+          "status": "needs_repair",
+          "finding": "Exact prior reviewed crop retained; original status unchanged.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "448aa5d6eccc987a91270e93758bb746d310483f4529ba255371a2ebb67b446e",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/internal-y3072-segment04.png",
+            "sha256": "9b86d9157fa9d2c240be3d089474cb265102748799617ed426f0d7b42e415a51"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "j1024_1024",
+          "priorName": "junction-x1024-y1024",
+          "tileBox": [
+            864,
+            864,
+            1184,
+            1184
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "ce8106d0190bdcb8a846390123b08fc577607b1563d2d2f57d35bd49e8b41868",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/junction-x1024-y1024.png",
+            "sha256": "dfbb35470fdd3131b64555295a1bbf2022fd3bd72db833f7a7746abd1a23ce94"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "j2048_1024",
+          "priorName": "junction-x2048-y1024",
+          "tileBox": [
+            1888,
+            864,
+            2208,
+            1184
+          ],
+          "status": "needs_repair",
+          "finding": "Ivory strip/blue band transition has unsupported corner and border phase shift.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "d8c71d3390ec9ea63ff0520baa5d58814069a94d27106ad01968f61d6a047654",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/junction-x2048-y1024.png",
+            "sha256": "494e2b309782747d6d85a21c3f3ae8813e0d7ee0fd35316fb685ac3108c02d02"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "j3072_1024",
+          "priorName": "junction-x3072-y1024",
+          "tileBox": [
+            2912,
+            864,
+            3232,
+            1184
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "0ff998d46de47d9caa0029064f0bbc4180439ae25e098f36183950b573f25a12",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/junction-x3072-y1024.png",
+            "sha256": "ca71b3ddfac20dea583e52a20628b1b02440813f551e7dc79034ebcfc2702a1d"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "j1024_2048",
+          "priorName": "junction-x1024-y2048",
+          "tileBox": [
+            864,
+            1888,
+            1184,
+            2208
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "8be9ef21c60b4c8b686389f893e3ae232a5fdd5093198d814df1bf33ff162b05",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/junction-x1024-y2048.png",
+            "sha256": "924bf062f2340b9f59e971f20d8fb3e9d9c8c813ac15cc51634200edd30384da"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "j2048_2048",
+          "priorName": "junction-x2048-y2048",
+          "tileBox": [
+            1888,
+            1888,
+            2208,
+            2208
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "9276431a19f5cd207a1b61c1a3293fb5e9d6948eee773347faeb36447159fd16",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/junction-x2048-y2048.png",
+            "sha256": "77941f21b1018abbdf357e77ea70dc3ed2527a2a1a0e33a121cec2f39fef1cba"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "j3072_2048",
+          "priorName": "junction-x3072-y2048",
+          "tileBox": [
+            2912,
+            1888,
+            3232,
+            2208
+          ],
+          "status": "passed",
+          "finding": "This exact320px four-core junction retains coherent stone contacts; changed lower-corner anchor adds no visible new cutoff. Old lowerx3072 defect lies outside this junction crop.",
+          "pixelsEqualBase": false,
+          "pixelSha256": "7da7e5e51c3a9ec9625a190bedd46e760e5ed12ce4c420b306ec2d85c233bbad",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/reboot-blue-strip-20261021/fix01/proposal-binary-v2-occlusion/qa/j3072_2048.png",
+            "sha256": "e8554a76b588b42babfae50c3bc723a140695b3415a53b43e21f8d0a1d5eed34"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": true,
+          "reviewBasis": "Actual native crop viewed",
+          "independentRootBasis": "Actual original-pixel changed crop viewed by root"
+        },
+        {
+          "name": "j1024_3072",
+          "priorName": "junction-x1024-y3072",
+          "tileBox": [
+            864,
+            2912,
+            1184,
+            3232
+          ],
+          "status": "passed",
+          "finding": "Exact prior reviewed crop retained; original status unchanged.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "5bb35dbf09bcbc83e1fe8ef99252a0d36c4f7ccd889b81d0483ae88b332382cf",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/junction-x1024-y3072.png",
+            "sha256": "c3df87da2fe9cf87cf599816a0a825e5d6f24f0dd309bb4453106397396a41fe"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "j2048_3072",
+          "priorName": "junction-x2048-y3072",
+          "tileBox": [
+            1888,
+            2912,
+            2208,
+            3232
+          ],
+          "status": "needs_repair",
+          "finding": "Diagonal grout direction and width change at four-core junction.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "0faccf315bcfecc9e65e12ab7c2f223f3ba9214eac3271b32d9bb1cd43ece0f9",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/junction-x2048-y3072.png",
+            "sha256": "f699940f5d05a42088a0518118aaa9a6279abc4a5187f0bce14d1183443f8eae"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        },
+        {
+          "name": "j3072_3072",
+          "priorName": "junction-x3072-y3072",
+          "tileBox": [
+            2912,
+            2912,
+            3232,
+            3232
+          ],
+          "status": "passed",
+          "finding": "Exact original-pixel crop actually inspected: continuous fitted-stone contours/material and existing object edges; no additional native cutoff observed within this check.",
+          "pixelsEqualBase": true,
+          "pixelSha256": "7a967a2eaef8e553c313ea4c75e1a57e5238d34a5dda7b70fc45b2e7518a1d0b",
+          "qaCrop": {
+            "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/r08_c06-candidate-hard-1e9b42dc5fb2/junction-x3072-y3072.png",
+            "sha256": "aa0400e24ba84fd5769ae0f5b0d463cac8dae357d3b043cdb8c87ad970080d3c"
+          },
+          "priorQAViewOrientation": "same",
+          "actuallyViewedChangedCrop": false,
+          "reviewBasis": "Pinned prior review reused only after exact candidate RGB crop, prior file hash and base source chain verification; lossless viewing rotation accounted when present",
+          "independentRootBasis": "Prior acceptance reused after independent exact RGB crop comparison and pinned review verification"
+        }
+      ],
+      "pixelproof": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/pixel-proof.json",
+        "sha256": "e60f56d27abbd11ae1aa2167836a412143d6e36bc542a66388e0a72d25441ea6",
+        "bytes": 2925,
+        "mtimeNs": 1792636610556936700
+      },
+      "maskPerimeters": {
+        "independentReview": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/qa/independent-review.json",
+          "sha256": "21fe7a9b9e934dbaab878566217616d03045d513d62b4689d8f797e9c48dfbe0",
+          "bytes": 7331,
+          "mtimeNs": 1792636689752229500
+        },
+        "rootActuallyViewed": [
+          "complete-local-perimeter.png",
+          "paired-current-proposal-1254.png"
+        ],
+        "newConfirmedMaskDefect": false
+      },
+      "layout": {
+        "localMainUnapprovedBlueStripeRemoved": true,
+        "originalBroadBandUnchanged": true,
+        "rightIsolatedBlueFragmentStillNeedsDependency": false,
+        "dependencyBox": [
+          3890,
+          2855,
+          3980,
+          2905
+        ],
+        "frozenEast160CrossedByDependency": true,
+        "otherPriorLayoutFindingsRetained": true,
+        "priorReview": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/qa/layout-second-review-20261020/review.json",
+          "sha256": "637906e57fe8d14fb605d584c5eafc0491af69dc364319849f73ec510753b105"
+        },
+        "wholeLayoutPassed": false,
+        "extraBlueFragmentRemoved": true,
+        "mainThinStripeAndRightFragmentLocallyClosed": true,
+        "existingOtherLayoutIssuesRetained": true,
+        "pairedCurrentSources": {
+          "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/human-resume-20261021-221439/r08-boundary-audit/audit-data.json",
+          "sha256": "c022c19c157797b373317ffe9d978f9d4222de7767eae7a99d949564ec0b234d",
+          "bytes": 38625,
+          "mtimeNs": 1792636112434203500
+        }
+      },
+      "decision": "adopt_existing_native_mask_extension_local_extra_blue_closed",
+      "wholeTileInternalPassed": false,
+      "formalAccepted": false,
+      "independentLocalReview": {
+        "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c06/repair-batches/right-blue-20261021-221439/qa/independent-review.json",
+        "sha256": "21fe7a9b9e934dbaab878566217616d03045d513d62b4689d8f797e9c48dfbe0",
+        "bytes": 7331,
+        "mtimeNs": 1792636689752229500
+      }
+    }
+  }
+}

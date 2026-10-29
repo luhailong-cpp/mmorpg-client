@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "main",
+  "sceneId": 1,
+  "row": 8,
+  "column": 8,
+  "layoutSha256": "47485b823db7dbe4e63883f9ae6d759f3f2fbb5897c72f16fa64e921bde6ccd7",
+  "imageSha256": "e80a371481d515a116ba1c35cbbb89e0a8d824b4a7438044e776e35e4c03ca92",
+  "imageBytes": 28954751,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/candidate/r08_c08-native18-20261019-v5.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+  "sourceLedgerSha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r08_c08",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/candidate/r08_c08-native18-20261019-v5.png",
+    "imageSha256": "e80a371481d515a116ba1c35cbbb89e0a8d824b4a7438044e776e35e4c03ca92",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedAvailable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/selectedUsable",
+          16
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/completeCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "/currentCompleteCandidate",
+          true
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "sha256": "b70e35d8a42dcaf0a5900cc389571b691e0689dbc1a2a5bdbc5a657d37343f65",
+        "completeness": [
+          "missingNativePatches",
+          0
+        ]
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/resume-checkpoint-20261019-native18-v5.json",
+        "sha256": "b18d53ef48a017b76b6156c3be07959b570d1882e8e4a3146289854a292845dd",
+        "completeness": [
+          "/nativeCoreCount",
+          16
+        ]
+      }
+    ],
+    "selectionBasis": "source_bound_full_native_coverage_metadata",
+    "sourceStatus": {
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/current-status-20261019.json",
+        "record": {
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/progress.json",
+        "record": {
+          "internalQAPassed": false,
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/resume-checkpoint-20261019-native18-v5.json",
+        "record": {
+          "nativeCoreCount": 16,
+          "internalQA": {
+            "passed": 30,
+            "needsRepair": 3,
+            "total": 33
+          },
+          "externalQA": {
+            "north": {
+              "passed": 7,
+              "needsRepair": 0,
+              "total": 7,
+              "neighbor": {
+                "side": "north",
+                "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r07_c08/candidate/r07_c08-native16-20261018-v1.png",
+                "sha256": "aafbaae1e6c2426e0af57990d0167970163935337be8ee26d8d2e617b2d18988"
+              }
+            },
+            "west": "awaiting_current_neighbor",
+            "east": "awaiting_current_neighbor",
+            "south": "awaiting_current_neighbor"
+          },
+          "pending": [
+            {
+              "name": "v1024-r1",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/qa/fulltile-native17-20261019-v2/crops/v1024-r1.png",
+              "sha256": "f55ad0e8c6881500e8037ea2b8cf9de250dabc4b80488a62d3a550c506251c86",
+              "status": "needs_repair",
+              "findings": [
+                "Two same-world bridge returns improved the central joints but introduced perimeter endpoint/texture steps; zero pixels adopted. Keep original best source and needs_repair."
+              ]
+            },
+            {
+              "name": "v3072-r3",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/qa/fulltile-native18-20261019-v5/crops/v3072-r3.png",
+              "sha256": "c89e3b47cb874939b87e9aa36688fef812db68a48f95b909e11f86fe0dd90ca7",
+              "status": "needs_repair",
+              "findings": [
+                "Actual 1:1 native crop: retained prior short disconnected upper-left grout and brush-scale change remain unresolved. New slab interior above improves horizontal texture only; do not promote this existing needs item."
+              ]
+            },
+            {
+              "name": "j3072_2048",
+              "file": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/qa/fulltile-native18-20261019-v5/crops/j3072_2048.png",
+              "sha256": "6101dcb2efc60346ad4a49f1659a015376dee1ca902a3062a302222b2d647f0c",
+              "status": "needs_repair",
+              "findings": [
+                "Actual 1:1 native junction crop: right boundary follows original crack without a new straight selection edge, but the pre-existing short grout connector and material step below remain needs_repair."
+              ]
+            }
+          ],
+          "formalAccepted": false
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/current-status-20261019.json",
+    "sourceSha256": "854fd2f5608fd7cf7a0d4766c7eddfb37c15304ab2d87316bf3e4c1821eb6f54",
+    "normalizedDocument": {
+      "tile": "r08_c08",
+      "checkpoint": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/resume-checkpoint-20261019-native18-v5.json",
+      "checkpointSha256": "b18d53ef48a017b76b6156c3be07959b570d1882e8e4a3146289854a292845dd",
+      "candidateFile": "qdao_city_tiles_4k_20260916/builtin_q64_production/main-city-game-20261009/northwest/r08_c08/candidate/r08_c08-native18-20261019-v5.png",
+      "candidateSha256": "e80a371481d515a116ba1c35cbbb89e0a8d824b4a7438044e776e35e4c03ca92",
+      "formalAccepted": false
+    }
+  }
+}

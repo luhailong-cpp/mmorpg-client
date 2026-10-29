@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "https://github.com/luhailong-cpp/image",
+  "key": "island",
+  "sceneId": 2,
+  "row": 2,
+  "column": 1,
+  "layoutSha256": "e7a06f547274a29a01cc4e20223637e99c0fab534d4982361e824147c800b34f",
+  "imageSha256": "6f76154f3f755befc6774eaa6e88ed66189973f80eb92e3d16b3f5721ec39e3c",
+  "imageBytes": 26702748,
+  "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.png",
+  "sourceAuditSha256": "1a9f42665079bd458eb408b5db50a9753562c5bbfff0ec779ef9c0f912b4c99f",
+  "sourceLedgerPath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.json",
+  "sourceLedgerSha256": "873f21207b7b66f2342af8983e0172429eb1748d57f4ab604b0f604b1749f85f",
+  "selectionPolicy": "all_generated_current_layout",
+  "internalQaPassed": null,
+  "formalAccepted": false,
+  "acceptanceStatus": "generated_complete_qa_unverified",
+  "externalStatus": null,
+  "normalization": "art repository paths are relative; source-host references are historical only",
+  "sourceRecord": {
+    "tile": "r02_c01",
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.png",
+    "imageSha256": "6f76154f3f755befc6774eaa6e88ed66189973f80eb92e3d16b3f5721ec39e3c",
+    "completeNativeCoverage": true,
+    "coverageProof": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.json",
+        "sha256": "873f21207b7b66f2342af8983e0172429eb1748d57f4ab604b0f604b1749f85f",
+        "sourceReviewSha256": "873f21207b7b66f2342af8983e0172429eb1748d57f4ab604b0f604b1749f85f",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.png",
+            "sha256": "6f76154f3f755befc6774eaa6e88ed66189973f80eb92e3d16b3f5721ec39e3c"
+          },
+          "selection": {
+            "verifiedPixelCount": 16777216,
+            "selectedPixelCount": 7442,
+            "selectedDonorMismatchPixels": 0,
+            "outsideBaseMismatchPixels": 0,
+            "changedPixelCount": 7437,
+            "foreignSelectedPixels": 0
+          },
+          "parentLineage": {
+            "image": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r02_c01_water-v2_4096.png",
+              "sha256": "8690ead6c4f6306ac20617283b894089db2d4847f852f37c3046cd46a554fce5"
+            },
+            "record": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r02_c01_water-v2_4096.cross-native-repair.json",
+              "sha256": "af3f4e64ec141887533723bbdcf39193802179bb9bbd5eb97a7c8b062f8ec26f"
+            },
+            "actualFull16MProof": {
+              "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02r03_water_v2_delta_20261017/strict_replay.json",
+              "sha256": "668864c3911b67e4b65c7b8a4f6163277b9d4f7d571bd696981d19ff9f64fb6b"
+            },
+            "verifiedPixelCount": 16777216,
+            "unchangedProofReused": true,
+            "oldAncestorGraphsRescanned": false,
+            "originalVisualAcceptance": false
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/r02r03_water_v2_delta_20261017/strict_replay.json",
+        "sha256": "668864c3911b67e4b65c7b8a4f6163277b9d4f7d571bd696981d19ff9f64fb6b",
+        "sourceReviewSha256": "668864c3911b67e4b65c7b8a4f6163277b9d4f7d571bd696981d19ff9f64fb6b",
+        "completeness": {
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r02_c01_water-v2_4096.png",
+            "sha256": "8690ead6c4f6306ac20617283b894089db2d4847f852f37c3046cd46a554fce5"
+          },
+          "pixelCount": 16777216,
+          "fullNativeCoverage": true,
+          "rootAssembly": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02_c01_candidate-v1_4096.assembly.json",
+            "sha256": "7abd155c657df491999d5c0e25cf58639d914ab061acdb70489e80cdd86a6a35"
+          }
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r02_c01_water-v2_4096.cross-native-repair.json",
+        "sha256": "af3f4e64ec141887533723bbdcf39193802179bb9bbd5eb97a7c8b062f8ec26f",
+        "sourceReviewSha256": "af3f4e64ec141887533723bbdcf39193802179bb9bbd5eb97a7c8b062f8ec26f",
+        "completeness": {
+          "output": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r02r03_water-v2_20261017/r02_c01_water-v2_4096.png",
+            "sha256": "8690ead6c4f6306ac20617283b894089db2d4847f852f37c3046cd46a554fce5"
+          },
+          "operation": "same-coordinate projection of one cross-tile native repair",
+          "coverageAssertions": {
+            "fullNativeCoverage": true,
+            "unassignedPixels": 0,
+            "sameCoordinateRawOrUnchangedBase": true
+          },
+          "sourceCount": 0
+        }
+      }
+    ],
+    "selectionBasis": "Own output verifies every pixel as unchanged complete base or exact same-coordinate native donor; pinned full-output proof and zero-gap native base coverage are retained.",
+    "sourceStatus": {
+      "status": "CANDIDATE_PENDING_ACTUAL_NATIVE_GEOMETRY_REVIEW",
+      "formalAccepted": false
+    },
+    "sourceQaRecords": [
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.json",
+        "record": {
+          "status": "CANDIDATE_PENDING_ACTUAL_NATIVE_GEOMETRY_REVIEW",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-adopt-v1/selection.json",
+        "record": {
+          "status": "AUTHORIZED_TARGET_LEDGER_PRECOMMIT_NOT_CAS_RECEIPT"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-real-output-verification-v01/root-actual-finite-review-and-adoption-readiness.json",
+        "record": {
+          "status": "ROOT_ACTUAL_FINITE_STONE_PASS_NW_OWN_SINGLE_ADOPTION_READY",
+          "formalAccepted": false
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-real-output-v1/validate-base.json",
+        "record": {
+          "status": "PASS"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-real-output-v1/mechanical-proof.json",
+        "record": {
+          "status": "PASS_MECHANICAL_ONLY"
+        }
+      },
+      {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-real-output-v1/retained33-closure.json",
+        "record": {
+          "status": "PASS_UNCHANGED_33_RANGES_ONLY",
+          "remainingIssuesRetainedFromCurrentQA": [
+            {
+              "id": "unselected_far_left_shared_water_short_color_ledge",
+              "status": "PENDING",
+              "scope": "shared r02/r03 boundary beyond selected repair; far-left short bright/dark horizontal edge remains",
+              "attemptsAtThisPoint": 2,
+              "furtherSamePointAttemptAllowed": false
+            },
+            {
+              "id": "water_fine_caustic_density_color_material",
+              "status": "PENDING"
+            }
+          ]
+        }
+      }
+    ],
+    "qaSummaryMeaning": "Producer status only; importing this complete generated tile is not whole-map or runtime visual acceptance.",
+    "formalAcceptanceScope": "Any source formalAccepted value applies only to its original pinned neighbor set; whole map remains unaccepted."
+  },
+  "qa": {
+    "sourcePath": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-real-output-verification-v01/root-actual-finite-review-and-adoption-readiness.json",
+    "sourceSha256": "e297cfbfa1b73471433767461d5735810b57ea5fff8b42a0304064a281e53a5a",
+    "normalizedDocument": {
+      "schemaVersion": 1,
+      "atUtc": "2026-10-23T00:22:42.792Z",
+      "reviewer": "root island_west",
+      "status": "ROOT_ACTUAL_FINITE_STONE_PASS_NW_OWN_SINGLE_ADOPTION_READY",
+      "mechanicalReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-real-output-verification-v01/mechanical-review.json",
+        "sha256": "f2b469385db30c4f864af6ec171957450ff44673bd61c8a172239232366e1bec",
+        "bytes": 14213
+      },
+      "independentVisualReview": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-real-output-verification-v01/independent-actual-visual-review.json",
+        "sha256": "c2321ff11af23b5bd9592face53007761ef1420c90eea0afcf4d19785c8f3c0f",
+        "bytes": 4783
+      },
+      "rootSourceContract": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-selected-halo-contract-v01/root-source-contract-and-native-finite-review.json",
+        "sha256": "c095430b80266b7ac9a7b2f81a6272ba2756c642b21d0d90bf0071488f5adf12",
+        "bytes": 9830
+      },
+      "actualReassembled": {
+        "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-real-output-verification-v01/four-real-output-reassembled-native1254.png",
+        "sha256": "968bc3d5ac2c28e971d04368966a66db4671dcb0e86c5b6e9886eb11cbec7fdf",
+        "bytes": 2663796
+      },
+      "actualParts": [
+        {
+          "tileId": "r01_c01",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r01_c01_candidate-v10_4096.png",
+            "sha256": "12a94a2258d2ab1ef646345449b09fb5ff8918e6fea544d4cc1e82370d83165a",
+            "bytes": 24981989
+          },
+          "canonicalRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/tiles/r01_c01_candidate-v10_4096.native-repair.json",
+            "sha256": "154781b1cd51ce1ae1b7f5fc7dc2cc24f220a8c67bcb654d1a91c2168392b07d",
+            "bytes": 29777
+          },
+          "maskPixels": 0,
+          "actualChangedPixels": 0,
+          "outsideMaskParentMismatchPixels": 0
+        },
+        {
+          "tileId": "r01_c02",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c02_west-best-s02a01-s03a01-s04a02_4096.png",
+            "sha256": "322dabfa7fbb3edf31b2d577bf2cfa3dcb56cb07239cbd2a40bcbcdb8283410a",
+            "bytes": 25471144
+          },
+          "canonicalRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r01_c02_west-best-s02a01-s03a01-s04a02_4096.repair.json",
+            "sha256": "36a3b8af91fd2d976996173ccea244699d8d47e92641e24554bdc97d12de04a4",
+            "bytes": 9521
+          },
+          "maskPixels": 0,
+          "actualChangedPixels": 0,
+          "outsideMaskParentMismatchPixels": 0
+        },
+        {
+          "tileId": "r02_c01",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.png",
+            "sha256": "6f76154f3f755befc6774eaa6e88ed66189973f80eb92e3d16b3f5721ec39e3c",
+            "bytes": 26702748
+          },
+          "canonicalRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.json",
+            "sha256": "873f21207b7b66f2342af8983e0172429eb1748d57f4ab604b0f604b1749f85f",
+            "bytes": 22164
+          },
+          "maskPixels": 7442,
+          "actualChangedPixels": 7437,
+          "outsideMaskParentMismatchPixels": 0
+        },
+        {
+          "tileId": "r02_c02",
+          "image": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r02_c02_beam_common_alpha_rim_oct22_a02_4096.png",
+            "sha256": "6e458c28f7a892eb79f7ce7802722a8b25ccbde2e8907e2e8877bd14e371dd66",
+            "bytes": 29380303
+          },
+          "canonicalRecord": {
+            "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/tiles/r02_c02_beam_common_alpha_rim_oct22_a02_4096.png.generation.json",
+            "sha256": "13f5fddd28e2f829cfc79fb7db37d7ea011187b591091e64e883ac49768e15a5",
+            "bytes": 7147
+          },
+          "maskPixels": 15997,
+          "actualChangedPixels": 0,
+          "outsideMaskParentMismatchPixels": 0
+        }
+      ],
+      "actualViewed": [
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-real-output-verification-v01/four-real-output-reassembled-native1254.png",
+          "sha256": "968bc3d5ac2c28e971d04368966a66db4671dcb0e86c5b6e9886eb11cbec7fdf",
+          "bytes": 2663796
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-real-output-verification-v01/complete-object-full32-before-100pct.png",
+          "sha256": "2aa96c5d03fac76a903d858dfecc56c47e918ff24c27a43b39043ba1ccaf4947",
+          "bytes": 107594
+        },
+        {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/parallel-production-20261013/island-west-residences/qa/oct22-shared-west-rock-real-output-verification-v01/complete-object-full32-after-100pct.png",
+          "sha256": "e0c91f37f3a7d27dee280b9bd0d85a6264d9b43dc7c9cee3b9529e2c2ad02a2d",
+          "bytes": 106877
+        }
+      ],
+      "finiteVisualDecision": "PASS. Root directly viewed four-real-4096 reassembly at native1254 and full247x234 M+32 before/after. Original submerged stone mass and caustic contacts remain natural, truex627 joins as one stone group, no new bottom caustic stump or M outline.",
+      "mechanical": {
+        "verifiedPixels": 67108864,
+        "leftSelected": 7442,
+        "leftChanged": 7437,
+        "rightSelected": 15997,
+        "rightChanged": 0,
+        "upperMaskPixels": 0,
+        "allMExactDonorMismatchPixels": 0,
+        "outsideMParentMismatchPixels": 0,
+        "actualReassemblyProposalMismatchPixels": 0
+      },
+      "ownerAdoptionRelease": {
+        "ownerChat": "01a1589c-fd33-7743-b313-9a632b51c028",
+        "tileId": "r02_c01",
+        "candidate": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.png",
+          "sha256": "6f76154f3f755befc6774eaa6e88ed66189973f80eb92e3d16b3f5721ec39e3c",
+          "bytes": 26702748
+        },
+        "candidateRecord": {
+          "path": "qdao_city_tiles_4k_20260916/builtin_q64_production/island-game-20261009/northwest/qa/oct22-stone-writer-v1/proposals/stone-r02c01.json",
+          "sha256": "873f21207b7b66f2342af8983e0172429eb1748d57f4ab604b0f604b1749f85f",
+          "bytes": 22164
+        },
+        "maxOwnCas": 1,
+        "condition": "Northwest own fresh current image+record comparison and strict candidate QA/affected-range review, then own selection only. Root right6e458/13f5 stays unchanged; no duplicate4K required."
+      },
+      "newAiCalls": 0,
+      "newMask": 0,
+      "rootTileWrites": 0,
+      "rootSelectionWrites": 0,
+      "wholeWaterOrEdgePass": false,
+      "wholeTilePass": false,
+      "formalAccepted": false,
+      "remaining": "Horizontal four-corner water/brightness/caustic holds remain. This closes only the agreed finite main submerged stone group after actual owner adoption."
+    }
+  }
+}
