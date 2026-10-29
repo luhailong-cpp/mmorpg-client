@@ -107,6 +107,52 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void ActionTimer_ShowsServerDeadline_AndStaysVisibleAfterSubmitting()
+        {
+            _state.ActionDeadlineMs = (ulong)(BattleUiWidgets.NowUnixMs() + 25000);
+            _screen.ApplyState(_state);
+            _screen.Tick();
+            var timer = _canvas.transform.Find("BattleScreen/Hud/ActionTimer");
+            var seconds = timer.Find("TimerText").GetComponent<TMPro.TMP_Text>();
+            Assert.That(timer.gameObject.activeSelf, Is.True);
+            Assert.That(seconds.text, Is.EqualTo("25"));
+            Assert.That(timer.Find("SecondsUnit").GetComponent<TMPro.TMP_Text>().text, Is.EqualTo("秒"));
+
+            // 自己提交后仍在等待其他玩家,倒计时继续显示同一个服务端截止时间。
+            _screen.OnPhaseChanged(BattlePhase.Resolving);
+            _screen.Tick();
+            Assert.That(timer.gameObject.activeSelf, Is.True);
+            Assert.That(seconds.text, Is.EqualTo("25"));
+
+            _state.ActionDeadlineMs = (ulong)(BattleUiWidgets.NowUnixMs() - 1);
+            _screen.ApplyState(_state);
+            _screen.Tick();
+            Assert.That(timer.gameObject.activeSelf, Is.True);
+            Assert.That(seconds.text, Is.EqualTo("0"));
+
+            _screen.OnPhaseChanged(BattlePhase.Ended);
+            _screen.Tick();
+            Assert.That(timer.gameObject.activeSelf, Is.False, "终局不留下空计时框");
+        }
+
+        [Test]
+        public void ActionTimer_HidesWithoutDeadline_AndUsesPulledDeadlineOnReconnect()
+        {
+            var timer = _canvas.transform.Find("BattleScreen/Hud/ActionTimer");
+            _state.ActionDeadlineMs = 0;
+            _screen.ApplyState(_state);
+            _screen.Tick();
+            Assert.That(timer.gameObject.activeSelf, Is.False);
+
+            // 补拉只显示剩余时间,不能重新从 25 开始。
+            _state.ActionDeadlineMs = (ulong)(BattleUiWidgets.NowUnixMs() + 4000);
+            _screen.ApplyState(_state);
+            _screen.Tick();
+            Assert.That(timer.gameObject.activeSelf, Is.True);
+            Assert.That(timer.Find("TimerText").GetComponent<TMPro.TMP_Text>().text, Is.EqualTo("4"));
+        }
+
+        [Test]
         public void EnemySkillUsesTheRealSkillButtonAndRejectsFriendlyClicks()
         {
             Click("Cmd_Spell");

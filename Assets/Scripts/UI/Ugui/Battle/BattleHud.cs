@@ -176,19 +176,35 @@ namespace MmorpgClient.UI.Ugui.Battle
 
     /// <summary>
     /// 顶部行动预告条:按出手序横排头像,当前出手者高亮,已出手者变暗。
-    /// 20 瓦片满排宽 1476(x 542..2018),避开左上战斗记录键(≤526)与右上计时环(≥2080);
-    /// 底边 Top+TileHeight+名字 ≈ 132,舞台按 BattleStage.HudTopBand 让位。
+    /// 20 瓦片分列中央计时环两侧,满排宽 1476(x 542..2018),中央留 124 像素;
+    /// 名字外伸与高亮放大后仍让开计时环,舞台按 BattleStage.HudTopBand 让位。
     /// </summary>
     public sealed class BattleActionOrderBar
     {
-        public const float TileWidth = 70f;
+        public const float TileWidth = 64f;
         public const float TileHeight = 98f;
         public const float Gap = 4f;
+        public const float CenterGap = 124f;
+        public const float NameHorizontalPadding = 10f;
+        public const float HighlightScale = 1.15f;
         public const float Top = 12f;
         public const int MaxTiles = 20;
 
         /// <summary>满排(MaxTiles)时的总宽(设计像素)。</summary>
-        public static float FullWidth => MaxTiles * TileWidth + (MaxTiles - 1) * Gap;
+        public static float FullWidth => MaxTiles * TileWidth + (MaxTiles - 2) * Gap + CenterGap;
+
+        /// <summary>设计坐标中的瓦片矩形:左组右对齐中央空隙,右组左对齐,行动顺序由左至右。</summary>
+        public static Rect TileRect(int count, int index)
+        {
+            int n = Mathf.Clamp(count, 0, MaxTiles);
+            if (index < 0 || index >= n) return Rect.zero;
+            int leftCount = (n + 1) / 2;
+            float center = QdaoUguiTheme.DesignWidth * 0.5f;
+            float x = index < leftCount
+                ? center - CenterGap * 0.5f - leftCount * TileWidth - (leftCount - 1) * Gap + index * (TileWidth + Gap)
+                : center + CenterGap * 0.5f + (index - leftCount) * (TileWidth + Gap);
+            return new Rect(x, Top, TileWidth, TileHeight);
+        }
 
         private sealed class Tile
         {
@@ -215,14 +231,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             Clear();
             if (order == null || order.Count == 0) return;
             int n = Mathf.Min(order.Count, MaxTiles);
-            float total = n * TileWidth + (n - 1) * Gap;
-            float x0 = (QdaoUguiTheme.DesignWidth - total) * 0.5f;
             for (int i = 0; i < n; i++)
             {
                 ulong id = order[i];
                 var info = resolve != null ? resolve(id) : default;
                 var tile = new Tile { ActorId = id };
-                tile.Root = QdaoUguiFactory.CreateRect($"Tile_{id}", _root, x0 + i * (TileWidth + Gap), 0f, TileWidth, TileHeight);
+                var rect = TileRect(n, i);
+                tile.Root = QdaoUguiFactory.CreateRect($"Tile_{id}", _root, rect.x, rect.y - Top, rect.width, rect.height);
                 tile.Root.pivot = new Vector2(0.5f, 0.5f);
                 tile.Root.anchoredPosition += new Vector2(TileWidth * 0.5f, -TileHeight * 0.5f);
                 tile.Group = tile.Root.gameObject.AddComponent<CanvasGroup>();
@@ -232,7 +247,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 tile.Frame = BattleUiWidgets.CreatePanel("Frame", tile.Root, 0f, 0f, TileWidth, TileWidth, frameColor, false);
                 var portrait = QdaoUguiFactory.CreateImage("Portrait", tile.Root, 3f, 3f, TileWidth - 6f, TileWidth - 6f, info.Portrait);
                 if (info.Portrait == null) portrait.color = new Color(0.2f, 0.16f, 0.28f, 1f);
-                var name = QdaoUguiFactory.CreateText("Name", tile.Root, -10f, TileWidth + 2f, TileWidth + 20f, 20f,
+                var name = QdaoUguiFactory.CreateText("Name", tile.Root, -NameHorizontalPadding, TileWidth + 2f, TileWidth + 2f * NameHorizontalPadding, 20f,
                     info.Name ?? id.ToString(), 14f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
                 name.overflowMode = TextOverflowModes.Ellipsis;
                 _tiles.Add(tile);
@@ -261,7 +276,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var tile = _tiles[i];
                 bool active = i == found;
                 tile.Group.alpha = i < found ? 0.45f : 1f;
-                tile.Root.localScale = active ? new Vector3(1.15f, 1.15f, 1f) : Vector3.one;
+                tile.Root.localScale = active ? new Vector3(HighlightScale, HighlightScale, 1f) : Vector3.one;
                 if (active) tile.Root.SetAsLastSibling();
             }
         }

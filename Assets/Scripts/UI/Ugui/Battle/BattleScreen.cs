@@ -33,7 +33,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float RoundCounterX = 40f;
         public const float RoundCounterY = 20f;
         public static readonly Rect LogButtonRect = new Rect(356f, 28f, 170f, 54f);
-        public static readonly Rect TimerRect = new Rect(2080f, 24f, 90f, 90f);
+        public static readonly Rect TimerRect = new Rect((QdaoUguiTheme.DesignWidth - 90f) * 0.5f, 24f, 90f, 90f);
         public static readonly Rect StopWatchRect = new Rect(2300f, 980f, 220f, 64f);
         /// <summary>
         /// 目标提示/确认/取消条:贴在 BattleStage.HudBottomBand(992,按视频我方玩家排 slot0 脚底 948.6 + 名字 40 定)之下,
@@ -85,6 +85,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly BattleCommandRing _commandRing;
         private readonly TMP_Text _phaseText;
         private readonly TMP_Text _pendingText;
+        private readonly RectTransform _timerRoot;
         private readonly Image _timerRing;
         private readonly TMP_Text _timerText;
 
@@ -200,21 +201,26 @@ namespace MmorpgClient.UI.Ugui.Battle
                 string.Empty, 18f, QdaoUguiTheme.MutedBrown, TextAlignmentOptions.MidlineLeft);
             _pendingText.overflowMode = TextOverflowModes.Ellipsis;
 
-            // ── 顶部:行动预告条(x 542..2018,底边 ≈132 = BattleStage.HudTopBand 之上) ──
+            // ── 顶部:行动预告条,从中央倒计时两侧依次排开 ──
             _orderBar = new BattleActionOrderBar(_hudRoot);
 
-            // ── 回合计时环(行动预告条右侧) ──
-            var timerBg = QdaoUguiFactory.CreateImage("TimerBg", _hudRoot, TimerRect.x, TimerRect.y, TimerRect.width, TimerRect.height, BattleArtCatalog.RingSprite);
-            timerBg.color = new Color(0f, 0f, 0f, 0.45f);
-            _timerRing = QdaoUguiFactory.CreateImage("TimerRing", _hudRoot, TimerRect.x, TimerRect.y, TimerRect.width, TimerRect.height, BattleArtCatalog.RingSprite);
+            // ── 顶部中央:回合剩余秒数 + 计时环,共用服务端行动截止时间 ──
+            _timerRoot = QdaoUguiFactory.CreateRect("ActionTimer", _hudRoot, TimerRect.x, TimerRect.y, TimerRect.width, TimerRect.height);
+            var timerBg = BattleUiWidgets.CreatePanel("TimerBg", _timerRoot, 0f, 0f, TimerRect.width, TimerRect.height, BattleUiStyle.PanelBg, false);
+            BattleRoundCounter.ApplyNineSlice(timerBg, "panel_9slice");
+            _timerRing = QdaoUguiFactory.CreateImage("TimerRing", _timerRoot, 0f, 0f, TimerRect.width, TimerRect.height, BattleArtCatalog.RingSprite);
             _timerRing.type = Image.Type.Filled;
             _timerRing.fillMethod = Image.FillMethod.Radial360;
             _timerRing.fillOrigin = (int)Image.Origin360.Top;
             _timerRing.fillClockwise = false;
             _timerRing.color = BattleUiStyle.WarnText;
-            _timerText = QdaoUguiFactory.CreateText("TimerText", _hudRoot, TimerRect.x, TimerRect.y, TimerRect.width, TimerRect.height,
-                string.Empty, 30f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+            _timerRing.raycastTarget = false;
+            _timerText = QdaoUguiFactory.CreateText("TimerText", _timerRoot, 0f, 10f, TimerRect.width, 48f,
+                string.Empty, 36f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
             _timerText.fontStyle = FontStyles.Bold;
+            QdaoUguiFactory.CreateText("SecondsUnit", _timerRoot, 0f, 54f, TimerRect.width, 24f,
+                "秒", 18f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+            _timerRoot.gameObject.SetActive(false);
 
             // ── 右上:角色卡 ──
             _partyCards = new BattlePartyCards(_hudRoot);
@@ -547,7 +553,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _phaseText.text = "回合播放中…";
                 bool ongoing = _state == null || _state.Outcome == eBattleOutcome.BattleOutcomeOngoing;
                 long remainMs = _deadlineMs != 0 && ongoing ? (long)_deadlineMs - BattleUiWidgets.NowUnixMs() : -1;
-                SetTimer(remainMs, TimerRatio(remainMs));
+                SetTimer(_deadlineMs != 0 && ongoing ? System.Math.Max(0, remainMs) : -1, TimerRatio(remainMs));
                 return;
             }
             if (_spectate)
@@ -559,7 +565,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     _phaseText.text = remainMs > 0
                         ? "等待玩家行动"
                         : "等待回合结算…";
-                    SetTimer(remainMs, TimerRatio(remainMs));
+                    SetTimer(_deadlineMs != 0 ? System.Math.Max(0, remainMs) : -1, TimerRatio(remainMs));
                 }
                 else
                 {
@@ -580,14 +586,17 @@ namespace MmorpgClient.UI.Ugui.Battle
                         : remainMs < 0 && _deadlineMs != 0 ? "等待回合结算…"
                         : !IsChannelReady() ? "等待战斗连接…"
                         : _submitted ? "等待其他玩家…" : "请选择行动";
-                    SetTimer(remainMs, TimerRatio(remainMs));
+                    SetTimer(_deadlineMs != 0 ? System.Math.Max(0, remainMs) : -1, TimerRatio(remainMs));
                     break;
                 }
                 case BattlePhase.Resolving:
+                {
                     // 已提交 / 已阵亡、等回合结果:连不上时结果到不了,同样不说「结算中」
                     _phaseText.text = IsChannelFailed() ? ChannelFailedPhaseText : "回合结算中…";
-                    SetTimer(-1, 0f);
+                    long remainMs = (long)_deadlineMs - BattleUiWidgets.NowUnixMs();
+                    SetTimer(_deadlineMs != 0 ? System.Math.Max(0, remainMs) : -1, TimerRatio(remainMs));
                     break;
+                }
                 case BattlePhase.Ended:
                     _phaseText.text = "战斗结束";
                     SetTimer(-1, 0f);
@@ -609,6 +618,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void SetTimer(long remainMs, float ratio)
         {
             bool show = remainMs >= 0;
+            _timerRoot.gameObject.SetActive(show);
             if (_timerRing != null)
             {
                 _timerRing.gameObject.SetActive(show);
@@ -618,7 +628,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_timerText != null)
             {
                 _timerText.gameObject.SetActive(show);
-                if (show) _timerText.text = Mathf.Max(0, (int)(remainMs / 1000)).ToString();
+                if (show) _timerText.text = BattleHudLogic.CountdownSeconds(remainMs).ToString();
             }
         }
 
@@ -951,7 +961,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// 按 TurnPlan 播放回合表现(BattlePresenter 驱动),播完全量应用 state。
         /// 由 BattleUiRoot 以协程驱动;协程被 StopCoroutine 抢占后需再调 AbortPlayback 复位表现。
         ///
-        /// 演出预算:服务端在广播本回合结果前已把下一回合 action_deadline_ms 挂上(手动 6s / 全员自动 2s),
+        /// 演出预算:服务端在广播本回合结果前已把下一回合 action_deadline_ms 挂上(手动 25s / 全员自动 2s 起),
         /// 不等客户端 Ack。按 <see cref="PlaybackBudget"/> 用 deadline − now − 输入余量 决定倍率:
         /// 够就原速(自动 1.5x),不够就压缩到上限 6x,仍塞不下则 Skip 只落终态 —— 保证命令环在
         /// 窗口内至少留出 2.5s 给玩家手动出招,自动/观战也不再每回合被下一回合抢占。

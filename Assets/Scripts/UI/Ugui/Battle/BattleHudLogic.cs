@@ -13,6 +13,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>命令环按钮数(攻击/法术/防御/道具/召唤/逃跑/自动)。</summary>
         public const int CommandCount = 7;
 
+        /// <summary>剩余毫秒向上取整为秒:25 秒窗口刚开始仍显示 25,到期显示 0。</summary>
+        public static long CountdownSeconds(long remainMs) => remainMs <= 0 ? 0 : 1 + (remainMs - 1) / 1000;
+
         /// <summary>
         /// 行动预告序:优先服务端 TurnResultS2C.action_order(D3),过滤掉不在 actors 里的 id;
         /// 为空(旧服务端)时按 speed 降序本地排序(同速按 actor_id 升序),跳过已死亡/已逃离。

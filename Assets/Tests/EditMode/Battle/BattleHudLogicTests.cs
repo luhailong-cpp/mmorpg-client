@@ -12,6 +12,19 @@ namespace MmorpgClient.Tests.EditMode.Battle
     /// </summary>
     public sealed class BattleHudLogicTests
     {
+        [TestCase(25000L, 25L)]
+        [TestCase(24999L, 25L)]
+        [TestCase(24000L, 24L)]
+        [TestCase(1001L, 2L)]
+        [TestCase(1000L, 1L)]
+        [TestCase(1L, 1L)]
+        [TestCase(0L, 0L)]
+        [TestCase(-1L, 0L)]
+        public void CountdownSeconds_KeepsPartialSecondsVisibleUntilExpiry(long remainMs, long seconds)
+        {
+            Assert.That(BattleHudLogic.CountdownSeconds(remainMs), Is.EqualTo(seconds));
+        }
+
         private static BattleActorState Actor(ulong id, uint team, ulong speed = 0, bool dead = false, bool fled = false,
             eBattleActorType type = eBattleActorType.BattleActorTypePlayer)
         {

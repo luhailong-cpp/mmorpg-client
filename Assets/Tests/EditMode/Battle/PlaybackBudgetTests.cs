@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace MmorpgClient.Tests.EditMode.Battle
 {
     /// <summary>
-    /// 演出预算(PlaybackBudget):服务端行动窗口(手动 6s / 全员自动 2s)在广播 TurnResult 前就已起算,
+    /// 演出预算(PlaybackBudget):服务端行动窗口(手动 25s / 全员自动 2s 起)在广播 TurnResult 前就已起算,
     /// 客户端必须把演出压进 窗口 − 输入余量,否则多人局玩家永远拿不到手动输入。
     /// </summary>
     public sealed class PlaybackBudgetTests

@@ -6,7 +6,7 @@ namespace MmorpgClient.Game.Battle.Presentation
     /// 回合演出的时间预算(纯 C#,EditMode 可测)。
     ///
     /// 服务端(battle_room_manager ArmRoundTimer)在广播 TurnResult 之前就把下一回合的
-    /// action_deadline_ms 挂上(手动 6s / 全员自动 2s 起,出手单位超过 8 个时按每单位 250ms 放宽),且不等任何客户端 Ack。客户端若按
+    /// action_deadline_ms 挂上(手动 25s / 全员自动 2s 起,出手单位超过 8 个时按每单位 250ms 放宽),且不等任何客户端 Ack。客户端若按
     /// 拍时长原速串行播放(5v5 全普攻 ≈ 9s),命令环在整个窗口内都处于播放态,玩家永远拿不到
     /// 手动输入;自动/观战则每回合都被下一回合抢占。因此播放前按
     /// <c>budget = deadline − now − 余量</c> 决定倍率:预算够就原速(或自动战斗基础倍率),

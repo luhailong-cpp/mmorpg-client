@@ -77,11 +77,52 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.GreaterOrEqual(BattleScreen.CancelRect.yMin, BattleStage.HudBottomBand);
             Assert.GreaterOrEqual(BattleScreen.TargetHintRect.yMin, BattleStage.HudBottomBand);
 
-            // 预告条满排不压左上战斗记录键与右上计时环
-            float orderLeft = (QdaoUguiTheme.DesignWidth - BattleActionOrderBar.FullWidth) * 0.5f;
-            Assert.GreaterOrEqual(orderLeft, BattleScreen.LogButtonRect.xMax);
-            Assert.LessOrEqual(orderLeft + BattleActionOrderBar.FullWidth, BattleScreen.TimerRect.xMin);
-            Assert.LessOrEqual(BattleScreen.TimerRect.xMax, BattlePartyCards.CardRect(0).xMin);
+            // 预告条满排仍保持原总宽,两侧让开中央计时环。
+            var first = BattleActionOrderBar.TileRect(BattleActionOrderBar.MaxTiles, 0);
+            var last = BattleActionOrderBar.TileRect(BattleActionOrderBar.MaxTiles, BattleActionOrderBar.MaxTiles - 1);
+            Assert.AreEqual(1476f, BattleActionOrderBar.FullWidth);
+            Assert.AreEqual(BattleActionOrderBar.FullWidth, last.xMax - first.xMin);
+            Assert.GreaterOrEqual(first.xMin - BattleActionOrderBar.NameHorizontalPadding, BattleScreen.LogButtonRect.xMax);
+            Assert.LessOrEqual(last.xMax + BattleActionOrderBar.NameHorizontalPadding, BattlePartyCards.CardRect(0).xMin);
+            Assert.AreEqual(QdaoUguiTheme.DesignWidth * 0.5f, BattleScreen.TimerRect.center.x);
+            Assert.LessOrEqual(BattleScreen.TimerRect.yMax, BattleStage.HudTopBand);
+        }
+
+        [Test]
+        public void ActionOrder_NamesAndHighlights_ClearCentralCountdown_ForEveryCount()
+        {
+            for (int count = 1; count <= BattleActionOrderBar.MaxTiles; count++)
+            {
+                float previousRight = float.NegativeInfinity;
+                for (int index = 0; index < count; index++)
+                {
+                    var tile = BattleActionOrderBar.TileRect(count, index);
+                    Assert.GreaterOrEqual(tile.xMin, previousRight, $"{count}人:行动次序[{index}]不能倒排或重叠");
+                    previousRight = tile.xMax;
+                    var name = new Rect(tile.xMin - BattleActionOrderBar.NameHorizontalPadding,
+                        tile.yMin + BattleActionOrderBar.TileWidth + 2f,
+                        tile.width + 2f * BattleActionOrderBar.NameHorizontalPadding, 20f);
+                    foreach (float scale in new[] { 1f, BattleActionOrderBar.HighlightScale })
+                    {
+                        // 高亮以瓦片中心缩放,名字也随瓦片一起放大。
+                        var scaledTile = ScaleAround(tile, tile.center, scale);
+                        var scaledName = ScaleAround(name, tile.center, scale);
+                        Assert.IsFalse(scaledTile.Overlaps(BattleScreen.TimerRect),
+                            $"{count}人:行动头像[{index}]倍率{scale}遮住计时环");
+                        Assert.IsFalse(scaledName.Overlaps(BattleScreen.TimerRect),
+                            $"{count}人:行动名字[{index}]倍率{scale}遮住倒计时秒数");
+                        Assert.LessOrEqual(scaledTile.yMax, BattleStage.HudTopBand,
+                            $"{count}人:高亮头像[{index}]侵入舞台");
+                    }
+                }
+            }
+        }
+
+        private static Rect ScaleAround(Rect rect, Vector2 pivot, float scale)
+        {
+            Vector2 min = pivot + (rect.min - pivot) * scale;
+            Vector2 max = pivot + (rect.max - pivot) * scale;
+            return Rect.MinMaxRect(min.x, min.y, max.x, max.y);
         }
 
         [Test]
@@ -95,9 +136,9 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 ("战斗记录面板", BattleLogPanel.PanelRect),
                 ("未行动", BattleScreen.PendingTextRect),
                 ("计时环", BattleScreen.TimerRect),
-                ("行动预告条", new Rect((QdaoUguiTheme.DesignWidth - BattleActionOrderBar.FullWidth) * 0.5f,
-                    BattleActionOrderBar.Top, BattleActionOrderBar.FullWidth, BattleActionOrderBar.TileHeight)),
             };
+            for (int i = 0; i < BattleActionOrderBar.MaxTiles; i++)
+                others.Add(($"行动预告条[{i}]", BattleActionOrderBar.TileRect(BattleActionOrderBar.MaxTiles, i)));
             for (int i = 0; i < BattlePartyCards.MaxCards; i++)
                 others.Add(($"角色卡[{i}]", BattlePartyCards.CardRect(i)));
 
