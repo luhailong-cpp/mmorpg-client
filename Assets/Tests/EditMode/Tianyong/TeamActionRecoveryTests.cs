@@ -247,6 +247,35 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_store.Load(10), Is.Empty, "恢复原UUID取得终态后才释放持久槽");
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void TerminalReplyCleanupFailurePreservesTheRecordAndItsErrorMessage(bool businessRejection)
+        {
+            byte[] original = BeginApplication(out string saved);
+            var reply = NoTeamReply();
+            reply.Team.MembershipEpoch = 2;
+            if (businessRejection)
+                reply.ErrorMessage = new TipInfoMessage { Id = (uint)team_error.KTeamPlayerNotFound };
+
+            using (var guard = new FileStream(Path.Combine(_directory, "10.pending.lock"),
+                       FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
+                Assert.DoesNotThrow(() => _net.Reply(reply));
+
+            Assert.That(_client.Snapshot.MembershipEpoch, Is.EqualTo(2UL), "清理失败仍须应用权威视图");
+            Assert.That(_client.HasFreshView, Is.True);
+            Assert.That(_client.Status, Is.EqualTo("组队操作已确认，本机原请求尚未清理。"));
+            Assert.That(_store.Load(10), Is.EqualTo(saved));
+            _now += TeamClient.MessageWindowSeconds + 1;
+            int calls = _net.Calls.Count;
+            Assert.That(_client.Create(), Is.False);
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls));
+
+            Recreate();
+            AssertApplicationReplay(original);
+            _net.Reply(NoTeamReply());
+            Assert.That(_store.Load(10), Is.Empty, "恢复原请求取得终态后再释放记录");
+        }
+
         private string RateLimitError => "server tip=" + (uint)common_error.KRateLimitExceeded;
         private uint LastId => _net.Calls[_net.Calls.Count - 1].Id;
         private IMessage LastRequest => _net.Calls[_net.Calls.Count - 1].Request;

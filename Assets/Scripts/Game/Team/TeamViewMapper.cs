@@ -36,12 +36,14 @@ namespace MmorpgClient.Game.Team
             snapshot.MatchStarting = view.MatchState == TeamMatchState.Starting;
             // 补位匹配中:目标人数等三项只在这个状态下有意义,其余状态保持零值,免得界面读到无关的数。
             snapshot.MatchFillSupported = view.MatchFillSupported;
+            snapshot.PvpMatchSupported = view.PvpMatchSupported;
             snapshot.MatchQueued = view.MatchState == TeamBackfillProtocol.QueuedState;
             if (snapshot.MatchQueued)
             {
                 snapshot.MatchTargetSize = view.MatchTargetSize;
                 snapshot.MatchQueuedAtMs = view.MatchQueuedAtMs;
                 snapshot.MatchBattleConfigId = view.MatchBattleConfigId;
+                snapshot.MatchMode = view.MatchMode;
             }
             snapshot.ApplicationCount = view.ApplicationCount;
 

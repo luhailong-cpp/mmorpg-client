@@ -385,5 +385,23 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_net.CallsOf(MessageIds.JoinQueue), Is.Empty,
                 "无排队参数记忆 → 连续战斗不生效");
         }
+
+        [Test]
+        public void AdoptedTeamBattle_DoesNotRepeatAnEarlierSoloQueue()
+        {
+            _client.ContinuousBattle = true;
+            _client.Tick(0);
+            _client.JoinQueue(Match.MatchMode.PveSolo, 1);
+            PushBattleStart();
+            PushBattleEnd();
+            Assert.That(_client.AdoptQueue("全队匹配中"), Is.True);
+            PushBattleStart();
+            PushBattleEnd();
+
+            _client.AckBattleEnd();
+
+            Assert.That(_net.CallsOf(MessageIds.JoinQueue), Has.Count.EqualTo(1),
+                "随队开战须作废之前的单排记忆，不能在结算后独自排入旧队列");
+        }
     }
 }

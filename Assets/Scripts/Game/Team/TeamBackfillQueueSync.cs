@@ -86,7 +86,9 @@ namespace MmorpgClient.Game.Team
                 var snapshot = team.Snapshot;
                 _teamId = snapshot.TeamId;
                 _queuedAtMs = snapshot.MatchQueuedAtMs;
-                _adopted = battle.AdoptQueue(QueueHint(snapshot.MatchTargetSize));
+                _adopted = battle.AdoptQueue(snapshot.MatchMode == Match.MatchMode.PvpTeam
+                    ? $"全队匹配 PVP（{snapshot.MatchTargetSize}v{snapshot.MatchTargetSize}）：等待真人，任一队员取消将全队退出。"
+                    : QueueHint(snapshot.MatchTargetSize));
                 _mismatchRefreshed = false;
             }
             else if (!queued && hasView && adopted && battle.Phase == BattlePhase.Queued

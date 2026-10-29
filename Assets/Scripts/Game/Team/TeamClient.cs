@@ -94,6 +94,8 @@ namespace MmorpgClient.Game.Team
         public TeamSnapshot Snapshot { get; private set; }
         // 同一地域探测协调器由生产UI根注入；只有已组队玩家周期维护，避免全服空闲玩家持续探测。
         public Action<Action, Action<string>> PrepareMatchNetwork { get; set; }
+        public bool MatchNetworkPreparing { get; private set; }
+        private int _matchPrepareVersion;
         private float _nextNetworkProbeAt;
         /// <summary>永不为 null;收到的邀请。</summary>
         public IReadOnlyList<TeamInvite> Invites { get; }
@@ -141,6 +143,7 @@ namespace MmorpgClient.Game.Team
         /// <summary>Read-only action pacing for the UI; each action keeps its own Send quota.</summary>
         public bool InvitationCoolingDown => WriteCoolingDown(MessageIds.InviteToTeam);
         public bool CreationCoolingDown => WriteCoolingDown(MessageIds.CreateTeam);
+        public bool StartMatchCoolingDown => WriteCoolingDown(MessageIds.StartTeamMatch);
 
         private bool WriteCoolingDown(uint messageId)
         {
@@ -204,6 +207,8 @@ namespace MmorpgClient.Game.Team
 
         public void Reset()
         {
+            MatchNetworkPreparing = false;
+            ++_matchPrepareVersion;
             // 重置会丢弃旧回调，已有持久写意图的执行结果随之不明。
             if (_pendingActionRequest != null) _actionHadUncertainAttempt = true;
             // 零编号 gRPC 回包无法相关到已取消请求；同连接不得重用其槽位。
@@ -358,11 +363,13 @@ namespace MmorpgClient.Game.Team
                 reply => FinishWrite(TeamAction.Disband, 0, reply, "队伍已解散。"));
 
         /// <param name="targetTeamSize">0 为直接开局；目标人数更大时等待补位，必须由服务端明确声明支持。</param>
-        public bool StartMatch(uint battleConfigId, uint targetTeamSize = 0)
+        public bool StartMatch(uint battleConfigId, uint targetTeamSize = 0, Match.MatchMode matchMode = Match.MatchMode.PveTeam)
         {
+            if (MatchNetworkPreparing) { Status = "正在准备匹配网络，请稍候…"; Changed?.Invoke(); return false; }
+            if (matchMode == Match.MatchMode.Unspecified) matchMode = Match.MatchMode.PveTeam;
             RestoreStartIntent();
             if(_startRecoveryBlocked){Status="开局恢复记录无法读取，保留保护状态；请修复本机存储后重新登录。";Changed?.Invoke();return false;}
-            if(_pendingStart!=null&&(_pendingStart.BattleConfigId!=battleConfigId||_pendingStart.TargetTeamSize!=targetTeamSize)){Status="上一笔队伍开局结果尚未确认，请先恢复原请求。";Changed?.Invoke();return false;}
+            if(_pendingStart!=null&&(_pendingStart.BattleConfigId!=battleConfigId||_pendingStart.TargetTeamSize!=targetTeamSize||EffectiveMode(_pendingStart.MatchMode)!=matchMode)){Status="上一笔队伍开局结果尚未确认，请先恢复原请求。";Changed?.Invoke();return false;}
             // 旧补位分支忽略 UUID。未知结果只能先读权威队列，不能盲目重发成为第二次开局。
             if (_pendingStart != null && _pendingStart.TargetTeamSize > 0 && _startHadUncertainAttempt
                 && !_backfillIntentRecoverySupported)
@@ -372,17 +379,30 @@ namespace MmorpgClient.Game.Team
                 Changed?.Invoke();
                 return false;
             }
-            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId, targetTeamSize);
+            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId, targetTeamSize, matchMode);
             int generation = _generation; ulong teamId = Snapshot.TeamId;
-            PrepareMatchNetwork(() => { if (!_disposed && generation == _generation && Snapshot.TeamId == teamId) SendStartMatch(battleConfigId, targetTeamSize); },
-                error => { if (!_disposed && generation == _generation) { Status = error; Changed?.Invoke(); } });
+            int prepareVersion = ++_matchPrepareVersion;
+            MatchNetworkPreparing = true;
+            Status = "正在准备匹配网络，请稍候…";
+            Changed?.Invoke();
+            PrepareMatchNetwork(() =>
+                {
+                    if (_disposed || prepareVersion != _matchPrepareVersion) return;
+                    MatchNetworkPreparing = false;
+                    if (generation == _generation && Snapshot.TeamId == teamId && HasFreshView)
+                        SendStartMatch(battleConfigId, targetTeamSize, matchMode);
+                    else { Status = "队伍信息已变化，请重新发起战斗。"; Changed?.Invoke(); }
+                },
+                error => { if (!_disposed && prepareVersion == _matchPrepareVersion) { MatchNetworkPreparing = false; Status = error; Changed?.Invoke(); } });
             return true;
         }
 
-        private bool SendStartMatch(uint battleConfigId, uint targetTeamSize)
+        private static Match.MatchMode EffectiveMode(Match.MatchMode mode) => mode == Match.MatchMode.Unspecified ? Match.MatchMode.PveTeam : mode;
+
+        private bool SendStartMatch(uint battleConfigId, uint targetTeamSize, Match.MatchMode matchMode)
         {
-            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,TargetTeamSize=targetTeamSize,RequestId=Guid.NewGuid().ToString("D")};
-            bool backfill = request.TargetTeamSize > Snapshot.Members.Count;
+            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,TargetTeamSize=targetTeamSize,MatchMode=matchMode,RequestId=Guid.NewGuid().ToString("D")};
+            bool backfill = EffectiveMode(request.MatchMode) == Match.MatchMode.PvpTeam || request.TargetTeamSize > Snapshot.Members.Count;
             return Send(TeamAction.StartMatch,0,MessageIds.StartTeamMatch,request,TeamResponse.Parser,false,reply=>{
                 FinishWrite(TeamAction.StartMatch,0,reply,"已发起队伍战斗，正在集合队员…");
                 // 统一后的服务器若返回正式恢复意图，始终以它为准，包括目标人数大于当前人数的请求。
@@ -405,7 +425,9 @@ namespace MmorpgClient.Game.Team
             try{
                 string raw=MatchRecovery.Load(PlayerId);if(raw.Length==0)return;
                 var request=StartTeamMatchRequest.Parser.ParseFrom(Convert.FromBase64String(raw));
-                if(request.ExpectedTeamId==0||request.BattleConfigId==0||!Guid.TryParseExact(request.RequestId,"D",out var parsed)||parsed==Guid.Empty)throw new InvalidOperationException();
+                if(request.ExpectedTeamId==0||(EffectiveMode(request.MatchMode)==Match.MatchMode.PveTeam&&request.BattleConfigId==0)||
+                    (EffectiveMode(request.MatchMode)!=Match.MatchMode.PveTeam&&EffectiveMode(request.MatchMode)!=Match.MatchMode.PvpTeam)||
+                    !Guid.TryParseExact(request.RequestId,"D",out var parsed)||parsed==Guid.Empty)throw new InvalidOperationException();
                 _pendingStart=request;_startHadUncertainAttempt=true;RefreshQueued=true;Status="有待确认队伍开局，正在查询原请求。";
             }catch(Exception){_startRecoveryBlocked=true;Status="开局恢复记录损坏或无法读取，保留保护状态。";}
         }
@@ -417,8 +439,9 @@ namespace MmorpgClient.Game.Team
             // 旧补位契约没有恢复意图：当前同一队伍/副本/目标人数的权威队列足以证明所求效果已存在。
             // 不以空闲视图证明旧请求失败，也不把异队/异副本/异目标的队列当成原意图。
             var team = response.Team;
-            if (view == null && _pendingStart.TargetTeamSize > 0 && team != null
+            if (view == null && (_pendingStart.TargetTeamSize > 0 || EffectiveMode(_pendingStart.MatchMode) == Match.MatchMode.PvpTeam) && team != null
                 && team.TeamId == _pendingStart.ExpectedTeamId && team.MatchState == TeamBackfillProtocol.QueuedState
+                && EffectiveMode(team.MatchMode) == EffectiveMode(_pendingStart.MatchMode)
                 && team.MatchBattleConfigId == _pendingStart.BattleConfigId && team.MatchTargetSize == _pendingStart.TargetTeamSize)
             {
                 ClearStartIntent();
@@ -606,7 +629,7 @@ namespace MmorpgClient.Game.Team
                 bool backfillStart = action == TeamAction.StartMatch && _startExpectsQueue
                     && reply.Team?.MatchState != TeamMatchState.Starting;
                 Status = action == TeamAction.StartMatch && MatchQueued
-                    ? $"队伍已进入匹配队列（目标 {Snapshot.MatchTargetSize} 人），等待补位…"
+                    ? QueueDescription(Snapshot)
                     : backfillStart ? "队伍已进入匹配队列，等待补位…" : successText;
                 // 补位入队成功、回包视图却没在排(服务端读票据失败时如实下发):有界核实,拿到在排的视图才能被带入排队。
                 if (backfillStart) ExpectQueuedView();
@@ -732,7 +755,7 @@ namespace MmorpgClient.Game.Team
                     break;
                 case TeamBackfillProtocol.MatchQueuedReason:
                     Status = MatchQueued
-                        ? $"队长已发起队伍匹配（目标 {Snapshot.MatchTargetSize} 人），等待补位…"
+                        ? QueueDescription(Snapshot)
                         : "队长已发起队伍匹配，等待补位…";
                     HighlightPlayerId = 0;
                     BackfillNotice?.Invoke(Status, false);
@@ -910,6 +933,7 @@ namespace MmorpgClient.Game.Team
             snapshot.MatchTargetSize = 0;
             snapshot.MatchQueuedAtMs = 0;
             snapshot.MatchBattleConfigId = 0;
+            snapshot.MatchMode = Match.MatchMode.Unspecified;
         }
 
         /// <summary>队员的显示名;已不在队里时退回泛称。</summary>
@@ -986,10 +1010,16 @@ namespace MmorpgClient.Game.Team
                     if (!IsLeader) return "只有队长可以解散队伍。";
                     return MatchStarting ? MatchLockedMessage : null;
                 case TeamAction.StartMatch:
+                    if (!HasFreshView) return "队伍信息已过期，请先刷新。";
                     if (!IsLeader) return "只有队长可以开始战斗。";
-                    if (!(request is StartTeamMatchRequest start) || start.BattleConfigId == 0) return "该副本未开放组队。";
+                    if (!(request is StartTeamMatchRequest start)) return "匹配请求无效。";
+                    var mode = EffectiveMode(start.MatchMode);
+                    if (mode != Match.MatchMode.PveTeam && mode != Match.MatchMode.PvpTeam) return "该匹配模式未开放。";
+                    if (mode == Match.MatchMode.PveTeam && start.BattleConfigId == 0) return "该副本未开放组队。";
+                    if (mode == Match.MatchMode.PvpTeam && !Snapshot.PvpMatchSupported) return "当前服务器尚未开放整队 PVP 匹配。";
+                    if (start.TargetTeamSize > 5 || (start.TargetTeamSize != 0 && start.TargetTeamSize < Snapshot.Members.Count)) return "目标人数不能小于当前队伍人数，且不超过 5 人。";
                     if (MatchQueued) return MatchQueuedMessage;
-                    if (start.TargetTeamSize > Snapshot.Members.Count && !Snapshot.MatchFillSupported)
+                    if (mode == Match.MatchMode.PveTeam && start.TargetTeamSize > Snapshot.Members.Count && !Snapshot.MatchFillSupported)
                         return "当前服务器未开放队伍补位匹配。";
                     return MatchStarting ? MatchLockedMessage : null;
                 default:
@@ -998,6 +1028,10 @@ namespace MmorpgClient.Game.Team
         }
 
         /// <summary>发出时写入 Status 的进度文案(A.6)。</summary>
+        public static string QueueDescription(TeamSnapshot snapshot) => snapshot.MatchMode == Match.MatchMode.PvpTeam
+            ? $"队伍正在匹配 PVP（{snapshot.MatchTargetSize}v{snapshot.MatchTargetSize}），等待真人…"
+            : $"队伍已进入匹配队列（目标 {snapshot.MatchTargetSize} 人），等待补位…";
+
         private static string ProgressText(TeamAction action, IMessage request)
         {
             switch (action)
@@ -1101,9 +1135,12 @@ namespace MmorpgClient.Game.Team
                 Busy = false; PendingAction = TeamAction.None; PendingTarget = 0;
                 if (reply is TeamResponse teamReply && teamReply.Team == null && ReferenceEquals(Snapshot, snapshotAtSend))
                     HasFreshView = false;
+                string recoveryError = null;
                 if (!read && action != TeamAction.StartMatch && reply is TeamResponse actionReply)
-                    CompleteActionIntent(actionReply);
+                    recoveryError = CompleteActionIntent(actionReply);
                 onReply(reply);
+                // 权威视图仍需应用；但本机清理失败不能被普通成功/业务拒绝提示掩盖。
+                if (recoveryError != null) Status = recoveryError;
                 Changed?.Invoke();
             }, error =>
             {

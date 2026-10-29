@@ -26,6 +26,7 @@ namespace MmorpgClient.UI.Ugui.Team
         public static TeamUiRoot Instance { get; private set; }
         public TeamWindow Window => _window;
         public TeamClient Client => _client;
+        public BattleMatchEntryClient MatchEntry { get; private set; }
         public TeamInvitationWindow InvitationWindow => _invitations;
         public TeamInvitationDirectory InvitationDirectory => _directory;
         public TeamUiState State { get; } = new(() => Time.realtimeSinceStartup);
@@ -100,12 +101,7 @@ namespace MmorpgClient.UI.Ugui.Team
             _window.TransferRequested += id => { if (_available) _client?.TransferLeader(id); };
             _window.DisbandRequested += () => { if (_available) _client?.Disband(); };
             // v1 has one team dungeon; it matches the server's only PveTeamSizeByConfigId entry.
-            _window.StartMatchRequested += () => { if (_available) _client?.StartMatch(BattleUiStyle.PveTeamBattleConfigId); };
-            // 队伍补位匹配:整队进目标人数档的队列,凑满后同场开战。
-            _window.BackfillRequested += target =>
-            {
-                if (_available) _client?.StartMatch(BattleUiStyle.PveTeamBattleConfigId, target);
-            };
+            _window.StartMatchRequested += () => { if (_available) MatchEntry?.StartPve(); };
             State.Changed += RenderState;
             State.Reset();
             _hud.gameObject.SetActive(false);
@@ -126,6 +122,9 @@ namespace MmorpgClient.UI.Ugui.Team
                     _client.PrepareMatchNetwork = (ready, failed) => game.Battle.RegionProbe.Prepare(_ => ready(), failed);
                     _client.MatchRecovery = game.TeamMatchRecovery;
                     _client.ActionRecovery = game.TeamActionRecovery;
+                    MatchEntry = new BattleMatchEntryClient(_client, game.Battle,
+                        BattleUiStyle.PveTeamBattleConfigId, BattleUiStyle.Pvp1V1BattleConfigId);
+                    MatchEntry.Notice += ShowMatchNotice;
                     _client.Changed += SyncState;
                     if (game.LandingSync != null) _landingSync = LandingSyncBindings.BindTeam(game.LandingSync, _client);
                     _client.BackfillNotice += ShowBackfillNotice;
@@ -148,11 +147,13 @@ namespace MmorpgClient.UI.Ugui.Team
                 _invitations.ResetSession();
                 _directory?.Reset();
                 if (_client != null) _client.Reset();
+                MatchEntry?.Reset();
                 else State.Reset(playerId);
             }
             // 队伍补位匹配:把队伍视图的匹配态与 BattleClient 的排队态对齐(规则见 TeamBackfillQueueSync)。
             if (inGame) _backfillSync.Step(_client, BattleUiRoot.Instance?.Client);
             else _backfillSync.Reset();
+            MatchEntry?.Tick();
             _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
             // The live path mirrors the client and holds no token, so this is a no-op kept for consistency.
@@ -270,6 +271,8 @@ namespace MmorpgClient.UI.Ugui.Team
         private static void ShowBackfillNotice(string message, bool ended) =>
             BattleUiRoot.Instance?.ShowQueueNotice(message, ended);
 
+        private static void ShowMatchNotice(string message) => BattleUiRoot.Instance?.ShowQueueNotice(message, false);
+
         private void RenderState()
         {
             _window?.SetState(State);
@@ -284,6 +287,7 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void DisposeClient()
         {
+            if (MatchEntry != null) { MatchEntry.Notice -= ShowMatchNotice; MatchEntry.Dispose(); MatchEntry = null; }
             // 先解绑再销毁客户端,且放在任何提前返回之前,保证一定释放。
             _landingSync?.Dispose();
             _landingSync = null;

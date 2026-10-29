@@ -585,38 +585,28 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(targets, Is.Empty);
         }
 
-        [Test]
-        public void StartMatchDialog_OffersBackfillTargets()
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(5)]
+        public void PveStartDialog_AlwaysOffersCurrentRosterWithoutWaitingForFive(int members)
         {
-            _snapshot.Members.Add(Role(12, "同行道友", 66, 2, 2));
+            while (_snapshot.Members.Count < members)
+                _snapshot.Members.Add(Role((ulong)(12 + _snapshot.Members.Count), "同行道友", 66, 2, 2));
             _snapshot.MatchFillSupported = true;
             Mirror(_snapshot, null);
             _window.Show();
-            int members = _snapshot.Members.Count;
             int direct = 0;
             var targets = new List<uint>();
             _window.StartMatchRequested += () => direct++;
             _window.BackfillRequested += targets.Add;
-
-            // 默认选「现有人数」= 直接开战,与加这排按钮之前一致。
             Click("StartTeamMatch");
             Assert.That(_window.IsModalOpen, Is.True);
-            Assert.That(ButtonText("TeamModalTarget" + members), Is.EqualTo(TeamWindow.StartTargetLabel(members, members, true)));
-            Assert.That(ButtonText("TeamModalTarget5"), Is.EqualTo(TeamWindow.StartTargetLabel(5, members, false)));
+            Assert.That(ActiveText(), Does.Contain("按当前队伍人数立即进入 PVE"));
+            Assert.That(_root.GetComponentsInChildren<UnityEngine.Transform>(true)
+                .Any(child => child.name.StartsWith("TeamModalTarget")), Is.False);
             Click("TeamModalConfirm");
             Assert.That(direct, Is.EqualTo(1));
             Assert.That(targets, Is.Empty);
-
-            // 选一个更大的人数 = 匹配补位。
-            Click("StartTeamMatch");
-            Click("TeamModalTarget5");
-            Assert.That(ButtonText("TeamModalTarget5"), Is.EqualTo(TeamWindow.StartTargetLabel(5, members, true)));
-            Assert.That(ButtonText("TeamModalTarget" + members), Is.EqualTo(TeamWindow.StartTargetLabel(members, members, false)));
-            Assert.That(ActiveText(), Does.Contain("凑满 5 人后一同进入副本"));
-            Click("TeamModalConfirm");
-            Assert.That(direct, Is.EqualTo(1));
-            Assert.That(targets, Is.EqualTo(new[] { 5u }));
-            Assert.That(_window.IsModalOpen, Is.False);
         }
 
         [Test]

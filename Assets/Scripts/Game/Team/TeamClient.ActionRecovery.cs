@@ -103,13 +103,13 @@ namespace MmorpgClient.Game.Team
             _actionHadUncertainAttempt = false;
         }
 
-        private void CompleteActionIntent(TeamResponse response)
+        private string CompleteActionIntent(TeamResponse response)
         {
             if (response.ErrorMessage != null && TipFaults.IsFault(response.ErrorMessage.Id)) {
                 _actionHadUncertainAttempt = true;
-                _actionRetryAt = _clock() + ReadRetryDelaySeconds; return;
+                _actionRetryAt = _clock() + ReadRetryDelaySeconds; return null;
             }
-            ClearActionIntent("组队操作已确认，本机原请求尚未清理。");
+            return ClearActionIntent("组队操作已确认，本机原请求尚未清理。") ? null : Status;
         }
 
         private bool ObserveActionTransportError(TeamAction action, string error)

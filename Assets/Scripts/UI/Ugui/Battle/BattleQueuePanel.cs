@@ -5,11 +5,9 @@ namespace MmorpgClient.UI.Ugui.Battle
 {
     /// <summary>
     /// 排队面板(场景内悬浮):
-    ///   - 模式选择:PVE(1~5 人档) / PVP 1v1 / PVP 5v5
+    ///   - 模式选择:PVE 按现有人数 / PVP 每方 1～5 人
     ///     (battle_config_id 用 BattleUiStyle 可配常量)
-    ///   - PVE 人数档:先点人数再点匹配。1 人即时开战;2 人起进该人数档的队列,凑满即开。
-    ///     怪物数量随人数成倍增加:每人对应一整组怪(服务端按人数生成),单人打一组,N 人打 N 组。
-    ///     已经组好队的由队长在队伍面板开战,不走这里。
+    ///   - PVE 单人或队伍立即开战；PVP 选择每方人数，等待真人，整队不拆。
     ///   - 「连续战斗」开关:纯客户端(BattleClient.ContinuousBattle),
     ///     结算面板收起(AckBattleEnd)后按上次参数自动重排(§11.2)
     ///   - 排队中状态:已等秒数 / 预计等待(来自 BattleClient.OnQueueStatus)
@@ -27,10 +25,10 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly BattleUiRoot _owner;
         private readonly RectTransform _root;
         private readonly UiTextButton _pveButton;
-        private readonly UiTextButton[] _pveSizeButtons;
-        private uint _pveTeamSize = 1; // 当前选中的 PVE 人数档(1..BattleUiStyle.PveTeamMaxSize)
+        private readonly UiTextButton[] _sizeButtons;
+        private uint _pvpTeamSize = 1; // PVP 每方目标人数；PVE 始终按权威队伍现有人数。
         private readonly UiTextButton _pvpButton;
-        private readonly UiTextButton _pvp5V5Button;
+        private readonly TMP_Text _matchHint;
         private readonly UiTextButton _continuousButton;
         private readonly UiTextButton _cancelButton;
         private readonly UiTextButton _duelButton;
@@ -63,33 +61,32 @@ namespace MmorpgClient.UI.Ugui.Battle
                 "×", 28f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _closeButton.Button.onClick.AddListener(Hide);
 
-            // PVE 人数档:一排等宽小按钮(原「单人 / 组队5人」两个大按钮占的那块区域,下方布局不动)
+            // 复用原人数档位置，仅用于 PVP 每方目标人数。
             int sizeCount = (int)BattleUiStyle.PveTeamMaxSize;
             const float sizeRowWidth = 460f;
             const float sizeGap = 8f;
             float sizeWidth = (sizeRowWidth - sizeGap * (sizeCount - 1)) / sizeCount;
-            _pveSizeButtons = new UiTextButton[sizeCount];
+            _sizeButtons = new UiTextButton[sizeCount];
             for (int i = 0; i < sizeCount; i++)
             {
                 uint size = (uint)(i + 1); // 闭包各自捕获
-                _pveSizeButtons[i] = BattleUiWidgets.CreateTextButton($"PveSize{size}", _root,
+                _sizeButtons[i] = BattleUiWidgets.CreateTextButton($"PvpSize{size}", _root,
                     30f + i * (sizeWidth + sizeGap), 76f, sizeWidth, 64f,
-                    $"{size}人", 22f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
-                _pveSizeButtons[i].Button.onClick.AddListener(() => SelectPveTeamSize(size));
+                    $"{size}v{size}", 22f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+                _sizeButtons[i].Button.onClick.AddListener(() => SelectPvpTeamSize(size));
             }
 
             _pveButton = BattleUiWidgets.CreateTextButton("JoinPve", _root, 30f, 154f, 460f, 86f,
                 string.Empty, 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _pveButton.Button.onClick.AddListener(OnJoinPveClicked);
-            RefreshPveSizeSelection();
+            RefreshMatchSelection();
 
             _pvpButton = BattleUiWidgets.CreateTextButton("JoinPvp", _root, 30f, 256f, 460f, 74f,
                 "匹配 PVP(1v1)", 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
             _pvpButton.Button.onClick.AddListener(OnJoinPvpClicked);
 
-            _pvp5V5Button = BattleUiWidgets.CreateTextButton("JoinPvp5V5", _root, 30f, 346f, 460f, 74f,
-                "匹配 PVP(5v5)", 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
-            _pvp5V5Button.Button.onClick.AddListener(OnJoinPvp5V5Clicked);
+            _matchHint = BattleUiWidgets.CreateWrappedText("MatchHint", _root, 30f, 344f, 460f, 80f,
+                "PVE 按现有人数立即开战；PVP 等待真人，已组队由队长发起。", 18f, QdaoUguiTheme.StatusCream);
 
             _queueText = QdaoUguiFactory.CreateText("QueueText", _root, 30f, 436f, 460f, 40f,
                 string.Empty, 20f, BattleUiStyle.WarnText);
@@ -182,6 +179,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>每帧刷新排队计时文案。</summary>
         public void Tick()
         {
+            if (IsVisible) RefreshMatchSelection();
             if (!IsVisible || !_queueing || _queueText == null) return;
             uint waited = _serverStatusAt >= 0f
                 ? _serverQueuedSeconds + (uint)Mathf.Max(0f, Time.realtimeSinceStartup - _serverStatusAt)
@@ -194,11 +192,11 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         // ── 交互 ─────────────────────────────────────────────
 
-        private void SelectPveTeamSize(uint size)
+        private void SelectPvpTeamSize(uint size)
         {
             if (_queueing) return; // 排队中不改档:已发出的请求按发出时的人数算
-            _pveTeamSize = size;
-            RefreshPveSizeSelection();
+            _pvpTeamSize = size;
+            RefreshMatchSelection();
         }
 
         /// <summary>
@@ -206,60 +204,46 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// 用「√」(U+221A)而不是「✓」(U+2713):本面板的字体 SimKai 里没有后者的字形,会显示成方框;
         /// 匹配按钮文案写明人数与怪物倍数(客户端不知道一组怪有几只,只写倍数)。
         /// </summary>
-        private void RefreshPveSizeSelection()
+        private void RefreshMatchSelection()
         {
-            if (_pveSizeButtons != null)
-            {
-                for (int i = 0; i < _pveSizeButtons.Length; i++)
+            var entry = _owner?.MatchEntry;
+            uint members = entry?.CurrentSize ?? 1;
+            if (!_queueing && _pvpTeamSize < members) _pvpTeamSize = members;
+            if (_sizeButtons != null)
+                for (int i = 0; i < _sizeButtons.Length; i++)
                 {
-                    var sizeButton = _pveSizeButtons[i];
-                    if (sizeButton == null) continue;
+                    var button = _sizeButtons[i];
+                    if (button == null) continue;
                     uint size = (uint)(i + 1);
-                    bool selected = size == _pveTeamSize;
-                    if (sizeButton.Plate != null)
-                    {
-                        sizeButton.Plate.color = selected
-                            ? BattleUiStyle.PveSizeSelectedPlate
-                            : BattleUiStyle.ButtonPlate;
-                    }
-                    sizeButton.SetText(selected ? $"√{size}人" : $"{size}人");
+                    bool selected = size == _pvpTeamSize;
+                    if (button.Plate != null) button.Plate.color = selected ? BattleUiStyle.PveSizeSelectedPlate : BattleUiStyle.ButtonPlate;
+                    button.SetText((selected ? "√" : "") + $"{size}v{size}");
+                    button.SetInteractable(!_queueing && entry?.Pending != true && size >= members);
                 }
-            }
-            _pveButton?.SetText(_pveTeamSize <= 1
-                ? "匹配 PVE(1人 · 立即开战)"
-                : $"匹配 PVE({_pveTeamSize}人 · 怪物×{_pveTeamSize})");
-            BattleFidelityArt.ApplyPanel(_root);
+            _pveButton?.SetText($"PVE（{members}人 · 立即开战）");
+            _pvpButton?.SetText($"匹配 PVP（{_pvpTeamSize}v{_pvpTeamSize} · 真人）");
+            bool ready = !_queueing && entry?.Pending != true && entry?.IsMember != true;
+            _pveButton?.SetInteractable(ready);
+            _pvpButton?.SetInteractable(ready);
+            if (_matchHint != null) _matchHint.text = entry?.IsMember == true ? "你是队员，请由队长发起全队战斗。"
+                : entry?.Pending == true ? "正在同步队伍，确认后发起战斗…"
+                : "上方人数为 PVP 每方目标。PVE 按现有人数开战；PVP 等待真人，队伍一起入场。";
         }
 
         private void OnJoinPveClicked()
         {
-            var client = _owner?.Client;
-            if (client == null) { SetStatus("战斗模块未就绪"); return; }
-            if (_pveTeamSize <= 1)
-            {
-                // 1 人档不需要等人:沿用 PVE_SOLO 入口,服务端即时开战
-                SetStatus("已请求匹配 PVE(1 人),等待服务器…");
-                client.JoinQueue(Match.MatchMode.PveSolo, BattleUiStyle.PveSoloBattleConfigId);
-                return;
-            }
-            SetStatus($"已请求匹配 PVE({_pveTeamSize} 人,怪物数量是单人的 {_pveTeamSize} 倍),等待凑满 {_pveTeamSize} 人…");
-            client.JoinQueue(Match.MatchMode.PveTeam, BattleUiStyle.PveTeamBattleConfigId, _pveTeamSize);
+            var entry = _owner?.MatchEntry;
+            if (entry == null) { SetStatus("正在同步战斗与队伍模块，请稍候…"); return; }
+            entry.StartPve();
+            SetStatus(entry.Status);
         }
 
         private void OnJoinPvpClicked()
         {
-            var client = _owner?.Client;
-            if (client == null) { SetStatus("战斗模块未就绪"); return; }
-            SetStatus("已请求匹配 PVP(1v1),等待服务器…");
-            client.JoinQueue(Match.MatchMode._1V1, BattleUiStyle.Pvp1V1BattleConfigId);
-        }
-
-        private void OnJoinPvp5V5Clicked()
-        {
-            var client = _owner?.Client;
-            if (client == null) { SetStatus("战斗模块未就绪"); return; }
-            SetStatus("已请求匹配 PVP(5v5),等待凑满 10 人…");
-            client.JoinQueue(Match.MatchMode._5V5, BattleUiStyle.Pvp5V5BattleConfigId);
+            var entry = _owner?.MatchEntry;
+            if (entry == null) { SetStatus("正在同步战斗与队伍模块，请稍候…"); return; }
+            entry.StartPvp(_pvpTeamSize);
+            SetStatus(entry.Status);
         }
 
         private void OnContinuousClicked()
@@ -281,7 +265,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             var client = _owner?.Client;
             if (client == null) { SetStatus("战斗模块未就绪"); return; }
             SetStatus("已请求取消排队…");
-            client.CancelQueue();
+            if (_owner?.MatchEntry != null) _owner.MatchEntry.Cancel();
+            else client.CancelQueue();
         }
 
         private void OnDuelClicked()
@@ -307,12 +292,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             bool idle = !_queueing;
             _pveButton?.SetInteractable(idle);
-            if (_pveSizeButtons != null)
+            if (_sizeButtons != null)
             {
-                foreach (var sizeButton in _pveSizeButtons) sizeButton?.SetInteractable(idle);
+                foreach (var sizeButton in _sizeButtons) sizeButton?.SetInteractable(idle);
             }
             _pvpButton?.SetInteractable(idle);
-            _pvp5V5Button?.SetInteractable(idle);
+            RefreshMatchSelection();
             _duelButton?.SetInteractable(idle);
             _cancelButton?.SetVisible(_queueing);
             if (_queueText != null && !_queueing) _queueText.text = string.Empty;

@@ -49,6 +49,8 @@ namespace MmorpgClient.Game.Team
         public uint MatchTargetSize;
         public ulong MatchQueuedAtMs;
         public uint MatchBattleConfigId;
+        public Match.MatchMode MatchMode;
+        public bool PvpMatchSupported;
         // 服务端声明支持队伍补位匹配(且开关没关)。为真才给出「目标人数」选项:
         // 不认识目标人数的服务端(旧版本 / 另一版服务端)会把它静默当成直接开战。
         public bool MatchFillSupported;
@@ -69,6 +71,7 @@ namespace MmorpgClient.Game.Team
                 MatchStarting = MatchStarting, ApplicationCount = ApplicationCount, ServerTimeMs = ServerTimeMs,
                 MatchQueued = MatchQueued, MatchTargetSize = MatchTargetSize, MatchQueuedAtMs = MatchQueuedAtMs,
                 MatchBattleConfigId = MatchBattleConfigId, MatchFillSupported = MatchFillSupported,
+                MatchMode = MatchMode, PvpMatchSupported = PvpMatchSupported,
                 Members = CloneRoles(Members), Applications = CloneRoles(Applications),
                 PendingInvites = CloneRoles(PendingInvites), Approved = CloneRoles(Approved)
             };

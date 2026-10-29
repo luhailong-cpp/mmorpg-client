@@ -367,6 +367,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _playing = false;
             _playDone = true;
             _lastRound = 0;
+            _deadlineMs = 0;
             _deadlineStartMs = 0;
             _pending = PendingKind.None;
             _selectedTargetId = 0;

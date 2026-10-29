@@ -81,10 +81,26 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
         private StartTeamMatchRequest LastStart => (StartTeamMatchRequest)_net.Calls[_net.Calls.Count - 1].Request;
 
+        [Test]
+        public void UncertainPvpStart_PreservesModeAndTargetWhenRecoveringTheOriginalUuid()
+        {
+            Assert.That(_client.StartMatch(1, 3, Match.MatchMode.PvpTeam), Is.True);
+            var original = LastStart.Clone();
+            _net.Fail("rpc timeout");
+            _now += 4;
+            _client.DrainQueued(false);
+            _net.Reply(new TeamResponse { Team = View(2), MatchIntent = new TeamMatchIntent { RequestId = original.RequestId } });
+            _now += 1;
+            Assert.That(_client.StartMatch(1, 3, Match.MatchMode.PveTeam), Is.False, "同副本、同人数的PVE不是原PVP意图");
+            Assert.That(_client.StartMatch(1, 4, Match.MatchMode.PvpTeam), Is.False, "不得更换未知结果请求的目标人数");
+            Assert.That(_client.StartMatch(1, 3, Match.MatchMode.PvpTeam), Is.True);
+            Assert.That(LastStart, Is.EqualTo(original));
+        }
+
         private TeamView View(ulong version)
         {
             var view = new TeamView { TeamId = 100, LeaderId = _net.PlayerId, Capacity = 5,
-                Version = version, MembershipEpoch = 1, MatchFillSupported = true };
+                Version = version, MembershipEpoch = 1, MatchFillSupported = true, PvpMatchSupported = true };
             view.Members.Add(new TeamMemberView { PlayerId = _net.PlayerId, IsLeader = true, IsOnline = true });
             return view;
         }

@@ -153,6 +153,40 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void ActionTimer_ReopeningTheSameRoundKeepsTheRingInSync()
+        {
+            // 空阵容隔离计时行为,同回合重开无需销毁 EditMode 的头像和单位对象。
+            var parent = new GameObject("ReopenedTimer", typeof(RectTransform));
+            parent.transform.SetParent(_canvas.transform, false);
+            var owner = _canvas.transform.Find("InactiveBattleOwner").GetComponent<BattleUiRoot>();
+            var screen = new BattleScreen(owner, parent.transform);
+            try
+            {
+                var state = new BattleStateS2C
+                {
+                    RoundIndex = 1,
+                    ActionDeadlineMs = (ulong)(BattleUiWidgets.NowUnixMs() + 25000),
+                };
+                screen.Open(state, MyId);
+                screen.AbortPlayback();
+
+                // 截止时间没有变化,计时环仍须使用本次打开时的剩余时长。
+                screen.Open(state, MyId);
+                screen.AbortPlayback();
+                screen.OnPhaseChanged(BattlePhase.WaitingAction);
+                screen.Tick();
+                var timer = parent.transform.Find("BattleScreen/Hud/ActionTimer");
+                Assert.That(timer.Find("TimerText").GetComponent<TMPro.TMP_Text>().text, Is.EqualTo("25"));
+                Assert.That(timer.Find("TimerRing").GetComponent<Image>().fillAmount, Is.GreaterThan(0.95f));
+            }
+            finally
+            {
+                screen.Presenter.Dispose();
+                Object.DestroyImmediate(parent);
+            }
+        }
+
+        [Test]
         public void EnemySkillUsesTheRealSkillButtonAndRejectsFriendlyClicks()
         {
             Click("Cmd_Spell");

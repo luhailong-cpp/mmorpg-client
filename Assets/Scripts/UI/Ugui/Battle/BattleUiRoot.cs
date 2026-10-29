@@ -80,6 +80,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>供子面板取 BattleClient(可能为 null:NET 路尚未初始化)。</summary>
         public BattleClient Client => _client;
+        public BattleMatchEntryClient MatchEntry => Team.TeamUiRoot.Instance?.MatchEntry;
 
         /// <summary>供子面板取 SpectateClient(可能为 null:NET 路尚未初始化)。</summary>
         public SpectateClient Spectate => _spectate;

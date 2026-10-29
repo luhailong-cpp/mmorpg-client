@@ -74,37 +74,37 @@ namespace Match {
             "FQoNbWFwX2NvbmZpZ19pZBgDIAEoDRIZChFkdW5nZW9uX2NvbmZpZ19pZBgE",
             "IAEoDRIfCgV0ZWFtcxgFIAMoCzIQLm1hdGNoLk1hdGNoVGVhbRIPCgd6b25l",
             "X2lkGAYgASgNIjMKCU1hdGNoVGVhbRISCgp0ZWFtX2luZGV4GAEgASgNEhIK",
-            "CnBsYXllcl9pZHMYAiADKAQqswEKCU1hdGNoTW9kZRIaChZNQVRDSF9NT0RF",
+            "CnBsYXllcl9pZHMYAiADKAQqzAEKCU1hdGNoTW9kZRIaChZNQVRDSF9NT0RF",
             "X1VOU1BFQ0lGSUVEEAASEgoOTUFUQ0hfTU9ERV81VjUQARISCg5NQVRDSF9N",
             "T0RFXzNWMxACEhIKDk1BVENIX01PREVfMVYxEAMSFwoTTUFUQ0hfTU9ERV9Q",
             "VkVfU09MTxAEEhcKE01BVENIX01PREVfUFZFX1RFQU0QBRIcChhNQVRDSF9N",
-            "T0RFX1BWUF9DSEFMTEVOR0UQBiqnAQoKUXVldWVTdGF0ZRIbChdRVUVVRV9T",
-            "VEFURV9VTlNQRUNJRklFRBAAEhYKElFVRVVFX1NUQVRFX1FVRVVFRBABEhcK",
-            "E1FVRVVFX1NUQVRFX01BVENIRUQQAhIVChFRVUVVRV9TVEFURV9SRUFEWRAD",
-            "EhgKFFFVRVVFX1NUQVRFX0VOVEVSSU5HEAQSGgoWUVVFVUVfU1RBVEVfTk9U",
-            "X1FVRVVFRBAFMskHCgxNYXRjaFNlcnZpY2USXgoTR2V0TmV0d29ya1Byb2Jl",
-            "UGxhbhIhLm1hdGNoLkdldE5ldHdvcmtQcm9iZVBsYW5SZXF1ZXN0GiIubWF0",
-            "Y2guR2V0TmV0d29ya1Byb2JlUGxhblJlc3BvbnNlIgASWwoSQ29tbWl0TmV0",
-            "d29ya1Byb2JlEiAubWF0Y2guQ29tbWl0TmV0d29ya1Byb2JlUmVxdWVzdBoh",
-            "Lm1hdGNoLkNvbW1pdE5ldHdvcmtQcm9iZVJlc3BvbnNlIgASQAoJSm9pblF1",
-            "ZXVlEhcubWF0Y2guSm9pblF1ZXVlUmVxdWVzdBoYLm1hdGNoLkpvaW5RdWV1",
-            "ZVJlc3BvbnNlIgASMgoLQ2FuY2VsUXVldWUSGS5tYXRjaC5DYW5jZWxRdWV1",
-            "ZVJlcXVlc3QaBi5FbXB0eSIAEk8KDkdldFF1ZXVlU3RhdHVzEhwubWF0Y2gu",
-            "R2V0UXVldWVTdGF0dXNSZXF1ZXN0Gh0ubWF0Y2guR2V0UXVldWVTdGF0dXNS",
-            "ZXNwb25zZSIAElIKD0NoYWxsZW5nZVBsYXllchIdLm1hdGNoLkNoYWxsZW5n",
-            "ZVBsYXllclJlcXVlc3QaHi5tYXRjaC5DaGFsbGVuZ2VQbGF5ZXJSZXNwb25z",
-            "ZSIAElUKEFJlc3BvbmRDaGFsbGVuZ2USHi5tYXRjaC5SZXNwb25kQ2hhbGxl",
-            "bmdlUmVxdWVzdBofLm1hdGNoLlJlc3BvbmRDaGFsbGVuZ2VSZXNwb25zZSIA",
-            "EkEKFU5vdGlmeUNoYWxsZW5nZUludml0ZRIZLm1hdGNoLkNoYWxsZW5nZUlu",
-            "dml0ZVMyQxoGLkVtcHR5IgWImcgBAhJBChVOb3RpZnlDaGFsbGVuZ2VSZXN1",
-            "bHQSGS5tYXRjaC5DaGFsbGVuZ2VSZXN1bHRTMkMaBi5FbXB0eSIFiJnIAQIS",
-            "RgoLV2F0Y2hCYXR0bGUSGS5tYXRjaC5XYXRjaEJhdHRsZVJlcXVlc3QaGi5t",
-            "YXRjaC5XYXRjaEJhdHRsZVJlc3BvbnNlIgASUgoTUmVxdWVzdEJhdHRsZVRp",
-            "Y2tldBIbLlJlcXVlc3RCYXR0bGVUaWNrZXRSZXF1ZXN0GhwuUmVxdWVzdEJh",
-            "dHRsZVRpY2tldFJlc3BvbnNlIgASYQoUTGlzdFdhdGNoYWJsZUJhdHRsZXMS",
-            "Ii5tYXRjaC5MaXN0V2F0Y2hhYmxlQmF0dGxlc1JlcXVlc3QaIy5tYXRjaC5M",
-            "aXN0V2F0Y2hhYmxlQmF0dGxlc1Jlc3BvbnNlIgAaBYiowwEBQhFaC21hdGNo",
-            "L21hdGNomNRhFWIGcHJvdG8z"));
+            "T0RFX1BWUF9DSEFMTEVOR0UQBhIXChNNQVRDSF9NT0RFX1BWUF9URUFNEAcq",
+            "pwEKClF1ZXVlU3RhdGUSGwoXUVVFVUVfU1RBVEVfVU5TUEVDSUZJRUQQABIW",
+            "ChJRVUVVRV9TVEFURV9RVUVVRUQQARIXChNRVUVVRV9TVEFURV9NQVRDSEVE",
+            "EAISFQoRUVVFVUVfU1RBVEVfUkVBRFkQAxIYChRRVUVVRV9TVEFURV9FTlRF",
+            "UklORxAEEhoKFlFVRVVFX1NUQVRFX05PVF9RVUVVRUQQBTLJBwoMTWF0Y2hT",
+            "ZXJ2aWNlEl4KE0dldE5ldHdvcmtQcm9iZVBsYW4SIS5tYXRjaC5HZXROZXR3",
+            "b3JrUHJvYmVQbGFuUmVxdWVzdBoiLm1hdGNoLkdldE5ldHdvcmtQcm9iZVBs",
+            "YW5SZXNwb25zZSIAElsKEkNvbW1pdE5ldHdvcmtQcm9iZRIgLm1hdGNoLkNv",
+            "bW1pdE5ldHdvcmtQcm9iZVJlcXVlc3QaIS5tYXRjaC5Db21taXROZXR3b3Jr",
+            "UHJvYmVSZXNwb25zZSIAEkAKCUpvaW5RdWV1ZRIXLm1hdGNoLkpvaW5RdWV1",
+            "ZVJlcXVlc3QaGC5tYXRjaC5Kb2luUXVldWVSZXNwb25zZSIAEjIKC0NhbmNl",
+            "bFF1ZXVlEhkubWF0Y2guQ2FuY2VsUXVldWVSZXF1ZXN0GgYuRW1wdHkiABJP",
+            "Cg5HZXRRdWV1ZVN0YXR1cxIcLm1hdGNoLkdldFF1ZXVlU3RhdHVzUmVxdWVz",
+            "dBodLm1hdGNoLkdldFF1ZXVlU3RhdHVzUmVzcG9uc2UiABJSCg9DaGFsbGVu",
+            "Z2VQbGF5ZXISHS5tYXRjaC5DaGFsbGVuZ2VQbGF5ZXJSZXF1ZXN0Gh4ubWF0",
+            "Y2guQ2hhbGxlbmdlUGxheWVyUmVzcG9uc2UiABJVChBSZXNwb25kQ2hhbGxl",
+            "bmdlEh4ubWF0Y2guUmVzcG9uZENoYWxsZW5nZVJlcXVlc3QaHy5tYXRjaC5S",
+            "ZXNwb25kQ2hhbGxlbmdlUmVzcG9uc2UiABJBChVOb3RpZnlDaGFsbGVuZ2VJ",
+            "bnZpdGUSGS5tYXRjaC5DaGFsbGVuZ2VJbnZpdGVTMkMaBi5FbXB0eSIFiJnI",
+            "AQISQQoVTm90aWZ5Q2hhbGxlbmdlUmVzdWx0EhkubWF0Y2guQ2hhbGxlbmdl",
+            "UmVzdWx0UzJDGgYuRW1wdHkiBYiZyAECEkYKC1dhdGNoQmF0dGxlEhkubWF0",
+            "Y2guV2F0Y2hCYXR0bGVSZXF1ZXN0GhoubWF0Y2guV2F0Y2hCYXR0bGVSZXNw",
+            "b25zZSIAElIKE1JlcXVlc3RCYXR0bGVUaWNrZXQSGy5SZXF1ZXN0QmF0dGxl",
+            "VGlja2V0UmVxdWVzdBocLlJlcXVlc3RCYXR0bGVUaWNrZXRSZXNwb25zZSIA",
+            "EmEKFExpc3RXYXRjaGFibGVCYXR0bGVzEiIubWF0Y2guTGlzdFdhdGNoYWJs",
+            "ZUJhdHRsZXNSZXF1ZXN0GiMubWF0Y2guTGlzdFdhdGNoYWJsZUJhdHRsZXNS",
+            "ZXNwb25zZSIAGgWIqMMBAUIRWgttYXRjaC9tYXRjaJjUYRViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerBattleReflection.Descriptor, global::Match.MatchNetworkReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Match.MatchMode), typeof(global::Match.QueueState), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -162,6 +162,10 @@ namespace Match {
     /// 场景发起 PK(切磋):点名成局,不入队
     /// </summary>
     [pbr::OriginalName("MATCH_MODE_PVP_CHALLENGE")] PvpChallenge = 6,
+    /// <summary>
+    /// 真人人数档PVP：每侧1..5人，整支队伍保持同侧，等待真人对手。
+    /// </summary>
+    [pbr::OriginalName("MATCH_MODE_PVP_TEAM")] PvpTeam = 7,
   }
 
   public enum QueueState {
@@ -339,7 +343,9 @@ namespace Match {
     public const int TeamSizeFieldNumber = 7;
     private uint teamSize_;
     /// <summary>
-    /// PVE 人数档(只有 MATCH_MODE_PVE_TEAM 读它,docs/design/pve-team-size-matching.md):想凑成几人的队伍。
+    /// 人数档：PVE_TEAM 为同场玩家数，PVP_TEAM 为每侧玩家数(1..5)。
+    /// PVP_TEAM 的0按单人档处理；已有队伍由 StartTeamMatch 读取权威名单，不从本请求信任成员数组。
+    /// 以下副本人数上限规则仅用于PVE_TEAM(docs/design/pve-team-size-matching.md)。
     /// 怪物只数跟着实际参战人数走(每人一整组怪:单人打一组,N 人打 N 组)。
     ///   0        = 该副本的人数上限(加这个字段之前的行为;老客户端不填就是它)
     ///   1        = 不排队,即时开战

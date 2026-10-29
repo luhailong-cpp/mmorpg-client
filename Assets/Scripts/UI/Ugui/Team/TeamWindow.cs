@@ -317,7 +317,9 @@ namespace MmorpgClient.UI.Ugui.Team
             if (_state.MatchStarting) return "队伍正在集合进入战斗，名单暂时锁定。";
             if (_state.MatchQueued)
                 // 状态栏只有一行(936 宽、28 号、溢出省略),这句话要控制在 30 个全角字以内;完整规则在开战确认框和排队面板里。
-                return $"队伍匹配中（目标 {_state.Snapshot.MatchTargetSize} 人）：名单变动或任一队员取消即退出匹配。";
+                return _state.Snapshot.MatchMode == Match.MatchMode.PvpTeam
+                    ? $"匹配 PVP（{_state.Snapshot.MatchTargetSize}v{_state.Snapshot.MatchTargetSize}），等待真人；任一队员可取消。"
+                    : $"队伍匹配中（目标 {_state.Snapshot.MatchTargetSize} 人）：名单变动或任一队员取消即退出匹配。";
             if (!_state.IsLeader) return "你是队员，入队申请由队长处理。";
             if (_state.IsFull) return "队伍已满，可拒绝剩余申请。";
             return "同意申请后，道友将加入你的队伍。";
@@ -535,7 +537,7 @@ namespace MmorpgClient.UI.Ugui.Team
                 () => CanManage, () => DisbandRequested?.Invoke());
         }
 
-        private const string DirectStartDescription = "全队将一同进入组队副本，集合期间队伍名单会被锁定。确定开始吗？";
+        private const string DirectStartDescription = "按当前队伍人数立即进入 PVE 副本，无需凑满 5 人。全队一起入场，集合期间名单锁定。确定开始吗？";
 
         private static string BackfillDescription(uint target) =>
             $"全队进入匹配队列，凑满 {target} 人后一同进入副本（怪物数量随人数增加）。匹配期间名单变动或任一队员取消，全队都会退出匹配。";
@@ -552,51 +554,10 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             if (!CanStartMatch) return;
             int memberCount = _state.Snapshot.Members.Count;
-            int maxSize = (int)BattleUiStyle.PveTeamMaxSize;
             // 人数是这个确认框的前提(选项、说明、确认后的行为都按打开时的人数算):名单一变就不再允许,
             // Render 会把框关掉(与队长变更同一机制),确认时也会复核。
             bool StillAllowed() => CanStartMatch && _state.Snapshot.Members.Count == memberCount;
-            // 服务端没声明支持补位(旧版本 / 另一版服务端 / 开关已关)时不给目标人数:那些服务端会把目标人数
-            // 静默当成直接开战,选了「凑满 5 人」却被当场拉进 2 人战斗。
-            if (memberCount <= 0 || memberCount >= maxSize || !_state.Snapshot.MatchFillSupported)
-            {
-                Confirm("开始战斗", DirectStartDescription, StillAllowed, () => StartMatchRequested?.Invoke());
-                return;
-            }
-
-            var frame = Modal("开始战斗", DirectStartDescription, StillAllowed);
-            var description = frame.Find("TeamModalDescription").GetComponent<TMP_Text>();
-            int selected = memberCount;
-            var options = new List<KeyValuePair<int, TMP_Text>>();
-            void Select(int size)
-            {
-                selected = size;
-                description.text = size == memberCount ? DirectStartDescription : BackfillDescription((uint)size);
-                foreach (var option in options)
-                    option.Value.text = StartTargetLabel(option.Key, memberCount, option.Key == selected);
-            }
-            float x = 66;
-            for (int size = memberCount; size <= maxSize; size++)
-            {
-                int value = size;
-                var button = Control(frame, StartTargetLabel(size, memberCount, false), x, 252, 188, 72, () => Select(value), size: 26);
-                button.name = "TeamModalTarget" + size.ToString(CultureInfo.InvariantCulture);
-                options.Add(new KeyValuePair<int, TMP_Text>(size, button.GetComponentInChildren<TMP_Text>(true)));
-                x += 195;
-            }
-            Select(memberCount);
-
-            _modalHint = Label(frame, "", 66, 356, 968, 44, 25, ErrorInk);
-            _modalHint.name = "TeamModalError";
-            var cancel = Control(frame, "取消", 66, 440, 300, 82, CloseModal);
-            cancel.name = "TeamModalCancel";
-            var confirm = Control(frame, "确认", 692, 440, 340, 82, () => SubmitModal(() =>
-            {
-                if (selected == memberCount) StartMatchRequested?.Invoke();
-                else BackfillRequested?.Invoke((uint)selected);
-            }), primary: true);
-            confirm.name = "TeamModalConfirm";
-            EventSystem.current?.SetSelectedGameObject(cancel.gameObject);
+            Confirm("开始 PVE 战斗", DirectStartDescription, StillAllowed, () => StartMatchRequested?.Invoke());
         }
 
         private void ConfirmTransfer(ulong playerId)

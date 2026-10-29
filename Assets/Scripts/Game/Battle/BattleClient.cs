@@ -185,6 +185,13 @@ namespace MmorpgClient.Game.Battle
         /// </summary>
         public bool ContinuousBattle { get; set; }
 
+        /// <summary>生产入口接管结算后的续战，统一复核队伍与模式；未绑定时沿用独立客户端的单排记忆。</summary>
+        public Action ContinuousMatchRequested { get; set; }
+        public event Action SessionEnded;
+
+        /// <summary>整队发起、随队入场或主动取消时，旧的单排参数不再代表本次意图。</summary>
+        public void ForgetQueueMemory() => _hasQueueMemory = false;
+
         /// <summary>
         /// 本人自动战斗的服务端权威状态(数据源 BattleStateS2C.actors[本人].is_auto;
         /// 与 AutoBattleLatched 的区别:这是渲染开关用的真值,那是本地意愿)。
@@ -489,6 +496,7 @@ namespace MmorpgClient.Game.Battle
             _endAckPending = false; // 与 JoinQueue 同口径:新的排队作废未消费的结束 Ack,不让连续战斗紧跟着再单排
             _queueSession++;
             QueueAdopted = true;
+            ForgetQueueMemory();
             AdoptedQueueHint = hint ?? string.Empty;
             SetPhase(BattlePhase.Queued);
             _nextQueuePollAt = _now + QueuePollIntervalSeconds;
@@ -512,6 +520,8 @@ namespace MmorpgClient.Game.Battle
                 OnError?.Invoke("当前不在排队中");
                 return;
             }
+
+            ForgetQueueMemory();
 
             ClearJoinDiagnostics();
             if (RegionProbe != null && !_joinSent)
@@ -865,8 +875,10 @@ namespace MmorpgClient.Game.Battle
         {
             if (!_endAckPending) return;
             _endAckPending = false;
-            if (!ContinuousBattle || !_hasQueueMemory) return;
+            if (!ContinuousBattle) return;
             if (Phase != BattlePhase.None) return; // 已在新排队/新战斗(重连等):不抢入口
+            if (ContinuousMatchRequested != null) { ContinuousMatchRequested(); return; }
+            if (!_hasQueueMemory) return;
             JoinQueue(_lastQueueMode, _lastQueueConfigId, _lastQueueTeamSize);
         }
 
@@ -1087,6 +1099,8 @@ namespace MmorpgClient.Game.Battle
 
         private void HandleDisconnected()
         {
+            ForgetQueueMemory();
+            SessionEnded?.Invoke();
             ClearJoinDiagnostics();
             ++_queueGeneration;
             RegionProbe?.Dispose();
