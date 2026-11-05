@@ -40,7 +40,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const string EntryName = "MysteryMerchantEntry";
         public const string HotspotName = "MysteryMerchantHotspot";
         /// <summary>角标宽度:最长的文案是「神秘商人 59:59 后出现」。</summary>
-        public const float EntryWidth = 520f;
+        public const float EntryWidth = WorldHudNavigation.MerchantEntryWidth;
         /// <summary>走向商人时希望停在离他多远的地方(不踩到他身上);购买距离配得很小时会自动收近,见 MysteryMerchantNpc.StandOff。</summary>
         public const float ApproachStandOff = 3f;
         /// <summary>点了商人之后最多等多久走到;超过就放弃自动开店(玩家可能被挡住或改了主意)。</summary>
@@ -107,6 +107,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _entry = CreateEntry(_hud, Toggle);
             _entryLabel = _entry.GetComponentInChildren<TMP_Text>(true);
             _entry.gameObject.SetActive(false);
+            WorldHudNavigation.Register(WorldHudEntry.MysteryMerchant,
+                (RectTransform)_entry.transform, _entry, _entryLabel);
             _window = new MysteryMerchantWindow(design);
             _window.BuyRequested += quote => { if (_available) _client?.Buy(quote, 1); };
             _window.TravelRequested += TravelToMerchant;
@@ -207,12 +209,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             };
         }
 
-        /// <summary>建角标按钮:右上角线路角标的左边,同一行、同样的底图。</summary>
+        /// <summary>建角标按钮:使用主界面导航为状态条预留的位置。</summary>
         public static Button CreateEntry(UnityEngine.Transform hud, System.Action click)
         {
+            var bounds = WorldHudNavigation.MerchantEntryBounds;
             var entry = GameplayUiArt.Button(hud, MysteryMerchantModels.MerchantName,
-                BattleUiStyle.HudEntryX - EntryWidth - 16f, BattleUiStyle.HudEntryY(-1), EntryWidth,
-                BattleUiStyle.HudEntryHeight, click, true, fontSize: 30);
+                bounds.x, bounds.y, bounds.width, bounds.height, click, true, fontSize: 30);
             entry.name = EntryName;
             return entry;
         }

@@ -12,7 +12,7 @@ namespace MmorpgClient.UI.Ugui
     public enum WorldHudEntry
     {
         Role, Pet, Bag, Missions, Activities, Battle, Spectate, Rank,
-        Team, Guild, Social, Mail, Trade, Map, Channel, Skills
+        Team, Guild, Social, Mail, Trade, Map, Channel, Skills, MysteryMerchant
     }
 
     /// <summary>
@@ -35,6 +35,13 @@ namespace MmorpgClient.UI.Ugui
 
         private const float PanelX = 1420f, PanelY = 188f, PanelWidth = 700f;
         private const float TileWidth = 306f, TileHeight = 108f;
+        private const float CategoryFirstX = 1512f, CategoryY = 64f;
+        public const float MerchantEntryWidth = 520f;
+        // Reserve the status strip beside the category tabs in the same design space.
+        public static Rect MerchantEntryBounds => new Rect(
+            CategoryFirstX - MerchantEntryWidth - 32f, CategoryY, MerchantEntryWidth, 81.6f);
+        private static readonly WorldHudEntry[] EntryOrder =
+            (WorldHudEntry[])System.Enum.GetValues(typeof(WorldHudEntry));
         private const string NewArt = "UI/Ugui/WorldHud20261022/";
         private static readonly Color Ink = QdaoUguiTheme.Html("#244C3E");
         private static readonly Color SecondaryInk = QdaoUguiTheme.Html("#6B604A");
@@ -143,7 +150,7 @@ namespace MmorpgClient.UI.Ugui
                 int index = i;
                 _categorySprites[i] = LoadIcon(CategoryIcons[i], "UI/Ugui/RefreshV8/round_badge_taiji");
                 var tab = QdaoUguiFactory.CreateArtButton("WorldHudCategory_" + (WorldHudCategory)i,
-                    _chrome, 1512 + i * 154, 64, 146, 88,
+                    _chrome, CategoryFirstX + i * 154, CategoryY, 146, 88,
                     _normalTab, out var plate);
                 plate.type = Image.Type.Sliced;
                 var icon = QdaoUguiFactory.CreateImage("CategoryIcon", tab.transform, 10, 15, 58, 58,
@@ -200,6 +207,14 @@ namespace MmorpgClient.UI.Ugui
                 0, 0, TileWidth, TileHeight);
             var group = container.gameObject.AddComponent<CanvasGroup>();
             rect.SetParent(container, false);
+            if (id == WorldHudEntry.MysteryMerchant)
+            {
+                // Keep the merchant's countdown label and green status artwork.
+                var bounds = MerchantEntryBounds;
+                Place(rect, 0, 0, bounds.width, bounds.height);
+                return new Slot { Id = id, Source = rect, Container = container,
+                    Button = button, Label = label, Visibility = group };
+            }
             Place(rect, 0, 0, TileWidth, TileHeight);
             var buttonRect = (RectTransform)button.transform;
             if (buttonRect != rect) Place(buttonRect, 0, 0, TileWidth, TileHeight);
@@ -341,11 +356,11 @@ namespace MmorpgClient.UI.Ugui
             _socialNotice.SetActive(socialNotice);
             int position = 0;
             // Stable explicit order, independent of RuntimeInitializeOnLoad execution order.
-            for (int order = 0; order < 16; order++)
+            foreach (var entry in EntryOrder)
             {
                 foreach (var slot in _slots)
                 {
-                    if ((int)slot.Id != order) continue;
+                    if (slot.Id != entry) continue;
                     bool show = slot.Available && (IsQuick(slot.Id) || CurrentCategory == Category(slot.Id));
                     SetShown(slot, show);
                     if (IsQuick(slot.Id)) LayoutQuick(slot);
@@ -393,11 +408,16 @@ namespace MmorpgClient.UI.Ugui
                 case WorldHudEntry.Map: Place(slot.Container, 40, 32, 246, 88); break;
                 case WorldHudEntry.Channel: Place(slot.Container, 288, 32, 156, 88); break;
                 case WorldHudEntry.Bag: Place(slot.Container, 2308, 864, 204, 160); break;
+                case WorldHudEntry.MysteryMerchant:
+                    var bounds = MerchantEntryBounds;
+                    Place(slot.Container, bounds.x, bounds.y, bounds.width, bounds.height);
+                    break;
             }
         }
 
         private static bool IsQuick(WorldHudEntry id)
-            => IsReferenceEntry(id) || id == WorldHudEntry.Bag || id == WorldHudEntry.Map || id == WorldHudEntry.Channel;
+            => IsReferenceEntry(id) || id == WorldHudEntry.Bag || id == WorldHudEntry.Map ||
+                id == WorldHudEntry.Channel || id == WorldHudEntry.MysteryMerchant;
 
         private static bool IsReferenceEntry(WorldHudEntry id)
             => id == WorldHudEntry.Battle || id == WorldHudEntry.Spectate || id == WorldHudEntry.Role;

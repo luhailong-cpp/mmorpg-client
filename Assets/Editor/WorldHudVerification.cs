@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MmorpgClient.UI.Ugui;
+using MmorpgClient.UI.Ugui.Gameplay;
 using TMPro;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -18,7 +19,7 @@ using UnityEngine.UI;
 public static class WorldHudVerification
 {
     public static string OutputDirectory { get; set; } = Path.GetFullPath(Path.Combine(
-        Application.dataPath, "../.codex-artifacts/world-hud-20261022"));
+        Application.dataPath, "../.codex-artifacts/world-hud-20261105"));
 
     [Serializable] private sealed class Report
     {
@@ -45,7 +46,8 @@ public static class WorldHudVerification
         { WorldHudEntry.Team, "组队 [T]" }, { WorldHudEntry.Guild, "帮会 [G]" },
         { WorldHudEntry.Social, "仙友会" }, { WorldHudEntry.Mail, "仙笺" },
         { WorldHudEntry.Trade, "聚宝斋" }, { WorldHudEntry.Map, "地图 [M]" },
-        { WorldHudEntry.Channel, "10线 [L]" }
+        { WorldHudEntry.Channel, "10线 [L]" },
+        { WorldHudEntry.MysteryMerchant, "神秘商人 7线 09:07" }
     };
 
     private static readonly Dictionary<WorldHudCategory, WorldHudEntry[]> Members = new()
@@ -83,7 +85,7 @@ public static class WorldHudVerification
         try
         {
             foreach (var size in new[] { new Vector2Int(2560, 1080), new Vector2Int(1920, 1080),
-                new Vector2Int(1600, 900), new Vector2Int(1280, 720) })
+                new Vector2Int(1600, 900), new Vector2Int(1280, 720), new Vector2Int(1280, 960) })
                 Capture(size.x, size.y, checks, screenshots);
             report.status = "PASS";
             Debug.Log("WORLD_HUD_VERIFICATION_PASS|" + checks.Count + " checks|" +
@@ -146,10 +148,15 @@ public static class WorldHudVerification
                 if (!Labels.TryGetValue(id, out var label)) continue;
                 var owner = CreateCanvas("Source_" + id, 140);
                 var design = QdaoUguiFactory.CreateCenteredRect("SourceDesign", owner.transform, 2560, 1080);
-                var button = QdaoUguiFactory.CreateArtButton("SourceButton_" + id, design,
+                var button = id == WorldHudEntry.MysteryMerchant
+                    ? MysteryMerchantUiRoot.CreateEntry(design, null)
+                    : QdaoUguiFactory.CreateArtButton("SourceButton_" + id, design,
                     0, 0, 336, 82, QdaoUguiTheme.RequireSprite("UI/Ugui/CoreFidelity20261016/hud_button"), out _);
-                var text = QdaoUguiFactory.CreateText("SourceLabel", button.transform, 16, 0,
-                    304, 82, label, 32, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+                var text = id == WorldHudEntry.MysteryMerchant
+                    ? button.GetComponentInChildren<TMP_Text>(true)
+                    : QdaoUguiFactory.CreateText("SourceLabel", button.transform, 16, 0,
+                        304, 82, label, 32, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
+                text.text = label;
                 var source = new Source { Id = id, Owner = owner, Rect = (RectTransform)button.transform,
                     Button = button, Label = text };
                 button.onClick.AddListener(() => source.Clicks++);
@@ -202,6 +209,17 @@ public static class WorldHudVerification
             {
                 Refresh();
                 var rectangles = new List<Rect>();
+                Rect ScreenRect(RectTransform transform)
+                {
+                    var corners = new UnityEngine.Vector3[4];
+                    transform.GetWorldCorners(corners);
+                    var min = RectTransformUtility.WorldToScreenPoint(camera, corners[0]);
+                    var max = RectTransformUtility.WorldToScreenPoint(camera, corners[2]);
+                    return Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+                }
+                foreach (var tab in nav.Root.GetComponentsInChildren<Button>(true)
+                    .Where(button => button.name.StartsWith("WorldHudCategory_")))
+                    rectangles.Add(ScreenRect((RectTransform)tab.transform));
                 foreach (var source in sources)
                 {
                     bool expected = IsShortcut(source.Id) || (category.HasValue && Members[category.Value].Contains(source.Id));
@@ -210,11 +228,7 @@ public static class WorldHudVerification
                     Require(source.Rect.gameObject.activeSelf && source.Button.interactable,
                         source.Id + " original active/interactable state is retained");
                     if (!expected) continue;
-                    var corners = new UnityEngine.Vector3[4];
-                    source.Rect.GetWorldCorners(corners);
-                    var min = RectTransformUtility.WorldToScreenPoint(camera, corners[0]);
-                    var max = RectTransformUtility.WorldToScreenPoint(camera, corners[2]);
-                    var rect = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+                    var rect = ScreenRect(source.Rect);
                     Require(rect.width >= 40 && rect.height >= 40 && rect.xMin >= -.5f && rect.yMin >= -.5f &&
                         rect.xMax <= width + .5f && rect.yMax <= height + .5f,
                         source.Id + " usable target stays inside " + width + "x" + height + ": " + rect);
@@ -224,6 +238,22 @@ public static class WorldHudVerification
                 checks.Add(width + "x" + height + " " + (category?.ToString() ?? "closed") +
                     ": visibility, original states, target bounds and nonoverlap PASS");
             }
+
+            var merchant = sources.Find(source => source.Id == WorldHudEntry.MysteryMerchant);
+            foreach (var label in new[] { "神秘商人 7线 09:07", "神秘商人 59:59 后出现", "神秘商人 未开放" })
+            {
+                merchant.Label.text = label;
+                Refresh();
+                Require(!merchant.Label.isTextTruncated, "Merchant countdown fits: " + label);
+            }
+            merchant.Label.text = Labels[WorldHudEntry.MysteryMerchant];
+            merchant.Button.onClick.Invoke();
+            Require(merchant.Clicks == 1, "Merchant retains its original click callback");
+            merchant.Rect.gameObject.SetActive(false);
+            Refresh();
+            Require(!IsVisible(merchant.Rect), "Merchant owner can hide an unavailable entry");
+            merchant.Rect.gameObject.SetActive(true);
+            checks.Add(width + "x" + height + ": merchant countdown text, click callback and owner visibility PASS");
 
             nav.ShowCategory(null);
             CheckState(null);
@@ -312,7 +342,8 @@ public static class WorldHudVerification
     }
 
     private static bool IsShortcut(WorldHudEntry id) => id == WorldHudEntry.Bag || id == WorldHudEntry.Map || id == WorldHudEntry.Channel ||
-        id == WorldHudEntry.Battle || id == WorldHudEntry.Spectate || id == WorldHudEntry.Role;
+        id == WorldHudEntry.Battle || id == WorldHudEntry.Spectate || id == WorldHudEntry.Role ||
+        id == WorldHudEntry.MysteryMerchant;
 
     private static bool IsVisible(RectTransform rect)
     {

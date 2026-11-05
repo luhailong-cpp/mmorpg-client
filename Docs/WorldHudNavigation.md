@@ -17,6 +17,7 @@
 
 - [WorldHudNavigation.cs](../Assets/Scripts/UI/Ugui/WorldHudNavigation.cs) 管理布局与显示。原按钮保留在所属 HUD 内，用包装节点的 CanvasGroup 收纳，保留业务回调及所属 Root 的可用性控制。
 - 分类底板排序 139，原系统 HUD 排序 140，正式窗口位于其上。队伍暂离／归队继续由原系统控制。
+- 神秘商人状态条通过 `WorldHudEntry.MysteryMerchant` 接入同一布局，在分类页签左侧预留独立区域，保持 32 个设计像素间距。位置由 `WorldHudNavigation.MerchantEntryBounds` 统一维护，倒计时、可用性与点击仍由商人系统控制；禁止复用旧版线路入口坐标。
 - 技能入口沿用角色系统可用性，调用现有 `SkillUiRoot.Open()`。
 - 本版完整使用 `Assets/Resources/UI/Ugui/WorldHud20261022/` 的 16 枚物件图标和 6 张纸绢控件。关闭和待处理提示沿用已有资源。美术、提示词、逐图来源和派生关系位于 `image/designs/main-hud-20261022-v2/`；内置绘图入口未披露的实际型号与质量在记录中为未确认。
 - 字体使用客户端既有楷书。图标等比显示，纸窗和纸卡按各自 Sprite 边界九宫格缩放。
