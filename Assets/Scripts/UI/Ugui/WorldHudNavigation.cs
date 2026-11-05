@@ -12,7 +12,7 @@ namespace MmorpgClient.UI.Ugui
     public enum WorldHudEntry
     {
         Role, Pet, Bag, Missions, Activities, Battle, Spectate, Rank,
-        Team, Guild, Social, Mail, Trade, Map, Channel, Skills, MysteryMerchant
+        Team, Guild, Social, Mail, Trade, Map, Channel, Skills, MysteryMerchant, TeamFollow
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ namespace MmorpgClient.UI.Ugui
         private sealed class Slot
         {
             public WorldHudEntry Id;
-            public RectTransform Source, Container;
+            public RectTransform Source, Container, Proxy, Clip;
             public CanvasGroup Visibility;
             public Button Button;
             public TMP_Text Label;
@@ -68,6 +68,7 @@ namespace MmorpgClient.UI.Ugui
         private Image _categoryIllustration;
         private GameObject _locationBoard;
         private Slot _skills;
+        private WorldHudLayout _layout;
 
         public static WorldHudNavigation Instance { get; private set; }
         public RectTransform Root { get; private set; }
@@ -116,7 +117,7 @@ namespace MmorpgClient.UI.Ugui
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(2560, 1080);
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-            Root = QdaoUguiFactory.CreateCenteredRect("WorldHudDesign", canvasObject.transform, 2560, 1080);
+            Root = QdaoUguiFactory.CreateStretch("WorldHudDesign", canvasObject.transform, Vector4.zero);
             _chrome = QdaoUguiFactory.CreateStretch("Navigation", Root, Vector4.zero);
             _normalTab = QdaoUguiTheme.RequireSprite(NewArt + "chrome/tab-normal");
             _selectedTab = QdaoUguiTheme.RequireSprite(NewArt + "chrome/tab-selected");
@@ -124,6 +125,10 @@ namespace MmorpgClient.UI.Ugui
             var dismiss = QdaoUguiFactory.CreateHitButton("CloseCategoriesOutside", _chrome, 0, 0, 2560, 1080);
             dismiss.onClick.AddListener(() => ShowCategory(null));
             _dismiss = dismiss.gameObject;
+            var dismissRect = (RectTransform)dismiss.transform;
+            dismissRect.anchorMin = Vector2.zero;
+            dismissRect.anchorMax = Vector2.one;
+            dismissRect.offsetMin = dismissRect.offsetMax = Vector2.zero;
 
             _panel = QdaoUguiFactory.CreateRect("SystemCategoryPanel", _chrome,
                 PanelX, PanelY, PanelWidth, 424);
@@ -178,6 +183,8 @@ namespace MmorpgClient.UI.Ugui
                 QdaoUguiTheme.RequireSprite(NewArt + "chrome/location"));
             location.type = Image.Type.Sliced;
             _locationBoard = location.gameObject;
+            _layout = new WorldHudLayout(_chrome, _panel, _tabs, _locationBoard);
+            Canvas.preWillRenderCanvases += SyncAllLayout;
 
             // A direct shortcut to the existing skill book, alongside role and pet.
             var skills = QdaoUguiFactory.CreateHitButton("SkillsEntry", Root, 0, 0, TileWidth, TileHeight);
@@ -192,7 +199,12 @@ namespace MmorpgClient.UI.Ugui
         private void AddSlot(WorldHudEntry id, RectTransform rect, Button button, TMP_Text label)
         {
             // A root may rebuild its canvas after a scene/session change.
-            _slots.RemoveAll(slot => slot.Source == null);
+            _slots.RemoveAll(slot =>
+            {
+                if (slot.Source != null) return false;
+                _layout.Entry(slot.Id, false);
+                return true;
+            });
             foreach (var slot in _slots)
                 if (slot.Source == rect) return;
             _slots.Add(CreateSlot(id, rect, button, label));
@@ -203,17 +215,27 @@ namespace MmorpgClient.UI.Ugui
         private Slot CreateSlot(WorldHudEntry id, RectTransform rect, Button button, TMP_Text label)
         {
             // Keep the source HUD as an ancestor: its availability remains authoritative.
-            var container = QdaoUguiFactory.CreateRect("WorldHudSlot_" + id, rect.parent,
+            RectTransform clip = null;
+            var parent = rect.parent;
+            if (!IsQuick(id))
+            {
+                clip = QdaoUguiFactory.CreateRect("WorldHudClip_" + id, parent, 0, 0, TileWidth, TileHeight);
+                clip.gameObject.AddComponent<RectMask2D>();
+                parent = clip;
+            }
+            var container = QdaoUguiFactory.CreateRect("WorldHudSlot_" + id, parent,
                 0, 0, TileWidth, TileHeight);
             var group = container.gameObject.AddComponent<CanvasGroup>();
+            if (clip != null)
+                container.gameObject.AddComponent<WorldHudScrollRelay>().Target = _layout.TileScroll;
             rect.SetParent(container, false);
-            if (id == WorldHudEntry.MysteryMerchant)
+            if (id == WorldHudEntry.MysteryMerchant || id == WorldHudEntry.TeamFollow)
             {
                 // Keep the merchant's countdown label and green status artwork.
-                var bounds = MerchantEntryBounds;
-                Place(rect, 0, 0, bounds.width, bounds.height);
+                Place(rect, 0, 0, id == WorldHudEntry.MysteryMerchant ? MerchantEntryWidth : 210, 81.6f);
                 return new Slot { Id = id, Source = rect, Container = container,
-                    Button = button, Label = label, Visibility = group };
+                    Button = button, Label = label, Visibility = group, Clip = clip,
+                    Proxy = _layout.Entry(id, false) };
             }
             Place(rect, 0, 0, TileWidth, TileHeight);
             var buttonRect = (RectTransform)button.transform;
@@ -288,7 +310,8 @@ namespace MmorpgClient.UI.Ugui
             else QdaoUguiFactory.CreateText("SystemPurpose", button.transform, 103, 58,
                 TileWidth - 119, 28, Purpose(id), 22, SecondaryInk);
             return new Slot { Id = id, Source = rect, Container = container,
-                Button = button, Label = label, Visibility = group };
+                Button = button, Label = label, Visibility = group, Clip = clip,
+                Proxy = _layout.Entry(id, false) };
         }
 
         private static void ConfigureFeedback(Button button)
@@ -307,6 +330,7 @@ namespace MmorpgClient.UI.Ugui
 
         public void ShowCategory(WorldHudCategory? category)
         {
+            if (CurrentCategory != category) _layout?.ResetScroll();
             CurrentCategory = category;
             RefreshPresentation();
         }
@@ -325,7 +349,12 @@ namespace MmorpgClient.UI.Ugui
         public void RefreshPresentation()
         {
             if (_chrome == null) return;
-            _slots.RemoveAll(slot => slot.Source == null);
+            _slots.RemoveAll(slot =>
+            {
+                if (slot.Source != null) return false;
+                _layout.Entry(slot.Id, false);
+                return true;
+            });
             bool available = false, roleAvailable = false, locationAvailable = false;
             System.Array.Clear(_categoryAvailable, 0, _categoryAvailable.Length);
             bool socialNotice = false;
@@ -363,24 +392,32 @@ namespace MmorpgClient.UI.Ugui
                     if (slot.Id != entry) continue;
                     bool show = slot.Available && (IsQuick(slot.Id) || CurrentCategory == Category(slot.Id));
                     SetShown(slot, show);
-                    if (IsQuick(slot.Id)) LayoutQuick(slot);
-                    else if (show) LayoutTile(slot, position++);
+                    _layout.Entry(slot.Id, show);
+                    if (!IsQuick(slot.Id) && show)
+                    {
+                        position++;
+                    }
                 }
             }
             bool skillsShown = roleAvailable && CurrentCategory == WorldHudCategory.Cultivation;
             SetShown(_skills, skillsShown);
-            if (skillsShown) LayoutTile(_skills, position++);
+            _layout.Entry(WorldHudEntry.Skills, skillsShown);
+            if (skillsShown) position++;
+            _layout.Rebuild(position, locationAvailable, available && CurrentCategory.HasValue);
+            SyncAllLayout();
+            WorldSideHudRoot.Instance?.ApplyResponsiveLayout(_layout.Side);
             if (CurrentCategory.HasValue)
             {
                 _title.text = CategoryNames[(int)CurrentCategory.Value];
                 _description.text = CategoryDescriptions[(int)CurrentCategory.Value];
                 _categoryIllustration.sprite = _categorySprites[(int)CurrentCategory.Value];
-                bool compact = CurrentCategory == WorldHudCategory.Trade;
-                float width = compact ? 378 : PanelWidth;
-                Place(_panel, PanelX + PanelWidth - width, PanelY, width,
-                    174 + Mathf.CeilToInt(position / 2f) * 120);
+                bool compact = _layout.Columns == 1;
+                float width = _layout.PanelWidth;
                 _title.rectTransform.sizeDelta = new Vector2(width - 190, 48);
                 _description.rectTransform.sizeDelta = new Vector2(width - 88, 30);
+                _description.enableAutoSizing = true;
+                _description.fontSizeMin = 16;
+                _description.fontSizeMax = 23;
                 _categoryIllustration.gameObject.SetActive(!compact);
                 Place(_close, width - 74, 28, 44, 44);
             }
@@ -394,30 +431,22 @@ namespace MmorpgClient.UI.Ugui
             slot.Visibility.blocksRaycasts = visible;
         }
 
-        private static void LayoutTile(Slot slot, int index)
-            => Place(slot.Container, PanelX + (slot.Id == WorldHudEntry.Trade ? 322 : 0) + 36 + index % 2 * 322,
-                PanelY + 122 + index / 2 * 120, TileWidth, TileHeight);
-
-        private static void LayoutQuick(Slot slot)
+        private void SyncLayout(Slot slot)
         {
-            switch (slot.Id)
-            {
-                case WorldHudEntry.Battle: Place(slot.Container,2160,176,336,81.6f); break;
-                case WorldHudEntry.Spectate: Place(slot.Container,2160,280,336,81.6f); break;
-                case WorldHudEntry.Role: Place(slot.Container,2160,384,336,81.6f); break;
-                case WorldHudEntry.Map: Place(slot.Container, 40, 32, 246, 88); break;
-                case WorldHudEntry.Channel: Place(slot.Container, 288, 32, 156, 88); break;
-                case WorldHudEntry.Bag: Place(slot.Container, 2308, 864, 204, 160); break;
-                case WorldHudEntry.MysteryMerchant:
-                    var bounds = MerchantEntryBounds;
-                    Place(slot.Container, bounds.x, bounds.y, bounds.width, bounds.height);
-                    break;
-            }
+            if (slot == null || slot.Container == null || _layout == null) return;
+            if (slot.Clip != null) WorldHudLayout.CopyBounds(_layout.TileViewport, slot.Clip);
+            WorldHudLayout.CopyBounds(slot.Proxy, slot.Container);
+        }
+
+        private void SyncAllLayout()
+        {
+            foreach (var slot in _slots) SyncLayout(slot);
+            SyncLayout(_skills);
         }
 
         private static bool IsQuick(WorldHudEntry id)
             => IsReferenceEntry(id) || id == WorldHudEntry.Bag || id == WorldHudEntry.Map ||
-                id == WorldHudEntry.Channel || id == WorldHudEntry.MysteryMerchant;
+                id == WorldHudEntry.Channel || id == WorldHudEntry.MysteryMerchant || id == WorldHudEntry.TeamFollow;
 
         private static bool IsReferenceEntry(WorldHudEntry id)
             => id == WorldHudEntry.Battle || id == WorldHudEntry.Spectate || id == WorldHudEntry.Role;
@@ -459,6 +488,7 @@ namespace MmorpgClient.UI.Ugui
 
         private void OnDestroy()
         {
+            Canvas.preWillRenderCanvases -= SyncAllLayout;
             if (Instance == this) Instance = null;
         }
     }

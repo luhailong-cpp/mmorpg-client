@@ -92,6 +92,62 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void ShortResponsiveRegion_ClipsAndScrollsToFooterInsteadOfLosingActions()
+        {
+            var root = CreateShell();
+            root.SelectPage(WorldSideHudPage.Team);
+            root.RefreshPresentation(true, false);
+            var target = QdaoUguiFactory.CreateRect("ShortSideRegion", root.Panel.parent, 20, 20, 440, 220);
+            root.ApplyResponsiveLayout(target);
+            Canvas.ForceUpdateCanvases();
+            var scroll = root.GetComponentsInChildren<ScrollRect>(true)
+                .Single(s => s.name == "TeamOverflowViewport");
+            Assert.That(root.Panel.rect.height, Is.EqualTo(220).Within(.01f));
+            Assert.That(scroll.viewport.rect.height, Is.EqualTo(142).Within(.01f));
+            Assert.That(scroll.content, Is.SameAs(root.TeamMount));
+            Assert.That(scroll.content.rect.height, Is.EqualTo(582));
+            Assert.That(scroll.verticalScrollbar.gameObject.activeSelf, Is.True);
+            scroll.verticalNormalizedPosition = 0;
+            Canvas.ForceUpdateCanvases();
+            var footer = root.GetComponentsInChildren<TMP_Text>(true)
+                .Single(t => t.name == "TeamHudSummonReason").rectTransform;
+            var corners = new UnityEngine.Vector3[4];
+            footer.GetWorldCorners(corners);
+            foreach (var corner in corners)
+            {
+                var point = scroll.viewport.InverseTransformPoint(corner);
+                Assert.That(point.y, Is.InRange(scroll.viewport.rect.yMin - .5f, scroll.viewport.rect.yMax + .5f),
+                    "底部说明与操作可以完整滚入短视口");
+            }
+        }
+
+        [Test]
+        public void ResponsiveCollapseAndExpand_PreservePageMountAndScrollPosition()
+        {
+            var root = CreateShell();
+            root.SelectPage(WorldSideHudPage.Team);
+            root.RefreshPresentation(true, false);
+            var target = QdaoUguiFactory.CreateRect("ShortSideRegion", root.Panel.parent, 20, 20, 440, 220);
+            root.ApplyResponsiveLayout(target);
+            Canvas.ForceUpdateCanvases();
+            var mount = root.TeamMount;
+            var scroll = root.GetComponentsInChildren<ScrollRect>(true)
+                .Single(s => s.name == "TeamOverflowViewport");
+            scroll.verticalNormalizedPosition = .35f;
+            root.SetCollapsed(true);
+            // The shared allocator retains the expanded region while the shell is folded.
+            root.ApplyResponsiveLayout(target);
+            Assert.That(root.Panel.rect.height, Is.EqualTo(66));
+            Assert.That(scroll.gameObject.activeSelf, Is.False);
+            root.SetCollapsed(false);
+            target.sizeDelta = new Vector2(440, 220);
+            root.ApplyResponsiveLayout(target);
+            Assert.That(root.TeamMount, Is.SameAs(mount));
+            Assert.That(root.SelectedPage, Is.EqualTo(WorldSideHudPage.Team));
+            Assert.That(scroll.verticalNormalizedPosition, Is.EqualTo(.35f).Within(.001f));
+        }
+
+        [Test]
         public void UnknownDataAndOfflineMembers_RemainLiteralAndDoNotFabricateIdentity()
         {
             var state = State(Snapshot());

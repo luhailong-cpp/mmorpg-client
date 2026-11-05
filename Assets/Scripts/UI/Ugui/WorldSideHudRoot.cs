@@ -29,6 +29,9 @@ namespace MmorpgClient.UI.Ugui
         private Button _quests, _team, _collapse;
         private TMP_Text _collapseText;
         private TeamHudPanel _teamPanel;
+        private ScrollRect _questScroll, _teamScroll;
+        private float _expandedHeight = Height;
+        private readonly UnityEngine.Vector3[] _panelCorners = new UnityEngine.Vector3[4];
         private bool _available;
         private object _gameIdentity;
         private ulong _playerId;
@@ -79,13 +82,81 @@ namespace MmorpgClient.UI.Ugui
             // 窄按钮单独缩小内边距，保证“收起／展开”不会被省略。
             _collapseText.rectTransform.anchoredPosition = Vector2.zero;
             _collapseText.rectTransform.sizeDelta = new Vector2(68, 44);
-            QuestMount = QdaoUguiFactory.CreateRect("QuestMount", Panel, 12, 66, ContentWidth, ContentHeight);
-            TeamMount = QdaoUguiFactory.CreateRect("TeamMount", Panel, 12, 66, ContentWidth, ContentHeight);
-            QuestMount.gameObject.AddComponent<RectMask2D>();
-            TeamMount.gameObject.AddComponent<RectMask2D>();
+            _questScroll = CreatePageViewport("Quest", out var questMount);
+            _teamScroll = CreatePageViewport("Team", out var teamMount);
+            QuestMount = questMount;
+            TeamMount = teamMount;
             _teamPanel = new TeamHudPanel(TeamMount);
             Instance = this;
             ApplyVisibility();
+        }
+
+        private ScrollRect CreatePageViewport(string name, out RectTransform mount)
+        {
+            var viewport = QdaoUguiFactory.CreateRect(name + "OverflowViewport", Panel,
+                12, 66, ContentWidth, ContentHeight);
+            var hit = viewport.gameObject.AddComponent<Image>();
+            hit.color = new Color(1, 1, 1, .001f);
+            hit.raycastTarget = true;
+            viewport.gameObject.AddComponent<RectMask2D>();
+            mount = QdaoUguiFactory.CreateRect(name + "Mount", viewport, 0, 0, ContentWidth, ContentHeight);
+            var scroll = viewport.gameObject.AddComponent<ScrollRect>();
+            scroll.viewport = viewport;
+            scroll.content = mount;
+            scroll.horizontal = false;
+            scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.scrollSensitivity = 36;
+            var rail = QdaoUguiFactory.CreateRect(name + "OverflowScrollbar", Panel,
+                428, 66, 8, ContentHeight);
+            var railImage = rail.gameObject.AddComponent<Image>();
+            railImage.color = QdaoUguiTheme.Html("#E7D6B2");
+            var handle = QdaoUguiFactory.CreateStretch("Handle", rail, Vector4.zero);
+            var handleImage = handle.gameObject.AddComponent<Image>();
+            handleImage.color = GameplayUiArt.Gold;
+            var scrollbar = rail.gameObject.AddComponent<Scrollbar>();
+            scrollbar.handleRect = handle;
+            scrollbar.targetGraphic = handleImage;
+            scrollbar.direction = Scrollbar.Direction.BottomToTop;
+            scroll.verticalScrollbar = scrollbar;
+            scroll.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
+            return scroll;
+        }
+
+        /// <summary>跟随统一布局分配的区域；短窗口通过滚动保留页内全部内容与操作。</summary>
+        public void ApplyResponsiveLayout(RectTransform target)
+        {
+            if (Panel == null || target == null || target.rect.width <= 0 || target.rect.height <= 0) return;
+            if (!IsCollapsed)
+            {
+                float height = Mathf.Clamp(target.rect.height, 110, Height);
+                if (!Mathf.Approximately(_expandedHeight, height))
+                {
+                    _expandedHeight = height;
+                    ResizePage(_questScroll);
+                    ResizePage(_teamScroll);
+                    SetPageVisible(_questScroll, IsPageVisible(WorldSideHudPage.Quests));
+                    SetPageVisible(_teamScroll, IsPageVisible(WorldSideHudPage.Team));
+                }
+            }
+            WorldHudLayout.CopyBounds(target, Panel, copySize: false);
+            // CopyBounds carries the allocated region's size as well as its cross-canvas
+            // scale. Keep that scale, but retain the shell's authored width and folded height.
+            var panelSize = new Vector2(Width, IsCollapsed ? 66 : _expandedHeight);
+            if (Panel.sizeDelta != panelSize) Panel.sizeDelta = panelSize;
+            var surface = (RectTransform)_surface.transform;
+            var surfaceSize = new Vector2(Width, _expandedHeight);
+            if (surface.sizeDelta != surfaceSize) surface.sizeDelta = surfaceSize;
+        }
+
+        private void ResizePage(ScrollRect scroll)
+        {
+            float position = scroll.content.rect.height > scroll.viewport.rect.height + .5f
+                ? scroll.verticalNormalizedPosition : 1;
+            float viewportHeight = _expandedHeight - 78;
+            scroll.viewport.sizeDelta = new Vector2(ContentWidth, viewportHeight);
+            ((RectTransform)scroll.verticalScrollbar.transform).sizeDelta = new Vector2(8, viewportHeight);
+            scroll.verticalNormalizedPosition = position;
         }
 
         private Button Tab(string title, float x, WorldSideHudPage page)
@@ -114,7 +185,7 @@ namespace MmorpgClient.UI.Ugui
             _teamPanel.Tick();
             RefreshPresentation(inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false),
                 WorldHudNavigation.Instance?.CurrentCategory.HasValue ?? false);
-            FitSafeArea();
+            if (WorldHudNavigation.Instance == null) FitSafeArea();
         }
 
         /// <summary>唯一世界可用性接缝，也用于无网络的原生布局验证。</summary>
@@ -151,16 +222,25 @@ namespace MmorpgClient.UI.Ugui
             if (selected != null && selected.transform.IsChildOf(Panel))
                 EventSystem.current.SetSelectedGameObject(null);
             Panel.gameObject.SetActive(_available);
-            Panel.sizeDelta = new Vector2(Width, IsCollapsed ? 66 : Height);
+            Panel.sizeDelta = new Vector2(Width, IsCollapsed ? 66 : _expandedHeight);
             _surface.SetActive(!IsCollapsed);
             _quests.gameObject.SetActive(!IsCollapsed);
             _team.gameObject.SetActive(!IsCollapsed);
             _collapseText.text = IsCollapsed ? "展开" : "收起";
             QuestMount.gameObject.SetActive(IsPageVisible(WorldSideHudPage.Quests));
             TeamMount.gameObject.SetActive(IsPageVisible(WorldSideHudPage.Team));
+            SetPageVisible(_questScroll, IsPageVisible(WorldSideHudPage.Quests));
+            SetPageVisible(_teamScroll, IsPageVisible(WorldSideHudPage.Team));
             StyleTab(_quests, SelectedPage == WorldSideHudPage.Quests);
             StyleTab(_team, SelectedPage == WorldSideHudPage.Team);
             VisibilityChanged?.Invoke();
+        }
+
+        private static void SetPageVisible(ScrollRect scroll, bool visible)
+        {
+            scroll.gameObject.SetActive(visible);
+            scroll.verticalScrollbar.gameObject.SetActive(visible &&
+                scroll.content.rect.height > scroll.viewport.rect.height + .5f);
         }
 
         private static void StyleTab(Button button, bool selected)
@@ -175,11 +255,10 @@ namespace MmorpgClient.UI.Ugui
         {
             if (!_available || Screen.width <= 0 || Screen.height <= 0) return;
             Panel.anchoredPosition = new Vector2(1704, -188);
-            var corners = new UnityEngine.Vector3[4];
-            Panel.GetWorldCorners(corners);
+            Panel.GetWorldCorners(_panelCorners);
             var safe = Screen.safeArea;
-            var min = RectTransformUtility.WorldToScreenPoint(null, corners[0]);
-            var max = RectTransformUtility.WorldToScreenPoint(null, corners[2]);
+            var min = RectTransformUtility.WorldToScreenPoint(null, _panelCorners[0]);
+            var max = RectTransformUtility.WorldToScreenPoint(null, _panelCorners[2]);
             var delta = new Vector2(Mathf.Max(0, safe.xMin - min.x) + Mathf.Min(0, safe.xMax - max.x),
                 Mathf.Max(0, safe.yMin - min.y) + Mathf.Min(0, safe.yMax - max.y));
             float scale = Panel.GetComponentInParent<Canvas>().scaleFactor;

@@ -17,12 +17,24 @@
 
 - [WorldHudNavigation.cs](../Assets/Scripts/UI/Ugui/WorldHudNavigation.cs) 管理布局与显示。原按钮保留在所属 HUD 内，用包装节点的 CanvasGroup 收纳，保留业务回调及所属 Root 的可用性控制。
 - 分类底板排序 139，原系统 HUD 排序 140，正式窗口位于其上。队伍暂离／归队继续由原系统控制。
-- 神秘商人状态条通过 `WorldHudEntry.MysteryMerchant` 接入同一布局，在分类页签左侧预留独立区域，保持 32 个设计像素间距。位置由 `WorldHudNavigation.MerchantEntryBounds` 统一维护，倒计时、可用性与点击仍由商人系统控制；禁止复用旧版线路入口坐标。
+- 神秘商人状态条通过 `WorldHudEntry.MysteryMerchant` 接入同一布局；倒计时、可用性与点击仍由商人系统控制，禁止复用旧版线路入口坐标。
 - 技能入口沿用角色系统可用性，调用现有 `SkillUiRoot.Open()`。
 - 本版完整使用 `Assets/Resources/UI/Ugui/WorldHud20261022/` 的 16 枚物件图标和 6 张纸绢控件。关闭和待处理提示沿用已有资源。美术、提示词、逐图来源和派生关系位于 `image/designs/main-hud-20261022-v2/`；内置绘图入口未披露的实际型号与质量在记录中为未确认。
 - 字体使用客户端既有楷书。图标等比显示，纸窗和纸卡按各自 Sprite 边界九宫格缩放。
 
 ## 复查
+
+2026-11-05 主界面改为官方 uGUI 响应式布局，入口、状态条、任务／组队栏和暂离／归队使用同一套可用区域。`WorldHudLayout` 使用 `HorizontalLayoutGroup`、`VerticalLayoutGroup`、`GridLayoutGroup`、`LayoutElement`、`ContentSizeFitter` 和 `ScrollRect` 解算排布；Canvas Scaler 管理显示比例。窗口变窄时顶部自动分行、分类自动改单列；窗口变矮时侧栏内容可滚动，保留选页及滚动状态。根节点使用锚点跟随当前 Canvas 视口与安全区，极小窗口按最小逻辑视口整体缩小以保持边界。
+
+各功能按钮继续保留原 Canvas／会话祖先。布局占位的实际边界转换到所属 Canvas，分类遮罩及滚轮／拖拽同步到源按钮，避免移动层级破坏可用性或点击。只有视口、安全区、分类或入口结构变化时强制重建布局。
+
+本次原生验证覆盖 640×480、800×600、1024×768、1280×720、1600×900、1920×1080、2560×1080、3440×1440、3840×2160、720×1280 和 1280×480，并在同一棵 UI 树中切换窗口尺寸。143 组检查、66 张截图通过，包含可见目标不重叠、原生射线点击、侧栏滚动到底部与收起／展开。输出：`.codex-artifacts/world-hud-responsive-20261105/verification.json`。此为隔离的原生 UI 验证，不建立在线账号或网络会话。
+
+相关 EditMode 回归测试 126/126 通过：神秘商人、HUD 画布层级、侧栏短视口及状态恢复、跨 Canvas 分类按钮滚轮／拖拽。测试结果：`Logs/world-hud-responsive-20261105-tests.xml`。
+
+留存证据：[布局报告](VerificationEvidence/world-hud-responsive-20261105/verification.json)、[126 项回归](VerificationEvidence/world-hud-responsive-20261105/editmode-tests.xml)、[小窗口常驻布局](VerificationEvidence/world-hud-responsive-20261105/00-closed_800x600.png)、[小窗口仙友分类](VerificationEvidence/world-hud-responsive-20261105/03-social_800x600.png)。完整 66 张截图保存在上述 `.codex-artifacts` 目录，可由原生验证器重建。
+
+可运行副本为 `Builds/responsive-hud-20261105/mmorpg.exe`，基于 r4 的资源更新 Unity Development 播放器编译产出的运行时脚本程序集。完整资源重打包因内存压力停止，官方 scripts-only 打包缺少旧包的数据布局缓存，因此此副本作为脚本更新包交付，来源与程序集 SHA256 记录在包内 `ui-update-manifest.json`。启动检查成功进入原生 uGUI 选服流程，无托管异常；本地 `127.0.0.1:8081` 网关未连接，未做联机主城验收。
 
 本版原生验收覆盖 2560×1080、1920×1080、1600×900、1280×720，共 20 张截图、32 组检查通过；正式 Root 的画布排序和射线层级测试 1/1 通过。
 

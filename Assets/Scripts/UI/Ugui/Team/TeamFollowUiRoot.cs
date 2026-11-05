@@ -79,6 +79,8 @@ namespace MmorpgClient.UI.Ugui.Team
             _toggle.name = ToggleName;
             _toggleLabel = _toggle.GetComponentInChildren<TMP_Text>();
             _toggle.gameObject.SetActive(false);
+            WorldHudNavigation.Register(WorldHudEntry.TeamFollow,
+                (RectTransform)_toggle.transform, _toggle, _toggleLabel);
             _hud.gameObject.SetActive(false);
             _follow.InputRejected += ShowInputHint;
             _follow.RegroupRequested += RequestRegroup;

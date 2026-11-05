@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="126" result="Passed" total="126" passed="126" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:53Z" duration="2.4022688">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="2922" result="Passed" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:53Z" duration="2.402269" total="126" passed="126" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2219" name="MmorpgClient.Tests.EditMode.Battle.dll" fullname="D:/luyuan/mmorpg-client/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Battle.dll" runstate="Runnable" testcasecount="1103" result="Passed" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:52Z" duration="1.502197" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30180" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2220" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="1103" result="Passed" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:52Z" duration="1.484325" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2221" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="1103" result="Passed" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:52Z" duration="1.466982" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="2222" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="1103" result="Passed" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:52Z" duration="1.449440" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="2223" name="Battle" fullname="MmorpgClient.Tests.EditMode.Battle" runstate="Runnable" testcasecount="1103" result="Passed" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:52Z" duration="1.424875" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1937" name="HudCanvasLayeringTests" fullname="MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests" classname="MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:52Z" duration="1.387697" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1938" name="NativeHudCanvasesStayBelowWindowsAndKeepRaycastTargets" fullname="MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests.NativeHudCanvasesStayBelowWindowsAndKeepRaycastTargets" methodname="NativeHudCanvasesStayBelowWindowsAndKeepRaycastTargets" classname="MmorpgClient.Tests.EditMode.Battle.HudCanvasLayeringTests" runstate="Runnable" seed="743377820" result="Passed" start-time="2026-11-05 11:19:50Z" end-time="2026-11-05 11:19:52Z" duration="1.376107" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="4279" name="MmorpgClient.Tests.EditMode.Tianyong.dll" fullname="D:/luyuan/mmorpg-client/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Tianyong.dll" runstate="Runnable" testcasecount="1214" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:53Z" duration="0.849267" total="125" passed="125" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="30180" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="4280" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="1214" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:53Z" duration="0.839832" total="125" passed="125" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="4281" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="1214" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:53Z" duration="0.833924" total="125" passed="125" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="4282" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="1214" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:53Z" duration="0.827981" total="125" passed="125" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="4284" name="Tianyong" fullname="MmorpgClient.Tests.EditMode.Tianyong" runstate="Runnable" testcasecount="1192" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:53Z" duration="0.814886" total="125" passed="125" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="3136" name="MysteryMerchantClientTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" testcasecount="43" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.054324" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3179" name="Buy_AfterTheMerchantLeft_IsRejectedLocally_EvenWithAStaleShelf" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_AfterTheMerchantLeft_IsRejectedLocally_EvenWithAStaleShelf" methodname="Buy_AfterTheMerchantLeft_IsRejectedLocally_EvenWithAStaleShelf" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1086693713" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.015792" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3178" name="Buy_IsNeverBlockedByALocalBalanceSnapshot" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_IsNeverBlockedByALocalBalanceSnapshot" methodname="Buy_IsNeverBlockedByALocalBalanceSnapshot" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1587043878" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.007669" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3176" name="Buy_LocalRejections_SendNothing" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_LocalRejections_SendNothing" methodname="Buy_LocalRejections_SendNothing" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1303452968" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000969" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3175" name="Buy_RateLimitedAtTheGate_IsADefiniteFailure_NotAnUnknownOutcome" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_RateLimitedAtTheGate_IsADefiniteFailure_NotAnUnknownOutcome" methodname="Buy_RateLimitedAtTheGate_IsADefiniteFailure_NotAnUnknownOutcome" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="555349090" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000677" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3171" name="Buy_RejectedByServer_ShowsTheReason_AndRefreshesWhenTheShelfIsStale" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_RejectedByServer_ShowsTheReason_AndRefreshesWhenTheShelfIsStale" methodname="Buy_RejectedByServer_ShowsTheReason_AndRefreshesWhenTheShelfIsStale" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="927722321" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000864" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3168" name="Buy_SendsTheWholeQuoteThePlayerSaw" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_SendsTheWholeQuoteThePlayerSaw" methodname="Buy_SendsTheWholeQuoteThePlayerSaw" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="757980954" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.004367" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3170" name="Buy_Success_AdoptsTheNewShelfAndBalance_AndRaisesPurchased" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_Success_AdoptsTheNewShelfAndBalance_AndRaisesPurchased" methodname="Buy_Success_AdoptsTheNewShelfAndBalance_AndRaisesPurchased" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1231695876" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.002823" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3172" name="Buy_TooFar_ShowsTheReason_WithoutRefreshing" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_TooFar_ShowsTheReason_WithoutRefreshing" methodname="Buy_TooFar_ShowsTheReason_WithoutRefreshing" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="360423994" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000343" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3173" name="Buy_TransportTimeout_BlocksFurtherBuysUntilReconnect" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_TransportTimeout_BlocksFurtherBuysUntilReconnect" methodname="Buy_TransportTimeout_BlocksFurtherBuysUntilReconnect" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1544236485" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000466" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3174" name="Buy_TransportTimeout_TheWarningSurvivesLaterQueries" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_TransportTimeout_TheWarningSurvivesLaterQueries" methodname="Buy_TransportTimeout_TheWarningSurvivesLaterQueries" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1141655057" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000397" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3177" name="Buy_WhileOnePending_OrTooSoon_IsRejectedLocally" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_WhileOnePending_OrTooSoon_IsRejectedLocally" methodname="Buy_WhileOnePending_OrTooSoon_IsRejectedLocally" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1325272336" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000341" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3169" name="Buy_WithAQuoteThatNoLongerMatchesTheShelf_IsRejectedLocally" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Buy_WithAQuoteThatNoLongerMatchesTheShelf_IsRejectedLocally" methodname="Buy_WithAQuoteThatNoLongerMatchesTheShelf_IsRejectedLocally" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1374100991" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000438" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3145" name="Construct_SendsNothing_AndKnowsNothing" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Construct_SendsNothing_AndKnowsNothing" methodname="Construct_SendsNothing_AndKnowsNothing" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1931500057" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000586" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3166" name="Disconnect_ResetsEverything_AndLateRepliesAreDropped" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Disconnect_ResetsEverything_AndLateRepliesAreDropped" methodname="Disconnect_ResetsEverything_AndLateRepliesAreDropped" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1766993723" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000245" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3180" name="Dispose_StopsReactingToPushesAndCallbacks" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Dispose_StopsReactingToPushesAndCallbacks" methodname="Dispose_StopsReactingToPushesAndCallbacks" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="415355990" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.001250" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="3144" name="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.001882" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="3138" name="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(uint.MinValue,65002,65003)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(uint.MinValue,65002,65003)" methodname="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1490492558" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000620" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3139" name="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,uint.MinValue,65003)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,uint.MinValue,65003)" methodname="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="577988223" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000086" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3140" name="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,65002,uint.MinValue)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,65002,uint.MinValue)" methodname="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="937651794" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000075" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3141" name="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,65001,65003)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,65001,65003)" methodname="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="655489840" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000068" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3142" name="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,65002,65001)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,65002,65001)" methodname="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1543003891" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000068" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3143" name="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,65002,65002)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend(65001,65002,65002)" methodname="IncompleteOrDuplicateMessageIds_DoNotRegisterOrSend" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="805297195" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000072" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="3159" name="Notify_Malformed_OrInactive_IsIgnored" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Notify_Malformed_OrInactive_IsIgnored" methodname="Notify_Malformed_OrInactive_IsIgnored" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="605984342" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000485" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3155" name="Notify_OnAnotherLine_RaisesAppeared_WithoutQueryingTheShelf" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Notify_OnAnotherLine_RaisesAppeared_WithoutQueryingTheShelf" methodname="Notify_OnAnotherLine_RaisesAppeared_WithoutQueryingTheShelf" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="247036536" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.001028" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3156" name="Notify_OnMyLine_RaisesAppearedHere_AndFetchesTheShelf" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Notify_OnMyLine_RaisesAppearedHere_AndFetchesTheShelf" methodname="Notify_OnMyLine_RaisesAppearedHere_AndFetchesTheShelf" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1262514901" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000341" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3158" name="Notify_SameLandingAnnouncedTwice_RaisesAppearedOnce" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Notify_SameLandingAnnouncedTwice_RaisesAppearedOnce" methodname="Notify_SameLandingAnnouncedTwice_RaisesAppearedOnce" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1597799872" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000328" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3157" name="Notify_SameRoundSameLine_DoesNotWipeTheShelfAlreadyOnHand" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Notify_SameRoundSameLine_DoesNotWipeTheShelfAlreadyOnHand" methodname="Notify_SameRoundSameLine_DoesNotWipeTheShelfAlreadyOnHand" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1737880988" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000854" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3154" name="OlderReply_NeverOverwritesANewerConclusion" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.OlderReply_NeverOverwritesANewerConclusion" methodname="OlderReply_NeverOverwritesANewerConclusion" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="918989673" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000241" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3146" name="RequestInfo_ElsewhereReply_GivesLineAndCountdownButNoShelf" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.RequestInfo_ElsewhereReply_GivesLineAndCountdownButNoShelf" methodname="RequestInfo_ElsewhereReply_GivesLineAndCountdownButNoShelf" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="2842031" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000641" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3150" name="RequestInfo_Failure_RetriesByItself_WithGrowingIntervals" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.RequestInfo_Failure_RetriesByItself_WithGrowingIntervals" methodname="RequestInfo_Failure_RetriesByItself_WithGrowingIntervals" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="840708365" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000307" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3153" name="RequestInfo_RateLimited_BacksOffAFullWindow" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.RequestInfo_RateLimited_BacksOffAFullWindow" methodname="RequestInfo_RateLimited_BacksOffAFullWindow" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1440640037" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000246" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3151" name="RequestInfo_TooSoon_IsQueuedAndSentWhenTheIntervalElapses" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.RequestInfo_TooSoon_IsQueuedAndSentWhenTheIntervalElapses" methodname="RequestInfo_TooSoon_IsQueuedAndSentWhenTheIntervalElapses" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="984674967" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000226" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3152" name="RequestInfo_TransportError_ReportsUnavailable_AndAllowsRetry" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.RequestInfo_TransportError_ReportsUnavailable_AndAllowsRetry" methodname="RequestInfo_TransportError_ReportsUnavailable_AndAllowsRetry" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1073978801" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000241" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3149" name="RequestInfo_WhileOnePending_AsksOnceMoreAfterTheReply" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.RequestInfo_WhileOnePending_AsksOnceMoreAfterTheReply" methodname="RequestInfo_WhileOnePending_AsksOnceMoreAfterTheReply" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="608482070" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000256" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3148" name="RequestInfo_WhileOnePending_DoesNotSendAgain" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.RequestInfo_WhileOnePending_DoesNotSendAgain" methodname="RequestInfo_WhileOnePending_DoesNotSendAgain" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="786884839" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000155" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3163" name="SceneEntered_DropsTheShelfOfThePreviousLine_AndAsksAgain" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.SceneEntered_DropsTheShelfOfThePreviousLine_AndAsksAgain" methodname="SceneEntered_DropsTheShelfOfThePreviousLine_AndAsksAgain" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1855356666" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000293" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3165" name="SceneEntered_TheNewNodeMayHaveASlowerClock_ItsConclusionsAreStillAdopted" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.SceneEntered_TheNewNodeMayHaveASlowerClock_ItsConclusionsAreStillAdopted" methodname="SceneEntered_TheNewNodeMayHaveASlowerClock_ItsConclusionsAreStillAdopted" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="323740191" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000284" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3164" name="SceneEntered_WhileAQueryIsInFlight_DropsItsReply_AndAsksAgain" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.SceneEntered_WhileAQueryIsInFlight_DropsItsReply_AndAsksAgain" methodname="SceneEntered_WhileAQueryIsInFlight_DropsItsReply_AndAsksAgain" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1357706927" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000319" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3147" name="ServerClock_AdvancesWithTheLocalClock" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.ServerClock_AdvancesWithTheLocalClock" methodname="ServerClock_AdvancesWithTheLocalClock" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1755263097" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000178" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3167" name="SilentGateSwap_IsTreatedLikeADisconnect" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.SilentGateSwap_IsTreatedLikeADisconnect" methodname="SilentGateSwap_IsTreatedLikeADisconnect" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1708436989" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000157" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3161" name="Tick_AfterTheNextAppearanceTime_AsksAgain_UntilTheServerNamesTheRealNextRound" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Tick_AfterTheNextAppearanceTime_AsksAgain_UntilTheServerNamesTheRealNextRound" methodname="Tick_AfterTheNextAppearanceTime_AsksAgain_UntilTheServerNamesTheRealNextRound" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1246694515" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000433" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3162" name="Tick_AutoRefresh_GivesUpAfterAFewAttemptsForTheSameAppearance" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Tick_AutoRefresh_GivesUpAfterAFewAttemptsForTheSameAppearance" methodname="Tick_AutoRefresh_GivesUpAfterAFewAttemptsForTheSameAppearance" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="621930485" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000317" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3160" name="Tick_MerchantLeavesAtExpiry_RaisesChangedOnce" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.Tick_MerchantLeavesAtExpiry_RaisesChangedOnce" methodname="Tick_MerchantLeavesAtExpiry_RaisesChangedOnce" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="196250963" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000256" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3137" name="UnsupportedContract_DoesNotReplaceMailPushOrSendRequests_AfterSceneChangesAndReconnect" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests.UnsupportedContract_DoesNotReplaceMailPushOrSendRequests_AfterSceneChangesAndReconnect" methodname="UnsupportedContract_DoesNotReplaceMailPushOrSendRequests_AfterSceneChangesAndReconnect" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantClientTests" runstate="Runnable" seed="1336215645" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.001699" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="3181" name="MysteryMerchantModelsTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" testcasecount="34" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.014733" total="34" passed="34" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3207" name="AnnouncementText_SaysWhereAndHowLong" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.AnnouncementText_SaysWhereAndHowLong" methodname="AnnouncementText_SaysWhereAndHowLong" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1496522605" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000494" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3214" name="AutoRefreshDelay_SpreadsPlayersApart_AndStopsAfterAFewAttempts" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.AutoRefreshDelay_SpreadsPlayersApart_AndStopsAfterAFewAttempts" methodname="AutoRefreshDelay_SpreadsPlayersApart_AndStopsAfterAFewAttempts" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1569750450" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000225" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3205" name="CurrencyNameAndAmount" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.CurrencyNameAndAmount" methodname="CurrencyNameAndAmount" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="121211254" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000550" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3215" name="DescribeTip_CoversEveryMerchantCode_AndFallsBackWithTheNumber" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DescribeTip_CoversEveryMerchantCode_AndFallsBackWithTheNumber" methodname="DescribeTip_CoversEveryMerchantCode_AndFallsBackWithTheNumber" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1838410784" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000466" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="3194" name="DiscountLabel" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DiscountLabel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.004828" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="3187" name="DiscountLabel(60,&quot;6折&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DiscountLabel(60,&quot;6折&quot;)" methodname="DiscountLabel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="2020452180" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000304" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3188" name="DiscountLabel(50,&quot;5折&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DiscountLabel(50,&quot;5折&quot;)" methodname="DiscountLabel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="730582617" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000047" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3189" name="DiscountLabel(40,&quot;4折&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DiscountLabel(40,&quot;4折&quot;)" methodname="DiscountLabel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="42936363" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000035" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3190" name="DiscountLabel(45,&quot;4.5折&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DiscountLabel(45,&quot;4.5折&quot;)" methodname="DiscountLabel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="21811396" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000036" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3191" name="DiscountLabel(5,&quot;0.5折&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DiscountLabel(5,&quot;0.5折&quot;)" methodname="DiscountLabel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1621846453" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000086" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3192" name="DiscountLabel(100,&quot;原价&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DiscountLabel(100,&quot;原价&quot;)" methodname="DiscountLabel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1843176756" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000058" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3193" name="DiscountLabel(uint.MinValue,&quot;原价&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.DiscountLabel(uint.MinValue,&quot;原价&quot;)" methodname="DiscountLabel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1478180695" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000053" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="3208" name="EntryLabel_ByPresence" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.EntryLabel_ByPresence" methodname="EntryLabel_ByPresence" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="178648951" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000538" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3185" name="Evaluate_InactiveInfo_IsAway" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.Evaluate_InactiveInfo_IsAway" methodname="Evaluate_InactiveInfo_IsAway" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1187751214" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000181" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3182" name="Evaluate_NoInfo_IsUnknown" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.Evaluate_NoInfo_IsUnknown" methodname="Evaluate_NoInfo_IsUnknown" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="848199907" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000094" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3184" name="Evaluate_PresenceWindowIsHalfOpen_AndIgnoresTheHereFlag" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.Evaluate_PresenceWindowIsHalfOpen_AndIgnoresTheHereFlag" methodname="Evaluate_PresenceWindowIsHalfOpen_AndIgnoresTheHereFlag" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1669143530" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000241" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3183" name="Evaluate_SameScene_IsHere_OtherScene_IsElsewhere" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.Evaluate_SameScene_IsHere_OtherScene_IsElsewhere" methodname="Evaluate_SameScene_IsHere_OtherScene_IsElsewhere" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1428594460" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000122" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3210" name="EvaluateBuy_FirstBlockingReasonWins" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.EvaluateBuy_FirstBlockingReasonWins" methodname="EvaluateBuy_FirstBlockingReasonWins" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="2076370587" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000499" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="3204" name="FormatCountdown_RoundsUpToWholeSeconds" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.001489" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="3195" name="FormatCountdown_RoundsUpToWholeSeconds(0L,&quot;00:00&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(0L,&quot;00:00&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1036514026" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000199" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3196" name="FormatCountdown_RoundsUpToWholeSeconds(-5L,&quot;00:00&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(-5L,&quot;00:00&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="278619440" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000052" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3197" name="FormatCountdown_RoundsUpToWholeSeconds(1L,&quot;00:01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(1L,&quot;00:01&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1213789359" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000041" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3198" name="FormatCountdown_RoundsUpToWholeSeconds(1000L,&quot;00:01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(1000L,&quot;00:01&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1684052930" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000036" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3199" name="FormatCountdown_RoundsUpToWholeSeconds(1001L,&quot;00:02&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(1001L,&quot;00:02&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1481194327" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000036" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3200" name="FormatCountdown_RoundsUpToWholeSeconds(1799000L,&quot;29:59&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(1799000L,&quot;29:59&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="984186026" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000035" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3201" name="FormatCountdown_RoundsUpToWholeSeconds(1800000L,&quot;30:00&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(1800000L,&quot;30:00&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="489389121" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000036" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3202" name="FormatCountdown_RoundsUpToWholeSeconds(3600000L,&quot;1:00:00&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(3600000L,&quot;1:00:00&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1480543088" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000088" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3203" name="FormatCountdown_RoundsUpToWholeSeconds(3661000L,&quot;1:01:01&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.FormatCountdown_RoundsUpToWholeSeconds(3661000L,&quot;1:01:01&quot;)" methodname="FormatCountdown_RoundsUpToWholeSeconds" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="990895805" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000042" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="3206" name="GoodsName_FallsBackToConfigId_NeverInventsAName" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.GoodsName_FallsBackToConfigId_NeverInventsAName" methodname="GoodsName_FallsBackToConfigId_NeverInventsAName" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1686909486" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000186" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3213" name="InfoRetryDelay_DoublesThenCaps" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.InfoRetryDelay_DoublesThenCaps" methodname="InfoRetryDelay_DoublesThenCaps" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="89761723" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000657" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3217" name="PurchasedText_ShowsTotalItemCount" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.PurchasedText_ShowsTotalItemCount" methodname="PurchasedText_ShowsTotalItemCount" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="400687963" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000106" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3211" name="Quote_CapturesEverythingThePlayerPaysAndGets" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.Quote_CapturesEverythingThePlayerPaysAndGets" methodname="Quote_CapturesEverythingThePlayerPaysAndGets" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="713828390" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000253" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3212" name="Quote_DiffersWhenAnyTermDiffers_ButNotWhenOnlyTheBoughtCountDoes" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.Quote_DiffersWhenAnyTermDiffers_ButNotWhenOnlyTheBoughtCountDoes" methodname="Quote_DiffersWhenAnyTermDiffers_ButNotWhenOnlyTheBoughtCountDoes" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1061568648" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000522" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3209" name="Remaining_NeverUnderflows" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.Remaining_NeverUnderflows" methodname="Remaining_NeverUnderflows" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1245054682" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000213" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3186" name="RemainingAndUntilNext" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.RemainingAndUntilNext" methodname="RemainingAndUntilNext" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1525736073" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000246" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3216" name="TipMeansStale_OnlyForCodesThatInvalidateTheLocalShelf" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests.TipMeansStale_OnlyForCodesThatInvalidateTheLocalShelf" methodname="TipMeansStale_OnlyForCodesThatInvalidateTheLocalShelf" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantModelsTests" runstate="Runnable" seed="1166843416" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000168" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="3218" name="MysteryMerchantWindowTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.501339" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3239" name="ApproachPoint_StopsShortOfTheMerchant_OnTheLineTowardsThePlayer" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.ApproachPoint_StopsShortOfTheMerchant_OnTheLineTowardsThePlayer" methodname="ApproachPoint_StopsShortOfTheMerchant_OnTheLineTowardsThePlayer" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1301227714" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.042775" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3226" name="ArmedGoods_IsDisarmed_WhenItCanNoLongerBeBought_OrThePageChanges" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.ArmedGoods_IsDisarmed_WhenItCanNoLongerBeBought_OrThePageChanges" methodname="ArmedGoods_IsDisarmed_WhenItCanNoLongerBeBought_OrThePageChanges" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="702665500" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.034162" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3225" name="ArmedQuote_IsVoided_WhenThePriceOrTheRoundChangesBetweenTheTwoClicks" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.ArmedQuote_IsVoided_WhenThePriceOrTheRoundChangesBetweenTheTwoClicks" methodname="ArmedQuote_IsVoided_WhenThePriceOrTheRoundChangesBetweenTheTwoClicks" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="798359099" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.031480" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3233" name="Away_ShowsTheCountdownToTheNextAppearance_AndNoTravelButton" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.Away_ShowsTheCountdownToTheNextAppearance_AndNoTravelButton" methodname="Away_ShowsTheCountdownToTheNextAppearance_AndNoTravelButton" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="685873524" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.002366" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3224" name="Buy_ADoubleClick_DoesNotConfirm" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.Buy_ADoubleClick_DoesNotConfirm" methodname="Buy_ADoubleClick_DoesNotConfirm" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="486056058" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.014337" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3223" name="Buy_TakesTwoClicks_FirstArmsSecondConfirms_AndCarriesTheQuote" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.Buy_TakesTwoClicks_FirstArmsSecondConfirms_AndCarriesTheQuote" methodname="Buy_TakesTwoClicks_FirstArmsSecondConfirms_AndCarriesTheQuote" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1932850641" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.015167" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3221" name="BuyButtons_ReflectWhyAGoodsCannotBeBought" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.BuyButtons_ReflectWhyAGoodsCannotBeBought" methodname="BuyButtons_ReflectWhyAGoodsCannotBeBought" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1539810869" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.006400" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3236" name="DescribeBalance_ListsEachCurrencyOnTheShelfOnce" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.DescribeBalance_ListsEachCurrencyOnTheShelfOnce" methodname="DescribeBalance_ListsEachCurrencyOnTheShelfOnce" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="520546948" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.006069" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3235" name="DescribeStatus_ErrorFirst_ThenProgress_ThenHint" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.DescribeStatus_ErrorFirst_ThenProgress_ThenHint" methodname="DescribeStatus_ErrorFirst_ThenProgress_ThenHint" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="744888977" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.002840" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3242" name="DisplayCurrency_UsesWhicheverSnapshotIsNewer" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.DisplayCurrency_UsesWhicheverSnapshotIsNewer" methodname="DisplayCurrency_UsesWhicheverSnapshotIsNewer" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1732666088" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.003273" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3231" name="Elsewhere_ShowsWhereHeIs_AndATravelButton" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.Elsewhere_ShowsWhereHeIs_AndATravelButton" methodname="Elsewhere_ShowsWhereHeIs_AndATravelButton" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="666676381" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.003931" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3232" name="Elsewhere_TravelButtonIsDisabled_WhenTheLineCannotBeEntered_AndTheStatusSaysWhy" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.Elsewhere_TravelButtonIsDisabled_WhenTheLineCannotBeEntered_AndTheStatusSaysWhy" methodname="Elsewhere_TravelButtonIsDisabled_WhenTheLineCannotBeEntered_AndTheStatusSaysWhy" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1244238232" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.003535" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3237" name="Hide_RaisesClosedOnce" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.Hide_RaisesClosedOnce" methodname="Hide_RaisesClosedOnce" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1579703286" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.002824" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3243" name="HotspotRect_ConvertsCentreOriginToTopLeftOrigin" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.HotspotRect_ConvertsCentreOriginToTopLeftOrigin" methodname="HotspotRect_ConvertsCentreOriginToTopLeftOrigin" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="125275284" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.002500" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3228" name="InBattle_NothingCanBeBought_AndTheStatusSaysWhy" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.InBattle_NothingCanBeBought_AndTheStatusSaysWhy" methodname="InBattle_NothingCanBeBought_AndTheStatusSaysWhy" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="2035919221" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.007809" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3240" name="OpenDistance_LeavesAMarginInsideTheServerRange" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.OpenDistance_LeavesAMarginInsideTheServerRange" methodname="OpenDistance_LeavesAMarginInsideTheServerRange" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1340898797" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.001902" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3238" name="OpeningSkillBook_ClosesMerchantInsteadOfLeavingItAboveTheSkillPanel" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.OpeningSkillBook_ClosesMerchantInsteadOfLeavingItAboveTheSkillPanel" methodname="OpeningSkillBook_ClosesMerchantInsteadOfLeavingItAboveTheSkillPanel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1971200846" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.265173" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3230" name="SameView_DoesNotRebuildTheCards" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.SameView_DoesNotRebuildTheCards" methodname="SameView_DoesNotRebuildTheCards" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="709262568" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.005969" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3234" name="SetCountdown_UpdatesTheHeadline_WithoutASetView" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.SetCountdown_UpdatesTheHeadline_WithoutASetView" methodname="SetCountdown_UpdatesTheHeadline_WithoutASetView" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="310286629" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.005335" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3229" name="Shelf_PaginatesBeyondSixGoods" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.Shelf_PaginatesBeyondSixGoods" methodname="Shelf_PaginatesBeyondSixGoods" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1501133241" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.012085" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3220" name="Show_BuildsOneCardPerGoods_WithDiscountPricesAndLimit" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.Show_BuildsOneCardPerGoods_WithDiscountPricesAndLimit" methodname="Show_BuildsOneCardPerGoods_WithDiscountPricesAndLimit" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="739835952" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.006329" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3241" name="StandOff_AlwaysEndsInsideTheOpenDistance" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.StandOff_AlwaysEndsInsideTheOpenDistance" methodname="StandOff_AlwaysEndsInsideTheOpenDistance" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1082418617" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.002461" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3222" name="UnknownBalance_ShowsNoBalanceLine" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.UnknownBalance_ShowsNoBalanceLine" methodname="UnknownBalance_ShowsNoBalanceLine" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="1420502586" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.006034" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3219" name="UnsupportedServer_ShowsTheExplicitReasonWithoutPurchaseOrTravel" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.UnsupportedServer_ShowsTheExplicitReasonWithoutPurchaseOrTravel" methodname="UnsupportedServer_ShowsTheExplicitReasonWithoutPurchaseOrTravel" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="140974025" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.003049" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3227" name="WhileABuyIsPending_NoButtonIsClickable" fullname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests.WhileABuyIsPending_NoButtonIsClickable" methodname="WhileABuyIsPending_NoButtonIsClickable" classname="MmorpgClient.Tests.EditMode.Tianyong.MysteryMerchantWindowTests" runstate="Runnable" seed="2024029390" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.006470" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="4252" name="WorldHudScrollRelayTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldHudScrollRelayTests" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldHudScrollRelayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.009990" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="4254" name="DisabledCategoryScroll_DoesNotMoveWhenFeatureEntryReceivesWheel" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldHudScrollRelayTests.DisabledCategoryScroll_DoesNotMoveWhenFeatureEntryReceivesWheel" methodname="DisabledCategoryScroll_DoesNotMoveWhenFeatureEntryReceivesWheel" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldHudScrollRelayTests" runstate="Runnable" seed="2118737345" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.003817" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4253" name="WheelAndDragFromFeatureButton_MoveTheSeparateCategoryScrollContent" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldHudScrollRelayTests.WheelAndDragFromFeatureButton_MoveTheSeparateCategoryScrollContent" methodname="WheelAndDragFromFeatureButton_MoveTheSeparateCategoryScrollContent" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldHudScrollRelayTests" runstate="Runnable" seed="1857504908" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.003096" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="4255" name="WorldSideHudTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:53Z" duration="0.194607" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="4266" name="CapacityAndOverflow_AreDrivenBySnapshotAndListScrolls" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.CapacityAndOverflow_AreDrivenBySnapshotAndListScrolls" methodname="CapacityAndOverflow_AreDrivenBySnapshotAndListScrolls" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="113601216" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.024611" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4271" name="FirstViewAndExplicitNoTeam_HaveDifferentStatesAndNoLeaveAction" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FirstViewAndExplicitNoTeam_HaveDifferentStatesAndNoLeaveAction" methodname="FirstViewAndExplicitNoTeam_HaveDifferentStatesAndNoLeaveAction" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="986376475" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.003195" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="4278" name="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:53Z" duration="0.003495" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="4272" name="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(None,False,False,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(None,False,False,False)" methodname="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1622565733" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000560" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4273" name="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(Following,False,False,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(Following,False,False,True)" methodname="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1980082316" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000131" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4274" name="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(LeaderOutOfSight,False,False,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(LeaderOutOfSight,False,False,True)" methodname="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="2049210525" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000095" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4275" name="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(Away,False,True,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(Away,False,True,False)" methodname="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1576867330" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000087" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4276" name="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(Away,True,False,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(Away,True,False,False)" methodname="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="941443674" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000156" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4277" name="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(Away,True,True,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority(Away,True,True,True)" methodname="FollowPermission_LocalReleaseSurvivesServiceFailureButRejoinNeedsAuthority" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="726236736" result="Passed" start-time="2026-11-05 11:19:52Z" end-time="2026-11-05 11:19:52Z" duration="0.000099" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="4269" name="FreshnessFailure_PreservesRosterButDisablesLeaveAndNeverEnablesSummon" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.FreshnessFailure_PreservesRosterButDisablesLeaveAndNeverEnablesSummon" methodname="FreshnessFailure_PreservesRosterButDisablesLeaveAndNeverEnablesSummon" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="2122937744" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.010160" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4270" name="RebindingState_UnsubscribesOldStateAndNullBindingClearsOldIdentity" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.RebindingState_UnsubscribesOldStateAndNullBindingClearsOldIdentity" methodname="RebindingState_UnsubscribesOldStateAndNullBindingClearsOldIdentity" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="837224715" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.008067" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4264" name="ResponsiveCollapseAndExpand_PreservePageMountAndScrollPosition" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.ResponsiveCollapseAndExpand_PreservePageMountAndScrollPosition" methodname="ResponsiveCollapseAndExpand_PreservePageMountAndScrollPosition" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1224720800" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.067113" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4267" name="RosterRefresh_PreservesUserScrollPositionAfterInitialTop" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.RosterRefresh_PreservesUserScrollPositionAfterInitialTop" methodname="RosterRefresh_PreservesUserScrollPositionAfterInitialTop" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="2119916934" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.012755" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4268" name="SameVersionPresenceUpdate_IsRenderedAndNotDiscarded" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.SameVersionPresenceUpdate_IsRenderedAndNotDiscarded" methodname="SameVersionPresenceUpdate_IsRenderedAndNotDiscarded" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="848226193" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.010073" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4262" name="ShellHasNoWorldSizedRaycastGraphic_AndCollapseLeavesOnlyExpandControl" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.ShellHasNoWorldSizedRaycastGraphic_AndCollapseLeavesOnlyExpandControl" methodname="ShellHasNoWorldSizedRaycastGraphic_AndCollapseLeavesOnlyExpandControl" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1430420917" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.005921" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4263" name="ShortResponsiveRegion_ClipsAndScrollsToFooterInsteadOfLosingActions" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.ShortResponsiveRegion_ClipsAndScrollsToFooterInsteadOfLosingActions" methodname="ShortResponsiveRegion_ClipsAndScrollsToFooterInsteadOfLosingActions" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1880518876" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.007335" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4256" name="TabsAndCollapse_KeepOneContentAndRestoreSelectionWithoutRecreatingMounts" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.TabsAndCollapse_KeepOneContentAndRestoreSelectionWithoutRecreatingMounts" methodname="TabsAndCollapse_KeepOneContentAndRestoreSelectionWithoutRecreatingMounts" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1454043993" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.005321" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4265" name="UnknownDataAndOfflineMembers_RemainLiteralAndDoNotFabricateIdentity" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.UnknownDataAndOfflineMembers_RemainLiteralAndDoNotFabricateIdentity" methodname="UnknownDataAndOfflineMembers_RemainLiteralAndDoNotFabricateIdentity" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1518696550" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.007834" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4261" name="VisibilityEvents_AreIdempotentAndDescribeCurrentPage" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.VisibilityEvents_AreIdempotentAndDescribeCurrentPage" methodname="VisibilityEvents_AreIdempotentAndDescribeCurrentPage" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="1861638191" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.005418" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="4260" name="WorldUnavailableOrCategoriesOpen_HideBothPages" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.WorldUnavailableOrCategoriesOpen_HideBothPages" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.017687" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="4257" name="WorldUnavailableOrCategoriesOpen_HideBothPages(False,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.WorldUnavailableOrCategoriesOpen_HideBothPages(False,False)" methodname="WorldUnavailableOrCategoriesOpen_HideBothPages" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="167708351" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.005653" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4258" name="WorldUnavailableOrCategoriesOpen_HideBothPages(False,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.WorldUnavailableOrCategoriesOpen_HideBothPages(False,True)" methodname="WorldUnavailableOrCategoriesOpen_HideBothPages" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="782960614" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.005157" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4259" name="WorldUnavailableOrCategoriesOpen_HideBothPages(True,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests.WorldUnavailableOrCategoriesOpen_HideBothPages(True,True)" methodname="WorldUnavailableOrCategoriesOpen_HideBothPages" classname="MmorpgClient.Tests.EditMode.Tianyong.WorldSideHudTests" runstate="Runnable" seed="745993158" result="Passed" start-time="2026-11-05 11:19:53Z" end-time="2026-11-05 11:19:53Z" duration="0.004729" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
