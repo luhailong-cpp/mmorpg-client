@@ -37,6 +37,17 @@ standalone sibling of the server repo (`<workspace>/mmorpg-client` next to
    scenes in Build Settings. See `Docs/TianyongMap.md` for PlayMode controls and
    batch commands.
 
+## Local Windows build
+
+先关闭打开此工程的 Unity 编辑器，再在客户端仓库根目录使用 PowerShell 7。
+
+```pwsh
+pwsh -File tools/build_client.ps1
+pwsh -File tools/build_client.ps1 -OutDir 'Builds/QA Client' -Zip
+```
+
+脚本按 `ProjectSettings/ProjectVersion.txt` 查找 Unity，也可传 `-UnityExe` 指定安装路径。默认生成 `Builds/windows-x64-*/mmorpg.exe`，日志在 `Logs/build-client-*.log`。运行时保留整个输出目录。`-OutDir` 需指定新目录，`-Zip` 会调用 Windows 的 `tar.exe` 生成同名 ZIP，并跳过 Unity 的发布备份目录。
+
 ## Architecture
 
 ```
