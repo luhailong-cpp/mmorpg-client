@@ -1134,7 +1134,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _push(new TeamSnapshotS2C { Team = QueuedView(1, 3), Reason = TeamBackfillProtocol.MatchQueuedReason, ActorId = 10 });
 
             Assert.That(_client.MatchQueued, Is.True);
-            Assert.That(_client.Status, Is.EqualTo("队长已发起队伍匹配（目标 3 人），等待补位…"));
+            Assert.That(_client.Status, Is.EqualTo("队伍已进入匹配队列（目标 3 人），等待补位…"));
         }
 
         [Test]
@@ -1180,7 +1180,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             // 其它原因的推送不触发。
             _push(new TeamSnapshotS2C { Team = LeaderView(1), Reason = TeamChangeReason.MemberOnline });
 
-            Assert.That(texts, Is.EqualTo(new[] { "队长已发起队伍匹配（目标 3 人），等待补位…", _client.Status }));
+            Assert.That(texts, Is.EqualTo(new[] { "队伍已进入匹配队列（目标 3 人），等待补位…", _client.Status }));
             Assert.That(texts[1], Does.EndWith(" 取消了队伍匹配。"));
             Assert.That(ended, Is.EqualTo(new[] { false, true }));
         }

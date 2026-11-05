@@ -147,13 +147,12 @@ namespace MmorpgClient.UI.Ugui.Team
                 _invitations.ResetSession();
                 _directory?.Reset();
                 if (_client != null) _client.Reset();
-                MatchEntry?.Reset();
                 else State.Reset(playerId);
+                MatchEntry?.Reset();
             }
             // 队伍补位匹配:把队伍视图的匹配态与 BattleClient 的排队态对齐(规则见 TeamBackfillQueueSync)。
             if (inGame) _backfillSync.Step(_client, BattleUiRoot.Instance?.Client);
             else _backfillSync.Reset();
-            MatchEntry?.Tick();
             _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
             // The live path mirrors the client and holds no token, so this is a no-op kept for consistency.
@@ -287,7 +286,11 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void DisposeClient()
         {
-            if (MatchEntry != null) { MatchEntry.Notice -= ShowMatchNotice; MatchEntry.Dispose(); MatchEntry = null; }
+            if (MatchEntry != null)
+            {
+                MatchEntry.Notice -= ShowMatchNotice;
+                MatchEntry = null;
+            }
             // 先解绑再销毁客户端,且放在任何提前返回之前,保证一定释放。
             _landingSync?.Dispose();
             _landingSync = null;
