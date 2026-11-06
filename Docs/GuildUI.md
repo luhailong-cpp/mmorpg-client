@@ -200,3 +200,49 @@
 文件占用、锁冲突、权限或读取失败时不盲删，并撤销确认；恢复可读后再警告、再确认。删除失败也保留记录。作废成功后经济页缓存失效，只读刷新帮会并保留结论；有效快照和“不在帮”均支持，故障及无效快照显示真实错误。读取期间的新推送优先于旧作废文案。窗口布局、按钮名称及两版服务器协议均未修改。
 
 实际验证：Unity 6000.6.0f1，14 组相关 EditMode **501/501 通过、零跳过、退出 0**，其中恢复 83、文件存储 12；生产与测试源码首尾摘要一致。损坏旧行为的 17 个红灯及合法记录替换的 4 个红灯均在最终回归通过。结果见 [最终 XML](../Logs/guild-corrupt-recovery-20261105/final-tests.xml)、[运行日志](../Logs/guild-corrupt-recovery-20261105/final-unity.log) 与 [源码摘要](../Logs/guild-corrupt-recovery-20261105/final-sources-after.json)。未执行联网冒烟或播放器打包。
+
+## 2026-11-06：损坏记录作废后的真实联网验收
+
+**联网已通过；Claude Code 独立审核尚未发送，待继续。** Unity 6000.6.0f1 的独立 PlayMode 进程连接本机网关 `http://127.0.0.1:18105`、区服 1，经正式 `GameClient`、`GameClientBattleTransport`、Gate/Scene 和 Go 帮会服务完成本次验收：**1/1 通过，零失败、零跳过、退出 0**；运行前后源码清单比较为 `sourceChanges: []`。
+
+用例为 [GuildEconomyNetworkSmokeTests.cs](../Assets/Tests/PlayMode/GuildNetwork/GuildEconomyNetworkSmokeTests.cs)，独立程序集为 [MmorpgClient.Tests.PlayMode.GuildNetwork.asmdef](../Assets/Tests/PlayMode/GuildNetwork/MmorpgClient.Tests.PlayMode.GuildNetwork.asmdef)，显式引用 `MmorpgClient` 和 `Google.Protobuf.dll`。仅在精确选中该 `[Explicit]` 用例并设置启用环境变量时运行；不修改共用 PlayMode 程序集或生产启动器。
+
+启动隔离沿用 `AppBootstrap.AutoSpawn` 已有的沙盒排除条件：测试程序集的 `BeforeSceneLoad` 钩子同时校验 batchmode、启用变量、完整程序集名和完整测试名，创建自有持久宿主，添加并立即禁用 `TianyongSandboxBootstrap`，不运行其 `Start`、不生成离线地图或角色。测试再核对宿主归属、禁用状态、空地图/角色，以及不存在正式启动器或未知 `ActorWorld`，随后构造真实客户端。动态 UI 根保持原行为；清理只销毁保存引用的自有宿主，不按名字接管或删除外部世界。
+
+本次实证如下，所有资产结果均重新读取真实服务端快照，订单必须到达 `APPLIED`，不以 `PENDING` 代替到账：
+
+- 捐献前注入当前角色的空 `.pending` 文件，兑换前注入损坏头文件。两轮首次恢复均保留原字节、零帮会请求；第二次确认均删除本槽记录，只发一条 `GetPlayerGuild`，经济写次数不变，两页缓存失效，并保留“原请求未重发、不能据此判断是否到账”的结论。
+- 新角色初始银两为零，以正式 GM RPC 仅补足本轮所需的 100000。作废后重新读取经济页，新捐献选项 2 恰好写一次：银两 **100000 → 0**，帮会资金 **0 → 12000**，可用与累计帮贡 **0 → 120**，今日次数 **0 → 1**。
+- 再次作废后兑换商品 101 恰好写一次：可用帮贡 **120 → 90**，物品 15 数量 **0 → 5**，限购次数 **0 → 1**；银两、帮会资金和累计帮贡保持预期值。捐献与兑换的请求键均非零且不同，恢复记录均已清除。
+- 成功后核对本人仍为自建单人帮会的帮主，再解散该帮并确认“不在帮”；退出时断开本轮会话。失败则保留服务端状态与本机证据，不删除其他玩家数据。
+
+证据保留在 `Logs/guild-corrupt-online-20261106/attempt-4/`：[结果摘要](../Logs/guild-corrupt-online-20261106/attempt-4/result.json)、[测试 XML](../Logs/guild-corrupt-online-20261106/attempt-4/results.xml)、[Unity 日志](../Logs/guild-corrupt-online-20261106/attempt-4/unity.log)、[资产与请求步骤](../Logs/guild-corrupt-online-20261106/attempt-4/evidence/summary.txt)、[运行前源码](../Logs/guild-corrupt-online-20261106/attempt-4/sources-before.json)及[运行后源码](../Logs/guild-corrupt-online-20261106/attempt-4/sources-after.json)。该目录属于本机忽略的验证产物，不含口令或令牌值。
+
+复跑前必须准备独立的本机 dev/test 服务栈，开放测试账号登录与 GM 货币入口，并启用帮会资产通道；网关入口只接受 loopback。关闭占用工程的 Unity，由独立进程精确运行一个用例。必需环境变量为：
+
+| 变量 | 要求 |
+| --- | --- |
+| `MMORPG_GUILD_SMOKE_ENABLE` | 必须为 `1` |
+| `MMORPG_GUILD_SMOKE_GATEWAY` | 本轮可用 `http://127.0.0.1:18105`；不带凭据、查询参数或片段 |
+| `MMORPG_GUILD_SMOKE_ZONE` | 本机栈有效的非零区服，本轮为 `1` |
+| `MMORPG_GUILD_SMOKE_ACCOUNT` | 本轮全新 `robot_guild_recovery_` 加 16–32 位小写随机十六进制；预检全账号无角色，正式选角仍拒绝已有角色 |
+| `MMORPG_GUILD_SMOKE_PASSWORD` | 仅由运行者注入进程环境，与本机测试登录配置匹配；不得写入命令行、文档或日志 |
+| `MMORPG_GUILD_SMOKE_OUTPUT` | 客户端 `Logs` 内尚不存在的绝对路径；每轮独立，恢复记录按网关来源隔离 |
+
+设置上述环境变量后，以下 PowerShell 命令以全新目录运行；不要加 `-quit`，不要复用旧账号或旧证据目录：
+
+```powershell
+$liveRun = 'D:/luyuan/mmorpg-client/Logs/guild-corrupt-online-' + [guid]::NewGuid().ToString('N')
+New-Item -ItemType Directory -Path $liveRun | Out-Null
+$env:MMORPG_GUILD_SMOKE_OUTPUT = Join-Path $liveRun 'evidence'
+& 'D:/luyuan/tools/Unity/6000.6.0f1/Editor/Unity.exe' `
+  -batchmode -nographics -projectPath 'D:/luyuan/mmorpg-client' `
+  -runTests -testPlatform PlayMode `
+  -assemblyNames 'MmorpgClient.Tests.PlayMode.GuildNetwork' `
+  -testFilter 'MmorpgClient.Tests.PlayMode.GuildEconomyNetworkSmokeTests.CorruptRecordRetirementAllowsRealDonationAndRedemption' `
+  -testResults (Join-Path $liveRun 'results.xml') -logFile (Join-Path $liveRun 'unity.log')
+```
+
+此前失败证据 `attempt-1` 至 `attempt-3` 全部保留：第一次在编译期发现共用 PlayMode 程序集缺少 Protobuf 引用，尚未执行测试；第二次 HTTP 账号预检成功后，由未知世界保护发现自动创建的正式 `AppBootstrap`，尚未建角；第三次已真实建角、建帮并读页，因夹具错误要求新角色货币槽非空而失败。对应修复依次为独立程序集、受控启动隔离，以及按 `econCurrency`/`EnsureCurrencySlots` 契约将尚未写入的银两槽读为零；`Currency` 快照非空、真实读取及后续资产断言仍保留。
+
+本轮覆盖客户端业务入口与真实本机 Go 帮会链路，未切换到 Java 帮会实现，未构建或运行独立播放器，也不构成界面截图、真实跨区或压测证据。Claude Code 独立审核在发送前被停止，目前未发送、未取得审核结论。

@@ -1,0 +1,21 @@
+{
+  "name": "MmorpgClient.Tests.PlayMode.GuildNetwork",
+  "rootNamespace": "MmorpgClient.Tests.PlayMode",
+  "references": [
+    "MmorpgClient"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Google.Protobuf.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false,
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}
