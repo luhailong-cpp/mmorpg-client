@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.5530501">
+  <test-suite type="TestSuite" id="1000" name="unity-recovery" fullname="unity-recovery" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.553050" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1009" name="Heartbeat.Recovery.Tests.dll" fullname="Heartbeat.Recovery.Tests.dll" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.542580" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="33756" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1010" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.542071" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1011" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.541845" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1012" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.541657" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="1013" name="Net" fullname="MmorpgClient.Tests.EditMode.Net" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.541442" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="1001" name="GameClientReconnectTests" fullname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" classname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.540305" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1003" name="ExplicitLogoutCancelsQueuedRecoveryBeforeItCanIssueHttp" fullname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests.ExplicitLogoutCancelsQueuedRecoveryBeforeItCanIssueHttp" methodname="ExplicitLogoutCancelsQueuedRecoveryBeforeItCanIssueHttp" classname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" runstate="Runnable" seed="258839897" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:28Z" duration="0.358818" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1007" name="LoginFailureDoesNotAutomaticallyStartAnotherLogin" fullname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests.LoginFailureDoesNotAutomaticallyStartAnotherLogin" methodname="LoginFailureDoesNotAutomaticallyStartAnotherLogin" classname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" runstate="Runnable" seed="1624556301" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:28Z" duration="0.005322" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1005" name="QueuedKickBeforeEofDoesNotAutoReclaimAccount" fullname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests.QueuedKickBeforeEofDoesNotAutoReclaimAccount" methodname="QueuedKickBeforeEofDoesNotAutoReclaimAccount" classname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" runstate="Runnable" seed="451521847" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:28Z" duration="0.013202" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1008" name="RecoveryUsesFreshTicketTokenLoginAndOriginalRoleOverRealTcp" fullname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests.RecoveryUsesFreshTicketTokenLoginAndOriginalRoleOverRealTcp" methodname="RecoveryUsesFreshTicketTokenLoginAndOriginalRoleOverRealTcp" classname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" runstate="Runnable" seed="1419821680" result="Passed" start-time="2026-11-06 08:09:28Z" end-time="2026-11-06 08:09:29Z" duration="0.127948" asserts="0">
+                  <properties>
+                    <property name="_JOINTYPE" value="UnityCombinatorial" />
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1006" name="ResumeClosesOldConnectionAndStartsRecoveryOnlyOnce" fullname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests.ResumeClosesOldConnectionAndStartsRecoveryOnlyOnce" methodname="ResumeClosesOldConnectionAndStartsRecoveryOnlyOnce" classname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" runstate="Runnable" seed="1352330575" result="Passed" start-time="2026-11-06 08:09:29Z" end-time="2026-11-06 08:09:29Z" duration="0.004027" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1004" name="TotalDeadlineEndsRecoveryAndNotifiesOnce" fullname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests.TotalDeadlineEndsRecoveryAndNotifiesOnce" methodname="TotalDeadlineEndsRecoveryAndNotifiesOnce" classname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" runstate="Runnable" seed="2074114347" result="Passed" start-time="2026-11-06 08:09:29Z" end-time="2026-11-06 08:09:29Z" duration="0.004583" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1002" name="UnexpectedEofStartsOneRecoveryWithOriginalRoleAndKeepsFailureUiClosed" fullname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests.UnexpectedEofStartsOneRecoveryWithOriginalRoleAndKeepsFailureUiClosed" methodname="UnexpectedEofStartsOneRecoveryWithOriginalRoleAndKeepsFailureUiClosed" classname="MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests" runstate="Runnable" seed="1328744556" result="Passed" start-time="2026-11-06 08:09:29Z" end-time="2026-11-06 08:09:29Z" duration="0.004985" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: unity-reconnect-results.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

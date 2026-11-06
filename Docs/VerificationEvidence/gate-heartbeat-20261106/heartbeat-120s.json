@@ -1,0 +1,62 @@
+{
+  "intervalMs": 10000,
+  "timeoutMs": 30000,
+  "durationMs": 120100,
+  "count": 13,
+  "connected": true,
+  "mainThreadPollCalls": 0,
+  "records": [
+    {
+      "elapsedMs": 45,
+      "sequence": 1
+    },
+    {
+      "elapsedMs": 10032,
+      "sequence": 2
+    },
+    {
+      "elapsedMs": 20031,
+      "sequence": 3
+    },
+    {
+      "elapsedMs": 30043,
+      "sequence": 4
+    },
+    {
+      "elapsedMs": 40056,
+      "sequence": 5
+    },
+    {
+      "elapsedMs": 50069,
+      "sequence": 6
+    },
+    {
+      "elapsedMs": 60070,
+      "sequence": 7
+    },
+    {
+      "elapsedMs": 70071,
+      "sequence": 8
+    },
+    {
+      "elapsedMs": 80072,
+      "sequence": 9
+    },
+    {
+      "elapsedMs": 90083,
+      "sequence": 10
+    },
+    {
+      "elapsedMs": 100088,
+      "sequence": 11
+    },
+    {
+      "elapsedMs": 110091,
+      "sequence": 12
+    },
+    {
+      "elapsedMs": 120095,
+      "sequence": 13
+    }
+  ]
+}

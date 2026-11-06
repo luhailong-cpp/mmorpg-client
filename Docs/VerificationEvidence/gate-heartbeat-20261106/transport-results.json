@@ -1,0 +1,178 @@
+{
+  "runner": "现有NUnit断言和每例SetUp/TearDown经.NET反射执行；真实 GateHeartbeat / GateTcpClient / MuduoCodec 源码及正式协议经 Roslyn 编译；含真实回环 TCP 测试，未运行 Unity 或游戏后端。",
+  "total": 28,
+  "passed": 28,
+  "failed": 0,
+  "sourceFilesUnchangedDuringRun": true,
+  "changedSources": [],
+  "results": [
+    {
+      "name": "GateHeartbeatTests.FirstHeartbeatIsImmediateAndTicksWithoutBusinessTraffic",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.NoAnnouncementMeansNoSendOrExpiry",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.DuplicateVerificationDoesNotRescheduleFirstHeartbeatOrTimeout",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.EveryInboundByteRestartsTimeoutButNeverPostponesSend",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.DeadlineClosesWithoutOneLastHeartbeat",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.LateWorkerSendsOnceWithoutCatchUpBurst",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.MatchingReplyMeasuresRttAndUnknownSequenceDoesNotChangeIt",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.InvalidAnnouncementFailsInsteadOfBusyLoop([10000,0])",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.InvalidAnnouncementFailsInsteadOfBusyLoop([10000,10000])",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateHeartbeatTests.InvalidAnnouncementFailsInsteadOfBusyLoop([10000,9999])",
+      "fixture": "GateHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientHeartbeatTests.VerificationStartsHeartbeatWithoutMainThreadPollAndRepliesStayOffBusinessQueue",
+      "fixture": "GateTcpClientHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientHeartbeatTests.UnverifiedOrUnannouncedConnectionNeverSendsHeartbeat(false)",
+      "fixture": "GateTcpClientHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientHeartbeatTests.UnverifiedOrUnannouncedConnectionNeverSendsHeartbeat(true)",
+      "fixture": "GateTcpClientHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientHeartbeatTests.RejectedVerificationDoesNotStartHeartbeat",
+      "fixture": "GateTcpClientHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientHeartbeatTests.SilentGateClosesTransportAndRaisesOneDisconnect",
+      "fixture": "GateTcpClientHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientHeartbeatTests.IncompleteInboundFrameBytesKeepGateAlive",
+      "fixture": "GateTcpClientHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientHeartbeatTests.DisposeEndsAllWorkersAndNewConnectionWaitsForOwnVerification",
+      "fixture": "GateTcpClientHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientHeartbeatTests.PeerEofWakesLongHeartbeatWait",
+      "fixture": "GateTcpClientHeartbeatTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.ConnectAfterDisposeCannotStartBackgroundProbeConnection",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.DisposeDuringIo_EndsWorkerWithoutEscapingException(true)",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.DisposeDuringIo_EndsWorkerWithoutEscapingException(false)",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.IoFailureWhileRunning_IsReported(true)",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.IoFailureWhileRunning_IsReported(false)",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.MalformedFrame_ReportsDecodeErrorAndOneDisconnect",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.PeerEof_EmitsOneDisconnectWithoutError",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.PeerEof_AlsoWakesIdleWriter",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.WriteFailure_ClosesSocketToWakeReaderAndDisconnectsOnce",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    },
+    {
+      "name": "GateTcpClientLifecycleTests.PeerRejectThenEof_ConnectedTurnsFalseBeforeQueuedFramesAreDispatched",
+      "fixture": "GateTcpClientLifecycleTests",
+      "passed": true,
+      "error": null
+    }
+  ]
+}

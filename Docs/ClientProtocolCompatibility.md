@@ -53,6 +53,8 @@ CPP 远端契约的查询、购买、公告消息号为 264、265、266；本地
 
 本轮验证：全部 446 个运行时源码 Roslyn 编译通过；10 个心跳时序、8 个真实回环 TCP 心跳、10 个既有 TCP 生命周期测试通过；7 个真实 Unity EditMode 恢复测试通过，其中一例通过本地 HTTP 和 TCP 完整执行 AssignGate、验签、token Login、原角色 EnterGame。另用真实 10000/30000 参数连续 120100ms 不调用 `Poll`，收到 13 条心跳，首条 45ms，结束时连接仍存活。最终恢复测试使用全部当前源码，没有 HEAD 替换，源码哈希核对未变化；早期隔离尝试保留日志，不计为最终通过证据。未做移动设备实机挂起测试或完整播放器出包。
 
+源码提交 `f8076ce9596f84c745a5b86fdf9c4de5dad414e0` 对应的验收报告已归档。[心跳与连接生命周期](VerificationEvidence/gate-heartbeat-20261106/transport-results.json)、[Unity EditMode 重连](VerificationEvidence/gate-heartbeat-20261106/unity-reconnect-results.xml)、[120 秒回环 TCP](VerificationEvidence/gate-heartbeat-20261106/heartbeat-120s.json)。
+
 本机证据在 `.codex-artifacts/heartbeat-20261106/`：`runtime-compile-current.log`、`transport/results.json`、`recovery-current/unity-results.xml`、`recovery-current/source-hashes.json`、`heartbeat-120s.json`。本机可复跑：
 
 ```powershell
