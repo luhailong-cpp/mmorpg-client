@@ -25,21 +25,51 @@ public static partial class PlayerLifecycleReflection {
           "CiJwcm90by9zY2VuZS9wbGF5ZXJfbGlmZWN5Y2xlLnByb3RvGhtwcm90by9k",
           "Yi9wcm90b19vcHRpb24ucHJvdG8aG2dvb2dsZS9wcm90b2J1Zi9lbXB0eS5w",
           "cm90byIvChZHYXRlTG9naW5Ob3RpZnlSZXF1ZXN0EhUKDWVudGVyX2dzX3R5",
-          "cGUYASABKA0iGQoXR2FtZU5vZGVFeGl0R2FtZVJlcXVlc3QylgEKC1NjZW5l",
-          "UGxheWVyEkIKD0dhdGVMb2dpbk5vdGlmeRIXLkdhdGVMb2dpbk5vdGlmeVJl",
-          "cXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSPAoIRXhpdEdhbWUSGC5H",
-          "YW1lTm9kZUV4aXRHYW1lUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0",
-          "eRoFgKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "cGUYASABKA0iOgoXR2FtZU5vZGVFeGl0R2FtZVJlcXVlc3QSHwoGcmVhc29u",
+          "GAEgASgOMg8uRXhpdEdhbWVSZWFzb24qlgEKDkV4aXRHYW1lUmVhc29uEiAK",
+          "HEVYSVRfR0FNRV9SRUFTT05fVU5TUEVDSUZJRUQQABIbChdFWElUX0dBTUVf",
+          "UkVBU09OX0xPR09VVBABEiEKHUVYSVRfR0FNRV9SRUFTT05fRElTQ09OTkVD",
+          "VEVEEAISIgoeRVhJVF9HQU1FX1JFQVNPTl9MRUFTRV9FWFBJUkVEEAMylgEK",
+          "C1NjZW5lUGxheWVyEkIKD0dhdGVMb2dpbk5vdGlmeRIXLkdhdGVMb2dpbk5v",
+          "dGlmeVJlcXVlc3QaFi5nb29nbGUucHJvdG9idWYuRW1wdHkSPAoIRXhpdEdh",
+          "bWUSGC5HYW1lTm9kZUV4aXRHYW1lUmVxdWVzdBoWLmdvb2dsZS5wcm90b2J1",
+          "Zi5FbXB0eRoFgKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::ExitGameReason), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::GateLoginNotifyRequest), global::GateLoginNotifyRequest.Parser, new[]{ "EnterGsType" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::GameNodeExitGameRequest), global::GameNodeExitGameRequest.Parser, null, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::GameNodeExitGameRequest), global::GameNodeExitGameRequest.Parser, new[]{ "Reason" }, null, null, null, null)
         }));
   }
   #endregion
 
 }
+#region Enums
+/// <summary>
+/// gate 代发 ExitGame 的原因(docs/design/player-connection-lost-hold.md)。服务端内部字段,客户端不可见。
+/// 只有 DISCONNECTED 让 scene 把角色留在原地等重连;其余一律立即退出(与加字段之前相同)。
+/// </summary>
+public enum ExitGameReason {
+  /// <summary>
+  /// 未填(旧版 gate):立即退出
+  /// </summary>
+  [pbr::OriginalName("EXIT_GAME_REASON_UNSPECIFIED")] Unspecified = 0,
+  /// <summary>
+  /// 客户端主动 LeaveGame:立即退出
+  /// </summary>
+  [pbr::OriginalName("EXIT_GAME_REASON_LOGOUT")] Logout = 1,
+  /// <summary>
+  /// 客户端连接断开、没有登出(断网、gate 重启、顶号踢旧连接):保留到重连窗口结束
+  /// </summary>
+  [pbr::OriginalName("EXIT_GAME_REASON_DISCONNECTED")] Disconnected = 2,
+  /// <summary>
+  /// 断线租约已到期,gate 关掉残留的假死连接:立即退出
+  /// </summary>
+  [pbr::OriginalName("EXIT_GAME_REASON_LEASE_EXPIRED")] LeaseExpired = 3,
+}
+
+#endregion
+
 #region Messages
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class GateLoginNotifyRequest : pb::IMessage<GateLoginNotifyRequest>
@@ -274,6 +304,7 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public GameNodeExitGameRequest(GameNodeExitGameRequest other) : this() {
+    reason_ = other.reason_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -281,6 +312,18 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public GameNodeExitGameRequest Clone() {
     return new GameNodeExitGameRequest(this);
+  }
+
+  /// <summary>Field number for the "reason" field.</summary>
+  public const int ReasonFieldNumber = 1;
+  private global::ExitGameReason reason_ = global::ExitGameReason.Unspecified;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::ExitGameReason Reason {
+    get { return reason_; }
+    set {
+      reason_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -298,6 +341,7 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (Reason != other.Reason) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -305,6 +349,7 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
+    if (Reason != global::ExitGameReason.Unspecified) hash ^= Reason.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -323,6 +368,10 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
+    if (Reason != global::ExitGameReason.Unspecified) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) Reason);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -333,6 +382,10 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Reason != global::ExitGameReason.Unspecified) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) Reason);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -343,6 +396,9 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
+    if (Reason != global::ExitGameReason.Unspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Reason);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -354,6 +410,9 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
   public void MergeFrom(GameNodeExitGameRequest other) {
     if (other == null) {
       return;
+    }
+    if (other.Reason != global::ExitGameReason.Unspecified) {
+      Reason = other.Reason;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -374,6 +433,10 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
+        case 8: {
+          Reason = (global::ExitGameReason) input.ReadEnum();
+          break;
+        }
       }
     }
   #endif
@@ -393,6 +456,10 @@ public sealed partial class GameNodeExitGameRequest : pb::IMessage<GameNodeExitG
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
+        case 8: {
+          Reason = (global::ExitGameReason) input.ReadEnum();
+          break;
+        }
       }
     }
   }

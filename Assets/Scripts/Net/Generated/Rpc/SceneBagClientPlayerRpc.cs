@@ -71,5 +71,13 @@ namespace MmorpgClient.Net.Generated
         public static void RemoveGem(IRpcChannel channel, global::RemoveGemRequest request,
             RpcDone<global::RemoveGemResponse> done)
             => channel.CallMethod(RemoveGemMessageId, request, global::RemoveGemResponse.Parser, done);
+
+        public const uint RetrieveTemporaryItemsMessageId = 374;
+        /// <summary>
+        /// 临时格 → 人物背包(玩家显式操作,method index 8)。传送途中拒绝、战斗中放行;不改装备栏,不重算属性。
+        /// </summary>
+        public static void RetrieveTemporaryItems(IRpcChannel channel, global::RetrieveTemporaryItemsRequest request,
+            RpcDone<global::RetrieveTemporaryItemsResponse> done)
+            => channel.CallMethod(RetrieveTemporaryItemsMessageId, request, global::RetrieveTemporaryItemsResponse.Parser, done);
     }
 }

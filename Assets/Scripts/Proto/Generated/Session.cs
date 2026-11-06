@@ -22,17 +22,18 @@ public static partial class SessionReflection {
   static SessionReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Ch9wcm90by9jb21tb24vYmFzZS9zZXNzaW9uLnByb3RvIuwBCg5TZXNzaW9u",
+          "Ch9wcm90by9jb21tb24vYmFzZS9zZXNzaW9uLnByb3RvIosCCg5TZXNzaW9u",
           "RGV0YWlscxISCgpzZXNzaW9uX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEo",
           "BBIUCgxnYXRlX25vZGVfaWQYAyABKA0SGAoQZ2F0ZV9pbnN0YW5jZV9pZBgE",
           "IAEoCRIYChB0aWNrZXRfcGxheWVyX2lkGAUgASgEEh0KFXRpY2tldF90YXJn",
           "ZXRfem9uZV9pZBgGIAEoDRIbChNzZXNzaW9uX2luY2FybmF0aW9uGAcgASgE",
           "EhUKDWdhdGVfY2FsbF9zZXEYCCABKAQSFgoOb3duZXJfcmV2aXNpb24YCSAB",
-          "KARCDVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
+          "KAQSHQoVYXV0aGVudGljYXRlZF9hY2NvdW50GAogASgJQg1aC2NvbW1vbi9i",
+          "YXNlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::SessionDetails), global::SessionDetails.Parser, new[]{ "SessionId", "PlayerId", "GateNodeId", "GateInstanceId", "TicketPlayerId", "TicketTargetZoneId", "SessionIncarnation", "GateCallSeq", "OwnerRevision" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SessionDetails), global::SessionDetails.Parser, new[]{ "SessionId", "PlayerId", "GateNodeId", "GateInstanceId", "TicketPlayerId", "TicketTargetZoneId", "SessionIncarnation", "GateCallSeq", "OwnerRevision", "AuthenticatedAccount" }, null, null, null, null)
         }));
   }
   #endregion
@@ -83,6 +84,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     sessionIncarnation_ = other.sessionIncarnation_;
     gateCallSeq_ = other.gateCallSeq_;
     ownerRevision_ = other.ownerRevision_;
+    authenticatedAccount_ = other.authenticatedAccount_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -225,6 +227,23 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
   }
 
+  /// <summary>Field number for the "authenticated_account" field.</summary>
+  public const int AuthenticatedAccountFieldNumber = 10;
+  private string authenticatedAccount_ = "";
+  /// <summary>
+  /// login 完成原连接认证与选角后，经内部 BindSessionEvent 交给 gate 的原账号。
+  /// 仅服务端传递；下游必须先验证整份 SessionDetails 的调用方签名，不能信客户端自报。
+  /// 角色解绑时清理，不能按 player_id 查询当前 owner 补值。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string AuthenticatedAccount {
+    get { return authenticatedAccount_; }
+    set {
+      authenticatedAccount_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -249,6 +268,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     if (SessionIncarnation != other.SessionIncarnation) return false;
     if (GateCallSeq != other.GateCallSeq) return false;
     if (OwnerRevision != other.OwnerRevision) return false;
+    if (AuthenticatedAccount != other.AuthenticatedAccount) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -265,6 +285,7 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     if (SessionIncarnation != 0UL) hash ^= SessionIncarnation.GetHashCode();
     if (GateCallSeq != 0UL) hash ^= GateCallSeq.GetHashCode();
     if (OwnerRevision != 0UL) hash ^= OwnerRevision.GetHashCode();
+    if (AuthenticatedAccount.Length != 0) hash ^= AuthenticatedAccount.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -319,6 +340,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
       output.WriteRawTag(72);
       output.WriteUInt64(OwnerRevision);
     }
+    if (AuthenticatedAccount.Length != 0) {
+      output.WriteRawTag(82);
+      output.WriteString(AuthenticatedAccount);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -365,6 +390,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
       output.WriteRawTag(72);
       output.WriteUInt64(OwnerRevision);
     }
+    if (AuthenticatedAccount.Length != 0) {
+      output.WriteRawTag(82);
+      output.WriteString(AuthenticatedAccount);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -401,6 +430,9 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
     if (OwnerRevision != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(OwnerRevision);
+    }
+    if (AuthenticatedAccount.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthenticatedAccount);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -440,6 +472,9 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
     }
     if (other.OwnerRevision != 0UL) {
       OwnerRevision = other.OwnerRevision;
+    }
+    if (other.AuthenticatedAccount.Length != 0) {
+      AuthenticatedAccount = other.AuthenticatedAccount;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -496,6 +531,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
           OwnerRevision = input.ReadUInt64();
           break;
         }
+        case 82: {
+          AuthenticatedAccount = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -549,6 +588,10 @@ public sealed partial class SessionDetails : pb::IMessage<SessionDetails>
         }
         case 72: {
           OwnerRevision = input.ReadUInt64();
+          break;
+        }
+        case 82: {
+          AuthenticatedAccount = input.ReadString();
           break;
         }
       }

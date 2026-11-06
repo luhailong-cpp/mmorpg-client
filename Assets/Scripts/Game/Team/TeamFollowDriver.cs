@@ -1,345 +1,140 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
-using UnityEngine;
 
 namespace MmorpgClient.Game.Team
 {
-    using Vector3 = UnityEngine.Vector3;
-
     /// <summary>界面要显示的跟随状态。</summary>
     public enum TeamFollowStatus
     {
         /// <summary>不需要跟随:没有队伍、自己是队长,或眼下不允许跟随(未进游戏 / 战斗中 / 队伍视图还没拿到)。</summary>
         None,
-        /// <summary>正在跟随队长,本地输入被接管。</summary>
+        /// <summary>服务器正带着自己跟在队长身后,本地输入不驱动角色。</summary>
         Following,
         /// <summary>玩家选择了暂离:仍在队里,但自己走。</summary>
         Away,
-        /// <summary>在队里也没暂离,但眼下看不到队长(不在同一张图 / 同一条线,或离得太远):暂时自己走。</summary>
+        /// <summary>在队里也没暂离,但服务器眼下没在带着走(队长不在这个场景 / 刚换完图还没接上):暂时自己走。</summary>
         LeaderOutOfSight,
     }
 
     /// <summary>
-    /// 组队跟随的本地驱动:队员的客户端自己把角色走到"队长身后第 N 个"的位置上,照常上报移动,
-    /// 服务端照常裁决。每个客户端只驱动自己这一个角色;别的队员在本机上的位置来自他们各自上报的移动。
+    /// 组队跟随的客户端一侧(服务端 docs/design/team-follow-server-trail.md §5):只决定要不要跟、显示服务器给的状态。
+    /// 走位全在服务器 —— 声明跟随之后,服务器把自己接到队长身后,沿队长走过的路带着走,同动作、同间隔;
+    /// 发给自己的 ActorMoveS2C 由 ActorWorld 按远端角色同一套插值显示,本地控制器不按输入走、不上报移动。
+    /// 这些切换由 GameClient 收到 TeamFollowStateS2C 时完成(<see cref="GameClient.TeamFollowDriven"/>),本类不碰角色位置。
     ///
-    /// 每帧:从队伍快照算出自己的槽位 → 在场景里找到队长的角色 → 把队长的新位置记进轨迹 →
-    /// <see cref="TeamFollowPlanner"/> 给出这一帧的指令 → 交给本地 <see cref="TianyongPlayerController"/>。
-    /// 找不到队长、暂离、被要求停手(战斗中 / 未进游戏)时把控制权还给玩家。
-    ///
-    /// 暂离是纯本地状态,服务端不知道:换图时照样会被队长带走(服务端按队伍拉人),只是到了之后不排队。
-    /// 只有确认换了队或离了队才复位;断线重连、跨区重定向期间队伍视图暂时拿不到,不算换队。
-    /// 归队(点「归队」,或跟随中看不到队长)要服务端把人带到队长身边:何时请求由 <see cref="TeamRegroupPolicy"/> 定,
-    /// 本类只发 <see cref="RegroupRequested"/>,由宿主交给 TeamClient.RequestRegroup。
-    /// 只在主线程使用;不持有任何需要释放的资源,丢弃前调一次 <see cref="Release"/> 即可。
+    /// 要不要跟:在队里、不是队长、没暂离就跟(与改版前"入队即跟随"一致);何时发声明由 <see cref="TeamFollowDeclaration"/> 定,
+    /// 声明经 <see cref="GameClient.SendTeamFollow"/> 发出。暂离是玩家的选择,只记在本地,换队 / 离队时复位;
+    /// 断线重连、跨区重定向期间队伍视图暂时拿不到,不算换队。服务器自己开的跟随(挂机月卡托管开始时)照单全收:
+    /// 状态显示为跟随中,玩家想自己走就点「暂离」。
+    /// 只在主线程使用;丢弃前调一次 <see cref="Release"/>。
     /// </summary>
     public sealed class TeamFollowDriver
     {
-        /// <summary>
-        /// 轨迹保留长度。整队 4 个槽位只占 5.6,余量留给追赶:队员卡住或切到后台时队长照走,
-        /// 只要还没走出这么远,回来后沿原路追上,不必寻路。
-        /// </summary>
-        public const float TrailLength = 80f;
-        /// <summary>队长相邻两帧位置差超过它视为瞬移(被服务端带走 / 纠偏),轨迹作废重起。</summary>
-        public const float LeaderJumpDistance = 6f;
-        /// <summary>队长的速度平方小于它视为站定(远端角色停步后速度被置为精确的 0)。</summary>
-        public const float LeaderStandingSpeedSquared = 0.0001f;
-        /// <summary>寻路模式下,人还在走时两次重新规划的最小间隔。</summary>
-        public const float RouteReplanSeconds = 0.5f;
-        /// <summary>寻路失败(找不到路)后再试的间隔。失败的 A* 会扫完整个连通区,不能半秒一次。</summary>
-        public const float RouteFailedBackoffSeconds = 2f;
-        /// <summary>寻路目标(自己的槽位)挪动超过它才值得重新规划;队长站着不动时不重算。</summary>
-        public const float RouteRetargetDistance = 0.5f;
-        /// <summary>直线跟随被掩码挡住后,改用寻路的持续时间。</summary>
-        public const float BlockedRouteSeconds = 0.75f;
-
-        private readonly TeamFollowTrail _trail = new TeamFollowTrail(TrailLength);
-        private readonly List<Vector3> _seedTail = new List<Vector3>();
+        private readonly TeamFollowDeclaration _declaration = new TeamFollowDeclaration();
         private TianyongPlayerController _controller;
         private ulong _teamId;
-        private ulong _sceneId;
-        private ulong _leaderId;
-        private ulong _leaderEntity;
-        private bool _hasLeaderEntity;
-        // 有一段时间没有在记轨迹(暂离、战斗、视图未知):期间队长可能绕过了墙角,
-        // 旧队首到他现在的位置之间不能直接连一条线。
-        private bool _trailStale;
-        // 自己走到轨迹的哪儿了(TeamFollowPlanner 逐帧推进)。不再沿轨迹走的时候丢掉,回来时在整条轨迹上重新找。
-        private TeamFollowCursor _cursor;
-        private bool _routing;
-        private bool _routeFound;
-        private Vector3 _routeTarget;
-        private float _nextRouteAt;
-        private float _forceRouteUntil;
-        private readonly TeamRegroupPolicy _regroup = new TeamRegroupPolicy();
-        // 玩家刚点了「归队」,下一次 Tick 拿到时钟后再交给 _regroup.Manual。
-        private bool _rejoinPending;
-        // 这一帧的"看不到队长"是不是真的看不到:本地角色就绪(地图装好)时才算,换图加载中不算。
-        private bool _localReady;
 
         public TeamFollowStatus Status { get; private set; }
 
-        /// <summary>要请求归队(服务端把自己带到队长身边)。每次最多触发一次;订阅方调用 TeamClient.RequestRegroup。</summary>
-        public event Action RegroupRequested;
-
         /// <summary>
-        /// 诊断输出(联机验收排障用)。非 null 时:不跟随的原因变化、指令种类 / 被挡住 / 寻路状态变化各写一行,
-        /// 此外跟随中每 0.5 秒一行。为 null(缺省)时不拼任何字符串。宿主决定接到哪里(见 TeamFollowUiRoot)。
+        /// 诊断输出(联机验收排障用)。非 null 时:状态变化与每次发出的声明各写一行。为 null(缺省)时不拼任何字符串。
+        /// 宿主决定接到哪里(见 TeamFollowUiRoot)。
         /// </summary>
         public Action<string> Trace;
         private string _traceKey;
-        private float _traceAt;
 
         /// <summary>玩家是否选择了暂离(只在有队且非队长时有意义)。</summary>
         public bool Away { get; private set; }
 
-        /// <summary>跟随中玩家试图自己走(点地面 / 按方向键)。可能每帧触发,订阅方自己限频。</summary>
+        /// <summary>被服务器带着走时玩家试图自己走(点地面 / 按方向键)。可能每帧触发,订阅方自己限频。</summary>
         public event Action InputRejected;
 
         public void SetAway(bool away)
         {
             if (Away == away) return;
             Away = away;
-            if (away) Suspend();
-            else _rejoinPending = true;
+            _declaration.AwayChanged(away);
         }
 
-        /// <summary>
-        /// 每帧调用一次。参数见 <see cref="TickFollow"/>;跟随之外,顺带决定这一帧要不要请求归队。
-        /// </summary>
-        public void Tick(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
-        {
-            _localReady = false;
-            TickFollow(game, snapshot, allowed, now);
-            bool follower = Status == TeamFollowStatus.Following || Status == TeamFollowStatus.LeaderOutOfSight;
-            bool lost = Status == TeamFollowStatus.LeaderOutOfSight && _localReady;
-            bool request = _regroup.Tick(lost, LeaderOnline(snapshot), now);
-            if (_rejoinPending)
-            {
-                _rejoinPending = false;
-                // 点完「归队」这一帧不跟随(战斗画面亮着 / 视图未知)就不请求:那时服务端也不会动人。
-                if (follower && _regroup.Manual(now)) request = true;
-            }
-            if (!request) return;
-            if (Trace != null)
-                Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} regroup requested: status={1} lost={2}", now, Status, lost));
-            RegroupRequested?.Invoke();
-        }
-
-        /// <summary>
-        /// 跟随本身(每帧一次,由 <see cref="Tick"/> 调用)。
-        /// </summary>
+        /// <summary>每帧调用一次。</summary>
         /// <param name="game">当前会话;null 等同于不允许跟随。</param>
         /// <param name="snapshot">
-        /// 已经应用过权威视图的队伍快照;还没有权威视图(刚连上、重连中)时传 null,表示"不知道",
-        /// 此时只放手,不把它当成离队(暂离选择保留)。
+        /// 已经应用过权威视图的队伍快照;还没有权威视图(刚连上、重连中)时传 null,表示"不知道":
+        /// 不发声明,也不把它当成离队(暂离选择保留)。
         /// </param>
-        /// <param name="allowed">此刻是否允许跟随移动(已进游戏、不在战斗画面)。false 时归还控制权但保留暂离选择。</param>
+        /// <param name="allowed">此刻是否允许跟随(已进游戏、不在战斗画面)。false 时不发声明,保留暂离选择。</param>
         /// <param name="now">单调时钟秒数(Time.realtimeSinceStartup)。</param>
-        private void TickFollow(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
+        public void Tick(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
         {
+            BindInputHint(game?.World);
             if (snapshot == null || game == null)
             {
-                Suspend();
                 Status = TeamFollowStatus.None;
-                TraceIdle("no trusted team view");
+                TraceState(now, "no trusted team view", false);
                 return;
             }
-
             if (snapshot.TeamId != _teamId)
             {
-                // 确认换队 / 离队:暂离、没发出去的「归队」与上一支队伍的轨迹都不带过去。
+                // 确认换队 / 离队:暂离与声明记账都不带过去。服务器在成员关系变了时自己停止驱动。
                 _teamId = snapshot.TeamId;
                 Away = false;
-                _rejoinPending = false;
-                _regroup.Reset();
-                ForgetLeader();
-            }
-            if (game.CurrentSceneId != _sceneId)
-            {
-                // 换了场景实例:坐标系变了,旧轨迹不能接着用(实体号在新场景里可能恰好没变)。
-                _sceneId = game.CurrentSceneId;
-                ForgetLeader();
+                _declaration.Reset();
             }
 
-            int slot = allowed ? TeamFollowPlanner.SlotOf(snapshot, game.PlayerId) : 0;
-            if (slot == 0)
+            bool driven = game.TeamFollowDriven;
+            var wish = !allowed || !TeamFollowDeclaration.IsFollower(snapshot, game.PlayerId) ? TeamFollowWish.None
+                : Away ? TeamFollowWish.Away
+                : TeamFollowWish.Follow;
+            var declare = _declaration.Decide(wish, driven, LeaderOnline(snapshot), game.SceneEntryEpoch, now);
+            if (declare.HasValue && game.SendTeamFollow(declare.Value))
             {
-                Suspend();
-                Status = TeamFollowStatus.None;
-                TraceIdle(allowed ? "no slot (not a follower)" : "not allowed (not in game / battle)");
-                return;
-            }
-            if (Away)
-            {
-                Suspend();
-                Status = TeamFollowStatus.Away;
-                TraceIdle("away");
-                return;
-            }
-
-            var world = game.World;
-            var controller = ResolveLocalController(world);
-            var leader = controller != null ? ResolveLeader(world, snapshot.LeaderId) : null;
-            if (leader == null)
-            {
-                // 看不到队长:没有可跟的目标,让玩家自己走;轨迹作废,再见到队长时重起。
-                // 本地角色就绪时才算真的走散(Tick 据此请求归队);地图还在加载不算。
-                _localReady = controller != null;
-                Release();
-                ForgetLeader();
-                Status = TeamFollowStatus.LeaderOutOfSight;
-                TraceIdle(controller == null ? "no local controller" : "leader out of sight");
-                return;
-            }
-
-            var navigation = controller.Navigation;
-            Vector3 leaderPosition = leader.Go.transform.position;
-            float moved = _trail.HasHead ? Horizontal(leaderPosition, _trail.Head) : float.PositiveInfinity;
-            if (moved > LeaderJumpDistance || (_trailStale && moved > TeamFollowTrail.SampleSpacing))
-            {
-                SeedTrail(leaderPosition, leader.Go.transform.forward, navigation);
+                _declaration.Sent(declare.Value, game.SceneEntryEpoch, now);
                 if (Trace != null)
-                    Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} trail reseeded: leader moved {1:F2} stale={2}", now, moved, _trailStale));
+                    Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} declared follow={1} entry={2} driven={3}",
+                        now, declare.Value, game.SceneEntryEpoch, driven));
             }
-            else
+
+            Status = wish switch
             {
-                // 只有队长站定时才允许把轨迹末端收回来:那是停步后显示位置被拉回停点。
-                // 队长带着速度往回走是真的掉头,轨迹要原样留着(折成发夹),队员才会跟在他后面而不是被赶到前面。
-                _trail.Push(leaderPosition, leader.Velocity.sqrMagnitude < LeaderStandingSpeedSquared);
-            }
-            _trailStale = false;
-
-            Bind(controller);
-            var command = Plan(controller, slot, now);
-            Apply(controller, command, now);
-            if (Trace != null) TraceFollowing(controller, leader, command, now);
-            Status = TeamFollowStatus.Following;
+                TeamFollowWish.Follow => driven ? TeamFollowStatus.Following : TeamFollowStatus.LeaderOutOfSight,
+                TeamFollowWish.Away => TeamFollowStatus.Away,
+                _ => TeamFollowStatus.None,
+            };
+            TraceState(now, wish.ToString(), driven);
         }
 
-        private void TraceIdle(string reason)
-        {
-            if (Trace == null || _traceKey == reason) return;
-            _traceKey = reason;
-            Trace("idle: " + reason);
-        }
-
-        private void TraceFollowing(TianyongPlayerController controller, ActorView leader, TeamFollowCommand command, float now)
-        {
-            string key = command.Kind + "/" + controller.FollowBlocked + "/" + _routing + "/" + _routeFound + "/" +
-                         controller.IsMoving + "/" + _cursor.Valid;
-            if (key == _traceKey && now < _traceAt) return;
-            _traceKey = key;
-            _traceAt = now + 0.5f;
-            Vector3 self = controller.FeetPosition;
-            Vector3 lead = leader.Go.transform.position;
-            double head = _trail.HeadOdometer;
-            Trace(string.Format(CultureInfo.InvariantCulture,
-                "t={0:F2} kind={1} self=({2:F2},{3:F2}) leader=({4:F2},{5:F2}) leaderV=({6:F1},{7:F1}) head={8:F2} " +
-                "cursor={9:F2} behind={10:F2} point=({11:F2},{12:F2}) scale={13:F2} moving={14} blocked={15} " +
-                "routing={16} routeFound={17} forceRoute={18} epoch={19}",
-                now, command.Kind, self.x, self.z, lead.x, lead.z, leader.Velocity.x, leader.Velocity.z, head,
-                _cursor.Valid ? _cursor.Odometer : -1d, _cursor.Valid ? head - _cursor.Odometer : -1d,
-                command.Point.x, command.Point.z, command.SpeedScale, controller.IsMoving, controller.FollowBlocked,
-                _routing, _routeFound, now < _forceRouteUntil, _trail.Epoch));
-        }
-
-        /// <summary>把控制权还给玩家(幂等)。不清暂离,也不清轨迹。</summary>
+        /// <summary>解开对本地控制器的订阅(幂等)。不清暂离。</summary>
         public void Release()
         {
-            _routing = false;
-            _forceRouteUntil = 0f;
-            _cursor = default;
-            if (_controller == null) return;
-            // Unity 重载的 == 在对象已销毁时为 true,上面那句已经拦住;这里一定是活对象。
-            _controller.FollowInputRejected -= HandleInputRejected;
-            _controller.SetFollowControlled(false);
+            var controller = _controller;
             _controller = null;
+            // 控制器所在的物体可能已被销毁(Unity 的 == 此时为 true):事件挂在托管对象上,照样能摘。
+            if ((object)controller != null) controller.FollowInputRejected -= HandleInputRejected;
         }
 
-        /// <summary>放手,并记下"这段时间没有在记轨迹"。</summary>
-        private void Suspend()
+        /// <summary>跟着本地角色换控制器(换图 / 本地角色重建),把"跟随中自己走不了"的提示接上。</summary>
+        private void BindInputHint(ActorWorld world)
         {
+            var controller = ResolveLocalController(world);
+            if (ReferenceEquals(_controller, controller)) return;
             Release();
-            _trailStale = true;
-        }
-
-        private TeamFollowCommand Plan(TianyongPlayerController controller, int slot, float now)
-        {
-            var navigation = controller.Navigation;
-            Vector3 self = controller.FeetPosition;
-            bool moving = controller.IsMoving;
-            float slotDistance = Mathf.Min(slot, TeamFollowPlanner.MaxFollowers) * TeamFollowPlanner.SlotSpacing;
-            Vector3 slotPoint = _trail.PointBehindHead(slotDistance);
-
-            // 槽位落在不可走的格子里(铺的尾巴被墙截断之外的情况:队长的显示位置在拐角处外推过头、
-            // 暂离回来接上的轨迹擦过建筑):直线跟随会在格子边界被拒、寻路又会把目标改成最近的可走格,
-            // 两边目的地不一致,人就在边界和格心之间来回踱步。统一成"最近可走点",只做到没到 / 寻路过去。
-            if (!navigation.IsWalkable(slotPoint))
-            {
-                _cursor = default;
-                return navigation.TryFindNearestWalkable(slotPoint, out var reachable)
-                    ? TeamFollowPlanner.PlanToPoint(reachable, self, moving)
-                    : new TeamFollowCommand(TeamFollowCommandKind.Hold);
-            }
-
-            var command = TeamFollowPlanner.Plan(_trail, slot, self, moving, ref _cursor);
-            // 上一步直线跟随被掩码挡住(轨迹是按远端角色的显示位置记的,拐角处可能擦到不可走格):
-            // 接下来一小段时间改用寻路去槽位,绕过去之后再回到直线跟随。
-            if (controller.FollowBlocked) _forceRouteUntil = now + BlockedRouteSeconds;
-            if (now < _forceRouteUntil && command.Kind == TeamFollowCommandKind.Steer)
-                command = new TeamFollowCommand(TeamFollowCommandKind.Route, slotPoint);
-            return command;
-        }
-
-        private void Apply(TianyongPlayerController controller, TeamFollowCommand command, float now)
-        {
-            switch (command.Kind)
-            {
-                case TeamFollowCommandKind.Steer:
-                    _routing = false;
-                    controller.FollowSteer(command.Point, command.SpeedScale);
-                    break;
-                case TeamFollowCommandKind.Route:
-                    // 寻路是整张格子图上的 A*(每次要分配并清空整张图大小的数组),不能每帧算。
-                    //   第一次:立刻算。
-                    //   上一条路已经走完、目标又挪了(队长还在走):立刻接着算,不然会走走停停。
-                    //   其余(人还在走而目标挪了 / 人停着而目标没动 / 上次没找到路):等节流到期。
-                    bool idle = !controller.IsMoving;
-                    bool targetMoved = Horizontal(command.Point, _routeTarget) > RouteRetargetDistance;
-                    if (!_routing ||
-                        (idle && targetMoved && _routeFound) ||
-                        (now >= _nextRouteAt && (idle || targetMoved)))
-                    {
-                        _routeFound = controller.FollowRoute(command.Point);
-                        _routing = true;
-                        _routeTarget = command.Point;
-                        _nextRouteAt = now + (_routeFound ? RouteReplanSeconds : RouteFailedBackoffSeconds);
-                    }
-                    break;
-                default:
-                    _routing = false;
-                    controller.FollowHold();
-                    break;
-            }
-        }
-
-        private void Bind(TianyongPlayerController controller)
-        {
-            if (!ReferenceEquals(_controller, controller))
-            {
-                Release();
-                _controller = controller;
-                controller.FollowInputRejected += HandleInputRejected;
-            }
-            // 每帧重申:控制器被禁用再启用(重载地图)时会自己清掉接管标记。已接管时是空操作。
-            controller.SetFollowControlled(true);
+            if (controller == null) return;
+            _controller = controller;
+            controller.FollowInputRejected += HandleInputRejected;
         }
 
         private void HandleInputRejected() => InputRejected?.Invoke();
+
+        private void TraceState(float now, string wish, bool driven)
+        {
+            if (Trace == null) return;
+            string key = Status + "/" + wish + "/" + driven;
+            if (key == _traceKey) return;
+            _traceKey = key;
+            Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} status={1} wish={2} driven={3}", now, Status, wish, driven));
+        }
 
         /// <summary>队伍快照里队长在线;找不到队长那一行(视图未知 / 不在队里)按不在线。</summary>
         private static bool LeaderOnline(TeamSnapshot snapshot)
@@ -355,70 +150,7 @@ namespace MmorpgClient.Game.Team
             if (world == null || !world.HasLocalPlayer) return null;
             if (!world.TryGetActor(world.LocalEntity, out var local) || local.Go == null) return null;
             var controller = local.Go.GetComponent<TianyongPlayerController>();
-            // 没有导航 = 地图还没装好(或这张图客户端不认识):不接管。
-            return controller != null && controller.enabled && controller.Navigation != null ? controller : null;
-        }
-
-        private ActorView ResolveLeader(ActorWorld world, ulong leaderId)
-        {
-            if (leaderId == 0) return null;
-            if (_leaderId != leaderId) ForgetLeader();
-            _leaderId = leaderId;
-
-            if (_hasLeaderEntity && world.TryGetActor(_leaderEntity, out var cached) &&
-                cached.PlayerId == leaderId && cached.Go != null)
-                return cached;
-
-            // 实体号变了(队长换图后重新进视野)或第一次找:旧轨迹属于上一个实体,作废。
-            _hasLeaderEntity = false;
-            _trail.Clear();
-            foreach (var view in world.Actors.Values)
-            {
-                if (view == null || view.Kind != ActorKind.Player || view.PlayerId != leaderId || view.Go == null) continue;
-                _leaderEntity = view.Entity;
-                _hasLeaderEntity = true;
-                return view;
-            }
-            return null;
-        }
-
-        private void ForgetLeader()
-        {
-            _leaderId = 0;
-            _hasLeaderEntity = false;
-            _trail.Clear();
-            _cursor = default;
-        }
-
-        /// <summary>
-        /// 以队长当前位置起一条新轨迹,并在他背后铺一段直线尾巴,让队员直接排到身后。
-        /// 尾巴一格一格往后探,碰到不可走的格子就停:队长背靠墙时后排的人叠在最后一个可走点上,
-        /// 队长一走出去就自然拉开。
-        /// </summary>
-        private void SeedTrail(Vector3 leaderPosition, Vector3 leaderForward, TianyongNavigationGrid navigation)
-        {
-            _seedTail.Clear();
-            leaderForward.y = 0f;
-            if (leaderForward.sqrMagnitude > 0.0001f)
-            {
-                Vector3 back = -leaderForward.normalized;
-                float needed = TeamFollowPlanner.MaxFollowers * TeamFollowPlanner.SlotSpacing;
-                for (float distance = TeamFollowTrail.SampleSpacing; distance <= needed + 0.001f;
-                     distance += TeamFollowTrail.SampleSpacing)
-                {
-                    Vector3 point = leaderPosition + back * distance;
-                    if (!navigation.IsWalkable(point)) break;
-                    _seedTail.Add(point);
-                }
-            }
-            _trail.Reset(leaderPosition, _seedTail);
-        }
-
-        private static float Horizontal(Vector3 a, Vector3 b)
-        {
-            float dx = a.x - b.x;
-            float dz = a.z - b.z;
-            return Mathf.Sqrt(dx * dx + dz * dz);
+            return controller != null ? controller : null;
         }
     }
 }

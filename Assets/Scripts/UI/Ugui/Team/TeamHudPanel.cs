@@ -239,7 +239,7 @@ namespace MmorpgClient.UI.Ugui.Team
             if (_shownFollow == status) return;
             _shownFollow = status;
             bool member = _state != null && _state.HasLoaded && _state.HasTeam && !_state.IsLeader;
-            // 暂离只释放本地输入，过期视图也不能阻止玩家停下跟随；归队可能请求服务端移动，须有新鲜视图。
+            // 暂离让服务器停止驱动，过期视图也不能阻止玩家停下跟随；归队会让服务端移动人，须有新鲜视图。
             _follow.interactable = _owner != null && member && (TeamFollowUiRoot.Instance?.CanToggleAway ?? false);
             _followLabel.text = status == TeamFollowStatus.Away ? TeamFollowUiRoot.LabelRejoin : TeamFollowUiRoot.LabelAway;
             _followStatus.text = status switch
@@ -253,7 +253,7 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void OpenList() => _owner?.OpenTeamList();
 
-        /// <summary>暂离只释放本地输入；归队会提交服务端意图，必须有新鲜视图及可用服务。</summary>
+        /// <summary>暂离随时可点(撤回跟随声明)；归队会重新声明、由服务端把人带回队长身后，必须有新鲜视图及可用服务。</summary>
         public static bool CanToggleFollow(TeamFollowStatus status, bool fresh, bool serviceAvailable) => status switch
         {
             TeamFollowStatus.Following or TeamFollowStatus.LeaderOutOfSight => true,

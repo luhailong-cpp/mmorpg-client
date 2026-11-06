@@ -23,27 +23,53 @@ public static partial class CommonReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ch5wcm90by9jb21tb24vYmFzZS9jb21tb24ucHJvdG8iKAoMRW5kcG9pbnRD",
-          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0itQIKCE5vZGVJbmZvEg8K",
+          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0iiAMKCE5vZGVJbmZvEg8K",
           "B25vZGVfaWQYASABKA0SEQoJbm9kZV90eXBlGAIgASgNEhMKC2xhdW5jaF90",
           "aW1lGAMgASgEEhcKD3NjZW5lX25vZGVfdHlwZRgEIAEoDRIfCghlbmRwb2lu",
           "dBgFIAEoCzINLkVuZHBvaW50Q29tcBIPCgd6b25lX2lkGAYgASgNEhUKDXBy",
           "b3RvY29sX3R5cGUYByABKA0SEQoJbm9kZV91dWlkGAggASgJEhQKDHBsYXll",
           "cl9jb3VudBgJIAEoDRIkCg1ncnBjX2VuZHBvaW50GAogASgLMg0uRW5kcG9p",
           "bnRDb21wEiYKD2NsaWVudF9lbmRwb2ludBgLIAEoCzINLkVuZHBvaW50Q29t",
-          "cBIXCg9waHlzaWNhbF9yZWdpb24YDCABKA0iKgoOTmV0d29ya0FkZHJlc3MS",
-          "CgoCaXAYASABKAkSDAoEcG9ydBgCIAEoDUINWgtjb21tb24vYmFzZWIGcHJv",
-          "dG8z"));
+          "cBIXCg9waHlzaWNhbF9yZWdpb24YDCABKA0SFwoPbWF4X2Nvbm5lY3Rpb25z",
+          "GA0gASgNEiEKCWFkbWlzc2lvbhgOIAEoDjIOLk5vZGVBZG1pc3Npb24SFQoN",
+          "cmVsZWFzZV90cmFjaxgPIAEoCSIqCg5OZXR3b3JrQWRkcmVzcxIKCgJpcBgB",
+          "IAEoCRIMCgRwb3J0GAIgASgNKmMKDU5vZGVBZG1pc3Npb24SHgoaTk9ERV9B",
+          "RE1JU1NJT05fVU5TUEVDSUZJRUQQABIXChNOT0RFX0FETUlTU0lPTl9PUEVO",
+          "EAESGQoVTk9ERV9BRE1JU1NJT05fQ0xPU0VEEAJCDVoLY29tbW9uL2Jhc2Vi",
+          "BnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NodeAdmission), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EndpointComp), global::EndpointComp.Parser, new[]{ "Ip", "Port" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint", "PhysicalRegion" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint", "PhysicalRegion", "MaxConnections", "Admission", "ReleaseTrack" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NetworkAddress), global::NetworkAddress.Parser, new[]{ "Ip", "Port" }, null, null, null, null)
         }));
   }
   #endregion
 
 }
+#region Enums
+/// <summary>
+/// 节点可分配状态（NodeInfo.admission，R6，docs/design/global-match-hierarchical-pools.md §5.1）。
+/// 取值上线后不复用；废弃时写 `reserved` 并注明原因（AGENTS.md §4.3）。
+/// </summary>
+public enum NodeAdmission {
+  /// <summary>
+  /// 未上报：非 battle 节点，或不认识本字段的旧版本
+  /// </summary>
+  [pbr::OriginalName("NODE_ADMISSION_UNSPECIFIED")] Unspecified = 0,
+  /// <summary>
+  /// 接新房间（仍须过 battle 的建房准入闸与 Agones 分配许可）
+  /// </summary>
+  [pbr::OriginalName("NODE_ADMISSION_OPEN")] Open = 1,
+  /// <summary>
+  /// 不接新房间：启动未完成、Agones 排空或未就绪、停机或维护关闸
+  /// </summary>
+  [pbr::OriginalName("NODE_ADMISSION_CLOSED")] Closed = 2,
+}
+
+#endregion
+
 #region Messages
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class EndpointComp : pb::IMessage<EndpointComp>
@@ -327,6 +353,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     grpcEndpoint_ = other.grpcEndpoint_ != null ? other.grpcEndpoint_.Clone() : null;
     clientEndpoint_ = other.clientEndpoint_ != null ? other.clientEndpoint_.Clone() : null;
     physicalRegion_ = other.physicalRegion_;
+    maxConnections_ = other.maxConnections_;
+    admission_ = other.admission_;
+    releaseTrack_ = other.releaseTrack_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -504,6 +533,63 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
   }
 
+  /// <summary>Field number for the "max_connections" field.</summary>
+  public const int MaxConnectionsFieldNumber = 13;
+  private uint maxConnections_;
+  /// <summary>
+  /// 客户端连接上限：gate 启动时自报它的 GateMaxConnections（etc/base_deploy_config.yaml），与 player_count 同一单位。
+  /// 0 = 未声明（非 gate 节点、dev 下不设上限的 gate），消费方不按上限过滤。
+  /// login 挑 gate 时剔除人数到上限 90% 的 gate（docs/design/gate-load-balancing-design.md「满载与停写的 gate」）。
+  /// 字段号 13 上线后不复用；废弃时写 `reserved 13;`（AGENTS.md §4.3）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxConnections {
+    get { return maxConnections_; }
+    set {
+      maxConnections_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "admission" field.</summary>
+  public const int AdmissionFieldNumber = 14;
+  private global::NodeAdmission admission_ = global::NodeAdmission.Unspecified;
+  /// <summary>
+  /// 可分配状态（R6）：此刻接不接新房间。只由 battle 填写，其它节点留 0（UNSPECIFIED）。
+  /// battle 在 etcd 首次发布前填 CLOSED；建房准入闸打开且 Agones 放行许可后改 OPEN；排空、停机或维护关闸时改回 CLOSED。
+  /// 只在变化时写 etcd，并按 watch 回读到的自身登记对账（cpp/nodes/battle/battle_admission_advertise.h），稳态零写入。
+  /// 负载不放这里：房间数随 CreateBattleResponse.room_count 捎回，不周期写注册信息（写放大与读量随进程数平方增长）。
+  /// match 选点排除 CLOSED；UNSPECIFIED 视为可选（旧节点 / 未上报）。只是提示，能否建房仍由 battle 的准入判定。
+  /// 字段号 14 上线后不复用；废弃时写 `reserved 14;`（AGENTS.md §4.3）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::NodeAdmission Admission {
+    get { return admission_; }
+    set {
+      admission_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "release_track" field.</summary>
+  public const int ReleaseTrackFieldNumber = 15;
+  private string releaseTrack_ = "";
+  /// <summary>
+  /// 发布轨道（docs/design/release-track-gray-canary.md §2.1）："stable" 或 "canary"。
+  /// 由部署经环境变量 MMORPG_RELEASE_TRACK 注入，进程存续期间不变；生产者只写这两个值。
+  /// 消费方把空串（没写轨道的节点）当 stable，其他值当无效节点跳过。
+  /// 用字符串不用枚举：发现方按 protojson 宽松解析，未知的枚举名会被静默丢成 0，将来新增的轨道会被误当成 stable。
+  /// 字段号 15 上线后不复用；废弃时写 `reserved 15;`（AGENTS.md §4.3）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ReleaseTrack {
+    get { return releaseTrack_; }
+    set {
+      releaseTrack_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -531,6 +617,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (!object.Equals(GrpcEndpoint, other.GrpcEndpoint)) return false;
     if (!object.Equals(ClientEndpoint, other.ClientEndpoint)) return false;
     if (PhysicalRegion != other.PhysicalRegion) return false;
+    if (MaxConnections != other.MaxConnections) return false;
+    if (Admission != other.Admission) return false;
+    if (ReleaseTrack != other.ReleaseTrack) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -550,6 +639,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (grpcEndpoint_ != null) hash ^= GrpcEndpoint.GetHashCode();
     if (clientEndpoint_ != null) hash ^= ClientEndpoint.GetHashCode();
     if (PhysicalRegion != 0) hash ^= PhysicalRegion.GetHashCode();
+    if (MaxConnections != 0) hash ^= MaxConnections.GetHashCode();
+    if (Admission != global::NodeAdmission.Unspecified) hash ^= Admission.GetHashCode();
+    if (ReleaseTrack.Length != 0) hash ^= ReleaseTrack.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -616,6 +708,18 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(96);
       output.WriteUInt32(PhysicalRegion);
     }
+    if (MaxConnections != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(MaxConnections);
+    }
+    if (Admission != global::NodeAdmission.Unspecified) {
+      output.WriteRawTag(112);
+      output.WriteEnum((int) Admission);
+    }
+    if (ReleaseTrack.Length != 0) {
+      output.WriteRawTag(122);
+      output.WriteString(ReleaseTrack);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -674,6 +778,18 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(96);
       output.WriteUInt32(PhysicalRegion);
     }
+    if (MaxConnections != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(MaxConnections);
+    }
+    if (Admission != global::NodeAdmission.Unspecified) {
+      output.WriteRawTag(112);
+      output.WriteEnum((int) Admission);
+    }
+    if (ReleaseTrack.Length != 0) {
+      output.WriteRawTag(122);
+      output.WriteString(ReleaseTrack);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -719,6 +835,15 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
     if (PhysicalRegion != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PhysicalRegion);
+    }
+    if (MaxConnections != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxConnections);
+    }
+    if (Admission != global::NodeAdmission.Unspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Admission);
+    }
+    if (ReleaseTrack.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ReleaseTrack);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -776,6 +901,15 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
     if (other.PhysicalRegion != 0) {
       PhysicalRegion = other.PhysicalRegion;
+    }
+    if (other.MaxConnections != 0) {
+      MaxConnections = other.MaxConnections;
+    }
+    if (other.Admission != global::NodeAdmission.Unspecified) {
+      Admission = other.Admission;
+    }
+    if (other.ReleaseTrack.Length != 0) {
+      ReleaseTrack = other.ReleaseTrack;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -853,6 +987,18 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
           PhysicalRegion = input.ReadUInt32();
           break;
         }
+        case 104: {
+          MaxConnections = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          Admission = (global::NodeAdmission) input.ReadEnum();
+          break;
+        }
+        case 122: {
+          ReleaseTrack = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -927,6 +1073,18 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
         }
         case 96: {
           PhysicalRegion = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          MaxConnections = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          Admission = (global::NodeAdmission) input.ReadEnum();
+          break;
+        }
+        case 122: {
+          ReleaseTrack = input.ReadString();
           break;
         }
       }

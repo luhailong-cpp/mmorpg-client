@@ -60,82 +60,38 @@ namespace MmorpgClient.World.Tianyong
         private Vector3? _destination;
         private int _replanOnBlock;
 
-        // ── 组队跟随(TeamFollowDriver 接管)────────────────────────────
-        private const float FollowArrivalDistance = 0.03f;
-        private const float MinFollowSpeedScale = 0.5f;
-        private const float MaxFollowSpeedScale = 1.1f;
-        private bool _followControlled;
-        private Vector3? _followWaypoint;
-        private float _followSpeedScale = 1f;
-        private bool _followBlocked;
+        // ── 组队跟随:服务器驱动(服务端 docs/design/team-follow-server-trail.md §5)──────────
+        private bool _serverDriven;
 
         public CharacterController Motor => _motor;
         public bool IsMoving => _moving;
 
         /// <summary>
-        /// 组队跟随是否正在接管本地角色。为 true 时玩家自己的点击 / 键盘不再驱动角色(队员跟着队长走,
-        /// 不能自由行动),移动改由 <see cref="FollowSteer"/> / <see cref="FollowRoute"/> /
-        /// <see cref="FollowHold"/> 决定;走出去的每一步仍然过本地行走掩码、仍然照常上报服务器。
-        /// 与验收用的 <see cref="SetScriptedInputOwner"/> 不同:跟随期间即使界面占着键盘(聊天打字、弹窗)
-        /// 也继续走。脚本化方向(<see cref="SetDebugDirection"/>)优先级仍然最高。
+        /// 组队跟随中本地角色由服务器驱动。为 true 时:不按点击 / 键盘走、不上报 MoveStart / MoveSync / MoveStop
+        /// (服务器整条丢弃),CharacterController 关掉 —— 位置由 <see cref="ActorWorld"/> 按发给自己的
+        /// ActorMoveS2C 写,与远端角色同一套插值;TeleportS2C 照常吸附。玩家的点击 / 按键只触发
+        /// <see cref="FollowInputRejected"/>(界面提示)。脚本化方向(<see cref="SetDebugDirection"/>)同样不生效。
+        /// 只由 <see cref="ActorWorld.SetLocalServerDriven"/> 与 <see cref="Initialize(GameClient, TianyongNavigationGrid, Camera, TianyongMapConfig, Vector3?)"/> 设置。
         /// </summary>
-        public bool FollowControlled => _followControlled;
+        public bool ServerDriven => _serverDriven;
 
-        /// <summary>上一次 <see cref="FollowSteer"/> 的那一步是否被行走掩码拒绝(角色已停下)。</summary>
-        public bool FollowBlocked => _followBlocked;
-
-        /// <summary>跟随接管期间,玩家点了地面或按了方向键(每次点击 / 每帧按住各触发一次,订阅方自己限频)。</summary>
+        /// <summary>服务器驱动期间,玩家点了地面或按了方向键(每次点击 / 每帧按住各触发一次,订阅方自己限频)。</summary>
         public event System.Action FollowInputRejected;
 
         /// <summary>
-        /// 交出或收回控制权。两个方向都会丢掉当前路径并在行走中时通知服务器停步:
-        /// 接管时玩家自己点的目的地作废,归还时跟随走到一半的那一步作废。
+        /// 进入 / 退出服务器驱动。两个方向都丢掉当前路径、不发停步:进入时服务器已经在驱动(上报会被丢弃),
+        /// 退出时人是站着交回来的(停止驱动前服务器已补过停步广播),下一次输入从当前显示位置照常发 MoveStart。
         /// </summary>
-        public void SetFollowControlled(bool controlled)
+        public void SetServerDriven(bool driven)
         {
-            if (_followControlled == controlled) return;
-            _followControlled = controlled;
-            _followWaypoint = null;
-            _followSpeedScale = 1f;
-            _followBlocked = false;
+            if (_serverDriven == driven) return;
+            _serverDriven = driven;
             _destination = null;
-            CancelPath(true);
-        }
-
-        /// <summary>
-        /// 跟随:朝 feetWaypoint 直线走(不寻路)。调用方每帧给出轨迹上稍靠前的一点;走到该点即停,
-        /// 不会冲过头。被行走掩码挡住时停下并置 <see cref="FollowBlocked"/>,由调用方改用
-        /// <see cref="FollowRoute"/>。未接管时调用无效。
-        /// </summary>
-        public void FollowSteer(Vector3 feetWaypoint, float speedScale = 1f)
-        {
-            if (!_followControlled) return;
-            // 从寻路切回直线跟随:丢掉路径但不发停步,人是连续在走的。
-            _path.Clear();
-            _waypoint = 0;
-            _networkTarget = null;
-            _destination = null;
-            _followWaypoint = feetWaypoint;
-            _followSpeedScale = Mathf.Clamp(speedScale, MinFollowSpeedScale, MaxFollowSpeedScale);
-        }
-
-        /// <summary>跟随:寻路去 feetDestination(离轨迹太远或直线被挡时用)。找不到路返回 false 并停下。</summary>
-        public bool FollowRoute(Vector3 feetDestination)
-        {
-            if (!_followControlled) return false;
-            _followWaypoint = null;
-            _followBlocked = false;
-            return SetDestination(feetDestination);
-        }
-
-        /// <summary>跟随:已到位,原地站定。</summary>
-        public void FollowHold()
-        {
-            if (!_followControlled) return;
-            _followWaypoint = null;
-            _followBlocked = false;
-            _destination = null;
-            CancelPath(true);
+            _pendingReport = false;
+            CancelPath(false);
+            // 被驱动期间 transform 由 ActorWorld 直接写;CharacterController 开着会在下一次 Move 时按它自己的位置把人拽回去。
+            // 重新打开时它取 transform 当前的位置。
+            if (_motor != null) _motor.enabled = !driven;
         }
 
         /// <summary>
@@ -253,9 +209,18 @@ namespace MmorpgClient.World.Tianyong
             _motor.minMoveDistance = 0f;
             _arrivalDistance = Mathf.Max(0.25f, _motor.radius * 0.9f);
 
+            // 上一轮服务器驱动可能把 CharacterController 关着留下(控制器被禁用后重新挂上):先复位成自己驱动。
+            if (_serverDriven)
+            {
+                _serverDriven = false;
+                _motor.enabled = true;
+            }
+
             if (_navigation != null && !_navigation.IsWalkable(initialFeet))
                 initialFeet = _fallbackSpawn;
             WarpTo(initialFeet);
+            // 再按 ActorWorld 的当前状态对齐:服务器驱动的通知可能早于控制器挂上(换图后服务端先把人接到队长身后)。
+            SetServerDriven(client?.World != null && client.World.LocalServerDriven);
         }
 
         private Vector3 ResolveFallbackSpawn(Vector3 initialFeet, Vector3? requested)
@@ -304,6 +269,14 @@ namespace MmorpgClient.World.Tianyong
         /// </summary>
         public bool WarpFromServer(Vector3 feetPosition)
         {
+            // 服务器驱动期间显示的就是服务器的位置:照放,不按本地掩码找落点、不回报、不重新寻路
+            // (驱动中没有自己的路径;落点若与本地掩码不一致,下一条移动照样按服务器的走)。
+            if (_serverDriven)
+            {
+                WarpTo(feetPosition);
+                return false;
+            }
+
             // A correction while click-pathing must not silently drop the
             // player's destination (WarpTo clears the path): re-plan from the
             // corrected point once the warp is done.
@@ -372,7 +345,8 @@ namespace MmorpgClient.World.Tianyong
         /// </summary>
         public void ReportPositionToServer()
         {
-            if (_client == null) return;
+            // 服务器驱动期间位置以服务器为准,上报会被整条丢弃,不发。
+            if (_client == null || _serverDriven) return;
             _moving = false;
             if (!_client.InGame)
             {
@@ -383,9 +357,19 @@ namespace MmorpgClient.World.Tianyong
             _client.SendMoveStop(FeetPosition, transform.eulerAngles);
         }
 
-        /// <summary>Routes to a feet/world destination. Returns false when no legal path exists.</summary>
+        /// <summary>
+        /// Routes to a feet/world destination. Returns false when no legal path exists,
+        /// and while the team follow is server-driven (<see cref="ServerDriven"/>): the
+        /// destination is not adopted and <see cref="FollowInputRejected"/> fires instead.
+        /// </summary>
         public bool SetDestination(Vector3 feetDestination)
         {
+            if (_serverDriven)
+            {
+                FollowInputRejected?.Invoke();
+                return false;
+            }
+
             _replanOnBlock = 0;
             return PlanPath(feetDestination);
         }
@@ -430,6 +414,16 @@ namespace MmorpgClient.World.Tianyong
         {
             if (_navigation == null || _motor == null) return;
 
+            var keyboardBlocked = GameplayInputGate.IsKeyboardBlocked;
+            var pointerBlocked = GameplayInputGate.IsPointerBlocked;
+            if (_serverDriven)
+            {
+                // 组队跟随由服务器驱动:位置由 ActorWorld 按发给自己的移动写,这里不走、不上报、不做落地兜底;
+                // 玩家的点击 / 按键只换一句提示。
+                NoticeRejectedFollowInput(pointerBlocked, keyboardBlocked);
+                return;
+            }
+
             // Safety net: should the floor ever be missing under the motor,
             // put the actor back on the ground plane instead of falling away.
             if (FeetPosition.y < FallLimit)
@@ -442,12 +436,8 @@ namespace MmorpgClient.World.Tianyong
             if (_pendingReport && _client != null && _client.InGame)
                 ReportPositionToServer();
 
-            var keyboardBlocked = GameplayInputGate.IsKeyboardBlocked;
-            var pointerBlocked = GameplayInputGate.IsPointerBlocked;
             var scripted = _debugDirection.sqrMagnitude > 0.01f;
-            // 组队跟随接管中:界面占着键盘也照走(边聊天边跟队),玩家自己的输入只触发提示。
-            var following = _followControlled && !scripted;
-            if (keyboardBlocked && !scripted && !following)
+            if (keyboardBlocked && !scripted)
             {
                 // Keep the authored path so movement may resume after an input
                 // field/modal releases focus, but stop both motor and network
@@ -456,10 +446,9 @@ namespace MmorpgClient.World.Tianyong
                 return;
             }
 
-            if (following) NoticeRejectedFollowInput(pointerBlocked, keyboardBlocked);
-            else if (!pointerBlocked && !scripted && !_ignoreLocalInput) HandleClick();
+            if (!pointerBlocked && !scripted && !_ignoreLocalInput) HandleClick();
             var keyboard = scripted ? _debugDirection
-                : _ignoreLocalInput || following ? Vector3.zero
+                : _ignoreLocalInput ? Vector3.zero
                 : ReadKeyboardDirection();
             if (keyboard.sqrMagnitude > 0.01f)
             {
@@ -467,12 +456,6 @@ namespace MmorpgClient.World.Tianyong
                 _waypoint = 0;
                 _networkTarget = null;
                 MoveInDirection(keyboard.normalized, Time.deltaTime);
-                return;
-            }
-
-            if (following && _followWaypoint.HasValue)
-            {
-                FollowStep(Time.deltaTime);
                 return;
             }
 
@@ -504,25 +487,6 @@ namespace MmorpgClient.World.Tianyong
             }
 
             StopMoving();
-        }
-
-        /// <summary>朝跟随转向点走一步;最后一步按剩余距离截短,正好停在点上。</summary>
-        private void FollowStep(float deltaTime)
-        {
-            var current = FeetPosition;
-            var target = _followWaypoint.Value;
-            target.y = current.y;
-            var delta = target - current;
-            delta.y = 0f;
-            var distance = delta.magnitude;
-            if (distance < FollowArrivalDistance)
-            {
-                _followBlocked = false;
-                StopMoving();
-                return;
-            }
-
-            _followBlocked = !MoveInDirection(delta / distance, deltaTime, _followSpeedScale, distance);
         }
 
         private void NoticeRejectedFollowInput(bool pointerBlocked, bool keyboardBlocked)
@@ -581,14 +545,8 @@ namespace MmorpgClient.World.Tianyong
             return forward.normalized * vertical + right.normalized * horizontal;
         }
 
-        /// <summary>
-        /// Returns false when the walk mask refused the step (the actor stopped).
-        /// speedScale / maxDistance are only used by team follow: catch-up speed, and
-        /// a last step shortened to land exactly on the waypoint. The defaults reproduce
-        /// plain player movement.
-        /// </summary>
-        private bool MoveInDirection(Vector3 direction, float deltaTime, float speedScale = 1f,
-            float maxDistance = float.PositiveInfinity)
+        /// <summary>Returns false when the walk mask refused the step (the actor stopped).</summary>
+        private bool MoveInDirection(Vector3 direction, float deltaTime)
         {
             if (direction.sqrMagnitude < 0.001f)
             {
@@ -597,9 +555,8 @@ namespace MmorpgClient.World.Tianyong
             }
 
             var dt = Mathf.Min(Mathf.Max(deltaTime, 0f), 0.05f);
-            var velocity = direction.normalized * (_moveSpeed * speedScale);
+            var velocity = direction.normalized * _moveSpeed;
             var step = velocity * dt;
-            if (step.magnitude > maxDistance) step = direction.normalized * maxDistance;
             var candidateFeet = TianyongMapDefinition.ClampXZ(FeetPosition + step, 2f);
             if (!_debugIgnoreMask && !_navigation.IsWalkable(candidateFeet))
             {
@@ -679,18 +636,15 @@ namespace MmorpgClient.World.Tianyong
         {
             if (!_moving) return;
             _moving = false;
-            if (_client != null && _client.InGame)
+            if (_client != null && _client.InGame && !_serverDriven)
                 _client.SendMoveStop(FeetPosition, transform.eulerAngles);
         }
 
         private void OnDisable()
         {
             StopMoving();
-            // 控制器被禁用(卸图 / 本地角色被替换)时跟随状态一并清掉:重新启用后由
-            // TeamFollowDriver 重新接管,不带着上一张图的转向点继续走。
-            _followControlled = false;
-            _followWaypoint = null;
-            _followBlocked = false;
+            // 服务器驱动的标记不在这里清:它归 ActorWorld 管,禁用期间照样会被切换(SetServerDriven 是普通方法),
+            // 重新挂上时 Initialize 再对齐一次。
         }
     }
 }

@@ -128,7 +128,40 @@ namespace MmorpgClient.World
         /// </summary>
         public bool HasLocalPlayer => _hasLocal;
 
+        /// <summary>
+        /// 组队跟随中本地角色由服务器驱动(服务端 docs/design/team-follow-server-trail.md §5):
+        /// 为 true 时本地角色和远端角色一样,按发给自己的 <c>ActorMoveS2C</c> 插值 / 外推显示,
+        /// 本地控制器不按输入走、不上报移动。只由 GameClient 按 <c>TeamFollowStateS2C</c> 设置;
+        /// <see cref="Clear"/>(换场景 / 断线)时复位,服务端重新接上后会再推一次。
+        /// </summary>
+        public bool LocalServerDriven { get; private set; }
+
+        /// <summary>
+        /// 进入 / 退出服务器驱动。进入时从当前显示位置等第一条移动;退出时先落到最后一条移动给的位置
+        /// (服务端停止驱动前补发过停步,插值可能还没走完),再交回本地控制器,不再外推。
+        /// 本地角色已有控制器时同步切换它的模式;控制器晚于本调用挂上时,它在 Initialize 里自己按
+        /// <see cref="LocalServerDriven"/> 对齐。
+        /// </summary>
+        public void SetLocalServerDriven(bool driven)
+        {
+            if (LocalServerDriven == driven) return;
+            LocalServerDriven = driven;
+            if (!_hasLocal || !_actors.TryGetValue(_localEntity, out var local) || local.Go == null) return;
+            if (!driven && local.HasTarget)
+            {
+                local.Go.transform.localPosition = local.TargetPos;
+                local.Go.transform.localEulerAngles = local.TargetEuler;
+            }
+            local.HasTarget = false;
+            local.Velocity = UnityEngine.Vector3.zero;
+            var movement = local.Go.GetComponent<TianyongPlayerController>();
+            if (movement != null) movement.SetServerDriven(driven);
+        }
+
         private bool IsLocal(ulong entity) => _hasLocal && entity == _localEntity;
+
+        // 本地角色此刻是不是由客户端自己的控制器驱动(不是就走远端角色的插值路径)。
+        private bool IsLocallyControlled(ulong entity) => IsLocal(entity) && !LocalServerDriven;
 
         /// <summary>
         /// Binds <paramref name="entity"/> as the local player. GameClient
@@ -327,6 +360,8 @@ namespace MmorpgClient.World
             _hasLocal = false;
             _pendingLocal = false;
             _localEntity = 0;
+            // 换场景 / 断线:服务器驱动随之作废,服务端在新场景重新接上后会再推 driven=true。
+            LocalServerDriven = false;
             OnLocalPlayerChanged?.Invoke(null);
         }
 
@@ -345,7 +380,9 @@ namespace MmorpgClient.World
             // The local actor is driven by CharacterController prediction.
             // Authoritative corrections arrive through Teleport/MoveAck; using
             // the remote interpolation path here would race the local motor.
-            if (IsLocal(entity)) return;
+            // 组队跟随由服务器驱动时例外(LocalServerDriven):本地控制器停着,发给自己的移动就是它该在的位置;
+            // 驱动之外收到的(停止驱动前补发的停步可能晚到)照旧忽略。
+            if (IsLocallyControlled(entity)) return;
             v.InterpFromPos   = v.Go.transform.localPosition;
             v.InterpFromEuler = v.Go.transform.localEulerAngles;
             v.TargetPos       = targetPos;
@@ -413,7 +450,7 @@ namespace MmorpgClient.World
             float now = Clock();
             foreach (var v in _actors.Values)
             {
-                if (IsLocal(v.Entity)) continue;
+                if (IsLocallyControlled(v.Entity)) continue;
                 if (!v.HasTarget || v.Go == null) continue;
                 // The authoritative sample keeps moving at its reported velocity from the
                 // moment it arrives. Both ends of the blend advance with it, so what is being

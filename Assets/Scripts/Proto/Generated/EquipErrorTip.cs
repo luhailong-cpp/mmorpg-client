@@ -23,7 +23,7 @@ public static partial class EquipErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZXF1aXBfZXJyb3JfdGlwLnBy",
-          "b3RvKvAECgtlcXVpcF9lcnJvchISCg5rRXF1aXBfZXJyb3JPSxAAEhgKEmtF",
+          "b3RvKpEFCgtlcXVpcF9lcnJvchISCg5rRXF1aXBfZXJyb3JPSxAAEhgKEmtF",
           "cXVpcEl0ZW1Ob3RGb3VuZBDg2gESGAoSa0VxdWlwTm90RXF1aXBtZW50EOHa",
           "ARIaChRrRXF1aXBMZXZlbE5vdEVub3VnaBDi2gESGQoTa0VxdWlwQ2xhc3NN",
           "aXNtYXRjaBDj2gESEgoMa0VxdWlwTm9TbG90EOTaARIXChFrRXF1aXBOb3RF",
@@ -37,8 +37,8 @@ public static partial class EquipErrorTipReflection {
           "dWlwR2VtU29ja2V0SW52YWxpZBDx2gESHQoXa0VxdWlwR2VtU29ja2V0T2Nj",
           "dXBpZWQQ8toBEhoKFGtFcXVpcEdlbVNvY2tldEVtcHR5EPPaARIbChVrRXF1",
           "aXBHZW1UeXBlTWlzbWF0Y2gQ9NoBEhYKEGtFcXVpcEdlbUJhZ0Z1bGwQ9doB",
-          "QiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3Rv",
-          "Mw=="));
+          "Eh8KGWtFcXVpcEVuaGFuY2VMZXZlbENoYW5nZWQQ9toBQiQKDmNvbS5nYW1l",
+          "LnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::equip_error), }, null, null));
@@ -71,6 +71,7 @@ public enum equip_error {
   [pbr::OriginalName("kEquipGemSocketEmpty")] KEquipGemSocketEmpty = 28019,
   [pbr::OriginalName("kEquipGemTypeMismatch")] KEquipGemTypeMismatch = 28020,
   [pbr::OriginalName("kEquipGemBagFull")] KEquipGemBagFull = 28021,
+  [pbr::OriginalName("kEquipEnhanceLevelChanged")] KEquipEnhanceLevelChanged = 28022,
 }
 
 #endregion

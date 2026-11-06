@@ -59,17 +59,21 @@ public static partial class MessageReflection {
           "X2ZpZWxkGAEgASgFEhoKEm5lc3RlZF9pbnQ2NF9maWVsZBgCIAEoAyJeCg1D",
           "bGllbnRSZXF1ZXN0EgoKAmlkGAEgASgEEg8KB3NlcnZpY2UYAiABKAkSDgoG",
           "bWV0aG9kGAMgASgJEgwKBGJvZHkYBCABKAwSEgoKbWVzc2FnZV9pZBgFIAEo",
-          "DSJUChROb2RlSGFuZHNoYWtlUmVxdWVzdBIPCgd2ZXJzaW9uGAEgASgJEg0K",
-          "BXRva2VuGAIgASgJEhwKCXNlbGZfbm9kZRgDIAEoCzIJLk5vZGVJbmZvIl0K",
-          "FU5vZGVIYW5kc2hha2VSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
-          "Mg8uVGlwSW5mb01lc3NhZ2USHAoJcGVlcl9ub2RlGAIgASgLMgkuTm9kZUlu",
-          "Zm8imAEKEEdhdGVUb2tlblBheWxvYWQSFAoMZ2F0ZV9ub2RlX2lkGAEgASgN",
-          "Eg8KB3pvbmVfaWQYAiABKA0SGAoQZXhwaXJlX3RpbWVzdGFtcBgDIAEoAxIY",
-          "ChBobWFjX3Nlc3Npb25fa2V5GAQgASgMEhEKCXBsYXllcl9pZBgFIAEoBBIW",
-          "Cg50YXJnZXRfem9uZV9pZBgGIAEoDSI+ChhDbGllbnRUb2tlblZlcmlmeVJl",
-          "cXVlc3QSDwoHcGF5bG9hZBgBIAEoDBIRCglzaWduYXR1cmUYAiABKAwiOwoZ",
-          "Q2xpZW50VG9rZW5WZXJpZnlSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg0K",
-          "BWVycm9yGAIgASgJQg1aC2NvbW1vbi9iYXNlYgZwcm90bzM="));
+          "DSJwChROb2RlSGFuZHNoYWtlUmVxdWVzdBIPCgd2ZXJzaW9uGAEgASgJEg0K",
+          "BXRva2VuGAIgASgJEhwKCXNlbGZfbm9kZRgDIAEoCzIJLk5vZGVJbmZvEhoK",
+          "EmV4cGVjdGVkX3BlZXJfdXVpZBgEIAEoCSJdChVOb2RlSGFuZHNoYWtlUmVz",
+          "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
+          "EhwKCXBlZXJfbm9kZRgCIAEoCzIJLk5vZGVJbmZvIpgBChBHYXRlVG9rZW5Q",
+          "YXlsb2FkEhQKDGdhdGVfbm9kZV9pZBgBIAEoDRIPCgd6b25lX2lkGAIgASgN",
+          "EhgKEGV4cGlyZV90aW1lc3RhbXAYAyABKAMSGAoQaG1hY19zZXNzaW9uX2tl",
+          "eRgEIAEoDBIRCglwbGF5ZXJfaWQYBSABKAQSFgoOdGFyZ2V0X3pvbmVfaWQY",
+          "BiABKA0iPgoYQ2xpZW50VG9rZW5WZXJpZnlSZXF1ZXN0Eg8KB3BheWxvYWQY",
+          "ASABKAwSEQoJc2lnbmF0dXJlGAIgASgMIngKGUNsaWVudFRva2VuVmVyaWZ5",
+          "UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBINCgVlcnJvchgCIAEoCRIdChVo",
+          "ZWFydGJlYXRfaW50ZXJ2YWxfbXMYAyABKA0SHAoUaGVhcnRiZWF0X3RpbWVv",
+          "dXRfbXMYBCABKA0iJQoWQ2xpZW50SGVhcnRiZWF0UmVxdWVzdBILCgNzZXEY",
+          "ASABKAQiJgoXQ2xpZW50SGVhcnRiZWF0UmVzcG9uc2USCwoDc2VxGAEgASgE",
+          "Qg1aC2NvbW1vbi9iYXNlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, global::SessionReflection.Descriptor, global::TipReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -90,11 +94,13 @@ public static partial class MessageReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::MyProtoMessage), global::MyProtoMessage.Parser, new[]{ "SingleInt32Field", "SingleInt64Field", "RepeatedInt32Field", "RepeatedInt64Field", "NestedMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::MyNestedMessage), global::MyNestedMessage.Parser, new[]{ "NestedInt32Field", "NestedInt64Field" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientRequest), global::ClientRequest.Parser, new[]{ "Id", "Service", "Method", "Body", "MessageId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::NodeHandshakeRequest), global::NodeHandshakeRequest.Parser, new[]{ "Version", "Token", "SelfNode" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::NodeHandshakeRequest), global::NodeHandshakeRequest.Parser, new[]{ "Version", "Token", "SelfNode", "ExpectedPeerUuid" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NodeHandshakeResponse), global::NodeHandshakeResponse.Parser, new[]{ "ErrorMessage", "PeerNode" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GateTokenPayload), global::GateTokenPayload.Parser, new[]{ "GateNodeId", "ZoneId", "ExpireTimestamp", "HmacSessionKey", "PlayerId", "TargetZoneId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClientTokenVerifyRequest), global::ClientTokenVerifyRequest.Parser, new[]{ "Payload", "Signature" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ClientTokenVerifyResponse), global::ClientTokenVerifyResponse.Parser, new[]{ "Success", "Error" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::ClientTokenVerifyResponse), global::ClientTokenVerifyResponse.Parser, new[]{ "Success", "Error", "HeartbeatIntervalMs", "HeartbeatTimeoutMs" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ClientHeartbeatRequest), global::ClientHeartbeatRequest.Parser, new[]{ "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ClientHeartbeatResponse), global::ClientHeartbeatResponse.Parser, new[]{ "Seq" }, null, null, null, null)
         }));
   }
   #endregion
@@ -4573,6 +4579,7 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
     version_ = other.version_;
     token_ = other.token_;
     selfNode_ = other.selfNode_ != null ? other.selfNode_.Clone() : null;
+    expectedPeerUuid_ = other.expectedPeerUuid_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4618,6 +4625,23 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
     }
   }
 
+  /// <summary>Field number for the "expected_peer_uuid" field.</summary>
+  public const int ExpectedPeerUuidFieldNumber = 4;
+  private string expectedPeerUuid_ = "";
+  /// <summary>
+  /// 发起方要连的对端进程实例(对端 NodeInfo.node_uuid,取自权威发现)。入站侧只有它等于本进程 uuid 才登记:
+  /// 同一地址上换了进程(崩溃后原地重启,旧实例的 etcd 键要等租约过期才消失)时,发起方指向旧实例的连接会连到新进程,
+  /// 不核对的话它会顶替真正链路上的回推会话。空值一律拒绝。见 docs/design/muduo-rpc-channel.md §8.3。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ExpectedPeerUuid {
+    get { return expectedPeerUuid_; }
+    set {
+      expectedPeerUuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -4636,6 +4660,7 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
     if (Version != other.Version) return false;
     if (Token != other.Token) return false;
     if (!object.Equals(SelfNode, other.SelfNode)) return false;
+    if (ExpectedPeerUuid != other.ExpectedPeerUuid) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4646,6 +4671,7 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
     if (Version.Length != 0) hash ^= Version.GetHashCode();
     if (Token.Length != 0) hash ^= Token.GetHashCode();
     if (selfNode_ != null) hash ^= SelfNode.GetHashCode();
+    if (ExpectedPeerUuid.Length != 0) hash ^= ExpectedPeerUuid.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4676,6 +4702,10 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
       output.WriteRawTag(26);
       output.WriteMessage(SelfNode);
     }
+    if (ExpectedPeerUuid.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteString(ExpectedPeerUuid);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4698,6 +4728,10 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
       output.WriteRawTag(26);
       output.WriteMessage(SelfNode);
     }
+    if (ExpectedPeerUuid.Length != 0) {
+      output.WriteRawTag(34);
+      output.WriteString(ExpectedPeerUuid);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4716,6 +4750,9 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
     }
     if (selfNode_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(SelfNode);
+    }
+    if (ExpectedPeerUuid.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ExpectedPeerUuid);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4740,6 +4777,9 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
         SelfNode = new global::NodeInfo();
       }
       SelfNode.MergeFrom(other.SelfNode);
+    }
+    if (other.ExpectedPeerUuid.Length != 0) {
+      ExpectedPeerUuid = other.ExpectedPeerUuid;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4775,6 +4815,10 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
           input.ReadMessage(SelfNode);
           break;
         }
+        case 34: {
+          ExpectedPeerUuid = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -4807,6 +4851,10 @@ public sealed partial class NodeHandshakeRequest : pb::IMessage<NodeHandshakeReq
             SelfNode = new global::NodeInfo();
           }
           input.ReadMessage(SelfNode);
+          break;
+        }
+        case 34: {
+          ExpectedPeerUuid = input.ReadString();
           break;
         }
       }
@@ -5774,6 +5822,8 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
   public ClientTokenVerifyResponse(ClientTokenVerifyResponse other) : this() {
     success_ = other.success_;
     error_ = other.error_;
+    heartbeatIntervalMs_ = other.heartbeatIntervalMs_;
+    heartbeatTimeoutMs_ = other.heartbeatTimeoutMs_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -5810,6 +5860,38 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
     }
   }
 
+  /// <summary>Field number for the "heartbeat_interval_ms" field.</summary>
+  public const int HeartbeatIntervalMsFieldNumber = 3;
+  private uint heartbeatIntervalMs_;
+  /// <summary>
+  /// 应用层心跳参数(docs/design/gate-client-heartbeat.md),只在 success = true 时填。
+  /// 0 = 这台 gate 不支持心跳(旧版本,或另一版服务器尚未实现):客户端不得发 ClientHeartbeatRequest,
+  /// 旧 gate 收到不认识的消息类型会当非法帧强关连接。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint HeartbeatIntervalMs {
+    get { return heartbeatIntervalMs_; }
+    set {
+      heartbeatIntervalMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "heartbeat_timeout_ms" field.</summary>
+  public const int HeartbeatTimeoutMsFieldNumber = 4;
+  private uint heartbeatTimeoutMs_;
+  /// <summary>
+  /// 发过心跳之后,gate 连续这么久收不到本连接任何一帧就关闭连接
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint HeartbeatTimeoutMs {
+    get { return heartbeatTimeoutMs_; }
+    set {
+      heartbeatTimeoutMs_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -5827,6 +5909,8 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
     }
     if (Success != other.Success) return false;
     if (Error != other.Error) return false;
+    if (HeartbeatIntervalMs != other.HeartbeatIntervalMs) return false;
+    if (HeartbeatTimeoutMs != other.HeartbeatTimeoutMs) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -5836,6 +5920,8 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
     int hash = 1;
     if (Success != false) hash ^= Success.GetHashCode();
     if (Error.Length != 0) hash ^= Error.GetHashCode();
+    if (HeartbeatIntervalMs != 0) hash ^= HeartbeatIntervalMs.GetHashCode();
+    if (HeartbeatTimeoutMs != 0) hash ^= HeartbeatTimeoutMs.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -5862,6 +5948,14 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
       output.WriteRawTag(18);
       output.WriteString(Error);
     }
+    if (HeartbeatIntervalMs != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(HeartbeatIntervalMs);
+    }
+    if (HeartbeatTimeoutMs != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(HeartbeatTimeoutMs);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -5880,6 +5974,14 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
       output.WriteRawTag(18);
       output.WriteString(Error);
     }
+    if (HeartbeatIntervalMs != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(HeartbeatIntervalMs);
+    }
+    if (HeartbeatTimeoutMs != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(HeartbeatTimeoutMs);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -5895,6 +5997,12 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
     }
     if (Error.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Error);
+    }
+    if (HeartbeatIntervalMs != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HeartbeatIntervalMs);
+    }
+    if (HeartbeatTimeoutMs != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HeartbeatTimeoutMs);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -5913,6 +6021,12 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
     }
     if (other.Error.Length != 0) {
       Error = other.Error;
+    }
+    if (other.HeartbeatIntervalMs != 0) {
+      HeartbeatIntervalMs = other.HeartbeatIntervalMs;
+    }
+    if (other.HeartbeatTimeoutMs != 0) {
+      HeartbeatTimeoutMs = other.HeartbeatTimeoutMs;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -5941,6 +6055,14 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
           Error = input.ReadString();
           break;
         }
+        case 24: {
+          HeartbeatIntervalMs = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          HeartbeatTimeoutMs = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -5966,6 +6088,424 @@ public sealed partial class ClientTokenVerifyResponse : pb::IMessage<ClientToken
         }
         case 18: {
           Error = input.ReadString();
+          break;
+        }
+        case 24: {
+          HeartbeatIntervalMs = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          HeartbeatTimeoutMs = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 客户端 → gate:应用层心跳(docs/design/gate-client-heartbeat.md)。与验签消息同层,按类型名派发:
+/// 不经 ClientRequest、不占 message_id,gate 本地应答,不转发给任何后端。
+/// 只在验签成功且 heartbeat_interval_ms > 0 之后发;验签之前发会被断开。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ClientHeartbeatRequest : pb::IMessage<ClientHeartbeatRequest>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ClientHeartbeatRequest> _parser = new pb::MessageParser<ClientHeartbeatRequest>(() => new ClientHeartbeatRequest());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ClientHeartbeatRequest> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[22]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClientHeartbeatRequest() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClientHeartbeatRequest(ClientHeartbeatRequest other) : this() {
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClientHeartbeatRequest Clone() {
+    return new ClientHeartbeatRequest(this);
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 1;
+  private ulong seq_;
+  /// <summary>
+  /// 客户端自选,gate 原样回显,用来配对回包与测往返时延
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ClientHeartbeatRequest);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ClientHeartbeatRequest other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Seq != 0UL) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Seq != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Seq != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Seq != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ClientHeartbeatRequest other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Seq != 0UL) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Seq = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Seq = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// gate → 客户端:每条被接受的 ClientHeartbeatRequest 立即回一条。超过频率上限的心跳不回。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class ClientHeartbeatResponse : pb::IMessage<ClientHeartbeatResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<ClientHeartbeatResponse> _parser = new pb::MessageParser<ClientHeartbeatResponse>(() => new ClientHeartbeatResponse());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<ClientHeartbeatResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::MessageReflection.Descriptor.MessageTypes[23]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClientHeartbeatResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClientHeartbeatResponse(ClientHeartbeatResponse other) : this() {
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ClientHeartbeatResponse Clone() {
+    return new ClientHeartbeatResponse(this);
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 1;
+  private ulong seq_;
+  /// <summary>
+  /// 回显请求的 seq
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as ClientHeartbeatResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(ClientHeartbeatResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Seq != 0UL) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Seq != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Seq != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Seq != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(ClientHeartbeatResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Seq != 0UL) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Seq = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Seq = input.ReadUInt64();
           break;
         }
       }

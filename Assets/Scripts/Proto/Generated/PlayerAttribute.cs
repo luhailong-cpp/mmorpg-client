@@ -66,41 +66,42 @@ public static partial class PlayerAttributeReflection {
           "c3NhZ2USDwoHcG9vbF9pZBgCIAEoDRJGCglzdWdnZXN0ZWQYAyADKAsyMy5B",
           "dXRvQWxsb2NhdGVBdHRyaWJ1dGVQb2ludHNSZXNwb25zZS5TdWdnZXN0ZWRF",
           "bnRyeRowCg5TdWdnZXN0ZWRFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUY",
-          "AiABKA06AjgBIiwKHENyZWF0ZUF0dHJpYnV0ZVNjaGVtZVJlcXVlc3QSDAoE",
-          "bmFtZRgBIAEoCSJ+Ch1DcmVhdGVBdHRyaWJ1dGVTY2hlbWVSZXNwb25zZRIm",
+          "AiABKA06AjgBIkcKHENyZWF0ZUF0dHJpYnV0ZVNjaGVtZVJlcXVlc3QSDAoE",
+          "bmFtZRgBIAEoCRIZChFjbGllbnRfcmVxdWVzdF9pZBgCIAEoBCKQAQodQ3Jl",
+          "YXRlQXR0cmlidXRlU2NoZW1lUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgB",
+          "IAEoCzIPLlRpcEluZm9NZXNzYWdlEiIKBXBhbmVsGAIgASgLMhMuQXR0cmli",
+          "dXRlUGFuZWxJbmZvEhEKCXNjaGVtZV9pZBgDIAEoDRIQCghyZXBsYXllZBgE",
+          "IAEoCCIxChxTd2l0Y2hBdHRyaWJ1dGVTY2hlbWVSZXF1ZXN0EhEKCXNjaGVt",
+          "ZV9pZBgBIAEoDSJrCh1Td2l0Y2hBdHRyaWJ1dGVTY2hlbWVSZXNwb25zZRIm",
           "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIgoFcGFu",
-          "ZWwYAiABKAsyEy5BdHRyaWJ1dGVQYW5lbEluZm8SEQoJc2NoZW1lX2lkGAMg",
-          "ASgNIjEKHFN3aXRjaEF0dHJpYnV0ZVNjaGVtZVJlcXVlc3QSEQoJc2NoZW1l",
-          "X2lkGAEgASgNImsKHVN3aXRjaEF0dHJpYnV0ZVNjaGVtZVJlc3BvbnNlEiYK",
-          "DWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIiCgVwYW5l",
-          "bBgCIAEoCzITLkF0dHJpYnV0ZVBhbmVsSW5mbyI/ChxSZW5hbWVBdHRyaWJ1",
-          "dGVTY2hlbWVSZXF1ZXN0EhEKCXNjaGVtZV9pZBgBIAEoDRIMCgRuYW1lGAIg",
-          "ASgJImsKHVJlbmFtZUF0dHJpYnV0ZVNjaGVtZVJlc3BvbnNlEiYKDWVycm9y",
-          "X21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIiCgVwYW5lbBgCIAEo",
-          "CzITLkF0dHJpYnV0ZVBhbmVsSW5mbyI+ChhBdHRyaWJ1dGVQYW5lbENoYW5n",
-          "ZWRTMkMSIgoFcGFuZWwYASABKAsyEy5BdHRyaWJ1dGVQYW5lbEluZm8iKAoX",
-          "R21TZXRQbGF5ZXJMZXZlbFJlcXVlc3QSDQoFbGV2ZWwYASABKA0iZgoYR21T",
-          "ZXRQbGF5ZXJMZXZlbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
-          "Dy5UaXBJbmZvTWVzc2FnZRIiCgVwYW5lbBgCIAEoCzITLkF0dHJpYnV0ZVBh",
-          "bmVsSW5mbzKrBgoaU2NlbmVBdHRyaWJ1dGVDbGllbnRQbGF5ZXISSgoRR2V0",
-          "QXR0cmlidXRlUGFuZWwSGS5HZXRBdHRyaWJ1dGVQYW5lbFJlcXVlc3QaGi5H",
-          "ZXRBdHRyaWJ1dGVQYW5lbFJlc3BvbnNlElwKF0FsbG9jYXRlQXR0cmlidXRl",
-          "UG9pbnRzEh8uQWxsb2NhdGVBdHRyaWJ1dGVQb2ludHNSZXF1ZXN0GiAuQWxs",
-          "b2NhdGVBdHRyaWJ1dGVQb2ludHNSZXNwb25zZRJTChRSZXNldEF0dHJpYnV0",
-          "ZVBvaW50cxIcLlJlc2V0QXR0cmlidXRlUG9pbnRzUmVxdWVzdBodLlJlc2V0",
-          "QXR0cmlidXRlUG9pbnRzUmVzcG9uc2USaAobQXV0b0FsbG9jYXRlQXR0cmli",
-          "dXRlUG9pbnRzEiMuQXV0b0FsbG9jYXRlQXR0cmlidXRlUG9pbnRzUmVxdWVz",
-          "dBokLkF1dG9BbGxvY2F0ZUF0dHJpYnV0ZVBvaW50c1Jlc3BvbnNlElYKFUNy",
-          "ZWF0ZUF0dHJpYnV0ZVNjaGVtZRIdLkNyZWF0ZUF0dHJpYnV0ZVNjaGVtZVJl",
-          "cXVlc3QaHi5DcmVhdGVBdHRyaWJ1dGVTY2hlbWVSZXNwb25zZRJWChVTd2l0",
-          "Y2hBdHRyaWJ1dGVTY2hlbWUSHS5Td2l0Y2hBdHRyaWJ1dGVTY2hlbWVSZXF1",
-          "ZXN0Gh4uU3dpdGNoQXR0cmlidXRlU2NoZW1lUmVzcG9uc2USVgoVUmVuYW1l",
-          "QXR0cmlidXRlU2NoZW1lEh0uUmVuYW1lQXR0cmlidXRlU2NoZW1lUmVxdWVz",
-          "dBoeLlJlbmFtZUF0dHJpYnV0ZVNjaGVtZVJlc3BvbnNlEkcKG05vdGlmeUF0",
-          "dHJpYnV0ZVBhbmVsQ2hhbmdlZBIZLkF0dHJpYnV0ZVBhbmVsQ2hhbmdlZFMy",
-          "QxoGLkVtcHR5IgWImcgBAhJHChBHbVNldFBsYXllckxldmVsEhguR21TZXRQ",
-          "bGF5ZXJMZXZlbFJlcXVlc3QaGS5HbVNldFBsYXllckxldmVsUmVzcG9uc2Ua",
-          "CoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "ZWwYAiABKAsyEy5BdHRyaWJ1dGVQYW5lbEluZm8iPwocUmVuYW1lQXR0cmli",
+          "dXRlU2NoZW1lUmVxdWVzdBIRCglzY2hlbWVfaWQYASABKA0SDAoEbmFtZRgC",
+          "IAEoCSJrCh1SZW5hbWVBdHRyaWJ1dGVTY2hlbWVSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIgoFcGFuZWwYAiAB",
+          "KAsyEy5BdHRyaWJ1dGVQYW5lbEluZm8iPgoYQXR0cmlidXRlUGFuZWxDaGFu",
+          "Z2VkUzJDEiIKBXBhbmVsGAEgASgLMhMuQXR0cmlidXRlUGFuZWxJbmZvIigK",
+          "F0dtU2V0UGxheWVyTGV2ZWxSZXF1ZXN0Eg0KBWxldmVsGAEgASgNImYKGEdt",
+          "U2V0UGxheWVyTGV2ZWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USIgoFcGFuZWwYAiABKAsyEy5BdHRyaWJ1dGVQ",
+          "YW5lbEluZm8yqwYKGlNjZW5lQXR0cmlidXRlQ2xpZW50UGxheWVyEkoKEUdl",
+          "dEF0dHJpYnV0ZVBhbmVsEhkuR2V0QXR0cmlidXRlUGFuZWxSZXF1ZXN0Ghou",
+          "R2V0QXR0cmlidXRlUGFuZWxSZXNwb25zZRJcChdBbGxvY2F0ZUF0dHJpYnV0",
+          "ZVBvaW50cxIfLkFsbG9jYXRlQXR0cmlidXRlUG9pbnRzUmVxdWVzdBogLkFs",
+          "bG9jYXRlQXR0cmlidXRlUG9pbnRzUmVzcG9uc2USUwoUUmVzZXRBdHRyaWJ1",
+          "dGVQb2ludHMSHC5SZXNldEF0dHJpYnV0ZVBvaW50c1JlcXVlc3QaHS5SZXNl",
+          "dEF0dHJpYnV0ZVBvaW50c1Jlc3BvbnNlEmgKG0F1dG9BbGxvY2F0ZUF0dHJp",
+          "YnV0ZVBvaW50cxIjLkF1dG9BbGxvY2F0ZUF0dHJpYnV0ZVBvaW50c1JlcXVl",
+          "c3QaJC5BdXRvQWxsb2NhdGVBdHRyaWJ1dGVQb2ludHNSZXNwb25zZRJWChVD",
+          "cmVhdGVBdHRyaWJ1dGVTY2hlbWUSHS5DcmVhdGVBdHRyaWJ1dGVTY2hlbWVS",
+          "ZXF1ZXN0Gh4uQ3JlYXRlQXR0cmlidXRlU2NoZW1lUmVzcG9uc2USVgoVU3dp",
+          "dGNoQXR0cmlidXRlU2NoZW1lEh0uU3dpdGNoQXR0cmlidXRlU2NoZW1lUmVx",
+          "dWVzdBoeLlN3aXRjaEF0dHJpYnV0ZVNjaGVtZVJlc3BvbnNlElYKFVJlbmFt",
+          "ZUF0dHJpYnV0ZVNjaGVtZRIdLlJlbmFtZUF0dHJpYnV0ZVNjaGVtZVJlcXVl",
+          "c3QaHi5SZW5hbWVBdHRyaWJ1dGVTY2hlbWVSZXNwb25zZRJHChtOb3RpZnlB",
+          "dHRyaWJ1dGVQYW5lbENoYW5nZWQSGS5BdHRyaWJ1dGVQYW5lbENoYW5nZWRT",
+          "MkMaBi5FbXB0eSIFiJnIAQISRwoQR21TZXRQbGF5ZXJMZXZlbBIYLkdtU2V0",
+          "UGxheWVyTGV2ZWxSZXF1ZXN0GhkuR21TZXRQbGF5ZXJMZXZlbFJlc3BvbnNl",
+          "GgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -118,8 +119,8 @@ public static partial class PlayerAttributeReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ResetAttributePointsResponse), global::ResetAttributePointsResponse.Parser, new[]{ "ErrorMessage", "Panel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AutoAllocateAttributePointsRequest), global::AutoAllocateAttributePointsRequest.Parser, new[]{ "PoolId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::AutoAllocateAttributePointsResponse), global::AutoAllocateAttributePointsResponse.Parser, new[]{ "ErrorMessage", "PoolId", "Suggested" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-          new pbr::GeneratedClrTypeInfo(typeof(global::CreateAttributeSchemeRequest), global::CreateAttributeSchemeRequest.Parser, new[]{ "Name" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::CreateAttributeSchemeResponse), global::CreateAttributeSchemeResponse.Parser, new[]{ "ErrorMessage", "Panel", "SchemeId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CreateAttributeSchemeRequest), global::CreateAttributeSchemeRequest.Parser, new[]{ "Name", "ClientRequestId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CreateAttributeSchemeResponse), global::CreateAttributeSchemeResponse.Parser, new[]{ "ErrorMessage", "Panel", "SchemeId", "Replayed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SwitchAttributeSchemeRequest), global::SwitchAttributeSchemeRequest.Parser, new[]{ "SchemeId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SwitchAttributeSchemeResponse), global::SwitchAttributeSchemeResponse.Parser, new[]{ "ErrorMessage", "Panel" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RenameAttributeSchemeRequest), global::RenameAttributeSchemeRequest.Parser, new[]{ "SchemeId", "Name" }, null, null, null, null),
@@ -4533,6 +4534,7 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public CreateAttributeSchemeRequest(CreateAttributeSchemeRequest other) : this() {
     name_ = other.name_;
+    clientRequestId_ = other.clientRequestId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4557,6 +4559,26 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
     }
   }
 
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 2;
+  private ulong clientRequestId_;
+  /// <summary>
+  /// 客户端幂等键(docs/design/client-request-idempotency.md)。建方案要扣金币:玩家每点一次「新建」生成一个
+  /// 非 0 的随机 64 位数,拿到明确结果(成功,或带 tip 的拒绝)之前的所有重发 —— 超时、断线重连、gate 回 1003、
+  /// 回包没到时玩家又点了一次 —— 都带同一个键,name 原样不变。
+  /// scene 按 (玩家, 键) 去重:同键同参数的重发不再建第二个、不再扣钱,回首次建出的 scheme_id 与当前面板并标 replayed;
+  /// 同键换了 name 回 kInvalidParameter,不执行。0 = 旧客户端,不去重。
+  /// 键随玩家存档落盘(每名玩家最近 32 个,player_database.client_request_ledger):下线重登、换节点、scene 重启之后照样认得。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -4573,6 +4595,7 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
       return true;
     }
     if (Name != other.Name) return false;
+    if (ClientRequestId != other.ClientRequestId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4581,6 +4604,7 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
   public override int GetHashCode() {
     int hash = 1;
     if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4603,6 +4627,10 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
       output.WriteRawTag(10);
       output.WriteString(Name);
     }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ClientRequestId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4617,6 +4645,10 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
       output.WriteRawTag(10);
       output.WriteString(Name);
     }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(ClientRequestId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4629,6 +4661,9 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
     int size = 0;
     if (Name.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4644,6 +4679,9 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
     }
     if (other.Name.Length != 0) {
       Name = other.Name;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4668,6 +4706,10 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
           Name = input.ReadString();
           break;
         }
+        case 16: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -4689,6 +4731,10 @@ public sealed partial class CreateAttributeSchemeRequest : pb::IMessage<CreateAt
           break;
         case 10: {
           Name = input.ReadString();
+          break;
+        }
+        case 16: {
+          ClientRequestId = input.ReadUInt64();
           break;
         }
       }
@@ -4736,6 +4782,7 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
     errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
     panel_ = other.panel_ != null ? other.panel_.Clone() : null;
     schemeId_ = other.schemeId_;
+    replayed_ = other.replayed_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4781,6 +4828,22 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
     }
   }
 
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 4;
+  private bool replayed_;
+  /// <summary>
+  /// true = 这一次是重发(client_request_id 命中了已建好的那个方案):没有再建、没有再扣钱,
+  /// scheme_id 是首次建出的方案号,panel 是此刻的面板。客户端按「首次已经建成」处理。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -4799,6 +4862,7 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
     if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
     if (!object.Equals(Panel, other.Panel)) return false;
     if (SchemeId != other.SchemeId) return false;
+    if (Replayed != other.Replayed) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4809,6 +4873,7 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
     if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
     if (panel_ != null) hash ^= Panel.GetHashCode();
     if (SchemeId != 0) hash ^= SchemeId.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4839,6 +4904,10 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
       output.WriteRawTag(24);
       output.WriteUInt32(SchemeId);
     }
+    if (Replayed != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(Replayed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4861,6 +4930,10 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
       output.WriteRawTag(24);
       output.WriteUInt32(SchemeId);
     }
+    if (Replayed != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(Replayed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4879,6 +4952,9 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
     }
     if (SchemeId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SchemeId);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4906,6 +4982,9 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
     }
     if (other.SchemeId != 0) {
       SchemeId = other.SchemeId;
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4944,6 +5023,10 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
           SchemeId = input.ReadUInt32();
           break;
         }
+        case 32: {
+          Replayed = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -4979,6 +5062,10 @@ public sealed partial class CreateAttributeSchemeResponse : pb::IMessage<CreateA
         }
         case 24: {
           SchemeId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          Replayed = input.ReadBool();
           break;
         }
       }

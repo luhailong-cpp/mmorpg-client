@@ -31,7 +31,7 @@ namespace MmorpgClient.Game
     /// a fixed node. Server-pushed RedirectToGateNotify (cross-zone / gate
     /// migration) is handled transparently by reconnecting to the new gate.
     /// </summary>
-    public sealed class GameClient : IRpcChannel
+    public sealed partial class GameClient : IRpcChannel
     {
         private readonly GatewayHttpClient _http;
         private readonly MuduoCodec _codec;
@@ -276,6 +276,7 @@ namespace MmorpgClient.Game
             _codec.Register<MessageContent>();
             _codec.Register<ClientTokenVerifyRequest>();
             _codec.Register<ClientTokenVerifyResponse>();
+            _codec.Register<ClientHeartbeatResponse>();
             // 战斗直连握手包(§18.2);两条连接共用同一个 codec 实例
             _codec.Register<BattleTokenVerifyRequest>();
             _codec.Register<BattleTokenVerifyResponse>();
@@ -377,6 +378,7 @@ namespace MmorpgClient.Game
         public void Tick()
         {
             _gate?.Poll();
+            CheckReconnectDeadline();
             _calls.ExpireDue(Time.realtimeSinceStartup);
             if (!InGame || !IsGateReady) _nextPetListRequestTime = 0f;
             else if (!Pets.HasList && !Pets.ListRequestPending && Time.realtimeSinceStartup >= _nextPetListRequestTime)
@@ -463,6 +465,8 @@ namespace MmorpgClient.Game
         public IEnumerator EnterZone(uint zoneId, string account, string password, string deviceId,
                                      Action onSuccess, Action<string> onError)
         {
+            CancelReconnect();
+            _deviceId = deviceId;
             int gen = ++_pipelineGen;
             ResetConnectionState(); // 清掉上一次失败/遗留的连接与 pending 状态
             // 重定向跳数按"一次登录会话"计:这里是新会话的起点,把熔断计数归零,
@@ -681,6 +685,11 @@ namespace MmorpgClient.Game
             {
                 // 跨区/跨 gate 重定向:沿用当前角色,不重新弹选角
                 playerId = _redirectPlayerId;
+            }
+            else if (_reconnecting && _reconnectPlayerId != 0)
+            {
+                // 短重连沿用已登录角色，不重新选角，也不在角色列表为空时建角。
+                playerId = _reconnectPlayerId;
             }
             else
             {
@@ -1101,6 +1110,7 @@ namespace MmorpgClient.Game
             }
             _redirectHops++;
 
+            CancelReconnect();
             int gen = ++_pipelineGen;   // 作废任何在跑的管线,重定向接管连接
             _redirecting = true;
             // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色。EnterGame 应答还没回来时
@@ -1593,8 +1603,8 @@ namespace MmorpgClient.Game
         ///    显式断线或踢线、新管线接管(那时世代已变,等待循环会先按世代退出);
         ///  - 读线程把断线哨兵排在该连接全部数据帧之后,所以这里翻成 false 时,之前到达的帧都已派发过;
         ///  - null 视为已失:等待开始时连接可能已被同一次 Poll 里的哨兵摘掉。
-        /// 不读 GateTcpClient.Connected 的理由见 <see cref="ClassifyPipelineWait"/>。半开 TCP 不会产生哨兵,
-        /// 只能靠各段期限兜底。
+        /// 不读 GateTcpClient.Connected 的理由见 <see cref="ClassifyPipelineWait"/>。通告心跳之后半开 TCP
+        /// 会由网络线程的读超时关闭并产生哨兵；验签前或旧 gate 仍由各段期限兜底。
         /// </summary>
         private bool IsStillCurrentGate(GateTcpClient gate) => gate != null && ReferenceEquals(_gate, gate);
 
@@ -1749,6 +1759,7 @@ namespace MmorpgClient.Game
             RegisterMovementReply(MessageIds.MoveStart, "MoveStart");
             RegisterMovementReply(MessageIds.MoveSync, "MoveSync");
             RegisterMovementReply(MessageIds.MoveStop, "MoveStop");
+            WireTeamFollowHandlers();
 
             OnNotify(MessageIds.NotifyEnterScene, mc =>
             {
@@ -1758,6 +1769,9 @@ namespace MmorpgClient.Game
                 _enteredScene = true;
                 Log($"[scene] entered scene_id={CurrentSceneId}, config={CurrentSceneConfigId}");
                 World.Clear();
+                // 组队跟随:驱动随旧场景作废,仍在跟随的服务器入场后再推;入场计数让跟随声明在新场景再说一次。
+                ResetTeamFollowState();
+                SceneEntryEpoch++;
                 _sceneAppearances.Clear();
                 OnSceneEntered?.Invoke(ev.SceneInfo);
             });
@@ -1880,7 +1894,8 @@ namespace MmorpgClient.Game
                 MoveAckCount++;
                 // For now we just trust the server; a full client-prediction
                 // pipeline would rewind/replay any pending input > ev.InputSeq.
-                if (!World.HasLocalPlayer) return;
+                // 组队跟随由服务器驱动时位置跟着发给自己的 ActorMoveS2C 走;此时到的只会是驱动开始前那次上报的迟到裁决,不能拿它把人拽回去。
+                if (!World.HasLocalPlayer || TeamFollowDriven) return;
                 var pos = WorldCoordinateConverter.FromServerLocation(ev.ServerLocation);
                 var local = GetActorPos(World.LocalEntity);
                 var dist = UnityEngine.Vector3.Distance(pos, local);
@@ -1941,6 +1956,7 @@ namespace MmorpgClient.Game
                 // 跨区传送受理后没成、源 scene 又回不到原地(服务端 D-B:先推失败 tip,紧跟本条踢线)。
                 // 文案随断线通知带出去,否则前一条 tip 的文案会被选服界面的"连接已断开"盖掉(见 DisconnectReason)。
                 Status(text);
+                CancelReconnect();
                 DisconnectInternal(notify: true, forceNotification: true, reason: text);
             });
         }
@@ -2076,13 +2092,26 @@ namespace MmorpgClient.Game
         }
 
         private void HandleTransportDisconnected()
-            => DisconnectInternal(notify: true, forceNotification: false);
+        {
+            // 发送失败可能先于主循环 Poll：先认领已经入队的踢线/重定向，不能把顶号当网络闪断。
+            var failedGate = _gate;
+            failedGate?.Poll();
+            if (!ReferenceEquals(_gate, failedGate)) return;
+            if (TryStartReconnect()) return;
+            // 在重连的握手/入场中再断线，由该管线统一失败，不起第二条重连。
+            DisconnectInternal(notify: !_reconnecting, forceNotification: false);
+        }
 
         private void ResetConnectionState()
             => DisconnectInternal(notify: false, forceNotification: false);
 
         public void Disconnect()
-            => DisconnectInternal(notify: true, forceNotification: false);
+        {
+            bool wasReconnecting = _reconnecting;
+            CancelReconnect();
+            ++_pipelineGen; // 显式登出也作废尚在等 HTTP / TCP 的恢复管线。
+            DisconnectInternal(notify: true, forceNotification: wasReconnecting);
+        }
 
         /// <param name="reason">给人看的断线原因;只有失败流程主动断线时才传,见 <see cref="DisconnectReason"/>。</param>
         private void DisconnectInternal(bool notify, bool forceNotification, string reason = null)
@@ -2127,6 +2156,7 @@ namespace MmorpgClient.Game
                 // 直连的身份来自大厅会话;重连后 scene 推 NotifyBattleReconnect 再补签重建)
                 if (hadSessionState) BattleLink?.Close("lobby_disconnected");
                 World.Clear();
+                ResetTeamFollowState();
             }
             catch
             {

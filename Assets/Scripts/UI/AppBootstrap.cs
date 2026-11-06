@@ -121,6 +121,8 @@ namespace MmorpgClient.UI
 
         public Coroutine Run(IEnumerator routine) => StartCoroutine(routine);
 
+        private void OnApplicationPause(bool paused) => GameClient?.OnApplicationPause(paused);
+
         /// <summary>
         /// Readable nameplate text for the local player: the gateway player
         /// list entry matching <see cref="Game.GameClient.PlayerId"/>, else the

@@ -10,11 +10,11 @@ namespace MmorpgClient.UI.Ugui.Team
 {
     /// <summary>
     /// 组队跟随的宿主:持有 <see cref="TeamFollowDriver"/> 并每帧驱动它,HUD 上放一个「暂离 / 归队」开关。
-    /// 队伍状态只读 <see cref="TeamUiRoot"/> 的 TeamClient;唯一会发的组队请求是驱动要求的归队
-    /// (TeamClient.RequestRegroup,排进 TeamUiRoot 每帧的 DrainQueued 里发出)。
+    /// 队伍状态只读 <see cref="TeamUiRoot"/> 的 TeamClient;跟随声明由驱动经 GameClient.SendTeamFollow 发给场景
+    /// (服务器驱动走位,服务端 docs/design/team-follow-server-trail.md),不再走 TeamClient.RequestRegroup。
     /// 只认已经应用过权威视图的快照:探针回来之前 TeamClient.Snapshot 是占位的"无队",
-    /// 那时传 null 给驱动(表示"不知道"),既不接管,也不把它当成离队。
-    /// 战斗 / 观战画面亮着、没进游戏时不跟随。
+    /// 那时传 null 给驱动(表示"不知道"),既不声明,也不把它当成离队。
+    /// 战斗 / 观战画面亮着、没进游戏时不发声明。
     /// </summary>
     public sealed class TeamFollowUiRoot : MonoBehaviour
     {
@@ -23,7 +23,7 @@ namespace MmorpgClient.UI.Ugui.Team
         /// <summary>组队跟随的本地驱动;界面只读它的状态,开关走 <see cref="ToggleAway"/>。</summary>
         public TeamFollowDriver Follow => _follow;
 
-        /// <summary>新旧入口共用同一权限；暂离释放本地控制，归队须先确认当前队伍。</summary>
+        /// <summary>新旧入口共用同一权限；暂离随时可点(停止驱动不能被视图挡住)，归队须先确认当前队伍。</summary>
         public bool CanToggleAway => _available && TeamHudPanel.CanToggleFollow(_follow.Status,
             TeamUiRoot.Instance?.Client?.HasFreshView == true, TeamUiRoot.Instance?.Client?.ServiceAvailable == true);
 
@@ -83,7 +83,6 @@ namespace MmorpgClient.UI.Ugui.Team
                 (RectTransform)_toggle.transform, _toggle, _toggleLabel);
             _hud.gameObject.SetActive(false);
             _follow.InputRejected += ShowInputHint;
-            _follow.RegroupRequested += RequestRegroup;
             // 联机验收排障:环境变量 MMORPG_FOLLOW_TRACE=1 时把跟随驱动的诊断行写进播放器日志([follow] 前缀)。
             if (System.Environment.GetEnvironmentVariable("MMORPG_FOLLOW_TRACE") == "1")
                 _follow.Trace = message => Debug.Log("[follow] " + message);
@@ -94,7 +93,7 @@ namespace MmorpgClient.UI.Ugui.Team
             if (_hud == null) return; // 重复实例:Awake 里已经请求销毁,这一帧什么都不做
             var game = AppBootstrap.Instance?.GameClient;
             // TeamUiRoot 跟着 GameClient 实例重建 TeamClient;换会话的那一帧这里可能还拿着旧的,
-            // 但此时新会话还没进游戏,_available 为假,不会据旧视图接管。
+            // 但此时新会话还没进游戏,_available 为假,不会据旧视图发声明。
             var client = TeamUiRoot.Instance?.Client;
             bool inGame = game != null && game.InGame && game.IsGateReady;
             _available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
@@ -108,21 +107,19 @@ namespace MmorpgClient.UI.Ugui.Team
             if (status == _shownStatus) return;
             _shownStatus = status;
             _toggle.gameObject.SetActive(status != TeamFollowStatus.None);
-            // 按钮写的是"点了会发生什么":暂离中 → 归队(回到跟随,并请服务端把人带到队长身边);
-            // 跟随中、看不到队长时 → 暂离。看不到队长时驱动会自动请求归队,想自己走就得能点暂离。
+            // 按钮写的是"点了会发生什么":暂离中 → 归队(重新声明跟随,服务器把人带回队长身后);
+            // 跟随中、还没接上队长时 → 暂离。没接上时驱动会自动重新声明,想自己走就得能点暂离。
             if (_toggleLabel != null)
                 _toggleLabel.text = status == TeamFollowStatus.Away ? LabelRejoin : LabelAway;
         }
 
-        private void RequestRegroup() => TeamUiRoot.Instance?.Client?.RequestRegroup();
-
-        /// <summary>暂离 / 归队。暂离是纯本地开关;归队时驱动另外请求服务端把人带到队长身边(见 TeamRegroupPolicy)。</summary>
+        /// <summary>暂离 / 归队:暂离撤回跟随声明(服务器立刻停止驱动),归队重新声明(见 TeamFollowDeclaration)。</summary>
         public void ToggleAway()
         {
             if (!CanToggleAway) return;
             _follow.SetAway(!_follow.Away);
             // 点完之后按钮还是界面的"当前选中项":紧接着用键盘走路时,空格 / 回车会被当成再点一次,
-            // 刚暂离就又被接管回去。
+            // 刚暂离就又声明回跟随。
             var events = EventSystem.current;
             if (events != null && events.currentSelectedGameObject == _toggle.gameObject)
                 events.SetSelectedGameObject(null);
@@ -139,7 +136,6 @@ namespace MmorpgClient.UI.Ugui.Team
         private void OnDestroy()
         {
             _follow.InputRejected -= ShowInputHint;
-            _follow.RegroupRequested -= RequestRegroup;
             _follow.Release();
             if (Instance == this) Instance = null;
         }

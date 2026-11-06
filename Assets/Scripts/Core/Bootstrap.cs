@@ -56,5 +56,7 @@ namespace MmorpgClient.Core
             Client?.Disconnect();
             MmorpgLogger.Info("client quit", "boot");
         }
+
+        private void OnApplicationPause(bool paused) => Client?.OnApplicationPause(paused);
     }
 }

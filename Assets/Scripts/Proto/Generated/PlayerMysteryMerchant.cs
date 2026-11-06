@@ -51,15 +51,16 @@ public static partial class PlayerMysteryMerchantReflection {
           "Zm8SFgoOaW50ZXJhY3RfcmFuZ2UYDSABKA0iHwodR2V0TXlzdGVyeU1lcmNo",
           "YW50SW5mb1JlcXVlc3QibAoeR2V0TXlzdGVyeU1lcmNoYW50SW5mb1Jlc3Bv",
           "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIi",
-          "CgRpbmZvGAIgASgLMhQuTXlzdGVyeU1lcmNoYW50SW5mbyLJAQoeQnV5TXlz",
+          "CgRpbmZvGAIgASgLMhQuTXlzdGVyeU1lcmNoYW50SW5mbyLkAQoeQnV5TXlz",
           "dGVyeU1lcmNoYW50R29vZHNSZXF1ZXN0EhAKCHJvdW5kX2lkGAEgASgEEhAK",
           "CGdvb2RzX2lkGAIgASgNEg0KBWNvdW50GAMgASgNEhYKDmV4cGVjdGVkX3By",
           "aWNlGAQgASgEEh4KFmV4cGVjdGVkX2N1cnJlbmN5X3R5cGUYBSABKA0SHwoX",
           "ZXhwZWN0ZWRfaXRlbV9jb25maWdfaWQYBiABKA0SGwoTZXhwZWN0ZWRfaXRl",
-          "bV9jb3VudBgHIAEoDSKEAQofQnV5TXlzdGVyeU1lcmNoYW50R29vZHNSZXNw",
-          "b25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2US",
-          "IgoEaW5mbxgCIAEoCzIULk15c3RlcnlNZXJjaGFudEluZm8SFQoDYmFnGAMg",
-          "ASgLMgguQmFnSW5mbyI7ChVNeXN0ZXJ5TWVyY2hhbnROb3RpZnkSIgoEaW5m",
+          "bV9jb3VudBgHIAEoDRIZChFjbGllbnRfcmVxdWVzdF9pZBgIIAEoBCKWAQof",
+          "QnV5TXlzdGVyeU1lcmNoYW50R29vZHNSZXNwb25zZRImCg1lcnJvcl9tZXNz",
+          "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIgoEaW5mbxgCIAEoCzIULk15",
+          "c3RlcnlNZXJjaGFudEluZm8SFQoDYmFnGAMgASgLMgguQmFnSW5mbxIQCghy",
+          "ZXBsYXllZBgEIAEoCCI7ChVNeXN0ZXJ5TWVyY2hhbnROb3RpZnkSIgoEaW5m",
           "bxgBIAEoCzIULk15c3RlcnlNZXJjaGFudEluZm8ypwIKIFNjZW5lTXlzdGVy",
           "eU1lcmNoYW50Q2xpZW50UGxheWVyElkKFkdldE15c3RlcnlNZXJjaGFudElu",
           "Zm8SHi5HZXRNeXN0ZXJ5TWVyY2hhbnRJbmZvUmVxdWVzdBofLkdldE15c3Rl",
@@ -77,8 +78,8 @@ public static partial class PlayerMysteryMerchantReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::MysteryMerchantInfo), global::MysteryMerchantInfo.Parser, new[]{ "Active", "RoundId", "SceneConfigId", "SceneId", "ChannelNo", "Position", "AppearAtMs", "ExpireAtMs", "NextAppearAtMs", "ServerTimeMs", "Here", "Goods", "InteractRange" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetMysteryMerchantInfoRequest), global::GetMysteryMerchantInfoRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetMysteryMerchantInfoResponse), global::GetMysteryMerchantInfoResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BuyMysteryMerchantGoodsRequest), global::BuyMysteryMerchantGoodsRequest.Parser, new[]{ "RoundId", "GoodsId", "Count", "ExpectedPrice", "ExpectedCurrencyType", "ExpectedItemConfigId", "ExpectedItemCount" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BuyMysteryMerchantGoodsResponse), global::BuyMysteryMerchantGoodsResponse.Parser, new[]{ "ErrorMessage", "Info", "Bag" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BuyMysteryMerchantGoodsRequest), global::BuyMysteryMerchantGoodsRequest.Parser, new[]{ "RoundId", "GoodsId", "Count", "ExpectedPrice", "ExpectedCurrencyType", "ExpectedItemConfigId", "ExpectedItemCount", "ClientRequestId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BuyMysteryMerchantGoodsResponse), global::BuyMysteryMerchantGoodsResponse.Parser, new[]{ "ErrorMessage", "Info", "Bag", "Replayed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::MysteryMerchantNotify), global::MysteryMerchantNotify.Parser, new[]{ "Info" }, null, null, null, null)
         }));
   }
@@ -2782,6 +2783,7 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
     expectedCurrencyType_ = other.expectedCurrencyType_;
     expectedItemConfigId_ = other.expectedItemConfigId_;
     expectedItemCount_ = other.expectedItemCount_;
+    clientRequestId_ = other.clientRequestId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2895,6 +2897,26 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
     }
   }
 
+  /// <summary>Field number for the "client_request_id" field.</summary>
+  public const int ClientRequestIdFieldNumber = 8;
+  private ulong clientRequestId_;
+  /// <summary>
+  /// 客户端幂等键(docs/design/client-request-idempotency.md)。玩家每点一次「购买」生成一个非 0 的随机 64 位数;
+  /// 这一次购买拿到明确结果(成功,或带 tip 的拒绝)之前的所有重发 —— 超时、断线重连、gate 回 1003、
+  /// 回包没到时玩家又点了同一件同样的份数 —— 都带同一个键,其余字段原样不变。
+  /// scene 按 (玩家, 键) 去重:同键同参数的重发不再买第二份,回当前货架与背包并标 replayed;同键换了参数
+  /// (另一件、另一个份数、另一轮或另一份报价)回 kInvalidParameter,不执行。0 = 旧客户端,不去重。
+  /// 键随玩家存档落盘(每名玩家最近 32 个,player_database.client_request_ledger):下线重登、换节点、scene 重启之后照样认得。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ClientRequestId {
+    get { return clientRequestId_; }
+    set {
+      clientRequestId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2917,6 +2939,7 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
     if (ExpectedCurrencyType != other.ExpectedCurrencyType) return false;
     if (ExpectedItemConfigId != other.ExpectedItemConfigId) return false;
     if (ExpectedItemCount != other.ExpectedItemCount) return false;
+    if (ClientRequestId != other.ClientRequestId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2931,6 +2954,7 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
     if (ExpectedCurrencyType != 0) hash ^= ExpectedCurrencyType.GetHashCode();
     if (ExpectedItemConfigId != 0) hash ^= ExpectedItemConfigId.GetHashCode();
     if (ExpectedItemCount != 0) hash ^= ExpectedItemCount.GetHashCode();
+    if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2977,6 +3001,10 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
       output.WriteRawTag(56);
       output.WriteUInt32(ExpectedItemCount);
     }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(ClientRequestId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3015,6 +3043,10 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
       output.WriteRawTag(56);
       output.WriteUInt32(ExpectedItemCount);
     }
+    if (ClientRequestId != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(ClientRequestId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3045,6 +3077,9 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
     }
     if (ExpectedItemCount != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedItemCount);
+    }
+    if (ClientRequestId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3078,6 +3113,9 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
     }
     if (other.ExpectedItemCount != 0) {
       ExpectedItemCount = other.ExpectedItemCount;
+    }
+    if (other.ClientRequestId != 0UL) {
+      ClientRequestId = other.ClientRequestId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -3124,6 +3162,10 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
         }
         case 56: {
           ExpectedItemCount = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          ClientRequestId = input.ReadUInt64();
           break;
         }
       }
@@ -3173,6 +3215,10 @@ public sealed partial class BuyMysteryMerchantGoodsRequest : pb::IMessage<BuyMys
           ExpectedItemCount = input.ReadUInt32();
           break;
         }
+        case 64: {
+          ClientRequestId = input.ReadUInt64();
+          break;
+        }
       }
     }
   }
@@ -3218,6 +3264,7 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
     errorMessage_ = other.errorMessage_ != null ? other.errorMessage_.Clone() : null;
     info_ = other.info_ != null ? other.info_.Clone() : null;
     bag_ = other.bag_ != null ? other.bag_.Clone() : null;
+    replayed_ = other.replayed_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3269,6 +3316,22 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
     }
   }
 
+  /// <summary>Field number for the "replayed" field.</summary>
+  public const int ReplayedFieldNumber = 4;
+  private bool replayed_;
+  /// <summary>
+  /// true = 这一次是重发(client_request_id 命中了已成交的那一笔):没有再买,info / bag 是此刻的状态。
+  /// 客户端按「首次那一笔已经成交」处理,不要再提示失败。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Replayed {
+    get { return replayed_; }
+    set {
+      replayed_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3287,6 +3350,7 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
     if (!object.Equals(ErrorMessage, other.ErrorMessage)) return false;
     if (!object.Equals(Info, other.Info)) return false;
     if (!object.Equals(Bag, other.Bag)) return false;
+    if (Replayed != other.Replayed) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3297,6 +3361,7 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
     if (errorMessage_ != null) hash ^= ErrorMessage.GetHashCode();
     if (info_ != null) hash ^= Info.GetHashCode();
     if (bag_ != null) hash ^= Bag.GetHashCode();
+    if (Replayed != false) hash ^= Replayed.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3327,6 +3392,10 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
       output.WriteRawTag(26);
       output.WriteMessage(Bag);
     }
+    if (Replayed != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(Replayed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3349,6 +3418,10 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
       output.WriteRawTag(26);
       output.WriteMessage(Bag);
     }
+    if (Replayed != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(Replayed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3367,6 +3440,9 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
     }
     if (bag_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bag);
+    }
+    if (Replayed != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3397,6 +3473,9 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
         Bag = new global::BagInfo();
       }
       Bag.MergeFrom(other.Bag);
+    }
+    if (other.Replayed != false) {
+      Replayed = other.Replayed;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -3438,6 +3517,10 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
           input.ReadMessage(Bag);
           break;
         }
+        case 32: {
+          Replayed = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -3476,6 +3559,10 @@ public sealed partial class BuyMysteryMerchantGoodsResponse : pb::IMessage<BuyMy
             Bag = new global::BagInfo();
           }
           input.ReadMessage(Bag);
+          break;
+        }
+        case 32: {
+          Replayed = input.ReadBool();
           break;
         }
       }

@@ -94,7 +94,7 @@ public static partial class BattleDataReflection {
           "YXR0bGVDdXJyZW5jeUdhaW4SEgoKaXRlbV9kcmF3cxgFIAEoDRItCgxyYW5k",
           "b21faXRlbXMYBiADKAsyFy5CYXR0bGVSYW5kb21JdGVtUmV3YXJkIjwKEkJh",
           "dHRsZVJld2FyZENvbmZpZxImCghwcm9maWxlcxgBIAMoCzIULkJhdHRsZVJl",
-          "d2FyZFByb2ZpbGUiyQMKFEJhdHRsZVNldHRsZW1lbnREYXRhEhEKCWJhdHRs",
+          "d2FyZFByb2ZpbGUijwQKFEJhdHRsZVNldHRsZW1lbnREYXRhEhEKCWJhdHRs",
           "ZV9pZBgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQSIAoHb3V0Y29tZRgDIAEo",
           "DjIPLmVCYXR0bGVPdXRjb21lEhkKEXBsYXllcl90ZWFtX2luZGV4GAQgASgN",
           "Eg4KBmhlYWx0aBgFIAEoBBIMCgRtYW5hGAYgASgEEhAKCGV4cF9nYWluGAcg",
@@ -104,40 +104,47 @@ public static partial class BattleDataReflection {
           "EhQKDHRvdGFsX3JvdW5kcxgNIAEoDRImCgRwZXRzGA4gAygLMhguQmF0dGxl",
           "UGV0U2V0dGxlbWVudERhdGESLwoRZGVmZWF0ZWRfbW9uc3RlcnMYDyADKAsy",
           "FC5CYXR0bGVNb25zdGVyRGVmZWF0EisKDmN1cnJlbmN5X2dhaW5zGBAgAygL",
-          "MhMuQmF0dGxlQ3VycmVuY3lHYWluIlgKF0JhdHRsZVBldFNldHRsZW1lbnRE",
-          "YXRhEg4KBnBldF9pZBgBIAEoBBIOCgZoZWFsdGgYAiABKAQSDAoEbWFuYRgD",
-          "IAEoBBIPCgdpc19kZWFkGAQgASgIIsgBChVCYXR0bGVBY3Rpdml0eUNvbnRl",
-          "eHQSIgoEa2luZBgBIAEoDjIULmVCYXR0bGVBY3Rpdml0eUtpbmQSEAoIZ3Vp",
-          "bGRfaWQYAiABKAQSEwoLYWN0aXZpdHlfaWQYAyABKA0SEgoKcGVyaW9kX2tl",
-          "eRgEIAEoDRIbChNpbml0aWF0b3JfcGxheWVyX2lkGAUgASgEEhgKEGd1aWxk",
-          "X3BlcmlvZF9rZXkYBiABKA0SGQoRbGF1bmNoX3JlcXVlc3RfaWQYByABKAQq",
-          "hgEKEGVCYXR0bGVBY3RvclR5cGUSGgoWQkFUVExFX0FDVE9SX1RZUEVfTk9O",
-          "RRAAEhwKGEJBVFRMRV9BQ1RPUl9UWVBFX1BMQVlFUhABEh0KGUJBVFRMRV9B",
-          "Q1RPUl9UWVBFX01PTlNURVIQAhIZChVCQVRUTEVfQUNUT1JfVFlQRV9QRVQQ",
-          "AyqoAQoRZUJhdHRsZUFjdGlvblR5cGUSFgoSQkFUVExFX0FDVElPTl9OT05F",
-          "EAASGAoUQkFUVExFX0FDVElPTl9BVFRBQ0sQARIXChNCQVRUTEVfQUNUSU9O",
-          "X1NLSUxMEAISGAoUQkFUVExFX0FDVElPTl9ERUZFTkQQAxIWChJCQVRUTEVf",
-          "QUNUSU9OX0lURU0QBBIWChJCQVRUTEVfQUNUSU9OX0ZMRUUQBSqdAwoQZUJh",
-          "dHRsZUV2ZW50VHlwZRIVChFCQVRUTEVfRVZFTlRfTk9ORRAAEhcKE0JBVFRM",
-          "RV9FVkVOVF9BVFRBQ0sQARIWChJCQVRUTEVfRVZFTlRfU0tJTEwQAhIXChNC",
-          "QVRUTEVfRVZFTlRfREFNQUdFEAMSFQoRQkFUVExFX0VWRU5UX0hFQUwQBBIZ",
-          "ChVCQVRUTEVfRVZFTlRfQlVGRl9BREQQBRIcChhCQVRUTEVfRVZFTlRfQlVG",
-          "Rl9SRU1PVkUQBhIaChZCQVRUTEVfRVZFTlRfQlVGRl9USUNLEAcSFgoSQkFU",
-          "VExFX0VWRU5UX0RFQVRIEAgSFwoTQkFUVExFX0VWRU5UX0RFRkVORBAJEhUK",
-          "EUJBVFRMRV9FVkVOVF9JVEVNEAoSFQoRQkFUVExFX0VWRU5UX0ZMRUUQCxIV",
-          "ChFCQVRUTEVfRVZFTlRfTUlTUxAMEhYKEkJBVFRMRV9FVkVOVF9CTE9DSxAN",
-          "EhUKEUJBVFRMRV9FVkVOVF9NQU5BEA4SFwoTQkFUVExFX0VWRU5UX1JFU0lT",
-          "VBAPKm0KDmVCYXR0bGVIaXRLaW5kEhUKEUJBVFRMRV9ISVRfTk9STUFMEAAS",
-          "FAoQQkFUVExFX0hJVF9DT01CTxABEhYKEkJBVFRMRV9ISVRfQ09VTlRFUhAC",
-          "EhYKEkJBVFRMRV9ISVRfUkVGTEVDVBADKoMBCg5lQmF0dGxlT3V0Y29tZRIa",
-          "ChZCQVRUTEVfT1VUQ09NRV9PTkdPSU5HEAASHQoZQkFUVExFX09VVENPTUVf",
-          "U0lERV9BX1dJThABEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQl9XSU4QAhIX",
-          "ChNCQVRUTEVfT1VUQ09NRV9EUkFXEAMqWgoTZUJhdHRsZUFjdGl2aXR5S2lu",
-          "ZBIdChlCQVRUTEVfQUNUSVZJVFlfS0lORF9OT05FEAASJAogQkFUVExFX0FD",
-          "VElWSVRZX0tJTkRfR1VJTERfVFJJQUwQAUIIWgZiYXR0bGViBnByb3RvMw=="));
+          "MhMuQmF0dGxlQ3VycmVuY3lHYWluEhYKDmZpbmlzaGVkX2F0X21zGBEgASgE",
+          "EhIKCm1hdGNoX21vZGUYEiABKA0SGAoQYmF0dGxlX2NvbmZpZ19pZBgTIAEo",
+          "DSJYChdCYXR0bGVQZXRTZXR0bGVtZW50RGF0YRIOCgZwZXRfaWQYASABKAQS",
+          "DgoGaGVhbHRoGAIgASgEEgwKBG1hbmEYAyABKAQSDwoHaXNfZGVhZBgEIAEo",
+          "CCLIAQoVQmF0dGxlQWN0aXZpdHlDb250ZXh0EiIKBGtpbmQYASABKA4yFC5l",
+          "QmF0dGxlQWN0aXZpdHlLaW5kEhAKCGd1aWxkX2lkGAIgASgEEhMKC2FjdGl2",
+          "aXR5X2lkGAMgASgNEhIKCnBlcmlvZF9rZXkYBCABKA0SGwoTaW5pdGlhdG9y",
+          "X3BsYXllcl9pZBgFIAEoBBIYChBndWlsZF9wZXJpb2Rfa2V5GAYgASgNEhkK",
+          "EWxhdW5jaF9yZXF1ZXN0X2lkGAcgASgEKoYBChBlQmF0dGxlQWN0b3JUeXBl",
+          "EhoKFkJBVFRMRV9BQ1RPUl9UWVBFX05PTkUQABIcChhCQVRUTEVfQUNUT1Jf",
+          "VFlQRV9QTEFZRVIQARIdChlCQVRUTEVfQUNUT1JfVFlQRV9NT05TVEVSEAIS",
+          "GQoVQkFUVExFX0FDVE9SX1RZUEVfUEVUEAMqqAEKEWVCYXR0bGVBY3Rpb25U",
+          "eXBlEhYKEkJBVFRMRV9BQ1RJT05fTk9ORRAAEhgKFEJBVFRMRV9BQ1RJT05f",
+          "QVRUQUNLEAESFwoTQkFUVExFX0FDVElPTl9TS0lMTBACEhgKFEJBVFRMRV9B",
+          "Q1RJT05fREVGRU5EEAMSFgoSQkFUVExFX0FDVElPTl9JVEVNEAQSFgoSQkFU",
+          "VExFX0FDVElPTl9GTEVFEAUqnQMKEGVCYXR0bGVFdmVudFR5cGUSFQoRQkFU",
+          "VExFX0VWRU5UX05PTkUQABIXChNCQVRUTEVfRVZFTlRfQVRUQUNLEAESFgoS",
+          "QkFUVExFX0VWRU5UX1NLSUxMEAISFwoTQkFUVExFX0VWRU5UX0RBTUFHRRAD",
+          "EhUKEUJBVFRMRV9FVkVOVF9IRUFMEAQSGQoVQkFUVExFX0VWRU5UX0JVRkZf",
+          "QUREEAUSHAoYQkFUVExFX0VWRU5UX0JVRkZfUkVNT1ZFEAYSGgoWQkFUVExF",
+          "X0VWRU5UX0JVRkZfVElDSxAHEhYKEkJBVFRMRV9FVkVOVF9ERUFUSBAIEhcK",
+          "E0JBVFRMRV9FVkVOVF9ERUZFTkQQCRIVChFCQVRUTEVfRVZFTlRfSVRFTRAK",
+          "EhUKEUJBVFRMRV9FVkVOVF9GTEVFEAsSFQoRQkFUVExFX0VWRU5UX01JU1MQ",
+          "DBIWChJCQVRUTEVfRVZFTlRfQkxPQ0sQDRIVChFCQVRUTEVfRVZFTlRfTUFO",
+          "QRAOEhcKE0JBVFRMRV9FVkVOVF9SRVNJU1QQDyptCg5lQmF0dGxlSGl0S2lu",
+          "ZBIVChFCQVRUTEVfSElUX05PUk1BTBAAEhQKEEJBVFRMRV9ISVRfQ09NQk8Q",
+          "ARIWChJCQVRUTEVfSElUX0NPVU5URVIQAhIWChJCQVRUTEVfSElUX1JFRkxF",
+          "Q1QQAyqDAQoOZUJhdHRsZU91dGNvbWUSGgoWQkFUVExFX09VVENPTUVfT05H",
+          "T0lORxAAEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQV9XSU4QARIdChlCQVRU",
+          "TEVfT1VUQ09NRV9TSURFX0JfV0lOEAISFwoTQkFUVExFX09VVENPTUVfRFJB",
+          "VxADKloKE2VCYXR0bGVBY3Rpdml0eUtpbmQSHQoZQkFUVExFX0FDVElWSVRZ",
+          "X0tJTkRfTk9ORRAAEiQKIEJBVFRMRV9BQ1RJVklUWV9LSU5EX0dVSUxEX1RS",
+          "SUFMEAEqewoTZVNwZWN0YXRlVmlzaWJpbGl0eRIjCh9TUEVDVEFURV9WSVNJ",
+          "QklMSVRZX1VOU1BFQ0lGSUVEEAASHwobU1BFQ1RBVEVfVklTSUJJTElUWV9Q",
+          "UklWQVRFEAESHgoaU1BFQ1RBVEVfVklTSUJJTElUWV9QVUJMSUMQAipfCg1l",
+          "U3BlY3RhdGVUaWVyEhgKFFNQRUNUQVRFX1RJRVJfRElSRUNUEAASFwoTU1BF",
+          "Q1RBVEVfVElFUl9SRUxBWRABEhsKF1NQRUNUQVRFX1RJRVJfQlJPQURDQVNU",
+          "EAJCCFoGYmF0dGxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, global::ActorAttributeStateCompReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleHitKind), typeof(global::eBattleOutcome), typeof(global::eBattleActivityKind), }, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleHitKind), typeof(global::eBattleOutcome), typeof(global::eBattleActivityKind), typeof(global::eSpectateVisibility), typeof(global::eSpectateTier), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRouting), global::BattleRouting.Parser, new[]{ "SessionId", "GateNodeId", "GateInstanceId", "SceneNodeId", "SceneInstanceId", "ZoneId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleBuffEntry), global::BattleBuffEntry.Parser, new[]{ "BuffId", "BuffTableId", "Layer", "RemainRounds", "CasterId", "StatPercent", "AppliedRound" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleItemEntry), global::BattleItemEntry.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
@@ -151,7 +158,7 @@ public static partial class BattleDataReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRandomItemReward), global::BattleRandomItemReward.Parser, new[]{ "ItemTableId", "Count", "Weight" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRewardProfile), global::BattleRewardProfile.Parser, new[]{ "BattleConfigId", "StrategyKey", "ExpGain", "Currencies", "ItemDraws", "RandomItems" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRewardConfig), global::BattleRewardConfig.Parser, new[]{ "Profiles" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters", "CurrencyGains" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters", "CurrencyGains", "FinishedAtMs", "MatchMode", "BattleConfigId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePetSettlementData), global::BattlePetSettlementData.Parser, new[]{ "PetId", "Health", "Mana", "IsDead" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleActivityContext), global::BattleActivityContext.Parser, new[]{ "Kind", "GuildId", "ActivityId", "PeriodKey", "InitiatorPlayerId", "GuildPeriodKey", "LaunchRequestId" }, null, null, null, null)
         }));
@@ -297,6 +304,45 @@ public enum eBattleActivityKind {
   /// 帮会同道历练:go/guild 以消费组 guild-trial 消费 match-results 结算
   /// </summary>
   [pbr::OriginalName("BATTLE_ACTIVITY_KIND_GUILD_TRIAL")] BattleActivityKindGuildTrial = 1,
+}
+
+/// <summary>
+/// 观战可见性(docs/design/battle-spectate-tiered-fanout.md §10 第 6 条 / §10.2):战斗创建时由 match 按
+/// 单一策略表决定、随 CreateBattleRequest 冻结,之后不变。match 的登记公开、两条 WatchBattle 路径、
+/// 观战列表与 battle 的 AddObserver 四处都按它执法。默认拒绝:未填(UNSPECIFIED)与 PRIVATE 一样不可观战。
+/// </summary>
+public enum eSpectateVisibility {
+  /// <summary>
+  /// 视同私密(老发送方 / 漏填一律 fail-closed)
+  /// </summary>
+  [pbr::OriginalName("SPECTATE_VISIBILITY_UNSPECIFIED")] SpectateVisibilityUnspecified = 0,
+  /// <summary>
+  /// 不可观战:计分局、切磋、活动局、自定义房间与未知模式
+  /// </summary>
+  [pbr::OriginalName("SPECTATE_VISIBILITY_PRIVATE")] SpectateVisibilityPrivate = 1,
+  /// <summary>
+  /// 任何在线玩家可观战,进观战列表与随机观战
+  /// </summary>
+  [pbr::OriginalName("SPECTATE_VISIBILITY_PUBLIC")] SpectateVisibilityPublic = 2,
+}
+
+/// <summary>
+/// 观战投递档位(battle-spectate-tiered-fanout.md §3 / §15):按场只升不降,match 是档位的记账方,
+/// battle 只认「挂了哪些中继 gate」与「是否已升广播」两件事。
+/// </summary>
+public enum eSpectateTier {
+  /// <summary>
+  /// L0:观众凭票直连 battle(直连席未满)
+  /// </summary>
+  [pbr::OriginalName("SPECTATE_TIER_DIRECT")] SpectateTierDirect = 0,
+  /// <summary>
+  /// L1:直连席已满,battle 每回合给每台挂了观众的 gate 各发一条中继帧
+  /// </summary>
+  [pbr::OriginalName("SPECTATE_TIER_RELAY")] SpectateTierRelay = 1,
+  /// <summary>
+  /// L2:全服广播,battle 每回合只往广播 topic 发一条,所有 gate 都读
+  /// </summary>
+  [pbr::OriginalName("SPECTATE_TIER_BROADCAST")] SpectateTierBroadcast = 2,
 }
 
 #endregion
@@ -6609,6 +6655,9 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     pets_ = other.pets_.Clone();
     defeatedMonsters_ = other.defeatedMonsters_.Clone();
     currencyGains_ = other.currencyGains_.Clone();
+    finishedAtMs_ = other.finishedAtMs_;
+    matchMode_ = other.matchMode_;
+    battleConfigId_ = other.battleConfigId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -6823,6 +6872,51 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     get { return currencyGains_; }
   }
 
+  /// <summary>Field number for the "finished_at_ms" field.</summary>
+  public const int FinishedAtMsFieldNumber = 17;
+  private ulong finishedAtMs_;
+  /// <summary>
+  /// 战斗结束时刻(Unix 毫秒,battle 节点时钟):battle 冻结终局原件时从 BattleResultEvent.finished_at_ms 盖进每一份个人结算
+  /// (result_commit.h 的 FreezeBattleSettlementSource)。scene 把它写进本人近期战斗结果,供重登后展示
+  /// (docs/design/battle-result-recovery.md);不参与任何结算判定。0 = 来源没盖。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong FinishedAtMs {
+    get { return finishedAtMs_; }
+    set {
+      finishedAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "match_mode" field.</summary>
+  public const int MatchModeFieldNumber = 18;
+  private uint matchMode_;
+  /// <summary>
+  /// 这一局的匹配模式(MatchMode 数值)与战斗配置号:同样由 FreezeBattleSettlementSource 从 BattleResultEvent 盖进来,
+  /// scene 写进本人近期战斗结果,供列表展示与按 battle_id 查回放;不参与任何结算判定。0 = 来源没盖。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MatchMode {
+    get { return matchMode_; }
+    set {
+      matchMode_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_config_id" field.</summary>
+  public const int BattleConfigIdFieldNumber = 19;
+  private uint battleConfigId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BattleConfigId {
+    get { return battleConfigId_; }
+    set {
+      battleConfigId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -6854,6 +6948,9 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if(!pets_.Equals(other.pets_)) return false;
     if(!defeatedMonsters_.Equals(other.defeatedMonsters_)) return false;
     if(!currencyGains_.Equals(other.currencyGains_)) return false;
+    if (FinishedAtMs != other.FinishedAtMs) return false;
+    if (MatchMode != other.MatchMode) return false;
+    if (BattleConfigId != other.BattleConfigId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -6877,6 +6974,9 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     hash ^= pets_.GetHashCode();
     hash ^= defeatedMonsters_.GetHashCode();
     hash ^= currencyGains_.GetHashCode();
+    if (FinishedAtMs != 0UL) hash ^= FinishedAtMs.GetHashCode();
+    if (MatchMode != 0) hash ^= MatchMode.GetHashCode();
+    if (BattleConfigId != 0) hash ^= BattleConfigId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -6944,6 +7044,18 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     pets_.WriteTo(output, _repeated_pets_codec);
     defeatedMonsters_.WriteTo(output, _repeated_defeatedMonsters_codec);
     currencyGains_.WriteTo(output, _repeated_currencyGains_codec);
+    if (FinishedAtMs != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(FinishedAtMs);
+    }
+    if (MatchMode != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(MatchMode);
+    }
+    if (BattleConfigId != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(BattleConfigId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -7003,6 +7115,18 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     pets_.WriteTo(ref output, _repeated_pets_codec);
     defeatedMonsters_.WriteTo(ref output, _repeated_defeatedMonsters_codec);
     currencyGains_.WriteTo(ref output, _repeated_currencyGains_codec);
+    if (FinishedAtMs != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(FinishedAtMs);
+    }
+    if (MatchMode != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(MatchMode);
+    }
+    if (BattleConfigId != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(BattleConfigId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -7051,6 +7175,15 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     size += pets_.CalculateSize(_repeated_pets_codec);
     size += defeatedMonsters_.CalculateSize(_repeated_defeatedMonsters_codec);
     size += currencyGains_.CalculateSize(_repeated_currencyGains_codec);
+    if (FinishedAtMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(FinishedAtMs);
+    }
+    if (MatchMode != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(MatchMode);
+    }
+    if (BattleConfigId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BattleConfigId);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -7101,6 +7234,15 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     pets_.Add(other.pets_);
     defeatedMonsters_.Add(other.defeatedMonsters_);
     currencyGains_.Add(other.currencyGains_);
+    if (other.FinishedAtMs != 0UL) {
+      FinishedAtMs = other.FinishedAtMs;
+    }
+    if (other.MatchMode != 0) {
+      MatchMode = other.MatchMode;
+    }
+    if (other.BattleConfigId != 0) {
+      BattleConfigId = other.BattleConfigId;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -7184,6 +7326,18 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
           currencyGains_.AddEntriesFrom(input, _repeated_currencyGains_codec);
           break;
         }
+        case 136: {
+          FinishedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          MatchMode = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          BattleConfigId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -7265,6 +7419,18 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
         }
         case 130: {
           currencyGains_.AddEntriesFrom(ref input, _repeated_currencyGains_codec);
+          break;
+        }
+        case 136: {
+          FinishedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          MatchMode = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          BattleConfigId = input.ReadUInt32();
           break;
         }
       }

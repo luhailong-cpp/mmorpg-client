@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
@@ -26,6 +27,9 @@ namespace MmorpgClient.Net
         private NetworkStream _stream;
         private Thread _readerThread;
         private Thread _writerThread;
+        private Thread _heartbeatThread;
+        // 状态归当前连接所有，读线程和心跳线程经 _lifecycle 同步；换连接不共享时钟或序号。
+        private readonly GateHeartbeat _heartbeat = new();
         private readonly BlockingCollection<byte[]> _outbox = new(new ConcurrentQueue<byte[]>(), MaxOutboxFrames);
         private readonly ConcurrentQueue<IMessage> _inbox = new();
         private readonly ConcurrentQueue<string> _errors = new();
@@ -43,6 +47,9 @@ namespace MmorpgClient.Net
         public event Action OnDisconnected;
 
         public bool Connected => _running && _tcp?.Client?.Connected == true;
+        public double? HeartbeatRoundTripMs { get { lock (_lifecycle) return _heartbeat.RoundTripMs; } }
+
+        private static double MonotonicMilliseconds => Stopwatch.GetTimestamp() * (1000.0 / Stopwatch.Frequency);
 
         public GateTcpClient(MuduoCodec codec) { _codec = codec; }
 
@@ -121,6 +128,7 @@ namespace MmorpgClient.Net
                     }
                     int n = _stream.Read(buf, filled, buf.Length - filled);
                     if (n <= 0) break;
+                    lock (_lifecycle) _heartbeat.NoteInbound(MonotonicMilliseconds);
                     filled += n;
 
                     int offset = 0;
@@ -140,7 +148,14 @@ namespace MmorpgClient.Net
                         }
                         if (consumed == 0) break;
                         offset += consumed;
-                        if (msg != null) _inbox.Enqueue(msg);
+                        // 验签通告和心跳在网络线程处理，主线程加载场景或不 Poll 也照常保活。
+                        if (msg is ClientTokenVerifyResponse verify && verify.Success)
+                            StartHeartbeat(verify);
+                        if (msg is ClientHeartbeatResponse heartbeat)
+                        {
+                            lock (_lifecycle) _heartbeat.NoteResponse(heartbeat.Seq, MonotonicMilliseconds);
+                        }
+                        else if (msg != null) _inbox.Enqueue(msg);
                     }
                     if (offset > 0)
                     {
@@ -155,10 +170,59 @@ namespace MmorpgClient.Net
                 if (_running) _errors.Enqueue($"reader: {ex.Message}");
             }
             _running = false;
+            lock (_lifecycle) Monitor.PulseAll(_lifecycle);
             // EOF、解码或读取失败也要唤醒正在空 outbox 等待的 Writer。
             try { _outbox.CompleteAdding(); } catch { }
             try { _tcp?.Close(); } catch { }
             _inbox.Enqueue(new DisconnectedSentinel());
+        }
+
+        private void StartHeartbeat(ClientTokenVerifyResponse response)
+        {
+            lock (_lifecycle)
+            {
+                if (!_running || _disposed || !_heartbeat.Start(response.HeartbeatIntervalMs,
+                        response.HeartbeatTimeoutMs, MonotonicMilliseconds)) return;
+                _heartbeatThread = new Thread(HeartbeatLoop) { IsBackground = true, Name = "GateHeartbeat" };
+                _heartbeatThread.Start();
+            }
+        }
+
+        private void HeartbeatLoop()
+        {
+            try
+            {
+                while (_running)
+                {
+                    ulong sequence;
+                    lock (_lifecycle)
+                    {
+                        if (!_running || _disposed) return;
+                        double now = MonotonicMilliseconds;
+                        if (_heartbeat.Expired(now))
+                        {
+                            _errors.Enqueue("gate heartbeat timed out");
+                            _running = false;
+                            // 写线程可能正堵在 TCP Write，不能由写线程负责自己的超时。
+                            // 关 socket 唤醒两个 I/O 线程，断线仍由 reader 的哨兵统一派发。
+                            _tcp?.Close();
+                            return;
+                        }
+                        if (!_heartbeat.TrySend(now, out sequence))
+                        {
+                            Monitor.Wait(_lifecycle, _heartbeat.WaitMilliseconds(now));
+                            continue;
+                        }
+                    }
+                    Send(new ClientHeartbeatRequest { Seq = sequence });
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_running) _errors.Enqueue($"heartbeat: {ex.Message}");
+                _running = false;
+                try { _tcp?.Close(); } catch { }
+            }
         }
 
         private void WriterLoop()
@@ -176,6 +240,7 @@ namespace MmorpgClient.Net
                 // 正常关闭不报告故障；运行中的真实写错误仍交给主线程。
                 if (_running) _errors.Enqueue($"writer: {ex.Message}");
                 _running = false;
+                lock (_lifecycle) Monitor.PulseAll(_lifecycle);
                 // 唤醒阻塞中的 Reader，由它统一排入单个断线哨兵。
                 try { _tcp?.Close(); } catch { }
             }
@@ -187,9 +252,21 @@ namespace MmorpgClient.Net
             {
             _disposed = true;
             _running = false;
+            Monitor.PulseAll(_lifecycle);
             try { _outbox.CompleteAdding(); } catch { }
             try { _stream?.Close(); } catch { }
             try { _tcp?.Close(); } catch { }
+            }
+        }
+
+        /// <summary>应用恢复前台时关闭旧 socket；上层在主线程直接走一次正常断线恢复。</summary>
+        public void CloseForResume()
+        {
+            lock (_lifecycle)
+            {
+                _running = false;
+                Monitor.PulseAll(_lifecycle);
+                try { _tcp?.Close(); } catch { }
             }
         }
 

@@ -26,13 +26,14 @@ public static partial class RpcMessageReflection {
           "ZVJwY01lc3NhZ2USHgoEdHlwZRgBIAEoDjIQLkdhbWVNZXNzYWdlVHlwZRIP",
           "CgdyZXF1ZXN0GAIgASgMEhAKCHJlc3BvbnNlGAMgASgMEh0KBWVycm9yGAQg",
           "ASgOMg4uR2FtZUVycm9yQ29kZRISCgptZXNzYWdlX2lkGAUgASgNEgoKAmlk",
-          "GAYgASgEKmcKD0dhbWVNZXNzYWdlVHlwZRILCgdSRVFVRVNUEAASDAoIUkVT",
-          "UE9OU0UQARINCglSUENfRVJST1IQBCIECAIQAiIECAMQAyoSUlBDX0NMSUVO",
-          "VF9SRVFVRVNUKgpOT0RFX1JPVVRFKrABCg1HYW1lRXJyb3JDb2RlEhAKDFJQ",
-          "Q19OT19FUlJPUhAAEg8KC1dST05HX1BST1RPEAESDgoKTk9fU0VSVklDRRAC",
-          "Eg0KCU5PX01FVEhPRBADEhMKD0lOVkFMSURfUkVRVUVTVBAEEhQKEElOVkFM",
-          "SURfUkVTUE9OU0UQBRILCgdUSU1FT1VUEAYSEgoOSEFORExFUl9GQUlMRUQQ",
-          "BxIRCg1SRVBMWV9EUk9QUEVEEAhCDVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
+          "GAYgASgEKnYKD0dhbWVNZXNzYWdlVHlwZRILCgdSRVFVRVNUEAASDAoIUkVT",
+          "UE9OU0UQARINCglSUENfRVJST1IQBBINCglIRUFSVEJFQVQQBSIECAIQAiIE",
+          "CAMQAyoSUlBDX0NMSUVOVF9SRVFVRVNUKgpOT0RFX1JPVVRFKrABCg1HYW1l",
+          "RXJyb3JDb2RlEhAKDFJQQ19OT19FUlJPUhAAEg8KC1dST05HX1BST1RPEAES",
+          "DgoKTk9fU0VSVklDRRACEg0KCU5PX01FVEhPRBADEhMKD0lOVkFMSURfUkVR",
+          "VUVTVBAEEhQKEElOVkFMSURfUkVTUE9OU0UQBRILCgdUSU1FT1VUEAYSEgoO",
+          "SEFORExFUl9GQUlMRUQQBxIRCg1SRVBMWV9EUk9QUEVEEAhCDVoLY29tbW9u",
+          "L2Jhc2ViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameMessageType), typeof(global::GameErrorCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -53,6 +54,11 @@ public enum GameMessageType {
   /// 框架或 handler 拒绝本次调用;回显请求的 id 与 message_id
   /// </summary>
   [pbr::OriginalName("RPC_ERROR")] RpcError = 4,
+  /// <summary>
+  /// 链路心跳(docs/design/muduo-rpc-channel.md §21):只有 type,id、message_id、载荷都为空。
+  /// 开了心跳的一端写空闲满间隔就发一帧;收到只说明对端还活着,不派发、不回包。
+  /// </summary>
+  [pbr::OriginalName("HEARTBEAT")] Heartbeat = 5,
 }
 
 public enum GameErrorCode {

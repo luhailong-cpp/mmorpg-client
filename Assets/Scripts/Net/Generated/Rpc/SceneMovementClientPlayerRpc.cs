@@ -93,5 +93,26 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint TeamFollowMessageId = 381;
+        /// <summary>
+        /// 组队跟随(新增方法只追加在末尾:方法下标与已分配的消息号都不动)
+        /// </summary>
+        public static void TeamFollow(IRpcChannel channel, global::TeamFollowC2S request)
+            => channel.SendOneWay(TeamFollowMessageId, request);
+
+        public const uint NotifyTeamFollowStateMessageId = 382;
+        public static void OnNotifyTeamFollowState(IRpcChannel channel, Action<global::TeamFollowStateS2C> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyTeamFollowStateMessageId, mc =>
+            {
+                global::TeamFollowStateS2C message;
+                try { message = global::TeamFollowStateS2C.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
     }
 }

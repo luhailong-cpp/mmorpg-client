@@ -94,7 +94,8 @@ namespace MmorpgClient.Net.Generated
         public const uint NotifyGuildChangedMessageId = 220;
         /// <summary>
         /// 推送占位(B2):只为分配 message id;服务端实现恒返回 Empty。
-        /// **不进** go/guild session.ClientMethods —— 客户端发这个 id 会被 PermissionDenied。
+        /// 标了 CLIENT_RPC_PUSH:不进 gate 上行白名单,客户端经 gate 发这个 id 按非法包丢弃(client-rpc-callback.md §7 R4);
+        /// 也不在生成的客户端方法集合里,即使到了 guild 也会被入口准入 PermissionDenied(第二道防线)。
         /// </summary>
         public static void OnNotifyGuildChanged(IRpcChannel channel, Action<global::Guildpb.GuildChangedS2C> handler,
             Action<InvalidProtocolBufferException> onMalformed = null)
@@ -121,7 +122,7 @@ namespace MmorpgClient.Net.Generated
 
         public const uint GetGuildDonateOptionsMessageId = 120;
         /// <summary>
-        /// 帮会经济(B5)。五个都是客户端方法,已进 go/guild session.ClientMethods;
+        /// 帮会经济(B5)。五个都是客户端方法(在生成的客户端方法集合里);
         /// 身份一律取会话,无会话的内部调用由 logic 拒绝。B5a 只落协议,实现在 B5b(此前回 Unimplemented)。
         /// </summary>
         public static void GetGuildDonateOptions(IRpcChannel channel, global::Guildpb.GetGuildDonateOptionsRequest request,
@@ -150,7 +151,7 @@ namespace MmorpgClient.Net.Generated
 
         public const uint GetGuildActivitiesMessageId = 241;
         /// <summary>
-        /// 帮会活动(B6a 一次加齐五个)。都是客户端方法,进 go/guild session.ClientMethods;身份一律取会话。
+        /// 帮会活动(B6a 一次加齐五个)。都是客户端方法(在生成的客户端方法集合里);身份一律取会话。
         /// 历练两个在 B6b 落地前固定回 kGuildActivityNotOpen(占好消息号,B6b 不再动协议与白名单)。
         /// </summary>
         public static void GetGuildActivities(IRpcChannel channel, global::Guildpb.GetGuildActivitiesRequest request,

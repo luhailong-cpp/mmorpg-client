@@ -48,20 +48,34 @@ public static partial class PlayerMovementReflection {
           "GAUgASgNIjAKEEFjdG9yTW92ZUxpc3RTMkMSHAoFbW92ZXMYASADKAsyDS5B",
           "Y3Rvck1vdmVTMkMiXwoLVGVsZXBvcnRTMkMSDgoGZW50aXR5GAEgASgEEh0K",
           "CXRyYW5zZm9ybRgCIAEoCzIKLlRyYW5zZm9ybRIRCglpbnB1dF9zZXEYAyAB",
-          "KA0SDgoGcmVhc29uGAQgASgNMq8DChlTY2VuZU1vdmVtZW50Q2xpZW50UGxh",
-          "eWVyEikKCU1vdmVTdGFydBINLk1vdmVTdGFydEMyUxoGLkVtcHR5IgWImcgB",
-          "ARInCghNb3ZlU3RvcBIMLk1vdmVTdG9wQzJTGgYuRW1wdHkiBYiZyAEBEicK",
-          "CE1vdmVTeW5jEgwuTW92ZVN5bmNDMlMaBi5FbXB0eSIFiJnIAQESQwoPVGVs",
-          "ZXBvcnRSZXF1ZXN0EhMuVGVsZXBvcnRSZXF1ZXN0QzJTGhsuVGVsZXBvcnRS",
-          "ZXF1ZXN0QzJTUmVzcG9uc2USKwoNTm90aWZ5TW92ZUFjaxILLk1vdmVBY2tT",
-          "MkMaBi5FbXB0eSIFiJnIAQISLwoPTm90aWZ5QWN0b3JNb3ZlEg0uQWN0b3JN",
-          "b3ZlUzJDGgYuRW1wdHkiBYiZyAECEjcKE05vdGlmeUFjdG9yTW92ZUxpc3QS",
-          "ES5BY3Rvck1vdmVMaXN0UzJDGgYuRW1wdHkiBYiZyAECEi0KDk5vdGlmeVRl",
-          "bGVwb3J0EgwuVGVsZXBvcnRTMkMaBi5FbXB0eSIFiJnIAQIaCoCowwEBiKjD",
-          "AQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "KA0SDgoGcmVhc29uGAQgASgNIh8KDVRlYW1Gb2xsb3dDMlMSDgoGZm9sbG93",
+          "GAEgASgIInAKElRlYW1Gb2xsb3dTdGF0ZVMyQxIOCgZkcml2ZW4YASABKAgS",
+          "FQoNbGVhZGVyX2VudGl0eRgCIAEoBBIMCgRzbG90GAMgASgNEiUKBnJlYXNv",
+          "bhgEIAEoDjIVLlRlYW1Gb2xsb3dTdG9wUmVhc29uKuICChRUZWFtRm9sbG93",
+          "U3RvcFJlYXNvbhInCiNURUFNX0ZPTExPV19TVE9QX1JFQVNPTl9VTlNQRUNJ",
+          "RklFRBAAEicKI1RFQU1fRk9MTE9XX1NUT1BfUkVBU09OX0xFRlRfRk9MTE9X",
+          "EAESKAokVEVBTV9GT0xMT1dfU1RPUF9SRUFTT05fVEVBTV9DSEFOR0VEEAIS",
+          "KgomVEVBTV9GT0xMT1dfU1RPUF9SRUFTT05fTEVBREVSX0NIQU5HRUQQAxIp",
+          "CiVURUFNX0ZPTExPV19TVE9QX1JFQVNPTl9CRUNBTUVfTEVBREVSEAQSKQol",
+          "VEVBTV9GT0xMT1dfU1RPUF9SRUFTT05fU0NFTkVfQ0hBTkdFRBAFEicKI1RF",
+          "QU1fRk9MTE9XX1NUT1BfUkVBU09OX0xFQURFUl9HT05FEAYSIwofVEVBTV9G",
+          "T0xMT1dfU1RPUF9SRUFTT05fTEVBVklORxAHMpkEChlTY2VuZU1vdmVtZW50",
+          "Q2xpZW50UGxheWVyEikKCU1vdmVTdGFydBINLk1vdmVTdGFydEMyUxoGLkVt",
+          "cHR5IgWImcgBARInCghNb3ZlU3RvcBIMLk1vdmVTdG9wQzJTGgYuRW1wdHki",
+          "BYiZyAEBEicKCE1vdmVTeW5jEgwuTW92ZVN5bmNDMlMaBi5FbXB0eSIFiJnI",
+          "AQESQwoPVGVsZXBvcnRSZXF1ZXN0EhMuVGVsZXBvcnRSZXF1ZXN0QzJTGhsu",
+          "VGVsZXBvcnRSZXF1ZXN0QzJTUmVzcG9uc2USKwoNTm90aWZ5TW92ZUFjaxIL",
+          "Lk1vdmVBY2tTMkMaBi5FbXB0eSIFiJnIAQISLwoPTm90aWZ5QWN0b3JNb3Zl",
+          "Eg0uQWN0b3JNb3ZlUzJDGgYuRW1wdHkiBYiZyAECEjcKE05vdGlmeUFjdG9y",
+          "TW92ZUxpc3QSES5BY3Rvck1vdmVMaXN0UzJDGgYuRW1wdHkiBYiZyAECEi0K",
+          "Dk5vdGlmeVRlbGVwb3J0EgwuVGVsZXBvcnRTMkMaBi5FbXB0eSIFiJnIAQIS",
+          "KwoKVGVhbUZvbGxvdxIOLlRlYW1Gb2xsb3dDMlMaBi5FbXB0eSIFiJnIAQES",
+          "OwoVTm90aWZ5VGVhbUZvbGxvd1N0YXRlEhMuVGVhbUZvbGxvd1N0YXRlUzJD",
+          "GgYuRW1wdHkiBYiZyAECGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IG",
+          "cHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::EmptyReflection.Descriptor, global::TipReflection.Descriptor, global::ActorCompReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::TeamFollowStopReason), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::MoveStartC2S), global::MoveStartC2S.Parser, new[]{ "StartLocation", "Rotation", "Velocity", "TargetLocation", "ClientTimeMs", "InputSeq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::MoveStopC2S), global::MoveStopC2S.Parser, new[]{ "EndLocation", "Rotation", "ClientTimeMs", "InputSeq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::MoveSyncC2S), global::MoveSyncC2S.Parser, new[]{ "Location", "Rotation", "Velocity", "ClientTimeMs", "InputSeq" }, null, null, null, null),
@@ -70,12 +84,55 @@ public static partial class PlayerMovementReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::MoveAckS2C), global::MoveAckS2C.Parser, new[]{ "InputSeq", "ServerLocation", "ServerVelocity", "ServerTimeMs" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorMoveS2C), global::ActorMoveS2C.Parser, new[]{ "Entity", "Transform", "Velocity", "ServerTimeMs", "MoveState" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorMoveListS2C), global::ActorMoveListS2C.Parser, new[]{ "Moves" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TeleportS2C), global::TeleportS2C.Parser, new[]{ "Entity", "Transform", "InputSeq", "Reason" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::TeleportS2C), global::TeleportS2C.Parser, new[]{ "Entity", "Transform", "InputSeq", "Reason" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TeamFollowC2S), global::TeamFollowC2S.Parser, new[]{ "Follow" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TeamFollowStateS2C), global::TeamFollowStateS2C.Parser, new[]{ "Driven", "LeaderEntity", "Slot", "Reason" }, null, null, null, null)
         }));
   }
   #endregion
 
 }
+#region Enums
+/// <summary>
+/// 服务器停止驱动的原因。
+/// </summary>
+public enum TeamFollowStopReason {
+  /// <summary>
+  /// 没有停止(driven=true 时恒为它)
+  /// </summary>
+  [pbr::OriginalName("TEAM_FOLLOW_STOP_REASON_UNSPECIFIED")] Unspecified = 0,
+  /// <summary>
+  /// 客户端暂离
+  /// </summary>
+  [pbr::OriginalName("TEAM_FOLLOW_STOP_REASON_LEFT_FOLLOW")] LeftFollow = 1,
+  /// <summary>
+  /// 离队 / 被踢 / 解散 / 换了队伍
+  /// </summary>
+  [pbr::OriginalName("TEAM_FOLLOW_STOP_REASON_TEAM_CHANGED")] TeamChanged = 2,
+  /// <summary>
+  /// 队长换人;服务器随后会把自己接到新队长身后
+  /// </summary>
+  [pbr::OriginalName("TEAM_FOLLOW_STOP_REASON_LEADER_CHANGED")] LeaderChanged = 3,
+  /// <summary>
+  /// 自己成了队长
+  /// </summary>
+  [pbr::OriginalName("TEAM_FOLLOW_STOP_REASON_BECAME_LEADER")] BecameLeader = 4,
+  /// <summary>
+  /// 自己或队长离开了这个场景
+  /// </summary>
+  [pbr::OriginalName("TEAM_FOLLOW_STOP_REASON_SCENE_CHANGED")] SceneChanged = 5,
+  /// <summary>
+  /// 队长下线、退出或离开本节点
+  /// </summary>
+  [pbr::OriginalName("TEAM_FOLLOW_STOP_REASON_LEADER_GONE")] LeaderGone = 6,
+  /// <summary>
+  /// 自己正在离开本节点(交接 / 退出)
+  /// </summary>
+  [pbr::OriginalName("TEAM_FOLLOW_STOP_REASON_LEAVING")] Leaving = 7,
+}
+
+#endregion
+
 #region Messages
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class MoveStartC2S : pb::IMessage<MoveStartC2S>
@@ -2686,7 +2743,7 @@ public sealed partial class TeleportS2C : pb::IMessage<TeleportS2C>
   public const int ReasonFieldNumber = 4;
   private uint reason_;
   /// <summary>
-  /// 0=server_correction, 1=portal, 2=skill, 3=admin, 4=respawn
+  /// 0=server_correction, 1=portal, 2=skill, 3=admin, 4=respawn, 5=team_regroup(组队归队 / 放进跟随槽位)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2910,6 +2967,537 @@ public sealed partial class TeleportS2C : pb::IMessage<TeleportS2C>
         }
         case 32: {
           Reason = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 队员客户端声明自己跟随队长(归队)或暂离。重复发送是幂等的。
+/// 客户端在以下时机发 follow=true(自己是队员且没有暂离时):入队之后、每次进入场景(含重连)之后、
+/// 队伍视图里队长换人之后、玩家点"归队"时;玩家点"暂离"时发 follow=false。
+/// 是否真的开始驱动以 TeamFollowStateS2C 为准(队长不在同一场景节点、战斗中等情况下不会驱动)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class TeamFollowC2S : pb::IMessage<TeamFollowC2S>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<TeamFollowC2S> _parser = new pb::MessageParser<TeamFollowC2S>(() => new TeamFollowC2S());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<TeamFollowC2S> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerMovementReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TeamFollowC2S() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TeamFollowC2S(TeamFollowC2S other) : this() {
+    follow_ = other.follow_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TeamFollowC2S Clone() {
+    return new TeamFollowC2S(this);
+  }
+
+  /// <summary>Field number for the "follow" field.</summary>
+  public const int FollowFieldNumber = 1;
+  private bool follow_;
+  /// <summary>
+  /// true=跟随(归队),false=暂离
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Follow {
+    get { return follow_; }
+    set {
+      follow_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as TeamFollowC2S);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(TeamFollowC2S other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Follow != other.Follow) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Follow != false) hash ^= Follow.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Follow != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Follow);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Follow != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Follow);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Follow != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(TeamFollowC2S other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Follow != false) {
+      Follow = other.Follow;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Follow = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Follow = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 服务器告知队员自己的客户端:此刻是否正被服务器驱动走位。只发给该队员本人。
+/// driven=true 期间:客户端不按输入驱动本地角色,也不上报 MoveStart / MoveSync / MoveStop(服务器整条丢弃);
+/// 本地角色按发给自己的 ActorMoveS2C(entity 为自己)与 TeleportS2C 显示,平滑方式与远端角色相同。
+/// driven=false:恢复本地控制,从当前显示位置继续上报。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class TeamFollowStateS2C : pb::IMessage<TeamFollowStateS2C>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<TeamFollowStateS2C> _parser = new pb::MessageParser<TeamFollowStateS2C>(() => new TeamFollowStateS2C());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<TeamFollowStateS2C> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerMovementReflection.Descriptor.MessageTypes[10]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TeamFollowStateS2C() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TeamFollowStateS2C(TeamFollowStateS2C other) : this() {
+    driven_ = other.driven_;
+    leaderEntity_ = other.leaderEntity_;
+    slot_ = other.slot_;
+    reason_ = other.reason_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TeamFollowStateS2C Clone() {
+    return new TeamFollowStateS2C(this);
+  }
+
+  /// <summary>Field number for the "driven" field.</summary>
+  public const int DrivenFieldNumber = 1;
+  private bool driven_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Driven {
+    get { return driven_; }
+    set {
+      driven_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "leader_entity" field.</summary>
+  public const int LeaderEntityFieldNumber = 2;
+  private ulong leaderEntity_;
+  /// <summary>
+  /// 队长的不透明 actor 网络号;driven=false 时为 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong LeaderEntity {
+    get { return leaderEntity_; }
+    set {
+      leaderEntity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "slot" field.</summary>
+  public const int SlotFieldNumber = 3;
+  private uint slot_;
+  /// <summary>
+  /// 在队伍里排第几(1 起,紧跟队长的是 1);driven=false 时为 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Slot {
+    get { return slot_; }
+    set {
+      slot_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reason" field.</summary>
+  public const int ReasonFieldNumber = 4;
+  private global::TeamFollowStopReason reason_ = global::TeamFollowStopReason.Unspecified;
+  /// <summary>
+  /// driven=false 时为停止原因
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::TeamFollowStopReason Reason {
+    get { return reason_; }
+    set {
+      reason_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as TeamFollowStateS2C);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(TeamFollowStateS2C other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Driven != other.Driven) return false;
+    if (LeaderEntity != other.LeaderEntity) return false;
+    if (Slot != other.Slot) return false;
+    if (Reason != other.Reason) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Driven != false) hash ^= Driven.GetHashCode();
+    if (LeaderEntity != 0UL) hash ^= LeaderEntity.GetHashCode();
+    if (Slot != 0) hash ^= Slot.GetHashCode();
+    if (Reason != global::TeamFollowStopReason.Unspecified) hash ^= Reason.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Driven != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Driven);
+    }
+    if (LeaderEntity != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(LeaderEntity);
+    }
+    if (Slot != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Slot);
+    }
+    if (Reason != global::TeamFollowStopReason.Unspecified) {
+      output.WriteRawTag(32);
+      output.WriteEnum((int) Reason);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Driven != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Driven);
+    }
+    if (LeaderEntity != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(LeaderEntity);
+    }
+    if (Slot != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Slot);
+    }
+    if (Reason != global::TeamFollowStopReason.Unspecified) {
+      output.WriteRawTag(32);
+      output.WriteEnum((int) Reason);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Driven != false) {
+      size += 1 + 1;
+    }
+    if (LeaderEntity != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LeaderEntity);
+    }
+    if (Slot != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Slot);
+    }
+    if (Reason != global::TeamFollowStopReason.Unspecified) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Reason);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(TeamFollowStateS2C other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Driven != false) {
+      Driven = other.Driven;
+    }
+    if (other.LeaderEntity != 0UL) {
+      LeaderEntity = other.LeaderEntity;
+    }
+    if (other.Slot != 0) {
+      Slot = other.Slot;
+    }
+    if (other.Reason != global::TeamFollowStopReason.Unspecified) {
+      Reason = other.Reason;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Driven = input.ReadBool();
+          break;
+        }
+        case 16: {
+          LeaderEntity = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Slot = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          Reason = (global::TeamFollowStopReason) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Driven = input.ReadBool();
+          break;
+        }
+        case 16: {
+          LeaderEntity = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          Slot = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          Reason = (global::TeamFollowStopReason) input.ReadEnum();
           break;
         }
       }

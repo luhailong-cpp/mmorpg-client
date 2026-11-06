@@ -106,7 +106,7 @@ namespace MmorpgClient.Net.Generated
         public const uint RequestBattleTicketMessageId = 179;
         /// <summary>
         /// ---- 战斗票据补签(客户端丢票 / 冷启动;turn-based-battle-server.md §18 D25) ----
-        /// 大厅会话唯一的补签入口:match 按 spectate:battle:{battle_id} 索引定位房间所在 battle 节点,
+        /// 大厅会话唯一的补签入口:match 按 SQL 成局记录定位房间所在 battle 节点,
         /// 调 BattleNode.IssueBattleTicket 由 battle 本地核对名单并自签;仅参战者 / 观众可得票。
         /// 曾是 BattleClientPlayer.RequestBattleTicket(gate→battle gRPC);gate 收成只连路由服后 gate 不再
         /// 认识 battle 节点,补签改由 match 转,请求 / 响应消息复用 player_battle.proto 里的定义。
@@ -119,5 +119,22 @@ namespace MmorpgClient.Net.Generated
         public static void ListWatchableBattles(IRpcChannel channel, global::Match.ListWatchableBattlesRequest request,
             RpcDone<global::Match.ListWatchableBattlesResponse> done)
             => channel.CallMethod(ListWatchableBattlesMessageId, request, global::Match.ListWatchableBattlesResponse.Parser, done);
+
+        public const uint ListBattleReportsMessageId = 379;
+        /// <summary>
+        /// ---- 战报回放(battle-report-replay.md):每名玩家保留最近 100 场 PVP 战报 ----
+        /// 请求都不带 player_id,只认会话本人。列表新的在前,一次全给(最多 100 条)。
+        /// </summary>
+        public static void ListBattleReports(IRpcChannel channel, global::Match.ListBattleReportsRequest request,
+            RpcDone<global::Match.ListBattleReportsResponse> done)
+            => channel.CallMethod(ListBattleReportsMessageId, request, global::Match.ListBattleReportsResponse.Parser, done);
+
+        public const uint GetBattleReportMessageId = 380;
+        /// <summary>
+        /// 取一局的回放正文:只有列表里还有这一局的玩家能取。
+        /// </summary>
+        public static void GetBattleReport(IRpcChannel channel, global::Match.GetBattleReportRequest request,
+            RpcDone<global::Match.GetBattleReportResponse> done)
+            => channel.CallMethod(GetBattleReportMessageId, request, global::Match.GetBattleReportResponse.Parser, done);
     }
 }

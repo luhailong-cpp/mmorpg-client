@@ -93,6 +93,10 @@ $files = @(
     # 回合制战斗 + 匹配/切磋(docs/design/turn-based-battle-server.md 一期客户端协议)
     "proto/battle/battle_data.proto",
     "proto/battle/player_battle.proto",
+    # 全量 RPC 调用桩包含观战与待确认战斗结果,消息类必须同批生成。
+    "proto/gate/gate_client_spectate.proto",
+    "proto/scene/player_battle_result.proto",
+    "proto/common/component/player_battle_result_comp.proto",
     "proto/match/match_service.proto",
 
     # 货币(docs/design/currency.md)。注意:handler 生成器(gen_messageids.ps1 + protogen)
