@@ -180,3 +180,21 @@
 20 张原生截图已经渲染(**2026-09-13 的历史证据**;B2c 新增的申请页与成员操作按钮未重拍,`11-applications` 需下次 CaptureAll 时补)，并对总览、成员、排行、三种暂未开放页、公告、长帮名确认和重连提示进行实际画面核对。最后空态内距调整仅重拍 `08-empty` 与 `09-long-name-confirmation` 的两种尺寸，其余页面保留已经验收的截图。`capture.log` 是全量渲染记录，`capture-empty-final.log` 是最后四张重拍记录；`validation.json` 保存最终截图尺寸、SHA-256、日志扫描与测试摘要。
 
 复跑测试：Unity 加 `-batchmode -projectPath E:/work/mmorpg-client -runTests -testPlatform EditMode -testFilter "GuildClientTests;GuildWindowTests" -testResults E:/work/mmorpg-client/.codex-artifacts/guild-ui-v2/editmode-results.xml -logFile E:/work/mmorpg-client/.codex-artifacts/guild-ui-v2/editmode.log`。完整截图加 `-executeMethod GuildUiVerification.CaptureAll -quit`，定向空态加 `-executeMethod GuildUiVerification.CaptureEmptyStates -quit`。每次必须等待占用此工程的 Unity 进程退出。
+
+## 2026-11-05：捐献 / 兑换恢复记录的两个出口
+
+`GuildClient` 先刷新本人帮会，再用原请求字节与原键恢复；已经离帮或加入新帮也会重发，由服务端回放原订单或拒绝原请求。旧帮会订单不会改写现帮会的资金与帮贡，也不会触发现帮会经济页重拉；已到账或部分到账时通知背包刷新。离帮后必需的本人申请列表刷新保留恢复结论一次，错误和新的玩家操作不会被旧文案覆盖。
+
+超过六天或本机时钟早于记录时刻时，第一次点「恢复原请求」只警告。原警告仍显示时再点一次，才按原内容 CAS 清除本机记录；不重发旧请求、不替玩家生成新支付。重连、换角或改过文案都要重新警告；校时后回到窗口内则可正常恢复。过期请求体无需解码，记录头身份、原帮会与方法仍须有效。损坏记录的二次确认出口见下节；真实文件读取故障须先恢复可读性。
+
+实现与验证：只修改 `Assets/Scripts/Game/Guild/GuildClient.cs` 和 `Assets/Tests/EditMode/Guild/GuildEconomyRecoveryTests.cs`，窗口与协议未改。Unity 6000.6.0f1 的完整帮会 EditMode **263/263 通过、零跳过**：客户端 147、恢复 62、窗口 54；恢复测试净增 29 个。旧实现红灯为 55 项中的 24 个预期失败。最终测试源码首尾摘要一致，证据见 [完整结果](../Logs/guild-economy-recovery-20261105/green-tests.xml) 与 [运行日志](../Logs/guild-economy-recovery-20261105/green-unity.log)。未运行客户端联网冒烟或播放器打包。
+
+服务端依据与双版本验证见同级服务端仓 `docs/design/guild-phase2/05-economy.md` §5.44.1 和 `docs/handoff/guild-economy-recovery-exits-handoff-20261023.md` §4；Go 固定 HEAD 的独立 MySQL 集成 10/10，Java 单测 36/36。上述离线与替身证据不等同于真实跨区资产到账验收。
+
+## 2026-11-05 补充：损坏记录的二次确认作废
+
+空文件、超长文件、无效 UTF-8、损坏头、错误角色字段、未知方法和窗口内损坏请求体都可以先警告、再确认作废当前角色的本机记录。警告明确原请求可能已到账；作废不重发原请求，也不自动生成新请求。换角、重连、改过提示或文件内容改变后重新确认；如果损坏或超窗警告后换成了合法新请求，本次点击只提示记录变化，下一次主动恢复才允许发送新记录。
+
+`DurableRequestFileStore` 新增原始文件快照，解析文本与长度/SHA-256 从同一文件流取得；确认令牌绑定存储实例、角色和路径，删除时在既有写者锁内重新核对。空文件与超长文件虽然同样显示“损坏”，仍按各自原始字节区分。超长文件流式扫描，内存不随文件大小增长。原 `Load/Save/Transition/Clear` 接口保持不变。
+
+文件占用、锁冲突、权限或读取失败时不盲删，并撤销确认；恢复可读后再警告、再确认。删除失败也保留记录。作废成功后经济页缓存失效，只读刷新帮会并保留结论；有效快照和“不在帮”均支持，故障及无效快照显示真实错误。读取期间的新推送优先于旧作废文案。窗口布局、按钮名称及两版服务器协议均未修改。
