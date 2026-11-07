@@ -31,6 +31,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         private bool _available;
         private MailClient _client;
         private TMP_Text _entryText;
+        private bool HasView=>_window!=null&&_window.Root!=null&&_hud!=null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -59,6 +60,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         }
         private void Update()
         {
+            if(!HasView){UnbindGame();return;}
             var game=AppBootstrap.Instance?.GameClient;
             if(_game!=game){if(_game!=null)_game.OnDisconnected-=ResetSession;ResetSession();_game=game;
                 if(_game!=null)_game.OnDisconnected+=ResetSession;}
@@ -82,6 +84,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         }
         public void Toggle()
         {
+            if(!HasView)return;
             if(_window.IsVisible){HidePanel();return;}if(!_available)return;
             MysteryMerchantUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();Guild.GuildUiRoot.Instance?.HidePanel();Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();Social.SocialUiRoot.Instance?.HidePanel();
@@ -99,15 +102,16 @@ namespace MmorpgClient.UI.Ugui.Mail
         }
         private void DisposeClient(){if(_client==null)return;_client.AssetRefreshRequired-=RefreshAssets;_client.Dispose();_client=null;}
         private void ResetSession(){DisposeClient();_player=0;_gate=null;_available=false;_window?.ResetSession();if(_hud!=null)_hud.gameObject.SetActive(false);}
+        private void UnbindGame(){if(_game!=null)_game.OnDisconnected-=ResetSession;_game=null;ResetSession();}
         public static bool IsTyping()
         {
             var go=EventSystem.current?.currentSelectedGameObject;
             return go!=null&&(go.GetComponentInParent<TMP_InputField>()?.isFocused==true||go.GetComponentInParent<InputField>()?.isFocused==true);
         }
-        private void OnDisable()=>HidePanel();
+        private void OnDisable(){HidePanel();UnbindGame();}
         private void OnDestroy()
         {
-            if(_game!=null)_game.OnDisconnected-=ResetSession;DisposeClient();_window?.Dispose();if(Instance==this)Instance=null;
+            UnbindGame();_window?.Dispose();_window=null;if(Instance==this)Instance=null;
         }
     }
 }

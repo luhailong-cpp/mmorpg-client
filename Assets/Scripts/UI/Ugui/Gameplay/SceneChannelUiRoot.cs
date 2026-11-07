@@ -107,7 +107,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void Update()
         {
-            if (_window == null) return;   // 重复实例:Awake 里已安排销毁
+            if (_window == null || _window.Root == null || _hud == null) { Unbind(); return; }
             Bind(AppBootstrap.Instance?.GameClient);
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             bool battleLayer = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
@@ -145,6 +145,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public void Toggle()
         {
+            if (_window == null || _window.Root == null) return;
             if (_window.IsVisible) { HidePanel(); return; }
             // 跨区传送在途时不开:地图窗正挡在屏上当遮罩,下面那串收起会把它一起撤掉。
             if (!_available || _client == null || _client.Travelling) return;

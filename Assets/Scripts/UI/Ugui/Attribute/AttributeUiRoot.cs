@@ -37,6 +37,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private AttributePanel _panel;
         private TMP_Text _toastText;
         private Coroutine _toastCo;
+        private bool _destroyed;
+        private bool HasView => !_destroyed && _canvasGo != null && _hudRoot != null && _panel?.Root != null;
 
         /// <summary>供子面板取 AttributeClient(可能为 null:NET 路尚未初始化)。</summary>
         public AttributeClient Client => _client;
@@ -65,12 +67,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
         /// (属性 160 / 宝宝 161),不互斥的话后开的那个会把前一个整个盖住,
         /// 玩家以为自己关掉了、其实它还开着在下面吃点击。
         /// </summary>
-        public void HidePanel() => _panel?.Hide();
+        public void HidePanel() { if (_panel?.Root != null) _panel.Hide(); }
 
         /// <summary>供装备详情跳回人物面板，沿用正式入口的可用状态和窗口互斥。</summary>
         public void OpenPanel()
         {
             EnsureBound();
+            if (!HasView) return;
             RefreshEntryVisibility();
             if (_clientBound && _app?.GameClient != null && _app.GameClient.InGame &&
                 _app.GameClient.IsGateReady && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
@@ -80,6 +83,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         public void OpenPanel(bool allocation)
         {
             EnsureBound();
+            if (!HasView) return;
             RefreshEntryVisibility();
             if (_clientBound && _app?.GameClient?.InGame == true && _app.GameClient.IsGateReady &&
                 !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
@@ -112,6 +116,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private void Update()
         {
             EnsureBound();
+            if (!HasView) return;
             RefreshEntryVisibility();
             if (_panel == null || !_panel.IsVisible) return;
             _panel.RefreshIdentity();
@@ -127,23 +132,31 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         private void OnDestroy()
         {
+            _destroyed = true;
             UnbindClient();
             if (Instance == this) Instance = null;
         }
 
         private void EnsureBound()
         {
+            if (_destroyed) return;
             if (_app == null)
             {
                 _app = FindAnyObjectByType<AppBootstrap>();
-                if (_app == null) return;
+                if (_app == null) { UnbindClient(); return; }
             }
-            if (_canvasGo == null) BuildCanvas();
+            if (_canvasGo == null)
+            {
+                // 已构建的原生视图被销毁后，不在退出回调中重新创建它。
+                if (_panel != null) { UnbindClient(); return; }
+                BuildCanvas();
+            }
+            if (!HasView) { UnbindClient(); return; }
 
             var game = _app.GameClient;
             var current = game?.Attributes;
             ulong playerId = game != null && game.InGame && game.IsGateReady ? game.PlayerId : 0;
-            if (_client != current)
+            if (_client != current || (_clientBound && _client == null))
             {
                 UnbindClient();
                 _client = current;
@@ -175,13 +188,19 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         private void UnbindClient()
         {
-            if (!_clientBound || _client == null) return;
-            _client.OnPanel -= HandlePanel;
-            _client.OnAutoSuggestion -= HandleAutoSuggestion;
-            _client.OnBusyChanged -= HandleBusyChanged;
-            _client.OnError -= HandleError;
+            if (_client != null)
+            {
+                _client.OnPanel -= HandlePanel;
+                _client.OnAutoSuggestion -= HandleAutoSuggestion;
+                _client.OnBusyChanged -= HandleBusyChanged;
+                _client.OnError -= HandleError;
+            }
+            _client = null;
             _clientBound = false;
+            _playerId = 0;
+            _hadPanel = false;
         }
+        private void OnDisable() { UnbindClient(); HidePanel(); }
 
         // ── Canvas ──────────────────────────────────────────
 
@@ -251,28 +270,30 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         private void HandlePanel(AttributePanelInfo panel)
         {
+            if (!_clientBound || !HasView) return;
             _hadPanel = panel != null;
             _panel?.ApplyPanel(panel);
         }
 
         private void HandleAutoSuggestion(uint poolId, IReadOnlyDictionary<uint, uint> suggested)
-            => _panel?.ApplyAutoSuggestion(poolId, suggested);
+        { if (_clientBound && HasView) _panel.ApplyAutoSuggestion(poolId, suggested); }
 
-        private void HandleBusyChanged(bool busy) => _panel?.ApplyBusy(busy);
+        private void HandleBusyChanged(bool busy) { if (_clientBound && HasView) _panel.ApplyBusy(busy); }
 
         private void HandleError(string message)
         {
+            if (!_clientBound || !HasView) return;
             _panel?.SetStatus(message, true);
             ShowToast(message, true);
         }
 
         // ── HUD ─────────────────────────────────────────────
 
-        private void OnEntryClicked() => _panel?.Toggle();
+        private void OnEntryClicked() { if (HasView) _panel.Toggle(); }
 
         private void RefreshEntryVisibility()
         {
-            if (_entryButton == null) return;
+            if (!HasView || _entryButton?.Rect == null) return;
             bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame && _app.GameClient.IsGateReady;
             // 战斗屏/观战屏亮着时不显示入口(战斗中服务端也拒绝改属性)
             bool battleBusy = BattleUiRoot.Instance != null && BattleUiRoot.Instance.IsBattleLayerVisible;

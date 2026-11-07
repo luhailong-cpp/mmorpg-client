@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Reflection;
 using MmorpgClient.Game.Team;
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Team;
@@ -43,6 +44,29 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(root.TeamMount, Is.SameAs(team));
             Assert.That(root.QuestMount, Is.SameAs(quests));
             Assert.That(root.TeamContent.Root.parent, Is.SameAs(team));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void LateUpdateAfterContentTeardownHidesRemainingPanel(bool releaseController)
+        {
+            var root = CreateShell();
+            root.RefreshPresentation(true, false);
+            var content = root.TeamContent;
+            if (releaseController)
+            {
+                content.Dispose();
+                typeof(WorldSideHudRoot).GetField("_teamPanel", BindingFlags.Instance | BindingFlags.NonPublic)
+                    .SetValue(root, null);
+            }
+            else Object.DestroyImmediate(content.Root.gameObject);
+
+            var lateUpdate = typeof(WorldSideHudRoot).GetMethod("LateUpdate", BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.DoesNotThrow(() => lateUpdate.Invoke(root, null));
+            Assert.DoesNotThrow(() => lateUpdate.Invoke(root, null));
+            Assert.That(root.Panel.gameObject.activeSelf, Is.False);
+            Assert.That(root.IsPageVisible(WorldSideHudPage.Quests), Is.False);
+            Assert.DoesNotThrow(() => _fixture.SetActive(false));
         }
 
         [TestCase(false, false)]

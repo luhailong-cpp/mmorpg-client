@@ -117,7 +117,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void Update()
         {
-            if (_window == null) return;   // 重复实例:Awake 里已安排销毁
+            if (_window == null || _window.Root == null || _hud == null) { Unbind(); return; }
             Bind(AppBootstrap.Instance?.GameClient);
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             bool battleLayer = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
@@ -168,6 +168,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         /// </summary>
         public void Toggle()
         {
+            if (_window == null || _window.Root == null) return;
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available || _client == null) return;
             if (_client.Presence == MysteryMerchantPresence.Here && _npc != null && !WithinOpenDistance())

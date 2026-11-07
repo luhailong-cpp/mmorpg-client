@@ -30,6 +30,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private RectTransform _hud;
         private ulong _playerId;
         private bool _available;
+        private bool HasView => _window != null && _window.Root != null && _hud != null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -95,6 +96,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             // 窗口关着或在别的页:状态行会在重开时被 Show 清掉,改用飘字。掷骰没过不是错误,不用错误色。
             _forge.Announced += notice =>
             {
+                if (!HasView) return;
                 if (_window.IsVisible && _window.Page == GameplayPage.Bag)
                 {
                     _forgeNoticeShown = true;
@@ -106,8 +108,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
         private void Update()
         {
+            // 退出/销毁时普通 C# 窗口与原生 UI 的生命周期不一定同步。
+            if (!HasView) { UnbindClient(); return; }
             var game = AppBootstrap.Instance?.GameClient;
-            if (_client != game?.Features)
+            bool sessionChanged = _client != game?.Features;
+            if (sessionChanged)
             {
                 if (_client != null) _client.OnChanged -= Changed;
                 _window.ResetSession();
@@ -118,7 +123,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             bool inGame = game != null && game.InGame && game.IsGateReady;
             if (_playerId != (inGame ? game.PlayerId : 0))
-            { _window.ResetSession(); _playerId = inGame ? game.PlayerId : 0; }
+            { _window.ResetSession(); _playerId = inGame ? game.PlayerId : 0; sessionChanged = true; }
+            if (sessionChanged) Changed();
             // 装备 tooltip 的等级要求标红用:属性面板拉到过才有等级,没有就是 0(不标红)。值没变时窗口不重画。
             _window.SetCharacterLevel(AttributeClient.Instance?.Panel?.Level ?? 0);
             _available = inGame && _client != null && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
@@ -146,12 +152,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             else if (Input.GetKeyDown(KeyCode.O)) Toggle(GameplayPage.Activities);
 #endif
         }
-        public void HidePanel() => _window?.Hide();
+        public void HidePanel() { if (_window?.Root != null) _window.Hide(); }
         public void OpenMissions() => Open(GameplayPage.Missions);
 
         public void OpenMission(uint scope, uint missionId)
         {
-            if (!_available || _client?.Missions == null) return;
+            if (!HasView || !_available || _client?.Missions == null) return;
             bool found = false;
             foreach (var mission in _client.Missions.Missions)
                 if (mission.Scope == scope && mission.MissionId == missionId) { found = true; break; }
@@ -162,15 +168,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
         public void OpenEquipment()
         {
-            if (!_available) return;
+            if (!HasView || !_available) return;
             PrepareOpen(); Changed(); _window.ShowEquipment();
             AttributeClient.Instance?.RequestPanel();
         }
         private void Toggle(GameplayPage page)
-        { if (_window.IsVisible && _window.Page == page) HidePanel(); else Open(page); }
+        { if (!HasView) return; if (_window.IsVisible && _window.Page == page) HidePanel(); else Open(page); }
         private void Open(GameplayPage page)
         {
-            if (!_available) return;
+            if (!HasView || !_available) return;
             PrepareOpen();
             Changed(); _window.Show(page);
             if (page == GameplayPage.Bag) AttributeClient.Instance?.RequestPanel();
@@ -190,6 +196,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
         private void Changed()
         {
+            if (!HasView) { UnbindClient(); return; }
             if (_client == null) return;
             // 状态行上的强化结果与数据层的 LastEnhanceOutcome 同生同灭:下一次装备操作一开始(或断线 / 换角色)就收起,
             // 免得一次失败的镶嵌之后状态行上还挂着上一次的「强化成功」。
@@ -206,13 +213,25 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.SetActivities(_client.Activities, _client.ActivitiesLoading, _client.ActivitiesError,
                 _client.BusyActivityReward, _client.ActivityRewardError);
         }
+        private void UnbindClient()
+        {
+            if (_client != null)
+            {
+                _client.OnChanged -= Changed;
+                _window?.SetMissionTracking(null);
+            }
+            _client = null;
+            _playerId = 0;
+            _available = _forgeNoticeShown = false;
+            _forge.Bind(null);
+        }
         private void OnDestroy()
         {
-            if (_client != null) _client.OnChanged -= Changed;
-            _window?.Dispose();
+            UnbindClient();
+            _window?.Dispose(); _window = null;
             _forge.Dispose();
             if (Instance == this) Instance = null;
         }
-        private void OnDisable() => HidePanel();
+        private void OnDisable() { HidePanel(); UnbindClient(); }
     }
 }

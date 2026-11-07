@@ -36,7 +36,8 @@ namespace MmorpgClient.UI.Ugui.Team
         /// <summary>队伍补位匹配:参数是目标人数(大于当前队伍人数)。直接开战仍走 StartMatchRequested。</summary>
         public event Action<uint> BackfillRequested;
         public event Action Closed;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public bool IsModalOpen => _modal != null;
         /// <summary>生产宿主提供队伍视图新鲜度；离线预览可省略，不影响只读刷新与浏览。</summary>
         public Func<bool> FreshViewAvailable { get; set; }
@@ -141,6 +142,7 @@ namespace MmorpgClient.UI.Ugui.Team
         /// <summary>The invitation overlay owns both pointer and keyboard focus while it is visible.</summary>
         public void SetCovered(bool covered)
         {
+            if (_frameControls == null) return;
             _frameControls.interactable = !covered;
             _frameControls.blocksRaycasts = !covered;
         }
@@ -159,6 +161,7 @@ namespace MmorpgClient.UI.Ugui.Team
 
         public void Hide()
         {
+            if (_root == null) return;
             CloseModal();
             bool visible = IsVisible;
             _root.gameObject.SetActive(false);

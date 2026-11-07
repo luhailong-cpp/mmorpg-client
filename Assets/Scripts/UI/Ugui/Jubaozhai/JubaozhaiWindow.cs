@@ -14,6 +14,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
     public sealed partial class JubaozhaiWindow : IDisposable
     {
         public JubaozhaiState State { get; }
+        public RectTransform Root => _root;
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public bool ModalVisible => _modal != null && _modal.gameObject.activeSelf;
         public string SelectedId { get; private set; } = "";

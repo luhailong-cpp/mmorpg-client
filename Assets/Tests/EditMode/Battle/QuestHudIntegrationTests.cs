@@ -122,6 +122,44 @@ namespace MmorpgClient.Tests.EditMode.Battle
             AssertOnlyReads();
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void DisconnectAfterShellDestructionBeforeRemountReleasesStaleContent(bool tracked)
+        {
+            Load();
+            var oldContent = Content();
+            if (tracked) _client.MissionTracking.Track(_client.Missions.Missions[0]);
+            DestroyShell();
+            Assert.That(oldContent == null, Is.True);
+            Assert.That(ContentSubscribers(), Is.EqualTo(1), "尚未进入下一次EnsureMounted，托管内容仍订阅任务偏好");
+
+            // 模拟AppBootstrap在07壳之后销毁：断线通知早于08宿主下一次Update。
+            // 有追踪时先走TrackingChanged，无追踪时直接走Client.OnChanged。
+            Assert.DoesNotThrow(() => _net.RaiseDisconnected());
+            Assert.That(_client.Missions, Is.Null);
+            Assert.That(_client.MissionTracking.TrackedKeys, Is.Empty);
+            Assert.That(ContentSubscribers(), Is.Zero, "迟到回调必须释放已销毁内容的订阅");
+            Assert.That(RootSubscribers(), Is.EqualTo(1));
+
+            _root.EnsureMounted();
+            CreateShell();
+            for (int i = 0; i < 10; ++i) _root.EnsureMounted();
+            Assert.That(Contents().Length, Is.EqualTo(1));
+            Assert.That(Content().parent, Is.SameAs(_shell.QuestMount));
+            AssertText("等待任务同步");
+            Assert.That(ContentSubscribers(), Is.EqualTo(1));
+            Assert.That(_net.Calls.Count, Is.EqualTo(1), "重新挂载不应额外发出读取");
+
+            Tick(10);
+            Assert.That(_net.Calls.Count, Is.EqualTo(2));
+            _net.Calls[1].Respond(Snapshot(9));
+            AssertText("9/10");
+            Assert.That(_client.MissionTracking.TrackedKeys, Is.Empty);
+            Assert.That(RootSubscribers(), Is.EqualTo(1));
+            Assert.That(ContentSubscribers(), Is.EqualTo(1));
+            AssertOnlyReads();
+        }
+
         [Test]
         public void Destroying08HostOnlyRemovesItsContentAndKeeps07MountAndClientPreferences()
         {

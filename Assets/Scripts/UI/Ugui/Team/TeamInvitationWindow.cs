@@ -21,7 +21,8 @@ namespace MmorpgClient.UI.Ugui.Team
         public event Action LoadMoreRequested;
         public event Action CreateRequested;
         public event Action Closed;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         /// <summary>生产宿主提供队伍视图新鲜度；只读候选查询不受影响，离线预览可省略。</summary>
         public Func<bool> FreshViewAvailable { get; set; }
         public TeamInvitationSource Source { get; private set; }
@@ -114,6 +115,7 @@ namespace MmorpgClient.UI.Ugui.Team
 
         public void Hide()
         {
+            if (_root == null) return;
             bool visible = IsVisible;
             _root.gameObject.SetActive(false);
             if (!visible) return;

@@ -349,6 +349,20 @@ namespace MmorpgClient.UI.Ugui
         public void RefreshPresentation()
         {
             if (_chrome == null) return;
+            // 原生Canvas可比托管布局/子控件存活更久；退出阶段不再刷新残留视图。
+            if (_layout == null || _skills == null || _dismiss == null || _panel == null ||
+                _locationBoard == null || _socialNotice == null || _title == null ||
+                _description == null || _categoryIllustration == null || _close == null)
+            {
+                _chrome.gameObject.SetActive(false);
+                return;
+            }
+            for (int i = 0; i < _tabs.Length; i++)
+            {
+                if (_tabs[i] != null && _tabPlates[i] != null && _tabNames[i] != null) continue;
+                _chrome.gameObject.SetActive(false);
+                return;
+            }
             _slots.RemoveAll(slot =>
             {
                 if (slot.Source != null) return false;
@@ -425,7 +439,7 @@ namespace MmorpgClient.UI.Ugui
 
         private static void SetShown(Slot slot, bool visible)
         {
-            if (slot == null) return;
+            if (slot == null || slot.Visibility == null) return;
             slot.Visibility.alpha = visible ? 1f : 0f;
             slot.Visibility.interactable = visible;
             slot.Visibility.blocksRaycasts = visible;
@@ -489,6 +503,7 @@ namespace MmorpgClient.UI.Ugui
         private void OnDestroy()
         {
             Canvas.preWillRenderCanvases -= SyncAllLayout;
+            _layout = null;
             if (Instance == this) Instance = null;
         }
     }

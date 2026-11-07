@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System;
+using System.Linq;
 using System.Reflection;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Battle;
+using MmorpgClient.Game.Battle;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -214,6 +217,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         public void ProductionGroundPixels_AndUnitFeet_StayAlignedAcrossAspectRatios()
         {
             var fixture = new GameObject("BattleGroundAlignmentTest");
+            var navigationBefore = WorldHudNavigation.Instance;
             try
             {
                 new GameObject("EventSystem", typeof(EventSystem)).transform.SetParent(fixture.transform, false);
@@ -262,7 +266,113 @@ namespace MmorpgClient.Tests.EditMode.Battle
                     }
                 }
             }
-            finally { UnityEngine.Object.DestroyImmediate(fixture); }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(fixture);
+                if (WorldHudNavigation.Instance != null && WorldHudNavigation.Instance != navigationBefore)
+                    UnityEngine.Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
+            }
         }
+    }
+
+    public sealed class BattleUiRootLifecycleTests
+    {
+        private const BindingFlags Hidden = BindingFlags.Instance | BindingFlags.NonPublic;
+        private GameObject _fixture;
+        private BattleUiRoot _owner;
+        private WorldHudNavigation _navigationBefore;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _navigationBefore = WorldHudNavigation.Instance;
+            _fixture = new GameObject("BattleUiRootLifecycleTests");
+            new GameObject("EventSystem", typeof(EventSystem)).transform.SetParent(_fixture.transform, false);
+            var ownerObject = new GameObject("InactiveBattleOwner");
+            ownerObject.transform.SetParent(_fixture.transform, false);
+            ownerObject.SetActive(false);
+            _owner = ownerObject.AddComponent<BattleUiRoot>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (_owner != null) Invoke("OnDestroy");
+            if (_fixture != null) UnityEngine.Object.DestroyImmediate(_fixture);
+            if (WorldHudNavigation.Instance != null && WorldHudNavigation.Instance != _navigationBefore)
+                UnityEngine.Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
+        }
+
+        [Test]
+        public void BindingRepairsStaleFlagsAndReplacesSourcesWithoutDuplicateSubscriptions()
+        {
+            Set("_clientBound", true); Set("_spectateBound", true);
+            Bind(null, null);
+            Assert.That(Get<bool>("_clientBound"), Is.False);
+            Assert.That(Get<bool>("_spectateBound"), Is.False);
+
+            var firstBattle = new BattleClient(new FakeBattleTransport());
+            var firstSpectate = new SpectateClient(new FakeBattleTransport());
+            Bind(firstBattle, firstSpectate);
+            Bind(firstBattle, firstSpectate);
+            Assert.That(Subscribers(firstBattle), Is.EqualTo(1));
+            Assert.That(Subscribers(firstSpectate), Is.EqualTo(1));
+
+            // 真实引用仍在但标志丢失时，先解除原订阅再绑定，不能重复订阅。
+            Set("_clientBound", false); Set("_spectateBound", false);
+            Bind(firstBattle, firstSpectate);
+            Assert.That(Subscribers(firstBattle), Is.EqualTo(1));
+            Assert.That(Subscribers(firstSpectate), Is.EqualTo(1));
+
+            var nextBattle = new BattleClient(new FakeBattleTransport());
+            var nextSpectate = new SpectateClient(new FakeBattleTransport());
+            Bind(nextBattle, nextSpectate);
+            Assert.That(Subscribers(firstBattle), Is.Zero);
+            Assert.That(Subscribers(firstSpectate), Is.Zero);
+            Assert.That(Subscribers(nextBattle), Is.EqualTo(1));
+            Assert.That(Subscribers(nextSpectate), Is.EqualTo(1));
+            Assert.That(_owner.Client, Is.SameAs(nextBattle));
+            Assert.That(_owner.Spectate, Is.SameAs(nextSpectate));
+
+            Invoke("OnDisable"); Invoke("OnDisable");
+            Assert.That(Subscribers(nextBattle), Is.Zero);
+            Assert.That(Subscribers(nextSpectate), Is.Zero);
+            Assert.That(_owner.Client, Is.Null);
+            Assert.That(_owner.Spectate, Is.Null);
+            Invoke("OnEnable");
+            Bind(nextBattle, nextSpectate);
+            Assert.That(Subscribers(nextBattle), Is.EqualTo(1), "重新启用后能正常恢复绑定");
+            Assert.That(Subscribers(nextSpectate), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void LateDisconnectAfterCanvasDestructionClearsPlaybackAndDoesNotTouchNativeUi()
+        {
+            Invoke("BuildCanvas");
+            Set("_battleOpen", true); Set("_spectateOpen", true);
+            Set("_playing", true); Set("_spectatePlaying", true);
+            Set("_clientBound", true); Set("_spectateBound", true);
+            UnityEngine.Object.DestroyImmediate(Get<GameObject>("_canvasGo"));
+
+            Assert.DoesNotThrow(() => Invoke("HandleDisconnected"));
+            Assert.That(_owner.IsBattleLayerVisible, Is.False);
+            Assert.That(Get<bool>("_playing"), Is.False);
+            Assert.That(Get<bool>("_spectatePlaying"), Is.False);
+            Assert.DoesNotThrow(() => Invoke("ResyncOpenBattleScreen"));
+            Assert.DoesNotThrow(() => Invoke("RefreshEntryVisibility"));
+            Assert.DoesNotThrow(() => Invoke("OnDisable"));
+            Assert.DoesNotThrow(() => Invoke("Update"));
+            Assert.That(Get<GameObject>("_canvasGo") == null, Is.True, "退出阶段不能重新创建画布");
+            Assert.That(Get<bool>("_clientBound"), Is.False);
+            Assert.That(Get<bool>("_spectateBound"), Is.False);
+        }
+
+        private void Bind(BattleClient client, SpectateClient spectate) => Invoke("BindSources", client, spectate, null);
+        private void Invoke(string name, params object[] args) => typeof(BattleUiRoot).GetMethod(name, Hidden).Invoke(_owner, args);
+        private void Set(string name, object value) => typeof(BattleUiRoot).GetField(name, Hidden).SetValue(_owner, value);
+        private T Get<T>(string name) => (T)typeof(BattleUiRoot).GetField(name, Hidden).GetValue(_owner);
+        private int Subscribers(object source) =>
+            (source.GetType().GetField("OnPhaseChanged", Hidden).GetValue(source) as Delegate)?.GetInvocationList()
+            .Count(handler => ReferenceEquals(handler.Target, _owner)) ?? 0;
     }
 }

@@ -20,7 +20,8 @@ namespace MmorpgClient.UI.Ugui.Rank
         public event Action<uint> PageRequested;
         public event Action RefreshRequested;
         public event Action AroundRequested;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
         private readonly RectTransform _root, _list;
         private readonly TMP_Text _status, _pageLabel, _selfRank, _selfName, _selfRating, _heading;

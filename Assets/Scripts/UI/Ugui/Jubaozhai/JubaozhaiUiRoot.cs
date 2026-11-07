@@ -35,6 +35,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private RectTransform _hud;
         private ulong _player;
         private bool _available;
+        private bool HasView => _hud != null && _window?.Root != null && _commerceWindow?.Root != null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -74,6 +75,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
 
         private void Update()
         {
+            if (!HasView) { UnbindGame(); return; }
             var game = AppBootstrap.Instance?.GameClient;
             if (_game != game)
             {
@@ -121,6 +123,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
 
         public void Toggle()
         {
+            if (!HasView) return;
             if (_commerceWindow.IsVisible) { HidePanel(); return; }
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
@@ -139,7 +142,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
 
         private void ShowCommerce()
         {
-            if (!_available) return;
+            if (!HasView || !_available) return;
             _window.Hide();
             _commerceWindow.Show();
         }
@@ -172,10 +175,16 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             return selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
                    selected.GetComponentInParent<InputField>()?.isFocused == true);
         }
-        private void OnDestroy()
+        private void UnbindGame()
         {
             if (_game != null) _game.OnDisconnected -= ResetSession;
+            _game = null;
+            _available = false;
             DisposeClient();
+        }
+        private void OnDestroy()
+        {
+            UnbindGame();
             _window?.Dispose();
             _commerceWindow?.Dispose();
             if (Instance == this) Instance = null;

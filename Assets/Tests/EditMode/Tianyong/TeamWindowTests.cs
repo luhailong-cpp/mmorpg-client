@@ -11,6 +11,47 @@ using UnityEngine.UI;
 
 namespace MmorpgClient.Tests.EditMode.Tianyong
 {
+    public sealed class TeamUiRootLifecycleTests
+    {
+        [TestCase(false)] [TestCase(true)]
+        public void MissingOrDestroyedViewReleasesClientAndAllowsRepeatedCleanup(bool built)
+        {
+            const System.Reflection.BindingFlags hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            var type = typeof(TeamUiRoot);
+            var navigation = WorldHudNavigation.Instance;
+            var host = new GameObject("TeamUiRootLifecycleTests");
+            host.SetActive(false);
+            var root = host.AddComponent<TeamUiRoot>();
+            void Invoke(string name) => type.GetMethod(name, hidden).Invoke(root, null);
+            try
+            {
+                if (built) Invoke("Awake");
+                var net = new TeamFakeTransport();
+                var client = new TeamClient(net);
+                type.GetField("_client", hidden).SetValue(root, client);
+                client.Changed += (System.Action)type.GetMethod("SyncState", hidden).CreateDelegate(typeof(System.Action), root);
+                if (built) Object.DestroyImmediate(host.transform.Find("TeamCanvas").gameObject);
+                Assert.DoesNotThrow(net.Disconnect, "原生树已销毁时仍可能先收到会话重置通知");
+                Assert.DoesNotThrow(() => Invoke("Update"));
+                Assert.That(root.Client, Is.Null);
+                Assert.That(typeof(TeamFakeTransport).GetField("Disconnected", hidden).GetValue(net), Is.Null);
+                Assert.DoesNotThrow(root.Toggle);
+                Assert.DoesNotThrow(root.HidePanel);
+                Assert.DoesNotThrow(() => Invoke("OnDisable"));
+                Assert.DoesNotThrow(() => Invoke("OnDestroy"));
+                Assert.DoesNotThrow(() => Invoke("OnDestroy"));
+                Assert.That(root.enabled, Is.True, "生命周期保护不能永久禁用宿主");
+            }
+            finally
+            {
+                Invoke("OnDestroy");
+                Object.DestroyImmediate(host);
+                if (WorldHudNavigation.Instance != null && WorldHudNavigation.Instance != navigation)
+                    Object.DestroyImmediate(WorldHudNavigation.Instance.gameObject);
+            }
+        }
+    }
+
     public sealed class TeamWindowTests
     {
         private const string Members = "TeamMembers";

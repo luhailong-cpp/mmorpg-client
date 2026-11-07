@@ -76,6 +76,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void Update()
         {
+            if (_window == null || _window.Root == null || _hud == null || _entry == null)
+            { Bind(null); return; }
             _app = AppBootstrap.Instance;
             Bind(_app?.GameClient);
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
@@ -138,6 +140,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public void Toggle()
         {
+            if (_window == null || _window.Root == null) return;
             if (_window.IsVisible) { HidePanel(); return; }
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow()) return;
             MysteryMerchantUiRoot.Instance?.HidePanel();
@@ -343,8 +346,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         private void Refresh()
-            => _window?.SetState(CurrentScene, _app?.WorldMap != null && _app.WorldMap.FestivalAppearance,
+        {
+            if (_window?.Root == null) return;
+            _window.SetState(CurrentScene, _app?.WorldMap != null && _app.WorldMap.FestivalAppearance,
                 _request.IsPending, _status);
+        }
 
         private static bool IsTyping()
         {

@@ -58,7 +58,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void SetData(GetMissionListResponse snapshot, bool loading, string error, bool busy,
             MissionTrackingState tracking)
         {
-            if (_disposed) return;
+            if (!EnsureAlive()) return;
             bool changed = !Equals(_snapshot, snapshot) || !ReferenceEquals(_tracking, tracking);
             if (!ReferenceEquals(_tracking, tracking))
             {
@@ -79,6 +79,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void RenderCards()
         {
+            if (!EnsureAlive()) return;
             float offset = _cards.anchoredPosition.y;
             Clear(_cards);
             var missions = _snapshot?.Missions.Where(IsVisibleMission)
@@ -176,7 +177,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         { 1 => "主线", 2 => "活动", _ => mission.MissionType == 0 ? "任务" : "类型 " + mission.MissionType };
 
         private void MoveScroll(float amount)
-        { _scroll.StopMovement(); _cards.anchoredPosition = new Vector2(0, Mathf.Clamp(_cards.anchoredPosition.y + amount, 0, Math.Max(0, _cards.rect.height - 430))); }
+        {
+            if (!EnsureAlive()) return;
+            _scroll.StopMovement();
+            _cards.anchoredPosition = new Vector2(0, Mathf.Clamp(_cards.anchoredPosition.y + amount, 0, Math.Max(0, _cards.rect.height - 430)));
+        }
+
+        private bool EnsureAlive()
+        {
+            if (_disposed) return false;
+            if (Root != null && _cards != null && _scroll != null && _count != null && _status != null && _refresh != null)
+                return true;
+            // 壳的Unity对象可能先于常驻宿主销毁；迟到的断线/追踪回调须释放订阅，不能再访问控件。
+            Dispose();
+            return false;
+        }
         private static TMP_Text Label(UnityEngine.Transform parent, string value, float x, float y, float w, float h, float size, Color? color = null)
         { var text = Text(parent, value, x, y, w, h, size, color); text.raycastTarget = false; return text; }
         private static Button Control(UnityEngine.Transform parent, string name, string label, float x, float y, float w, float h, Action click, float size)
@@ -206,6 +221,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_disposed) return;
             _disposed = true;
             if (_tracking != null) _tracking.OnChanged -= TrackingChanged;
+            _tracking = null;
             if (Root != null)
             { Root.gameObject.SetActive(false); if (Application.isPlaying) UnityEngine.Object.Destroy(Root.gameObject); else UnityEngine.Object.DestroyImmediate(Root.gameObject); }
         }

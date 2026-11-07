@@ -99,7 +99,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action TravelRequested;
         public event Action Closed;
 
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public int PageIndex { get; private set; }
         public int PageCount { get; private set; } = 1;
         /// <summary>底部状态行此刻显示的文字。</summary>

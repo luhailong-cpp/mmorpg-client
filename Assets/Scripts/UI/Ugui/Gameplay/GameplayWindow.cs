@@ -30,7 +30,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action<uint, uint> MissionClaimRequested;
         public event Action<PlayerMissionInfo> TrackingChanged;
         public event Action Closed;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public bool HasEquipmentModal => _actions.IsVisible || _wish.IsVisible || (_forgeDialog?.IsVisible ?? false);
         public bool EquipmentModalOwnsKeyboard => HasEquipmentModal || _modalClosedFrame == Time.frameCount;
         public GameplayPage Page { get; private set; }

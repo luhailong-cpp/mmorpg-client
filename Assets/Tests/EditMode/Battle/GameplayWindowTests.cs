@@ -1,13 +1,95 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using MmorpgClient.UI.Ugui.Gameplay;
+using MmorpgClient.UI.Ugui.Mail;
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace MmorpgClient.Tests.EditMode.Battle
 {
+    public sealed class PlayerFeatureRootLifecycleTests
+    {
+        private const BindingFlags PrivateInstance = BindingFlags.Instance | BindingFlags.NonPublic;
+        private GameObject _fixture, _view;
+        private MonoBehaviour _owner;
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (_owner != null) Invoke("OnDestroy");
+            if (_fixture != null) UnityEngine.Object.DestroyImmediate(_fixture);
+        }
+
+        [TestCase(typeof(GameplayUiRoot))]
+        [TestCase(typeof(MailUiRoot))]
+        public void UninitializedOwnerIgnoresUpdatesAndRepeatedTeardown(Type type)
+        {
+            CreateOwner(type, false);
+            Assert.DoesNotThrow(() => Invoke("Update"));
+            Assert.DoesNotThrow(() => Invoke("OnDisable"));
+            Assert.DoesNotThrow(() => Invoke("OnDestroy"));
+            Assert.DoesNotThrow(() => Invoke("OnDestroy"));
+            Assert.DoesNotThrow(() => Invoke("Update"));
+        }
+
+        [TestCase(typeof(GameplayUiRoot))]
+        [TestCase(typeof(MailUiRoot))]
+        public void NativeViewDestroyedBeforeOwnerCallbacksDoesNotThrow(Type type)
+        {
+            CreateOwner(type, true);
+            UnityEngine.Object.DestroyImmediate(_view);
+            Assert.DoesNotThrow(() => Invoke("Update"));
+            Assert.DoesNotThrow(() => Invoke("OnDisable"));
+            Assert.DoesNotThrow(() => Invoke("OnDestroy"));
+            Assert.DoesNotThrow(() => Invoke("Update"));
+        }
+
+        [TestCase(typeof(GameplayUiRoot))]
+        [TestCase(typeof(MailUiRoot))]
+        public void DisableKeepsWindowReusableForTheNextSession(Type type)
+        {
+            CreateOwner(type, true);
+            var window = type.GetField("_window", PrivateInstance).GetValue(_owner);
+            Show(window);
+            Invoke("OnDisable");
+            Assert.That(type.GetField("_window", PrivateInstance).GetValue(_owner), Is.SameAs(window));
+            Assert.That(IsVisible(window), Is.False);
+            Assert.DoesNotThrow(() => Invoke("Update"));
+            Show(window);
+            Assert.That(IsVisible(window), Is.True, "禁用宿主只解绑会话，不应永久 Dispose 可复用窗口");
+        }
+
+        private void CreateOwner(Type type, bool createView)
+        {
+            _fixture = new GameObject("PlayerFeatureRootLifecycleTests");
+            _fixture.SetActive(false);
+            _owner = (MonoBehaviour)_fixture.AddComponent(type);
+            if (!createView) return;
+            _view = new GameObject("OwnedView", typeof(RectTransform), typeof(Canvas));
+            _view.transform.SetParent(_fixture.transform, false);
+            var hud = new GameObject("HudRoot", typeof(RectTransform));
+            hud.transform.SetParent(_view.transform, false);
+            object window = type == typeof(GameplayUiRoot)
+                ? (object)new GameplayWindow(_view.transform) : new MailWindow(_view.transform);
+            type.GetField("_window", PrivateInstance).SetValue(_owner, window);
+            type.GetField("_hud", PrivateInstance).SetValue(_owner, (RectTransform)hud.transform);
+        }
+
+        private void Invoke(string method) => _owner.GetType().GetMethod(method, PrivateInstance).Invoke(_owner, null);
+        private static void Show(object window)
+        {
+            if (window is GameplayWindow gameplay) gameplay.Show(GameplayPage.Missions);
+            else ((MailWindow)window).Show();
+        }
+        private static bool IsVisible(object window) => window is GameplayWindow gameplay
+            ? gameplay.IsVisible : ((MailWindow)window).IsVisible;
+    }
+
     /// <summary>使用正式窗口和原生控件验证展示交互，不建立账号或网络会话。</summary>
     public sealed class GameplayWindowTests
     {

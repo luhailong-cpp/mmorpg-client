@@ -348,6 +348,63 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_fixture.transform.childCount, Is.Zero);
         }
 
+        [TestCase(true)]
+        [TestCase(false)]
+        public void DisconnectSnapshotAfterExternalUiDestructionDisposesStaleContent(bool destroyRoot)
+        {
+            var snapshot = Missions(1);
+            Set(snapshot);
+            var root = _hud.Root;
+            Object.DestroyImmediate(destroyRoot ? root.gameObject : Scroll().content.gameObject);
+            Assert.That(root == null, Is.EqualTo(destroyRoot),
+                "只销毁卡片容器时，任务栏根仍存活，不能只检查根对象");
+
+            Assert.DoesNotThrow(() => _hud.SetData(null, false, null, false, _tracking),
+                "断线清空快照可能早于宿主的下一次 Update/OnDestroy");
+            Assert.That(root == null, Is.True);
+            Assert.That(_fixture.transform.childCount, Is.Zero);
+            Assert.DoesNotThrow(() => _hud.SetData(snapshot, false, null, false, _tracking));
+            Assert.DoesNotThrow(() => _hud.Dispose());
+        }
+
+        [Test]
+        public void TrackingClearAfterExternalCardDestructionAllowsFreshContentToUseSameModel()
+        {
+            var snapshot = Missions(1);
+            Set(snapshot);
+            Assert.That(_tracking.Track(snapshot.Missions[0]), Is.True);
+            var staleContent = _hud;
+            Object.DestroyImmediate(Scroll().content.gameObject);
+
+            Assert.DoesNotThrow(() => _tracking.Clear(),
+                "断线会先清空任务追踪，再广播快照变更");
+            Assert.That(staleContent.Root == null, Is.True);
+            Assert.That(_tracking.TrackedKeys, Is.Empty);
+            Assert.That(_fixture.transform.childCount, Is.Zero);
+
+            _hud = new QuestHudContent(_fixture.transform);
+            Set(snapshot);
+            Assert.DoesNotThrow(() => _tracking.Track(snapshot.Missions[0]));
+            Assert.That(ButtonNamed("QuestTrack_" + MissionTrackingState.Key(snapshot.Missions[0]))
+                .GetComponentInChildren<TMP_Text>().text, Is.EqualTo("取消追踪"));
+            Assert.That(_fixture.transform.childCount, Is.EqualTo(1), "旧内容不能因追踪回调重建控件");
+            Assert.DoesNotThrow(() => staleContent.Dispose());
+        }
+
+        [TestCase("QuestScrollUp")]
+        [TestCase("QuestScrollDown")]
+        public void PendingScrollClickAfterExternalCardDestructionDisposesStaleContent(string buttonName)
+        {
+            Set(Missions(7));
+            var pendingClick = ButtonNamed(buttonName).onClick;
+            Object.DestroyImmediate(Scroll().content.gameObject);
+
+            Assert.DoesNotThrow(() => pendingClick.Invoke());
+            Assert.That(_hud.Root == null, Is.True);
+            Assert.That(_fixture.transform.childCount, Is.Zero);
+            Assert.DoesNotThrow(() => pendingClick.Invoke(), "重复回调不得再次访问已销毁控件");
+        }
+
         [Test]
         public void ListAndRefreshRemainExplicitAndAutoTrackingExplainsUnavailablePolicy()
         {

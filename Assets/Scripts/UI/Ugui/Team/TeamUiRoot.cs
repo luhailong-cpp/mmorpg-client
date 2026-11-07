@@ -46,6 +46,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private System.IDisposable _landingSync;
         private ulong _playerId;
         private bool _available;
+        private bool HasView => State != null && _hud != null && _window?.Root != null && _invitations?.Root != null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -109,6 +110,7 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void Update()
         {
+            if (!HasView) { DisposeClient(); return; }
             var game = AppBootstrap.Instance?.GameClient;
             if (_game != game)
             {
@@ -180,13 +182,14 @@ namespace MmorpgClient.UI.Ugui.Team
 
         public void Toggle()
         {
+            if (!HasView) return;
             if (_window.IsVisible) { HidePanel(); return; }
             OpenPanel();
         }
 
         private void OpenPanel(bool refresh = true)
         {
-            if (!_available) return;
+            if (!HasView || !_available) return;
             MysteryMerchantUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
             MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
@@ -206,14 +209,14 @@ namespace MmorpgClient.UI.Ugui.Team
 
         public void HidePanel()
         {
-            _invitations?.Hide();
-            _window?.Hide();
+            if (_invitations?.Root != null) _invitations.Hide();
+            if (_window?.Root != null) _window.Hide();
         }
 
         /// <summary>组队HUD的列表入口；已经打开时保留大窗，不使用Toggle把它关闭。</summary>
         public void OpenTeamList()
         {
-            if (!_available) return;
+            if (!HasView || !_available) return;
             if (!_window.IsVisible) OpenPanel();
             else _window.Show(TeamPage.Members);
         }
@@ -221,7 +224,7 @@ namespace MmorpgClient.UI.Ugui.Team
         /// <summary>复用大窗确认与唯一TeamClient；过期视图不能发起依赖成员关系的写操作。</summary>
         public void RequestLeaveConfirmation()
         {
-            bool Permitted() => _available && _client != null && _client.HasFreshView &&
+            bool Permitted() => HasView && _available && _client != null && _client.HasFreshView &&
                 _client.ServiceAvailable && !State.MatchStarting;
             if (!Permitted() || State.IsBusy || !State.HasLoaded || !State.HasTeam) return;
             // 已有可信视图，先显示确认。此处若用普通列表入口同步刷新，会立即变忙而吞掉本次确认。
@@ -232,14 +235,14 @@ namespace MmorpgClient.UI.Ugui.Team
 
         public void OpenInviteForPlayer(ulong playerId)
         {
-            if (!_available || playerId == 0 || playerId == _playerId) return;
+            if (!HasView || !_available || playerId == 0 || playerId == _playerId) return;
             _directory?.RememberChatPlayer(playerId);
             OpenInvitations(TeamInvitationSource.Chat, playerId.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
 
         public void OpenInvitations(TeamInvitationSource source, string query = "")
         {
-            if (!_available) return;
+            if (!HasView || !_available) return;
             if (!_window.IsVisible) Toggle();
             Social.SocialUiRoot.Instance?.HidePanel();
             _invitations.SetState(State);
@@ -251,13 +254,14 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void SyncDirectory()
         {
-            if (_directory == null) return;
+            if (!HasView || _directory == null) return;
             _invitations?.SetCandidates(_directory.Source, _directory.Candidates, _directory.IsLoading,
                 _directory.Status, _directory.HasMore);
         }
 
         private void SyncState()
         {
+            if (State == null) return;
             if (_client == null) { State.Reset(_playerId); return; }
             // A probe answered without a view (server read failure) leaves a placeholder "no team"
             // snapshot; the window must show "not synced" rather than offer Create / Apply to a member.
@@ -274,6 +278,7 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void RenderState()
         {
+            if (!HasView) return;
             _window?.SetState(State);
             _invitations?.SetState(State);
             if (_entryLabel == null) return;
@@ -286,6 +291,8 @@ namespace MmorpgClient.UI.Ugui.Team
 
         private void DisposeClient()
         {
+            _available = false; _game = null; _playerId = 0;
+            _backfillSync.Reset();
             if (MatchEntry != null)
             {
                 MatchEntry.Notice -= ShowMatchNotice;
@@ -314,12 +321,12 @@ namespace MmorpgClient.UI.Ugui.Team
                                         selected.GetComponentInParent<InputField>()?.isFocused == true);
         }
 
-        private void OnDisable() => HidePanel();
+        private void OnDisable() { _available = false; HidePanel(); if (!HasView) DisposeClient(); }
 
         private void OnDestroy()
         {
             DisposeClient();
-            State.Changed -= RenderState;
+            if (State != null) State.Changed -= RenderState;
             HidePanel();
             if (Instance == this) Instance = null;
         }

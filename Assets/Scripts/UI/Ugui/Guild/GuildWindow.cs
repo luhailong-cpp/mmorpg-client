@@ -44,7 +44,8 @@ namespace MmorpgClient.UI.Ugui.Guild
         /// 房间 id 是按钮 / 邀请框画出来那一刻看到的那个,不是点击那一刻视图里的。
         /// </summary>
         public event Action<ulong, bool> TrialInviteResponded;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public bool ModalVisible => _modal != null && _modal.gameObject.activeSelf;
         /// <summary>申请视图是否正在显示；GuildClient.DrainQueued 据此决定重拉列表还是只刷角标。</summary>
         public bool ShowingApplications => IsVisible && Page == GuildPage.Members && _showApplications;

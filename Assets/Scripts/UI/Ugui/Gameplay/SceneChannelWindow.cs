@@ -87,7 +87,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action RefreshRequested;
         public event Action Closed;
 
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         /// <summary>当前页(从 0 起);每次渲染按总页数收拢。</summary>
         public int PageIndex { get; private set; }
         public int PageCount { get; private set; } = 1;

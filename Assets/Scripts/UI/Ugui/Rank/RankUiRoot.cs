@@ -36,6 +36,8 @@ namespace MmorpgClient.UI.Ugui.Rank
         private RectTransform _hud;
         private ulong _player;
         private bool _available;
+        private bool _destroyed;
+        private bool HasView => !_destroyed && _window?.Root != null && _hud != null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -76,6 +78,7 @@ namespace MmorpgClient.UI.Ugui.Rank
 
         private void Update()
         {
+            if (!HasView) { UnbindClient(); return; }
             var game = AppBootstrap.Instance?.GameClient;
             if (_game != game)
             {
@@ -109,6 +112,7 @@ namespace MmorpgClient.UI.Ugui.Rank
 
         public void Toggle()
         {
+            if (!HasView) return;
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available || _client == null) return;
             HideOtherPanels();
@@ -133,10 +137,11 @@ namespace MmorpgClient.UI.Ugui.Rank
             Skills.SkillUiRoot.Instance?.HidePanel();
         }
 
-        public void HidePanel() => _window?.Hide();
+        public void HidePanel() { if (_window?.Root != null) _window.Hide(); }
 
         private void Changed()
         {
+            if (!HasView) { UnbindClient(); return; }
             if (_window != null && _window.IsVisible) _window.Render();
         }
 
@@ -151,12 +156,17 @@ namespace MmorpgClient.UI.Ugui.Rank
                 || selected?.GetComponentInParent<InputField>()?.isFocused == true;
         }
 
-        private void OnDisable() => HidePanel();
+        private void UnbindClient()
+        {
+            if (_client != null) { _client.Changed -= Changed; _client.Dispose(); }
+            _client = null; _game = null; _player = 0; _available = false;
+        }
+        private void OnDisable() { UnbindClient(); HidePanel(); }
 
         private void OnDestroy()
         {
-            if (_client != null) { _client.Changed -= Changed; _client.Dispose(); }
-            _window?.Hide();
+            _destroyed = true;
+            UnbindClient(); HidePanel(); _window = null;
             if (Instance == this) Instance = null;
         }
     }

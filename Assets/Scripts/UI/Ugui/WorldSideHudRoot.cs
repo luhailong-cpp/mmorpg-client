@@ -170,6 +170,13 @@ namespace MmorpgClient.UI.Ugui
         private void LateUpdate()
         {
             if (Panel == null) return;
+            // 退出或初始化中断时，原生面板可能仍在，但托管内容已经不可用。
+            if (_teamPanel == null || _teamPanel.Root == null)
+            {
+                _available = false;
+                Panel.gameObject.SetActive(false);
+                return;
+            }
             var game = AppBootstrap.Instance?.GameClient;
             bool inGame = game != null && game.InGame && game.IsGateReady;
             ulong playerId = inGame ? game.PlayerId : 0;
@@ -218,6 +225,12 @@ namespace MmorpgClient.UI.Ugui
         private void ApplyVisibility()
         {
             if (Panel == null) return;
+            if (_surface == null || _quests == null || _team == null || _collapseText == null ||
+                QuestMount == null || TeamMount == null || _questScroll == null || _teamScroll == null)
+            {
+                Panel.gameObject.SetActive(false);
+                return;
+            }
             var selected = EventSystem.current?.currentSelectedGameObject;
             if (selected != null && selected.transform.IsChildOf(Panel))
                 EventSystem.current.SetSelectedGameObject(null);
@@ -276,6 +289,7 @@ namespace MmorpgClient.UI.Ugui
         private void OnDestroy()
         {
             _teamPanel?.Dispose();
+            _teamPanel = null;
             VisibilityChanged = null;
             if (Instance == this) Instance = null;
         }

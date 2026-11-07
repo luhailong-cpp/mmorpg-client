@@ -84,6 +84,53 @@ namespace MmorpgClient.Tests.EditMode.Social
         {Assert.Throws<ArgumentException>(()=>new SocialClient(_net,new SocialState(true)));}
         private static PullChatHistoryResponse History(string text){var response=new PullChatHistoryResponse();response.Messages.Add(new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=44,Content=text,SendTimeMs=1000});return response;}
     }
+    public sealed class SocialUiRootLifecycleTests
+    {
+        [TestCase(false)] [TestCase(true)]
+        public void MissingOrDestroyedViewReleasesClientsAndAllowsRepeatedCleanup(bool built)
+        {
+            const System.Reflection.BindingFlags hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            var type = typeof(MmorpgClient.UI.Ugui.Social.SocialUiRoot);
+            var navigation = MmorpgClient.UI.Ugui.WorldHudNavigation.Instance;
+            var host = new UnityEngine.GameObject("SocialUiRootLifecycleTests");
+            host.SetActive(false);
+            var root = host.AddComponent<MmorpgClient.UI.Ugui.Social.SocialUiRoot>();
+            void Invoke(string name) => type.GetMethod(name, hidden).Invoke(root, null);
+            try
+            {
+                if (built) Invoke("Awake");
+                else type.GetProperty("State").SetValue(root, new SocialState());
+                var net = new SocialFakeTransport();
+                type.GetProperty("Client").SetValue(root, new SocialClient(net, root.State));
+                type.GetProperty("Friends").SetValue(root, new FriendClient(net));
+                if (built)
+                {
+                    root.FriendRequests.Bind(root.Friends);
+                    UnityEngine.Object.DestroyImmediate(host.transform.Find("SocialCanvas").gameObject);
+                }
+                Assert.DoesNotThrow(net.Disconnect, "销毁视图后的断线回调不能访问原生控件");
+                Assert.DoesNotThrow(() => Invoke("Update"));
+                Assert.That(root.Client, Is.Null);
+                Assert.That(root.Friends, Is.Null);
+                Assert.That(typeof(SocialFakeTransport).GetField("Disconnected", hidden).GetValue(net), Is.Null);
+                Assert.DoesNotThrow(root.Toggle);
+                Assert.DoesNotThrow(root.HidePanel);
+                Assert.DoesNotThrow(() => Invoke("OnDisable"));
+                Assert.DoesNotThrow(() => Invoke("OnDestroy"));
+                Assert.DoesNotThrow(() => Invoke("OnDestroy"));
+                Assert.DoesNotThrow(() => root.State.Notify("晚到的状态"));
+                Assert.That(root.enabled, Is.True, "生命周期保护不能永久禁用宿主");
+            }
+            finally
+            {
+                Invoke("OnDestroy");
+                UnityEngine.Object.DestroyImmediate(host);
+                var current = MmorpgClient.UI.Ugui.WorldHudNavigation.Instance;
+                if (current != null && current != navigation) UnityEngine.Object.DestroyImmediate(current.gameObject);
+            }
+        }
+    }
+
     internal sealed class SocialFakeTransport:IBattleTransport
     {
         internal sealed class CallRecord {public uint Id;public IMessage Request;public Action<IMessage> Success;public Action<string> Error;}

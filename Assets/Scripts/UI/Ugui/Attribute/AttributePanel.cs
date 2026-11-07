@@ -55,6 +55,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private uint _activePoolId;
         private bool _schemeListOpen;
 
+        public RectTransform Root => _root;
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
         public AttributePanel(AttributeUiRoot owner, UnityEngine.Transform parent)

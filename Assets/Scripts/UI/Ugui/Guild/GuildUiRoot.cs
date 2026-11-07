@@ -37,6 +37,8 @@ namespace MmorpgClient.UI.Ugui.Guild
         private bool _available;
         // 上一帧战斗层是否显示;由显示变为不显示的那一帧 = 一场战斗刚结束。
         private bool _inBattle;
+        private bool _destroyed;
+        private bool HasView => !_destroyed && _window?.Root != null && _hud != null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -101,6 +103,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         private uint ZoneId => AppBootstrap.Instance?.Session?.SelectedZoneId ?? 0;
         private void Update()
         {
+            if (!HasView) { UnbindClient(); return; }
             var game = AppBootstrap.Instance?.GameClient;
             if (_game != game)
             {
@@ -155,6 +158,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         public void Toggle()
         {
+            if (!HasView) return;
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
             HideOtherPanels();
@@ -211,8 +215,8 @@ namespace MmorpgClient.UI.Ugui.Guild
             var selected = EventSystem.current?.currentSelectedGameObject;
             return selected != null && selected.GetComponentInParent<TMP_InputField>()?.isFocused == true;
         }
-        public void HidePanel() => _window?.Hide();
-        private void Changed() => _window?.SetClient(_client);
+        public void HidePanel() { if (_window?.Root != null) _window.Hide(); }
+        private void Changed() { if (HasView) _window.SetClient(_client); else UnbindClient(); }
         /// <summary>
         /// 捐献扣了货币 / 兑换发了物品:scene 没有余额推送,重拉一次背包(沿用玩家当前看的那个背包类型)。
         /// 背包客户端不在(未进场)就什么也不做,下次打开背包自然会拉。
@@ -222,11 +226,17 @@ namespace MmorpgClient.UI.Ugui.Guild
             var features = PlayerFeaturesClient.Instance;
             features?.RequestBag(features.RequestedBagType);
         }
-        private void OnDestroy()
+        private void UnbindClient()
         {
             _guildSync?.Dispose(); _guildSync = null;
             if (_client != null) { _client.Changed -= Changed; _client.AssetsChanged -= OnAssetsChanged; _client.Dispose(); }
-            _window?.Hide();
+            _client = null; _game = null; _player = 0; _available = _inBattle = false;
+        }
+        private void OnDisable() { UnbindClient(); HidePanel(); }
+        private void OnDestroy()
+        {
+            _destroyed = true;
+            UnbindClient(); HidePanel(); _window = null;
             if (Instance == this) Instance = null;
         }
     }

@@ -28,6 +28,7 @@ namespace MmorpgClient.UI.Ugui.Social
         public FriendRequestsWindow FriendRequests{get;private set;}
         public event Action Opened;
         private GameClient _game;private ulong _player;private object _connection;private RectTransform _hud;private bool _available;
+        private bool HasView => State != null && Window?.Root != null && FriendRequests?.Root != null && _hud != null;
         // 落地恢复的好友申请接线(LandingSyncBindings.BindFriendRequests):随 Friends 一起建、在它销毁之前解除;
         // Toggle / HidePanel / OnDisable / 会话复位都不碰它(FriendClient.Reset 不清钩子)。
         private IDisposable _friendSync;
@@ -49,11 +50,12 @@ namespace MmorpgClient.UI.Ugui.Social
         }
         private void Update()
         {
+            if(!HasView){DisposeClients();return;}
             var game=AppBootstrap.Instance?.GameClient;bool ready=game!=null&&game.InGame&&game.IsGateReady;ulong player=ready?game.PlayerId:0;object connection=game?.GateConnectionIdentity;
             bool differentGame=!ReferenceEquals(_game,game),differentSession=_player!=player||!ReferenceEquals(_connection,connection);
             if(differentGame)
             {
-                _friendSync?.Dispose();_friendSync=null;Client?.Dispose();Client=null;Friends?.Dispose();Friends=null;_game=game;
+                DisposeClients();_game=game;
                 if(game!=null)
                 {
                     Client=new SocialClient(new GameClientBattleTransport(game),State,()=>game.GateConnectionIdentity);
@@ -78,6 +80,7 @@ namespace MmorpgClient.UI.Ugui.Social
         }
         public void Toggle()
         {
+            if(!HasView)return;
             if(Window.IsVisible||FriendRequests.IsVisible){HidePanel();return;}
             if(!_available)return;
             OpenPanel(State.Page);
@@ -85,6 +88,7 @@ namespace MmorpgClient.UI.Ugui.Social
         /// <summary>从装备卡进入世界聊天，只填写草稿，发送仍须玩家确认。</summary>
         public bool TryComposeEquipment(BagItemInfo item)
         {
+            if(!HasView)return false;
             var game=AppBootstrap.Instance?.GameClient;
             // 按当前连接再核对一次，防止点击发生在 Update 观察到换号或断线之前。
             if(!_available||Window==null||Client==null||State==null||game==null||!game.InGame||!game.IsGateReady
@@ -107,6 +111,7 @@ namespace MmorpgClient.UI.Ugui.Social
         }
         private void OpenPanel(SocialPage page,bool refreshHistory=true)
         {
+            if(!HasView||!_available)return;
             MysteryMerchantUiRoot.Instance?.HidePanel();
             FriendRequests.Hide();
             Mail.MailUiRoot.Instance?.HidePanel();
@@ -123,14 +128,20 @@ namespace MmorpgClient.UI.Ugui.Social
         }
         private void OpenFriendRequests()
         {
-            if(!_available||Friends==null)return;
+            if(!HasView||!_available||Friends==null)return;
             MysteryMerchantUiRoot.Instance?.HidePanel();
             Window.Hide();FriendRequests.Show();Opened?.Invoke();
         }
-        public void HidePanel(){Window?.Hide();FriendRequests?.Hide();}
+        public void HidePanel(){if(Window?.Root!=null)Window.Hide();if(FriendRequests?.Root!=null)FriendRequests.Hide();}
         public static bool IsTyping()
         {var go=EventSystem.current?.currentSelectedGameObject;return go!=null&&(go.GetComponentInParent<TMP_InputField>()?.isFocused==true||go.GetComponentInParent<InputField>()?.isFocused==true);}
-        private void OnDisable()=>HidePanel();
-        private void OnDestroy(){_friendSync?.Dispose();_friendSync=null;Client?.Dispose();Friends?.Dispose();FriendRequests?.Dispose();Window?.Dispose();if(Instance==this)Instance=null;}
+        private void DisposeClients()
+        {
+            _available=false;_game=null;_player=0;_connection=null;
+            _friendSync?.Dispose();_friendSync=null;
+            Client?.Dispose();Client=null;Friends?.Dispose();Friends=null;
+        }
+        private void OnDisable(){_available=false;HidePanel();if(!HasView)DisposeClients();}
+        private void OnDestroy(){DisposeClients();FriendRequests?.Dispose();FriendRequests=null;Window?.Dispose();Window=null;if(Instance==this)Instance=null;}
     }
 }

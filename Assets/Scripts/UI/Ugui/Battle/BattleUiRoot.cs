@@ -40,6 +40,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private SpectateClient _spectate;
         private bool _spectateBound;
         private Game.GameClient _boundGameClient;
+        private bool _stopping;
 
         private GameObject _canvasGo;
         private RectTransform _hudRoot;      // 主城入口按钮，独立排序 140
@@ -119,12 +120,13 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void Update()
         {
+            if (_stopping) return;
             EnsureBound();
-            if (_canvasGo == null) return;
+            if (!HasLiveCanvas) return;
 
             // 兜底自愈:重连补拉完成但事件时序错位时,按 Phase+State 打开战斗屏
             // (观战屏开着时不抢:观战与排队/战斗由服务端 D11 互斥,不该同时发生)
-            if (_clientBound && !_battleOpen && !_spectateOpen && _client.State != null &&
+            if (_clientBound && _client != null && !_battleOpen && !_spectateOpen && _client.State != null &&
                 (_client.Phase == BattlePhase.WaitingAction || _client.Phase == BattlePhase.Resolving))
             {
                 EnsureBattleOpen();
@@ -145,61 +147,92 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         private void ResyncOpenBattleScreen()
         {
-            if (!_clientBound || _battleScreen == null) return;
+            if (_stopping || !HasLiveCanvas || !_clientBound || _client == null || _battleScreen == null) return;
             var state = _client.State;
             if (!BattleHudLogic.NeedsScreenResync(_battleOpen, _playing, _client.Phase, state, _battleScreen.CurrentState))
                 return;
             _battleScreen.ApplyState(state);
         }
 
-        private void OnDestroy()
+        private bool HasLiveCanvas => _canvasGo != null && _battleRoot != null && _battleLayerGo != null &&
+            _modalResultRoot != null && _modalPopupRoot != null;
+
+        private void OnEnable() => _stopping = false;
+
+        private void OnDisable()
         {
+            _stopping = true;
             UnbindClient();
             UnbindSpectate();
+            UnbindGameClient();
+            StopAllCoroutines();
+            _playCo = _toastCo = _spectatePlayCo = null;
+            _playing = _spectatePlaying = false;
+        }
+
+        private void OnDestroy()
+        {
+            OnDisable();
             _battleScreen?.Dispose();
+            _battleScreen = null;
+            if (Instance == this) Instance = null;
+        }
+
+        private void UnbindGameClient()
+        {
             if (_boundGameClient != null)
             {
                 _boundGameClient.OnDisconnected -= HandleDisconnected;
                 _boundGameClient = null;
             }
-            if (Instance == this) Instance = null;
         }
 
         // ── 绑定 ────────────────────────────────────────────
 
         private void EnsureBound()
         {
+            if (_stopping) return;
             if (_app == null)
             {
                 _app = FindAnyObjectByType<AppBootstrap>();
-                if (_app == null) return;
+                if (_app == null) { BindSources(null, null, null); return; }
             }
             if (_canvasGo == null) BuildCanvas();
+            var game = _app.GameClient;
+            BindSources(game != null ? ResolveBattleClient() : null,
+                game != null ? ResolveSpectateClient() : null, game);
+        }
 
-            if (!_clientBound)
+        private void BindSources(BattleClient client, SpectateClient spectate, Game.GameClient game)
+        {
+            bool battleChanged = !ReferenceEquals(_client, client) || _clientBound != (client != null);
+            bool spectateChanged = !ReferenceEquals(_spectate, spectate) || _spectateBound != (spectate != null);
+            if (battleChanged || spectateChanged || !ReferenceEquals(_boundGameClient, game)) HandleDisconnected();
+            if (battleChanged)
             {
-                var client = ResolveBattleClient();
+                UnbindClient();
+                _client = client;
                 if (client != null)
                 {
-                    _client = client;
                     BindClient();
                     _clientBound = true;
                 }
             }
-            if (!_spectateBound)
+            if (spectateChanged)
             {
-                var spectate = ResolveSpectateClient();
+                UnbindSpectate();
+                _spectate = spectate;
                 if (spectate != null)
                 {
-                    _spectate = spectate;
                     BindSpectate();
                     _spectateBound = true;
                 }
             }
-            if (_boundGameClient == null && _app.GameClient != null)
+            if (!ReferenceEquals(_boundGameClient, game))
             {
-                _boundGameClient = _app.GameClient;
-                _boundGameClient.OnDisconnected += HandleDisconnected;
+                UnbindGameClient();
+                _boundGameClient = game;
+                if (_boundGameClient != null) _boundGameClient.OnDisconnected += HandleDisconnected;
             }
         }
 
@@ -229,7 +262,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void UnbindClient()
         {
-            if (!_clientBound || _client == null) return;
+            _clientBound = false;
+            if (_client == null) return;
             _client.OnPhaseChanged -= HandlePhaseChanged;
             _client.OnBattleStart -= HandleBattleStart;
             _client.OnTurnResult -= HandleTurnResult;
@@ -241,7 +275,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnError -= HandleClientError;
             _client.OnBattleChannelReady -= HandleBattleChannelReady;
             _client.OnBattleChannelFailed -= HandleBattleChannelFailed;
-            _clientBound = false;
+            _client = null;
         }
 
         private void BindSpectate()
@@ -256,14 +290,15 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void UnbindSpectate()
         {
-            if (!_spectateBound || _spectate == null) return;
+            _spectateBound = false;
+            if (_spectate == null) return;
             _spectate.OnPhaseChanged -= HandleSpectatePhaseChanged;
             _spectate.OnSpectateState -= HandleSpectateState;
             _spectate.OnSpectateTurn -= HandleSpectateTurn;
             _spectate.OnSpectateEnd -= HandleSpectateEnd;
             _spectate.OnListUpdated -= HandleSpectateList;
             _spectate.OnError -= HandleSpectateError;
-            _spectateBound = false;
+            _spectate = null;
         }
 
         // ── Canvas 构建(缩放参数与 QdaoUguiRuntime 保持一致:Expand) ──
@@ -748,10 +783,16 @@ namespace MmorpgClient.UI.Ugui.Battle
             _channelReadyToast = null;
             if (_playCo != null) { StopCoroutine(_playCo); _playCo = null; }
             _playing = false;
+            AbortSpectatePlayback();
+            // 退出Play时原生画布可能已经销毁；先清托管播放态，不能再调用控件。
+            if (_stopping || !HasLiveCanvas)
+            {
+                _battleOpen = _spectateOpen = false;
+                return;
+            }
             _battleScreen?.AbortPlayback();
             CloseBattle();
             // 观战态同样作废(SpectateClient 断线自身也会回 None,此处是 UI 侧兜底)
-            AbortSpectatePlayback();
             CloseSpectate();
             _spectatePanel?.Hide();
             _resultPanel?.Hide();
@@ -857,10 +898,10 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void RefreshEntryVisibility()
         {
-            if (_entryButton == null) return;
+            if (_stopping || !HasLiveCanvas || _entryButton == null) return;
             bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame;
-            bool spectating = _spectateBound && _spectate.Phase != SpectatePhase.None;
-            bool visible = _clientBound && inGame && !_battleOpen && !_spectateOpen && !spectating;
+            bool spectating = _spectateBound && _spectate != null && _spectate.Phase != SpectatePhase.None;
+            bool visible = _clientBound && _client != null && inGame && !_battleOpen && !_spectateOpen && !spectating;
             _entryButton.SetVisible(visible);
             var entryMode = CurrentEntryMode();
             if (entryMode != _entryMode)

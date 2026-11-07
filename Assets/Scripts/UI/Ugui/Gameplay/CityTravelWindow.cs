@@ -37,7 +37,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         /// <see cref="TravelRequested"/>：跨区要换连接并重新登录，走的是另一条请求，两者不能混用。
         /// </summary>
         public event Action<uint, uint, bool> ZoneTravelRequested;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public uint SelectedSceneConfigId => _selected?.SceneConfigId ?? 0;
         public bool SelectedFestival => _festival;
         public bool TravelEnabled => _travel.interactable;
@@ -155,7 +156,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _root.gameObject.SetActive(true);
         }
 
-        public void Hide() => _root.gameObject.SetActive(false);
+        public void Hide() { if (_root != null) _root.gameObject.SetActive(false); }
 
         public void SetState(uint currentScene, bool currentFestival, bool busy, string status)
         {

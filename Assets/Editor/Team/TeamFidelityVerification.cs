@@ -21,19 +21,28 @@ using UnityEngine.UI;
 public static class TeamFidelityVerification
 {
     public static string OutputDirectory = Path.GetFullPath(Path.Combine(Application.dataPath,
-        "../../image/designs/team-ui-v2/fidelity-20261016/qa"));
+        "../.codex-artifacts/ui-fidelity-native/team"));
     private const string OutputArgument = "-teamFidelityOutputDirectory";
     private const int CaptureLayer = 31;
+    // Verified from the approved PNG with PIL; these are image pixels, not the UI reference canvas.
+    private const int OriginalWidth = 1931, OriginalHeight = 814;
     private static readonly long FixedNowMs = new DateTimeOffset(2026, 10, 16, 12, 0, 0, TimeSpan.Zero).ToUnixTimeMilliseconds();
 
     [Serializable] private sealed class Report
     {
-        public int schemaVersion = 1;
+        public int schemaVersion = 2;
         public string status = "running", unityVersion, startedAtUtc, completedAtUtc, outputDirectory;
+        public string captureProfile;
+        public string acceptanceStatus = "not-accepted: original-image pixel comparison has not run";
+        public bool pixelParityVerified = false;
+        public string approvedReference = "designs/team-ui-v2/team-ui-v2.png";
+        public int referenceWidth = OriginalWidth, referenceHeight = OriginalHeight;
+        public string comparisonScope = "Native production TeamWindow with existing offline fixtures; fixture text, portraits, added actions and live states can differ from the approved image. No screenshot-specific art or layout overrides.";
         public string localTimeZone, captureMode = "EditMode / isolated PreviewScene / native TeamWindow";
         public bool captureOnly = true, liveServerVerified = false, editModeInputLifecycleVerified = false;
         public long fixtureNowMs;
-        public bool activeScenePreserved, eventSystemPreserved, selectedObjectPreserved;
+        public bool activeScenePreserved, activeSceneDirtyStatePreserved, sceneCountPreserved;
+        public bool eventSystemPreserved, selectedObjectPreserved, editorSelectionPreserved, playStatePreserved;
         public Shot[] screenshots = Array.Empty<Shot>();
         public AssetCheck[] resourceChecks = Array.Empty<AssetCheck>();
         public string[] missingAssets = Array.Empty<string>();
@@ -93,6 +102,17 @@ public static class TeamFidelityVerification
     [MenuItem("MMORPG/UI/Team/Capture fidelity pixels and geometry")]
     public static void Capture()
     {
+        CaptureProfile(new[] { new Vector2Int(2560, 1080), new Vector2Int(1920, 1080) }, "compatibility", "fidelity-capture.json");
+    }
+
+    [MenuItem("MMORPG/UI/Team/Capture original image size (1931x814, unverified)")]
+    public static void CaptureOriginalSize()
+    {
+        CaptureProfile(new[] { new Vector2Int(OriginalWidth, OriginalHeight) }, "original-image-size", "original-size-capture.json");
+    }
+
+    private static void CaptureProfile(Vector2Int[] resolutions, string profile, string reportFile)
+    {
         var arguments = Environment.GetCommandLineArgs();
         for (int i = 0; i + 1 < arguments.Length; i++)
             if (string.Equals(arguments[i], OutputArgument, StringComparison.OrdinalIgnoreCase))
@@ -103,6 +123,7 @@ public static class TeamFidelityVerification
             unityVersion = Application.unityVersion,
             startedAtUtc = DateTime.UtcNow.ToString("O"),
             outputDirectory = OutputDirectory,
+            captureProfile = profile,
             fixtureNowMs = FixedNowMs,
             localTimeZone = TimeZoneInfo.Local.Id
         };
@@ -111,6 +132,10 @@ public static class TeamFidelityVerification
         var console = new List<ConsoleEntry>();
         var missing = new HashSet<string>(StringComparer.Ordinal);
         Scene previousScene = SceneManager.GetActiveScene();
+        bool previousSceneDirty = previousScene.isDirty;
+        int previousSceneCount = SceneManager.sceneCount;
+        bool previousPlaying = EditorApplication.isPlaying;
+        UnityEngine.Object previousEditorSelection = Selection.activeObject;
         EventSystem previousEvents = EventSystem.current;
         GameObject previousSelection = previousEvents != null ? previousEvents.currentSelectedGameObject : null;
         void OnLog(string message, string stacktrace, LogType type)
@@ -127,17 +152,22 @@ public static class TeamFidelityVerification
             if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling || EditorApplication.isUpdating)
                 throw new InvalidOperationException("Fidelity capture requires stable Edit mode.");
             report.resourceChecks = CheckResourceImports(missing);
-            CaptureResolution(2560, 1080, shots, failures);
-            CaptureResolution(1920, 1080, shots, failures);
+            foreach (var resolution in resolutions)
+                CaptureResolution(resolution.x, resolution.y, shots, failures);
         }
         catch (Exception exception) { AddFailure(failures, "capture", exception); }
         finally
         {
             Application.logMessageReceived -= OnLog;
             report.activeScenePreserved = SceneManager.GetActiveScene() == previousScene;
+            report.activeSceneDirtyStatePreserved = previousScene.isDirty == previousSceneDirty;
+            report.sceneCountPreserved = SceneManager.sceneCount == previousSceneCount;
+            report.playStatePreserved = EditorApplication.isPlaying == previousPlaying;
+            report.editorSelectionPreserved = Selection.activeObject == previousEditorSelection;
             report.eventSystemPreserved = EventSystem.current == previousEvents;
             report.selectedObjectPreserved = previousEvents == null || previousEvents.currentSelectedGameObject == previousSelection;
-            if (!report.activeScenePreserved || !report.eventSystemPreserved || !report.selectedObjectPreserved)
+            if (!report.activeScenePreserved || !report.activeSceneDirtyStatePreserved || !report.sceneCountPreserved ||
+                !report.playStatePreserved || !report.editorSelectionPreserved || !report.eventSystemPreserved || !report.selectedObjectPreserved)
                 AddFailure(failures, "isolation", new InvalidOperationException("Capture did not preserve the user's active scene, EventSystem or selection."));
             report.screenshots = shots.ToArray();
             report.exceptions = failures.ToArray();
@@ -145,14 +175,14 @@ public static class TeamFidelityVerification
             report.console = console.ToArray();
             bool failedCheck = shots.Any(shot => shot.checks.Any(check => !check.passed));
             bool loggedError = console.Any(entry => entry.type == "Error" || entry.type == "Exception" || entry.type == "Assert");
-            report.status = failures.Count == 0 && missing.Count == 0 && shots.Count == 10 && shots.All(shot => shot.captured) && !failedCheck && !loggedError
-                ? "captured" : "error";
+            report.status = failures.Count == 0 && missing.Count == 0 && shots.Count == resolutions.Length * 5 && shots.All(shot => shot.captured) && !failedCheck && !loggedError
+                ? "captured-unverified" : "error";
             report.completedAtUtc = DateTime.UtcNow.ToString("O");
-            File.WriteAllText(Path.Combine(OutputDirectory, "fidelity-capture.json"), JsonUtility.ToJson(report, true));
+            File.WriteAllText(Path.Combine(OutputDirectory, reportFile), JsonUtility.ToJson(report, true));
         }
-        if (report.status != "captured")
-            throw new InvalidOperationException("Team fidelity capture needs attention. See " + Path.Combine(OutputDirectory, "fidelity-capture.json"));
-        Debug.Log("TEAM_FIDELITY_CAPTURE_OK|screenshots=" + shots.Count + "|" + OutputDirectory);
+        if (report.status != "captured-unverified")
+            throw new InvalidOperationException("Team fidelity capture needs attention. See " + Path.Combine(OutputDirectory, reportFile));
+        Debug.Log("TEAM_FIDELITY_CAPTURE_UNVERIFIED|screenshots=" + shots.Count + "|pixelParityVerified=false|" + OutputDirectory);
     }
 
     private static AssetCheck[] CheckResourceImports(HashSet<string> missing)

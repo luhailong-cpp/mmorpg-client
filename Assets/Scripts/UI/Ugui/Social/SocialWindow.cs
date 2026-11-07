@@ -16,7 +16,7 @@ namespace MmorpgClient.UI.Ugui.Social
     {
         public SocialState State { get; }
         public RectTransform Root => _root;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public bool HasModal => _modal != null;
         public event Action<SocialChannel> RefreshRequested;
         public event Action<SocialChannel,string> SendRequested;
@@ -74,6 +74,7 @@ namespace MmorpgClient.UI.Ugui.Social
         }
         public void Hide()
         {
+            if(_root==null)return;
             bool wasVisible=IsVisible;CloseModal(false);_root.gameObject.SetActive(false);
             if(wasVisible){EventSystem.current?.SetSelectedGameObject(_returnFocus!=null&&_returnFocus.activeInHierarchy?_returnFocus:null);Closed?.Invoke();}_returnFocus=null;
         }

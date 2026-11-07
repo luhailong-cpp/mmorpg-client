@@ -14,7 +14,7 @@ namespace MmorpgClient.UI.Ugui.Social
     public sealed class FriendRequestsWindow : IDisposable
     {
         public const int PageSize = 5;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public RectTransform Root => _root;
         private readonly RectTransform _root, _rows;
         private readonly TMP_InputField _target;
@@ -65,6 +65,7 @@ namespace MmorpgClient.UI.Ugui.Social
 
         public void Hide()
         {
+            if (_root == null) return;
             bool visible = IsVisible; _root.gameObject.SetActive(false);
             if (visible) EventSystem.current?.SetSelectedGameObject(
                 _returnFocus != null && _returnFocus.activeInHierarchy ? _returnFocus : null);

@@ -31,7 +31,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private readonly List<TradeMarketView> _markets = new();
         private Action _confirmed;
         private bool _disposed;
-        public bool IsVisible => _root.gameObject.activeSelf;
+        public RectTransform Root => _root;
+        public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
         public CommerceWindow(UnityEngine.Transform parent, Func<GameClient> game)
         {
@@ -65,10 +66,11 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             Hide();
         }
         public void Show() { _root.gameObject.SetActive(true); SelectTab(_tab); }
-        public void Hide() { _root.gameObject.SetActive(false); _confirmed = null; }
+        public void Hide() { if (_root != null) _root.gameObject.SetActive(false); _confirmed = null; }
         public void Back() { if (_confirmed != null) SelectTab(_tab); else Hide(); }
         private void Changed()
         {
+            if (_disposed || _root == null) return;
             _status.text = _client?.Status ?? "请先进入角色。";
             bool enabled = _client != null && !_client.Busy && !_client.RequiresReconnect && !_client.HasPendingWrite;
             foreach (var button in _writeButtons) if (button != null) button.interactable = enabled;
@@ -401,6 +403,6 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             CommerceOrderState.Delivering => "资产到账中", CommerceOrderState.Delivered => "已到账", CommerceOrderState.CancelPending => "取消处理中",
             CommerceOrderState.Cancelled => "已取消", CommerceOrderState.RefundPending => "退款处理中", CommerceOrderState.Refunded => "已退款",
             CommerceOrderState.Manual => "等待人工核查", CommerceOrderState.Settled => "已结算", _ => "正在确认" };
-        public void Dispose() { if (_disposed) return; _disposed = true; Bind(null); UnityEngine.Object.Destroy(_root.gameObject); }
+        public void Dispose() { if (_disposed) return; _disposed = true; Bind(null); if (_root != null) UnityEngine.Object.Destroy(_root.gameObject); }
     }
 }
