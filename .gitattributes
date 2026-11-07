@@ -14,3 +14,8 @@ Assets/Resources/World/CurrentMaps20261009/**/walkmask.txt -text
 /Assets/Resources/World/QdaoMaps20261102.meta -text whitespace=cr-at-eol
 /Docs/VerificationEvidence/festival-maps-20261106/**/*.json -text whitespace=cr-at-eol
 /Docs/VerificationEvidence/festival-maps-20261107/**/*.json -text whitespace=cr-at-eol
+/Docs/VerificationEvidence/festival-maps-20261107/server-* -text whitespace=cr-at-eol
+/Docs/VerificationEvidence/festival-maps-20261107/verify_server_map_handoff.py -text
+/Docs/ServerFestivalMapsHandoff20261107.md -text whitespace=cr-at-eol
+# Nested patch context lines retain their required leading space.
+/Docs/VerificationEvidence/festival-maps-20261107/server-existing-map-changes.patch -text whitespace=-blank-at-eol,cr-at-eol

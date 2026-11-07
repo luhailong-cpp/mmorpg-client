@@ -1,0 +1,1197 @@
+{
+  "schemaVersion": 1,
+  "kind": "服务器九图接入只读交接审计",
+  "observedAtUtc": "2026-11-07T09:38:42.595792+00:00",
+  "requestedServerPath": "D:/work/xuanming-server-mmo",
+  "requestedPathExists": false,
+  "actualServerPath": "D:/work/xuanming-server-mmo-cpp",
+  "serverGit": {
+    "localHEAD": "26ceb70ca5771c5ab055c2ec7144c1e55f32c528",
+    "branch": "main",
+    "remotes": [
+      {
+        "key": "remote.origin.url",
+        "sanitizedURL": "https://github.com/luyuan-cpp/xuanming-server-mmo"
+      }
+    ],
+    "remoteHEADVerified": false,
+    "fetchPerformed": false,
+    "dirtyStatusPorcelain": [
+      " M PROGRESS.md",
+      " M cpp/libs/services/scene/spatial/constants/nav.h",
+      "?? docs/design/world-expansion-speed2x-20261101.json"
+    ],
+    "worktreeDeltaHandoff": {
+      "baseHEAD": "26ceb70ca5771c5ab055c2ec7144c1e55f32c528",
+      "sourceRelativeTrackedPaths": [
+        "PROGRESS.md",
+        "cpp/libs/services/scene/spatial/constants/nav.h"
+      ],
+      "patchPath": "D:/work/image-production-staging-20261103/coordination/root/SERVER_EXISTING_MAP_WORKTREE_DELTA_20261107-v001.patch",
+      "patchSHA256": "471b980c793c5ce6ae73a9a9b6b451a65d42cef3b66132e768f200cea1159650",
+      "patchBytes": 2873,
+      "untrackedOriginalRelativePath": "docs/design/world-expansion-speed2x-20261101.json",
+      "untrackedCopyPath": "D:/work/image-production-staging-20261103/coordination/root/SERVER_EXISTING_MAP_WORLD_EXPANSION_SPEED2X_20261101-v001.json",
+      "untrackedCopySHA256": "f07368f555caee97863f342acb41f91b4ef0914061d8af27c206c613ac266e76",
+      "untrackedSourceSHA256": "f07368f555caee97863f342acb41f91b4ef0914061d8af27c206c613ac266e76",
+      "untrackedCopyByteEqual": true,
+      "secretReview": "Read exact two-file diff and untracked JSON; no credential/private connection string found. No .env read.",
+      "applyRule": "First verify server repo baseline HEAD and clean target paths. Run git apply --check on the patch only; then owner applies or manually integrates. Different HEAD must be reviewed manually, never automatically applied. Copy untracked JSON to its original relative path only after conflict check.",
+      "materialDifference": "HEAD speed cap10; current uncommitted cap20 matches client18 movement. Planning1200 square/50s and other axesx2 are assumptions, not this9-map geometry/nav adoption."
+    }
+  },
+  "scope": {
+    "mapIds": [
+      "01001",
+      "01002",
+      "05008",
+      "10000",
+      "19004",
+      "21003",
+      "23006",
+      "28007",
+      "35004"
+    ],
+    "clientFestivalAppearances": 15,
+    "runtimeTiles": 90,
+    "serverRegisteredTargetCount": 0,
+    "clientOnlyAllNine": true
+  },
+  "clientCatalogEvidence": {
+    "path": "Assets/Resources/World/QdaoMaps20261102/catalog.json",
+    "observedAbsolutePath": "D:/work/mmorpg-client/Assets/Resources/World/QdaoMaps20261102/catalog.json",
+    "sha256": "39d341fdebea904121c7b563ca728df9c32733772241c445927620b49ec4e338"
+  },
+  "maps": [
+    {
+      "mapId": "01001",
+      "clientCatalogKey": "map01001",
+      "clientCatalogNumericSceneId": 1001,
+      "proposedServerSceneConfigId": 1001,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearanceData": [
+        {
+          "appearance": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map01001/festival20261107/spring/13593f7c7e8cb2afc8e15bcc71402d39fea0946065c8f317accd2576fa361c0f/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map01001/festival20261107/spring/13593f7c7e8cb2afc8e15bcc71402d39fea0946065c8f317accd2576fa361c0f/source.json",
+          "sourceSHA256": "e91225281ce556e67cd6e591a1699756769de316082d3f5d0df634f9ae4bee98",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map01001/festival20261107/spring/13593f7c7e8cb2afc8e15bcc71402d39fea0946065c8f317accd2576fa361c0f/navigation.json",
+          "navigationSHA256": "d70118afbc781b6750626a7d026fcd3d17a7a114b071b3e7d2e59b37959678d4",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map01001/festival20261107/spring/13593f7c7e8cb2afc8e15bcc71402d39fea0946065c8f317accd2576fa361c0f/walkmask.txt",
+          "encodedMaskSHA256": "70426764b43ddceb9233058740000c21ef9f1c2db823932a6342f9049a6f5a8f",
+          "decodedMaskSHA256": "e45cb03b7b55b315c57ea00e16a9118a6786f37e646c0bb7c0aeefbaf3f57234",
+          "decodedMaskBytes": 670,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "13593f7c7e8cb2afc8e15bcc71402d39fea0946065c8f317accd2576fa361c0f"
+        },
+        {
+          "appearance": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map01001/festival20261107/mid-autumn/9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map01001/festival20261107/mid-autumn/9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320/source.json",
+          "sourceSHA256": "eed24118abbb47c2961791d44b3d59123a7560b215d14d91654e9a63d35a33bf",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map01001/festival20261107/mid-autumn/9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320/navigation.json",
+          "navigationSHA256": "d70118afbc781b6750626a7d026fcd3d17a7a114b071b3e7d2e59b37959678d4",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map01001/festival20261107/mid-autumn/9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320/walkmask.txt",
+          "encodedMaskSHA256": "70426764b43ddceb9233058740000c21ef9f1c2db823932a6342f9049a6f5a8f",
+          "decodedMaskSHA256": "e45cb03b7b55b315c57ea00e16a9118a6786f37e646c0bb7c0aeefbaf3f57234",
+          "decodedMaskBytes": 670,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 204.8,
+        "height": 102.4
+      },
+      "imageRectPixelXYWH": {
+        "x": 341.3333333333333,
+        "y": 0,
+        "width": 1365.3333333333333,
+        "height": 1024
+      },
+      "cellSize": 2,
+      "maskColumns": 103,
+      "maskRows": 52,
+      "decodedMaskBytes": 670,
+      "spawnUnityXYZ": {
+        "x": 80.0,
+        "y": 0.0,
+        "z": 30.400000000000002
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 30.400000000000002,
+        "y": 80.0,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 1,
+      "currentManualWalkableCells": 250,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": []
+    },
+    {
+      "mapId": "01002",
+      "clientCatalogKey": "map01002",
+      "clientCatalogNumericSceneId": 1002,
+      "proposedServerSceneConfigId": 1002,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearanceData": [
+        {
+          "appearance": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map01002/festival20261107/spring/0f4f6b00fea4c0bf9d08710bb1f60fa9f2a3f1fa13efb647b6d5abcbad4a7e06/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map01002/festival20261107/spring/0f4f6b00fea4c0bf9d08710bb1f60fa9f2a3f1fa13efb647b6d5abcbad4a7e06/source.json",
+          "sourceSHA256": "d0ad450b7c1c814b20f08b9093c32c30ed0d3ae479ccee0f8dc70967ebe7e419",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map01002/festival20261107/spring/0f4f6b00fea4c0bf9d08710bb1f60fa9f2a3f1fa13efb647b6d5abcbad4a7e06/navigation.json",
+          "navigationSHA256": "0591e1a9bb3e16e509c467003ef3b25e593defbd3546f0842b4a214d7be10db8",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map01002/festival20261107/spring/0f4f6b00fea4c0bf9d08710bb1f60fa9f2a3f1fa13efb647b6d5abcbad4a7e06/walkmask.txt",
+          "encodedMaskSHA256": "5e53afc10b01dc2e2d029fcb3361ecd8a0d407133c77143d4676812b8f12717a",
+          "decodedMaskSHA256": "8da12659eeca9d11b06d0f2076057a4612f10631435138670161da9411f3cbc6",
+          "decodedMaskBytes": 670,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "0f4f6b00fea4c0bf9d08710bb1f60fa9f2a3f1fa13efb647b6d5abcbad4a7e06"
+        },
+        {
+          "appearance": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map01002/festival20261107/mid-autumn/670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map01002/festival20261107/mid-autumn/670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31/source.json",
+          "sourceSHA256": "8068b5e9ab1fb995922ff3a492ebbcd970ffb575c0b22fe8ca771f81ffe730ee",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map01002/festival20261107/mid-autumn/670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31/navigation.json",
+          "navigationSHA256": "0591e1a9bb3e16e509c467003ef3b25e593defbd3546f0842b4a214d7be10db8",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map01002/festival20261107/mid-autumn/670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31/walkmask.txt",
+          "encodedMaskSHA256": "5e53afc10b01dc2e2d029fcb3361ecd8a0d407133c77143d4676812b8f12717a",
+          "decodedMaskSHA256": "8da12659eeca9d11b06d0f2076057a4612f10631435138670161da9411f3cbc6",
+          "decodedMaskBytes": 670,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 204.8,
+        "height": 102.4
+      },
+      "imageRectPixelXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 1365.3333333333333,
+        "height": 1024
+      },
+      "cellSize": 2,
+      "maskColumns": 103,
+      "maskRows": 52,
+      "decodedMaskBytes": 670,
+      "spawnUnityXYZ": {
+        "x": 46.0,
+        "y": 0.0,
+        "z": 28.900000000000002
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 28.900000000000002,
+        "y": 46.0,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 1,
+      "currentManualWalkableCells": 309,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": []
+    },
+    {
+      "mapId": "05008",
+      "clientCatalogKey": "map05008",
+      "clientCatalogNumericSceneId": 5008,
+      "proposedServerSceneConfigId": 5008,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearanceData": [
+        {
+          "appearance": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map05008/festival20261107/spring/8354773b1551544ce0f9b2db93285cceec17f49225830fe89ca43bf7ef2ddc88/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map05008/festival20261107/spring/8354773b1551544ce0f9b2db93285cceec17f49225830fe89ca43bf7ef2ddc88/source.json",
+          "sourceSHA256": "7faa2069bfd41748307907fc370c8a18749e93b3854d65ffdb4530f7060bb46e",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map05008/festival20261107/spring/8354773b1551544ce0f9b2db93285cceec17f49225830fe89ca43bf7ef2ddc88/navigation.json",
+          "navigationSHA256": "c50eea538bae520fc1b3dd862ab8c36eb5bc9974e6f7090e5f37845c699ed2ec",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map05008/festival20261107/spring/8354773b1551544ce0f9b2db93285cceec17f49225830fe89ca43bf7ef2ddc88/walkmask.txt",
+          "encodedMaskSHA256": "f231f5d0d6499ed3aa72bd88519d9737823b6118ee98d21cb65a25288af6df38",
+          "decodedMaskSHA256": "6c8adbc9ae3dc09a94f933e30f53e8820d7151eeb7226592c409882a16c8525e",
+          "decodedMaskBytes": 1983,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "8354773b1551544ce0f9b2db93285cceec17f49225830fe89ca43bf7ef2ddc88"
+        },
+        {
+          "appearance": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map05008/festival20261107/mid-autumn/bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map05008/festival20261107/mid-autumn/bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89/source.json",
+          "sourceSHA256": "0e49d5715b0b1d6f350665b05d57fa14d7f1716a7facdc5803ed9d142d8331cb",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map05008/festival20261107/mid-autumn/bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89/navigation.json",
+          "navigationSHA256": "c50eea538bae520fc1b3dd862ab8c36eb5bc9974e6f7090e5f37845c699ed2ec",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map05008/festival20261107/mid-autumn/bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89/walkmask.txt",
+          "encodedMaskSHA256": "f231f5d0d6499ed3aa72bd88519d9737823b6118ee98d21cb65a25288af6df38",
+          "decodedMaskSHA256": "6c8adbc9ae3dc09a94f933e30f53e8820d7151eeb7226592c409882a16c8525e",
+          "decodedMaskBytes": 1983,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 307.20000000000005,
+        "height": 204.8
+      },
+      "imageRectPixelXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 2940,
+        "height": 1837.5
+      },
+      "cellSize": 2,
+      "maskColumns": 154,
+      "maskRows": 103,
+      "decodedMaskBytes": 1983,
+      "spawnUnityXYZ": {
+        "x": 91.2,
+        "y": 0.0,
+        "z": 64.0
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 64.0,
+        "y": 91.2,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 1,
+      "currentManualWalkableCells": 2313,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": []
+    },
+    {
+      "mapId": "10000",
+      "clientCatalogKey": "map10000",
+      "clientCatalogNumericSceneId": 10000,
+      "proposedServerSceneConfigId": 10000,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearanceData": [
+        {
+          "appearance": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map10000/festival20261107/spring/8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map10000/festival20261107/spring/8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407/source.json",
+          "sourceSHA256": "cb34f10809a3bab290f9b2c3b8563f026d561aeed4d39b91c23ce01613783a74",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map10000/festival20261107/spring/8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407/navigation.json",
+          "navigationSHA256": "fa6bb21382889c814ad1df06fe01c265d77ac250c4519fef45b8b2bf3ca7b885",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map10000/festival20261107/spring/8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407/walkmask.txt",
+          "encodedMaskSHA256": "2df23855ab19ced677d5399d4b2865fcd70208e759b004016ff8efd71db63ef4",
+          "decodedMaskSHA256": "130f54f4df3fdcdf5b8623827975ffcafa08ebf68ddfc45eb5b992ec2e0865dd",
+          "decodedMaskBytes": 3947,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407"
+        },
+        {
+          "appearance": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map10000/festival20261107/mid-autumn/c8523d9d6d4e75ed94edfebd0a879e63b9485b4fa968306dada2c1db2b0bbe98/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map10000/festival20261107/mid-autumn/c8523d9d6d4e75ed94edfebd0a879e63b9485b4fa968306dada2c1db2b0bbe98/source.json",
+          "sourceSHA256": "95d0b698f58960de29b52d1a6b23ddb85729ef4f8e4296741ef1a8b8a716ae2f",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map10000/festival20261107/mid-autumn/c8523d9d6d4e75ed94edfebd0a879e63b9485b4fa968306dada2c1db2b0bbe98/navigation.json",
+          "navigationSHA256": "fa6bb21382889c814ad1df06fe01c265d77ac250c4519fef45b8b2bf3ca7b885",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map10000/festival20261107/mid-autumn/c8523d9d6d4e75ed94edfebd0a879e63b9485b4fa968306dada2c1db2b0bbe98/walkmask.txt",
+          "encodedMaskSHA256": "2df23855ab19ced677d5399d4b2865fcd70208e759b004016ff8efd71db63ef4",
+          "decodedMaskSHA256": "130f54f4df3fdcdf5b8623827975ffcafa08ebf68ddfc45eb5b992ec2e0865dd",
+          "decodedMaskBytes": 3947,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "c8523d9d6d4e75ed94edfebd0a879e63b9485b4fa968306dada2c1db2b0bbe98"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 409.6,
+        "height": 307.20000000000005
+      },
+      "imageRectPixelXYWH": {
+        "x": 140,
+        "y": 0,
+        "width": 3816,
+        "height": 3072
+      },
+      "cellSize": 2,
+      "maskColumns": 205,
+      "maskRows": 154,
+      "decodedMaskBytes": 3947,
+      "spawnUnityXYZ": {
+        "x": 116.80000000000001,
+        "y": 0.0,
+        "z": 82.60000000000001
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 82.60000000000001,
+        "y": 116.80000000000001,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 2,
+      "currentManualWalkableCells": 7268,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": [
+        "Two disconnected terrain systems; no dragon-body bridge or cross-chasm portal invented; hard visual tile seams remain pending."
+      ]
+    },
+    {
+      "mapId": "19004",
+      "clientCatalogKey": "map19004",
+      "clientCatalogNumericSceneId": 19004,
+      "proposedServerSceneConfigId": 19004,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "mid-autumn",
+      "appearanceData": [
+        {
+          "appearance": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map19004/festival20261107/mid-autumn/b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map19004/festival20261107/mid-autumn/b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63/source.json",
+          "sourceSHA256": "40f4df3d2ba34b7690ae14b8c2a2fdc6b05bb84a829a0c9f13bf3fd18c243302",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map19004/festival20261107/mid-autumn/b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63/navigation.json",
+          "navigationSHA256": "adbbbd9935a7388508b6b57ee429ab77eeed0d10812dca5b00abef25472257d3",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map19004/festival20261107/mid-autumn/b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63/walkmask.txt",
+          "encodedMaskSHA256": "952c1f9f03c2f5c25f6600153b967d250298f2b4b6a0d52d26659244abf38582",
+          "decodedMaskSHA256": "96ae60eb9b0c3ba450723465b82021dc64f945cad0536853bc84f7447d460555",
+          "decodedMaskBytes": 1983,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 307.20000000000005,
+        "height": 204.8
+      },
+      "imageRectPixelXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 3072,
+        "height": 1728
+      },
+      "cellSize": 2,
+      "maskColumns": 154,
+      "maskRows": 103,
+      "decodedMaskBytes": 1983,
+      "spawnUnityXYZ": {
+        "x": 192.00000000000003,
+        "y": 0.0,
+        "z": 88.80000000000001
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 88.80000000000001,
+        "y": 192.00000000000003,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 1,
+      "currentManualWalkableCells": 48,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": [
+        "Only48 inspected safe cells; remainder forest network blocked and not fully annotated."
+      ]
+    },
+    {
+      "mapId": "21003",
+      "clientCatalogKey": "map21003",
+      "clientCatalogNumericSceneId": 21003,
+      "proposedServerSceneConfigId": 21003,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearanceData": [
+        {
+          "appearance": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map21003/festival20261106/spring/84c21c3bbf8efbba2ccc5c17eb1d7c1a8485faf2d7af7a57b8c0925a9328c6fb/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map21003/festival20261106/spring/84c21c3bbf8efbba2ccc5c17eb1d7c1a8485faf2d7af7a57b8c0925a9328c6fb/source.json",
+          "sourceSHA256": "1ea4b27d26c3e743d8e94b4b7e9028e202ed06d37f4acad8a3d1825f38abdc36",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map21003/festival20261106/spring/84c21c3bbf8efbba2ccc5c17eb1d7c1a8485faf2d7af7a57b8c0925a9328c6fb/navigation.json",
+          "navigationSHA256": "43f5dd036df2c1b89aade48f973fd552c1d88acea1af538d3856add91859f588",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map21003/festival20261106/spring/84c21c3bbf8efbba2ccc5c17eb1d7c1a8485faf2d7af7a57b8c0925a9328c6fb/walkmask.txt",
+          "encodedMaskSHA256": "8c05cd73e00725bc300e657c370b5e98483884fd614177aee7890d5b5beb4bc9",
+          "decodedMaskSHA256": "7eb599cacae37be5ad7297b287fd41fe49bb15f9fce8269c9e32201bfe6d46a1",
+          "decodedMaskBytes": 2965,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261106/navigation-plan.json",
+          "navigationPlanSHA256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+          "layoutSHA256": "84c21c3bbf8efbba2ccc5c17eb1d7c1a8485faf2d7af7a57b8c0925a9328c6fb"
+        },
+        {
+          "appearance": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map21003/festival20261106/mid-autumn/a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map21003/festival20261106/mid-autumn/a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540/source.json",
+          "sourceSHA256": "bdf2a0031b5ff62d28546f4bd0c9d5cd645ee3a5cbbd6c712af911cc1c32b2d0",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map21003/festival20261106/mid-autumn/a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540/navigation.json",
+          "navigationSHA256": "43f5dd036df2c1b89aade48f973fd552c1d88acea1af538d3856add91859f588",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map21003/festival20261106/mid-autumn/a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540/walkmask.txt",
+          "encodedMaskSHA256": "8c05cd73e00725bc300e657c370b5e98483884fd614177aee7890d5b5beb4bc9",
+          "decodedMaskSHA256": "7eb599cacae37be5ad7297b287fd41fe49bb15f9fce8269c9e32201bfe6d46a1",
+          "decodedMaskBytes": 2965,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261106/navigation-plan.json",
+          "navigationPlanSHA256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+          "layoutSHA256": "a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 307.2,
+        "height": 307.2
+      },
+      "imageRectPixelXYWH": {
+        "x": 672,
+        "y": 920,
+        "width": 1728,
+        "height": 1296
+      },
+      "cellSize": 2,
+      "maskColumns": 154,
+      "maskRows": 154,
+      "decodedMaskBytes": 2965,
+      "spawnUnityXYZ": {
+        "x": 153.6,
+        "y": 0.0,
+        "z": 107.19999999999999
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 107.19999999999999,
+        "y": 153.6,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 1,
+      "currentManualWalkableCells": 3218,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": []
+    },
+    {
+      "mapId": "23006",
+      "clientCatalogKey": "map23006",
+      "clientCatalogNumericSceneId": 23006,
+      "proposedServerSceneConfigId": 23006,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "mid-autumn",
+      "appearanceData": [
+        {
+          "appearance": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map23006/festival20261107/mid-autumn/af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map23006/festival20261107/mid-autumn/af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1/source.json",
+          "sourceSHA256": "f0a9c4a85b90c8d9bc8d11bf1866f36f662b4d2830a3e64feff7dc95c54e7e8f",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map23006/festival20261107/mid-autumn/af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1/navigation.json",
+          "navigationSHA256": "6888e5520431d6ca492dfbed2ba8b0a7c708c4af10ee643cff503e8cab2deae7",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map23006/festival20261107/mid-autumn/af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1/walkmask.txt",
+          "encodedMaskSHA256": "d6bfb266aeeeab1ca17bbecf30fcf22bcc987e5def2362591d59d7ca33010c3d",
+          "decodedMaskSHA256": "19895be237f85eb08868bf176960d44c076cebe72623da326af5a951f55cfa05",
+          "decodedMaskBytes": 1327,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+          "navigationPlanSHA256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+          "layoutSHA256": "af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 204.8,
+        "height": 204.8
+      },
+      "imageRectPixelXYWH": {
+        "x": 0,
+        "y": 288,
+        "width": 2048,
+        "height": 1471
+      },
+      "cellSize": 2,
+      "maskColumns": 103,
+      "maskRows": 103,
+      "decodedMaskBytes": 1327,
+      "spawnUnityXYZ": {
+        "x": 131.84,
+        "y": 0.0,
+        "z": 66.55999999999999
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 66.55999999999999,
+        "y": 131.84,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 1,
+      "currentManualWalkableCells": 833,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": []
+    },
+    {
+      "mapId": "28007",
+      "clientCatalogKey": "map28007",
+      "clientCatalogNumericSceneId": 28007,
+      "proposedServerSceneConfigId": 28007,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearanceData": [
+        {
+          "appearance": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map28007/festival20261106/spring/b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map28007/festival20261106/spring/b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4/source.json",
+          "sourceSHA256": "932c3d2f0224181b5b0cf887893daed910d33b9a440740ab59ad382531b45b89",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map28007/festival20261106/spring/b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4/navigation.json",
+          "navigationSHA256": "4d34b27364be63953724cea18ad4322bf64f5a96c86d57eda4f731092ca7b47b",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map28007/festival20261106/spring/b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4/walkmask.txt",
+          "encodedMaskSHA256": "e2269d9de5bd8e6e515461cee19dc603df2fc0e6228f958b46a5ae68b43e5d26",
+          "decodedMaskSHA256": "5debef8b21448ea62465ca42695a7b598115350103f98689c0071b45699c19d2",
+          "decodedMaskBytes": 1983,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261106/navigation-plan.json",
+          "navigationPlanSHA256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+          "layoutSHA256": "b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 307.2,
+        "height": 204.8
+      },
+      "imageRectPixelXYWH": {
+        "x": 0,
+        "y": 102,
+        "width": 3072,
+        "height": 1844
+      },
+      "cellSize": 2,
+      "maskColumns": 154,
+      "maskRows": 103,
+      "decodedMaskBytes": 1983,
+      "spawnUnityXYZ": {
+        "x": 100.8,
+        "y": 0.0,
+        "z": 41.92000000000001
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 41.92000000000001,
+        "y": 100.8,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 1,
+      "currentManualWalkableCells": 1481,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": []
+    },
+    {
+      "mapId": "35004",
+      "clientCatalogKey": "map35004",
+      "clientCatalogNumericSceneId": 35004,
+      "proposedServerSceneConfigId": 35004,
+      "serverIdMappingIsNotYetRegistered": true,
+      "baseSceneCurrentlyPresent": false,
+      "worldCurrentlyPresent": false,
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearanceData": [
+        {
+          "appearance": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map35004/festival20261106/spring/466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map35004/festival20261106/spring/466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8/source.json",
+          "sourceSHA256": "fdd34f9117bd20df408ca70f97df69ce9ac12682a1ee426ef6446d69ae568107",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map35004/festival20261106/spring/466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8/navigation.json",
+          "navigationSHA256": "0047364797a95811b07b5e8c269f651d92cee5321e625e04d4bedcc27bc0aacd",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map35004/festival20261106/spring/466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8/walkmask.txt",
+          "encodedMaskSHA256": "5583a347f602ca0664a688e2cd0a8dea87f5d731fbf461c516d5a6d17a422d5c",
+          "decodedMaskSHA256": "8692c2adcae9572e79152137d639911ce12676d7dbf171211cfd40639888a042",
+          "decodedMaskBytes": 1983,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261106/navigation-plan.json",
+          "navigationPlanSHA256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+          "layoutSHA256": "466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8"
+        },
+        {
+          "appearance": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map35004/festival20261106/mid-autumn/122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4/",
+          "sourcePath": "Assets/Resources/World/QdaoMaps20261102/map35004/festival20261106/mid-autumn/122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4/source.json",
+          "sourceSHA256": "d61345ea2652ea9667accc363c92444ecf671b66665c672fe39223c4fddbb93f",
+          "navigationPath": "Assets/Resources/World/QdaoMaps20261102/map35004/festival20261106/mid-autumn/122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4/navigation.json",
+          "navigationSHA256": "0047364797a95811b07b5e8c269f651d92cee5321e625e04d4bedcc27bc0aacd",
+          "maskPath": "Assets/Resources/World/QdaoMaps20261102/map35004/festival20261106/mid-autumn/122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4/walkmask.txt",
+          "encodedMaskSHA256": "5583a347f602ca0664a688e2cd0a8dea87f5d731fbf461c516d5a6d17a422d5c",
+          "decodedMaskSHA256": "8692c2adcae9572e79152137d639911ce12676d7dbf171211cfd40639888a042",
+          "decodedMaskBytes": 1983,
+          "navigationPlanPath": "Docs/VerificationEvidence/festival-maps-20261106/navigation-plan.json",
+          "navigationPlanSHA256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+          "layoutSHA256": "122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4"
+        }
+      ],
+      "worldRectUnityXYWH": {
+        "x": 0,
+        "y": 0,
+        "width": 307.2,
+        "height": 204.8
+      },
+      "imageRectPixelXYWH": {
+        "x": 0,
+        "y": 64,
+        "width": 3068,
+        "height": 1920
+      },
+      "cellSize": 2,
+      "maskColumns": 154,
+      "maskRows": 103,
+      "decodedMaskBytes": 1983,
+      "spawnUnityXYZ": {
+        "x": 140.79999999999998,
+        "y": 0.0,
+        "z": 91.2
+      },
+      "candidateSpawnServerXYZ": {
+        "x": 91.2,
+        "y": 140.79999999999998,
+        "z": 0.0
+      },
+      "currentManualNavigationComponents": 3,
+      "currentManualWalkableCells": 2566,
+      "serverMSETProducedForThisTarget": false,
+      "limitations": [
+        "Three disconnected platforms in existing client navigation; preserve or explicitly design transfers, do not auto-join."
+      ]
+    }
+  ],
+  "serverTables": {
+    "baseSceneGeneratedPath": "generated/tables/basescene.json",
+    "baseSceneSHA256": "1eac53654ef1a29b98f56f3c781e0ff4fd8a7c45c5895a597ee387110862c426",
+    "currentIds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "worldGeneratedPath": "generated/tables/world.json",
+    "worldSHA256": "6fa232e2cf85588ef813c29c947e494e3a59a092da2cf4757fd48b2a3f61b74b",
+    "currentSceneIds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ]
+  },
+  "runtimeContracts": {
+    "sceneTemplateId": "uint32 BaseScene.id / SceneInfoComp.scene_config_id; leadingzero art key remains string",
+    "sceneInstanceId": "uint64 Snowflake allocated by scene_manager, not client numeric mapId",
+    "unityToServer": "(x,y,z)->(z,x,y)",
+    "navToServer": "(nav.x,nav.y,nav.z)->(nav.z,nav.x,nav.y); NavQuery owns conversion",
+    "unit": "Unity/Nav metres; currentclient mapping0.1 world unit/runtime pixel",
+    "maskEncoding": "base64 text of MSB-first packed row-major grid, row0 at image top",
+    "genericGeometryNeeded": true,
+    "clientLastCellFormula": {
+      "columns": "ceil(world.width/cell)",
+      "rows": "ceil(world.height/cell)",
+      "x0": "world.x+column*cell",
+      "x1": "world.x+min((column+1)*cell,world.width)",
+      "z0": "world.y+(rows-1-row)*cell",
+      "z1": "world.y+min((rows-row)*cell,world.height)",
+      "note": "Clamp/reject empty last cells identically to client; do not replace with fixedmaxZ-row*cell or assume150x150."
+    },
+    "runtimeNavBinary": "MSET v1, same ue5navmesh headers/defines/ABI; dtReal=double; packedmask cannot be renamed.bin",
+    "existingBakerMaskInput": {
+      "columns": 150,
+      "rows": 150,
+      "decodedBytes": 2813,
+      "cell": 2,
+      "minX": 50,
+      "maxZ": 300
+    },
+    "badNavBehaviorCurrent": "Nav registration skipped; missing nav callers fail-open. New9 require explicit readiness gate and tests before opening.",
+    "seasonalAppearance": "Client visual state; same map config/nav shared acrossspring/mid-autumn",
+    "mapPortalData": "No target9 portal graph or authoritative transfers generated in this audit; retain explicit disconnected components, use existing scene lifecycle rather than invent off-mesh links."
+  },
+  "currentEnvironment": {
+    "pathTools": {
+      "cmake": null,
+      "msbuild": null,
+      "go": null,
+      "protoc": null,
+      "mvn": null,
+      "java": null,
+      "pwsh": "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1105-1297-0_26.1105.1297.0_x64__3k8sg7r9htsxt\\dependencies\\native\\powershell\\pwsh.EXE"
+    },
+    "pathAbsenceMeaning": "Not on current shellPATH; not a complete installed-software inventory",
+    "dependencyFiles": {
+      "third_party/grpc/third_party/protobuf/src/google/protobuf/runtime_version.h": false,
+      "third_party/protobuf/src/google/protobuf/runtime_version.h": false,
+      "third_party/ue5navmesh/Public/Detour/DetourNavMesh.h": false,
+      "tools/navmesh_baker/build/Release/navmesh_baker.exe": false
+    },
+    "declaredJavaRepoExists": false,
+    "buildsOrTestsRunHere": false,
+    "serverProcessesOrInfrastructureInspected": false,
+    "remotePRsOrIssuesInspected": false
+  },
+  "implementationSequence": [
+    "在另一电脑按实际仓库AGENTS→PROGRESS→copilot→scene-navmesh-pipeline读取，核server/main基线与client提交；不要把本机路径或未fetch的origin当可用状态。",
+    "先核并整合限定已有工作树patch与原字节规划JSON。保留原21个BaseScene/16个World与存量玩家数据；不要清库、重置角色或套用未落地1200世界尺度。",
+    "确认9个五位字符串资源ID与数字服务器模板ID映射；客户端catalog.sceneId当前只是拟定模板数值，绝不是Snowflake实例ID。公开常驻图在BaseScene.xlsx和World.xlsx增相应行，实例图沿现有Dungeon/Mirror语义，不由美术外观推断类型。",
+    "以客户端冻结source.json/navigation-plan.json/walkmask.txt的SHA为事实源。每ID春秋共享已验证mask；保留top-left行序、MSB位序、cell2、worldRect/imageRect及最后一行列裁剪。现--mask-base64固定150x150不能直接用。",
+    "实现一个显式尺寸/原点/边界的通用烘焙输入并测试，或将同一mask精确生成Unity-Y-up米制平面OBJ走已有--obj。不得重采样/补路/连接云海。按现客户端裁剪公式生成几何、使用--filter-ledges0和既有不收缩语义，并与客户端格边逐点对拍。",
+    "逐ID烘焙独立MSET文件，出生Unity探针、正向可达点对、阻挡点/边缘/不可达跨域都要验证。现有--probe只验证最近poly，不能代替路线或负探针。当前10000两域、35004三域、19004仅48安全格必须原样保持并明示覆盖限制。",
+    "源BaseScene id/nav_bin_file/spawn_x,y,z填写9行。spawn将Unity(x,y,z)唯一转为server(z,x,y)，不要重复换轴；nav_bin_file按GetDataRootDir()+相对路径核实际运行目录。",
+    "增加9目标必需导航就绪门禁：现NavigationSystem坏mesh只跳过注册，而缺nav查询/出生路径会fail-open，不能因此认定场景被拒绝。新目标须缺/坏/出生不符/错误SHA时拒绝开放或建场；保留兼容旧场景行为，补回归。",
+    "源schema改动才增字段编号、由工具重生所有语言；只加表行通常不需改网络协议。运行dev.bat gen会写C++/Go/Java及兄弟client生成目录，先核输出，禁止手改generated或复制并行协议。",
+    "构建baker/C++/相关Go服务，跑旧21场景与新增9ID回归。启动日志须逐ID真正nav registered且spawn精确正确，进行真实登录/EnterScene/换图/重登/移动纠偏与40s路线口径检查；端到端到达以NotifyEnterScene+ActorCreate/坐标为准，非发送回执。",
+    "春秋是同scene_config_id的客户端外观选择，当前协议无节庆网络场景需求；不能给未交普通外观造默认。服务器验收完成前保持clientOnly/authoritativeServerRegistered等现有未接受字段，最终两端成对发布才更新。",
+    "Java完整服务器按AGENTS§12同步共享契约并登记PARITY；本机指定Java仓库缺失，当前标待做。此交接不部署、不推服务器，也没有服务器构建/实机PASS。"
+  ],
+  "commandsForNextComputer": [
+    {
+      "cwd": "<ServerRoot>",
+      "command": "git rev-parse HEAD",
+      "purpose": "核基线；本次工作树补丁只绑定26ceb70ca，不表示最新远端已相同",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "git apply --check <Handoff>/SERVER_EXISTING_MAP_WORKTREE_DELTA_20261107-v001.patch",
+      "purpose": "仅预检；基线不同或路径已有修改先人工整合，不自动覆盖",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "python tools/data_table_exporter/tools/sandbox_export.py --out <outside-repo-temp> --compare",
+      "purpose": "导表器只读沙盒等价核验；表改后差异需逐项审，不把预期新增当旧表逐字节相同",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "python tools/data_table_exporter/tools/verify_schema_parity.py",
+      "purpose": "schema语法/迁移等价门禁",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "dev.bat gen",
+      "purpose": "源表/schema完成后生成并部署多语言产物；事前核exporter/proto路径和protoc35.1门禁",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "cmake -S tools/navmesh_baker -B tools/navmesh_baker/build -A x64",
+      "purpose": "Windows构建烘焙器；需VS环境/ue5navmesh源码；Linux不传-A",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "cmake --build tools/navmesh_baker/build --config Release --parallel 1",
+      "purpose": "baker与runtime同ue5navmesh/ABI/dtReal=double",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "python tools/navmesh_baker/test_baker.py",
+      "purpose": "既有150x150兼容/错误长度/坏探针不写文件回归；新增矩形位图另加测试",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "msbuild game.sln /m:1 /p:Configuration=Debug /p:Platform=x64",
+      "purpose": "串行完整C++构建；不能用旧exe通过代替",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "pwsh -File tools/scripts/run_cpp_tests.ps1 -Build -Filter bag_test",
+      "purpose": "含SceneSpawnTest；扩展9目标、坏/缺mesh拒入、路线/阻挡对拍后执行",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>",
+      "command": "pwsh -File tools/scripts/run_cpp_tests.ps1 -Build -Filter configuration_table_test",
+      "purpose": "配置加载回归",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>/go/scene_manager",
+      "command": "go test ./...",
+      "purpose": "服务单测；世界路由改动还跑go test ./internal/logic/ -run TestIntegration_ -count=1",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>/go/scene_manager",
+      "command": "go build ./...",
+      "purpose": "编译读取新表的SceneManager；其他实际读取表服务也须按修改范围编译",
+      "executedHere": false
+    },
+    {
+      "cwd": "<ServerRoot>/tools/data_table_exporter",
+      "command": "python -m pytest -q",
+      "purpose": "导表器回归",
+      "executedHere": false
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "path": "data/schema/basescene_table.proto",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/data/schema/basescene_table.proto",
+      "line": 12,
+      "endLine": 22,
+      "sha256": "edb902771d0398ea342c15c31c2f8c157bc69110a2f1ba92046fefed7c8b9e4e",
+      "fact": "BaseScene id uint32/nav_bin_file/spawn_x,y,z double in server Z-up"
+    },
+    {
+      "path": "data/schema/world_table.proto",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/data/schema/world_table.proto",
+      "line": 12,
+      "endLine": 19,
+      "sha256": "66c504ba431a14aee49560210fb2adfa2e6a381c77aa8430bfd6dacf6ab19b51",
+      "fact": "World.scene_id foreign key to BaseScene.id"
+    },
+    {
+      "path": "data/AGENTS.md",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/data/AGENTS.md",
+      "line": 33,
+      "endLine": 44,
+      "sha256": "54e469dcc6cc1e10ed3f782267a5778b82d02aee1b5d5eeed13fb551e50941f9",
+      "fact": "Edit source xlsx+schema, regenerate; no generated hand edits"
+    },
+    {
+      "path": "data/AGENTS.md",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/data/AGENTS.md",
+      "line": 100,
+      "endLine": 115,
+      "sha256": "54e469dcc6cc1e10ed3f782267a5778b82d02aee1b5d5eeed13fb551e50941f9",
+      "fact": "Exporter sandbox/lint/generation/test commands"
+    },
+    {
+      "path": "tools/data_table_exporter/exporter_config.yaml",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/data_table_exporter/exporter_config.yaml",
+      "line": 21,
+      "endLine": 26,
+      "sha256": "74c37a1fc28fc0101f6d0e4c8e8e0ba2293f76c3c240376734918f4bfa4021e2",
+      "fact": "Generated JSON/binary/proto output directories"
+    },
+    {
+      "path": "tools/data_table_exporter/exporter_config.yaml",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/data_table_exporter/exporter_config.yaml",
+      "line": 44,
+      "endLine": 105,
+      "sha256": "74c37a1fc28fc0101f6d0e4c8e8e0ba2293f76c3c240376734918f4bfa4021e2",
+      "fact": "Deploy outputs to C++/Go/Java and sibling client; verify paths first"
+    },
+    {
+      "path": "proto/scene/scene_info.proto",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/proto/scene/scene_info.proto",
+      "line": 4,
+      "endLine": 10,
+      "sha256": "069bbe0563be5016dfb86a3456c2a38ef339d7d083701aaf3b5aaddc6fcaacd7",
+      "fact": "scene_config_id template vs uint64 scene_id runtime Snowflake"
+    },
+    {
+      "path": "proto/scene/player_scene.proto",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/proto/scene/player_scene.proto",
+      "line": 13,
+      "endLine": 26,
+      "sha256": "07d35541a0f65f16a50e60e84d771315c9323a57f8f5a55d1181271f438b3146",
+      "fact": "Existing client EnterScene request/notification"
+    },
+    {
+      "path": "proto/scene_manager/scene_manager_service.proto",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/proto/scene_manager/scene_manager_service.proto",
+      "line": 78,
+      "endLine": 99,
+      "sha256": "c20ca4cf92dd459853b61e7536c7ba566b06f1ec54e6d986f26c84f57dcb7cfc",
+      "fact": "scene_id=0 allocates by scene_conf_id; zone/session/owner routing"
+    },
+    {
+      "path": "cpp/nodes/scene/handler/rpc/player/player_scene_handler.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/nodes/scene/handler/rpc/player/player_scene_handler.cpp",
+      "line": 151,
+      "endLine": 166,
+      "sha256": "d8bb23774b736b6f23d472b71851bc2bcd5f19d3a4875007f02a37f7b31637de",
+      "fact": "Existing entry copies config ID and calls RequestSceneChange; do not bypass lifecycle"
+    },
+    {
+      "path": "cpp/libs/services/scene/player/system/player_scene.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/libs/services/scene/player/system/player_scene.cpp",
+      "line": 60,
+      "endLine": 107,
+      "sha256": "f636fbbc6252afe40dd3b5a3c035b6ccb8945ce0d3e784afdabce0f995b6672d",
+      "fact": "Changed map uses destination spawn; notify only after real bind/location"
+    },
+    {
+      "path": "go/scene_manager/internal/logic/world_init.go",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/go/scene_manager/internal/logic/world_init.go",
+      "line": 578,
+      "endLine": 597,
+      "sha256": "2d5b987e27eb21f6bb509e737746d27829e722aa2055255b2666983ca54d3ff1",
+      "fact": "World table enumerates main-world configs"
+    },
+    {
+      "path": "go/scene_manager/internal/logic/world_init.go",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/go/scene_manager/internal/logic/world_init.go",
+      "line": 187,
+      "endLine": 208,
+      "sha256": "2d5b987e27eb21f6bb509e737746d27829e722aa2055255b2666983ca54d3ff1",
+      "fact": "Runtime instance IDs minted by Snowflake and room reserved"
+    },
+    {
+      "path": "go/scene_manager/internal/logic/createscenelogic.go",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/go/scene_manager/internal/logic/createscenelogic.go",
+      "line": 121,
+      "endLine": 148,
+      "sha256": "a62a08fcc5ec774f440765091770a161beac60d91f9033486b77351e8e3636ff",
+      "fact": "World classification and on-demand world scene creation"
+    },
+    {
+      "path": "cpp/libs/services/scene/spatial/system/nav_query.h",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/libs/services/scene/spatial/system/nav_query.h",
+      "line": 13,
+      "endLine": 40,
+      "sha256": "f0052147ea654436c6e0ca7f893db6b45bb0fd5accf379f449ff312f23f48f6c",
+      "fact": "Unity/Nav Y-up metres; server Z-up; conversion only inside NavQuery"
+    },
+    {
+      "path": "tools/navmesh_baker/navmesh_baker.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/navmesh_baker/navmesh_baker.cpp",
+      "line": 79,
+      "endLine": 109,
+      "sha256": "860be704d2e49a65912ebebc78299712484013b2da1806f24df540f0376ae7e7",
+      "fact": "MSET v1 struct ABI; mask150x150/cell2/minX50/maxZ300 hardcoded"
+    },
+    {
+      "path": "tools/navmesh_baker/navmesh_baker.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/navmesh_baker/navmesh_baker.cpp",
+      "line": 225,
+      "endLine": 247,
+      "sha256": "860be704d2e49a65912ebebc78299712484013b2da1806f24df540f0376ae7e7",
+      "fact": "--mask-base64 requires exactly2813 decoded bytes; not generic"
+    },
+    {
+      "path": "tools/navmesh_baker/navmesh_baker.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/navmesh_baker/navmesh_baker.cpp",
+      "line": 253,
+      "endLine": 295,
+      "sha256": "860be704d2e49a65912ebebc78299712484013b2da1806f24df540f0376ae7e7",
+      "fact": "MSB first top-row geometry; fixed original bounds"
+    },
+    {
+      "path": "tools/navmesh_baker/navmesh_baker.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/navmesh_baker/navmesh_baker.cpp",
+      "line": 678,
+      "endLine": 711,
+      "sha256": "860be704d2e49a65912ebebc78299712484013b2da1806f24df540f0376ae7e7",
+      "fact": "Spawn probe only nearest poly, not full route/block validation"
+    },
+    {
+      "path": "tools/navmesh_baker/navmesh_baker.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/navmesh_baker/navmesh_baker.cpp",
+      "line": 727,
+      "endLine": 802,
+      "sha256": "860be704d2e49a65912ebebc78299712484013b2da1806f24df540f0376ae7e7",
+      "fact": "Existing --obj/--probe/--filter-ledges CLI"
+    },
+    {
+      "path": "tools/navmesh_baker/CMakeLists.txt",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/navmesh_baker/CMakeLists.txt",
+      "line": 1,
+      "endLine": 19,
+      "sha256": "e5fb2ca7d2b00a67cca1fdd5d4497c0f8b8e1226c270f35822b55c3fc4a878bb",
+      "fact": "Baker/runtime same ue5navmesh double and ABI; CMake3.22+ C++20"
+    },
+    {
+      "path": "cpp/libs/services/scene/spatial/system/recast.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/libs/services/scene/spatial/system/recast.cpp",
+      "line": 31,
+      "endLine": 93,
+      "sha256": "e6233b5db5b13cf030725df98efcd8700967ebf095d5c4cb49a28132a5f02939",
+      "fact": "Loads MSET; addTile return is not checked, so need full mesh validation"
+    },
+    {
+      "path": "cpp/nodes/scene/main.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/nodes/scene/main.cpp",
+      "line": 46,
+      "endLine": 57,
+      "sha256": "9fcf1154565ea242f98601d109252736590ce7353a4bfbd74ad881ebc2f7c766",
+      "fact": "After table load invokes ConfigSystem"
+    },
+    {
+      "path": "cpp/libs/services/scene/core/config/config.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/libs/services/scene/core/config/config.cpp",
+      "line": 5,
+      "endLine": 8,
+      "sha256": "4ab29729da06422fcec79e8b89810ee91a65ed633d391bc37919bd7776fa2131",
+      "fact": "Startup invokes LoadNavBins"
+    },
+    {
+      "path": "cpp/libs/services/scene/spatial/system/navigation.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/libs/services/scene/spatial/system/navigation.cpp",
+      "line": 92,
+      "endLine": 116,
+      "sha256": "0a6c96a809145affc95a91a8f40de496b18ffe893838b8da01ed8f73321ad099",
+      "fact": "Per BaseScene load and scene spawn probe before nav registration"
+    },
+    {
+      "path": "cpp/libs/services/scene/spatial/system/scene_spawn.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/libs/services/scene/spatial/system/scene_spawn.cpp",
+      "line": 45,
+      "endLine": 83,
+      "sha256": "4d21ef7ee194d19af233ca66da0b7960b23d9420d234bdaa4cbfba17547d8a2d",
+      "fact": "Configured nonzero spawn authority; missing/zero uses old Tianyong fallback"
+    },
+    {
+      "path": "cpp/libs/services/scene/spatial/system/scene_spawn.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/libs/services/scene/spatial/system/scene_spawn.cpp",
+      "line": 129,
+      "endLine": 135,
+      "sha256": "4d21ef7ee194d19af233ca66da0b7960b23d9420d234bdaa4cbfba17547d8a2d",
+      "fact": "No nav remains fail-open; cannot treat skipped nav registration as scene reject"
+    },
+    {
+      "path": "cpp/libs/engine/config/config.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/libs/engine/config/config.cpp",
+      "line": 318,
+      "endLine": 330,
+      "sha256": "18523acad1530f9ff05a848a40ca2763e8606c0e63292ac2f29e3aafd26f37c5",
+      "fact": "Runtime data root and table data dir/format"
+    },
+    {
+      "path": "go/scene_manager/internal/svc/servicecontext.go",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/go/scene_manager/internal/svc/servicecontext.go",
+      "line": 58,
+      "endLine": 68,
+      "sha256": "3d177b1a9a030c1d72a8ae42667503870fe16258d7dafcfca04905c4f4c5f796",
+      "fact": "SceneManager loads tables from config"
+    },
+    {
+      "path": "go/scene_manager/internal/config/config.go",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/go/scene_manager/internal/config/config.go",
+      "line": 88,
+      "endLine": 93,
+      "sha256": "e3aa8fe7484ce6e2dc25358b7b2c9d5f7224cef53aafd3ea8f4d7b38d96e735d",
+      "fact": "Default TableDir ../../generated/tables, UseBinary=false"
+    },
+    {
+      "path": "tools/navmesh_baker/test_baker.py",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/navmesh_baker/test_baker.py",
+      "line": 8,
+      "endLine": 75,
+      "sha256": "71ca53e13b4955add996a4f4dff81919c155e707295dbe6f8a8648fdc6b64eb2",
+      "fact": "Existing legacy150x150 baker tests; add new rectangular fixtures"
+    },
+    {
+      "path": "cpp/tests/bag_test/scene_spawn_test.cpp",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/cpp/tests/bag_test/scene_spawn_test.cpp",
+      "line": 51,
+      "endLine": 74,
+      "sha256": "a668eeccf93c4ff8e6c69b370bc523160e90228a2ccbe62a7f0f8b1a10548c0a",
+      "fact": "All configured scenes must have exact spawn/nav; old distinct-geometry assertions only2/3/4"
+    },
+    {
+      "path": "tools/scripts/run_cpp_tests.ps1",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/scripts/run_cpp_tests.ps1",
+      "line": 10,
+      "endLine": 31,
+      "sha256": "0165a1902e5e939c8afc185dd16ab90bf46e0435369decb6c21cefff46a4ef14",
+      "fact": "Tests must rebuild via-Build and MSBuild /m:1"
+    },
+    {
+      "path": "tools/scripts/run_cpp_tests.ps1",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/tools/scripts/run_cpp_tests.ps1",
+      "line": 43,
+      "endLine": 73,
+      "sha256": "0165a1902e5e939c8afc185dd16ab90bf46e0435369decb6c21cefff46a4ef14",
+      "fact": "bag/configuration/cross_zone test projects selectable with-Filter"
+    },
+    {
+      "path": "dev.bat",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/dev.bat",
+      "line": 569,
+      "endLine": 578,
+      "sha256": "0f70ecd9b21ab5eb6fd4bc89dd2746ac74596491bfc7702c246f871ce0116d4b",
+      "fact": "dev.bat gen performs tables then proto generation"
+    },
+    {
+      "path": "AGENTS.md",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/AGENTS.md",
+      "line": 274,
+      "endLine": 283,
+      "sha256": "1979f5906ab6b45cfb98b504394a2496d9ea3474d35888cbca4479b88c042787",
+      "fact": "Java counterpart and PARITY registration required; not implemented here"
+    },
+    {
+      "path": "PROGRESS.md",
+      "observedAbsolutePath": "D:/work/xuanming-server-mmo-cpp/PROGRESS.md",
+      "line": 6545,
+      "endLine": 6551,
+      "sha256": "d081436c48424069640f2413d53ed4a0d1be978c4f3a67746b133d432f640cf9",
+      "fact": "Existing uncommitted speed20/build/dependency/Java limits; not deployed"
+    }
+  ],
+  "limitations": [
+    "这是接入路径和当前源证据，不是服务器接入实现、编译、部署或验收。",
+    "现有3项dirty未包含于localHEAD；只有限定patch和独立JSON原字节复制被纳入交接，未备份全仓。",
+    "9图手工导航均是客户端保守2D标注，10000/35004多域、19004有限安全区不能升级为全图权威导航。",
+    "原21场景部分网格共用等历史情况不由本审计改写；不要把复制旧nav.bin当新增图导航。",
+    "未读取.env/凭据/完整服务连接配置，远端URL已去userinfo/query。"
+  ],
+  "operations": {
+    "serverFilesModified": false,
+    "serverGitMutations": false,
+    "fetch": false,
+    "build": false,
+    "deploy": false,
+    "imageCalls": 0
+  }
+}

@@ -1,0 +1,36 @@
+diff --git a/PROGRESS.md b/PROGRESS.md
+index 29ec72725..04ed041e5 100644
+--- a/PROGRESS.md
++++ b/PROGRESS.md
+@@ -6540,3 +6540,12 @@ pwsh -NoProfile -File tools/scripts/tests/k8s_deploy_contract.tests.ps1
+   - 另:本条相关的 `client_endpoint_test` 同样要求 fail=0;e2e-1 没有单测,scene 只能验证编译,行为留给冒烟;
+     Unity EditMode `MmorpgClient.Tests.EditMode.Battle` 以 results.xml 为准;scene 相关工程 MSBuild 串行 `/m:1`。
+ - **Java 版(AGENTS §12)**:D72 口径细化为「PREPARING 不推重连提示,升级到 FIGHTING 时按会话号补推」,Java 版做战斗时按此对齐。
++
++
++## 2026-11-01 普通移速翻倍与地图扩大要求（源码就位，未部署）
++
++- 真人要求普通角色速度×2，所有城市扩大，归元城南北主路在新速度下至少50秒。默认9→18单位/秒，实际路长至少900；1200方形包络仅为待接入设计假设，导航/出生点/NPC/传送点尚未变更。
++- 客户端保留序列化基础速度，TianyongMapConfig.MoveSpeed统一乘2，无配置回退使用同一倍率。C++ kMaxTrustedClientSpeed从10调到20，保留限速逻辑并容纳19.8的组队追赶。
++- 验证：三文件git diff --check通过；客户端已定位实际Unity6000.6.0f1，但离线编译仍缺UI/TMP等4项程序集引用；C++ scene编译缺google/protobuf/runtime_version.h，均未构建发布，也未修改运行中服务。
++- Java对应版本：待做，规范配置的Java仓库路径在本机缺失，不能登记版本号或宣称双版本已对齐。
++- 具体变更/验证/后续接入见[执行记录](docs/design/world-expansion-speed2x-20261101.json)。先补齐现有构建依赖，再验两端速度与合法道路不回拉；新版门点/世界映射齐备后实机核南北≥50秒。
+diff --git a/cpp/libs/services/scene/spatial/constants/nav.h b/cpp/libs/services/scene/spatial/constants/nav.h
+index 25e29e44b..81baa92d7 100644
+--- a/cpp/libs/services/scene/spatial/constants/nav.h
++++ b/cpp/libs/services/scene/spatial/constants/nav.h
+@@ -4,10 +4,11 @@
+ 
+ constexpr uint32_t kMaxMeshQueryNodes = 4096;
+ 
+-// 客户端上报速度的信任上限(米/秒)。客户端基础移速 9(TianyongMapConfig
+-// .moveSpeed),留 ~10% 网络抖动余量。移速 buff 接入后应改为
++// 客户端上报速度的信任上限(米/秒)。客户端原配置基础移速 9，现按真人要求
++// 乘以 2 得到普通移速 18(TianyongMapConfig.MoveSpeed)，留 ~10% 余量，
++// 同时容纳组队跟随的 1.1 倍追赶速度 19.8。移速 buff 接入后应改为
+ // max(kMaxTrustedClientSpeed, MoveSpeedComp.moveSpeed * 1.1)。
+-constexpr double kMaxTrustedClientSpeed = 10.0;
++constexpr double kMaxTrustedClientSpeed = 20.0;
+ 
+ // 上报位置与服务器裁决位置的水平差超过该值才回发 MoveAck 纠偏,
+ // 避免高度吸附的毫米级差异刷 ack。
