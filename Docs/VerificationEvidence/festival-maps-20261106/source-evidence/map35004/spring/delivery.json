@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "key": "map35004",
+  "sceneId": 35004,
+  "revision": "festival20261106",
+  "appearance": "spring",
+  "layoutSha256": "466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8",
+  "sourceSelectionSha256": "7ee901253a002db7c791c476a5969847e82a884132facaa8db831b9d220cc0ad",
+  "navigationPlanSha256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/previews/spring/v001/native.png",
+    "sha256": "360a2a4fea59490ceb7eca14c758ce6fdd75948de749d2a7a5153c31a28ccca7",
+    "bytes": 2267368,
+    "expectedSHA256Matched": true,
+    "pixels": [
+      1585,
+      992
+    ]
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/delivery/spring-manifest.json",
+    "sha256": "5862e9cc7cb4ee40759ada78055cb34b200f6128841d4095e6b060629a5c5770",
+    "bytes": 9111,
+    "expectedSHA256Matched": null,
+    "expectationSupplied": false
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map35004/spring/r01_c01.json",
+      "sha256": "b64d9d9ddf46c7e78820cdcfb2f7eb8850ea9b31f160552e6dca5c7b2976f222"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map35004/spring/r01_c02.json",
+      "sha256": "9bdf4968dff685322c2f325e2f7fee0335d7f5d5572afae8e814bf7a4fee451e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map35004/spring/r01_c03.json",
+      "sha256": "7ee2f356fe82a5d4400fca9246258b88fcb1fe67516b5d14a7a80b715eb84c1b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map35004/spring/r02_c01.json",
+      "sha256": "9eb867e301e074112ff2afd7b57c22886df29dd399d12d123a455f997d7a7249"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map35004/spring/r02_c02.json",
+      "sha256": "325543a344bbd497f82f0041ca58316f1f8ffc7a1328da6dc6726bbb344904fd"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map35004/spring/r02_c03.json",
+      "sha256": "ce27d681654711c6a02f79da920da9832252200e559813c92da5a69573afad55"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

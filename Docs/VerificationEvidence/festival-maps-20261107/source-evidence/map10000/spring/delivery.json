@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "key": "map10000",
+  "sceneId": 10000,
+  "revision": "festival20261107",
+  "appearance": "spring",
+  "layoutSha256": "8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407",
+  "sourceSelectionSha256": "1c4ac495a0e617a9d2e92a92b44a66d7ae9fb712834ef3ffa4b6b2c4607c2c5d",
+  "navigationPlanSha256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/10000/previews/spring/v001/native.png",
+    "sha256": "60215fb52feb3e5fd61e82d96da8d3ed7ed643fbe2dce9ddee00a55062fc2de1",
+    "bytes": 2862477,
+    "exists": true,
+    "expectationSupplied": true,
+    "expectedSHA256Matched": true,
+    "pixels": [
+      1398,
+      1125
+    ]
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/10000/delivery/spring-manifest.json",
+    "sha256": "88e72900997dc8e31f4ced618d3ecebce67c16fda04f5d7b0c532cde8868d534",
+    "bytes": 31256,
+    "exists": true,
+    "expectationSupplied": false,
+    "expectedSHA256Matched": null
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r01_c01.json",
+      "sha256": "96125965b4c7320b24e4ed7f955869d6c51d4cd0e85f29c3ac26c0fd9582cdee"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r01_c02.json",
+      "sha256": "91ed334d4d9cedeed19dc685780e40ace866e5e98a8fcf0522972abc34ca6198"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r01_c03.json",
+      "sha256": "70e431518c7e6483945c49aaa5fff795b13365991ec2dfd5898d1b59de7d3431"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r01_c04.json",
+      "sha256": "f3b253acee63e270826513ec75d7cb3824d03589929958235cf890b7aa62a1fc"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r02_c01.json",
+      "sha256": "aff7a5b41e5e4c095ea82601ecaf833e21d0692246616a2701946e3f71340098"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r02_c02.json",
+      "sha256": "f8320ad04bb337702257ebc5e5d66c3dc329b538f94ce69d93216ac04d9ce45f"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r02_c03.json",
+      "sha256": "06c5b669370222abdce996dedbd62862c5e93b19a2066c52f870920aa8ab397c"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r02_c04.json",
+      "sha256": "827bd13489f3f2377868f484e3496af80d808b0c2a6e213b8f9723a2620c9b9a"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r03_c01.json",
+      "sha256": "12dc7bd9ae2a12f5936996ee5852ebe503a141bec2bda172daba0e1b57a9f12b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r03_c02.json",
+      "sha256": "28b232efa227e134c838e82e91f08a659d950e51809cab71c92ea5422df69d49"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r03_c03.json",
+      "sha256": "1dd5f2dcd5b03372b62913c721054bdda477a9c914b520953eab645e0c2a7026"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map10000/spring/r03_c04.json",
+      "sha256": "558e82f2565b3c78d83d5c687f4213abca3d050f3c8e8d52b8066ec173e450f7"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

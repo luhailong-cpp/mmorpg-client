@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "observedAtUtc": "2026-11-07T09:13:06.644468+00:00",
+  "ok": true,
+  "sourceWorkspace": "D:/work/mmorpg-client",
+  "maps": 9,
+  "appearances": 15,
+  "runtimeTiles": 90,
+  "addedMaps": 6,
+  "addedAppearances": 10,
+  "addedRuntimeTiles": 54,
+  "oldBatchMaps": 3,
+  "oldBatchAppearances": 5,
+  "oldRuntimeTiles": 36,
+  "preservedExistingFiles": 173,
+  "preservedAllExistingBytes": true,
+  "oldDefaultVerifyPassed": true,
+  "newBatchVerifyPassed": true,
+  "originalArtFilesModified": false,
+  "newImageCalls": 0,
+  "newUniqueFormalCredit": 0,
+  "reusedNativeAdoptions": 7,
+  "allExternalMapIdsClientOnly": true,
+  "autumnOnlyDefaults": {
+    "19004": "mid-autumn",
+    "23006": "mid-autumn"
+  },
+  "pythonExecutable": "C:/Users/luyua/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+  "tests": {
+    "python": {
+      "ok": true,
+      "testsRun": 26,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "includesActualTemporaryGitCheckout": true,
+      "sharedRepositoryGitOperations": false
+    },
+    "managed": {
+      "ok": true,
+      "checks": 107,
+      "assertions": 280413,
+      "maps": 9,
+      "appearances": 15,
+      "tiles": 90,
+      "productionSourcesLinked": [
+        "MapDeliveryContract.cs",
+        "CurrentMapCatalog.cs",
+        "CurrentMapTilesManifest.cs",
+        "CityTileManifest.cs",
+        "TianyongNavigationGrid.cs",
+        "TianyongMapDefinition.cs"
+      ],
+      "realUnityManagedGeometry": true
+    },
+    "compile": {
+      "errors": 0,
+      "warnings": 0,
+      "scope": "festival_map_delivery only"
+    }
+  },
+  "navigation": {
+    "map01001": {
+      "walkableCells": 250,
+      "components": 1
+    },
+    "map01002": {
+      "walkableCells": 309,
+      "components": 1
+    },
+    "map19004": {
+      "walkableCells": 48,
+      "components": 1
+    },
+    "map05008": {
+      "walkableCells": 2313,
+      "components": 1
+    },
+    "map23006": {
+      "walkableCells": 833,
+      "components": 1
+    },
+    "map10000": {
+      "walkableCells": 7268,
+      "components": 2
+    }
+  },
+  "limitations": [
+    "19004 only48 conservative safe cells; full forest network is closed.",
+    "10000 has2 disconnected platform components; no cloud/dragon-body bridge; visible tile color/seam cleanup and engine visual acceptance remain pending.",
+    "No Unity native rendering/device memory/native physics/network travel acceptance. All external IDs remain clientOnly; no server navigation or deployment."
+  ],
+  "serverNavigationPublished": false,
+  "engineExecuted": false,
+  "unityRenderedAcceptance": false,
+  "sharedRepositoryGitOperationsByImplementer": false,
+  "gitIntegrationAndPushResponsible": "root",
+  "pushClaimed": false,
+  "evidence": {
+    "batch": {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/batch.json",
+      "sha256": "0e3d9490c20d458678acacbc18c6aa2fef112ce9ca57092deb7b38d6ee8c6bed",
+      "bytes": 1205
+    },
+    "selection": {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/selection.json",
+      "sha256": "1c4ac495a0e617a9d2e92a92b44a66d7ae9fb712834ef3ffa4b6b2c4607c2c5d",
+      "bytes": 521421
+    },
+    "navigation": {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/navigation-plan.json",
+      "sha256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+      "bytes": 58473
+    },
+    "delivery": {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/delivery-verification.json",
+      "sha256": "5a20d07260816b7d14bb65da772ce658ad6b3b9a8706849199e317cd58bed398",
+      "bytes": 31501
+    },
+    "python": {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/python-regressions.json",
+      "sha256": "cc4ebd24fc6242c513011fbde8d4eafca69918ff9b565a4bc09e6fef85fc5ce8",
+      "bytes": 180
+    },
+    "managed": {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/managed-delivery.json",
+      "sha256": "1283a1c175426175662b3485112fa72daf894043b23bfea612b156c9819edd58",
+      "bytes": 14754
+    },
+    "preservation": {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/preserved-existing-files.json",
+      "sha256": "994b25cfdad49f4a81afcc88718c48c68bf76f7a2e64ca2ef5d6cbf3eb6e7901",
+      "bytes": 45207
+    }
+  }
+}

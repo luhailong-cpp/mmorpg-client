@@ -1,0 +1,825 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "appearances": [
+    {
+      "key": "map21003",
+      "sceneId": 21003,
+      "appearance": "spring",
+      "tiles": 9,
+      "runtimeImageBytes": 7922936,
+      "layoutBytes": 7978464,
+      "layoutSha256": "84c21c3bbf8efbba2ccc5c17eb1d7c1a8485faf2d7af7a57b8c0925a9328c6fb",
+      "walkmaskPackedSha256": "7eb599cacae37be5ad7297b287fd41fe49bb15f9fce8269c9e32201bfe6d46a1",
+      "navigationStats": {
+        "walkableCells": 3218,
+        "totalCells": 23716,
+        "componentCount": 1,
+        "componentSizes": [
+          3218
+        ],
+        "spawnComponent": 0,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              1536,
+              2000
+            ],
+            "world": {
+              "x": 153.6,
+              "y": 0.0,
+              "z": 107.19999999999999
+            },
+            "component": 0
+          },
+          "central_floor": {
+            "pixel": [
+              1536,
+              1610
+            ],
+            "world": {
+              "x": 153.6,
+              "y": 0.0,
+              "z": 146.2
+            },
+            "component": 0
+          },
+          "west_floor": {
+            "pixel": [
+              820,
+              1620
+            ],
+            "world": {
+              "x": 82.0,
+              "y": 0.0,
+              "z": 145.2
+            },
+            "component": 0
+          },
+          "east_floor": {
+            "pixel": [
+              2240,
+              1640
+            ],
+            "world": {
+              "x": 224.0,
+              "y": 0.0,
+              "z": 143.2
+            },
+            "component": 0
+          },
+          "north_floor": {
+            "pixel": [
+              1500,
+              1330
+            ],
+            "world": {
+              "x": 150.0,
+              "y": 0.0,
+              "z": 174.20000000000002
+            },
+            "component": 0
+          },
+          "south_floor": {
+            "pixel": [
+              1536,
+              2100
+            ],
+            "world": {
+              "x": 153.6,
+              "y": 0.0,
+              "z": 97.19999999999999
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "north_wall",
+          "west_incense",
+          "midautumn_offering",
+          "outside_padding"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "central_floor"
+          ],
+          [
+            "spawn",
+            "west_floor"
+          ],
+          [
+            "west_floor",
+            "east_floor"
+          ],
+          [
+            "north_floor",
+            "south_floor"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "central_floor",
+            "gridDistanceWorldUnits": 40.0
+          },
+          {
+            "from": "spawn",
+            "to": "west_floor",
+            "gridDistanceWorldUnits": 85.74011537017758
+          },
+          {
+            "from": "west_floor",
+            "to": "east_floor",
+            "gridDistanceWorldUnits": 142.82842712474618
+          },
+          {
+            "from": "north_floor",
+            "to": "south_floor",
+            "gridDistanceWorldUnits": 78.82842712474618
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 7.934912618041455,
+        "separatedRoutes": [],
+        "maskSha256": "7eb599cacae37be5ad7297b287fd41fe49bb15f9fce8269c9e32201bfe6d46a1",
+        "maskBytes": 2965,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "clientOnly": true
+    },
+    {
+      "key": "map21003",
+      "sceneId": 21003,
+      "appearance": "mid-autumn",
+      "tiles": 9,
+      "runtimeImageBytes": 8111262,
+      "layoutBytes": 8241897,
+      "layoutSha256": "a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540",
+      "walkmaskPackedSha256": "7eb599cacae37be5ad7297b287fd41fe49bb15f9fce8269c9e32201bfe6d46a1",
+      "navigationStats": {
+        "walkableCells": 3218,
+        "totalCells": 23716,
+        "componentCount": 1,
+        "componentSizes": [
+          3218
+        ],
+        "spawnComponent": 0,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              1536,
+              2000
+            ],
+            "world": {
+              "x": 153.6,
+              "y": 0.0,
+              "z": 107.19999999999999
+            },
+            "component": 0
+          },
+          "central_floor": {
+            "pixel": [
+              1536,
+              1610
+            ],
+            "world": {
+              "x": 153.6,
+              "y": 0.0,
+              "z": 146.2
+            },
+            "component": 0
+          },
+          "west_floor": {
+            "pixel": [
+              820,
+              1620
+            ],
+            "world": {
+              "x": 82.0,
+              "y": 0.0,
+              "z": 145.2
+            },
+            "component": 0
+          },
+          "east_floor": {
+            "pixel": [
+              2240,
+              1640
+            ],
+            "world": {
+              "x": 224.0,
+              "y": 0.0,
+              "z": 143.2
+            },
+            "component": 0
+          },
+          "north_floor": {
+            "pixel": [
+              1500,
+              1330
+            ],
+            "world": {
+              "x": 150.0,
+              "y": 0.0,
+              "z": 174.20000000000002
+            },
+            "component": 0
+          },
+          "south_floor": {
+            "pixel": [
+              1536,
+              2100
+            ],
+            "world": {
+              "x": 153.6,
+              "y": 0.0,
+              "z": 97.19999999999999
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "north_wall",
+          "west_incense",
+          "midautumn_offering",
+          "outside_padding"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "central_floor"
+          ],
+          [
+            "spawn",
+            "west_floor"
+          ],
+          [
+            "west_floor",
+            "east_floor"
+          ],
+          [
+            "north_floor",
+            "south_floor"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "central_floor",
+            "gridDistanceWorldUnits": 40.0
+          },
+          {
+            "from": "spawn",
+            "to": "west_floor",
+            "gridDistanceWorldUnits": 85.74011537017758
+          },
+          {
+            "from": "west_floor",
+            "to": "east_floor",
+            "gridDistanceWorldUnits": 142.82842712474618
+          },
+          {
+            "from": "north_floor",
+            "to": "south_floor",
+            "gridDistanceWorldUnits": 78.82842712474618
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 7.934912618041455,
+        "separatedRoutes": [],
+        "maskSha256": "7eb599cacae37be5ad7297b287fd41fe49bb15f9fce8269c9e32201bfe6d46a1",
+        "maskBytes": 2965,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "clientOnly": true
+    },
+    {
+      "key": "map28007",
+      "sceneId": 28007,
+      "appearance": "spring",
+      "tiles": 6,
+      "runtimeImageBytes": 7191622,
+      "layoutBytes": 7258777,
+      "layoutSha256": "b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4",
+      "walkmaskPackedSha256": "5debef8b21448ea62465ca42695a7b598115350103f98689c0071b45699c19d2",
+      "navigationStats": {
+        "walkableCells": 1481,
+        "totalCells": 15862,
+        "componentCount": 1,
+        "componentSizes": [
+          1481
+        ],
+        "spawnComponent": 0,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              1008.0,
+              1628.8
+            ],
+            "world": {
+              "x": 100.8,
+              "y": 0.0,
+              "z": 41.92000000000001
+            },
+            "component": 0
+          },
+          "entry": {
+            "pixel": [
+              880.0,
+              1715.2
+            ],
+            "world": {
+              "x": 88.0,
+              "y": 0.0,
+              "z": 33.279999999999994
+            },
+            "component": 0
+          },
+          "west_corridor": {
+            "pixel": [
+              1088.0,
+              1443.2
+            ],
+            "world": {
+              "x": 108.8,
+              "y": 0.0,
+              "z": 60.48
+            },
+            "component": 0
+          },
+          "stage_south": {
+            "pixel": [
+              1904.0,
+              1321.6
+            ],
+            "world": {
+              "x": 190.39999999999998,
+              "y": 0.0,
+              "z": 72.64000000000001
+            },
+            "component": 0
+          },
+          "stage_center": {
+            "pixel": [
+              1896.0,
+              1160.0
+            ],
+            "world": {
+              "x": 189.6,
+              "y": 0.0,
+              "z": 88.80000000000001
+            },
+            "component": 0
+          },
+          "east_floor": {
+            "pixel": [
+              2328.0,
+              1382.4
+            ],
+            "world": {
+              "x": 232.79999999999998,
+              "y": 0.0,
+              "z": 66.55999999999999
+            },
+            "component": 0
+          },
+          "south_floor": {
+            "pixel": [
+              1520.0,
+              1595.2
+            ],
+            "world": {
+              "x": 152.0,
+              "y": 0.0,
+              "z": 45.28
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "outside_black",
+          "closed_bedroom",
+          "offering_table",
+          "east_stairs",
+          "foyer_table",
+          "foyer_flower",
+          "entry_bollard_west",
+          "entry_bollard_east",
+          "dais_bolster"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "entry"
+          ],
+          [
+            "spawn",
+            "west_corridor"
+          ],
+          [
+            "west_corridor",
+            "stage_center"
+          ],
+          [
+            "stage_center",
+            "stage_south"
+          ],
+          [
+            "stage_south",
+            "east_floor"
+          ],
+          [
+            "spawn",
+            "south_floor"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "entry",
+            "gridDistanceWorldUnits": 15.31370849898476
+          },
+          {
+            "from": "spawn",
+            "to": "west_corridor",
+            "gridDistanceWorldUnits": 23.31370849898476
+          },
+          {
+            "from": "west_corridor",
+            "to": "stage_center",
+            "gridDistanceWorldUnits": 95.11269837220804
+          },
+          {
+            "from": "stage_center",
+            "to": "stage_south",
+            "gridDistanceWorldUnits": 16.82842712474619
+          },
+          {
+            "from": "stage_south",
+            "to": "east_floor",
+            "gridDistanceWorldUnits": 44.48528137423857
+          },
+          {
+            "from": "spawn",
+            "to": "south_floor",
+            "gridDistanceWorldUnits": 53.65685424949238
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 5.284038798456002,
+        "separatedRoutes": [],
+        "maskSha256": "5debef8b21448ea62465ca42695a7b598115350103f98689c0071b45699c19d2",
+        "maskBytes": 1983,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "clientOnly": true
+    },
+    {
+      "key": "map35004",
+      "sceneId": 35004,
+      "appearance": "spring",
+      "tiles": 6,
+      "runtimeImageBytes": 7863417,
+      "layoutBytes": 7970062,
+      "layoutSha256": "466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8",
+      "walkmaskPackedSha256": "8692c2adcae9572e79152137d639911ce12676d7dbf171211cfd40639888a042",
+      "navigationStats": {
+        "walkableCells": 2566,
+        "totalCells": 15862,
+        "componentCount": 3,
+        "componentSizes": [
+          20,
+          82,
+          2464
+        ],
+        "spawnComponent": 2,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              1408.0,
+              1136.0
+            ],
+            "world": {
+              "x": 140.79999999999998,
+              "y": 0.0,
+              "z": 91.2
+            },
+            "component": 2
+          },
+          "main_west": {
+            "pixel": [
+              608.0,
+              1152.0
+            ],
+            "world": {
+              "x": 60.800000000000004,
+              "y": 0.0,
+              "z": 89.60000000000001
+            },
+            "component": 2
+          },
+          "main_east": {
+            "pixel": [
+              2208.0,
+              1200.0
+            ],
+            "world": {
+              "x": 220.79999999999998,
+              "y": 0.0,
+              "z": 84.80000000000001
+            },
+            "component": 2
+          },
+          "main_north": {
+            "pixel": [
+              1344.0,
+              752.0
+            ],
+            "world": {
+              "x": 134.4,
+              "y": 0.0,
+              "z": 129.6
+            },
+            "component": 2
+          },
+          "main_south": {
+            "pixel": [
+              1536.0,
+              1448.0
+            ],
+            "world": {
+              "x": 153.6,
+              "y": 0.0,
+              "z": 60.0
+            },
+            "component": 2
+          },
+          "west_platform": {
+            "pixel": [
+              520.0,
+              392.0
+            ],
+            "world": {
+              "x": 52.0,
+              "y": 0.0,
+              "z": 165.60000000000002
+            },
+            "component": 1
+          },
+          "east_platform": {
+            "pixel": [
+              2192.0,
+              324.8
+            ],
+            "world": {
+              "x": 219.20000000000002,
+              "y": 0.0,
+              "z": 172.32000000000002
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "cloud_gap_west",
+          "cloud_gap_east",
+          "outside_cloud",
+          "spring_golden_toad",
+          "midautumn_tea",
+          "back_couplet"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "main_west"
+          ],
+          [
+            "spawn",
+            "main_east"
+          ],
+          [
+            "main_north",
+            "main_south"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "main_west",
+            "gridDistanceWorldUnits": 80.82842712474618
+          },
+          {
+            "from": "spawn",
+            "to": "main_east",
+            "gridDistanceWorldUnits": 82.48528137423855
+          },
+          {
+            "from": "main_north",
+            "to": "main_south",
+            "gridDistanceWorldUnits": 75.45584412271569
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 4.582515631902142,
+        "separatedRoutes": [
+          [
+            "spawn",
+            "west_platform"
+          ],
+          [
+            "spawn",
+            "east_platform"
+          ],
+          [
+            "west_platform",
+            "east_platform"
+          ]
+        ],
+        "maskSha256": "8692c2adcae9572e79152137d639911ce12676d7dbf171211cfd40639888a042",
+        "maskBytes": 1983,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "clientOnly": true
+    },
+    {
+      "key": "map35004",
+      "sceneId": 35004,
+      "appearance": "mid-autumn",
+      "tiles": 6,
+      "runtimeImageBytes": 7761218,
+      "layoutBytes": 7855604,
+      "layoutSha256": "122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4",
+      "walkmaskPackedSha256": "8692c2adcae9572e79152137d639911ce12676d7dbf171211cfd40639888a042",
+      "navigationStats": {
+        "walkableCells": 2566,
+        "totalCells": 15862,
+        "componentCount": 3,
+        "componentSizes": [
+          20,
+          82,
+          2464
+        ],
+        "spawnComponent": 2,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              1408.0,
+              1136.0
+            ],
+            "world": {
+              "x": 140.79999999999998,
+              "y": 0.0,
+              "z": 91.2
+            },
+            "component": 2
+          },
+          "main_west": {
+            "pixel": [
+              608.0,
+              1152.0
+            ],
+            "world": {
+              "x": 60.800000000000004,
+              "y": 0.0,
+              "z": 89.60000000000001
+            },
+            "component": 2
+          },
+          "main_east": {
+            "pixel": [
+              2208.0,
+              1200.0
+            ],
+            "world": {
+              "x": 220.79999999999998,
+              "y": 0.0,
+              "z": 84.80000000000001
+            },
+            "component": 2
+          },
+          "main_north": {
+            "pixel": [
+              1344.0,
+              752.0
+            ],
+            "world": {
+              "x": 134.4,
+              "y": 0.0,
+              "z": 129.6
+            },
+            "component": 2
+          },
+          "main_south": {
+            "pixel": [
+              1536.0,
+              1448.0
+            ],
+            "world": {
+              "x": 153.6,
+              "y": 0.0,
+              "z": 60.0
+            },
+            "component": 2
+          },
+          "west_platform": {
+            "pixel": [
+              520.0,
+              392.0
+            ],
+            "world": {
+              "x": 52.0,
+              "y": 0.0,
+              "z": 165.60000000000002
+            },
+            "component": 1
+          },
+          "east_platform": {
+            "pixel": [
+              2192.0,
+              324.8
+            ],
+            "world": {
+              "x": 219.20000000000002,
+              "y": 0.0,
+              "z": 172.32000000000002
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "cloud_gap_west",
+          "cloud_gap_east",
+          "outside_cloud",
+          "spring_golden_toad",
+          "midautumn_tea",
+          "back_couplet"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "main_west"
+          ],
+          [
+            "spawn",
+            "main_east"
+          ],
+          [
+            "main_north",
+            "main_south"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "main_west",
+            "gridDistanceWorldUnits": 80.82842712474618
+          },
+          {
+            "from": "spawn",
+            "to": "main_east",
+            "gridDistanceWorldUnits": 82.48528137423855
+          },
+          {
+            "from": "main_north",
+            "to": "main_south",
+            "gridDistanceWorldUnits": 75.45584412271569
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 4.582515631902142,
+        "separatedRoutes": [
+          [
+            "spawn",
+            "west_platform"
+          ],
+          [
+            "spawn",
+            "east_platform"
+          ],
+          [
+            "west_platform",
+            "east_platform"
+          ]
+        ],
+        "maskSha256": "8692c2adcae9572e79152137d639911ce12676d7dbf171211cfd40639888a042",
+        "maskBytes": 1983,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "clientOnly": true
+    }
+  ],
+  "maps": 3,
+  "appearanceCount": 5,
+  "tileCount": 36,
+  "runtimeImageBytes": 38850455,
+  "assembledLayoutBytes": 39304804,
+  "sourceSelectionSha256": "7ee901253a002db7c791c476a5969847e82a884132facaa8db831b9d220cc0ad",
+  "navigationPlanSha256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+  "formalArtSourceBindingsVerified": true,
+  "runtimeTilesDecoded": true,
+  "layoutPixelsMatchRuntimeTiles": true,
+  "artCheckoutRequiredForVerification": false,
+  "highestNativePNGsCopied": false,
+  "authoritativeServerRegistered": false,
+  "unityRenderedAcceptance": false
+}

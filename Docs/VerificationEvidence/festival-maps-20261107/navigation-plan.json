@@ -1,0 +1,3040 @@
+{
+  "schemaVersion": 1,
+  "kind": "ADDITIONAL_COMPLETED_FESTIVAL_LOCAL_NAVIGATION",
+  "pixelOrigin": "northwest",
+  "worldOrigin": "southwest",
+  "worldYIsUnityZ": true,
+  "unitsPerRuntimePixel": 0.1,
+  "cellSize": 2,
+  "artIsNotCollision": true,
+  "serverSceneMapping": "UNMAPPED_EXTERNAL_SOURCE_IDS_CLIENT_ONLY",
+  "serverNavigationPublished": false,
+  "engineVisualAcceptance": false,
+  "maps": {
+    "01001": {
+      "canvasPixels": [
+        2048,
+        1024
+      ],
+      "worldRect": {
+        "x": 0,
+        "y": 0,
+        "width": 204.8,
+        "height": 102.4
+      },
+      "imageRect": {
+        "x": 341.3333333333333,
+        "y": 0,
+        "width": 1365.3333333333333,
+        "height": 1024
+      },
+      "referencePixels": [
+        900,
+        675
+      ],
+      "cellSize": 2,
+      "spawnPixel": [
+        800,
+        720
+      ],
+      "walkablePolygons": [
+        [
+          [
+            770,
+            520
+          ],
+          [
+            1210,
+            635
+          ],
+          [
+            1300,
+            570
+          ],
+          [
+            1350,
+            575
+          ],
+          [
+            1340,
+            640
+          ],
+          [
+            1240,
+            710
+          ],
+          [
+            1190,
+            755
+          ],
+          [
+            1080,
+            790
+          ],
+          [
+            850,
+            820
+          ],
+          [
+            565,
+            675
+          ],
+          [
+            720,
+            625
+          ]
+        ],
+        [
+          [
+            1235,
+            530
+          ],
+          [
+            1275,
+            530
+          ],
+          [
+            1360,
+            575
+          ],
+          [
+            1340,
+            640
+          ],
+          [
+            1230,
+            700
+          ],
+          [
+            1190,
+            670
+          ]
+        ]
+      ],
+      "obstaclePolygons": [
+        [
+          [
+            1130,
+            668
+          ],
+          [
+            1160,
+            668
+          ],
+          [
+            1170,
+            690
+          ],
+          [
+            1190,
+            710
+          ],
+          [
+            1190,
+            800
+          ],
+          [
+            1170,
+            845
+          ],
+          [
+            1110,
+            830
+          ],
+          [
+            1110,
+            780
+          ],
+          [
+            1090,
+            730
+          ],
+          [
+            1100,
+            700
+          ]
+        ],
+        [
+          [
+            885,
+            810
+          ],
+          [
+            1120,
+            810
+          ],
+          [
+            1120,
+            960
+          ],
+          [
+            885,
+            960
+          ]
+        ],
+        [
+          [
+            1370,
+            570
+          ],
+          [
+            1550,
+            570
+          ],
+          [
+            1550,
+            740
+          ],
+          [
+            1370,
+            740
+          ]
+        ]
+      ],
+      "landmarkPixels": {
+        "entrance": [
+          720,
+          710
+        ],
+        "floor": [
+          920,
+          720
+        ],
+        "counter_approach": [
+          1040,
+          650
+        ]
+      },
+      "blockedLandmarkPixels": {
+        "counter": [
+          1000,
+          500
+        ],
+        "screen": [
+          620,
+          550
+        ],
+        "mannequin": [
+          1140,
+          730
+        ],
+        "exterior": [
+          1800,
+          500
+        ],
+        "fabric_shelf": [
+          1200,
+          300
+        ]
+      },
+      "connectedLandmarkPairs": [
+        [
+          "entrance",
+          "floor"
+        ],
+        [
+          "floor",
+          "counter_approach"
+        ]
+      ],
+      "disconnectedLandmarkPairs": [],
+      "expectedConnectedComponents": 1,
+      "reviewNotes": "Conservative common visible customer floor, with furniture, walls, exterior fill and uncertain rear aisles excluded. Both delivered appearances viewed. Navigation is client-only; engine/server acceptance not claimed."
+    },
+    "01002": {
+      "canvasPixels": [
+        2048,
+        1024
+      ],
+      "worldRect": {
+        "x": 0,
+        "y": 0,
+        "width": 204.8,
+        "height": 102.4
+      },
+      "imageRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1365.3333333333333,
+        "height": 1024
+      },
+      "referencePixels": [
+        1000,
+        750
+      ],
+      "cellSize": 2,
+      "spawnPixel": [
+        460,
+        735
+      ],
+      "walkablePolygons": [
+        [
+          [
+            350,
+            565
+          ],
+          [
+            570,
+            490
+          ],
+          [
+            615,
+            550
+          ],
+          [
+            1000,
+            735
+          ],
+          [
+            870,
+            765
+          ],
+          [
+            685,
+            840
+          ],
+          [
+            550,
+            880
+          ],
+          [
+            440,
+            850
+          ],
+          [
+            225,
+            735
+          ],
+          [
+            215,
+            685
+          ],
+          [
+            330,
+            635
+          ]
+        ]
+      ],
+      "obstaclePolygons": [
+        [
+          [
+            580,
+            815
+          ],
+          [
+            745,
+            815
+          ],
+          [
+            745,
+            955
+          ],
+          [
+            580,
+            955
+          ]
+        ],
+        [
+          [
+            735,
+            755
+          ],
+          [
+            850,
+            755
+          ],
+          [
+            850,
+            840
+          ],
+          [
+            735,
+            840
+          ]
+        ],
+        [
+          [
+            875,
+            715
+          ],
+          [
+            980,
+            715
+          ],
+          [
+            980,
+            805
+          ],
+          [
+            875,
+            805
+          ]
+        ]
+      ],
+      "landmarkPixels": {
+        "entrance": [
+          420,
+          800
+        ],
+        "floor": [
+          500,
+          680
+        ],
+        "counter_approach": [
+          700,
+          630
+        ]
+      },
+      "blockedLandmarkPixels": {
+        "counter": [
+          850,
+          610
+        ],
+        "furnace": [
+          820,
+          270
+        ],
+        "armor": [
+          180,
+          580
+        ],
+        "tools": [
+          780,
+          795
+        ],
+        "exterior": [
+          1600,
+          600
+        ]
+      },
+      "connectedLandmarkPairs": [
+        [
+          "entrance",
+          "floor"
+        ],
+        [
+          "floor",
+          "counter_approach"
+        ]
+      ],
+      "disconnectedLandmarkPairs": [],
+      "expectedConnectedComponents": 1,
+      "reviewNotes": "Conservative common visible customer floor, with furniture, walls, exterior fill and uncertain rear aisles excluded. Both delivered appearances viewed. Navigation is client-only; engine/server acceptance not claimed."
+    },
+    "23006": {
+      "canvasPixels": [
+        2048,
+        2048
+      ],
+      "worldRect": {
+        "x": 0,
+        "y": 0,
+        "width": 204.8,
+        "height": 204.8
+      },
+      "imageRect": {
+        "x": 0,
+        "y": 288,
+        "width": 2048,
+        "height": 1471
+      },
+      "referencePixels": [
+        1200,
+        862
+      ],
+      "cellSize": 2,
+      "spawnPixel": [
+        1318.4,
+        1382.4
+      ],
+      "walkablePolygons": [
+        [
+          [
+            1132.8,
+            972.8
+          ],
+          [
+            1280.0,
+            1049.6
+          ],
+          [
+            1574.4,
+            1164.8
+          ],
+          [
+            1587.2,
+            1248.0
+          ],
+          [
+            1779.2,
+            1286.4
+          ],
+          [
+            1555.2,
+            1395.2
+          ],
+          [
+            1510.4,
+            1459.2
+          ],
+          [
+            1024.0,
+            1651.2
+          ],
+          [
+            364.8,
+            1344.0
+          ],
+          [
+            371.2,
+            1292.8
+          ],
+          [
+            576.0,
+            1344.0
+          ],
+          [
+            1107.2,
+            1094.4
+          ]
+        ]
+      ],
+      "obstaclePolygons": [
+        [
+          [
+            1612.8,
+            1062.4
+          ],
+          [
+            1862.4,
+            1062.4
+          ],
+          [
+            1862.4,
+            1280.0
+          ],
+          [
+            1612.8,
+            1280.0
+          ]
+        ],
+        [
+          [
+            1305.6,
+            857.6
+          ],
+          [
+            1484.8,
+            857.6
+          ],
+          [
+            1484.8,
+            1049.6
+          ],
+          [
+            1305.6,
+            1049.6
+          ]
+        ],
+        [
+          [
+            1024.0,
+            601.6
+          ],
+          [
+            1299.2,
+            601.6
+          ],
+          [
+            1299.2,
+            921.6
+          ],
+          [
+            1024.0,
+            921.6
+          ]
+        ],
+        [
+          [
+            428.8,
+            928.0
+          ],
+          [
+            1075.2,
+            928.0
+          ],
+          [
+            1075.2,
+            1318.4
+          ],
+          [
+            428.8,
+            1318.4
+          ]
+        ]
+      ],
+      "landmarkPixels": {
+        "entrance": [
+          1472.0,
+          1433.6
+        ],
+        "floor": [
+          1152.0,
+          1382.4
+        ],
+        "counter_approach": [
+          1184.0,
+          1164.8
+        ]
+      },
+      "blockedLandmarkPixels": {
+        "counter": [
+          793.6,
+          1100.8
+        ],
+        "fabric_shelf": [
+          806.4,
+          768.0
+        ],
+        "mannequin": [
+          1689.6,
+          1164.8
+        ],
+        "wall": [
+          1830.4,
+          896.0
+        ],
+        "exterior": [
+          1856.0,
+          1664.0
+        ]
+      },
+      "connectedLandmarkPairs": [
+        [
+          "entrance",
+          "floor"
+        ],
+        [
+          "floor",
+          "counter_approach"
+        ]
+      ],
+      "disconnectedLandmarkPairs": [],
+      "expectedConnectedComponents": 1,
+      "reviewNotes": "Conservative common visible customer floor, with furniture, walls, exterior fill and uncertain rear aisles excluded. Both delivered appearances viewed. Navigation is client-only; engine/server acceptance not claimed."
+    },
+    "05008": {
+      "canvasPixels": [
+        3072,
+        2048
+      ],
+      "worldRect": {
+        "x": 0,
+        "y": 0,
+        "width": 307.20000000000005,
+        "height": 204.8
+      },
+      "imageRect": {
+        "x": 0,
+        "y": 0,
+        "width": 2940,
+        "height": 1837.5
+      },
+      "referencePixels": [
+        2400,
+        1500
+      ],
+      "cellSize": 2,
+      "spawnPixel": [
+        912,
+        1408
+      ],
+      "walkablePolygons": [
+        [
+          [
+            752,
+            880
+          ],
+          [
+            1744,
+            480
+          ],
+          [
+            2672,
+            952
+          ],
+          [
+            2704,
+            1000
+          ],
+          [
+            1744,
+            1392
+          ]
+        ],
+        [
+          [
+            352,
+            1176
+          ],
+          [
+            560,
+            1072
+          ],
+          [
+            1288,
+            1440
+          ],
+          [
+            1120,
+            1624
+          ],
+          [
+            640,
+            1384
+          ]
+        ],
+        [
+          [
+            955,
+            1450
+          ],
+          [
+            1155,
+            1338
+          ],
+          [
+            1109,
+            1254
+          ],
+          [
+            909,
+            1366
+          ]
+        ],
+        [
+          [
+            1115,
+            1369
+          ],
+          [
+            1257,
+            1227
+          ],
+          [
+            1189,
+            1159
+          ],
+          [
+            1047,
+            1301
+          ]
+        ],
+        [
+          [
+            1198,
+            1274
+          ],
+          [
+            1356,
+            1176
+          ],
+          [
+            1306,
+            1094
+          ],
+          [
+            1148,
+            1192
+          ]
+        ]
+      ],
+      "obstaclePolygons": [
+        [
+          [
+            2120,
+            560
+          ],
+          [
+            2296,
+            528
+          ],
+          [
+            2392,
+            616
+          ],
+          [
+            2368,
+            736
+          ],
+          [
+            2224,
+            728
+          ],
+          [
+            2112,
+            664
+          ]
+        ],
+        [
+          [
+            1520,
+            328
+          ],
+          [
+            1744,
+            248
+          ],
+          [
+            1824,
+            392
+          ],
+          [
+            1696,
+            472
+          ],
+          [
+            1568,
+            448
+          ]
+        ],
+        [
+          [
+            2480,
+            896
+          ],
+          [
+            2720,
+            928
+          ],
+          [
+            2784,
+            1024
+          ],
+          [
+            2592,
+            1080
+          ]
+        ],
+        [
+          [
+            1312,
+            1520
+          ],
+          [
+            1544,
+            1440
+          ],
+          [
+            1648,
+            1520
+          ],
+          [
+            1440,
+            1632
+          ]
+        ],
+        [
+          [
+            1744,
+            1264
+          ],
+          [
+            2656,
+            896
+          ],
+          [
+            2800,
+            1040
+          ],
+          [
+            1744,
+            1456
+          ]
+        ]
+      ],
+      "landmarkPixels": {
+        "spawn": [
+          912,
+          1408
+        ],
+        "lower_medallion": [
+          816,
+          1312
+        ],
+        "stair_landing": [
+          1344,
+          1152
+        ],
+        "central_rug": [
+          1776,
+          912
+        ],
+        "west_floor": [
+          1136,
+          824
+        ],
+        "east_floor": [
+          2320,
+          944
+        ]
+      },
+      "blockedLandmarkPixels": {
+        "wall_and_weapon_rack": [
+          1488,
+          400
+        ],
+        "throne_and_dais": [
+          2280,
+          648
+        ],
+        "spring_pot_or_midautumn_offering": [
+          1664,
+          368
+        ],
+        "outside_black": [
+          480,
+          160
+        ]
+      },
+      "connectedLandmarkPairs": [
+        [
+          "spawn",
+          "central_rug"
+        ],
+        [
+          "west_floor",
+          "east_floor"
+        ],
+        [
+          "lower_medallion",
+          "stair_landing"
+        ]
+      ],
+      "disconnectedLandmarkPairs": [],
+      "expectedConnectedComponents": 1,
+      "notes": [
+        "Both Spring and Midautumn complete assemblies actually viewed. Same clear ground; use union of seasonal fixture footprints as obstacles.",
+        "The large woven rug and lower circular inlay are floor. Only the clearly visible central stair strip is open; dividers, throne, chair/weapon perimeter and seasonal offering are excluded.",
+        "Conservative manual raster navigation only; engine stair elevation and server navigation remain unverified."
+      ],
+      "annotationMethod": "Human annotation from actual complete formal runtime assemblies. Coordinates marked against the displayed complete canvas and converted uniformly to original pixels. Conservative selected safe ground; no color-derived segmentation.",
+      "geometryEvidence": {
+        "path": "D:\\work\\image-production-staging-20261103\\coordination\\root\\CLIENT_COMPLETED_FESTIVAL_GEOMETRY_20261107-v001.json",
+        "sha256": "52c70dc16fc0657db999c32f4ddd425e2d94be74c443c76c1465e333b528eaf4",
+        "mapId": "05008"
+      }
+    },
+    "10000": {
+      "canvasPixels": [
+        4096,
+        3072
+      ],
+      "worldRect": {
+        "x": 0,
+        "y": 0,
+        "width": 409.6,
+        "height": 307.20000000000005
+      },
+      "imageRect": {
+        "x": 140,
+        "y": 0,
+        "width": 3816,
+        "height": 3072
+      },
+      "referencePixels": [
+        2298,
+        1850
+      ],
+      "cellSize": 2,
+      "spawnPixel": [
+        1168,
+        2246
+      ],
+      "walkablePolygons": [
+        [
+          [
+            573,
+            674
+          ],
+          [
+            1055,
+            573
+          ],
+          [
+            1156,
+            348
+          ],
+          [
+            1549,
+            326
+          ],
+          [
+            1875,
+            460
+          ],
+          [
+            2246,
+            550
+          ],
+          [
+            2111,
+            820
+          ],
+          [
+            2021,
+            1112
+          ],
+          [
+            1752,
+            1258
+          ],
+          [
+            1302,
+            1314
+          ],
+          [
+            909,
+            1201
+          ],
+          [
+            719,
+            966
+          ],
+          [
+            573,
+            865
+          ]
+        ],
+        [
+          [
+            314,
+            1145
+          ],
+          [
+            550,
+            1044
+          ],
+          [
+            651,
+            1145
+          ],
+          [
+            730,
+            1359
+          ],
+          [
+            954,
+            1583
+          ],
+          [
+            966,
+            1740
+          ],
+          [
+            786,
+            1830
+          ],
+          [
+            539,
+            1796
+          ],
+          [
+            314,
+            1594
+          ],
+          [
+            236,
+            1381
+          ]
+        ],
+        [
+          [
+            573,
+            2156
+          ],
+          [
+            1011,
+            2066
+          ],
+          [
+            1594,
+            2032
+          ],
+          [
+            1853,
+            2145
+          ],
+          [
+            1886,
+            2324
+          ],
+          [
+            1617,
+            2414
+          ],
+          [
+            1089,
+            2403
+          ],
+          [
+            606,
+            2324
+          ],
+          [
+            483,
+            2257
+          ]
+        ],
+        [
+          [
+            2066,
+            1808
+          ],
+          [
+            2291,
+            1808
+          ],
+          [
+            2358,
+            1853
+          ],
+          [
+            2246,
+            1909
+          ],
+          [
+            2088,
+            1909
+          ],
+          [
+            1999,
+            1864
+          ]
+        ],
+        [
+          [
+            764,
+            2908
+          ],
+          [
+            1089,
+            2818
+          ],
+          [
+            1583,
+            2807
+          ],
+          [
+            1999,
+            2897
+          ],
+          [
+            2189,
+            2987
+          ],
+          [
+            2189,
+            3065
+          ],
+          [
+            921,
+            3065
+          ],
+          [
+            719,
+            3009
+          ]
+        ],
+        [
+          [
+            3211,
+            258
+          ],
+          [
+            3694,
+            225
+          ],
+          [
+            3862,
+            303
+          ],
+          [
+            3896,
+            371
+          ],
+          [
+            3705,
+            415
+          ],
+          [
+            3436,
+            438
+          ],
+          [
+            3211,
+            382
+          ],
+          [
+            3110,
+            326
+          ]
+        ],
+        [
+          [
+            3368,
+            696
+          ],
+          [
+            3705,
+            696
+          ],
+          [
+            3818,
+            741
+          ],
+          [
+            3795,
+            786
+          ],
+          [
+            3638,
+            820
+          ],
+          [
+            3391,
+            808
+          ],
+          [
+            3312,
+            764
+          ]
+        ],
+        [
+          [
+            2852,
+            1302
+          ],
+          [
+            3144,
+            1246
+          ],
+          [
+            3526,
+            1235
+          ],
+          [
+            3773,
+            1302
+          ],
+          [
+            3795,
+            1370
+          ],
+          [
+            3503,
+            1426
+          ],
+          [
+            3166,
+            1437
+          ],
+          [
+            2919,
+            1381
+          ]
+        ],
+        [
+          [
+            3166,
+            1796
+          ],
+          [
+            3593,
+            1774
+          ],
+          [
+            3818,
+            1853
+          ],
+          [
+            3818,
+            1931
+          ],
+          [
+            3638,
+            1976
+          ],
+          [
+            3256,
+            1954
+          ],
+          [
+            3076,
+            1886
+          ]
+        ],
+        [
+          [
+            2852,
+            2257
+          ],
+          [
+            3256,
+            2212
+          ],
+          [
+            3638,
+            2257
+          ],
+          [
+            3818,
+            2335
+          ],
+          [
+            3795,
+            2403
+          ],
+          [
+            3526,
+            2459
+          ],
+          [
+            3144,
+            2448
+          ],
+          [
+            2807,
+            2358
+          ]
+        ],
+        [
+          [
+            2852,
+            2773
+          ],
+          [
+            3256,
+            2717
+          ],
+          [
+            3638,
+            2762
+          ],
+          [
+            3885,
+            2897
+          ],
+          [
+            3896,
+            3065
+          ],
+          [
+            3144,
+            3065
+          ],
+          [
+            2852,
+            2987
+          ]
+        ],
+        [
+          [
+            639,
+            749
+          ],
+          [
+            479,
+            909
+          ],
+          [
+            551,
+            980
+          ],
+          [
+            711,
+            820
+          ]
+        ],
+        [
+          [
+            522,
+            862
+          ],
+          [
+            366,
+            1049
+          ],
+          [
+            444,
+            1114
+          ],
+          [
+            599,
+            927
+          ]
+        ],
+        [
+          [
+            398,
+            1002
+          ],
+          [
+            288,
+            1207
+          ],
+          [
+            377,
+            1255
+          ],
+          [
+            487,
+            1050
+          ]
+        ],
+        [
+          [
+            681,
+            1763
+          ],
+          [
+            775,
+            1982
+          ],
+          [
+            868,
+            1942
+          ],
+          [
+            774,
+            1723
+          ]
+        ],
+        [
+          [
+            781,
+            1877
+          ],
+          [
+            636,
+            2138
+          ],
+          [
+            724,
+            2187
+          ],
+          [
+            869,
+            1926
+          ]
+        ],
+        [
+          [
+            1788,
+            2267
+          ],
+          [
+            1913,
+            2064
+          ],
+          [
+            1827,
+            2011
+          ],
+          [
+            1702,
+            2214
+          ]
+        ],
+        [
+          [
+            1870,
+            2124
+          ],
+          [
+            2025,
+            1938
+          ],
+          [
+            1948,
+            1873
+          ],
+          [
+            1792,
+            2059
+          ]
+        ],
+        [
+          [
+            1956,
+            1991
+          ],
+          [
+            2163,
+            1896
+          ],
+          [
+            2120,
+            1804
+          ],
+          [
+            1913,
+            1899
+          ]
+        ],
+        [
+          [
+            1692,
+            2360
+          ],
+          [
+            1787,
+            2567
+          ],
+          [
+            1879,
+            2524
+          ],
+          [
+            1783,
+            2317
+          ]
+        ],
+        [
+          [
+            1792,
+            2460
+          ],
+          [
+            1646,
+            2709
+          ],
+          [
+            1733,
+            2761
+          ],
+          [
+            1880,
+            2512
+          ]
+        ],
+        [
+          [
+            1691,
+            2647
+          ],
+          [
+            1489,
+            2878
+          ],
+          [
+            1565,
+            2944
+          ],
+          [
+            1767,
+            2714
+          ]
+        ],
+        [
+          [
+            3354,
+            324
+          ],
+          [
+            3417,
+            485
+          ],
+          [
+            3511,
+            449
+          ],
+          [
+            3448,
+            287
+          ]
+        ],
+        [
+          [
+            3393,
+            418
+          ],
+          [
+            3442,
+            577
+          ],
+          [
+            3539,
+            547
+          ],
+          [
+            3490,
+            389
+          ]
+        ],
+        [
+          [
+            3422,
+            516
+          ],
+          [
+            3485,
+            689
+          ],
+          [
+            3580,
+            654
+          ],
+          [
+            3517,
+            481
+          ]
+        ],
+        [
+          [
+            3460,
+            642
+          ],
+          [
+            3571,
+            798
+          ],
+          [
+            3654,
+            739
+          ],
+          [
+            3543,
+            583
+          ]
+        ],
+        [
+          [
+            3490,
+            728
+          ],
+          [
+            3483,
+            921
+          ],
+          [
+            3584,
+            925
+          ],
+          [
+            3591,
+            732
+          ]
+        ],
+        [
+          [
+            3513,
+            832
+          ],
+          [
+            3409,
+            977
+          ],
+          [
+            3491,
+            1036
+          ],
+          [
+            3595,
+            892
+          ]
+        ],
+        [
+          [
+            3435,
+            929
+          ],
+          [
+            3361,
+            1112
+          ],
+          [
+            3454,
+            1151
+          ],
+          [
+            3529,
+            967
+          ]
+        ],
+        [
+          [
+            3379,
+            1055
+          ],
+          [
+            3343,
+            1202
+          ],
+          [
+            3441,
+            1226
+          ],
+          [
+            3477,
+            1080
+          ]
+        ],
+        [
+          [
+            3352,
+            1144
+          ],
+          [
+            3338,
+            1355
+          ],
+          [
+            3439,
+            1362
+          ],
+          [
+            3452,
+            1151
+          ]
+        ],
+        [
+          [
+            2935,
+            1306
+          ],
+          [
+            2935,
+            1490
+          ],
+          [
+            3025,
+            1490
+          ],
+          [
+            3025,
+            1306
+          ]
+        ],
+        [
+          [
+            2930,
+            1439
+          ],
+          [
+            2971,
+            1640
+          ],
+          [
+            3059,
+            1621
+          ],
+          [
+            3018,
+            1421
+          ]
+        ],
+        [
+          [
+            2958,
+            1584
+          ],
+          [
+            3034,
+            1871
+          ],
+          [
+            3121,
+            1848
+          ],
+          [
+            3045,
+            1561
+          ]
+        ],
+        [
+          [
+            3019,
+            1848
+          ],
+          [
+            3141,
+            1940
+          ],
+          [
+            3195,
+            1869
+          ],
+          [
+            3073,
+            1776
+          ]
+        ],
+        [
+          [
+            3471,
+            1875
+          ],
+          [
+            3471,
+            2055
+          ],
+          [
+            3572,
+            2055
+          ],
+          [
+            3572,
+            1875
+          ]
+        ],
+        [
+          [
+            3494,
+            1967
+          ],
+          [
+            3409,
+            2115
+          ],
+          [
+            3496,
+            2165
+          ],
+          [
+            3582,
+            2017
+          ]
+        ],
+        [
+          [
+            3439,
+            2058
+          ],
+          [
+            3360,
+            2217
+          ],
+          [
+            3450,
+            2262
+          ],
+          [
+            3530,
+            2103
+          ]
+        ],
+        [
+          [
+            3379,
+            2165
+          ],
+          [
+            3343,
+            2311
+          ],
+          [
+            3441,
+            2335
+          ],
+          [
+            3477,
+            2189
+          ]
+        ],
+        [
+          [
+            3409,
+            2230
+          ],
+          [
+            3204,
+            2326
+          ],
+          [
+            3247,
+            2418
+          ],
+          [
+            3452,
+            2322
+          ]
+        ],
+        [
+          [
+            2848,
+            2318
+          ],
+          [
+            2863,
+            2479
+          ],
+          [
+            2964,
+            2470
+          ],
+          [
+            2948,
+            2308
+          ]
+        ],
+        [
+          [
+            2850,
+            2431
+          ],
+          [
+            2918,
+            2582
+          ],
+          [
+            3011,
+            2541
+          ],
+          [
+            2943,
+            2390
+          ]
+        ],
+        [
+          [
+            2891,
+            2521
+          ],
+          [
+            2959,
+            2672
+          ],
+          [
+            3051,
+            2631
+          ],
+          [
+            2983,
+            2479
+          ]
+        ],
+        [
+          [
+            2930,
+            2621
+          ],
+          [
+            3031,
+            2769
+          ],
+          [
+            3115,
+            2712
+          ],
+          [
+            3014,
+            2564
+          ]
+        ],
+        [
+          [
+            2993,
+            2717
+          ],
+          [
+            3124,
+            2887
+          ],
+          [
+            3204,
+            2825
+          ],
+          [
+            3074,
+            2655
+          ]
+        ]
+      ],
+      "obstaclePolygons": [
+        [
+          [
+            79,
+            0
+          ],
+          [
+            1123,
+            0
+          ],
+          [
+            1100,
+            326
+          ],
+          [
+            1055,
+            550
+          ],
+          [
+            561,
+            719
+          ],
+          [
+            337,
+            730
+          ],
+          [
+            157,
+            494
+          ]
+        ],
+        [
+          [
+            1100,
+            326
+          ],
+          [
+            1594,
+            314
+          ],
+          [
+            1628,
+            561
+          ],
+          [
+            1123,
+            595
+          ]
+        ],
+        [
+          [
+            1875,
+            1156
+          ],
+          [
+            2358,
+            1134
+          ],
+          [
+            2538,
+            1516
+          ],
+          [
+            2493,
+            1763
+          ],
+          [
+            2021,
+            1796
+          ],
+          [
+            1909,
+            1673
+          ]
+        ],
+        [
+          [
+            1841,
+            1651
+          ],
+          [
+            2077,
+            1628
+          ],
+          [
+            2100,
+            1819
+          ],
+          [
+            1853,
+            1864
+          ]
+        ],
+        [
+          [
+            2380,
+            0
+          ],
+          [
+            3144,
+            0
+          ],
+          [
+            3144,
+            427
+          ],
+          [
+            2425,
+            651
+          ]
+        ],
+        [
+          [
+            2335,
+            629
+          ],
+          [
+            3032,
+            741
+          ],
+          [
+            3234,
+            1112
+          ],
+          [
+            2919,
+            1235
+          ],
+          [
+            2470,
+            1078
+          ]
+        ],
+        [
+          [
+            786,
+            921
+          ],
+          [
+            954,
+            988
+          ],
+          [
+            1123,
+            1392
+          ],
+          [
+            1168,
+            1752
+          ],
+          [
+            1033,
+            1729
+          ],
+          [
+            898,
+            1392
+          ]
+        ]
+      ],
+      "landmarkPixels": {
+        "spawn": [
+          1168,
+          2246
+        ],
+        "left_plaza": [
+          1460,
+          932
+        ],
+        "left_south_floor": [
+          1549,
+          2964
+        ],
+        "pavilion_forecourt": [
+          2178,
+          1864
+        ],
+        "right_middle_floor": [
+          3391,
+          1325
+        ],
+        "right_top_floor": [
+          3638,
+          326
+        ],
+        "right_south_floor": [
+          3391,
+          2919
+        ]
+      },
+      "blockedLandmarkPixels": {
+        "central_cloud_chasm": [
+          2493,
+          2077
+        ],
+        "north_dragon_arch_unproven_bridge": [
+          2695,
+          281
+        ],
+        "giant_dragon_head": [
+          674,
+          337
+        ],
+        "pavilion_roof_and_columns": [
+          2246,
+          1549
+        ],
+        "seasonal_offering": [
+          1325,
+          460
+        ],
+        "outer_cloud": [
+          3997,
+          1460
+        ]
+      },
+      "connectedLandmarkPairs": [
+        [
+          "spawn",
+          "left_plaza"
+        ],
+        [
+          "spawn",
+          "left_south_floor"
+        ],
+        [
+          "spawn",
+          "pavilion_forecourt"
+        ],
+        [
+          "right_top_floor",
+          "right_south_floor"
+        ],
+        [
+          "right_middle_floor",
+          "right_top_floor"
+        ]
+      ],
+      "disconnectedLandmarkPairs": [
+        [
+          "left_plaza",
+          "right_top_floor"
+        ],
+        [
+          "spawn",
+          "right_middle_floor"
+        ]
+      ],
+      "expectedConnectedComponents": 2,
+      "notes": [
+        "Both complete seasonal assemblies actually viewed. Hard tile color/brightness seams remain CLIENT_VISUAL_PENDING; source bytes preserved and no whole-picture visual PASS is granted.",
+        "Only visible terrain tops and explicit projected stair strips are marked. Cliff faces, clouds, dragon sculptures, pavilion, pots/tea/mooncake offering and outside ground are excluded.",
+        "Two conservative terrain components are intentional. Dragon-body arches over cloud are blocked pending explicit walkable-bridge or portal evidence; no cross-chasm connection is invented.",
+        "Perspective stair strips require actual client camera/height calibration; this is a validated2D mask, not engine collision/server publication."
+      ],
+      "annotationMethod": "Human annotation from actual complete formal runtime assemblies. Coordinates marked against the displayed complete canvas and converted uniformly to original pixels. Conservative selected safe ground; no color-derived segmentation.",
+      "geometryEvidence": {
+        "path": "D:\\work\\image-production-staging-20261103\\coordination\\root\\CLIENT_COMPLETED_FESTIVAL_GEOMETRY_20261107-v001.json",
+        "sha256": "52c70dc16fc0657db999c32f4ddd425e2d94be74c443c76c1465e333b528eaf4",
+        "mapId": "10000"
+      }
+    },
+    "19004": {
+      "canvasPixels": [
+        3072,
+        2048
+      ],
+      "worldRect": {
+        "x": 0,
+        "y": 0,
+        "width": 307.20000000000005,
+        "height": 204.8
+      },
+      "imageRect": {
+        "x": 0,
+        "y": 0,
+        "width": 3072,
+        "height": 1728
+      },
+      "referencePixels": [
+        1920,
+        1080
+      ],
+      "cellSize": 2,
+      "spawnPixel": [
+        1920,
+        1160
+      ],
+      "walkablePolygons": [
+        [
+          [
+            1840,
+            1125
+          ],
+          [
+            1980,
+            1095
+          ],
+          [
+            2070,
+            1120
+          ],
+          [
+            2070,
+            1190
+          ],
+          [
+            1940,
+            1240
+          ],
+          [
+            1830,
+            1200
+          ]
+        ]
+      ],
+      "obstaclePolygons": [
+        [
+          [
+            1500,
+            1300
+          ],
+          [
+            1700,
+            1280
+          ],
+          [
+            1860,
+            1330
+          ],
+          [
+            1870,
+            1420
+          ],
+          [
+            1660,
+            1410
+          ],
+          [
+            1510,
+            1370
+          ]
+        ],
+        [
+          [
+            1480,
+            1100
+          ],
+          [
+            1710,
+            1100
+          ],
+          [
+            1740,
+            1200
+          ],
+          [
+            1670,
+            1220
+          ],
+          [
+            1550,
+            1200
+          ],
+          [
+            1480,
+            1160
+          ]
+        ],
+        [
+          [
+            1260,
+            1320
+          ],
+          [
+            1370,
+            1340
+          ],
+          [
+            1420,
+            1400
+          ],
+          [
+            1380,
+            1460
+          ],
+          [
+            1280,
+            1440
+          ]
+        ],
+        [
+          [
+            1344,
+            1480
+          ],
+          [
+            1728,
+            1456
+          ],
+          [
+            2208,
+            1504
+          ],
+          [
+            2224,
+            1616
+          ],
+          [
+            1600,
+            1616
+          ],
+          [
+            1336,
+            1552
+          ]
+        ],
+        [
+          [
+            784,
+            1288
+          ],
+          [
+            992,
+            1280
+          ],
+          [
+            1064,
+            1408
+          ],
+          [
+            1024,
+            1528
+          ],
+          [
+            800,
+            1560
+          ],
+          [
+            752,
+            1440
+          ]
+        ],
+        [
+          [
+            2128,
+            1120
+          ],
+          [
+            2528,
+            1152
+          ],
+          [
+            2832,
+            1392
+          ],
+          [
+            2816,
+            1632
+          ],
+          [
+            2320,
+            1648
+          ],
+          [
+            2192,
+            1488
+          ]
+        ]
+      ],
+      "landmarkPixels": {
+        "spawn": [
+          1920,
+          1160
+        ],
+        "west_safe_lane": [
+          1860,
+          1180
+        ],
+        "east_safe_lane": [
+          2020,
+          1160
+        ],
+        "south_safe_lane": [
+          1940,
+          1210
+        ]
+      },
+      "blockedLandmarkPixels": {
+        "central_rock_bank": [
+          1720,
+          1390
+        ],
+        "discarded_south_approach_rock_ridge": [
+          1320,
+          1408
+        ],
+        "south_rock_wall": [
+          1808,
+          1552
+        ],
+        "rabbit_stone_altar": [
+          904,
+          1392
+        ],
+        "osmanthus_tree_and_tea_table": [
+          2480,
+          1440
+        ],
+        "forest_canopy": [
+          240,
+          1088
+        ],
+        "outer_mist": [
+          1600,
+          1888
+        ]
+      },
+      "connectedLandmarkPairs": [
+        [
+          "spawn",
+          "west_safe_lane"
+        ],
+        [
+          "west_safe_lane",
+          "east_safe_lane"
+        ],
+        [
+          "spawn",
+          "south_safe_lane"
+        ]
+      ],
+      "disconnectedLandmarkPairs": [],
+      "expectedConnectedComponents": 1,
+      "notes": [
+        "Complete Midautumn assembly and native-pixel central source crop actually viewed. Navigation is reduced to the unambiguous clear earth/low-grass opening east of the central stone bank, within original-canvas[1830,1095,2070,1240].",
+        "The earlier southern approach and south_clearing branch crossed a low stone ridge and are fully removed; spawn is relocated onto inspected clear ground. Narrow uncertain lanes are not opened to satisfy connectivity.",
+        "Forest/tree crowns, marked rocks/walls, stone altar/rabbit sculpture, osmanthus and tea/table props stay blocked. No color-based floor detector.",
+        "The rest of this map remains blocked pending additional manual annotation. This is a deliberately limited safe-ground navigation area, not full map navigation coverage or longest-route proof."
+      ],
+      "annotationMethod": "Human annotation from actual complete formal runtime assemblies. Coordinates marked against the displayed complete canvas and converted uniformly to original pixels. Conservative selected safe ground; no color-derived segmentation.",
+      "geometryEvidence": {
+        "path": "D:\\work\\image-production-staging-20261103\\coordination\\root\\CLIENT_COMPLETED_FESTIVAL_GEOMETRY_20261107-v001.json",
+        "sha256": "52c70dc16fc0657db999c32f4ddd425e2d94be74c443c76c1465e333b528eaf4",
+        "mapId": "19004"
+      }
+    }
+  },
+  "visuallyReviewedFormalAssemblies": [
+    {
+      "mapId": "01001",
+      "appearance": "spring",
+      "sha256": "13593f7c7e8cb2afc8e15bcc71402d39fea0946065c8f317accd2576fa361c0f",
+      "role": "Exact formal runtime assembly viewed for conservative common floor navigation"
+    },
+    {
+      "mapId": "01001",
+      "appearance": "mid-autumn",
+      "sha256": "9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320",
+      "role": "Exact formal runtime assembly viewed for conservative common floor navigation"
+    },
+    {
+      "mapId": "01002",
+      "appearance": "spring",
+      "sha256": "0f4f6b00fea4c0bf9d08710bb1f60fa9f2a3f1fa13efb647b6d5abcbad4a7e06",
+      "role": "Exact formal runtime assembly viewed for conservative common floor navigation"
+    },
+    {
+      "mapId": "01002",
+      "appearance": "mid-autumn",
+      "sha256": "670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31",
+      "role": "Exact formal runtime assembly viewed for conservative common floor navigation"
+    },
+    {
+      "mapId": "23006",
+      "appearance": "mid-autumn",
+      "sha256": "af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1",
+      "role": "Exact formal runtime assembly viewed for conservative common floor navigation"
+    },
+    {
+      "mapId": "05008",
+      "appearance": "spring",
+      "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_OVERVIEWS_20261107-v001/05008-spring-runtime-overview.png",
+      "sha256": "8354773b1551544ce0f9b2db93285cceec17f49225830fe89ca43bf7ef2ddc88",
+      "canvasPixels": [
+        3072,
+        2048
+      ],
+      "actualFullOverviewViewed": true,
+      "reviewScope": "Manual visible safe ground/obstacle/navigation annotation; no repeated old ART seam QA",
+      "navigationOverlay": {
+        "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_NAVIGATION_PART_B_20261107-v001/05008-spring-manual-navigation-overlay.png",
+        "sha256": "d8e86da1d85441886ce9ac27799dd7f0491f0f281122d9b91e7ec8df4bca9da5",
+        "derivedOnly": true
+      }
+    },
+    {
+      "mapId": "05008",
+      "appearance": "mid-autumn",
+      "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_OVERVIEWS_20261107-v001/05008-midautumn-runtime-overview.png",
+      "sha256": "bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89",
+      "canvasPixels": [
+        3072,
+        2048
+      ],
+      "actualFullOverviewViewed": true,
+      "reviewScope": "Manual visible safe ground/obstacle/navigation annotation; no repeated old ART seam QA",
+      "navigationOverlay": {
+        "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_NAVIGATION_PART_B_20261107-v001/05008-midautumn-manual-navigation-overlay.png",
+        "sha256": "bb6eda71c5e1b740ef7ae3e7f36f3e497eb4eeb80c3db80962fe6314641d5a92",
+        "derivedOnly": true
+      }
+    },
+    {
+      "mapId": "10000",
+      "appearance": "spring",
+      "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_OVERVIEWS_20261107-v001/10000-spring-runtime-overview.png",
+      "sha256": "8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407",
+      "canvasPixels": [
+        4096,
+        3072
+      ],
+      "actualFullOverviewViewed": true,
+      "reviewScope": "Manual visible safe ground/obstacle/navigation annotation; no repeated old ART seam QA",
+      "navigationOverlay": {
+        "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_NAVIGATION_PART_B_20261107-v001/10000-spring-manual-navigation-overlay.png",
+        "sha256": "f6047e918593c2d5a97305c687086420f40deba6eefe1352d465b7097210f315",
+        "derivedOnly": true
+      }
+    },
+    {
+      "mapId": "10000",
+      "appearance": "mid-autumn",
+      "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_OVERVIEWS_20261107-v001/10000-midautumn-runtime-overview.png",
+      "sha256": "c8523d9d6d4e75ed94edfebd0a879e63b9485b4fa968306dada2c1db2b0bbe98",
+      "canvasPixels": [
+        4096,
+        3072
+      ],
+      "actualFullOverviewViewed": true,
+      "reviewScope": "Manual visible safe ground/obstacle/navigation annotation; no repeated old ART seam QA",
+      "navigationOverlay": {
+        "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_NAVIGATION_PART_B_20261107-v001/10000-midautumn-manual-navigation-overlay.png",
+        "sha256": "c77da9b7a7c1855566866c333eee3702d5b23700ca00438624dcf9eebe325b9b",
+        "derivedOnly": true
+      }
+    },
+    {
+      "mapId": "19004",
+      "appearance": "mid-autumn",
+      "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_OVERVIEWS_20261107-v001/19004-midautumn-runtime-overview.png",
+      "sha256": "b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63",
+      "canvasPixels": [
+        3072,
+        2048
+      ],
+      "actualFullOverviewViewed": true,
+      "reviewScope": "Manual visible safe ground/obstacle/navigation annotation; no repeated old ART seam QA",
+      "navigationOverlay": {
+        "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_NAVIGATION_PART_B_20261107-v001/19004-midautumn-manual-navigation-overlay.png",
+        "sha256": "b041f126b11b135278b41cf39f59f2736d22c1166137fa929e77ae2139b16aec",
+        "derivedOnly": true
+      }
+    }
+  ],
+  "sourceParts": [
+    {
+      "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_NAVIGATION_PART_A_20261107-v001.json",
+      "sha256": "089597cf1730a606e45f229da0fc395ee03ffda969fe07818c0ec8374f553eae",
+      "bytes": 12634
+    },
+    {
+      "path": "D:/work/image-production-staging-20261103/coordination/root/CLIENT_COMPLETED_FESTIVAL_NAVIGATION_PART_B_20261107-v001.json",
+      "sha256": "f61a2843ef5c42617737e78a0de67bef4a11bbba29c9cf9e5d56594f80504567",
+      "bytes": 48752
+    }
+  ],
+  "partBValidation": {
+    "tool": "D:/work/mmorpg-client/tools/festival_map_navigation.py",
+    "toolSHA256": "a242ddc6867dba8ceb177074b0822663c5e6e630f1edd334d550f5f6b61625c1",
+    "atUtc": "2026-11-07T09:02:10.352144+00:00",
+    "results": {
+      "05008": {
+        "walkableCells": 2313,
+        "totalCells": 15862,
+        "componentCount": 1,
+        "componentSizes": [
+          2313
+        ],
+        "spawnComponent": 0,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              912,
+              1408
+            ],
+            "world": {
+              "x": 91.2,
+              "y": 0.0,
+              "z": 64.0
+            },
+            "component": 0
+          },
+          "lower_medallion": {
+            "pixel": [
+              816,
+              1312
+            ],
+            "world": {
+              "x": 81.60000000000001,
+              "y": 0.0,
+              "z": 73.60000000000001
+            },
+            "component": 0
+          },
+          "stair_landing": {
+            "pixel": [
+              1344,
+              1152
+            ],
+            "world": {
+              "x": 134.4,
+              "y": 0.0,
+              "z": 89.60000000000001
+            },
+            "component": 0
+          },
+          "central_rug": {
+            "pixel": [
+              1776,
+              912
+            ],
+            "world": {
+              "x": 177.60000000000002,
+              "y": 0.0,
+              "z": 113.60000000000001
+            },
+            "component": 0
+          },
+          "west_floor": {
+            "pixel": [
+              1136,
+              824
+            ],
+            "world": {
+              "x": 113.60000000000002,
+              "y": 0.0,
+              "z": 122.4
+            },
+            "component": 0
+          },
+          "east_floor": {
+            "pixel": [
+              2320,
+              944
+            ],
+            "world": {
+              "x": 232.00000000000003,
+              "y": 0.0,
+              "z": 110.4
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "wall_and_weapon_rack",
+          "throne_and_dais",
+          "spring_pot_or_midautumn_offering",
+          "outside_black"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "central_rug"
+          ],
+          [
+            "west_floor",
+            "east_floor"
+          ],
+          [
+            "lower_medallion",
+            "stair_landing"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "central_rug",
+            "gridDistanceWorldUnits": 105.88225099390851
+          },
+          {
+            "from": "west_floor",
+            "to": "east_floor",
+            "gridDistanceWorldUnits": 124.97056274847711
+          },
+          {
+            "from": "lower_medallion",
+            "to": "stair_landing",
+            "gridDistanceWorldUnits": 60.62741699796953
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 6.942809041582062,
+        "separatedRoutes": [],
+        "maskSha256": "6c8adbc9ae3dc09a94f933e30f53e8820d7151eeb7226592c409882a16c8525e",
+        "maskBytes": 1983,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "10000": {
+        "walkableCells": 7268,
+        "totalCells": 31570,
+        "componentCount": 2,
+        "componentSizes": [
+          2317,
+          4951
+        ],
+        "spawnComponent": 1,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              1168,
+              2246
+            ],
+            "world": {
+              "x": 116.80000000000001,
+              "y": 0.0,
+              "z": 82.60000000000001
+            },
+            "component": 1
+          },
+          "left_plaza": {
+            "pixel": [
+              1460,
+              932
+            ],
+            "world": {
+              "x": 146.0,
+              "y": 0.0,
+              "z": 214.00000000000003
+            },
+            "component": 1
+          },
+          "left_south_floor": {
+            "pixel": [
+              1549,
+              2964
+            ],
+            "world": {
+              "x": 154.9,
+              "y": 0.0,
+              "z": 10.800000000000002
+            },
+            "component": 1
+          },
+          "pavilion_forecourt": {
+            "pixel": [
+              2178,
+              1864
+            ],
+            "world": {
+              "x": 217.8,
+              "y": 0.0,
+              "z": 120.80000000000001
+            },
+            "component": 1
+          },
+          "right_middle_floor": {
+            "pixel": [
+              3391,
+              1325
+            ],
+            "world": {
+              "x": 339.1,
+              "y": 0.0,
+              "z": 174.70000000000002
+            },
+            "component": 0
+          },
+          "right_top_floor": {
+            "pixel": [
+              3638,
+              326
+            ],
+            "world": {
+              "x": 363.8,
+              "y": 0.0,
+              "z": 274.6
+            },
+            "component": 0
+          },
+          "right_south_floor": {
+            "pixel": [
+              3391,
+              2919
+            ],
+            "world": {
+              "x": 339.1,
+              "y": 0.0,
+              "z": 15.300000000000002
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "central_cloud_chasm",
+          "north_dragon_arch_unproven_bridge",
+          "giant_dragon_head",
+          "pavilion_roof_and_columns",
+          "seasonal_offering",
+          "outer_cloud"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "left_plaza"
+          ],
+          [
+            "spawn",
+            "left_south_floor"
+          ],
+          [
+            "spawn",
+            "pavilion_forecourt"
+          ],
+          [
+            "right_top_floor",
+            "right_south_floor"
+          ],
+          [
+            "right_middle_floor",
+            "right_top_floor"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "left_plaza",
+            "gridDistanceWorldUnits": 281.68124086713175
+          },
+          {
+            "from": "spawn",
+            "to": "left_south_floor",
+            "gridDistanceWorldUnits": 133.3969696196699
+          },
+          {
+            "from": "spawn",
+            "to": "pavilion_forecourt",
+            "gridDistanceWorldUnits": 115.74011537017753
+          },
+          {
+            "from": "right_top_floor",
+            "to": "right_south_floor",
+            "gridDistanceWorldUnits": 409.22034611053334
+          },
+          {
+            "from": "right_middle_floor",
+            "to": "right_top_floor",
+            "gridDistanceWorldUnits": 115.11269837220806
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 22.734463672807408,
+        "separatedRoutes": [
+          [
+            "left_plaza",
+            "right_top_floor"
+          ],
+          [
+            "spawn",
+            "right_middle_floor"
+          ]
+        ],
+        "maskSha256": "130f54f4df3fdcdf5b8623827975ffcafa08ebf68ddfc45eb5b992ec2e0865dd",
+        "maskBytes": 3947,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "19004": {
+        "walkableCells": 48,
+        "totalCells": 15862,
+        "componentCount": 1,
+        "componentSizes": [
+          48
+        ],
+        "spawnComponent": 0,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              1920,
+              1160
+            ],
+            "world": {
+              "x": 192.00000000000003,
+              "y": 0.0,
+              "z": 88.80000000000001
+            },
+            "component": 0
+          },
+          "west_safe_lane": {
+            "pixel": [
+              1860,
+              1180
+            ],
+            "world": {
+              "x": 186.00000000000003,
+              "y": 0.0,
+              "z": 86.80000000000001
+            },
+            "component": 0
+          },
+          "east_safe_lane": {
+            "pixel": [
+              2020,
+              1160
+            ],
+            "world": {
+              "x": 202.00000000000003,
+              "y": 0.0,
+              "z": 88.80000000000001
+            },
+            "component": 0
+          },
+          "south_safe_lane": {
+            "pixel": [
+              1940,
+              1210
+            ],
+            "world": {
+              "x": 194.00000000000003,
+              "y": 0.0,
+              "z": 83.80000000000001
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "central_rock_bank",
+          "discarded_south_approach_rock_ridge",
+          "south_rock_wall",
+          "rabbit_stone_altar",
+          "osmanthus_tree_and_tea_table",
+          "forest_canopy",
+          "outer_mist"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "west_safe_lane"
+          ],
+          [
+            "west_safe_lane",
+            "east_safe_lane"
+          ],
+          [
+            "spawn",
+            "south_safe_lane"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "west_safe_lane",
+            "gridDistanceWorldUnits": 6.82842712474619
+          },
+          {
+            "from": "west_safe_lane",
+            "to": "east_safe_lane",
+            "gridDistanceWorldUnits": 16.82842712474619
+          },
+          {
+            "from": "spawn",
+            "to": "south_safe_lane",
+            "gridDistanceWorldUnits": 6.82842712474619
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 0.9349126180414551,
+        "separatedRoutes": [],
+        "maskSha256": "96ae60eb9b0c3ba450723465b82021dc64f945cad0536853bc84f7447d460555",
+        "maskBytes": 1983,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      }
+    },
+    "allThreeBuildNavigationPassed": true,
+    "engineAccepted": false,
+    "serverNavigationPublished": false
+  }
+}

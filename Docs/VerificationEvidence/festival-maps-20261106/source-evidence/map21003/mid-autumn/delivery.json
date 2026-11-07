@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "key": "map21003",
+  "sceneId": 21003,
+  "revision": "festival20261106",
+  "appearance": "mid-autumn",
+  "layoutSha256": "a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540",
+  "sourceSelectionSha256": "7ee901253a002db7c791c476a5969847e82a884132facaa8db831b9d220cc0ad",
+  "navigationPlanSha256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/preview/midautumn/attempt-01/native.png",
+    "sha256": "280817fe50dc91cf1531896dfc3c791cc78838ee702320fc44db8748b108c602",
+    "bytes": 2336386,
+    "expectedSHA256Matched": true,
+    "pixels": [
+      1448,
+      1086
+    ]
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/progress.reconciled-20261104-v004.json",
+    "sha256": "10e7d638efd5b381c98d0246cdf75e4395a857bde161b630d46fc39846f691cb",
+    "bytes": 54350,
+    "expectedSHA256Matched": null,
+    "expectationSupplied": false
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r01_c01.json",
+      "sha256": "7920baa993aa4a694a4b39aa9b5dcf09046f97fe569cf57b34b2fb6045bbd20f"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r01_c02.json",
+      "sha256": "7da379da1a080082cff0f4394be10f41b0c79a59e8ae48fc2a61e2a023e33d23"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r01_c03.json",
+      "sha256": "72fdb0af77a5f2a3ca7a5d1b44af28f9f795188e324380db0f496a80d4a99c8e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r02_c01.json",
+      "sha256": "eebfdb6c285a86b05e4ba7bd8be6eeee065e1b8c23e66fa2e98c0ef9ed6a14f3"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r02_c02.json",
+      "sha256": "7f147762aa64645d40a3ae699d0b324ea8505b07a8eec0f95f82dc7f057eab80"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r02_c03.json",
+      "sha256": "488060164d70c8bfe936dc42560de938397e16e3123f515cf9ad5f22658749f6"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r03_c01.json",
+      "sha256": "743caa4f35552434ad4c3f5c16a8879e1ecbf6d6898b15e92117e00222284695"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r03_c02.json",
+      "sha256": "e39b6542ae98ae7fe9a80617d199f0c18ec0aa6c8beb74e19bc014e830e53b15"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map21003/mid-autumn/r03_c03.json",
+      "sha256": "e6b730cadf9c1aec47bde7d7b17065a971f89345965fd65935766b91448342d3"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using MmorpgClient.World.CurrentMaps;
 
 namespace MmorpgClient.Editor.CurrentMaps
 {
@@ -9,6 +10,7 @@ namespace MmorpgClient.Editor.CurrentMaps
     {
         public static bool IsTilePath(string path)
         {
+            if (IsModernTilePath(path)) return true;
             const string root = "Assets/Resources/World/CurrentMaps20261009/";
             if (path == null || !path.StartsWith(root, StringComparison.Ordinal) ||
                 !path.EndsWith(".png", StringComparison.OrdinalIgnoreCase)) return false;
@@ -18,13 +20,31 @@ namespace MmorpgClient.Editor.CurrentMaps
                 relative.StartsWith("village/tiles/", StringComparison.Ordinal);
         }
 
+        public static bool IsModernTilePath(string path)
+        {
+            const string prefix = "Assets/Resources/";
+            return path != null && path.StartsWith(prefix, StringComparison.Ordinal) &&
+                path.EndsWith(".png", StringComparison.OrdinalIgnoreCase) && path.Contains("/tiles/") &&
+                MapDeliveryContract.IsResourcePath(path.Substring(prefix.Length, path.Length - prefix.Length - 4));
+        }
+
+        public static bool IsModernLayoutPath(string path)
+        {
+            const string prefix = "Assets/Resources/";
+            return path != null && path.StartsWith(prefix, StringComparison.Ordinal) &&
+                path.EndsWith("/layout.png", StringComparison.Ordinal) &&
+                MapDeliveryContract.IsResourcePath(path.Substring(prefix.Length, path.Length - prefix.Length - 4));
+        }
+
         private void OnPreprocessTexture()
         {
-            if (!IsTilePath(assetPath)) return;
+            bool modernLayout = IsModernLayoutPath(assetPath);
+            if (!IsTilePath(assetPath) && !modernLayout) return;
             var importer = (TextureImporter)assetImporter;
+            int pixels = modernLayout ? 8192 : IsModernTilePath(assetPath) ? MapDeliveryContract.RuntimeTilePixels : 4096;
             importer.textureType = TextureImporterType.Default;
             importer.textureShape = TextureImporterShape.Texture2D;
-            importer.maxTextureSize = 4096;
+            importer.maxTextureSize = pixels;
             importer.npotScale = TextureImporterNPOTScale.None;
             importer.isReadable = false;
             importer.wrapMode = TextureWrapMode.Clamp;
@@ -36,7 +56,7 @@ namespace MmorpgClient.Editor.CurrentMaps
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.crunchedCompression = false;
             var defaults = importer.GetDefaultPlatformTextureSettings();
-            defaults.maxTextureSize = 4096;
+            defaults.maxTextureSize = pixels;
             defaults.format = TextureImporterFormat.RGB24;
             defaults.textureCompression = TextureImporterCompression.Uncompressed;
             importer.SetPlatformTextureSettings(defaults);

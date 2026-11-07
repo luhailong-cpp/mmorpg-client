@@ -55,6 +55,9 @@ ExportedObj/
 .consulo/
 *.csproj
 !tools/tests/character_availability/CharacterAvailability.csproj
+!tools/tests/map_delivery_contract/MapDeliveryContract.csproj
+!tools/tests/map_runtime_transition/MapRuntimeTransition.csproj
+!tools/tests/festival_map_delivery/FestivalMapDelivery.csproj
 *.unityproj
 *.sln
 *.slnx

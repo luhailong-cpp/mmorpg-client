@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 2,
+  "maps": [
+    {
+      "key": "map21003",
+      "sceneId": 21003,
+      "name": "地图 21003",
+      "revision": "festival20261106",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map21003/festival20261106/spring/84c21c3bbf8efbba2ccc5c17eb1d7c1a8485faf2d7af7a57b8c0925a9328c6fb/",
+          "layoutSha256": "84c21c3bbf8efbba2ccc5c17eb1d7c1a8485faf2d7af7a57b8c0925a9328c6fb",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map21003/festival20261106/mid-autumn/a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540/",
+          "layoutSha256": "a1ef95dcb648c42749a67dee434159851666c52d57cb52bbe6481e43b4100540",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map28007",
+      "sceneId": 28007,
+      "name": "地图 28007",
+      "revision": "festival20261106",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map28007/festival20261106/spring/b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4/",
+          "layoutSha256": "b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map35004",
+      "sceneId": 35004,
+      "name": "地图 35004",
+      "revision": "festival20261106",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map35004/festival20261106/spring/466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8/",
+          "layoutSha256": "466276903a06344cb0c297c84970c93a957b945632aa3c4fee1b58cb9c7374d8",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map35004/festival20261106/mid-autumn/122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4/",
+          "layoutSha256": "122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map01001",
+      "sceneId": 1001,
+      "name": "地图 01001",
+      "revision": "festival20261107",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map01001/festival20261107/spring/13593f7c7e8cb2afc8e15bcc71402d39fea0946065c8f317accd2576fa361c0f/",
+          "layoutSha256": "13593f7c7e8cb2afc8e15bcc71402d39fea0946065c8f317accd2576fa361c0f",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map01001/festival20261107/mid-autumn/9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320/",
+          "layoutSha256": "9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map01002",
+      "sceneId": 1002,
+      "name": "地图 01002",
+      "revision": "festival20261107",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map01002/festival20261107/spring/0f4f6b00fea4c0bf9d08710bb1f60fa9f2a3f1fa13efb647b6d5abcbad4a7e06/",
+          "layoutSha256": "0f4f6b00fea4c0bf9d08710bb1f60fa9f2a3f1fa13efb647b6d5abcbad4a7e06",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map01002/festival20261107/mid-autumn/670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31/",
+          "layoutSha256": "670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map05008",
+      "sceneId": 5008,
+      "name": "地图 05008",
+      "revision": "festival20261107",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map05008/festival20261107/spring/8354773b1551544ce0f9b2db93285cceec17f49225830fe89ca43bf7ef2ddc88/",
+          "layoutSha256": "8354773b1551544ce0f9b2db93285cceec17f49225830fe89ca43bf7ef2ddc88",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map05008/festival20261107/mid-autumn/bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89/",
+          "layoutSha256": "bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map10000",
+      "sceneId": 10000,
+      "name": "地图 10000",
+      "revision": "festival20261107",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/map10000/festival20261107/spring/8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407/",
+          "layoutSha256": "8c24617e36fe1b7c3b5e43a031931d1ca5e1171c911cb87f014f34cc795bc407",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map10000/festival20261107/mid-autumn/c8523d9d6d4e75ed94edfebd0a879e63b9485b4fa968306dada2c1db2b0bbe98/",
+          "layoutSha256": "c8523d9d6d4e75ed94edfebd0a879e63b9485b4fa968306dada2c1db2b0bbe98",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map19004",
+      "sceneId": 19004,
+      "name": "地图 19004",
+      "revision": "festival20261107",
+      "clientOnly": true,
+      "defaultAppearance": "mid-autumn",
+      "appearances": [
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map19004/festival20261107/mid-autumn/b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63/",
+          "layoutSha256": "b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
+      "key": "map23006",
+      "sceneId": 23006,
+      "name": "地图 23006",
+      "revision": "festival20261107",
+      "clientOnly": true,
+      "defaultAppearance": "mid-autumn",
+      "appearances": [
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/map23006/festival20261107/mid-autumn/af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1/",
+          "layoutSha256": "af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    }
+  ]
+}

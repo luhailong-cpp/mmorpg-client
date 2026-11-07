@@ -21,6 +21,8 @@ namespace MmorpgClient.World.Tianyong
     public sealed class TianyongMapConfig : ScriptableObject
     {
         public const string ResourcesPath = "World/Tianyong/TianyongMapConfig";
+        // 普通移动在原配置基础上加快两倍；保留已序列化的基础速度，避免旧配置漏改。
+        public const float PlayerMovementSpeedMultiplier = 2f;
 
         [Header("Scene")]
         [SerializeField, Min(1)] private uint sceneConfigId = TianyongMapDefinition.DefaultSceneConfigId;
@@ -78,7 +80,7 @@ namespace MmorpgClient.World.Tianyong
             return config != null ? config.GroundDiscAspect : DefaultGroundDiscAspect;
         }
 
-        public float MoveSpeed => moveSpeed;
+        public float MoveSpeed => moveSpeed * PlayerMovementSpeedMultiplier;
         public float PlayerHeight => playerHeight;
         public float PlayerRadius => playerRadius;
         public float PlayerStepOffset => playerStepOffset;

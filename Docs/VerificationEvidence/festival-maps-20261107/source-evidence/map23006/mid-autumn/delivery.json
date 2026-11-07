@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "key": "map23006",
+  "sceneId": 23006,
+  "revision": "festival20261107",
+  "appearance": "mid-autumn",
+  "layoutSha256": "af9f2169700bb409e2d148011067e9a045ddf21b4ab443bb284c1817621932e1",
+  "sourceSelectionSha256": "1c4ac495a0e617a9d2e92a92b44a66d7ae9fb712834ef3ffa4b6b2c4607c2c5d",
+  "navigationPlanSha256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image/designs/client-map-qdao-20261102/23006/preview/midautumn/v001/client-23006-midautumn-preview-v001.png",
+    "sha256": "6685e7dc4a1681c24c1b2876ac1b71cafec12617f14d413e6d970780d53392c0",
+    "bytes": 2135022,
+    "exists": true,
+    "expectationSupplied": true,
+    "expectedSHA256Matched": true,
+    "pixels": [
+      1479,
+      1063
+    ]
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image-production-staging-20261103/hefeng-water-pavilion/designs/client-map-qdao-20261102/23006/runtime/midautumn/v001/runtime-export-manifest.json",
+    "sha256": "388def5710d9c79390d7de3b437933b700408df3d10397e1f35bcace304f9373",
+    "bytes": 10772,
+    "exists": true,
+    "expectationSupplied": false,
+    "expectedSHA256Matched": null
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map23006/mid-autumn/r01_c01.json",
+      "sha256": "6d997a0b20b8aaa9cf441a6de09d56cbd73d8e260e219284f9d6a37fc70f2ecc"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map23006/mid-autumn/r01_c02.json",
+      "sha256": "2a4c62d69b90fc9a48e20f037fd446c47c7d46c1b70f5e87f495bb4ae3612949"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map23006/mid-autumn/r02_c01.json",
+      "sha256": "6a7ed8b8154d8afe14b49b12feb54f59458d5a612d77c8b270c73108b2ae00cf"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map23006/mid-autumn/r02_c02.json",
+      "sha256": "5091be1a05a4a42919cfa6c12f584b78f79cc5fb58913631dae4bae6ccc20f1e"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

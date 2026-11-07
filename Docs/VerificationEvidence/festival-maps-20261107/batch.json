@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "revision": "festival20261107",
+  "evidenceDirectory": "Docs/VerificationEvidence/festival-maps-20261107",
+  "scope": [
+    {
+      "mapId": "01001",
+      "appearance": "spring",
+      "columns": 2,
+      "rows": 1
+    },
+    {
+      "mapId": "01001",
+      "appearance": "mid-autumn",
+      "columns": 2,
+      "rows": 1
+    },
+    {
+      "mapId": "01002",
+      "appearance": "spring",
+      "columns": 2,
+      "rows": 1
+    },
+    {
+      "mapId": "01002",
+      "appearance": "mid-autumn",
+      "columns": 2,
+      "rows": 1
+    },
+    {
+      "mapId": "19004",
+      "appearance": "mid-autumn",
+      "columns": 3,
+      "rows": 2
+    },
+    {
+      "mapId": "05008",
+      "appearance": "spring",
+      "columns": 3,
+      "rows": 2
+    },
+    {
+      "mapId": "05008",
+      "appearance": "mid-autumn",
+      "columns": 3,
+      "rows": 2
+    },
+    {
+      "mapId": "23006",
+      "appearance": "mid-autumn",
+      "columns": 2,
+      "rows": 2
+    },
+    {
+      "mapId": "10000",
+      "appearance": "spring",
+      "columns": 4,
+      "rows": 3
+    },
+    {
+      "mapId": "10000",
+      "appearance": "mid-autumn",
+      "columns": 4,
+      "rows": 3
+    }
+  ]
+}

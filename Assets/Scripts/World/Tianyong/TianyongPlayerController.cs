@@ -14,7 +14,7 @@ namespace MmorpgClient.World.Tianyong
     [DisallowMultipleComponent]
     public sealed class TianyongPlayerController : MonoBehaviour
     {
-        private const float DefaultMoveSpeed = 9f;
+        private const float DefaultMoveSpeed = 9f * TianyongMapConfig.PlayerMovementSpeedMultiplier;
         private const float DefaultHeight = 1.8f;
         private const float DefaultRadius = 0.38f;
         private const float DefaultStepOffset = 0.35f;
@@ -37,7 +37,7 @@ namespace MmorpgClient.World.Tianyong
         private const float SyncInterval = 0.25f;
         // A turn sharper than ~20 degrees is reported right away instead of waiting for the
         // next periodic sync: remote clients extrapolate along the last reported velocity, so
-        // an unreported turn shows up there as up to SyncInterval * speed (2.25 units) of
+        // an unreported turn shows up there as up to SyncInterval * speed of
         // running straight on, then a pull back. The minimum spacing keeps a continuously
         // curving walk at ~8 reports/s, inside the gate's MoveSync quota (20 per ~2 s window).
         private const float TurnSyncCosine = 0.94f;
@@ -179,11 +179,13 @@ namespace MmorpgClient.World.Tianyong
             // it from a prefab's pre-existing CharacterController settings;
             // Initialize is also responsible for normalising those settings.
             var initialFeet = transform.position;
+            // A bad candidate must not stop or rebind the currently active player.
+            var resolvedFallback = ResolveFallbackSpawn(navigation, initialFeet, fallbackSpawn);
             StopMoving();
 
             _client = client;
             _navigation = navigation;
-            _fallbackSpawn = ResolveFallbackSpawn(initialFeet, fallbackSpawn);
+            _fallbackSpawn = resolvedFallback;
             _camera = worldCamera;
             _moveSpeed = config != null ? config.MoveSpeed : DefaultMoveSpeed;
 
@@ -223,26 +225,61 @@ namespace MmorpgClient.World.Tianyong
             SetServerDriven(client?.World != null && client.World.LocalServerDriven);
         }
 
-        private Vector3 ResolveFallbackSpawn(Vector3 initialFeet, Vector3? requested)
+        private Vector3 ClampToMap(Vector3 world, float margin = 2f)
+            => _navigation != null ? _navigation.ClampXZ(world, margin) : TianyongMapDefinition.ClampXZ(world, margin);
+
+        // A same-runtime map replacement only changes navigation and feet. It
+        // must not destroy/recreate actor colliders as first initialization does.
+        internal void ApplyPreparedMapNavigation(TianyongNavigationGrid navigation, Vector3 fallback, Vector3 feet)
         {
-            var candidate = requested ?? (_navigation != null && _navigation.IsWalkable(initialFeet)
-                ? initialFeet : TianyongMapDefinition.DefaultSpawn);
-            candidate = TianyongMapDefinition.ClampXZ(candidate, 2f);
-            if (_navigation == null || _navigation.IsWalkable(candidate)) return candidate;
-            if (_navigation.TryFindNearestWalkable(candidate, out var nearest))
-            {
-                nearest = TianyongMapDefinition.ClampXZ(nearest, 2f);
-                if (_navigation.IsWalkable(nearest)) return nearest;
-            }
-            throw new System.InvalidOperationException(
-                $"[TianyongPlayerController] No walkable recovery spawn near {candidate}; supply this map's valid spawn.");
+            _navigation = navigation;
+            _fallbackSpawn = fallback;
+            WarpTo(feet);
         }
+
+        internal System.Action CaptureMapBinding()
+        {
+            var navigation = _navigation;
+            var fallback = _fallbackSpawn;
+            var path = _path.ToArray();
+            var waypoint = _waypoint;
+            var moving = _moving;
+            var networkTarget = _networkTarget;
+            var serverDriven = _serverDriven;
+            var destination = _destination;
+            var pendingReport = _pendingReport;
+            var position = transform.position;
+            var motorEnabled = _motor != null && _motor.enabled;
+            var wasEnabled = enabled;
+            return () =>
+            {
+                // Restore the enable flag before the current server-driven state.
+                enabled = wasEnabled;
+                _navigation = navigation;
+                _fallbackSpawn = fallback;
+                _path.Clear();
+                _path.AddRange(path);
+                _waypoint = waypoint;
+                _moving = moving;
+                _networkTarget = networkTarget;
+                _serverDriven = serverDriven;
+                _destination = destination;
+                _pendingReport = pendingReport;
+                if (_motor != null) _motor.enabled = false;
+                transform.position = position;
+                if (_motor != null) _motor.enabled = motorEnabled;
+            };
+        }
+
+        internal static Vector3 ResolveFallbackSpawn(TianyongNavigationGrid navigation, Vector3 initialFeet, Vector3? requested)
+            => navigation != null ? navigation.ResolveFallbackSpawn(initialFeet, requested) :
+                TianyongMapDefinition.ClampXZ(requested ?? TianyongMapDefinition.DefaultSpawn, 2f);
 
         /// <summary>Immediately places the capsule so its feet land at the supplied world point.</summary>
         public void WarpTo(Vector3 feetPosition)
         {
             CancelPath(false);
-            feetPosition = TianyongMapDefinition.ClampXZ(feetPosition, 2f);
+            feetPosition = ClampToMap(feetPosition, 2f);
 
             if (_motor == null)
             {
@@ -378,7 +415,7 @@ namespace MmorpgClient.World.Tianyong
         {
             if (_navigation == null) return false;
 
-            feetDestination = TianyongMapDefinition.ClampXZ(feetDestination, 2f);
+            feetDestination = ClampToMap(feetDestination, 2f);
             var feet = FeetPosition;
             feetDestination.y = feet.y;
             _destination = feetDestination;
@@ -557,7 +594,7 @@ namespace MmorpgClient.World.Tianyong
             var dt = Mathf.Min(Mathf.Max(deltaTime, 0f), 0.05f);
             var velocity = direction.normalized * _moveSpeed;
             var step = velocity * dt;
-            var candidateFeet = TianyongMapDefinition.ClampXZ(FeetPosition + step, 2f);
+            var candidateFeet = ClampToMap(FeetPosition + step, 2f);
             if (!_debugIgnoreMask && !_navigation.IsWalkable(candidateFeet))
             {
                 StopMoving();

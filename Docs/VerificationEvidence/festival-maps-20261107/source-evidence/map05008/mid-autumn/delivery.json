@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "key": "map05008",
+  "sceneId": 5008,
+  "revision": "festival20261107",
+  "appearance": "mid-autumn",
+  "layoutSha256": "bcc804a36d0fb5f384d43db0e94c3114d620c96e199594a395ff3eadf2a3dd89",
+  "sourceSelectionSha256": "1c4ac495a0e617a9d2e92a92b44a66d7ae9fb712834ef3ffa4b6b2c4607c2c5d",
+  "navigationPlanSha256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image-production-staging-20261103/hefeng-water-pavilion/designs/client-map-qdao-20261102/05008/preview/midautumn/v001/client-05008-midautumn-preview-v001.png",
+    "sha256": "3c253c0a1653ffb26eb3994eee433d75859f2f2f51029c1307db565f19369ce9",
+    "bytes": 2233949,
+    "exists": true,
+    "expectationSupplied": true,
+    "expectedSHA256Matched": true,
+    "pixels": [
+      1585,
+      992
+    ]
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image-production-staging-20261103/hefeng-water-pavilion/designs/client-map-qdao-20261102/05008/runtime/midautumn/v001/runtime-export-manifest.json",
+    "sha256": "044e949f143d39538cc4f5f8a8cd446616f37de5c432d892721146308b60c865",
+    "bytes": 15752,
+    "exists": true,
+    "expectationSupplied": false,
+    "expectedSHA256Matched": null
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map05008/mid-autumn/r01_c01.json",
+      "sha256": "d18b40ce5122341d22f535c920557732b158690f93c20af83cdba4a64c982510"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map05008/mid-autumn/r01_c02.json",
+      "sha256": "d076ae3e729e33583422aae27938508c8be065816315f7ee9c16e52e5eb36401"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map05008/mid-autumn/r01_c03.json",
+      "sha256": "a95e252afca2d94dd960b99264184c4a9cf1d953a417c3dcd6a703d529b8c258"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map05008/mid-autumn/r02_c01.json",
+      "sha256": "8a63ca05b2d11bbec7b14898fb81ac5de5371ff0d60e2cff028b306587bdd2dc"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map05008/mid-autumn/r02_c02.json",
+      "sha256": "68c8b99b102f32cfb7c5acdab8b21bb11f368910b72977914ae266491d27acb6"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map05008/mid-autumn/r02_c03.json",
+      "sha256": "ca2283b9dfc160cf013c46e0f88b581fd01e004ea531f04e65a42c32f5d9974d"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

@@ -25,6 +25,7 @@ namespace MmorpgClient.World.Tianyong
         private ActorView _localPlayer;
         private uint _activeSceneConfigId;
         private CurrentMapDefinition _currentMap;
+        private string _appearance = "normal";
 
         public TianyongMapInstance Map => _map;
         public TianyongTheme Theme => TianyongTheme.City;
@@ -32,13 +33,30 @@ namespace MmorpgClient.World.Tianyong
         public Camera WorldCamera => worldCamera;
         public Light DirectionalSun => directionalSun;
         public uint ActiveSceneConfigId => _activeSceneConfigId;
-        public bool FestivalAppearance => false;
+        public bool FestivalAppearance => _currentMap != null && _currentMap.Appearance != "normal";
+        public string Appearance => _currentMap?.Appearance ?? "normal";
         public Vector3 CurrentSpawn => (_currentMap ?? CurrentMapCatalog.Find(1u)).Spawn;
 
         public void SetFestivalAppearance(bool festival)
         {
-            // The current delivery has one day appearance per map. Old festival art
-            // has different geometry and must never replace the current layout.
+            TrySetAppearance(festival ? "spring" : "normal");
+        }
+
+        /// <summary>Only delivered formal appearances can switch; visual changes cannot replace navigation.</summary>
+        public bool TrySetAppearance(string appearance)
+        {
+            if (_currentMap == null || !MapDeliveryContract.IsAppearance(appearance)) return false;
+            var selected = CurrentMapCatalog.Find(_activeSceneConfigId)?.ForAppearance(appearance);
+            if (selected == null) return false;
+            if (selected.ContentIdentity == _currentMap.ContentIdentity) return true;
+            return TryInstallMap(selected, true, true);
+        }
+
+        public void RefreshCurrentDelivery()
+        {
+            if (_activeSceneConfigId == 0) return;
+            CurrentMapCatalog.ReloadDeliveries();
+            EnterScene(_activeSceneConfigId);
         }
 
         public void Initialize(GameClient client)
@@ -106,36 +124,119 @@ namespace MmorpgClient.World.Tianyong
             var nextMapDefinition = CurrentMapCatalog.Find(sceneConfigId);
             if (nextMapDefinition == null)
             {
+                // An installed-catalog refresh is not a server scene change.
+                if (_map != null && _activeSceneConfigId == sceneConfigId)
+                {
+                    Debug.LogError("[CurrentMap] 当前场景的新交付未就绪，保留现有地图。");
+                    return;
+                }
                 UnloadMap();
                 return;
             }
+            nextMapDefinition = nextMapDefinition.ForAppearance(_appearance) ?? nextMapDefinition;
 
             // 先构建有效地图再替换旧地图；不能拿旧城导航继续控制新地点。
-            if (_map == null || _activeSceneConfigId != sceneConfigId)
+            if (_map == null || _activeSceneConfigId != sceneConfigId ||
+                _currentMap.ContentIdentity != nextMapDefinition.ContentIdentity)
             {
-                TianyongMapInstance nextMap;
-                try
-                {
-                    nextMap = CurrentMapBuilder.Build(transform, nextMapDefinition);
-                }
-                catch
-                {
-                    // The server has already changed scenes. A failed local load must
-                    // not leave the previous world's navigation attached to new actors.
-                    UnloadMap();
-                    throw;
-                }
-                if (_map?.Root != null) _map.Root.SetActive(false);
-                _map?.Dispose();
-                _map = nextMap;
-                _currentMap = nextMapDefinition;
-                _activeSceneConfigId = sceneConfigId;
+                TryInstallMap(nextMapDefinition, _map != null && _activeSceneConfigId == sceneConfigId, false);
+                return;
             }
+            PrepareActiveMap();
+        }
+
+        private bool TryInstallMap(CurrentMapDefinition definition, bool preserveCurrentOnFailure, bool requireSameNavigation)
+        {
+            var previousMap = _map;
+            var previousDefinition = _currentMap;
+            var previousScene = _activeSceneConfigId;
+            var previousAppearance = _appearance;
+            var previousRelocated = _playerRelocated;
+            var previousPlayer = _localPlayer;
+            var playerObject = previousPlayer?.Go;
+            var previousController = playerObject != null ? playerObject.GetComponent<TianyongPlayerController>() : null;
+            var previousPosition = playerObject != null ? playerObject.transform.position : Vector3.zero;
+            var previousHasTarget = previousPlayer != null && previousPlayer.HasTarget;
+            var previousVelocity = previousPlayer != null ? previousPlayer.Velocity : Vector3.zero;
+            System.Action restorePlayer = null;
+            System.Action restoreCamera = null;
+            TianyongMapInstance candidate = null;
+            try
+            {
+                if (requireSameNavigation && !previousDefinition.SharesNavigationWith(definition))
+                    throw new System.InvalidOperationException("同图外观必须保留完全相同的导航和有效范围。");
+                candidate = CurrentMapBuilder.Build(transform, definition);
+                candidate.Root.SetActive(false);
+                // Source, bounds, chunks and recovery-spawn validation all happen
+                // while the old map and its actor/camera bindings remain intact.
+                var spawn = definition.Spawn;
+                var bounds = definition.EffectiveWorldRect;
+                TianyongCameraController.ValidateWorldBounds(bounds);
+                candidate.UpdateVisibleChunks(spawn, VisibleChunkRadius);
+                if (playerObject != null)
+                    TianyongPlayerController.ResolveFallbackSpawn(candidate.Navigation, playerObject.transform.position, spawn);
+                restorePlayer = previousController?.CaptureMapBinding();
+                restoreCamera = _cameraController?.CaptureMapBinding();
+
+                _map = candidate;
+                _currentMap = definition;
+                _activeSceneConfigId = definition.SceneConfigId;
+                _appearance = definition.Appearance;
+                // Binding can still fail (for example a disappearing actor).
+                // Keep the old root alive until this entire preparation succeeds.
+                PrepareActiveMap(false);
+            }
+            catch (System.Exception error)
+            {
+                _map = previousMap;
+                _currentMap = previousDefinition;
+                _activeSceneConfigId = previousScene;
+                _appearance = previousAppearance;
+                _localPlayer = previousPlayer;
+                _playerRelocated = previousRelocated;
+                candidate?.Root.SetActive(false);
+                candidate?.Dispose();
+                if (restorePlayer != null) restorePlayer();
+                else if (previousController == null && playerObject != null)
+                {
+                    var added = playerObject.GetComponent<TianyongPlayerController>();
+                    if (added != null) { added.enabled = false; Destroy(added); }
+                    playerObject.transform.position = previousPosition;
+                }
+                restoreCamera?.Invoke();
+                if (previousPlayer != null)
+                {
+                    previousPlayer.HasTarget = previousHasTarget;
+                    previousPlayer.Velocity = previousVelocity;
+                }
+                if (preserveCurrentOnFailure)
+                {
+                    Debug.LogError("[CurrentMap] 新交付切换未完成，保留当前地图及导航：" + error.Message);
+                    return false;
+                }
+                // A real server scene change must not leave old navigation attached.
+                UnloadMap();
+                throw;
+            }
+
+            // The candidate and its runtime bindings are ready. Retire the old
+            // view only at the final commit, never on a failed same-scene refresh.
+            if (previousMap?.Root != null) previousMap.Root.SetActive(false);
+            previousMap?.Dispose();
+            ReportRelocatedPlayer();
+            return true;
+        }
+
+        private bool _playerRelocated;
+
+        private void PrepareActiveMap(bool reportRelocation = true)
+        {
             _map.Root.SetActive(true);
             _map.UpdateVisibleChunks(CurrentSpawn, VisibleChunkRadius);
             TianyongLighting.Apply(TianyongTheme.City, directionalSun);
             _cameraController?.SetTheme(TianyongTheme.City, true);
-            if (_localPlayer?.Go != null) AttachLocalController(_localPlayer);
+            _cameraController?.SetWorldBounds(_currentMap.EffectiveWorldRect);
+            if (_localPlayer?.Go != null) AttachLocalController(_localPlayer, reportRelocation);
             Debug.Log($"[CurrentMap] ready scene={_activeSceneConfigId} map={_currentMap.Key} spawn={CurrentSpawn}");
         }
 
@@ -157,7 +258,7 @@ namespace MmorpgClient.World.Tianyong
             AttachLocalController(view);
         }
 
-        private void AttachLocalController(ActorView view)
+        private void AttachLocalController(ActorView view, bool reportRelocation = true)
         {
             var controller = view.Go.GetComponent<TianyongPlayerController>();
             var serverFeet = controller != null && controller.Motor != null
@@ -182,16 +283,35 @@ namespace MmorpgClient.World.Tianyong
 
             if (controller == null) controller = view.Go.AddComponent<TianyongPlayerController>();
             controller.enabled = true;
-            controller.Initialize(_client, _map.Navigation, worldCamera, config, CurrentSpawn);
-            controller.WarpTo(feetPosition);
+            if (controller.Motor == null)
+            {
+                controller.Initialize(_client, _map.Navigation, worldCamera, config, CurrentSpawn);
+                controller.WarpTo(feetPosition);
+            }
+            else
+            {
+                var fallback = TianyongPlayerController.ResolveFallbackSpawn(_map.Navigation, view.Go.transform.position, CurrentSpawn);
+                controller.ApplyPreparedMapNavigation(_map.Navigation, fallback, feetPosition);
+            }
             if (relocated)
             {
                 Debug.LogWarning(
-                    $"[TianyongMapRuntime] server spawn {serverFeet} is not walkable; relocated local actor to {controller.FeetPosition} and reported it");
-                controller.ReportPositionToServer();
+                    $"[TianyongMapRuntime] server spawn {serverFeet} is not walkable; relocated local actor to {controller.FeetPosition}; position report follows map commit");
+                _playerRelocated = true;
+                if (reportRelocation) ReportRelocatedPlayer();
             }
             _cameraController?.SetTarget(view.Go.transform);
             _map.UpdateVisibleChunks(feetPosition, VisibleChunkRadius);
+        }
+
+        private void ReportRelocatedPlayer()
+        {
+            if (!_playerRelocated) return;
+            _playerRelocated = false;
+            if (_localPlayer?.Go == null) return;
+            // Network reporting occurs after commit; it cannot roll back artwork.
+            try { _localPlayer.Go.GetComponent<TianyongPlayerController>()?.ReportPositionToServer(); }
+            catch (System.Exception error) { Debug.LogWarning("[CurrentMap] 位置同步失败：" + error.Message); }
         }
 
         private void Update()

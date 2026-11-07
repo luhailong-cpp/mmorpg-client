@@ -77,3 +77,31 @@ jobs:
         run: python tools/import_completed_map_tiles.py --verify --map ${{ matrix.map }}
       - name: Check partial map delivery validation
         run: python -m unittest discover -s tools/tests -p test_import_completed_map_tiles.py -v
+
+  verify-festival-maps:
+    name: Festival maps and navigation (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.gitattributes
+            /tools/
+            /Assets/Scripts/World/
+            /Assets/Resources/World/QdaoMaps20261102/
+            /Assets/Resources/World/QdaoMaps20261102.meta
+            /Docs/VerificationEvidence/festival-maps-20261106/
+      - name: Install image verification dependency
+        run: python -m pip install Pillow
+      - name: Verify five formal festival appearances and portable evidence
+        run: python tools/import_festival_maps.py verify
+      - name: Check festival delivery rejection and tamper handling
+        run: python -m unittest discover -s tools/tests -p test_import_festival_maps.py -v
+      - name: Check authored navigation masks, blocked ground and detached platforms
+        run: python -m unittest discover -s tools/tests -p test_festival_map_navigation.py -v

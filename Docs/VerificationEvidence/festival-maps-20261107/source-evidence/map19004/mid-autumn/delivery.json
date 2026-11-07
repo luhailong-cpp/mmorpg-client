@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "key": "map19004",
+  "sceneId": 19004,
+  "revision": "festival20261107",
+  "appearance": "mid-autumn",
+  "layoutSha256": "b742f5282b9f6109ee5f87d024efaa4d4cd9143731e1e1f98587cb5d98282a63",
+  "sourceSelectionSha256": "1c4ac495a0e617a9d2e92a92b44a66d7ae9fb712834ef3ffa4b6b2c4607c2c5d",
+  "navigationPlanSha256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image-production-staging-20261103/tingzhu-village/client-map-qdao-20261102/19004/preview/midautumn/v001/client-19004-original-qdao-midautumn-preview-v001.png",
+    "sha256": "292c42e2f652fac94133791dfedf3ced579779a0a51eeb891ad50b4d08bdc492",
+    "bytes": 3118803,
+    "exists": true,
+    "expectationSupplied": true,
+    "expectedSHA256Matched": true,
+    "pixels": [
+      1672,
+      941
+    ]
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image-production-staging-20261103/tingzhu-village/client-map-qdao-20261102/19004/formal/coordinate-manifest.json",
+    "sha256": "f2e8e8e6479fa142ac1548ceb1fd297c4372dc828a9921029ea01a2ae3bab40d",
+    "bytes": 111544,
+    "exists": true,
+    "expectationSupplied": false,
+    "expectedSHA256Matched": null
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map19004/mid-autumn/r01_c01.json",
+      "sha256": "b18fdf96f8c49563e5ba4e13ee62d521539baffe9d7cebb6ed2f80a7443e96a9"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map19004/mid-autumn/r01_c02.json",
+      "sha256": "556e4b7c092d79a4d7744d51f4c0f9fd2191fdbb3dde71381f54d08a9cca1bcc"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map19004/mid-autumn/r01_c03.json",
+      "sha256": "82ec34b216fc3e84fae335547e3de7c115b10ba67212de9f8ce70b2ea8c39dfc"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map19004/mid-autumn/r02_c01.json",
+      "sha256": "5b468d856e960b96c6698899513a2918aead6fd541215b2261cdbfc736d9e4e8"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map19004/mid-autumn/r02_c02.json",
+      "sha256": "c04249f5fea55f5b4a27ea6909a62fe2ec0e46c16a72fb561aa5c6e1ad516c85"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map19004/mid-autumn/r02_c03.json",
+      "sha256": "783a43177ce2af7cab3dad5947fb6d10f0a241a3d83db8e6db8c809c67b677aa"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

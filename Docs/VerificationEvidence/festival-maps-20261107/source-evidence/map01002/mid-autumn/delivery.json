@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "key": "map01002",
+  "sceneId": 1002,
+  "revision": "festival20261107",
+  "appearance": "mid-autumn",
+  "layoutSha256": "670d49ca0362ca8459995e4b2f8f18ad676d78f68d8ab5cbd422d9e56c64ea31",
+  "sourceSelectionSha256": "1c4ac495a0e617a9d2e92a92b44a66d7ae9fb712834ef3ffa4b6b2c4607c2c5d",
+  "navigationPlanSha256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image-production-staging-20261103/tingzhu-village/client-map-qdao-20261102/01002/preview/midautumn/v001/client-01002-original-qdao-midautumn-preview-v001.png",
+    "sha256": "f9a5ff108b5be2e06139e0657b4cfafe826ffe8dffbde6d43f9a49426262defa",
+    "bytes": 2200119,
+    "exists": true,
+    "expectationSupplied": true,
+    "expectedSHA256Matched": true,
+    "pixels": [
+      1448,
+      1086
+    ]
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image-production-staging-20261103/tingzhu-village/client-map-qdao-20261102/01002/formal/coordinate-manifest.json",
+    "sha256": "c26854863eb75f17650b2b4f2b5e92e5662d761e619d4423b204fef7282e39ad",
+    "bytes": 37538,
+    "exists": true,
+    "expectationSupplied": false,
+    "expectedSHA256Matched": null
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map01002/mid-autumn/r01_c01.json",
+      "sha256": "f11b0bcb458cbedad40599c0116cfbe2af13d809dc61800266d5a33378a2f78d"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map01002/mid-autumn/r01_c02.json",
+      "sha256": "bd13c24800fc40f3a5fa89ad27035f4e73e8f0ac2592dae3a2dfde2910ab5880"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

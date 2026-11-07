@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <RestoreIgnoreFailedSources>true</RestoreIgnoreFailedSources>
+    <Nullable>disable</Nullable>
+    <!-- Unity JsonUtility populates serialized DTO fields outside managed assignment analysis. -->
+    <NoWarn>$(NoWarn);CS0649</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="../../../Assets/Scripts/World/CurrentMaps/MapDeliveryContract.cs" Link="MapDeliveryContract.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis"><HintPath>$(MSBuildSDKsPath)/../Roslyn/bincore/Microsoft.CodeAnalysis.dll</HintPath></Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp"><HintPath>$(MSBuildSDKsPath)/../Roslyn/bincore/Microsoft.CodeAnalysis.CSharp.dll</HintPath></Reference>
+  </ItemGroup>
+  <PropertyGroup Condition="'$(UnityManagedPath)' != ''">
+    <DefineConstants>$(DefineConstants);UNITY_MANAGED_CHECKS</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(UnityManagedPath)' != ''">
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(UnityManagedPath)/UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule"><HintPath>$(UnityManagedPath)/UnityEngine.JSONSerializeModule.dll</HintPath></Reference>
+    <Compile Include="../../../Assets/Scripts/World/CurrentMaps/CurrentMapTilesManifest.cs" Link="CurrentMapTilesManifest.cs" />
+    <Compile Include="../../../Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs" Link="CurrentMapCatalog.cs" />
+    <Compile Include="../../../Assets/Scripts/World/Tianyong/CityTileManifest.cs" Link="CityTileManifest.cs" />
+    <Compile Include="../../../Assets/Scripts/World/Tianyong/TianyongNavigationGrid.cs" Link="TianyongNavigationGrid.cs" />
+    <Compile Include="../../../Assets/Scripts/World/Tianyong/TianyongMapDefinition.cs" Link="TianyongMapDefinition.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "testsRun": 26,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "includesActualTemporaryGitCheckout": true,
+  "sharedRepositoryGitOperations": false
+}

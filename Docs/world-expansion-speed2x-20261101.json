@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "说明": "真人要求所有城市扩大、普通人物速度翻倍、归元城加速后南北至少50秒。源码已改，构建与实机尚未通过。",
+  "executionRecord": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/world-expansion-speed2x-runtime-status-20261101-v001.json",
+    "sha256": "958b6bcc30b9eed459d97bfea2dabe111d00ce7ea4264da2e15a613646faa7ba"
+  },
+  "sourceChanges": {
+    "client": {
+      "effectiveMultiplier": 2,
+      "baseSerializedSpeedPreserved": 9,
+      "defaultEffectiveSpeed": 18,
+      "configuredSpeedPath": "TianyongMapConfig.MoveSpeed applies multiplier once.",
+      "noConfigFallbackPath": "TianyongPlayerController.DefaultMoveSpeed uses same multiplier.",
+      "files": [
+        "D:/work/mmorpg-client/Assets/Scripts/World/Tianyong/TianyongMapConfig.cs",
+        "D:/work/mmorpg-client/Assets/Scripts/World/Tianyong/TianyongPlayerController.cs"
+      ]
+    },
+    "cppServer": {
+      "trustedSpeedCapBefore": 10,
+      "trustedSpeedCapAfter": 20,
+      "normalSpeed": 18,
+      "teamFollowMaxSpeed": 19.8,
+      "file": "D:/work/xuanming-server-mmo-cpp/cpp/libs/services/scene/spatial/constants/nav.h",
+      "reportedVelocityClampRetained": true
+    }
+  },
+  "verification": {
+    "diffCheck": "PASS for all3 changed files; prior diff on these files was empty.",
+    "clientFirstCompile": {
+      "exitCode": 1,
+      "reason": "Fallback references point to an absent old Unity location. Discovered actual Unity at D:/Unity/Hub/Editor/6000.6.0f1."
+    },
+    "clientSecondCompile": {
+      "exitCode": 1,
+      "actualEditorRoot": "D:/Unity/Hub/Editor/6000.6.0f1",
+      "remappedReferences": 264,
+      "missingReferences": 4,
+      "reason": "Unity UI/TMP/Editor.UI package assemblies and obsolete SharedInternalsModule reference missing in current Library; project runtime compile not passed.",
+      "runtimeFilesChecked": 414
+    },
+    "cppSceneCompile": {
+      "exitCode": 1,
+      "reason": "Missing google/protobuf/runtime_version.h dependency; no binaries built/deployed.",
+      "msbuild": "D:/Program Files/Microsoft Visual Studio/18/Community/MSBuild/Current/Bin/MSBuild.exe"
+    },
+    "noRuntimeBenchmarkOrWorldChange": true
+  },
+  "javaParity": {
+    "sourceChanged": false,
+    "status": "PENDING_REPOSITORY_UNAVAILABLE",
+    "reason": "AGENTS configured D:/luyuan/wuxingqitan/xuanming-server-mmo-java is absent; D:/work contains no Java repository. No Java parity claimed."
+  },
+  "worldPlan": {
+    "mainMinimumNewSpeedTraverseSeconds": 50,
+    "defaultNewSpeed": 18,
+    "mainMinimumWorldRouteLength": 900,
+    "mainPlanningWorldSide": 1200,
+    "mainSideIsAssumptionNotImplemented": true,
+    "other15PlanningAxesVsCurrent": 2,
+    "other15FactorIsAssumption": true,
+    "normalFormalGridAndTargetsPreserved": true,
+    "worldNavigationSpawnNpcTeleportAndLoadingMappingImplemented": false,
+    "localActorBuildingRoadProportionsMustRemainCoherent": true
+  },
+  "deployment": {
+    "sourcePrepared": true,
+    "clientBuildVerified": false,
+    "cppBuildVerified": false,
+    "javaUpdated": false,
+    "deployed": false,
+    "mainNorthSouth50SecondsMeasured": false
+  }
+}

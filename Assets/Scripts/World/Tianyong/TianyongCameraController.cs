@@ -45,6 +45,46 @@ namespace MmorpgClient.World.Tianyong
         public bool IsTopDown => _topDown;
         public Camera RenderCamera => _camera;
         public Rect WorldBounds => _bounds;
+        public void SetWorldBounds(Rect bounds)
+        {
+            ValidateWorldBounds(bounds);
+            _bounds = bounds;
+            Snap();
+        }
+
+        internal static void ValidateWorldBounds(Rect bounds)
+        {
+            if (float.IsNaN(bounds.x) || float.IsNaN(bounds.y) || float.IsNaN(bounds.width) || float.IsNaN(bounds.height) ||
+                float.IsInfinity(bounds.x) || float.IsInfinity(bounds.y) || float.IsInfinity(bounds.width) || float.IsInfinity(bounds.height) ||
+                bounds.width <= 0 || bounds.height <= 0) throw new System.ArgumentException("Invalid camera world bounds.");
+        }
+
+        internal System.Action CaptureMapBinding()
+        {
+            var target = _target;
+            var focus = _focus;
+            var velocity = _velocity;
+            var zoom = _orthographicSize;
+            var topDown = _topDown;
+            var bounds = _bounds;
+            var position = _camera != null ? _camera.transform.position : Vector3.zero;
+            var rotation = _camera != null ? _camera.transform.rotation : Quaternion.identity;
+            var size = _camera != null ? _camera.orthographicSize : 0f;
+            var background = _camera != null ? _camera.backgroundColor : default;
+            var sortMode = _camera != null ? _camera.transparencySortMode : default;
+            var sortAxis = _camera != null ? _camera.transparencySortAxis : Vector3.zero;
+            return () =>
+            {
+                _target = target; _focus = focus; _velocity = velocity;
+                _orthographicSize = zoom; _topDown = topDown; _bounds = bounds;
+                if (_camera == null) return;
+                _camera.transform.SetPositionAndRotation(position, rotation);
+                _camera.orthographicSize = size;
+                _camera.backgroundColor = background;
+                _camera.transparencySortMode = sortMode;
+                _camera.transparencySortAxis = sortAxis;
+            };
+        }
         public Vector3 Focus => _focus;
         public float RequestedZoom => _orthographicSize;
 

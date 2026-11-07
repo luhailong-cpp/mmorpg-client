@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 2,
+  "deliveryStatus": "formal_runtime_tiles",
+  "key": "map01001",
+  "sceneId": 1001,
+  "revision": "festival20261107",
+  "appearance": "mid-autumn",
+  "resourceRoot": "World/QdaoMaps20261102/map01001/festival20261107/mid-autumn/9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320/",
+  "layoutSha256": "9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320",
+  "columns": 2,
+  "rows": 1,
+  "tilePixels": 1024,
+  "tiles": [
+    {
+      "row": 1,
+      "column": 1,
+      "resourcePath": "World/QdaoMaps20261102/map01001/festival20261107/mid-autumn/9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320/tiles/r01_c01",
+      "sha256": "61ec71082aa8cbaf863f7e5c4b5f1b79f8c2d33215fa3804d1effdeeecae39fc",
+      "bytes": 1311721,
+      "nativeSha256": "1afb6c0c870ef0718a1271b71e723f01156050939cf48c0fd8704dfc34479f73",
+      "nativePixels": 1254,
+      "evidencePath": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map01001/mid-autumn/r01_c01.json",
+      "evidenceSha256": "23f1ac557e77663c9c231893ea88412290f05d57a01dfb2f173872b66d6fbff9"
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "resourcePath": "World/QdaoMaps20261102/map01001/festival20261107/mid-autumn/9577fb41960897385b499a392176d390bc2e1585b335a614f8aa3524d0f72320/tiles/r01_c02",
+      "sha256": "5617ba57524b396475afceffb23dff5645d65f1fef23eda10cca89c6cb3c11a5",
+      "bytes": 1438818,
+      "nativeSha256": "02faa97351b21600b69aed8f8ef8e1653332e4fce73bce9d1202770f5dd87ec9",
+      "nativePixels": 1254,
+      "evidencePath": "Docs/VerificationEvidence/festival-maps-20261107/source-evidence/map01001/mid-autumn/r01_c02.json",
+      "evidenceSha256": "78ea9969a77436ba9a73952ea03ea603964dfb87530dcedff11ea0e076e3e690"
+    }
+  ],
+  "deliveredTileCount": 2,
+  "deliveredImageBytes": 2750539,
+  "sourceSelectionSha256": "1c4ac495a0e617a9d2e92a92b44a66d7ae9fb712834ef3ffa4b6b2c4607c2c5d",
+  "sourceEvidenceSha256": "7fa421199795d5f8640826261a30cf19e0fb159826278d582af4cbb8283434fb",
+  "navigationPlanSha256": "c2326bdb61729cc95a5e7d9c759ea01c4a90d78e7602d82ad6c6d1199d8eab03",
+  "wholeMapRuntimeAccepted": false,
+  "worldRect": {
+    "x": 0,
+    "y": 0,
+    "width": 204.8,
+    "height": 102.4
+  },
+  "effectiveWorldRect": {
+    "x": 34.13333333333333,
+    "y": 0.0,
+    "width": 136.53333333333333,
+    "height": 102.4
+  },
+  "imageRect": {
+    "x": 341.3333333333333,
+    "y": 0,
+    "width": 1365.3333333333333,
+    "height": 1024
+  },
+  "referenceWidth": 900,
+  "referenceHeight": 675
+}

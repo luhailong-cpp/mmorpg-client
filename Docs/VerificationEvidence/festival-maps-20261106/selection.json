@@ -1,0 +1,3432 @@
+{
+  "schemaVersion": 1,
+  "kind": "FROZEN_FORMAL_FESTIVAL_SOURCE_SELECTION_FOR_CLIENT_IMPORT",
+  "capturedAtUtc": "2026-11-06T11:53:10.258290+00:00",
+  "actualWorkspace": "D:/work/mmorpg-client",
+  "readOnlyArtRoots": [
+    "D:/work/image",
+    "D:/work/image-production-staging-20261103"
+  ],
+  "scope": [
+    {
+      "mapId": "21003",
+      "appearance": "spring",
+      "tiles": 9
+    },
+    {
+      "mapId": "21003",
+      "appearance": "midautumn",
+      "tiles": 9
+    },
+    {
+      "mapId": "28007",
+      "appearance": "spring",
+      "tiles": 6
+    },
+    {
+      "mapId": "35004",
+      "appearance": "spring",
+      "tiles": 6
+    },
+    {
+      "mapId": "35004",
+      "appearance": "midautumn",
+      "tiles": 6
+    }
+  ],
+  "totalTiles": 36,
+  "allSelectedNativeAndRuntimeHashesAndPNGDimensionsVerified": true,
+  "allFormalAcceptanceNativeIdentitiesMatched": true,
+  "newArtReviewPerformed": false,
+  "artFilesChanged": false,
+  "runtimeAssetsWritten": false,
+  "navigationAlreadyAccepted": false,
+  "coordinateConvention": "Image/guide rects are x0,y0,x1,y1 half-open, top-left raster. Convert to z-up once; do not pass minmax as xywh. Legacy21003 world numbers are provisional and need the documented orientation conversion.",
+  "sets": [
+    {
+      "mapId": "21003",
+      "appearance": "spring",
+      "tileCount": 9,
+      "targetTiles": 9,
+      "formalArtAccepted": true,
+      "canonicalManifest": {
+        "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/delivery/21003-spring-manifest.json",
+        "sha256": "4e364b605b041efd1e5b7d4a9d0ca4005f50d57901144ead80af73d9cd46b5bc",
+        "bytes": 14266,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "selectionAuthority": {
+        "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/delivery/21003-spring-manifest.json",
+        "sha256": "4e364b605b041efd1e5b7d4a9d0ca4005f50d57901144ead80af73d9cd46b5bc",
+        "bytes": 14266,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "dedicatedAuthorManifestExists": true,
+      "selectionMethod": "author delivery manifest",
+      "grid": {
+        "columns": 3,
+        "rows": 3,
+        "order": "row-major",
+        "runtimeTilePixels": [
+          1024,
+          1024
+        ],
+        "canvasPixels": [
+          3072,
+          3072
+        ],
+        "gridContract": {
+          "path": "D:/work/image/designs/client-map-qdao-20261102/21003/formal/grid.json",
+          "sha256": "206c478e923c716cfe6c2e33049685b4035f4d1ebb54e8e012dd789bae200483",
+          "bytes": 6567,
+          "expectedSHA256Matched": null,
+          "expectationSupplied": false
+        },
+        "contentRectHalfOpen": [
+          672,
+          920,
+          2400,
+          2216
+        ],
+        "effectiveContentPixels": [
+          1728,
+          1296
+        ],
+        "provisionalPixelsPerWorldUnit": 10,
+        "provisionalCanvasWorldRectHalfOpen": [
+          0,
+          0,
+          307.2,
+          307.2
+        ],
+        "sourceWorldBoxesAreMinMaxNotXYWidthHeight": true,
+        "derivedContentWorldXZRectXYWH": [
+          67.2,
+          85.6,
+          172.8,
+          129.6
+        ],
+        "logicalWorldMappingAccepted": false
+      },
+      "layoutSource": {
+        "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/preview/spring/attempt-01/native.png",
+        "sha256": "2bc3368142bb2b549ecb7ed52ab49a912b139b3218b8d5f3e28bc7e129e1b5cf",
+        "bytes": 2287368,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          1448,
+          1086
+        ]
+      },
+      "originalLayoutReference": {
+        "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/client-full-reference-on-demand/21003/21003-gbits_jdhj-static-background-native.png",
+        "sha256": "7a23d3cd5ac90e7e260a27a447947dfa99eeb103384a4aaba903a833f5fef671",
+        "bytes": 2014512,
+        "expectedSHA256Matched": null,
+        "pixels": [
+          1200,
+          900
+        ],
+        "expectationSupplied": false
+      },
+      "navigationAssets": {
+        "walkmask": null,
+        "navigation": null,
+        "portals": null,
+        "accepted": false,
+        "constraint": "Single room; content exterior is nonwalkable structural backing."
+      },
+      "tiles": [
+        {
+          "tile": "r01_c01",
+          "row": 1,
+          "column": 1,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c01/attempt-01/native.png",
+            "sha256": "8aaa75546cec01423fbba286095735263c820687a6a91c7af236db5c3afdfe3a",
+            "bytes": 1231278,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c01/attempt-01/native.png",
+            "sha256": "8aaa75546cec01423fbba286095735263c820687a6a91c7af236db5c3afdfe3a",
+            "bytes": 1231278,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c01/attempt-01/runtime1024.png",
+            "sha256": "5b06b7256bc858b6246965589d7fe42123aae0c46d140bacd48b29176f73e9d9",
+            "bytes": 692112,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c01/attempt-01/formal-qa.json",
+            "sha256": "ba9663238e740ff720de14073a31af2b4d534afa657f8c58fc1dc2ff352eefa2",
+            "bytes": 8989,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-04T21:57:21.511453+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-a0f211ee-3ef2-4636-a1bc-d8637fcdbe01",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c01/attempt-01/native.png.generation.json",
+            "sha256": "b3736dd4df11811958ee933b2713d85be76b146ff0368db012d905751a298fb6",
+            "bytes": 7556,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c01/attempt-01/runtime1024.png.generation.json",
+            "sha256": "d8987c58b384b695e293bb57fa2e16543b9872a3f3851bf203930316045d8ce1",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            0.0,
+            0.0,
+            102.4,
+            102.4
+          ],
+          "layoutMasterBoxContinuous": [
+            -563.1111111111111,
+            -770.9259259259259,
+            294.96296296296293,
+            87.14814814814814
+          ]
+        },
+        {
+          "tile": "r01_c02",
+          "row": 1,
+          "column": 2,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c02/attempt-01/native.png",
+            "sha256": "5ec64cd2b0cea72f7dbd26d54f552c6010e8d007be7eb39d5ad9db6f7013cdb2",
+            "bytes": 1262496,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c02/attempt-01/native.png",
+            "sha256": "5ec64cd2b0cea72f7dbd26d54f552c6010e8d007be7eb39d5ad9db6f7013cdb2",
+            "bytes": 1262496,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c02/attempt-01/runtime1024.png",
+            "sha256": "7a4d737c52100817b616d0c9dd51a084e872ad540084238dd7ed1b3cf7132721",
+            "bytes": 718831,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c02/attempt-01/formal-qa.json",
+            "sha256": "e04fe2dfa1a5c2a742ad47f4ed1571afa4df604c58cb7f576fb9355c37a3f677",
+            "bytes": 13777,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-04T22:08:19.856200+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-4cae3b48-c7f9-4ddb-8ed2-ea540cb05142",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c02/attempt-01/native.png.generation.json",
+            "sha256": "7e011bd8e5cb469c5da216bdf6418e34649a3793dc57d62ded9a47b1ceedccf8",
+            "bytes": 9268,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c02/attempt-01/runtime1024.png.generation.json",
+            "sha256": "8ae375d4b4ec7c5f0012042a85db48cf89072c6e6c4b732e4618c7aca486d0c0",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            102.4,
+            0.0,
+            204.8,
+            102.4
+          ],
+          "layoutMasterBoxContinuous": [
+            294.96296296296293,
+            -770.9259259259259,
+            1153.037037037037,
+            87.14814814814814
+          ]
+        },
+        {
+          "tile": "r01_c03",
+          "row": 1,
+          "column": 3,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c03/attempt-01/native.png",
+            "sha256": "528fada91279b8784c13a4e6bfe66504ee52166476b4a512a46af1e5a3217a6e",
+            "bytes": 1221175,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c03/attempt-01/native.png",
+            "sha256": "528fada91279b8784c13a4e6bfe66504ee52166476b4a512a46af1e5a3217a6e",
+            "bytes": 1221175,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c03/attempt-01/runtime1024.png",
+            "sha256": "4eee30811700259ee3ee1a758bb325a570b37bf3dab254c9df0290ce7662c888",
+            "bytes": 687966,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c03/attempt-01/formal-qa.json",
+            "sha256": "ebc1eb60b79e3705a74f5e84db838f123e9e89d56aa12beebc671e6d7ae7f5bf",
+            "bytes": 8907,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-04T22:08:20.125702+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-0b4d8e9c-87b3-4862-a0f4-b984bd2d8f65",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c03/attempt-01/native.png.generation.json",
+            "sha256": "1fa948e9743f58f9ed73c7ecd9e289bb901c7c3cf36a9d88edbac8e9eaf97dcf",
+            "bytes": 9204,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r01_c03/attempt-01/runtime1024.png.generation.json",
+            "sha256": "8ec8757fdec4f94e6ce734acd836766db4ef8a19d57c3c97c0e85b9642aede36",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            204.8,
+            0.0,
+            307.20000000000005,
+            102.4
+          ],
+          "layoutMasterBoxContinuous": [
+            1153.037037037037,
+            -770.9259259259259,
+            2011.111111111111,
+            87.14814814814814
+          ]
+        },
+        {
+          "tile": "r02_c01",
+          "row": 2,
+          "column": 1,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c01/attempt-01/native.png",
+            "sha256": "9f7607098e538324c2620ee089eeebb76deed589da8a29ca45f30e691e9725fc",
+            "bytes": 1514486,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c01/attempt-01/native.png",
+            "sha256": "9f7607098e538324c2620ee089eeebb76deed589da8a29ca45f30e691e9725fc",
+            "bytes": 1514486,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c01/attempt-01/runtime1024.png",
+            "sha256": "9dd1340d13bb07f72c056fa2ad8c58c85aa2f5e920a3a36ab0636a69e49d93bf",
+            "bytes": 996291,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c01/attempt-01/formal-qa.json",
+            "sha256": "c1990d15bc69e84def9705946dcd727c94c32d518effc402e9ce763e27c3ca58",
+            "bytes": 13886,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-04T23:03:11.154334+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-1c8c6d33-9461-4ab5-b84d-c907fd59e005",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c01/attempt-01/native.png.generation.json",
+            "sha256": "00f6d8c848334f709577fe358d0987afeb945d8eb59f9202565b19c377a860c6",
+            "bytes": 9252,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c01/attempt-01/runtime1024.png.generation.json",
+            "sha256": "47e366654781af9fb9ee090f146d41fa446eeefae64fab0c165ac9541f4f6adf",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            0.0,
+            102.4,
+            102.4,
+            204.8
+          ],
+          "layoutMasterBoxContinuous": [
+            -563.1111111111111,
+            87.14814814814814,
+            294.96296296296293,
+            945.2222222222222
+          ]
+        },
+        {
+          "tile": "r02_c02",
+          "row": 2,
+          "column": 2,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c02/attempt-01/native.png",
+            "sha256": "6a2a8e9333a705996d71edd802fd60460a09219ae0d7bbff674f13eafdf59df7",
+            "bytes": 2184454,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c02/attempt-01/native.png",
+            "sha256": "6a2a8e9333a705996d71edd802fd60460a09219ae0d7bbff674f13eafdf59df7",
+            "bytes": 2184454,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c02/attempt-01/runtime1024.png",
+            "sha256": "e846979d062b6cc236554dbe3950854f15c2cb7aa2960403698a6109d0e74b9f",
+            "bytes": 1494480,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c02/attempt-01/formal-qa.json",
+            "sha256": "931847417f27352b8eea4c379ba07f58245506cd7a0c0c27b0d7fe544eb599a0",
+            "bytes": 21714,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T00:00:27.149236+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-ad9b77e8-4484-4737-ae41-5689a1778458",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c02/attempt-01/native.png.generation.json",
+            "sha256": "77c88ff7d9b517eb50ea32d3616e61deba0b65546f62a7027d114286055de168",
+            "bytes": 11562,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c02/attempt-01/runtime1024.png.generation.json",
+            "sha256": "bf6a50e4c07dd0d7ebc0995bb0adcc3325cc5cb4f7a5963a30d752605d96a955",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            102.4,
+            102.4,
+            204.8,
+            204.8
+          ],
+          "layoutMasterBoxContinuous": [
+            294.96296296296293,
+            87.14814814814814,
+            1153.037037037037,
+            945.2222222222222
+          ]
+        },
+        {
+          "tile": "r02_c03",
+          "row": 2,
+          "column": 3,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c03/attempt-01/native.png",
+            "sha256": "29b1484c3c81bfc802eccc06bdaf8ad07b5f1d815ffd16afbb6364a0e505377f",
+            "bytes": 1517257,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c03/attempt-01/native.png",
+            "sha256": "29b1484c3c81bfc802eccc06bdaf8ad07b5f1d815ffd16afbb6364a0e505377f",
+            "bytes": 1517257,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c03/attempt-01/runtime1024.png",
+            "sha256": "2b8d3c4c1d538b1e01c084ebf76751401382a14d40e55b4b97fed885bb864379",
+            "bytes": 988759,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c03/attempt-01/formal-qa.json",
+            "sha256": "b7595b6727123bd6b7307364cfb97649cce5518a6109742c03029b99f87d1817",
+            "bytes": 13808,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T00:00:27.452330+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-4a78b5fe-20ae-407e-b5ba-eb7f4776cee4",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c03/attempt-01/native.png.generation.json",
+            "sha256": "825177a3e75d5a30e8063e9c1036adb5a202b2c2bd0d653bba8eaa8921b95a6a",
+            "bytes": 11438,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r02_c03/attempt-01/runtime1024.png.generation.json",
+            "sha256": "3be229d6b8befc645f957afd61d62a6097d503eedfc20a29e24ce0b79661b2d9",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            204.8,
+            102.4,
+            307.20000000000005,
+            204.8
+          ],
+          "layoutMasterBoxContinuous": [
+            1153.037037037037,
+            87.14814814814814,
+            2011.111111111111,
+            945.2222222222222
+          ]
+        },
+        {
+          "tile": "r03_c01",
+          "row": 3,
+          "column": 1,
+          "version": "attempt-03",
+          "imageRectHalfOpen": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c01/attempt-03/native.png",
+            "sha256": "14f26104cf6990ed022b6c6ad1998aecee8eb450e32fd555c3505c2a2554deb4",
+            "bytes": 1393937,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c01/attempt-03/native.png",
+            "sha256": "14f26104cf6990ed022b6c6ad1998aecee8eb450e32fd555c3505c2a2554deb4",
+            "bytes": 1393937,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c01/attempt-03/runtime1024.png",
+            "sha256": "c851ecfb6ec07f072164e11c977fa95e34bbc9eb54b446684e4d5a1a91aeb877",
+            "bytes": 793888,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c01/attempt-03/formal-qa.json",
+            "sha256": "53c761244de588d1a54f460650894f45034349f4a1797dbf9d0717b88127c506",
+            "bytes": 8933,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-04T23:03:10.861817+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-61349ae6-1466-497d-97cc-3d6c7c7d76f2",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c01/attempt-03/native.png.generation.json",
+            "sha256": "23edad84d15fc03d0b338bd00c2ab6f3e8220c52dd164475bbe4ef318276eeff",
+            "bytes": 11374,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c01/attempt-03/runtime1024.png.generation.json",
+            "sha256": "1c8cb6ab854af78d8d2959cd7f7f3e2c5e826d63461b09fafd4138babcadc028",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            0.0,
+            204.8,
+            102.4,
+            307.20000000000005
+          ],
+          "layoutMasterBoxContinuous": [
+            -563.1111111111111,
+            945.2222222222222,
+            294.96296296296293,
+            1803.2962962962963
+          ]
+        },
+        {
+          "tile": "r03_c02",
+          "row": 3,
+          "column": 2,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c02/attempt-01/native.png",
+            "sha256": "acdd1d93fdf0933575af62735a9269137b54b8d5042ddb56ead4c639b13e29fa",
+            "bytes": 1296404,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c02/attempt-01/native.png",
+            "sha256": "acdd1d93fdf0933575af62735a9269137b54b8d5042ddb56ead4c639b13e29fa",
+            "bytes": 1296404,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c02/attempt-01/runtime1024.png",
+            "sha256": "d7274838a23080f8153a01279238e7d9031fddb7c06985e246b6bb14a29479d6",
+            "bytes": 748936,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c02/attempt-01/formal-qa.json",
+            "sha256": "dd5dbd8a3bfbc2688c40ec376702299e0a745156f1fb9f852e89290238fc2b1d",
+            "bytes": 13781,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T00:00:27.011241+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-6a394dc8-9de1-4fdd-a0f0-be296d3919c0",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c02/attempt-01/native.png.generation.json",
+            "sha256": "1c1398762db8382414e6670cf2f99b3f2846a07cee5f50864f1166df207705ba",
+            "bytes": 11243,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c02/attempt-01/runtime1024.png.generation.json",
+            "sha256": "df60dfcf0d344debb5455f5804a856ec6e5ab7e006328ddb7d125f951f0e30ef",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            102.4,
+            204.8,
+            204.8,
+            307.20000000000005
+          ],
+          "layoutMasterBoxContinuous": [
+            294.96296296296293,
+            945.2222222222222,
+            1153.037037037037,
+            1803.2962962962963
+          ]
+        },
+        {
+          "tile": "r03_c03",
+          "row": 3,
+          "column": 3,
+          "version": "attempt-03",
+          "imageRectHalfOpen": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c03/attempt-03/native.png",
+            "sha256": "94d8f879db0a9406157c229987602eff60bb8c4e548b5558eae24fc3c37579d4",
+            "bytes": 1427870,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c03/attempt-03/native.png",
+            "sha256": "94d8f879db0a9406157c229987602eff60bb8c4e548b5558eae24fc3c37579d4",
+            "bytes": 1427870,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c03/attempt-03/runtime1024.png",
+            "sha256": "21840eaf51ecc147b749d40a0518a312563e90182a5a7865186f725512175764",
+            "bytes": 801673,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c03/attempt-03/formal-qa.json",
+            "sha256": "6f53101af04ff3658cdc828a5f9560fc9acca913855cb4861a6e89e04f2b87d2",
+            "bytes": 8874,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T00:00:27.715881+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-93d09d82-12e1-46f4-8089-86d856d07c14",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c03/attempt-03/native.png.generation.json",
+            "sha256": "5c098b5ea435dfca0c16b36e4313cccc301619e7e300534193fb4b4c6bf4c439",
+            "bytes": 12478,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/spring/r03_c03/attempt-03/runtime1024.png.generation.json",
+            "sha256": "b127c75ae674bfa5a932bc86a3c3e02e5e98968f78641d262baa13cf77572634",
+            "bytes": 997,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            204.8,
+            204.8,
+            307.20000000000005,
+            307.20000000000005
+          ],
+          "layoutMasterBoxContinuous": [
+            1153.037037037037,
+            945.2222222222222,
+            2011.111111111111,
+            1803.2962962962963
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": "21003",
+      "appearance": "midautumn",
+      "tileCount": 9,
+      "targetTiles": 9,
+      "formalArtAccepted": true,
+      "canonicalManifest": null,
+      "selectionAuthority": {
+        "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/progress.reconciled-20261104-v004.json",
+        "sha256": "10e7d638efd5b381c98d0246cdf75e4395a857bde161b630d46fc39846f691cb",
+        "bytes": 54350,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "dedicatedAuthorManifestExists": false,
+      "selectionMethod": "Freeze nine formalAccepted seasonal selections in reconciliation v004; no author file mutation",
+      "grid": {
+        "columns": 3,
+        "rows": 3,
+        "order": "row-major",
+        "runtimeTilePixels": [
+          1024,
+          1024
+        ],
+        "canvasPixels": [
+          3072,
+          3072
+        ],
+        "gridContract": {
+          "path": "D:/work/image/designs/client-map-qdao-20261102/21003/formal/grid.json",
+          "sha256": "206c478e923c716cfe6c2e33049685b4035f4d1ebb54e8e012dd789bae200483",
+          "bytes": 6567,
+          "expectedSHA256Matched": null,
+          "expectationSupplied": false
+        },
+        "contentRectHalfOpen": [
+          672,
+          920,
+          2400,
+          2216
+        ],
+        "effectiveContentPixels": [
+          1728,
+          1296
+        ],
+        "provisionalPixelsPerWorldUnit": 10,
+        "provisionalCanvasWorldRectHalfOpen": [
+          0,
+          0,
+          307.2,
+          307.2
+        ],
+        "sourceWorldBoxesAreMinMaxNotXYWidthHeight": true,
+        "derivedContentWorldXZRectXYWH": [
+          67.2,
+          85.6,
+          172.8,
+          129.6
+        ],
+        "logicalWorldMappingAccepted": false
+      },
+      "layoutSource": {
+        "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/preview/midautumn/attempt-01/native.png",
+        "sha256": "280817fe50dc91cf1531896dfc3c791cc78838ee702320fc44db8748b108c602",
+        "bytes": 2336386,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          1448,
+          1086
+        ]
+      },
+      "originalLayoutReference": {
+        "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/client-full-reference-on-demand/21003/21003-gbits_jdhj-static-background-native.png",
+        "sha256": "7a23d3cd5ac90e7e260a27a447947dfa99eeb103384a4aaba903a833f5fef671",
+        "bytes": 2014512,
+        "expectedSHA256Matched": null,
+        "pixels": [
+          1200,
+          900
+        ],
+        "expectationSupplied": false
+      },
+      "navigationAssets": {
+        "walkmask": null,
+        "navigation": null,
+        "portals": null,
+        "accepted": false,
+        "constraint": "Single room; content exterior is nonwalkable structural backing."
+      },
+      "tiles": [
+        {
+          "tile": "r01_c01",
+          "row": 1,
+          "column": 1,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c01/attempt-01/native.png",
+            "sha256": "c95315983ff7a63bc0275d2585ab3a946ad3dec29b8618d65462a80369ce1d81",
+            "bytes": 1216734,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c01/attempt-01/native.png",
+            "sha256": "c95315983ff7a63bc0275d2585ab3a946ad3dec29b8618d65462a80369ce1d81",
+            "bytes": 1216734,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c01/attempt-01/runtime1024.png",
+            "sha256": "add0273d57777cbabece9aa03ceeec6b3638b66a6a606c97ec4ef2a14db3a121",
+            "bytes": 684628,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c01/attempt-01/formal-qa.json",
+            "sha256": "962ef7d40b2a71ab5ab1fa8f988692aa4986f27bc8a514e2dfe942272fb47ef2",
+            "bytes": 8986,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T01:01:33.218476+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-d0b1fb5f-dc7e-4850-b3f8-22a1cf44532c",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c01/attempt-01/native.png.generation.json",
+            "sha256": "ef5c718ab664441b8879cee39c0a16f5b74a21603cbd203492335962f740f458",
+            "bytes": 7296,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c01/attempt-01/runtime1024.png.generation.json",
+            "sha256": "9ab72754c0719efc36b4f92d12417aff3cb012299be29deeb42984111943cb28",
+            "bytes": 1006,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c01/attempt-01/local-qa.json",
+            "sha256": "2d064006bbf44eb661f86177c5c3aed8eef397e7ca2a738cc2d9148d7e9a6f3e",
+            "bytes": 1610,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            0.0,
+            0.0,
+            102.4,
+            102.4
+          ],
+          "layoutMasterBoxContinuous": [
+            -563.1111111111111,
+            -770.9259259259259,
+            294.96296296296293,
+            87.14814814814814
+          ]
+        },
+        {
+          "tile": "r01_c02",
+          "row": 1,
+          "column": 2,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c02/attempt-01/native.png",
+            "sha256": "6dcbe8084c1dd203775e088b98e22ed92361a4de11e9dfffb9de79c817a4a0af",
+            "bytes": 1241753,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c02/attempt-01/native.png",
+            "sha256": "6dcbe8084c1dd203775e088b98e22ed92361a4de11e9dfffb9de79c817a4a0af",
+            "bytes": 1241753,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c02/attempt-01/runtime1024.png",
+            "sha256": "56688e578deae20155d34ea6b1963f50710ff333a5188e455b43530f82ccce75",
+            "bytes": 706850,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c02/attempt-01/formal-qa.json",
+            "sha256": "06c91013bba316cef2ec9f02b2ec3a8d5a76d8561215cfbb4e5155cd2be4fd74",
+            "bytes": 14067,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T03:37:09.394438+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-0d74f695-9ed9-46e9-baaf-2573b6881c44",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c02/attempt-01/native.png.generation.json",
+            "sha256": "70f8aefc3555a9e8706150d58ed7fed855ea9f285caf94969915ff846e76650a",
+            "bytes": 9072,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c02/attempt-01/runtime1024.png.generation.json",
+            "sha256": "2b2db4eb81827e9ed1fa8a948fcb7160b2259cebdf07a49feb6953ba325ef729",
+            "bytes": 1032,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c02/attempt-01/local-qa.json",
+            "sha256": "29e6493788454ec13cca290892617ca69987ffaaed32c2a72f7d8cf442534ba3",
+            "bytes": 3171,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            102.4,
+            0.0,
+            204.8,
+            102.4
+          ],
+          "layoutMasterBoxContinuous": [
+            294.96296296296293,
+            -770.9259259259259,
+            1153.037037037037,
+            87.14814814814814
+          ]
+        },
+        {
+          "tile": "r01_c03",
+          "row": 1,
+          "column": 3,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c03/attempt-01/native.png",
+            "sha256": "019e4b071f4c9ad5b9d02eb37290cb3f11de348d958c639cc2c78b351e2e41a1",
+            "bytes": 1228754,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c03/attempt-01/native.png",
+            "sha256": "019e4b071f4c9ad5b9d02eb37290cb3f11de348d958c639cc2c78b351e2e41a1",
+            "bytes": 1228754,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c03/attempt-01/runtime1024.png",
+            "sha256": "3ab330b682419a87443b3daeecb069805ee1b1e4bbea9192fb344ebaefc3f7be",
+            "bytes": 688822,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c03/attempt-01/formal-qa.json",
+            "sha256": "a5e4d936c068e3b82ac6719d2dcd8a4e50bac7bcf9732b39e15edafc9d150061",
+            "bytes": 9392,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T03:37:09.394438+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-c077eecf-099a-4a92-8c02-7fa205d73d1e",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c03/attempt-01/native.png.generation.json",
+            "sha256": "5bef2ddc35bd7711604230435b4fb20d74401871ca99c30ccc85942f0b48578b",
+            "bytes": 9093,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c03/attempt-01/runtime1024.png.generation.json",
+            "sha256": "e60f06e01abc5803bca839e18d914b6b324746cf41e1410ec4f7117d65528af7",
+            "bytes": 1032,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r01_c03/attempt-01/local-qa.json",
+            "sha256": "61c78ad19fefa6079c84145d49b91bb8bd5ce4cb4610e4503061e8bd7359f734",
+            "bytes": 3165,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            204.8,
+            0.0,
+            307.20000000000005,
+            102.4
+          ],
+          "layoutMasterBoxContinuous": [
+            1153.037037037037,
+            -770.9259259259259,
+            2011.111111111111,
+            87.14814814814814
+          ]
+        },
+        {
+          "tile": "r02_c01",
+          "row": 2,
+          "column": 1,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c01/attempt-01/native.png",
+            "sha256": "62f4e58df05f070dd18b150840aa86b02c863606de7eb464525ef766be2cc440",
+            "bytes": 1527262,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c01/attempt-01/native.png",
+            "sha256": "62f4e58df05f070dd18b150840aa86b02c863606de7eb464525ef766be2cc440",
+            "bytes": 1527262,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c01/attempt-01/runtime1024.png",
+            "sha256": "1412ef8848f989c9b1c85388ecaac4cb3fa7131ad588c4e7eee10dc270df9dc0",
+            "bytes": 1008444,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c01/attempt-01/formal-qa.json",
+            "sha256": "8cb79518d9519ec4517a947a1f4799d1a10220f150b3795b35246de75d32e490",
+            "bytes": 14191,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T03:46:16.293387+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-3cf5ae06-bd50-4991-ad81-5d09f13dc29e",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c01/attempt-01/native.png.generation.json",
+            "sha256": "a7cf804c7c3110e3c63a4fb0569bde5d65caa13e1ef79dd418fa33faa5b7db70",
+            "bytes": 9145,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c01/attempt-01/runtime1024.png.generation.json",
+            "sha256": "66cef3681f5b681f2237999b11ae478579aba039f3f4d65440ee6d892b6a8aac",
+            "bytes": 1032,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c01/attempt-01/local-qa.json",
+            "sha256": "23165c9a1c201b790c21c4e65666f35cee4f45e15733be995fb79972e84c40a1",
+            "bytes": 3183,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            0.0,
+            102.4,
+            102.4,
+            204.8
+          ],
+          "layoutMasterBoxContinuous": [
+            -563.1111111111111,
+            87.14814814814814,
+            294.96296296296293,
+            945.2222222222222
+          ]
+        },
+        {
+          "tile": "r02_c02",
+          "row": 2,
+          "column": 2,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c02/attempt-01/native.png",
+            "sha256": "6b1a9a5adbca2a52e52050e620ec9d2cb5eb35989326142535b07bb9452a5159",
+            "bytes": 2370496,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c02/attempt-01/native.png",
+            "sha256": "6b1a9a5adbca2a52e52050e620ec9d2cb5eb35989326142535b07bb9452a5159",
+            "bytes": 2370496,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c02/attempt-01/runtime1024.png",
+            "sha256": "028e37c21a6e9bcd2956bd7d42844e049db020a431da2d23ee27d3a74929cdb9",
+            "bytes": 1616381,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c02/attempt-01/formal-qa.json",
+            "sha256": "53d2120daede5b56db26b97f38267a0cfc83236922b938f727ca0c7dead42356",
+            "bytes": 22451,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T03:56:04.022526+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-ecf50849-81b6-47e5-9c71-a589883ad62e",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c02/attempt-01/native.png.generation.json",
+            "sha256": "4e0f36823a9bc4e3da709f8f96d90d4d1dea164bfa15dda8bad1ab598a3db639",
+            "bytes": 11512,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c02/attempt-01/runtime1024.png.generation.json",
+            "sha256": "b233ab8eab14ba17c79f7340d43cb248b70a6379f51e9df5f637fc081a1212b9",
+            "bytes": 1032,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c02/attempt-01/local-qa.json",
+            "sha256": "39fbd0964b6fd5c078a23447f1c01e4c7f974c261293cd30140451f3f5a2f64f",
+            "bytes": 7613,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            102.4,
+            102.4,
+            204.8,
+            204.8
+          ],
+          "layoutMasterBoxContinuous": [
+            294.96296296296293,
+            87.14814814814814,
+            1153.037037037037,
+            945.2222222222222
+          ]
+        },
+        {
+          "tile": "r02_c03",
+          "row": 2,
+          "column": 3,
+          "version": "attempt-02",
+          "imageRectHalfOpen": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c03/attempt-02/native.png",
+            "sha256": "68371264d6064694a22911ff52525608ffb5c3a8a053b2dda7cb49e92d645813",
+            "bytes": 1576241,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c03/attempt-02/native.png",
+            "sha256": "68371264d6064694a22911ff52525608ffb5c3a8a053b2dda7cb49e92d645813",
+            "bytes": 1576241,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c03/attempt-02/runtime1024.png",
+            "sha256": "b4873efcf75269f1c6bfa907d0ee6de277d013269019c01ffddd7d6a07c5bd63",
+            "bytes": 1044322,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c03/attempt-02/formal-qa.json",
+            "sha256": "97ac5b29a072ba555e13f60cb1569ea3ea4b3f61332dceed7ad5402fa69bd519",
+            "bytes": 14626,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T03:56:32.156000+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-9360c632-69ce-4d40-bad0-c10c9a030d0d",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c03/attempt-02/native.png.generation.json",
+            "sha256": "f559b7838b767f21b5832ac2c1324578a4e4fd01836d39696ae465ffb1957d1f",
+            "bytes": 12511,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c03/attempt-02/runtime1024.png.generation.json",
+            "sha256": "90e7187867f56cafd0593e3fbb27829ae6bcf3ff4d25bdc80298b4805e902eb5",
+            "bytes": 1032,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r02_c03/attempt-02/local-qa.json",
+            "sha256": "18bbfaaabc894c7033e6ab1dbfb5e19f82f8cb5dc04472ee3786039b44ba360a",
+            "bytes": 8459,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            204.8,
+            102.4,
+            307.20000000000005,
+            204.8
+          ],
+          "layoutMasterBoxContinuous": [
+            1153.037037037037,
+            87.14814814814814,
+            2011.111111111111,
+            945.2222222222222
+          ]
+        },
+        {
+          "tile": "r03_c01",
+          "row": 3,
+          "column": 1,
+          "version": "attempt-03",
+          "imageRectHalfOpen": [
+            0,
+            2048,
+            1024,
+            3072
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c01/attempt-03/native.png",
+            "sha256": "1c902d4f76fc2bd5407e5152b85344f9562362994eb5852dac19f1edfef79078",
+            "bytes": 1226839,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c01/attempt-03/native.png",
+            "sha256": "1c902d4f76fc2bd5407e5152b85344f9562362994eb5852dac19f1edfef79078",
+            "bytes": 1226839,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c01/attempt-03/runtime1024.png",
+            "sha256": "83dd0e28beb35c56059c6b7db987ebf5011adbe9948e54dfe6300645717bacf9",
+            "bytes": 698942,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c01/attempt-03/formal-qa.json",
+            "sha256": "614e86b2c64cc9ede1a4486c199160774dc005b3510ac847199bf8cf9c22b9ea",
+            "bytes": 9223,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T03:46:16.293387+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-60219a98-4095-422a-94a2-8144a85a223f",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c01/attempt-03/native.png.generation.json",
+            "sha256": "53b6315b153216bbd9c0d3b611c7d4f9d94ccdb5e65ffc65201813ae66681834",
+            "bytes": 2955,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c01/attempt-03/runtime1024.png.generation.json",
+            "sha256": "6540308e7e539231dc7f821aebfc625f4186a0c5117fb9cd2990503b46fec705",
+            "bytes": 1032,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c01/attempt-03/local-qa.json",
+            "sha256": "1da05804a5b1dd63daa22cfba42ceda3f7a281affe9d0bac2809d0bed503aa1f",
+            "bytes": 3564,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            0.0,
+            204.8,
+            102.4,
+            307.20000000000005
+          ],
+          "layoutMasterBoxContinuous": [
+            -563.1111111111111,
+            945.2222222222222,
+            294.96296296296293,
+            1803.2962962962963
+          ]
+        },
+        {
+          "tile": "r03_c02",
+          "row": 3,
+          "column": 2,
+          "version": "attempt-01",
+          "imageRectHalfOpen": [
+            1024,
+            2048,
+            2048,
+            3072
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c02/attempt-01/native.png",
+            "sha256": "e8db27ba7b631546147ab42485a238c4131d1e983847acdf4ad76bf73501e03f",
+            "bytes": 1330482,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c02/attempt-01/native.png",
+            "sha256": "e8db27ba7b631546147ab42485a238c4131d1e983847acdf4ad76bf73501e03f",
+            "bytes": 1330482,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c02/attempt-01/runtime1024.png",
+            "sha256": "a148f8fdd154ec58e42ff05fea51afc8e1fd44883bea66f83ed3a84be6ddfab5",
+            "bytes": 772814,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c02/attempt-01/formal-qa.json",
+            "sha256": "a26fe418e650aa1a77645eda1c4f9c4e598fbd005ed663237ab989a368c1a449",
+            "bytes": 14502,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T03:56:32.156000+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-25e3f50d-b622-4f5d-8448-533b57c93163",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c02/attempt-01/native.png.generation.json",
+            "sha256": "91bc33cfc2e688eed0cb7de5a2087851cef9f72d4e6c9926ce16c9f00f808bd9",
+            "bytes": 3499,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c02/attempt-01/runtime1024.png.generation.json",
+            "sha256": "a261f25821605f9122cdda591e899743f0f683a363e3b08ed8ae4204f19d880c",
+            "bytes": 1032,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c02/attempt-01/local-qa.json",
+            "sha256": "897bdcffd00449aba7572d606571f055b7df7a6a0ea5c5a5108a47bb5a0fb141",
+            "bytes": 7955,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            102.4,
+            204.8,
+            204.8,
+            307.20000000000005
+          ],
+          "layoutMasterBoxContinuous": [
+            294.96296296296293,
+            945.2222222222222,
+            1153.037037037037,
+            1803.2962962962963
+          ]
+        },
+        {
+          "tile": "r03_c03",
+          "row": 3,
+          "column": 3,
+          "version": "attempt-03",
+          "imageRectHalfOpen": [
+            2048,
+            2048,
+            3072,
+            3072
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c03/attempt-03/native.png",
+            "sha256": "27924210b0edcdb88fc1e74b6c023fe9e380999a6d99c6a1fbd5c9074e46d837",
+            "bytes": 1537946,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c03/attempt-03/native.png",
+            "sha256": "27924210b0edcdb88fc1e74b6c023fe9e380999a6d99c6a1fbd5c9074e46d837",
+            "bytes": 1537946,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c03/attempt-03/runtime1024.png",
+            "sha256": "b26be5dcf80fe2c6162db5cf7938817466145d04f38cd1d205884abcee8cf994",
+            "bytes": 890059,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c03/attempt-03/formal-qa.json",
+            "sha256": "cd3635421c719126acda728f0311f6688390e39854c13bf921dd473c143805c4",
+            "bytes": 10524,
+            "expectedSHA256Matched": null,
+            "status": "PASS_AUTHOR_ART_COMPLETE_NATIVE_WHOLE_BLOCK",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T03:56:32.156000+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-c5558966-67af-4cce-92a9-7c1e3669b32a",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c03/attempt-03/native.png.generation.json",
+            "sha256": "cd8704b19cff85e97def766b4326e49c39793813ae621db66c6167e8e3bea56a",
+            "bytes": 2958,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c03/attempt-03/runtime1024.png.generation.json",
+            "sha256": "4d80868252c234e980f07e59dd2685856c21bad5307d8c5bcc8d3549dd6661a8",
+            "bytes": 1032,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "localQA": {
+            "path": "D:/work/image-production-staging-20261103/legacy-penglai-island/client-map-qdao-20261102/21003/formal/midautumn/r03_c03/attempt-03/local-qa.json",
+            "sha256": "6b25ff187dd1d405b908fce64b9992fdf97c4aaa04865325a2d945cf17aaae93",
+            "bytes": 9150,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "artContractPlannedWorldBoxMinMax": [
+            204.8,
+            204.8,
+            307.20000000000005,
+            307.20000000000005
+          ],
+          "layoutMasterBoxContinuous": [
+            1153.037037037037,
+            945.2222222222222,
+            2011.111111111111,
+            1803.2962962962963
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": "28007",
+      "appearance": "spring",
+      "tileCount": 6,
+      "targetTiles": 6,
+      "formalArtAccepted": true,
+      "canonicalManifest": null,
+      "selectionAuthority": {
+        "path": "D:/work/image-production-staging-20261103/guideng-market/28007/replacement-consumption-20261106-v001/closure-and-runtime-export-audit-v001.json",
+        "sha256": "79b7da2754b523d3e8a028e95efcb4ed3935a253dcc48d02b2abd6fc7f19f669",
+        "bytes": 39511,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "dedicatedAuthorManifestExists": false,
+      "deliveryReadme": {
+        "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/DELIVERY-README-20261105-v002.md",
+        "sha256": "4d38420d25f476d41357a6acb109e0adaf490c3fe021d52e1055fd60b9236d3c",
+        "bytes": 4774,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "selectionMethod": "Freeze six-item spring inventory in author replacement-consumption audit; native/formal/runtime bindings verified",
+      "grid": {
+        "columns": 3,
+        "rows": 2,
+        "order": "row-major",
+        "runtimeTilePixels": [
+          1024,
+          1024
+        ],
+        "canvasPixels": [
+          3072,
+          2048
+        ],
+        "gridContract": {
+          "path": "D:/work/image-production-staging-20261103/guideng-market/28007/preview/normal/v001/grid-preflight-3x2-v001.json",
+          "sha256": "2856cda2ec9b01f58527aba5e73f1c9c1b22ccf6956f562a6188281c6614d871",
+          "bytes": 1251,
+          "expectedSHA256Matched": null,
+          "expectationSupplied": false
+        },
+        "seasonalBinding": {
+          "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring-source-binding-v001.json",
+          "sha256": "d008a885a18b1ef9b106b1da810bed428749a851a2ca488f21ae90b81e8afa1b",
+          "bytes": 2774,
+          "expectedSHA256Matched": null,
+          "expectationSupplied": false
+        },
+        "contentRectHalfOpenExact": [
+          0,
+          "164864/1619",
+          3072,
+          "3150848/1619"
+        ],
+        "previewToRaster": {
+          "uniformScaleExact": "3072/1619",
+          "offsetX": 0,
+          "offsetYExact": "164864/1619"
+        },
+        "sourceUsesWorldLabelForImageSamplingCoordinates": true,
+        "logicalWorldMappingAccepted": false
+      },
+      "layoutSource": {
+        "path": "D:/work/image-production-staging-20261103/guideng-market/28007/preview/spring/v002/client28007-qdao-spring-v002.png",
+        "sha256": "4854b82aff7265529cece25dd250735df3ca233906e3fa331fa4835db5e9fe34",
+        "bytes": 2303701,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          1619,
+          972
+        ]
+      },
+      "originalLayoutReference": {
+        "path": "D:/work/image-production-staging-20261103/guideng-market/client-reference/28007/codec-lzss-v001/28007-gbits-static-background-native.png",
+        "sha256": "266d7d73e1e54ede2c0366ee602db9548c8f376fde21050594fc51549e02aa93",
+        "bytes": 2704346,
+        "expectedSHA256Matched": null,
+        "pixels": [
+          2200,
+          1320
+        ],
+        "expectationSupplied": false
+      },
+      "navigationAssets": {
+        "walkmask": null,
+        "navigation": null,
+        "portals": null,
+        "accepted": false,
+        "constraint": "Indoor entry, central dais and right stairs; exterior padding nonwalkable."
+      },
+      "tiles": [
+        {
+          "tile": "r01_c01",
+          "row": 1,
+          "column": 1,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c01/client28007-spring-r01_c01-v001.png",
+            "sha256": "0c188d9ce590f7e78f20ae72bde89ed4b2e2ec48f255a0036b9a52478c2a8ac8",
+            "bytes": 1214246,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c01/client28007-spring-r01_c01-v001.png",
+            "sha256": "0c188d9ce590f7e78f20ae72bde89ed4b2e2ec48f255a0036b9a52478c2a8ac8",
+            "bytes": 1214246,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r01_c01/client28007-spring-r01_c01-runtime1024-v001.png",
+            "sha256": "2536166208039865e123842a86d40b0c7b71a9bf1a05fb0fbf8bd855d2b86e39",
+            "bytes": 807922,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c01/formal-acceptance-v001.json",
+            "sha256": "db03181839d0bb23d37955c97ddd5af4d1b3074a169e14891e73630a6c499ec2",
+            "bytes": 5703,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ACCEPTED_ALL_APPLICABLE_NATIVE_CONTACTS",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T20:20:40.782906+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-c8cc47ca-f97e-4372-a607-f158ee2d7ecf",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c01/client28007-spring-r01_c01-v001.png.generation.json",
+            "sha256": "6e9fb2c5366ab909d189e413a1af29f4c8cf98084f550372878167010370e5c1",
+            "bytes": 8142,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r01_c01/client28007-spring-r01_c01-runtime1024-v001.png.generation.json",
+            "sha256": "851cf29a2da94ac01ba68a52943df8190693c675684ab2ec01ea9a75da52a286",
+            "bytes": 2571,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          }
+        },
+        {
+          "tile": "r01_c02",
+          "row": 1,
+          "column": 2,
+          "version": "v002",
+          "imageRectHalfOpen": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c02/repair-v002/client28007-spring-r01_c02-v002.png",
+            "sha256": "8ce240e1c72671798b93db7aa79a08dafec14a57de5a713916a2d7d6d6b190e6",
+            "bytes": 2146494,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c02/repair-v002/client28007-spring-r01_c02-v002.png",
+            "sha256": "8ce240e1c72671798b93db7aa79a08dafec14a57de5a713916a2d7d6d6b190e6",
+            "bytes": 2146494,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r01_c02/client28007-spring-r01_c02-runtime1024-v002.png",
+            "sha256": "7274337ed47bac616a6b7a3ed65964f4dc248c90a33bf7ac8ea9108571758aa6",
+            "bytes": 1487197,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c02/formal-acceptance-v001.json",
+            "sha256": "283bec670f5dab60207a5a91a2253057a3583a8e98ad2af6b5779e18743a7c2f",
+            "bytes": 4992,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ACCEPTED_ALL_APPLICABLE_NATIVE_CONTACTS",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T21:43:32.047701+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-683d6bea-6b1e-4448-9e27-924bfe296cb9",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c02/repair-v002/client28007-spring-r01_c02-v002.png.generation.json",
+            "sha256": "4b0863049703cc09cc7db6a57f80ea32757bc98db99e65d10796d1ce37326f1d",
+            "bytes": 7864,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r01_c02/client28007-spring-r01_c02-runtime1024-v002.png.generation.json",
+            "sha256": "7694b8f781f3d05d92c8078889e7f6dd26b04d2c6ded2fd3d2eaebba6e3dfaaa",
+            "bytes": 2599,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          }
+        },
+        {
+          "tile": "r01_c03",
+          "row": 1,
+          "column": 3,
+          "version": "v003",
+          "imageRectHalfOpen": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c03/repair-v003/client28007-spring-r01_c03-v003.png",
+            "sha256": "95137bf45beaa5316fa87bf461264bc23c9fcd3559ba6cfe7d637abcf5cc1ef7",
+            "bytes": 1304376,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c03/repair-v003/client28007-spring-r01_c03-v003.png",
+            "sha256": "95137bf45beaa5316fa87bf461264bc23c9fcd3559ba6cfe7d637abcf5cc1ef7",
+            "bytes": 1304376,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r01_c03/client28007-spring-r01_c03-runtime1024-v003.png",
+            "sha256": "a8802f41e05bf2db22b4ef5a6bbdca4be791bf5f6ae217269f3844850c1a1e03",
+            "bytes": 875579,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c03/formal-acceptance-v001.json",
+            "sha256": "3633e77fa90904c17d2bed1b7bc33ae4916b8a94453764d16bb08bb590a33c80",
+            "bytes": 3837,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ACCEPTED_ALL_APPLICABLE_NATIVE_CONTACTS",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T21:43:32.047701+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-c6365c75-4723-4c8b-ac94-5a7204a755d0",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r01_c03/repair-v003/client28007-spring-r01_c03-v003.png.generation.json",
+            "sha256": "664688a0f56f26155d0989c006669690ba579cb3d0ac9bdd96170596f09a0a73",
+            "bytes": 10528,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r01_c03/client28007-spring-r01_c03-runtime1024-v003.png.generation.json",
+            "sha256": "4a307f2c681a50a1fb110d9feb2a9947b449c8ac90437e7934837a835ad286d5",
+            "bytes": 2599,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          }
+        },
+        {
+          "tile": "r02_c01",
+          "row": 2,
+          "column": 1,
+          "version": "v002",
+          "imageRectHalfOpen": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c01/repair-v002/client28007-spring-r02_c01-v002.png",
+            "sha256": "8b099a79f5734acc438a86e1aba1dbfb03c2715381c2a3a4b603faa831bcd3ce",
+            "bytes": 1943405,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c01/repair-v002/client28007-spring-r02_c01-v002.png",
+            "sha256": "8b099a79f5734acc438a86e1aba1dbfb03c2715381c2a3a4b603faa831bcd3ce",
+            "bytes": 1943405,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r02_c01/client28007-spring-r02_c01-runtime1024-v002.png",
+            "sha256": "abead57e69c5fb3db68e3b657254307c52d6d090d10cdd895906d9fc947626ab",
+            "bytes": 1288995,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c01/formal-acceptance-v001.json",
+            "sha256": "1529a1eac33bc9e627b37e620795ae8b2f2c1f740fface6c761ee37f125cfd55",
+            "bytes": 5822,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ACCEPTED_ALL_APPLICABLE_NATIVE_CONTACTS",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T20:28:35.938150+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-093912ed-5bb1-48e3-8129-2605159e6247",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c01/repair-v002/client28007-spring-r02_c01-v002.png.generation.json",
+            "sha256": "6910f239ef3eabe42773b45eb873cc59a1eeffa4fa16efc36316c316a8875118",
+            "bytes": 8408,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r02_c01/client28007-spring-r02_c01-runtime1024-v002.png.generation.json",
+            "sha256": "5efe1783ebaf7c58157c02cd296775447f56a15a4ef8bb628a19a1b1e46ddf2d",
+            "bytes": 2599,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          }
+        },
+        {
+          "tile": "r02_c02",
+          "row": 2,
+          "column": 2,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c02/client28007-spring-r02_c02-v001.png",
+            "sha256": "412e41b01bec7edd60a23bcbb22b8f47f6a47285a37f6e0cebfd39a9db7a7089",
+            "bytes": 2201175,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c02/client28007-spring-r02_c02-v001.png",
+            "sha256": "412e41b01bec7edd60a23bcbb22b8f47f6a47285a37f6e0cebfd39a9db7a7089",
+            "bytes": 2201175,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r02_c02/client28007-spring-r02_c02-runtime1024-v001.png",
+            "sha256": "91d9cd300e86075b145422fc63164f385c620930212eb07fff7a955f27c93841",
+            "bytes": 1509082,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c02/formal-acceptance-v002.json",
+            "sha256": "6200aa918602a4140a2380158d3d9c19c7c04fc7b5ddd8c4260490821f935f81",
+            "bytes": 5607,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ACCEPTED_INPUT_EVIDENCE_UPDATE",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T21:43:32.047701+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-ec3263a3-a88b-4b0f-9433-478a4cbcebe0",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c02/client28007-spring-r02_c02-v001.png.generation.json",
+            "sha256": "fbfd360181b51e593a64cc29cd295884142b36477cb9d77a93259ff12df1287a",
+            "bytes": 10667,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r02_c02/client28007-spring-r02_c02-runtime1024-v001.png.generation.json",
+            "sha256": "0e63b2233eeecdd6991c9a12e70abb19910c5b5a2aca33221635ce9af1df8d9e",
+            "bytes": 2579,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          }
+        },
+        {
+          "tile": "r02_c03",
+          "row": 2,
+          "column": 3,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c03/client28007-spring-r02_c03-v001.png",
+            "sha256": "24ee35da31d46a628800f91eb246626b1f81f59a5ab9dec156fdc33364a1f0fe",
+            "bytes": 1811290,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c03/client28007-spring-r02_c03-v001.png",
+            "sha256": "24ee35da31d46a628800f91eb246626b1f81f59a5ab9dec156fdc33364a1f0fe",
+            "bytes": 1811290,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r02_c03/client28007-spring-r02_c03-runtime1024-v001.png",
+            "sha256": "4c3320c411d24a1ef4585285c132c4fe073d3dc6c6ede58002a6368d19f17478",
+            "bytes": 1222847,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c03/formal-acceptance-v002.json",
+            "sha256": "ea927d5e4ae5877cdd3b7d7e902a49f39ff9aa934f49bdab09eecfe112a893c8",
+            "bytes": 4509,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ACCEPTED_INPUT_EVIDENCE_UPDATE",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T21:43:32.047701+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-b9104d27-4462-4db1-b315-8b2b4c553a27",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/r02_c03/client28007-spring-r02_c03-v001.png.generation.json",
+            "sha256": "cb494ed48f7d5769eb6a965746e4dbb338d979063adedef4b6a07e008c7eb3d5",
+            "bytes": 10221,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/guideng-market/28007/formal/reference-pixels-v001/spring/runtime-1024/r02_c03/client28007-spring-r02_c03-runtime1024-v001.png.generation.json",
+            "sha256": "91252dcc9f5b8f9e09a81f4eea41192f3a44c01b4715190b335d2db97f0f635a",
+            "bytes": 2579,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          }
+        }
+      ]
+    },
+    {
+      "mapId": "35004",
+      "appearance": "spring",
+      "tileCount": 6,
+      "targetTiles": 6,
+      "formalArtAccepted": true,
+      "canonicalManifest": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/delivery/spring-manifest.json",
+        "sha256": "5862e9cc7cb4ee40759ada78055cb34b200f6128841d4095e6b060629a5c5770",
+        "bytes": 9111,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "selectionAuthority": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/delivery/spring-manifest.json",
+        "sha256": "5862e9cc7cb4ee40759ada78055cb34b200f6128841d4095e6b060629a5c5770",
+        "bytes": 9111,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "dedicatedAuthorManifestExists": true,
+      "grid": {
+        "columns": 3,
+        "rows": 2,
+        "order": "row-major",
+        "runtimeTilePixels": [
+          1024,
+          1024
+        ],
+        "canvasPixels": [
+          3072,
+          2048
+        ],
+        "gridContract": {
+          "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/selected-seasonal-grid-v001.json",
+          "sha256": "c3941be64d158cb479c9bfafe7b7953417d1fdb356ad9a8d14137969b2aea32c",
+          "bytes": 7673,
+          "expectedSHA256Matched": null,
+          "expectationSupplied": false
+        },
+        "guideCanvasPixels": [
+          1587,
+          1058
+        ],
+        "guideCellSide": 529,
+        "sourcePixels": [
+          1585,
+          992
+        ],
+        "guideContentBoundsHalfOpen": [
+          0,
+          33,
+          1585,
+          1025
+        ],
+        "contentRectHalfOpen": [
+          0,
+          64,
+          3068,
+          1984
+        ],
+        "logicalWorldMappingAccepted": false
+      },
+      "layoutSource": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/previews/spring/v001/native.png",
+        "sha256": "360a2a4fea59490ceb7eca14c758ce6fdd75948de749d2a7a5153c31a28ccca7",
+        "bytes": 2267368,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          1585,
+          992
+        ]
+      },
+      "originalLayoutReference": {
+        "path": "D:/work/image/designs/client-map-qdao-20261102/35004/reference/diagnosis/corrected-reference-v001/35004-gbits-static-background-native.png",
+        "sha256": "a1ac92b72c044d36c2acf5856c07860d7d7d8964c58e321740a83897a2045eb4",
+        "bytes": 2022159,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          1920,
+          1200
+        ]
+      },
+      "navigationAssets": {
+        "walkmask": null,
+        "navigation": null,
+        "portals": null,
+        "accepted": false,
+        "constraint": "Three detached platforms in cloud and sky; no invented connections across gaps."
+      },
+      "tiles": [
+        {
+          "tile": "r01_c01",
+          "row": 1,
+          "column": 1,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c01/v001/native.png",
+            "sha256": "66c83a1e6821b4278722bd2b13f4cbeafb1eb4bec9f34d540449fbb9bd0331e5",
+            "bytes": 2130510,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c01/v001/native.png",
+            "sha256": "66c83a1e6821b4278722bd2b13f4cbeafb1eb4bec9f34d540449fbb9bd0331e5",
+            "bytes": 2130510,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c01.png",
+            "sha256": "a361079d1bf92e561758089ee5531ba27b2f72a02701d217c7ed5c2ce6f89949",
+            "bytes": 1438310,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c01/v001/formal-acceptance-v001.json",
+            "sha256": "1e317f88b83fdb9f0b791e47516ec9993f4cf56ea48127bacb0b9c8bd1b1972c",
+            "bytes": 5631,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-06T01:11:08.339309+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c01/v001/native.png.generation.json",
+            "sha256": "9c83840511fc9eeda0610e95a714f0b8f476e959eed859a0f2ceb2c87eac7002",
+            "bytes": 10322,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c01.png.generation.json",
+            "sha256": "20461c74a0c9a3382190936532a506811af44d23458ddd88ff329b3b1ad60b56",
+            "bytes": 3069,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c01.use-size-review.json",
+            "sha256": "e2648b4cad063ce528a14b9526f979ebdca6249a1bf379f84597b19651dbbb45",
+            "bytes": 1565,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            0,
+            0,
+            529,
+            529
+          ]
+        },
+        {
+          "tile": "r01_c02",
+          "row": 1,
+          "column": 2,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c02/v001/native.png",
+            "sha256": "1fca58b445c6730a40adbb7ebf9f06f5bd997f9a63a6a6994c769ee7c6df7f5d",
+            "bytes": 1985347,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c02/v001/native.png",
+            "sha256": "1fca58b445c6730a40adbb7ebf9f06f5bd997f9a63a6a6994c769ee7c6df7f5d",
+            "bytes": 1985347,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c02.png",
+            "sha256": "108d8a56ab832df32b1970b79ece492f9058ed5b7ccf1895d84cd44ead7696ca",
+            "bytes": 1319264,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c02/v001/formal-acceptance-v001.json",
+            "sha256": "3d6ee24d5e321615b1ea98892fb4a28f59dda4a09d51ee41eb84ecfb604604df",
+            "bytes": 6145,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-06T01:11:08.339309+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c02/v001/native.png.generation.json",
+            "sha256": "5366aafb471d12b0ea475898245fc1a338d6e959eebfadf713677d2aed11a625",
+            "bytes": 10695,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c02.png.generation.json",
+            "sha256": "ef9b3db5500fcf38ccd9819e08bc1f9c974542a0bd245f13ced3259b5eb944e0",
+            "bytes": 1469,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c02.use-size-review.json",
+            "sha256": "00cbf71772c45844118b01874397f2a6d5b4de1429d98d66b3b139ae45504477",
+            "bytes": 1006,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            529,
+            0,
+            1058,
+            529
+          ]
+        },
+        {
+          "tile": "r01_c03",
+          "row": 1,
+          "column": 3,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c03/v001/native.png",
+            "sha256": "5999567ae24cd08fd42e6729a38ec52e5d91cb263295a2d585e9e52b9dc24ce6",
+            "bytes": 1742507,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c03/v001/native.png",
+            "sha256": "5999567ae24cd08fd42e6729a38ec52e5d91cb263295a2d585e9e52b9dc24ce6",
+            "bytes": 1742507,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c03.png",
+            "sha256": "b71ca9f270eb0e882f732ed7725b39aa8ae7845755a64e99484f80bc8304728c",
+            "bytes": 1155766,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c03/v001/formal-acceptance-v001.json",
+            "sha256": "c6462c7b3e62bf2a95ea04794ea6aec414b22f050e089a20c65289775d14724a",
+            "bytes": 5639,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-06T01:11:08.339309+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r01_c03/v001/native.png.generation.json",
+            "sha256": "370208f5ae55bce21974d6285f886755ce46d7b35213a13fa4a1b5d7f1493595",
+            "bytes": 11103,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c03.png.generation.json",
+            "sha256": "836d94e9057bdfad3a70e612f92e3fbd2c437a60c26a4b3c8ec4f65de1e12630",
+            "bytes": 1469,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r01_c03.use-size-review.json",
+            "sha256": "46a7e7146abb3cac5d106c124ad36dcfaf4de183e49268b27a467e23dd483dda",
+            "bytes": 1006,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            1058,
+            0,
+            1587,
+            529
+          ]
+        },
+        {
+          "tile": "r02_c01",
+          "row": 2,
+          "column": 1,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c01/v001/native.png",
+            "sha256": "e98a632185fa3e219398569d34fda3127c79288c5770e010faf455096ebe7ce6",
+            "bytes": 1906885,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c01/v001/native.png",
+            "sha256": "e98a632185fa3e219398569d34fda3127c79288c5770e010faf455096ebe7ce6",
+            "bytes": 1906885,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c01.png",
+            "sha256": "a107c02c811f8585773057c89193ae47ec8176840f3d63238707f283915a782e",
+            "bytes": 1282554,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c01/v001/formal-acceptance-v001.json",
+            "sha256": "7e1403c47d13a71720ab97dff40ee07bdc7c656ff30fce4bc1023fbd4f8c0ed9",
+            "bytes": 5636,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-06T01:11:08.339309+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c01/v001/native.png.generation.json",
+            "sha256": "5b195975e211409e340ca7cbddbdf8fb03555e1fc382629fd79f08717f13da0f",
+            "bytes": 11061,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c01.png.generation.json",
+            "sha256": "b2b412b7fd3bfe749c79ea24a10e530d1f62611c59b9c981572f1937c9688648",
+            "bytes": 3072,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c01.use-size-review.json",
+            "sha256": "dbeba3d322310782dc5e92abf1e04b7003a73e4633f7ae6dcc74d6f4f3b011b8",
+            "bytes": 1622,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            0,
+            529,
+            529,
+            1058
+          ]
+        },
+        {
+          "tile": "r02_c02",
+          "row": 2,
+          "column": 2,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c02/v001/native.png",
+            "sha256": "3ee6e1b298f3bc11f5a667705e585e0201cedef2526da0c59ed5b1d524ab6354",
+            "bytes": 2209687,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c02/v001/native.png",
+            "sha256": "3ee6e1b298f3bc11f5a667705e585e0201cedef2526da0c59ed5b1d524ab6354",
+            "bytes": 2209687,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c02.png",
+            "sha256": "b296a6c93849ff45427ae32aa9023c8ea5089bc28f617af41dd7ae67f9c2c45d",
+            "bytes": 1483470,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c02/v001/formal-acceptance-v001.json",
+            "sha256": "313c8c44375dca48c7e59f7bba49836abb5c15c1510bd425680c305f7f587fc3",
+            "bytes": 6141,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-06T01:11:08.339309+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c02/v001/native.png.generation.json",
+            "sha256": "8beabcfba9f3dd49ac32f6fc86bbd9e49e2e777e5d62257b56c26a6bb9f327b1",
+            "bytes": 11449,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c02.png.generation.json",
+            "sha256": "9df61954c37fb5839e2b0930b4fd321e897c9b6f31ab2a7e859579aa0313e8bd",
+            "bytes": 1469,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c02.use-size-review.json",
+            "sha256": "04562a6fd518611c4cbc9fe123e01003ee12bfdcd1f42b58061621eee41af175",
+            "bytes": 1006,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            529,
+            529,
+            1058,
+            1058
+          ]
+        },
+        {
+          "tile": "r02_c03",
+          "row": 2,
+          "column": 3,
+          "version": "v002",
+          "imageRectHalfOpen": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c03/v002/native.png",
+            "sha256": "965c1e529fce2fe71e653915b8f514528944233733f7745a90be0b476beffa38",
+            "bytes": 1787790,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c03/v002/native.png",
+            "sha256": "965c1e529fce2fe71e653915b8f514528944233733f7745a90be0b476beffa38",
+            "bytes": 1787790,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c03.png",
+            "sha256": "d6d2c0bb8911fefcf60653e39386208bf276c6c2b94774f390317230528269a8",
+            "bytes": 1184053,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c03/v002/formal-acceptance-v001.json",
+            "sha256": "6e3f6a1ce6f8cbc0a2a1180043b1d2260af5472f183021685b3639c78b1c047a",
+            "bytes": 5893,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-06T01:11:08.339309+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/spring/r02_c03/v002/native.png.generation.json",
+            "sha256": "7ca056bfb110642c2ca93d1f9197c9ac0175ebdface2f4d778dd77e2a0633c71",
+            "bytes": 11624,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c03.png.generation.json",
+            "sha256": "2a5e410ce97197527c8b96850c56e2ec31f18bf8db527739af9ca8f1a152c3cc",
+            "bytes": 1445,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/spring/r02_c03.use-size-review.json",
+            "sha256": "5485f6f6e0b87da470c19e4683911c82c90a36d0d9608b61d75dcb85faafd31b",
+            "bytes": 984,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            1058,
+            529,
+            1587,
+            1058
+          ]
+        }
+      ]
+    },
+    {
+      "mapId": "35004",
+      "appearance": "midautumn",
+      "tileCount": 6,
+      "targetTiles": 6,
+      "formalArtAccepted": true,
+      "canonicalManifest": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/delivery/midautumn-manifest.json",
+        "sha256": "a88d66192b124422321f5266d0f2456e9ea1e4fd7b4e28046c5fb72ad8a2d09d",
+        "bytes": 11541,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "selectionAuthority": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/delivery/midautumn-manifest.json",
+        "sha256": "a88d66192b124422321f5266d0f2456e9ea1e4fd7b4e28046c5fb72ad8a2d09d",
+        "bytes": 11541,
+        "expectedSHA256Matched": null,
+        "expectationSupplied": false
+      },
+      "dedicatedAuthorManifestExists": true,
+      "grid": {
+        "columns": 3,
+        "rows": 2,
+        "order": "row-major",
+        "runtimeTilePixels": [
+          1024,
+          1024
+        ],
+        "canvasPixels": [
+          3072,
+          2048
+        ],
+        "gridContract": {
+          "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/selected-seasonal-grid-v001.json",
+          "sha256": "c3941be64d158cb479c9bfafe7b7953417d1fdb356ad9a8d14137969b2aea32c",
+          "bytes": 7673,
+          "expectedSHA256Matched": null,
+          "expectationSupplied": false
+        },
+        "guideCanvasPixels": [
+          1587,
+          1058
+        ],
+        "guideCellSide": 529,
+        "sourcePixels": [
+          1585,
+          992
+        ],
+        "guideContentBoundsHalfOpen": [
+          0,
+          33,
+          1585,
+          1025
+        ],
+        "contentRectHalfOpen": [
+          0,
+          64,
+          3068,
+          1984
+        ],
+        "logicalWorldMappingAccepted": false
+      },
+      "layoutSource": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/previews/midautumn/v001/native.png",
+        "sha256": "0ea124e6cef842891af19fe1090ffe11d888eb186b819c1b859468a211d3e5b8",
+        "bytes": 2255488,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          1585,
+          992
+        ]
+      },
+      "originalLayoutReference": {
+        "path": "D:/work/image/designs/client-map-qdao-20261102/35004/reference/diagnosis/corrected-reference-v001/35004-gbits-static-background-native.png",
+        "sha256": "a1ac92b72c044d36c2acf5856c07860d7d7d8964c58e321740a83897a2045eb4",
+        "bytes": 2022159,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          1920,
+          1200
+        ]
+      },
+      "navigationAssets": {
+        "walkmask": null,
+        "navigation": null,
+        "portals": null,
+        "accepted": false,
+        "constraint": "Three detached platforms in cloud and sky; no invented connections across gaps."
+      },
+      "tiles": [
+        {
+          "tile": "r01_c01",
+          "row": 1,
+          "column": 1,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            0,
+            0,
+            1024,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c01/v001/native.png",
+            "sha256": "f75e78a65c0d450e523d50dafc355c2105ea0a4aa84e49404c1ca4ba9e9dfbe9",
+            "bytes": 2049244,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c01/v001/native.png",
+            "sha256": "f75e78a65c0d450e523d50dafc355c2105ea0a4aa84e49404c1ca4ba9e9dfbe9",
+            "bytes": 2049244,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c01.png",
+            "sha256": "97f7cbe385b74c59d5eb80f4c86b7c9d5629a8f11c7bda0b6cbd8cdd61d49283",
+            "bytes": 1378023,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c01/v001/formal-acceptance-v001.json",
+            "sha256": "44aaa5ebf8fdfbf40da607c7ecd8fbd1ac633aab169d24787fd69e76f8eba78c",
+            "bytes": 6090,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-06T06:43:06.647593+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-66557e14-2083-4cf5-8dd4-f83653c01bc3",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c01/v001/native.png.generation.json",
+            "sha256": "1eefff6105afb2563bc0195bd17e4c46b2ff270433d8129929efee270accd4de",
+            "bytes": 10417,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c01.png.generation.json",
+            "sha256": "f20c40cb66afa8b6410f252df27da08b7fb7e7c7ea32da89926de9ebe0e42722",
+            "bytes": 3093,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c01.use-size-review.json",
+            "sha256": "00cfe55e4260597b76b4ed1b924bcc7c8979ab9db2c1e66e913404c162ae0d86",
+            "bytes": 1536,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            0,
+            0,
+            529,
+            529
+          ]
+        },
+        {
+          "tile": "r01_c02",
+          "row": 1,
+          "column": 2,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            1024,
+            0,
+            2048,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c02/v001/native.png",
+            "sha256": "c0a9c236918d0e383e727d1069d2a5f14d99650d86a994a8b540fd5022ea672e",
+            "bytes": 2008870,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c02/v001/native.png",
+            "sha256": "c0a9c236918d0e383e727d1069d2a5f14d99650d86a994a8b540fd5022ea672e",
+            "bytes": 2008870,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c02.png",
+            "sha256": "ae34c430dab1d36e9a61408217dc100fc786c492e8aaa579b2639bbea5eb163e",
+            "bytes": 1327046,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c02/v001/formal-acceptance-v001.json",
+            "sha256": "f33c9608f54ae5bcbd682c58506937b9df8f51f796cf80c4d1b717262358e17b",
+            "bytes": 6115,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T22:16:18.775497+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c02/v001/native.png.generation.json",
+            "sha256": "6a26b0f49855069302363ff9ee2dc8fc72bf2e2b8cccbe8e8414587c0969471b",
+            "bytes": 10772,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c02.png.generation.json",
+            "sha256": "4cd068c6b84e9209eeff43488b081904fd827316cebb964646580fa3f0499363",
+            "bytes": 1438,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c02.use-size-review.json",
+            "sha256": "520f0d0a0232fe8c592d0037d8cbc82ff80b20f39ead96d34e2acfb7ae7528ca",
+            "bytes": 920,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            529,
+            0,
+            1058,
+            529
+          ]
+        },
+        {
+          "tile": "r01_c03",
+          "row": 1,
+          "column": 3,
+          "version": "v002",
+          "imageRectHalfOpen": [
+            2048,
+            0,
+            3072,
+            1024
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c03/v002/native.png",
+            "sha256": "064cc66d7c6785461f9a8af6c7b5efb0b99538ca3174938b35035f290d86bf3a",
+            "bytes": 1757437,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c03/v002/native.png",
+            "sha256": "064cc66d7c6785461f9a8af6c7b5efb0b99538ca3174938b35035f290d86bf3a",
+            "bytes": 1757437,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c03.png",
+            "sha256": "4af180275b01a2708400e9d6aa6ce0b7c562ca0eb3a600bf534be87d6b57fde1",
+            "bytes": 1176721,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c03/v002/formal-acceptance-v001.json",
+            "sha256": "9d2ea8dcdf066860694b0cfdcab508978309d5ec78f732a633ab5c786c86d965",
+            "bytes": 5625,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T22:16:18.775497+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r01_c03/v002/native.png.generation.json",
+            "sha256": "7e564a6da8ab2035ff8847b2dbbf2270fb18e2a5a799cea9131873e74c17d7b6",
+            "bytes": 11366,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c03.png.generation.json",
+            "sha256": "963f67c4adeaea564a6d488993cccaa4a0c391564301e4640c502ed24459ab72",
+            "bytes": 1438,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r01_c03.use-size-review.json",
+            "sha256": "2d51115ad4860bc69012daa3defb9b4943a4e92c7f9a66e8ba8cbe55360cf580",
+            "bytes": 929,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            1058,
+            0,
+            1587,
+            529
+          ]
+        },
+        {
+          "tile": "r02_c01",
+          "row": 2,
+          "column": 1,
+          "version": "v003",
+          "imageRectHalfOpen": [
+            0,
+            1024,
+            1024,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c01/v003/native.png",
+            "sha256": "b77af226e75b8b7aaaf23c7038d2e9af72430237f2349ac46728cfea11007afb",
+            "bytes": 1848553,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c01/v003/native.png",
+            "sha256": "b77af226e75b8b7aaaf23c7038d2e9af72430237f2349ac46728cfea11007afb",
+            "bytes": 1848553,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c01.png",
+            "sha256": "acbb4d88aad778bdb52cad91a75e2654fb4ba83978f874190b7af06c5b9f87e8",
+            "bytes": 1253778,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c01/v003/formal-acceptance-v001.json",
+            "sha256": "f6b086559621aceea37f0ba2aa6e4889b526839c0319082d2b4ddac972ad716b",
+            "bytes": 6095,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-06T06:43:06.663719+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": "exec-3f88d54b-d2d6-4bcc-85c7-152154a45236",
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c01/v003/native.png.generation.json",
+            "sha256": "8a6e4bcdd73a954aa2409725435b7d252324a56cf8cca9f8206a25e91d970344",
+            "bytes": 11385,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c01.png.generation.json",
+            "sha256": "75d336b3950090ace05573967111b1a152f1faa0012e6748dcca830084be58e7",
+            "bytes": 3096,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c01.use-size-review.json",
+            "sha256": "ea519857063e8c79a87f5e8698228fbbfb4ceb2fb8d629fa4b28b35a47e09567",
+            "bytes": 1489,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            0,
+            529,
+            529,
+            1058
+          ]
+        },
+        {
+          "tile": "r02_c02",
+          "row": 2,
+          "column": 2,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            1024,
+            1024,
+            2048,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c02/v001/native.png",
+            "sha256": "bf5f6c73d13569eeac4bf023ec5555a40616f492ca9b7ac06711479d3f05bd86",
+            "bytes": 2156317,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c02/v001/native.png",
+            "sha256": "bf5f6c73d13569eeac4bf023ec5555a40616f492ca9b7ac06711479d3f05bd86",
+            "bytes": 2156317,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c02.png",
+            "sha256": "248cfa5406265c8a5112372da807c18a073b95ce02e8dbd1afd0b9e6609cc376",
+            "bytes": 1437586,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c02/v001/formal-acceptance-v001.json",
+            "sha256": "d879a412a13fd3522b780239cfbca7f0ac64132d1bdb885894d708e598e254ce",
+            "bytes": 6165,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T21:11:27.000883+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c02/v001/native.png.generation.json",
+            "sha256": "5e91350f50c51e10e6014192cad81776b3d8c60ed19406dd8b2f98cb8e313d31",
+            "bytes": 11570,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c02.png.generation.json",
+            "sha256": "e31eb9d989a614370a18c8ebe497b9710d2a6820ae0418316a992626cc57129c",
+            "bytes": 1438,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c02.use-size-review.json",
+            "sha256": "79afbe7c8a5df7d1b5d3cdca9171d87a65a80f5a15fc5cd2744631bc7c051601",
+            "bytes": 1004,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            529,
+            529,
+            1058,
+            1058
+          ]
+        },
+        {
+          "tile": "r02_c03",
+          "row": 2,
+          "column": 3,
+          "version": "v001",
+          "imageRectHalfOpen": [
+            2048,
+            1024,
+            3072,
+            2048
+          ],
+          "native": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c03/v001/native.png",
+            "sha256": "18906db9ae2ad5b0466c93c76af1a436ea0307dab9a93ccb868108dfcde62cf9",
+            "bytes": 1791072,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "source": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c03/v001/native.png",
+            "sha256": "18906db9ae2ad5b0466c93c76af1a436ea0307dab9a93ccb868108dfcde62cf9",
+            "bytes": 1791072,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1254,
+              1254
+            ]
+          },
+          "runtime": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c03.png",
+            "sha256": "1fc969f4b27005601bb357ea3fe62c481d227e597b6490c292ab127e28d080b1",
+            "bytes": 1188064,
+            "expectedSHA256Matched": true,
+            "pixels": [
+              1024,
+              1024
+            ]
+          },
+          "formalAcceptance": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c03/v001/formal-acceptance-v001.json",
+            "sha256": "45a2aad85169bebeb8c7cc906d979470f4c7396d536d7fffecfd18ddc9831b9e",
+            "bytes": 5674,
+            "expectedSHA256Matched": null,
+            "status": "FORMAL_ART_ACCEPTED",
+            "formalAccepted": true,
+            "acceptedAtUtc": "2026-11-05T21:09:19.435667+00:00",
+            "expectationSupplied": false
+          },
+          "formalArtAccepted": true,
+          "navigationAcceptedByArtSource": false,
+          "originalToolEvent": null,
+          "generationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/formal/midautumn/r02_c03/v001/native.png.generation.json",
+            "sha256": "fd617519033729e87eeb490c451a04f34ad121b870d1dcb1f6579c54b0fd34e0",
+            "bytes": 11799,
+            "expectedSHA256Matched": true
+          },
+          "runtimeGenerationRecord": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c03.png.generation.json",
+            "sha256": "f0b382b0725ad460ca2eb194a83c0c37937b53d05e3bbed8a42b50d3fa94cc05",
+            "bytes": 1532,
+            "expectedSHA256Matched": null,
+            "expectationSupplied": false
+          },
+          "runtimeUseSizeReview": {
+            "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/r02_c03.use-size-review.json",
+            "sha256": "538c010b25cc858b1256af82aceb786228e5224b76d6ca9b3ace93e5e5296ed2",
+            "bytes": 980,
+            "expectedSHA256Matched": true
+          },
+          "layoutGuideCropHalfOpen": [
+            1058,
+            529,
+            1587,
+            1058
+          ]
+        }
+      ],
+      "wholeMapRuntime": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/whole-map-preview.png",
+        "sha256": "122db22edb2771797385e482f31eca9f32e5f1e8dc0d9f38d1fcb510675072c4",
+        "bytes": 7855604,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          3072,
+          2048
+        ]
+      },
+      "wholeMapNativeAssembly": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/runtime1024/midautumn/whole-map-native-assembly.png",
+        "sha256": "1676f7aa74e02275e41726d4189c4804873239629dc2fe9b6457552c49ff11f9",
+        "bytes": 10889880,
+        "expectedSHA256Matched": true,
+        "pixels": [
+          3762,
+          2508
+        ]
+      },
+      "wholeMapUseSizeReview": {
+        "path": "D:/work/image-production-staging-20261103/linghe-ferry/clients/35004/receipts/MIDAUTUMN_CLOSURE_ACTUAL_VIEW_20261106-v001.json",
+        "sha256": "db1c2568c9ec86cdee91652f9a8e510b83f7a39f1ca31bd49b64d92c7cc9384f",
+        "bytes": 2501,
+        "expectedSHA256Matched": true
+      }
+    }
+  ]
+}

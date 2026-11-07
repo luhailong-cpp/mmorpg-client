@@ -27,10 +27,13 @@ namespace MmorpgClient.World.Tianyong
         private MmorpgClient.World.CurrentMaps.CurrentMapTileStreaming _currentMapTiles;
 
         internal void ConfigureCurrentMapTiles(string key)
+            => ConfigureCurrentMapTiles(MmorpgClient.World.CurrentMaps.CurrentMapCatalog.Find(key));
+
+        internal void ConfigureCurrentMapTiles(MmorpgClient.World.CurrentMaps.CurrentMapDefinition definition)
         {
             if (_currentMapTiles == null)
                 _currentMapTiles = Root.AddComponent<MmorpgClient.World.CurrentMaps.CurrentMapTileStreaming>();
-            _currentMapTiles.Configure(key);
+            _currentMapTiles.Configure(definition);
         }
 
         internal void ConfigureCityTiles(string city, string variant, Action activate = null)

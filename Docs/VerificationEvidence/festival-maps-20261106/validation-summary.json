@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "deliveredMaps": 3,
+  "appearances": 5,
+  "runtimeTiles": 36,
+  "integratedRemoteBase": "5214b242dd6af4adc7e2ef183106990b28451e9e",
+  "runtimeSourceFiles": 445,
+  "runtimeSourceDigest": "95d3eb984939abead5d41302c8cc323d19aa430077a5340235cd3d154103d827",
+  "compilation": [
+    {
+      "kind": "editor",
+      "sources": 445,
+      "exitCode": 0,
+      "errors": [],
+      "warningCount": 145
+    },
+    {
+      "kind": "release",
+      "sources": 445,
+      "exitCode": 0,
+      "errors": [],
+      "warningCount": 148
+    },
+    {
+      "kind": "editor_tools",
+      "sources": 5,
+      "exitCode": 0,
+      "errors": [],
+      "warningCount": 6
+    },
+    {
+      "kind": "editmode_tests",
+      "sources": 2,
+      "exitCode": 0,
+      "errors": [],
+      "warningCount": 0
+    },
+    {
+      "kind": "playmode_tests",
+      "sources": 1,
+      "exitCode": 0,
+      "errors": [],
+      "warningCount": 0
+    }
+  ],
+  "checks": {
+    "portableResourceTests": 8,
+    "navigationPolygonTests": 12,
+    "deliveryContractTests": 80,
+    "runtimeTransitionTests": 13,
+    "offlinePreviewTransitionTests": 14,
+    "productionNavigationGroups": 37,
+    "productionNavigationAssertions": 109165,
+    "windowsAutocrlfExactByteSamples": 10
+  },
+  "nativeUnityTestsExecuted": false,
+  "renderedGameAcceptance": false,
+  "serverSceneMappingPublished": false,
+  "upstreamCiBaseline": {
+    "head": "5214b242dd6af4adc7e2ef183106990b28451e9e",
+    "runId": 42212026867,
+    "conclusion": "failure",
+    "passed": 2,
+    "failed": 6,
+    "failureScope": "six legacy map tasks before this change; logs inaccessible, specific cause unconfirmed"
+  }
+}

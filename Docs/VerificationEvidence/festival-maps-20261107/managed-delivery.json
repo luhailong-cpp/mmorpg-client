@@ -1,0 +1,348 @@
+{
+  "ok": true,
+  "assertions": 280413,
+  "checks": 107,
+  "passed": [
+    "Real production catalog parses all requested client-only holiday registrations",
+    "21003 stays client-only across real appearance definitions",
+    "21003/spring real source/tiles/mask parse through production runtime",
+    "21003/spring all actual runtime PNG identities and square world geometry match",
+    "21003/spring actual source bit order equals production navigation sampler on every cell",
+    "21003/spring walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "21003/spring production A* and smoothing reach every listed legal landmark route",
+    "21003/spring real parser rejects wrong source identity/missing mask/incomplete set",
+    "21003/mid-autumn real source/tiles/mask parse through production runtime",
+    "21003/mid-autumn all actual runtime PNG identities and square world geometry match",
+    "21003/mid-autumn actual source bit order equals production navigation sampler on every cell",
+    "21003/mid-autumn walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "21003/mid-autumn production A* and smoothing reach every listed legal landmark route",
+    "21003/mid-autumn real parser rejects wrong source identity/missing mask/incomplete set",
+    "21003 real festival definitions and mask bytes share navigation",
+    "28007 stays client-only across real appearance definitions",
+    "28007/spring real source/tiles/mask parse through production runtime",
+    "28007/spring all actual runtime PNG identities and square world geometry match",
+    "28007/spring actual source bit order equals production navigation sampler on every cell",
+    "28007/spring walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "28007/spring production A* and smoothing reach every listed legal landmark route",
+    "28007/spring real parser rejects wrong source identity/missing mask/incomplete set",
+    "35004 stays client-only across real appearance definitions",
+    "35004/spring real source/tiles/mask parse through production runtime",
+    "35004/spring all actual runtime PNG identities and square world geometry match",
+    "35004/spring actual source bit order equals production navigation sampler on every cell",
+    "35004/spring walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "35004/spring production A* and smoothing reach every listed legal landmark route",
+    "35004/spring real parser rejects wrong source identity/missing mask/incomplete set",
+    "35004/mid-autumn real source/tiles/mask parse through production runtime",
+    "35004/mid-autumn all actual runtime PNG identities and square world geometry match",
+    "35004/mid-autumn actual source bit order equals production navigation sampler on every cell",
+    "35004/mid-autumn walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "35004/mid-autumn production A* and smoothing reach every listed legal landmark route",
+    "35004/mid-autumn real parser rejects wrong source identity/missing mask/incomplete set",
+    "35004 real festival definitions and mask bytes share navigation",
+    "01001 stays client-only across real appearance definitions",
+    "01001/spring real source/tiles/mask parse through production runtime",
+    "01001/spring all actual runtime PNG identities and square world geometry match",
+    "01001/spring actual source bit order equals production navigation sampler on every cell",
+    "01001/spring walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "01001/spring production A* and smoothing reach every listed legal landmark route",
+    "01001/spring real parser rejects wrong source identity/missing mask/incomplete set",
+    "01001/mid-autumn real source/tiles/mask parse through production runtime",
+    "01001/mid-autumn all actual runtime PNG identities and square world geometry match",
+    "01001/mid-autumn actual source bit order equals production navigation sampler on every cell",
+    "01001/mid-autumn walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "01001/mid-autumn production A* and smoothing reach every listed legal landmark route",
+    "01001/mid-autumn real parser rejects wrong source identity/missing mask/incomplete set",
+    "01001 real festival definitions and mask bytes share navigation",
+    "01002 stays client-only across real appearance definitions",
+    "01002/spring real source/tiles/mask parse through production runtime",
+    "01002/spring all actual runtime PNG identities and square world geometry match",
+    "01002/spring actual source bit order equals production navigation sampler on every cell",
+    "01002/spring walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "01002/spring production A* and smoothing reach every listed legal landmark route",
+    "01002/spring real parser rejects wrong source identity/missing mask/incomplete set",
+    "01002/mid-autumn real source/tiles/mask parse through production runtime",
+    "01002/mid-autumn all actual runtime PNG identities and square world geometry match",
+    "01002/mid-autumn actual source bit order equals production navigation sampler on every cell",
+    "01002/mid-autumn walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "01002/mid-autumn production A* and smoothing reach every listed legal landmark route",
+    "01002/mid-autumn real parser rejects wrong source identity/missing mask/incomplete set",
+    "01002 real festival definitions and mask bytes share navigation",
+    "05008 stays client-only across real appearance definitions",
+    "05008/spring real source/tiles/mask parse through production runtime",
+    "05008/spring all actual runtime PNG identities and square world geometry match",
+    "05008/spring actual source bit order equals production navigation sampler on every cell",
+    "05008/spring walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "05008/spring production A* and smoothing reach every listed legal landmark route",
+    "05008/spring real parser rejects wrong source identity/missing mask/incomplete set",
+    "05008/mid-autumn real source/tiles/mask parse through production runtime",
+    "05008/mid-autumn all actual runtime PNG identities and square world geometry match",
+    "05008/mid-autumn actual source bit order equals production navigation sampler on every cell",
+    "05008/mid-autumn walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "05008/mid-autumn production A* and smoothing reach every listed legal landmark route",
+    "05008/mid-autumn real parser rejects wrong source identity/missing mask/incomplete set",
+    "05008 real festival definitions and mask bytes share navigation",
+    "10000 stays client-only across real appearance definitions",
+    "10000/spring real source/tiles/mask parse through production runtime",
+    "10000/spring all actual runtime PNG identities and square world geometry match",
+    "10000/spring actual source bit order equals production navigation sampler on every cell",
+    "10000/spring walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "10000/spring production A* and smoothing reach every listed legal landmark route",
+    "10000/spring real parser rejects wrong source identity/missing mask/incomplete set",
+    "10000/mid-autumn real source/tiles/mask parse through production runtime",
+    "10000/mid-autumn all actual runtime PNG identities and square world geometry match",
+    "10000/mid-autumn actual source bit order equals production navigation sampler on every cell",
+    "10000/mid-autumn walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "10000/mid-autumn production A* and smoothing reach every listed legal landmark route",
+    "10000/mid-autumn real parser rejects wrong source identity/missing mask/incomplete set",
+    "10000 real festival definitions and mask bytes share navigation",
+    "19004 stays client-only across real appearance definitions",
+    "19004/mid-autumn real source/tiles/mask parse through production runtime",
+    "19004/mid-autumn all actual runtime PNG identities and square world geometry match",
+    "19004/mid-autumn actual source bit order equals production navigation sampler on every cell",
+    "19004/mid-autumn walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "19004/mid-autumn production A* and smoothing reach every listed legal landmark route",
+    "19004/mid-autumn real parser rejects wrong source identity/missing mask/incomplete set",
+    "23006 stays client-only across real appearance definitions",
+    "23006/mid-autumn real source/tiles/mask parse through production runtime",
+    "23006/mid-autumn all actual runtime PNG identities and square world geometry match",
+    "23006/mid-autumn actual source bit order equals production navigation sampler on every cell",
+    "23006/mid-autumn walls/objects/padding are blocked by real CurrentMapData and navigation",
+    "23006/mid-autumn production A* and smoothing reach every listed legal landmark route",
+    "23006/mid-autumn real parser rejects wrong source identity/missing mask/incomplete set",
+    "All requested resources are covered and no loader error was hidden"
+  ],
+  "productionSourcesLinked": [
+    "MapDeliveryContract.cs",
+    "CurrentMapCatalog.cs",
+    "CurrentMapTilesManifest.cs",
+    "CityTileManifest.cs",
+    "TianyongNavigationGrid.cs",
+    "TianyongMapDefinition.cs"
+  ],
+  "realManagedGeometry": "UnityEngine.CoreModule.dll",
+  "nativeAdaptersOnly": [
+    "JsonUtility (System.Text.Json field adapter)",
+    "Resources (read-only local files)",
+    "Texture2D (PNG dimensions only)",
+    "TextAsset",
+    "Debug"
+  ],
+  "tileCount": 90,
+  "appearanceCount": 15,
+  "deliveries": [
+    {
+      "mapId": "21003",
+      "appearance": "spring",
+      "tiles": 9,
+      "walkmaskColumns": 154,
+      "walkmaskRows": 154,
+      "spawn": {
+        "x": 153.6,
+        "y": 0,
+        "z": 107.2
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "21003",
+      "appearance": "mid-autumn",
+      "tiles": 9,
+      "walkmaskColumns": 154,
+      "walkmaskRows": 154,
+      "spawn": {
+        "x": 153.6,
+        "y": 0,
+        "z": 107.2
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "28007",
+      "appearance": "spring",
+      "tiles": 6,
+      "walkmaskColumns": 154,
+      "walkmaskRows": 103,
+      "spawn": {
+        "x": 100.8,
+        "y": 0,
+        "z": 41.92
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "35004",
+      "appearance": "spring",
+      "tiles": 6,
+      "walkmaskColumns": 154,
+      "walkmaskRows": 103,
+      "spawn": {
+        "x": 140.8,
+        "y": 0,
+        "z": 91.2
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "35004",
+      "appearance": "mid-autumn",
+      "tiles": 6,
+      "walkmaskColumns": 154,
+      "walkmaskRows": 103,
+      "spawn": {
+        "x": 140.8,
+        "y": 0,
+        "z": 91.2
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "01001",
+      "appearance": "spring",
+      "tiles": 2,
+      "walkmaskColumns": 103,
+      "walkmaskRows": 52,
+      "spawn": {
+        "x": 80,
+        "y": 0,
+        "z": 30.4
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "01001",
+      "appearance": "mid-autumn",
+      "tiles": 2,
+      "walkmaskColumns": 103,
+      "walkmaskRows": 52,
+      "spawn": {
+        "x": 80,
+        "y": 0,
+        "z": 30.4
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "01002",
+      "appearance": "spring",
+      "tiles": 2,
+      "walkmaskColumns": 103,
+      "walkmaskRows": 52,
+      "spawn": {
+        "x": 46,
+        "y": 0,
+        "z": 28.9
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "01002",
+      "appearance": "mid-autumn",
+      "tiles": 2,
+      "walkmaskColumns": 103,
+      "walkmaskRows": 52,
+      "spawn": {
+        "x": 46,
+        "y": 0,
+        "z": 28.9
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "05008",
+      "appearance": "spring",
+      "tiles": 6,
+      "walkmaskColumns": 154,
+      "walkmaskRows": 103,
+      "spawn": {
+        "x": 91.2,
+        "y": 0,
+        "z": 64
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "05008",
+      "appearance": "mid-autumn",
+      "tiles": 6,
+      "walkmaskColumns": 154,
+      "walkmaskRows": 103,
+      "spawn": {
+        "x": 91.2,
+        "y": 0,
+        "z": 64
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "10000",
+      "appearance": "spring",
+      "tiles": 12,
+      "walkmaskColumns": 205,
+      "walkmaskRows": 154,
+      "spawn": {
+        "x": 116.8,
+        "y": 0,
+        "z": 82.6
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "10000",
+      "appearance": "mid-autumn",
+      "tiles": 12,
+      "walkmaskColumns": 205,
+      "walkmaskRows": 154,
+      "spawn": {
+        "x": 116.8,
+        "y": 0,
+        "z": 82.6
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "19004",
+      "appearance": "mid-autumn",
+      "tiles": 6,
+      "walkmaskColumns": 154,
+      "walkmaskRows": 103,
+      "spawn": {
+        "x": 192,
+        "y": 0,
+        "z": 88.8
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    },
+    {
+      "mapId": "23006",
+      "appearance": "mid-autumn",
+      "tiles": 4,
+      "walkmaskColumns": 103,
+      "walkmaskRows": 103,
+      "spawn": {
+        "x": 131.84,
+        "y": 0,
+        "z": 66.56
+      },
+      "productionParserAndNavigation": true,
+      "clientOnly": true
+    }
+  ],
+  "engineExecuted": false,
+  "renderedScreenAccepted": false,
+  "serverRequestsSent": 0,
+  "serverNavigationPublished": false
+}

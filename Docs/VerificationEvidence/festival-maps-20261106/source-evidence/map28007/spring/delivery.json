@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "key": "map28007",
+  "sceneId": 28007,
+  "revision": "festival20261106",
+  "appearance": "spring",
+  "layoutSha256": "b805724549fd5ae2dc843ba4b1b2cccddcf7056d1af0fd4e5e15974e9a3708f4",
+  "sourceSelectionSha256": "7ee901253a002db7c791c476a5969847e82a884132facaa8db831b9d220cc0ad",
+  "navigationPlanSha256": "8227290fed9c00bd1a3479af1f643c5d7f0ac110dc391776397aaeec02871ed7",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image-production-staging-20261103/guideng-market/28007/preview/spring/v002/client28007-qdao-spring-v002.png",
+    "sha256": "4854b82aff7265529cece25dd250735df3ca233906e3fa331fa4835db5e9fe34",
+    "bytes": 2303701,
+    "expectedSHA256Matched": true,
+    "pixels": [
+      1619,
+      972
+    ]
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image-production-staging-20261103/guideng-market/28007/replacement-consumption-20261106-v001/closure-and-runtime-export-audit-v001.json",
+    "sha256": "79b7da2754b523d3e8a028e95efcb4ed3935a253dcc48d02b2abd6fc7f19f669",
+    "bytes": 39511,
+    "expectedSHA256Matched": null,
+    "expectationSupplied": false
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map28007/spring/r01_c01.json",
+      "sha256": "684d00331976460e4408b69ae4ceb1807a363426e595e137c58d14f83a6586b7"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map28007/spring/r01_c02.json",
+      "sha256": "745f97737928fdfcf20fb19e25d6049a77f1a6f797fbc9f59b0c929fe2325f86"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map28007/spring/r01_c03.json",
+      "sha256": "9d986da0901ffb57ef6d729509e244cd0e8a649b186e211995010b4bc7972e7a"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map28007/spring/r02_c01.json",
+      "sha256": "95c0633bd2a857bec24a91d3fa964fb5c003193c623012c6a05716d1619e8bee"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map28007/spring/r02_c02.json",
+      "sha256": "8b58b56d2b1f833c3b621caef2b3c628509ea33c225876ed3abac32a43d3f84e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/festival-maps-20261106/source-evidence/map28007/spring/r02_c03.json",
+      "sha256": "5bad82797786790fd47f9d19500d20489c37cc474b9f2d340a4acfbd3cfdb3d7"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false
+}

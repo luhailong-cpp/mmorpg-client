@@ -36,6 +36,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         // 会记脏，可去列表随之滤掉真正的归属区，玩家在界面上回不了家。
         private uint _pendingZoneId;
         private object _gateAtRequest;
+        private string _pendingAppearance = "normal";
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
@@ -69,8 +70,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             WorldHudNavigation.Register(WorldHudEntry.Map, (RectTransform)_entry.transform, _entry, _entry.GetComponentInChildren<TMP_Text>());
             _window = new CityTravelWindow(design);
             _window.SetDestinations(CreateDestinations());
-            _window.TravelRequested += RequestTravel;
-            _window.ZoneTravelRequested += RequestZoneTravel;
+            _window.AppearanceTravelRequested += RequestTravel;
+            _window.AppearanceZoneTravelRequested += RequestZoneTravel;
             _hud.gameObject.SetActive(false);
         }
 
@@ -152,23 +153,29 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Skills.SkillUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
             _window.SetZones(BuildZones());
-            _window.Show(CurrentScene, _app.WorldMap != null && _app.WorldMap.FestivalAppearance);
+            _window.SetDestinations(CreateDestinations());
+            _window.Show(CurrentScene, _app.WorldMap?.Appearance ?? "normal");
             Refresh();
         }
 
         public void RequestTravel(uint sceneConfigId, bool festival)
+            => RequestTravel(sceneConfigId, festival ? "spring" : "normal");
+
+        public void RequestTravel(uint sceneConfigId, string appearance)
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending) return;
-            if (CurrentMapCatalog.Find(sceneConfigId) == null || festival || _app.WorldMap == null) return;
+            var destination = CurrentMapCatalog.Find(sceneConfigId);
+            if (destination == null || !destination.CanTravelOnline || destination.ForAppearance(appearance) == null || _app.WorldMap == null) return;
             if (sceneConfigId == CurrentScene)
             {
-                _app.WorldMap.SetFestivalAppearance(festival);
-                _status = "景色已更新，愿此行尽兴。";
+                _status = _app.WorldMap.TrySetAppearance(appearance)
+                    ? "景色已更新，愿此行尽兴。" : "景色暂未准备好，请稍后重试。";
                 Refresh();
                 return;
             }
-            int generation = _request.Begin(sceneConfigId, festival, Time.realtimeSinceStartup);
+            int generation = _request.Begin(sceneConfigId, appearance != "normal", Time.realtimeSinceStartup);
             if (generation == 0) return;
+            _pendingAppearance = appearance;
             _status = "正在启程，请稍候…";
             Refresh();
             // 编号为零的线路由服务端分配，客户端不修改当前场景和角色位置。
@@ -199,13 +206,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         /// 请求被受理不算抵达，抵达仍然只认入场通知。
         /// </summary>
         public void RequestZoneTravel(uint zoneId, uint sceneConfigId, bool festival)
+            => RequestZoneTravel(zoneId, sceneConfigId, festival ? "spring" : "normal");
+
+        public void RequestZoneTravel(uint zoneId, uint sceneConfigId, string appearance)
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending) return;
-            if (zoneId == 0 || CurrentMapCatalog.Find(sceneConfigId) == null || festival || _app.WorldMap == null) return;
-            int generation = _request.Begin(sceneConfigId, festival, Time.realtimeSinceStartup,
+            var destination = CurrentMapCatalog.Find(sceneConfigId);
+            if (zoneId == 0 || destination == null || !destination.CanTravelOnline || destination.ForAppearance(appearance) == null || _app.WorldMap == null) return;
+            int generation = _request.Begin(sceneConfigId, appearance != "normal", Time.realtimeSinceStartup,
                 CityTravelRequest.CrossZoneTimeoutSeconds);
             if (generation == 0) return;
             _pendingZoneId = zoneId;
+            _pendingAppearance = appearance;
             _gateAtRequest = _game.GateConnectionIdentity;
             _status = "正在启程，请稍候…";
             Refresh();
@@ -302,8 +314,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _gateAtRequest = null;
             if (_request.ReceiveScene(scene?.SceneConfigId ?? 0, out bool festival))
             {
-                _app.WorldMap.SetFestivalAppearance(festival);
-                _status = "已抵达，沿着街巷自在游历吧。";
+                bool applied = _app.WorldMap != null && _app.WorldMap.TrySetAppearance(_pendingAppearance);
+                _status = applied ? "已抵达，沿着街巷自在游历吧。" : "已抵达，所选景色暂未准备好。";
                 HidePanel();
             }
             else _status = "";
@@ -348,7 +360,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void Refresh()
         {
             if (_window?.Root == null) return;
-            _window.SetState(CurrentScene, _app?.WorldMap != null && _app.WorldMap.FestivalAppearance,
+            _window.SetState(CurrentScene, _app?.WorldMap?.Appearance ?? "normal",
                 _request.IsPending, _status);
         }
 
@@ -365,28 +377,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (Instance == this) Instance = null;
         }
 
-        public static CityTravelDestination[] CreateDestinations() => new[]
+        public static CityTravelDestination[] CreateDestinations()
         {
-            new CityTravelDestination
-            {
-                SceneConfigId = 1, Name = CurrentMapCatalog.Find(1u).Name, Description = "太极广场连着长街，沿着浅灰石路游历道观与庭院。",
-                DayResourcePath = CurrentMapCatalog.Find(1u).TexturePath
-            },
-            new CityTravelDestination
-            {
-                SceneConfigId = 2, Name = CurrentMapCatalog.Find(2u).Name, Description = "八座仙居环绕中央庭园，沿石路探访海岛风光。",
-                DayResourcePath = CurrentMapCatalog.Find(2u).TexturePath
-            },
-            new CityTravelDestination
-            {
-                SceneConfigId = 3, Name = CurrentMapCatalog.Find(3u).Name, Description = "码头停舟，渔舍临海，村中广场与街巷相连。",
-                DayResourcePath = CurrentMapCatalog.Find(3u).TexturePath
-            },
-            new CityTravelDestination
-            {
-                SceneConfigId = 4, Name = "揽仙镇 · 未开放", Description = "当前地图暂未开放。",
-                Available = false
-            }
-        };
+            var destinations = new List<CityTravelDestination>();
+            foreach (var map in CurrentMapCatalog.All)
+                destinations.Add(new CityTravelDestination
+                {
+                    SceneConfigId = map.SceneConfigId, Name = map.Name, Map = map,
+                    Description = map.CanTravelOnline ? "选择景色，沿石路自在游历。" : "景色已收录，此地图尚未开放传送。",
+                    DayResourcePath = map.ForAppearance("normal")?.TexturePath,
+                    FestivalResourcePath = map.ForAppearance("spring")?.TexturePath,
+                    FestivalName = "春节", DefaultAppearance = map.Appearance,
+                    OnlineAvailable = map.CanTravelOnline
+                });
+            return destinations.ToArray();
+        }
     }
 }

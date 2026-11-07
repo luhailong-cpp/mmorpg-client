@@ -7,3 +7,10 @@ Assets/Resources/World/Characters/QdaoArchivedActions20261005/**/*.json -text
 # 地图来源和导航使用精确字节校验，跨平台检出不得改写换行。
 Assets/Resources/World/CurrentMaps20261009/**/*.json -text
 Assets/Resources/World/CurrentMaps20261009/**/walkmask.txt -text
+# Preserve exact signed delivery bytes, including frozen CRLF provenance.
+/Assets/Resources/World/QdaoMaps20261102/**/*.json -text whitespace=cr-at-eol
+/Assets/Resources/World/QdaoMaps20261102/**/*.txt -text whitespace=cr-at-eol
+/Assets/Resources/World/QdaoMaps20261102/**/*.meta -text whitespace=cr-at-eol
+/Assets/Resources/World/QdaoMaps20261102.meta -text whitespace=cr-at-eol
+/Docs/VerificationEvidence/festival-maps-20261106/**/*.json -text whitespace=cr-at-eol
+/Docs/VerificationEvidence/festival-maps-20261107/**/*.json -text whitespace=cr-at-eol

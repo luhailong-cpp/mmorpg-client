@@ -61,16 +61,23 @@ namespace MmorpgClient.World.CurrentMaps
         }
 
         public void Configure(string key)
+            => Configure(CurrentMapCatalog.Find(key));
+
+        public void Configure(CurrentMapDefinition definition)
         {
             ReleaseAll();
-            string root = CurrentMapTilesManifest.ResourceRoot + key + "/";
+            if (definition == null) return;
+            string key = definition.Key;
+            string root = definition.ResourceFolder;
             var manifestText = Resources.Load<TextAsset>(root + "tiles");
             if (manifestText == null) return;
             try
             {
                 var source = Resources.Load<TextAsset>(root + "source");
                 if (source == null) throw new InvalidOperationException("当前布局 source.json 缺失。");
-                Prepare(CurrentMapTilesManifest.Parse(key, source.text, manifestText.text));
+                Prepare(CurrentMapTilesManifest.Parse(key, source.text, manifestText.text,
+                    definition.IsModern ? root : null, definition.IsModern ? definition.Revision : null,
+                    definition.IsModern ? definition.Appearance : null));
             }
             catch (Exception error)
             { Debug.LogError($"[CurrentMapTiles] {key}: {error.Message} 保留当前布局底图。"); }
@@ -218,7 +225,7 @@ namespace MmorpgClient.World.CurrentMaps
             {
                 if (tile.Lease == null || !tile.Lease.Completed || tile.Quad != null) continue;
                 var texture = tile.Lease.Texture;
-                if (texture == null || texture.width != 4096 || texture.height != 4096 ||
+                if (texture == null || texture.width != Manifest.tilePixels || texture.height != Manifest.tilePixels ||
                     texture.format != TextureFormat.RGB24 || texture.mipmapCount != 1)
                 {
                     Debug.LogError($"[CurrentMapTiles] 分片缺失或导入格式错误：{tile.Entry.resourcePath}；保留当前布局底图。");

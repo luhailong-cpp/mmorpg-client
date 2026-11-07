@@ -30,8 +30,9 @@ namespace MmorpgClient.World.CurrentMaps
                 var floor = new GameObject(TianyongMapBuilder.GroundColliderName);
                 floor.transform.SetParent(root.transform, false);
                 var collider = floor.AddComponent<BoxCollider>();
-                collider.center = new Vector3(200f, -.55f, 150f);
-                collider.size = new Vector3(400f, 1f, 300f);
+                var navigationBounds = definition.NavigationWorldRect;
+                collider.center = new Vector3(navigationBounds.center.x, -.55f, navigationBounds.center.y);
+                collider.size = new Vector3(navigationBounds.width, 1f, navigationBounds.height);
 
                 var rect = definition.WorldRect;
                 var ground = GameObject.CreatePrimitive(PrimitiveType.Quad);
@@ -51,7 +52,7 @@ namespace MmorpgClient.World.CurrentMaps
                 renderer.sharedMaterial = material;
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
-                instance.ConfigureCurrentMapTiles(definition.Key);
+                instance.ConfigureCurrentMapTiles(definition);
                 return instance;
             }
             catch

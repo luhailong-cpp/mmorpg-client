@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MmorpgClient.World.Tianyong;
+using MmorpgClient.World.CurrentMaps;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public string FestivalResourcePath;
         public string FestivalName;
         public bool Available = true;
+        public bool OnlineAvailable = true;
+        public string DefaultAppearance = "normal";
+        public CurrentMapDefinition Map;
         public bool HasFestival => !string.IsNullOrEmpty(FestivalResourcePath);
+        public string TexturePath(string appearance) => Map != null
+            ? Map.ForAppearance(appearance)?.TexturePath
+            : appearance == "normal" ? DayResourcePath : appearance == "spring" ? FestivalResourcePath : null;
     }
 
     /// <summary>可前往的其他区服；只是展示数据，能不能去由服务端在传送请求里裁决。</summary>
@@ -32,6 +39,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     public sealed class CityTravelWindow
     {
         public event Action<uint, bool> TravelRequested;
+        public event Action<uint, string> AppearanceTravelRequested;
+        public event Action<uint, uint, string> AppearanceZoneTravelRequested;
         /// <summary>
         /// 选了其他区服时，“前往”发出的是这个事件（区服编号、场景配置编号、节庆景色），不再发
         /// <see cref="TravelRequested"/>：跨区要换连接并重新登录，走的是另一条请求，两者不能混用。
@@ -41,22 +50,26 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public uint SelectedSceneConfigId => _selected?.SceneConfigId ?? 0;
         public bool SelectedFestival => _festival;
+        public string SelectedAppearance => _appearance;
         public bool TravelEnabled => _travel.interactable;
         /// <summary>零表示留在本区（默认）。</summary>
         public uint SelectedZoneId => SelectedZone?.ZoneId ?? 0;
 
-        private readonly RectTransform _root, _destinationList, _travelPanel;
+        private readonly RectTransform _root, _destinationList, _destinationContent, _travelPanel;
         private readonly RawImage _preview;
         private readonly TMP_Text _name, _description, _current, _status, _appearanceHint, _travelLabel;
         private readonly Button _day, _festivalButton, _travel, _zoneButton;
         private readonly TMP_Text _festivalLabel, _zoneLabel;
+        private readonly List<Button> _appearanceButtons = new();
+        private static readonly string[] AppearanceIds = { "normal", "spring", "lantern", "mid-autumn" };
+        private string _appearance = "normal", _currentAppearance = "normal";
         private IReadOnlyList<CityTravelZone> _zones;
         private int _zoneIndex = -1; // 负一表示本区；其余是 _zones 的下标
         private readonly List<Button> _destinationButtons = new();
         private IReadOnlyList<CityTravelDestination> _destinations;
         private CityTravelDestination _selected;
         private uint _currentScene;
-        private bool _currentFestival, _festival, _busy;
+        private bool _festival, _busy;
 
         public CityTravelWindow(UnityEngine.Transform parent)
         {
@@ -77,8 +90,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             QdaoRefreshArt.Panel("TravelOptionsPaper",_travelPanel,0,0,1450,330);
             var dismiss=FidelityButton(_travelPanel,"收起",1270,12,155,52,()=>_travelPanel.gameObject.SetActive(false),24);dismiss.name="CloseCityTravelOptions";
             _destinationList=QdaoUguiFactory.CreateRect("Destinations",_travelPanel,32,70,1160,64);
-            var previewRect=QdaoUguiFactory.CreateRect("SelectedMapPreview",_travelPanel,0,0,0,0);
-            _preview=previewRect.gameObject.AddComponent<RawImage>();_preview.raycastTarget=false;_preview.color=Color.clear;
+            _destinationList.gameObject.AddComponent<RectMask2D>();
+            _destinationContent=QdaoUguiFactory.CreateRect("DestinationItems",_destinationList,0,0,1160,64);
+            var scroll=_destinationList.gameObject.AddComponent<ScrollRect>();
+            scroll.viewport=_destinationList;scroll.content=_destinationContent;scroll.horizontal=true;scroll.vertical=false;
+            scroll.movementType=ScrollRect.MovementType.Clamped;scroll.inertia=false;scroll.scrollSensitivity=35;
+            var previewArea=QdaoUguiFactory.CreateRect("MapPreviewArea",frame,600,120,1360,560);
+            var previewRect=QdaoUguiFactory.CreateStretch("SelectedMapPreview",previewArea,Vector4.zero);
+            _preview=previewRect.gameObject.AddComponent<RawImage>();_preview.raycastTarget=false;_preview.color=Color.white;
+            var aspect=previewRect.gameObject.AddComponent<AspectRatioFitter>();aspect.aspectMode=AspectRatioFitter.AspectMode.FitInParent;
             _name=Text(_travelPanel,"",32,15,1170,40,28,Ink);_name.name="SelectedDestinationName";
             _description=Text(_travelPanel,"",32,147,1360,32,23,Ink);_description.name="SelectedDestinationDescription";
             _appearanceHint=Text(_travelPanel,"",32,183,1360,30,21,Ink);_appearanceHint.name="DestinationAppearanceHint";
@@ -86,13 +106,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _day=FidelityButton(_travelPanel,"日景",32,220,150,52,()=>SelectFestival(false),25);_day.name="DayAppearance";
             _festivalButton=FidelityButton(_travelPanel,"节庆",192,220,170,52,()=>SelectFestival(true),25);_festivalButton.name="FestivalAppearance";
             _festivalLabel=_festivalButton.GetComponentInChildren<TMP_Text>();
-            _zoneButton=FidelityButton(_travelPanel,"本区",382,220,230,52,CycleZone,25);_zoneButton.name="TravelZoneCycle";
+            _appearanceButtons.Add(_day);_appearanceButtons.Add(_festivalButton);
+            _appearanceButtons.Add(FidelityButton(_travelPanel,"元宵",352,220,150,52,()=>SelectAppearance("lantern"),25));
+            _appearanceButtons.Add(FidelityButton(_travelPanel,"中秋",512,220,150,52,()=>SelectAppearance("mid-autumn"),25));
+            _zoneButton=FidelityButton(_travelPanel,"本区",672,220,160,52,CycleZone,25);_zoneButton.name="TravelZoneCycle";
             _zoneLabel=_zoneButton.GetComponentInChildren<TMP_Text>();_zoneLabel.overflowMode=TextOverflowModes.Ellipsis;_zoneButton.gameObject.SetActive(false);
-            _travel=FidelityButton(_travelPanel,"前往",740,220,650,52,()=>
+            _travel=FidelityButton(_travelPanel,"前往",852,220,538,52,()=>
             {
                 if(_selected==null||!_selected.Available||!_travel.interactable)return;var zone=SelectedZone;
-                if(zone!=null)ZoneTravelRequested?.Invoke(zone.ZoneId,_selected.SceneConfigId,_festival);
-                else TravelRequested?.Invoke(_selected.SceneConfigId,_festival);
+                if(zone!=null)
+                {
+                    if(AppearanceZoneTravelRequested!=null)AppearanceZoneTravelRequested(zone.ZoneId,_selected.SceneConfigId,_appearance);
+                    else if(_appearance=="normal"||_appearance=="spring")ZoneTravelRequested?.Invoke(zone.ZoneId,_selected.SceneConfigId,_festival);
+                }
+                else if(AppearanceTravelRequested!=null)AppearanceTravelRequested(_selected.SceneConfigId,_appearance);
+                else if(_appearance=="normal"||_appearance=="spring")TravelRequested?.Invoke(_selected.SceneConfigId,_festival);
             },27);_travel.name="TravelToSelectedCity";
             _travelLabel=_travel.GetComponentInChildren<TMP_Text>();
             _travelPanel.gameObject.SetActive(false);
@@ -108,16 +136,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             _destinations = destinations;
             _destinationButtons.Clear();
-            Clear(_destinationList);
+            Clear(_destinationContent);
             if (destinations == null || destinations.Count == 0) return;
             foreach (var destination in destinations)
             {
                 var value = destination;
                 int row = _destinationButtons.Count;
-                var button=FidelityButton(_destinationList,value.Name,row*195,0,190,64,()=>Select(value),26);
+                var button=FidelityButton(_destinationContent,value.Name,row*192,0,186,64,()=>Select(value),26);
                 button.name = "CityDestination_" + value.SceneConfigId;
                 _destinationButtons.Add(button);
             }
+            _destinationContent.sizeDelta=new Vector2(Mathf.Max(1160,destinations.Count*192),64);
             Select(destinations[0]);
         }
 
@@ -147,8 +176,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         public void Show(uint currentScene, bool currentFestival)
+            => Show(currentScene,currentFestival ? "spring" : "normal");
+
+        public void Show(uint currentScene, string currentAppearance)
         {
-            SetState(currentScene, currentFestival, _busy, "");
+            SetState(currentScene, currentAppearance, _busy, "");
             if (_destinations != null)
                 foreach (var destination in _destinations)
                     if (destination.SceneConfigId == currentScene) { Select(destination); break; }
@@ -159,9 +191,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void Hide() { if (_root != null) _root.gameObject.SetActive(false); }
 
         public void SetState(uint currentScene, bool currentFestival, bool busy, string status)
+            => SetState(currentScene,currentFestival ? "spring" : "normal",busy,status);
+
+        public void SetState(uint currentScene, string currentAppearance, bool busy, string status)
         {
             _currentScene = currentScene;
-            _currentFestival = currentFestival;
+            _currentAppearance = currentAppearance;
             _busy = busy;
             _status.text = status ?? "";
             string currentName = "其他地图";
@@ -177,14 +212,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_busy || destination == null || !destination.Available) return;
             _selected = destination;
-            _festival = destination.SceneConfigId == _currentScene && _currentFestival && destination.HasFestival;
+            _appearance = destination.SceneConfigId == _currentScene && destination.TexturePath(_currentAppearance) != null
+                ? _currentAppearance : destination.DefaultAppearance;
+            _festival = _appearance != "normal";
             Refresh();
         }
 
         private void SelectFestival(bool festival)
+            => SelectAppearance(festival ? "spring" : "normal");
+
+        private void SelectAppearance(string appearance)
         {
-            if (_busy || _selected == null || festival && !_selected.HasFestival) return;
-            _festival = festival;
+            if (_busy || _selected == null || string.IsNullOrEmpty(_selected.TexturePath(appearance))) return;
+            _appearance = appearance;
+            _festival = appearance != "normal";
             Refresh();
         }
 
@@ -199,32 +240,36 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             _name.text = _selected.Name;
             _description.text = _selected.Description;
-            string path = _festival ? _selected.FestivalResourcePath : _selected.DayResourcePath;
+            string path = _selected.TexturePath(_appearance);
             _preview.texture = string.IsNullOrEmpty(path) ? null : Resources.Load<Texture2D>(path);
             _preview.gameObject.SetActive(_preview.texture != null);
-            _festivalButton.gameObject.SetActive(_selected.HasFestival);
-            _festivalLabel.text = _selected.FestivalName ?? "节庆";
-            _day.interactable = !_busy && _selected.HasFestival;
-            _festivalButton.interactable = !_busy;
-            SetTab(_day, !_festival);
-            SetTab(_festivalButton, _festival);
+            if(_preview.texture!=null)_preview.GetComponent<AspectRatioFitter>().aspectRatio=(float)_preview.texture.width/_preview.texture.height;
+            for(int i=0;i<AppearanceIds.Length;i++)
+            {
+                bool delivered=!string.IsNullOrEmpty(_selected.TexturePath(AppearanceIds[i]));
+                _appearanceButtons[i].gameObject.SetActive(delivered);
+                _appearanceButtons[i].interactable=!_busy;
+                SetTab(_appearanceButtons[i],_appearance==AppearanceIds[i]);
+            }
+            _festivalLabel.text = _selected.FestivalName ?? "春节";
             bool sameScene = _selected.SceneConfigId == _currentScene;
             // 跨区时“同一张地图”不再等于“原地换景”：别的区服的同名地图是另一处地方，必须能前往。
             var zone = SelectedZone;
             bool crossZone = zone != null;
             _zoneLabel.text = crossZone ? zone.Name : "本区";
             SetTab(_zoneButton, crossZone);
-            _zoneButton.interactable = !_busy;
-            _appearanceHint.text = crossZone
+            _zoneButton.interactable = !_busy && _selected.OnlineAvailable;
+            _zoneButton.gameObject.SetActive(_selected.OnlineAvailable && _zones != null && _zones.Count > 0);
+            _appearanceHint.text = !_selected.OnlineAvailable ? "景色已收录；此地图尚未开放传送。" : crossZone
                 ? "将前往其他区服，途中会重新连接，请稍候片刻。"
                 : _selected.HasFestival
                     ? sameScene ? "更换此地景色，继续在原处游历。" : "选好景色，启程前往这片山海。"
                     : "沿着石路自在游历。";
-            _travelLabel.text = _busy ? "正在传送…"
+            _travelLabel.text = !_selected.OnlineAvailable ? "尚未开放传送" : _busy ? "正在传送…"
                 : crossZone ? "前往" + zone.Name + " · " + _selected.Name
                 : sameScene ? (_selected.HasFestival ? "应用景色" : "已在此地") : "前往" + _selected.Name;
-            _travel.interactable = !_busy && _selected.Available &&
-                (crossZone || !sameScene || _selected.HasFestival && _festival != _currentFestival);
+            _travel.interactable = !_busy && _selected.Available && _selected.OnlineAvailable &&
+                (crossZone || !sameScene || !string.IsNullOrEmpty(_selected.TexturePath(_currentAppearance)) && _appearance != _currentAppearance);
         }
 
         private const string FidelityResourceRoot="UI/Ugui/WorldMapOriginal/Fidelity20261016/";

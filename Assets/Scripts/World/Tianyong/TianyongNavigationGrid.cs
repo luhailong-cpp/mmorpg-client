@@ -22,6 +22,8 @@ namespace MmorpgClient.World.Tianyong
 
         public TianyongNavigationGrid(float cellSize = TianyongMapDefinition.NavigationCellSize)
         {
+            Bounds = new Rect(0, 0, TianyongMapDefinition.Width, TianyongMapDefinition.Depth);
+            EffectiveBounds = Bounds;
             CellSize = Mathf.Max(1f, cellSize);
             Width = Mathf.CeilToInt(TianyongMapDefinition.Width / CellSize);
             Depth = Mathf.CeilToInt(TianyongMapDefinition.Depth / CellSize);
@@ -58,24 +60,47 @@ namespace MmorpgClient.World.Tianyong
         /// Each cell is walkable when the sampler accepts its centre.
         /// </summary>
         public TianyongNavigationGrid(float cellSize, System.Func<Vector3, bool> walkableSampler)
+            : this(cellSize, walkableSampler, new Rect(0, 0, TianyongMapDefinition.Width, TianyongMapDefinition.Depth)) { }
+
+        public TianyongNavigationGrid(float cellSize, System.Func<Vector3, bool> walkableSampler, Rect bounds)
+            : this(cellSize, walkableSampler, bounds, bounds) { }
+
+        public TianyongNavigationGrid(float cellSize, System.Func<Vector3, bool> walkableSampler, Rect bounds, Rect effectiveBounds)
         {
+            if (float.IsNaN(bounds.x) || float.IsNaN(bounds.y) || float.IsNaN(bounds.width) || float.IsNaN(bounds.height) ||
+                float.IsInfinity(bounds.x) || float.IsInfinity(bounds.y) || float.IsInfinity(bounds.width) || float.IsInfinity(bounds.height) ||
+                bounds.width <= 0 || bounds.height <= 0)
+                throw new System.ArgumentException("A finite positive navigation rectangle is required.", nameof(bounds));
+            if (float.IsNaN(effectiveBounds.x) || float.IsNaN(effectiveBounds.y) ||
+                float.IsNaN(effectiveBounds.width) || float.IsNaN(effectiveBounds.height) ||
+                float.IsInfinity(effectiveBounds.xMax) || float.IsInfinity(effectiveBounds.yMax) ||
+                effectiveBounds.width <= 0 || effectiveBounds.height <= 0 ||
+                effectiveBounds.xMin < bounds.xMin || effectiveBounds.yMin < bounds.yMin ||
+                effectiveBounds.xMax > bounds.xMax || effectiveBounds.yMax > bounds.yMax)
+                throw new System.ArgumentException("The effective navigation rectangle must be inside its grid.", nameof(effectiveBounds));
+            Bounds = bounds;
+            EffectiveBounds = effectiveBounds;
             CellSize = Mathf.Max(0.5f, cellSize);
-            Width = Mathf.CeilToInt(TianyongMapDefinition.Width / CellSize);
-            Depth = Mathf.CeilToInt(TianyongMapDefinition.Depth / CellSize);
+            Width = Mathf.CeilToInt(bounds.width / CellSize);
+            Depth = Mathf.CeilToInt(bounds.height / CellSize);
             _walkable = new bool[Width, Depth];
 
             for (var x = 0; x < Width; x++)
             for (var z = 0; z < Depth; z++)
-                _walkable[x, z] = walkableSampler != null &&
+                _walkable[x, z] = CellIntersectsEffectiveBounds(x, z) && walkableSampler != null &&
                                   walkableSampler(CellToWorld(new Vector2Int(x, z), 0f));
         }
 
         public float CellSize { get; }
+        public Rect Bounds { get; }
+        public Rect EffectiveBounds { get; }
         public int Width { get; }
         public int Depth { get; }
 
         public bool IsWalkable(Vector3 world)
         {
+            if (float.IsNaN(world.x) || float.IsNaN(world.z) || world.x < EffectiveBounds.xMin || world.x >= EffectiveBounds.xMax ||
+                world.z < EffectiveBounds.yMin || world.z >= EffectiveBounds.yMax) return false;
             var cell = WorldToCell(world);
             return IsWalkable(cell.x, cell.y);
         }
@@ -90,7 +115,7 @@ namespace MmorpgClient.World.Tianyong
         /// </summary>
         public bool TryFindNearestWalkable(Vector3 world, out Vector3 result)
         {
-            world = TianyongMapDefinition.ClampXZ(world);
+            world = ClampXZ(world);
             if (IsWalkable(world))
             {
                 result = world;
@@ -108,10 +133,24 @@ namespace MmorpgClient.World.Tianyong
             return true;
         }
 
+        internal Vector3 ResolveFallbackSpawn(Vector3 initialFeet, Vector3? requested)
+        {
+            var candidate = requested ?? (IsWalkable(initialFeet) ? initialFeet : TianyongMapDefinition.DefaultSpawn);
+            candidate = ClampXZ(candidate, 2f);
+            if (IsWalkable(candidate)) return candidate;
+            if (TryFindNearestWalkable(candidate, out var nearest))
+            {
+                nearest = ClampXZ(nearest, 2f);
+                if (IsWalkable(nearest)) return nearest;
+            }
+            throw new System.InvalidOperationException(
+                $"[CurrentMap] No walkable recovery spawn near {candidate}; supply this map's valid spawn.");
+        }
+
         public List<Vector3> FindPath(Vector3 start, Vector3 target)
         {
-            start = TianyongMapDefinition.ClampXZ(start);
-            target = TianyongMapDefinition.ClampXZ(target);
+            start = ClampXZ(start);
+            target = ClampXZ(target);
 
             var startCell = FindNearestWalkable(WorldToCell(start));
             var targetCell = FindNearestWalkable(WorldToCell(target));
@@ -274,11 +313,34 @@ namespace MmorpgClient.World.Tianyong
 
         private Vector2Int WorldToCell(Vector3 world)
             => new(
-                Mathf.Clamp(Mathf.FloorToInt(world.x / CellSize), 0, Width - 1),
-                Mathf.Clamp(Mathf.FloorToInt(world.z / CellSize), 0, Depth - 1));
+                Mathf.Clamp(Mathf.FloorToInt((world.x - Bounds.xMin) / CellSize), 0, Width - 1),
+                Mathf.Clamp(Mathf.FloorToInt((world.z - Bounds.yMin) / CellSize), 0, Depth - 1));
 
         private Vector3 CellToWorld(Vector2Int cell, float y)
-            => new((cell.x + 0.5f) * CellSize, y, (cell.y + 0.5f) * CellSize);
+        {
+            // A ceil-sized edge cell can be smaller than CellSize, or partly
+            // covered by padding. Sample the centre of its actual usable area.
+            float west = Mathf.Max(Bounds.xMin + cell.x * CellSize, EffectiveBounds.xMin);
+            float east = Mathf.Min(Bounds.xMin + (cell.x + 1) * CellSize, EffectiveBounds.xMax);
+            float south = Mathf.Max(Bounds.yMin + cell.y * CellSize, EffectiveBounds.yMin);
+            float north = Mathf.Min(Bounds.yMin + (cell.y + 1) * CellSize, EffectiveBounds.yMax);
+            return new Vector3((west + east) * .5f, y, (south + north) * .5f);
+        }
+
+        private bool CellIntersectsEffectiveBounds(int x, int z)
+            => Bounds.xMin + x * CellSize < EffectiveBounds.xMax &&
+               Bounds.xMin + (x + 1) * CellSize > EffectiveBounds.xMin &&
+               Bounds.yMin + z * CellSize < EffectiveBounds.yMax &&
+               Bounds.yMin + (z + 1) * CellSize > EffectiveBounds.yMin;
+
+        public Vector3 ClampXZ(Vector3 world, float margin = 2f)
+        {
+            float mx = Mathf.Min(Mathf.Max(0, margin), EffectiveBounds.width * .5f);
+            float mz = Mathf.Min(Mathf.Max(0, margin), EffectiveBounds.height * .5f);
+            world.x = Mathf.Clamp(world.x, EffectiveBounds.xMin + mx, EffectiveBounds.xMax - mx);
+            world.z = Mathf.Clamp(world.z, EffectiveBounds.yMin + mz, EffectiveBounds.yMax - mz);
+            return world;
+        }
 
         private bool IsWalkable(int x, int z)
             => x >= 0 && x < Width && z >= 0 && z < Depth && _walkable[x, z];

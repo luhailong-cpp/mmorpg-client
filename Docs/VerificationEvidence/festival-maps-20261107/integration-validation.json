@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "observedAtUtc": "2026-11-07T09:19:22.041565+00:00",
+  "integrationBase": "06c721405623a2466c2bf3032ed3d0007cd4dc94",
+  "ok": true,
+  "catalog": {
+    "maps": 9,
+    "appearances": 15,
+    "runtimeTiles": 90
+  },
+  "old36PortableVerify": true,
+  "new54PortableVerify": true,
+  "managedProductionVerification": {
+    "ok": true,
+    "checks": 107,
+    "assertions": 280413
+  },
+  "gitIndexExactResourceAndFrozenJsonBytes": 514,
+  "compileStages": [
+    {
+      "kind": "editor",
+      "sourceCount": 445,
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 145,
+      "compiledThisInvocation": false
+    },
+    {
+      "kind": "release",
+      "sourceCount": 445,
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 148,
+      "compiledThisInvocation": false
+    },
+    {
+      "kind": "editor_tools",
+      "sourceCount": 2,
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "compiledThisInvocation": true
+    },
+    {
+      "kind": "editmode_tests",
+      "sourceCount": 6,
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 1,
+      "compiledThisInvocation": false
+    },
+    {
+      "kind": "playmode_tests",
+      "sourceCount": 1,
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "compiledThisInvocation": false
+    }
+  ],
+  "actualUnityReferencesUsed": true,
+  "codeSHA256": {
+    "Assets/Scripts/UI/Ugui/Gameplay/CityTravelUiRoot.cs": "aa95a321307a7b7bfc9f08be3badcb987a2c3c9c44914dd2e61c96a2db1d29c3",
+    "Assets/Scripts/World/CurrentMaps/MapDeliveryContract.cs": "d0cdf415e1d508501b967cc707663b3006db2b4b2f472ffc03a66de1fe6bb603",
+    "Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs": "b351cf032d65747215157a88553bd1b6f850e0d166732afe2802bd1aa76ad01c",
+    "Assets/Scripts/World/CurrentMaps/CurrentMapTilesManifest.cs": "4557a2d3202af63b98bc339b9b6eceb8f8c159ef0c4b30650632c52a1e9203c7",
+    "Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs": "50e4fed7b666210eef11c54bd9a89529785c2c15feb090a7549b25a90d7f23e9",
+    "Assets/Editor/CurrentMapTileImporter.cs": "87d34d66631f57af56c3a12e07ed1749e0d8b3c01c105372ae57d9ae43108f0a",
+    "Assets/Editor/FestivalMapPreviewMenu.cs": "6a49ba97b15b077a0899c97785726ba3524e12251cea2f68d795bdd109a506cf"
+  },
+  "latestUiLifecyclePreserved": true,
+  "allExternalIdsClientOnly": true,
+  "unityExecuted": false,
+  "renderedAcceptance": false,
+  "onlineServerPublished": false,
+  "scopeNote": "Editor check covers the two changed map importer/preview tools. An earlier probe of only42 top-level Editor scripts was incomplete because dependent UI verification sources in subdirectories were omitted; no all-Editor success is claimed. Runtime editor/release compile covers445 source files. EditMode/PlayMode here are compilation, not engine test execution."
+}
