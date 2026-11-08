@@ -1,0 +1,2637 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/01.png",
+      "derivedSha256": "c55ae0fa6a473e23a49a7a9d845575c7616ac053f3e26649fa37ef2743fce7d3",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "45206d9a6a581590381f41f9d08e2bece084025e1f33cba1a74873bcf4744d6a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/02.png",
+      "derivedSha256": "b44254d2133242af42727b7880cfd1b662541d2675e22f8c763af99756a2feb4",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bf783e292ff942d77f6d2594009c84228e9989c20c501ec589ba4a4fcb7122d5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/03.png",
+      "derivedSha256": "9c20137b4dad4bb219feb1094816dc21fa10e9d663f866f8adc04364cf3be56b",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9a274aaf79a46376f55fa9114339dd33fb8cdea89c91b88544567bbf70104d96",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/04.png",
+      "derivedSha256": "2b1c4c30533d491b052ee1e558840fb85990781a0cce76be3eacaf553de52e87",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a6cd0e06eb69f6dbc11dd7a1c33afe2c36bd851e9b48b6bf1ead3b58c303d0c2",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/05.png",
+      "derivedSha256": "552880d65516239d04811134da47852f95dff4168c124b001fc3d447bf115646",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e6a975d1210f74e91abec2353a6038ca362985b08fea835b6a1815a1f58b306c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/06.png",
+      "derivedSha256": "94b6e7cf67e0dee7550f86074be16230abae1339af739362fdd937941d293d8a",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "eff7d40f5f0bf5e531ce1ee6514d9c79dcd2cb7cac4e1a8075f05348f455f062",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/07.png",
+      "derivedSha256": "baa76c9fd2daf0f327d07bab69224a77daa9f2d9bb3832eb80e0ddb05ce1c045",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4664217a4405ce1a85e54012a6fcecbda750ef85e81aa2ee57e4dc10c16bbcbb",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/08.png",
+      "derivedSha256": "a2c74c8ad60b78517bc592385631428ac657a9125a9a8f321ff10f0fdd34ffb2",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "81cf41403b2d076e8f9649908e538ea0ca20090541aefd725a9106ecf263af20",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/09.png",
+      "derivedSha256": "da8c941b929ce12b3e1d84171bf5d190f95d9d77eaf9aeca0f388fa65b7c9680",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "dc7c213c4f6ebe8a184f00f99c555430b01c1895f3f2df7470aabc3e36fc989d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/10.png",
+      "derivedSha256": "36fae764a427b289780150f4b15bb346a1871455979e980084c49c3f1ea5d6fc",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7434a2dd4a8291d66dd2faa20180d0e7cacd75018482cf9178356423d1c0257d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/11.png",
+      "derivedSha256": "4ad7abe1892fae673df0c3b4408be9593701520522f8e26a10ade1ec08f89f7e",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3f1a5efed7cd140c23c6dee7198d7954a4b05d91a2ef50d56fe3f26068adf05d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/12.png",
+      "derivedSha256": "fb47806dfa15899d6bb1f9401469483903b31a0c052faee4a6c3b0fa06dc28c4",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f9f57c74845ce7e181297b2ce4574f63ebd97877bb301e4b496d70c6976719d4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/13.png",
+      "derivedSha256": "3048846452dd4986841422f0a416ce7710332bc08f4161d5875fd6551a61a8a6",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "29ccc79185243e0743870866ac5788d6384e077a8d2576cb54e8360746141d2d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/14.png",
+      "derivedSha256": "0a08e0c527a8254e5783d7aaa60cbf0954765ff7b98d6f950e77ebb0de523c5d",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "618527f740e9956aac48470ce1c35f01d3a632cb50806c60f378cdb02792d05e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/15.png",
+      "derivedSha256": "9069e8ed76b7608c7a45ab690f027e64b10256fdceaeb6ae77ffde2a7895af30",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e47650a548e09ca4340145c069b993fd8b97dd4a8115660edf5b901b97f97b4d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "eec27db09b37bd1912d64252cbe218f1be95fa9b79d87c0c31634711ba0acd11",
+      "derived": "run/N/16.png",
+      "derivedSha256": "7c232c020c409da42d0b59d2d3f77c8851ed531e6ebce79f5f63655dfda3063b",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\N\\frame_16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b8deb8e73c3c8867fd1b30ed3280bf0ea42e8fb29869976fb65d5e5d54073aec",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "d502b78ce18f7042136262aecd41f3063c6bf66354eff92a0c62841fc6a770e5",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\01-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ccbefc55c2b619f948b5054dc8c244ed008406de7f82c1d361dce41634ce6fc5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "60c24a264b6cb638c605eabbd9b43039754ed85f01dad74df9885dcd469c89ac",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\02-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fc5bfd50d03dc53d0b65a0aeed1c4119e5a296220f95a06d02da89298eff57a7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "9805c6e20be05188594fda1d0814608584b815921c9ab2116a947e3e968635c4",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\03-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "75a55d42470966a7d5674221b2a65492fb0f4b7f67213fb07136526415df7b3c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "f90135c04108c1045fafeb286b88e8eb837b0d266c95d5ea4d8e168aaff2fe3a",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\04-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4cae23bb7b7a3ac904bdc7c311a49b4d3308609cc3f8f0aa0c9429d1b12de415",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "db77b113230b5d48ac8e78d1e9d99a7d6096c48b74b79afc91a783caee2679ca",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\05-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fcf7f8157c88da2d4c0671a07d4f8707ec46410972868fb5027ef62aba91ac50",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "a5fcaaa43e3b96611288496d4ae078d3469c7d31ebf32130049da7ca2216aded",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\06-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6d08803387401f3ff1d44b4f41a2965c9f9b3a277e8b902c78eef481a7ea36a4",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "ed2150c81c46f2079c66d3967d15885227e7f4985958a16f6bd3c365a9c46287",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\07-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5316930ca9362f08f737e2ed9bde33493d4bd228978d08cbe9b584dee3fe3db4",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "2a54f1706a22c09682bb3d1805c399e1cb0c237d4c5b4d62d7cd0213dfe8dc11",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\08-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "73aaa73334e345a428f2499f670f37a4cc3bc7c99e00cbee72e030a116238f04",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/09.png",
+      "derivedSha256": "efa353bb38d2cc939be875498a87a292e4425c40710769838a33063b81658bc7",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\09-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ffddb0637a69eec0426d306f91edbdbfdfa1a50032242f71c0dd220aa8ba22d9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/10.png",
+      "derivedSha256": "83f3ebec6931cac639da4a5fcbfb224673553d9b7b8cef8976257efd80de71e0",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\10-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8feaf7348b1dda91027a2d2df9780bb1653c2d10f6b55d108c2f22e528f75d5a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/11.png",
+      "derivedSha256": "a851b93d962691904421be75b1e2e1dc690c2c0e0c6099cef09957e7ace9a4e9",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\11-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9b022da66a6c83df5c3cd7a3f01814200520deca158de7441e7400c153a8a8f0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/12.png",
+      "derivedSha256": "7f05b2a548f1f7a94972c5e915ea573cbf60fe03a4c4eacf0c4ac94d8db490a0",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\12-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b4ddc6e35e4427ccf4e7aeb7b0b3fa29abf778be8236b809ae05a0234d8e8f40",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/13.png",
+      "derivedSha256": "76c651def614c703b68380862b16a239480ba9b6a8cc04068ad8e165922f46e0",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\13-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "386e3e2c05134435fd53b1df854fe7670f75a2424fcf19a7768425cd4516fe84",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/14.png",
+      "derivedSha256": "5fa606fd77dcf8664d1684b6608d71c6b5ee7ce3ad5517403e9f90a0e09d754f",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\14-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5d95621d8a11fc509ea21b06f03c1d41a2c05cd3e8a0cd963dfc7b69745d4c75",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/15.png",
+      "derivedSha256": "e70c189889382920dc40c366b6a94b1d0cea082dad78581129cad82690334352",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\15-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "52d3e5a6f39c5a091fd2278d8ecf20ed7b8aeaecaccbfc847ef56c92cdf0459c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "8c5936532c47185a8c8ec1dc5a39c66fbfc5f57ce2075ebc82821949df8c9326",
+      "derived": "run/NE/16.png",
+      "derivedSha256": "a3f8519478ef173f973d78ce14e76b6d727e9d13e4c6b34d1a276e67732d12e0",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\16-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7843f3d07c965fd380595cba97354f4a0bccd06a6d8dc122bc147c44d43317b0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/01.png",
+      "derivedSha256": "26a35f41c79ea3fe77d03fca3e0ccc5dd376771d19b2e9cd87d5b8ca36ce8c16",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b99270b6d15c59343e97ffb97c5e78915783e1033d4458b61713209d698e115c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/02.png",
+      "derivedSha256": "b3cf0135696a414159c78764bd5bdd82ef457af32470c740619ad191e75fc315",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a0d7bb9102637b377f5949f43e0992226d021f7d5132d29d399084b647635ac9",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/03.png",
+      "derivedSha256": "c4a0299de03bdef1d000b3be92e215e3c6d51486f0f199f8b4b700f9ba7eef6c",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2b99f86c21e716a2232f159729605fabe62acc73ebe9c771907d40d0454f29fe",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/04.png",
+      "derivedSha256": "187be91a454ca8bd4473e306b31d4d6c406d5f18e90c4e0d16c499dd5b922f05",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "938682b7405c998421380eea870b0877bcfe8f5ff3f35a0f68b8be2b2c8d80e8",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/05.png",
+      "derivedSha256": "0a7d0ea21d5282e7893780acb4e926189c05a69ecb2e98e9a7bbe59d2fb3077d",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "15af3ffc80dbc0a1e34f47295697549689475fd353613970365d5f2c07daf300",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/06.png",
+      "derivedSha256": "ce147db3d636bc3bba0751a5279515d3fba18c7d2125d102aeffd82a3c3d5e3a",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "057cb541e4dd944f22847484e6a5587cf6fe6b8ac3478a289075bd8147bbd83c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/07.png",
+      "derivedSha256": "778b186eb98f8e9247bb7e1b73853d78253cc37196b30d311e485a80eb7b89f0",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "44d42f15408d0eae47915d4b1efff8c062b42ea7219f89345419fa2811b59fd9",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/08.png",
+      "derivedSha256": "abfcd598fd84a3fbeab925ce669909bfe3109c322f380136cb47bb3144f21016",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2aa2a2007e5605111985d137a7b00279b109763da4c06b81dcbceed7946858d9",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/09.png",
+      "derivedSha256": "dc8a13213d2adc3bb8b448a9b76bd88402026d7b03c15f01c1a7a8267e72280c",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "00d058842f2f0a704717958648f233163134a981911b48222b87e71287371f4b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/10.png",
+      "derivedSha256": "0d1ce245229659f795e3fbb6a36e4f7f21603863b9d906c3c055ddac0eae3c2c",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a5b6f5e49b5ef88f95b9bfc23a39faf1ecea463a639f66caa588cc39d678cafd",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/11.png",
+      "derivedSha256": "763d31f92eaf2fbe55bead6c376a256bb9348fec545341747f79b41d562b8b26",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bd20c0d15e8850432421e22fe07756e18be58de972ea05f8375633a11fafd2bb",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/12.png",
+      "derivedSha256": "adb47e0f2fa3db65b823af87082108a295edba0e03cd067e3ecfa88caebee0da",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "aa02fa40d3ff55695fa989b8560815174953956a1c070650f567b5f1e1a36607",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/13.png",
+      "derivedSha256": "b02a9428323d5a5e21b3bbf38734f4fdb933f8307bb353bbd402557af865a78f",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0afc00d91e71d1426ba1d3e77f4c88fee9d7b01b268d420694555c36a08c766c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/14.png",
+      "derivedSha256": "b0a335263bb38f1c1b5794bc4606f60e0b0bf59401235d2a37507974807d4334",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "349a4e245f52e9cf78145434e03cbf2f9e70926cbc4c0eb07852f203f50de55d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/15.png",
+      "derivedSha256": "7271d7c8bc42a786aa470ac7850dec3aaa8f3f81bddcc6dce7306146e10081ea",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a74275a99d048e2627e8890caa088f37fc231d5a4d646026b23da9588483c9c7",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "61267ff1c34905181640c90b9248361f7f991fb15fa1d4b42b60b4d0919bd092",
+      "derived": "run/E/16.png",
+      "derivedSha256": "85f11561ac4022080b34d7ce0994fada09e3b79b1e232e611621b2ddaa5e0ba4",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\E\\frame_16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "953d4dbc0285b8b34a455e6eb0a4f2893d454fdaa36238a41ae457e351c3b1af",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "8ddba00ef660e9a32d663aef6394c810ffa1b84576bcdd85dafb447968aa30e1",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b7292a1c1527f89abf2c58680a24e4fdfa2e80c07880300a9a9cc346b679137c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "4117967847f3b55147bcf8d3cb8d60559f706ff7da3f3bf56072a926357d89a9",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ef79055d2dfdb4532ed1a70e92aac057560b74472c4a0644d0fb72ca364f3129",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "3eac904e3ad33f220cf3ab24e78e7efeba134521e699de0aee5d21635a8eff5a",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fd7e3e74bbabf68028562c7dc981084ae1d3c1b00133878c6175051c75bb796b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "963ae837ec42fef2f40c358d5a9e45bef1d2f662c0ea39768027ec2a0734d442",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c12576f34cabf3291c2535fe18f2fcfdb4ae2911d68bd47a23a145e584d9a288",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "8fc90c83896c4b868265e615b48da3825d9995a0e15a92c99b8fc9681bbad0fc",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fb20987a17b950aea2f333b9b2b9606a3051ef9dc07b948508fa983897360cec",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "89aee537a6a2b008fb9d50eb70d76010c20a3fde27fd3d70b80024ae3c366052",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e119cc642ac03360a05971ae2a260b62cd3b86ff7a95046ab9f75155e3a7e20b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "8c533b964546e4b2584f2c8c259159df346bf31a6d3f1d18ce52ed9e03437689",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ab016a52a948ee92bd2c8ed969df906e0fbf8081b702b408989386f01788ceea",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "f22281e9d910674f5aa5ef9ded3a5b7d61c92b519b969d456b6ced22ef5a0929",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ec41e709afe74e299b8e0ac9da51697f3a2db576221a81369e90323ee865e105",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/09.png",
+      "derivedSha256": "7165c1b480efb0c9f30e21431637573be0a9350994383acc171b06939b329499",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "21a0c80ec3ac170bdb377f90f098de6964c544fbb59e2ab7795ba6eecba51a89",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/10.png",
+      "derivedSha256": "ed7d88ce141e1b1eb963ee13ab1de44f3e8c012998bf0e29d3d8f1e9245159d9",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "234bc93d0535b372562afda9d1bc3dddfaa067c6be4e6209b2566697c6087178",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/11.png",
+      "derivedSha256": "753b267e7ee5992202451f1a32413b7a2a7c96d4a35e67c8d38c34d95f305d82",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "077bc0f7238718ee43f8abad44d47daf3169f0c103dcf7f9178144a7246765c1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/12.png",
+      "derivedSha256": "a3f8ed5c1a7f1987cfe690b601446c32840cc69da6133646ca40c0ee0b070d65",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ccab9adabba1f0a447382c7092557081bdcb5c91b333336afe5961b33a51724d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/13.png",
+      "derivedSha256": "7cc1fb3800c4a5fc96674ef6db9322128d3924d5b0071599b5a7046d1d38266a",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5b973ed86aa26044b1a783ddbba3e310aa55a270a1e90eb0ac8f980960e9a489",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/14.png",
+      "derivedSha256": "83e7837fedfd7a17087ab6ac5f36123f5bbb4affe4b160308b629e624bbf6d03",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2328ac4153bb18b2aee306805759d459fe13607b2e96a8a875049b9c0f9e251a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/15.png",
+      "derivedSha256": "e4ef75f8319d21ab613b07c9c1c4e31a912a126bbf15cdc931f58164652f1f03",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0bc9643a44beb726391b35cd4ced2bfcd6151847bd7938db46229ff4ea44d55b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ba3eee141d8f5f898789a4f8e1857f367cbef485878c525e8f2d4bd3bd0de266",
+      "derived": "run/SE/16.png",
+      "derivedSha256": "e31a9b9868e9551c5771b14af4f45068be5c8774d77acda6c76dca522477837c",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\SE\\frame_16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7e0d6ed2128dc5aaf4b73b1018bc81b2bc255780c6bdb3d74e6c9f68ec800866",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/01.png",
+      "derivedSha256": "2b293efa6d3d7d6d50306fe7ed9ecaa285aa0d6ea3033ca3744e15946dcb9f2c",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ed5cb4b64eba643c94950d404f362dd10082519ff6b9ecc599de519752c76075",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/02.png",
+      "derivedSha256": "cfdd9b69607e5fabb88d0e28eb05840cc69008aed29d9594900b36f68ed802f0",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "03bb9c87be4772b87d75fc8565838dc883167909fa2516cfeb408bc0646b0c6e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/03.png",
+      "derivedSha256": "7c5254313064175e45dfbf492a607ba403b3fcc36d704a80bf421e40f6cf154b",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a5e09a06d403458173fc507f974064d7546850e8d676d5fd219b991287e3b444",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/04.png",
+      "derivedSha256": "395eb3f7ddd1d8d1b5f7fd019b128e46ff8b0267ba09181ce674ff31f04b0e1f",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "813f7d38c2f6505b1fbdfd7812ba7b07c92f10879ea0de3839fd916fdbacdcfb",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/05.png",
+      "derivedSha256": "814dd471ac15e47b5563afcef4016953a2a3f070e92426337947f60a1755136a",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "321f5e4a79f011b966c1651a4c422d596ecda98fe13266b0a1c3c137200c163e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/06.png",
+      "derivedSha256": "ca082deb36e40551e80d64cf30a1cb9456f73c79ea6c99ba9c3ec99873310a9d",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d1fdfa137f16977e4d71fa0a2a1f9a0edce7ed41e583244c7ee42ad79ac205a4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/07.png",
+      "derivedSha256": "d62361a64de010708131886a7f1bac1056a2852847029284bd7df66538c466fc",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "047fc7c8044df592b75dcab42a3deda36aa86de421389539ce0a7af6c3f4bfb1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/08.png",
+      "derivedSha256": "efd310163f95c048ad5adbb9c5252579ca0e9304961626347ba890cc4d37dfc0",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cf7f97ac1013a72e00c273384f7f6eb18a0c4dcffe19665c4869cdb9b4a398e4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/09.png",
+      "derivedSha256": "70bc40e742ba00f4346fa813a96d82d23f52157c7ce06d167edfac56aabc4c95",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4d6bec8514ad966ca5d887913c8d1998a53272ff039f82036cc6d45aa3c7be7d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/10.png",
+      "derivedSha256": "dbfaecb955edad8220930a2341d2fc7d24c1b7bbb7a7a958f3876fd952485f5a",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "777ef661b0c4d0cd2dd4cbb5a2f71dc8450d6a9f57c819df6e1f98fc94d4dda1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/11.png",
+      "derivedSha256": "e697f5af112b403ce75fdb8d78db3edf14f94a14275b8a280ebc171a9e3f9b53",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7c2cb6ed36021334c3de312445c99a264f6a4dc94c1219ad8a89120a19babc2e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/12.png",
+      "derivedSha256": "abd98fe6bb13ad4cf533385837024550190901b1f4933f48a6682a85e5ea0587",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "333a452b9c8a9ec7de722d56c135597a0fa590201adf7c1cba03b7eff2235732",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/13.png",
+      "derivedSha256": "b590ddbf2b9f9a6abdc20d808b5130612c30fc2e793dda21bc741f63f78983f6",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1d5124e9bd90c975012794272023c8a7d9562ef67164043d086e23c469583de2",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/14.png",
+      "derivedSha256": "f5ecc3f147f67c2e3a0af36febb17047d15388d3c80f415c4be192fe0658a531",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5714aa86eccbcdd3cfbe7eb71ca541d1ded5fe89e14bf483f8426bd8042b7213",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/15.png",
+      "derivedSha256": "162ed50e288557bb6f7d5e00650b3c0d3dd57f2bc059735893ae36e02b1ddf1f",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3c90fa9499fa66f093073a3fe63e0035f1193c9e3a026a9db038837cdbd01aba",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "56a4d99ead8bf2488db86ceab89c3a27707767d88f16085e483329b7e66cf23f",
+      "derived": "run/S/16.png",
+      "derivedSha256": "41a3a0a702e7c2ba36216ad915271011f90d414e422be2ce1d643b651fb49bd5",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\S\\frame_16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6e1a334b8e0425ad04bf0c966da32fd69edc938101ee3f0fd17296707b7f6831",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "db3d03cfa6f7848b8eb137bd957a5f073ddabf542982d7b2dd15aeadadbcbd0b",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v1-diagnostic\\01-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7b10ba57c29bb6c57e8eb24c165fda0a4cd340b85543fd50c17beb793a79063a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "ece022c0b33407f50cb6e55ed6e7eab1f2ada74ae325262589248dbfa07d4105",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v2-clean-inputs\\02-native-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "56603cb90468b49947b3467917d48c74eed47cfd3c87b4ab11e8abd78f8fe6ea",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "d54fa5c2baf51a1f27be8f948d7af31bec6e315cecb17f2c7016a3150d789f0e",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v2-clean-inputs\\03-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3c493adec3518aad61e969d5cb95da08a5d2303a9dafced62a0a9f9589bf1444",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "83d2433b85f038d1dc22c3e96f0f2d505b176e40eb95edd3a4821a1212ad3790",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v2-clean-inputs\\04-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b85b03d9752f98a14a60dd008eb5bc5a49bb0928722467459332e36cd83f60ee",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "d487496a99eea1845f09f203d538f302dba5feff49507970bf027b6c48d0e9ca",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v6b-own-recovery-cleanstaff\\05-native-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ab19e1820df9eec75595b91933318ba7b5fe7b11f19bd18e4d96767a8012bf23",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "dd5b818c1458fbecf448ed42a3840106a1b9e35e991cbdede7f39e3f1afc9a04",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v4-speckless-inputs\\06-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e1f36959c79bb16c26e57d57023ac3e29437b3fce82ea50aee41624a5d5c46b4",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "d5104df6b43b0d31f95ffc75c725736b31228acbaa4c5be51d34316f5bd263c4",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v4-speckless-inputs\\07-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "589f0042b3bd398ea440f218b83d5a6b1a652041ae5d2070fd7ec9674a93fb86",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "c380c04f19029637f23e0385522c68f3f3d628c414166e86b0d1128b48a62003",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v4-speckless-inputs\\08-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8f9188a336d8f2cd57c95924dfa8ab341c2fcf19d3ae35db56afec391c2b3a86",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/09.png",
+      "derivedSha256": "92f94740e4bc0c5da89b5b4b2c1599b8d1444aba52006b4be011209ac2f0f1a0",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v1-diagnostic\\09-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "807f09b19d95417121baa2ecc96509a0338b4947141fe383a52ae9cd52186406",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/10.png",
+      "derivedSha256": "ae6de967fb056e8b5d0251b809538912387cda54366449ae916b4cacb5f9baaf",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v7-equipment-cleanup\\10-native-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3253ed5c83c46ae4aa557e21456b70717b2129c05775943825a07bab3510fe64",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/11.png",
+      "derivedSha256": "cd7a7b0a506413f65d53d62fd1784a5a7191bb77c3fa67dad3040b524d597b98",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v4-speckless-inputs\\11-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7371f92f02ce501afce8202fa3d54723336359851bb2643d0a1dd467dd22402b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/12.png",
+      "derivedSha256": "5e16c63da168ee5fea298a5e69352a2e66fbc91ac20a09fd03d9cc796632356c",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v2-clean-inputs\\12-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2037cb422d84b7e5842b7e329c6ed6d923bc36909a4e5ec0504b78a9738213ff",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/13.png",
+      "derivedSha256": "3654a194d114331f7398f71195018cfb9c78cab0b134eaf00f38db9d0ed8d1e0",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v5-recovery-single-guide\\13-native-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cec00e555ec9db3a0a2d44dcb2b245349cf7a778cbd88ff975a27109060ec22a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/14.png",
+      "derivedSha256": "118472df47ab832fb6b7fd7174414ca26e141f02314b6112ece17daa8f4a0c6c",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v4-speckless-inputs\\14-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b2f88660103866fd594c0eb8ca3af4a20e02a7cb3b5633c3566b097bb04e35a2",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/15.png",
+      "derivedSha256": "73895e4640a85002387c65bfd9de23386c242b47eb22815f83d37a828dbdbba7",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v4-speckless-inputs\\15-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4a247da62c4e65a453bbcb254f8aa4aedcb3be17b73c3506355db5fd34f9e032",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cadabf451dcb8e752dfb0d6395f3b9c6b7ce99abc2b10c9d406d8dbfb06f16f4",
+      "derived": "run/SW/16.png",
+      "derivedSha256": "835028e64c9cbeda3be8bf3557949b9aefff95409da73dafea7bc47ad7de0c49",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\v4-speckless-inputs\\16-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3543d5bcc3e840041d1e4bd00ca7fb070e4a0bed9895d3969d5fbb86bc439694",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/01.png",
+      "derivedSha256": "a2a89d05492358cb85f5942ee286efa2958604d8c0f7cf8d143c7659e38fc382",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a16d0d7b6bfa0c875bd596d28931c617029d0c4354c3f0170cd22917b5af51c9",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/02.png",
+      "derivedSha256": "61900b90479f6ff02ebadcbb72ef3beb0457471176fc3785ba60f2245f0b01c3",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ca04d33bcc8e856903e14d9763312174b3fe3071758b6c9cc75d4ddf77c6e910",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/03.png",
+      "derivedSha256": "7a706227160165497be3db9abd851056e9c6c129cc4d501ae246b08aac5933fd",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9bcc956c225500ba17610512db9585e94532aa735ee1f0b1f5f9967d0afb33da",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/04.png",
+      "derivedSha256": "491f24d8f1a2e5adac82e92e0e333b98684e228089fcd8a78aa0721b93c401b7",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "29750ea1e68057a404104d273e4bf728655b6bfbd775953ce6374d84e167c530",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/05.png",
+      "derivedSha256": "6aa4464db97cd951ef9d2f4c86b63281894e2e15fa21b23d34e141888b03ab41",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d693da95557b3c4b565364d0cafab29cdaa19ca7a9839c1915a77bce4483c5fe",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/06.png",
+      "derivedSha256": "509effbb23c41fa2b33f496f90f10b13e2f42c4450afc307fa71710d1bdbd993",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0ae4ede649c2ae79912aa6676c9449d8093aa235248fe7feb7cd3f38eff2d897",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/07.png",
+      "derivedSha256": "0c3009bf27031d9542f3433996e58eb2b957bcb989199dc549bf69d6c58d2578",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1702634b81c9bbcbc8ec37148d0e9e78d30664cee12eecf4dc692a9739728d4c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/08.png",
+      "derivedSha256": "9db1d514f152ad7c105eec394140fec59b3d8a6ede7d45d3bac27dd0233c5c26",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4e8dbe821abd31265b56d5cc6e4d96742458363b096fc4df0ab0721b6c10c355",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/09.png",
+      "derivedSha256": "3ed751f7f9b164bc2737c46e98adbb57deb08308bc4b8d775955f2da0366a7ec",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4a7ab69e7f97aa2c5d8a4ec6359bd106f3f518fb3ab2a86456e506de6e8c7ee4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/10.png",
+      "derivedSha256": "917b298a46f6c8b7d3840f374e8c19343e8c50283939b2b2ffadf9c97f1a9a36",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "65b8ad59b8da36e3e526fe07299ff253dbfd357eb840f528d1421aa469084aca",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/11.png",
+      "derivedSha256": "8f5b8ccd2e8ee15f9624128fbcbad0f5e85804f3cb4f95eb61e9c1d9211befd9",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8d1657ba20ef03d73859f1d9736950960d62d8c81ad7d584d3dd152e9317edbe",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/12.png",
+      "derivedSha256": "17d1db09e2138fd30d04620c8e47bc606f3918aeb049d69df4ed6425323ffd65",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bcd5701c2a76e2aefffc106b6a17667ab84ca4340b5d81c3c8cd035ba4db0dcd",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/13.png",
+      "derivedSha256": "8a15dcbfab479e2ba1df186701ad1a43e1e24813265dbc3f62eae5650e92940c",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5633cccd50ec4f2f9a971cb54531258b52e17480ed6061e43d2e165857a57d36",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/14.png",
+      "derivedSha256": "26259a4cb062c2a2c5a4f8c2a23454b9cfecc588b01f6cf3182dda48dc1c49a0",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fc5db6838766f023f2f055d6b4f9527503e2c5c52243312c52e3f1abbfe573fc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/15.png",
+      "derivedSha256": "c58ff7f35e66e8704794fedb00328be1c8304401818af945c1f44b0403218bf6",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "604246ee2cd87d59d5eec0dbc1edfe9bc9c716c9b98a8e04374496901c1fcc79",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "1a784f6fabb8c3b1bf84fc40514505bdc01cda175f1e8f6cc21299f17a900313",
+      "derived": "run/W/16.png",
+      "derivedSha256": "8d7773c46d44dbafbea542ff24f9c7f42367d43d4117362c2db34ab65627694f",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\04_mountain_guardian_boy\\frames\\run\\W\\frame_16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3cac0d04281db888995d0e6a2d02efc6656081a3e25c9425b3d1439729dcbf77",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "054b3c743beef587dbcaaa96bafcbf8a06697bd86c76c0e020d61917d6d67aa3",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "66e8135e38a0cef6585ef8afa966512e0eef10cdb030ac345e3ab94bda5e9195",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "4e29bcf0f86b54d6ca6343714876631bbbae63c24a74f0c12aa3630e079b3cf1",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v3\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "10dca36bcf28af49843667e90ebb4b5b52612cd6a9859e9748a2b29fffcd0208",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "0b28309525987088e2e95e64629a775ab7945e470ce72ff63ee90af51ed878ee",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v4\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "029c083a0f0058ce42d4503fe4a20ceefea3ddd36f0b37f8bd66267157955ebf",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "36d48417b4f0e22be22af55c4c83f43e664b370dbadaec233738926585aa0928",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v7\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2f363ac40f190afd77be62c2ab7c46cc7e4dba13a62fa551ca0ba19d52fdbded",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "b83db27660c183341b0d39775d4645e9ad749feac805f1497270f34353907dbd",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v5\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e3cd3a56ff03ef6a7362992e7dd0169edb8d3b9f14bb0f5427ffe3c3db42b91d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "e91a0eb71ee1fea7e24b9979f19756bb0056e055dc84d28afb136a44c6b28539",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v4\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cd9354787117a28ef477234d47e84d3e5e68f98ca99d05fcaa45b52cf7b7f972",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "980ed38db8e11f316916a2946d891ba2054163420d5ad17a72e3b18175358e7d",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v3\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5d7b460c70dcad445f756c1995969cafc26e324d2b6530310fc266ca41f68c83",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "e298ee2452957e4e9f8f62a54f7342019b3582560003b7ad1684c8cc79ef4618",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v3\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7548ca75c21b3288b6361eeaab8361d9d3896245980f07422c9f528372249c08",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/09.png",
+      "derivedSha256": "7a2d7fb0f3d9401a203e2ad227aaf606e16130e3a040e7481464570e2b3879bf",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v5\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9728baedc1f70b1f3018d3714d44ba02ca81ad841368984482ff4022a6a560c0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/10.png",
+      "derivedSha256": "244d600d5d0c55ce6ec4beef85a7a1c162738279fa3ecfa6a5fa5122cd8635b7",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v6\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "06a859322f83c09077364a5a5ae6a2855b56f158615f60463bf828c494ea52fc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/11.png",
+      "derivedSha256": "0db7d3fef9053c512577db89efd89f01499a2d8b3d966b8846049fb1ad4a1c55",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v9\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "07ab2a0802e366676d56aa4980c164a6a9f4f5f013b31249592915bb97d6f8b9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/12.png",
+      "derivedSha256": "ca7c68eb0203bbf1bc53268a687d5586bd27fe948c9519a2b0264dbccb950c3a",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v9\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "57bceeac7f88bc3ca3f86210f715f0669e8db5fac25eaa6601247aa4849e57a3",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/13.png",
+      "derivedSha256": "47d21ac0967833286ac6fd7cd6c571384c059439fdb08b2c26c28b49c1716318",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v5\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a7f85dc9f22d30eb6f51aeac7ae09f5d1f9babad59b75bb2f5b566bc2647eb4a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/14.png",
+      "derivedSha256": "8e80053ac11769dabe87f25c92873c9bc65393bb0d5d0b94eae46dcd2daf79fc",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v7\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9b93afd8083341c4d6419c79a84906dd81bdc558c2923c5ef7b370e3fb74c266",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/15.png",
+      "derivedSha256": "7a196928fef59103a9823a239e297305f061dcb8703a1cd06163ac5dcb1f076a",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v9\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0bca8ac0cd7cb3fb7a1cd6ec3fe4288e5df6094bf860bf162dcd342a2bfc3578",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0f3ba5ccf6c56b5f6d3319bf71e07d7eacaa4d16b6ea9a344535daaed98cd911",
+      "derived": "run/NW/16.png",
+      "derivedSha256": "a57ff3acad16ea9b706f6d9d21d2403d3368ac7c1901fba8f1ef1b9c65030af9",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v3\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d5c2b13a35898aebf4fca89ce8d414d8409c33ba836fa1c87636c1407030c4df",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "ccdd456ac976b1093c0ea3ba9d1aeec205266fa8d182b28e2d49826dcca46f1f",
+  "nativeCanvas": null,
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceCanvases": [
+    {
+      "direction": "N",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "NE",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "E",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "SE",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "S",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "SW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "W",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "NW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\legacy-preserved\\04_mountain_guardian_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

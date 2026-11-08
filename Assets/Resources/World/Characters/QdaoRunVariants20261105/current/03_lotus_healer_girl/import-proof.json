@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "070e7afa652a66934fbf70bc231a76e2a758a4e32f23915cb6a0c81bb4a2d81f",
+      "derived": "run/N/01.png",
+      "derivedSha256": "56f78449161f4d27b8ece83a8188a97ba761a40a9516bffed2368f0995472f93",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\03_lotus_healer_girl\\native\\04-v2.png",
+      "sourceSha256": "8225b6d0047722d816f031ed3836c1d8a70e29b20a887a964548db42cc887f80"
+    },
+    {
+      "approvalSha256": "070e7afa652a66934fbf70bc231a76e2a758a4e32f23915cb6a0c81bb4a2d81f",
+      "derived": "run/N/02.png",
+      "derivedSha256": "df0b6414e276cf3523ec4d689c4dd3ee59a41b25c5a6d5cbc94aaac98da49fc2",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\03_lotus_healer_girl\\native\\06-v2.png",
+      "sourceSha256": "b445813a13c63198e0424c10fa7eff386d808b259998f46a4115edaf3a8605be"
+    },
+    {
+      "approvalSha256": "070e7afa652a66934fbf70bc231a76e2a758a4e32f23915cb6a0c81bb4a2d81f",
+      "derived": "run/N/03.png",
+      "derivedSha256": "d9503fbf2e66e53ab694aaf36c91f48808c4044033807c5854199a9b1aef2bff",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\03_lotus_healer_girl\\native\\07-v4-natural.png",
+      "sourceSha256": "3d4025b3194bae0e9d0a3cbcee8c3c8c81931b084b9f1bff9da0eb752d888a1c"
+    },
+    {
+      "approvalSha256": "070e7afa652a66934fbf70bc231a76e2a758a4e32f23915cb6a0c81bb4a2d81f",
+      "derived": "run/N/04.png",
+      "derivedSha256": "e96bd9049e668b38ec03f5a94d313e3fa52c86c58929bbc1e6a44631baa3da5d",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\03_lotus_healer_girl\\native\\09-v5-natural.png",
+      "sourceSha256": "cca32fbc2479a3c7eb9336665074e211f3d699d33502645a47894994ba32f01c"
+    },
+    {
+      "approvalSha256": "070e7afa652a66934fbf70bc231a76e2a758a4e32f23915cb6a0c81bb4a2d81f",
+      "derived": "run/N/05.png",
+      "derivedSha256": "e2b24d506e01cb920488c105b4b329728eac303e4abc9e34df1072af741a77cb",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\03_lotus_healer_girl\\native\\12-v4-natural-arm.png",
+      "sourceSha256": "042f99f4c617d8c6fb19fdd65a9b97109072b9e1a1c6a8b5f675a3a4ae05097c"
+    },
+    {
+      "approvalSha256": "070e7afa652a66934fbf70bc231a76e2a758a4e32f23915cb6a0c81bb4a2d81f",
+      "derived": "run/N/06.png",
+      "derivedSha256": "fb6f456d05d0436f582ef30f4b2348028e1cccc4fe244004f4232710117aa8ec",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\03_lotus_healer_girl\\native\\14-v4-natural.png",
+      "sourceSha256": "8e46e69b75990e3d489e299a8661a270f2027a8ec0b499cde32300d42f4991b1"
+    },
+    {
+      "approvalSha256": "070e7afa652a66934fbf70bc231a76e2a758a4e32f23915cb6a0c81bb4a2d81f",
+      "derived": "run/N/07.png",
+      "derivedSha256": "de600891aca3e9dc1f79119b114db65e372287378f6f9b55bbf0b8c002272df8",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\03_lotus_healer_girl\\native\\15-v3.png",
+      "sourceSha256": "ef8aaa6f91aff01b9ab90e2cb966edba24f8f63362b225019fc50b717368180b"
+    },
+    {
+      "approvalSha256": "070e7afa652a66934fbf70bc231a76e2a758a4e32f23915cb6a0c81bb4a2d81f",
+      "derived": "run/N/08.png",
+      "derivedSha256": "5de69956be09c3bd5390b8bb867ebf57e69ce8b2148ffa5d15d6e33a092c2e67",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\03_lotus_healer_girl\\native\\01-v2-natural.png",
+      "sourceSha256": "d64bd101f05f03c84fbf30337654c226bbe8308551a8507529e0e727c1b72a1a"
+    },
+    {
+      "approvalSha256": "fe75bf277441130b2ae8c2cb526a9cfb58c04dbd8d3e940df4b2abc7cfcc2e3c",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "c0ab90f38196618dc56da73f636080b67e277b803ba0780f1f106dab93713544",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\natural8-production-20261105-v1\\01-Rrecovery-continuity-v3.png",
+      "sourceSha256": "0c1b4cbdd4bf47652ac97d5f83b12103cb0a1a5b2d1fe458483741cf36a49f8d"
+    },
+    {
+      "approvalSha256": "fe75bf277441130b2ae8c2cb526a9cfb58c04dbd8d3e940df4b2abc7cfcc2e3c",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "8af9afcc1232d1b1e8f266d033f91846eef4b68f55ca1f8e65916137dc34a709",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\natural8-production-20261105-v1\\02-connected-facing-v1.png",
+      "sourceSha256": "c841f610942ca437ccd4e566b08d81ea15e056f534b1045a33f286676722acd6"
+    },
+    {
+      "approvalSha256": "fe75bf277441130b2ae8c2cb526a9cfb58c04dbd8d3e940df4b2abc7cfcc2e3c",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "756df6e8deff410ed415d3f9da21ed2a1d54cd21282e957bc974536ea4edc5b5",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\07-R2-v2.png",
+      "sourceSha256": "032490079e43f6260a4a75aebd571fe20e9190d8212c4453889960dc3582887c"
+    },
+    {
+      "approvalSha256": "fe75bf277441130b2ae8c2cb526a9cfb58c04dbd8d3e940df4b2abc7cfcc2e3c",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "bb8a586cb9788562c1dc4478af3de4a6975184ede6cb40a7002ff3b96fb1e58e",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\10-v1.png",
+      "sourceSha256": "da8498defbd8a9f6a1bbf3a156e721217a92d07c0cfab8175ed543af421cd596"
+    },
+    {
+      "approvalSha256": "fe75bf277441130b2ae8c2cb526a9cfb58c04dbd8d3e940df4b2abc7cfcc2e3c",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "c736bacc3345b4c6947953cea70853b0cd5b2c2539c7d5835225c7924f967146",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\12-R2-v2.png",
+      "sourceSha256": "ccc3dfa1b342e57635a907e502d56474f18e060821ac0dfdfa99dae630cd4b16"
+    },
+    {
+      "approvalSha256": "fe75bf277441130b2ae8c2cb526a9cfb58c04dbd8d3e940df4b2abc7cfcc2e3c",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "f9e0cb10e704f2c71d2ed3845b5b116dfe88a764dab6916131e146513708dc9d",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\natural8-production-20261105-v1\\06-connected-facing-v1.png",
+      "sourceSha256": "94f6f123279bd724c8b3e4450ef1e86b1e08318a01cbd3577b92e3d5becf1f73"
+    },
+    {
+      "approvalSha256": "fe75bf277441130b2ae8c2cb526a9cfb58c04dbd8d3e940df4b2abc7cfcc2e3c",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "e00a415ed5b726a1b576d3728495d385905fd5daa664c5de0bcdaa0419660a18",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\16-v1.png",
+      "sourceSha256": "0665e2acb564bae753592a165ca3bb8f7948ba878208a57eca8fd6469d7119c4"
+    },
+    {
+      "approvalSha256": "fe75bf277441130b2ae8c2cb526a9cfb58c04dbd8d3e940df4b2abc7cfcc2e3c",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "5a2a73b6a4e03581fae1e720711c111a4084d30c7e24505be8c588fe05487c6a",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\02-v3.png",
+      "sourceSha256": "dc78024ece410f3b8e1614005ba9abce23738c36aac81028b55c125d0fb5b054"
+    },
+    {
+      "approvalSha256": "28d4d2340e76698a967f6254f4a3364a83084d58faed76f78580a6c795bdf4ba",
+      "derived": "run/E/01.png",
+      "derivedSha256": "21ef2445ecad2ec14092d42cb9399fa84cc4c0394c70f7846963aca0995c3166",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\03_lotus_healer_girl\\eight-frame-20261105-v1\\native\\01.png",
+      "sourceSha256": "1c03607dbceaafe232975a25738ac6df0f484c651bf486d1ff5f71618092c948"
+    },
+    {
+      "approvalSha256": "28d4d2340e76698a967f6254f4a3364a83084d58faed76f78580a6c795bdf4ba",
+      "derived": "run/E/02.png",
+      "derivedSha256": "fab3c16000510d38bf3a2076f9bf1a863295222221d952f3e6c2eb3c6759ca31",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\03_lotus_healer_girl\\eight-frame-20261105-v1\\native\\02.png",
+      "sourceSha256": "d7f2df2f12b3935cfaffb79dc6adbd599e524e2c08efc5a290fc8e77943930d8"
+    },
+    {
+      "approvalSha256": "28d4d2340e76698a967f6254f4a3364a83084d58faed76f78580a6c795bdf4ba",
+      "derived": "run/E/03.png",
+      "derivedSha256": "e9ce4d8b93b66eb03b036f3b62a8a5740921906cc09c7f843125cf27abd06d4f",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\03_lotus_healer_girl\\eight-frame-20261105-v1\\native\\03.png",
+      "sourceSha256": "3551b7e62e832529d0aa1fa496886d1113e5adfc194c6e99f4bbe53c001bc1ba"
+    },
+    {
+      "approvalSha256": "28d4d2340e76698a967f6254f4a3364a83084d58faed76f78580a6c795bdf4ba",
+      "derived": "run/E/04.png",
+      "derivedSha256": "3d18ce8a55ef42c494f4623c9e19128558c9e9c4f93f404ed302910e55b2cfd9",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\03_lotus_healer_girl\\eight-frame-20261105-v1\\native\\04.png",
+      "sourceSha256": "309d68841304ab07261183a3512a13db2c9f25756f22ce4f7f6f79fc5ba6eecc"
+    },
+    {
+      "approvalSha256": "28d4d2340e76698a967f6254f4a3364a83084d58faed76f78580a6c795bdf4ba",
+      "derived": "run/E/05.png",
+      "derivedSha256": "79c3af14b421d68f8952b98177354d508b43a27cc1e521cdeb0180e49e4e7005",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\03_lotus_healer_girl\\eight-frame-20261105-v1\\native\\05.png",
+      "sourceSha256": "161f28c58d01458de371df5c5ea070959f93208dd8fa9182734fbdaed71f9890"
+    },
+    {
+      "approvalSha256": "28d4d2340e76698a967f6254f4a3364a83084d58faed76f78580a6c795bdf4ba",
+      "derived": "run/E/06.png",
+      "derivedSha256": "f7d0001d7a01b13c7fd3433fbda7dd1ba49347027db038a35366043c003309ac",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\03_lotus_healer_girl\\eight-frame-20261105-v1\\native\\06.png",
+      "sourceSha256": "24e066083b50be37a44c9b9a5aab9f8b40fb696bde24e2772bcb67cbd28bbcfd"
+    },
+    {
+      "approvalSha256": "28d4d2340e76698a967f6254f4a3364a83084d58faed76f78580a6c795bdf4ba",
+      "derived": "run/E/07.png",
+      "derivedSha256": "fcc0ef13d865a816c82d5acb52e039e434ccfd45d5393b056d629095f0a0113b",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\03_lotus_healer_girl\\eight-frame-20261105-v1\\native\\07.png",
+      "sourceSha256": "5e0a1c974eb58ebf8fae610c37b83166b82e463b46b049b81b8dfb47e637f837"
+    },
+    {
+      "approvalSha256": "28d4d2340e76698a967f6254f4a3364a83084d58faed76f78580a6c795bdf4ba",
+      "derived": "run/E/08.png",
+      "derivedSha256": "b9dae62836e3d741673885f0e022db15d871834dcb6f77623699563f594b9a82",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\03_lotus_healer_girl\\eight-frame-20261105-v1\\native\\08.png",
+      "sourceSha256": "2ccd38428c01294903a98d8402c51fe19349be30fd81bf43c0858006bffb7863"
+    },
+    {
+      "approvalSha256": "f6b50526091adfce3d94f18dd7ae7c97cc75ea567620fb2c32f9075f03ea25c5",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "cfb92051946c6bb89d6e2a96f74af59cbe86ed1def76ee23f4898ce8ae2feb27",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\03_lotus_healer_girl\\native-v1\\04-v12RF-formal-native.png",
+      "sourceSha256": "fef41c2e851f124317d31097f0deb28f9fee01a146714ba96a75b0422baa0932"
+    },
+    {
+      "approvalSha256": "f6b50526091adfce3d94f18dd7ae7c97cc75ea567620fb2c32f9075f03ea25c5",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "713112a00da22c5beee556c4b1075302b3ed30ca1e7986bd01f456b456590266",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\03_lotus_healer_girl\\natural8-20261106-root-v2\\native\\02.png",
+      "sourceSha256": "257039a74485ef200a71ecd376c8d06f6b6fb15d9df9adb697c6d8ea0afe4a99"
+    },
+    {
+      "approvalSha256": "f6b50526091adfce3d94f18dd7ae7c97cc75ea567620fb2c32f9075f03ea25c5",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "dfdb3c2f078b867301d1c964994a887b28c099d79df31adec36e1a5772f6023d",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\03_lotus_healer_girl\\native-v1\\08-v12RF-formal-native.png",
+      "sourceSha256": "88734e4553dd7442df0eb5ebbdce16b772e30e3ea26b3a54643408995affa947"
+    },
+    {
+      "approvalSha256": "f6b50526091adfce3d94f18dd7ae7c97cc75ea567620fb2c32f9075f03ea25c5",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "ce8343cab33d3ddc2b3497ee4562c54ca6070d750255b3055f1b3bc311e374e5",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\03_lotus_healer_girl\\native-v1\\10-v14RF-formal-motion-native.png",
+      "sourceSha256": "8606bbbe731959480871f7eeae604cbf64bbb6dd4c02478dd78318ea876eacf3"
+    },
+    {
+      "approvalSha256": "f6b50526091adfce3d94f18dd7ae7c97cc75ea567620fb2c32f9075f03ea25c5",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "d425bdb9e188250507965ccfe4adc5f8a0c61a94bd919adb7da899ae142ae545",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\03_lotus_healer_girl\\native-v1\\12-v13RF-formal-transport-retry.png",
+      "sourceSha256": "56d97abb55de325f3e6930daf3d70bb01f6bb49036617a5df00337e285b737db"
+    },
+    {
+      "approvalSha256": "f6b50526091adfce3d94f18dd7ae7c97cc75ea567620fb2c32f9075f03ea25c5",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "d52679b531b0963542fd39d16e1ecad12597e8bbac4828b154bee8033140769f",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\03_lotus_healer_girl\\natural8-20261106-root-v2\\native\\06.png",
+      "sourceSha256": "78254cdc217a2991c857a011e9454ea63550d0ecb1dd6a9c0757f0da7910a7ca"
+    },
+    {
+      "approvalSha256": "f6b50526091adfce3d94f18dd7ae7c97cc75ea567620fb2c32f9075f03ea25c5",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "110cad94d37e830b282866c498d7c3acbfec6fd6386138e6e8e42c1e22e5c620",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\03_lotus_healer_girl\\native-v1\\01-v12RF-formal-native.png",
+      "sourceSha256": "7b42b3932b25dd86f317af7fbc9202696b59677e2348e394cc64e972f88190cb"
+    },
+    {
+      "approvalSha256": "f6b50526091adfce3d94f18dd7ae7c97cc75ea567620fb2c32f9075f03ea25c5",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "8d76c91fea03d8a0d70112fcf1c11a97cbd7e1561ad534a6e7dfa6b42273ddc8",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\03_lotus_healer_girl\\native-v1\\03-v12RF-formal-native.png",
+      "sourceSha256": "7e4d613f9d985d9daf33fc0d754411d09913ee70acfd79e5778a01d6a8d6b1a7"
+    },
+    {
+      "approvalSha256": "fd6ddb680796aa056c9a8824088d2ae4387662d43d0289545e43fad00b6b9472",
+      "derived": "run/S/01.png",
+      "derivedSha256": "cb16f5d84d7123a455b25d727fbafe0528140df3d4256b058bf8f962fbc056e5",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\03_lotus_healer_girl\\imported-es\\native-v1\\05.png",
+      "sourceSha256": "27ecced8805b429ac76f32c1e9a7402a32177f8af5d8c0b4929d40d231a4d18b"
+    },
+    {
+      "approvalSha256": "fd6ddb680796aa056c9a8824088d2ae4387662d43d0289545e43fad00b6b9472",
+      "derived": "run/S/02.png",
+      "derivedSha256": "0789fd2ea977ed15b763d1c5ca1d0678ba624ef14de1c5e2bf8237d46d235119",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\03_lotus_healer_girl\\native-clean-v17\\06.png",
+      "sourceSha256": "5bde3b35873a625ff7d41de858cd73648be5236fead8f3e5a0314166e1c3921f"
+    },
+    {
+      "approvalSha256": "fd6ddb680796aa056c9a8824088d2ae4387662d43d0289545e43fad00b6b9472",
+      "derived": "run/S/03.png",
+      "derivedSha256": "7ff4ae11f1d8c6506c6a5bb5ebbc0d8079eccb18b3bc78fc5cd9bb53f6bb6f26",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\03_lotus_healer_girl\\native-arms-v14\\07.png",
+      "sourceSha256": "b359d56031656e4482eac37d5f1803a4e5764c5e963c82afaf31d185cb3b47c7"
+    },
+    {
+      "approvalSha256": "fd6ddb680796aa056c9a8824088d2ae4387662d43d0289545e43fad00b6b9472",
+      "derived": "run/S/04.png",
+      "derivedSha256": "ae4051bd39917345f8e1efc8b85d5ad798500eeea8dcee5801ea0621183c9cea",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\03_lotus_healer_girl\\native-recovery-v10\\11.png",
+      "sourceSha256": "73145a791327cac1046b248faf8ddbcf990f910486348ab421874ff4b31642ac"
+    },
+    {
+      "approvalSha256": "fd6ddb680796aa056c9a8824088d2ae4387662d43d0289545e43fad00b6b9472",
+      "derived": "run/S/05.png",
+      "derivedSha256": "ea466bb8d73574bbdf88888e58d00baa1c198f43941740bea38056d041520874",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\03_lotus_healer_girl\\native-v3\\13.png",
+      "sourceSha256": "b5e86bbcaebd34ba3dba3eb82d1ba968e966e3f027e73ec259a148e2dd11d175"
+    },
+    {
+      "approvalSha256": "fd6ddb680796aa056c9a8824088d2ae4387662d43d0289545e43fad00b6b9472",
+      "derived": "run/S/06.png",
+      "derivedSha256": "edb80ea500fbf394e381316c19168184a513c2e021d4d4342e94d544fb0afa0c",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\03_lotus_healer_girl\\native-continuity-v18\\14.png",
+      "sourceSha256": "8ae7ca0284b9eede8d06a79e0244f4d8b643f88539b82a42947100815d311b74"
+    },
+    {
+      "approvalSha256": "fd6ddb680796aa056c9a8824088d2ae4387662d43d0289545e43fad00b6b9472",
+      "derived": "run/S/07.png",
+      "derivedSha256": "290c31b71aa0810d4f18fb1c9a4c6bb26408c34d209eddb3074803db7b4e1f3e",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\03_lotus_healer_girl\\native-v3\\16.png",
+      "sourceSha256": "960e369ab9f7e0e198d2408c69315631cb8c81b5fd2a4c93e3540700448431e0"
+    },
+    {
+      "approvalSha256": "fd6ddb680796aa056c9a8824088d2ae4387662d43d0289545e43fad00b6b9472",
+      "derived": "run/S/08.png",
+      "derivedSha256": "cb92dca99bbaa2fd8d09aca97104cecf4d3a06ba95ae8b857d644da4ca3c8605",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\03_lotus_healer_girl\\native-continuity-v19-root\\02.png",
+      "sourceSha256": "2553b2b2538949d60969d7050428ef85402bcc9bfed1e5527314e4e3f61cd2d3"
+    },
+    {
+      "approvalSha256": "8b290365d0b0ef926d9fde0666d9c792e459ad1e13d7750ad1812e160082f39f",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "77f5b0f7b98bb02cb57b5c075b435f93af1d5fa02b835292e5f32806496c9907",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\sw-owner-master8-20261106-v1\\01-native-contact-v1.png",
+      "sourceSha256": "c9285b84ee80e3e4b728d1b0ca14e644dff376fd916494eb18eeb9246ceae32a"
+    },
+    {
+      "approvalSha256": "8b290365d0b0ef926d9fde0666d9c792e459ad1e13d7750ad1812e160082f39f",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "4d8b338e8bd65232b0c0eba66b6dd21ef3d7949484f5bb89b3e4cbbc40bd45da",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\fresh-owner-native8-20261106-v1\\02-native-v1.png",
+      "sourceSha256": "da33384b8e6d2c7f2d23fa81abf34352d1a031fd047257b52de3ba6ffb68c3e6"
+    },
+    {
+      "approvalSha256": "8b290365d0b0ef926d9fde0666d9c792e459ad1e13d7750ad1812e160082f39f",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "975538fce53797718770ff8f89b57c08d6be94b0ed15d050be87ed3fd0af8da5",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\fresh-owner-native8-20261106-v1\\03-native-v1.png",
+      "sourceSha256": "cc56f8874f7d5f49fa61328fff5f49d37967a2440ec1f6d284db5622a9931018"
+    },
+    {
+      "approvalSha256": "8b290365d0b0ef926d9fde0666d9c792e459ad1e13d7750ad1812e160082f39f",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "4aa2e557e52022e09f441d52c79f5144af104269c76c24d69044471f6ce9cb0f",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\fresh-owner-native8-20261106-v1\\04-native-v1.png",
+      "sourceSha256": "57a35e5e161133a3491387995497a438c9e5f3f5eddf6245c20d390610836d0e"
+    },
+    {
+      "approvalSha256": "8b290365d0b0ef926d9fde0666d9c792e459ad1e13d7750ad1812e160082f39f",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "f5cacfda545f07951dce145d7dc7febaedd0658949a8cd6e0703b2a9e10dfeb4",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\sw-owner-master8-20261106-v1\\05-native-contact-v1.png",
+      "sourceSha256": "a90c90ca8df5919882a38306e7e96d652572fbac87dd73f1da28b5c16bbf9f94"
+    },
+    {
+      "approvalSha256": "8b290365d0b0ef926d9fde0666d9c792e459ad1e13d7750ad1812e160082f39f",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "9e55ef6b01edcd515343ea2992749dbc597556d0d3970aeeeb86e7ca22f49f99",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\fresh-owner-native8-20261106-v1\\06-native-v2.png",
+      "sourceSha256": "65a11aade44a8e3f5a9662944f742231a0926c84cc05d750b5a90688c2c1240a"
+    },
+    {
+      "approvalSha256": "8b290365d0b0ef926d9fde0666d9c792e459ad1e13d7750ad1812e160082f39f",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "59e07c3bdc02af8a591e64a1c85eea6b65dba369f5213176c858f10c77fabcce",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\fresh-owner-native8-20261106-v1\\07-native-v2.png",
+      "sourceSha256": "8cc30cd1c215927d56e2ca5f2faf1cd9fc8be76de1ce0550b0ccd7a743806dce"
+    },
+    {
+      "approvalSha256": "8b290365d0b0ef926d9fde0666d9c792e459ad1e13d7750ad1812e160082f39f",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "c6f90b4a08e11ea7c29963c0cf1cf0b3cd54906933c0ca27b0484142be1b1a6d",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\fresh-owner-native8-20261106-v1\\08-native-v1.png",
+      "sourceSha256": "6f516d181e0cf29835ef363a214ed4c439cbe387aa0f39875930ed3b498ef897"
+    },
+    {
+      "approvalSha256": "01787e8c71968b2c73f073f23fa18e8a927907048c9671a766ec4c2a1a86d608",
+      "derived": "run/W/01.png",
+      "derivedSha256": "0aa29781395a3acc1376a72771f92f4779029844fdc98433ba5af495d20c43c3",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\03_lotus_healer_girl\\v3-flat\\04.png",
+      "sourceSha256": "52d2253a64861653611e2104ae9a695b759a5345a50a2bb4c8ccb8d74ce92f53"
+    },
+    {
+      "approvalSha256": "01787e8c71968b2c73f073f23fa18e8a927907048c9671a766ec4c2a1a86d608",
+      "derived": "run/W/02.png",
+      "derivedSha256": "5a02cba15431530626ef88aaec84ec3bb415b9acf4e7a725bb218a8e53f14561",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\03_lotus_healer_girl\\8f-facing-20261104\\native-v2-transport-retry\\02.png",
+      "sourceSha256": "5de46bf1adff7f2299eeb6ba525adb8df0d4183e6eb86ab54a45aac827f85969"
+    },
+    {
+      "approvalSha256": "01787e8c71968b2c73f073f23fa18e8a927907048c9671a766ec4c2a1a86d608",
+      "derived": "run/W/03.png",
+      "derivedSha256": "b3aac3bc432266891528a86c49e2d535fbe3609727ed43cdbcc5b10e551ff519",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\03_lotus_healer_girl\\8f-facing-20261104\\native-v1\\03.png",
+      "sourceSha256": "d266e36bb8f22f64c4319eb30a53c2f710f948a35a03ef46b04ec6501f56be2d"
+    },
+    {
+      "approvalSha256": "01787e8c71968b2c73f073f23fa18e8a927907048c9671a766ec4c2a1a86d608",
+      "derived": "run/W/04.png",
+      "derivedSha256": "bd897da69a8a5bbdcff2ac7dbc1105ef42afaafed3a0486e8f5891c7657366b2",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\03_lotus_healer_girl\\v9-lamp-occlusion-20261104\\10.png",
+      "sourceSha256": "619a5a4f3ff33a5e18e158f1b3539dbabc84bc3af1aaf939246312862ef8665c"
+    },
+    {
+      "approvalSha256": "01787e8c71968b2c73f073f23fa18e8a927907048c9671a766ec4c2a1a86d608",
+      "derived": "run/W/05.png",
+      "derivedSha256": "d8ce4b99dfba1570f79b59820df0101c5fec9707c4bc14698354a7ab1e0beb5d",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\03_lotus_healer_girl\\8f-facing-20261104\\native-v3\\05.png",
+      "sourceSha256": "f39da3b5934bd034acf51415704c9cc4de5d01dee1f5c3223efe25f805dadb93"
+    },
+    {
+      "approvalSha256": "01787e8c71968b2c73f073f23fa18e8a927907048c9671a766ec4c2a1a86d608",
+      "derived": "run/W/06.png",
+      "derivedSha256": "28056479f35e14c957a520a2e158732de7cfad2e37e77bf45144ea09cb1e7503",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\03_lotus_healer_girl\\v8-under-body-recovery-20261104\\13.png",
+      "sourceSha256": "b8d06f10d30222df3bdd1c743127150cde97c2c1b7c102ee8394ae2f06be58a2"
+    },
+    {
+      "approvalSha256": "01787e8c71968b2c73f073f23fa18e8a927907048c9671a766ec4c2a1a86d608",
+      "derived": "run/W/07.png",
+      "derivedSha256": "24ee883ab7b45e7328c51ef3d28707689aecc4745a2887e06f6f58ff088ed60a",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\03_lotus_healer_girl\\v3-flat\\15.png",
+      "sourceSha256": "b3a19cad0f9d07727ecc35f48bb76e5b6696e3ae7c6b2bd05e29452397d27d95"
+    },
+    {
+      "approvalSha256": "01787e8c71968b2c73f073f23fa18e8a927907048c9671a766ec4c2a1a86d608",
+      "derived": "run/W/08.png",
+      "derivedSha256": "30ef535be5b8cc4305f24c73ec804abcd004d6539564ef3279aa27a1151a0eb9",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\03_lotus_healer_girl\\v1\\03.png",
+      "sourceSha256": "942e642675fc9e062098839ca027b224872261b3a20875f152bd0db4c9431f67"
+    },
+    {
+      "approvalSha256": "2f2dd5204625514ef397b175f0bc466b79abba4858ee5f939b845e5890d7aeb3",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "e91cfafff276cfdb8576f295fd9f71cb0bf151c23ecb3992508d1b555b63e309",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\native-v8f2\\01.png",
+      "sourceSha256": "06a0babb8c933423d833f17f1284f36dc70d31b21912da004836c9a0d0276955"
+    },
+    {
+      "approvalSha256": "2f2dd5204625514ef397b175f0bc466b79abba4858ee5f939b845e5890d7aeb3",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "257aaaa761f069e6124d6190907f0455fa1a0e85db231d0283d579894c75c249",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\native-v8f2\\02.png",
+      "sourceSha256": "bf2f1a341a7f663978ee4bcd2ddba64e136274f949946a7eaeee532c45272a7f"
+    },
+    {
+      "approvalSha256": "2f2dd5204625514ef397b175f0bc466b79abba4858ee5f939b845e5890d7aeb3",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "abec9fbb5a622677d61954eeb279d31b577f5f3fd3f26661ffeca2c495da0ec8",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\native-v8f1\\03.png",
+      "sourceSha256": "83604a9563ebb831bd4eaf4a27282b71b662275d41ca2f90a005527da488a842"
+    },
+    {
+      "approvalSha256": "2f2dd5204625514ef397b175f0bc466b79abba4858ee5f939b845e5890d7aeb3",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "6d455f10d7962708c67bd2ad8653699203a14740fdd0024cbc44839d10e00e80",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\native-v8f2\\04.png",
+      "sourceSha256": "e0a3464fc5f6755d296a3d98b4a6d462aa76a5ea9047789e5904de500fda3670"
+    },
+    {
+      "approvalSha256": "2f2dd5204625514ef397b175f0bc466b79abba4858ee5f939b845e5890d7aeb3",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "138fe5fc72903b0c2bf8177e22d37b8a05e478236273621e23a300cd675a410e",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\native-v8f2\\05.png",
+      "sourceSha256": "6993e46d163bac2eb459a63ffc7165ed496c6c9b78701489366c7a80bc4a9c1a"
+    },
+    {
+      "approvalSha256": "2f2dd5204625514ef397b175f0bc466b79abba4858ee5f939b845e5890d7aeb3",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "68f4b8af583e7f106e760b07d32681d9cd5ed2825c23d25896590e186d2f8f6b",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\native-v8f2\\06.png",
+      "sourceSha256": "bdc3c6c35ab0cfe54af980b447db31441769ddfb89dde4f1ead764ab5f76ed91"
+    },
+    {
+      "approvalSha256": "2f2dd5204625514ef397b175f0bc466b79abba4858ee5f939b845e5890d7aeb3",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "0cfc3cd59b1a265d568413f84fcce1894b14b73582b29e17d723714f87dcf8c9",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\native-v8f2\\07.png",
+      "sourceSha256": "c0bdb82c3e7449d2f33d1143b018f9e9ce1f8b1d51266e53fe47e2d9b0601fc3"
+    },
+    {
+      "approvalSha256": "2f2dd5204625514ef397b175f0bc466b79abba4858ee5f939b845e5890d7aeb3",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "584b6c5839fab8783afcd703dad736ce6471e77528f451d3b2898961bdca2fb2",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\native-v8f1\\08.png",
+      "sourceSha256": "aa797dcfa2fa784ce2476c8ec3fdf656f36a33df44c159113fece3a5dd6e1fe7"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "63bfac3c597dd155d94fd02668e276c5c995f8a96679f9958db877e8df135639",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\03_lotus_healer_girl.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "qdao.run-variant-game-calibrations/v1",
+  "gameAcceptance": "pending_independent_runtime_closure",
+  "description": "Source-locked clip display calibration. Runtime acceptance remains in the separate game closure; this file does not approve artwork or alter PNGs, timing, animation or other clips.",
+  "rules": [
+    {
+      "id": "current72-02-fire-talisman-boy-sw-20261106",
+      "characterId": "02_fire_talisman_boy",
+      "variant": "current",
+      "direction": "SW",
+      "orderedSourceHashes": [
+        "f6c11b64a44c62146562b89e31fef06c7f09791a32e87d9ebb4fdf214c3d57e7",
+        "d4b6a0e45c0fd3adbe61858d0b1b76c98255385dab8143f524c816f8f4e4bf32",
+        "d11657daafc88b57300a4bd4f999aac0e52b17df8b73132cc312c7d8e4d82778",
+        "248c128f8b203f706f30704816948411c1386b93bac32a791442849c380437a1",
+        "09b84029bca1182259b4b46c47b984ab922efd2cbc4e551d32ff5296e0197423",
+        "70aa0d1ca482ad4c4d2b7347bcb26eac946c8722899a17eefe848fb83004c3d1",
+        "11b9ee0e91a6cef37df83232d2c770cf24dd6584df17d8e851a30c7439264cf3",
+        "11f29c2fce1ec35f5807fe91d6b0784d8899592a0155c883707b21c44a74a3a7"
+      ],
+      "runtimeClip": {
+        "pixelsPerUnit": 30,
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.22
+      }
+    }
+  ]
+}

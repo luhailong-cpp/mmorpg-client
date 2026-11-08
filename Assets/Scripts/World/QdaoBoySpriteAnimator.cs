@@ -148,7 +148,18 @@ namespace MmorpgClient.World
         private float _archivedRunSeconds;
         private float _actionSeconds;
         private bool _actionFacesEast = true;
+        private QdaoRunVariant _runVariant = QdaoRunVariant.Original;
+        private string _runVariantStatus = "Original";
+        private bool _hasExplicitRunVariant;
+        private QdaoRunVariant _explicitRunVariant = QdaoRunVariant.Original;
+        // 测试可注入隔离租约，无需导入或替换已批准素材。
+        internal System.Func<string, string, string, QdaoActionResources.Lease> RunClipLoader;
         public string ActiveAction { get; private set; }
+        public QdaoRunVariant RunVariant => _runVariant;
+        public string RunVariantStatus => _runVariantStatus;
+        public float RunCyclePhase => _archivedRun != null
+            ? QdaoRunVariants.RemapSeconds(_archivedRunSeconds, _archivedRun.DurationSeconds, 1f)
+            : _frames != null ? QdaoRunVariants.RemapSeconds(_animationClock, _frames.Count, 1f) : 0f;
 
         /// <summary>Current locomotion state (readable for tests and debugging).</summary>
         public LocomotionState State { get; private set; } = LocomotionState.Idle;
@@ -236,6 +247,74 @@ namespace MmorpgClient.World
             var frames = LoadFrames(characterId);
             if (frames == null) return false;
             return ApplyFrames(frames);
+        }
+
+        /// <summary>
+        /// 只更改跑步资源根目录；对比片段缺失时保留当前选择和租约，
+        /// 不影响角色外观与战斗动作。
+        /// </summary>
+        public bool TrySetRunVariant(QdaoRunVariant variant)
+        {
+            var root = QdaoRunVariants.RootFor(variant);
+            if (_frames == null || root == null ||
+                (variant != QdaoRunVariant.Original && !QdaoRunVariants.AllowsCharacter(CharacterId)))
+            {
+                _runVariantStatus = $"Unavailable: {variant}, {CharacterId}";
+                return false;
+            }
+            if (_runVariant == variant && ((_archivedRun?.IsValid == true && _archivedRunDirection == _lastDirection) ||
+                variant == QdaoRunVariant.Original))
+            {
+                _hasExplicitRunVariant = true;
+                _explicitRunVariant = variant;
+                _runVariantStatus = $"{variant}: {CharacterId}/{DirectionNames[_lastDirection]}";
+                return true;
+            }
+
+            var next = AcquireRunClip(_lastDirection, variant);
+            if (next == null && variant != QdaoRunVariant.Original)
+            {
+                _runVariantStatus = $"Unavailable: {variant}, {CharacterId}/{DirectionNames[_lastDirection]}";
+                return false;
+            }
+            var phase = RunCyclePhase;
+            var previous = _archivedRun;
+            _archivedRun = next;
+            _archivedRunDirection = _lastDirection;
+            _archivedRunSeconds = next != null ? phase * next.DurationSeconds : 0f;
+            _animationClock = phase * _frames.Count;
+            _runVariant = variant;
+            _hasExplicitRunVariant = true;
+            _explicitRunVariant = variant;
+            _missingArchivedRun.Clear();
+            _runVariantStatus = $"{variant}: {CharacterId}/{DirectionNames[_lastDirection]}";
+            // 攻击或施法保持当前帧及其事件时钟。
+            if (State == LocomotionState.Run && _action == null)
+                _renderer.sprite = next != null ? next.FrameAt(_archivedRunSeconds, true)
+                    : _frames.Walk[_lastDirection][Mathf.Clamp((int)_animationClock, 0, _frames.Count - 1)];
+            previous?.Dispose();
+            return true;
+        }
+
+        private QdaoActionResources.Lease AcquireRunClip(int direction, QdaoRunVariant variant)
+        {
+            var root = QdaoRunVariants.RootFor(variant);
+            if (root == null) return null;
+            return RunClipLoader != null ? RunClipLoader(CharacterId, DirectionNames[direction], root)
+                : QdaoActionResources.Acquire(CharacterId, "run", DirectionNames[direction], root);
+        }
+
+        [ContextMenu("Run comparison/Original")]
+        private void CompareOriginal() => RequestRunComparison(QdaoRunVariant.Original);
+        [ContextMenu("Run comparison/Legacy")]
+        private void CompareLegacy() => RequestRunComparison(QdaoRunVariant.Legacy);
+        [ContextMenu("Run comparison/Current")]
+        private void CompareCurrent() => RequestRunComparison(QdaoRunVariant.Current);
+        private void RequestRunComparison(QdaoRunVariant variant)
+        {
+            if (!Application.isPlaying) { Debug.Log("Run comparison is available in Play mode.", this); return; }
+            if (!TrySetRunVariant(variant)) Debug.LogWarning(_runVariantStatus, this);
+            else Debug.Log(_runVariantStatus, this);
         }
 
         /// <summary>Play an authored E/W action once, then return to locomotion and the existing idle.</summary>
@@ -334,6 +413,17 @@ namespace MmorpgClient.World
             _renderer.sprite = frames.Idle[_lastDirection];
             ReleaseArchivedActions();
             _missingArchivedRun.Clear();
+            // 新身份默认使用当前跑步版本，用户明确选择的版本跨角色保留。
+            // 名单外角色使用原有跑步资源；选中版本缺源时不借用其他版本。
+            if (previous == null || !string.Equals(previous.Id, frames.Id, System.StringComparison.Ordinal))
+            {
+                _runVariant = QdaoRunVariants.AllowsCharacter(frames.Id)
+                    ? (_hasExplicitRunVariant ? _explicitRunVariant : QdaoRunVariant.Current)
+                    : QdaoRunVariant.Original;
+                _runVariantStatus = _runVariant == QdaoRunVariant.Original
+                    ? "Original"
+                    : $"Pending: {_runVariant}, {frames.Id}/{DirectionNames[_lastDirection]}";
+            }
             ClearHdRows(previous);
             oldObservation?.Dispose();
             oldActive?.Dispose();
@@ -775,17 +865,24 @@ namespace MmorpgClient.World
 
         private void RenderArchivedActions(bool running, bool wasRunning, float distance, float deltaTime)
         {
-            if (running && _frames.UseArchivedActions)
+            if (running && (_frames.UseArchivedActions || _runVariant != QdaoRunVariant.Original))
             {
                 if (!wasRunning) _archivedRunSeconds = 0f;
                 if (_archivedRunDirection != _lastDirection)
                 {
                     var next = _missingArchivedRun.Contains(_lastDirection) ? null :
-                        QdaoActionResources.Acquire(CharacterId, "run", DirectionNames[_lastDirection]);
+                        AcquireRunClip(_lastDirection, _runVariant);
                     if (next == null) _missingArchivedRun.Add(_lastDirection);
                     var previous = _archivedRun;
+                    var oldDuration = previous?.DurationSeconds ?? (_frames.Count / _frames.Fps);
+                    var oldSeconds = !wasRunning ? 0f : previous != null ? _archivedRunSeconds
+                        : Mathf.Max(0f, _animationClock / _frames.Fps - distance / ReferenceRunSpeed);
+                    _archivedRunSeconds = next != null
+                        ? QdaoRunVariants.RemapSeconds(oldSeconds, oldDuration, next.DurationSeconds) : 0f;
                     _archivedRun = next;
                     _archivedRunDirection = _lastDirection;
+                    _runVariantStatus = next != null ? $"{_runVariant}: {CharacterId}/{DirectionNames[_lastDirection]}"
+                        : $"Unavailable: {_runVariant}, {CharacterId}/{DirectionNames[_lastDirection]}";
                     previous?.Dispose();
                 }
                 // Source milliseconds define the gait at ReferenceRunSpeed. Distance, never idle
@@ -795,6 +892,12 @@ namespace MmorpgClient.World
                 {
                     _archivedRunSeconds = Mathf.Repeat(_archivedRunSeconds, _archivedRun.DurationSeconds);
                     _renderer.sprite = _archivedRun.FrameAt(_archivedRunSeconds, true);
+                }
+                else if (_runVariant != QdaoRunVariant.Original)
+                {
+                    // 所选方向缺失时，不能在该版本标签下显示
+                    // 基础跑步或其他版本。
+                    _renderer.sprite = null;
                 }
             }
             else if (_archivedRun != null)

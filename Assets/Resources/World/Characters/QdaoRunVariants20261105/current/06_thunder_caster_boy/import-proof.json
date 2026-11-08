@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "1d2e5faa9dbe1c44bb0ad9c6acbba28559d27c955f55823e31c0600866010650",
+      "derived": "run/N/01.png",
+      "derivedSha256": "5cc8c11879f8e0e06f3a81e9001e8c64e9172c2a2bff4959631440d5cfdc128a",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\04-root-natural-r2.png",
+      "sourceSha256": "6b41e1c35e3437aecdce23dab29590f8a5176f10d4b25fc79dc70f2413beec49"
+    },
+    {
+      "approvalSha256": "1d2e5faa9dbe1c44bb0ad9c6acbba28559d27c955f55823e31c0600866010650",
+      "derived": "run/N/02.png",
+      "derivedSha256": "d01e4f618bdd5f24d65c3ecc121bd01d6e947434cefbd59e2e12d1eff6327e61",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\06-root-natural-r2.png",
+      "sourceSha256": "0196e858d36e5936ea93576dc5b8836bb3c0ac29efe95d57c88bb8de6228d301"
+    },
+    {
+      "approvalSha256": "1d2e5faa9dbe1c44bb0ad9c6acbba28559d27c955f55823e31c0600866010650",
+      "derived": "run/N/03.png",
+      "derivedSha256": "605f68b336e379c0c56cda178095571a79c5b5f273a2845ae7a7e701ed6d7eff",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\07-root-natural-r4.png",
+      "sourceSha256": "13084852254c0d592fd0297d55bf8681f4e95d5c55db23a0fb1c75981d1daa32"
+    },
+    {
+      "approvalSha256": "1d2e5faa9dbe1c44bb0ad9c6acbba28559d27c955f55823e31c0600866010650",
+      "derived": "run/N/04.png",
+      "derivedSha256": "86b221f26a38bac46f845669482798b76eab76aec81ed5073d783c1d8bf1b206",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\09-root-natural-r3.png",
+      "sourceSha256": "0b9bc687fa363ac259e1308e2a422aac6bf4979555b7ac0df041e2364b7f93f7"
+    },
+    {
+      "approvalSha256": "1d2e5faa9dbe1c44bb0ad9c6acbba28559d27c955f55823e31c0600866010650",
+      "derived": "run/N/05.png",
+      "derivedSha256": "77db82f91ac57adf7a545f60bda88ae47f2a3e72b49886e5ee58df153f607988",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\12-root-natural-r2.png",
+      "sourceSha256": "53323e7cee47a084dfe3aef0ccf947f8c50d14873958d5ee425a5993c87ad7cf"
+    },
+    {
+      "approvalSha256": "1d2e5faa9dbe1c44bb0ad9c6acbba28559d27c955f55823e31c0600866010650",
+      "derived": "run/N/06.png",
+      "derivedSha256": "14b4f1db14052494878144c81b7b8f49f50bd7699a5bb6064292903278f8381f",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\13-root-natural-r2.png",
+      "sourceSha256": "04d0d4c667e7cfc25a589cfaff43ccb8dfe8979faa1549697d43368823a0903b"
+    },
+    {
+      "approvalSha256": "1d2e5faa9dbe1c44bb0ad9c6acbba28559d27c955f55823e31c0600866010650",
+      "derived": "run/N/07.png",
+      "derivedSha256": "a05c9fdc715fb60db1bd217a0d15e89245288aec7e2544caa5fe6182fc4c7696",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\15-root-natural-r2.png",
+      "sourceSha256": "cb78f88c62e592eba79b4cbb6a7f71eb5516e7b20b2113b09ec2352994b80241"
+    },
+    {
+      "approvalSha256": "1d2e5faa9dbe1c44bb0ad9c6acbba28559d27c955f55823e31c0600866010650",
+      "derived": "run/N/08.png",
+      "derivedSha256": "a5f10de3d43fbc9af887c14b4b40e4d4f1b4f6c652ae9d7f68ca8aa25bddd37b",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\01-root-natural-r1.png",
+      "sourceSha256": "f423ee77192978e11a1c64fc5a0e327a68252679bc76618c7ae360544d2ede40"
+    },
+    {
+      "approvalSha256": "b52bfd23ee73aa66684f5a46cb98952993b600d6501b76babaa78fc502a70206",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "1b131d0d3e28ab43126948490018a0b4707830a5584daefdd697d7df606b8943",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\natural8-20261105-worker-v1\\01-R-fold-compact-worker-v2.png",
+      "sourceSha256": "0b952d91aa42595ea6ec0db7c50c3e7eb4a1a8b46a1a7a7c74f1446eeae6c8c9"
+    },
+    {
+      "approvalSha256": "b52bfd23ee73aa66684f5a46cb98952993b600d6501b76babaa78fc502a70206",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "5482ed90d5db5fd97e41cba1321b9bca180b2e3ec2abe4ab9211140c94800605",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\05-R4-v2.png",
+      "sourceSha256": "b113a9d450a8ea70bc66ad5c12cae2b9e8b5cf5f9a7401150737660cb4f81f4b"
+    },
+    {
+      "approvalSha256": "b52bfd23ee73aa66684f5a46cb98952993b600d6501b76babaa78fc502a70206",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "9fe8f7dc3740e8419c740451773f38260a4ebbe005bf0fc51cbbdc5e82876a48",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\07-R5-v3.png",
+      "sourceSha256": "3e3f526343a1d49fea43a3eeb80dcb7df6678359ff3b0f6988e97f8aaa100efa"
+    },
+    {
+      "approvalSha256": "b52bfd23ee73aa66684f5a46cb98952993b600d6501b76babaa78fc502a70206",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "4985d2e8f8ae139153e53c757c87b3175b01fac341f2501b07cc799df50386cf",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\10-R4-v3.png",
+      "sourceSha256": "ea345a04698765f8e33d8d2154ffdfc927730fa997b778cc1f8f864788a42024"
+    },
+    {
+      "approvalSha256": "b52bfd23ee73aa66684f5a46cb98952993b600d6501b76babaa78fc502a70206",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "74ebad38ca89c98ea56f4387494a317051cd37366da6e6bc259ae737e6d2a56a",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\12-R4-v1.png",
+      "sourceSha256": "6347b86f5ba62e407c7179bcbe0b4d64947d2090a6cb4029ccae99f36bab53ce"
+    },
+    {
+      "approvalSha256": "b52bfd23ee73aa66684f5a46cb98952993b600d6501b76babaa78fc502a70206",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "716331e685a19a274c21f2bd0223e49227d0f7f3dfc5be46ee5d577671801807",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\natural8-20261105-worker-v1\\06-R-load-flat-worker-v1.png",
+      "sourceSha256": "5ffdb3a6133bbfd07d1a467cb9b2961a0058a64c0d449042113fcc3564409eb0"
+    },
+    {
+      "approvalSha256": "b52bfd23ee73aa66684f5a46cb98952993b600d6501b76babaa78fc502a70206",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "708ac0d271cd31ef7999cf08a209c9e7991da10d6ecee9df9485a0211ea06a3d",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\16-F-v2.png",
+      "sourceSha256": "7ed83feaab06bd2fcebd2dbc6d3fd70eef9f15f39d3f0ac428d9b8065f38d2f8"
+    },
+    {
+      "approvalSha256": "b52bfd23ee73aa66684f5a46cb98952993b600d6501b76babaa78fc502a70206",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "bde2f17c4bd7097ca8ca581d44e422c9fa0b3eba1e9f8ee665b3b063757ec45c",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\02-F-v2.png",
+      "sourceSha256": "472b9910634d27d387162d053d0a1bc8afba6c8feb3981b5f0f4404591d63d3c"
+    },
+    {
+      "approvalSha256": "8fc7b9116d12527bfe7cea8e1e87f39f4619ca2b577d76e947539ede7f39aa60",
+      "derived": "run/E/01.png",
+      "derivedSha256": "14b46297eef8729d368be524cd61e9282be6310e99448d2e99ed324be95bc1df",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\eight-frame-20261105-v1\\native-final\\01.png",
+      "sourceSha256": "f386e18f986d7b96c84695aa0259ea729341f7cf7c7f5f8749b77d67e118650e"
+    },
+    {
+      "approvalSha256": "8fc7b9116d12527bfe7cea8e1e87f39f4619ca2b577d76e947539ede7f39aa60",
+      "derived": "run/E/02.png",
+      "derivedSha256": "1a2d57bb55eaabda1bc6eb2959d121a4523de6ac2271590ce675890ca99d9912",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\eight-frame-20261105-v1\\native-final\\02.png",
+      "sourceSha256": "aacd1c029c1e1d9a304fc57e999bc076bc9f5bfeacd0490b790a629431a5f6f7"
+    },
+    {
+      "approvalSha256": "8fc7b9116d12527bfe7cea8e1e87f39f4619ca2b577d76e947539ede7f39aa60",
+      "derived": "run/E/03.png",
+      "derivedSha256": "a6580af841d20a12cf2cb08443db914d3c6f81c90a07e718ed4a9bb307df5d7a",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\eight-frame-20261105-v1\\native-final\\03.png",
+      "sourceSha256": "f0f3420698c493fa6c6608c6ee22169d10b89986065169055a9e08a7c2d702e8"
+    },
+    {
+      "approvalSha256": "8fc7b9116d12527bfe7cea8e1e87f39f4619ca2b577d76e947539ede7f39aa60",
+      "derived": "run/E/04.png",
+      "derivedSha256": "6199eb345ef4d73e0538bff840d87306517ce845a533aa4dbcab5c9fc37b88a9",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\eight-frame-20261105-v1\\native-final\\04.png",
+      "sourceSha256": "facc2097b8467b0aacb63948d9574e94cc3b5963b7e353d2aa880c63e30522d8"
+    },
+    {
+      "approvalSha256": "8fc7b9116d12527bfe7cea8e1e87f39f4619ca2b577d76e947539ede7f39aa60",
+      "derived": "run/E/05.png",
+      "derivedSha256": "488873dd7617f027de89a3ad4ce8e67d54bc194d34831c56feb6da8748f19063",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\eight-frame-20261105-v1\\native-final\\05.png",
+      "sourceSha256": "7c051c8c7dfcdee23782aeedb516eb2f30098f048065c6946bbbbc9aec7c69fc"
+    },
+    {
+      "approvalSha256": "8fc7b9116d12527bfe7cea8e1e87f39f4619ca2b577d76e947539ede7f39aa60",
+      "derived": "run/E/06.png",
+      "derivedSha256": "813cd4a3c9c3fc555ea38833bd024d2ed683735b56ba1edb2b73a7f978025993",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\eight-frame-20261105-v1\\native-final\\06.png",
+      "sourceSha256": "b256884840f38393c337d76f0d7137e53327fef6dd6e25902e0f3da5a07803bb"
+    },
+    {
+      "approvalSha256": "8fc7b9116d12527bfe7cea8e1e87f39f4619ca2b577d76e947539ede7f39aa60",
+      "derived": "run/E/07.png",
+      "derivedSha256": "b2816444b051cb4e23c45be49cc7a8289726d6d751bcf93e418988f45bab3401",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\eight-frame-20261105-v1\\native-final\\07.png",
+      "sourceSha256": "643f19430065899922c930190e18bc60498134e80006fc26da950173fb83094d"
+    },
+    {
+      "approvalSha256": "8fc7b9116d12527bfe7cea8e1e87f39f4619ca2b577d76e947539ede7f39aa60",
+      "derived": "run/E/08.png",
+      "derivedSha256": "d645cd7beee270e07624c36f1270866a14695fd2a5a5e80eafa5ca9dbbdab19e",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\eight-frame-20261105-v1\\native-final\\08.png",
+      "sourceSha256": "d4d863dd82a2cdc4421ca0a907511a220524d35de6ea41309a7dd7d692e7c4f9"
+    },
+    {
+      "approvalSha256": "51eca35c216241907fe80f9e2a81fb9f117ee61cd2d02fc81493852d28b78ef0",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "44f1525a937accd4c15266c9069eb2b55f44c4a1202be8d6dea0a03f4e0d2f17",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\01-v1.png",
+      "sourceSha256": "bbe4cd5923d27983b7e288c9433a021b17fd47a6c4fc4dec175838727e153fb8"
+    },
+    {
+      "approvalSha256": "51eca35c216241907fe80f9e2a81fb9f117ee61cd2d02fc81493852d28b78ef0",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "2ec4b21e6d816f187615ef2917b47176b4f26206947e4af6c9d7a93ebe68f0f1",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\02-v1.png",
+      "sourceSha256": "e06a7d276538a60707088faf90dfd874928a07e24625fe74de4e891b7a1460d5"
+    },
+    {
+      "approvalSha256": "51eca35c216241907fe80f9e2a81fb9f117ee61cd2d02fc81493852d28b78ef0",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "b033dd0331a718159f18cc4611b70ca3b722e9e419bfd8cd53fbc5ce44f72038",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\03-v1.png",
+      "sourceSha256": "bd646831b6d3f10b79cffe02ba4120fa72495afa916eadfaaa82d4b91ba943a1"
+    },
+    {
+      "approvalSha256": "51eca35c216241907fe80f9e2a81fb9f117ee61cd2d02fc81493852d28b78ef0",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "14952def989af055f8033b86fbf3b2a0d987553d72b407a4561f8126885daf1c",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\04-v1.png",
+      "sourceSha256": "67b0a593b3e8fb3919ac213b3982923491208c1605eb46feb5a95a32c2046089"
+    },
+    {
+      "approvalSha256": "51eca35c216241907fe80f9e2a81fb9f117ee61cd2d02fc81493852d28b78ef0",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "7e8e85114ee6b9f8a160df7f81a712c118633867be1e2e16281149662657c537",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\05-v2.png",
+      "sourceSha256": "a47f3d3d39af69a54a3f5e6e6e2bc6520017c419b62cfbe21dc407c6c2ae7c9d"
+    },
+    {
+      "approvalSha256": "51eca35c216241907fe80f9e2a81fb9f117ee61cd2d02fc81493852d28b78ef0",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "17d465b650f7343d770a20b82d0cd98e9e5b1ebfd985335974459c01eef20981",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\06-v1.png",
+      "sourceSha256": "0732662bd14706c07ab2eaf7c8d533000cfd7ef42beadeb6d252b41091ec984b"
+    },
+    {
+      "approvalSha256": "51eca35c216241907fe80f9e2a81fb9f117ee61cd2d02fc81493852d28b78ef0",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "b558244fa717de81cdea56acd09c2e1862978970e26b1058ce9a05eefba83c11",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\07-v1.png",
+      "sourceSha256": "7b2d20b4cdef2dcc834c8f5c36ef16eadd506b1176553716dfddc53bb81d43e0"
+    },
+    {
+      "approvalSha256": "51eca35c216241907fe80f9e2a81fb9f117ee61cd2d02fc81493852d28b78ef0",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "40499bbc3fedb8a351bf16a47d460780452d2f6f04a83cb0ec4a9ee271ca9d26",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\08-v1.png",
+      "sourceSha256": "015b2374da6fb5f0f52e1dd0de6ed690f82925d59ba821be86a580b572649b2e"
+    },
+    {
+      "approvalSha256": "0a83a1fceba35c484269fa4f21da3454192162bacc1507383382db4daf26eaa9",
+      "derived": "run/S/01.png",
+      "derivedSha256": "a3e738b082b494d2725265a7dd2e9357d41f93878e030dea6159a041a120d44d",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\04.png",
+      "sourceSha256": "5cae1b91616ffb0fba7a9108b1d48848e0ee73f02815d9636c399825a86fec44"
+    },
+    {
+      "approvalSha256": "0a83a1fceba35c484269fa4f21da3454192162bacc1507383382db4daf26eaa9",
+      "derived": "run/S/02.png",
+      "derivedSha256": "1cce78765ddaf6ae51cb0b27fcd5ddc9273eb913ab02fe736dcd78c43341276d",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\eight-native-v1-20261105\\native-passing02-v1\\02.png",
+      "sourceSha256": "bb22756e5b73339aa69dd6a4240bb0d9b723be49e310dad54d337780e073ada6"
+    },
+    {
+      "approvalSha256": "0a83a1fceba35c484269fa4f21da3454192162bacc1507383382db4daf26eaa9",
+      "derived": "run/S/03.png",
+      "derivedSha256": "7a22a94d374aedf6413e4d5c60958cf944b3dcfad2725338aeb94ab6ff7dbed9",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\08.png",
+      "sourceSha256": "bf10d1badd95ff7e06580b674246880acec0aabab56b302ab2dc2717ec502be1"
+    },
+    {
+      "approvalSha256": "0a83a1fceba35c484269fa4f21da3454192162bacc1507383382db4daf26eaa9",
+      "derived": "run/S/04.png",
+      "derivedSha256": "fdb265e7b8897a3b6c627d3af8371c018dc6d7681b6752d4054ed452bd1b93e1",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\10.png",
+      "sourceSha256": "ce884f451fc2374d232a9cc38f415bb58cd3656af9af7fd6b2b96eb66fc4de28"
+    },
+    {
+      "approvalSha256": "0a83a1fceba35c484269fa4f21da3454192162bacc1507383382db4daf26eaa9",
+      "derived": "run/S/05.png",
+      "derivedSha256": "a722110c1ad6c1739e27456c6e09a7193ef3409b6c483199b68b95ff46036bf6",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\13.png",
+      "sourceSha256": "74791b0da9f2333735024a064327d467e482fa9a0b5cf037a75894ec04218c71"
+    },
+    {
+      "approvalSha256": "0a83a1fceba35c484269fa4f21da3454192162bacc1507383382db4daf26eaa9",
+      "derived": "run/S/06.png",
+      "derivedSha256": "ce098f047294fce80d1c0c09fc186ed90828655440d24ac2f1469b3fd30ce206",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\eight-native-v1-20261105\\native-passing06-v1\\06.png",
+      "sourceSha256": "d6b829cf49abffdae9a1d697316eb63fd6c836e0748c026f05341e900cd0dbe6"
+    },
+    {
+      "approvalSha256": "0a83a1fceba35c484269fa4f21da3454192162bacc1507383382db4daf26eaa9",
+      "derived": "run/S/07.png",
+      "derivedSha256": "560fdac14eb82e2611ee32d25f644353b844810678f57a8b19304ef61e81a91d",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\16.png",
+      "sourceSha256": "b0a7f1113046906f736a3be79624b9c7723a62b5462d8784f71af7000448817c"
+    },
+    {
+      "approvalSha256": "0a83a1fceba35c484269fa4f21da3454192162bacc1507383382db4daf26eaa9",
+      "derived": "run/S/08.png",
+      "derivedSha256": "de5d1a7e75f584c2510400807bf494a5746245f30d1a4a4538425e8a49de922c",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\02.png",
+      "sourceSha256": "a6c7f64e5eac92fbf25e939c5dc7eae1f586a8e7b40b78f3bc5fd6c916489d70"
+    },
+    {
+      "approvalSha256": "419279dc6daa62849d9728daa6958ab312295503e727b08b9a341e51a45048bb",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "3dc201974513e4cf0911fa992dbb160d7beff6526478f407844f1d1d426adc82",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\01-v1.png",
+      "sourceSha256": "6f3e656c96337c4455cf011018d78f184be412ddb875c1a124cc3ce2c753f2d6"
+    },
+    {
+      "approvalSha256": "419279dc6daa62849d9728daa6958ab312295503e727b08b9a341e51a45048bb",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "8adf9b2f45909334fd2f3270d0542c8232437bc36aec96aa5e2c7ba9c55595e3",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\02-v2.png",
+      "sourceSha256": "20b4294ca6d4967e1db0465af1dfe1b71463b20e1673808c70fc575663b295b9"
+    },
+    {
+      "approvalSha256": "419279dc6daa62849d9728daa6958ab312295503e727b08b9a341e51a45048bb",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "a923023797d71a21d60bdd11bc6fad0ca2ce7e7a1ab2954e4387edf69b7e4338",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\03-v1.png",
+      "sourceSha256": "96e0d2c574ebe4d9f110d7e72e4391b5f1330339693411e8f623d850371bded2"
+    },
+    {
+      "approvalSha256": "419279dc6daa62849d9728daa6958ab312295503e727b08b9a341e51a45048bb",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "d4c703abe680f882caccc39e85bc8edcae2c17fca65b3a37aea9f8a7d0b7a754",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\04-v2.png",
+      "sourceSha256": "cf324575f6e18c7ec3c387b76110bcacc61607a9db760f31508009b282a916d8"
+    },
+    {
+      "approvalSha256": "419279dc6daa62849d9728daa6958ab312295503e727b08b9a341e51a45048bb",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "63ed9e1d076ebe7fbeb4aba3ffac7def44e5fe4435639fda9bac29e170ca536a",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\05-v1.png",
+      "sourceSha256": "50cd9015b903d7113421d37a3b016acaa1f0bdffc67dc79b6b83e5acfc90c7d9"
+    },
+    {
+      "approvalSha256": "419279dc6daa62849d9728daa6958ab312295503e727b08b9a341e51a45048bb",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "89aa21fa3ea0466ed578badd67db8808fb61deacb979782622526e171f009bed",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\06-v1.png",
+      "sourceSha256": "71f97e8fce5bc45b5574d450385ecf8ced2ba5b71a4012bf06c4df5a3eb402f0"
+    },
+    {
+      "approvalSha256": "419279dc6daa62849d9728daa6958ab312295503e727b08b9a341e51a45048bb",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "b3102c482928b74258beeeb2d189282a9de312bfcd883b1c34e3bce4c2cc9681",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\07-v1.png",
+      "sourceSha256": "1603b64e208a13d209ded61972ac0b47f33a1bc3cbdfbe0fcd6c95693b97f36a"
+    },
+    {
+      "approvalSha256": "419279dc6daa62849d9728daa6958ab312295503e727b08b9a341e51a45048bb",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "242a1eb96404b4ec63fb5430db8f7027411361b61f79e41b33defef40990019b",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\n-assist-natural8-20261106-v1\\native\\08-v1.png",
+      "sourceSha256": "2144a8f7c583e8e9dea6945d419fb9d33f6a8498dfa09880b0401a6f73281469"
+    },
+    {
+      "approvalSha256": "663cad87149c7d3c1147bd3f1851425684495321fa5e72e6f4f14cb2b50b4f4e",
+      "derived": "run/W/01.png",
+      "derivedSha256": "21fed449ef811904a9d49f3a24c48c9c551b363508c8a19296e2692328c4bea1",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v8-staff-passage-20261104\\04.png",
+      "sourceSha256": "b0440bf8e8f1f6d7f77708800c23d57782e8416f837aa905462b2b9b01640563"
+    },
+    {
+      "approvalSha256": "663cad87149c7d3c1147bd3f1851425684495321fa5e72e6f4f14cb2b50b4f4e",
+      "derived": "run/W/02.png",
+      "derivedSha256": "27791bdf7f45cf27c3c8c5efa4d24ae5633ac99ed4318fa582d18815780db56a",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v10-occluded-staff-transit-20261104\\05.png",
+      "sourceSha256": "9916bbc6046f479d4dcedc44d0442efdc5ca007c18a5a3de22fe43608ef98bf0"
+    },
+    {
+      "approvalSha256": "663cad87149c7d3c1147bd3f1851425684495321fa5e72e6f4f14cb2b50b4f4e",
+      "derived": "run/W/03.png",
+      "derivedSha256": "88bc3b788e9629d9e3cb3a0263c356ec5a409230ac60d66d70e428a50192623a",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v2-w02-pose-target\\09.png",
+      "sourceSha256": "76384803bc10bd4c55e46ca356adfea2683985ba31fad5c8c04732fbbc77f99c"
+    },
+    {
+      "approvalSha256": "663cad87149c7d3c1147bd3f1851425684495321fa5e72e6f4f14cb2b50b4f4e",
+      "derived": "run/W/04.png",
+      "derivedSha256": "b7033ca2cfcfb533e74fb4218728af67210c1e8e5a7210a9fc04737412c448bf",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v10-occluded-staff-transit-20261104\\10.png",
+      "sourceSha256": "207552f4cc7bb03e75daa3b33444d62a29246a833e750d3f991fe12c55f6b871"
+    },
+    {
+      "approvalSha256": "663cad87149c7d3c1147bd3f1851425684495321fa5e72e6f4f14cb2b50b4f4e",
+      "derived": "run/W/05.png",
+      "derivedSha256": "52e2f4c76c8e901aa4615cb0d671879f39ee86706103a68c44fc46ab54216986",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v2-w02-pose-target\\12.png",
+      "sourceSha256": "02b83f89ca154dd1374ee6d32f207c725e8ab7c8b996f970bd94ee6d3c599541"
+    },
+    {
+      "approvalSha256": "663cad87149c7d3c1147bd3f1851425684495321fa5e72e6f4f14cb2b50b4f4e",
+      "derived": "run/W/06.png",
+      "derivedSha256": "96a63a4b702570e45344dc55112b8b5004a996324b6036493c1e82fa47c2f2e0",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v9-under-body-recovery-20261104\\13.png",
+      "sourceSha256": "1c30dc89360b712a8481d7dd8c52aa06dfde2e4aa2ab97cb2dc901134b6d478e"
+    },
+    {
+      "approvalSha256": "663cad87149c7d3c1147bd3f1851425684495321fa5e72e6f4f14cb2b50b4f4e",
+      "derived": "run/W/07.png",
+      "derivedSha256": "c5626e9c0254c79a0bf7f1f6c7d3e9c59a712454c8c29ed1ba3e0566923c7477",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v3-resume-20261103\\15.png",
+      "sourceSha256": "c7e124be35393f7e44087bb43483770909f17233d0a5f509918ea13d50491b04"
+    },
+    {
+      "approvalSha256": "663cad87149c7d3c1147bd3f1851425684495321fa5e72e6f4f14cb2b50b4f4e",
+      "derived": "run/W/08.png",
+      "derivedSha256": "df1182504b3477512aec6cbcff05bebdaf03686e69ad3a1f81a0fd886129ff0e",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v4-uniform-phase-20261103\\03.png",
+      "sourceSha256": "ecb7ec96085c95bfac056db4e2ca008774af00a02343abf4b660cbc0ed3eb6cc"
+    },
+    {
+      "approvalSha256": "a8bed7cbe980f90e39f22b237d86f3fe3d13a26c5c69b4533248a515e770b10a",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "83f8e33465836f77f5108963c863923aa8a6717446a3a9d179b7dbb0aeb032ad",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v8f8\\01.png",
+      "sourceSha256": "2fd0661ca54853c9f9400264b231f2beef7b5a3638fa0382c3d91cffabaa74eb"
+    },
+    {
+      "approvalSha256": "a8bed7cbe980f90e39f22b237d86f3fe3d13a26c5c69b4533248a515e770b10a",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "b2c7758f489471c4b50f73d27a12894f1cab9dd4e75cf823026b0f323f9d7e5a",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v8f6\\02.png",
+      "sourceSha256": "3c41348192be5351508827b95e2645fd99565d3405cdaad112cccc4a88407a34"
+    },
+    {
+      "approvalSha256": "a8bed7cbe980f90e39f22b237d86f3fe3d13a26c5c69b4533248a515e770b10a",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "bf68a94451ab3d6e43e8b9d6675aefa556317c95168a94e636509722a653e02f",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v8f5\\03.png",
+      "sourceSha256": "337ea23a5d673035b096828f42ea2add1d76b90b2949bf9f152af664c681f90a"
+    },
+    {
+      "approvalSha256": "a8bed7cbe980f90e39f22b237d86f3fe3d13a26c5c69b4533248a515e770b10a",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "0a7183ded4cfc5c36f167d8f890155f29b68eb2825c55ebb0d979a77b9b66aed",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v8f2\\04.png",
+      "sourceSha256": "119efce108c5eb77bd19779043ae12b00cc6175870f7d3cf11cb07ff81334704"
+    },
+    {
+      "approvalSha256": "a8bed7cbe980f90e39f22b237d86f3fe3d13a26c5c69b4533248a515e770b10a",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "5cae2338c32a3dd727c856fc2a3090e67412375faf54f788616da1c60c32a95d",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v8f2\\05.png",
+      "sourceSha256": "c11a6165b277d420df774b532b858a8243264ba6abafdb3bf553cab7581bde56"
+    },
+    {
+      "approvalSha256": "a8bed7cbe980f90e39f22b237d86f3fe3d13a26c5c69b4533248a515e770b10a",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "4f15fe9e9ba4ae20e4a34fcb58a1db35ba6185b9022e8f350e4dbb9d01e679ce",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v8f9\\06.png",
+      "sourceSha256": "042b4934eae7d8fb5068d8808d33dfa9ac212f423c70b451cb0b078d11c77df1"
+    },
+    {
+      "approvalSha256": "a8bed7cbe980f90e39f22b237d86f3fe3d13a26c5c69b4533248a515e770b10a",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "3c2bc5daf60e4ed35d8d0870cf150fb5ec1ffcaca067b091e931884dc570a002",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v8f5\\07.png",
+      "sourceSha256": "8300b7483604510a0bb1cd201a8e960ffff71b030c50dba1d114a97247cd2981"
+    },
+    {
+      "approvalSha256": "a8bed7cbe980f90e39f22b237d86f3fe3d13a26c5c69b4533248a515e770b10a",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "e7373eaf3f4042f2829a2d2def8b77fb095aeaf52bd384f40d6eeac05b903cf4",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v8f4\\08.png",
+      "sourceSha256": "2a9c65e43a6951c3c721bf7c6403525f8d2402f53fa679fe2eb62f4fae90424e"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "7592123791be0898f2b9f742c5bc81ac9d90f2d59be8a7210cfc29eb9a3fdb89",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\06_thunder_caster_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

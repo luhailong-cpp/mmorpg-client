@@ -1,0 +1,2637 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/01.png",
+      "derivedSha256": "f31a785abeb73d070fd0d61f8d84364ca5a10e92baf7ae77746eae14b4fa3be8",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7d8b1f42f7e6ed5ef3d2ff6245ff4422c68aa2aadaa8788653ce95559a0d1c8d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/02.png",
+      "derivedSha256": "d000ddf34ede48421a08811fff3d6bfa3a5205135091953600793c7870e1404a",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9a83098d9b10a13d7e3d7d4e10d374877208570ff34dd5af54127bcb3619250b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/03.png",
+      "derivedSha256": "f28f0ced520b7524bec936c9e65abe5af32b9c00ab33969a1e20e9e757a9d7fa",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "14f494d6bde618fb4de8bdd7594fa1db062f5403ac47e1afd43a62d49b3d125e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/04.png",
+      "derivedSha256": "7dcbe386263253965afda571f67be09a43e509ac2029c37fc1b1dd2ec40e3c3a",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "74e836588fcdee0759c89cd97f99e2398218d2fc5f32cb6946b1d6980a467d8a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/05.png",
+      "derivedSha256": "2a60ff7ca9c11dc6c23315a579761623c114f3101f5dfc57baf85d5266c828e8",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b3e8278e55f68cfea6e64159d02519de33849580882fd42d2beeb13075759713",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/06.png",
+      "derivedSha256": "9363745e6f019ef8d3ddec55f11c17f089303f5849955322fb021b46e42426f2",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "01f3cc7c58b1becba3a402498483eeadb4e1bde8e3aa03969c6fbf9d5e3b984e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/07.png",
+      "derivedSha256": "5f129e92cb41a60572fb8b16287e30e14137a2076c706a26aef96b75ed3636e1",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "531e39e3f6e0eda425b0e9da38ef911c31e047f1e823f695cc1ef9374e6cf2cd",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/08.png",
+      "derivedSha256": "24f043877e4e03245250f6193cd17d9d3bfeb4ad1b88375fd3293e19a476e45c",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "95415a01cc71187feec698d2d949c11d49717414fe88376d6b0df31af0461147",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/09.png",
+      "derivedSha256": "fcf53b1cebbaef7d85da8805c0babe503e6d85ea901d3ecf3635b35e04f1a3bc",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f0a8c614615bb55d3d424559ae2986755e671fea73bbb7c84d46efe3af7b3fd6",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/10.png",
+      "derivedSha256": "31cab34ef47317cb2777233ad747c3d90d596f53d8ac7d5124d910b2e427026b",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6d0a9ab6328f3444cbda3e9f73f706d43b93dc93c26bc4fa54488273fdf6e9db",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/11.png",
+      "derivedSha256": "d43eb915fb0974347ecc97feb8dde85762dcbc0c39d9f1527c358d7192f4b31f",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f4c191e87a4d66e890565e62466aac119ced689bf64ff776b306efcb5ca42577",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/12.png",
+      "derivedSha256": "c944acbd9c27a560665f5fda739f578da3c55ad974155651d020a9488988327e",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "277369ad1aa2ab13d6eba83bee25649a3ba79a712bf30a0eb7adba6093dc9028",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/13.png",
+      "derivedSha256": "a8586429c9961351bb8e14ce8831714bbe8007f7153eb0e36de31d569506507a",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "51f286671fc97f2bb8176331748a8c0b5ccf14a7657017773ab5c8855b679774",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/14.png",
+      "derivedSha256": "26864f5aaa4a766212dce9c4c04ce4948058f7fe15500736f20be3f668c4b2a5",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1068409038bae38fa1600133b7b51b34bf37a4b5bb2570feb2f2f9fb0c3519b8",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/15.png",
+      "derivedSha256": "1ccdabf762604c97d33c0bd0a411bf75fbd6c43dff4d3cf2f2cd8177e5216b09",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ab683e85b7e773878e54aa05e70f0b52f68a2a3e24ff15b4baf4dabb964fcaf0",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0908febb4b01232c954f6b50e858e3153e4bc3ca20c89a7ae391c618778dbd77",
+      "derived": "run/N/16.png",
+      "derivedSha256": "efa1b72449c1d5b6fbc48be50c2cdeb3750ba4c17d17cbae43122522bbe5cfa4",
+      "direction": "N",
+      "durationSeconds": 0.075,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\N\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d8524790c230215b5f13fbaf83e2e68fc3fd7a21471ded124524061121f7eac5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "7d53cd30ff857ea43b5bc64b25244e731828093fc0ba8a8b4c6c1bedb9cd6ae5",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\01-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "25692ed703704632cc554ca12d29c46f0e266025d000e6c234a9a46cbf97c29c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "7de20bb42b15b00f9e61a3cdc6b097db94d773cdb2dcfb0acd75a0464cd296fa",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\02-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ec9fc550e8202356f3b6aed95ef8a0b5e2b1f26ccca3db2dfdce464dd0e641fa",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "70af62e4f75969a8dfaa0b978449afaecfe50a6d153f3e5c413826e4f15d0150",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\03-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1a90e2f100ea03f522f6aa71bcabac9837679b089b5b5a404b6ed31c18665100",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "b97b42df17bb64c2a02d3cbc04759dec1d691bc4b3a9ed20e6f15e079377d3a5",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\04-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c91d5743495fae6abf60c04ad6a41cac312d7a71a38e86dbfb1f857914c4ce1a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "d25ad99a828fa01fa9b81ab2b20c086dac7e308342cb5b55ba10010164db1045",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\05-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "91dad4f05eb35c4f011ae52820ded93243e4f2d7cc253770cef8021dfa8ee374",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "c64f02285d8eeba0cbadfc4ca8809b3c7966dfc1d7575cc7f18dac717d1ec232",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\06-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5a8592ea04245ee9bfe143e7207014684a035ea16aec45b606518684ce14c260",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "0b3f94f3a8d8280d39e3263ddfc7d129d279a442ca91bb55712a2dcab464147b",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\07-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ce04e1ae113854bc7d3a786f8c6f95a5465c36c4181eb6474c25f57b7d0676cd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "459a0f7104aa7c2587e32022a11789f62b2e754f836d47b8d7bd14e4c01676b5",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\08-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "28698cf37191167480477014a3cb90a28cef09d794da17dd1eb8160e1c8ee674",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/09.png",
+      "derivedSha256": "4000fe65b5e7de0a0641bb0cd91a14cda254638e4b235e246914eb77106611b5",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\09-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1e6bdec6c3e54e78bd03910bd349e380fe5e16221a1dcf351b5596772f9791c6",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/10.png",
+      "derivedSha256": "0811030acef6e103cff6e15f5dbeabf82ca22201dcf29f06b3610f14f66b2d58",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\10-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5a468c54c15529f22409a777220078c6712b05656962c7f0b2b3deabb448c167",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/11.png",
+      "derivedSha256": "c91956a1fcfd5f209175a1aafcd7eb1882efd1a74749aec0cc161c3e45802e85",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\11-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "59f6b07630e216225cc24613ff6100499578c4b8334d6b0a7ff89bc8fe3341bd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/12.png",
+      "derivedSha256": "1e13a547851fbf3e1f4a101df72964edccd01c332ec67901242d14ecb465b67b",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\12-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "99675798ddc632dc7d762d86aba8f0d3bd3bc09a61eb23414420ccc6bbc1bb89",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/13.png",
+      "derivedSha256": "2cfd28d3ebb4dad0cef9b597cb921fed5be6b6a74b910b9e21d612948dc88d42",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\13-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b1419f778b8dbe3324ec278032209774a44aa177498ae9303c908e5ed53fba0d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/14.png",
+      "derivedSha256": "151b9e30cf00349a869582102e7a172b5a80adb139876a128d7bc9620d133027",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\14-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e5ab650ab0cb716d61aa8a0ccc02f5270e04a81b385cd22475e27b9170b6a49a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/15.png",
+      "derivedSha256": "3d03024b201b53e02cd87522b0a7a8f07b3fd92264dae95464841f1d456571f9",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\15-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "88b2318f97818c595513e255a768a9fbbdba01020200198a7e3b30137d9d4d64",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "88b3093a703837af922e6268c003c7d19cddd9f4b2c729b4bbf0de99dbaa07a0",
+      "derived": "run/NE/16.png",
+      "derivedSha256": "9767ea7973657aa4a8d7a71892cb532b794b8d1b21998ad344bddff1b0879915",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\16-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "730f53810b241c5ba58b625be863b1585643861d1784d25c2b057a8ef0b75b8a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/01.png",
+      "derivedSha256": "03680a0d08895bcff8c1537926eb23181d8cb073954ef0f4e65f13e2be66abb6",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4a5048489ba57a441c0dcd30c87422bf3ed9f33c75cd3c36b5794e64cb76976e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/02.png",
+      "derivedSha256": "4e36edc8225d5963e377d6e09c7c2eb8d8f265727feddcf93d605903d9402fc2",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0b01feb3834069c48f3d45bc978eea91e63257cbde8578b1bdc5faedc98de11c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/03.png",
+      "derivedSha256": "1bd153f42a1757ec67d2ae36efd28c4287badc34019d1e97b6529612c51a46fe",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7fa3c0f4e06a5969a6e62c20c1c5f36ebd3d1bdf4a603650651d63ad61841248",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/04.png",
+      "derivedSha256": "70e789ad7734bf61f888d3d73c081f883d93f25a14f444627a1b9edaf0f0b09d",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "233343ba4b5c48f5323795a295cb34b4583ca94024f47386efdf3e5443d2f5b7",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/05.png",
+      "derivedSha256": "67e05fe7b46d1d6c75122b3ade1dc46b5221d6f9cae8788b673828683c24e420",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "daca93bfce1fd13212cbe73de2ddf75a06cf83335da5adb613987f58d8a1e93a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/06.png",
+      "derivedSha256": "5b03b3c702fc6f9a75a6dcce87f7dd4c8f019259b06b283c06d2cbc8aa05d44a",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7338c46ffe9a66db4e83a897b801d9549e078cd17b376c96b13e7252cec870d0",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/07.png",
+      "derivedSha256": "0a53ccc472d50a69610af25dcb3c31ff7202521a98b0c70341b2f380ae5d6e9e",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "28e982b1b2105585f5550543f604f927f041088682cc8c894523d43aaf8431b6",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/08.png",
+      "derivedSha256": "b5303bf5bfe60a12b57b75f7baaae3ed12a6971f68aba681e0cd5be8cad0598c",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3ba0039caa85bebe614945c06d1167161c42cb49bece1f2c0dd9c070b13b476c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/09.png",
+      "derivedSha256": "3be87bdef4e0aea1edabaee54aba8ee1c3f976686c9e6875fab6d4449aa4bfde",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c324769921e20a82e9e209e2bc238ff72892d54ea2bc5cc678dcf62c19ab7f97",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/10.png",
+      "derivedSha256": "4edd2823c63395b727602bdda4001ec67b9adf220077d498653fc551dbee3b7c",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c0d7ef8a8a676213da364ac001a9ff485e96938438a31cda4d8a074d163a1a86",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/11.png",
+      "derivedSha256": "ad491498ca5cd2d1bc876711ebcfd29b71cc025d384d044849504e5b40d69905",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "533fa9436cbefcc8d7b520cc38c42806e0342820f4df79c5a5090f9b677f464b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/12.png",
+      "derivedSha256": "de0d8c41af48f853d11abe6447866020d9a948b9233c00e1571c51007910f5c8",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "948a2150e702c95cd0df8117b9ecb851971fb47168fcc16457770ae811160304",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/13.png",
+      "derivedSha256": "3acbe76ea4f1a61bb389d817072d44af8e7707531241f2b467cbfcf9c37fe6c9",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "19b39a535b2196c8a3a6201ab4e5661474e9ee4819cdf4573800f3b876c4c1ef",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/14.png",
+      "derivedSha256": "b3b206dc91ec795b4a8ffe79638daa40b4349d2a69042e72b59402b268abbf59",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b8c37e5963c905c25c067b639ebe19aec04d3a6b408737a024efed3b389ba7d3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/15.png",
+      "derivedSha256": "a333fbb82ed72a4f2561690289132eb4767d8fa2bf76698924f493ec60e92b73",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e3ad0de63fc553fb3cccd783af9cc756f36f6854d06763105aacf88037a4e4c7",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e425bec2aa10b26908fe9ec7496fc4516d13c946d193e063b595063d1ffb9dc1",
+      "derived": "run/E/16.png",
+      "derivedSha256": "f195d7440cc92061a356d76bbf9912ca456503b4ce48ab586319e2c02aa5e975",
+      "direction": "E",
+      "durationSeconds": 0.075,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\E\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "19d4edb41b0c08e22e8994819c48aff0d675b71bd74cce543876c8511f2652cc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "68b7b8ba105fded4c16e4053d84d7d5a84d0a21c42331977c3940f5639ec9dd9",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "562b723a7b6b3f8a5676102ec47b0b72503e651daf1b504ab8990f5b7e42fb0f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "dcdea1ce3c1787cd7668d693e9f67e2cbc23a735496fd33dd4fe4b114aeae9d5",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e000dbe35737064be3ac437444afc383ad7f3963c1ddb95787cb9941dc1e147a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "e5032b05066828cbd632c275a499358b9298b01fcedc32623e54d6f41fc08633",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "95792b2c81018c5a37ec71e0c2f93c04022edb7d65c8726f88608dbcb13669fd",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "ff45fa9b9062a0522445601a4c2899e489a61cb327e9139d2ee453ba33045937",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "efa0ba79ba5670af7995ca5f383092353eec0f090af169922a06c5b2bc03f7a4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "875ac6cf82ce84dcd4df7c38d670f4137dfafab116ca05df68ed7db07a6d9e62",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fce811c84e699eb11dbb33d980956998c6a0c6a03fa4dc2bc67743edcfeb924c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "8cdc0c3b8185614f52b308eec56364a2b1f06fc88d5184fcc252c9b4c4ccb8ea",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0f1b77b29bb01da34330103d10ea9f75d3b785986ae442a4a395115bd1831fd0",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "535fec6dd68ae6c4cbf8b5e63a377262c742b53991583bc59b64b9d697df2b4e",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "094e6cce671df15cd81d35c58c017494fbb76e5e37feea8cbed38dc4a0bd9b5d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "56f264d51ce25d24f3739285b2cc29824b20a2eb3e5f5da936b5a3c163ba7a50",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e4cf335343acc4a1526217f9f79bd399e46b552a4454cfb34390a5e5329b2f56",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/09.png",
+      "derivedSha256": "7a94acb1f64ed70b15738e70319bd018ca91d1946d59639a244b4a5827140ddc",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7010574d0f03890a83d2f5d3fd5fbb0426816d9150b82d9cd206ef66ba4b8359",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/10.png",
+      "derivedSha256": "3c121e30dcf317f3b26d0ac40a6ef464f45b8995f733efe2550f1c94f432d671",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f3f1b1a7f898f84f06e23f1395a07016665f2b27b4dcfb1e13ff04c77e633183",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/11.png",
+      "derivedSha256": "a71566984e1ad0a5cc7860b149b74f846db5ee0e9f8eedc95071cdca04f9a248",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8acfeb0ef0fcc222d3e43740603bc48d327ec0f1d8f40e6fbc830398e7f6ed49",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/12.png",
+      "derivedSha256": "ea37cdbefb2d7893d5cbb7ec3da4fcd07f82613f17201a171acc9d2cb99bdd3e",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6f420f491d709146a6b6ed411c15d69f4c7571230fb168537a031a65da0cb52a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/13.png",
+      "derivedSha256": "f91185c753bf7f05d8bef0da5cb2622c3b5da574acc3fc53125fbc8637644ddd",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "502d5a8aa0f1650fe5c8cebf3c9fdb5bd08a05ec1eb6fb969adacaff8d44524a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/14.png",
+      "derivedSha256": "1efdde313c91e17ce0a9cf1de0bc7f353259266cb347aad1c309407b0674c0bf",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "99adbc138358d961ee1cf446a702533f788563be07fc5f44de44b9611c640237",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/15.png",
+      "derivedSha256": "7f227cf1a5435c0ff7112d6f280359c7ddd485f5aed3e9d2d7c8b09dff4e82e8",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "73e14626fc906c0de548d3e2c289ab0abdb646440057ca19be898791d42bb92e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "7ce53d66959c0b9d44bda216d400c9577fa9b29c7ff76e151add2b458e4a9734",
+      "derived": "run/SE/16.png",
+      "derivedSha256": "53ad6f357cee3ab57321333ba3eb2b7a0a0273af5ad180c0bdec2e95340064a4",
+      "direction": "SE",
+      "durationSeconds": 0.075,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SE\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "15015f4d0100d374a9184ebfa58e8f7eb86aca9c831c30c462c0c4f34d309d3d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/01.png",
+      "derivedSha256": "3f851d1aef6ca3f6946e67bf131338e8ded166c279769aa84d1a4fdc499f4f4d",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7d7f6b974d4a3e01c71a8b95f11d3968ea1bde5b5161a68af718d2271b424b39",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/02.png",
+      "derivedSha256": "252bcdcf3acb8ba4bc2c1f807a61d7e332967ba2f7c9236c0698e3a55ed0741f",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "870651a637bcd5e84bde5ddac443c414fa5d2b058a3e9cb4ef2acbd844399b31",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/03.png",
+      "derivedSha256": "dcdb2e9e35c82d371fe1e7199b66242b6368812b6634d5858501d72d3081a915",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cba0ba676f7419ea043e831c5940742854d526483d443f56da580439d554c06a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/04.png",
+      "derivedSha256": "b66571f30076149b9ff6aa5cfb3e169f926cc81aa9eb36e39106e851b034b910",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9ec9eb1c066002e1af714aa3dfbdbbd6b924e03aea97979109625e2d57704345",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/05.png",
+      "derivedSha256": "136fa416e980f696efb8b72cdbd09e2d5979ef580e22c9ca72634f58693e626c",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a0940716d853294a271443a76b657e31e80d0111567bc9cff4975da9a84c094b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/06.png",
+      "derivedSha256": "774493359516372901162244833be602567004049e83f76aa4ea91f54731d42d",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6b22a2b467a2b1b86d6f754c51569180ae350ae04feca27e6bc37786349de17d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/07.png",
+      "derivedSha256": "6c97024805817fa0c693e56304208f9bd80ec79aaa13a7fbff7a73aa8c521e67",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1979c3ba303ee9864ade22609a04bdc19c828c693f249103565cb85ba222083f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/08.png",
+      "derivedSha256": "0f4d533e10659497bdedd15d7952c78f78eec80b4dbde5715fe47cf6b0b92384",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "791aad2a68e1a4c01dadf1f7ff3313a482b7a3a5996a5b601591c85dcc1288b1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/09.png",
+      "derivedSha256": "bf0d1663af9c13eb4e31a46b837276e41a9383dd26ddec86c40fe29ed5ed2167",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7084b99e985ba5beeaff967c85238446605a70d7a819172ab059c2e3197ac27f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/10.png",
+      "derivedSha256": "4c8e015dad897cb3b5763b0f61f0d1e049a00dc56ebb1cc18933c8871a13cd75",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bd3c26e203bbbeaafcbaa7ed67cacb1e35d76e52fad1293ec22bc5897d2f3afc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/11.png",
+      "derivedSha256": "9c6688e257497844100cad78cbd7c6c1a7421e9f38b42e0b793d9f2d7f37763f",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fd26fec7f56e2f854eb1b44d1192f50f758f2a3059688a69f8495073eea5db25",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/12.png",
+      "derivedSha256": "bb11cbdcfe6dd0297e2462fc79429774a648e9d1d3f44aa80ff96700c9875173",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "dc23e475592f0409d3ccbb7c559031a062850596f7c45c7726bf4ab840377dae",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/13.png",
+      "derivedSha256": "ee62e232c0966fa239275831eef4786f1f0d00bc5e6d8b83226ceb62ff34bec8",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "701853f0df18690f4d9769fee4f5360f4c1e35975de69f20b6a7ae190fd5fb22",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/14.png",
+      "derivedSha256": "cd9b2db27bc387e3073a732cd2bc541d8730cf307443346fe941b0848da8ffbf",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2ff60aa122bdff7bd2758e97a92c444ccbe70e71167f2be691697c28b0b41544",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/15.png",
+      "derivedSha256": "2c06774acfe8692f76dee6e92e5dd7221b15b8359016152a2ffe751896c257fb",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "924a6928de852aabe69ade410dcb9bb48be4816a7faea8e6e7d8faa02eb00e60",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "cc99cf2357c19e7e5f415c19981053234fc9bf2a84cd490ee8d06cbfeb8bb879",
+      "derived": "run/S/16.png",
+      "derivedSha256": "0fecfbf3c7fffc2cacb703f52ce80d1488c5e87864984f1d14262183b122c168",
+      "direction": "S",
+      "durationSeconds": 0.075,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\S\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0623189f5491734e66b9a1e37f02a01f4716d318593b057c52cbcdf81ae19e8b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "d71f45740f9ae17385c72f484faf8140eb7f704ceeaef1c61099c2448b17d812",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3da787a28be4124dad86634d49bcdd3dbeaedeb8b19300f944a0659b5ceaa831",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "af8243ba6af0a9d9ce44c9611bab1cdf38114c6f327149e8e58a6035f75120b4",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4d80b3cc2b8d4f96fa8faca5c9145d83a4c0f089e96f3ceb3a1f2e3da87273fb",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "c4c77035a1a5ee54837add7d4e230284a98234a8ac614163f03d64d5dc559784",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "12ef97337e38ea671b635f460db7ba0ae48e9c76b9cf842099108a7bf0d9c788",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "e13de4c480210ea880e60b057cba7802d18a181cef6454f0c64cf47d9cdbffa2",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "662a4b56e308c27c7a972b3f5fb0a295ae0541fb54bb99a97847dea08fffecbc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "1b42dd0f5960931bfb16e8ac3a29015b9390a3f1d602461b7e3a2ba9681454f5",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3daad5903b1aaecbb4a99ceab0ae6fa06d6b47e3570355175bfcc82019531439",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "34602a7108ed2b408b7f30e99ddcf780a1c2d753681f2e4718f9faa4a80dfbe6",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "915509c49be036e965f343a101fb3ef2dadbc84a37c91e5e60c3bc5956ba1004",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "dc80f7d56dc3a95a439f1ef43de901461d05261e5c47f4320ae14fe591c9f9cf",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "892ffa8185c94b6b1d8aa906e4ae98e5871500f8e07bfc192c6594fcbc7c1a28",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "f14b5b8834ea4c467b93253fbdb71fcd9f0fcbdae1e0ed475f1ec7d27c9c9528",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d96a0f18da99a4fd43829760da8ca9b9a5723e9f3812b788870eb97dd990b02a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/09.png",
+      "derivedSha256": "4a1a257f228b18879020698b24f37795edf0ae31c906acb9446f6ca1b64b6434",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3431426a2eadc1843e19f5b8380b131902c4827a0567cb9172f53a4c0fb14b39",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/10.png",
+      "derivedSha256": "8f7218efdb4a1d3bf7b504b5f33023e7c44b8068513f8fa49818e2c49cfd7a98",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9067f6c67f2c012937a6c85f7fa17e9e7be4593e115f995a0381ea9c961660cd",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/11.png",
+      "derivedSha256": "9133c41800463c8bc691715ee1e879dc0b828f6bc250c592d3ceac13aed3b298",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9105aeb58fa5dafb1749f5ac3468bc885ab3c2e3f63984ef9abd17bde457c738",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/12.png",
+      "derivedSha256": "a45c32dcb595267100bd1d6e1feb2d8909c15a5f6bc23f57e201fd88ff26bd19",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "907d345cd1415792452905dd73ddde690ee36bcb3072345f40ed756efa39128d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/13.png",
+      "derivedSha256": "a55c856d210e3ff25c719cf8a309565ed80afcca7ddf6abc117a63a5df942dfd",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d33b1d49a81e58e3e3a86672e3fa98267b5d73d9142489afd51e10da9ed4ce8a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/14.png",
+      "derivedSha256": "686cd2fac243860010e118d149fda7e04ac25045c797e528f7152d0cb8414b3c",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "844ac619348f18737ee1570d42d000eeced6d4806e2043eef3beee650dcb9c67",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/15.png",
+      "derivedSha256": "660acf2e2a0792a332b287e9aa01183b146046a3cd6f4482e08d1a210de83d95",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "600c8ae8157252b975028a0ac1853690db70f4b760e0ffce6aa56427a7617de3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "f1944b152f2fffcfe34eccb931e954cf8350d59ed7b5aa267afd3e7b360088b5",
+      "derived": "run/SW/16.png",
+      "derivedSha256": "71919c9577f6e76f0060b6eadb6b8add2c12c63b195c295b207f63dbd9ae3e57",
+      "direction": "SW",
+      "durationSeconds": 0.075,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\SW\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9e257355722302532036cbd295ab6143cb3a010764ba9f9bd2c7e3618f89b7c6",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/01.png",
+      "derivedSha256": "0b69e4b2b1bb70d34ddc0c04c1f9965f5231ddac37d2bacd2364f61e203c70fd",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4e6337ac903aaac956240d7c36f624e0b17c6def33990076fa711f2401233624",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/02.png",
+      "derivedSha256": "97464b8324dcb8bf6a73a5ad7f20ae4891ebd5635d33d2610aee526153e87230",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4d7d9d7f50bcec0e2c55663dd4124bcc4a6f24dd521f839ed37463d0ae0a604c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/03.png",
+      "derivedSha256": "93dc2497a99305910aefb30f8862102c529cb7e5a73535fb1944684f58e4a903",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "42b07d98d16ba6a36c87ef859b84dcd8c9eb0054a896b7804e8595a330dc798a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/04.png",
+      "derivedSha256": "e0bebd23ba36f3c9d61af2085176dbb10dc1c5d83d3fc6dddd47f8ae697e2170",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8389677870b569b075d8f72ce11886129e467725ba1d7683f6bd1048f6932acf",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/05.png",
+      "derivedSha256": "f7fd8ed4c1d870edea4139cf73cd79b0caa9d3ce2ed887ccb1a9db3b1b4c5395",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f308d176047bc26c131b96a41f84633a9abd193f9e9f5a6d75cf01517a9f6646",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/06.png",
+      "derivedSha256": "b9bacad64659810eb247e54bc1fa4306966effa471a4a5691aab2a858e5bdfa9",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1db7eea85e3f342c5c58898ab90b4d53e49f69e8977bc9239146f45cd8330156",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/07.png",
+      "derivedSha256": "f36fb77ef4d5238ee7a66b3601c07db0c4d9cf8dc9d50f4da9fa9b18b1b797e3",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9d769412b9a9da590f03cdd700353393df974d497b8315d7aeb2d70838cc9828",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/08.png",
+      "derivedSha256": "49a36beefee740185f4b50e9d3ff401ef9eb948eb37d0585484e9dd00f7dfb4f",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "899487e5e335d024780ae92ca6911b878d7309df79fcad2ba0271a758307fb3a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/09.png",
+      "derivedSha256": "8576036798b4c5143238fd52761910b883ecf8ea5257f976343c47c0a043d2ba",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a183b780a7879d7b4434fe3d264c0a160fad3b1f1bc2c769bacc95f4e7c55976",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/10.png",
+      "derivedSha256": "592b48a249c66dd6f112ab9aad0058938beae12effe5525d2785939bd0871e03",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3e6b37d40901d6e7995758de3cdaa6d9f2a929b8c664472fda12645ae269e90c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/11.png",
+      "derivedSha256": "3f520740b3d86ddc703e4a1f8fbffea5335fd5db25e6af4dc796111a0b76bfaf",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "69a47b6ed364e19eb910be3470c205fd49d2a771e4d00e0086c36dc797dcfe62",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/12.png",
+      "derivedSha256": "05faf3b8ea0bbc7e0a93d66358251d04bc37604ab5f132bb739e2a61794c194e",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1f64f358e3e2299ac61c6dc95d54d3a0504f96ec92d7eb35ce22438b9d2c3d8e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/13.png",
+      "derivedSha256": "df34e9ce3e83a427d659a7f33819664756b2d1188011a8093f3204329f988192",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "81bdcb65bb351630443411e265a0ab86b1250ae1b71691f07281076ebe3f48e2",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/14.png",
+      "derivedSha256": "16ea1317c3eb5add520be45216f4e9f92d790f0c6c9f65c69efcbc37f19f41a9",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1a0f2003ba64ea9e434b995041419e3b5d003a8955385c4d4d3809687ac5255d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/15.png",
+      "derivedSha256": "c26cdbcd377c388b72f08363e0b94a82b89f18fd330c7352c5b2c52a17eb84c4",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5a9bbf7c1a938c639262cc81ea3297a180c08597b127dfd0e7122c04e394b27b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3ea8a17aa886559f8942dab1b9525e933d226208f7d1234d7f63acbacc4161cc",
+      "derived": "run/W/16.png",
+      "derivedSha256": "9d9ee2b8909283cd3dcf4b110d6d9a707440fbe153d6ed29200ad2225f0c6082",
+      "direction": "W",
+      "durationSeconds": 0.075,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\09_bamboo_archer_girl\\runtime\\run\\W\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "13c9c091c93c290ea05ef29205400a8b0899e34c70774de841bcafcb1bf8d713",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "99421f69961edad405244186aa67c34cac6f198ec24ea9511bb55fc2d0beb536",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\01-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cc332933cf45c1732d9f0785254b65cb465c65278455526c9963eda0b1bfba28",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "ed95d091df77d80a4ce0804a8a552fb1483d04b2d34cd4866c9583cd8d7eead7",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "29019018af2046d2d878720fc634af189db2e0fce1542a573934dbe2e3e6abab",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "e4180adcee009d76ab5e93986fd10780c041a68623026dd833c46906063e10a0",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f64a5c0ceafc3ff045046a80323f39bf0020c193e647075a1ca70420fcc8a3a1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "2ceed6e567136246d8674a36c8a045b3500912e1e4a0096ea8522b148e7ae834",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bd6533999ca14028d68d1b525cb613e91c3368027a0651b1b67a9e08b35b2889",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "6af7a80c7a064c8368fca99e5b5ab4ea0bfbe7c218d64ee5342d4366ad09d226",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b254591f81d765605343241802fabf332b9de4b7fb4eba140e9e2106451cb71d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "80c69b28667cc501db20e66288ccdba54d71f0ca031b1d77c822f724fcd9f569",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b2c4cb0d582f2ca90b3af8003250f8c05ef1e4de1f607d000ab839c66740a9dc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "539b869c7a1a63e55ff22e603475a86b05242aac22d11eeda4e6dd3b29b92ebe",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "29ddb0cc5b481b291d73a9831815b101f3acb3c7c400b72b62bdc858c3941777",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "5f77e03521f534df8ef7eec470f90d3b3ef3581e299ef108b2aa86212bbbab7d",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "04bf946857e787ec36880fdc573a409581af7bb7cac9619a1a5d40934ad8a4ec",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/09.png",
+      "derivedSha256": "a87ac51c0975f9e0912381c86ea06331f7bbd79db6a4346e718a4a8f731aea7a",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "02c9740a0f5248539fe4419d5fec27bbaaf6dcda61311fcc2bbddef38031f288",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/10.png",
+      "derivedSha256": "d766b6ca37a8eff777a1c89ddb0f6f9e65ad59b4176c596ef70971d27f4ac216",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9251394811b499c7058521add46b3e9ecdae243621e34d12b72033d3c19e5e5f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/11.png",
+      "derivedSha256": "17a0b3eb5c71d9878c44f0a013f46ae8a0bfe63ba3c578c5e7a6945604ae2057",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6bc774b3c2c050b325009bc43724141f2d55f3c450593e3377ba95aedd2b1cd6",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/12.png",
+      "derivedSha256": "5dad772535aa530dc3a12fa768cc243ea8b87102a7c935f0d35a1ad54570cabe",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b9089b7d4a56cfd60c184709348d9bbf78ffdf09e985b45d349e7ce2815fd8d2",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/13.png",
+      "derivedSha256": "7f32379c93c812b644659910529c9ac5883e56901b68bbb4673f47056b9cb33d",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "94f641db1d20e93bf52e6689d6f8d40722e46ef7fba818f6f999262c55bbaf86",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/14.png",
+      "derivedSha256": "60301f9047535e5989c84d8e52b0d7df59e3e06457b0392e2d80892d85180997",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a3d0756b85d8363838ed044cb9afc4132c2b2572863e43776ecf88cabc767e6e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/15.png",
+      "derivedSha256": "5d0a94cc3f3dc204615479f218ece1ef81d07ec10a3fe7d5da102994278e770c",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e459fd33d8537bafad9300f496ae6e3a7f5d5a9a152740832d814cbd24f4f4fb",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "788c03a272182cf343ccd70dd2e3630cd94385393dfe0d178f1f2f44f4f91ae8",
+      "derived": "run/NW/16.png",
+      "derivedSha256": "04cb0f334999d8a27c596439e3808b78f7bfc78d0cebcf43a268103f0ea38ec1",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\frames\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6abd2c6e52b778012c6b7b8d5a9e50ac66df51e77dc36c1c0117099b0e64c7ab",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "2587bd6ac3a0c71535690e2d35cb2bfbcd9509518d4d60a455641b5ee4ec1da1",
+  "nativeCanvas": null,
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceCanvases": [
+    {
+      "direction": "N",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "NE",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "E",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "SE",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "S",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "SW",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "W",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "NW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\legacy-preserved\\09_bamboo_archer_girl.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "c48c3bce353667c88922094c997ab3322d4b8eb3307a5c2944fa9229bde30292",
+      "derived": "run/N/01.png",
+      "derivedSha256": "75a3a22ef42e372314cd7e5e1e0969ff482d358d28e60b358f3b04d642900c43",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\10_crimson_spear_girl\\04-natural-r2.png",
+      "sourceSha256": "279e054857594053eaca1b3daea128b4976bb13843408a3902c670357085dece"
+    },
+    {
+      "approvalSha256": "c48c3bce353667c88922094c997ab3322d4b8eb3307a5c2944fa9229bde30292",
+      "derived": "run/N/02.png",
+      "derivedSha256": "8d04c7adde7b02a8f7bcccc113623d9f309b0c29da4b8361dc04942206155960",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\10_crimson_spear_girl\\05-natural-r2.png",
+      "sourceSha256": "e14cc4cc0c91f3034acc3b0e78bc474277e8df75639de29caa78f884a78e4108"
+    },
+    {
+      "approvalSha256": "c48c3bce353667c88922094c997ab3322d4b8eb3307a5c2944fa9229bde30292",
+      "derived": "run/N/03.png",
+      "derivedSha256": "f603611e2a0a676dda8be22604a6077d2fa8abaf27b077c6fe2279fc3b0a676e",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\10_crimson_spear_girl\\07-natural-r2.png",
+      "sourceSha256": "b9f084605dc8516e68194dffcde17d607f21dfcd789a923a9d37056277154bb9"
+    },
+    {
+      "approvalSha256": "c48c3bce353667c88922094c997ab3322d4b8eb3307a5c2944fa9229bde30292",
+      "derived": "run/N/04.png",
+      "derivedSha256": "17f7c335ab04d4147192529e28a0c767b846c6a1aa79e2fcdc144ba6dca00fc4",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\10_crimson_spear_girl\\09-natural-r2.png",
+      "sourceSha256": "b4402f8c00bf55d1218ac019d985741a2a8994091fe16c991aff051fcd352cba"
+    },
+    {
+      "approvalSha256": "c48c3bce353667c88922094c997ab3322d4b8eb3307a5c2944fa9229bde30292",
+      "derived": "run/N/05.png",
+      "derivedSha256": "48e90fcb6814ef3be203008973bc6e1f85a9929e6247d736e5973bd1d2da5073",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\10_crimson_spear_girl\\11-arms-r3.png",
+      "sourceSha256": "79eda36d2e7a841d1683e5e6e2d54419b619894d76ae654721813e608f5ae0da"
+    },
+    {
+      "approvalSha256": "c48c3bce353667c88922094c997ab3322d4b8eb3307a5c2944fa9229bde30292",
+      "derived": "run/N/06.png",
+      "derivedSha256": "38513819f3086310c98973c3b14cf403e56206cc2262fce7778928460b2b50f7",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\10_crimson_spear_girl\\14-arms-r3.png",
+      "sourceSha256": "f30183f42510cb88baaeeb9feb07a9827e0c40f76aac3c3ef5bd3ee8ec368fdd"
+    },
+    {
+      "approvalSha256": "c48c3bce353667c88922094c997ab3322d4b8eb3307a5c2944fa9229bde30292",
+      "derived": "run/N/07.png",
+      "derivedSha256": "dff3bbf670f447f579f18bf26ccb4d42c3fc7e092249de67f6d4bb7c2e5fc5b8",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\10_crimson_spear_girl\\native8\\sources\\07-facing-tip-r2.png",
+      "sourceSha256": "0fcc166a39a06f759bff81efbe17cb47510706f520d752aa4d26faa7d9d56e7a"
+    },
+    {
+      "approvalSha256": "c48c3bce353667c88922094c997ab3322d4b8eb3307a5c2944fa9229bde30292",
+      "derived": "run/N/08.png",
+      "derivedSha256": "9253548def983e33d1b4200495acd008a6dcef56076263ef27cc13dfd4048c43",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\10_crimson_spear_girl\\02-arms-r3.png",
+      "sourceSha256": "497d8d3a03819181dd9caafa28a4205182da4270fe176251b3fe7dc4a9c9e4f8"
+    },
+    {
+      "approvalSha256": "03198501f853d58da03a66473b6633279cb7b9fada0e85dfcb71308b13f97544",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "33b533dab547758d9fb19b961d6568bcffbc867673229c6e614ffa91538c828c",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\natural8-20261105-worker-v1\\01-L-support-connected-worker-v1.png",
+      "sourceSha256": "0f465e2f6cdc896ca02c69ddc7edaff5132a1f2ceb97e99c7785467a52fe7c2a"
+    },
+    {
+      "approvalSha256": "03198501f853d58da03a66473b6633279cb7b9fada0e85dfcb71308b13f97544",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "0b3f01e9f561aa29e222b311a8d15d2f6661f6a2689df8272b7fe3a089c2dd94",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\natural8-20261105-worker-v1\\02-L-support-connected-worker-v1.png",
+      "sourceSha256": "fd2f4e442eddfdd534da044f2779fcee1fbfbd283dd904b3fcad31e4bc9544c3"
+    },
+    {
+      "approvalSha256": "03198501f853d58da03a66473b6633279cb7b9fada0e85dfcb71308b13f97544",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "0f6a03e2dba52c8c4a9b493d50207d10b62af8d75591341f6f1fa0ca2576e62a",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\07-R3-v1.png",
+      "sourceSha256": "41ad5bd573fbf344bfcfbd4f9d5a695c87cf074a498e719812c49ceff6c7479f"
+    },
+    {
+      "approvalSha256": "03198501f853d58da03a66473b6633279cb7b9fada0e85dfcb71308b13f97544",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "646026bc60320d9f705681827ac92cf3a71c048f0d3404bd8186c8366e003445",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\natural8-20261105-worker-v1\\04-R-preland-compact-worker-v1.png",
+      "sourceSha256": "d2e25faebdb354a2457ccf3aab3e1e3275c4a8d548ec4d49b79384e36a555cbe"
+    },
+    {
+      "approvalSha256": "03198501f853d58da03a66473b6633279cb7b9fada0e85dfcb71308b13f97544",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "7c64967bf140e9e1a9baf60e5ccb6fb76399e58adc955d59a33d03d285e0494a",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\12-F-late-v1.png",
+      "sourceSha256": "a22c8df16dabd3f0b786c52fafe1b758b1144f9f7ab3037c951788b465e3afb3"
+    },
+    {
+      "approvalSha256": "03198501f853d58da03a66473b6633279cb7b9fada0e85dfcb71308b13f97544",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "72df3ede15055c70d927a35f0099a58d1f0cc0a8df548f2d076453fc3fe3d1e7",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\14-R4-v2.png",
+      "sourceSha256": "10d692dbd93837127278cac9f8435480165101948b00b36b7238baba46cd8715"
+    },
+    {
+      "approvalSha256": "03198501f853d58da03a66473b6633279cb7b9fada0e85dfcb71308b13f97544",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "ad998ce1109d2ea1b56556aa7d3b0f58616f15321fbb2c8d16da05bbd1a6c1a9",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\16-F-late-v1.png",
+      "sourceSha256": "75e9214384a28138cd7dd4326ac7f83cc67982088747552e877ddc5ec74b0542"
+    },
+    {
+      "approvalSha256": "03198501f853d58da03a66473b6633279cb7b9fada0e85dfcb71308b13f97544",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "267513741ac6628bda37f081bf5dbaa8abae485cc271db0e267db9685d793862",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\02-F-v2.png",
+      "sourceSha256": "8d19b93a81c6fed4075444e3b40b978aefc2285549fe96e3c418c40cfc23b8ac"
+    },
+    {
+      "approvalSha256": "0b95ef92d039278122d2cce13e0471937d6ce20b0da694d7caefe82521ba8a61",
+      "derived": "run/E/01.png",
+      "derivedSha256": "be16d5ad379748eeea0878fb4cf463fb0e3c4efc91a6a0982b5c30d68e9abe02",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\10_crimson_spear_girl\\eight-frame-20261105-v1\\native-v3\\01.png",
+      "sourceSha256": "732a312c1bc933fb977931480468bf9cb45475b5ccfec643ae6eebb6d8463ef0"
+    },
+    {
+      "approvalSha256": "0b95ef92d039278122d2cce13e0471937d6ce20b0da694d7caefe82521ba8a61",
+      "derived": "run/E/02.png",
+      "derivedSha256": "e898c3ae5e5e3e04ba6f4b441e25f1ea83ef3584cf490c766f3ecbf2def300e8",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\10_crimson_spear_girl\\eight-frame-20261105-v1\\native-v3\\02.png",
+      "sourceSha256": "0984e3b5447d62fbe73f387c5be979541ddee35a2d4538cbb07908d474eed240"
+    },
+    {
+      "approvalSha256": "0b95ef92d039278122d2cce13e0471937d6ce20b0da694d7caefe82521ba8a61",
+      "derived": "run/E/03.png",
+      "derivedSha256": "deec863b0f2a38ad35abb32cc3a0130a54c08541efebc3a6edf83f7870f0247f",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\10_crimson_spear_girl\\eight-frame-20261105-v1\\native-v3\\03.png",
+      "sourceSha256": "228d9727b18da8902bf79d437955d73a433ace8a6e103024f0ec5beed444cdad"
+    },
+    {
+      "approvalSha256": "0b95ef92d039278122d2cce13e0471937d6ce20b0da694d7caefe82521ba8a61",
+      "derived": "run/E/04.png",
+      "derivedSha256": "16a37ea31d83d8c8a4050bb26e4ed1cbfee3e36bf733487047886ccf1c702df2",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\10_crimson_spear_girl\\eight-frame-20261105-v1\\native-v3\\04.png",
+      "sourceSha256": "81a7115d8b7479a9e4b91f8161ea7f7d4ca2bf295cfe20d53b3cb61851749f42"
+    },
+    {
+      "approvalSha256": "0b95ef92d039278122d2cce13e0471937d6ce20b0da694d7caefe82521ba8a61",
+      "derived": "run/E/05.png",
+      "derivedSha256": "33fa2d1008fbe536a10246fac521c2e2dc6ece4f003248ce4f491fd03c5b34c0",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\10_crimson_spear_girl\\eight-frame-20261105-v1\\native-v3\\05.png",
+      "sourceSha256": "8e0e5eadb0c5deb8251aaacd73856a8c6c45ffffd4585a3d7216d56bef266e39"
+    },
+    {
+      "approvalSha256": "0b95ef92d039278122d2cce13e0471937d6ce20b0da694d7caefe82521ba8a61",
+      "derived": "run/E/06.png",
+      "derivedSha256": "80c4c3a04d5d6294c6c8e246fbca2b9f99adc493031562ea226556a2c060a30b",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\10_crimson_spear_girl\\eight-frame-20261105-v1\\native-v3\\06.png",
+      "sourceSha256": "e7adbd1e7d3efc6b1b48717ef16ed2b5b481a5bc6440fdc1403de888dd361ea8"
+    },
+    {
+      "approvalSha256": "0b95ef92d039278122d2cce13e0471937d6ce20b0da694d7caefe82521ba8a61",
+      "derived": "run/E/07.png",
+      "derivedSha256": "344e09c44f861def43f200f4688559898af161c366e7e34fe206ff023558f193",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\10_crimson_spear_girl\\eight-frame-20261105-v1\\native-v3\\07.png",
+      "sourceSha256": "e86d7e33e677a5375d78ca59ece1c005958bc85ef4c234c3e17b357f02002ca7"
+    },
+    {
+      "approvalSha256": "0b95ef92d039278122d2cce13e0471937d6ce20b0da694d7caefe82521ba8a61",
+      "derived": "run/E/08.png",
+      "derivedSha256": "f634c0e9518a183d97ee943c6ddbcbe2e527cdc15f0dd8b8824ab67ed7a53222",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\10_crimson_spear_girl\\eight-frame-20261105-v1\\native-v3\\08.png",
+      "sourceSha256": "e9240063ea2d05c02049c951ac14fac551b60940afc0312b18c07ef080e56306"
+    },
+    {
+      "approvalSha256": "5577315165b0c7dea44c8bca7b2173bc7e73f07b8e798a6236741e558333d0f5",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "9f4a1e50460d0c795368a86ee198ee48d00c9706354eb8f7e64ac8b89062bdd1",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\10_crimson_spear_girl\\natural8-20261106-c1\\native-c1\\01.png",
+      "sourceSha256": "b1f10e00155e1161ff296d3f7fe335c96936854a567dc96e26fc89696672f037"
+    },
+    {
+      "approvalSha256": "5577315165b0c7dea44c8bca7b2173bc7e73f07b8e798a6236741e558333d0f5",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "1c8efc4c625c209197c8ecd04a8e8e4857002dc97315ab90b8999dff08e8f2e6",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\10_crimson_spear_girl\\natural8-20261106-c1\\native-c1\\02.png",
+      "sourceSha256": "292c087cdde84ebc57842f4d74c936807636134429dfe2432a1bded18a1a7c7a"
+    },
+    {
+      "approvalSha256": "5577315165b0c7dea44c8bca7b2173bc7e73f07b8e798a6236741e558333d0f5",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "0f41f6a243c5e73c991c0426c84c9252f4767b98660260de33083017cb45375f",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\10_crimson_spear_girl\\natural8-20261106-c1\\native-c5\\03.png",
+      "sourceSha256": "3e120b9ce0fd190e09dc96c88adedf3b4f25b4599c94a0c0f842afb16c54ed37"
+    },
+    {
+      "approvalSha256": "5577315165b0c7dea44c8bca7b2173bc7e73f07b8e798a6236741e558333d0f5",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "6e140ca6c88704c617530a0e7b1c4a44ebf57d15fa3ad75485fdb9876cb4b110",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\10_crimson_spear_girl\\natural8-20261106-c1\\native-c3\\04.png",
+      "sourceSha256": "088a0b73c8a63bc268c0c301f2c0ad910ed8fead731bce9e5fd68944faddda0d"
+    },
+    {
+      "approvalSha256": "5577315165b0c7dea44c8bca7b2173bc7e73f07b8e798a6236741e558333d0f5",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "e384e9a6002b5819b60284a4f0db226a967385d11b9e08afc708b7f05f2a8e69",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\10_crimson_spear_girl\\natural8-20261106-c1\\native-c2\\05.png",
+      "sourceSha256": "ae28d7be917b5f8363082b7c0228b0e3e338ad29468b4b1d6c6199026cd4f6af"
+    },
+    {
+      "approvalSha256": "5577315165b0c7dea44c8bca7b2173bc7e73f07b8e798a6236741e558333d0f5",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "d977182ecdb4e1847c1331d5f0dbf89b8f0c33d27b9a87fd6eecb953ef972c00",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\10_crimson_spear_girl\\natural8-20261106-c1\\native-c1\\06.png",
+      "sourceSha256": "2735b52aa673d677a70ce460462f28675abafbe62b913e3f59cab420e9e272dd"
+    },
+    {
+      "approvalSha256": "5577315165b0c7dea44c8bca7b2173bc7e73f07b8e798a6236741e558333d0f5",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "e4f1a71d91ff68a44ba849dc5e0ca2a69f7d220cdc1030f6956ca5fdbbe7d826",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\10_crimson_spear_girl\\natural8-20261106-c1\\native-c5\\07.png",
+      "sourceSha256": "29bb36ce3535dc89e558686ba7af5838699db9e9cb15e7cfd54e802efd8be5fc"
+    },
+    {
+      "approvalSha256": "5577315165b0c7dea44c8bca7b2173bc7e73f07b8e798a6236741e558333d0f5",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "1c78e10193cba086614b46ec322a1fec58db21bdb75574d25859daca1ef4890a",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\10_crimson_spear_girl\\natural8-20261106-c1\\native-c1\\08.png",
+      "sourceSha256": "e8919eaf7e1a2da7970d3769704fa32cf3c1ae8e22b6860743cda940611a053e"
+    },
+    {
+      "approvalSha256": "bde9b327f220f7d3f8bd499ca724f52316952dfb8649eef873113c5a37fc96a4",
+      "derived": "run/S/01.png",
+      "derivedSha256": "89026e1ee6d9b3cf30c40a393ebc3937f9d7b241edcbe561e461bb25f59af39a",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\10_crimson_spear_girl\\native-v1\\04.png",
+      "sourceSha256": "ffdfa9a193082db021cb90f09258479f0849970ff21713a301f49477dee7b7ca"
+    },
+    {
+      "approvalSha256": "bde9b327f220f7d3f8bd499ca724f52316952dfb8649eef873113c5a37fc96a4",
+      "derived": "run/S/02.png",
+      "derivedSha256": "205612ef961a9fe1a00567cb58e38a2a73af08085fadf1cacdf830ab68a85729",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\10_crimson_spear_girl\\eight-native-v1-20261105\\passing02-v1\\02.png",
+      "sourceSha256": "bf2381d23697c0872f54e7adcfe0827852243621b79ce5de60182ab18248be6e"
+    },
+    {
+      "approvalSha256": "bde9b327f220f7d3f8bd499ca724f52316952dfb8649eef873113c5a37fc96a4",
+      "derived": "run/S/03.png",
+      "derivedSha256": "ad13683e3722e576f886d638f88a5391e154d4f458c33db50445543d400abf48",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\10_crimson_spear_girl\\eight-native-v1-20261105\\rear03-v2\\03.png",
+      "sourceSha256": "f6ef671ffc6659bd82190b1d11148d823c501666c9644b205a77891c43fccf68"
+    },
+    {
+      "approvalSha256": "bde9b327f220f7d3f8bd499ca724f52316952dfb8649eef873113c5a37fc96a4",
+      "derived": "run/S/04.png",
+      "derivedSha256": "454b6de1151a03dacd7d0735e10dac9094a8e151609ce2b817460f32bb33f1c3",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\10_crimson_spear_girl\\eight-native-v1-20261105\\rear03-v1\\03.png",
+      "sourceSha256": "44ad91c70388b4761527e8bd25f6a7b2b76a98bd0ce89c5310958340f827b623"
+    },
+    {
+      "approvalSha256": "bde9b327f220f7d3f8bd499ca724f52316952dfb8649eef873113c5a37fc96a4",
+      "derived": "run/S/05.png",
+      "derivedSha256": "f922c8a9489723457d849ac43b24ab9f1d85c9a41623b8bce88094893030d11f",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\10_crimson_spear_girl\\native-v1\\12.png",
+      "sourceSha256": "fab1536e0277cc26a1fa70034c1efc2e53e11d719ec52f344b699a1723f0ab1c"
+    },
+    {
+      "approvalSha256": "bde9b327f220f7d3f8bd499ca724f52316952dfb8649eef873113c5a37fc96a4",
+      "derived": "run/S/06.png",
+      "derivedSha256": "dbd9a45c2548397237b0c2cd58c25a867b6febfb42a04368f9f9d88e5cad645e",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\10_crimson_spear_girl\\eight-native-v1-20261105\\passing06-v1\\06.png",
+      "sourceSha256": "fe2275b563c37bfd0d1f7a0fe0b3421497a517e5db09d5e290b7add0cec4b76f"
+    },
+    {
+      "approvalSha256": "bde9b327f220f7d3f8bd499ca724f52316952dfb8649eef873113c5a37fc96a4",
+      "derived": "run/S/07.png",
+      "derivedSha256": "f24402891844cce34972efe4edf8f23f13cbd57427de79041b2fd4d4d3d6faa7",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\10_crimson_spear_girl\\eight-native-v1-20261105\\rear07-v1\\07.png",
+      "sourceSha256": "e6ffe5c5f3587e4eeca48b92c2e797c0d028ef114e22f094dfa66cacba0e4a2b"
+    },
+    {
+      "approvalSha256": "bde9b327f220f7d3f8bd499ca724f52316952dfb8649eef873113c5a37fc96a4",
+      "derived": "run/S/08.png",
+      "derivedSha256": "57026f4d9b324dbbf22a6cbbf827eec4fc26cd3a91993d7e1a5b310cf1b5f9e8",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\10_crimson_spear_girl\\eight-native-v1-20261105\\extend08-v2\\08.png",
+      "sourceSha256": "5583ca0b15905d2f1f44d2274194c6f60618289d36df2ffb60b0a3b8e9467360"
+    },
+    {
+      "approvalSha256": "11728f7ff7ce9c4ee08121b7f75636c76a9efc8d5038ee090240c9fad0fd3e90",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "ba339a5016c1ec779c6edf2ec90a95268ede2f3d2abec5c459ce87f0435893e0",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\10_crimson_spear_girl\\nw-assist-natural8-20261106-v1\\native-v1\\01.png",
+      "sourceSha256": "56c3d0190dfbc8208bf14a637b58afbdbde9b5acdce7d68ce36791fc8cc09396"
+    },
+    {
+      "approvalSha256": "11728f7ff7ce9c4ee08121b7f75636c76a9efc8d5038ee090240c9fad0fd3e90",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "efaca87df43405a5063c6284156cdab938c7d9a814f133ffb5642bc45377146f",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\10_crimson_spear_girl\\nw-assist-natural8-20261106-v1\\native-v2\\02.png",
+      "sourceSha256": "84246df805a3b84cf0523323fccf2967c560a49ca1fd493218059ecf5e9ab98d"
+    },
+    {
+      "approvalSha256": "11728f7ff7ce9c4ee08121b7f75636c76a9efc8d5038ee090240c9fad0fd3e90",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "879dc4d8ff9c57697d982059e1180ca541e34aa7bfa3643f954c38d23f06d749",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\10_crimson_spear_girl\\nw-assist-natural8-20261106-v1\\native-v2\\03.png",
+      "sourceSha256": "ea9e44da0febc1f429bb2650c499d4ded3252fafc8e640ec837de0332416f728"
+    },
+    {
+      "approvalSha256": "11728f7ff7ce9c4ee08121b7f75636c76a9efc8d5038ee090240c9fad0fd3e90",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "0e7312c797ac83008edefd958928fa0331d5327b53e62a7058ed4770774c8149",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\10_crimson_spear_girl\\nw-assist-natural8-20261106-v1\\native-v1\\04.png",
+      "sourceSha256": "cdf18168dc481f7b22cade0db2e1f579c4f8764e6de385bac191d07875c62c1b"
+    },
+    {
+      "approvalSha256": "11728f7ff7ce9c4ee08121b7f75636c76a9efc8d5038ee090240c9fad0fd3e90",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "059d57999fc33c5c37fb7913c448aa321a8e3502f07a7168edebf6ec58934269",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\10_crimson_spear_girl\\nw-assist-natural8-20261106-v1\\native-v1\\05.png",
+      "sourceSha256": "a101187608948702ee57276affb8fccfae212510138aa4671c4c9d719546d3b2"
+    },
+    {
+      "approvalSha256": "11728f7ff7ce9c4ee08121b7f75636c76a9efc8d5038ee090240c9fad0fd3e90",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "f78f879fc342737f7a9a36b4e39da267a2db4c1b90f5ceea0cb157390940b09b",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\10_crimson_spear_girl\\nw-assist-natural8-20261106-v1\\native-v1\\06.png",
+      "sourceSha256": "82d6da5486d389755596a0dd5df6a4028ea95a774b49490c04b17b99237f2025"
+    },
+    {
+      "approvalSha256": "11728f7ff7ce9c4ee08121b7f75636c76a9efc8d5038ee090240c9fad0fd3e90",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "79fb337f0eaf441256b84e4c88d86865bb6c1ece9c78f1431b63dafb86a502ff",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\10_crimson_spear_girl\\nw-assist-natural8-20261106-v1\\native-v2\\07.png",
+      "sourceSha256": "6dacb0cae527cb174ff6d32a1e3d9af700028a787f54dd90d59076102bc2c4aa"
+    },
+    {
+      "approvalSha256": "11728f7ff7ce9c4ee08121b7f75636c76a9efc8d5038ee090240c9fad0fd3e90",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "0bf2e401943cc7240ec717986df7a541d01bd423f8dba748c7361142ab39ec87",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\10_crimson_spear_girl\\nw-assist-natural8-20261106-v1\\native-v2\\08.png",
+      "sourceSha256": "00a04ca46588c083fffbcd9474d46ffe280e53fb708b5eca9de49ca2c980d5c2"
+    },
+    {
+      "approvalSha256": "9e795582829cfb1aee2e541c2d80390aa79818375e473d7068bd2060531b9215",
+      "derived": "run/W/01.png",
+      "derivedSha256": "8c67cb346fb4a5006467df097037abf8e6217f159fe8fa20a4ebdc1fb0077110",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\10_crimson_spear_girl\\8f-facing-20261104\\native-profile-v1\\01.png",
+      "sourceSha256": "7dc615b6150cec390b8eed81386bfb8c7fb99edfb7125380fabcd71f93eade14"
+    },
+    {
+      "approvalSha256": "9e795582829cfb1aee2e541c2d80390aa79818375e473d7068bd2060531b9215",
+      "derived": "run/W/02.png",
+      "derivedSha256": "f62f8fd5c4bacbcee22786c744cc9cb503149a0fba33c22b43240a5fa42bacb5",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\10_crimson_spear_girl\\8f-facing-20261104\\native-edge-v1\\02.png",
+      "sourceSha256": "e46818c1c94a15d776194fbedf83ae1b4fe9615d570b983909e37e39e18a0083"
+    },
+    {
+      "approvalSha256": "9e795582829cfb1aee2e541c2d80390aa79818375e473d7068bd2060531b9215",
+      "derived": "run/W/03.png",
+      "derivedSha256": "018247bbc4a7278f41c8b81e5d32376f579eab4b9a9ddad6434090dd8fd962a0",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\10_crimson_spear_girl\\8f-facing-20261104\\native-profile-v1\\03.png",
+      "sourceSha256": "8e9254e062c5bd1af1b6a7d03ef6e004cc62d175899c7bdd496173a406a84adc"
+    },
+    {
+      "approvalSha256": "9e795582829cfb1aee2e541c2d80390aa79818375e473d7068bd2060531b9215",
+      "derived": "run/W/04.png",
+      "derivedSha256": "38cb2068114ed77330c674f4f73bb657c3e6117dcbf3edf70caf00c5dc2624e9",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\10_crimson_spear_girl\\v5-local-profile11\\11.png",
+      "sourceSha256": "5551963e537a668cfc38ca01de65fa3674173efcdf3638c378f19ca2b0e300df"
+    },
+    {
+      "approvalSha256": "9e795582829cfb1aee2e541c2d80390aa79818375e473d7068bd2060531b9215",
+      "derived": "run/W/05.png",
+      "derivedSha256": "1f4130db3242374208adc2f5c6213dd258aecd1636253a5b7b0721fcb6c968ad",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\10_crimson_spear_girl\\v5-local-profile12\\12.png",
+      "sourceSha256": "0686a30362b31c6217bd568ed09ccc559c98b6b7dd67a86222ae409e4bbc8a76"
+    },
+    {
+      "approvalSha256": "9e795582829cfb1aee2e541c2d80390aa79818375e473d7068bd2060531b9215",
+      "derived": "run/W/06.png",
+      "derivedSha256": "5345e077a7399cb0319f30f289d90ba3b84e545f16b7361df5f4c07778946541",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\10_crimson_spear_girl\\8f-facing-20261104\\native-body-root-v1\\06.png",
+      "sourceSha256": "e03ec3a625be175b5713e227270fbe77465242b479990dee1caa268ea23ccf4f"
+    },
+    {
+      "approvalSha256": "9e795582829cfb1aee2e541c2d80390aa79818375e473d7068bd2060531b9215",
+      "derived": "run/W/07.png",
+      "derivedSha256": "9fdcadd9eb99169ba813d407924a17866eac6da25e60b885b9a24141d2b91f11",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\10_crimson_spear_girl\\8f-facing-20261104\\native-profile-v1\\07.png",
+      "sourceSha256": "a64ccaaeed27a349e192336e546f623b36eb6747c389e4043e814fec160895bf"
+    },
+    {
+      "approvalSha256": "9e795582829cfb1aee2e541c2d80390aa79818375e473d7068bd2060531b9215",
+      "derived": "run/W/08.png",
+      "derivedSha256": "2829a8cf738660f4d6567a728eba86220c11f499b96def5ddba8db91346ef9d8",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\10_crimson_spear_girl\\8f-facing-20261104\\native-profile-v1\\08.png",
+      "sourceSha256": "8c264294d125144388f8064f1335c12507daa32eb409f4337c60239e78933712"
+    },
+    {
+      "approvalSha256": "e45121555e5657a5069b935e493763b5e026e17104b3bb902525e99c326e5618",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "b650c83e597c09b2bc31f2642aa0c337d9b86776a751c3b6b15b4a225de338a1",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v8f2\\01.png",
+      "sourceSha256": "4261b2adf5550a73a9a854ca3d9e0db2bb1941e44945f92387740334e901e3d1"
+    },
+    {
+      "approvalSha256": "e45121555e5657a5069b935e493763b5e026e17104b3bb902525e99c326e5618",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "57cbe4c35a5bdd5ffdb5692a3565602d2b916894e50310e3cf3e3f11a31b1bba",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v8f1\\02.png",
+      "sourceSha256": "29f892520aecf1fd6059fe41db34e96ba216be08fade2f0fc5ae14e57199db47"
+    },
+    {
+      "approvalSha256": "e45121555e5657a5069b935e493763b5e026e17104b3bb902525e99c326e5618",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "0cf4032217c05af09fd9d3bd6ceaa7c6424d8de95446627c7d6788f2043b0840",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v8f3\\03.png",
+      "sourceSha256": "fdf4445536e07ac7a3150cf3dc8999142ca224647eb69f1f1aba196330561ed4"
+    },
+    {
+      "approvalSha256": "e45121555e5657a5069b935e493763b5e026e17104b3bb902525e99c326e5618",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "32baf859b675946d7dd0c90179a4f1d821d9c36b2fd985743389b91a18c13ead",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v8f1\\04.png",
+      "sourceSha256": "68bb5ab071ace9f5907044d73577eee8f9fb4e6d95ea9659c06da048dc83ed01"
+    },
+    {
+      "approvalSha256": "e45121555e5657a5069b935e493763b5e026e17104b3bb902525e99c326e5618",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "19551065e81edaddbb3f7bdd6a37c2fc2ebcded9900375a009bac169ef8fcf17",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v8f1\\05.png",
+      "sourceSha256": "534e498df5068dd744f9854e77b9117e0b5bfaab95740e24dba934a3e07cdd4b"
+    },
+    {
+      "approvalSha256": "e45121555e5657a5069b935e493763b5e026e17104b3bb902525e99c326e5618",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "a756d11a89d226d77920c9775e1118e9ae26bf38aa54f2ad0e4465af2f09d315",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v8f2\\06.png",
+      "sourceSha256": "13483b44057bc5eff71ce24e9ef4de3da628c4772a61153282f735ca6afa70ac"
+    },
+    {
+      "approvalSha256": "e45121555e5657a5069b935e493763b5e026e17104b3bb902525e99c326e5618",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "510690de1d76029b5581f28f699f3215437093ae2c24dfe26191168dfa69fad9",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v8f3\\07.png",
+      "sourceSha256": "a6ab8abd9526185b41b694aef2922e2b89944d6836f5bc5671cf449894eb5e4d"
+    },
+    {
+      "approvalSha256": "e45121555e5657a5069b935e493763b5e026e17104b3bb902525e99c326e5618",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "981f2db2cb7609a6e710ed544270174569f64fe940dc8dc87124e6420b39f64a",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v8f3\\08.png",
+      "sourceSha256": "079193dd79d94c752167bb77be45e00b72407a87e2d9969e8d25b0b3bb413ec7"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "b6048f2944d5ab8e53e3044f77cef85eb949cd0ed5868b4d845285f4e9cc7540",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\10_crimson_spear_girl.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

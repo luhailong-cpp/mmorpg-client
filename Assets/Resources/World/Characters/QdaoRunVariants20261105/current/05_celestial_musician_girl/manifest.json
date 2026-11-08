@@ -1,0 +1,155 @@
+{
+  "allEightDirectionsAvailable": true,
+  "characterId": "05_celestial_musician_girl",
+  "clips": [
+    {
+      "action": "run",
+      "direction": "N",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "E",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "S",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "W",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    }
+  ],
+  "crossVariantFallback": false,
+  "frameHeight": 384,
+  "frameWidth": 384,
+  "inputFingerprint": "26992666de952c2079e18f2d01486ce443f35c176f49469d11dfd0a8efdb8a90",
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "pixelsPerUnit": 39,
+  "schemaVersion": 1,
+  "sourceFramesPreserved": true,
+  "sourceManifestSha256": "8e05d6de1701702e5703ec4df9b41eb7b7f9db969eab110e0f233bd3aef3df0c",
+  "unavailableDirections": [],
+  "variant": "current",
+  "visualValidation": "game_scale_ground_anchor_pending"
+}

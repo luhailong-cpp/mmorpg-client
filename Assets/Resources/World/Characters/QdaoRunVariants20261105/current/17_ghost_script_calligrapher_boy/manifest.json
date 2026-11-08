@@ -1,0 +1,155 @@
+{
+  "allEightDirectionsAvailable": true,
+  "characterId": "17_ghost_script_calligrapher_boy",
+  "clips": [
+    {
+      "action": "run",
+      "direction": "N",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "E",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "S",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "W",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    }
+  ],
+  "crossVariantFallback": false,
+  "frameHeight": 384,
+  "frameWidth": 384,
+  "inputFingerprint": "634d68a7f658615d501bd460b54a573e53758d4378326872c1ac717c5457762d",
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "pixelsPerUnit": 39,
+  "schemaVersion": 1,
+  "sourceFramesPreserved": true,
+  "sourceManifestSha256": "cd7abe694cbd3d2084f6f77203c80755249a682f8294aa7d013dad50c52993ab",
+  "unavailableDirections": [],
+  "variant": "current",
+  "visualValidation": "game_scale_ground_anchor_pending"
+}

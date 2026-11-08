@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "9be1bd0b1f63e3a382715ecf790b755ab8b10b2f6b91b338d807ac853d085a9e",
+      "derived": "run/N/01.png",
+      "derivedSha256": "4d3b46083fa59d54d87e157f159ec769e5a1c1e265ac1ef8a79de8fd045618dc",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\04_mountain_guardian_boy\\native\\04-v3-natural-arm.png",
+      "sourceSha256": "52746c74a8c716b59f29d0392a4f82346dd617f4f4e5537369968ffddc386378"
+    },
+    {
+      "approvalSha256": "9be1bd0b1f63e3a382715ecf790b755ab8b10b2f6b91b338d807ac853d085a9e",
+      "derived": "run/N/02.png",
+      "derivedSha256": "1044443ce42ed4995d84d331ad8298347617c38441adac9dca3efee3ceacf6b3",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\04_mountain_guardian_boy\\native\\06-v4-natural-arm-guided.png",
+      "sourceSha256": "c5c3c03571cfd4338f0d31cb9a617c35f790be42e47a4cc8c7d0b8bbd2e19f64"
+    },
+    {
+      "approvalSha256": "9be1bd0b1f63e3a382715ecf790b755ab8b10b2f6b91b338d807ac853d085a9e",
+      "derived": "run/N/03.png",
+      "derivedSha256": "4c33cae4022711d2102853570b5626d4fc7698a1a03c4f1314f44b534b937966",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\04_mountain_guardian_boy\\native\\07-v4-natural.png",
+      "sourceSha256": "a7a2e08f4e370ce7d29e874c28addd3324b2afe028550beee90cefce1e3ba707"
+    },
+    {
+      "approvalSha256": "9be1bd0b1f63e3a382715ecf790b755ab8b10b2f6b91b338d807ac853d085a9e",
+      "derived": "run/N/04.png",
+      "derivedSha256": "d7a9d3b0b19bc8a229715851b5c7d49fcc6a30f3a3858ebabd888a40faaff4c8",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\04_mountain_guardian_boy\\native\\09-v5-natural-arm.png",
+      "sourceSha256": "111beafed5987210fbf011e8852ed24a1a01a478cbbe1b6bf32fd987fe385c15"
+    },
+    {
+      "approvalSha256": "9be1bd0b1f63e3a382715ecf790b755ab8b10b2f6b91b338d807ac853d085a9e",
+      "derived": "run/N/05.png",
+      "derivedSha256": "04e325ce43f61c4013c1003b09b51ed221d5e7dfef4821bc01bbae854f27a81f",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\04_mountain_guardian_boy\\native\\12-v3.png",
+      "sourceSha256": "d8981d95babcb33ba5c4c6e646cb2b088cf1ba60ed366aad371c5bc1f8c18513"
+    },
+    {
+      "approvalSha256": "9be1bd0b1f63e3a382715ecf790b755ab8b10b2f6b91b338d807ac853d085a9e",
+      "derived": "run/N/06.png",
+      "derivedSha256": "f8a2a12115a79377fff345e66a7d43ee997604ca41bd90ae669eecf40b161096",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\04_mountain_guardian_boy\\native\\14-v3.png",
+      "sourceSha256": "c39c5d5e17f58eaa2052d3e79b1ec3f424c1695b141000dee15e7f18bfe01d16"
+    },
+    {
+      "approvalSha256": "9be1bd0b1f63e3a382715ecf790b755ab8b10b2f6b91b338d807ac853d085a9e",
+      "derived": "run/N/07.png",
+      "derivedSha256": "9d741aebdbeebd25a475a72893bf45f585529cade3923777e2b3fd080b806c25",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\04_mountain_guardian_boy\\native\\15-v3.png",
+      "sourceSha256": "311b150828f9166b8d8f492b54c895a566fb2be70db0b8b5f554aa5c31c7a082"
+    },
+    {
+      "approvalSha256": "9be1bd0b1f63e3a382715ecf790b755ab8b10b2f6b91b338d807ac853d085a9e",
+      "derived": "run/N/08.png",
+      "derivedSha256": "cc64420a19d390585e161cb892cc44336fe225e7ca5ed8e6e8b1f9c4c31a37d7",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\04_mountain_guardian_boy\\native\\01-v2.png",
+      "sourceSha256": "acf7a92fe201f828baddfe0aca5dfda903649147137c97449d86119ea93616d5"
+    },
+    {
+      "approvalSha256": "07df44721158f4059a227b0385e162956c0cf9b429f443b7539118671b4b7ba4",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "c10f023062bb965dbf5dbe81556eaa50adaaa260195f5aa434c1d704656aa4d3",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\natural8-20261106-root-v1\\01-L-contact-topology-v1.png",
+      "sourceSha256": "9e3fa1ab66599a4d3f04d1dac98c0d859724aa8d0b2688eca005d8585a0b86fd"
+    },
+    {
+      "approvalSha256": "07df44721158f4059a227b0385e162956c0cf9b429f443b7539118671b4b7ba4",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "e731bfd1d769c4b7451b4085f22e6272723113c65d79b696f66bcd761738c163",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\05-R2-v1.png",
+      "sourceSha256": "f71edf95a2cfc64c3e2ef65bbf6c63f436909e463f182d6291f5e117c420894e"
+    },
+    {
+      "approvalSha256": "07df44721158f4059a227b0385e162956c0cf9b429f443b7539118671b4b7ba4",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "cb08f5b3022461cb8ec20d469782acb994e00cc4b7cd69ce0279fca9a266e76a",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\07-R2-v2.png",
+      "sourceSha256": "aef376aaebda8e88764bec4aee9240b33517aa2113ab0a0b8e682e577abb22a6"
+    },
+    {
+      "approvalSha256": "07df44721158f4059a227b0385e162956c0cf9b429f443b7539118671b4b7ba4",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "16b5f91450c2b8c32d118b74aad4b1c838ea6f31f90c05ab99c0c99b1ce5e200",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\10-R2-v3.png",
+      "sourceSha256": "82d25ef23c8a216ecc539a789b232a3662775655c794531d388ce144c5e4a4ea"
+    },
+    {
+      "approvalSha256": "07df44721158f4059a227b0385e162956c0cf9b429f443b7539118671b4b7ba4",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "aa0a9fa01729bda25bcdbae3d84266563338871d160f726f428dca0ea03df5b2",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\12-R2-v1.png",
+      "sourceSha256": "8f3425d8253770ce08bfab938a6c918ce58c6c6bb6f3439bde550cce46fcb23a"
+    },
+    {
+      "approvalSha256": "07df44721158f4059a227b0385e162956c0cf9b429f443b7539118671b4b7ba4",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "5fdf1925056ab5709eca351a2dbc0a6b14e3b82adb8cb01e47a6e84cae7d9dee",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\w-assist-natural8-20261106-v1\\06-underbody-master-v2.png",
+      "sourceSha256": "8fe59831f9ea4fa93bed0c12aedc49cc5c76d3df94b30fa4dfab3ace12637e3f"
+    },
+    {
+      "approvalSha256": "07df44721158f4059a227b0385e162956c0cf9b429f443b7539118671b4b7ba4",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "a3f8519478ef173f973d78ce14e76b6d727e9d13e4c6b34d1a276e67732d12e0",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\16-F-v1.png",
+      "sourceSha256": "7843f3d07c965fd380595cba97354f4a0bccd06a6d8dc122bc147c44d43317b0"
+    },
+    {
+      "approvalSha256": "07df44721158f4059a227b0385e162956c0cf9b429f443b7539118671b4b7ba4",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "60c24a264b6cb638c605eabbd9b43039754ed85f01dad74df9885dcd469c89ac",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\04_mountain_guardian_boy\\02-v1.png",
+      "sourceSha256": "fc5bfd50d03dc53d0b65a0aeed1c4119e5a296220f95a06d02da89298eff57a7"
+    },
+    {
+      "approvalSha256": "fd6077c809e5ad0f9da1309d4c5a655b8dc628648850da468cf2da2f86b422d1",
+      "derived": "run/E/01.png",
+      "derivedSha256": "08e5369d6766f89598643ad5181832397373b01b7c3fde1724a4daafea187496",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\04_mountain_guardian_boy\\eight-frame-20261105-v1\\native-v2\\01.png",
+      "sourceSha256": "1b68e39f45f10946ef73429077685b5109fa7c893e452450f75611f20f274078"
+    },
+    {
+      "approvalSha256": "fd6077c809e5ad0f9da1309d4c5a655b8dc628648850da468cf2da2f86b422d1",
+      "derived": "run/E/02.png",
+      "derivedSha256": "959ba320260c31f67503944f0d7057d44df51290e91fb1e472fa0217adc21f2a",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\04_mountain_guardian_boy\\eight-frame-20261105-v1\\native-v2\\02.png",
+      "sourceSha256": "f2b4d1d09041a98ae85730bd9a71e9801e61c774afb354b7c2e4dc618ff29b18"
+    },
+    {
+      "approvalSha256": "fd6077c809e5ad0f9da1309d4c5a655b8dc628648850da468cf2da2f86b422d1",
+      "derived": "run/E/03.png",
+      "derivedSha256": "becf50bf2665e74ff27b78b47bdb538313df724397ab49e51c89479d90479c5d",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\04_mountain_guardian_boy\\eight-frame-20261105-v1\\native-v2\\03.png",
+      "sourceSha256": "63b86f38ea20bc57a7173b1144be41cc482ff03bef4b19db38481eec07737b53"
+    },
+    {
+      "approvalSha256": "fd6077c809e5ad0f9da1309d4c5a655b8dc628648850da468cf2da2f86b422d1",
+      "derived": "run/E/04.png",
+      "derivedSha256": "d31ee516637e6e6b87936904b7628f7b9e8ec67984f7023b045e327cde7fccf7",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\04_mountain_guardian_boy\\eight-frame-20261105-v1\\native-v2\\04.png",
+      "sourceSha256": "66afc6fe55fd846f4efe339eadf2a887903b63d794b3a97e472a24a3d924bcec"
+    },
+    {
+      "approvalSha256": "fd6077c809e5ad0f9da1309d4c5a655b8dc628648850da468cf2da2f86b422d1",
+      "derived": "run/E/05.png",
+      "derivedSha256": "5ae3ead420dde0ef63a037a5f6f9bd7871583874e0fb537ec53d137c2d43f20d",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\04_mountain_guardian_boy\\eight-frame-20261105-v1\\native-v2\\05.png",
+      "sourceSha256": "ea748733dc936489a457f218cd0d88868454e63e44ed3457d25c499170c968e0"
+    },
+    {
+      "approvalSha256": "fd6077c809e5ad0f9da1309d4c5a655b8dc628648850da468cf2da2f86b422d1",
+      "derived": "run/E/06.png",
+      "derivedSha256": "9b9d1e16f4c210c76e78b026f7758e1fb65e03db7e30d02626deb32bdb6935d1",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\04_mountain_guardian_boy\\eight-frame-20261105-v1\\native-v2\\06.png",
+      "sourceSha256": "873b7598374fa94046b9ddba43241015d40ef77138d3e5068abe8ad3d5af31f0"
+    },
+    {
+      "approvalSha256": "fd6077c809e5ad0f9da1309d4c5a655b8dc628648850da468cf2da2f86b422d1",
+      "derived": "run/E/07.png",
+      "derivedSha256": "7e1eed2c8aae4f66ae40573f031d09b5267f043113c346f1e723371edce03262",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\04_mountain_guardian_boy\\eight-frame-20261105-v1\\native-v2\\07.png",
+      "sourceSha256": "cac9a39fa98ff9c5c0cee541d7b525cef0a2c9dee5e463d09ae1796cbc61a339"
+    },
+    {
+      "approvalSha256": "fd6077c809e5ad0f9da1309d4c5a655b8dc628648850da468cf2da2f86b422d1",
+      "derived": "run/E/08.png",
+      "derivedSha256": "adf75c93d5e5316db11279766e35dda2df6d708d2047a8a177684ca2f07e8524",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\04_mountain_guardian_boy\\eight-frame-20261105-v1\\native-v2\\08.png",
+      "sourceSha256": "35c88ff9580ffba4f78a18360c4b9ce1da3b0b08ee85b9c98e068e7c38ac3f42"
+    },
+    {
+      "approvalSha256": "24c929ec3d3b4349032e49f261a2a8a9a958e89251ff0934b6685899430a4abf",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "a38261e4b3c51a75c7d457bafd8f1fd0d4006c13de89688927fa1b3e1eafed9e",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\04_mountain_guardian_boy\\s-assist-natural8-20261106-v1\\native-phase01-v1\\01.png",
+      "sourceSha256": "9b0e7ffc841020c91b6148096784ef875050b89baed156f439703056c05862e0"
+    },
+    {
+      "approvalSha256": "24c929ec3d3b4349032e49f261a2a8a9a958e89251ff0934b6685899430a4abf",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "96fdded7eac799aaf5a7d2de23df37b813f70507c1659827884fa523d5845f13",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\04_mountain_guardian_boy\\s-assist-natural8-20261106-v1\\native-phase02-v1\\02.png",
+      "sourceSha256": "2118522cff8d5ed2cbf23e750a164b8bf66dedc3ec3e3d7271cfb1b2cf2c0326"
+    },
+    {
+      "approvalSha256": "24c929ec3d3b4349032e49f261a2a8a9a958e89251ff0934b6685899430a4abf",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "6ec1890445b8f150a91c76e1c0261e85532cb11dfe3a95bb8bd02222592512ee",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\04_mountain_guardian_boy\\s-assist-natural8-20261106-v1\\native-phase03-v1\\03.png",
+      "sourceSha256": "c4217874af43263ba8168b4c766bed719c95e3155c16d13dfe09a982b9cb27f1"
+    },
+    {
+      "approvalSha256": "24c929ec3d3b4349032e49f261a2a8a9a958e89251ff0934b6685899430a4abf",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "4b9e1dafbe131a2e367b15408fe008b6222a7dce63501849a2a159eae37fbdea",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\04_mountain_guardian_boy\\s-assist-natural8-20261106-v1\\native-phase04-v1\\04.png",
+      "sourceSha256": "626e3db557425e447d8fbd203778634d321e803d98e71c6df1715da50bc4ff08"
+    },
+    {
+      "approvalSha256": "24c929ec3d3b4349032e49f261a2a8a9a958e89251ff0934b6685899430a4abf",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "1faa1ad7242a293e7f3e02c2613905f4e974916189b0082a9e8fe187a5462e5d",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\04_mountain_guardian_boy\\s-assist-natural8-20261106-v1\\native-phase05-v1\\05.png",
+      "sourceSha256": "1adc88a5bc73369325d51dd6869f2231222ddda4ca668a4b9abdf9f4b828035f"
+    },
+    {
+      "approvalSha256": "24c929ec3d3b4349032e49f261a2a8a9a958e89251ff0934b6685899430a4abf",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "57a4463bf7923a799c37dd80d99703d9b13f52a3e0ead7c6713312495445a7c5",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\04_mountain_guardian_boy\\s-assist-natural8-20261106-v1\\native-phase06-v1\\06.png",
+      "sourceSha256": "11d96b0136cb82259483bd90b0ffbc880cb6b971830ec5d0169c7c1a2674628e"
+    },
+    {
+      "approvalSha256": "24c929ec3d3b4349032e49f261a2a8a9a958e89251ff0934b6685899430a4abf",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "7c649f6e5b7ee032fa2e7965479745011f28dc80c18f60f656ebf597949bdb04",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\04_mountain_guardian_boy\\s-assist-natural8-20261106-v1\\native-phase07-v1\\07.png",
+      "sourceSha256": "7863e7c56f70707085371f5f33fc318fb37ab6131fca2bd1435c91691888687e"
+    },
+    {
+      "approvalSha256": "24c929ec3d3b4349032e49f261a2a8a9a958e89251ff0934b6685899430a4abf",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "8c0c1d2b866b828a864a2595b1e902c447e6cbbb3fffd212a663eb96ab74d22d",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\04_mountain_guardian_boy\\s-assist-natural8-20261106-v1\\native-phase08-v1\\08.png",
+      "sourceSha256": "2413a25b67b50d2872229e1f16a40e997a3febe13903ffde675c7305697f7063"
+    },
+    {
+      "approvalSha256": "2a7af028369a11db436679fdec1557c28c3cc7a3ab09ad7f13559c79adf4005a",
+      "derived": "run/S/01.png",
+      "derivedSha256": "097dca5b493dd80447b99c9d8ad3fd173cabc010c51950e1224f44b58710cfad",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\04_mountain_guardian_boy\\prop-continuity-v12\\04.png",
+      "sourceSha256": "16d0f148383fd6d5cedee610d9c13ec97079357fba311317dfc9c35ad40b76d9"
+    },
+    {
+      "approvalSha256": "2a7af028369a11db436679fdec1557c28c3cc7a3ab09ad7f13559c79adf4005a",
+      "derived": "run/S/02.png",
+      "derivedSha256": "df47daa4bd8dded77bf9711da9d034f676079455e0753f5353d7cb7b225194bd",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\04_mountain_guardian_boy\\prop-continuity-v12\\05.png",
+      "sourceSha256": "b1178a6d7869302deb845de85952c97a7f5fc924197f78e52fd581e33a9199f2"
+    },
+    {
+      "approvalSha256": "2a7af028369a11db436679fdec1557c28c3cc7a3ab09ad7f13559c79adf4005a",
+      "derived": "run/S/03.png",
+      "derivedSha256": "61630529dcbbf99993b52315ad2c2fc9c304c747ead862b0b03836f15decbc9f",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\04_mountain_guardian_boy\\native-v10\\09.png",
+      "sourceSha256": "11fcbce4d96d9e043ea06312864a555dbb9d3cc903f438f3994e38a5548c2ed2"
+    },
+    {
+      "approvalSha256": "2a7af028369a11db436679fdec1557c28c3cc7a3ab09ad7f13559c79adf4005a",
+      "derived": "run/S/04.png",
+      "derivedSha256": "0a8f7a5b3d5ce7c35e72235ac0792ee39e6ec24c1ec3c42204d485d705382385",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\04_mountain_guardian_boy\\continuity-v11\\10.png",
+      "sourceSha256": "b9832625795c3b382355845627887dd0c6d97af2e5f3ef7520b7011bdcfd9915"
+    },
+    {
+      "approvalSha256": "2a7af028369a11db436679fdec1557c28c3cc7a3ab09ad7f13559c79adf4005a",
+      "derived": "run/S/05.png",
+      "derivedSha256": "acdd72bb606f36926b1da26c75d1f3fb3b07dcb62fd5fbcbdf44dbeac38edebe",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\04_mountain_guardian_boy\\native-v10\\12.png",
+      "sourceSha256": "3d2a502c84b3078c839c358da0504f58381d928e47ce8538cb1056e12526d812"
+    },
+    {
+      "approvalSha256": "2a7af028369a11db436679fdec1557c28c3cc7a3ab09ad7f13559c79adf4005a",
+      "derived": "run/S/06.png",
+      "derivedSha256": "936598b78c4d8d85544141e1513726457787afee5436c083aea1699e2fcf6353",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\motion-strategy-20261101\\backstep14-v1\\14.png",
+      "sourceSha256": "79b878c35cbd3323ac5d839bf425c84c2a9d7581c3dae9379c0be713c8efb269"
+    },
+    {
+      "approvalSha256": "2a7af028369a11db436679fdec1557c28c3cc7a3ab09ad7f13559c79adf4005a",
+      "derived": "run/S/07.png",
+      "derivedSha256": "30f1f037691e3f6d8d3045b7c917809e64f96bf7fa3aa4a462650febc1676cc2",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\motion-strategy-20261101\\backstep15-v2\\15.png",
+      "sourceSha256": "29e2130625f06a1c9973afd17143d8a01b507376c174f7f00a31123c491a6592"
+    },
+    {
+      "approvalSha256": "2a7af028369a11db436679fdec1557c28c3cc7a3ab09ad7f13559c79adf4005a",
+      "derived": "run/S/08.png",
+      "derivedSha256": "a15afbedd3292175e9b93487c55975696e0e62cc99bf97ddb5f0f7fea3541ab1",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\04_mountain_guardian_boy\\prop-continuity-v12\\02.png",
+      "sourceSha256": "5deb9afa371de786162690d4f0818decc99cdffcb3994521289d13f0f66027a6"
+    },
+    {
+      "approvalSha256": "99d2d7fcceeaff8cc6113b64d9760bd5f5c0fca4baa5e04b4fef013edb78ac77",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "917349f11906f21f7688b8c993b7b50fb97f5e545b79caaff848c12ea6b3b2bf",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\n-assist-natural8-20261106-v1\\native\\01-v1.png",
+      "sourceSha256": "f8d29f03a7a5e352f101c82c4b3839cd0ff9c4f7be85d31367b67c4ea4d2ef7d"
+    },
+    {
+      "approvalSha256": "99d2d7fcceeaff8cc6113b64d9760bd5f5c0fca4baa5e04b4fef013edb78ac77",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "9ea2b21d9c2748ef1a8ca24f5c339d548b9e4158a95faa41100b9047f4909c90",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\n-assist-natural8-20261106-v1\\native\\02-v1.png",
+      "sourceSha256": "96588997cac74ca94dc2ca537a5e602af38da49878cabc747b02886d2e6486d2"
+    },
+    {
+      "approvalSha256": "99d2d7fcceeaff8cc6113b64d9760bd5f5c0fca4baa5e04b4fef013edb78ac77",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "98c7e43524414c7abc386c3c0b2323f6618ff1957ecd5de06085ad98fbe98974",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\n-assist-natural8-20261106-v1\\native\\03-v1.png",
+      "sourceSha256": "83c60e2b1b07a1b9df8a0d7eea341e55025c431b684d5583d167d2d51fd23353"
+    },
+    {
+      "approvalSha256": "99d2d7fcceeaff8cc6113b64d9760bd5f5c0fca4baa5e04b4fef013edb78ac77",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "2ed197098e07b57c92e5f0db272ed73ab3949c8ecdb68b2bf8c4939b0d7f832d",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\n-assist-natural8-20261106-v1\\native\\04-v1.png",
+      "sourceSha256": "b6c8bbbc93359168336edef6896c0d1bd21a5851a9de75bb48035edb0052aa9d"
+    },
+    {
+      "approvalSha256": "99d2d7fcceeaff8cc6113b64d9760bd5f5c0fca4baa5e04b4fef013edb78ac77",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "76dfa45bcba88a37534d5356b2c24aa2f46a5af7ec865b8287ad5d4cac5ffff3",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\n-assist-natural8-20261106-v1\\native\\05-v1.png",
+      "sourceSha256": "31cc0c2283be9c343f099af563dfda83cb7c7f25101bbb39c7c21db577542965"
+    },
+    {
+      "approvalSha256": "99d2d7fcceeaff8cc6113b64d9760bd5f5c0fca4baa5e04b4fef013edb78ac77",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "57162876180a91dfc2e8c63c7c8a05bc8dee5c6399df7f6705f44bcb62936944",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\n-assist-natural8-20261106-v1\\native\\06-v1.png",
+      "sourceSha256": "74baf5bb5774f014ebe3801239007c6bcc39a6c632b9e0bfe1cfeeb9f36b4855"
+    },
+    {
+      "approvalSha256": "99d2d7fcceeaff8cc6113b64d9760bd5f5c0fca4baa5e04b4fef013edb78ac77",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "2c48f0e9b52630d63ba7a515442f32af2846b0ee85f11fc37927ab22c9c5d6c2",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\n-assist-natural8-20261106-v1\\native\\07-v1.png",
+      "sourceSha256": "1e1a3c01eedae4c827fb4f8286c457b1c050d24534775292c5b96f743d8d5327"
+    },
+    {
+      "approvalSha256": "99d2d7fcceeaff8cc6113b64d9760bd5f5c0fca4baa5e04b4fef013edb78ac77",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "65cc4917481433e8d123af4127b42ea04d36997276279cdfb36f9942570be01d",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\04_mountain_guardian_boy\\n-assist-natural8-20261106-v1\\native\\08-v1.png",
+      "sourceSha256": "376688c606a0c512cfa95574bfe4670471a98e7001a30bee6e879e8d84d26594"
+    },
+    {
+      "approvalSha256": "a53edd183bc0b699bb74b35b4eaed57ebeb0bdcae234a8ac85b34b76e5350b6b",
+      "derived": "run/W/01.png",
+      "derivedSha256": "052bf65ba5d58ee129d8f9dca60d39256d0a6e48e191909e39cb82becd6ed592",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\04_mountain_guardian_boy\\v3-pose-target\\04.png",
+      "sourceSha256": "265a31186b231c3678c1edcbc8472e6d0dc8dddbb1391a148b1f3997afad58ac"
+    },
+    {
+      "approvalSha256": "a53edd183bc0b699bb74b35b4eaed57ebeb0bdcae234a8ac85b34b76e5350b6b",
+      "derived": "run/W/02.png",
+      "derivedSha256": "653ff3e4e431ba50c42a05b9ad33dc891f633e86714c95ae3c0ee48ee686a9b7",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\04_mountain_guardian_boy\\v13-waist-shield\\05.png",
+      "sourceSha256": "24be5225a55a2e4389f1055ceec9bae159ab564e67c5df7ffb97f7a01dfbc830"
+    },
+    {
+      "approvalSha256": "a53edd183bc0b699bb74b35b4eaed57ebeb0bdcae234a8ac85b34b76e5350b6b",
+      "derived": "run/W/03.png",
+      "derivedSha256": "8c8f0279b621ef828b41af6e07d5cbe204a50884df68fbdf16881921b70609cc",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\04_mountain_guardian_boy\\v15-own-shoulder07-08\\07.png",
+      "sourceSha256": "841ecfdac829b57a8e93aa3e153ebda99cda4e3d7076cc5ff5ceb949bbbbd93d"
+    },
+    {
+      "approvalSha256": "a53edd183bc0b699bb74b35b4eaed57ebeb0bdcae234a8ac85b34b76e5350b6b",
+      "derived": "run/W/04.png",
+      "derivedSha256": "462077382ac310601283859935f9884aad918b0ebd16ef15f7e280caaf0f5fe9",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\04_mountain_guardian_boy\\v10-own-arm-reference\\11.png",
+      "sourceSha256": "b7a319fa10da2c78130496727f216db4b5fbbdcdac870f5edff27e650ab09f64"
+    },
+    {
+      "approvalSha256": "a53edd183bc0b699bb74b35b4eaed57ebeb0bdcae234a8ac85b34b76e5350b6b",
+      "derived": "run/W/05.png",
+      "derivedSha256": "ec6a083c86b945f4365fa2dfeca931b2add4c6ad36b99798fd69fd33dd3ab325",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\04_mountain_guardian_boy\\v14-waist-shield12-retry\\12.png",
+      "sourceSha256": "3ad934ac4db0d1a788a13ce3377da2dbd6d4c01c792e4cbfdda47d13421439b9"
+    },
+    {
+      "approvalSha256": "a53edd183bc0b699bb74b35b4eaed57ebeb0bdcae234a8ac85b34b76e5350b6b",
+      "derived": "run/W/06.png",
+      "derivedSha256": "3701a14a7d42e2b5e3fe02ee5f4397ff1a9fca7d3ee231a8b76eb5505cd2ed60",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\04_mountain_guardian_boy\\v3-pose-target\\13.png",
+      "sourceSha256": "8efa48c7bc0d4c116d99d150d51ae873b75b46984918eb1b0617d6ca71355c64"
+    },
+    {
+      "approvalSha256": "a53edd183bc0b699bb74b35b4eaed57ebeb0bdcae234a8ac85b34b76e5350b6b",
+      "derived": "run/W/07.png",
+      "derivedSha256": "f43ee7da950dd25f58dfe64f91009d65dcca04fe267de4317294c5c47e633513",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\04_mountain_guardian_boy\\v3-pose-target\\15.png",
+      "sourceSha256": "8b9bf85af0c343c2e56cde7f7ead988d9b1be57900db802721a65f93b32200c5"
+    },
+    {
+      "approvalSha256": "a53edd183bc0b699bb74b35b4eaed57ebeb0bdcae234a8ac85b34b76e5350b6b",
+      "derived": "run/W/08.png",
+      "derivedSha256": "9d556657b0371f07d67f98e1196f9f30a0ee84e243d2d71edacd55a139bf1c5c",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\04_mountain_guardian_boy\\v5-profile-input-repair\\03.png",
+      "sourceSha256": "2d95c125c967a0978a52d3f8449abec1c56e6b6ae6d97c184c5c53ea725a7134"
+    },
+    {
+      "approvalSha256": "fdbe9824e05e1dd73d7a2f1c6691f8b044c7bb3273d799cfc8ed461b78995261",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "1b3fd836885d2322967075bf288881d8a0e508d684c80cf4eb97287f3f8012c5",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8f6\\01.png",
+      "sourceSha256": "6e05ef330a09989d67c712e9c4cedbb9534df1c1a8b076c19769d356372ab773"
+    },
+    {
+      "approvalSha256": "fdbe9824e05e1dd73d7a2f1c6691f8b044c7bb3273d799cfc8ed461b78995261",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "b87e8834c08046b1dd51e06e4cf2cb6b5c9e61dbcfeef04751204a9fb8679706",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8f2\\02.png",
+      "sourceSha256": "fcf146fe27617f4eda01c81d6e365bd9af1a5c86c6380e7538fc688bba024b13"
+    },
+    {
+      "approvalSha256": "fdbe9824e05e1dd73d7a2f1c6691f8b044c7bb3273d799cfc8ed461b78995261",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "838e399da35898b291874add045cf26ea0a6fea3a2aebd2e7d79c3830576089b",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8f2\\03.png",
+      "sourceSha256": "ec029fe1f7168fc41b123c4f3d6ea5001c7a6ae457fc2d3c64b562055b6951d0"
+    },
+    {
+      "approvalSha256": "fdbe9824e05e1dd73d7a2f1c6691f8b044c7bb3273d799cfc8ed461b78995261",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "3313b5ba767d194b901b022dfb640b7a551677f4eb025151ff12a9e76eb6ee21",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8f3\\04.png",
+      "sourceSha256": "c7c419b435b0301c186a3aeaa655d28fb7d4d3a6d036ea270618eba90508115e"
+    },
+    {
+      "approvalSha256": "fdbe9824e05e1dd73d7a2f1c6691f8b044c7bb3273d799cfc8ed461b78995261",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "b362f24d073dbf9ca730cedb0ba5a004248bb38178311137c1e25f4d6bfc7077",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8f5\\05.png",
+      "sourceSha256": "a4c85056bfc5e833aff7856795c7e13299804cfd8a153fbad149467b6eeb8d71"
+    },
+    {
+      "approvalSha256": "fdbe9824e05e1dd73d7a2f1c6691f8b044c7bb3273d799cfc8ed461b78995261",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "3b2da1ed55e92cffa3be9f9f31f307ce558ce71cecd88a88bdfcbbddb56a2be0",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8f6\\06.png",
+      "sourceSha256": "ba6496131ee08b70801645897dfb3c72df000627924f2eaf109f0717b3e2538d"
+    },
+    {
+      "approvalSha256": "fdbe9824e05e1dd73d7a2f1c6691f8b044c7bb3273d799cfc8ed461b78995261",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "93ba7c872693b99b8269e8a8c63c1a0b393152f81ef5c6241fdeb6674fc1c9bb",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8f3\\07.png",
+      "sourceSha256": "e8d675dd66d3c516a928ffba90a5ef667a6ead3963ad4586eb999dc3d92fd2e5"
+    },
+    {
+      "approvalSha256": "fdbe9824e05e1dd73d7a2f1c6691f8b044c7bb3273d799cfc8ed461b78995261",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "5a96186d2de8d6ccd71362616956adc0045a82314c78b97f02becfe41321eec9",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\04_mountain_guardian_boy\\native-v8f3\\08.png",
+      "sourceSha256": "9dca83436a8e7e15e327989f8d23f557edbe6f695cdf8e8d69a73f1381b0619b"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "80828608b3437b0b97f0207bbb8be6660aad376a918bcefd9e38e1b02028dc7b",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\04_mountain_guardian_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

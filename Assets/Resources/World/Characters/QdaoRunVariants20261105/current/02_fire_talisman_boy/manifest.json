@@ -1,0 +1,159 @@
+{
+  "allEightDirectionsAvailable": true,
+  "characterId": "02_fire_talisman_boy",
+  "clips": [
+    {
+      "action": "run",
+      "direction": "N",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "E",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "S",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.22,
+      "pixelsPerUnit": 30
+    },
+    {
+      "action": "run",
+      "direction": "W",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    }
+  ],
+  "crossVariantFallback": false,
+  "frameHeight": 384,
+  "frameWidth": 384,
+  "inputFingerprint": "ace0c0f8170801a3a32649651f1e995ffef369c1e3f828f4d234d16762599538",
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "pixelsPerUnit": 39,
+  "schemaVersion": 1,
+  "sourceFramesPreserved": true,
+  "sourceManifestSha256": "6ec3653890f26c73995c4e84f51098a7284f27fec32870f6cf5105be543f873a",
+  "unavailableDirections": [],
+  "variant": "current",
+  "visualValidation": "game_scale_ground_anchor_pending"
+}

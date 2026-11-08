@@ -1,0 +1,291 @@
+{
+  "allEightDirectionsAvailable": true,
+  "characterId": "05_celestial_musician_girl",
+  "clips": [
+    {
+      "action": "run",
+      "direction": "N",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "NE",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "E",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "SE",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "S",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "SW",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 66.66666666666667,
+      "frameDurationsMs": [
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "W",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "NW",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 66.66666666666667,
+      "frameDurationsMs": [
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    }
+  ],
+  "crossVariantFallback": false,
+  "frameHeight": 384,
+  "frameWidth": 384,
+  "inputFingerprint": "34df1e4530c12233a1fcdede9150900be0115f8e79ec4da3e9c15d3ed62b6595",
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "pixelsPerUnit": 39,
+  "schemaVersion": 1,
+  "sourceFramesPreserved": true,
+  "sourceManifestSha256": "20d7e72a1166fe35d80f7c72e84baf65c5f852e18ad0f34cdea64777567c9527",
+  "unavailableDirections": [],
+  "variant": "legacy",
+  "visualValidation": "game_scale_ground_anchor_pending"
+}

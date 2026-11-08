@@ -1,0 +1,2637 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/01.png",
+      "derivedSha256": "22ad51e9301b417045ac068cf6b4c1e0aaa8261007b02c832134b722033dd3f5",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0c9d1f0275db864732071a832261cf257d5983de0e54ab28d3d33b2c514681d1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/02.png",
+      "derivedSha256": "a4b943b68a347defc2727a91df31a23197d25b78fb1dd4208ce417eac08de3c2",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "67aaf7cb2ecd19b0a57ee878b89c709875cfc06c5ff1311223b40f0121a54200",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/03.png",
+      "derivedSha256": "0259ff934d6866ce5a8584aeacf346d0dd8943d0788eb6c2646f765bb6daf519",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4cc34c7279c51dc3623e35a8c674070436acf23d777a6817e3c170d858afa80b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/04.png",
+      "derivedSha256": "f0df0fff12f49c6f58862ec65390ec6b43f26de2925d24a42b7ef2ea5a917577",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b335f95b1fa3d1fff94834f4cb126a1a741edb9bdd584f9b64f0f26b4b4fe1ff",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/05.png",
+      "derivedSha256": "f6903dde6274077aa29f1018ef509b02d5df924ee8d62e23255f59d3fd75cb13",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2092d668e7cc18d9ba9d05e4cc7fe893167c93d8704e5506ead4245731e3a8f5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/06.png",
+      "derivedSha256": "169f80bee95c3a9b00e9bf443ceb644c15d475e0bf5b78770ed8e828b3e39eee",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0c50a69ed15ac3f012d4ca887433597e38c2db32d62d336039231f4c2ced8a8c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/07.png",
+      "derivedSha256": "83edf70d163cbf96bebf5d5925a48d978cd9b453b37ea340c85a4c0cc5f117d6",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "701265e955a8ca6edf194b63246141f6becab9e26d7d03a12b84fe4f239f5ccc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/08.png",
+      "derivedSha256": "d7b17d5da7f42d8294c94b53cbf531e5f548b122836c83affea29ae8e962e53b",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "daa4e7a6a3950f95e0708a5ed8e7377566f704913915b671ff4e0dd589ecd7a7",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/09.png",
+      "derivedSha256": "d4e612a10009822c309d4dadead929fb46cbefa394f4d25bd2b0ce54ca11f921",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1d9c6c519c557c060365bd6c1f6c8be26ae129fef579503b402c59eb5559b224",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/10.png",
+      "derivedSha256": "605a83e4ab1b4391482000cc12babafde638d416248cf07af8a04186628f1583",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "60b6084cee95259a0b0a1b65b1205af3fcbf9dc799296b9d08f8852746e013ee",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/11.png",
+      "derivedSha256": "ad8fa2fa9c5b99a26dd76e6aab673702d2391010218a0c9f4fefe08d54ca6c7f",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0a1225f711a097f8d69bec7babf5668414f2ffc389e6c8158e0689bb1058bdb5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/12.png",
+      "derivedSha256": "8292ce28f5abb623738051b4cb21da14235933dadd84df8a73d871e5abcc53a9",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e6c926a1e8c69c6ddc8d3f9a51c5584949f18d83ab750e7edc4e34ee36816399",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/13.png",
+      "derivedSha256": "38fee3399b402944fce42871223e1e1a4f464b6e9215f5ad031bbc45e13ac253",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c8f6839f381f2ecc081e5a30e05ee1e928b82bf37b33f57cf2b2dd540355204e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/14.png",
+      "derivedSha256": "ce61e2d820d1f1d7d4f05e922b7615ec121a2e817cc8f49c60f8aa5713ca265c",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cacddd5f7eb99fc7b23b5302f2a473fe2a2614d4069d2c6749884b7691cef0c3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/15.png",
+      "derivedSha256": "aa574e3c05ea111bedc1bed75d555f4093e50388b6d58323267b0ab970443471",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b0a6fc99a814489b86a6b0aa49ce25fb696e2f5d3fa315d599269dfe070b2fe6",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "035a664c7464e95e4de256be3a9bb9873be235d4845ff6399b86d534e97d6682",
+      "derived": "run/N/16.png",
+      "derivedSha256": "abe2e9a5c171b67f7bc71ab0c6b9e942c91235262a60b88772a5981e47d47500",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\N\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bdc13b3e5543b903a371f98ae8ff00e7dc620a565507224b3cf7312c30c0af5b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "eca230378e347e2b4711500bb014c293a982d5c0ba5f1593b0fb4a9c6a76dc47",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\01-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8a3325c9f900e1b8a4cc804ab4057ed24d854c55cdb6911139f901a260ec3df9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "267513741ac6628bda37f081bf5dbaa8abae485cc271db0e267db9685d793862",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\02-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8d19b93a81c6fed4075444e3b40b978aefc2285549fe96e3c418c40cfc23b8ac",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "42bbd121eacb20cbf69f522c74f0edb4142db0eaae7f206084abda9e1d5962fa",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\03-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2f14587033c865bf95a61960f03323f05089788dca0491cfe8ef93d8149941cc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "0d6c6c212adb3eed8807bd6745cf50ee8d336a3a8ea9fa7acea72bf2642711ea",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\04-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bc8218dd749a76d1ad41ebc3af5351a043216f0fc7a01cf2ccc67dfce00dd610",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "2c734f1afea26abcf10000b340b9b8f4bd30bb360a8a45e78046ddd076fd18cb",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\05-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7bc7a1b9dada19c260768430d17a813dabbf39f11d1216d5933076c4c5bfec17",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "4702dcc620165a735e78c1e599c028b511de0fcaaf28b7b34724b59b7f4b7bec",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\06-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cde22789804dfd6aff53a87427f60b8dfc9a1ab175c1f86200d89a4881dd3978",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "d783848ed93f09712d2dde612675e2477f1bf7f05eb4096e6078209093bcb7fc",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\07-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a8107e467e88a3c7b88fd76bc8749d36068b15a7f35ec4ec31a627fddba26b7e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "214584acaa46c68bfc220f8f00d23697ec668dffc1fe85bbc1e68ecd92d46e98",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\08-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "73a77046ce95080be38b74ee434f727b1343552889422816dab15666529c879b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/09.png",
+      "derivedSha256": "b42fcce14339faec66d80234262ec04c9504c8d41b7a26ed99b82272f228e8d9",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\09-F-late-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0edb208916a2401555083c450a6582092cd079bac1791ceb7c88252aaff68b6e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/10.png",
+      "derivedSha256": "3b109bca555f2c8d7503d7a909837a67c416a596ff9219040f026bf8a626bc3a",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\10-F-late-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "95b6add458ac9a2fe68cc84baf501aca140b117577dd76939207ace5d400e330",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/11.png",
+      "derivedSha256": "b9faac4f5cc9574bd06be31ff927d6657a61610fbc67555c13c71f8f2d08a8dd",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\11-F-late-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "25a41ed7bdaaa5158feee20ffb588dbe540df44af8bdd2222e8d2039372e9310",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/12.png",
+      "derivedSha256": "7c64967bf140e9e1a9baf60e5ccb6fb76399e58adc955d59a33d03d285e0494a",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\12-F-late-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a22c8df16dabd3f0b786c52fafe1b758b1144f9f7ab3037c951788b465e3afb3",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/13.png",
+      "derivedSha256": "addaef5a4c638152e759a4241e8c59cc849a1d0c2bbac51021b2260749193479",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\13-F-late-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fd9a8f6a158bc91eb684391c99c0f46046b3c25e17c031004807a9a022d4a054",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/14.png",
+      "derivedSha256": "dc52cd2e02a2c18271b4336e7c71aa44ae48882afe28f2f1a166905325bab6e5",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\14-F-late-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f6a7464f6082005fe2b2b36a43d6d70f9567e95caa58977a7c9b1f730a83e338",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/15.png",
+      "derivedSha256": "673c4e4b8a1b9870a978dbf1d51354e29973f042ee401804578ccf6a7df0d5a3",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\15-F-late-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fa46893b41d04dd37cdadcc27f4f251dc887cdcfdeb370a226d4aa7941b40f1d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "51f869c5296beb470b98321123e29e18388226db82011fbe2e5b343856990a30",
+      "derived": "run/NE/16.png",
+      "derivedSha256": "ad998ce1109d2ea1b56556aa7d3b0f58616f15321fbb2c8d16da05bbd1a6c1a9",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\10_crimson_spear_girl\\16-F-late-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "75e9214384a28138cd7dd4326ac7f83cc67982088747552e877ddc5ec74b0542",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/01.png",
+      "derivedSha256": "fa0ea182c49a3681429aa417cd2e878a1624d022cbfc63a079e39cd6fce4c051",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "933d978931aa248227fbce76b11f156a2108480598884810b57c9b7ee1cac5fc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/02.png",
+      "derivedSha256": "4580ca8f35b8234a82b084146f8d151f36bc8aaae767a322748e98726c4939b3",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b7b01505b2b5c53a23d0d5e252d1ff2b85bcbb6427745b0f36c3951c158e602b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/03.png",
+      "derivedSha256": "5017f4befa46fd9074bc7e5672a66105301965b286d481602f2c4a07022bee50",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7320e8abfc4c56aa452cfde37bef52c53f298ab14749b88e5dd713fe43844cce",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/04.png",
+      "derivedSha256": "e03377accd5cba941eb34fdb410adf90458ea1c01eac094b86db7471b019b8e5",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b77df145c37c0860c008b43da96b5df11fe0073e83a22d5768ae1f60dbca6fbe",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/05.png",
+      "derivedSha256": "6995bf86145baf50f1cfa0500e306281fb3796cdc536e5c4f7a94b3d0010c8e0",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "424e8403ee3f0317320b3d185881d0f2a91c09a8bf28c21e70beb21e3b374745",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/06.png",
+      "derivedSha256": "a68ab13fb2a02ed28e0c05663d2b012a8d1b0ad668912670f1e602f8cc85e6a3",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4fce493366732ab829e63c8cddedce24be45dda8745dcb96e464e352b640c68a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/07.png",
+      "derivedSha256": "d6570fc26104b82f8d20df04a96975e704d634dbad5369b362c2c740ed409935",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "71d3f885f0ee5d4e77f36324e0c147f2fd34bd255562efb6be0cf2afb1f54363",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/08.png",
+      "derivedSha256": "1dbdc7232bf1736797a0393f8e58b2efda35bc78ad35d3f24bd9344322bc9fba",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0a5c8ba7b070e2172e7043d137f304b8f60b6e020259c0e381e24488a893e438",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/09.png",
+      "derivedSha256": "0bb3abe564d080a8837fc94f740c27030ca91a193a8b2592545f5cfce6739e97",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f7e3f22f70225be6933a6c0a9d87eea3389e912e31440f71fa8ef42a16055af2",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/10.png",
+      "derivedSha256": "c885f6cf3e34ee120d637b0948d86460416e0176d10c5f2f1537291010892209",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a3eac44d7b207e46ddedaeac22b38d68bb45e0e06fd66376293ecd8a8f4a9b33",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/11.png",
+      "derivedSha256": "a40cbc105a1360d5a74bb801b2d2468f07995ef6099fcd4400f976a356e01166",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "986d0e0a36cba3913ed81b21a45e07b19bfee813f1c1ffd2cee96698d6954e1c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/12.png",
+      "derivedSha256": "504e541dee618791da81387934af22e57fa302a99db2eefe8409f4a8f21aab02",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9cc4875a7b59f1ee9fd8ef5c2fc47ca401cdc0f1b338fb3366b1c74f56770836",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/13.png",
+      "derivedSha256": "b18ca91b1c05433dacc2c2261db138d5b5c3195461e8c86b4094229c38dad16f",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "35f4a51570e7b3ce1e26302939d9d2aef11add2c5a749ee7e27091be4fce0fb4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/14.png",
+      "derivedSha256": "be0c3fcbe309cb16d6ea6b8dabb4dacf5482115a5520c3df8947bf0b7c12451d",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "055a10016d87c6328e8967a474f04e82eb0ee7e8a0feef1ffd67fd8dda3be4e6",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/15.png",
+      "derivedSha256": "c65445ad928e434a6fd3c4d64fa4f00d7a324e93227bc67118877a9b4f6e87b1",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9d5263d61ab7c3c84e5f6e64a17e860ca6d1ac7913e529096e05917882a24fd3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "bd9912332751774e51dd251961af462b35c333101aae128203c2ca146f4d7e4a",
+      "derived": "run/E/16.png",
+      "derivedSha256": "8da3603ae7e0eb3e8ff672cfdb02c9e548262d893f970cfee5fd4090adfc7829",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\E\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3ec9fa2badfa30f9b15cabbf4f5029e68cb9b9978034225d995b4d7210b37702",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "c05ea92538fd1e353da36c304d10abaea129e108f66a846c0688c3effa148497",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "330489660a77276c5fef89db68ad9e29c2861a2b18785690e1b25db6471cc0e5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "0816d2d54cbfc8d5686312c9f245f8e94fa17f448112ba9aa4c027c98bc1e722",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "08c78206c3baca706c8146eb905f4035c16015d832b80ff167352376a2adeee2",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "2ab95fb40bf99e4ae8379f6c9d7f075815237762b5c03794d9d58fbe41c72d8b",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d3a1d59096b382e1a12c492262a1a223f1d983eba98008a3645983e1ef0de92a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "fbed169cbfebbd9b6ef1d4d0c8864e14f9db51c3a2374ef0d98b146ca5f481da",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "18de8c5adc5ae2c2a6c65f4ef2c41ff1d0559a04b47ab08f137f7a0b158a8236",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "ced27a2503229b960550010b91fee9a026b55604ee45d62c211d794c84e3528a",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d5022c5f33749771a7326cf4bb5cbfd74ab2eb997bf073140cb85b4924324504",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "85910e34ce72abd21ccad100682861f84d1f52312e314d1431f5bffa506c81e3",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5806908f79e139acb3017854cde80eb600a9bcf47fcb3d3ca27403c1b1976b6f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "68e6dc45cec9a23e3c41c02400870648d99c9e18cb98d374b520a887d662560a",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0a254155d8b8306525e00c115d38aaa4706679b451cbd272ddee269d545207a1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "2602f1ba0a7b88913d9878f31516e614fcbbcdb8baa09db0a0c27a7d53fa5f23",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9178bc42210f8bb1e84576df5fcb9043e8189f5ad28f8e0433d7cda3d48a4c4c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/09.png",
+      "derivedSha256": "7c7f57532f07ca48117a5509aba1b66cf3f440e749149a1833e1cad94772e445",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "776e40573c309e4ade7171e746b06494bbd5b38216ae98eadb9b65b00cb31b5e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/10.png",
+      "derivedSha256": "bad721e1c02cd4730e9d4d02f989253224901f87bed7d3f3faa0e19e9c4afc81",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9472e3ea142103d74bdedd79c472402bb073a9374c530785a60c12cb270adf9b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/11.png",
+      "derivedSha256": "31ed6612eab30fd76be32a40908bd7a5e0f25851483689efd71644c0df2aa0c8",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "051d01a7e0c149584cfa4043ad7a138e7ff0998cc44a4261d5ecb0b132d899ca",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/12.png",
+      "derivedSha256": "1474923cd496593aa2fe7f7f4a3bfcf51fd4d2a740a5eff5b4d76e5b4283798e",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c4c6ec1173745d2f168324033d76f07c6cce94f63a15abe4b73b1f560577ed8a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/13.png",
+      "derivedSha256": "8ff842ce4ec6c76909cfceec6d29cfc93278d496d631767219f056713b600be8",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bb3297fdc309831e8fa38dbe807181a35c60bdcc0996a77ad775832dcb0f6ba0",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/14.png",
+      "derivedSha256": "2c80461cc417fae3a654441bacaeb66942ae042a48fdf9cdf13b71e6d8ce51e3",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0a0a0f024a8a2186ccaf60416aa44c3dccee4da6d90fcaf318f23d2ed4f58988",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/15.png",
+      "derivedSha256": "bf5b4e5da3d3af3540e47088bcbe8b3bffa76d113058631709c7771af9ba25c4",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b06286c8d80f65b2c7537c8d681c4764012dc74558efef47db8f35707f0965e3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "78b8d017407f9568b8f41b32f868024a34705efe61d9cfd84db84ca8aaba0562",
+      "derived": "run/SE/16.png",
+      "derivedSha256": "0ba870527c6355b8f514192a406b8b771734c9a3b79ff212b5045597b9697956",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SE\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "31f762fed4c4444dfd923840074d25dacdb1189ad74d196b46b56108f1234d59",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/01.png",
+      "derivedSha256": "4fb73c5bb5b61b70ba30d57723c4b05126537b76002f7f3ba355eebf4f6baedc",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "dd5c192139745d11adb4d9fdc2c4837788aed5b6e2c16d1987249ada811ac224",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/02.png",
+      "derivedSha256": "8d795dfd5e9b57459df359f88de33cfdc05dac8d99f3031d16eacae8f62bd37f",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "350b0915dada8e9210c4ebb90d3b54c84b6c9792e8fe603845718a2e54833320",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/03.png",
+      "derivedSha256": "89231b0fd64cd3a4cdcff7b83c80bde83a81ecef6070284feced40b7c152a930",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "da19b0a145a960d79b99565b82727fe911a26a2ee32242b29edea131bb135d23",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/04.png",
+      "derivedSha256": "416b9ffa9dc49e78553cee549a2a4a3a3ce50932ccbf26af1245002897fe0d4f",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d7ab9035b814b698b1fb2fa440c9a6452dbfb07c8619180f6621581a65830772",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/05.png",
+      "derivedSha256": "2376f62a65adafff5dadc80cfcdfd5c368359f58009abe82cd3f8b1ea9b8bf76",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6009bb4b549f7625ebb471220e2a002483cbe7ff54ee57e1cd8fcadbf59eca22",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/06.png",
+      "derivedSha256": "716fea6433b99293f6eac88aac7234840b76cc64109ba64a387d3f8201ee8019",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "455d5732b32d8b3b518103999e9555a0f031d7057de07426276abb3e10e02632",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/07.png",
+      "derivedSha256": "3a1058f31d316c82614eb605e0f5b4a95e325ecaa4e0d6fae2eacc583221504c",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7027854c3524a0607ac3197af66d8c86b108ffa31cc7fc2360980b8a4f748990",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/08.png",
+      "derivedSha256": "22f2e5d3c46de1ccbf8acddf909c3cffe28e2b584c0a71adccfbda8939078e42",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8d6e6a4786bfbf02f383ecbbe0d3a7e6753b84a451cb7d541b2e1aaecb7d7323",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/09.png",
+      "derivedSha256": "13faf5ced3207238a8c05c8f5be4955395bc1c6e086a7905f34dbb90155bf3e0",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "45007fc353e3ae82436ed830b99bb6ac57eaadeae35e1020a68dc1c4653e56bc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/10.png",
+      "derivedSha256": "21238ddd0e4e4c378d969d4e361963bab87d08d2f86fe6963f2113232660034f",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "16b95f8b21bc2f62a9503a3e03e64910374e384ea2a749ac093462c405c7d716",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/11.png",
+      "derivedSha256": "3dc7d3ac2481632fc2c05a09e9a957a63488b85c9bbcfc4c7a5cf21ac4e7c631",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bd373bc2839356b80f1438f55f3ffbca506d43ada089c74d17b7b3672c4d5b18",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/12.png",
+      "derivedSha256": "390c9e019c235a358be8122020a48afa658577b9b84097cb83de9b4524b9aca9",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f815ee5ab16ddf44d8561b209e671a16bc5d70de0e30582caaa09b5cfc19abb5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/13.png",
+      "derivedSha256": "901a3af91e053efeba3edcbb045f67f4f21e633e790120afdf848a5ca0992b72",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "63c2c2c89c29812bce7a3c1415ab14790329c99e12de5fe73416518d4eadca31",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/14.png",
+      "derivedSha256": "afb6d9fbe4fa4603227072b497edbc9d06654a4535fc783c37230d21b8d6b894",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "acc3242133ac409028420387f2e8001132a1a46d12306ae674aff212ac0d31b5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/15.png",
+      "derivedSha256": "8e6184ffcf4733c741bbb31517adced902855179ca7ba30d443b2dc932a10902",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9c92c75d1e3c7985303c396684c472fbdf47a74169e9f7a79fe33b1b984b721e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "e6284ce47f012231ca7323987bdbb7520d6dfb757cbb01161e409f46854feb75",
+      "derived": "run/S/16.png",
+      "derivedSha256": "e7eb6615f665bd233e979c2a4ea8bc5d2c662398b4e9f69073207bf76c6ba846",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\S\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "10883d93b368607aaa546ab0af6ddb56b77989b2e19cb85d691d6bee90fec5be",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "ab189225d1950e6d6a1e6a3838cb5ee4daa42930dc94a508eac0d952f011fe3c",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "24838dc4749b81ae62a62ca0fc05fd3e651a54f38758d3ef1b923f682d091690",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "96c129d628b4576a8997dadf03be3a82588b217a100f46ab7ebc0e19af0857f0",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1cb8527b01b0c81c4663d6724ab6123931a28b23befd845b6730a1da227f25c4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "cf75adc158daf5f28542860126c584b6a32299e64a52cde8b8b4199ce6b02f4d",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2cffee007203407f576aaad25b3dead8b06a0851c6cb0a6c9e270442dd073bcd",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "6a1b22296036bd9e0e2c9a19561d686e9371750b2880f9d9ef523093e634553e",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fffee769e2b260f54d94deacb6fc77129fd76fbe0085224714a786c0820d3716",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "06036e8ae1711289e4fd8189c35eb24cbe4ddefdf400c6febf90fa6d995941a9",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "17c6b1ffb38807b947c3173b3d07c09c0bbff57c5bfd9671e8482b9fe5ae255b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "e2daab6ae03c232c36a16749f3dae8a66322f750202dc3a5ecabce697f463e82",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8daf405f0a9ff9125e902f4aa5d964c16073a6f65410c010b0d5be80e36dd1cf",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "6a50f3bbf11d83ee93b9721b37ba77576fb43c989005e5084dd0606b60d6ba7b",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bbe3f09a90bd545ff48eb7a9f25e9b8e5990caa968e5496e7a1d5306cd64d880",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "6b4f19b734101b167d7a391b52a79af8d883e1e35a8df0c0d8bc6c2ac1fc193a",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "15aeba2aee649f052b1e5df4ff6f020046794b56303698d4cd5fff2e7add60bc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/09.png",
+      "derivedSha256": "bd5fd6ca28bfe2d58ba0b71667670eb22150c7c495f943bf205f9a6ceec9a928",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3404eeb3de2b74963fa23774a9830aadc0258c9d479e821cfebac53ffbb156dc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/10.png",
+      "derivedSha256": "051c82751e7b2daa54a26284284f55deac8f30615a88ff5fb07a18ef73e5b97a",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "33cd27f140f798c73390292a01b54266db460427d328c761d700f94c2f7359a2",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/11.png",
+      "derivedSha256": "67ae3378f88792796d83cc95bda8ceecd9fc42d228459950ffa83d5a997f8af6",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8034f18d6943d6813559253a9ec1f722594fabb6177bde70db9924e9d80d39a4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/12.png",
+      "derivedSha256": "c1618252b57224c9fa9162ff3fb805777d8af446ccca6af2e0da6131fea3837c",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7305c49935923eaa84f0ed3a9d8eb221fe9d89790b0b329423f9b327ea411cba",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/13.png",
+      "derivedSha256": "5b28f964c3c0e9ba85047971ec47567855faa5df4ba70ea22efaf3a2941a2cef",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0ed5cfaf62a00c44ee5a3158f1ba8b1574f9a7ba58f54beb593d840ed01647f1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/14.png",
+      "derivedSha256": "fda096be3a2ef1e2076294aeae296f9394ee4f3d2d88a057fecd5cc373d46bee",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "172670fa8a5c2505d17795dfccd4fa0b4f9095bd8d44ba341fe9e4dffd8f0027",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/15.png",
+      "derivedSha256": "e98e9c732a802555bb60534aef3281ee638f4e05086685b10405f47278c6b11a",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5a3eaaaefc29836b76f929fc4a3b6bbdf316bad6181b66a42b644da8ea884fcc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "ebf848a66b4d701678157b91108d7999f6bcfd791343d1a1ef179ec3298e8245",
+      "derived": "run/SW/16.png",
+      "derivedSha256": "dce9c808a115ed27ff6aa6499098d7483d5299c088eae849956e5ef75eb60cf6",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\SW\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b30b4c8bdb676af136fb8d85606517ba45e9ce6886a5af479c2aac90469bc4b2",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/01.png",
+      "derivedSha256": "5ac746ebafe0b0a824ee5216b8a07fa201535254833612c553532bd8594c939f",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0d298244067485867516a3bfbb76f107721feac8167d56dad00a2b18242aad87",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/02.png",
+      "derivedSha256": "62fadb19faab8f632130b7d2598402282a67b54de100793c4ffb516259f1ae3a",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "36b1bc5e65908b594f3385b18fb68809e3f0b395dc69af96794f62d2f643932f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/03.png",
+      "derivedSha256": "374974be66f1e8bd5e04e1ef3d12e64d5ccabcb021f6fb43954b41b83bdd1491",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c32857f6bc0457533019b17b7eace0f54fbd29ebadb33e1248d2482611a3a705",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/04.png",
+      "derivedSha256": "017d4511803b467efe471ed0a34fe8a7338b3ad0badb2239892cb3a5b6d814c8",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "61ac80acd8defee565883ee4b10b0fd4199cbb36a7e85211056bc502664615f3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/05.png",
+      "derivedSha256": "e7ff4b533c489ba593cd48defa4f94e5834ad945b30a42e7cd023dd1745357b2",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e7c1db74adb33268cc31bc698d1df8003cd51bbb384eb3d4e341ca233ac31522",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/06.png",
+      "derivedSha256": "4e451a0575accb72cd5ec9e0bd42d832b87c4a91633ddbf6ec50cb5dff60e152",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e8eba3a2f0eee2596d0941d9bdfda1bbaf0d7643353331d1c883f526dc3c45da",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/07.png",
+      "derivedSha256": "a1b067a9a35a803365a9b36aeaf8e4037207745e8c9dfa19bf6ec77e4fcde5f4",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5ec6dac7ecad1ccade3116324efe27ab2e2d6e0c35d00ba1200630569e415177",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/08.png",
+      "derivedSha256": "6767c5dfecc53864e95fc1f3e255cc000fda716231f70f61b52e359c97e42a2b",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c649b2bbc1e09609ed1481f772717bc6d382c3f3531009f686c7e499e54147e4",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/09.png",
+      "derivedSha256": "ef77a58afd975dbade3dbe68653fa0db4e177ea9201a186fa968fa9a597659c4",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "64b62c5944be0c746aed9bd8014c46d6090b06aa17fa4e290364dcaa34b64863",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/10.png",
+      "derivedSha256": "82f00bcbce6c41b0abddc98b575aafc0e87eff7dea943ae514db78603a6a261b",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e63a34877b39f88303ba45d48601865dfebc0fb3e6a654cef894d34ff81820c8",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/11.png",
+      "derivedSha256": "f5743ab7832e42e870f0afe2a739fc92258e41f8a8014081089b6cd85822b07b",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0fd4a06271da1251ade9949a06dbefc5b6836a98340cbbe39698aea5b6b4e5f7",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/12.png",
+      "derivedSha256": "3e3879f22d6ca8c273733fd931a223841b109f9d2bfc1bf95daef2c0cc7be6c6",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b17a74da3efbc7fa6e395a19cf43a9c81a1428df1b6ed3d0a73d13ff385b5c7d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/13.png",
+      "derivedSha256": "bbd47cbe444cda10b1928897ecc197e2488739629c68e20ea358c570e188e369",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f8a489c51d6197b60b48720370db2b4df6234104e5c4c1ff83e906973fa3ae6a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/14.png",
+      "derivedSha256": "9b907128b6951cd6ee1fe65099e5c8599d30f70b637acee1fb2466d08a811767",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c71a601b3fc0679a07b658c60d763c2d87316b505dc1fb5082bbbfdba725a1e6",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/15.png",
+      "derivedSha256": "ade60e486f0ce7d90fa31154127c1bcc887940e6524462b277c70484f17508e3",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0075ea7288a3e9f731d639707610e4cc2dda97434ff5c0b602b9c46f8d939241",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "3115ac5df9db4c04befc2357a8fa84d7d0067257ae1e25ac664f8ccd969fc3b3",
+      "derived": "run/W/16.png",
+      "derivedSha256": "18bc92cbaafda74f01cc1d7f8ce91cb3f26c0cbccc605417bfc5dfd7a8824aff",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\10_crimson_spear_girl\\runtime\\run\\W\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5cfb299abdfe4de7c167702437bb6f30f89d4f0753b1480a004ce370ceef7316",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "3984097aed5faee806908dc6ced6288251fb05daab2d70a556bd402f6c2d56e3",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v2\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "aa183b93cef4d9083e0088a1dbc8e0328d527ebae4dffe8062bdb82420bd294e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "770ce0465f6ef3814b37bf4087284bbccc55dad713d3fa7dab106b3cf1ea23ff",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v2\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "94368daf13626e3f03cc22af93248f2f27d71cfc9645229f0cdb97ca14ea2827",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "3f0513d3e384c3dc07f48333eb0a14cc86b7b68216f17602faa6e9eb4ad6262d",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v3\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "51fc2b4198e3319532efd75a3af8d24be9919e2355dc2222886c9dafa3f454f5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "3f452b8cdc5518129d07c87c035978a95ff26a89714f5a6608794004cd9483a9",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v2\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "46c7633ce3455aef6a1bb3059d0672848f4dda3787f534cc384490acd9dc4e6f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "cb3ba7ed3ddf14848a40137867d32fa3430be7f3a8787f906b5b0d5c13a590b9",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v2\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "210ba5cfce955ae72025fc15cb5ac52c91875bde8e13bce8f333c465e8aefebc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "e5488d6d019787b2f1abbaefb200ebf056029e81a6d14678d7652604baa151d7",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v1\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fd1ecbd33fd272f8b4471dc186854dc932534703f62e4194017073a2aa329edd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "f4a0c5bcc00de02657ec4445bd8a16d5ac958e342e41b7d794e3edd0321967e1",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v3\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "101105fbcb4e5fd3b623f65e93309001c16deb939fa4375e510d2551779b6be0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "6cefd9bdc38cfb2e6103ffdfd27b556f9276edc7fc2116232dd18699b70e09b1",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v2\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e1900bafb7744c2266f773ec308464816de8f0b81bc026e17212138d5000842a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/09.png",
+      "derivedSha256": "90f6c34e42fae7175aacd2091e2ab0d86d0b619ad7d3004e7fe4fb9a722e015c",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v1\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a220687f4d99d8d16efbfe513bdbc5d857bb70f8b0a2f9bbf67fa88b4d26ffbe",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/10.png",
+      "derivedSha256": "6cb97f5dcfb47a287d5a0ff8a93b85d37c46c2ff40d37001ef2c7fc0613c0fdf",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v1\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1aae34e5f549c8cf013920dc5cfd11b9ecf4f233ed91e73388103cf16ba5eee7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/11.png",
+      "derivedSha256": "fce685db25ec4dd05d77ac556cef1b201928c1f93db013e8d562ed35ceceec3c",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v1\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9ee8fbc5639caac76e5ff61e66e5490ee53978ada93959306175754bfb87c13e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/12.png",
+      "derivedSha256": "43fd55b82523af1a412e84d2eac2da10171f912d0bce73176c639024d04f874e",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v2\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6164ff3ca4d64988cb1e608b13544839dcb81a1de2d97a7dd39ae713d7c7f0c1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/13.png",
+      "derivedSha256": "17da4b8ebde3920cbf13f5c1299212501421f92956fff78073a1945b54677b58",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v1\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "35093949a77b603b59c21a0b3a452e0b727be3bfa1cb516d0a65e6605f6ea546",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/14.png",
+      "derivedSha256": "8a34050c7785bb07b814d09eab71f92140e927e87ff38ea5398f8e43af047b35",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v1\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6a4bedb5b40edce448abfdd11071b8d8fdb63a9f17aa46f030669b18a4ad0e07",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/15.png",
+      "derivedSha256": "2d766ee32079fb81bc43e0f2c4d8e788f4cedf0b6bfd7616da2c583747aef93d",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v1\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "61e47db8b62108794d28bc8e2ecbfab64bbbf112a37600db669d7a97197f6b2f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "dda39ae69e63586dc03fa18ab18a468f42ff4733158fbafd63bab6bdacc23ab8",
+      "derived": "run/NW/16.png",
+      "derivedSha256": "8566aa74d1b5359761a55633ced2a56d4ff4aecee73dd9ef152022829f97bfe8",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\10_crimson_spear_girl\\native-v1\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "03c9634ae7d1d805eeb9c19d1a4f5db5c2950f10fc40144a182cf7277ecae74b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "a43eb2be97b4a09bbfb80a680b52b20ee38db67bc0637a2a57b4b3cf1b14aa4b",
+  "nativeCanvas": null,
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceCanvases": [
+    {
+      "direction": "N",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "NE",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "E",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "SE",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "S",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "SW",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "W",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "NW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\legacy-preserved\\10_crimson_spear_girl.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

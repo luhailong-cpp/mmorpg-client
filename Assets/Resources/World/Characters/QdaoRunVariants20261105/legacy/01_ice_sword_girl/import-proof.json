@@ -1,0 +1,2640 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/01.png",
+      "derivedSha256": "ef2c51d57cea62229c11ab982a13c6e1a73c2e855255bd68a885baab4c597c6c",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\01-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b8588118588290ab2919df65b9b20937524631dab3702f4d63d2b071c50403fc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/02.png",
+      "derivedSha256": "e60454210710b32455df7681f6636b374bec1ad1799f7ef83e007d1a3a1cd334",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\02-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "74858b93569a6f09808dcd0722659bd6d3aebd4e114a479ebc5fcf06aa9de1a7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/03.png",
+      "derivedSha256": "ed5129d23bc608ace3418490bd0df634364b5a555fd0359069fce5834fd34ae5",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\03-v7.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c9ab17a3b05733e8fedc193addd117400c3945c3b90d6821b61cbe2edf5051b2",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/04.png",
+      "derivedSha256": "ddc1c2c86241c1ac7fa7b209308733e5fc88c7d89e0dacb8c61cc78cf8628422",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\04-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3fcf25ae6204a50eb57c3325c1d5cb1ba0a297fcdf957d49c1d80cead17ffb05",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/05.png",
+      "derivedSha256": "b4ca6b1ff4c617086b071c2232fa5a764a0285f337eae885c1e7fc102d946961",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\05-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "115a78fbd71b955a49a4147fac8ef4687a160a70c9b3188ce2e5e9e68ff4d0b8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/06.png",
+      "derivedSha256": "f37c3851619c63dcd46070e3279ae77b44e69fe8fa52d989c1e39aabd5861a39",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\06-v6.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ea606b31abd23ffdf7bc09bf9dd3b164d8ae94046af3e54654b9e2418ec6e8be",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/07.png",
+      "derivedSha256": "f1601f03fdeffe4bb4dad8ed6fc8caa57eaa34d2e6fcc97ee02186a0adeca65c",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\07-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "12f55912ae5f99255db7c1ce83361d1fac431b5b11a43414855913d995175b27",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/08.png",
+      "derivedSha256": "59c6a20d131a9b497a596adf3e0b48258d4cda94b6f722101b17ed1d1260d923",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\08-v7.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e527fd93e0e5a9f3c45d74e2714a212d21b66e49347c2e126092ec56deaa75c8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/09.png",
+      "derivedSha256": "e9c67e9f8d3e4a53e432ebe0288919cb92518541d6ef3017258965cbf9a273ed",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\09-v5.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2b56086c882ce8c9464e3554d84f4b89aa5ad7a40d72afafbf248116af09d20b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/10.png",
+      "derivedSha256": "8666d4cfc9cdffed2b8a5a8c071c0d23df99796fec7196a739718eca65fa8732",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\10-v9.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6012fe00a4a9bf07691b5d676ceb930001a4f657ffca194523c947c09121553c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/11.png",
+      "derivedSha256": "a70232828dd020ca54a68c90990d1275acbf5ba6f6be857d4528cbd74c0f3208",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\11-v8.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7b368c8983d777199c48696e4254abc9760d3728dfd4dc1b0ef3d41de8e700ba",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/12.png",
+      "derivedSha256": "c17860f2fa14cf9b9c78439a99e497b9cd6c858f6ec416ef6724e81df76e80e5",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\12-v5.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d7ab1b99b6e7e166aa8fed4f9c5764c5e695aaebf0cd11057db6c40dc49c6b92",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/13.png",
+      "derivedSha256": "0300197093c6144294ab1024957f440249642c6f89d825fc82c914416cdb4264",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\13-v5.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ed9eabd2aba0ef8660d04a28696548e266f4cb04e93158eb264f4973012e95bc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/14.png",
+      "derivedSha256": "c86c87acde2d8221293f758e3be38d8d8b145d154c2d8b842a6063d44a4c881f",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\14-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c2696e229df6d980c1d7d54b1cd187a2e596ea38bfa388eae2d6e67bfce3385b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/15.png",
+      "derivedSha256": "76d830afab2eaa97db2afdf1bb2de3849d2048aaed72ce73fb75da916692bbc4",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\15-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "01fad2fed9f8ee8730ebef321111d67e03046d0cc845901efc28363de61730cd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "22ba137690d378d3a996f9b12bfa5b06f227cad0c1e6e655d3fda201cc314217",
+      "derived": "run/N/16.png",
+      "derivedSha256": "9adfd40e1a41583b5d2e35e39f7f2b2612cc423e67b87b7147352f9ccc244c8a",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\01_ice_sword_girl\\native\\16-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8a928992b8220e5b0ef974fbeb22be282db7087b4ec8b78708814ba6f9abc0e8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "3c488017bccd9401cd8f1af7b29cc41b9884c0aa3c34e28db079c165f72384b0",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\01-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "39a3b595d22e1c159b9c60cb2edd430ec2ed2f359465cd82cebaf8dac0dc7a90",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "803c2c3ad2ffc06f44a5017e3d9b1fbde6d7e929c86b339e58c82458f41dea51",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\02-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f6687a0734770cf52810f098ffab1189ab14cd1b3963d98fb36ace80e07b1596",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "4d6575ac66f5dcf1443a0c341e581bc508591e1902e0a6dc2a04c263694482e0",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\03-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c049f7df16f340c41cf55d2ceca1904078bc32398860ef88c0f4c759bcb147c0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "1c247551d1149aff5e40c8df7f588e3ec58da02e88ad2e1bfcec30bfafea35ca",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\04-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6038fab4399f4663a0ca97e1281f00f0ad5ab289d2b24789dc39f72f26f57020",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "6ff72b5c4943e211e7ea0fb45d89a18568739a02d246f514dcf8d9fe0e371d0b",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\05-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "025bc04b06a1a1b0c094eea67391e1053178db35036b91dea108c195a9281e0a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "eeb0bf3ae471a0a83ff596ad2f289a3b1ebe486515510317112eeeb420e6064f",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\06-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "937a63254aeaea165035a1bbe3aa8d26bcd7bd48d840e4f537da45fd560be39e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "da20ee60a8a6063fcd16e360d4ce4cfd81b2c5d9ba83674e296d6aba789ed198",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\07-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bc42edebac4456f73c4dd8d1987fdfedf0bcf3892b6eeb2d1a1d1635d52f2906",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "d1ab70c04c845827c230a7fb5709a281bdf71a4e9d471ccb0bef9a4526c44a3b",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\08-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0e7ab7c361a981967d6325be40dbce03bccdacb1fb6cbd864db19634af58a3f5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/09.png",
+      "derivedSha256": "7d0e60fcb41b6c2634b1e9730b19bb4b95d49c830f1e3dea4bfb2bbf86e32f5f",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\09-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "49f9c73032fb2a59c516321671366f95aaceeec9473d06b58a1658dfa95148d0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/10.png",
+      "derivedSha256": "53a5ef3ea2467181c24b381fca40e641d895e1c5b79f0a210d0b447621126b66",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\10-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7ca954f8d6c154b63ffd9301b01db371c530d4e6799e0f143fe070b943fa9052",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/11.png",
+      "derivedSha256": "f1de8a5b09cb94a216930b88ef855e87ba490297c4b33698b88a2f2341f43f2c",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\11-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3efd31da67d4f104c2da157040dd7f784f0dc30957e92d31095e28b07a716a5c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/12.png",
+      "derivedSha256": "f0f5ad40ecb87473355b748fe7c6068d047d273460ad7c0855901e98e01cd43e",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\12-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "028d736acecbeaeccbff5f99fd6c31296d94d25e8ce706ad626eeedec86d8482",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/13.png",
+      "derivedSha256": "df6e5463287160259ff3f89814502b4ecd74595b531bf5ba4a9a91d3c61f3dee",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\13-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e07505ab7d0015e287c209237644c9163d4ea2a1d1416c73b34d00629c2a27fd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/14.png",
+      "derivedSha256": "b1707bc0ba2d128d1668c000aceaa9aff30ae7425e704d3de5c29e822a6b57a1",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\14-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f59f9ab599fe366624062ca4af514f715bbbe350f43a88463ab59745e4ea5996",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/15.png",
+      "derivedSha256": "53b17af0cea338fb3a537b59709522880f58dae12fddfbdc94453a22880bee89",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\15-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4df96a4a2b7ddade69629200c90a47b9237b0fef2b511dd48121c1877b50a61b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9c0f4948dfe2b5fc668904bc6450b005d70642f682785e50572457586c91f9f5",
+      "derived": "run/NE/16.png",
+      "derivedSha256": "171f11646f6d13a74414ceed424176a245e3664a9406c4716872f03fe274df7b",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\01_ice_sword_girl\\16-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "838ab1b84eef49158178544871642b986763f8f76d6186fc116d4ec72f1e1de5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/01.png",
+      "derivedSha256": "03b24426d984bb92acfa636942003311e0a39330cb0682789d4aa370ee07e534",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\v2\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "db8cc815d27f92d8448a15f4d4eb0c398e99a49a8fdbf25ee8d610ecfacf91bb",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/02.png",
+      "derivedSha256": "09a25399d0b002f7ab8a51b45c7e5abd245b54e4a6e3bb4bb7a09eb3b56242d0",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\v1\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "eef4f30c5c7dbdd5154994766d4883f2baeb2725f1986963fd9c9baab16cc9b7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/03.png",
+      "derivedSha256": "3d27576fe5bca7e0bd63873b5e527413402dd9696e02c20529dd4da377ef1ed0",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\recovery-v5\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4fe6320b47acff9c9977a722a35689df4fa49ed4c2b4588353411387d03150c2",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/04.png",
+      "derivedSha256": "eb548d993acfae1b6e83cf10b729215297431ca102d6d0957ad65bc305676c66",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v11\\single-guide\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8eb58742f0508f9e779bd14b790cef538a9ecbc7999da91ba2af040317dc9c45",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/05.png",
+      "derivedSha256": "fdcfba5cb7363951e9b3ea37bda4c10e2c947057c9966096f85abfbeda58b53b",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\arms-v2\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2391007bbd5081d2e291a5894069e95ba5e58e6ec39b2ef65bae9869286595c3",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/06.png",
+      "derivedSha256": "d8d291e27f11a0a96bb6bf026ea86a2809319bb0902a7c90eae5bf3b6af4ff24",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\left-v4\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "397fa15fa626c467270c1d57e2a017b7d4b5fdc61c7249b3b412084d97b9c8cc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/07.png",
+      "derivedSha256": "404519597e73de66c60a36b3e65e02559693cb5551bd83459fce2e2dcec6a6b2",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\gait-v2\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2858e53cefafb1f4798a828223dfd648b44766330f9f901d5e01d4779c802429",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/08.png",
+      "derivedSha256": "f1bcd7888bad112003d289143c404fca185ffb98d4ee58f9eaadd813655bb3f7",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\v1\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "13ec99c12eb38377a73248455fa222036999950fc7f5bfa683bd22fe469194d8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/09.png",
+      "derivedSha256": "7660ff0d329c973d4be0fbcf05c113eb4474e769e1c297a24c721a9d42c67396",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\boot-v2\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bc16cc9abdd859900f9a04b1cc9628c274feffd48dd873c3d2c6848e389604b3",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/10.png",
+      "derivedSha256": "35f5018fd4bbd25ff6b97c1db80bd3811d3c0849cd3ebf8af39054ab185a2e4a",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\boot-v2\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "79bb4ddcfa6331244166881134f2ece7bb2229e3127c2a1ab3f885112d8d3754",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/11.png",
+      "derivedSha256": "c855a2da3dbf189e9f55366b948658a74ff3f8459bd6b7f1841a83b5dac1677e",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v11\\near-right-mid-guide\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1b69c28a9e6b2ee7deab1bc35b074c1d8b29641b8e65cbe8e7e476b96f23cb10",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/12.png",
+      "derivedSha256": "794e8202ff0df56537e20f2279d951349ce3ada48dfee546efd85adc51000d05",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\prop-v2\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "06691cfd0228c7bcbc2e1a181c269e205ebfe7c078fdc6c1a19e7627ad4f77ea",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/13.png",
+      "derivedSha256": "c78486222c2b46104a4985f06273101b882ebae09158c214e7986aa994aa96cd",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\arm-v3\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0c2bb3473a7041e157fadc741cf47863cdc3bba44335512be43cd7234501e30c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/14.png",
+      "derivedSha256": "49a94c8d0f440592045e84ca344194daea07e478a15f8e2d47b02721da132661",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v10\\left-v4\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9936ffc8907e2e771d1ca0bb57b16ce5a81a041c8622074c2bae53079fcc06b8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/15.png",
+      "derivedSha256": "f8b23ff8be9791448861ed67484a22224068eaa0f9c489b77cd064c7f06d95e3",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v11\\horizontal-guide\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c6223481d5b3ffb329e94a9916c1f71dc0065cd8b990db36107ea436d94ccd1d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "714fb78659dc2b2aea62424667bb3f0b360c25939a4e5e38e3ed381232135e6b",
+      "derived": "run/E/16.png",
+      "derivedSha256": "8cbc016ecf2aff8ab65b98f30bc058f226a28e0e85ce440a92c689f4c564a5ac",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\01_ice_sword_girl\\native-tight-v11\\weapon-length\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b0918f85c5dd180fbb3104c0c47470355c4a80d0bb276281ea90b50ede9db52d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "af8598d76e3a90fc57a7214867c6fbec96fe7a75d1908b8910dcc690ea776042",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\01-CF59-native-own-card-rear-seam.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7477ab5e1a025d3e6bbccabd4b52e76d5b5d36a3beb9a3230c4a4ec5f4ce16f1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "6dafef9211d49d776b4d2647fc503c7564f3a6a66b77d6728ed4a58d0b1b4dfa",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\02-CF58-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "62dd0d1028012fc21b36503e329566656b2fb501ddc4f0d93f2b4f1faaa4bc48",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "fa57328be318d24a84730280e72d3e32a6de7275fe9552cf5389a17b9f71b080",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\03-CF60-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1dac238eab71e5f59a77ebab8221ed43ad982db8dacb14e56c5be4fbb368080c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "7d2f95e345cd691f9e0c85fbfe4768aaef1f719e97951463633c5465d1c73115",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\04-CF61-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "754c8de24dc3ea6a7eee9ca41a8dfc48caf9de8656cefb67487986abb64ba80b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "3ab5d20632c4ae62e3a4f32751e8959bb3c35d0e00b963ddf62bcbeff4599927",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\05-CF58-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "66b622f4e5e7a1dbb4d9a366d82dfb0ed6961315ba40a0b0f1be94130ad1b704",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "e0b55888e6ce92592ec29b3519ba51ddeb52358ffd026dc7158f23743f74f47d",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\06-CF58-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8c50caa565f14c6d83c54f943c4fcc785591befb5918c933f8ded489646a7aa0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "7b9409d85bed0a1744212a78acfac288adabaa3166e763fadeeb5dd1225dc508",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\07-CF58-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0cacd14870765887618464ba0ac1dc5a3523c4b6d2900a5b414b3bac3d1c97bd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "cb8699257dee2611cb7e3645806916a5476fc920eb319f309a9df87ff3e08000",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\08-CF52-native-common-body-arms.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0410b2433d41332eaed758cf6208e9a1ca471a246e2f09bc582681b3821157ac",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/09.png",
+      "derivedSha256": "d17ba98f62ddd388f5a475f9ee3a7697da3e26246bb4ef91e34907b28e8285a2",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\09-CF37-native-right-frontpeak.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "349ef4d75f326bcd54b24b5569d02bd22e063ba348c7539968f2a540fbb525c6",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/10.png",
+      "derivedSha256": "5f76cfce469f5c1c7a724372aa4d8e194a94015dd537e512874aa27d77b47948",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\10-CF52-native-common-body-arms.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a52ba9cee41b50716e549fa4844a0968facac3ecee66be7df8e934f8923d53b8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/11.png",
+      "derivedSha256": "b308902b2eb8c16d43655d5be4cfff00a98253a2889e6820e8197662efd91a9f",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\11-CF58-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7001d47838867cc96c4c97ad688bed932b76d835ed45a565a4a0438a34c42463",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/12.png",
+      "derivedSha256": "32facc2a6e8fd65796df59fd396dcda0af7672f36ec45bb7a0db191afb54673b",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\12-CF58-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "89a72357b7f99ffc9403fdbdd35183b8c5b2cbf5b7cf2b7427d26f0b71ab5146",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/13.png",
+      "derivedSha256": "dc01971debb479a69f982600d1742ee26849f1c3e7a04d68a48635f15272aea2",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\13-CF62-native-alpha-card-seam.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2c75dc53d64db22d79a4fa37551d4dd8a66c640ab84b104e53dae81fc3717c06",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/14.png",
+      "derivedSha256": "4880cfdeb35565e7d7424f91d1c2780c7eaa149280a57c63ffaaedbdcfd73fe9",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\14-CF63-native-own-card-midback.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3d706bcaa96df5a22eaa67bbb4f121ef73d5fea401c9af31f2ef81d5bd1f7b18",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/15.png",
+      "derivedSha256": "8d02c505fa13529c45afe256acc0e4a2feba146c3c00a8624fc2d7dcd8ec013d",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\15-CF58-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "21173b944cf68b4e7540744a6d2650f12f7cb71655e93192e727e5b979851559",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c8074b97a9d1988b43f88758b69622e42de3fe30d57da8b63be6d7cb8802e1bc",
+      "derived": "run/SE/16.png",
+      "derivedSha256": "b3484df12b7111da85434e4a333b922eec5dd7a8c2c891b5e66b2b4ec31f58ff",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\01_ice_sword_girl\\native-v1\\16-CF58-native-waist-arc-Larm.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3ab59c17193904f6bf4fe70ebfcf2acdf0f40c5e82f41347dbeb58c631e31c01",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/01.png",
+      "derivedSha256": "b454b845d95b1d1458a9d4e53d4758499c94befed37b9e05a6d9aedb3dbd83bb",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0f3f55e6f9085f2d844623004482783986b40e6c8a1523437f630269ffc35cf0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/02.png",
+      "derivedSha256": "23e87d00d1ef138c939430b74c7118039908a9754b947943d33744a893f1dcf7",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f8f52522bd8f4fd0a8de8aca886e25d21b4cbbe6f4a7bef9e9e745a7b5d79a45",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/03.png",
+      "derivedSha256": "342c7262b5b53701a89eea099ca7eb383b9b7f78eb9a8381eae7e3bc6241ddae",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c43992c184c1cefb3171eeb3c430c091458798a86577105743e4228ddb1367a5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/04.png",
+      "derivedSha256": "0d8011b246f8ab0dd11696d8b5e05a9e76a87e0e51602346615a54044b881e48",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ad7d5e9096ff759ae9c66d4db20f15adb00c0f42696f121c5a152ee2238ded74",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/05.png",
+      "derivedSha256": "23df210af65226254afa8b31bfa5c402c66e8986642beceb4e9cc3334acf7970",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d9e825504cdac774d62baa52700737d5b5b74337a7b3eebce8175102e6c6f6cc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/06.png",
+      "derivedSha256": "dc15c81470c1b4e5b4de5ca2495b9d1fccd3dd15194da2e2301d6487a641f677",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8d4d2ce49091f3c25d36811b7a9d4e3baa22a19ac7bcd30bda2de4995d2dee59",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/07.png",
+      "derivedSha256": "0761f910f100c6ac4f2b6d179b3a57b7ebe3a68dba2d298557db499bb99b8661",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cd303a58d1c0c5a5ab526bbe0e42b20bd1abaa9c38cefdec1d7736ae15722438",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/08.png",
+      "derivedSha256": "1f7a2494a5de61cd7afadc56bd5fd54ffa7bbbaa1a98fe7e9b4f701e96b1242e",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bf17c2a4be381f644d7f9cb4eddebb7cef3757fbf2e31656ace38f5f5d494630",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/09.png",
+      "derivedSha256": "516f3538ff2c2acdd4ee35f7e7ff697d118041591a06771e6bac11cc205fe551",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2ba87868c7da73ad18260281d74399184ef5e32adef24f256c99963d5ce0dadf",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/10.png",
+      "derivedSha256": "c974e80e8a2604dcbbbf1126f7010964491ffc34f62ab9f95a38658dd5b15e39",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "36332aa324430697a2659d58daf677a7364d8746a21df6a70c51a98301b7c805",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/11.png",
+      "derivedSha256": "a6602e68f65c3cf3618a95f9c0a0d21ade2a7de5a1fd70bde1da6b6f5c9a48cd",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "853dcc7ddb8a304ef07b5c0fb7fa6460dab54d4bec0ce8c0c5eaa7e68c13eb78",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/12.png",
+      "derivedSha256": "10649f290d2ce06850a175d07fc8d5d4c07113d9fde59ec286578205f85a14fa",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7124a91250e973ba63e79e44b7bec257bf5b4458642480cfe83231e324eadb02",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/13.png",
+      "derivedSha256": "36ed11132b35a6874418039b42ada4a9417e67c4e86dc9bbd5f22deeef07e377",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1c2154629ee5de65a2f9452bb34e5b364c3f1bfca7d176a3ea0ccfc50db2b99c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/14.png",
+      "derivedSha256": "be9bb2b9a1bdf29b3a8bcff218119dac21d617b039f26f824f8400c84c5dd8aa",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "626040dc99c2dfe6a76563b59c37a1c4d465a084567cf9b10b0dafd27e3f2bdc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/15.png",
+      "derivedSha256": "be92931a765f1dc77c3831186b8c00ba8005c27aac522328abcd413cdb94638a",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e92dc583bda2d926aa1ff80d77dd3025fd2f598fa79805a987ddbd4a8ecde99e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9270b8b66812e61e27209929891fe99cd9c063f0d129322b1122a1659d1f89fa",
+      "derived": "run/S/16.png",
+      "derivedSha256": "99dc4c06dbfa35b1aab48793b8d52b3437dab21ffc4f200860839ffa531672a2",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\01_ice_sword_girl\\native-v1\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "22a39c71f367a527e32d2d8f75ff1556c416f43ef257f233b50406aec3eb4f1a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "d0332e5de115f235c6712c4949155f56b899ef19ce665f876bab32111addd942",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v3-own-material-input\\01-native-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d23964dae891fd7b7644bb41da48c01c608b22c5c480915fc174c7ff627f83a5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "fd42cf3c6e1aba9a1ef5f5ed1edb4abc623470dab2d3a531aa03f5a0c21b9b8d",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v3-own-material-input\\02-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f6faf28e271c4618b4356643931a4d25ad8b3409521d0b8ddc032257acbc7f59",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "b12cdc18fbe104ed954b7f5030f2308c3811a30219c086c766721f3d981ee5d1",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v3-own-material-input\\03-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7b2e4690eb719de654ae5c7e44edcf23b5c5e6a9741a7f54dd50d54331b15a0e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "5303883598e63fa61f48e377244ccd75f176b3996e165237841700997cd062e6",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v3-own-material-input\\04-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cf434b57fdc5b26110a5805a69d8d7fe4eda85e7211b1d53afe5673b7f837c75",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "58f94bcc40eef2dc3bd9b06e0bdfe07508dd41bdda8880a7ab79483d502fe77f",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v3-own-material-input\\05-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2df181fa00f2d39463deda73521cd8f06167733628b2c746cca568f6ee1798ca",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "7f1e4e316fd89e23cf6609800bf1c057755f01863a38cbaf43db84420ed9fe4a",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v21-restored-first-half\\06-native-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b7c392f1fe6750df15fb343c6ee83125c689a8ab474cdbabaedf1749383d9030",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "69cdb0cbae98ca408c6e868005d864c4c23dd86e4a0dfee02d2ca46f7ed3e66f",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v24-low-sword-arc\\07-native-v6.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1aeacb1d6662734380bb2763cadf989b54892c0191752303e88b28e96f3367e8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "f358fac87afb7a436c5a0f25efc872e6f4448dbdd67800c9bc60a8de371c8ccb",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v23-right-leg-only\\08-native-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "76db45395b9a0e077454b4ec766a6e7a0aa2cc3da8a826dc45300f0e7433e4c7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/09.png",
+      "derivedSha256": "df8489470e28ebcbd955fc81bfa838431e1f867e14ce2fbd9953694ccd368c7b",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v7-key-lower-chain\\09-native-v5.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f24f7b2e29b13920159fc58a10361d3f2ce316187a30173e40708b8a3aa489a0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/10.png",
+      "derivedSha256": "5caaf09814a61744161c6938506604e5d26cf9a7111287c2035abece28b3064a",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v9-small-step-correction\\10-native-v5.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5f52eb1bde48b492980fa7b4bc21f60de58dc2da2c239d6ed0ee3fb91a418160",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/11.png",
+      "derivedSha256": "11c1d5d3cc51f5219dbc33c1f1fe9e052fe1f3e4e685c93a980434cff044e9a9",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v13-left-arm-only\\11-native-v6.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f6cc7c52f4174681b9479b16254bc83447d4ca93ab7f7bac088fd7ad51378554",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/12.png",
+      "derivedSha256": "f832106f41e8d9eed99d43ae3fd93003c73c3dfc44a9d81d74247701f8e32403",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v13-left-arm-only\\12-native-v9.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "27b019f45cb055f4823a5c65fa6b012761a393fb20f14a8749be71fbd79ebb23",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/13.png",
+      "derivedSha256": "8bf1e337f8221608ddd5bb0ea4731af74f686b74759603d6e4e25cbf794fc041",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v26-single-sword-cleanup\\13-native-v8.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "95f09cdd36dc1b4d7b76c7f9110809c745ccdb14342a02019ff87e8ac993b4d2",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/14.png",
+      "derivedSha256": "97a49bdc5331f8ef4f0fbc52490c61d2d1cb672592aeb0124e7e9c8df369f55c",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v16-two-real-boundaries\\14-native-v6.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0d7fea986a2c8a37c115632400ae5e3c67391fea286ec59af32001ad4fa7f433",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/15.png",
+      "derivedSha256": "1c65d37e5f000e49685cabc12cadf226617815a4fb49d388e75b26f4ded19afe",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v15-own-boundary-key\\15-native-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2e4a988cd651383b6a0801e4012612f90a169a0fdce27fc060e6a44935b33c19",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "c99cec3e1969dcd34299597393e6ab7d75410437fd5c964a972bfb5fb001c072",
+      "derived": "run/SW/16.png",
+      "derivedSha256": "73bb3d1db217482febf55d7178c9f0a6a86adb8d5e1a26f2c8132f3d712f2bb1",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\01_ice_sword_girl\\v16-two-real-boundaries\\16-native-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9ee709df6d2a414f1bfc8cf1f4b8a677689499cf27c815e9afb8c7e261fe4266",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/01.png",
+      "derivedSha256": "92de69c2dad64c00da606d793ca4fe76328521c2675a57feb28b50ba567731d7",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v9-pose-target\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "165182e152cfe18404c79079bb7a669c065b2535cf6581429bb7f10a5e1170b0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/02.png",
+      "derivedSha256": "736c9aa7bb883c3f6bf7ebd73db6820f5227be904aebe20a009258a276b3a971",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v9-pose-target\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "75c3e9999d7ffaba471c3587f041819f8529863c23909fe84d7e7bd03b2493d1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/03.png",
+      "derivedSha256": "3d5b285cac341b2519d08fad9094f9fb9d96714f1cd2b13995d21b162745b21b",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v9-pose-target\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9776a4aeaf3f609b8b352292fbf9e7e38e3c3ff16cd6114bf81e74812c7c0dad",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/04.png",
+      "derivedSha256": "4e83fd2d720235d04e61e9cacba20990fc81fef2c3d2afb2b6530cf05960a06e",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v18-waist-card04\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "aa579273e66a69713f567ffc036b18fa1c84d03148581d21c53615e3cec683b4",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/05.png",
+      "derivedSha256": "9bc212bda1a58c394aa586fb84679bec35de63b326443faa6628072379b0756c",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v13-far-arm-occlusion\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a79e7be3ef38cc42ba7b3c527541fa5164238743f5e47aa964cdf552f894e6a1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/06.png",
+      "derivedSha256": "d9283ead976480d3daec36ce97f91ab1be659d637334d66672ec1a8df6df6f7e",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v11-sword-repair\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "377b848a67779fdb17881e1239514d10cbb90693a4aa37accb64792a7aef25c0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/07.png",
+      "derivedSha256": "7935795e9c28af342be6122aaaea9a278e57e8ef8da177593eeb2e24f20202c3",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v15-rear-leg07\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "94b5b001d076778accf66773bf5c9aca5b1d4e623e7fd798ca4b44968fbaf361",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/08.png",
+      "derivedSha256": "36a30891694e8055637da0dc3e8164df81ff2768c0512f2084c7903ec3deeba5",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v11-sword-repair\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d4edbbb4e92fbd26c42f3b2becc3e20d176f6dc5baa18500ba1d3a142154df38",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/09.png",
+      "derivedSha256": "60230695aa615e896a428b5e01d02b6c6bd5965af9796c75dcf4f18ed85531fd",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v11-sword-repair\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7f2309cb775e7d10280982523a84222bd8cc7727895b992e403f226596f75839",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/10.png",
+      "derivedSha256": "6f2436290efc5eba0ddbab27dc30a7b810be6ece99bbcae511605e3533204de6",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v12-axis-repair-resume\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "816a0702b193758ec79215417371d86832fe5afee88c7e9f49eed10a5e703c4f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/11.png",
+      "derivedSha256": "ec93fe20efad80d0ca9acd021f75ba03fb8e4e259ea6330ea80a2b2f72dd3a48",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v16-recovery-phase\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8b14b2f91134f206c35d982ef9eb115b5ba84ff565fec3542d49cf93ef2b4ee9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/12.png",
+      "derivedSha256": "56881f1ffe47b428df99202d0f40695f7f66e91264461ec5bf1a151d66e6e129",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v13-far-arm-occlusion\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e395072af780b6057e3f9d143f99181713e30c23f2aca9ee903c07b8b3743ac9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/13.png",
+      "derivedSha256": "fdc7df06107dc0e7a4b4f8dc84f3270404a2f76879d77927630d114ed2978139",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v18-intermediate13\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7fdc70ae9b1a2cc27555a48cdbf5b51cff012961c78e83ef88c4aeb4242e079b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/14.png",
+      "derivedSha256": "7c7ee528bfe96da5572cc41f1803db43dedf01c601f2d0a78931bb5c8ff543be",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v19-intermediate14\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "db0fac7f9b064b8ad1f4fadded55c3a1c80e5a390095a62053aec9984fe3d773",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/15.png",
+      "derivedSha256": "0dc0e0bd2c8eda4ab6778afa4c587bf47b7b49c6898c7f19baaf9e0030e5dc03",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v9-pose-target\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e2ccbfc55d0f0530ac70ab7e9594181b82d529a9d325cc0f81b5f3983e6fb0dd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "b61a006bcb93a728ecc3cb29501500b6f3d8c7fafa8f2545f3ddfb9708f67403",
+      "derived": "run/W/16.png",
+      "derivedSha256": "b7dbad0176e4dc2508848a5ae2f61016677d0a1da24b4f77f89a0c74bb2bd508",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\01_ice_sword_girl\\v9-pose-target\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ff67359214e7c92c435dbad231e116198257fc55c2a2fe67847fb7395c598dfe",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "3a5c818ead4e30cc11c4a0d4591c156e7c138ee6bbe51a951086403ed5bef548",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v5\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "194de8ff11218b69d74e9a9b6828df708c3d8690886e278a7fcf372c0a140378",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "ffa3ad46d0c3fe5b9efe698213b7912c536ca8506d8af7d05f7c32757eb76d79",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v5\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8b48cf9a58580047fccacfbc5d7fad2cb31e4ade5377755cc055577c12ebd7eb",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "6ad7975a3160bfaa5d2c3bc122458f90a83841c89988f81f415ea13da5884115",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v5\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3d55ab4ab11333f6a601bb1cebcf12e9c88606b45fe2a1b8094818d83b59bac2",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "3e953d5f823435bceae089543562922572dbacd4dccbf789c1779bb903d434c0",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v1\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c614a66835e1c1304a91d05b36273f4e3d19528a944937d827efc716af3ea434",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "82e4f8bae9e309779bea67f50a4d5c4e59e54470797ad950421c859441020881",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v1\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d13fa1f07adf26bcfa15cd956b695a84122596f2ce7a490ce6362be69b0b3547",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "aa62ec644f746a7e75f9954432cb975477ef8389f9dd47901b6bdd180fa8234f",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v3\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6b1ed7b5cfe8231a5b3b745629526b6a7cba9bca30541d49bd18584c066ab5e6",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "6354088170cacd54a90858db75e4978646a0cdf1f391622dd4cc670192905102",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v2\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a254e0820d4bdcd31019767395748bf8884ebc713bc64f8d97c8e139daa333af",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "29b791966901cda0e77275464cebe095d4deb749cd138555cab6df228578babf",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v2\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a8507c3dc41de44a6b48337f27ffd9a45495230040d3cef8f35a2510448de09b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/09.png",
+      "derivedSha256": "4ca349ab4fd4a4088de0fb2eae7180de6c9942d025b82d0e1817c622550dc84a",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v12\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ebacae989aef2846e0e4c60f91ddbc3ecb772bdd036c72f06a46e0adc3e78729",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/10.png",
+      "derivedSha256": "808096fa233fe8e7ec6bdb76d8b9a2394632c0998e535bbf3b573db2db154e40",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v9\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6517b1c4613e12ccada570cf8514c509b789e32b102f367f812cf013d00cc453",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/11.png",
+      "derivedSha256": "773ab830d166774620c0ed90b077f44179f07ff885810e02f8c79e4386ec5f0f",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v9\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0af1cd145d1591b6ed92102a0586c077e7b38a1be8ded51df6bd23e49beb0c7f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/12.png",
+      "derivedSha256": "979e80280badf294e83e5279c66843ed3d9af654d58526e52de4c89ce8f4f0e5",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v8\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "afd490fa87372a0ad0e7f595aa75138ed76f8a2183266e5f70875428c53ebdd9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/13.png",
+      "derivedSha256": "575d2f2aacf5ad0a5cccf6fe8d90df10a671627f7cdc99c0b0b5f50626e98213",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v10\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2f7925483e698b8f78c7f14796d467df1470c5a5cb5eeef263d987a641d4deac",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/14.png",
+      "derivedSha256": "7ad4f028f607bcca72288a9b9daadec5df7e4a6c112ac8ba23600b632f7496d9",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v5\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b26231332065afb537bace06ff97e6468a68a94fe0c6998a54d8297091c64b25",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/15.png",
+      "derivedSha256": "7c77eed9f55e6dde14ae5055484ff103cdfe1e216cc7188f43b212f26ef08368",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v4\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8f0965f211fb139c9a9e32cb41b2ade2f13adc8c8fb3a81439314d1b8e7bff0a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6cffeaecfba36a5772f2ad4b13f245c87378d4babce4b7bff2bc9ac9bbd4d5b3",
+      "derived": "run/NW/16.png",
+      "derivedSha256": "a396ac493ce47e2326126eea85fb43bbc07f7b815c77dec5fe02c15db26771a7",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\01_ice_sword_girl\\native-v4\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "546a7d9ac800fc9b12308ae4c51b6ef6b49b9412910225c7bab1cda3c3074c16",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "68eba28f744dfdb4d8edf1aa732bead7ee84a0f42f3b0e99ab86442a9bd58f3b",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceCanvases": [
+    {
+      "direction": "N",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "NE",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "E",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "SE",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "S",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "SW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "W",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "NW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\legacy-preserved\\01_ice_sword_girl.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

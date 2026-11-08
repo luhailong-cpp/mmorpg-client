@@ -1,0 +1,2640 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/01.png",
+      "derivedSha256": "a5f10de3d43fbc9af887c14b4b40e4d4f1b4f6c652ae9d7f68ca8aa25bddd37b",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\01-root-natural-r1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f423ee77192978e11a1c64fc5a0e327a68252679bc76618c7ae360544d2ede40",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/02.png",
+      "derivedSha256": "db1f764c59abc1aaffcbfe3015ce9be2501e4dec7ddbae1788dac26f3f23392e",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\02-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fd70662ed553a9659adbef00e230796e660786dad6802a774997a1e667d07434",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/03.png",
+      "derivedSha256": "b51fa1d21a62f5a0e644a4273d281c3a9952a71c56d2c6a7a3b8009cb9136fe0",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\03-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "33a08295120b71a6b610c7a16b5b7f8ff36fddba44aec9be3787c688c6ae7b84",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/04.png",
+      "derivedSha256": "5cc8c11879f8e0e06f3a81e9001e8c64e9172c2a2bff4959631440d5cfdc128a",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\04-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6b41e1c35e3437aecdce23dab29590f8a5176f10d4b25fc79dc70f2413beec49",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/05.png",
+      "derivedSha256": "c13da7aa4a83200e7bbbc3a8ec44f5da492f878d36ac54f1326af68cb3ce2764",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\05-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6510b68158ec7b2f5298462ea6049b47e8ff22edf2c495cc63d1b740a340c77a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/06.png",
+      "derivedSha256": "d01e4f618bdd5f24d65c3ecc121bd01d6e947434cefbd59e2e12d1eff6327e61",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\06-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0196e858d36e5936ea93576dc5b8836bb3c0ac29efe95d57c88bb8de6228d301",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/07.png",
+      "derivedSha256": "1f16787c58f29c0abb999a9d880f0a06c733d490145b2ae5e2449fe7e75efd32",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\07-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "daff7c88698e0ac9193947580b3051bda908e0ff102ee037399aef4719a6648c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/08.png",
+      "derivedSha256": "3d31fd8cd21f2881da5a0a3ceda484ad27f46dc780cd03d1330f1a7eb9241455",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\08-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b51394e7990c1063d7b099c848130f456a931731509b532a756a8468314e3ae3",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/09.png",
+      "derivedSha256": "86b221f26a38bac46f845669482798b76eab76aec81ed5073d783c1d8bf1b206",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\09-root-natural-r3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0b9bc687fa363ac259e1308e2a422aac6bf4979555b7ac0df041e2364b7f93f7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/10.png",
+      "derivedSha256": "123740f323e14a62f3e7e9b0c9f9156e57d99ecfdcace1a3cbf6e8166c6d014e",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\10-root-natural-r3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "983265f7f0221c6845108a3eafe49ec394bd0ab2e941d460c62e3eb8415fedac",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/11.png",
+      "derivedSha256": "f47ad4cafe38e2c16badb8ceeca8add1b3383bf5145534314eb11305e6e1c68e",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\11-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8e2c6619dfacfa3bf5a428ef54f97239153a2c5192826bee868d2bfa4d3c128f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/12.png",
+      "derivedSha256": "77db82f91ac57adf7a545f60bda88ae47f2a3e72b49886e5ee58df153f607988",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\12-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "53323e7cee47a084dfe3aef0ccf947f8c50d14873958d5ee425a5993c87ad7cf",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/13.png",
+      "derivedSha256": "14b4f1db14052494878144c81b7b8f49f50bd7699a5bb6064292903278f8381f",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\13-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "04d0d4c667e7cfc25a589cfaff43ccb8dfe8979faa1549697d43368823a0903b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/14.png",
+      "derivedSha256": "be6b5404020a2995295df6dae60263524a92e4c48f36ac25053e13d8528f66be",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\14-root-natural-r3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6c699942770525897988388f5bdd3aa2a5d66796ddd0f66a3370f2b0094e4dc1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/15.png",
+      "derivedSha256": "a05c9fdc715fb60db1bd217a0d15e89245288aec7e2544caa5fe6182fc4c7696",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\15-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cb78f88c62e592eba79b4cbb6a7f71eb5516e7b20b2113b09ec2352994b80241",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "4cd5516fd04cbd0ee1790a7131a545e9f4d53dd37a702a6fe1d0262c8649caf2",
+      "derived": "run/N/16.png",
+      "derivedSha256": "462713b029f759b8a199c4227f17bc0eb65e4482dd13499b1820a32a14c26a9c",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\06_thunder_caster_boy\\16-root-natural-r2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f2f6c082f47476ca25d9b595f03d790d6d8f09eec2377ff9da673e4ff2567910",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "165da1cc807d2330dea3c440d08473d613c6137f15d4172ff76729077bd5b56b",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\01-F-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3e40e1d1737794dee27d093c49ca8989af1e0116a8224eee4ff83def6129a566",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "bde2f17c4bd7097ca8ca581d44e422c9fa0b3eba1e9f8ee665b3b063757ec45c",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\02-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "472b9910634d27d387162d053d0a1bc8afba6c8feb3981b5f0f4404591d63d3c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "bc9e450f41240bf30173e866b0f4fdc4e8f433bdf9711c9d46d7d17fbd195740",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\03-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "86efac6206dac310482a86b2b5bd51ee6140b2f87c1a82cb4b29f290389c85d6",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "8da8957c44de208debf28a8f696faec65f18fbdd307b7a460217f2da724a05f9",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\04-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "58fdebf2dbe26051316aad92e1fde8fd5c5db74a9e35e14fd038bb5a7585c465",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "e84dfa44024092eb4227bd660def94da78c886d72ebc7560597cc828f67cc829",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\05-F-v5.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "02e25fffc95e429f136d9537b145ce93e1919923130589d38c470af05fb03917",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "5163d308d83d001279de0463559b53a7b0f1a569c5f86e6c79d9dd991f5f8a6e",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\06-F-v5.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6b5c89f5837e0a62c6a8b9f6d4e1e8b1d7a9a02b18c3205226dfbd798a06df7b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "99bc72c4649cd2b9d2caed3c0753f29fc0e41aff055f7b993f18cab0f1684a01",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\07-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "22c48b2590bfa0a24469c6c3e926585685e7af4b28f26eb72ebd1879a74a8c74",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "01d41c28fb820e25160eebbed39fc4fa01124fa8ef3b348700d313ff029aaf0c",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\08-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c61e6032fb6a5c30d9001ca26eb7b8377ced6c3fe34c4632f204474e8df0c722",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/09.png",
+      "derivedSha256": "b50d4e49a90894e22bb59dbc2837dba5677ee65e83cc7716fa604651eba9ad47",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\09-F-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9b4a8b1d665522b970343c7d35c343a5e92f65a2ec78f2fbf977be5ed048a000",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/10.png",
+      "derivedSha256": "b58db115801da79643363995b808de3353f64bb1769a4d4c4191e8101baf4e1d",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\10-F-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f59518c8060a45a3fe1e97759150399bc54ca900fa5edfad113bad025f2e892a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/11.png",
+      "derivedSha256": "d0ab3f4975414849fa6ce452a0679f1b118d06a294dc7f9a63f7f8d0eebe18cb",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\11-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5d12c777ca5d67946fcd043b6dd6a506c9dadd6584ebc86e47cff318b1bc1afd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/12.png",
+      "derivedSha256": "7361324380cd43f3bc51190d3045b4f13829720091eff6ab93e159168e9d1a88",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\12-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3fa0e3a806a82e3bfcfb6a40ea27d55998d8e3dba1379162ab9f93ed28fc88b3",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/13.png",
+      "derivedSha256": "8bf28720cec4f45d6daa7c2d8c08f1dc27ea0b0da428a3bc3d2a809ede0bf394",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\13-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "35bec680604563aec00859f36189c23af3166cd6d1379db6b0f8364f4cfc81b2",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/14.png",
+      "derivedSha256": "5a5db07d175dfb1c1ff477e13bca8c5d355cb9bfb14e5580b5b8af33eb0cd953",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\14-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b4f6d965f0a8628cd098c0a657aa7c0194d135d9aedbaf12cb9c73abc25fe268",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/15.png",
+      "derivedSha256": "87be7b2e06c3bf9b5d524e4aeaf46f1bae2910fccf4340716b051c51ae40e915",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\15-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b557b940de3ea025b44f1a1b8efef155f30483f7c39fa275b0149825abb80504",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e787435058286c5ed32300430dc0bedee4c9175b627556b1409c6097fa129ef",
+      "derived": "run/NE/16.png",
+      "derivedSha256": "708ac0d271cd31ef7999cf08a209c9e7991da10d6ecee9df9485a0211ea06a3d",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\06_thunder_caster_boy\\16-F-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7ed83feaab06bd2fcebd2dbc6d3fd70eef9f15f39d3f0ac428d9b8065f38d2f8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/01.png",
+      "derivedSha256": "fa9196a666ea631ddc3bb72a962682b92941bf6c761931764bad55b3dea43849",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v2\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "eb140996d5b9a9b89e1c0fc5704c8877e680f4c572716e159b9000fa30a1fb70",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/02.png",
+      "derivedSha256": "85ba168e9bded07603c2b5898635158bb0a3b7159d3d8b4a7dbd2b5e73b55a2e",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "887c3fd6cd2342e87b1bdeba156f6588b23fd9c094e0c8148e6eec831df07832",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/03.png",
+      "derivedSha256": "b89250963705824c0b9181b1e97f41292ada699ac7137a457d1a210c0f85221c",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8dcd717d2709e963f4054895b35a46378210ec89b3e8e9349b629f1407203ba0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/04.png",
+      "derivedSha256": "0c0d001a6e0ba7a0a33c0d542d414cd67ece9834a8822b8ca02ffd99a1f1270d",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1542bc223b4b4973d8fcc6890aa48ce9d2b46b7b6670067e15e6b944bdba7483",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/05.png",
+      "derivedSha256": "cc76857655a7f95b015880e9b697e08aafd56553b38bb56059db03ed246572bc",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "088b1b9a61d46cd2d425537f22efcdc5b6f4609da2300e3ab205d209ec91792e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/06.png",
+      "derivedSha256": "7a104274b3ec39cd2d534700029c051d1a840dc7136591762d676ad83a012184",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f48c32eda6f7616b6d17625d198f0df701acce985883d9cd22333083d01f64d5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/07.png",
+      "derivedSha256": "e597e62bf946f380ec52c9d7484340c7e9b640512679f50667ebc2d2b5f9328c",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "98da3dd36561b2844d4d3339381168fef9443715aedeaea41a7a8c0b3be96490",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/08.png",
+      "derivedSha256": "3a9711aca105f94660931a6ad27552d5dcbd40b5cd911fe9ecfafc6d16ab29ba",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f8a71d18e3553c285cccf7c3ab0fa2bea4ee5a1702cf9d5e27be397b52691d63",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/09.png",
+      "derivedSha256": "79d5e9b09ae6cec4d29c867315fc480599324f679abed2fd7d51a0a2c11062c2",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4a4dcbbfaa66ca8724d2409eebfac428119a68fcbb1875c17484eb2569d0d62b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/10.png",
+      "derivedSha256": "1084199131f0b8bcf6111bf68a19fa640894d3781ac178cce0f28774b47c659b",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b45aef9d699d8da0361868f5109fc6fb080f865833402e301f0ba2aa8a88ee5d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/11.png",
+      "derivedSha256": "aa73939374040a7de6072c927152c648ea35868018494a250b804e6db7072190",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cea0a2e11f2d69636c9ae2a1aee483f374e5ce3d0467a24e4aeb0684d3049609",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/12.png",
+      "derivedSha256": "98e572bcafe49f3d84e9bc89b76a3af2259cee4086df90d5bc6d6df04fd5a70a",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a0a6c22666867777dc57029bedfce21c7ee0e95b9668c63e527cd4c14d7bb0b8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/13.png",
+      "derivedSha256": "233dd6cda737519590c51a775dda9f3ab67dd4bb7f2b96b30043d50ba1610244",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "643fc6c7df9d520403fa92093632fe939b7b1a116ef74fb0afb4fb5d6c6e6959",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/14.png",
+      "derivedSha256": "a5f46cced1221f39f50d3660b6082d7b088c7756665377e479c8d7a1400e15f2",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b69658f69c3260c14d7b4b31f1220630abae9db6e87a4b79be76f978ac1b8a0c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/15.png",
+      "derivedSha256": "71641a934a4ff5a2f30619b5cf36945c40f88f6dd718eb91f2240e4a9779ce2b",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9ab19e312c8b1a7f8470e4e2b803720957712bab711dd682b6209c736fe2ebe1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "83ebe84233cd1d365f189ab4e23eb5c576ead531fb145c975270763e0683c588",
+      "derived": "run/E/16.png",
+      "derivedSha256": "adb580ade06ec87a61d66cc7c04d30c81165481b8a82a01953b45b2dcddc44e4",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\06_thunder_caster_boy\\E\\native-v1\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "489a6b2b15e1b1a6942a08dc53a928f20cb264f1ead3ff4b30821fd7e530a846",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "4a23f64eda0ef13e16a5861ba1c6027e20f4f85e63087fe00522e103c47c496b",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\01-v2f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "90b5983e8cb6e0579bd28aa98951a59c6d6ce3438c6515f27967982421aed035",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "29a2fcf1537c36a13eac6841fcb9e9590d978073daf1a63bad545cccb7fa0675",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\02-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ffc1043df4f3099aff3916ef5d1841940f431be8465331afbd05f090946caa03",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "269caa739ed7df855d1a6ba8ae6c65423927464a73d5a0c2c7a6a85b06d543d1",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\03-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d39b318a6b5757cd58c1bb7fe36b4a893110d0e6cb36dac350df571bb1306ff5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "7ea0d41b29ca2f47fe2f61f36e6e8a93d8083c5479f4851d482a6e4dd3f0063a",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\04-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4798dc51851b2f2eb3cc266f8ab1323adc7606f4523880c44d12bb4d85c4b534",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "3730ec583f3764dca870665cdf430e65efc151256c2895b6a2bbf92d6399be02",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\05-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "54b3d44018d8deadfc444888d64d2e6e82d236093945f573d76dffc091f232cd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "8304f6207b183e80b312af8fbfa10cbe479dddb2762541a14fdae721e875b5a3",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\06-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "24927ab358e7a18aefcf648c253e76617ab1ca889c1b938f89dd80fe0cc603c1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "115f1639ee2cda3d0cfc8eabaf65274de44f89f5a77ca1cf65b36410b3338f80",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\07-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7231e0706674895cf54c9acc1fcaa3cc965fe53faf3b9df73678f74533fbd681",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "3e22d15fe325b055f1ace82a0e29a5b86282590fc93176f3c191fecbc27e5f17",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\08-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1eff562001b165c571044b4987a459828afa556c81af9929f0e6a46cd4ec68e8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/09.png",
+      "derivedSha256": "32f67a091567495918041ec775990fd4c203bb482f28a8aeca5d8f0900966da3",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\09-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0606f6b27b45e04ec1942d9fa55d8ccc915d435845daefee3dfe102218d785b9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/10.png",
+      "derivedSha256": "b451e5f40725b602925b799cea5eefd13bf9ac25848946d5afbcc16c623d55af",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\10-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f03509d8a4a74cb6d828b78c64762b8cf1b327482386a3994a459be64f6f9d7f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/11.png",
+      "derivedSha256": "b00fc99ab26b558b1079d96f87568b429536616f9d770d60a737f570940ef846",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\11-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a490b07be521bb958589d41856ca2a6414f918d9f680bef42d3ae0d28a3b9ebd",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/12.png",
+      "derivedSha256": "31a21436897321ea34333424b356561cddb255b48bb8320a84a58828788cacc9",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\12-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ee1e9405e60b412e7916b57231cb1f94e5e1d55850c7a111d9cf188b46cf7023",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/13.png",
+      "derivedSha256": "96b410baf63318bc50f164c726b1206e4a904a23064a58d2d5bd4df455f53213",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\13-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "94573a73689ae195c9d6969745f14e5d5a4f6b4703a4a1695d6396dff944b9d9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/14.png",
+      "derivedSha256": "3395b91dd11d73b0fdb9dfc040d1ab02d4d691a1478d064771b93618407d7b3b",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\14-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "43c1a0b6dcf4c8a8aca6f7e04188a476d07a57372909e6bcc3ea413e1b29e5c3",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/15.png",
+      "derivedSha256": "f7cb9c5c1ab2e393a50f7ab5c3d0867fd0f8aafd0bf2d51f9d98d455d86523ee",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\15-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7aab4691dd86a564c3525e2a98f4f492e079c8f287686bd984e790c099ac86f9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "48008163453a1cd62872867c305cd705523e2830913489bf500eb356607030b9",
+      "derived": "run/SE/16.png",
+      "derivedSha256": "a4f22fc01ba0834c80dddf452745068e165365119f2abf2dad9d5bcba9da3fe5",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\06_thunder_caster_boy\\native-v1\\16-v1f.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ae68689be8611246b454d542b458ac4c1ef8a828b1a1ed73216e15694d300012",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/01.png",
+      "derivedSha256": "b92c9fce95dee9750bcf11428973173f4f3490a55e756feeca1b4e64458e5b89",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5e38352bd55e821bb2756abe092c42a8fabe6b2a93a9f0f77c1254a3ccde5ffc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/02.png",
+      "derivedSha256": "de5d1a7e75f584c2510400807bf494a5746245f30d1a4a4538425e8a49de922c",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a6c7f64e5eac92fbf25e939c5dc7eae1f586a8e7b40b78f3bc5fd6c916489d70",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/03.png",
+      "derivedSha256": "792f7804344a32265ed8084f476f31cdff849010c24c90bc295d6fe3b09244f1",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7206f6298fd671bc0ed0a8e62c8022f90824057e755f059d45c80b5f54040031",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/04.png",
+      "derivedSha256": "a3e738b082b494d2725265a7dd2e9357d41f93878e030dea6159a041a120d44d",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5cae1b91616ffb0fba7a9108b1d48848e0ee73f02815d9636c399825a86fec44",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/05.png",
+      "derivedSha256": "835dda3a3eec16a3a71c838d509794e09c3d800758e757ee20ab4e6069ae8c2e",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9c1c5d14a29344442a1e58009589061f363dba9223df5c36eee25ff9c00d6bc1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/06.png",
+      "derivedSha256": "117760ebb4267d0aa02f2917fc277566e478dc7eeed5de78c84e0fc747fb0682",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d333a3002ebc67d94bf9f15368e934b1eb7cd7a51cc9ed22e9e038cc5d475525",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/07.png",
+      "derivedSha256": "c46eb297ee348909416f2d3f4383470aebc684de2e34404a801cb49bd505faed",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "830214b052c7bc4116cefa7b5b743f541f3aeedd3b530bc72ac2e4d58dce5a42",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/08.png",
+      "derivedSha256": "7a22a94d374aedf6413e4d5c60958cf944b3dcfad2725338aeb94ab6ff7dbed9",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bf10d1badd95ff7e06580b674246880acec0aabab56b302ab2dc2717ec502be1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/09.png",
+      "derivedSha256": "5c91627685c1a6efe90154f9b03208ead4acf3bbe498a59e7d5d02c04a196a3e",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "299791e250a4e668c9713a9b13d42b29419a87cdd491a50fbc364509d9aa9f87",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/10.png",
+      "derivedSha256": "fdb265e7b8897a3b6c627d3af8371c018dc6d7681b6752d4054ed452bd1b93e1",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ce884f451fc2374d232a9cc38f415bb58cd3656af9af7fd6b2b96eb66fc4de28",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/11.png",
+      "derivedSha256": "e7a0cbe3813206006d9b36d0aa990ac54580e9f0900ca43a815e89225c7e2948",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7089f27c461cfa16424af1b204dea570c31bf1f07a38280c1eaee6279d21af81",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/12.png",
+      "derivedSha256": "9dd0ae51ad11b87181368a9dc403af80c9c46c1fa0010b318562c6d79c469046",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6017689d17d0bcbd9bc29313ebc25f59e4854724cf12c6948bc523cc53542c9b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/13.png",
+      "derivedSha256": "a722110c1ad6c1739e27456c6e09a7193ef3409b6c483199b68b95ff46036bf6",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "74791b0da9f2333735024a064327d467e482fa9a0b5cf037a75894ec04218c71",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/14.png",
+      "derivedSha256": "b34c6959e27dcdbff2a2724477b4e2e70a7121b9c8d3abed82f013f046fbc9d9",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9d1d43e36eccbe06e9291ba6a72cd373f29bac7998d31d8c9e4fc3dd5bf018ff",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/15.png",
+      "derivedSha256": "c94f5ef0d6ca55686833695ba41f69f3c5de348072220dccf20c393297ec3f2a",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fc129047a4a22891a916bf58d830c9a091a8137bff12bb9a3c32d02c7094b302",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "fceb7578c292a41c927b07c0acf7842c0a8ccfbdf81e4657a392bd743bd09964",
+      "derived": "run/S/16.png",
+      "derivedSha256": "560fdac14eb82e2611ee32d25f644353b844810678f57a8b19304ef61e81a91d",
+      "direction": "S",
+      "durationSeconds": 0.08,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\06_thunder_caster_boy\\native-v1\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b0a7f1113046906f736a3be79624b9c7723a62b5462d8784f71af7000448817c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "1f1ac19afa3f9b79f3b7c631e946cfaaa301c2c233af6525fb103f80ece419ab",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v1-diagnostic-guides\\01-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a5466efea90915f1933c3f3cba204b6eea7638dfc81d1e3927e48b3e848a826d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "f8f1de455f8878dad1e405ecc49c384a83b2de14f0a79ecdca36b42c0be353b4",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\02-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ddc193e32651280074e4d41765370bd7bfc70309313f92c1cbfbf5f88d7c7188",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "bb881440e57e25387300fb3c654dfa66e7bc9ef6e491eb54a0277b6b6326f5aa",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\03-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0bd955ef5df5f32169f53dff16ef384b28cfa9d5cc12d99a5448375abf8c3106",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "6cf83d208e83e9ea6739a7642dec55e0bdac5f649cc644724cc13fb0c4624845",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\04-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e957f190a9f7d1328670506b80a57e4610b590428e71262548ea58518151ba49",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "69598db2891aa26efeb04ed12aab77d003204539883d508e631fe3ac3ecf164b",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\05-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9e1b6e45f6411d9be3bcb0d788f468105f93807d9b32ebf5a8b85965b5b1f8a3",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "e89cb03a7e1ab14c227508a1e7d22263283217a38877f665f72e4ee9b70c63ef",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\06-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b1a8b102991939d1e3a0487b2a651aa81e4c79ad9c755355a137a2c30bd7c2e5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "f4742e739557fa6ae10c87986af6754ef06c6f2d3096ac5845e362e8af1cfbb5",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v4-prop-controlled\\07-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e3cc0f6e729900e68dc8bc93bf68054f02c1dbb37b8f52db175619c66d51a8f7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "ba279f28fc987ef54d7552d136ae89a82e99e5a6ee067a9cc0e5122f3af9fb81",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v4-prop-controlled\\08-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a2aa469247bdf47c23156ebf26a0a5e9eef1d1401d7099689a3502a90cfc3528",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/09.png",
+      "derivedSha256": "55db77f80b7527eace8e8fc301ed1a1a84bec875354788415b9c5eaf03250a96",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v7-direct-native-keys\\09-native-v3.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1b280573cd7ae32dc6e3e1d77592d4ac2bae0eee0c31055a557e93ccc47dfb44",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/10.png",
+      "derivedSha256": "0887377514966628242d67a79e9b69d2b8f3b6c1a01b19e058ae21c963db137e",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\10-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3f912868a60076ff22cf5d30d411c148e90022c816131c8f0a7d03387596ae07",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/11.png",
+      "derivedSha256": "7b2cb110c928119285fe93295b08c92d0ca744e8fab574c1564864441e7472b7",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\11-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e01eb530b673b17e4b73eebb290555a44c4904574f0508f490b66a454395853d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/12.png",
+      "derivedSha256": "8245a6b665257cc288e2ba8d2609cbf700cb9217f6bdc9703dfd33200e6668ab",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\12-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "76555dfb736d476c256c8efb07de969778649ee8ed087c19c47c230def1dbcad",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/13.png",
+      "derivedSha256": "a8828e43d940239fbf94829e5531450ae43fc802a3551b071a9015916689199a",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\13-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5c542869272857b2b5cb768933d3a702097143d4f65448e3af9477b65bd7d7d4",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/14.png",
+      "derivedSha256": "b113db8fb3c8ca476f50b0380e621e858a67f9a23566807f08aa3000ff38f901",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v8-direct-native-span\\14-native-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "88e8ff68bd5d017947f59cb2378c25d169f411aa48c60f87b25785b9b15ec476",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/15.png",
+      "derivedSha256": "f0522aa1db4a36a3f6c1b27c72b3918d34830d6ee69693fdc77ddbd7604ea2c1",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v4-prop-controlled\\15-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "519222e337117ccd71ab4c8eb4ff7d5e2d9fd6b88b28c4e6180b7eb4aa1e9b67",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "9dae8cada6acea8678dc241c97f550c4afdcd10a8af02406557c6efc2627c4f3",
+      "derived": "run/SW/16.png",
+      "derivedSha256": "fff3ca32acbe157103e363a8212566bca21d0866cf2cd52489fe9bf941536632",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\06_thunder_caster_boy\\v4-prop-controlled\\16-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "93d2bfc5ccb5c3a7527e55a70179b8930fca9ac213ad83e92a4c230662ff49a1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/01.png",
+      "derivedSha256": "dd89719e01c5ebd3a3271336545946c65eb3c901a7e886f2128cc60efdf9d737",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v5-uniform01-transport-retry-20261103\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8a7a2a610857974f74eded9e07e30d46d4cceec91f107154eab383b59522572c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/02.png",
+      "derivedSha256": "f0b4e788fa77e4b87910512be595207d009e54e579772e0d941a56373e339864",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v4-uniform-phase-20261103\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "814c5845e241a5f53567a004597bc055019b3ccc584e9273330f551bfc814048",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/03.png",
+      "derivedSha256": "df1182504b3477512aec6cbcff05bebdaf03686e69ad3a1f81a0fd886129ff0e",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v4-uniform-phase-20261103\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ecb7ec96085c95bfac056db4e2ca008774af00a02343abf4b660cbc0ed3eb6cc",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/04.png",
+      "derivedSha256": "21fed449ef811904a9d49f3a24c48c9c551b363508c8a19296e2692328c4bea1",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v8-staff-passage-20261104\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b0440bf8e8f1f6d7f77708800c23d57782e8416f837aa905462b2b9b01640563",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/05.png",
+      "derivedSha256": "27791bdf7f45cf27c3c8c5efa4d24ae5633ac99ed4318fa582d18815780db56a",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v10-occluded-staff-transit-20261104\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9916bbc6046f479d4dcedc44d0442efdc5ca007c18a5a3de22fe43608ef98bf0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/06.png",
+      "derivedSha256": "3bc6e64a3a6ab786a19db75b25c2420968f1dd332f427524bbdd9df701c1b0f4",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v2-w02-pose-target\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "df101309de1202550d5ecdc711dbaba6c956f36b0852528271ec392e01782883",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/07.png",
+      "derivedSha256": "c13473cc5b8072a1bdf76fc0c1bbf999ab1c4e574ae16e42b31cf60ba1926458",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v2-w02-pose-target\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b03fb350a7bcf45104721617ed9a8935bc7e80f0b204182314f206e00ee10d24",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/08.png",
+      "derivedSha256": "0d152157d39ee4e1c7826f09227af8a367c13c525d7e2738a4ff72517840c806",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v2-w02-pose-target\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3fc7fa4e40c39664ffe8cb672703917643fbd6d3e005e34da0dd58e995b13eef",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/09.png",
+      "derivedSha256": "88bc3b788e9629d9e3cb3a0263c356ec5a409230ac60d66d70e428a50192623a",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v2-w02-pose-target\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "76384803bc10bd4c55e46ca356adfea2683985ba31fad5c8c04732fbbc77f99c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/10.png",
+      "derivedSha256": "b7033ca2cfcfb533e74fb4218728af67210c1e8e5a7210a9fc04737412c448bf",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v10-occluded-staff-transit-20261104\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "207552f4cc7bb03e75daa3b33444d62a29246a833e750d3f991fe12c55f6b871",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/11.png",
+      "derivedSha256": "c5672f234096e7264c13456061ec48df5d07d7bcef0035e9d392b1f4e33ee4ae",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v8-staff-passage-20261104\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cfb3fd3ba18ae8788aabed60915d31768d7f550e1a8273533d56a6c664483f13",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/12.png",
+      "derivedSha256": "52e2f4c76c8e901aa4615cb0d671879f39ee86706103a68c44fc46ab54216986",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v2-w02-pose-target\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "02b83f89ca154dd1374ee6d32f207c725e8ab7c8b996f970bd94ee6d3c599541",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/13.png",
+      "derivedSha256": "96a63a4b702570e45344dc55112b8b5004a996324b6036493c1e82fa47c2f2e0",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v9-under-body-recovery-20261104\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1c30dc89360b712a8481d7dd8c52aa06dfde2e4aa2ab97cb2dc901134b6d478e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/14.png",
+      "derivedSha256": "ea436a7f30f4409e1990a3ae7d884a1e02935bfe0b6bd0be4c8c8977a164be3b",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v3-resume-20261103\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d5556d1bab8f7d895a71c2887659694a0437ad3f4ed625fce0fa8c623ecbef0d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/15.png",
+      "derivedSha256": "c5626e9c0254c79a0bf7f1f6c7d3e9c59a712454c8c29ed1ba3e0566923c7477",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v3-resume-20261103\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c7e124be35393f7e44087bb43483770909f17233d0a5f509918ea13d50491b04",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6b11d4e6159ca1aae0ed998690d762ce0e36d6b539837e01ec29763024d2eacc",
+      "derived": "run/W/16.png",
+      "derivedSha256": "b1c2ee41ce93448c439c63d5c9f3eda60338281d57bef3cba4b921bd7a52d5d1",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\06_thunder_caster_boy\\v3-resume-20261103\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a80b427824fce2b4754b22bf58188cfba059b40101208025782ddf10b70cd08a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "01c9f819b66a2b88ce11088b5b1446faec73a9d0cb918ac12e1bf2f27e276856",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v12\\01.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0680ac3c3ebed7141d6a63b748b30ca89059f4bc6c50c1cdc2bf149168ca4f26",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "002fe113636688f5bdfc76ea6487279a23558dc19af788bacee658d46d6c7864",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v13\\02.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "26a0dc7a6c7e4f7489c6b311d8b4db9e872c9253cd2a406b75f5760668a7ed66",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "26686b8258a3e787cff484cd941b31252074335caceef3424cfcb349c238f42a",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v12\\03.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "da7108acedccfdd0ab3d986dcbfb7755121788e671e52d84eb7d085f3db6ee67",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "03679b13deb5e20283c668ad170f8276c35715a23ea2c34187dbf3d133e871dd",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v12\\04.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8323643efcf20b04e3c7d22045c4bc6df7cdfa5a8c4e675cfb58d89bb2f56549",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "babae2b8853e9326223bd63d4fa38b054ede471174a7590a0aa5c0400f58031b",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v15\\05.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7a3b06ae78d4315b5f0c5708eafa2420443fad00ca664f131d38e71600aec67e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "b11020249eb543b874943902de53dc97ea568b0c3abd50d3628a256753fdfb08",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v18\\06.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "59b4616d78c7606e240095d0ba527f7e0185fb05ed20496924cff872c97d5060",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "7b05c6e165358b8aaf06b621432e0dd5e77a8522579cd39ad0dd5a1c6b4f52bf",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v15\\07.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a6c97049b7a0c67fb204b8db86c1f3471abae712aa6756a4ba1be39f6746e6ec",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "121ee4246741aa9e66a42ad6766cebea3f8e22a11b32e2df9ebd5388bf116805",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v12\\08.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "98362bb4eec77ce88a5105d40965ce6db583fbf9715687cd27976ae3cfd0681c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/09.png",
+      "derivedSha256": "6e1f27b6a8ee002076b1ee7805d8746788f66ffcd8b7703b2d62b574fb660c11",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v12\\09.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "19db29fbf93f4497f678cdcfc87ee28ae4ee21a80979c40b78c0bbe7cb8bcf33",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/10.png",
+      "derivedSha256": "7f98d9c7de6be293d7673f953627830f99f6c52aa167f3608283291011459953",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v13\\10.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2264fe5fd86a79e66e0f585520a3b5f7911608a647e4881550a9b951725270f6",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/11.png",
+      "derivedSha256": "3fb20102ff87b02924c8c81c81cf3350449166ca0f539c24f426cc1ff78a40af",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v12\\11.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d4ef531d952e9ae8f5a8a29df86f2e310723cb50cd8ae2d036793fb571b70c6e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/12.png",
+      "derivedSha256": "428e8852f03ddaa30b965e428e597ef1b17f35884044b24388e0ada4b946f6db",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v14\\12.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b06654c3492868ee469e7fb1aa3b9dd12c3bcab439c94e0a6dd60ff37632d1d0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/13.png",
+      "derivedSha256": "b1cb92f5fb3a079ad81503afdde4eff101d2f6171a63100ed58254990fc5cbeb",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v15\\13.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "889ee95ee5e0c26b914a5f3173c78a14ee81e8dd75d0ed1f221b11a13f358522",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/14.png",
+      "derivedSha256": "87562401ced3fa321110843ef4292a020d82d97d4b1626b3c995bfac5dd92ef0",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v19\\14.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "989172f2c594c5e26d51d16b74fcb4edbc2871e9c020f17c743eb7c3e7d66f08",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/15.png",
+      "derivedSha256": "08a04a7b5f72851642902bd1d8713e5386d9cce38d9979d8c63ebf40e93252ef",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v17\\15.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "95a87889e6133f412bddf37c97c2d942ad9be30984dd8b6c2426593e7272dc54",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6dd9b3e8ff2390d93f0ae71da732c51bc498685453955390adc0e8590c21bbe3",
+      "derived": "run/NW/16.png",
+      "derivedSha256": "2a4d3550cab058531dca70bd3d0adea89b277c2f9d284041d60ac452a59225f6",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\06_thunder_caster_boy\\native-v14\\16.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d1a72a887e77ce5b134304e83068d3f8c5bf5ad87eebae34b1cc870774f5960b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "de7ca5fab8bc26f8e35f523db4abc1b2db117b6efd66a17cd546e2681f4faee0",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceCanvases": [
+    {
+      "direction": "N",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "NE",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "E",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "SE",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "S",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "SW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "W",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "NW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\legacy-preserved\\06_thunder_caster_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

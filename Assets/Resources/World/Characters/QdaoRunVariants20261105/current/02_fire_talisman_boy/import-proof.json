@@ -1,0 +1,695 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "d42e8fe2ae446fa9e6e17eab4f101bbf5c8051b2eeee0c2fb33f804184740a6d",
+      "derived": "run/N/01.png",
+      "derivedSha256": "80c575143cdfd68adb725433e01e9a5366051e77eaee11e0ce73029790d34f41",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\02_fire_talisman_boy\\native\\04-v4.png",
+      "sourceSha256": "03f0f0a5b92152d2a48b2f4499897ed9e82774e34a2cee9c6bdf1de4aa9a127c"
+    },
+    {
+      "approvalSha256": "d42e8fe2ae446fa9e6e17eab4f101bbf5c8051b2eeee0c2fb33f804184740a6d",
+      "derived": "run/N/02.png",
+      "derivedSha256": "6bdc022e8f5e00b7e5a13c8807fbbfd8606dd43c3face4e2a3ca169464cda1a0",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\02_fire_talisman_boy\\native\\06-v3.png",
+      "sourceSha256": "fe331736fd6e5b1721a1d38113faef0db67fd20102c4ce4f654ed79ee707adc3"
+    },
+    {
+      "approvalSha256": "d42e8fe2ae446fa9e6e17eab4f101bbf5c8051b2eeee0c2fb33f804184740a6d",
+      "derived": "run/N/03.png",
+      "derivedSha256": "5a98058f2198e3971dc2420fc3a8e4c8620cca676a4b46f03b8aa9f24ac7287d",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\02_fire_talisman_boy\\native8\\03-facing-r1.png",
+      "sourceSha256": "9410c7d01c30d505e3bbe274ded49ce94b03945f0d8550c585e741747c1d341b"
+    },
+    {
+      "approvalSha256": "d42e8fe2ae446fa9e6e17eab4f101bbf5c8051b2eeee0c2fb33f804184740a6d",
+      "derived": "run/N/04.png",
+      "derivedSha256": "6b93f222d8cd89922e920b3ede02130bb600108c3b33ddbe164d47f6bab168a7",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\02_fire_talisman_boy\\native\\09-v4.png",
+      "sourceSha256": "d2a6a991e278b18950441eaba9d09b7f47b8a9a64141401e92112d18ae955af7"
+    },
+    {
+      "approvalSha256": "d42e8fe2ae446fa9e6e17eab4f101bbf5c8051b2eeee0c2fb33f804184740a6d",
+      "derived": "run/N/05.png",
+      "derivedSha256": "7d175aa5e619418aac018606fc5ed221fdfcce98402c912e9234cb682aed5cd3",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\02_fire_talisman_boy\\native\\12-v4.png",
+      "sourceSha256": "b586e3b5380abcb3ed54a4e304fa570f2294f1b56a052e799e904cfa64f9ff48"
+    },
+    {
+      "approvalSha256": "d42e8fe2ae446fa9e6e17eab4f101bbf5c8051b2eeee0c2fb33f804184740a6d",
+      "derived": "run/N/06.png",
+      "derivedSha256": "63ede2ff73a3168dff4e5cbc4a35275682ba9732d8f77acdcb463112bd103366",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\02_fire_talisman_boy\\native\\14-v2.png",
+      "sourceSha256": "880b310df47fe4189292c359e681a53af86adc291eac2cfd0cf3ba5bdebb5409"
+    },
+    {
+      "approvalSha256": "d42e8fe2ae446fa9e6e17eab4f101bbf5c8051b2eeee0c2fb33f804184740a6d",
+      "derived": "run/N/07.png",
+      "derivedSha256": "f1d6442cda3c51b38f1801e24bc556b7c6f27f7552a11cf9bfdccc46ea883111",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\02_fire_talisman_boy\\native8\\07-facing-r1.png",
+      "sourceSha256": "97f057cb964462c6f314e9f0b0c7d9ec676e86a8385ff158221b07f4117f0b6f"
+    },
+    {
+      "approvalSha256": "d42e8fe2ae446fa9e6e17eab4f101bbf5c8051b2eeee0c2fb33f804184740a6d",
+      "derived": "run/N/08.png",
+      "derivedSha256": "9d96226f92177368adc54033a0ec80bdc364997026a9d125625d020452f25b54",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\02_fire_talisman_boy\\native8\\08-facing-r1.png",
+      "sourceSha256": "0819f25b4623230e13b7823687d1a4932a0e9007d8c4021691fa8c18b7f599d8"
+    },
+    {
+      "approvalSha256": "91dc7179e13e15bc48bcdbb01cb37713d59e13ccfd8844361f356bf9b6beeb95",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "1218e6bfbafd664e38e5691403bb5af7848acc96786ee8c60253e62c55ac2f56",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\02_fire_talisman_boy\\natural8-20261105-v1\\01-L-contact-facing-worker-v1.png",
+      "sourceSha256": "71c901eafa82b3d8960ad0a6ee86b19d442be1bd932d6c439726bbe127d6dbc6"
+    },
+    {
+      "approvalSha256": "91dc7179e13e15bc48bcdbb01cb37713d59e13ccfd8844361f356bf9b6beeb95",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "f8d714d15e664d55e090c9f8b13ffcf1af71c8141948ad96ff084154d8d54fd2",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\02_fire_talisman_boy\\natural8-20261105-v1\\02-load-facing-worker-v4b.png",
+      "sourceSha256": "37991d120ce3410b41037dc07db923d511b7dc3f85c58a516b8091200dae8a4e"
+    },
+    {
+      "approvalSha256": "91dc7179e13e15bc48bcdbb01cb37713d59e13ccfd8844361f356bf9b6beeb95",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "06a77e106dd3b64d5b4b4ae9e9e588f13d7ad55e0eb64443ab13072dde8cc5ac",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\02_fire_talisman_boy\\07-F-repair-v2.png",
+      "sourceSha256": "1a137bafdcc4453a3003f51bc9985108ae0f6999173344fbc426cb8db1c5c0d8"
+    },
+    {
+      "approvalSha256": "91dc7179e13e15bc48bcdbb01cb37713d59e13ccfd8844361f356bf9b6beeb95",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "504a76fcda137b6937c9c5aaa173faeb07fd6309897d10dc7bfc76e2d5cfd03c",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\02_fire_talisman_boy\\10-F-v3.png",
+      "sourceSha256": "2a3d83df8902901f771ec376ae5edfef2e9c9def796421d11a6fb332ae2fac15"
+    },
+    {
+      "approvalSha256": "91dc7179e13e15bc48bcdbb01cb37713d59e13ccfd8844361f356bf9b6beeb95",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "9d9f540808774b83e6c1782e5059c8ee32033ebb08b5fccb9ae962e7672aa1c1",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\02_fire_talisman_boy\\12-F-v3.png",
+      "sourceSha256": "3aa4be2b1ac64be9f6ecbd00a4ef12f3f89b4caef488bca1d320acb0dc4caa5e"
+    },
+    {
+      "approvalSha256": "91dc7179e13e15bc48bcdbb01cb37713d59e13ccfd8844361f356bf9b6beeb95",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "8360936f0004813552df8c037046507c89e684a8cb0f676d171242db4471baaf",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\02_fire_talisman_boy\\natural8-20261105-v1\\06-load-facing-worker-v1.png",
+      "sourceSha256": "4971494043e67ce979bf24d4b894719b90fdc8865acc0048be3d0ac873361b95"
+    },
+    {
+      "approvalSha256": "91dc7179e13e15bc48bcdbb01cb37713d59e13ccfd8844361f356bf9b6beeb95",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "5fc706ef573f72b635ffb71c0fd640ac35459f336bea63887ded6fab9a1289e3",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\02_fire_talisman_boy\\16-F-v1.png",
+      "sourceSha256": "279b2aa645ffc635881d2409b59b623b3b0e7d5eeb4fc7cca980ce3d8d6e8ddd"
+    },
+    {
+      "approvalSha256": "91dc7179e13e15bc48bcdbb01cb37713d59e13ccfd8844361f356bf9b6beeb95",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "8ef55fe93433424ce2c0fb8c3d2a5b6397599b9f71af8db8298b99fc06c4d2c4",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\02_fire_talisman_boy\\02-v1.png",
+      "sourceSha256": "125342b54b3263ea40898d5feb845db8da10f0fdc94ca82cf1925f20f258dfbe"
+    },
+    {
+      "approvalSha256": "8ddf50859c83a11ecacbead2ce366b5900a0c7ffceccfe033b5ac7140c589951",
+      "derived": "run/E/01.png",
+      "derivedSha256": "8abd757d8ed9e07a0b975e2ed14ea9bc4c1d1fe63ee8812a60da270eb31a21ce",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\02_fire_talisman_boy\\eight-frame-20261105-v1\\native\\01.png",
+      "sourceSha256": "c355d4e24b0e13b4eb4f007f398c4c41af6a39aab7cd74df5af8ab71f46207d5"
+    },
+    {
+      "approvalSha256": "8ddf50859c83a11ecacbead2ce366b5900a0c7ffceccfe033b5ac7140c589951",
+      "derived": "run/E/02.png",
+      "derivedSha256": "dfa0efe1ab95397b29040d360120dc936138fdfa7e3a363cb5200f92640ad729",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\02_fire_talisman_boy\\eight-frame-20261105-v1\\native\\02.png",
+      "sourceSha256": "5a179cc0e40c088835bd32d4bf11745034671de4d000605fd2fc8d397c30625d"
+    },
+    {
+      "approvalSha256": "8ddf50859c83a11ecacbead2ce366b5900a0c7ffceccfe033b5ac7140c589951",
+      "derived": "run/E/03.png",
+      "derivedSha256": "978fdfa17c84cb9869f8e4c4c6d6596500c15002987b16cd857c4fb8c8ffa012",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\02_fire_talisman_boy\\eight-frame-20261105-v1\\native\\03.png",
+      "sourceSha256": "5c430fc89cb734c39db68e219b008cd44d77acaf6ff966b4fcfbb660ecdad7dd"
+    },
+    {
+      "approvalSha256": "8ddf50859c83a11ecacbead2ce366b5900a0c7ffceccfe033b5ac7140c589951",
+      "derived": "run/E/04.png",
+      "derivedSha256": "86bd59d16d775a8d0c506e3ac64c090c1131c6917b605be9a0601e653c3151b1",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\02_fire_talisman_boy\\eight-frame-20261105-v1\\native\\04.png",
+      "sourceSha256": "13dd249664d8154d1e00791443e47b9e92d5dd7a92a207243e1de55daeb43705"
+    },
+    {
+      "approvalSha256": "8ddf50859c83a11ecacbead2ce366b5900a0c7ffceccfe033b5ac7140c589951",
+      "derived": "run/E/05.png",
+      "derivedSha256": "6a99c839d7ab1d1bf77b400466ba0f96e63dacbcd789e96b8c10a9a12f27c376",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\02_fire_talisman_boy\\eight-frame-20261105-v1\\native\\05.png",
+      "sourceSha256": "ffecca5727be86a5d048656e017aea4d69bf99a003ede79144544f829f3b9559"
+    },
+    {
+      "approvalSha256": "8ddf50859c83a11ecacbead2ce366b5900a0c7ffceccfe033b5ac7140c589951",
+      "derived": "run/E/06.png",
+      "derivedSha256": "debc56de672a86bb8fc36f538d198e308ca6feaad6a9200a5e75246797c1ea6d",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\02_fire_talisman_boy\\eight-frame-20261105-v1\\native\\06.png",
+      "sourceSha256": "7a33cbd5dbb65039f75e4a8039d6f2ac74c676bc331470223ce494c8ad212f46"
+    },
+    {
+      "approvalSha256": "8ddf50859c83a11ecacbead2ce366b5900a0c7ffceccfe033b5ac7140c589951",
+      "derived": "run/E/07.png",
+      "derivedSha256": "e83c443f6b6f17716dc84b468ad54be5448ded66dc1e1aa0557c143b9336f92d",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\02_fire_talisman_boy\\eight-frame-20261105-v1\\native\\07.png",
+      "sourceSha256": "6708d5c47a1799113ca75d1daa58b16d7e27917a0837bc2c5a8c08db285844be"
+    },
+    {
+      "approvalSha256": "8ddf50859c83a11ecacbead2ce366b5900a0c7ffceccfe033b5ac7140c589951",
+      "derived": "run/E/08.png",
+      "derivedSha256": "39304d6b514e3ec1d7ae8469efd284d2b72f3bd2c90fee8bdfc5566646f473c3",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\02_fire_talisman_boy\\eight-frame-20261105-v1\\native\\08.png",
+      "sourceSha256": "b6e44a768c901f4e0224860681beed96ca39bd22b53652441b7b6580cd6f0e43"
+    },
+    {
+      "approvalSha256": "4cbd067628c8c44853841cd65944f402e39519cf274314fbc5c2132c5f79cb80",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "10fc6101797501dd98293b27d3da3d10b747d2aad183b64e9ea37ce6ada2e6d7",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\02_fire_talisman_boy\\natural8-20261106-c1\\native\\01.png",
+      "sourceSha256": "afefdc767af8faf2a68ae303be8ee47c5d7902c50cf1b583155c930f3e10c0ad"
+    },
+    {
+      "approvalSha256": "4cbd067628c8c44853841cd65944f402e39519cf274314fbc5c2132c5f79cb80",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "d10f3b556e9d9e726c4b33d359d570537444fdd6578063bac75e00a298c7bb2c",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\02_fire_talisman_boy\\natural8-20261106-c1\\native\\02.png",
+      "sourceSha256": "571c58395b3492303d16b849a33c2a8f9ccc738cc3c26b3da4e04807572cd629"
+    },
+    {
+      "approvalSha256": "4cbd067628c8c44853841cd65944f402e39519cf274314fbc5c2132c5f79cb80",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "f53bc21e582d5c8f82aa0b0faa74173aff84d188ba014c0f3bd522cc1b76e4d7",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\02_fire_talisman_boy\\natural8-20261106-c1\\native\\03.png",
+      "sourceSha256": "b1d1462ab15514fd5590f1792af6e0634a977770548f5396c3acea711b984e76"
+    },
+    {
+      "approvalSha256": "4cbd067628c8c44853841cd65944f402e39519cf274314fbc5c2132c5f79cb80",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "df509e3ef6b32ebff8a757defedcedcdc234c2215f66a976bd276db59098906d",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\02_fire_talisman_boy\\natural8-20261106-c1\\native\\04.png",
+      "sourceSha256": "0a9ac5a220ed5e69944e1061cc1b89a814ed4505b70f18406a37e6fc198d46d8"
+    },
+    {
+      "approvalSha256": "4cbd067628c8c44853841cd65944f402e39519cf274314fbc5c2132c5f79cb80",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "704b2564f9aa9e2db18c1c5633d936ac8ae38df3582a6041bc11b4a9c9ac5625",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\02_fire_talisman_boy\\natural8-20261106-c1\\native\\05.png",
+      "sourceSha256": "bfbd8872771c4149f1cc08ad37808b1d6ba30036c4e3ba10c1207053699955d0"
+    },
+    {
+      "approvalSha256": "4cbd067628c8c44853841cd65944f402e39519cf274314fbc5c2132c5f79cb80",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "ea899f3efdb0a05dc9711ca76249adfea6e6cece2156b71881ce8587597b3363",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\02_fire_talisman_boy\\natural8-20261106-c1\\native\\06.png",
+      "sourceSha256": "c091a1d438ac33d0abfc7bfcfd623e0786193898fafeef3c9fd7fa72772c7cbc"
+    },
+    {
+      "approvalSha256": "4cbd067628c8c44853841cd65944f402e39519cf274314fbc5c2132c5f79cb80",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "45da0125ee8dcdbde09d642d2e99b7b6d54b4ed004d1cd9ada55845894178a64",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\02_fire_talisman_boy\\natural8-20261106-c1\\native\\07.png",
+      "sourceSha256": "52437640c78193eb47632787ecf962d49a17ee01e2045932037775799d565960"
+    },
+    {
+      "approvalSha256": "4cbd067628c8c44853841cd65944f402e39519cf274314fbc5c2132c5f79cb80",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "ad408dee03f7e676ad1956d612dded75e1a60f0a18c0d04dd7dce78d14e9eb04",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\02_fire_talisman_boy\\natural8-20261106-c1\\native-c2\\08.png",
+      "sourceSha256": "fe4f301dc8df8bd2eda9662ae1a841ee08b2b8c4a5fbdd4d26b1b01140a68b29"
+    },
+    {
+      "approvalSha256": "f9e49742efdc4c02471a01a1033e19e07454c11d478a32ec88aa3abd538f7c13",
+      "derived": "run/S/01.png",
+      "derivedSha256": "d03accc878e1d7d42bdef980c0eaadc82fbc71c636b4c1e38f84c50a7ae191ce",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\02_fire_talisman_boy\\native-v1\\04.png",
+      "sourceSha256": "4f8256a4502db34e33e736bcf6ff9862b0a6fcfce43a4459fa8ca79c81b137c9"
+    },
+    {
+      "approvalSha256": "f9e49742efdc4c02471a01a1033e19e07454c11d478a32ec88aa3abd538f7c13",
+      "derived": "run/S/02.png",
+      "derivedSha256": "f5d86a9913f83d1401450b497796b03968b644017476d98a57b3835c9053da9b",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\02_fire_talisman_boy\\arm-continuity-v3\\06.png",
+      "sourceSha256": "ab654780b30f387a9fb2fa2c2f586a6f469dea7fd234f55cc58db8749e6b3f43"
+    },
+    {
+      "approvalSha256": "f9e49742efdc4c02471a01a1033e19e07454c11d478a32ec88aa3abd538f7c13",
+      "derived": "run/S/03.png",
+      "derivedSha256": "751f35bcfbf76da334112712f4858bb391d5258c278952baef3e10c8b8ca2a5a",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\02_fire_talisman_boy\\native-v1\\09.png",
+      "sourceSha256": "1a95f111286315e937b0a87b819b1c5c323e13cad06257a4037c76abfe4ed512"
+    },
+    {
+      "approvalSha256": "f9e49742efdc4c02471a01a1033e19e07454c11d478a32ec88aa3abd538f7c13",
+      "derived": "run/S/04.png",
+      "derivedSha256": "0427ce52ef0bda8b281674b2ac65d2d9c2243a38c1b16b2fffd28b610b358036",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\02_fire_talisman_boy\\native-v1\\11.png",
+      "sourceSha256": "f00b7931750ad9560fdd83b1a7e39fc30bcb41c30fb19d2ce20c6d3a790cfbe3"
+    },
+    {
+      "approvalSha256": "f9e49742efdc4c02471a01a1033e19e07454c11d478a32ec88aa3abd538f7c13",
+      "derived": "run/S/05.png",
+      "derivedSha256": "5127d78d6916aa0270e276b4574006457400a93961d4ff703a633c8090544c0c",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\02_fire_talisman_boy\\native-v1\\12.png",
+      "sourceSha256": "8716ac92393caefb32819863b29388dfebdf65c58d8391e0b8b93886f128f633"
+    },
+    {
+      "approvalSha256": "f9e49742efdc4c02471a01a1033e19e07454c11d478a32ec88aa3abd538f7c13",
+      "derived": "run/S/06.png",
+      "derivedSha256": "a4c8ef7b103ac2547eb1f712c8e2e86b46a735e77f7bf77d75306c1aa3b3906d",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\02_fire_talisman_boy\\motion-closure-v2\\14.png",
+      "sourceSha256": "cbd457808a20ab3daa532b4dd80b07b85122cf0f396a8dd6dd0617dbac98403a"
+    },
+    {
+      "approvalSha256": "f9e49742efdc4c02471a01a1033e19e07454c11d478a32ec88aa3abd538f7c13",
+      "derived": "run/S/07.png",
+      "derivedSha256": "e50a2caf3033e136d9c371fa101451f81fec9a2d5d16ec1963c6b40001b5c939",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\02_fire_talisman_boy\\motion-closure-v2\\16.png",
+      "sourceSha256": "d72383a667e74eabe6985c01236e6816b10355bddd8643fa3be1dc2be5ebdc65"
+    },
+    {
+      "approvalSha256": "f9e49742efdc4c02471a01a1033e19e07454c11d478a32ec88aa3abd538f7c13",
+      "derived": "run/S/08.png",
+      "derivedSha256": "af881e16c32cc4c3fd7add4abb49e9444703127c3313ecf79380bdfd28b74c1c",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\02_fire_talisman_boy\\native-v1\\02.png",
+      "sourceSha256": "a37a1b0c1c20f01b006629c4e390f6f070a3f4d97a2d1450478aa9d7c06b6a71"
+    },
+    {
+      "approvalSha256": "ef377bd786c3964a46f98708b2705f0fcd11709b5e5837139fc1a0c94dfe3bef",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "b98c478304824b785038ec8449969c77bb2b9b36a125964236ac173e9576f6a3",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\02_fire_talisman_boy\\natural-eight-contact-clean-v5\\01-native-near-contact-clean-v5.png",
+      "sourceSha256": "f6c11b64a44c62146562b89e31fef06c7f09791a32e87d9ebb4fdf214c3d57e7"
+    },
+    {
+      "approvalSha256": "ef377bd786c3964a46f98708b2705f0fcd11709b5e5837139fc1a0c94dfe3bef",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "3d9c29ff33f11b94897703d8a21981c4605088412bd657ec4e5b37b03de74f53",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\02_fire_talisman_boy\\sw-owner-followup-20261106-v1\\02-native-local-support-v1.png",
+      "sourceSha256": "d4b6a0e45c0fd3adbe61858d0b1b76c98255385dab8143f524c816f8f4e4bf32"
+    },
+    {
+      "approvalSha256": "ef377bd786c3964a46f98708b2705f0fcd11709b5e5837139fc1a0c94dfe3bef",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "465e41625983cd744eba4fa0bd7a298d37cf3b1096b205204d37191c109e496c",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\02_fire_talisman_boy\\sw-owner-followup-20261106-v1\\03-native-free-calf-only-v1.png",
+      "sourceSha256": "d11657daafc88b57300a4bd4f999aac0e52b17df8b73132cc312c7d8e4d82778"
+    },
+    {
+      "approvalSha256": "ef377bd786c3964a46f98708b2705f0fcd11709b5e5837139fc1a0c94dfe3bef",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "d8d4df67d73528b73ec6762f595ae2b80d2c8dc1d79a07ff0d2d1e5d2c8c9b90",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\02_fire_talisman_boy\\natural-eight-precontact-root-v6\\04-native-precontact-v6.png",
+      "sourceSha256": "248c128f8b203f706f30704816948411c1386b93bac32a791442849c380437a1"
+    },
+    {
+      "approvalSha256": "ef377bd786c3964a46f98708b2705f0fcd11709b5e5837139fc1a0c94dfe3bef",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "fdbae32d9bf68a03b4edd6dff1a7900c72db67ec927a09e0dcd2d4e7fba5f531",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\02_fire_talisman_boy\\natural-eight-envelope-v3\\05-native-envelope-v3.png",
+      "sourceSha256": "09b84029bca1182259b4b46c47b984ab922efd2cbc4e551d32ff5296e0197423"
+    },
+    {
+      "approvalSha256": "ef377bd786c3964a46f98708b2705f0fcd11709b5e5837139fc1a0c94dfe3bef",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "7057693d3e07aefc4a4a2fedba7b00ed4476086f4a5d4be5c7c267e6c1a5fe95",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\02_fire_talisman_boy\\sw-owner-followup-20261106-v1\\06-native-target-support-region-v2.png",
+      "sourceSha256": "70aa0d1ca482ad4c4d2b7347bcb26eac946c8722899a17eefe848fb83004c3d1"
+    },
+    {
+      "approvalSha256": "ef377bd786c3964a46f98708b2705f0fcd11709b5e5837139fc1a0c94dfe3bef",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "5509c80ab89b5df9f2defc514a01418845e5718654d25549b9c008410807eb3e",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\02_fire_talisman_boy\\sw-owner-followup-20261106-v1\\07-native-compact-short-calves-v1.png",
+      "sourceSha256": "11b9ee0e91a6cef37df83232d2c770cf24dd6584df17d8e851a30c7439264cf3"
+    },
+    {
+      "approvalSha256": "ef377bd786c3964a46f98708b2705f0fcd11709b5e5837139fc1a0c94dfe3bef",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "c8f8aebe44368d052cd4d765d40c3e15373e3abc3267e3e08fe549cb8ca968d3",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\02_fire_talisman_boy\\natural-eight-precontact-root-v7\\08-native-higher-precontact-v7.png",
+      "sourceSha256": "11f29c2fce1ec35f5807fe91d6b0784d8899592a0155c883707b21c44a74a3a7"
+    },
+    {
+      "approvalSha256": "aa29dace44fc81cf04717ab9ae46886440174d0c72011957af0e33d587e6eac5",
+      "derived": "run/W/01.png",
+      "derivedSha256": "3345109a76ffa31afd11cedf7d51185b46d1c351897a67e59ba375d7d701dc25",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\02_fire_talisman_boy\\v6-five-cards-20261103\\04.png",
+      "sourceSha256": "3c4c15dd55503a86d6fbdd75bd76eda26d87e23ce5708a6580918629d63c6b61"
+    },
+    {
+      "approvalSha256": "aa29dace44fc81cf04717ab9ae46886440174d0c72011957af0e33d587e6eac5",
+      "derived": "run/W/02.png",
+      "derivedSha256": "3bd9932ce4ddad1ae69c6b0acc7ac3918981896761e66c5e1d8ed2220995bc94",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\02_fire_talisman_boy\\8f-facing-20261104\\native-v1\\02.png",
+      "sourceSha256": "c2866702316778a562ccccc26cc375744a9923516e480be4cd173c176508e00a"
+    },
+    {
+      "approvalSha256": "aa29dace44fc81cf04717ab9ae46886440174d0c72011957af0e33d587e6eac5",
+      "derived": "run/W/03.png",
+      "derivedSha256": "e37cdb7eec9e0112d80b36ebdaf2a51a96c7412c973f4d15d3ca1fa5480b0ecd",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\02_fire_talisman_boy\\v4-pose-target\\07.png",
+      "sourceSha256": "963b5c3b6bce09fc36398dc7d969c874602e1c622828e7fa283bbc899a582d0a"
+    },
+    {
+      "approvalSha256": "aa29dace44fc81cf04717ab9ae46886440174d0c72011957af0e33d587e6eac5",
+      "derived": "run/W/04.png",
+      "derivedSha256": "c9bcce31f3a640b83eb6d5244083a17a961c1bfdd1f2bec535f3a87a5f875f99",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\02_fire_talisman_boy\\8f-facing-20261104\\native-v1\\04.png",
+      "sourceSha256": "595b9042b711795713c6c1c09c73315a676ac90b44a1396148b65cca2f5a6fa2"
+    },
+    {
+      "approvalSha256": "aa29dace44fc81cf04717ab9ae46886440174d0c72011957af0e33d587e6eac5",
+      "derived": "run/W/05.png",
+      "derivedSha256": "cb2abe2858b470f9efbc478d3b38cfff5f776adf4d478e571b3db64817ea10da",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\02_fire_talisman_boy\\v13-bell-return-and-tassel-20261104\\12.png",
+      "sourceSha256": "9efe3bd68a13795577b723e6a867d578e1f7f098a8f6603acf1bbce6af4abc24"
+    },
+    {
+      "approvalSha256": "aa29dace44fc81cf04717ab9ae46886440174d0c72011957af0e33d587e6eac5",
+      "derived": "run/W/06.png",
+      "derivedSha256": "d2c82a9c67f2336249eb8703ee3128932147d32fee3141f803d1c4157089b2f9",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\02_fire_talisman_boy\\v12-under-body-recovery-20261104\\13.png",
+      "sourceSha256": "ec350d201fa9223f99a014b91923fc4da37f3d201690efaa6806227597e7cb03"
+    },
+    {
+      "approvalSha256": "aa29dace44fc81cf04717ab9ae46886440174d0c72011957af0e33d587e6eac5",
+      "derived": "run/W/07.png",
+      "derivedSha256": "7219a0431aaeeecff24d71b088f0a94f0211ad871210fc617810a1a3553290f6",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\02_fire_talisman_boy\\v4-pose-target\\15.png",
+      "sourceSha256": "2f435828b82a9dd7a7cd3f8e69e43078641868312dee0d084c8e5f31a7aec84b"
+    },
+    {
+      "approvalSha256": "aa29dace44fc81cf04717ab9ae46886440174d0c72011957af0e33d587e6eac5",
+      "derived": "run/W/08.png",
+      "derivedSha256": "ef5ee55c15c8391a63890564e1f681c6ccc1d113cab09682f95179d7b5354f71",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\02_fire_talisman_boy\\8f-facing-20261104\\native-v1\\08.png",
+      "sourceSha256": "60d6e882326ead17507d64a584823703e8dbc2482a3d51d19a12656039ca8500"
+    },
+    {
+      "approvalSha256": "32a61fc4c57bbf0e94351071c0449796d58f8db8c56bc5643413b30563f9253b",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "034044f06e82a015802466918598fa94dc25b2a7f00d9d19b05cf58ed5371843",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\02_fire_talisman_boy\\native-v8f3\\01.png",
+      "sourceSha256": "3ff8287b8c519c7a64b8e8f60591dacd771e857925f8e993ba31621d08056899"
+    },
+    {
+      "approvalSha256": "32a61fc4c57bbf0e94351071c0449796d58f8db8c56bc5643413b30563f9253b",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "d83f69875d14935a9088349c2d70ecab5f960cfd0e3e17d7705b6e0f183ed707",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\02_fire_talisman_boy\\native-v8f6\\02.png",
+      "sourceSha256": "b5b7dfe4047223f11da50fcac402db6b1ba6c5099687c1d41e2dca39917e4ef5"
+    },
+    {
+      "approvalSha256": "32a61fc4c57bbf0e94351071c0449796d58f8db8c56bc5643413b30563f9253b",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "bd9c79eaca21fb9c1de321faf90231b4cfee979b3f123e4c3753887530a4e8b6",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\02_fire_talisman_boy\\native-v8f7\\03.png",
+      "sourceSha256": "a509c4faa1ceb9138c7bcd6e8dfd0c861f9c4c49cf07dd5c6cd68a8a3424d393"
+    },
+    {
+      "approvalSha256": "32a61fc4c57bbf0e94351071c0449796d58f8db8c56bc5643413b30563f9253b",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "beaa6260ca3150fd4e5481fbd4947710e02c511ce4d4beee3a655601627045a2",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\02_fire_talisman_boy\\native-v8f5\\04.png",
+      "sourceSha256": "3098190470bf85562b4181d44e7c8cd1e1b3600715f8ae91a7987267483c4d96"
+    },
+    {
+      "approvalSha256": "32a61fc4c57bbf0e94351071c0449796d58f8db8c56bc5643413b30563f9253b",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "975eedfb2c26a25b728a75f53e6c481aa498af64781811402415ca13cd9248cb",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\02_fire_talisman_boy\\native-v8f3\\05.png",
+      "sourceSha256": "1bb79bca63ea7661bca37310eec663d3ef41ab9e6ab20a64f1f29abe45150c36"
+    },
+    {
+      "approvalSha256": "32a61fc4c57bbf0e94351071c0449796d58f8db8c56bc5643413b30563f9253b",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "ecbd753a8911cf6f56c808603496c3b4e40f84ba19e66ae201a3f11e46a0c23b",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\02_fire_talisman_boy\\native-v8f6\\06.png",
+      "sourceSha256": "b3fb02073722d9cbe99ae6a9eb55397f42910e6b5715fa7d324fd65c16b3c639"
+    },
+    {
+      "approvalSha256": "32a61fc4c57bbf0e94351071c0449796d58f8db8c56bc5643413b30563f9253b",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "7150eca04dee1030ce51e8b91962a05b2d5cb20d3b36c9e010d91b76ccd55773",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\02_fire_talisman_boy\\native-v8f8\\07.png",
+      "sourceSha256": "eaa173fd12137da871a6a5654e2319cf700efe8997f5a64e15d70614fd49dfdf"
+    },
+    {
+      "approvalSha256": "32a61fc4c57bbf0e94351071c0449796d58f8db8c56bc5643413b30563f9253b",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "da624218119c370047f325264d48e485ba04773d5b08ffa1068fe3542839be97",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\02_fire_talisman_boy\\native-v8f5\\08.png",
+      "sourceSha256": "d1bf8896b1603f51a42da0c0d464dbeebda436e63e0d50e3eaa0325ba70de627"
+    }
+  ],
+  "gameCalibrations": [
+    {
+      "characterId": "02_fire_talisman_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.22,
+        "pixelsPerUnit": 30
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.22,
+        "pixelsPerUnit": 30
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "f6c11b64a44c62146562b89e31fef06c7f09791a32e87d9ebb4fdf214c3d57e7",
+        "d4b6a0e45c0fd3adbe61858d0b1b76c98255385dab8143f524c816f8f4e4bf32",
+        "d11657daafc88b57300a4bd4f999aac0e52b17df8b73132cc312c7d8e4d82778",
+        "248c128f8b203f706f30704816948411c1386b93bac32a791442849c380437a1",
+        "09b84029bca1182259b4b46c47b984ab922efd2cbc4e551d32ff5296e0197423",
+        "70aa0d1ca482ad4c4d2b7347bcb26eac946c8722899a17eefe848fb83004c3d1",
+        "11b9ee0e91a6cef37df83232d2c770cf24dd6584df17d8e851a30c7439264cf3",
+        "11f29c2fce1ec35f5807fe91d6b0784d8899592a0155c883707b21c44a74a3a7"
+      ],
+      "ruleId": "current72-02-fire-talisman-boy-sw-20261106",
+      "ruleSha256": "b0046928a73bebee8a5f059a7b88dff4d74673aefa8d200b159467f51fc3927d",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "ace0c0f8170801a3a32649651f1e995ffef369c1e3f828f4d234d16762599538",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\02_fire_talisman_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

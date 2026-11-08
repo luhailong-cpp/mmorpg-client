@@ -1,0 +1,291 @@
+{
+  "allEightDirectionsAvailable": true,
+  "characterId": "03_lotus_healer_girl",
+  "clips": [
+    {
+      "action": "run",
+      "direction": "N",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "NE",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "E",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "SE",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "S",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "SW",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "W",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "NW",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 66.66666666666667,
+      "frameDurationsMs": [
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    }
+  ],
+  "crossVariantFallback": false,
+  "frameHeight": 384,
+  "frameWidth": 384,
+  "inputFingerprint": "2b51c056367a6261e9d6524468d9f631a18676bb6276801f9b523514248c6add",
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "pixelsPerUnit": 39,
+  "schemaVersion": 1,
+  "sourceFramesPreserved": true,
+  "sourceManifestSha256": "70e85a68d2b4ccccf8d647426b8fef8aa33d9e396de20043d6f3748e90ea7e4f",
+  "unavailableDirections": [],
+  "variant": "legacy",
+  "visualValidation": "game_scale_ground_anchor_pending"
+}

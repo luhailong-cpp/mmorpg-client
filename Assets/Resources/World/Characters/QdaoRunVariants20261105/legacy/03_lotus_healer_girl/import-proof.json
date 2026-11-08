@@ -1,0 +1,2637 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/01.png",
+      "derivedSha256": "0d2a9321e436e9dd899f257f0a55599ce1f3961589ca4fd8ad318939b791fa0b",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "84ddc56c2fe98990173b6bca0bbad49ec93f31da2993033989f90bdee4227106",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/02.png",
+      "derivedSha256": "a1ff4deba5002aeaa200d77428f49d24575e6d4d4bca84994853f2404b96744b",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9d567ab198ed0a8cd6b251282baa046a74a4fd030630c8b67c281acf23d19070",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/03.png",
+      "derivedSha256": "e658eccea6d85521198bbd7c53f58126f21de955154d734f202ea4a40adf2407",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9ff9eefffe20ff3024ded9c480439b7f76d07c2dd949618a12673441872dc20b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/04.png",
+      "derivedSha256": "07e4169a77d0f95a5bfd53b57dd4f165a6b3b050be73447c952e36d49bbb2d47",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9f00f824bf78501802405fa9cd24dbe8b5e189152392c55913ef1c7ac891a101",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/05.png",
+      "derivedSha256": "6b754c1fd9f051ab714cfa5ab334ec6a1eb3dbd213b90afc4adee1644903fb08",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1194bf98b79bdf141ef3d2a5056d61e3d488d4e36c1a047318996fce43dc6a79",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/06.png",
+      "derivedSha256": "42cfd0321618ea1e6abbd9daa2da3cdf6827eb38846fbb2888203fb3daadd417",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "292d376c80362378a06762e4842cf13737424dd9f4626a87103ec798005a0cc3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/07.png",
+      "derivedSha256": "b25d786df371dcb25085e50c741d10f1d5291c69093401436543f8a537a75ac8",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c923cdac0b14a6e8aeae689a1a023f4efba3a331110338a8877bfa040b883b75",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/08.png",
+      "derivedSha256": "b3894b735ea4708273da6b5be379fbd991a7845185ed78b4914006111d5e7cb7",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cbf8ce0ea8dc87d378d346c6e41ba19264e19417f3247918ba7b32468dbbec6f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/09.png",
+      "derivedSha256": "04b3964d0c41e7847319a202adf57211c0894c863b276f915b3baaa3eddfb937",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b3234d5a9ed63312aca9e23e261746cdb45b8a49a10cd9aee6dd373f237eefe2",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/10.png",
+      "derivedSha256": "d6d2fa50970608dee413e406c9ed9dc69c1b765edc326287f6839c5a894184e1",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "23e2bc77c0f99656211a4e4168fc4f259b7b159182feef38ff7f3a4a3c16f4ab",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/11.png",
+      "derivedSha256": "30a0ebb31db7202bd83e795136712c1aeb79c53de5b169b8292901273a79c6cc",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "49d199ee760cc6b59700925c181202d05c851bd45e9ad808aef7cf5f015a2113",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/12.png",
+      "derivedSha256": "9d884936399615a26f7791bd33ccfe87e4b15ecc00766c4f8ef5548cc84c56b4",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0e445897bd742d3b537547a53b1c995fdd1b8965456eb31da236c4e6b22d41e9",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/13.png",
+      "derivedSha256": "582b0d1330737e8a831fc2da540f5a6a26fce6c2828a5daa8528641f6cffe599",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b7df8604f905a896391b477f92f056d010904ba87a16680caf1e77d663ea9454",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/14.png",
+      "derivedSha256": "12c52514db6bbe8d1a103aed127ae0271d0b8a33164d49f4648ee3c8cbf8b642",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "927240e6b7ca5c9fb939cdf2b43895c8c8c0531a4f6db8384bba27783c64738c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/15.png",
+      "derivedSha256": "43c54b9fcbc0f0a9d0038695192ba304388a1fdb1e48b30867808e61b675511a",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "416b6bde18e90b6a2ce156a8e16f54ace66d932bc161e4a72bcd9e6fd423a68a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "33b7acf82a81ffac2d6bcc9afa6b209d86f32fbc57ae31694f1354ae11bbae7d",
+      "derived": "run/N/16.png",
+      "derivedSha256": "97541b00a0de58462569cdfc34f1512fc8063e00052c5c9d5b9e71d1d3159e0e",
+      "direction": "N",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\N\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ccf42bc724ec80b901403ff6519d41c690676473e0073b91ea2e2a9f6096232b",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "e368d3f2d417c804f51e3871dd5d570055a2561e5bdbb73a6157d02a99d90815",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\01-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2cbbc5f0a05a4741239b00d811407ba398b66f47a025bc49570d852342e8fd2f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "9a78be8766572ff725316573fe2df22b00133a7172cd5e3ef6d9c02956a0f0ac",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\02-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2a7cedd92339a3a361d85a26b2afb7ebdc0153b2560250e81ac1ccd39b34e229",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "eabd126cf26c7cd9dec948b6a7817c08b89d37e0c019a82666157bacc594fbfe",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\03-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4285f79c1c88f0e6fb4bef579aaf373dcc87d22556786983b1e01f4dd9ea7611",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "692ef94543decc23a578f43e1fa26479ed882893ca4b4160ecc94a285cefb30f",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\04-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a05056330d7acd708c559d98d79997d6a1f110818de84dd19cc0cdaed5bde092",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "552a649a5c41c8354b850b68746de81e2e523ffcd232a58a12ab01300fdcd4e2",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\05-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3f1749441467c58129f2ac2f2ea9c9a429ddb1afe22d9779a83302a46e29a0b0",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "44bec23dfcb65a32a94e191fc994dc239f03a50413778952308fdf7f8253ff0f",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\06-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "07a484324edfcbf57fa2faebb72e48a4b25bbceb91a134b6c2957964afe885ed",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "492f37a9f99b13cae0ff3e6fbff934098e6d2a5b33d9c662e7db42fbd0dcd571",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\07-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a2c6ef40d70f251aa1b6e64ee6bfaa9c62eb36ee59ffe447fa6ccbbd88a4b077",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "68bf9f654e6af88e8d810c2324b3c73d6c068a4eccaa5403df34c4a6c441ad5d",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\08-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "42473bdc6ccc48d5fa145715974b4a956ddb6ac31937de0897366469c11ba82c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/09.png",
+      "derivedSha256": "a3b674104a465d9e6779aacdf12f12d380b8e6ef288f12c82f1bfc3ab5635366",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\09-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5b975ae2f3f391a036a9f20fbffadfe7a4c6ae3f330d6cbf2d7571519ae992bf",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/10.png",
+      "derivedSha256": "bb8a586cb9788562c1dc4478af3de4a6975184ede6cb40a7002ff3b96fb1e58e",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\10-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "da8498defbd8a9f6a1bbf3a156e721217a92d07c0cfab8175ed543af421cd596",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/11.png",
+      "derivedSha256": "c622e36f3b6867874844d20824e086782759f3ca05ec27fb875142e6502d8f69",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\11-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6a7681628eb9a1d434f24ba6433bb1f3419543d8d1957966c5dc2a96f932c637",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/12.png",
+      "derivedSha256": "ae518461103ad3d491c829c9ffd855d09404814a50770228ef6137ffa3fd8724",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\12-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b085dbcb0e21d823a2ef245af20922db455fcb43cf1219fe702a1fb2fd48fe28",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/13.png",
+      "derivedSha256": "36859d07fbf12cbd7cd848fdb5307ef1ed68c8766dcbff8f4a3aefda8159203e",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\13-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "40d3e9f0ea2725e2821870f2c5dad5c35b9461e20781987e243c0214b9d687e9",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/14.png",
+      "derivedSha256": "64be95cd3a9d34be52567ab64120e950012f1e0bdf9b0fd89431d9421b10eb1b",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\14-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "52988972e74ab49ebc123b59d103c72a3bc38be674af33bd1b129d1c181d9b78",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/15.png",
+      "derivedSha256": "dd98f2c7d13d8bd82e77623ac5c73254581694deaf05e34e1d7f92bfca1b0364",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\15-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4076043c49065313b217439299eacd27cdc42d6b23a2df888e6682e073111eb5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "2e582b66559d34abba3a923537c9e0e5f73ab0688c2345eb4a377bd138121be3",
+      "derived": "run/NE/16.png",
+      "derivedSha256": "e00a415ed5b726a1b576d3728495d385905fd5daa664c5de0bcdaa0419660a18",
+      "direction": "NE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\03_lotus_healer_girl\\16-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0665e2acb564bae753592a165ca3bb8f7948ba878208a57eca8fd6469d7119c4",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/01.png",
+      "derivedSha256": "578ad664238b7057f7743dd3d3b18eac6b5120ddbc4707a2fe46d6651334ddd9",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "512d752b64d838e6f386582a0ae723ad5f7581ef41eb62d4fd93363da31c46b9",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/02.png",
+      "derivedSha256": "5568d4c2bcd5eb17ab18dbc71e2d1f7e15384b534edcd4ea184791387928904b",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b1cd208510a631922a2f2f6c546e06464b99f25d7c0436def8a378f2eef3265a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/03.png",
+      "derivedSha256": "bcb96b39f4b45e4bfddcaeca9dfba5fa2e69a19261ced19c7a3b3fccea5a98a1",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "fa5adee7038fcbef2fd63c5ab3449aea577ce1b6c26478ae307f0d69c418fa22",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/04.png",
+      "derivedSha256": "fe0777148735028406c935d2dc0f4686ef3c9810d3a5cc643e0475b63281cff6",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2fc62f3f05723a5c836b2d1e34dc55e096a5797143ed8707a0bec00cc2124e95",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/05.png",
+      "derivedSha256": "e0a0e8087e673efd4ce41b081e7c2a1c16109e33c41d498a4008c745ea16908d",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2478361c7be2a4b3803df33dfafce1b9c0d2262be699740bcb782923d2e72350",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/06.png",
+      "derivedSha256": "dd4949929900eeae7fc0e837aa1fbdb5e15a51f97c781679d1bbcfc78044f9d9",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "122e1ed7390f3e9c866b3f53c4d82731baf9b081fbb77af6dcd8d0887767b010",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/07.png",
+      "derivedSha256": "c301916b88c5a4dfbbd57390b218d980531a82d533d04c81edfe79599aa74ec4",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6d94fca4a0600b2ac9aae42a347e7f5750f542f117426fb68fc412202d865587",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/08.png",
+      "derivedSha256": "dbf7c1a32111a8e98dc17d40915d43f391af12f5808fa3d1feae31e14677ac7e",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3ca6a8415411ab401a9ecc47708911f5c511c6657b68b45242f7eed3938e966f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/09.png",
+      "derivedSha256": "d2a4bec0a26aabe75f66007db413b76c0bf108fae96b3a5a45f8e6b4b27d8a67",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "73c845157b8e74787fe1bcffd950f02f149572efe85775912b9e5966fa6d1173",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/10.png",
+      "derivedSha256": "6160419c98e57b2f7b95168bda86b458eea97db9ff7e8b8e585ca8af42d6fe65",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d01394c77594058230f285ed2246f309a2874187038325d5787f608c2a704b74",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/11.png",
+      "derivedSha256": "757a50996fa48f15185ca67438f4945d21819cc414f8c7f0e01e325a479338c0",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "766e7b4c166e40711d01143381f2e5aee84a442dd7d9162c5a56af7de942d7a3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/12.png",
+      "derivedSha256": "ef7bbed5ef0ad117bf00809944d362a9b02266431d4936dbd1730f7f4e832f58",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "44351ccf62772a761a4191953ccfe437db18dcc7c75468c24b47c5e96d0e1c70",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/13.png",
+      "derivedSha256": "82872d65078f72f5faddcd59943e75ae4b3dbd6106d81a2923078a9d35b3a351",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "cb86c0ed446c72ec0149afeaf2eb90203065c3bc9c99b568cdf810e80318e346",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/14.png",
+      "derivedSha256": "2c5d99e5bfad3bb041a31d73e5732723625cf5f52805280be01afdde1ac30ad9",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8c06773ff56705c3ce6608395f95cd3dab6847eff31e9b2b2a8e4c090886dcb8",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/15.png",
+      "derivedSha256": "9f8d6020dd73251052c8448a90e82cd3dbbcaf110f89edfe3d10e70774348592",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5dad6d819933461da5b4179b76b1757bd3f223b86087368786cab0478bdb149e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "10811b7e896386f1103a9b7bfb00a593866560f54a3c0e173b529c90969f025a",
+      "derived": "run/E/16.png",
+      "derivedSha256": "8fd2c9bf1de7cd7fe1800a7b35258c02bf442294d0863f85eb5b4689fe732091",
+      "direction": "E",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\E\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "895fe782ac1775e258e2ed3b5b7e5dbfc00d8a15d167f7f2313b74aa77af1da3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "292c1e335f9f9f02e7981ab9b2f7f743a56ba77c51f2df5e9e9c715233951ee6",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2d36c432b7df86677045e66ee811c6960a8c87e2a8cf3df0daaca906f1d3877d",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "d6ae2916c8c64f47cdec0651468fc4fd09ce4c5845ef1c944e49a0533aefda3f",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bd73ff0fda27f43c8f3b3557eb5f719edb77dcde44aacd69b275d643b8a54339",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "7ad0098338b37ebd99d62aea14ac499415893f8be0597f1db0ddd9e67642aeb6",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8dc9993a0222c404655bfce2d9b891f370c3f74b58b0ea8733ed40612a5a4e4f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "9155f26239a07bac074ba8e54f837bcc0b466ce187980e63b63fa800a6f44870",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "34978945593ef2a54f553849482c28bf7e4b1de05d57b6c8abd771dcf413f089",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "7af28a3687bef76f899fab5b7251708197f961f9deb8e912e789fe2253892e3e",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a1189a0d9313a7c1620abd50d96bd809ed96686785dbc96a4c8fc8f8ce075d03",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "e357faeaff0c84f950b57c26452da44ef31d7e791968bf1659f095dc87025d1a",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1e5ac7c1fe6d934b235632297aed600c4f958b15991fe4af2921c3e8e6be32bc",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "b0ac9676242ba62c61c98f4019d835311f5039ac51c1d114ca729ba79dfea1bd",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5235c58e0c7ab8cec352f906409bbbf267e655e013dc99611e45d961779840ca",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "8242a7c5cdb751ff2628d6b585abd4534cfcce9b241b117f8cbcd099c7c456e0",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9f527d98904d80558c147d509857191c54773a8da18319a5702d07031df8bea5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/09.png",
+      "derivedSha256": "eccaa71e65432ace51debf973c2d30b2490a080d20072849cff5b6668be9a4c2",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "68b2212d8641c913064308a1003a9b97b1ef70d213272ebe00a45ef65950a4c0",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/10.png",
+      "derivedSha256": "28719fd269c22730a602721ab37e13caf9f851e554c6431f7617505a21464cef",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c6ad8d1ea49d4e507d578309c14324c4727cb8225ce14e103aa03189de031c7f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/11.png",
+      "derivedSha256": "93886ba80040c2727e39cf985c381dac283904af589df25472f43df4f615a258",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "24433a2046c6cf3af0cc2eb48cc0f2ede7716a860940d68934f45f374df73d8c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/12.png",
+      "derivedSha256": "635eb1d3bfafe22633e905bd20a399a6a932c6bf1db395dd249c5621c65f54c5",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6cdb060ce9ae9c169c4bcc49ea0f00f293df506d32ce5082a4ab59b075e174ef",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/13.png",
+      "derivedSha256": "89b5def75bf2b81aaa14e8ea2d70610198491a8b06b18874c0f8a1adce3432d5",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "44c60ac4cbba91dbb489353e4f4f18302105ed1a7a96e7d3d9d45717210b0bf6",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/14.png",
+      "derivedSha256": "0bc92df59b466c9ca1bcafda16ae26adadaa98ffbb6e819ea7e145097b085b07",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1744a8c553170f0df616a33cf7b43d679dfb2320d2577b1846e1e3678532866a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/15.png",
+      "derivedSha256": "17d4cc3ca59c6b01a38f391b77c783317a5e5965556640ec22c576ef3655da4e",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "1a6623df90c0f220fe4d7bb1f47ba190178fb4367c155268f443f592acdb958a",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "0ec98043052ca6dc4bf40d6332ca3c271f6b319e2a02eaaeaaebb821b9208a1b",
+      "derived": "run/SE/16.png",
+      "derivedSha256": "53957d7ec0c5cf3f5ead63c4ca6a2a2dc4001609f161e16bba760e9d5b04437d",
+      "direction": "SE",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\SE\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "64d59b578dd3881fe3ffb77cae3ceda169471eb8a21361b69b7f752b6cf6dcf6",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/01.png",
+      "derivedSha256": "6c6f3e6a08ab6e3e3934cd373708c1a0a93c7263f95b0902897461145945573a",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "12f30ed0e5d74a05f4fc55fe1d9ebeb746f63c4aeca6f195202a73022a19b558",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/02.png",
+      "derivedSha256": "f450e1a7a24b696df5c4fd7dbfeba0c3a6041c6f8ed8f2be29c0b0da1bdd3210",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7e99678ab833311382f20f17869e5e8a4baf3a989c56672fedcfa18be5f971aa",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/03.png",
+      "derivedSha256": "b405ad7e92be21a6f9140e6ce41052c5198ba18f00a862377829333765988aa4",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "110d96fec3dd7a6d46a625300105a9f6dc17fe20dedc5cb91adbb3fda0d814f9",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/04.png",
+      "derivedSha256": "ff5cd9fef39e591640b718c6167e8f79cacc9ac068fe70f9912412e3fee4fcf0",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "febc37f4b4f3820f9c7ffbf9cfdccdae94808ed01f96c24dae10bf7f30238005",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/05.png",
+      "derivedSha256": "df8b2fc9e6a9ff7c7d5179ac9e321aaad25d62ab08d7428a20c1296636743685",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "c8c1ea4ec504c33796c21df5fdd24d5e3272e5d8c6989ec32fe22933c52df5b7",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/06.png",
+      "derivedSha256": "d27744f29ab69d9cd5cf8ce640b4662575eab312ef653b9b9401137782a56e8f",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "50e50565ca8fdd771efb01b56e3c53ccec3e7857fc8799879fc3c3bb8ac4fc7f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/07.png",
+      "derivedSha256": "f092e8262f5d27bc56bfed758dc756fd5d4bac5c5b7df78f0fe0c059d299a4f2",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "370e3414957f2632a2d0f274e30ebea822a7de496b96819d6204ce54e242f47c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/08.png",
+      "derivedSha256": "b792f4016a297b5fa27d52645fff2f3e1efd137e7a92ffd783a5f163396aa4e3",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a42234751d351cb42e805d459ddc3a71292c1806295dee9d939f7bacd4a51e2f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/09.png",
+      "derivedSha256": "f897fef7fd28074bc8e37ee4fdc70179fa2f56812749b282dadb2d76d4280142",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9505581ac8a3fb3fe4f6a6a8f722d1fc2d1ddc273a081f24f32fabb489637458",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/10.png",
+      "derivedSha256": "368c0ce17a972e6919da6002199958e70b3dafdd34777e9dd47fe9f12e2d27f8",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "21ec1a799c3d875b95fdcf5937593b456099608d09e33e3db5acdfefe55c47b9",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/11.png",
+      "derivedSha256": "d608b1a471e24fe6009cd06444153a9f2fa30f36a4ea5a52c700bf741bd387dc",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b6c968026939457acba36fc3185cbfd781c7e0bdb15eeaea63080e7294d7c374",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/12.png",
+      "derivedSha256": "4029dfb66f5565a346c428676b19e4f7f4602644c6f139a1376cb45aa746e28c",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "eb352a20db649500abad283bd7bfb5df97457930d6fab04d3f13ff52cd6468a7",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/13.png",
+      "derivedSha256": "0a9b178bb2cbbb809bd838e16561460a11e9eb5cc0533517fdc8c80a9cc974da",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "64f0a301a209b547c1a95b08757206d327510573d3fae49908fb4cc2fecb38c5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/14.png",
+      "derivedSha256": "f9db58051fb4449573aebef2207f42904fa174e403bb05cc4e9ce4def31232aa",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f150fb7051bca69d8fab7597623c5adda6cd3d07b8fd486868384cf9547ced80",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/15.png",
+      "derivedSha256": "01d0003fd8096e2f0f1e450d8359f5701b6607d54b062a260234c604fa12e51e",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "550b880ab1a717da875312135029d8ce84f9e72fd0998e58be903ac9111c1fd5",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "6db70f379224ad2b5b37f08e4a1346fe2ac1f97998d0768a4249207605add35e",
+      "derived": "run/S/16.png",
+      "derivedSha256": "62f8bbd34709a4b094ff59717ac62dfcf5a9d7a59de9842ca67dff643ee25127",
+      "direction": "S",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\S\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "dfa367f91ee5cef2d57ba529ee1c6d70ca18c3e4d953838ddd8e7cca6f334661",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "c26f9f6c9d16e1150ece3bd33c61aecbed333ffca5892076e86e864f15f4d769",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\01-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5e47b74dca30b674b64daa1a620a18dd4311bc129a7c125dd34c125e2546744a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "f606cfbea635b9d1e15b031deae3ba426643462e43bbaff45fba1d2fdbc26bfa",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\02-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6558e9c33d5437e6dd9fb9f3086b07d4fd5cf65bb0118a3ec652f1fa8e234a80",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "e8f4a42eab9720e0c75f64983c09daab202d598e303e81e39360d923320df931",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\03-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "419b2a8621362d808674ab66cc3c77b6cdc705ded1bf0186806ba1964ef3210c",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "b6172e49def69e3adb790185ea0b15e6571c445474c95111e23398d158be8743",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\04-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "a49b6e99816935fbe8d310084928b1fffaf22d1cdbf3c9109b11cce781897c53",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "05d76afcb7810c45ec191bd4296aab15d9e3e57b89e11e98f93b9d1168783f82",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\05-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "ca204a0d46f54a52437a1a36b9e93e508b079fdcba78679ca58cd1eb13b0f4f6",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "140c5ca2d59c41a70beaef30579759ea3cb5ca5d5b55ba989a71c726e8fca13d",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\06-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "7b3bd70e23ac8dc723238065cc9ceb2c3034fe852431082678123f3ed271dc30",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "86fc9e46ba908c07e7eff5a0c64e26a65ffe2898524d3cf3bfeec1beb7c0cb6c",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\07-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6e54836d1a4ce03b362d55764883a2153081c7cc28ed7c8249ba0cbeebed5ed7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "88b8522df7a4304d9f61e8b341eae5c008855dc7b44417f69a5e189cf7a86ca5",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\08-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "71870c3a5e4fa625bd96ce248f983db729668b726aa60f18ebb43a57794b1f38",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/09.png",
+      "derivedSha256": "ccaaf632566888c28ca5ffe859111c6df7b243f877463dcf4fb86f9686ddc810",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\09-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "eca91c47398812d02661d70a66679709ce0f5504c70441447def2cf407d39d72",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/10.png",
+      "derivedSha256": "e65311487b259b307dbdf631bbe8588ec82c392707b2150756f942db980a4725",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\10-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4ca31403d3e021ed99500574d87ec29a4a58140b74ea76ad7c1d18d8fe67c4d8",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/11.png",
+      "derivedSha256": "115dfc3cd78026f0fde0eaf9ca846eb2589a23be619492d74d5c6b0893971cd0",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\11-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "95d3dc68ce4f10d700bc96379518cd20f026a5b9d685149988813c0b15ccc6a4",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/12.png",
+      "derivedSha256": "f5a5f28d426e27bcac7b7f7730178a40d073fd5955f43e5061570cc1dc2451e9",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\12-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0715000ff9808c95f2f3701d84f99ae6161fab526fd365e50b548f4ac1c3c4d6",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/13.png",
+      "derivedSha256": "9a016553575a82747216ef53c3ed704e18619c9ea643019e0a7100d54ce508e1",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v5-constrained-arms\\13-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "4bcb7cdcbae3237f5ee5eb09ab030c0d286febc3d9e36a1df439beb4fb92834f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/14.png",
+      "derivedSha256": "b963019e770ee7845e79b6b6620e3c3ca48eaa933570b1379bba1f465c7cc294",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v6-pink-diagnostic\\14-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d9e419705ba2018ba8500b9c756bcc01dbb3c5f7893370adddc954ce979b6e3e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/15.png",
+      "derivedSha256": "5a7fd21fbbd9ff7ac7763c4cb304a5e0e02b0dce01d8a64df7eca09185f3ea21",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v6-pink-diagnostic\\15-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "0b243f3f28d9b1e457865a5f931cbd059ef5db07196f817dc65b5f00ec288616",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "adbb1c12fd4c202792e23d0eb5856ebe5a9fa85dcf4a3671b50c3b6ce645e3e3",
+      "derived": "run/SW/16.png",
+      "derivedSha256": "8e9914a76042d7c8118ada9dda939b1d453b11603da6f5dc1bbb3a3b445606d0",
+      "direction": "SW",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\03_lotus_healer_girl\\v6-pink-diagnostic\\16-native-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "830acb09df037eaa31f344048d52c18f7cb22012b6d1cbffc097ca367f761169",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/01.png",
+      "derivedSha256": "1834bb001fcbdaa1112cb0e104dbbfaf9eac7a46dbe801777962b349d4faeb1f",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\01.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "b185298b8f16ec4f8a8432dac2ac8859c2dbc113a54ed3b70407001fcb559779",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/02.png",
+      "derivedSha256": "d965ee97541f4727c63afdce625137a002c013d3acd9031ca0bf602695983abc",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\02.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "79db7a4c98e84a67e7609f9343647f51c772025870d87519d463e0c619ac5136",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/03.png",
+      "derivedSha256": "b165f9cb2179fd822c1b2c3f7a2c9d964812cbb2620a94c4c286c903905eb54d",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\03.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "9522cf241a0a61f8d0c6972282a19895472df20e91bf7e82d1a41c0178fd1b6e",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/04.png",
+      "derivedSha256": "a66b91dc3abbd9e1551aec436aaf0465f241c34a06d40b668f9591404a73be8d",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\04.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "27cb8454d5a3e1c036af7a212971c4751b59e17cc80e817c21c2afb4c29fd2a1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/05.png",
+      "derivedSha256": "b2007b3474849814b818e9c183b8cfdd77ad869f1f090d96b6e842852bddbcdf",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\05.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3e9ed0a72c3a71f4d0a877f59fb0f61afd796711c90bb396b8f8e3bb77502bd1",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/06.png",
+      "derivedSha256": "632a58b8f885e1d8e8c928d2e0d32c948edbe2ee1b094cb9246b9dfd336f57eb",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\06.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "835a25686553bb3405ee1f68ee676bbda41a1a35f8708d88ef59f65890bc94a0",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/07.png",
+      "derivedSha256": "9258cb35bd4c03ffcb1185b98116bcf31f4b77d8ab42f3f76a2984cdf8737d3c",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\07.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "000994a82780202eecbd048f80b83d220920824d9a39c7ca720f14445164a9b3",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/08.png",
+      "derivedSha256": "f373b498657242af135e2b03ad1e6bf551485853bdffd549ef0d5a745c401789",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\08.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d905ec95b00d61af36738ebf83d253d8854d41299b121e5a39e86876e983289f",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/09.png",
+      "derivedSha256": "b2ab3c42d3116c7d39ba14ba66918497f3a658032107720812ba5852572804f8",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\09.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5b9c6a8b0638f8462029ffcd778d0d3b7281b934f92e2f71567bde238f11bf51",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/10.png",
+      "derivedSha256": "50c855ba1b936eb5a08749d10ccba03439a512f3218fed45d000e3ed17e28d6d",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\10.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "2a2cc7fe16bd61a1b1b0ab9873ae5338e81a6d3394e282f866cc4d1b90c53909",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/11.png",
+      "derivedSha256": "e44759370880c2c9a241d0fafaee2dbf3578e43c560735daa3e10dcb0b95970a",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\11.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "d65846c3e08d916e3985c012aeb69a65a17209944472e0a2c9523a7b487bf38c",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/12.png",
+      "derivedSha256": "c8f10c6414fcb020647d41b7cad97529c81bd8d2467739a3db395602d5d6311a",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\12.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5a678e037e1a6cb2e06601d105d61abaf6fe6254f0dffb8b3fb2d27fcf482205",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/13.png",
+      "derivedSha256": "3dcf1d33fe54c31400e03bb80f6871c60e361859a0772a2d089ca8967bec42ae",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\13.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f9eaf9ce749d97978d455e0bae54b67862892bf642819b4e23ef766d6b8d1390",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/14.png",
+      "derivedSha256": "7bbc172bb9aa53b60201770410af365454b4dc7f9ef484dbf796961368cd2bca",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\14.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f164fb803110ae58b0a461ce01a57d9f2dbd825994b3d3506857b8748cf84f30",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/15.png",
+      "derivedSha256": "d89c5e8f10b80095fdb655df23e0aab26c613ea6449cddde59149e6cb532a5bb",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\15.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "144456cd8baf7161bb71049840635d72b260a48efa88910267a5f82165b46762",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "059c9f8dd721ad3d1224e2a89d26817bbf64526ea26dce25241b1aacb133138e",
+      "derived": "run/W/16.png",
+      "derivedSha256": "b5684e42054205e9c4f7959bb4e6232fe6bfc8d5165cd16dcb11783528a29057",
+      "direction": "W",
+      "durationSeconds": 0.06,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\action-remake-20261001\\characters\\03_lotus_healer_girl\\candidate\\run\\W\\16.png",
+      "sourceCanvas": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "e802e20537010eaefcec2a6b0495385245285171780ed6248d3d67ba362887ab",
+      "transform": "fixed-canvas-1024-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "56d904d20557a3658be01d82ed6f60e5e25a7ffb61bd7425db249f56749ce121",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\01-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6da5ad40b53711a49da7fe84084c713d454197333a73debc76067ec5ad193c17",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "c8f3e395561dbabeb388125bb698167fe5ae91969bc9bcefe40a9d7703ee77b8",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\02-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "311b4dd7c23c8adadfa9c132ddf5b8e9c94134f3be237ce8979e9296e293b74a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "c69683444b297bb18d24311e67ab516e78d8af4674f3caf8da5567b950ddb2f1",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\03-v4.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "539e202e98005f58e77a9ed10046eb4dc199cbcdd3773f9c3c0339fbb388c79e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "4c131a68d76f3281fd60ddfa4e3180c996f4a3aadf9bc87e46056938df76772c",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\04-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "6421bb224b33845034a11c6c0606f9aee45e3a28a11ea25b78000c78a749d20b",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "26bf89444e0c2e9643a3702e44e5096e5ae767c63c37102801fedcbd36859008",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\05-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "f1a335bd5f0e8e02a67b53ed5a899dec6d675153510761fdb00e35a4e6d8e6ca",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "205db8f92617239e25de6fff56c71df5df332b9e90775c87cda48d718cbad5c6",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\06-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5c9cbdda09ae8fe71eda83fa32fbe4d762ab4c77393db1f10887c309243ba37e",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "70c456849183e8ed26ca04f193b983ffdb86fa2b1620b1d42f5ff31a5723e06c",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\07-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "07885805fcf28d4c969d2c5bf5052ef703b32b84f89cc850fff2169296c53a33",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "a22dc246d395fc5eb0b3da84ac0d4145cae9ecf1e56406e3f10ec024d61ac2e4",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\08-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "3d7e78e0f3efab45e8e9d374d86ad8f02d16d8267529b89069fe2e0507b296b7",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/09.png",
+      "derivedSha256": "fb0b37e40e5426f06a5bb9f5b31bf220d6d3d1ac62b72df93ff906bec2c2b1c0",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\09-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "31e428dd15be086ec8216d6a516e3f37a7f554c05961b50e565a6747a3e8c624",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/10.png",
+      "derivedSha256": "72d4e4b15a797bc638456109ae3770a503300ae6f71db1ad6fa44fd3e33e0892",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\10-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "07b39991c320f74df67558350d84302fbdda06d60b3ada7eeb20fa3744f6f25a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/11.png",
+      "derivedSha256": "c7f94d2921f4d08443e277132d60a9591358b54e30ff149d5ef91ab22837a7fc",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\11-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "5061fe67b40c227ecb43b8557cd60d796d467d63cf0ade57f5c5b25b21bcdb9f",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/12.png",
+      "derivedSha256": "902eb1a8ea5d6ad3c8547e481f97ddcc3f54ca141352db31094d7926d3bcbf56",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\12-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "bd829c2373c8d47c3cd99ce9bccd1a0b8f6b2e69bf7c1cf1e7208c67b8912aa5",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/13.png",
+      "derivedSha256": "d9e6c8701a8b9e221b533655bb35c11bf161e105b27d6af634d6705576103cbb",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\13-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8337732d1f4776e2f98680a0d485a196fa6cbf0a813ac63750d281ecbfe70b7a",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/14.png",
+      "derivedSha256": "e4a41b07d53b294e8a50c9002cea0d9c868fbd60cea901d3fe0ed1e5d3fe6bd9",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\14-v2.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "8586708523931b022a2f8a1e5adbfe52e78b21f6111096d7dccfbebe7be3a9ba",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/15.png",
+      "derivedSha256": "dea8d2ec85c9f9e9170240a0933b8249349019c8cde2f1431df6545a826f79cc",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\15-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "38a5f2625134115d90ac03b823da60803e9a119fb03f6878093384a0fecc580d",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    },
+    {
+      "approvalSha256": "85743a3425c96bb9e8f7fd48a4a91c40c4c435409bb05818b162367f8e889c91",
+      "derived": "run/NW/16.png",
+      "derivedSha256": "b99d7fa8ce49c7af418e0dd228347df1f1862fdcdb1a485ccce1149fae3edfa8",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\03_lotus_healer_girl\\frames\\16-v1.png",
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      },
+      "sourceSha256": "14916f255570c7a57a61861d96b9e5ae8647c69234a8c6cf42f1441071c670f1",
+      "transform": "fixed-canvas-1254-to-384-rgba-lanczos-v1"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "2b51c056367a6261e9d6524468d9f631a18676bb6276801f9b523514248c6add",
+  "nativeCanvas": null,
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceCanvases": [
+    {
+      "direction": "N",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "NE",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "E",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "SE",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "S",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "SW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "direction": "W",
+      "nativeCanvas": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "direction": "NW",
+      "nativeCanvas": [
+        1254,
+        1254
+      ]
+    }
+  ],
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\legacy-preserved\\03_lotus_healer_girl.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

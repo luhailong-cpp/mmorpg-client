@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "097e6c4d3ace39a73f5cbfadd1275058063ce628cbe941e1729217f368b104d2",
+      "derived": "run/N/01.png",
+      "derivedSha256": "3e8f12600bb6d5c19a96efa3daf8e9ecf17bb3ad0a9d26d981fb6c481da50f88",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\N\\native-candidate-v2\\01.png",
+      "sourceSha256": "46eef590f7bfc4a85c86f881994cbfd1109e7e34eb037ead32a480e8f1f7f5ac"
+    },
+    {
+      "approvalSha256": "097e6c4d3ace39a73f5cbfadd1275058063ce628cbe941e1729217f368b104d2",
+      "derived": "run/N/02.png",
+      "derivedSha256": "64da2f0df3b0e13d110727436dbc10dd126159fac3e05a656971905d858504cc",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\N\\native-candidate-v2\\02.png",
+      "sourceSha256": "66b9aca087ee1efa34ec0e7fd9bb1ca6841715d913c10bcdb69cfe2be5163e88"
+    },
+    {
+      "approvalSha256": "097e6c4d3ace39a73f5cbfadd1275058063ce628cbe941e1729217f368b104d2",
+      "derived": "run/N/03.png",
+      "derivedSha256": "cec07a88ca350513fb917487a49df6d8bdeb74ce87c4601f777088f8319313c4",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\N\\native-candidate-v2\\03.png",
+      "sourceSha256": "6db6b372d6ea9f21da525f52fcf2e33995f23139977233436e315bbc5c2e7492"
+    },
+    {
+      "approvalSha256": "097e6c4d3ace39a73f5cbfadd1275058063ce628cbe941e1729217f368b104d2",
+      "derived": "run/N/04.png",
+      "derivedSha256": "54244561a97a0482f9012c93c50658dbf0aa04476e57c7f508cd0c98c2e11f5f",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\N\\native-candidate-v2\\04.png",
+      "sourceSha256": "c96cb9fed38a3106ebc2aabd7ba75b93061a6c822c60f9c7154aa92a84516aa9"
+    },
+    {
+      "approvalSha256": "097e6c4d3ace39a73f5cbfadd1275058063ce628cbe941e1729217f368b104d2",
+      "derived": "run/N/05.png",
+      "derivedSha256": "166ddf06c2216feed44cf008bef1cd234473f34db31f7fa783e5b4f5362cf586",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\N\\native-candidate-v2\\05.png",
+      "sourceSha256": "96b2962a55a108373d8c63aa7ddc8b51038a8e3f750f9b003fbb9391896b8d0b"
+    },
+    {
+      "approvalSha256": "097e6c4d3ace39a73f5cbfadd1275058063ce628cbe941e1729217f368b104d2",
+      "derived": "run/N/06.png",
+      "derivedSha256": "78d267e940457b364ddd60f170e5767e64541b29d4b1e1831e405d136d3fb9f7",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\N\\native-candidate-v2\\06.png",
+      "sourceSha256": "c0984683521c3a676d89995ca0f10a26da36b6773e6daf0b155bf9a254ec9b5b"
+    },
+    {
+      "approvalSha256": "097e6c4d3ace39a73f5cbfadd1275058063ce628cbe941e1729217f368b104d2",
+      "derived": "run/N/07.png",
+      "derivedSha256": "712f151901b9fa1d63dfc0f9c9cd050f39566e776c5d577a971bfa8075f731d9",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\N\\native-candidate-v2\\07.png",
+      "sourceSha256": "db538023d6c7cd50b6d99bcf84436eb46a758cf5fa0ca9b9ee3ca763f4f40da2"
+    },
+    {
+      "approvalSha256": "097e6c4d3ace39a73f5cbfadd1275058063ce628cbe941e1729217f368b104d2",
+      "derived": "run/N/08.png",
+      "derivedSha256": "bf4caeb0c7ccfa72f55c163d7b86d96bbcd771b21064d222fff8dbcf0485a11b",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\N\\native-candidate-v2\\08.png",
+      "sourceSha256": "83734850bce17636c2645c6cd20b05a1c90110aabfd89fd587e6883f1450648e"
+    },
+    {
+      "approvalSha256": "6bf15e7c7473899ec4975484016d360f225b4bd29551951d978322f9fbbc31de",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "aec0fca357f12b8b3d9ed11f1bf1d366c88db84645cb845e7045d55aab9e57f8",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NE\\formal-v1\\native\\01.png",
+      "sourceSha256": "d64ec1b465816a710a74bbae2a50a21a3a8cfcd5ac58fec2d72e778c4bdf5021"
+    },
+    {
+      "approvalSha256": "6bf15e7c7473899ec4975484016d360f225b4bd29551951d978322f9fbbc31de",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "14d7e7c75c885dcc8ff28ed6781a383165f366c37ff8f7da9268f6a98708f5e9",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NE\\formal-v1\\native\\02.png",
+      "sourceSha256": "1c405fd023ca9aafc01a4128fb9501e6152b0fcac95f88591b06f9c82e051d6a"
+    },
+    {
+      "approvalSha256": "6bf15e7c7473899ec4975484016d360f225b4bd29551951d978322f9fbbc31de",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "102345c7d9d73fbb4f4b504bc1cf936ceeccb023a324238fd7dfdb046f7c3926",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NE\\formal-v1\\native\\03.png",
+      "sourceSha256": "fe9251cc5533e7c2302d8f9c5182c02104fd074d8837acaa6c805454e43faf33"
+    },
+    {
+      "approvalSha256": "6bf15e7c7473899ec4975484016d360f225b4bd29551951d978322f9fbbc31de",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "a7ad4bdd96bc869983a463363eb2413e05302bb04dd275977f6638c767cd5406",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NE\\formal-v1\\native\\04.png",
+      "sourceSha256": "730b8e2dcfd46f8b147413a9b34840ca7131180742ba7bbb63e67d9238651c95"
+    },
+    {
+      "approvalSha256": "6bf15e7c7473899ec4975484016d360f225b4bd29551951d978322f9fbbc31de",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "69e79ed27eb6b0a1b6dd5f6a604647571f053eb7354354afe1952d879257d07d",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NE\\formal-v1\\native\\05.png",
+      "sourceSha256": "54831964da775bba19345eb8993d67c315ad3be3d9219aa56b4e3cd8d85f0dd0"
+    },
+    {
+      "approvalSha256": "6bf15e7c7473899ec4975484016d360f225b4bd29551951d978322f9fbbc31de",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "9251f3106b30e78c883aad5ef630adf72a4e6f5d03cbff936207a631ae470a87",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NE\\formal-v1\\native\\06.png",
+      "sourceSha256": "b299bbc49612c115f12c7f611c8acdb9f2cb5d76f96617462e849a4502efe58a"
+    },
+    {
+      "approvalSha256": "6bf15e7c7473899ec4975484016d360f225b4bd29551951d978322f9fbbc31de",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "86e343693515121241b0b8f6cba900b04e6bf9460f0c2ec52ce58b3cb7fb2677",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NE\\formal-v1\\native\\07.png",
+      "sourceSha256": "f7665d5fdee569cdab3ad12dc2a505bba631ca3b4cfea0d5b72824fd4d48d598"
+    },
+    {
+      "approvalSha256": "6bf15e7c7473899ec4975484016d360f225b4bd29551951d978322f9fbbc31de",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "e011ba30cd37e9389aa25d445f9b861e724689ef2ea16934b6bacbbf0f173489",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NE\\formal-v1\\native\\08.png",
+      "sourceSha256": "80b9c1f7fb7c665e2bdeafd3dfd36f356cec4a2ca68a481689f8871ef151dc46"
+    },
+    {
+      "approvalSha256": "9cf88317b7053d4af616fe3af84ccebe812d2f8352985d0389ad1675e9965b9e",
+      "derived": "run/E/01.png",
+      "derivedSha256": "2e31cf828109332e12fccb6c94d841afe48e70559087382096e4696e7fc1353f",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\E\\native-candidate-v2\\01.png",
+      "sourceSha256": "48ba2e8ff5b814d3937cef4e3d205f9fe6179c0333475d775fc74b886a8a6103"
+    },
+    {
+      "approvalSha256": "9cf88317b7053d4af616fe3af84ccebe812d2f8352985d0389ad1675e9965b9e",
+      "derived": "run/E/02.png",
+      "derivedSha256": "56e5f72562f5d19925a8fc82cf03bb64bbce5eed2781b4f9bfe9b80f5a730b7f",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\E\\native-candidate-v2\\02.png",
+      "sourceSha256": "12353099345b4d412641b18be36c518e2aa9d30c82b1f6e3572da34a4e7d3cf7"
+    },
+    {
+      "approvalSha256": "9cf88317b7053d4af616fe3af84ccebe812d2f8352985d0389ad1675e9965b9e",
+      "derived": "run/E/03.png",
+      "derivedSha256": "52276c3d3b1273fc9d7d348eb45eca4716d51352f463e899cfc88fb56da8db57",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\E\\native-candidate-v2\\03.png",
+      "sourceSha256": "ababdc6cef75945ec521c1af4ec043cfbee7b1f9dfd542eed47438d26002fba7"
+    },
+    {
+      "approvalSha256": "9cf88317b7053d4af616fe3af84ccebe812d2f8352985d0389ad1675e9965b9e",
+      "derived": "run/E/04.png",
+      "derivedSha256": "e97cfc892e8f59871ecb19fc8e644f44812617cd17b9cbbec6313fae8d91ec0e",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\E\\native-candidate-v2\\04.png",
+      "sourceSha256": "aee55700f99ef78d950ce925cbf3d53ad5a3368de7cd1a271ca64634d62b8cc1"
+    },
+    {
+      "approvalSha256": "9cf88317b7053d4af616fe3af84ccebe812d2f8352985d0389ad1675e9965b9e",
+      "derived": "run/E/05.png",
+      "derivedSha256": "073578ba73f7386a80c33577806ae485dfdee420cb9c0201feba346b41b5f217",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\E\\native-candidate-v2\\05.png",
+      "sourceSha256": "f2551d731d867a00c0df13c689c9fa98f31458666fe859da4982a013118ba230"
+    },
+    {
+      "approvalSha256": "9cf88317b7053d4af616fe3af84ccebe812d2f8352985d0389ad1675e9965b9e",
+      "derived": "run/E/06.png",
+      "derivedSha256": "5f3225c8cefacaa5972d8605cdda826f9eae321a8aa2b48df943865b65222170",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\E\\native-candidate-v2\\06.png",
+      "sourceSha256": "bcda591254249272259b02b6aec7beb9bf79fb7b124b65ce42052cb90b95e836"
+    },
+    {
+      "approvalSha256": "9cf88317b7053d4af616fe3af84ccebe812d2f8352985d0389ad1675e9965b9e",
+      "derived": "run/E/07.png",
+      "derivedSha256": "4fabcecca6319a631b402bde0f943149212e727ee4ba86db1034409022baa657",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\E\\native-candidate-v2\\07.png",
+      "sourceSha256": "8aa905996ac17ca9cd75c6704817f30b99e9cfe20d84a240b673557a07d06255"
+    },
+    {
+      "approvalSha256": "9cf88317b7053d4af616fe3af84ccebe812d2f8352985d0389ad1675e9965b9e",
+      "derived": "run/E/08.png",
+      "derivedSha256": "4528637a947d6ab216baa8acf84bc9b782ad5f039943d2eecd7ceb9fc66a7375",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\E\\native-candidate-v2\\08.png",
+      "sourceSha256": "fad7dcb9bd619ac4c80fdf7783db6b6dd45f6fe9e24a72a5e60ff74b4ce41c0b"
+    },
+    {
+      "approvalSha256": "bd51f12f6ab155b633e372e81142a8da2a44a6217cc5089a7ccee78bc8efe389",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "304a01bba90b0d79063b31a8a98c292585e7f58e90f08cc10e42ff766c37d5dc",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SE\\formal-v1\\native\\01.png",
+      "sourceSha256": "568397f2b6d09da43ef2e24ffd9bfd6f1f7c5b9d3701651fb3102adca2cb563a"
+    },
+    {
+      "approvalSha256": "bd51f12f6ab155b633e372e81142a8da2a44a6217cc5089a7ccee78bc8efe389",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "cc7c4abc93bcc3d42219ef32feb4f7792f96dbdc9146cb44c35eb12a541d2c38",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SE\\formal-v1\\native\\02.png",
+      "sourceSha256": "e5a9e0535e70e607158861bd7b928be24876963567b64e8e75df146e0a210dcd"
+    },
+    {
+      "approvalSha256": "bd51f12f6ab155b633e372e81142a8da2a44a6217cc5089a7ccee78bc8efe389",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "8eb53f726c91185cea7578b2fa39cce7f4bff870bd4e58493b6afc275314ad01",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SE\\formal-v1\\native\\03.png",
+      "sourceSha256": "4c89a9071e613202653575e6ca310fc5be38a7f6df97318c4f6a617ca336c81e"
+    },
+    {
+      "approvalSha256": "bd51f12f6ab155b633e372e81142a8da2a44a6217cc5089a7ccee78bc8efe389",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "ff8f3ff4339d7bb574f907e8bb6acefd8ef9f7b1653e31254c60196e054b97cf",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SE\\formal-v1\\native\\04.png",
+      "sourceSha256": "bd544c348aa9ec85958347a07faa04da79deb71e6f38a3696a849f39e80af497"
+    },
+    {
+      "approvalSha256": "bd51f12f6ab155b633e372e81142a8da2a44a6217cc5089a7ccee78bc8efe389",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "eb133a1ac8565b1d6a7c9a0999b944163216669d57ae71db47b0eb545975e210",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SE\\formal-v1\\native\\05.png",
+      "sourceSha256": "2d45cbae8db9e2fca835dbe85fdf4830b2e2319fd5608dcd546f83668824f95f"
+    },
+    {
+      "approvalSha256": "bd51f12f6ab155b633e372e81142a8da2a44a6217cc5089a7ccee78bc8efe389",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "1da014514dcec59d8a78023726c2236658d1f19178c5df3162ba00e90453bc1f",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SE\\formal-v1\\native\\06.png",
+      "sourceSha256": "9fcfabcdecd9deec5cd3e8a105d3d13e9045cf745cf88617969d7db9c2199742"
+    },
+    {
+      "approvalSha256": "bd51f12f6ab155b633e372e81142a8da2a44a6217cc5089a7ccee78bc8efe389",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "a6af700c2694da1417b485eb6cf234097e4041a0ebf6534a44aed67f11cb07cb",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SE\\formal-v1\\native\\07.png",
+      "sourceSha256": "d5ebbed86b14044977fbc08cd486471d8a15694fc2a4d106d08422f9dc06b106"
+    },
+    {
+      "approvalSha256": "bd51f12f6ab155b633e372e81142a8da2a44a6217cc5089a7ccee78bc8efe389",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "f969a8c6295c0047f8b91ae086a2dee2b923cfdd844caeb625e6db1fd081bc4c",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SE\\formal-v1\\native\\08.png",
+      "sourceSha256": "b15d8b74d3940ed1570d35f8af271cb9ff1270c25f0c30f08f45b0f79620ade2"
+    },
+    {
+      "approvalSha256": "fbcc63c8a28897aab55a9ebedda7f8df008ac25cf5aa485af80a5f5cde1101f5",
+      "derived": "run/S/01.png",
+      "derivedSha256": "acb3750e7b71966c9f65d5f80990ad0a174967ec3b0eef71f8bf0cb0ee1ff233",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\S\\native-candidate-v1\\01.png",
+      "sourceSha256": "6378df8a13f2bf5d090b9517dee8d441855458cfb494e4359bfc4ca3a224b816"
+    },
+    {
+      "approvalSha256": "fbcc63c8a28897aab55a9ebedda7f8df008ac25cf5aa485af80a5f5cde1101f5",
+      "derived": "run/S/02.png",
+      "derivedSha256": "b9e02b407f32b66378ca845e23971b39afada882abce3bd231fe4ae93c589cd3",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\S\\native-candidate-v1\\02.png",
+      "sourceSha256": "11c00c6f39b14ee156c0aa9daba14968df54d11c17b79f0d5c6150e30be3ceb5"
+    },
+    {
+      "approvalSha256": "fbcc63c8a28897aab55a9ebedda7f8df008ac25cf5aa485af80a5f5cde1101f5",
+      "derived": "run/S/03.png",
+      "derivedSha256": "265009b30562b6c66c858695548f913c932fdd39be4ada5bcb31dc7e2c4b275e",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\S\\native-candidate-v1\\03.png",
+      "sourceSha256": "2b36e8f0558a900c36555f86ae9bd5c81ac8af483fe6e8ce2b6d5f1dc7555387"
+    },
+    {
+      "approvalSha256": "fbcc63c8a28897aab55a9ebedda7f8df008ac25cf5aa485af80a5f5cde1101f5",
+      "derived": "run/S/04.png",
+      "derivedSha256": "90c380a26e083524353983d43751cbb95e4da0ac30e73f07af98f1a8244cc570",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\S\\native-candidate-v1\\04.png",
+      "sourceSha256": "790dcb9654b1f3852031fe4d36edcac9429c3256bac176a6479d33f5ee54eddd"
+    },
+    {
+      "approvalSha256": "fbcc63c8a28897aab55a9ebedda7f8df008ac25cf5aa485af80a5f5cde1101f5",
+      "derived": "run/S/05.png",
+      "derivedSha256": "acf778cbafda6114d487cca21d6f32c6b6083d02e521fe50c4b6df57e5086648",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\S\\native-candidate-v1\\05.png",
+      "sourceSha256": "adad98b5bcac60b5cb3a721a79a243cf66f593c76dc0b5060fd27613310b48a2"
+    },
+    {
+      "approvalSha256": "fbcc63c8a28897aab55a9ebedda7f8df008ac25cf5aa485af80a5f5cde1101f5",
+      "derived": "run/S/06.png",
+      "derivedSha256": "972a2213427df66aa38ec9fb61717442d2b19ed432cf69b5028e7661bc605133",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\S\\native-candidate-v1\\06.png",
+      "sourceSha256": "8f206ca8c396431a68c30ec41cba59453655f490bfe619f91fb699ac74cfae6a"
+    },
+    {
+      "approvalSha256": "fbcc63c8a28897aab55a9ebedda7f8df008ac25cf5aa485af80a5f5cde1101f5",
+      "derived": "run/S/07.png",
+      "derivedSha256": "a5e34862723b42714b3bdb4a02cd481220b030c8a27ceaf7c85ce38959b07480",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\S\\native-candidate-v1\\07.png",
+      "sourceSha256": "e9fa1028d3edb4861eb7decaeb294ad513c34c47443e9cd524fabf7a389e3cfd"
+    },
+    {
+      "approvalSha256": "fbcc63c8a28897aab55a9ebedda7f8df008ac25cf5aa485af80a5f5cde1101f5",
+      "derived": "run/S/08.png",
+      "derivedSha256": "296dcf8e52848960c1c494fe5442c87a1cb06d7f51422ef72748651db3181b01",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\S\\native-candidate-v1\\08.png",
+      "sourceSha256": "a886a412df118aa986a726e61ed772110d249decb758aa09c82bff2c4943e854"
+    },
+    {
+      "approvalSha256": "406954314e6f684ec57fbd145b121c99df327baa0f04570518d22dfc11ae3ada",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "08dc713a030bb14f4cdfc6d250eb68692143c4e359b9bf0529949347a4af66f2",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SW\\formal-v2\\native\\01.png",
+      "sourceSha256": "096ebe274ffb4122a0847719263a8a19d8e64e2241989aa235ad459ce6ee35a0"
+    },
+    {
+      "approvalSha256": "406954314e6f684ec57fbd145b121c99df327baa0f04570518d22dfc11ae3ada",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "6eaef482b503ed8b389e9073469d782aea3401918b06282a66cc0710f6bd7502",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SW\\formal-v2\\native\\02.png",
+      "sourceSha256": "961888942f85f6b6cd4b47c8d69334339d0c73c01905a56d2d1cbf945b3134ef"
+    },
+    {
+      "approvalSha256": "406954314e6f684ec57fbd145b121c99df327baa0f04570518d22dfc11ae3ada",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "bdda64198eac0dc52a7a01bd5f7660ecb699323bdbf33975e3c74639c30a294d",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SW\\formal-v2\\native\\03.png",
+      "sourceSha256": "0beef21c7121677e97a8d2cb4190fe9f91d98c59169d8ff94d3fadcee851a7a0"
+    },
+    {
+      "approvalSha256": "406954314e6f684ec57fbd145b121c99df327baa0f04570518d22dfc11ae3ada",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "38e0f9d084d5331bceb716ffe503695d6a751c2f4076fa1a218e894394d22a81",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SW\\formal-v2\\native\\04.png",
+      "sourceSha256": "9e0299761f64dd2bc5fd9e8ea7d7d07f6d6fa263b361fa96ed7e64529d115aff"
+    },
+    {
+      "approvalSha256": "406954314e6f684ec57fbd145b121c99df327baa0f04570518d22dfc11ae3ada",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "e14882dc574aa01080da8ab313b78daf5623ece58160ea4aec6700bb49c736b2",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SW\\formal-v2\\native\\05.png",
+      "sourceSha256": "a2dbe0abac6ad16adcfeda95c0068d9d0beeacafcd9a21edf05c781ce3a52f5f"
+    },
+    {
+      "approvalSha256": "406954314e6f684ec57fbd145b121c99df327baa0f04570518d22dfc11ae3ada",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "f12430dd4537886819f53b4f03efc17aa8081b21120035abcfebbcb39f813a66",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SW\\formal-v2\\native\\06.png",
+      "sourceSha256": "b76fffa3ce3fe22a01d9b0c7500232586550023c816dbe2f8f0e725a804310ab"
+    },
+    {
+      "approvalSha256": "406954314e6f684ec57fbd145b121c99df327baa0f04570518d22dfc11ae3ada",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "89b00241cda035461d68e215fba3201f746669ce763695693cbb2329c5369daf",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SW\\formal-v2\\native\\07.png",
+      "sourceSha256": "0142b91337b44fc326d8cdb4269e8562a0a7a680aa886d3518d6455011216e29"
+    },
+    {
+      "approvalSha256": "406954314e6f684ec57fbd145b121c99df327baa0f04570518d22dfc11ae3ada",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "b2d3208e4b7922f1d8b94a0fbfa38359194b5d201d58371a192c9befca831475",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\SW\\formal-v2\\native\\08.png",
+      "sourceSha256": "5ad3c72967a582d06cb0462d1d0158876dc1c795fe76eb4f3d2c60476c439e36"
+    },
+    {
+      "approvalSha256": "6e154b11af1a1724baf7fa7850233dd23ab84d0fb9a3f8bb97e5cb252df8c7c0",
+      "derived": "run/W/01.png",
+      "derivedSha256": "fab9829103e962fa1992563e7d96164437d8aba995d01d6a319856b85f84172b",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\W\\native-candidate-v1\\01.png",
+      "sourceSha256": "5699a5976fd3705f1cda8a67783bfe691f1c2c416b4f66ff08d57dac8b119ee6"
+    },
+    {
+      "approvalSha256": "6e154b11af1a1724baf7fa7850233dd23ab84d0fb9a3f8bb97e5cb252df8c7c0",
+      "derived": "run/W/02.png",
+      "derivedSha256": "d732a8f80a3c7c2458f92fa1bfefd0c876b5c7245b482f2916070de01c3bf947",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\W\\native-candidate-v1\\02.png",
+      "sourceSha256": "0e4bb161ce6073e2e74932c451994c99a40cf55f72ba4c57d6a0426fe1cc5b2c"
+    },
+    {
+      "approvalSha256": "6e154b11af1a1724baf7fa7850233dd23ab84d0fb9a3f8bb97e5cb252df8c7c0",
+      "derived": "run/W/03.png",
+      "derivedSha256": "d23be8e5ff011afa0e9487e54e7cec9da36440125bdb936cc32bd61d27355bda",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\W\\native-candidate-v1\\03.png",
+      "sourceSha256": "b385fae62a3e43e64e363c81197aa131c3d55c8249870cf0da0142d9ec37d17d"
+    },
+    {
+      "approvalSha256": "6e154b11af1a1724baf7fa7850233dd23ab84d0fb9a3f8bb97e5cb252df8c7c0",
+      "derived": "run/W/04.png",
+      "derivedSha256": "2adc78de9d237e8ac28e8cbdad954b21ac3fc5708a1fd6845ea960a1074cf295",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\W\\native-candidate-v1\\04.png",
+      "sourceSha256": "ac959691cbd12a8e68ccd3df00976d74639d5699944b15b5a4aa302a488aacf0"
+    },
+    {
+      "approvalSha256": "6e154b11af1a1724baf7fa7850233dd23ab84d0fb9a3f8bb97e5cb252df8c7c0",
+      "derived": "run/W/05.png",
+      "derivedSha256": "774d9e82e695e0e2c7026646cafdf790fe400f245e65220dbb854b6352fd693d",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\W\\native-candidate-v1\\05.png",
+      "sourceSha256": "2e2f7ae96f857f59cd5644a84eeccfbb29e8944e58efa9f25edb65eef0e45f9b"
+    },
+    {
+      "approvalSha256": "6e154b11af1a1724baf7fa7850233dd23ab84d0fb9a3f8bb97e5cb252df8c7c0",
+      "derived": "run/W/06.png",
+      "derivedSha256": "2c2d93fd00b84579bffb5dfb953ab2d9f4fc3f055d3b96fea3c7167c27145db7",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\W\\native-candidate-v1\\06.png",
+      "sourceSha256": "aa2079abd4310423c2953dc7e98bf6757842bf2156452f4ee069c4b11b960053"
+    },
+    {
+      "approvalSha256": "6e154b11af1a1724baf7fa7850233dd23ab84d0fb9a3f8bb97e5cb252df8c7c0",
+      "derived": "run/W/07.png",
+      "derivedSha256": "b34390ac78b4bd9a975a4833b5b0a9f7b5e47cb5fad93a248bc35d6025237777",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\W\\native-candidate-v1\\07.png",
+      "sourceSha256": "a398ec28780d1aff73999689d198aa9846b32c2788dca355b5a6ccf7a67ba065"
+    },
+    {
+      "approvalSha256": "6e154b11af1a1724baf7fa7850233dd23ab84d0fb9a3f8bb97e5cb252df8c7c0",
+      "derived": "run/W/08.png",
+      "derivedSha256": "4f38f7e59c3baaf19b8f293a55082634cbeb38f98efdb98e92f576fadae7a45b",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\W\\native-candidate-v1\\08.png",
+      "sourceSha256": "6efcbf899f8593ae16ceea0d69579ee1d9414b9c0fea460943da7ac82bea7ace"
+    },
+    {
+      "approvalSha256": "63def41b8e7da34bbb9429af197a1c9fa527d852d26a9f6fbfc4e3ef9f883397",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "fa6b568e2c52634ca7303d3c957eab24c645b1ba4763b2cb05693b9f1b7ec8b7",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NW\\formal-v3\\native\\01.png",
+      "sourceSha256": "67586756230f206689baa14b20a4b699d41897f1c55a8eff557b02e63d6e4b0c"
+    },
+    {
+      "approvalSha256": "63def41b8e7da34bbb9429af197a1c9fa527d852d26a9f6fbfc4e3ef9f883397",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "74294f4b69002e4c879e6b2780021172e1b6ea0fb7f3d54bbf15c79faf7103b1",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NW\\formal-v3\\native\\02.png",
+      "sourceSha256": "6e7b5f252995c3e5aa49f307d1a72b3e511c208108ea22339840ca4e41bb1839"
+    },
+    {
+      "approvalSha256": "63def41b8e7da34bbb9429af197a1c9fa527d852d26a9f6fbfc4e3ef9f883397",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "48e5b5a099f153644f24bfdf70beb1b655e2551ed1973898286b72fe17ed47bf",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NW\\formal-v3\\native\\03.png",
+      "sourceSha256": "d423c335074333dd205ce8c44653ed979e7ecebac221f829ad9e614da01d3090"
+    },
+    {
+      "approvalSha256": "63def41b8e7da34bbb9429af197a1c9fa527d852d26a9f6fbfc4e3ef9f883397",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "b6809ca2a37ec281cb0606aa394024b20518eb3a3394d6deaf53a2b19dca718f",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NW\\formal-v3\\native\\04.png",
+      "sourceSha256": "23eecc25f54a32ee2dad9209c72253b2a07ed313a0cbbb45b4d0e182472ba1f4"
+    },
+    {
+      "approvalSha256": "63def41b8e7da34bbb9429af197a1c9fa527d852d26a9f6fbfc4e3ef9f883397",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "0e19efd51d5a8aca84a210642282212f1434755fdadc4b05f4a7d3d56463ffdc",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NW\\formal-v3\\native\\05.png",
+      "sourceSha256": "fbd863ccebe6ac82f382d66e361e9ee0ea0b0c5cd21f54eb036b3a2dab41ae30"
+    },
+    {
+      "approvalSha256": "63def41b8e7da34bbb9429af197a1c9fa527d852d26a9f6fbfc4e3ef9f883397",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "466ebeeb6c0b971b5f6dd79311130cb4669adffce403eb9e9323f5d97e5bf09e",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NW\\formal-v3\\native\\06.png",
+      "sourceSha256": "bd6ff21bd74ac25784b6ee4867cb8361b0ab3bb9ba4dc4d155a7c8a210b23504"
+    },
+    {
+      "approvalSha256": "63def41b8e7da34bbb9429af197a1c9fa527d852d26a9f6fbfc4e3ef9f883397",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "ff05fd7138a43c7f94ad7f8d07116ccd4382b530c2e1b35d0003959165af145e",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NW\\formal-v3\\native\\07.png",
+      "sourceSha256": "a5098fafaed2bd454e04ce198cfe334b8105519ae1d7b436d2efde1f6796b6e2"
+    },
+    {
+      "approvalSha256": "63def41b8e7da34bbb9429af197a1c9fa527d852d26a9f6fbfc4e3ef9f883397",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "1e0b15b52e1db3bb16266e0b400503aa5764d5dd8c95d6574c05e321565302af",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-natural8-boy-20261105\\NW\\formal-v3\\native\\08.png",
+      "sourceSha256": "88110b67e5557a3c38c21bc5c036083c0a05ec85674132ee22dbea9804571e78"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "ddae8356007bfdebbf49200910e6457478e0ded822e31ab6e3088f498f98b310",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\00_reference_topright_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

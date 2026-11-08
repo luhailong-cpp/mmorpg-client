@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "8f36e6adc8802115d4db68cc120c36ca75548bb1ee14c85a82af78ab1378d618",
+      "derived": "run/N/01.png",
+      "derivedSha256": "7a996613c7c9c47f7b62889c241a1e15fe3019c03ad7211a5f248e9492de0cd4",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\05_celestial_musician_girl\\native\\04-v2.png",
+      "sourceSha256": "e7330a4ea6e749c3c898fe9c89a46b0fe964e3c9b031b1913efc863bd4b1cc25"
+    },
+    {
+      "approvalSha256": "8f36e6adc8802115d4db68cc120c36ca75548bb1ee14c85a82af78ab1378d618",
+      "derived": "run/N/02.png",
+      "derivedSha256": "e1e0b2d86b89c92f5a6aa87be4c92c3b8a69fd99932dde20deda4733e9ce3f2e",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\05_celestial_musician_girl\\native\\06-v2.png",
+      "sourceSha256": "249eee2e055a8b6523e48f8eaabf175f602c0be132b4c1e4507920fdfd6e16cb"
+    },
+    {
+      "approvalSha256": "8f36e6adc8802115d4db68cc120c36ca75548bb1ee14c85a82af78ab1378d618",
+      "derived": "run/N/03.png",
+      "derivedSha256": "83dfd144961ded2d7103819a785a84aec641598cafbe75043ed14df689332f92",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\05_celestial_musician_girl\\native\\07-v4-natural.png",
+      "sourceSha256": "00ee225fa3a5afada588c7134668979bacf5a232a4bba9997985553754abe6b7"
+    },
+    {
+      "approvalSha256": "8f36e6adc8802115d4db68cc120c36ca75548bb1ee14c85a82af78ab1378d618",
+      "derived": "run/N/04.png",
+      "derivedSha256": "923c2a94ac7ae206e5a0c25b8df757a1da93f32c7f38f1876dadaf33f6306f47",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\05_celestial_musician_girl\\native\\09-v4-natural.png",
+      "sourceSha256": "1b638f987b44c1acad592aa6960d89f45b31fa11220723dafe38ce7f34b8e840"
+    },
+    {
+      "approvalSha256": "8f36e6adc8802115d4db68cc120c36ca75548bb1ee14c85a82af78ab1378d618",
+      "derived": "run/N/05.png",
+      "derivedSha256": "1fb5523552cd14ec23453ce5439d58e76b815d74a9592d060a872a7f6e92490a",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\05_celestial_musician_girl\\native\\12-v6-natural-qin-guided.png",
+      "sourceSha256": "aa8f69f805bdc780256a4f2e022c8b9c532bc87289b34dafecb0152809d71c9e"
+    },
+    {
+      "approvalSha256": "8f36e6adc8802115d4db68cc120c36ca75548bb1ee14c85a82af78ab1378d618",
+      "derived": "run/N/06.png",
+      "derivedSha256": "9ffa6465e4b17a202675dfff53592a8154643d5aedd050f4df469eaea624a652",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\05_celestial_musician_girl\\native\\14-v4-natural-clean.png",
+      "sourceSha256": "cac41bfec3f769a84e9023643a99b6fea2d1d9e2f4704ddda1cfd677a1e6605c"
+    },
+    {
+      "approvalSha256": "8f36e6adc8802115d4db68cc120c36ca75548bb1ee14c85a82af78ab1378d618",
+      "derived": "run/N/07.png",
+      "derivedSha256": "0cd2981409212f614ea8a9892fae66b032c7cfaddea5a565fddde5b921583f35",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\05_celestial_musician_girl\\native\\15-v3.png",
+      "sourceSha256": "b916aa5d90d461e6b97e4d6fc7214ecf9c2d6004c882b2904688720b43cc461a"
+    },
+    {
+      "approvalSha256": "8f36e6adc8802115d4db68cc120c36ca75548bb1ee14c85a82af78ab1378d618",
+      "derived": "run/N/08.png",
+      "derivedSha256": "e3704d70e841876dcb227574a2ab2161f69e8b1de56fa1aa49b6dcf06e7a2350",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\05_celestial_musician_girl\\native\\01-v1.png",
+      "sourceSha256": "8ef99de424ea5d9ce29dd23860f9aad6c763bb3d746fd9b11e3362b919507ab3"
+    },
+    {
+      "approvalSha256": "759b9f8fc80de9bb1767787656bc40e407e27f23753ec42feed54cf7ae16cbdb",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "2e6da2b5bd840dc5879b949bcbb9cc8f91d075dd25628d377652962f1230f727",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\05_celestial_musician_girl\\natural8-production-20261106-v1\\01-Lcontact-compact-v2.png",
+      "sourceSha256": "645c67ad2491e0fee2cd5da1ba504efd7d57f49555d495faf5734df4be26ca53"
+    },
+    {
+      "approvalSha256": "759b9f8fc80de9bb1767787656bc40e407e27f23753ec42feed54cf7ae16cbdb",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "5470e77c36444c3c9154244a4aa06a49bb9ff7463ee8a910d322fe185340a47f",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\05_celestial_musician_girl\\natural8-production-20261106-v1\\02-Lsupport-Rpassing-v2.png",
+      "sourceSha256": "dd40073f54cee870211c234d3205c8760beefcd90cd75af301a70e0f57d7cf6b"
+    },
+    {
+      "approvalSha256": "759b9f8fc80de9bb1767787656bc40e407e27f23753ec42feed54cf7ae16cbdb",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "54188aa8c4793bdd5495c1c60125288b5a6be4fb88e8cc8793051f6e34aca197",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\05_celestial_musician_girl\\natural8-production-20261106-v1\\03-Lpush-Rlift-v1.png",
+      "sourceSha256": "dedcafe5e4d738570f31aad046de92b684742da863f0229c00443033a0d103d3"
+    },
+    {
+      "approvalSha256": "759b9f8fc80de9bb1767787656bc40e407e27f23753ec42feed54cf7ae16cbdb",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "b392f45a19d8b15edde07acb472726381fc972994a2e3ae9428c1a7b5f909e23",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\05_celestial_musician_girl\\natural8-production-20261106-v1\\04-Lrecovery-Rpreland-v1.png",
+      "sourceSha256": "8782788ada5803417762b50f3c2d8eaaa67f9735bd5918ff2c64f540397d602c"
+    },
+    {
+      "approvalSha256": "759b9f8fc80de9bb1767787656bc40e407e27f23753ec42feed54cf7ae16cbdb",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "a05b52d8524a7770e804cb0835d3e12cb9e17b522c7bd9ef36352f0e4937c6a6",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\05_celestial_musician_girl\\natural8-production-20261106-v1\\05-Rcontact-Lrecovery-v1.png",
+      "sourceSha256": "fbe694c9cb9063f2c1c5bfdd8e7dd776d58c014bb3268f48ce61b49054d08cbf"
+    },
+    {
+      "approvalSha256": "759b9f8fc80de9bb1767787656bc40e407e27f23753ec42feed54cf7ae16cbdb",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "c0e425330be69383e5c6f65e9e150f804045c1c449c4465ee284213fd20b6479",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\05_celestial_musician_girl\\natural8-production-20261106-v1\\06-load-grayguide-v3.png",
+      "sourceSha256": "387108e2d51e1a99869fb40f3523260f3df7ab99c0e99e8a8887571232e08442"
+    },
+    {
+      "approvalSha256": "759b9f8fc80de9bb1767787656bc40e407e27f23753ec42feed54cf7ae16cbdb",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "2bf1b68acca46b418c627b809435ab68d8eac919d1184eaa22a9b3c6b7f91f4d",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\05_celestial_musician_girl\\natural8-production-20261106-v1\\07-Rpush-Llift-v1.png",
+      "sourceSha256": "801865c921803c23bc209b60e9126dc6ee310a7d0a6f4c7cc01729eaeb05b1e8"
+    },
+    {
+      "approvalSha256": "759b9f8fc80de9bb1767787656bc40e407e27f23753ec42feed54cf7ae16cbdb",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "3ca45b42dbb9e3f3bdee7370868eba6107271abec8931ddc64cfdc801bab6ba7",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\05_celestial_musician_girl\\natural8-production-20261106-v1\\08-Rrecovery-wrap-v2.png",
+      "sourceSha256": "2b76010cd6c9336990ad39f197531f302fdb6578dcc01ed7393fd4dcfcf1ece6"
+    },
+    {
+      "approvalSha256": "27c140414dbd464ec83ad430e856ca9e850682cdca4446d58c0c5b606624b580",
+      "derived": "run/E/01.png",
+      "derivedSha256": "e407eca861ead8f37ca3e04b432f85198f2cfa8e8253505a486c4449197c4353",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\05_celestial_musician_girl\\eight-frame-20261105-v1\\native-v4\\01.png",
+      "sourceSha256": "cb8ab0adb9deea5b264cbd1550853f25100a01daa020fc4585a1068d6089314d"
+    },
+    {
+      "approvalSha256": "27c140414dbd464ec83ad430e856ca9e850682cdca4446d58c0c5b606624b580",
+      "derived": "run/E/02.png",
+      "derivedSha256": "b31d0fc89c1b0abee31ea189726c30edf52fc3659afe5da060cc4be0a8821e08",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\05_celestial_musician_girl\\eight-frame-20261105-v1\\native-v4\\02.png",
+      "sourceSha256": "f2838eeab320e4eab1669bd4e619968c38a0233758eb1b120cafc9888bc336f0"
+    },
+    {
+      "approvalSha256": "27c140414dbd464ec83ad430e856ca9e850682cdca4446d58c0c5b606624b580",
+      "derived": "run/E/03.png",
+      "derivedSha256": "1d4850137b16552cfef6f62b1c61d066074734255c6633bee4e48a2bdaf76767",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\05_celestial_musician_girl\\eight-frame-20261105-v1\\native-v4\\03.png",
+      "sourceSha256": "0fe7086d3c2238ff9ba720d6722556fd7c03a5be6838d204e4b6a9517e5db456"
+    },
+    {
+      "approvalSha256": "27c140414dbd464ec83ad430e856ca9e850682cdca4446d58c0c5b606624b580",
+      "derived": "run/E/04.png",
+      "derivedSha256": "86eb99e9f6c3da1f5c84d15ed4dd0e02e545112e3a795bf6ec9a20d21b5ec5e9",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\05_celestial_musician_girl\\eight-frame-20261105-v1\\native-v4\\04.png",
+      "sourceSha256": "fe55ea78ff1458325fdbaa8c5b69f685b4c92ecbbfb6faa6414ea63b5bb37a24"
+    },
+    {
+      "approvalSha256": "27c140414dbd464ec83ad430e856ca9e850682cdca4446d58c0c5b606624b580",
+      "derived": "run/E/05.png",
+      "derivedSha256": "a54baa7d3aefe2c68ce45fb76d253bd22000813a5259f7266f10e87a8ad92d5e",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\05_celestial_musician_girl\\eight-frame-20261105-v1\\native-v4\\05.png",
+      "sourceSha256": "2545b0b2b27b8af7594dad3418a6bc92c4e3b2340c33342a5dbdefa9007ec7cf"
+    },
+    {
+      "approvalSha256": "27c140414dbd464ec83ad430e856ca9e850682cdca4446d58c0c5b606624b580",
+      "derived": "run/E/06.png",
+      "derivedSha256": "1dc1316666ecec2c7022da949fed9d9940c41856bb18a1f494487fa699e1b05b",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\05_celestial_musician_girl\\eight-frame-20261105-v1\\native-v4\\06.png",
+      "sourceSha256": "233891a39222d3ac7b76be4de126f5b58d2ca479d0e12f4e62dbd8d0244ef61b"
+    },
+    {
+      "approvalSha256": "27c140414dbd464ec83ad430e856ca9e850682cdca4446d58c0c5b606624b580",
+      "derived": "run/E/07.png",
+      "derivedSha256": "89372949e7a8f0a7d2782b6595f71363b4c3ffe449c94607baa80d839a7169c5",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\05_celestial_musician_girl\\eight-frame-20261105-v1\\native-v4\\07.png",
+      "sourceSha256": "ae93e4404210276fb025179a59e34fe4ab6439c6161ce62ca38d4613405b6ae0"
+    },
+    {
+      "approvalSha256": "27c140414dbd464ec83ad430e856ca9e850682cdca4446d58c0c5b606624b580",
+      "derived": "run/E/08.png",
+      "derivedSha256": "bc8036c0cd36df8f26d33f87d9f73025e45ea41f99f624875cdf9ff584039d81",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\05_celestial_musician_girl\\eight-frame-20261105-v1\\native-v4\\08.png",
+      "sourceSha256": "1c5349e1559439c936b149ed67b302e8529322df7001b0c4f23e2188065f29ad"
+    },
+    {
+      "approvalSha256": "52cb6532aebffb2022cb679fc55537566086c53548bd4582e016a8ea82815dcb",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "ad8579fb68cf54e4f30bb56430358a63c997b4c997f989a7b27ff20467a603f2",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\05_celestial_musician_girl\\natural8-20261106-b1\\native\\01.png",
+      "sourceSha256": "858e900a23b8d3196fb51b5208c13ae7f970e65ebc14b868369be67fa127838c"
+    },
+    {
+      "approvalSha256": "52cb6532aebffb2022cb679fc55537566086c53548bd4582e016a8ea82815dcb",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "9115be331d754ec28b6198d0d5f478ba3a91e30be044eff8d8535e05c3df239c",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\05_celestial_musician_girl\\natural8-20261106-b1\\native-v3\\02.png",
+      "sourceSha256": "c963e993910b2daf787b1b182b6719f7887407c02cf3ee33ee35132766a386c6"
+    },
+    {
+      "approvalSha256": "52cb6532aebffb2022cb679fc55537566086c53548bd4582e016a8ea82815dcb",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "550875d574ad59dc47334c7b9aa2dac4021228f05cee0d4c1877dace239d133c",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\05_celestial_musician_girl\\natural8-20261106-b1\\native\\03.png",
+      "sourceSha256": "7267a7115e83770822bcdd198358ffd108d5947bca2c3ac4b86c36e1a9a869f0"
+    },
+    {
+      "approvalSha256": "52cb6532aebffb2022cb679fc55537566086c53548bd4582e016a8ea82815dcb",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "6c76f177f2055f7dfc65a87da177abc01d14b474ed98b78fbee506a2e11aca3b",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\05_celestial_musician_girl\\natural8-20261106-b1\\native\\04.png",
+      "sourceSha256": "1993829e819ec6144a87c6b3a10aafda69edfe2b7c611e8a237bb734215252d2"
+    },
+    {
+      "approvalSha256": "52cb6532aebffb2022cb679fc55537566086c53548bd4582e016a8ea82815dcb",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "251ba04e9da0b9d21c3ee772cbb70bf518a5b27f32ff39edfe16431931c58ade",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\05_celestial_musician_girl\\natural8-20261106-b1\\native\\05.png",
+      "sourceSha256": "7e0c0e47846fc9e247a5673e48ec34db9466cfca7f581a0800bbc84fb827a854"
+    },
+    {
+      "approvalSha256": "52cb6532aebffb2022cb679fc55537566086c53548bd4582e016a8ea82815dcb",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "538bc9bea9f80dc3a74080160269bcb769252fdfd7253608b6b5a33c975e337f",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\05_celestial_musician_girl\\natural8-20261106-b1\\native-v2\\06.png",
+      "sourceSha256": "870789045e9aec249901c49fac2b254db9ad757ba0dde36afca0fe961a9c230b"
+    },
+    {
+      "approvalSha256": "52cb6532aebffb2022cb679fc55537566086c53548bd4582e016a8ea82815dcb",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "2120408ac59cac30eea749607e33597a1e35635a700bdd0281f82bfb5295e6be",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\05_celestial_musician_girl\\natural8-20261106-b1\\native\\07.png",
+      "sourceSha256": "7e5b95dd01d358e5b43e38675ef64691c6e7e45d73055858469353573abb734d"
+    },
+    {
+      "approvalSha256": "52cb6532aebffb2022cb679fc55537566086c53548bd4582e016a8ea82815dcb",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "98ed915221451f55d5f6a10f513af740e4f49e74d5a035693b397689eeb15280",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\05_celestial_musician_girl\\natural8-20261106-b1\\native\\08.png",
+      "sourceSha256": "cd5989648982e2e848007469c5fe27d53c29937283a102f11f6ab3863b3a08b0"
+    },
+    {
+      "approvalSha256": "4124082f5e690d58f39ab657b0c2853ff70287581497ffbcad2c477e44b3b6a1",
+      "derived": "run/S/01.png",
+      "derivedSha256": "651ffa631e266edbdb2af662f744b0b35b0b89f6aba8ad076a0011fe22bbbfb4",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\05_celestial_musician_girl\\native-v1\\04.png",
+      "sourceSha256": "cb5da46dcc673fac97c6364b97bd47e576e4e9c867d31e7fafc19a11476d8c97"
+    },
+    {
+      "approvalSha256": "4124082f5e690d58f39ab657b0c2853ff70287581497ffbcad2c477e44b3b6a1",
+      "derived": "run/S/02.png",
+      "derivedSha256": "d8be626446954d91c0e4c21c1684fed9c4ccdf4e7ff70862447a8c0e6e9a8d69",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\05_celestial_musician_girl\\native-v1\\06.png",
+      "sourceSha256": "e644ac77afee5a68c04e92997d0c1405225db49bd88f02e903523822c5f77260"
+    },
+    {
+      "approvalSha256": "4124082f5e690d58f39ab657b0c2853ff70287581497ffbcad2c477e44b3b6a1",
+      "derived": "run/S/03.png",
+      "derivedSha256": "5e9d7563bb23ae6db3c01bd756d994c78a8a6d667cc342a268f1144726ae2d4c",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\05_celestial_musician_girl\\native-phase-07-10-v6-root\\07.png",
+      "sourceSha256": "dabe361a5bdb2383e9002ac4c285b6ae21e4195203bd6e4d8c00dfab812579dd"
+    },
+    {
+      "approvalSha256": "4124082f5e690d58f39ab657b0c2853ff70287581497ffbcad2c477e44b3b6a1",
+      "derived": "run/S/04.png",
+      "derivedSha256": "32fe03c2125b40c5874d6021597256913e42c332d224211d7d8046399363203b",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\05_celestial_musician_girl\\native-phase10-v7-root\\10.png",
+      "sourceSha256": "1e6c19932273f86d83621fe0cd175f435f43d08c41eae868d43d9ec204990c4d"
+    },
+    {
+      "approvalSha256": "4124082f5e690d58f39ab657b0c2853ff70287581497ffbcad2c477e44b3b6a1",
+      "derived": "run/S/05.png",
+      "derivedSha256": "7d65e7f9faac209bf13ef76e640cc74a9aed9008480efd2a11cb25d930d48497",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\05_celestial_musician_girl\\native-v1\\12.png",
+      "sourceSha256": "3ce61e5ba0e4d401cd1b0e7bff19b74d960b970db8f79363393e799833f60c97"
+    },
+    {
+      "approvalSha256": "4124082f5e690d58f39ab657b0c2853ff70287581497ffbcad2c477e44b3b6a1",
+      "derived": "run/S/06.png",
+      "derivedSha256": "df9dabfe91f52609b2fb4a526236d6f232c97124e871e06832bb785724367524",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\05_celestial_musician_girl\\native-v1\\14.png",
+      "sourceSha256": "ebd419ac6d7c80e017368fd675a80300dc012ecd127afffe702aa897730ef2f0"
+    },
+    {
+      "approvalSha256": "4124082f5e690d58f39ab657b0c2853ff70287581497ffbcad2c477e44b3b6a1",
+      "derived": "run/S/07.png",
+      "derivedSha256": "85b43a286d5f6db6ba91ef0e0a5cbce03d7a097f21e621080677afd825a2daa1",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\05_celestial_musician_girl\\native-close15-v9-root\\15.png",
+      "sourceSha256": "3364361f871e6d205eed94c7cac67582beda589be9e84cc256f64c7492774db4"
+    },
+    {
+      "approvalSha256": "4124082f5e690d58f39ab657b0c2853ff70287581497ffbcad2c477e44b3b6a1",
+      "derived": "run/S/08.png",
+      "derivedSha256": "4f2f3ec95704b07a769afe5d5362cb0bfe651d70604a6ba470b90d66ca4962ec",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\05_celestial_musician_girl\\native-closure-v5\\02.png",
+      "sourceSha256": "0c2147f475ee8bc2490c046737dbb0cd3c2cf1185734bf1cd956deea001891b5"
+    },
+    {
+      "approvalSha256": "fe557694f13645ebce2cc22f3cc1a593b2f1a2f47388cd967dcb35d28db99f71",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "d44f49a11bb63bc40e7c4007eac72bbb504b9778387e5b823ddc60acf22ba906",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\05_celestial_musician_girl\\n-assist-natural8-20261106-v1\\native\\01-arm-v1.png",
+      "sourceSha256": "50897dc425c75b21a75c326cb13591076dc23bd208a09db0df80b367fd7a472a"
+    },
+    {
+      "approvalSha256": "fe557694f13645ebce2cc22f3cc1a593b2f1a2f47388cd967dcb35d28db99f71",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "28d2dc7baef40ac4c3acf2a0ee569e9aa1d15568c5c048338c0922860aee7a5d",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\05_celestial_musician_girl\\master-passing-repair-v3\\02-native-master8-v3.png",
+      "sourceSha256": "60b905b776ee66fb90faa85cf68a12166f9ed644d4f77653b44ef48502cdfedc"
+    },
+    {
+      "approvalSha256": "fe557694f13645ebce2cc22f3cc1a593b2f1a2f47388cd967dcb35d28db99f71",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "66224db81abf95ecaa70a634b2f6f43d2de4f4992a12812938dd34e7382543fd",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\05_celestial_musician_girl\\n-assist-natural8-20261106-v1\\native\\03-arm-v1.png",
+      "sourceSha256": "816387b074025c9a95c6d72e9ade315b5b6c4e945c2e2df516a27d6f803f9e36"
+    },
+    {
+      "approvalSha256": "fe557694f13645ebce2cc22f3cc1a593b2f1a2f47388cd967dcb35d28db99f71",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "342dface9d945fbf93096ca4335c40082954e58300fbf3a3d4eda505c5340c8d",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\05_celestial_musician_girl\\n-assist-natural8-20261106-v1\\native\\04-arm-v1.png",
+      "sourceSha256": "f04903445c0dc86166be69d8fa6255ffd4a2ee8ad619c670d31a6c64cbffd5c6"
+    },
+    {
+      "approvalSha256": "fe557694f13645ebce2cc22f3cc1a593b2f1a2f47388cd967dcb35d28db99f71",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "bf67a93fe02c33444e4034d56789bd3720e4e43ea5122443276e8bb4358229a6",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\05_celestial_musician_girl\\n-assist-natural8-20261106-v1\\native\\05-arm-v1.png",
+      "sourceSha256": "cb6451132798e6490183a5cfb10812ae44f044a884d045a82e7908ba018b51eb"
+    },
+    {
+      "approvalSha256": "fe557694f13645ebce2cc22f3cc1a593b2f1a2f47388cd967dcb35d28db99f71",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "d483c806d46c9d12156072488f22a9fc3e6917a853654097fbfc53f7f4084a6d",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\05_celestial_musician_girl\\n-assist-natural8-20261106-v1\\native\\06-arm-v1.png",
+      "sourceSha256": "c5421f6f586ba891a8a22ed25d84d2717a27829c1a2bc3bec8ba7cc60e861dc9"
+    },
+    {
+      "approvalSha256": "fe557694f13645ebce2cc22f3cc1a593b2f1a2f47388cd967dcb35d28db99f71",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "c6c9ad802105ebfccf336a88894bc3531c882ba5e39acb0eebeb658f2ead7608",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\05_celestial_musician_girl\\n-assist-natural8-20261106-v1\\native\\07-arm-v1.png",
+      "sourceSha256": "e27b84beb374ebe70e51983715d904e8fb3aec7d7f1cac784b619eca49c55b0e"
+    },
+    {
+      "approvalSha256": "fe557694f13645ebce2cc22f3cc1a593b2f1a2f47388cd967dcb35d28db99f71",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "3f9f034bda364a8ea7d7a02d87711e811599c0d0adceb90018cec1ba978e8f85",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\05_celestial_musician_girl\\n-assist-natural8-20261106-v1\\native\\08-arm-v1.png",
+      "sourceSha256": "a0a25942d5b034f9d2a56cf2ce87060a6b62705a06f9a12b1a5ca6261b27fa40"
+    },
+    {
+      "approvalSha256": "e90f974f556cc5f115dc97fad492f7fabac2014342aaca50fa154550bbb12bc8",
+      "derived": "run/W/01.png",
+      "derivedSha256": "f4b441c87a2ad306be28d9b0f6ead18dd45d3dcb234ea33a21d81fc1a4a5a19f",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\05_celestial_musician_girl\\native-pose-v2\\04.png",
+      "sourceSha256": "3cce54d86c5b59ba30f17a84724b6ff9789d6378183b3969e761182194c636e1"
+    },
+    {
+      "approvalSha256": "e90f974f556cc5f115dc97fad492f7fabac2014342aaca50fa154550bbb12bc8",
+      "derived": "run/W/02.png",
+      "derivedSha256": "e8edc756f692123598d7c27affde9bb74c1cb099fba278cf503b9fc3538ee3ec",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\05_celestial_musician_girl\\native-passing-v5\\06.png",
+      "sourceSha256": "96f993d27df02abcb8f06ac0f6c49816d6b10d96c29a25da7522f968e9d65bcc"
+    },
+    {
+      "approvalSha256": "e90f974f556cc5f115dc97fad492f7fabac2014342aaca50fa154550bbb12bc8",
+      "derived": "run/W/03.png",
+      "derivedSha256": "078269e4f03b870e4457db9117c17cea62e7d4603045ebb991a42773a0ce770e",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\05_celestial_musician_girl\\native-pose-v2\\09.png",
+      "sourceSha256": "98fbfec43cc84190269e5728bf75c2e60eda37afa29044451d22264ed9480176"
+    },
+    {
+      "approvalSha256": "e90f974f556cc5f115dc97fad492f7fabac2014342aaca50fa154550bbb12bc8",
+      "derived": "run/W/04.png",
+      "derivedSha256": "ea6b6a8a431b11fc5315ba36b886ea8045cc4f8a7e271148ee9a9d0c44206edb",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\05_celestial_musician_girl\\native-pose-v4-retry\\11.png",
+      "sourceSha256": "f1aa8760b7217e088c86c537d31c01f3c4a2a2bd487d1148903bd9715ab08efc"
+    },
+    {
+      "approvalSha256": "e90f974f556cc5f115dc97fad492f7fabac2014342aaca50fa154550bbb12bc8",
+      "derived": "run/W/05.png",
+      "derivedSha256": "a7a03085e7a89a3026e2e8a35ae1fecd4c08d21a9e721867057348ce584d8324",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\05_celestial_musician_girl\\native-pose-v2\\12.png",
+      "sourceSha256": "563beac711c0ff8bc86a7495c466caf891ac1395c0edb0a34b640982f714615c"
+    },
+    {
+      "approvalSha256": "e90f974f556cc5f115dc97fad492f7fabac2014342aaca50fa154550bbb12bc8",
+      "derived": "run/W/06.png",
+      "derivedSha256": "f3ca40cf7439bdcb2e4c48f10fbd4b39f32d8e0eb88faecd4a00c4a0c15ab0d8",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\05_celestial_musician_girl\\native-passing-v5\\14.png",
+      "sourceSha256": "8bfd9e57789a4bd463cc041bd32eaeca56c96da772897a9fbe2c1c329e8c3007"
+    },
+    {
+      "approvalSha256": "e90f974f556cc5f115dc97fad492f7fabac2014342aaca50fa154550bbb12bc8",
+      "derived": "run/W/07.png",
+      "derivedSha256": "d97077729ca9f96c5903fc9de65551936b37d34b7af39681b5b12205cdd58fc5",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\05_celestial_musician_girl\\native-seam-v7\\01.png",
+      "sourceSha256": "a87ad2edd73702bfbbbdb1c2d50e184aa10d3ef863d28e35b32168adb1089aa8"
+    },
+    {
+      "approvalSha256": "e90f974f556cc5f115dc97fad492f7fabac2014342aaca50fa154550bbb12bc8",
+      "derived": "run/W/08.png",
+      "derivedSha256": "785f268dfee3c683a1684085b200366b8b644f4213f5affabb1f041cc528ef2e",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\05_celestial_musician_girl\\native-pose-v2\\03.png",
+      "sourceSha256": "40153cb88db79b1a7ebdb4b50a8d67742da726f59251e107b96272d5ea52bc74"
+    },
+    {
+      "approvalSha256": "e5a1ab5d6e434c2be4881b398544d2ff290f8aa096f5cb4432b82b044d780a95",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "e3112f673c8789feebdf3fd21cb3439c9db711f0ce808c60970c4cde3033b9a7",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\05_celestial_musician_girl\\native-v8f2\\01.png",
+      "sourceSha256": "cadd261b6a32c190cc0350a5ca6e9b8d3337c2eaf0cd220869e68b468bc1c770"
+    },
+    {
+      "approvalSha256": "e5a1ab5d6e434c2be4881b398544d2ff290f8aa096f5cb4432b82b044d780a95",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "7d3b3e280f51e636b13ebd987c0b500848aa187b402fd015cdc1578717add57a",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\05_celestial_musician_girl\\native-v8f2\\02.png",
+      "sourceSha256": "cd3e21010e3a03f6f3e072bc28e793b74fa365f20dcc3e06c55b288d2f7f5bdb"
+    },
+    {
+      "approvalSha256": "e5a1ab5d6e434c2be4881b398544d2ff290f8aa096f5cb4432b82b044d780a95",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "0c4abb9e913a17dccccaaf75ce6c8ccd06c37d7e8e7c831ba4b80c03b3a48239",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\05_celestial_musician_girl\\native-v8f1\\03.png",
+      "sourceSha256": "e7f0a28a346ca4eddcc894678e275ff078a3f47fbc3b86e830d7c8545d596f36"
+    },
+    {
+      "approvalSha256": "e5a1ab5d6e434c2be4881b398544d2ff290f8aa096f5cb4432b82b044d780a95",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "bd80a08e8a4b02a92be20b183c13c453a89c104f8af2e39dd1d730a4d0134fe8",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\05_celestial_musician_girl\\native-v8f1\\04.png",
+      "sourceSha256": "902d9dd61f2f29d9647bd0a16a8386463efccbe2c7b557cbaa06721db03bfcfb"
+    },
+    {
+      "approvalSha256": "e5a1ab5d6e434c2be4881b398544d2ff290f8aa096f5cb4432b82b044d780a95",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "ed64fb8007e03b05ced442ee94a10232eac5358ea3ec85fe58b4ea85c329f4d4",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\05_celestial_musician_girl\\native-v8f1\\05.png",
+      "sourceSha256": "6293ba5f8dcf87c62f06f4b599ebeee70ff30aae5e5a3ec81bbd17e0eccc7ed5"
+    },
+    {
+      "approvalSha256": "e5a1ab5d6e434c2be4881b398544d2ff290f8aa096f5cb4432b82b044d780a95",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "ba7cdcc73ff9ea740dcdba9d1746ecacb3a2a39692b77bed869c05598ad84836",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\05_celestial_musician_girl\\native-v8f1\\06.png",
+      "sourceSha256": "efa6cb6bfa5acdeaa82819819a18f21d3ab52423210f37fa1aa8bcd616ae99eb"
+    },
+    {
+      "approvalSha256": "e5a1ab5d6e434c2be4881b398544d2ff290f8aa096f5cb4432b82b044d780a95",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "0890737d2a34d3e7e13c74172306cf015089ba95efb71e8ab61d91ce41a9b8f0",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\05_celestial_musician_girl\\native-v8f2\\07.png",
+      "sourceSha256": "c60faee7387bfce6f4a660f73d426113f1848f3ad05cd83825f4a9676f1eb6b5"
+    },
+    {
+      "approvalSha256": "e5a1ab5d6e434c2be4881b398544d2ff290f8aa096f5cb4432b82b044d780a95",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "b31da8dee87fc9d24cdc3b360599f670d176bfbdaab29a4c1d27e5123a7b5d8f",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\05_celestial_musician_girl\\native-v8f1\\08.png",
+      "sourceSha256": "1bf1d6b46ed9f32541c8b9a053669df439071956ab6264b957f639eab24d3082"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "26992666de952c2079e18f2d01486ce443f35c176f49469d11dfd0a8efdb8a90",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\05_celestial_musician_girl.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

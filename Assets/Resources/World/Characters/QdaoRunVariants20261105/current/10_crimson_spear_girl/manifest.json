@@ -1,0 +1,155 @@
+{
+  "allEightDirectionsAvailable": true,
+  "characterId": "10_crimson_spear_girl",
+  "clips": [
+    {
+      "action": "run",
+      "direction": "N",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "E",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "S",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "W",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    }
+  ],
+  "crossVariantFallback": false,
+  "frameHeight": 384,
+  "frameWidth": 384,
+  "inputFingerprint": "b6048f2944d5ab8e53e3044f77cef85eb949cd0ed5868b4d845285f4e9cc7540",
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "pixelsPerUnit": 39,
+  "schemaVersion": 1,
+  "sourceFramesPreserved": true,
+  "sourceManifestSha256": "c3d99073f1ac1a184e84d26629eea8ee997fc2ee7f91500e0531fb8e7a4c43f5",
+  "unavailableDirections": [],
+  "variant": "current",
+  "visualValidation": "game_scale_ground_anchor_pending"
+}

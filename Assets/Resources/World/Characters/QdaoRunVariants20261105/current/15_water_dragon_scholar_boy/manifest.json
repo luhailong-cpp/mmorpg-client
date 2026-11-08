@@ -1,0 +1,155 @@
+{
+  "allEightDirectionsAvailable": true,
+  "characterId": "15_water_dragon_scholar_boy",
+  "clips": [
+    {
+      "action": "run",
+      "direction": "N",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "E",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SE",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "S",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "SW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "W",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    },
+    {
+      "action": "run",
+      "direction": "NW",
+      "eventFrame": -1,
+      "frameCount": 8,
+      "frameDurationMs": 133.33333333333334,
+      "frameDurationsMs": [
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334,
+        133.33333333333334
+      ]
+    }
+  ],
+  "crossVariantFallback": false,
+  "frameHeight": 384,
+  "frameWidth": 384,
+  "inputFingerprint": "952b7a9b31e9cd11b60dd0cc9195a07ce543a0b7d448cadb89feba8f94fd0b29",
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "pixelsPerUnit": 39,
+  "schemaVersion": 1,
+  "sourceFramesPreserved": true,
+  "sourceManifestSha256": "a02ebe55595cfad8c0d742532cbaf6596303b56c6c341ff3bc61aa7e582e9cc8",
+  "unavailableDirections": [],
+  "variant": "current",
+  "visualValidation": "game_scale_ground_anchor_pending"
+}

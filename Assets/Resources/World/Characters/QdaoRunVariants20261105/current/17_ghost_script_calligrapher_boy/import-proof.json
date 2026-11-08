@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "a472b6073a088c82a049a70071258b22ccf2c5fccf1eecf65ff063fbdf0e2286",
+      "derived": "run/N/01.png",
+      "derivedSha256": "e10c71d1d5a4e30231511e935ddb62b1bae9616bce0ce5ecca1240c3f752e12b",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\17_ghost_script_calligrapher_boy\\04-v2.png",
+      "sourceSha256": "8f53bd769de86818a8e36cf80370d6ac70362f25156a3ba4ba2018e7eeef369b"
+    },
+    {
+      "approvalSha256": "a472b6073a088c82a049a70071258b22ccf2c5fccf1eecf65ff063fbdf0e2286",
+      "derived": "run/N/02.png",
+      "derivedSha256": "147c7844d1196a30df5db31504f3142ec69d54c5cc7f2cbc0cd4467ff6b29e6c",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\17_ghost_script_calligrapher_boy\\06-natural-v3.png",
+      "sourceSha256": "36e1c00739d7efb807ca546c0ccde67016be1f4a84a7c4f9f93dda6f932062a2"
+    },
+    {
+      "approvalSha256": "a472b6073a088c82a049a70071258b22ccf2c5fccf1eecf65ff063fbdf0e2286",
+      "derived": "run/N/03.png",
+      "derivedSha256": "e28b4ba65cf1e1c0a38e6ed18b55f0cf971112411598f3d003ffe9cd28aa8410",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\17_ghost_script_calligrapher_boy\\07-natural-v2.png",
+      "sourceSha256": "e98f0a6611911d748fd352b7e745c7cabd03ac6247d063be46c84f6d9a29f799"
+    },
+    {
+      "approvalSha256": "a472b6073a088c82a049a70071258b22ccf2c5fccf1eecf65ff063fbdf0e2286",
+      "derived": "run/N/04.png",
+      "derivedSha256": "e948c2b4b6d64616990acf53331635eac101fa517181084f8095b27629a82cf0",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\17_ghost_script_calligrapher_boy\\09-newref-v1.png",
+      "sourceSha256": "a3a714061067a96f3e7820726eabff4df6d7a7eb2d573f348eef512436d0c5b7"
+    },
+    {
+      "approvalSha256": "a472b6073a088c82a049a70071258b22ccf2c5fccf1eecf65ff063fbdf0e2286",
+      "derived": "run/N/05.png",
+      "derivedSha256": "173781e5c764a4675699d86076f032202d4ef98f63964d7fc549d2c5fc3274dd",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\17_ghost_script_calligrapher_boy\\12-natural-v2.png",
+      "sourceSha256": "e0cd0bdca9f52d4e5f0f7751563aac3e760e0d6d230f126bd3838e74ef7d8bbb"
+    },
+    {
+      "approvalSha256": "a472b6073a088c82a049a70071258b22ccf2c5fccf1eecf65ff063fbdf0e2286",
+      "derived": "run/N/06.png",
+      "derivedSha256": "fd5ef9c7ea70bf8d68072211131cbc86896625748c04600ad666399cc4d506de",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\17_ghost_script_calligrapher_boy\\14-newref-v1.png",
+      "sourceSha256": "0bc863c4c59a78354c5897cab699eb44725de629cfd276eb12512745d65f9439"
+    },
+    {
+      "approvalSha256": "a472b6073a088c82a049a70071258b22ccf2c5fccf1eecf65ff063fbdf0e2286",
+      "derived": "run/N/07.png",
+      "derivedSha256": "79bed5e161c73334f440ffd7a29a73db1c7bb07f79ecc8d1e51848721d844827",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\17_ghost_script_calligrapher_boy\\15-newref-v1.png",
+      "sourceSha256": "e407ccbf4d056abef0820dd4da24a471869b1bf5e5b17abe929f0f0f1d5b23b4"
+    },
+    {
+      "approvalSha256": "a472b6073a088c82a049a70071258b22ccf2c5fccf1eecf65ff063fbdf0e2286",
+      "derived": "run/N/08.png",
+      "derivedSha256": "090ac476ef2d469cdfaa01ff83e75f71a65a435210de271caccd3b3b30c45835",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\17_ghost_script_calligrapher_boy\\02-newref-v1.png",
+      "sourceSha256": "aea837b66d436de3e72721acaf20bf3bf0559d8656a048ee93027f4094f2f01f"
+    },
+    {
+      "approvalSha256": "ba2413cbffc19a4f90c895699dc38d418e720b7377202e97dde2867387e31d12",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "817bc21e99d57945618f5e679a4cc38a42a39891f6150835e8ff62327b53ff53",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\17_ghost_script_calligrapher_boy\\04-R3-v1.png",
+      "sourceSha256": "9246b19a00c8d4c87eb22aa43fb0bf7fae9927b5b7e4058ec48008529ffabff3"
+    },
+    {
+      "approvalSha256": "ba2413cbffc19a4f90c895699dc38d418e720b7377202e97dde2867387e31d12",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "1b8a3ce01a689d5f7e83281d6d9c26f89a4f6091e227822053a1bef3442b6942",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\17_ghost_script_calligrapher_boy\\05-R3-v1.png",
+      "sourceSha256": "454db74f780ec87125f3a23d31c6ca8a0056686887bedf927d730837b21805f7"
+    },
+    {
+      "approvalSha256": "ba2413cbffc19a4f90c895699dc38d418e720b7377202e97dde2867387e31d12",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "36e4c6c762df21f0db29c165a58320ce2e70c1525020be11c1fed581e4b1ff94",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\17_ghost_script_calligrapher_boy\\09-R2-v1.png",
+      "sourceSha256": "f7901cb8d5663ab8543c45bb1f6deac041f75aa01f8a440689d7ceffd964b2bf"
+    },
+    {
+      "approvalSha256": "ba2413cbffc19a4f90c895699dc38d418e720b7377202e97dde2867387e31d12",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "17f5451c7fbe469ec3c7dfc6df3f3e0677672eca22039301b49373b296a9c8af",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\17_ghost_script_calligrapher_boy\\10-R2-v2.png",
+      "sourceSha256": "eefa4743d8a7293946af2a534166af924ddac88e32e8c5629530f38a6dec4495"
+    },
+    {
+      "approvalSha256": "ba2413cbffc19a4f90c895699dc38d418e720b7377202e97dde2867387e31d12",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "2c0efa8f234a07f1a3444934aca75c52dada7ad757624dff96de3878e5fbe784",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\17_ghost_script_calligrapher_boy\\12-R3-v2.png",
+      "sourceSha256": "930eec9a0450c2098195e42af411e5b83ca3f8fcb74d3f9c6e9ee65a440a7da9"
+    },
+    {
+      "approvalSha256": "ba2413cbffc19a4f90c895699dc38d418e720b7377202e97dde2867387e31d12",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "c718bd8d3cd73ef2d2fcbb5e6cd90e8069a5541053fcb4aaf71f8efceb43aba8",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\17_ghost_script_calligrapher_boy\\14-R3-v3.png",
+      "sourceSha256": "6e3ec9e2ace46e1f5251b592c5dfa6ebe6430472263db4d47991731379163ec7"
+    },
+    {
+      "approvalSha256": "ba2413cbffc19a4f90c895699dc38d418e720b7377202e97dde2867387e31d12",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "eb4be2a04629cc7171fd099401c4941815aa81cb8668abf011ae14682b6596c3",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\17_ghost_script_calligrapher_boy\\01-R3-v2.png",
+      "sourceSha256": "504afd6c21dd1f5048ec0f1fa6d02315e41096844e34c459577196ab0a5dfe21"
+    },
+    {
+      "approvalSha256": "ba2413cbffc19a4f90c895699dc38d418e720b7377202e97dde2867387e31d12",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "73330d2dc4207494f672f0b4aef0a757931695bac6971f3f120f91062ccb6e83",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\17_ghost_script_calligrapher_boy\\02-R3-v1.png",
+      "sourceSha256": "e48a94b8651b1b60af5d53a8b32f379d02d10003380bed08762121dd50e531a8"
+    },
+    {
+      "approvalSha256": "f3cff11bd618907f71c836c51dc7e9a72103d4d5fad906a898ebe00a7768580c",
+      "derived": "run/E/01.png",
+      "derivedSha256": "cf49e5b31fb533a4afec5ae8c6dc0a3b92497331d88c153235710430e6d9db25",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\17_ghost_script_calligrapher_boy\\eight-frame-20261105-v1\\native-final\\01.png",
+      "sourceSha256": "a5211fd76b3662c31d6a98bba26836ff0bc556e6a3ddeea683cdb2c1a4e8fcfd"
+    },
+    {
+      "approvalSha256": "f3cff11bd618907f71c836c51dc7e9a72103d4d5fad906a898ebe00a7768580c",
+      "derived": "run/E/02.png",
+      "derivedSha256": "76d00d92a0a240b996c4cf030d37d2500ad5b2a82a6ad9617caff45bd8b88d91",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\17_ghost_script_calligrapher_boy\\eight-frame-20261105-v1\\native-final\\02.png",
+      "sourceSha256": "66444b594ac3f94bc07e3418e1dcdcd51431af4f72e4881ff04caacf97bb5a1a"
+    },
+    {
+      "approvalSha256": "f3cff11bd618907f71c836c51dc7e9a72103d4d5fad906a898ebe00a7768580c",
+      "derived": "run/E/03.png",
+      "derivedSha256": "b7e3766ce0576196c6cb5dc27370ca759ff1f12f25e7ace5945a6bae9328271d",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\17_ghost_script_calligrapher_boy\\eight-frame-20261105-v1\\native-final\\03.png",
+      "sourceSha256": "a54c0f7f1ece3ab6e04c389ffb91c46430a17d43ac79c0e94b7f4bead003305c"
+    },
+    {
+      "approvalSha256": "f3cff11bd618907f71c836c51dc7e9a72103d4d5fad906a898ebe00a7768580c",
+      "derived": "run/E/04.png",
+      "derivedSha256": "bdcba1cb06aad130b36540cdf6b35b9d7786cf7376bc1cefea6e35004fce7e61",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\17_ghost_script_calligrapher_boy\\eight-frame-20261105-v1\\native-final\\04.png",
+      "sourceSha256": "2d88e4edf1c9378f6c9b77fc902cda91b70102f3fdd19d3eb30c0d6f999cd3f0"
+    },
+    {
+      "approvalSha256": "f3cff11bd618907f71c836c51dc7e9a72103d4d5fad906a898ebe00a7768580c",
+      "derived": "run/E/05.png",
+      "derivedSha256": "6e5a3d73e3fe3794050f9ce83da4e58c0bcb2aaa0fc829dea48382744d734561",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\17_ghost_script_calligrapher_boy\\eight-frame-20261105-v1\\native-final\\05.png",
+      "sourceSha256": "76bee5f202df9a8c8004aa9e4d5647f13b320366a994fac8819e0278d773d806"
+    },
+    {
+      "approvalSha256": "f3cff11bd618907f71c836c51dc7e9a72103d4d5fad906a898ebe00a7768580c",
+      "derived": "run/E/06.png",
+      "derivedSha256": "8f20de2853246327fa15bada2d6ebe644e9d3b4a1545b4e27e25eeb7e1015599",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\17_ghost_script_calligrapher_boy\\eight-frame-20261105-v1\\native-final\\06.png",
+      "sourceSha256": "8145b72a5e59122d58ad93853b3e80e2d85f14db7f03922227b95fb57b45e737"
+    },
+    {
+      "approvalSha256": "f3cff11bd618907f71c836c51dc7e9a72103d4d5fad906a898ebe00a7768580c",
+      "derived": "run/E/07.png",
+      "derivedSha256": "057b0a9b90cfb7d2b50947469662b8dffebd7140f62d58a2d7df2b3b58027575",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\17_ghost_script_calligrapher_boy\\eight-frame-20261105-v1\\native-final\\07.png",
+      "sourceSha256": "3c6a8aa641a0457e0770bbeda2df9296a13d903760eb7c61fcf63a054ab8ae35"
+    },
+    {
+      "approvalSha256": "f3cff11bd618907f71c836c51dc7e9a72103d4d5fad906a898ebe00a7768580c",
+      "derived": "run/E/08.png",
+      "derivedSha256": "049971c3968ba4016807fa965e8889bedfb822fb580fb03617d9b639cefc7e47",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\17_ghost_script_calligrapher_boy\\eight-frame-20261105-v1\\native-final\\08.png",
+      "sourceSha256": "7935c848a3f5dd6f9c006755a1e52acacbfdf47e90e7042a02e57b9a2e1f1f40"
+    },
+    {
+      "approvalSha256": "a7bc99da4cc738555b25636b1028ce8952e57eaa8287a85cee078b3461f97383",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "02ff32acabdde63e500c6bedd0224d210d27e2f2956ffd4c26c4bb1f8094ff90",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\17_ghost_script_calligrapher_boy\\w-assist-natural8-20261106-v1\\01-l-contact-v3.png",
+      "sourceSha256": "69d24b2cc33922918bbf2bdf67fc841c4d491fe6349c396612b9f7c782633f48"
+    },
+    {
+      "approvalSha256": "a7bc99da4cc738555b25636b1028ce8952e57eaa8287a85cee078b3461f97383",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "a47e07c204e371463e0ad8473bdd0ee0b3eb4792fe763e6b62ccbc0b0f5dd825",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\17_ghost_script_calligrapher_boy\\w-assist-natural8-20261106-v1\\02-l-load-v1.png",
+      "sourceSha256": "7139a864e028af5dcbce99022445b314e3c3139a2e1f0d66835891c58a493424"
+    },
+    {
+      "approvalSha256": "a7bc99da4cc738555b25636b1028ce8952e57eaa8287a85cee078b3461f97383",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "8a3002dfec1c053ec51e3c49bf7e3a239a395e191c092118e164b03177db882a",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\17_ghost_script_calligrapher_boy\\w-assist-natural8-20261106-v1\\03-l-push-v1.png",
+      "sourceSha256": "6116f804b403f38e445737fd2ecfb8da698d8c4808d6e65434446769b0304629"
+    },
+    {
+      "approvalSha256": "a7bc99da4cc738555b25636b1028ce8952e57eaa8287a85cee078b3461f97383",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "1f4fa34d45073266db356d18ac1959bd0e38b19214a37cf0a385454f724a76a0",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\17_ghost_script_calligrapher_boy\\w-assist-natural8-20261106-v1\\04-r-preland-v2.png",
+      "sourceSha256": "aad309185a52dc912d90b869b3eec69c8a7a1aeff9adcc3f3e85f3c74ec65361"
+    },
+    {
+      "approvalSha256": "a7bc99da4cc738555b25636b1028ce8952e57eaa8287a85cee078b3461f97383",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "fc95a7cc71a3a1f190a389ae13c1d1bacccc1327cdbaf655feaeb1d1dfcf1753",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\17_ghost_script_calligrapher_boy\\w-assist-natural8-20261106-v1\\05-r-contact-v1.png",
+      "sourceSha256": "1c7843f023b784f92f81ccccf9c32ac6e946859f934cebd4cac583e2c7a45e24"
+    },
+    {
+      "approvalSha256": "a7bc99da4cc738555b25636b1028ce8952e57eaa8287a85cee078b3461f97383",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "3cc94d5ae9dfff721a23e5a1a1662ad4c8ea68e507b95ceee06523e73ec0127b",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\17_ghost_script_calligrapher_boy\\w-assist-natural8-20261106-v1\\06-r-underbody-v1.png",
+      "sourceSha256": "8e3889eb349cbafe9e0b8e6329fd5bea078e7f6a578d83aad5f121b9ca713b85"
+    },
+    {
+      "approvalSha256": "a7bc99da4cc738555b25636b1028ce8952e57eaa8287a85cee078b3461f97383",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "637e2a037332aff72f3409fff83784676d0a3c32826b31f884090c1126c77d36",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\17_ghost_script_calligrapher_boy\\w-assist-natural8-20261106-v1\\07-r-push-v1.png",
+      "sourceSha256": "02c9995d73138b28c5950b0282664e55aae46d40289f514bb0bee76ff015fa8a"
+    },
+    {
+      "approvalSha256": "a7bc99da4cc738555b25636b1028ce8952e57eaa8287a85cee078b3461f97383",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "75e1d52dd2bc8ffb0325b808737eacba3f8e038e591c53688b42a53612c70d15",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\17_ghost_script_calligrapher_boy\\w-assist-natural8-20261106-v1\\08-r-fold-l-preland-v1.png",
+      "sourceSha256": "6398797d1f276a27fe6db35534f253de84fb96b190b1e1441dea6a090010ae32"
+    },
+    {
+      "approvalSha256": "3e7132ba936b9cf418abcfc2297a851393658bce8ed58e97cd876110845eba0a",
+      "derived": "run/S/01.png",
+      "derivedSha256": "10c0f7f06ba5ed7eb8e75239116414788f838ec0efd74432469775a8f3a03ab7",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\17_ghost_script_calligrapher_boy\\native-v1\\04.png",
+      "sourceSha256": "eeb1c18a3a95495850cdef423c6d83565b64b3f7c32a75d0da15a1424300b1ba"
+    },
+    {
+      "approvalSha256": "3e7132ba936b9cf418abcfc2297a851393658bce8ed58e97cd876110845eba0a",
+      "derived": "run/S/02.png",
+      "derivedSha256": "0c6d49150618e4c01c325341a1c37d0622e693cee2cd5c64a5989cdc6a5d74b2",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\17_ghost_script_calligrapher_boy\\native-v1\\06.png",
+      "sourceSha256": "64cd2e580be97e37c57f1b67e578cedba4f5d8f000d13b4f184e289e18e92d9d"
+    },
+    {
+      "approvalSha256": "3e7132ba936b9cf418abcfc2297a851393658bce8ed58e97cd876110845eba0a",
+      "derived": "run/S/03.png",
+      "derivedSha256": "c888fa55f1a32c8687ea1e8174ea6353fd7f974e02228f2736d877d39b244256",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\17_ghost_script_calligrapher_boy\\native-v1\\08.png",
+      "sourceSha256": "72e7b586085f7edd2c4b356e7107e7d0d6a7bf230195f25a1bbaf5adffde3e12"
+    },
+    {
+      "approvalSha256": "3e7132ba936b9cf418abcfc2297a851393658bce8ed58e97cd876110845eba0a",
+      "derived": "run/S/04.png",
+      "derivedSha256": "97332d5d7ebdab943a2214ece0e2f9a6b8e7a52a2d1f066b542c0d4c1d6ba0c9",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\17_ghost_script_calligrapher_boy\\native-v1\\11.png",
+      "sourceSha256": "89ad0dc378236dfae567e8a2aaa33839a78dea9e3cf9517a2374522cc5878208"
+    },
+    {
+      "approvalSha256": "3e7132ba936b9cf418abcfc2297a851393658bce8ed58e97cd876110845eba0a",
+      "derived": "run/S/05.png",
+      "derivedSha256": "24d560ca1e4630c5e61b1071e360768ced7fe6fc54e6535c174aad468a345946",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\17_ghost_script_calligrapher_boy\\native-v1\\12.png",
+      "sourceSha256": "e2cb20ad83e8010c756503e466975f56a5b798e8e5b52a482081cb219ae1d5f4"
+    },
+    {
+      "approvalSha256": "3e7132ba936b9cf418abcfc2297a851393658bce8ed58e97cd876110845eba0a",
+      "derived": "run/S/06.png",
+      "derivedSha256": "882e6e28380d6651a8eb6483be20427ce54ae4059b193057fd77bf69f0486f9e",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\17_ghost_script_calligrapher_boy\\native-v1\\14.png",
+      "sourceSha256": "ec3d03ef920729755c0cb9aa92e5f0b6fceaa1151ac59553200e69ad4b5147b7"
+    },
+    {
+      "approvalSha256": "3e7132ba936b9cf418abcfc2297a851393658bce8ed58e97cd876110845eba0a",
+      "derived": "run/S/07.png",
+      "derivedSha256": "ceda9697d94c79eda024631bef196d4f4f4a6645a3760e81621984c9e6c7e668",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\17_ghost_script_calligrapher_boy\\native-v1\\16.png",
+      "sourceSha256": "f26925eac02adeb62694ff8a2da02cbf38020b4547cb4acefaa508016bb89c27"
+    },
+    {
+      "approvalSha256": "3e7132ba936b9cf418abcfc2297a851393658bce8ed58e97cd876110845eba0a",
+      "derived": "run/S/08.png",
+      "derivedSha256": "a6db1d6b0ea7a90228828de1a6134dcc662d49ed97ac7db507ea39938bcd87bb",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\17_ghost_script_calligrapher_boy\\native-v1\\02.png",
+      "sourceSha256": "dc00476ebfe1e76ea42de0d03667ada13ed448403205b82a32ef6d843095fd0c"
+    },
+    {
+      "approvalSha256": "0c703e66472acd9e81df1508bac4f2fbb622692d7566888f320192dbfeacd51e",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "3ea345772eb9aaffcb41e746ce8b2c6c005b69e3b8de3c7bcae135946ebb7091",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\17_ghost_script_calligrapher_boy\\nw-assist-natural8-20261106-v1\\native-v2\\01.png",
+      "sourceSha256": "d9b40e00743be363ea76ca1154a6f3504b3fd14324eeb479dd05067b1a0f9263"
+    },
+    {
+      "approvalSha256": "0c703e66472acd9e81df1508bac4f2fbb622692d7566888f320192dbfeacd51e",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "f25247c9f955e43d3a8fa79bc80e9dc9f5e0ea1e11ca3d00abe1d7bad984f660",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\17_ghost_script_calligrapher_boy\\nw-assist-natural8-20261106-v1\\native-v3\\02.png",
+      "sourceSha256": "970ed8c6619eb23cf02970c4e3a56d71f84295b4448bfd8251c01b579a19cba5"
+    },
+    {
+      "approvalSha256": "0c703e66472acd9e81df1508bac4f2fbb622692d7566888f320192dbfeacd51e",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "42b93fefee40bcdd31a312fd0eb899295fc26eb58494ca09c4522a9bb291f509",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\17_ghost_script_calligrapher_boy\\nw-assist-natural8-20261106-v1\\native-v2\\03.png",
+      "sourceSha256": "89335a4134cb2515c77b995b748f1c6ccbfdf32b2bb875e92e4db585ecac1ac6"
+    },
+    {
+      "approvalSha256": "0c703e66472acd9e81df1508bac4f2fbb622692d7566888f320192dbfeacd51e",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "6c30e1f224d77c6c72d0c6574cf3767ae33a6149cef29835716c46db85620687",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\17_ghost_script_calligrapher_boy\\nw-assist-natural8-20261106-v1\\native-v1\\04.png",
+      "sourceSha256": "c995e6a6d9ddce6c0b2896063fa90ba44d8225e6d08344370e896bd1b6df3135"
+    },
+    {
+      "approvalSha256": "0c703e66472acd9e81df1508bac4f2fbb622692d7566888f320192dbfeacd51e",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "853fd2f905cf25186ae2a9d4745ab56749802ecd6c434cbb22dd769cc1eff240",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\17_ghost_script_calligrapher_boy\\nw-assist-natural8-20261106-v1\\native-v1\\05.png",
+      "sourceSha256": "06aa55a84a23fe3a022050bec7d3ac8a05a63dd2f58aa1cfeb2613b49aef2e6e"
+    },
+    {
+      "approvalSha256": "0c703e66472acd9e81df1508bac4f2fbb622692d7566888f320192dbfeacd51e",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "2b8dc21297154f73dd93ef525c2d83f4064c5d2007396cc5f4f45f35bcf94859",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\17_ghost_script_calligrapher_boy\\nw-assist-natural8-20261106-v1\\native-v3\\06.png",
+      "sourceSha256": "54e234b27e8bd1682e48a75e770524dda2d43f1b62d1e0237177b5cd2b7f0e97"
+    },
+    {
+      "approvalSha256": "0c703e66472acd9e81df1508bac4f2fbb622692d7566888f320192dbfeacd51e",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "5d1ee6ced0deefcdb564a65925e892ef62aa6dcfb886189a2e19173dc5531c0f",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\17_ghost_script_calligrapher_boy\\nw-assist-natural8-20261106-v1\\native-v3\\07.png",
+      "sourceSha256": "9e82612cdebed78454a1a2178566c41cb8e52373fb833547dca4215a438e076d"
+    },
+    {
+      "approvalSha256": "0c703e66472acd9e81df1508bac4f2fbb622692d7566888f320192dbfeacd51e",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "43ae9da7ce90ec72730605176c728f34259aefc8bd86bb1ae56f457f042e7661",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\17_ghost_script_calligrapher_boy\\nw-assist-natural8-20261106-v1\\native-v1\\08.png",
+      "sourceSha256": "d23b83bef5e242ffb437eb04943617d8302ae251f45e0e2ac1972facb20e9050"
+    },
+    {
+      "approvalSha256": "d625159083b5658db0dda5a00f19fa399fcd009afb07d4cfb6437dccea7182ed",
+      "derived": "run/W/01.png",
+      "derivedSha256": "429b3bb6f6a395c8e91b3b16e205540738eaea174f5e091dc2164b45d921fe50",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\17_ghost_script_calligrapher_boy\\v4-black-local\\04.png",
+      "sourceSha256": "74c3c0b8026f6f3df601f5e00faa2e76fea6241b5d5e1d7449676aab260ee2ff"
+    },
+    {
+      "approvalSha256": "d625159083b5658db0dda5a00f19fa399fcd009afb07d4cfb6437dccea7182ed",
+      "derived": "run/W/02.png",
+      "derivedSha256": "3e922e1e4f67c5f5b1a72ab1f54a7779313c540fc65f15e1ba09876f22265b77",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\17_ghost_script_calligrapher_boy\\v15-local-legs06\\06.png",
+      "sourceSha256": "b96409dec51431f573afaf20b2ef4053996fc14e1e61cba62e5289392c3972b2"
+    },
+    {
+      "approvalSha256": "d625159083b5658db0dda5a00f19fa399fcd009afb07d4cfb6437dccea7182ed",
+      "derived": "run/W/03.png",
+      "derivedSha256": "c06408e35bda580547b9d0b3c5f6de5aefc4ab95c99e9cd78f95af8de42f1de5",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\17_ghost_script_calligrapher_boy\\v15-local-legs09\\09.png",
+      "sourceSha256": "1aadeb56a4dad3972478febcef86968487fee86a5d73dd110fdb7780bd2f1772"
+    },
+    {
+      "approvalSha256": "d625159083b5658db0dda5a00f19fa399fcd009afb07d4cfb6437dccea7182ed",
+      "derived": "run/W/04.png",
+      "derivedSha256": "37c7a9c8b68706cc509c65b5324f827dae65c66c91fb369f7ceeb6ce69c34529",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\17_ghost_script_calligrapher_boy\\v16-local-legs11-retry\\11.png",
+      "sourceSha256": "db09137ef4754385420c99668d369c73992a796a5ec86035fd7158b8898840b4"
+    },
+    {
+      "approvalSha256": "d625159083b5658db0dda5a00f19fa399fcd009afb07d4cfb6437dccea7182ed",
+      "derived": "run/W/05.png",
+      "derivedSha256": "e6b5864fc3b580c6aea2af903b51cdc7a47f388414cf5ef7e989ef90474c374d",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\17_ghost_script_calligrapher_boy\\v8-local-arm-mid\\12.png",
+      "sourceSha256": "7b879e4b91b4f5347eee5713fab5c7cf8303f974521c319dfef4e509e8989357"
+    },
+    {
+      "approvalSha256": "d625159083b5658db0dda5a00f19fa399fcd009afb07d4cfb6437dccea7182ed",
+      "derived": "run/W/06.png",
+      "derivedSha256": "afa2c7d03e5e2c43a7eddd112c45c40b2ffb95e54203e893dd8ce83d8a34dabb",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\17_ghost_script_calligrapher_boy\\8f-facing-20261104\\native-toe-v1\\06.png",
+      "sourceSha256": "554974c866df2e821f627165f4db3d0c4a410723d4ea41665ac3656acc03ffa2"
+    },
+    {
+      "approvalSha256": "d625159083b5658db0dda5a00f19fa399fcd009afb07d4cfb6437dccea7182ed",
+      "derived": "run/W/07.png",
+      "derivedSha256": "368b6dd0f9d3889207ec69e0451e11a16152ed1c1b5343565c87ce31d17b69ec",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\17_ghost_script_calligrapher_boy\\v3-resume-black\\15.png",
+      "sourceSha256": "3e70c92c43d25a18ed7fe15cbde6e151414e8507dbf4e720e8b4d817132ff50d"
+    },
+    {
+      "approvalSha256": "d625159083b5658db0dda5a00f19fa399fcd009afb07d4cfb6437dccea7182ed",
+      "derived": "run/W/08.png",
+      "derivedSha256": "eea75be6f51c409de26b76f2aa361857c633f6df491e22b9e65b3ee3f5904685",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\17_ghost_script_calligrapher_boy\\v4-black-local\\03.png",
+      "sourceSha256": "20eff986808c86ce5af0587af9d9c42a241f7c63a439025eba6ebe15c0ed3131"
+    },
+    {
+      "approvalSha256": "35af94abfd2e9851169fa760dc21be23da60ddfe92dd071607da88c00c96c04c",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "f4e9ddc93832100d9f078d4aef4b8d12226d5223af79eb88ac3d7ca18f895c17",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\17_ghost_script_calligrapher_boy\\native-v8f3\\01.png",
+      "sourceSha256": "643ff7ba2033bfe60ec20da805611155007ccb05386bc3f40750d9b65804d80c"
+    },
+    {
+      "approvalSha256": "35af94abfd2e9851169fa760dc21be23da60ddfe92dd071607da88c00c96c04c",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "b92287d76633f220cdf83ff30b0105de262f7f1157a78b1a98fe9e6cef2c629f",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\17_ghost_script_calligrapher_boy\\native-v8f3\\02.png",
+      "sourceSha256": "9b59267de33a0dd0e3299e5cd81a540dbb3360401f5d9f85c56fba2210ee3aa2"
+    },
+    {
+      "approvalSha256": "35af94abfd2e9851169fa760dc21be23da60ddfe92dd071607da88c00c96c04c",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "dcfad52c5bc1627d08254edd923fef4a9f7efcaec37fe6b49f73b7d3b9604cca",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\17_ghost_script_calligrapher_boy\\native-v8f2\\03.png",
+      "sourceSha256": "ba66a4c45fe7b2256059ac04fc74308afbee1f435d764287392dcfb48003d0ea"
+    },
+    {
+      "approvalSha256": "35af94abfd2e9851169fa760dc21be23da60ddfe92dd071607da88c00c96c04c",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "759e4cc9114bbed42a25f35d2d728085421a714ad1706c0b3138c7d4533131e2",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\17_ghost_script_calligrapher_boy\\native-v8f3\\04.png",
+      "sourceSha256": "f518a0e5bf0f74bfaa42e3f6545727032d8380912b906859612a1de8e8a54ba0"
+    },
+    {
+      "approvalSha256": "35af94abfd2e9851169fa760dc21be23da60ddfe92dd071607da88c00c96c04c",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "cb75e43c349a834d4ff7cd3ade744ce9c3dc0fcac8188c3316a5137ce910735b",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\17_ghost_script_calligrapher_boy\\native-v8f3\\05.png",
+      "sourceSha256": "9ba022c3194e502da528a0a7cfbdba3187779ae7462708a0781a622fa2a390df"
+    },
+    {
+      "approvalSha256": "35af94abfd2e9851169fa760dc21be23da60ddfe92dd071607da88c00c96c04c",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "c58ee0c57e11b1baace25cc24e71ea651eb4ceb5fd07938dc56b50c470b396aa",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\17_ghost_script_calligrapher_boy\\native-v8f3\\06.png",
+      "sourceSha256": "c20d9ba43c766bd2c31fa6e174c1a9b10de3ebae40d4218db0a0b9b900fa6b0a"
+    },
+    {
+      "approvalSha256": "35af94abfd2e9851169fa760dc21be23da60ddfe92dd071607da88c00c96c04c",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "b4d4030058a31a1a27dd865347721cd54fd8eea1d35eefb9967af27bb35f757d",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\17_ghost_script_calligrapher_boy\\native-v8f1\\07.png",
+      "sourceSha256": "090110e559f00b2cc1727c264e7db9f7888ff942d261486444bbcb928e102a3a"
+    },
+    {
+      "approvalSha256": "35af94abfd2e9851169fa760dc21be23da60ddfe92dd071607da88c00c96c04c",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "8c56be0583ff13efb165cfeb59860ef44b9be769a1f146f1fe9fe79c7bdef3f4",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\17_ghost_script_calligrapher_boy\\native-v8f1\\08.png",
+      "sourceSha256": "5d44055417d57aa8c4d3187a3a1bec8d6ee243a2dfe159a8693f15f5205c7b6e"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "634d68a7f658615d501bd460b54a573e53758d4378326872c1ac717c5457762d",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\17_ghost_script_calligrapher_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

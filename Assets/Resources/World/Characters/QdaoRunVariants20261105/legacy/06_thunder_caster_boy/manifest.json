@@ -1,0 +1,291 @@
+{
+  "allEightDirectionsAvailable": true,
+  "characterId": "06_thunder_caster_boy",
+  "clips": [
+    {
+      "action": "run",
+      "direction": "N",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 66.66666666666667,
+      "frameDurationsMs": [
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "NE",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "E",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 66.66666666666667,
+      "frameDurationsMs": [
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "SE",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 60.0,
+      "frameDurationsMs": [
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0,
+        60.0
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "S",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 80.0,
+      "frameDurationsMs": [
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "SW",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 66.66666666666667,
+      "frameDurationsMs": [
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "W",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 66.66666666666667,
+      "frameDurationsMs": [
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_later_natural16_candidate",
+        "displayLabel": "旧版候选（16帧阶段版；双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    },
+    {
+      "action": "run",
+      "direction": "NW",
+      "eventFrame": -1,
+      "frameCount": 16,
+      "frameDurationMs": 66.66666666666667,
+      "frameDurationsMs": [
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667,
+        66.66666666666667
+      ],
+      "sourceCanvas": [
+        1254,
+        1254
+      ],
+      "sourceIdentity": {
+        "classification": "legacy_candidate_unclassified",
+        "displayLabel": "旧版候选（双椭圆身份待核）",
+        "doubleEllipseConfirmed": false
+      }
+    }
+  ],
+  "crossVariantFallback": false,
+  "frameHeight": 384,
+  "frameWidth": 384,
+  "inputFingerprint": "de7ca5fab8bc26f8e35f523db4abc1b2db117b6efd66a17cd546e2681f4faee0",
+  "pivotX": 0.5,
+  "pivotY": 0.08,
+  "pixelsPerUnit": 39,
+  "schemaVersion": 1,
+  "sourceFramesPreserved": true,
+  "sourceManifestSha256": "42409128e7ee846bfddb67e094f1f4cdcf9b70c37f6c54716a1162d5f52e553a",
+  "unavailableDirections": [],
+  "variant": "legacy",
+  "visualValidation": "game_scale_ground_anchor_pending"
+}

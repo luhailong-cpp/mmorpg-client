@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "ce05d3901d283a2ade42ee06c555e5270d82cddc6b8802aee8359439769ea537",
+      "derived": "run/N/01.png",
+      "derivedSha256": "f3674239a1bceff15a9ff4dc149522a015509c86e6c15d5b836429f5e474e81a",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\08_alchemy_prodigy_boy\\05.png",
+      "sourceSha256": "a88dab448f7f12d60856d02e4d84d91aaef07fe9e6e23dfe1bea7fc70de04fe2"
+    },
+    {
+      "approvalSha256": "ce05d3901d283a2ade42ee06c555e5270d82cddc6b8802aee8359439769ea537",
+      "derived": "run/N/02.png",
+      "derivedSha256": "8abd32d556f458e90528dcbecc1dd27a99d27b16b55cb3a573449990951c35d4",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\08_alchemy_prodigy_boy\\native8\\sources\\02-stance-arm-r1.png",
+      "sourceSha256": "a7fa125523585d14b4096a0936cee3ad3ee48aea642a2e256639e51ff51290b3"
+    },
+    {
+      "approvalSha256": "ce05d3901d283a2ade42ee06c555e5270d82cddc6b8802aee8359439769ea537",
+      "derived": "run/N/03.png",
+      "derivedSha256": "2305b09233de64d6b00a9294cf536ff1873258833306736037db3fd4251716a3",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\08_alchemy_prodigy_boy\\native8\\sources\\03-toeoff-arm-r1.png",
+      "sourceSha256": "00332510babc356ce91cdd423c57a291605221058724ecbe136eba5cdddc8cce"
+    },
+    {
+      "approvalSha256": "ce05d3901d283a2ade42ee06c555e5270d82cddc6b8802aee8359439769ea537",
+      "derived": "run/N/04.png",
+      "derivedSha256": "dcb905d0d281f364341a2aab4c3ad244c5d270aff9f525e27da4ed7836ef309a",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\08_alchemy_prodigy_boy\\09-natural-r3.png",
+      "sourceSha256": "26a5e7f5d34350cb54c5458d8b3cca6ae4b905faac5c9d7b1d7d6cdeb39ce0d0"
+    },
+    {
+      "approvalSha256": "ce05d3901d283a2ade42ee06c555e5270d82cddc6b8802aee8359439769ea537",
+      "derived": "run/N/05.png",
+      "derivedSha256": "eaa92681ad5b7494393519f3c503f138182fd43796e909365dc4008977b81028",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\08_alchemy_prodigy_boy\\12.png",
+      "sourceSha256": "925464cb20e51931a2cd724d76f23d21543ded442420b38d500be4c92bbcb43c"
+    },
+    {
+      "approvalSha256": "ce05d3901d283a2ade42ee06c555e5270d82cddc6b8802aee8359439769ea537",
+      "derived": "run/N/06.png",
+      "derivedSha256": "07afac3b548369d44781ad66a8f8b1a72cc4da042fd08b915e66d32bd239c20b",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\08_alchemy_prodigy_boy\\13.png",
+      "sourceSha256": "f80b8c3adcc0e87ca5ca9d13eef82defd3b04128c655a10f710892dcebdb0447"
+    },
+    {
+      "approvalSha256": "ce05d3901d283a2ade42ee06c555e5270d82cddc6b8802aee8359439769ea537",
+      "derived": "run/N/07.png",
+      "derivedSha256": "4bbf69daf20c42caaf1de92a3823855a52ffca694dcf8e2f908aff1fb2fb1fbf",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\08_alchemy_prodigy_boy\\16.png",
+      "sourceSha256": "b4610b04d7036a5de44fe6f08380e745fe1182262ce839b389bb7bcac57c6ebc"
+    },
+    {
+      "approvalSha256": "ce05d3901d283a2ade42ee06c555e5270d82cddc6b8802aee8359439769ea537",
+      "derived": "run/N/08.png",
+      "derivedSha256": "c21f388c1a00ca2c72e89a41bce8953aab53d9de059d845d140f669b736510fb",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\08_alchemy_prodigy_boy\\02.png",
+      "sourceSha256": "45bad6fd32717fa81551e53f4993dfecf58da9150d69904f9f52b33e037dac88"
+    },
+    {
+      "approvalSha256": "93158f0902152335c4ebf6d1f079c27659982bc49f97aac974890de6c158c4cf",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "c43b5b9ab1116a941b5bc8f9332ffa7f7c3a1af62338db560e7461cba87c8612",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\08_alchemy_prodigy_boy\\04-F-v2.png",
+      "sourceSha256": "d891847e6fc4258cc59cf96e974e6adb06815d93ca5c3d8e1c571211b4c64c04"
+    },
+    {
+      "approvalSha256": "93158f0902152335c4ebf6d1f079c27659982bc49f97aac974890de6c158c4cf",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "b933923a88a5043971dea0c164ecc3cb8f4bd36066258be051e560c2ed2b3278",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\08_alchemy_prodigy_boy\\05-F-v3.png",
+      "sourceSha256": "132604a97c390b4057a26f953703b06d2fdd29244d4852a10c3f1c4f5feeb5c3"
+    },
+    {
+      "approvalSha256": "93158f0902152335c4ebf6d1f079c27659982bc49f97aac974890de6c158c4cf",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "895bffb19d464e1d4b1da2e003f55469cf44788a150808706061f9b9c627f44c",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\08_alchemy_prodigy_boy\\07-R3-v3.png",
+      "sourceSha256": "ca07ee11c96a377d4f426e0d617ec6c3e295cd5f6d75bf1a90c02c4d701ff40c"
+    },
+    {
+      "approvalSha256": "93158f0902152335c4ebf6d1f079c27659982bc49f97aac974890de6c158c4cf",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "0bd3ebe20af96507746c87331ccae88b4c93ef63087bd5bb5cb0ac8f021e1703",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\08_alchemy_prodigy_boy\\natural8-20261105-v1\\04-prop-counter-swing-v1.png",
+      "sourceSha256": "bf253e8fe30b1d5a2c18f51eeea16b53db443f8167e890ca0ae466b7f6066e83"
+    },
+    {
+      "approvalSha256": "93158f0902152335c4ebf6d1f079c27659982bc49f97aac974890de6c158c4cf",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "d331c637e74f934b2a84a90c464a930d31984a71c1a21aa8df6ff9c4d11fe5d0",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\08_alchemy_prodigy_boy\\12-F-v2.png",
+      "sourceSha256": "9a5388b3620a509ab3f2e1b8f2823c897770fd54a49a941fcea7be5502a4a3cb"
+    },
+    {
+      "approvalSha256": "93158f0902152335c4ebf6d1f079c27659982bc49f97aac974890de6c158c4cf",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "b7ca8ea0f3634657545c0f16ba4e7f485b79ac468e551ea5642c17797bfb1061",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\08_alchemy_prodigy_boy\\natural8-20261105-v1\\06-R-load-v1.png",
+      "sourceSha256": "28c03c66ad0df26252e0fc028bf082e28e849a1bd6c04e30ffc41dd50935c45d"
+    },
+    {
+      "approvalSha256": "93158f0902152335c4ebf6d1f079c27659982bc49f97aac974890de6c158c4cf",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "bc06caec76e02dce0cdcd63e87b0862624611a48ba732d47637e84adf47be4c6",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\08_alchemy_prodigy_boy\\16-F-v2.png",
+      "sourceSha256": "40cb57fba80708bc14a3a30411139803110dfdb63c49fe90b5653ef3ff533e4a"
+    },
+    {
+      "approvalSha256": "93158f0902152335c4ebf6d1f079c27659982bc49f97aac974890de6c158c4cf",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "5ae2e234ad9177bb8fdbebda3c472da0fc06d8124389992880471cabd0f9fb8e",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\08_alchemy_prodigy_boy\\03-F-v2.png",
+      "sourceSha256": "c50eaff41988fb0b70cbffaf21aafdaed8da96cc105cd5446c6a6bb52a62b106"
+    },
+    {
+      "approvalSha256": "1f93d7623d08c77116e9fc3ef2c488accddab1091c5dd18aacacdfd90c136fb6",
+      "derived": "run/E/01.png",
+      "derivedSha256": "1e50b069caf0ff13bcbcbe12fd39d55384fa4979ab5ddfb0483d1c17a08b39ac",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\08_alchemy_prodigy_boy\\eight-frame-20261105-v1\\native-final-v2\\01.png",
+      "sourceSha256": "ebbf9763ae545fc39b9c647238f2c6e7d7cb95475934b96f667c192503ba8289"
+    },
+    {
+      "approvalSha256": "1f93d7623d08c77116e9fc3ef2c488accddab1091c5dd18aacacdfd90c136fb6",
+      "derived": "run/E/02.png",
+      "derivedSha256": "ae8f2c3e75147f8943db6d74d7b0f8b93a9fb02fd8acd1417e92f67e0452e861",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\08_alchemy_prodigy_boy\\eight-frame-20261105-v1\\native-final-v2\\02.png",
+      "sourceSha256": "6451acd62e1d3987af369d8ad363d5bfc736395f538317287168f4898d8ad519"
+    },
+    {
+      "approvalSha256": "1f93d7623d08c77116e9fc3ef2c488accddab1091c5dd18aacacdfd90c136fb6",
+      "derived": "run/E/03.png",
+      "derivedSha256": "d8dc1fad5ead4e85c0caf87ac839f8044642719b5a02a5d6d8ff15b60871ef68",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\08_alchemy_prodigy_boy\\eight-frame-20261105-v1\\native-final-v2\\03.png",
+      "sourceSha256": "c55b0308cf8cab29394304af93723614476e30eebc7f0c5fe2cafc6b7658198b"
+    },
+    {
+      "approvalSha256": "1f93d7623d08c77116e9fc3ef2c488accddab1091c5dd18aacacdfd90c136fb6",
+      "derived": "run/E/04.png",
+      "derivedSha256": "440229e1c464e8771ec0b758f784cc576f99cbc6c7b0943f07e19658ef5971a0",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\08_alchemy_prodigy_boy\\eight-frame-20261105-v1\\native-final-v2\\04.png",
+      "sourceSha256": "b91d19454c04a0e5f835d0563faead0eb66c197282d9224c92ee861ffd910190"
+    },
+    {
+      "approvalSha256": "1f93d7623d08c77116e9fc3ef2c488accddab1091c5dd18aacacdfd90c136fb6",
+      "derived": "run/E/05.png",
+      "derivedSha256": "92ef8dc5d8cd17d07298b73a3aabadabf6c8614c6ef157a09313b5478967a667",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\08_alchemy_prodigy_boy\\eight-frame-20261105-v1\\native-final-v2\\05.png",
+      "sourceSha256": "78a572b5c25f85a432bb6658dbb58df3bd7cc37fc2aa41a9234c9ebf9db707b2"
+    },
+    {
+      "approvalSha256": "1f93d7623d08c77116e9fc3ef2c488accddab1091c5dd18aacacdfd90c136fb6",
+      "derived": "run/E/06.png",
+      "derivedSha256": "17395f49e472204e05c00ea290bfc66d9b9bf493b830e96f1460e1c8802554c4",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\08_alchemy_prodigy_boy\\eight-frame-20261105-v1\\native-final-v2\\06.png",
+      "sourceSha256": "7508ada8e2b91f10066b2ee336826aadede77f92d2779e5641849d1bc367ae75"
+    },
+    {
+      "approvalSha256": "1f93d7623d08c77116e9fc3ef2c488accddab1091c5dd18aacacdfd90c136fb6",
+      "derived": "run/E/07.png",
+      "derivedSha256": "ff6005d0e3eab3d45e5ad32090341fd745f5afa723a5975b6dab582e9a6cbe6d",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\08_alchemy_prodigy_boy\\eight-frame-20261105-v1\\native-final-v2\\07.png",
+      "sourceSha256": "dd608b65360f711b2b97391189276967cc8c240205ca5ac90a1f417eac1aba57"
+    },
+    {
+      "approvalSha256": "1f93d7623d08c77116e9fc3ef2c488accddab1091c5dd18aacacdfd90c136fb6",
+      "derived": "run/E/08.png",
+      "derivedSha256": "9c124c0051222f0e188b20a71fd992c0df30ab5f591276eeb46d318c6a91ab0d",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\08_alchemy_prodigy_boy\\eight-frame-20261105-v1\\native-final-v2\\08.png",
+      "sourceSha256": "f6e05c0285c1a4c4d5b957e540ab6c62e461ff30b0b6ea4fa5432928f8a8cf27"
+    },
+    {
+      "approvalSha256": "b84195725d9bfa85826f5878c62ac4cc7a83f2da76684307250f55bfbc94a6de",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "9d1e7dc8d9e5745465366e38fe0dff3d4736f9b775c1e8e58368c61eb668a810",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\08_alchemy_prodigy_boy\\nw-assist-natural8-20261106-v1\\native-v1\\01.png",
+      "sourceSha256": "afa8566a88be280381c6ce8b0b108fee0971081a14aeb1840969b5d607b9383c"
+    },
+    {
+      "approvalSha256": "b84195725d9bfa85826f5878c62ac4cc7a83f2da76684307250f55bfbc94a6de",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "b209f8f7f77796aa6504a7e756c4ea02a0442e1cc07092287333a74b61d464c7",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\08_alchemy_prodigy_boy\\nw-assist-natural8-20261106-v1\\native-v4\\02.png",
+      "sourceSha256": "1c248618038a14215d366850197a81ec5a68ace4072173dfff91a7f532531e82"
+    },
+    {
+      "approvalSha256": "b84195725d9bfa85826f5878c62ac4cc7a83f2da76684307250f55bfbc94a6de",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "6536ca67720c1dec4fd2050d5749886fbba1890fe8aeaf78366e69460ed9c28c",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\08_alchemy_prodigy_boy\\nw-assist-natural8-20261106-v1\\native-v3\\03.png",
+      "sourceSha256": "847d4917c1fc693a1885e4fc1c4ef239348f7dc04b85af4397f1bd5c255d4413"
+    },
+    {
+      "approvalSha256": "b84195725d9bfa85826f5878c62ac4cc7a83f2da76684307250f55bfbc94a6de",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "531c437775852e8c71286eecbf11f9e1a044673de8c086a3cd1f2f42fae940e7",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\08_alchemy_prodigy_boy\\nw-assist-natural8-20261106-v1\\native-v1\\04.png",
+      "sourceSha256": "1a0c88ee1fad0c750c2635057969705cf4a79154ed4e15119a2a11ea664b4a62"
+    },
+    {
+      "approvalSha256": "b84195725d9bfa85826f5878c62ac4cc7a83f2da76684307250f55bfbc94a6de",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "02d1e77911f002b7c683068e26503452fea0e69abe6d8c3e140514cf3e1ec7e4",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\08_alchemy_prodigy_boy\\nw-assist-natural8-20261106-v1\\native-v2\\05.png",
+      "sourceSha256": "165288f0a6eccffc3b6b4ede8a29fb0cbe9d9fb02c0f035be964a52b7b32a7bc"
+    },
+    {
+      "approvalSha256": "b84195725d9bfa85826f5878c62ac4cc7a83f2da76684307250f55bfbc94a6de",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "7abf97817a357a664f89eb9502e190bcb4b87fc03a58fc512a824050f549401d",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\08_alchemy_prodigy_boy\\nw-assist-natural8-20261106-v1\\native-v2\\06.png",
+      "sourceSha256": "c6226074b0282fbff4eb9809fb7da8bbc0d7967bb6f85e4c0dc79fe90a2bdbcf"
+    },
+    {
+      "approvalSha256": "b84195725d9bfa85826f5878c62ac4cc7a83f2da76684307250f55bfbc94a6de",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "0f34327388e09fd7e02f187eb1f5e1584d7c139620081f9435526b28b8703d48",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\08_alchemy_prodigy_boy\\nw-assist-natural8-20261106-v1\\native-v2\\07.png",
+      "sourceSha256": "65dd5ae06622a4a9b2036b6f526b40cd89b58b8a48d67d6c03a9da91cde90274"
+    },
+    {
+      "approvalSha256": "b84195725d9bfa85826f5878c62ac4cc7a83f2da76684307250f55bfbc94a6de",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "9c6e7dbf89e5bab2bed3622d0c7faeec9122d8ef57d337bf5a96686010ac3813",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\08_alchemy_prodigy_boy\\nw-assist-natural8-20261106-v1\\native-v1\\08.png",
+      "sourceSha256": "ce0f10dde0c8be71154afd690b29f90810c7b489d31cc935fac96d7a68c4b337"
+    },
+    {
+      "approvalSha256": "28a16994fa8099e72f00ee84656d7fddf90dcd3fe27c4befb5a2d02488a9e558",
+      "derived": "run/S/01.png",
+      "derivedSha256": "fc871a81347f893d861b6eb6615689f9e5ff776de0dcc969d4adcff8a2a1f661",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\08_alchemy_prodigy_boy\\native-v1\\04.png",
+      "sourceSha256": "a6326a66ae7fcb24a9fc586f38d5e2fae882847c449c05ef155d9ff28b28fe13"
+    },
+    {
+      "approvalSha256": "28a16994fa8099e72f00ee84656d7fddf90dcd3fe27c4befb5a2d02488a9e558",
+      "derived": "run/S/02.png",
+      "derivedSha256": "6df6395124312452932e6567cd66d66dafc85da14d9038f4e70b1c2828bbd116",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\08_alchemy_prodigy_boy\\eight-native-v1-20261105\\native-phase02-v1\\02.png",
+      "sourceSha256": "f36715ba76cfa4da4fe7e3ee2497f85c6f289c49cdf06b0d14fdc5df5f6d4a3d"
+    },
+    {
+      "approvalSha256": "28a16994fa8099e72f00ee84656d7fddf90dcd3fe27c4befb5a2d02488a9e558",
+      "derived": "run/S/03.png",
+      "derivedSha256": "a801945d8a9e7fb550f54ba5d69582fddb755c88e5b682dfd72f7f3c1bee4e2b",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\08_alchemy_prodigy_boy\\native-v1\\08.png",
+      "sourceSha256": "abd86550ae973c8af1a8611a1c0b49c625085cc8ff3408a3bf363d90dd518dcf"
+    },
+    {
+      "approvalSha256": "28a16994fa8099e72f00ee84656d7fddf90dcd3fe27c4befb5a2d02488a9e558",
+      "derived": "run/S/04.png",
+      "derivedSha256": "09499c0dfee9e4127cadd4928d835c17e1df71f6a63b893c6eb0025a1ea043c8",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\08_alchemy_prodigy_boy\\native-v1\\11.png",
+      "sourceSha256": "3c2dea6c20ef7d943db889008c4e900291b639a058fb73c2b0b5bbd3c11bbf28"
+    },
+    {
+      "approvalSha256": "28a16994fa8099e72f00ee84656d7fddf90dcd3fe27c4befb5a2d02488a9e558",
+      "derived": "run/S/05.png",
+      "derivedSha256": "8c6daf50a1eeab9e93de9a390080f07d45c4e6ea57d704f228d760845f2a6808",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\08_alchemy_prodigy_boy\\native-v1\\12.png",
+      "sourceSha256": "b9d15b2db1b8b6f370a84169d39727090915c473bc876e3197cf87d541f72575"
+    },
+    {
+      "approvalSha256": "28a16994fa8099e72f00ee84656d7fddf90dcd3fe27c4befb5a2d02488a9e558",
+      "derived": "run/S/06.png",
+      "derivedSha256": "423bf6183af47fd447840246a102b20963f74d826904e1ed958bf35e29fbb209",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\08_alchemy_prodigy_boy\\eight-native-v1-20261105\\native-phase06-v1\\06.png",
+      "sourceSha256": "ec818ee2eee3d1ecc1ed356099b35b610bf0713a1b8b357b4ad02af39141abda"
+    },
+    {
+      "approvalSha256": "28a16994fa8099e72f00ee84656d7fddf90dcd3fe27c4befb5a2d02488a9e558",
+      "derived": "run/S/07.png",
+      "derivedSha256": "fd49cac3f186489b500fd2f7d12c5536e5d4b420afcf288afd37271d3095b9d8",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\08_alchemy_prodigy_boy\\eight-native-v1-20261105\\native-phase07-v1\\07.png",
+      "sourceSha256": "c9af7210f88eb880156c6b392901a8f4603807c3c5eb9e21b35097a742ccede7"
+    },
+    {
+      "approvalSha256": "28a16994fa8099e72f00ee84656d7fddf90dcd3fe27c4befb5a2d02488a9e558",
+      "derived": "run/S/08.png",
+      "derivedSha256": "9fd025e094918b8ad30dac8385cb512a20e51baa73500ba509c85ce09dcfa695",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\08_alchemy_prodigy_boy\\native-v1\\02.png",
+      "sourceSha256": "7e5f3e31b3eb2b43b3ef6dcb1772b7c06661cb441ad58039a1574d5bab2c21b0"
+    },
+    {
+      "approvalSha256": "0a835500b65171e175a0c02754d1d849e7c178495869a40a734128017af58fea",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "714d24aaebf8ffbeac6532975a5b5e0df67539afb0b5d28473e94ff232893c35",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\08_alchemy_prodigy_boy\\master-bound-eight-v1\\01-native-master8-v1.png",
+      "sourceSha256": "1c305f1236595ba75de0f0965b64274459d72c459cb4a705b8955388d1c09149"
+    },
+    {
+      "approvalSha256": "0a835500b65171e175a0c02754d1d849e7c178495869a40a734128017af58fea",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "1a0cc5f1bb924b4f9011b524407b44060cbed8839ae21c8ece5a55ba78f641e0",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\08_alchemy_prodigy_boy\\sw-owner-ground-20261106-v4\\02-native-support-chain-v4.png",
+      "sourceSha256": "16f5590858e8f5f324b4bf2eca8d23694d209b0c05eb4de127892fa9deaef825"
+    },
+    {
+      "approvalSha256": "0a835500b65171e175a0c02754d1d849e7c178495869a40a734128017af58fea",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "1215563c977eaffb4c159547bef1ce816f7b6837ef11001d955ca166e31e82e2",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\08_alchemy_prodigy_boy\\sw-owner-ground-20261106-v4\\03-native-rear-height-v5.png",
+      "sourceSha256": "d79f6932bf345804a2fc7f42545416ef81688365ffe0d2d6227a69c0d1ecc85f"
+    },
+    {
+      "approvalSha256": "0a835500b65171e175a0c02754d1d849e7c178495869a40a734128017af58fea",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "59fa21971e86931bb4a62992b70092cec205f2dead905b132b7d0c15598778f2",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\08_alchemy_prodigy_boy\\master-bound-eight-v1\\04-native-master8-v1.png",
+      "sourceSha256": "a6dd42cb6f3dc7b64c266df4f017c4dd944c389baa9f08a0fe6d97bbaa6a5958"
+    },
+    {
+      "approvalSha256": "0a835500b65171e175a0c02754d1d849e7c178495869a40a734128017af58fea",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "0e76186caa7ac622b695e481712600db37494b6eb777fe5c8e654ba171096f57",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\08_alchemy_prodigy_boy\\master-bound-eight-v1\\05-native-master8-v1.png",
+      "sourceSha256": "283fea29b6f3640df7cff731872d8e7b28a6e29e71e6e97ffc9cd6581e964f1b"
+    },
+    {
+      "approvalSha256": "0a835500b65171e175a0c02754d1d849e7c178495869a40a734128017af58fea",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "85fab2cb4900426e643bccc5313e0034395ff2f22892819e434f45124c5bca3a",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\08_alchemy_prodigy_boy\\sw-owner-ground-20261106-v4\\06-native-near-pass-v5.png",
+      "sourceSha256": "484e4bd2d584a454a33ff2c30aa22bfc565ef986cf90b43e81a3e95576a5bb87"
+    },
+    {
+      "approvalSha256": "0a835500b65171e175a0c02754d1d849e7c178495869a40a734128017af58fea",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "61a96f028ff994c1aaa64b908906db5824dce89968dfd292ea029743fb29817c",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\08_alchemy_prodigy_boy\\sw-owner-ground-20261106-v4\\07-native-rear-height-v5.png",
+      "sourceSha256": "1782e6b8e57e7abf9eb669d136b7915e909376a10e00bd62c6aaa900f57d4847"
+    },
+    {
+      "approvalSha256": "0a835500b65171e175a0c02754d1d849e7c178495869a40a734128017af58fea",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "fd328d657385839120f0d7024bd155472d1317aa65b91bbf962263119f885901",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\08_alchemy_prodigy_boy\\sw-owner-ground-20261106-v4\\08-native-vial-local-v5.png",
+      "sourceSha256": "2d2e086944cafb3bba4eedbd7b3ab61cf6441109ebc62dab03efa3d11e381ed2"
+    },
+    {
+      "approvalSha256": "1488e61ad18b555fc0e8c956df263685ea2c54cbed001a116eafdefa85da4957",
+      "derived": "run/W/01.png",
+      "derivedSha256": "150ec44c004fc888b646e50f0b7c27fa69b781bf37feafbc71265f52e8f28a71",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\08_alchemy_prodigy_boy\\8f-facing-20261104\\native-arm-middle-v1\\01.png",
+      "sourceSha256": "911a13a31a1cfadfdf1cdb8cc55c355ed7016c22ec7029d343e7712897ac3b9d"
+    },
+    {
+      "approvalSha256": "1488e61ad18b555fc0e8c956df263685ea2c54cbed001a116eafdefa85da4957",
+      "derived": "run/W/02.png",
+      "derivedSha256": "6de22f9fa1446f022d25e3d83dfef354e03a332358de207a8fb1c443dac54370",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\08_alchemy_prodigy_boy\\native\\06-v2.png",
+      "sourceSha256": "4b07d66bfe031d69bc3c607eec60b317c76813115aab5a5545585555e280ce92"
+    },
+    {
+      "approvalSha256": "1488e61ad18b555fc0e8c956df263685ea2c54cbed001a116eafdefa85da4957",
+      "derived": "run/W/03.png",
+      "derivedSha256": "a8407e2ab57b366b8be88014b5a2b6998b34ae1928b064770b8951740d5dc37c",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\08_alchemy_prodigy_boy\\native\\09-v2.png",
+      "sourceSha256": "e238b95cdfbf4466f525f9ae472d724090a1b18631b08d2c01d3b85e42b261b3"
+    },
+    {
+      "approvalSha256": "1488e61ad18b555fc0e8c956df263685ea2c54cbed001a116eafdefa85da4957",
+      "derived": "run/W/04.png",
+      "derivedSha256": "99cc34d3ec1f8b5ca322de02f0946db521bb0e996ee0fa115da048a5ddab3b11",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\08_alchemy_prodigy_boy\\8f-facing-20261104\\native-arm-transition-v2\\04.png",
+      "sourceSha256": "01d4c311964feae9d117cb35d312af85cef295aee746b3a2df10a2e40d85d4ca"
+    },
+    {
+      "approvalSha256": "1488e61ad18b555fc0e8c956df263685ea2c54cbed001a116eafdefa85da4957",
+      "derived": "run/W/05.png",
+      "derivedSha256": "476c1f3f2d7b29a335634786272122114e5d5327e265a86e5197e34dd7f202dc",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\08_alchemy_prodigy_boy\\8f-facing-20261104\\native-arm-middle-v1\\05.png",
+      "sourceSha256": "f68e0400b15a0cbb1263e70c861f5d63b1c64f971d596da378400a472703f1ee"
+    },
+    {
+      "approvalSha256": "1488e61ad18b555fc0e8c956df263685ea2c54cbed001a116eafdefa85da4957",
+      "derived": "run/W/06.png",
+      "derivedSha256": "ff0f5ce077085d5cb7a62e715fe5a70c416590352b6a47b0bed3c9fbd5682be4",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\08_alchemy_prodigy_boy\\native-details-v5\\14.png",
+      "sourceSha256": "a43952f1cb263f0c9c012bcf0818127401ff67d103d28e24454fff616bcfe6c2"
+    },
+    {
+      "approvalSha256": "1488e61ad18b555fc0e8c956df263685ea2c54cbed001a116eafdefa85da4957",
+      "derived": "run/W/07.png",
+      "derivedSha256": "0dbc6dc365a5130de29b3a826c6ee73c5273ec4659799437de0a1dcbeff1d56f",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\08_alchemy_prodigy_boy\\native\\01-v2.png",
+      "sourceSha256": "0bb4681e080c54fb0458aaaebcb146cdcd9d4eb2e86363e931646f4e8090b9ff"
+    },
+    {
+      "approvalSha256": "1488e61ad18b555fc0e8c956df263685ea2c54cbed001a116eafdefa85da4957",
+      "derived": "run/W/08.png",
+      "derivedSha256": "9054c773b38601780b8de6b6b622ec6f725dbc5fc550b06172313dcce66f3fa4",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\08_alchemy_prodigy_boy\\native\\03-v2.png",
+      "sourceSha256": "b05b189cd936c579c1b88008a8aee25468129b95e58f5768ddecdfe99984e251"
+    },
+    {
+      "approvalSha256": "30340e56a622e859391fb3407485354acc7e53e92695134fa1ce7f8131daf444",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "d7cdf97a8f4f4351fab22c686b08870f7c183c4b3167243a6b99817dca4ccfa9",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\08_alchemy_prodigy_boy\\native-v8f1\\01.png",
+      "sourceSha256": "267b2a94e2a82af3a9b8672910343c9012d0352362feee1f9bbb7a9db61ec123"
+    },
+    {
+      "approvalSha256": "30340e56a622e859391fb3407485354acc7e53e92695134fa1ce7f8131daf444",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "28d1921fcf71451600935b8dc9caf43c7fb31e3495f9dd132df571a67ad0b44f",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\08_alchemy_prodigy_boy\\native-v8f1\\02.png",
+      "sourceSha256": "c68556bdf443cc06724a9390a9872e445df3d785432cc66d6889c99fa40553ea"
+    },
+    {
+      "approvalSha256": "30340e56a622e859391fb3407485354acc7e53e92695134fa1ce7f8131daf444",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "865527e8f2d71d6dc34434aee625023a570fcd8938262cde6a763e5b396c260d",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\08_alchemy_prodigy_boy\\native-v8f6\\03.png",
+      "sourceSha256": "b8fd8042b528598974945e95eec1d366a9f58b5efbd4d97ca16de2ee3a8a1213"
+    },
+    {
+      "approvalSha256": "30340e56a622e859391fb3407485354acc7e53e92695134fa1ce7f8131daf444",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "986832865ad8f4a134e22ea186ec1cedcbe344c440bda755b4c40ba0d7e537a2",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\08_alchemy_prodigy_boy\\native-v8f5\\04.png",
+      "sourceSha256": "76a7d4c71c1b93dfa01779853f6ea73b411f8491a493b1c87408240d98599c32"
+    },
+    {
+      "approvalSha256": "30340e56a622e859391fb3407485354acc7e53e92695134fa1ce7f8131daf444",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "3b95b818c2e26b73bed5f5a91e94db5b00f069d9069a8e4c4a1e873071f1a7c2",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\08_alchemy_prodigy_boy\\native-v8f5\\05.png",
+      "sourceSha256": "14bf3557750bbf74ad7898d7d2c7cbd4a2142025a70767f3741fecaafe105741"
+    },
+    {
+      "approvalSha256": "30340e56a622e859391fb3407485354acc7e53e92695134fa1ce7f8131daf444",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "4ff5bcf77aa0f6a7c851c38c7971d5a151a0e1b3c88c0d14deb45984a6fe8efa",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\08_alchemy_prodigy_boy\\native-v8f1\\06.png",
+      "sourceSha256": "1994140c2f03261672cdc3ab3f9fbd7ccd407279bc0ee596c0eb84cd6025bc95"
+    },
+    {
+      "approvalSha256": "30340e56a622e859391fb3407485354acc7e53e92695134fa1ce7f8131daf444",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "824d024a930d2abf14b3bc4901e4c1134415ba25501c99c8d25e1d04edf63af1",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\08_alchemy_prodigy_boy\\native-v8f1\\07.png",
+      "sourceSha256": "bad56e2c3ba6601bf6f25c73e65ded7a85bf09d6e44ebb37572d536f42aa140a"
+    },
+    {
+      "approvalSha256": "30340e56a622e859391fb3407485354acc7e53e92695134fa1ce7f8131daf444",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "5c726256fda21665d6550ee6d6824131098aa00c2e7594005625b7b5b6339228",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\08_alchemy_prodigy_boy\\native-v8f2\\08.png",
+      "sourceSha256": "15d1d93a37aeeea83730e4306a1d2fce507a95cf25787407a69070d8334e9946"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "50e62a6b0ebfb5166595633ea025fd3a812c9890736d2c5da28d85230d534433",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\08_alchemy_prodigy_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

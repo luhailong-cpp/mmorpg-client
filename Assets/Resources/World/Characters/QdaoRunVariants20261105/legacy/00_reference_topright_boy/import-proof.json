@@ -1,0 +1,1302 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/01.png",
+      "derivedSha256": "416a279e5b1a057df072d0409698638b1522a554bea8b55a3f5079aca54eeeaf",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\01.png",
+      "sourceSha256": "e3ec943d46ea0d7fa8121ebd39fb4d31cbeb8304401c8f2232e65fa22228dc34"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/02.png",
+      "derivedSha256": "63afd95f211b0b055efe5f32b230f5c23a3bf3cc209d227e28e977cfd37cc581",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\02.png",
+      "sourceSha256": "77134aa4d6f5ec09d4067e39f17d5c0004347410d05c62364a04ab383259b335"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/03.png",
+      "derivedSha256": "d122c5d46e3814963709c07bf1377402f8dc592b6a081c2a373f2527587b0041",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\03.png",
+      "sourceSha256": "13ca73c5203b026322b5ae85d8aeb5b36a9ce0e198bcd53ea1f48f708bd952e1"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/04.png",
+      "derivedSha256": "723c30c3e05b64c9592dab878586b7364a596324eab4927f83e21af64247c5be",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\04.png",
+      "sourceSha256": "9c1790e9e87e29e307eede8d1496cb6630de9991393992280f582f82d0cc795b"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/05.png",
+      "derivedSha256": "0822851ffdf2ab10f27fff6df619c3d6f8e3bb62be642164b5dcd8974e0f5ce4",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\05.png",
+      "sourceSha256": "adf1d6376f017ec20e2b37150177aaf715beb41207ed3968242aa6644429b01a"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/06.png",
+      "derivedSha256": "751e8462922696b931657d1cf05be733539a9ecffa6b4057f52f74d72a18c175",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\06.png",
+      "sourceSha256": "119197c4e9d3ad23c63c171be9724385e5cb4ef68104be8b81cbaee3f39fa6a2"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/07.png",
+      "derivedSha256": "e7df1c1474bdc5afcfc3e49b6128dd7c06c9afb3624aaf1fe9ced119cc2a477e",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\07.png",
+      "sourceSha256": "435a95ac20b66f9f015ca93414c7b48a2de9d680575972ad0251efb41db1f33c"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/08.png",
+      "derivedSha256": "e2b40ccc177d48cc49ef478964551b6c195ad6c0f154b504407dfc778685176c",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\08.png",
+      "sourceSha256": "276036730c92f7fa93a1fd78f0e4780c80d2adf8f67673fc74da6a1299f592ad"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/09.png",
+      "derivedSha256": "19796b27a62ef7d7b88d33be9e97017efc1db3d094da1a7b779a6da784fae609",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\09.png",
+      "sourceSha256": "1954f7249cac8ece9ab6deba7f82627d911d8e402c1c16825d986838ae5c93c6"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/10.png",
+      "derivedSha256": "bfb6ffcaa97c67520f637e990725fa511460bc470c778b370a3155315cf492c7",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\10.png",
+      "sourceSha256": "a0414aceb98d353ce11bbc0c9a9eb3348f67c1561083fb74aa9c5ff80b04eecf"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/11.png",
+      "derivedSha256": "0ac26a125efa24026d577e3568479da66636749403ffda652a99c3c5e1f10eda",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\11.png",
+      "sourceSha256": "91cb9b5f8138392a7b219ca17a76670087a15f87283cbdb9b716a2d4cb0e3b4d"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/12.png",
+      "derivedSha256": "cde4cdc4eabefa5f1519a6813c794835af51895cec59f27299f4502d79edb79e",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\12.png",
+      "sourceSha256": "fcaae1a00a828d22d95dd041ed2cc08cb96dbf261c2ea23c863591ba3d6adbf9"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/13.png",
+      "derivedSha256": "168214d0fdd90b53dc8c7852c13d9d14fc0c37c8997de8af1c4bdd3ab1381585",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\13.png",
+      "sourceSha256": "9952b23df622ad623d02e45dcaef7f45c59aa60772bbef2116783439ac688618"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/14.png",
+      "derivedSha256": "5558deec81e4e39c340079f67a4b689cf6f7a48f859fedb3fc0ef29a11666a63",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\14.png",
+      "sourceSha256": "5c018b5e2dcb4c13c95a549caf769d2b37825b0150cb944abdec0b7ebb5f5981"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/15.png",
+      "derivedSha256": "8d85a103ed07bc7231d0d217cd4c91f802ba1912ca86420b6efe7b0ef48e5511",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\15.png",
+      "sourceSha256": "8322b7e82cc3e8b33f526d489c53c3110be3ca68d813e9155851927b45971434"
+    },
+    {
+      "approvalSha256": "90cc0051816d6c85df4d60d30878e80a49d9509e54e19100e641b6e45c5ac451",
+      "derived": "run/N/16.png",
+      "derivedSha256": "ace5ec66a242d51b1fc127c8b39dbbd4d2d85ed008ceec4169ed323ab174baf9",
+      "direction": "N",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\N\\16.png",
+      "sourceSha256": "5358ccbf9dda183b9d6a02eb2f97fce6b7dc281510d8eb5d9b8ef9d9fb63b4c3"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "a7ad4bdd96bc869983a463363eb2413e05302bb04dd275977f6638c767cd5406",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\01.png",
+      "sourceSha256": "730b8e2dcfd46f8b147413a9b34840ca7131180742ba7bbb63e67d9238651c95"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "1a972bd1ff2331785e2091a989debd97ab2b53f8c2b8adf6b65220d1b78f86c6",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\02.png",
+      "sourceSha256": "006c56e51b2fb223930440d7a200e8e6c92a610f6920469cbb999290b8d7a935"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "69e79ed27eb6b0a1b6dd5f6a604647571f053eb7354354afe1952d879257d07d",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\03.png",
+      "sourceSha256": "54831964da775bba19345eb8993d67c315ad3be3d9219aa56b4e3cd8d85f0dd0"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "d04a5c424e3497927738871da9d3d7cb4442778c1ef44d7f86fbe6c80c1f8134",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\04.png",
+      "sourceSha256": "c914ea62ccc08d6075736185c855f4323e083960b42ce797925fca85b38227a8"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "9251f3106b30e78c883aad5ef630adf72a4e6f5d03cbff936207a631ae470a87",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\05.png",
+      "sourceSha256": "b299bbc49612c115f12c7f611c8acdb9f2cb5d76f96617462e849a4502efe58a"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "ca20ee924ee99e1d231fd7d18980cf89d9e7055fd4a1676c1fa32259d1d3db12",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\06.png",
+      "sourceSha256": "7ecb3a1b7572533484d4f8fc876b51b733b85feca69bd700c0295b30104e53c7"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "86e343693515121241b0b8f6cba900b04e6bf9460f0c2ec52ce58b3cb7fb2677",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\07.png",
+      "sourceSha256": "f7665d5fdee569cdab3ad12dc2a505bba631ca3b4cfea0d5b72824fd4d48d598"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "60b88ed8d4361bd439dc8e0f33db3ed18799dfdd3b0f35e1ec1273fd653f8452",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\08.png",
+      "sourceSha256": "95d5757728198e092c96a6c254216e81cf3703807f5d562e42416f648c76b8a2"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/09.png",
+      "derivedSha256": "e011ba30cd37e9389aa25d445f9b861e724689ef2ea16934b6bacbbf0f173489",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\09.png",
+      "sourceSha256": "80b9c1f7fb7c665e2bdeafd3dfd36f356cec4a2ca68a481689f8871ef151dc46"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/10.png",
+      "derivedSha256": "dbeb60a9b3af12d21719bf6308d29899c63bc854d004dfd098817d8bb51aeef9",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\10.png",
+      "sourceSha256": "13e221c9e7ed39f81a3794951f45d422fd4fab494d5590256cfe6156a49bad34"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/11.png",
+      "derivedSha256": "aec0fca357f12b8b3d9ed11f1bf1d366c88db84645cb845e7045d55aab9e57f8",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\11.png",
+      "sourceSha256": "d64ec1b465816a710a74bbae2a50a21a3a8cfcd5ac58fec2d72e778c4bdf5021"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/12.png",
+      "derivedSha256": "f23fecb178a7bca388b80ccfe62deb9fd820cd08a8fe498033c0ce0c8a6059b6",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\12.png",
+      "sourceSha256": "9ba03da46e3eb6b3ae3a1f06c24f902f6efeca9b25130e4ecc0f81f9328483f2"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/13.png",
+      "derivedSha256": "14d7e7c75c885dcc8ff28ed6781a383165f366c37ff8f7da9268f6a98708f5e9",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\13.png",
+      "sourceSha256": "1c405fd023ca9aafc01a4128fb9501e6152b0fcac95f88591b06f9c82e051d6a"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/14.png",
+      "derivedSha256": "377ca7ffe2cfd53116c4fa8264e4ecbce6627b5bd75de92b1c8c49f91bd2c334",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\14.png",
+      "sourceSha256": "c50ad2923e9b495e78cff1022acdc68e702f19947d0edc9d49e85cd78d7c2da7"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/15.png",
+      "derivedSha256": "102345c7d9d73fbb4f4b504bc1cf936ceeccb023a324238fd7dfdb046f7c3926",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\15.png",
+      "sourceSha256": "fe9251cc5533e7c2302d8f9c5182c02104fd074d8837acaa6c805454e43faf33"
+    },
+    {
+      "approvalSha256": "af0d5e6f4f871827a31cc61dc114ef693288391462d6f4f81869b2434f650adb",
+      "derived": "run/NE/16.png",
+      "derivedSha256": "1bd627d8f6abde00d3b0db2654aa4b06d2c0f2ee81247cc0d3c28865008368d9",
+      "direction": "NE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NE\\16.png",
+      "sourceSha256": "551ddb7146704531b26d9bbdaf685f2f1456fc78a74448efac429cd13adcec96"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/01.png",
+      "derivedSha256": "a0d70cfbf887ca408a7e59a8e1750ccde39a45e0841fe83655ad130c09b6adb5",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\01.png",
+      "sourceSha256": "bda03b1373563a6642e3bdef26838dfbc0d743e6e116a730540bd0485c7ce879"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/02.png",
+      "derivedSha256": "4528637a947d6ab216baa8acf84bc9b782ad5f039943d2eecd7ceb9fc66a7375",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\02.png",
+      "sourceSha256": "fad7dcb9bd619ac4c80fdf7783db6b6dd45f6fe9e24a72a5e60ff74b4ce41c0b"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/03.png",
+      "derivedSha256": "c7a530a0ee7e63a939f36b97ef60d719e349cac5591288435ab3b72b349f4d63",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\03.png",
+      "sourceSha256": "439c143e406210d51eb889e909cac87752df0b8fb380448517316f40c7af24ac"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/04.png",
+      "derivedSha256": "2e31cf828109332e12fccb6c94d841afe48e70559087382096e4696e7fc1353f",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\04.png",
+      "sourceSha256": "48ba2e8ff5b814d3937cef4e3d205f9fe6179c0333475d775fc74b886a8a6103"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/05.png",
+      "derivedSha256": "0193eff9f8ee61a71d0e23fcc55286a30338cacddfaf012f813ba7497fc971d1",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\05.png",
+      "sourceSha256": "6d6b790439c3454190123182d93a2303e4a91b9dbb73400f4620046360e4797e"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/06.png",
+      "derivedSha256": "56e5f72562f5d19925a8fc82cf03bb64bbce5eed2781b4f9bfe9b80f5a730b7f",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\06.png",
+      "sourceSha256": "12353099345b4d412641b18be36c518e2aa9d30c82b1f6e3572da34a4e7d3cf7"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/07.png",
+      "derivedSha256": "6f2f0f565aa54c8f2f3eba132a71fbc5e6386004dc2aabd56a6e7887205ab55e",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\07.png",
+      "sourceSha256": "65e409d933f4b4151d8c02715ae77d32f300ccce65fa7d4cc08d31eae08fdd35"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/08.png",
+      "derivedSha256": "52276c3d3b1273fc9d7d348eb45eca4716d51352f463e899cfc88fb56da8db57",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\08.png",
+      "sourceSha256": "ababdc6cef75945ec521c1af4ec043cfbee7b1f9dfd542eed47438d26002fba7"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/09.png",
+      "derivedSha256": "b7e3678da610a98771b0d67a62f3c4bd4d6a2a17539228f39b9f54face2101ec",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\09.png",
+      "sourceSha256": "bc99d412ee4e147ca7899b10435a98a8a788514dc8d929276e4ba787bb60f810"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/10.png",
+      "derivedSha256": "e97cfc892e8f59871ecb19fc8e644f44812617cd17b9cbbec6313fae8d91ec0e",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\10.png",
+      "sourceSha256": "aee55700f99ef78d950ce925cbf3d53ad5a3368de7cd1a271ca64634d62b8cc1"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/11.png",
+      "derivedSha256": "60eafae5685b14bfece6a4bc6cb0fa48f264febc15c792cd11741b5a5487a937",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\11.png",
+      "sourceSha256": "d57b5297f8a2e496d386e0e497429e5313d4e999535d76b9a7cadf1c735a0a3e"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/12.png",
+      "derivedSha256": "073578ba73f7386a80c33577806ae485dfdee420cb9c0201feba346b41b5f217",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\12.png",
+      "sourceSha256": "f2551d731d867a00c0df13c689c9fa98f31458666fe859da4982a013118ba230"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/13.png",
+      "derivedSha256": "a30f9d2ca51c4760446380176eb1f40149209ed43932bd8832a8ddb5ebccf1ca",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\13.png",
+      "sourceSha256": "d6603e6caa5523f6f53535f48acc2b7bb1a4b766f08a6361e1260b288baab320"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/14.png",
+      "derivedSha256": "5f3225c8cefacaa5972d8605cdda826f9eae321a8aa2b48df943865b65222170",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\14.png",
+      "sourceSha256": "bcda591254249272259b02b6aec7beb9bf79fb7b124b65ce42052cb90b95e836"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/15.png",
+      "derivedSha256": "427f0b8f0b085cd92194ee2deb8d29acc917ec34da8acfa3dd57047b98187b20",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\15.png",
+      "sourceSha256": "8d443e08eaaf32739c98bc54bb18efe75add601d8198231c3980d6c9d18305c4"
+    },
+    {
+      "approvalSha256": "f87e9c838b426f028fa06ef1dc5e451d0d0529a2c50f9a9e8f2a2787c2a3ef33",
+      "derived": "run/E/16.png",
+      "derivedSha256": "4fabcecca6319a631b402bde0f943149212e727ee4ba86db1034409022baa657",
+      "direction": "E",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\E\\16.png",
+      "sourceSha256": "8aa905996ac17ca9cd75c6704817f30b99e9cfe20d84a240b673557a07d06255"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "dfd89fad1f747e2a506dc012e9f709cddbd4532157e0127cefdef8582f440a35",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\01.png",
+      "sourceSha256": "ef1428ae62089ee44afd977a94ae0c09329f56cfa506d2d5d9f44db88f8f39d5"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "efc975ee86bbb8cc014b343a0b81812b9cabcf7c401936f6f2264237dc41ee9b",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\02.png",
+      "sourceSha256": "c0843e993f976efaeebbdb1ab07e921b462fc12ec8762a0443bbbf3924eeb8f8"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "e2926246964947d47ebfe3cd376547e00ee6aa7d938e16b22eefe90d79a7c1cc",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\03.png",
+      "sourceSha256": "8044dbcceccc9ae107414518ca3589644a55f21cdf0fb007076371f57efc2f6a"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "a8918ebb508d7b8cbac8c05acf9064e43f88c267f0e913774230cbab140cb4e1",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\04.png",
+      "sourceSha256": "47494076fe8f52ac48c4b73ecdc9f7496816437330ab622f0639c03eb8975ce5"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "d394d9d11cbd60bf7c948df96eb8ddcd7ea76186ba8d467002b3fc70268b37e7",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\05.png",
+      "sourceSha256": "87ac421040029e5df181c31e4f61530188a6e406ef06bf24a4cbe98cf38155cb"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "f00e7ce39e0d7c14d258a8d493a023da9900eb51ff1aba4b85b8a9ee18d4e386",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\06.png",
+      "sourceSha256": "672411acaefec7ea87526f99b633aa00e3a94f2d6ba9dd416d1cee29d5f56b83"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "c05ed55b7e9946c776c0f8a9dd5f0bec3577daaaad19c1671b62bfea216e451a",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\07.png",
+      "sourceSha256": "6eac1712902f635357e03a0530509e2c48ef26d7f0c389099f3fce8db639e2ba"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "8311e8404746dd7c5d0dca609866050f03fb6ad7afa15a28359c85e0c2316e60",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\08.png",
+      "sourceSha256": "8f293828b87b3132d58981c5c2e8566570c5859aef4d894a886be611f9c43542"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/09.png",
+      "derivedSha256": "1525017116cc58e4112abfd208542aa58fb06458d84dd53265098c363e6cdeed",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\09.png",
+      "sourceSha256": "ad1e7ec885063113810e0afc0c842f67fe96d5ae8fdba36931fc6e8a88c3af37"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/10.png",
+      "derivedSha256": "b50fd18fed6b0cd2a42d28be78f6951ea5726344297ae4a83379288dc907aeaf",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\10.png",
+      "sourceSha256": "67c2441e2e8d4929e82c4655fd2c6feff15d4e5c81c7937586ed8b999753fbde"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/11.png",
+      "derivedSha256": "adc793409ca8fde03ecb1d78f8d0f5948509b0dda334eb6773ed043d700c793f",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\11.png",
+      "sourceSha256": "5c12c8e2ed1bd21eec82ba2efbf063b6342afca677c0acb2a1da670bf3a1d05e"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/12.png",
+      "derivedSha256": "b1afb791f830bfc3e18b400c8a0c466fd1db36c2ee17dc3b60e01eef2c725740",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\12.png",
+      "sourceSha256": "d43b005cc0eff252d8aa740237dc83b50375d94435f01156d718804827604d40"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/13.png",
+      "derivedSha256": "85da85621b5a812486f9ca494c4395ba3d664426258671c4b3f5f1a7ade53fa8",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\13.png",
+      "sourceSha256": "5229782810cf6a4adc5d69abe0c86450f8537e5d8561e4cc97b60737b4c121a4"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/14.png",
+      "derivedSha256": "7204777e8d97c7f590f97615257cbcee1f2e6b3357aa2ec5156f17ef4c60af30",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\14.png",
+      "sourceSha256": "caad7053ef4afbb3478c57209bb4bb92f58e5359e340b765ef9530d2670e90a2"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/15.png",
+      "derivedSha256": "0a43843433e516a125b2db09c36a02cb8901f94b9e2907c4ea4c1bec9377b153",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\15.png",
+      "sourceSha256": "202fb9e173dc968966442c357b7eac39c1d90541343cfa30b8a0289c5e28c17e"
+    },
+    {
+      "approvalSha256": "ac268dbc6aded1156de9653583a30fefe49bf5c8493706f42e748dd3628bf7b7",
+      "derived": "run/SE/16.png",
+      "derivedSha256": "4ac56895ab3f6f1cfa0b8ce93f135f90104fbce21dddd57c8dac0128e5ef5f75",
+      "direction": "SE",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SE\\16.png",
+      "sourceSha256": "12ea5a6abd613a5eeb58f3c6bd51fd0a06050732c0f79ee118f948d22a9f2275"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/01.png",
+      "derivedSha256": "7db43f9342c42009c899cb49fa2104f5f905b05b9b2d0f456cb5c467e99dc84f",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\01.png",
+      "sourceSha256": "e30a1d9ce9fc993f4390a3cf69d9089ea228f9fdb94940be49a58b8770ce45b6"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/02.png",
+      "derivedSha256": "6495b2908940cd99fa695123b780e1e140213ff0ed51acaa1d44bf1493aafb38",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\02.png",
+      "sourceSha256": "a7cd07f10f81fe666a330654b8563697655491184b4529db365ddaea409b08e4"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/03.png",
+      "derivedSha256": "6abdb0de7297eb2dcaadcaa5a3074bfd9f0bdb7bee8503eaccea0d401009fefd",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\03.png",
+      "sourceSha256": "4540b0a18e17fab63b94c3c38421bbfc99af6de4c6b6dbf1dbfe57620b8e59ba"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/04.png",
+      "derivedSha256": "acb3750e7b71966c9f65d5f80990ad0a174967ec3b0eef71f8bf0cb0ee1ff233",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\04.png",
+      "sourceSha256": "6378df8a13f2bf5d090b9517dee8d441855458cfb494e4359bfc4ca3a224b816"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/05.png",
+      "derivedSha256": "b9e02b407f32b66378ca845e23971b39afada882abce3bd231fe4ae93c589cd3",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\05.png",
+      "sourceSha256": "11c00c6f39b14ee156c0aa9daba14968df54d11c17b79f0d5c6150e30be3ceb5"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/06.png",
+      "derivedSha256": "265009b30562b6c66c858695548f913c932fdd39be4ada5bcb31dc7e2c4b275e",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\06.png",
+      "sourceSha256": "2b36e8f0558a900c36555f86ae9bd5c81ac8af483fe6e8ce2b6d5f1dc7555387"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/07.png",
+      "derivedSha256": "175e8e0ec45dd769d363c84513ccc5ed4748c61c17c22bb45abdb60cc9d11323",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\07.png",
+      "sourceSha256": "a189288cf8cf7daf78fb55ae0a5558d46f8f57168668a20d59af4784aa2aa6ea"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/08.png",
+      "derivedSha256": "90c380a26e083524353983d43751cbb95e4da0ac30e73f07af98f1a8244cc570",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\08.png",
+      "sourceSha256": "790dcb9654b1f3852031fe4d36edcac9429c3256bac176a6479d33f5ee54eddd"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/09.png",
+      "derivedSha256": "d6d401c82ebe09e2b3ded015dc82c41002eaeef70ab3052a898a7b2bbc8f4514",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\09.png",
+      "sourceSha256": "bd5a89a7a9328c616eefa5c679071e42705ce21403761d28dabc0fc1685053fd"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/10.png",
+      "derivedSha256": "2d3462755523c13b0c339774bcc12faf4b6c1fe434d27f9ddb51716b8517b724",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\10.png",
+      "sourceSha256": "73a76519a8a97420c384c9fefafeafc59b03da98139786be7bd42bdc42925acf"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/11.png",
+      "derivedSha256": "7af2d3a28c37c29f562ef46bde002d7345556c1f3f7ab94b40855ab53be55b4a",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\11.png",
+      "sourceSha256": "4874a3066777de9d3aed2756bb80366642093d681f44e86e7858eee2b8b5d3cd"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/12.png",
+      "derivedSha256": "acf778cbafda6114d487cca21d6f32c6b6083d02e521fe50c4b6df57e5086648",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\12.png",
+      "sourceSha256": "adad98b5bcac60b5cb3a721a79a243cf66f593c76dc0b5060fd27613310b48a2"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/13.png",
+      "derivedSha256": "972a2213427df66aa38ec9fb61717442d2b19ed432cf69b5028e7661bc605133",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\13.png",
+      "sourceSha256": "8f206ca8c396431a68c30ec41cba59453655f490bfe619f91fb699ac74cfae6a"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/14.png",
+      "derivedSha256": "a5e34862723b42714b3bdb4a02cd481220b030c8a27ceaf7c85ce38959b07480",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\14.png",
+      "sourceSha256": "e9fa1028d3edb4861eb7decaeb294ad513c34c47443e9cd524fabf7a389e3cfd"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/15.png",
+      "derivedSha256": "6a860cb459517f5a17e27af94573040721ef128dc255e4b1f83c2ad6206ca2b6",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\15.png",
+      "sourceSha256": "3ca3e2955279e0d184a642f13eb88267171faae4fb917a3635f40b8c760caac4"
+    },
+    {
+      "approvalSha256": "6bddcc0c5e44ebaafb6e457fb4a5bfdb02ae19fc1a80e95a0130bfee1beda1de",
+      "derived": "run/S/16.png",
+      "derivedSha256": "296dcf8e52848960c1c494fe5442c87a1cb06d7f51422ef72748651db3181b01",
+      "direction": "S",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\S\\16.png",
+      "sourceSha256": "a886a412df118aa986a726e61ed772110d249decb758aa09c82bff2c4943e854"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "b2d3208e4b7922f1d8b94a0fbfa38359194b5d201d58371a192c9befca831475",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\01.png",
+      "sourceSha256": "5ad3c72967a582d06cb0462d1d0158876dc1c795fe76eb4f3d2c60476c439e36"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "43feecf8137b2fc78f7c7038fe415d5b815bfe3914f4cb373895c97e0af5a069",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\02.png",
+      "sourceSha256": "d52687b7406dadb0ce5afb8ae9ce15f4a58f94cce21da5deda79f8dad3e3c014"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "08dc713a030bb14f4cdfc6d250eb68692143c4e359b9bf0529949347a4af66f2",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\03.png",
+      "sourceSha256": "096ebe274ffb4122a0847719263a8a19d8e64e2241989aa235ad459ce6ee35a0"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "0ecd0f4862e5026fbac5dc7a16ae6d6f5c12c1388de54973a24be902650cbb46",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\04.png",
+      "sourceSha256": "f499607539350d6b77a3c66270f141f2c05ccc120d6bc45b5168722399f28d9a"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "6eaef482b503ed8b389e9073469d782aea3401918b06282a66cc0710f6bd7502",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\05.png",
+      "sourceSha256": "961888942f85f6b6cd4b47c8d69334339d0c73c01905a56d2d1cbf945b3134ef"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "20d55f06f6070ae75e55fc95a4d9ae06293769827294c8c2f9e24983b9035b5f",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\06.png",
+      "sourceSha256": "f4d9b5862add0fe4442fc1150d9bf90a582c65ae0f84b8caeb471784631ddfca"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "bdda64198eac0dc52a7a01bd5f7660ecb699323bdbf33975e3c74639c30a294d",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\07.png",
+      "sourceSha256": "0beef21c7121677e97a8d2cb4190fe9f91d98c59169d8ff94d3fadcee851a7a0"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "9a7403a5a715063d1ae89d757ce91d734f0f1185c2b39851b2bade6c2e89186e",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\08.png",
+      "sourceSha256": "360e6eec29cbafb9232a996a6916e47c02629d1b1f1772877ddc0fdb5b7293f2"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/09.png",
+      "derivedSha256": "38e0f9d084d5331bceb716ffe503695d6a751c2f4076fa1a218e894394d22a81",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\09.png",
+      "sourceSha256": "9e0299761f64dd2bc5fd9e8ea7d7d07f6d6fa263b361fa96ed7e64529d115aff"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/10.png",
+      "derivedSha256": "03966b12c7154afe1432ab59e1364f2d7c00258397d1a9aeced282a23094d34d",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\10.png",
+      "sourceSha256": "377cbad0b56fe6fd5f620a84ff3025ce3bc864e8fd4b9577ba14bf171b9dc541"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/11.png",
+      "derivedSha256": "e14882dc574aa01080da8ab313b78daf5623ece58160ea4aec6700bb49c736b2",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\11.png",
+      "sourceSha256": "a2dbe0abac6ad16adcfeda95c0068d9d0beeacafcd9a21edf05c781ce3a52f5f"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/12.png",
+      "derivedSha256": "b69e2122fbdd5ecc9530de39ae748d16cc5acc9eeae8c67fc6b825e366bc5358",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\12.png",
+      "sourceSha256": "3f549e4f761407e8edf8660f533045a37daefacceeb2bb2f8d78c1dec68f621d"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/13.png",
+      "derivedSha256": "f12430dd4537886819f53b4f03efc17aa8081b21120035abcfebbcb39f813a66",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\13.png",
+      "sourceSha256": "b76fffa3ce3fe22a01d9b0c7500232586550023c816dbe2f8f0e725a804310ab"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/14.png",
+      "derivedSha256": "89b00241cda035461d68e215fba3201f746669ce763695693cbb2329c5369daf",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\14.png",
+      "sourceSha256": "0142b91337b44fc326d8cdb4269e8562a0a7a680aa886d3518d6455011216e29"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/15.png",
+      "derivedSha256": "228d16871fa26cf5ee95135c22368c317f96d16d17523a854afeda0487b50070",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\15.png",
+      "sourceSha256": "a058a594933ba9cb78dcdf3ecf8287d3050e401c54ba3f84f8d5c854dc48914a"
+    },
+    {
+      "approvalSha256": "f2f541cb05678b0ebf49d37066abd0ca24a107f73e60640d13d87739a1ec502d",
+      "derived": "run/SW/16.png",
+      "derivedSha256": "19deb4d6b597fba4c28e85e7f075d1be06f121dd41113a1ed7aaa4317d4f0afb",
+      "direction": "SW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\SW\\16.png",
+      "sourceSha256": "5cf428c2c0a643814d8a4b10049190919a8686742ae13613e30ec4b8564c7aaf"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/01.png",
+      "derivedSha256": "0e5cf0f042ec8dbc981051d12e2de91cee4fbc158547dff2ad68bd952f248355",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\01.png",
+      "sourceSha256": "d4d0a0b39321aa9b73ac44108ded85b24861a0875321a624c27cb3a91a149baf"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/02.png",
+      "derivedSha256": "4f38f7e59c3baaf19b8f293a55082634cbeb38f98efdb98e92f576fadae7a45b",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\02.png",
+      "sourceSha256": "6efcbf899f8593ae16ceea0d69579ee1d9414b9c0fea460943da7ac82bea7ace"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/03.png",
+      "derivedSha256": "e5596a18e515955bb08bd2b9a693aa46bbece0c2fd90bca785d492bd293cd6d9",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\03.png",
+      "sourceSha256": "0383dddafb37b9899a864825186108ee7809019cd384120920cd3f3c21a0f34f"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/04.png",
+      "derivedSha256": "fab9829103e962fa1992563e7d96164437d8aba995d01d6a319856b85f84172b",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\04.png",
+      "sourceSha256": "5699a5976fd3705f1cda8a67783bfe691f1c2c416b4f66ff08d57dac8b119ee6"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/05.png",
+      "derivedSha256": "1a1d56a1a7bdeac180802689ebafad3c912cb2d496f1b8bf8dee0bc4965a6a59",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\05.png",
+      "sourceSha256": "0bdef8453310b4974bd4c6f258dcc2e6403cd030c9c22dc2a626c9b0b5e4a242"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/06.png",
+      "derivedSha256": "d732a8f80a3c7c2458f92fa1bfefd0c876b5c7245b482f2916070de01c3bf947",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\06.png",
+      "sourceSha256": "0e4bb161ce6073e2e74932c451994c99a40cf55f72ba4c57d6a0426fe1cc5b2c"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/07.png",
+      "derivedSha256": "13f59970be0c8289f7764b0820f9c92ec9a25a83350a286b810409b8559a8521",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\07.png",
+      "sourceSha256": "799c5ede527348985e13275299e2feca64d37a8b5cae4a6195f2abe0abc4c9cf"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/08.png",
+      "derivedSha256": "d23be8e5ff011afa0e9487e54e7cec9da36440125bdb936cc32bd61d27355bda",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\08.png",
+      "sourceSha256": "b385fae62a3e43e64e363c81197aa131c3d55c8249870cf0da0142d9ec37d17d"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/09.png",
+      "derivedSha256": "9591b201fb5d112ee329f55994c84232f1bc23059b48e6c465d639f6ab591629",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\09.png",
+      "sourceSha256": "601d60ad6825dec07c6f2649dedfc41550a952bc247b93af7f15894b2ec75c7d"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/10.png",
+      "derivedSha256": "2adc78de9d237e8ac28e8cbdad954b21ac3fc5708a1fd6845ea960a1074cf295",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\10.png",
+      "sourceSha256": "ac959691cbd12a8e68ccd3df00976d74639d5699944b15b5a4aa302a488aacf0"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/11.png",
+      "derivedSha256": "8d3557ef03a49a33ec3dd343a092273776fc3eba305b643542dcfcdffcb4157f",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\11.png",
+      "sourceSha256": "01f3950dcc05bf68a2a7f277a8de7f2c0912ef19b0d40e0e3f1ea9226b060997"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/12.png",
+      "derivedSha256": "774d9e82e695e0e2c7026646cafdf790fe400f245e65220dbb854b6352fd693d",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\12.png",
+      "sourceSha256": "2e2f7ae96f857f59cd5644a84eeccfbb29e8944e58efa9f25edb65eef0e45f9b"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/13.png",
+      "derivedSha256": "b8d4d88ffe2eeda94a31019a2585162150414df5856d04bb8fcfe12f66aff6ab",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\13.png",
+      "sourceSha256": "2b20c558df5b9336103e0337651ed3e7ffcb622d368509c668f4c113d04a722c"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/14.png",
+      "derivedSha256": "2c2d93fd00b84579bffb5dfb953ab2d9f4fc3f055d3b96fea3c7167c27145db7",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\14.png",
+      "sourceSha256": "aa2079abd4310423c2953dc7e98bf6757842bf2156452f4ee069c4b11b960053"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/15.png",
+      "derivedSha256": "03af9b6d88d10c396cd1b4e6f83387151a6125cba1972b38b1bdaef4c57c42bb",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\15.png",
+      "sourceSha256": "ada1b4a90b286256c3b01118029f0860c9d9db6bdb6d1b6f572b65209affba93"
+    },
+    {
+      "approvalSha256": "a9f0e202aa2ad2374191d6eec6a31981d8ccddbd1e8edebb0bebf893d25bd835",
+      "derived": "run/W/16.png",
+      "derivedSha256": "b34390ac78b4bd9a975a4833b5b0a9f7b5e47cb5fad93a248bc35d6025237777",
+      "direction": "W",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\W\\16.png",
+      "sourceSha256": "a398ec28780d1aff73999689d198aa9846b32c2788dca355b5a6ccf7a67ba065"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "c13565cabc18701637125718845d683f1dd4779565ecee6b429a55676f146f22",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 1,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\01.png",
+      "sourceSha256": "06c303d0e9fbe0e5bcefe619cbcf565da49fff48bb21f0611b8d8a2ca96aaa9d"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "f9768f504b712fc4a30316e712787bd64b294dad0460662b40fd2bee38c5bbcb",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 2,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\02.png",
+      "sourceSha256": "753ae2f2cffa120562346b95c69ae99aeed17b74db4eb7b3fa040361a0ebef65"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "e764fd70daa1c1630c83304500882cc25fd7fb278acd2abaa142e12588eac65b",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 3,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\03.png",
+      "sourceSha256": "f19e4ff4574c6a18e611f2b2d1c55e42c4b4f7eb8ace548218cc2ae0e4af15f2"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "917fb0bbdd02d659a050c8390190aab934077c91419ccbb37f0056da71f7fcfb",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 4,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\04.png",
+      "sourceSha256": "2154ecbf6e574c65c904f664e900662f499fbad2f73b5f61872edeb0e730f7e8"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "05435126c94365fcc2857acf5b21bc4c0b20be62fef7b646d8773f9b6971e12f",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 5,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\05.png",
+      "sourceSha256": "fb63e6a10158870323840f6ea44a807d2306d02af37cb3b1b4adcbcd795b2da7"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "ce10c180e53a20e4170d1f9822074f35741ea4d5530fa7a6f152354eba9eebad",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 6,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\06.png",
+      "sourceSha256": "ff5087a1c5428eb72ef1cf2cf62dd77faf0e1a9fef276228b12cb90098b8be0a"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "240db3d36491913fdaf551a95ef4483dd353fd9a73bf1e597520c33568052148",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 7,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\07.png",
+      "sourceSha256": "3d07a4576680df3abbaded5d9035a3d155a232938c037f9c6bb0e6f9c5581890"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "6bfa08bcf5af66edfcacaf531b2284411816e6f766cdd4fb30f5b126807ba527",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 8,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\08.png",
+      "sourceSha256": "63c412bff2eb39a04cc9aff1d333e1f4b6b83c4a5f90975ec137d15bfc8507b8"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/09.png",
+      "derivedSha256": "e935d26614b4fcd04693a52ac4e667ea4950323aa902b10d4f7a70d56b5eaea8",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 9,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\09.png",
+      "sourceSha256": "ebc4423161226f2e04aeebad6a21a3bb32473b34cfe03e92b45855230a5ef145"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/10.png",
+      "derivedSha256": "95f070c85715f8fa6d6c4366ad55eda4f709ac96c66f90af770e68ea00d985a9",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 10,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\10.png",
+      "sourceSha256": "43467a89f8a1d102e527e76b051f4b5d73b82a8a1ea672e03259bbc87d1cd2f7"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/11.png",
+      "derivedSha256": "1c8ae6c619858e840d67e7c209c685b7abbee8aa7182686dce1783bff67b54e3",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 11,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\11.png",
+      "sourceSha256": "2907ce2d13ff8a78ef8757c377305122104760eec07fe7a3cc3ad71f97e5ec81"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/12.png",
+      "derivedSha256": "ab57236a18e58dea07e459fc842e1224f86ad36dbd6a0c1c747ae54883e79665",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 12,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\12.png",
+      "sourceSha256": "d9dcb7332cd74d6a256ed82dd727bc6a838d7f9d239f4b6ebb852c56b7664a2f"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/13.png",
+      "derivedSha256": "bff470722c0f65ecbb335f5b52051851e440476217d68e6b8130e03965a4668e",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 13,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\13.png",
+      "sourceSha256": "19a160c8fc119dfce8dec419ca62c1916df6968592fb84a31ca953c7e3051ead"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/14.png",
+      "derivedSha256": "1a4196f1fa1081c5aa15613a10ddfcc9224278b0d9f0064d2fa68437dbd9d046",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 14,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\14.png",
+      "sourceSha256": "98d785829e83c87cc2605919d084dd9fe7334a95b645491dd2aa0b660da87574"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/15.png",
+      "derivedSha256": "ece407478a442337ce21b8409fec23d8335db79f392f3f1420978d12c3e3377a",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 15,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\15.png",
+      "sourceSha256": "7bb402bad55e5edeb05db3477da6164e82d361a0671577ca33b836e4fae794f0"
+    },
+    {
+      "approvalSha256": "70026f17d5ad37360efb932058efd83ab328e806a3f3c2955a22a53fe5d0e21f",
+      "derived": "run/NW/16.png",
+      "derivedSha256": "bd706d88eff484a730ffb8733c0ff7ed40c07518363e27cabc331b5b5ef4db62",
+      "direction": "NW",
+      "durationSeconds": 0.06666666666666667,
+      "frame": 16,
+      "source": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\frames\\NW\\16.png",
+      "sourceSha256": "8b4b9bb27fc529559251d315556feb68f177f3e3ed155c5fbdec1dcb435f2a7a"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "270044f5597b742d55a6eb4e62ee69e6bafca8f095d265ed0d5645540f123ea8",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\boy-run-eight-directions-20261101\\manifest.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

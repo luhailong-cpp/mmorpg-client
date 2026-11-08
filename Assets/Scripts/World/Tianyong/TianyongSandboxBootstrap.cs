@@ -28,6 +28,7 @@ namespace MmorpgClient.World.Tianyong
         private TianyongPlayerController _playerController;
         private CurrentMapDefinition _deliveredDefinition;
         private string _deliveryStatus = string.Empty;
+        private string _runVariantInputStatus = string.Empty;
         private static readonly uint[] DeliveredPreviewMapIds = { 21003, 28007, 35004 };
 
         public TianyongMapInstance Map => _map;
@@ -217,6 +218,7 @@ namespace MmorpgClient.World.Tianyong
                 return false;
             }
             characterId = id;
+            _runVariantInputStatus = string.Empty;
             if (_playerLabel != null) _playerLabel.text = QdaoCharacterCatalog.Find(id).Name;
             return true;
         }
@@ -256,10 +258,45 @@ namespace MmorpgClient.World.Tianyong
                         if (roster[i].Id == characterId) { index = (i + 1) % roster.Count; break; }
                     SelectCharacter(roster[index].Id);
                 }
+                else if (Input.GetKeyDown(KeyCode.F6)) SelectRunVariant(QdaoRunVariant.Legacy, Application.isFocused, GameplayInputGate.IsKeyboardBlocked, ReviewDriverOwnsKeys());
+                else if (Input.GetKeyDown(KeyCode.F7)) SelectRunVariant(QdaoRunVariant.Current, Application.isFocused, GameplayInputGate.IsKeyboardBlocked, ReviewDriverOwnsKeys());
             }
 
             var focus = Player != null ? Player.transform.position : TianyongMapDefinition.DefaultSpawn;
             _map.UpdateVisibleChunks(focus, config?.VisibleChunkRadius ?? 3);
+        }
+
+        private static bool ReviewDriverOwnsKeys()
+        {
+            foreach (var component in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
+                if (component.isActiveAndEnabled && component.GetType().FullName ==
+                    "MmorpgClient.World.Debugging.QdaoRunVariantCardinalCaptureDriver") return true;
+            return false;
+        }
+
+        private bool SelectRunVariant(QdaoRunVariant variant, bool focused, bool blocked, bool reviewDriverActive)
+        {
+            if (!focused || blocked || Player == null) return false;
+            if (reviewDriverActive)
+            {
+                _runVariantInputStatus = "（审片模式占用快捷键）";
+                return false;
+            }
+            _runVariantInputStatus = string.Empty;
+            var animator = Player.GetComponent<QdaoBoySpriteAnimator>();
+            return animator != null && animator.TrySetRunVariant(variant);
+        }
+
+        private string RunVariantHelp()
+        {
+            var animator = Player != null ? Player.GetComponent<QdaoBoySpriteAnimator>() : null;
+            if (animator == null) return "跑步版本：角色未就绪";
+            var label = animator.RunVariant == QdaoRunVariant.Current ? "新版" :
+                animator.RunVariant == QdaoRunVariant.Legacy ? "旧版" : "原始";
+            var status = animator.RunVariantStatus;
+            var note = status.StartsWith("Unavailable:", System.StringComparison.Ordinal) ? "（请求的版本或方向缺少资源）" :
+                status.StartsWith("Pending:", System.StringComparison.Ordinal) ? "（等待加载）" : "";
+            return "跑步版本：" + label + note + _runVariantInputStatus;
         }
 
         private void LateUpdate()
@@ -307,13 +344,13 @@ namespace MmorpgClient.World.Tianyong
                 DrawDeliveredMapControls();
                 return;
             }
-            GUI.Box(new Rect(16f, 16f, 400f, 102f),
-                "天墉城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会\nF5 切换已完成角色");
+            GUI.Box(new Rect(16f, 16f, 400f, 142f),
+                "天墉城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会\nF5 切换已完成角色\nF6 旧版跑步  F7 新版跑步\n" + RunVariantHelp());
         }
 
         private void DrawDeliveredMapControls()
         {
-            GUI.Box(new Rect(16, 16, 560, 208), "节庆地图离线预览");
+            GUI.Box(new Rect(16, 16, 560, 240), "节庆地图离线预览");
             GUI.Label(new Rect(30, 43, 532, 24), "WASD / 鼠标左键移动，滚轮缩放，F5 切换角色");
             for (int i = 0; i < DeliveredPreviewMapIds.Length; i++)
             {
@@ -333,7 +370,8 @@ namespace MmorpgClient.World.Tianyong
                     SelectDeliveredMap(deliveredMapId, appearance);
             }
             GUI.enabled = true;
-            GUI.Label(new Rect(30, 158, 532, 50), _deliveryStatus);
+            GUI.Label(new Rect(30, 158, 532, 24), "F6 旧版跑步  F7 新版跑步  " + RunVariantHelp());
+            GUI.Label(new Rect(30, 185, 532, 50), _deliveryStatus);
         }
 
         private void OnDestroy()

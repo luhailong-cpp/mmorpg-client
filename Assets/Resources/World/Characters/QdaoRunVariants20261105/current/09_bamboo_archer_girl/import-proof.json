@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "cbf668851e2ef65fd75f03898b79730a5630395d2446b567705da8c6e1a3c61f",
+      "derived": "run/N/01.png",
+      "derivedSha256": "e10bd628e9911048a1e123636424174da199cac9b394de3a440e5f0297e461c9",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\09_bamboo_archer_girl\\04.png",
+      "sourceSha256": "98c53c936b5c11022a8c2bbf26d5f2183e62fdb6b1fab603b9ab88a43d4f2b75"
+    },
+    {
+      "approvalSha256": "cbf668851e2ef65fd75f03898b79730a5630395d2446b567705da8c6e1a3c61f",
+      "derived": "run/N/02.png",
+      "derivedSha256": "dd0eed7ada25abcc65830d2501f27cb638c6ef32d89708f07ac736e17969b03a",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\09_bamboo_archer_girl\\06-natural-r3.png",
+      "sourceSha256": "89d43d4e1ae2c0cbb0fe5f5ae83e282bfa800464a84d94f48436f0bcbbf56f61"
+    },
+    {
+      "approvalSha256": "cbf668851e2ef65fd75f03898b79730a5630395d2446b567705da8c6e1a3c61f",
+      "derived": "run/N/03.png",
+      "derivedSha256": "74606e3da478754c0bd5c70e0b4190e9b8546eafc4b87748f27459aa417d4894",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\09_bamboo_archer_girl\\07-natural-r3.png",
+      "sourceSha256": "cccbf06f705f5e71079dfb47c0a38df5cebbd4692ea96835ccfdc5421b4eabb9"
+    },
+    {
+      "approvalSha256": "cbf668851e2ef65fd75f03898b79730a5630395d2446b567705da8c6e1a3c61f",
+      "derived": "run/N/04.png",
+      "derivedSha256": "80505c10714bb026ece4baec127b74b8268fe895735344cf837c53aae259b685",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\09_bamboo_archer_girl\\09-natural-r3.png",
+      "sourceSha256": "fa9e6ff4793070cabb01a2666b1190a5bc3d627b026c678b8f42dcba89ee786d"
+    },
+    {
+      "approvalSha256": "cbf668851e2ef65fd75f03898b79730a5630395d2446b567705da8c6e1a3c61f",
+      "derived": "run/N/05.png",
+      "derivedSha256": "b11f116cca4339115666554d9db9d7d6b671df23e95212c7d9f187b8fe7a5814",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\09_bamboo_archer_girl\\11-arms-r4.png",
+      "sourceSha256": "61cdba4f6ba0b51c8aba13ef2007edd42d18a5b20dd7f2bba4042a796a2b8945"
+    },
+    {
+      "approvalSha256": "cbf668851e2ef65fd75f03898b79730a5630395d2446b567705da8c6e1a3c61f",
+      "derived": "run/N/06.png",
+      "derivedSha256": "66fb67e62e977979573620aaed3efc598f13118f1fed7399f031aedfa020e7f6",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\09_bamboo_archer_girl\\13.png",
+      "sourceSha256": "6cad08bb7ff5e515595517a8f4541419c85bcab6ae81236cc2cfbffe64a6d315"
+    },
+    {
+      "approvalSha256": "cbf668851e2ef65fd75f03898b79730a5630395d2446b567705da8c6e1a3c61f",
+      "derived": "run/N/07.png",
+      "derivedSha256": "ee90e509400efb6e28adb897b78ce35a359d1a19580d04a173ac2e9a24d43df3",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\09_bamboo_archer_girl\\15-natural-r3.png",
+      "sourceSha256": "1f1ab86cf0e66b154babab3a95ac40618377fc12093dd1043f49838daba38583"
+    },
+    {
+      "approvalSha256": "cbf668851e2ef65fd75f03898b79730a5630395d2446b567705da8c6e1a3c61f",
+      "derived": "run/N/08.png",
+      "derivedSha256": "28741830f6b158fdaa7987f6104fde1b115cc6d025c3696ccbcceebd9b37c377",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\09_bamboo_archer_girl\\02-arms-r5.png",
+      "sourceSha256": "6347b43bfe151df07313e1a569a8b6d89c21eb91db35609753efcbefe5d412bb"
+    },
+    {
+      "approvalSha256": "73226f0fd41af1d3eb6830f412bfe430a300fe73eadae48a036699a430c4e54f",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "09294cf7698ad9a7afdb88f6146e1310f24422bcb74be9a0b884e43fed7dc7bb",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\e-assist-natural8-20261106-v1\\native-final-v3\\01.png",
+      "sourceSha256": "a950e6db6f5b7524199135dabf84c8851a5b5246e100ce94b81621addbc4d5c7"
+    },
+    {
+      "approvalSha256": "73226f0fd41af1d3eb6830f412bfe430a300fe73eadae48a036699a430c4e54f",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "47ceccfed69de2169fed1a3a32a89b027dadb2efaa78a9d90e520806414c2e95",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\e-assist-natural8-20261106-v1\\native-final-v3\\02.png",
+      "sourceSha256": "7be31b83d34916aab9b289b6bba7b68db66114912f57383ac54ea644fb83e3f3"
+    },
+    {
+      "approvalSha256": "73226f0fd41af1d3eb6830f412bfe430a300fe73eadae48a036699a430c4e54f",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "4934b895247f3100c0d2e895b23727a5c80132c191a723260733e8a2bfd7fcc0",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\e-assist-natural8-20261106-v1\\native-final-v3\\03.png",
+      "sourceSha256": "62d7878c2f8118028db0eaa2f4003c995b87656365c7d5aeb2ee7960c1472d4d"
+    },
+    {
+      "approvalSha256": "73226f0fd41af1d3eb6830f412bfe430a300fe73eadae48a036699a430c4e54f",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "cc1879cfff5350e8be044c94a6b007f555f6bd4c5c7e058c8b52f73934b56dcd",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\e-assist-natural8-20261106-v1\\native-final-v3\\04.png",
+      "sourceSha256": "a85eb9212bdc2c7630e797f172848004efc9b4dd95d92393f0332eb9611d3eaa"
+    },
+    {
+      "approvalSha256": "73226f0fd41af1d3eb6830f412bfe430a300fe73eadae48a036699a430c4e54f",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "186554a790f769342e599cce5bb0501efbdb66f8969fea7d6634edce83d247bd",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\e-assist-natural8-20261106-v1\\native-final-v3\\05.png",
+      "sourceSha256": "e508d46fce3b25d6cc95e652ab28ad1558b0a282dfb9fa6f5cbbec869b98b6bc"
+    },
+    {
+      "approvalSha256": "73226f0fd41af1d3eb6830f412bfe430a300fe73eadae48a036699a430c4e54f",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "4679aebfac1fb2fd1e91135f655e2a37e21c62f8a8c51fdf3be9b326f3a0ebee",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\e-assist-natural8-20261106-v1\\native-final-v3\\06.png",
+      "sourceSha256": "8a9e8f2681c556ad9e6c77422428f090a6297ce4f0c26f917283478ea30c243c"
+    },
+    {
+      "approvalSha256": "73226f0fd41af1d3eb6830f412bfe430a300fe73eadae48a036699a430c4e54f",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "1f46c951dced01f7db5a2ac8a3b5583739de97b632ac265b654002113576bbfe",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\e-assist-natural8-20261106-v1\\native-final-v3\\07.png",
+      "sourceSha256": "ecb5fc67f7ac28dcbb1d1e64e6e994ea81ca2358cedc8550aa924e9b2861dc99"
+    },
+    {
+      "approvalSha256": "73226f0fd41af1d3eb6830f412bfe430a300fe73eadae48a036699a430c4e54f",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "77d3141e4358236790d89b5588e2277eb6ecb49a09fc5b892e6bb5621a5d9645",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\09_bamboo_archer_girl\\e-assist-natural8-20261106-v1\\native-final-v3\\08.png",
+      "sourceSha256": "dcdd7d31a19ab533579f93ddb8e66b2a0a672371894b483b6b8802a76f058bfc"
+    },
+    {
+      "approvalSha256": "50d6d6ffed09750cb48db58749b12012d5e711934472e02e2d05e42da3a292f2",
+      "derived": "run/E/01.png",
+      "derivedSha256": "2f0d390a2b73302e6d6601e2d05b38c072894e75918895e9f9ad2a1e483223f8",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\09_bamboo_archer_girl\\eight-frame-20261105-v1\\native-final\\01.png",
+      "sourceSha256": "b0185fe5000ebf8f0c77626e69afc122798e4d8b038c2c8100ba9b7880d89edd"
+    },
+    {
+      "approvalSha256": "50d6d6ffed09750cb48db58749b12012d5e711934472e02e2d05e42da3a292f2",
+      "derived": "run/E/02.png",
+      "derivedSha256": "d75af6480ec29e64ffceb257407fefba4e1d032a67730caa6993b48142a21974",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\09_bamboo_archer_girl\\eight-frame-20261105-v1\\native-final\\02.png",
+      "sourceSha256": "2432094e4082da5d4524a17a29a03500b73ce2742008cd63332af83fbd3d505e"
+    },
+    {
+      "approvalSha256": "50d6d6ffed09750cb48db58749b12012d5e711934472e02e2d05e42da3a292f2",
+      "derived": "run/E/03.png",
+      "derivedSha256": "357bb31b2e7f60fedf50989cfe4f2749094ea1037c264b99cdc106a2b47d5df9",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\09_bamboo_archer_girl\\eight-frame-20261105-v1\\native-final\\03.png",
+      "sourceSha256": "04300588fbddcdbbc80cd4733eef4c77b756ed8c5534455a1358a55edd93b527"
+    },
+    {
+      "approvalSha256": "50d6d6ffed09750cb48db58749b12012d5e711934472e02e2d05e42da3a292f2",
+      "derived": "run/E/04.png",
+      "derivedSha256": "1ab058c77dd3df4ade1ac94e7f9b574e7348d637bc267e5aebfa76d8c59b2a83",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\09_bamboo_archer_girl\\eight-frame-20261105-v1\\native-final\\04.png",
+      "sourceSha256": "5bb3cd87ad64744c447bfbb1db8ba5a292eb687bd9c9e8a9a2a3a9b9f8ffc5c3"
+    },
+    {
+      "approvalSha256": "50d6d6ffed09750cb48db58749b12012d5e711934472e02e2d05e42da3a292f2",
+      "derived": "run/E/05.png",
+      "derivedSha256": "f87c726571c36addd57ee48d41029f3b1053dac33cc4e63c29ab0da03acf7751",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\09_bamboo_archer_girl\\eight-frame-20261105-v1\\native-final\\05.png",
+      "sourceSha256": "bdf4d4f7e762b9427a7b0344f51a8f8cc4e431b90e8b7b43e9fffd928a25d6e1"
+    },
+    {
+      "approvalSha256": "50d6d6ffed09750cb48db58749b12012d5e711934472e02e2d05e42da3a292f2",
+      "derived": "run/E/06.png",
+      "derivedSha256": "3462a4fb6f3ec53c43a9c2bdcf04a48936d47e795215c80566995c8c11d5551a",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\09_bamboo_archer_girl\\eight-frame-20261105-v1\\native-final\\06.png",
+      "sourceSha256": "800f6dd37e7f273402e5aa71141907c0bb92893f228e145129b55ca123b53c8b"
+    },
+    {
+      "approvalSha256": "50d6d6ffed09750cb48db58749b12012d5e711934472e02e2d05e42da3a292f2",
+      "derived": "run/E/07.png",
+      "derivedSha256": "679c8025f6781b12631e5ccfa229fa9deadfb78a18bdbe930edab5e03e401b68",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\09_bamboo_archer_girl\\eight-frame-20261105-v1\\native-final\\07.png",
+      "sourceSha256": "240f4cb2925a00d25c819cebcc9a41b73c5edcfc79dd620d4602e69c106d0ff4"
+    },
+    {
+      "approvalSha256": "50d6d6ffed09750cb48db58749b12012d5e711934472e02e2d05e42da3a292f2",
+      "derived": "run/E/08.png",
+      "derivedSha256": "0bbb48b92a68e784fd5fc21620b506f3da5626d9dcc3940a403a31f784a2e03e",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\09_bamboo_archer_girl\\eight-frame-20261105-v1\\native-final\\08.png",
+      "sourceSha256": "53f8e6118884b6c8be2adfb7b118e65bb8e3d17cb000fb062043ecc6f82d4548"
+    },
+    {
+      "approvalSha256": "03c87144aff5b801ae2fc41f03bcd9a3d0c5b0a214d56dc9b7a7b0cbbcc0b7e3",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "51f18fab4b8d8bc473eb44226fc646aea83241e8495d0c3f42650d9d473997fd",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\09_bamboo_archer_girl\\natural8-20261105\\native\\01.png",
+      "sourceSha256": "55ed4bf7736d77626dcb396bd03522f2e708f9e69c9492905808d49bfee28879"
+    },
+    {
+      "approvalSha256": "03c87144aff5b801ae2fc41f03bcd9a3d0c5b0a214d56dc9b7a7b0cbbcc0b7e3",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "9c49619d7a16a5b09bad15d1b21f2827c34085c131da4d007b780fdbcecf36bb",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\09_bamboo_archer_girl\\natural8-20261105\\native-v3\\02.png",
+      "sourceSha256": "3399887354e18a87b57c76d5da850d966cb084faa570336dfbd8b0848615b310"
+    },
+    {
+      "approvalSha256": "03c87144aff5b801ae2fc41f03bcd9a3d0c5b0a214d56dc9b7a7b0cbbcc0b7e3",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "4f6d8bddb652ab197a5538cb42cd229b46c324709f018bf596af532cdeea79f8",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\09_bamboo_archer_girl\\natural8-20261105\\native\\03.png",
+      "sourceSha256": "1c352582fea984d89f2dd2b1da583da1178aa900f037186e6a393929660c1231"
+    },
+    {
+      "approvalSha256": "03c87144aff5b801ae2fc41f03bcd9a3d0c5b0a214d56dc9b7a7b0cbbcc0b7e3",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "197d12ebb645a272f55a86d7bb5c0553e4838294f3c9475eda42054b28bb6e83",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\09_bamboo_archer_girl\\natural8-20261105\\native\\04.png",
+      "sourceSha256": "d4500a059e0802705d76f2d89ece0406f288d987122fc7efbedd88c2998eca97"
+    },
+    {
+      "approvalSha256": "03c87144aff5b801ae2fc41f03bcd9a3d0c5b0a214d56dc9b7a7b0cbbcc0b7e3",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "a91c4c5906168713bd6fcaf70d724b74b8a9e491144ac62ed94d664ab323f4ad",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\09_bamboo_archer_girl\\natural8-20261105\\native\\05.png",
+      "sourceSha256": "38c7c6c55694b36323bcacf8c3ce1e7e2430ab43db9b61530a9a2333d34e65e3"
+    },
+    {
+      "approvalSha256": "03c87144aff5b801ae2fc41f03bcd9a3d0c5b0a214d56dc9b7a7b0cbbcc0b7e3",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "9be1843d7eaad5a787a59d7baa4b822c7d5b5ceac2411d87807aa96c43cbbe5d",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\09_bamboo_archer_girl\\natural8-20261105\\native-v4\\06.png",
+      "sourceSha256": "942f0e2a8e454500560e33e9f3f794eab3cdb4038c11221b8b4d777e92c8ea2a"
+    },
+    {
+      "approvalSha256": "03c87144aff5b801ae2fc41f03bcd9a3d0c5b0a214d56dc9b7a7b0cbbcc0b7e3",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "58a0d4ec3e7a4a1d6c9445acd81f6e912140f945990d916a9649be8a8ff3cf99",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\09_bamboo_archer_girl\\natural8-20261105\\native\\07.png",
+      "sourceSha256": "7bae5011368271d8d3f1f3abc25c95c7fb80b6a29fb5f4d2c107ab5dc19d1847"
+    },
+    {
+      "approvalSha256": "03c87144aff5b801ae2fc41f03bcd9a3d0c5b0a214d56dc9b7a7b0cbbcc0b7e3",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "d33e104588c4ea2f1831243def20ce1e058ec395ada9ffdb40732104f8ee9810",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\09_bamboo_archer_girl\\natural8-20261105\\native\\08.png",
+      "sourceSha256": "a05cf2be3434f2de35386579f332cc2916053c6d21f5daba967aedf8fbdf6878"
+    },
+    {
+      "approvalSha256": "05e97209b3cd4449d0de384e743fdbfeb31845bd6c1daeba6dcca6f526d7a6ea",
+      "derived": "run/S/01.png",
+      "derivedSha256": "0c1c4d370048180dab03d525100318622b72af78ef0ffa9596f729c32670f648",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\09_bamboo_archer_girl\\native-v1\\04.png",
+      "sourceSha256": "c64c626a353452b9a7f3327c46399a0e31c7f94b1ede7ac9064d2225ab2f3c5c"
+    },
+    {
+      "approvalSha256": "05e97209b3cd4449d0de384e743fdbfeb31845bd6c1daeba6dcca6f526d7a6ea",
+      "derived": "run/S/02.png",
+      "derivedSha256": "d69697f84890f422e638bf3274a596e71e4bc4724f0c9627410fc9e56047fd64",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\09_bamboo_archer_girl\\native-v1\\06.png",
+      "sourceSha256": "5dbc13c1093bdd1d95bffe20697d19a541f7043442c03c6a08d0f15fd24fe0fd"
+    },
+    {
+      "approvalSha256": "05e97209b3cd4449d0de384e743fdbfeb31845bd6c1daeba6dcca6f526d7a6ea",
+      "derived": "run/S/03.png",
+      "derivedSha256": "247d06f45c3d31108cfd1281056fc9acddbb5a49955c30b06002c84730fb4485",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\09_bamboo_archer_girl\\native-v1\\08.png",
+      "sourceSha256": "35f96c1f3c7522cb1f0d0bfd5e6e31fbfb41285cfdb999c18ad488d8b6013b61"
+    },
+    {
+      "approvalSha256": "05e97209b3cd4449d0de384e743fdbfeb31845bd6c1daeba6dcca6f526d7a6ea",
+      "derived": "run/S/04.png",
+      "derivedSha256": "d368289b17a47ae193a4dd69e4b7243084b2d20e9072bfccad0f837987377244",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\09_bamboo_archer_girl\\native-v1\\10.png",
+      "sourceSha256": "3c96226a159d87024839e082eb6b4c7ad1e41fd54a8b024ad635b9f94cf0e4ec"
+    },
+    {
+      "approvalSha256": "05e97209b3cd4449d0de384e743fdbfeb31845bd6c1daeba6dcca6f526d7a6ea",
+      "derived": "run/S/05.png",
+      "derivedSha256": "aba90ab4907da167fd6e2890583b8fabdfa6dfc4e1da2cdec046e9412faf73b8",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\09_bamboo_archer_girl\\native-v1\\12.png",
+      "sourceSha256": "c3e755db38562e6161a46bf195c6a75b07a24c7d691d5d6930882aec6fd5325a"
+    },
+    {
+      "approvalSha256": "05e97209b3cd4449d0de384e743fdbfeb31845bd6c1daeba6dcca6f526d7a6ea",
+      "derived": "run/S/06.png",
+      "derivedSha256": "4388c1db70ef50afd3f0b7fd833d6d420e43f5fc4ba08c89006917bd1ede88ad",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\09_bamboo_archer_girl\\native-v1\\14.png",
+      "sourceSha256": "fcf1819597bcdfb3b4b3ead3b1c977fa1aeff101c689915948e9ed8e1a0f790f"
+    },
+    {
+      "approvalSha256": "05e97209b3cd4449d0de384e743fdbfeb31845bd6c1daeba6dcca6f526d7a6ea",
+      "derived": "run/S/07.png",
+      "derivedSha256": "74d412db1c3a881f0ff59be00d63c9e873549489821582d002814d9a72f773b3",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\09_bamboo_archer_girl\\native-v1\\15.png",
+      "sourceSha256": "824544afc0adc7f8e13587e51ec578729fa7decc1dd5217586361e215dcb6978"
+    },
+    {
+      "approvalSha256": "05e97209b3cd4449d0de384e743fdbfeb31845bd6c1daeba6dcca6f526d7a6ea",
+      "derived": "run/S/08.png",
+      "derivedSha256": "8f04f7bbc70a632e4dd438049eee1b6e397917670ebb554140cf0ea088a598b3",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\09_bamboo_archer_girl\\native-v1\\16.png",
+      "sourceSha256": "70b5c042379a4b8f4c23892f2eabb9930615f6017bd36de1b2d70fa19f4d0e30"
+    },
+    {
+      "approvalSha256": "ded51b558eafe85dfd15178abab5cd83b63bfd195130b9bbaf1387e5dcb54598",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "0f4f682d93be1c9907d9e82f6b1dddf20501a6f60a4c71cea160b9021493715e",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\09_bamboo_archer_girl\\sw-owner-canonical8-20261106-v2\\01-native-contact-anatomy-v3.png",
+      "sourceSha256": "76d5ec7eb6554c7614c15d9155227777e09d815ef0f81ab8d72ef8bfd2e5a267"
+    },
+    {
+      "approvalSha256": "ded51b558eafe85dfd15178abab5cd83b63bfd195130b9bbaf1387e5dcb54598",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "5578e06664a01ea20db90bc64939e22bc51bb240b90224f8b503964b36787384",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\09_bamboo_archer_girl\\sw-owner-canonical8-20261106-v3\\02-native-support-plane-v3.png",
+      "sourceSha256": "e2d0ad010f6b7b17594163bf37e2022c054642f98900b97690d2f3ac964461cf"
+    },
+    {
+      "approvalSha256": "ded51b558eafe85dfd15178abab5cd83b63bfd195130b9bbaf1387e5dcb54598",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "99ee635b83ab00fb5d07443a2b13f6953407c84ae9b151ee66d745f569b64f9a",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\09_bamboo_archer_girl\\sw-owner-canonical8-20261106-v3\\03-native-local-plane-v4.png",
+      "sourceSha256": "c58d02d46068656cf2678b9fc5d2390379a730aabfe05262c24c38dd9256c983"
+    },
+    {
+      "approvalSha256": "ded51b558eafe85dfd15178abab5cd83b63bfd195130b9bbaf1387e5dcb54598",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "a2ec243512b4e78789d0672e0fdf0341ee40d9a753e812868f61c7a084f96580",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\09_bamboo_archer_girl\\sw-owner-canonical8-20261106-v2\\04-native-precontact-local-v3.png",
+      "sourceSha256": "0cb766fe09ab3b2cacff25a7d83a6b49eba61d7160b0352f5644c51438f9e7e0"
+    },
+    {
+      "approvalSha256": "ded51b558eafe85dfd15178abab5cd83b63bfd195130b9bbaf1387e5dcb54598",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "8c5ff192a633615e2d4b171a284d6ff26d0ae922341f485e36788c25e5e875f1",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\09_bamboo_archer_girl\\sw-owner-canonical8-20261106-v2\\05-native-contact-v2.png",
+      "sourceSha256": "62df3f1b01580e5ab4c24f0c7ac6056b68ed43ba6d6d1e97d6d93390498f7992"
+    },
+    {
+      "approvalSha256": "ded51b558eafe85dfd15178abab5cd83b63bfd195130b9bbaf1387e5dcb54598",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "6eeb992ebca805a4b75b1c1de7c8ab546dbf9128508e8623c829f844d593a74e",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\09_bamboo_archer_girl\\sw-owner-canonical8-20261106-v3\\06-native-support-plane-v3.png",
+      "sourceSha256": "701f4a0fde5d453f3462c6ded4bc4665cc97bf6277c70ec53a3c06553e00a054"
+    },
+    {
+      "approvalSha256": "ded51b558eafe85dfd15178abab5cd83b63bfd195130b9bbaf1387e5dcb54598",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "58be064b5bb4a479e614b496f2961652dce70459db7500879305fb8184f58aac",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\09_bamboo_archer_girl\\sw-owner-canonical8-20261106-v3\\07-native-support-plane-v3.png",
+      "sourceSha256": "61b642d958941473f76990ba37978fbf526e64c6063a15de082ea0059f7d1bcd"
+    },
+    {
+      "approvalSha256": "ded51b558eafe85dfd15178abab5cd83b63bfd195130b9bbaf1387e5dcb54598",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "5e1f95a0d5256c87b3e6ffdb4ff9e3ee2ddb238631803eab75a03f402d1a0a10",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\09_bamboo_archer_girl\\sw-owner-canonical8-20261106-v2\\08-native-precontact-v2.png",
+      "sourceSha256": "f7b0041655f03f262596aa898fcdf551815644d30f21ba47e843a9f0440eef28"
+    },
+    {
+      "approvalSha256": "0bc1f8ede99ba73fae5185dc6b9b4546958cd7efe83e36c74408e74e1dd773de",
+      "derived": "run/W/01.png",
+      "derivedSha256": "143ec44b258e9ce3a6888e440fb63801790dacfd10072542e27d8a86168f3412",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\09_bamboo_archer_girl\\v2-root-pose-target\\04.png",
+      "sourceSha256": "08158e3f6ad762290be5d55744c92a2938ffff802c0b8f29dc0386052c97f5f4"
+    },
+    {
+      "approvalSha256": "0bc1f8ede99ba73fae5185dc6b9b4546958cd7efe83e36c74408e74e1dd773de",
+      "derived": "run/W/02.png",
+      "derivedSha256": "01eac9015cc5bc5be08ca0672f798b641d84811b6b1f29c24a60ca703b82dbac",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\09_bamboo_archer_girl\\v11-counter-carry\\06.png",
+      "sourceSha256": "a9bffc1566775832eee966d4dab110f83dffeb8d0281c88fa6c24f6bf29326b4"
+    },
+    {
+      "approvalSha256": "0bc1f8ede99ba73fae5185dc6b9b4546958cd7efe83e36c74408e74e1dd773de",
+      "derived": "run/W/03.png",
+      "derivedSha256": "4c9c9421966291eaad62afcbf6644921507d80a06d667f234af55176be7d4d7a",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\09_bamboo_archer_girl\\v10-bow-fitting09\\09.png",
+      "sourceSha256": "5e02e37b2e228ec7c25b72cd7e24689d33d002a9b78c914a81d9ed2824364242"
+    },
+    {
+      "approvalSha256": "0bc1f8ede99ba73fae5185dc6b9b4546958cd7efe83e36c74408e74e1dd773de",
+      "derived": "run/W/04.png",
+      "derivedSha256": "c77d8ffc9281749427b1b9d7ee94b88740f39237f813c1902f08381fb03a56b0",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\09_bamboo_archer_girl\\v14-isolate-bow-hand\\11.png",
+      "sourceSha256": "ee474bda6780dd89ff296dfbaefd6d1217759175ff7415823f2121d4768f9bd1"
+    },
+    {
+      "approvalSha256": "0bc1f8ede99ba73fae5185dc6b9b4546958cd7efe83e36c74408e74e1dd773de",
+      "derived": "run/W/05.png",
+      "derivedSha256": "5fcf81088b9ea6a9bf9a33965710b878327ecd31ee2f84998aecd05ab473a69d",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\09_bamboo_archer_girl\\v2-root-pose-target\\12.png",
+      "sourceSha256": "29a6fa87ca54607c7f4ca339fa528b7978cd4f4372af09d2667fb4e3aa497425"
+    },
+    {
+      "approvalSha256": "0bc1f8ede99ba73fae5185dc6b9b4546958cd7efe83e36c74408e74e1dd773de",
+      "derived": "run/W/06.png",
+      "derivedSha256": "0ef5938e5fcc3cb6abea3ef3a1a0345d98eccc9f78d7659c49169cc40d7308be",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\09_bamboo_archer_girl\\v2-root-pose-target\\13.png",
+      "sourceSha256": "a92bb508b8b749e5f137d282a785fbb86a2ed046de40550e9ae8b0517b4fd90b"
+    },
+    {
+      "approvalSha256": "0bc1f8ede99ba73fae5185dc6b9b4546958cd7efe83e36c74408e74e1dd773de",
+      "derived": "run/W/07.png",
+      "derivedSha256": "6dacc7562658013040cbfbf4bb70b7b34db644551376549a13f8256b9dc8dad3",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\09_bamboo_archer_girl\\v2-root-pose-target\\15.png",
+      "sourceSha256": "4412597195771689e22443eaec8cd2c5272d56357270017ea7c72442270c543b"
+    },
+    {
+      "approvalSha256": "0bc1f8ede99ba73fae5185dc6b9b4546958cd7efe83e36c74408e74e1dd773de",
+      "derived": "run/W/08.png",
+      "derivedSha256": "8f42fdc015b8beade527772dec3009543a30d91c238d6be0e4959a7ffc92f3de",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\09_bamboo_archer_girl\\v2-root-pose-target\\03.png",
+      "sourceSha256": "74bdefbf975831a8f722806a0e43d3fe3d72d40bd577ba7bbdae01a58a145440"
+    },
+    {
+      "approvalSha256": "fdb0b34999e048400962db929e50ede7c19f65374324008788543e0a3fd00e00",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "a6d2ab9ab7b8f2f5d1c91e9274b0c8ace6d20b80ba05f1e852fd4f6bbde86144",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\native-v8f1\\01.png",
+      "sourceSha256": "a99acb087a552dca2a65f6581b45c585474ee6ac7f95a25f8e0e8925fb807490"
+    },
+    {
+      "approvalSha256": "fdb0b34999e048400962db929e50ede7c19f65374324008788543e0a3fd00e00",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "3a7724e1b3ed2cbb18ce5f7aa8f6c5d08e1c999427050eb351af72b87c71820f",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\native-v8f1\\02.png",
+      "sourceSha256": "b9dd3c75485e7623826117fd7f1ea250e1adc605ceeb9d2bdd830b96bb6b53b7"
+    },
+    {
+      "approvalSha256": "fdb0b34999e048400962db929e50ede7c19f65374324008788543e0a3fd00e00",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "bccb10b56fba4d2a230d30b5db2207d3e4a02163c750bfc7e5c9d0d0ea9c0634",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\native-v8f6\\03.png",
+      "sourceSha256": "293fa080e056d6d7a636ce902e8440e06c7710d225d276ffb785542d7d62d418"
+    },
+    {
+      "approvalSha256": "fdb0b34999e048400962db929e50ede7c19f65374324008788543e0a3fd00e00",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "5727a014bc0d7c7e49227bfac7cbe23ab69067c57a5bfc34520cc7a155f39c83",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\native-v8f7\\04.png",
+      "sourceSha256": "9ef7e893f423b306bcbca4030b9447be95d785fef2785f5a8568773e98d994e0"
+    },
+    {
+      "approvalSha256": "fdb0b34999e048400962db929e50ede7c19f65374324008788543e0a3fd00e00",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "b6438e8d95e4f9d39fc765eab374947b38b5f0332c10a1b1a697cae1dbe5dce1",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\native-v8f7\\05.png",
+      "sourceSha256": "6d347a53062a6c19afa2abf7561598478ee1c0d04510d0d24b4de0358c90149f"
+    },
+    {
+      "approvalSha256": "fdb0b34999e048400962db929e50ede7c19f65374324008788543e0a3fd00e00",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "7d027883c0f962a4a1a13ad8ded39818a598910ad7add0a8414529d0c31d9062",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\native-v8f1\\06.png",
+      "sourceSha256": "b026fbb6bc80f9fef526dd040533582dd1059115ef50370f7a2821f84dbe6b8f"
+    },
+    {
+      "approvalSha256": "fdb0b34999e048400962db929e50ede7c19f65374324008788543e0a3fd00e00",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "ac557530dfcf6e0727f293c7ee9e5360995016d805913d3eb54c2bbe85519d7d",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\native-v8f2\\07.png",
+      "sourceSha256": "b4b8f40f266f9f87341022811d15f3b7a971a27b9d13118dfe9702816ac6d87c"
+    },
+    {
+      "approvalSha256": "fdb0b34999e048400962db929e50ede7c19f65374324008788543e0a3fd00e00",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "9ed9a72c992176f5a2d1e2882403428f550ccfb993593b33747e79ce1a6914e7",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\09_bamboo_archer_girl\\native-v8f1\\08.png",
+      "sourceSha256": "770a39c44380fd33986a8d2a103575dd8047e135715c24a987a416c14b97432d"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "7e4c610e326ec1afa380f1be61c95608683599dc3d9ca769f158e98e468dd15b",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\09_bamboo_archer_girl.json",
+  "transform": "uniform full-canvas LANCZOS"
+}

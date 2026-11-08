@@ -104,6 +104,7 @@ namespace MmorpgClient.World
         /// <summary>Metadata only: scheduling must not preload every actor's action textures.</summary>
         public static float GetDurationSeconds(string characterId, string action, string direction, string resourceRoot = ResourceRoot)
         {
+            if (!ValidRootRequest(resourceRoot, characterId, action)) return 0f;
             var clip = FindClip(LoadManifest(characterId, resourceRoot), action, direction);
             if (!TryDurations(clip, out _, out var duration, out _)) return 0f;
             return duration;
@@ -111,6 +112,7 @@ namespace MmorpgClient.World
 
         public static float GetEventTimeSeconds(string characterId, string action, string direction, string resourceRoot = ResourceRoot)
         {
+            if (!ValidRootRequest(resourceRoot, characterId, action)) return -1f;
             var clip = FindClip(LoadManifest(characterId, resourceRoot), action, direction);
             return TryDurations(clip, out _, out _, out var eventTime) ? eventTime : -1f;
         }
@@ -131,11 +133,18 @@ namespace MmorpgClient.World
             string manifestJson, Func<string, Texture2D> load, Action<Texture2D> unload, bool shared)
             => AcquireClip(ParseManifest(characterId, manifestJson), characterId, action, direction, load, unload, shared);
 
+        // 双版本测试可注入独立根目录；保留原测试入口的签名与反射查找方式。
+        internal static Lease AcquireFromRootWithResources(string characterId, string action, string direction,
+            string manifestJson, Func<string, Texture2D> load, Action<Texture2D> unload, bool shared, string resourceRoot)
+            => AcquireClip(ParseManifest(characterId, manifestJson), characterId, action, direction, load, unload, shared, resourceRoot);
+
         private static Lease AcquireClip(Manifest manifest, string characterId, string action, string direction,
             Func<string, Texture2D> load, Action<Texture2D> unload, bool shared, string resourceRoot = ResourceRoot)
         {
             var clip = FindClip(manifest, action, direction);
-            if (!ValidRoot(resourceRoot) || load == null || !TryDurations(clip, out var durations, out var duration, out var eventTime)) return null;
+            if (!ValidRootRequest(resourceRoot, characterId, action) || load == null ||
+                !TryDurations(clip, out var durations, out var duration, out var eventTime)) return null;
+            if (resourceRoot == QdaoRunVariants.CurrentRoot && clip.frameCount != 8) return null;
             var key = resourceRoot + "/" + characterId + "/" + action + "/" + direction;
             if (shared && Shared.TryGetValue(key, out var cached))
             {
@@ -185,7 +194,8 @@ namespace MmorpgClient.World
 
         private static Manifest LoadManifest(string characterId, string resourceRoot = ResourceRoot)
         {
-            if (!ValidIdentity(characterId) || !ValidRoot(resourceRoot)) return null;
+            if (!ValidIdentity(characterId) || !ValidRoot(resourceRoot) ||
+                (IsRunVariantRoot(resourceRoot) && !QdaoRunVariants.AllowsCharacter(characterId))) return null;
             var key = resourceRoot + "/" + characterId;
             if (Manifests.TryGetValue(key, out var cached)) return cached;
             var text = Resources.Load<TextAsset>(key + "/manifest");
@@ -252,7 +262,13 @@ namespace MmorpgClient.World
                 direction == "SE" || direction == "S" || direction == "SW" || direction == "W" || direction == "NW";
             return (action == "idle" || action == "attack" || action == "hit" || action == "cast") && (direction == "E" || direction == "W");
         }
-        private static bool ValidRoot(string root) => root == ResourceRoot || root == PetResourceRoot;
+        private static bool IsRunVariantRoot(string root)
+            => root == QdaoRunVariants.LegacyRoot || root == QdaoRunVariants.CurrentRoot;
+        private static bool ValidRoot(string root)
+            => root == ResourceRoot || root == PetResourceRoot || IsRunVariantRoot(root);
+        private static bool ValidRootRequest(string root, string characterId, string action)
+            => ValidRoot(root) && (!IsRunVariantRoot(root) ||
+                (action == "run" && QdaoRunVariants.AllowsCharacter(characterId)));
         private static bool ValidDimension(int value) => value >= 0 && value <= 4096;
         private static bool FinitePositive(float value) => value > 0f && !float.IsNaN(value) && !float.IsInfinity(value);
         private static bool ValidPivot(Vector2 pivot) => pivot.x >= 0f && pivot.x <= 1f && pivot.y >= 0f && pivot.y <= 1f;

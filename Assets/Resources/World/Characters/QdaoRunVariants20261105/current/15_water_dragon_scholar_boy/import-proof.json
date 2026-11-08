@@ -1,0 +1,662 @@
+{
+  "calibration": "pending real Unity game validation",
+  "frames": [
+    {
+      "approvalSha256": "29b53b92aa09fbbbf8437a5cd76141e4166320f2b9bec7dd072ef071a8890807",
+      "derived": "run/N/01.png",
+      "derivedSha256": "668970ad007cf8451d97d2f1f96894eeb48b9891b488966d75e17bc7577173ef",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\15_water_dragon_scholar_boy\\04-v2.png",
+      "sourceSha256": "2245caf211acf41d766342104e4f22e8fb951f81d93e95fd4372ed7b6c774e6e"
+    },
+    {
+      "approvalSha256": "29b53b92aa09fbbbf8437a5cd76141e4166320f2b9bec7dd072ef071a8890807",
+      "derived": "run/N/02.png",
+      "derivedSha256": "1f4424d2460b9b2b7a185f1d660416c974bdba020f6c1b0f8fd3459e6db8279a",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\15_water_dragon_scholar_boy\\06-natural-v1.png",
+      "sourceSha256": "4de965c7e910593f9bf86eadb6abdb94e9419927d05c1142db436f3f5eb429c8"
+    },
+    {
+      "approvalSha256": "29b53b92aa09fbbbf8437a5cd76141e4166320f2b9bec7dd072ef071a8890807",
+      "derived": "run/N/03.png",
+      "derivedSha256": "a013669e63489da2382dab6dc33b32ddd84ff93a2c7e4e566a04f09d4f047131",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\15_water_dragon_scholar_boy\\07-natural-v2.png",
+      "sourceSha256": "8119a839788f7f9044c211a52c1a5e904ff07a3e7388650ad9c3d251378af21b"
+    },
+    {
+      "approvalSha256": "29b53b92aa09fbbbf8437a5cd76141e4166320f2b9bec7dd072ef071a8890807",
+      "derived": "run/N/04.png",
+      "derivedSha256": "9a90bfdbbf4f2145987afc1bc77f035fadd20393a7568e9658b1df21c692a1fa",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\15_water_dragon_scholar_boy\\09-newref-v1.png",
+      "sourceSha256": "d9034af72029ef45818b50e359ea5f7b8ac99d8e5955fa1ba1e21c8dcc09323f"
+    },
+    {
+      "approvalSha256": "29b53b92aa09fbbbf8437a5cd76141e4166320f2b9bec7dd072ef071a8890807",
+      "derived": "run/N/05.png",
+      "derivedSha256": "51e67d7fa06303bb46dae996586a5fa353aa608c9bf8f17a50ab42fe71a863e7",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\15_water_dragon_scholar_boy\\12-natural-v2.png",
+      "sourceSha256": "57f71c00c9c00860fa0c70196f984cfa69ede6b197a4e249325b8f92822bb61a"
+    },
+    {
+      "approvalSha256": "29b53b92aa09fbbbf8437a5cd76141e4166320f2b9bec7dd072ef071a8890807",
+      "derived": "run/N/06.png",
+      "derivedSha256": "e839353fb262570b462fee2ca85ba6d31ca2be3550910eb783596997e1d8e5fe",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\15_water_dragon_scholar_boy\\14-newref-v1.png",
+      "sourceSha256": "decca3222b84726496fa614d363f60383ebdcdc08d9972c2df7f2c33d2fb1216"
+    },
+    {
+      "approvalSha256": "29b53b92aa09fbbbf8437a5cd76141e4166320f2b9bec7dd072ef071a8890807",
+      "derived": "run/N/07.png",
+      "derivedSha256": "45583123ce257449ffb587b3c077c7e0bb697b5a8331cb89ad40df29b40611cc",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\15_water_dragon_scholar_boy\\15-newref-v1.png",
+      "sourceSha256": "eb6d99f60090f819c8ee9cdda5e0000332b82118aef8dc2b2db29890e688ab4f"
+    },
+    {
+      "approvalSha256": "29b53b92aa09fbbbf8437a5cd76141e4166320f2b9bec7dd072ef071a8890807",
+      "derived": "run/N/08.png",
+      "derivedSha256": "36c70e1ba1088f5a104306f9d805289e9995eb7a65c39bce790ada0557faaf87",
+      "direction": "N",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\N\\15_water_dragon_scholar_boy\\02-newref-v1.png",
+      "sourceSha256": "0340b5ecdf8385503ef155f95b22964bce38f36292bcb9b5585264966cf63c0d"
+    },
+    {
+      "approvalSha256": "4b2dda7b4a977589e958c8de5fb3bc2c3dea19d1ebd2f61016abbb90a3a1c4f6",
+      "derived": "run/NE/01.png",
+      "derivedSha256": "14b783dfbe76e3dcfa78385e4da066c1e878605652c9a79f093684ce4cefd52a",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\15_water_dragon_scholar_boy\\04-v2.png",
+      "sourceSha256": "faadc39c0a02742559b73ab0bcfe92b1c1b892a312619121f9ccaeee43d71c01"
+    },
+    {
+      "approvalSha256": "4b2dda7b4a977589e958c8de5fb3bc2c3dea19d1ebd2f61016abbb90a3a1c4f6",
+      "derived": "run/NE/02.png",
+      "derivedSha256": "0d3bb1b6d32542695ebce66b6bf4ed0aa3c9db77375afea73cc410118cd745f3",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\15_water_dragon_scholar_boy\\05-v2.png",
+      "sourceSha256": "63f3487f5e27532b9e10c4af76cab405c6849b09372307ef981e656042c772e3"
+    },
+    {
+      "approvalSha256": "4b2dda7b4a977589e958c8de5fb3bc2c3dea19d1ebd2f61016abbb90a3a1c4f6",
+      "derived": "run/NE/03.png",
+      "derivedSha256": "b50043ba2645695ea4fda3016c01e1a9d45fa0f62bba05399f4bedc55ec8249e",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\15_water_dragon_scholar_boy\\07-v3.png",
+      "sourceSha256": "5e82c3accbb7f6a5710c17dc28d544bd0eeb3343ae69fa694bb0cdd2f2b3adbb"
+    },
+    {
+      "approvalSha256": "4b2dda7b4a977589e958c8de5fb3bc2c3dea19d1ebd2f61016abbb90a3a1c4f6",
+      "derived": "run/NE/04.png",
+      "derivedSha256": "5aac2ff93d690fdd1f15b6871254d60dffd69863161539c41ec0c0ac5d434ba6",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\15_water_dragon_scholar_boy\\natural8-20261105-v1\\04-rear-body-v1.png",
+      "sourceSha256": "66cd9d7682996de2d65cdd5be008e712cc755f77ac7d0ffa6e54528f265724ae"
+    },
+    {
+      "approvalSha256": "4b2dda7b4a977589e958c8de5fb3bc2c3dea19d1ebd2f61016abbb90a3a1c4f6",
+      "derived": "run/NE/05.png",
+      "derivedSha256": "53cc0df539a55a4b04c6468acda3ec7ac5fe0ddd149a59dd17f748b44f05a01f",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\15_water_dragon_scholar_boy\\natural8-20261105-v1\\05-rear-body-v1.png",
+      "sourceSha256": "41a8e4f5c2c66d85331ac17ea86bd0e59758ec8ebd1e1125cb77be52a4c48f48"
+    },
+    {
+      "approvalSha256": "4b2dda7b4a977589e958c8de5fb3bc2c3dea19d1ebd2f61016abbb90a3a1c4f6",
+      "derived": "run/NE/06.png",
+      "derivedSha256": "1069415b30b8b6f5aed548d3867fb2da8e88d9691d75b70d1ba085bbace39d7a",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\15_water_dragon_scholar_boy\\natural8-20261105-v1\\06-R-load-body-v2.png",
+      "sourceSha256": "4f442a414fe4a113a1ad62bf7429c19ed0217e165f478bc18dd1c170c797bdb3"
+    },
+    {
+      "approvalSha256": "4b2dda7b4a977589e958c8de5fb3bc2c3dea19d1ebd2f61016abbb90a3a1c4f6",
+      "derived": "run/NE/07.png",
+      "derivedSha256": "6556a6ca6998f6b590c13959c8ec2c2648cc19630ab08cef457da04a4a6007e0",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\15_water_dragon_scholar_boy\\natural8-20261105-v1\\07-rear-body-v1.png",
+      "sourceSha256": "7369e38e83c7efd0b472d7067e8d919870a46d7569f12d0823c8f31a743ada00"
+    },
+    {
+      "approvalSha256": "4b2dda7b4a977589e958c8de5fb3bc2c3dea19d1ebd2f61016abbb90a3a1c4f6",
+      "derived": "run/NE/08.png",
+      "derivedSha256": "274e50a9d1416fb9c8a216f0ed085ca8dc5e394e9e155dfe776f67efba58c55c",
+      "direction": "NE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NE\\15_water_dragon_scholar_boy\\03-v1.png",
+      "sourceSha256": "517d2f021132c842cf6b3fef1c05e8f45d4bc0f38a3de5d9b64c750298651b68"
+    },
+    {
+      "approvalSha256": "1472948a14f93ac46f081f973517492b55ae190f1b1d4653a93c8549280969ee",
+      "derived": "run/E/01.png",
+      "derivedSha256": "8108c605ea52ee7ca98d5b6618dcd2c329c8985c31afa1381e3dd83a97849c5c",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\15_water_dragon_scholar_boy\\eight-frame-20261105-v1\\native\\01.png",
+      "sourceSha256": "457558badf2e2613d44d26d96b842877c14198692af01163220d5a5965f3f8b3"
+    },
+    {
+      "approvalSha256": "1472948a14f93ac46f081f973517492b55ae190f1b1d4653a93c8549280969ee",
+      "derived": "run/E/02.png",
+      "derivedSha256": "11125f85ea39f060b9b368bc3c3f633a6cd35a03e62504ede6be12e678819459",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\15_water_dragon_scholar_boy\\eight-frame-20261105-v1\\native\\02.png",
+      "sourceSha256": "b96f0cc010e8e447810f62d26cf8596df23848afbe11bb0d834bc02483149b9d"
+    },
+    {
+      "approvalSha256": "1472948a14f93ac46f081f973517492b55ae190f1b1d4653a93c8549280969ee",
+      "derived": "run/E/03.png",
+      "derivedSha256": "ceedf44e4d58542ad1f21042fe19b4b7fb94dd2827d1289cd86fa9602f583057",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\15_water_dragon_scholar_boy\\eight-frame-20261105-v1\\native\\03.png",
+      "sourceSha256": "c9ec05e65f12f536e49083824d0cec112599abbe1c035c3afff11675041ebd69"
+    },
+    {
+      "approvalSha256": "1472948a14f93ac46f081f973517492b55ae190f1b1d4653a93c8549280969ee",
+      "derived": "run/E/04.png",
+      "derivedSha256": "303f5b69b7f4e2141ef9a9f84261c51cd58123de5c5109ccf13a4ed82ea23831",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\15_water_dragon_scholar_boy\\eight-frame-20261105-v1\\native\\04.png",
+      "sourceSha256": "bff80c7ecfc5dcf1940ea589f8b271fba4a0fcbf0ea39eed8f4fdc06f5fe7a10"
+    },
+    {
+      "approvalSha256": "1472948a14f93ac46f081f973517492b55ae190f1b1d4653a93c8549280969ee",
+      "derived": "run/E/05.png",
+      "derivedSha256": "f1d272c3091c2c504ba03a86f4be78c586c9cb059777563d163df7b6b59d7ec6",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\15_water_dragon_scholar_boy\\eight-frame-20261105-v1\\native\\05.png",
+      "sourceSha256": "d17fe3930e686ec158b1edbd44089bfe9227916cb7cbdd89b73dd59bc3c0c252"
+    },
+    {
+      "approvalSha256": "1472948a14f93ac46f081f973517492b55ae190f1b1d4653a93c8549280969ee",
+      "derived": "run/E/06.png",
+      "derivedSha256": "58f6a876d3f2aed777b201a2fee98cb9d67c2cb8d56a27a2c4dd62b3f4350929",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\15_water_dragon_scholar_boy\\eight-frame-20261105-v1\\native\\06.png",
+      "sourceSha256": "777ffbf380fe9421d69b585dc702296e8d9a0f14f29c597b2a77038b2db25581"
+    },
+    {
+      "approvalSha256": "1472948a14f93ac46f081f973517492b55ae190f1b1d4653a93c8549280969ee",
+      "derived": "run/E/07.png",
+      "derivedSha256": "b6f84d9ff3b01c3c925c7ae06f391d0ef15c173db3a064712fb8ddfa6d2a6f17",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\15_water_dragon_scholar_boy\\eight-frame-20261105-v1\\native\\07.png",
+      "sourceSha256": "d7f1b64e3e6b249e5d974abba3a4a5bb9ea2653bfa20880018c034ef1048e847"
+    },
+    {
+      "approvalSha256": "1472948a14f93ac46f081f973517492b55ae190f1b1d4653a93c8549280969ee",
+      "derived": "run/E/08.png",
+      "derivedSha256": "90751a514a877eeba542a5568000b54bd9387f5d29bd1f2b4d1fbe2db060e445",
+      "direction": "E",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\E\\15_water_dragon_scholar_boy\\eight-frame-20261105-v1\\native\\08.png",
+      "sourceSha256": "4d00863427ba6536caa261b301384d16ca70bfd41620a8952cdca600217b1723"
+    },
+    {
+      "approvalSha256": "fe977da29c17c9d69d940e63179584b45f668d9123b19c81caa3524f33159546",
+      "derived": "run/SE/01.png",
+      "derivedSha256": "42bb00f57ab8bd1e1957da8ac847d0d7c742ffa82f1a170690e4dd36a02f5490",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\15_water_dragon_scholar_boy\\natural8-20261106\\native-v2\\01.png",
+      "sourceSha256": "89d355f921b41b6c0e2a1ef302e0601ac1ba536afb060c61b72c5a02ac3b7c8d"
+    },
+    {
+      "approvalSha256": "fe977da29c17c9d69d940e63179584b45f668d9123b19c81caa3524f33159546",
+      "derived": "run/SE/02.png",
+      "derivedSha256": "4757a22ced3cc39f753babc8d5f7d894a1d6d5dcc828265e8b59b08063e25063",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\15_water_dragon_scholar_boy\\natural8-20261106\\native-v3\\02.png",
+      "sourceSha256": "05d097e19026f9c57163ce63091d3f1f13185d22f983d91b1e55f2224b4d4e0d"
+    },
+    {
+      "approvalSha256": "fe977da29c17c9d69d940e63179584b45f668d9123b19c81caa3524f33159546",
+      "derived": "run/SE/03.png",
+      "derivedSha256": "39e48229608aad95016cc19586e9f6237c3e5503d04a74b9a0c98e47dfec0ea8",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\15_water_dragon_scholar_boy\\natural8-20261106\\native-v3\\03.png",
+      "sourceSha256": "4c09a45da5b106359dc4fd02689ebc19edf7e44d276f30e8935bfac9b8ba9cf7"
+    },
+    {
+      "approvalSha256": "fe977da29c17c9d69d940e63179584b45f668d9123b19c81caa3524f33159546",
+      "derived": "run/SE/04.png",
+      "derivedSha256": "f08c96381296e5e4423e2aa28c0bff3a9ee2423d958a568099e9162876b48138",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\15_water_dragon_scholar_boy\\natural8-20261106\\native-v3\\04.png",
+      "sourceSha256": "5aaf98a6bbc477c1211bd29a3387a018391f66704b95044d7abc397d27ca4e33"
+    },
+    {
+      "approvalSha256": "fe977da29c17c9d69d940e63179584b45f668d9123b19c81caa3524f33159546",
+      "derived": "run/SE/05.png",
+      "derivedSha256": "13996bcfe0e7568030d3b6b605aac4042e77d375723a743a562a25bba5c3abc0",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\15_water_dragon_scholar_boy\\natural8-20261106\\native-v3\\05.png",
+      "sourceSha256": "1557fd405a1a5b21bc49a1ced5d075478a74a62289f946bab21b50dc7d9c360b"
+    },
+    {
+      "approvalSha256": "fe977da29c17c9d69d940e63179584b45f668d9123b19c81caa3524f33159546",
+      "derived": "run/SE/06.png",
+      "derivedSha256": "e5337c5c11a6c83ae528fa197cd1ec95646de26420eb319ba2112f819acf5652",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\15_water_dragon_scholar_boy\\natural8-20261106\\native-v3\\06.png",
+      "sourceSha256": "36887059ce3ff021cf552cafab4efe4b385fce99a53f95d1ce7b6f675f18a0a0"
+    },
+    {
+      "approvalSha256": "fe977da29c17c9d69d940e63179584b45f668d9123b19c81caa3524f33159546",
+      "derived": "run/SE/07.png",
+      "derivedSha256": "8ac73885af4562d247c8ef9787a9dc3dc1ed51270338066b35c2d0166cb23b9f",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\15_water_dragon_scholar_boy\\natural8-20261106\\native-v3\\07.png",
+      "sourceSha256": "a1222f01ba45729f7a3f0554f75326f1cee9bf8910629da871462200597cb718"
+    },
+    {
+      "approvalSha256": "fe977da29c17c9d69d940e63179584b45f668d9123b19c81caa3524f33159546",
+      "derived": "run/SE/08.png",
+      "derivedSha256": "b8a808ba4fdd838191a30e65e1720f6b36a655eb28b9a784fdb16fc2a56922f3",
+      "direction": "SE",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SE\\15_water_dragon_scholar_boy\\natural8-20261106\\native-v4\\08.png",
+      "sourceSha256": "b9c01ed7e0fd3faa1fd70d8c99a288e4defc9ebdbdfdef81c226baa32cb4d6d1"
+    },
+    {
+      "approvalSha256": "c9f0d2ede94cc94ac396f35803dd4c92dc56d89f80d0f6c7f234ef8f2428e66d",
+      "derived": "run/S/01.png",
+      "derivedSha256": "974ffe0c61781f985d379abab70f0ff501c8bd8b9ec1302a8942608d858a21ee",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\15_water_dragon_scholar_boy\\native-v2\\05.png",
+      "sourceSha256": "4e662fdc11d22c345c2333d360e931671fe568b8c8e9c26e196c5755fa468c41"
+    },
+    {
+      "approvalSha256": "c9f0d2ede94cc94ac396f35803dd4c92dc56d89f80d0f6c7f234ef8f2428e66d",
+      "derived": "run/S/02.png",
+      "derivedSha256": "3415a95583308457fd44e517e787be2990b02e86d1e957e680d60341a07e7cae",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\15_water_dragon_scholar_boy\\eight-native-v1-20261105\\native-phase02-v1\\02.png",
+      "sourceSha256": "c43e2038f5fbd1aaba836fb1a5bef98658a1d731f01dd725c371b97ae499a6df"
+    },
+    {
+      "approvalSha256": "c9f0d2ede94cc94ac396f35803dd4c92dc56d89f80d0f6c7f234ef8f2428e66d",
+      "derived": "run/S/03.png",
+      "derivedSha256": "b7c38eb87b25b3a6f97c39c7a6a777cb33f70900ccb814965d8d902bde819b54",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\15_water_dragon_scholar_boy\\native-v2\\09.png",
+      "sourceSha256": "58e564746bfd3c6b3a50526fc40815498e65efb7e4e563a9f36cc7f9893b84a7"
+    },
+    {
+      "approvalSha256": "c9f0d2ede94cc94ac396f35803dd4c92dc56d89f80d0f6c7f234ef8f2428e66d",
+      "derived": "run/S/04.png",
+      "derivedSha256": "6c5ccb8b048f31ab9d6248bf46edbdecbf45e0741145fcad825e985d45ae01be",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\15_water_dragon_scholar_boy\\native-v2\\11.png",
+      "sourceSha256": "12cb3bcbdfa168aa6f8c76676b24b3ab82bd209b8dc59227e1840f3c54a045f1"
+    },
+    {
+      "approvalSha256": "c9f0d2ede94cc94ac396f35803dd4c92dc56d89f80d0f6c7f234ef8f2428e66d",
+      "derived": "run/S/05.png",
+      "derivedSha256": "afafc5b9564446abf0e6815d94c817ae13af63e10c440edf7d619b1b4b66ef08",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\15_water_dragon_scholar_boy\\native-v2\\12.png",
+      "sourceSha256": "97b1650a6040ec98a94cd5960a8fbd5f4912654ca3652aa6387b32a77858a3ee"
+    },
+    {
+      "approvalSha256": "c9f0d2ede94cc94ac396f35803dd4c92dc56d89f80d0f6c7f234ef8f2428e66d",
+      "derived": "run/S/06.png",
+      "derivedSha256": "c3a14a37b16e9b5469e44d78f9b885cab265183188ac23b0cb394f22bc4e61b9",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\15_water_dragon_scholar_boy\\eight-native-v1-20261105\\native-phase06-v1\\06.png",
+      "sourceSha256": "6db669b3112bc63fe2cf36d97cf644ef7e6b9af01aa9e66227e5a6bd52182824"
+    },
+    {
+      "approvalSha256": "c9f0d2ede94cc94ac396f35803dd4c92dc56d89f80d0f6c7f234ef8f2428e66d",
+      "derived": "run/S/07.png",
+      "derivedSha256": "c84b1d4a80205bc8d704425f4067346ecc56d2ef5892dd49361ea699447653a3",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\15_water_dragon_scholar_boy\\eight-native-v1-20261105\\native-phase07-v1\\07.png",
+      "sourceSha256": "57923c2277a02b93ecc3c04d48c99d89d46e566f9d4f31a5568dc648efcfe1b6"
+    },
+    {
+      "approvalSha256": "c9f0d2ede94cc94ac396f35803dd4c92dc56d89f80d0f6c7f234ef8f2428e66d",
+      "derived": "run/S/08.png",
+      "derivedSha256": "797617c83483049fb4e36dee7fbf1b22e5c22a68e4447a62f15432dc2a7ec748",
+      "direction": "S",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\S\\15_water_dragon_scholar_boy\\native-v2\\03.png",
+      "sourceSha256": "4c825dd7de515c366046c07f2aec724a4d982559dfb6ab459c744875c7782189"
+    },
+    {
+      "approvalSha256": "47e1526cb04f07dc43d5ea79fedae32a5f00cec48ae90899b348b155e414192d",
+      "derived": "run/SW/01.png",
+      "derivedSha256": "7e79564beb8788af9e8ad13c001208dd4f6c171d0395ffbb284d29d47b87549a",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\15_water_dragon_scholar_boy\\nw-assist-natural8-20261106-v1\\native-v1\\01.png",
+      "sourceSha256": "8a12a16c88e5c886e5a27036e2943f221519090b8c4d936ca0f78d2580a1a236"
+    },
+    {
+      "approvalSha256": "47e1526cb04f07dc43d5ea79fedae32a5f00cec48ae90899b348b155e414192d",
+      "derived": "run/SW/02.png",
+      "derivedSha256": "dc04eb2b517688d5a537f38e484146f4a9ab489e46dbf12f3def25dfd570fa57",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\15_water_dragon_scholar_boy\\nw-assist-natural8-20261106-v1\\native-v2\\02.png",
+      "sourceSha256": "51812904f20d8e6c5973bafb971d3ce6117970b901a900055950db19d5b92bb4"
+    },
+    {
+      "approvalSha256": "47e1526cb04f07dc43d5ea79fedae32a5f00cec48ae90899b348b155e414192d",
+      "derived": "run/SW/03.png",
+      "derivedSha256": "a3c27c5199d4cf9749952e6af771c19f2c3fad914376ef9e9854bbd4b187a2ac",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\15_water_dragon_scholar_boy\\nw-assist-natural8-20261106-v1\\native-v3\\03.png",
+      "sourceSha256": "2139f19c0b30b4e07c5ca945b858a91b9a747dcbb9ca254593f2a473447d75f5"
+    },
+    {
+      "approvalSha256": "47e1526cb04f07dc43d5ea79fedae32a5f00cec48ae90899b348b155e414192d",
+      "derived": "run/SW/04.png",
+      "derivedSha256": "87fef870b7acbd52185914868ac3d68ca1c5df27db2c85c5bfaff60d8c2868a3",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\15_water_dragon_scholar_boy\\nw-assist-natural8-20261106-v1\\native-v1\\04.png",
+      "sourceSha256": "525dab05fbe91d80791332524b98e831c5bcbda46c857d4713503ff63cf15aab"
+    },
+    {
+      "approvalSha256": "47e1526cb04f07dc43d5ea79fedae32a5f00cec48ae90899b348b155e414192d",
+      "derived": "run/SW/05.png",
+      "derivedSha256": "6c41a186259d20358cc614f2d58365e97af82c90be6f1e17f3feb29eab87c084",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\15_water_dragon_scholar_boy\\nw-assist-natural8-20261106-v1\\native-v1\\05.png",
+      "sourceSha256": "e8d2b96edefc5213edaab7702b86b235462930e11a9ee434a8f5a7a0a4c27b39"
+    },
+    {
+      "approvalSha256": "47e1526cb04f07dc43d5ea79fedae32a5f00cec48ae90899b348b155e414192d",
+      "derived": "run/SW/06.png",
+      "derivedSha256": "02ad73b8842247fc33e4e6513ddb657d566f8eb44e0c62ffd3cad4a464a1f45e",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\15_water_dragon_scholar_boy\\nw-assist-natural8-20261106-v1\\native-v1\\06.png",
+      "sourceSha256": "50063e23bac6c2a6943dace1169d4fd0341d2c476ba9e15eb45b8ad50eaf53b3"
+    },
+    {
+      "approvalSha256": "47e1526cb04f07dc43d5ea79fedae32a5f00cec48ae90899b348b155e414192d",
+      "derived": "run/SW/07.png",
+      "derivedSha256": "5d25c3879c62f4ae20456a2488bc7304215b5badd8e0f605532a681303ee7da8",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\15_water_dragon_scholar_boy\\nw-assist-natural8-20261106-v1\\native-v1\\07.png",
+      "sourceSha256": "9be3f7d501e7ce8d442d2945d15ba2591aaf1f48884e89d3fc19dea73d00216f"
+    },
+    {
+      "approvalSha256": "47e1526cb04f07dc43d5ea79fedae32a5f00cec48ae90899b348b155e414192d",
+      "derived": "run/SW/08.png",
+      "derivedSha256": "c0ad90b50cec880d70d14187e2fd17673f53e3a8976eebe61e164da592a29199",
+      "direction": "SW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\SW\\15_water_dragon_scholar_boy\\nw-assist-natural8-20261106-v1\\native-v1\\08.png",
+      "sourceSha256": "8fbfc8c23aaea4b34f94bc2854642d85a06d9aceede6aeddda033557b966e42d"
+    },
+    {
+      "approvalSha256": "32ae462555a58bb13c492628b3ec7e09b25cbf4da77b1aa61e08286cdbbe7340",
+      "derived": "run/W/01.png",
+      "derivedSha256": "0e65a2e9ea2f07b80a2b19c213f74ff6941b1c7e55ffadc8128180f17ef8e470",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\15_water_dragon_scholar_boy\\v5-local-fan04\\04.png",
+      "sourceSha256": "1699ec5f41dbe66465e374930c9e7c5bc4319a405b910216d8f07dbe25858289"
+    },
+    {
+      "approvalSha256": "32ae462555a58bb13c492628b3ec7e09b25cbf4da77b1aa61e08286cdbbe7340",
+      "derived": "run/W/02.png",
+      "derivedSha256": "6342871cc68da2bb317d07b347fe1ed1da826b128ecacd1081b91bf5318cfe9b",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\15_water_dragon_scholar_boy\\v4-local-arm-mid\\05.png",
+      "sourceSha256": "1803eb666f7b51421dfe52b92e5ec0c035719929d34b2c27eb20602748fbfe74"
+    },
+    {
+      "approvalSha256": "32ae462555a58bb13c492628b3ec7e09b25cbf4da77b1aa61e08286cdbbe7340",
+      "derived": "run/W/03.png",
+      "derivedSha256": "78ab36075da79a13a900ef6e76085ef203833e72907b9799f9bd479a5093f44a",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\15_water_dragon_scholar_boy\\v2-pose-first\\09.png",
+      "sourceSha256": "d0b6c506613fe6e1671003c485eb8f4fe154aab865170f7acb78d08d471c1172"
+    },
+    {
+      "approvalSha256": "32ae462555a58bb13c492628b3ec7e09b25cbf4da77b1aa61e08286cdbbe7340",
+      "derived": "run/W/04.png",
+      "derivedSha256": "ff34f1fa6b608a44a8abdaf5712c33d997569e2f6f868b7b77416ef861ae4f5e",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\15_water_dragon_scholar_boy\\v3-local-repair\\10.png",
+      "sourceSha256": "be7b852781e3c56209b28334b641b87651636e2995e1c5e0a6bcffa0a0b4a362"
+    },
+    {
+      "approvalSha256": "32ae462555a58bb13c492628b3ec7e09b25cbf4da77b1aa61e08286cdbbe7340",
+      "derived": "run/W/05.png",
+      "derivedSha256": "8bbc70ac01a860286b3ebf00708c4648ec8c91b8fa741cbb01a61c5eec59c0f1",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\15_water_dragon_scholar_boy\\v4-local-arm-mid\\12.png",
+      "sourceSha256": "7ab0bfe5c1f4257ad922f18dddf03a8abe8069ed43a1723a0ca1400aeb15f7e1"
+    },
+    {
+      "approvalSha256": "32ae462555a58bb13c492628b3ec7e09b25cbf4da77b1aa61e08286cdbbe7340",
+      "derived": "run/W/06.png",
+      "derivedSha256": "5fe0a03ee3b23ddd8f6276046815981fd04cd927f0dcb1353d028767f3f635a4",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\15_water_dragon_scholar_boy\\v5-local-fan13\\13.png",
+      "sourceSha256": "1cdc98efc28c90cae84930fe91175f13870141aafb5fb97f4da44c330dae3218"
+    },
+    {
+      "approvalSha256": "32ae462555a58bb13c492628b3ec7e09b25cbf4da77b1aa61e08286cdbbe7340",
+      "derived": "run/W/07.png",
+      "derivedSha256": "74224a14768c42ae620747a45d8e196940a7c357914834fa72d579cd16326db9",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\15_water_dragon_scholar_boy\\8f-facing-20261106\\native-phase07-root-v1\\07.png",
+      "sourceSha256": "58893d6525bb42861aed968b88d4eb9abd0f42c18cc534aa7845968c2c17c63c"
+    },
+    {
+      "approvalSha256": "32ae462555a58bb13c492628b3ec7e09b25cbf4da77b1aa61e08286cdbbe7340",
+      "derived": "run/W/08.png",
+      "derivedSha256": "2c700e8c0b1f9203deafde437f49acb684f179d4d99fc26b707cba4d383518de",
+      "direction": "W",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\W\\15_water_dragon_scholar_boy\\v2-pose-first\\03.png",
+      "sourceSha256": "e1e7f50fb1782f7cc44de3283d55e8b29e4ca723e4fac23bc35be3c79edac31a"
+    },
+    {
+      "approvalSha256": "b0a8578794e8a076ed61e1667ddc119f4d32a879de13f5e2906a58be8d21df5a",
+      "derived": "run/NW/01.png",
+      "derivedSha256": "646bead552497b223080eefb4cd8f9c21df0e0cdcb33712b02280e06fb647a73",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 1,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\15_water_dragon_scholar_boy\\native-v8f3\\01.png",
+      "sourceSha256": "345ecadb4bd741a8dc12d0b084e2d4f6ee8fd55c718a136c6f53e62926c13c96"
+    },
+    {
+      "approvalSha256": "b0a8578794e8a076ed61e1667ddc119f4d32a879de13f5e2906a58be8d21df5a",
+      "derived": "run/NW/02.png",
+      "derivedSha256": "bbe8589a1966fc6f62b5090951ecc7abb962f73be0cfb10c7dab68116498b0be",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 2,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\15_water_dragon_scholar_boy\\native-v8f2\\02.png",
+      "sourceSha256": "67f12dc1b1506a495185f33a630679b80caae567cc16a79f464ae6942667236b"
+    },
+    {
+      "approvalSha256": "b0a8578794e8a076ed61e1667ddc119f4d32a879de13f5e2906a58be8d21df5a",
+      "derived": "run/NW/03.png",
+      "derivedSha256": "f756e04ff488e66c60ccf966b9a435948f80ebc8058245eb99216a21d5caabbd",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 3,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\15_water_dragon_scholar_boy\\native-v8f3\\03.png",
+      "sourceSha256": "48477e5fed17deafa2776f5176a13ce836710da120aee4ebbb9b7eeb296cb392"
+    },
+    {
+      "approvalSha256": "b0a8578794e8a076ed61e1667ddc119f4d32a879de13f5e2906a58be8d21df5a",
+      "derived": "run/NW/04.png",
+      "derivedSha256": "6fd322a6e5d23cea397ce1bf8c44bdd6111a4ab0ee3de6deea27b9d670c1dc24",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 4,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\15_water_dragon_scholar_boy\\native-v8f3\\04.png",
+      "sourceSha256": "71a29570852ea070ceb477d2942a7349fbeb9232f4e1406e153762dfc994d5f7"
+    },
+    {
+      "approvalSha256": "b0a8578794e8a076ed61e1667ddc119f4d32a879de13f5e2906a58be8d21df5a",
+      "derived": "run/NW/05.png",
+      "derivedSha256": "f6ace3273fa6b803d6bf329c08c0c01f5e2f3eb41dd5b94e61e897c412b99356",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 5,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\15_water_dragon_scholar_boy\\native-v8f2\\05.png",
+      "sourceSha256": "c23fad51ec3ae5d061ca567092f6a3a63784a6334bac8bdfa874235ea83b12c3"
+    },
+    {
+      "approvalSha256": "b0a8578794e8a076ed61e1667ddc119f4d32a879de13f5e2906a58be8d21df5a",
+      "derived": "run/NW/06.png",
+      "derivedSha256": "a86ddc525bf6caa9b4615cdfd49b5bb4f1256a4574364baf97730b81e9a22c33",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 6,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\15_water_dragon_scholar_boy\\native-v8f2\\06.png",
+      "sourceSha256": "a08b20380c877f6c3b3850b69d3a2cda50c6f4c1e6414298f353d5a79b9efc9e"
+    },
+    {
+      "approvalSha256": "b0a8578794e8a076ed61e1667ddc119f4d32a879de13f5e2906a58be8d21df5a",
+      "derived": "run/NW/07.png",
+      "derivedSha256": "f216c277fc25aff6e1d7ce3a2c3d54e26709aa46dca4d1fa982023ae76147eb0",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 7,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\15_water_dragon_scholar_boy\\native-v8f1\\07.png",
+      "sourceSha256": "f9906386f0e226d2824d3693a0fd63c7ceec671d5c0731ba2d49a11ed4456f7f"
+    },
+    {
+      "approvalSha256": "b0a8578794e8a076ed61e1667ddc119f4d32a879de13f5e2906a58be8d21df5a",
+      "derived": "run/NW/08.png",
+      "derivedSha256": "74bd9be67a0316d044658aea3c7f372ed20b6681bb6a40aff39e42b087098df8",
+      "direction": "NW",
+      "durationSeconds": 0.13333333333333333,
+      "frame": 8,
+      "source": "F:\\work\\image\\qdao_original_roster_v14_hd\\run-repair-20261030-other14\\NW\\15_water_dragon_scholar_boy\\native-v8f1\\08.png",
+      "sourceSha256": "d3408ad9113f5044168c3b1a7d10f299dc6fc057f98fab3ecc95841ff27b80cd"
+    }
+  ],
+  "gameCanvas": [
+    384,
+    384
+  ],
+  "inputFingerprint": "952b7a9b31e9cd11b60dd0cc9195a07ce543a0b7d448cadb89feba8f94fd0b29",
+  "nativeCanvas": [
+    1254,
+    1254
+  ],
+  "pivot": [
+    0.5,
+    0.08
+  ],
+  "pixelsPerUnit": 39,
+  "schema": "qdao.run-variant-import-proof/v1",
+  "sourceManifest": "F:\\work\\image\\handoffs\\run-game-delivery-20261105\\current-batches\\20261107-current96-bound\\15_water_dragon_scholar_boy.json",
+  "transform": "uniform full-canvas LANCZOS"
+}
