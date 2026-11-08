@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-11-07T03:24:22.817564+00:00",
+  "status": "not-accepted",
+  "productionCandidateInstalled": false,
+  "releaseVisualAcceptance": false,
+  "requirement": "Same state and content at each original image native dimensions; zero full-frame decoded RGBA differences, with functioning real data and interactions.",
+  "scope": "Mail candidate isolated rendering plus inspected team/mail references. This does not cover all designs, runtime states, or a release build.",
+  "candidateRoot": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-plan\\candidate",
+  "captureRun": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106",
+  "validation": {
+    "runtimeCompileExitCode": 0,
+    "runtimeSourceCount": 444,
+    "isolatedUnityExitCode": 0,
+    "eightNativeImagesConfirmed": true,
+    "captureOnly": true,
+    "liveAccountOrReleaseBuildVerified": false
+  },
+  "images": [
+    {
+      "file": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\01-activity-mail_1931x814.png",
+      "size": [
+        1931,
+        814
+      ]
+    },
+    {
+      "file": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\02-plain-pending_1931x814.png",
+      "size": [
+        1931,
+        814
+      ]
+    },
+    {
+      "file": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\03-claimed_1931x814.png",
+      "size": [
+        1931,
+        814
+      ]
+    },
+    {
+      "file": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\04-expired_1931x814.png",
+      "size": [
+        1931,
+        814
+      ]
+    },
+    {
+      "file": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\05-notification_1931x814.png",
+      "size": [
+        1931,
+        814
+      ]
+    },
+    {
+      "file": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\06-activity-dialog_1931x814.png",
+      "size": [
+        1931,
+        814
+      ]
+    },
+    {
+      "file": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\07-delete-confirmation_1931x814.png",
+      "size": [
+        1931,
+        814
+      ]
+    },
+    {
+      "file": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\08-unavailable_1931x814.png",
+      "size": [
+        1931,
+        814
+      ]
+    }
+  ],
+  "fullFrameComparisons": [
+    {
+      "reference": "D:\\work\\image\\designs\\mail-ui-v1\\01-mail-event.png",
+      "actual": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\01-activity-mail_1931x814.png",
+      "referenceSHA256": "3cf0b7d7b3bae337d51e947719588419a01ae21bdce9bccedd6258ce1feef0a2",
+      "actualSHA256": "a74ffec41e7c5d0dc2127a2e245a1f7b90b879acefc8b11aabca76bc66de6aa7",
+      "status": "different",
+      "changedPixelCount": 466434,
+      "totalPixels": 1571834
+    },
+    {
+      "reference": "D:\\work\\image\\designs\\mail-ui-v1\\02-mail-system.png",
+      "actual": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\captures\\02-plain-pending_1931x814.png",
+      "referenceSHA256": "c034c61d06479c51c73c71c2920d6e00d4a67ec3bd129052eb609907cd9f757a",
+      "actualSHA256": "9c74507b9840b010e752cddf1cc6be57a8fe9d83932b09776522db05bed20d43",
+      "status": "different",
+      "changedPixelCount": 488191,
+      "totalPixels": 1571834
+    }
+  ],
+  "comparisonLimitation": "Offline fixtures and the diagnostic badge differ from design data. Changed counts are complete-raster differences, not a pure artwork error rate; no regions were masked or excluded.",
+  "candidateChanges": [
+    "1931x814 viewport fit instead of the old 1932-wide frame and fixed parent scaling.",
+    "Separate event/system source-pixel static backgrounds and source-pixel control crops.",
+    "Real state and captions determine use of fixed control lettering; changed states retain native UI text.",
+    "Uncompressed native-size Sprite imports without mipmaps or NPOT resizing."
+  ],
+  "unresolved": [
+    "Visible rectangular paper tone/texture seams remain.",
+    "System reward region retains an extra divider and parts of old card borders.",
+    "Dynamic type, list rows and reward artwork are not identical to the original.",
+    "Exact clean background layers and dynamic type specifications were not found in the local image repository.",
+    "Unpictured control states, hover/focus states and added gameplay actions need an approved design basis.",
+    "Original sample content and live gameplay state have not been reproduced and verified together.",
+    "Unity connection permission was granted and read-only dimensions were obtained. Native-size live capture remains pending because Windows was subsequently observed locked."
+  ],
+  "sourceEvidence": [
+    "D:\\work\\image\\designs\\mail-ui-v1\\source\\generation.json",
+    "D:\\work\\image\\designs\\team-ui-v2\\source\\generation.json"
+  ],
+  "sourceFinding": "The user confirmed on 2026-11-07 that only generated whole PNG images exist. Generation records identify flattened PNG outputs. Existing cleanup art does not establish original hidden pixels.",
+  "liveReadOnlyCheck20261107": {
+    "connectionAuthorizedByUser": true,
+    "editorPid": 26924,
+    "commandStatus": "success",
+    "isCompilationSuccessful": true,
+    "isExecutionSuccessful": true,
+    "isPlaying": true,
+    "isPaused": false,
+    "isCompiling": false,
+    "isUpdating": false,
+    "screenSize": [1101, 501],
+    "mailAndTeamCanvasScaleFactor": 0.4300781,
+    "canvasRenderMode": "ScreenSpaceOverlay",
+    "gameViewResolutionChanged": false,
+    "liveGameplayScreenshotCaptured": false,
+    "desktopObservation": "Windows lock screen; desktop actions stopped and user asked to unlock.",
+    "evidence": "D:/luyuan/mmorpg-client/.codex-artifacts/ui-fidelity-native/live/read-state-20261107.result.json"
+  },
+  "inputProvenance": {
+    "runtimeSHA256": "4488206533CEC53E605759CEBDAC3175A72BE4085FE79F15203A71CCA82BFF72",
+    "inputHashes": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\capture-inputs-before-unity.json",
+    "completion": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\ui-fidelity-native\\mail-candidate-render-20261106\\completion.json",
+    "note": "Unity normalized Sprite metadata and updated dynamic TMP caches in the isolated project; initial hashes are retained."
+  }
+}
