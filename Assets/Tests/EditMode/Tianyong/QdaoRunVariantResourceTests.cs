@@ -54,23 +54,23 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var paths = new List<string>();
             var released = new List<Texture2D>();
             Texture2D Load(string path) { paths.Add(path); return Texture(); }
-            var legacy = Acquire(QdaoRunVariants.LegacyRoot, Manifest(16, "66.6666667"), Load, released.Add);
+            var archived = Acquire(QdaoActionResources.ResourceRoot, Manifest(16, "66.6666667"), Load, released.Add);
             var current = Acquire(QdaoRunVariants.CurrentRoot, Manifest(8, "133.3333333"), Load, released.Add);
             var currentAgain = Acquire(QdaoRunVariants.CurrentRoot, Manifest(8, "133.3333333"), Load, released.Add);
-            Assert.That(legacy, Is.Not.Null);
+            Assert.That(archived, Is.Not.Null);
             Assert.That(current, Is.Not.Null);
             Assert.That(currentAgain.Frames[0], Is.SameAs(current.Frames[0]));
-            Assert.That(legacy.Frames[0], Is.Not.SameAs(current.Frames[0]));
+            Assert.That(archived.Frames[0], Is.Not.SameAs(current.Frames[0]));
             Assert.That(paths.Count, Is.EqualTo(24));
-            Assert.That(paths[0], Is.EqualTo(QdaoRunVariants.LegacyRoot + "/" + Id + "/run/N/01"));
+            Assert.That(paths[0], Is.EqualTo(QdaoActionResources.ResourceRoot + "/" + Id + "/run/N/01"));
             Assert.That(paths[16], Is.EqualTo(QdaoRunVariants.CurrentRoot + "/" + Id + "/run/N/01"));
             Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(beforeClips + 2));
             Assert.That(QdaoActionResources.ResidentTextureCount, Is.EqualTo(beforeTextures + 24));
-            var legacyAfterimage = QdaoActionResources.Retain(legacy.Frames[0]);
-            _leases.Add(legacyAfterimage);
-            legacy.Dispose();
+            var archivedAfterimage = QdaoActionResources.Retain(archived.Frames[0]);
+            _leases.Add(archivedAfterimage);
+            archived.Dispose();
             Assert.That(released, Is.Empty);
-            legacyAfterimage.Dispose();
+            archivedAfterimage.Dispose();
             Assert.That(released.Count, Is.EqualTo(16));
             Assert.That(current.IsValid, Is.True);
             current.Dispose();
@@ -82,26 +82,26 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void EightAndSixteenDistinctPosesKeepTheirAuthoredCycleAndNormalizedPhase()
+        public void CurrentAndArchivedRunKeepAuthoredTimingAndNormalizedPhase()
         {
-            var legacy = Acquire(QdaoRunVariants.LegacyRoot, Manifest(16, "66.6666667"), _ => Texture());
+            var archived = Acquire(QdaoActionResources.ResourceRoot, Manifest(16, "66.6666667"), _ => Texture());
             var current = Acquire(QdaoRunVariants.CurrentRoot, Manifest(8, "133.3333333"), _ => Texture());
-            Assert.That(legacy.Frames.Length, Is.EqualTo(16));
+            Assert.That(archived.Frames.Length, Is.EqualTo(16));
             Assert.That(current.Frames.Length, Is.EqualTo(8));
-            Assert.That(legacy.DurationSeconds, Is.EqualTo(16f / 15f).Within(.00001f));
-            Assert.That(current.DurationSeconds, Is.EqualTo(legacy.DurationSeconds).Within(.00001f));
-            var legacyTime = legacy.DurationSeconds * .34375f;
-            var currentTime = QdaoRunVariants.RemapSeconds(legacyTime, legacy.DurationSeconds, current.DurationSeconds);
-            Assert.That(legacy.FrameAt(legacyTime, true), Is.SameAs(legacy.Frames[5]));
+            Assert.That(archived.DurationSeconds, Is.EqualTo(16f / 15f).Within(.00001f));
+            Assert.That(current.DurationSeconds, Is.EqualTo(archived.DurationSeconds).Within(.00001f));
+            var archivedTime = archived.DurationSeconds * .34375f;
+            var currentTime = QdaoRunVariants.RemapSeconds(archivedTime, archived.DurationSeconds, current.DurationSeconds);
+            Assert.That(archived.FrameAt(archivedTime, true), Is.SameAs(archived.Frames[5]));
             Assert.That(current.FrameAt(currentTime, true), Is.SameAs(current.Frames[2]));
             Assert.That(QdaoRunVariants.RemapSeconds(.75f, 1f, 2f), Is.EqualTo(1.5f));
             Assert.That(QdaoRunVariants.RemapSeconds(2.75f, 1f, 2f), Is.EqualTo(1.5f));
         }
 
         [Test]
-        public void MissingCurrentDirectionOrTextureNeverBorrowsCachedLegacyClip()
+        public void MissingCurrentDirectionOrTextureNeverBorrowsCachedArchivedClip()
         {
-            var legacy = Acquire(QdaoRunVariants.LegacyRoot, Manifest(16, "60"), _ => Texture());
+            var archived = Acquire(QdaoActionResources.ResourceRoot, Manifest(16, "60"), _ => Texture());
             var before = QdaoActionResources.ResidentClipCount;
             var paths = new List<string>();
             Texture2D Missing(string path) { paths.Add(path); return null; }
@@ -109,7 +109,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(paths, Is.Empty);
             Assert.That(Acquire(QdaoRunVariants.CurrentRoot, Manifest(8, "120"), Missing), Is.Null);
             Assert.That(paths, Is.EqualTo(new[] { QdaoRunVariants.CurrentRoot + "/" + Id + "/run/N/01" }));
-            Assert.That(legacy.IsValid, Is.True);
+            Assert.That(archived.IsValid, Is.True);
             Assert.That(QdaoActionResources.ResidentClipCount, Is.EqualTo(before));
         }
 
@@ -122,17 +122,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void ComparisonRootsRejectOutsidePathsRemovedCharactersAndNonRunActions()
+        public void CurrentRootRejectsUnapprovedPathsIdentitiesAndActions()
         {
             var calls = 0;
             Texture2D Load(string _) { calls++; return Texture(); }
+            Assert.That(Acquire("World/Characters/QdaoRunVariants20261105/legacy", Manifest(16, "60"), Load), Is.Null);
             Assert.That(Acquire(QdaoRunVariants.CurrentRoot + "/../legacy", Manifest(8, "120"), Load), Is.Null);
             Assert.That(Acquire("World/Characters/unapproved", Manifest(8, "120"), Load), Is.Null);
             Assert.That(Acquire(QdaoRunVariants.CurrentRoot, Manifest(8, "120", id: "07_moon_shadow_assassin_girl"), Load,
                 id: "07_moon_shadow_assassin_girl"), Is.Null);
             Assert.That(Acquire(QdaoRunVariants.CurrentRoot, Manifest(8, "120", "E", "attack"), Load, direction: "E", action: "attack"), Is.Null);
             Assert.That(calls, Is.Zero);
-            // 原动作目录保留现有攻击入口，双版本限制不改变战斗资源。
+            // 原动作目录保留现有攻击入口。
             Assert.That(Acquire(QdaoActionResources.ResourceRoot, Manifest(3, "40", "E", "attack"), Load,
                 direction: "E", action: "attack"), Is.Not.Null);
             Assert.That(calls, Is.EqualTo(3));
@@ -145,11 +146,11 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("20_star_formation_master_girl", false)]
         [TestCase("unknown", false)]
         [TestCase(null, false)]
-        public void OnlyRetainedIdentitiesCanUseComparisonRoots(string id, bool expected)
+        public void OnlyRetainedIdentitiesCanUseCurrentRunRoot(string id, bool expected)
             => Assert.That(QdaoRunVariants.AllowsCharacter(id), Is.EqualTo(expected));
 
         [Test]
-        public void InvalidPhaseInputsDoNotProduceNonFiniteTimesOrFallbackRoots()
+        public void InvalidPhaseInputsDoNotProduceNonFiniteTimes()
         {
             foreach (var value in new[] { float.NaN, float.PositiveInfinity, float.NegativeInfinity, -1f })
             {
@@ -164,10 +165,6 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var extreme = QdaoRunVariants.RemapSeconds(float.MaxValue, float.Epsilon, float.MaxValue);
             Assert.That(float.IsNaN(extreme) || float.IsInfinity(extreme), Is.False);
             Assert.That(extreme, Is.GreaterThanOrEqualTo(0f).And.LessThan(float.MaxValue));
-            Assert.That(QdaoRunVariants.RootFor(QdaoRunVariant.Original), Is.EqualTo(QdaoActionResources.ResourceRoot));
-            Assert.That(QdaoRunVariants.RootFor(QdaoRunVariant.Legacy), Is.EqualTo(QdaoRunVariants.LegacyRoot));
-            Assert.That(QdaoRunVariants.RootFor(QdaoRunVariant.Current), Is.EqualTo(QdaoRunVariants.CurrentRoot));
-            Assert.That(QdaoRunVariants.RootFor((QdaoRunVariant)999), Is.Null);
         }
     }
 }

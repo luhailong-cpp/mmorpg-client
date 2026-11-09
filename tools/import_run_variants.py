@@ -1,14 +1,11 @@
-"""导入经独立批准的跑步版本；默认只执行只读预检。
+"""导入经独立批准的新版八帧跑步；默认只执行只读预检。
 
-支持可移植道童 legacy 交付、与源文件绑定的四正向验收回执，以及
-qdao.run-variant-delivery/v1。标准交付包含 sourceRoot（相对素材仓库）、
-characterId、variant 和 clips；每个 clip 包含 direction、
-selection {file, sha256}、approval {file, sha256} 及有序帧
-{frame, file, sha256, durationSeconds}。current 版本的批准记录必须在
-orderedSourceHashes 绑定八个有序源哈希，并明确设置 accepted=true、
-variant=current。已确认的 legacy 片段要求 identityConfirmed=true、
-originalTiming=true；已明确分类的候选版本则须验证源文件保留、
-顺序和时长，并保留其尚未确认的历史身份。
+支持与源文件绑定的四正向验收回执和 qdao.run-variant-delivery/v1。
+标准交付包含 sourceRoot（相对素材仓库）、characterId、variant 和 clips。
+每个 clip 包含 direction、selection {file, sha256}、approval {file, sha256}
+及有序帧 {frame, file, sha256, durationSeconds}。批准记录必须在
+orderedSourceHashes 绑定八个有序源哈希，并明确设置 accepted=true 和
+variant=current。
 
 发布操作以事务方式替换单个角色目录，读取者不会看到新旧文件混合；
 替换期间目录可能短暂不存在，因此须停止 Unity 编辑器后执行。
@@ -48,11 +45,6 @@ CHARACTERS = frozenset(('00_reference_topright_boy', '01_ice_sword_girl',
 SHA = re.compile(r'^[0-9a-f]{64}$')
 ACCEPTED = {'explicit_character_and_source_bound',
             'latest_user_cardinal_confirmation_bound_to_last_shown_player'}
-LEGACY_CANDIDATE_LABEL = '旧版候选（双椭圆身份待核）'
-LEGACY_CANDIDATE_IDENTITIES = {
-    'legacy_candidate_unclassified': LEGACY_CANDIDATE_LABEL,
-    'legacy_later_natural16_candidate': '旧版候选（16帧阶段版；双椭圆身份待核）',
-}
 
 
 def require(condition, message):
@@ -178,71 +170,19 @@ def canonical_clips(data, root, character, variant):
                 and approval.get('variant') == variant
                 and approval.get('orderedSourceHashes') == source_hashes,
                 'Independent approval does not bind this character, direction, variant and source order')
-        identity = clip.get('sourceIdentity')
-        extra = {}
-        if identity is not None:
-            # 保留旧源用于对比，不代表美术验收通过，
-            # 也不能证明它就是用户所指的双椭圆版本。
-            require(variant == 'legacy' and isinstance(identity, dict)
-                    and set(identity) == {'classification', 'doubleEllipseConfirmed', 'displayLabel'}
-                    and identity.get('classification') in LEGACY_CANDIDATE_IDENTITIES
-                    and identity.get('doubleEllipseConfirmed') is False
-                    and identity.get('displayLabel') == LEGACY_CANDIDATE_IDENTITIES[identity['classification']],
-                    'Invalid or misleading unclassified legacy source identity')
-            require(approval.get('sourceRetentionVerified') is True
-                    and approval.get('originalTiming') is True
-                    and approval.get('originalOrder') is True
-                    and approval.get('identityConfirmed') is False
-                    and approval.get('sourceIdentity', identity) == identity,
-                    'Legacy candidate requires verified retention, original timing/order and unconfirmed identity')
-            canvas = clip.get('nativeCanvas')
-            require(canvas in ([1024, 1024], [1254, 1254])
-                    and all(type(side) is int for side in canvas),
-                    'Legacy candidate requires explicit nativeCanvas 1024 or1254 square')
-            extra = {'sourceIdentity': dict(identity), 'nativeCanvas': list(canvas)}
-        else:
-            require(approval.get('accepted') is True,
-                    'Independent approval must accept the selected source')
-            if variant == 'legacy':
-                require(approval.get('identityConfirmed') is True and approval.get('originalTiming') is True,
-                        'Legacy identity/original timing not confirmed')
-            require(clip.get('nativeCanvas', [1254, 1254]) == [1254, 1254],
-                    'Confirmed legacy/current sources require native1254 canvas')
+        require(clip.get('sourceIdentity') is None, 'Retired source identity is not valid for current runs')
+        require(approval.get('accepted') is True, 'Independent approval must accept the selected source')
+        require(clip.get('nativeCanvas', [1254, 1254]) == [1254, 1254],
+                'Current sources require native1254 canvas')
         frames = []
         for frame in clip['frames']:
             frames.append({**frame, 'path': scoped(scope, frame['file'])})
         clips.append({'direction': clip['direction'], 'frames': frames,
-                      'approvalSha256': clip['approval']['sha256'], **extra})
+                      'approvalSha256': clip['approval']['sha256']})
     return clips
 
 
-def boy_clips(data, manifest, root, character, variant):
-    require(character == '00_reference_topright_boy' and variant == 'legacy',
-            'Portable sixteen-frame boy delivery is legacy only; never current8')
-    require(data.get('allEightAccepted') is True and data.get('acceptedFrames') == 128
-            and data.get('acceptedDirections') == 8 and data.get('frameOrder') == list(range(1, 17)),
-            'Boy delivery acceptance/order is incomplete')
-    require(data.get('fps') == 15 and data.get('canvas') == [1254, 1254],
-            'Legacy boy requires original 16 frames at 15 fps on native 1254 canvas')
-    clips = []
-    for clip in data['directions']:
-        require(clip.get('direction') in DIRECTIONS, 'Invalid portable direction')
-        # 可移植包保留字节一致的证据；原工作站路径可能已删除，
-        # 不得仅为导入而恢复这些路径。
-        records = Path('records') / clip['direction']
-        evidence(manifest.parent, {'file': str(records / 'selection.json'), 'sha256': clip['selectionSha256']})
-        evidence(manifest.parent, {'file': str(records / 'acceptance.json'), 'sha256': clip['authoritySha256']})
-        frames = [{**f, 'path': scoped(manifest.parent, f['file']), 'durationSeconds': 1 / 15}
-                  for f in clip['frames']]
-        require(len(frames) == 16, 'Legacy boy direction must retain all 16 poses')
-        clips.append({'direction': clip['direction'], 'frames': frames,
-                      'approvalSha256': clip['authoritySha256']})
-    require({c['direction'] for c in clips} == set(DIRECTIONS), 'Legacy boy requires all eight directions')
-    return clips
-
-
-def cardinal_clips(data, root, character, variant):
-    require(variant == 'current', 'Cardinal current8 acceptance cannot supply legacy')
+def cardinal_clips(data, root, character):
     clips = []
     for row in data['records']:
         if row['characterId'] != character:
@@ -267,14 +207,14 @@ def cardinal_clips(data, root, character, variant):
     return clips
 
 
-def texture_bytes(path, expected, native_canvas=(1254, 1254)):
+def texture_bytes(path, expected):
     require(isinstance(expected, str) and SHA.fullmatch(expected), f'Invalid PNG SHA256: {path}')
     require(path.is_file(), f'Missing native PNG: {path}')
     data = path.read_bytes()
     require(digest(data) == expected, f'Native SHA256 mismatch: {path}')
     with Image.open(BytesIO(data)) as image:
-        require(image.format == 'PNG' and image.mode == 'RGBA' and image.size == tuple(native_canvas),
-                f'Expected native {native_canvas[0]}x{native_canvas[1]} RGBA PNG: {path}')
+        require(image.format == 'PNG' and image.mode == 'RGBA' and image.size == (1254, 1254),
+                f'Expected native 1254x1254 RGBA PNG: {path}')
         image.load()
         # 只处理完整固定画布，不逐帧进行包围盒处理、位移或姿态合成。
         output = image.resize((384, 384), Image.Resampling.LANCZOS)
@@ -434,7 +374,7 @@ class Plan:
 
 def preflight(manifest, character, variant, client_root, directions=None):
     require(character in CHARACTERS, 'Character is not in the exact retained 12-character allowlist')
-    require(variant in ('legacy', 'current'), 'Unknown variant; fallback is forbidden')
+    require(variant == 'current', 'Only current eight-frame runs are supported; legacy import is retired')
     client_root = Path(client_root).absolute()
     require(client_root.is_dir() and not linked(client_root), 'Client root must be an existing real directory')
     manifest = Path(manifest).absolute()
@@ -442,10 +382,8 @@ def preflight(manifest, character, variant, client_root, directions=None):
     manifest = scoped(root, manifest)
     data = read_json(manifest)
     schema = data.get('schema')
-    if schema == 'boy-run.portable-delivery/v1':
-        clips = boy_clips(data, manifest, root, character, variant)
-    elif schema == 'run-art.root-cardinal-user-acceptance/v1':
-        clips = cardinal_clips(data, root, character, variant)
+    if schema == 'run-art.root-cardinal-user-acceptance/v1':
+        clips = cardinal_clips(data, root, character)
     elif schema == 'qdao.run-variant-delivery/v1':
         clips = canonical_clips(data, root, character, variant)
     else:
@@ -461,12 +399,10 @@ def preflight(manifest, character, variant, client_root, directions=None):
     destination = scoped(client_root, FAMILY / variant / character)
     files, runtime_clips, provenance = {}, [], []
     calibrations, applied_calibrations = game_calibrations(client_root), []
-    candidate_canvases = []
     for clip in clips:
         frames = clip['frames']
         count = len(frames)
-        require(count == 8 if variant == 'current' else 1 <= count <= 256,
-                'Current requires exactly eight independent poses; legacy preserves its authored count')
+        require(count == 8, 'Current requires exactly eight independent poses')
         require([f.get('frame') for f in frames] == list(range(1, count + 1)), 'Missing/duplicate/out-of-order frame indices')
         require(len({f['sha256'] for f in frames}) == count, 'Repeated native frame hashes in one cycle')
         require(len({str(f['path']).casefold() for f in frames}) == count, 'Repeated native source paths in one cycle')
@@ -490,25 +426,15 @@ def preflight(manifest, character, variant, client_root, directions=None):
                 orderedSourceHashes=hashes, configuredRuntimeClip=dict(rule['runtimeClip']),
                 emittedRuntimeClip={key: runtime_clips[-1][key] for key in rule['runtimeClip']},
                 gameAcceptance='pending_independent_runtime_closure'))
-        canvas = clip.get('nativeCanvas', [1254, 1254])
-        if 'sourceIdentity' in clip:
-            runtime_clips[-1]['sourceIdentity'] = clip['sourceIdentity']
-            runtime_clips[-1]['sourceCanvas'] = canvas
-            candidate_canvases.append(dict(direction=direction, nativeCanvas=canvas))
         for index, frame in enumerate(frames, 1):
             relative = Path('run') / direction / f'{index:02d}.png'
             source = scoped(root, frame['path'])
-            payload = texture_bytes(source, frame['sha256'], canvas)
+            payload = texture_bytes(source, frame['sha256'])
             files[relative] = payload
             provenance.append(dict(direction=direction, frame=index, source=str(source),
                 sourceSha256=frame['sha256'], derived=relative.as_posix(), derivedSha256=digest(payload),
                 durationSeconds=times[index - 1], approvalSha256=clip['approvalSha256']))
-            if 'sourceIdentity' in clip:
-                provenance[-1].update(sourceCanvas=canvas,
-                    transform=f'fixed-canvas-{canvas[0]}-to-384-rgba-lanczos-v1',
-                    sourceIdentity=clip['sourceIdentity'])
-    transform = ('explicit-native-canvas-to-384-rgba-lanczos-v1' if candidate_canvases else
-                 'fixed-canvas-1254-to-384-rgba-lanczos-v1')
+    transform = 'fixed-canvas-1254-to-384-rgba-lanczos-v1'
     fingerprint_input = {'character': character, 'variant': variant,
         'manifestSha256': digest(manifest.read_bytes()), 'frames': provenance,
         'transform': transform}
@@ -528,11 +454,6 @@ def preflight(manifest, character, variant, client_root, directions=None):
         pixelsPerUnit=39, pivot=[.5, .08], calibration='pending real Unity game validation')
     if applied_calibrations:
         proof['gameCalibrations'] = applied_calibrations
-    if candidate_canvases:
-        canvases = [c.get('nativeCanvas', [1254, 1254]) for c in clips]
-        proof['nativeCanvas'] = canvases[0] if all(c == canvases[0] for c in canvases) else None
-        proof['sourceCanvases'] = [dict(direction=c['direction'], nativeCanvas=canvas)
-                                  for c, canvas in zip(clips, canvases)]
     files[Path('import-proof.json')] = encoded(proof)
     for relative in list(files):
         files[Path(str(relative) + '.meta')] = meta_bytes(FAMILY / variant / character / relative,
@@ -649,7 +570,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--manifest', type=Path, required=True)
     parser.add_argument('--character', required=True)
-    parser.add_argument('--variant', choices=('legacy', 'current'), required=True)
+    parser.add_argument('--variant', choices=('current',), required=True)
     parser.add_argument('--client-root', type=Path, default=ROOT)
     parser.add_argument('--direction', choices=DIRECTIONS, action='append')
     parser.add_argument('--replace', action='store_true')

@@ -75,22 +75,6 @@ class ImportRunVariantsTests(unittest.TestCase):
         self.put(manifest, data)
         return manifest, data
 
-    def legacy_candidate(self, canvas=1254):
-        manifest, data = self.delivery('legacy', canvas=canvas)
-        clip = data['clips'][0]
-        clip['sourceIdentity'] = dict(classification='legacy_candidate_unclassified',
-            doubleEllipseConfirmed=False, displayLabel=M.LEGACY_CANDIDATE_LABEL)
-        clip['nativeCanvas'] = [canvas, canvas]
-        for frame in clip['frames']:
-            frame['durationSeconds'] = .08
-        clip['selection'] = self.put(self.source / clip['selection']['file'], {'frames': clip['frames']})
-        approval = M.read_json(self.source / clip['approval']['file'])
-        approval.update(accepted=False, identityConfirmed=False, sourceRetentionVerified=True,
-                        originalTiming=True, originalOrder=True)
-        clip['approval'] = self.put(self.source / clip['approval']['file'], approval)
-        self.put(manifest, data)
-        return manifest, data
-
     def run_import(self, manifest, variant='current', **kwargs):
         return M.run(manifest, CHARACTER, variant, self.client, **kwargs)
 
@@ -183,9 +167,8 @@ class ImportRunVariantsTests(unittest.TestCase):
         target_data['clips'].extend(east_data['clips'])
         self.put(target, target_data)
         other, _ = self.delivery(direction='SW', suffix='-other-character')
-        legacy, _ = self.delivery('legacy', direction='SW', character=FIRE_BOY, suffix='-legacy')
         cases = [(other, CHARACTER, 'current', None), (east, FIRE_BOY, 'current', None),
-                 (legacy, FIRE_BOY, 'legacy', None), (target, FIRE_BOY, 'current', ['E'])]
+                 (target, FIRE_BOY, 'current', ['E'])]
         baselines = [M.preflight(path, character, variant, self.client, directions)
                      for path, character, variant, directions in cases]
         rule = self.calibration_rule(target_data)
@@ -249,26 +232,23 @@ class ImportRunVariantsTests(unittest.TestCase):
         self.assertEqual(len(result['unavailableDirections']), 7)
         self.assertEqual(list(self.client.iterdir()), [])
 
-    def test_legacy16_and_current8_preserve_timing_and_isolate_roots(self):
-        legacy, _ = self.delivery('legacy')
-        current, _ = self.delivery('current')
-        for path, variant, count, time in [(legacy, 'legacy', 16, 1000 / 15),
-                                         (current, 'current', 8, 2000 / 15)]:
-            result = self.run_import(path, variant, execute=True)
-            target = Path(result['destination'])
-            runtime = M.read_json(target / 'manifest.json')
-            clip = runtime['clips'][0]
-            self.assertEqual(clip['frameCount'], count)
-            self.assertEqual(len(clip['frameDurationsMs']), count)
-            self.assertAlmostEqual(clip['frameDurationsMs'][0], time)
-            self.assertAlmostEqual(sum(clip['frameDurationsMs']), 16000 / 15)
-            self.assertEqual(runtime['frameWidth'], 384)
-            self.assertEqual(runtime['pixelsPerUnit'], 39)
-            with Image.open(target / 'run/E/01.png') as image:
-                self.assertEqual(image.size, (384, 384))
-            self.assertEqual(self.run_import(path, variant, verify_output=True)['mode'], 'verified')
-        self.assertTrue((self.client / M.FAMILY / 'legacy' / CHARACTER).is_dir())
-        self.assertTrue((self.client / M.FAMILY / 'current' / CHARACTER).is_dir())
+    def test_current8_preserves_timing_and_imports_only_current_root(self):
+        manifest, _ = self.delivery()
+        result = self.run_import(manifest, execute=True)
+        target = Path(result['destination'])
+        runtime = M.read_json(target / 'manifest.json')
+        clip = runtime['clips'][0]
+        self.assertEqual(clip['frameCount'], 8)
+        self.assertEqual(len(clip['frameDurationsMs']), 8)
+        self.assertAlmostEqual(clip['frameDurationsMs'][0], 2000 / 15)
+        self.assertAlmostEqual(sum(clip['frameDurationsMs']), 16000 / 15)
+        self.assertEqual(runtime['frameWidth'], 384)
+        self.assertEqual(runtime['pixelsPerUnit'], 39)
+        with Image.open(target / 'run/E/01.png') as image:
+            self.assertEqual(image.size, (384, 384))
+        self.assertEqual(self.run_import(manifest, verify_output=True)['mode'], 'verified')
+        self.assertEqual(target, self.client / M.FAMILY / 'current' / CHARACTER)
+        self.assertFalse((self.client / M.FAMILY / 'legacy').exists())
 
     def test_current16_is_not_silently_decimated(self):
         manifest, _ = self.delivery('current', 16)
@@ -276,10 +256,15 @@ class ImportRunVariantsTests(unittest.TestCase):
             self.run_import(manifest, execute=True)
         self.assertEqual(list(self.client.iterdir()), [])
 
-    def test_cross_variant_and_unknown_direction_never_fall_back(self):
+    def test_legacy_delivery_cannot_be_imported_under_either_variant(self):
+        manifest, _ = self.delivery('legacy')
+        for variant, message in [('legacy', 'legacy import is retired'), ('current', 'fallback')]:
+            with self.subTest(variant=variant), self.assertRaisesRegex(ValueError, message):
+                self.run_import(manifest, variant, execute=True)
+        self.assertEqual(list(self.client.iterdir()), [])
+
+    def test_unknown_direction_never_falls_back(self):
         manifest, _ = self.delivery()
-        with self.assertRaisesRegex(ValueError, 'fallback'):
-            self.run_import(manifest, 'legacy', execute=True)
         with self.assertRaisesRegex(ValueError, 'not independently accepted'):
             self.run_import(manifest, directions=['NW'], execute=True)
         self.assertEqual(list(self.client.iterdir()), [])
@@ -308,12 +293,12 @@ class ImportRunVariantsTests(unittest.TestCase):
         self.assertEqual(list(self.client.iterdir()), [])
 
     def test_approval_and_original_timing_cannot_be_overridden(self):
-        manifest, data = self.delivery('legacy')
+        manifest, data = self.delivery()
         data['clips'][0]['frames'][0]['durationSeconds'] = .1
         self.put(manifest, data)
         with self.assertRaisesRegex(ValueError, 'timing differs'):
-            self.run_import(manifest, 'legacy')
-        manifest, data = self.delivery('current')
+            self.run_import(manifest)
+        manifest, data = self.delivery(suffix='-approval')
         approval = self.source / data['clips'][0]['approval']['file']
         value = M.read_json(approval)
         value['direction'] = 'W'
@@ -431,145 +416,27 @@ class ImportRunVariantsTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 M.verify_meta(expanded.replace(guid.encode(), b'0' * 32), expected, 'fixture')
 
-    def test_unclassified_candidate_retains_identity_order_timing_and_is_idempotent(self):
-        manifest, data = self.legacy_candidate()
-        result = self.run_import(manifest, 'legacy', execute=True)
-        target = Path(result['destination'])
-        runtime = M.read_json(target / 'manifest.json')
-        clip = runtime['clips'][0]
-        self.assertEqual(clip['sourceIdentity'], data['clips'][0]['sourceIdentity'])
-        self.assertFalse(clip['sourceIdentity']['doubleEllipseConfirmed'])
-        self.assertEqual(clip['frameCount'], 16)
-        self.assertEqual(clip['frameDurationsMs'], [80] * 16)
-        self.assertEqual(clip['sourceCanvas'], [1254, 1254])
-        proof = M.read_json(target / 'import-proof.json')
-        self.assertEqual([f['sourceSha256'] for f in proof['frames']],
-                         [f['sha256'] for f in data['clips'][0]['frames']])
-        self.assertEqual(self.run_import(manifest, 'legacy', verify_output=True)['mode'], 'verified')
-        self.assertEqual(self.run_import(manifest, 'legacy', execute=True)['mode'], 'unchanged')
-        clip['sourceIdentity']['displayLabel'] = '双椭圆已确认'
-        (target / 'manifest.json').write_bytes(M.encoded(runtime))
-        with self.assertRaisesRegex(ValueError, 'Published bytes differ'):
-            self.run_import(manifest, 'legacy', verify_output=True)
-
-    def test_later_natural16_candidate_preserves_unconfirmed_identity(self):
-        manifest, data = self.legacy_candidate()
-        clip = data['clips'][0]
-        identity = dict(classification='legacy_later_natural16_candidate',
-            doubleEllipseConfirmed=False,
-            displayLabel=M.LEGACY_CANDIDATE_IDENTITIES['legacy_later_natural16_candidate'])
-        clip['sourceIdentity'] = identity
-        path = self.source / clip['approval']['file']
-        approval = M.read_json(path)
-        approval['sourceIdentity'] = identity
-        self.assertFalse(approval['accepted'])
-        clip['approval'] = self.put(path, approval)
+    def test_current_delivery_rejects_retired_source_identity(self):
+        manifest, data = self.delivery()
+        data['clips'][0]['sourceIdentity'] = {'classification': 'legacy_candidate_unclassified'}
         self.put(manifest, data)
-        result = self.run_import(manifest, 'legacy', execute=True)
-        runtime = M.read_json(Path(result['destination']) / 'manifest.json')
-        self.assertEqual(runtime['clips'][0]['sourceIdentity'], identity)
-        self.assertEqual(runtime['clips'][0]['frameCount'], 16)
-        self.assertEqual(runtime['clips'][0]['frameDurationsMs'], [80] * 16)
-        self.assertEqual(self.run_import(manifest, 'legacy', verify_output=True)['mode'], 'verified')
+        with self.assertRaisesRegex(ValueError, 'Retired source identity'):
+            self.run_import(manifest, execute=True)
+        self.assertEqual(list(self.client.iterdir()), [])
 
-    def test_candidate_classification_label_pairs_cannot_be_mixed(self):
-        manifest, data = self.legacy_candidate()
-        clip = data['clips'][0]
-        identities = M.LEGACY_CANDIDATE_IDENTITIES
-        for classification, correct_label in identities.items():
-            wrong_label = next(label for label in identities.values() if label != correct_label)
-            with self.subTest(classification=classification):
-                clip['sourceIdentity'] = dict(classification=classification,
-                    doubleEllipseConfirmed=False, displayLabel=wrong_label)
-                self.put(manifest, data)
-                with self.assertRaisesRegex(ValueError, 'source identity'):
-                    self.run_import(manifest, 'legacy', execute=True)
-                self.assertEqual(list(self.client.iterdir()), [])
-
-    def test_candidate_1024_canvas_is_native_and_proof_never_claims1254(self):
-        manifest, _ = self.legacy_candidate(1024)
-        result = self.run_import(manifest, 'legacy', execute=True)
-        target = Path(result['destination'])
-        proof = M.read_json(target / 'import-proof.json')
-        self.assertEqual(proof['nativeCanvas'], [1024, 1024])
-        self.assertEqual(proof['sourceCanvases'], [{'direction': 'E', 'nativeCanvas': [1024, 1024]}])
-        self.assertTrue(all(f['sourceCanvas'] == [1024, 1024] and
-            f['transform'] == 'fixed-canvas-1024-to-384-rgba-lanczos-v1' for f in proof['frames']))
-        with Image.open(target / 'run/E/01.png') as image:
-            self.assertEqual(image.size, (384, 384))
-
-    def test_candidate_missing_or_dishonest_retention_identity_timing_is_rejected(self):
-        manifest, data = self.legacy_candidate()
-        clip = data['clips'][0]
-        approval_path = self.source / clip['approval']['file']
-        original = M.read_json(approval_path)
-        for field, value in [('identityConfirmed', True), ('originalTiming', False),
-                             ('originalOrder', None), ('sourceRetentionVerified', False),
-                             ('characterId', '02_fire_talisman_boy'), ('direction', 'N'),
-                             ('variant', 'current'), ('orderedSourceHashes', []),
-                             ('sourceIdentity', {'doubleEllipseConfirmed': True})]:
-            with self.subTest(field=field):
-                approval = {**original, field: value}
-                clip['approval'] = self.put(approval_path, approval)
-                self.put(manifest, data)
-                with self.assertRaises(ValueError):
-                    self.run_import(manifest, 'legacy', execute=True)
-                self.assertEqual(list(self.client.iterdir()), [])
-
-    def test_candidate_cannot_forge_confirmed_classification_or_label(self):
-        manifest, data = self.legacy_candidate()
-        original = dict(data['clips'][0]['sourceIdentity'])
-        for field, value in [('classification', 'legacy_double_ellipse'),
-                             ('doubleEllipseConfirmed', True), ('displayLabel', '双椭圆已确认')]:
-            with self.subTest(field=field):
-                data['clips'][0]['sourceIdentity'] = {**original, field: value}
-                self.put(manifest, data)
-                with self.assertRaisesRegex(ValueError, 'source identity'):
-                    self.run_import(manifest, 'legacy')
-
-    def test_candidate_cannot_lower_current_or_confirmed_legacy_approval_gate(self):
-        manifest, data = self.legacy_candidate()
-        data['variant'] = 'current'
-        clip = data['clips'][0]
-        path = self.source / clip['approval']['file']
-        approval = M.read_json(path)
-        approval['variant'] = 'current'
-        clip['approval'] = self.put(path, approval)
-        self.put(manifest, data)
-        with self.assertRaisesRegex(ValueError, 'source identity'):
-            self.run_import(manifest, 'current')
-        data['variant'] = approval['variant'] = 'legacy'
-        del clip['sourceIdentity']
-        clip['approval'] = self.put(path, approval)
-        self.put(manifest, data)
-        with self.assertRaisesRegex(ValueError, 'Independent approval'):
-            self.run_import(manifest, 'legacy')
-
-    def test_candidate_requires_correct_explicit_uniform_canvas(self):
-        manifest, data = self.legacy_candidate(1024)
-        clip = data['clips'][0]
-        for canvas in [None, [2048, 2048], [1024, 1254], [1024.0, 1024.0], [1254, 1254]]:
-            with self.subTest(canvas=canvas):
-                clip['nativeCanvas'] = canvas
-                self.put(manifest, data)
-                with self.assertRaises(ValueError):
-                    self.run_import(manifest, 'legacy', execute=True)
-                self.assertEqual(list(self.client.iterdir()), [])
-
-    def test_existing_paths_emit_no_candidate_metadata_and_keep_fingerprint_contract(self):
-        for variant in ['legacy', 'current']:
-            manifest, _ = self.delivery(variant)
-            plan = M.preflight(manifest, CHARACTER, variant, self.client)
-            proof = json.loads(plan.files[Path('import-proof.json')])
-            self.assertNotIn('sourceIdentity', plan.runtime['clips'][0])
-            self.assertNotIn('sourceCanvas', plan.runtime['clips'][0])
-            self.assertNotIn('sourceCanvases', proof)
-            self.assertEqual(proof['nativeCanvas'], [1254, 1254])
-            self.assertTrue(all('sourceCanvas' not in f for f in proof['frames']))
-            expected = M.digest(M.encoded({'character': CHARACTER, 'variant': variant,
-                'manifestSha256': M.digest(manifest.read_bytes()), 'frames': proof['frames'],
-                'transform': 'fixed-canvas-1254-to-384-rgba-lanczos-v1'}))
-            self.assertEqual(plan.fingerprint, expected)
+    def test_current_import_keeps_fingerprint_contract(self):
+        manifest, _ = self.delivery()
+        plan = M.preflight(manifest, CHARACTER, 'current', self.client)
+        proof = json.loads(plan.files[Path('import-proof.json')])
+        self.assertNotIn('sourceIdentity', plan.runtime['clips'][0])
+        self.assertNotIn('sourceCanvas', plan.runtime['clips'][0])
+        self.assertNotIn('sourceCanvases', proof)
+        self.assertEqual(proof['nativeCanvas'], [1254, 1254])
+        self.assertTrue(all('sourceCanvas' not in f for f in proof['frames']))
+        expected = M.digest(M.encoded({'character': CHARACTER, 'variant': 'current',
+            'manifestSha256': M.digest(manifest.read_bytes()), 'frames': proof['frames'],
+            'transform': 'fixed-canvas-1254-to-384-rgba-lanczos-v1'}))
+        self.assertEqual(plan.fingerprint, expected)
 
 
 if __name__ == '__main__':

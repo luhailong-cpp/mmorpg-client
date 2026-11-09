@@ -195,7 +195,7 @@ namespace MmorpgClient.World
         private static Manifest LoadManifest(string characterId, string resourceRoot = ResourceRoot)
         {
             if (!ValidIdentity(characterId) || !ValidRoot(resourceRoot) ||
-                (IsRunVariantRoot(resourceRoot) && !QdaoRunVariants.AllowsCharacter(characterId))) return null;
+                (resourceRoot == QdaoRunVariants.CurrentRoot && !QdaoRunVariants.AllowsCharacter(characterId))) return null;
             var key = resourceRoot + "/" + characterId;
             if (Manifests.TryGetValue(key, out var cached)) return cached;
             var text = Resources.Load<TextAsset>(key + "/manifest");
@@ -262,12 +262,10 @@ namespace MmorpgClient.World
                 direction == "SE" || direction == "S" || direction == "SW" || direction == "W" || direction == "NW";
             return (action == "idle" || action == "attack" || action == "hit" || action == "cast") && (direction == "E" || direction == "W");
         }
-        private static bool IsRunVariantRoot(string root)
-            => root == QdaoRunVariants.LegacyRoot || root == QdaoRunVariants.CurrentRoot;
         private static bool ValidRoot(string root)
-            => root == ResourceRoot || root == PetResourceRoot || IsRunVariantRoot(root);
+            => root == ResourceRoot || root == PetResourceRoot || root == QdaoRunVariants.CurrentRoot;
         private static bool ValidRootRequest(string root, string characterId, string action)
-            => ValidRoot(root) && (!IsRunVariantRoot(root) ||
+            => ValidRoot(root) && (root != QdaoRunVariants.CurrentRoot ||
                 (action == "run" && QdaoRunVariants.AllowsCharacter(characterId)));
         private static bool ValidDimension(int value) => value >= 0 && value <= 4096;
         private static bool FinitePositive(float value) => value > 0f && !float.IsNaN(value) && !float.IsInfinity(value);

@@ -66,15 +66,6 @@ namespace MmorpgClient.World.Tianyong
         public CharacterController Motor => _motor;
         public bool IsMoving => _moving;
 
-        /// <summary>切换本机跑步素材，沿用当前角色、方向和动画相位。</summary>
-        public bool TryToggleRunVariant()
-        {
-            var animator = GetComponent<QdaoBoySpriteAnimator>();
-            if (animator == null) return false;
-            var next = animator.RunVariant == QdaoRunVariant.Legacy ? QdaoRunVariant.Current : QdaoRunVariant.Legacy;
-            return animator.TrySetRunVariant(next);
-        }
-
         /// <summary>
         /// 组队跟随中本地角色由服务器驱动。为 true 时:不按点击 / 键盘走、不上报 MoveStart / MoveSync / MoveStop
         /// (服务器整条丢弃),CharacterController 关掉 —— 位置由 <see cref="ActorWorld"/> 按发给自己的

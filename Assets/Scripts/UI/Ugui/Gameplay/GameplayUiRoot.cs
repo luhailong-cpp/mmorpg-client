@@ -1,5 +1,4 @@
 using MmorpgClient.Game.Attribute;
-using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.UI.Ugui.Attribute;
@@ -147,28 +146,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             else if (keys.bKey.wasPressedThisFrame) Toggle(GameplayPage.Bag);
             else if (keys.jKey.wasPressedThisFrame) Toggle(GameplayPage.Missions);
             else if (keys.oKey.wasPressedThisFrame) Toggle(GameplayPage.Activities);
-            else if (!_window.IsVisible && keys.f8Key.wasPressedThisFrame) ToggleRunVariant(game.World);
 #elif ENABLE_LEGACY_INPUT_MANAGER
             if (Input.GetKeyDown(KeyCode.Escape)) _window.Back();
             else if (Input.GetKeyDown(KeyCode.B)) Toggle(GameplayPage.Bag);
             else if (Input.GetKeyDown(KeyCode.J)) Toggle(GameplayPage.Missions);
             else if (Input.GetKeyDown(KeyCode.O)) Toggle(GameplayPage.Activities);
-            else if (!_window.IsVisible && Input.GetKeyDown(KeyCode.F8)) ToggleRunVariant(game.World);
 #endif
-        }
-        private static void ToggleRunVariant(ActorWorld world)
-        {
-            if (!world.HasLocalPlayer || !world.TryGetActor(world.LocalEntity, out var actor) || actor.Go == null)
-                return;
-            var movement = actor.Go.GetComponent<TianyongPlayerController>();
-            if (movement == null) return;
-            if (!movement.TryToggleRunVariant())
-            {
-                BattleUiRoot.Instance?.ShowToast("该人物当前无法切换跑步版本", true);
-                return;
-            }
-            var variant = actor.Go.GetComponent<QdaoBoySpriteAnimator>().RunVariant;
-            BattleUiRoot.Instance?.ShowToast(variant == QdaoRunVariant.Current ? "已切换新版跑步" : "已切换旧版跑步");
         }
 
         public void HidePanel() { if (_window?.Root != null) _window.Hide(); }

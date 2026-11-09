@@ -1,29 +1,8 @@
 namespace MmorpgClient.World
 {
-    /// <summary>对比选项仅选择跑步资源，不改角色身份、站立或战斗动作。</summary>
-    public enum QdaoRunVariant
-    {
-        Original = 0,
-        Legacy = 1,
-        Current = 2,
-    }
-
     public static class QdaoRunVariants
     {
-        public const string LegacyRoot = "World/Characters/QdaoRunVariants20261105/legacy";
         public const string CurrentRoot = "World/Characters/QdaoRunVariants20261105/current";
-
-        /// <summary>未知选项没有资源根，避免错误值回落后冒充已选版本。</summary>
-        public static string RootFor(QdaoRunVariant variant)
-        {
-            switch (variant)
-            {
-                case QdaoRunVariant.Original: return QdaoActionResources.ResourceRoot;
-                case QdaoRunVariant.Legacy: return LegacyRoot;
-                case QdaoRunVariant.Current: return CurrentRoot;
-                default: return null;
-            }
-        }
 
         /// <summary>只允许道童和本次保留的十一名角色，历史别名须由现有角色目录解析。</summary>
         public static bool AllowsCharacter(string id)
