@@ -45,5 +45,56 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(nav.IsWalkable(target), Is.True);
             Assert.That(Vector3.Distance(region.Spawn, target), Is.GreaterThanOrEqualTo(8f));
         }
+
+        [TestCase(1u)]
+        [TestCase(1001u)]
+        [TestCase(35004u)]
+        public void LocalFestivalRouteVisitsNineDistinctMapsAndReturnsToMain(uint currentScene)
+        {
+            var route = FestivalRegionAutoVerify.LocalFestivalVerificationRoute(currentScene);
+            Assert.That(route.Length, Is.EqualTo(10));
+            Assert.That(route[route.Length - 1], Is.EqualTo(1u));
+            Assert.That(route, Is.Unique);
+            uint previous = currentScene;
+            foreach (uint next in route)
+            {
+                Assert.That(next, Is.Not.EqualTo(previous));
+                previous = next;
+            }
+        }
+
+        [TestCase(1001u)]
+        [TestCase(1002u)]
+        [TestCase(5008u)]
+        [TestCase(10000u)]
+        [TestCase(19004u)]
+        [TestCase(21003u)]
+        [TestCase(23006u)]
+        [TestCase(28007u)]
+        [TestCase(35004u)]
+        public void LocalFestivalProbeUsesDeliveredMaskAndSafeSmallMapRoutes(uint sceneConfigId)
+        {
+            var region = CurrentMapCatalog.Find(sceneConfigId);
+            var nav = region.CreateNavigation();
+            Assert.That(region.CanTravelOnline, Is.False);
+            var rejected = FestivalRegionAutoVerify.NetworkBoundsProbePoint(region);
+            Assert.That(float.IsNaN(rejected.x) || float.IsInfinity(rejected.x) ||
+                float.IsNaN(rejected.z) || float.IsInfinity(rejected.z), Is.False);
+            Assert.That(rejected.x, Is.GreaterThanOrEqualTo(region.EffectiveWorldRect.xMax));
+            Assert.That(region.IsWalkable(rejected), Is.False);
+            Assert.That(nav.IsWalkable(rejected), Is.False);
+            Assert.That(FestivalRegionAutoVerify.FindStraightDirection(nav, region.Spawn, out _, 4f), Is.True);
+            Assert.That(FestivalRegionAutoVerify.FindPathTarget(nav, region.Spawn, out var target, 2f), Is.True);
+            Assert.That(nav.FindPath(region.Spawn, target).Count, Is.GreaterThanOrEqualTo(2));
+            int walkable = 0;
+            for (int x = 0; x < nav.Width; x++)
+            for (int z = 0; z < nav.Depth; z++)
+            {
+                var point = FestivalRegionAutoVerify.NavigationProbeCenter(nav, x, z);
+                Assert.That(nav.IsWalkable(point), Is.EqualTo(region.IsWalkable(point)));
+                if (nav.IsWalkable(point)) walkable++;
+            }
+            if (sceneConfigId == 19004u) Assert.That(walkable, Is.EqualTo(48));
+        }
     }
 }

@@ -12,11 +12,13 @@ using UnityEngine;
 
 namespace MmorpgClient.Editor.Tianyong
 {
-    /// <summary>Derives only metadata from approved HD resources. Never generates or rewrites artwork.</summary>
+    /// <summary>Derives metadata-only V13/V14 inventories after full source validation. Never rewrites artwork.</summary>
     [InitializeOnLoad]
     public sealed class QdaoOriginalHdResourceIndexBuilder : AssetPostprocessor, IPreprocessBuildWithReport
     {
         public const string AssetRoot = "Assets/Resources/World/Characters/QdaoOriginalRosterV14";
+        public const string OriginalV13AssetRoot = "Assets/Resources/" + QdaoCharacterCatalog.OriginalV13Root;
+        private static readonly string[] AssetRoots = { AssetRoot, OriginalV13AssetRoot };
         private static readonly HashSet<string> Pending = new(StringComparer.Ordinal);
         private static bool queued;
         public int callbackOrder => 0;
@@ -31,34 +33,48 @@ namespace MmorpgClient.Editor.Tianyong
 
         public static void RebuildAll()
         {
-            if (!Directory.Exists(AssetRoot)) return;
-            foreach (var folder in Directory.GetDirectories(AssetRoot)) Rebuild(folder.Replace('\\', '/'));
+            QdaoOriginalHdResourceIndex.ResetEditorCreationInventories();
+            foreach (var root in AssetRoots)
+                if (Directory.Exists(root))
+                    foreach (var folder in Directory.GetDirectories(root)) Rebuild(folder.Replace('\\', '/'));
             QdaoCharacterCatalog.RefreshAppearances();
         }
 
         private static void OnPostprocessAllAssets(string[] imported, string[] deleted, string[] moved, string[] movedFrom)
         {
             var groups = new[] { imported, deleted, moved, movedFrom };
+            var invalidated = false;
             for (var groupIndex = 0; groupIndex < groups.Length; groupIndex++)
             foreach (var path in groups[groupIndex])
             {
-                if (path == AssetRoot) { QdaoCharacterCatalog.RefreshAppearances(); continue; }
-                if (!path.StartsWith(AssetRoot + "/", StringComparison.Ordinal)) continue;
-                if (path.EndsWith("/runtime-index.asset", StringComparison.Ordinal))
+                foreach (var root in AssetRoots)
                 {
-                    // Index imports invalidate selections too, but must not recursively rebuild themselves.
-                    QdaoCharacterCatalog.RefreshAppearances();
-                    if (groupIndex != 1 && groupIndex != 3) continue;
-                    // A deleted/moved-away derived index can safely be recreated from approved source files.
+                    if (path == root)
+                    {
+                        QdaoOriginalHdResourceIndex.ResetEditorCreationInventories();
+                        invalidated = true;
+                        // Reset removes both versions' proofs, so restore both surviving roots.
+                        foreach (var pendingRoot in AssetRoots)
+                            if (Directory.Exists(pendingRoot))
+                                foreach (var folder in Directory.GetDirectories(pendingRoot)) Pending.Add(folder.Replace('\\', '/'));
+                        continue;
+                    }
+                    if (!path.StartsWith(root + "/", StringComparison.Ordinal)) continue;
+                    var rest = path.Substring(root.Length + 1);
+                    var separator = rest.IndexOf('/');
+                    var id = separator < 0 ? rest : rest.Substring(0, separator);
+                    if (string.IsNullOrEmpty(id)) continue;
+                    var assetFolder = root + "/" + id;
+                    // An old passing index must not be used while its new source revision is pending.
+                    QdaoOriginalHdResourceIndex.InvalidateCreationInventory(assetFolder.Substring("Assets/Resources/".Length));
+                    invalidated = true;
+                    Pending.Add(assetFolder);
                 }
-                var rest = path.Substring(AssetRoot.Length + 1);
-                var separator = rest.IndexOf('/');
-                var id = separator < 0 ? rest : rest.Substring(0, separator);
-                if (!string.IsNullOrEmpty(id)) Pending.Add(AssetRoot + "/" + id);
             }
-            if (Pending.Count == 0 || queued) return;
             // Deleted/changed source paths immediately make cached selections recheck their index.
-            QdaoCharacterCatalog.RefreshAppearances();
+            // A deleted root can leave no work to queue, but still changes what the UI may select.
+            if (invalidated) QdaoCharacterCatalog.RefreshAppearances();
+            if (Pending.Count == 0 || queued) return;
             queued = true;
             EditorApplication.delayCall += Flush;
         }
@@ -75,10 +91,13 @@ namespace MmorpgClient.Editor.Tianyong
         public static bool Rebuild(string folder)
         {
             folder = folder.Replace('\\', '/').TrimEnd('/');
-            if (!folder.StartsWith(AssetRoot + "/", StringComparison.Ordinal) || folder.Substring(AssetRoot.Length + 1).Contains('/')) return false;
-            var id = folder.Substring(AssetRoot.Length + 1);
+            var root = AssetRoots.FirstOrDefault(candidate => folder.StartsWith(candidate + "/", StringComparison.Ordinal));
+            if (root == null || folder.Substring(root.Length + 1).Contains('/')) return false;
+            var id = folder.Substring(root.Length + 1);
             var definition = QdaoCharacterCatalog.Find(id);
             if (definition == null || !definition.IsOriginalRoster) return false;
+            var resourceFolder = folder.Substring("Assets/Resources/".Length);
+            QdaoOriginalHdResourceIndex.InvalidateCreationInventory(resourceFolder);
             var indexPath = folder + "/runtime-index.asset";
             if (!TryDescribe(folder, definition, out var manifestHash, out var activationHash, out var validationHash, out var mode, out var entries))
             {
@@ -86,9 +105,12 @@ namespace MmorpgClient.Editor.Tianyong
                     AssetDatabase.DeleteAsset(indexPath);
                 return false;
             }
-            var resourceFolder = QdaoCharacterCatalog.OriginalV14Root + "/" + id;
             var index = AssetDatabase.LoadAssetAtPath<QdaoOriginalHdResourceIndex>(indexPath);
-            if (index != null && index.resolutionMode == mode && Equivalent(index, resourceFolder, manifestHash, activationHash, validationHash, entries)) return true;
+            if (index != null && index.resolutionMode == mode && Equivalent(index, resourceFolder, manifestHash, activationHash, validationHash, entries))
+            {
+                QdaoOriginalHdResourceIndex.PublishEditorCreationInventory(index);
+                return true;
+            }
             var created = index == null;
             if (created) index = ScriptableObject.CreateInstance<QdaoOriginalHdResourceIndex>();
             index.resourceFolder = resourceFolder;
@@ -100,6 +122,7 @@ namespace MmorpgClient.Editor.Tianyong
             if (created) AssetDatabase.CreateAsset(index, indexPath);
             else EditorUtility.SetDirty(index);
             AssetDatabase.SaveAssets();
+            QdaoOriginalHdResourceIndex.PublishEditorCreationInventory(index);
             QdaoCharacterCatalog.RefreshAppearances();
             return true;
         }
@@ -136,15 +159,21 @@ namespace MmorpgClient.Editor.Tianyong
                 validationHash = Hash(File.ReadAllBytes(validationPath));
                 if (approval == null || approval.manifest_sha256 != manifestHash || approval.validation_sha256 != validationHash) return false;
                 var files = JsonUtility.FromJson<ManifestFiles>(Encoding.UTF8.GetString(manifest).TrimStart('\uFEFF'));
-                if (files?.files == null || files.files.Length != 137) return false;
+                var originalV13 = folder.StartsWith(OriginalV13AssetRoot + "/", StringComparison.Ordinal);
+                if (files?.files == null || (files.files.Length != 137 && (!originalV13 || files.files.Length != 145))) return false;
                 var hashes = new Dictionary<string, string>(StringComparer.Ordinal);
                 foreach (var file in files.files)
                     if (file == null || string.IsNullOrEmpty(file.path) || string.IsNullOrEmpty(file.sha256) || !hashes.TryAdd(file.path, file.sha256)) return false;
                 var expected = QdaoOriginalHdResourceIndex.RequiredRelativePaths().ToArray();
-                if (!new HashSet<string>(expected, StringComparer.Ordinal).SetEquals(hashes.Keys)) return false;
+                var expectedInventory = new HashSet<string>(expected, StringComparer.Ordinal);
+                if (originalV13 && files.files.Length == 145)
+                    foreach (var direction in new[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" })
+                        expectedInventory.Add("walk/" + direction + "/strip.png");
+                if (!expectedInventory.SetEquals(hashes.Keys)) return false;
                 mode = files.resolution_mode;
-                var selected = QdaoCharacterCatalog.SelectOriginalHdAppearance(definition, Encoding.UTF8.GetString(activation), manifest,
-                    (_, _, _) => true);
+                var selected = originalV13
+                    ? QdaoCharacterCatalog.SelectOriginalAppearance(definition, Encoding.UTF8.GetString(activation), manifest, (_, _, _) => true)
+                    : QdaoCharacterCatalog.SelectOriginalHdAppearance(definition, Encoding.UTF8.GetString(activation), manifest, (_, _, _) => true);
                 if (selected == null) return false;
                 var rows = new List<QdaoOriginalHdResourceIndex.Entry>();
                 foreach (var relative in expected)

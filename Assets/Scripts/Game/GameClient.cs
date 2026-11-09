@@ -106,6 +106,8 @@ namespace MmorpgClient.Game
         /// 两实例地址相同即说明其实进了同一个 zone(对齐服务端 robot 的 zone-placement 断言)。
         /// </summary>
         public string AssignedGate { get; private set; }
+        /// <summary>构造本连接时使用的 HTTP 网关；联调门禁不读取可变的界面设置。</summary>
+        public string GatewayBaseUrl { get; }
 
         /// <summary>
         /// "此刻人在哪个区"的单一真源:= 当前连着的那个 gate 所属的 zone;0 = 没连着(或还没过验票)。
@@ -268,6 +270,7 @@ namespace MmorpgClient.Game
 
         public GameClient(string gatewayBaseUrl)
         {
+            GatewayBaseUrl = gatewayBaseUrl;
             _http = new GatewayHttpClient(gatewayBaseUrl);
             _calls = new OutstandingCalls(ex => LogError($"[rpc] callback threw: {ex}"));
             _codec = new MuduoCodec();
@@ -1929,11 +1932,13 @@ namespace MmorpgClient.Game
             {
                 var ev = MoveAckS2C.Parser.ParseFrom(mc.SerializedMessage);
                 MoveAckCount++;
+                var pos = WorldCoordinateConverter.FromServerLocation(ev.ServerLocation);
+                // 诊断只观察真实137裁决；即使无需回拉本地角色，也保留其序号和权威位置。
+                OnMoveAcknowledged?.Invoke(ev.InputSeq, pos);
                 // For now we just trust the server; a full client-prediction
                 // pipeline would rewind/replay any pending input > ev.InputSeq.
                 // 组队跟随由服务器驱动时位置跟着发给自己的 ActorMoveS2C 走;此时到的只会是驱动开始前那次上报的迟到裁决,不能拿它把人拽回去。
                 if (!World.HasLocalPlayer || TeamFollowDriven) return;
-                var pos = WorldCoordinateConverter.FromServerLocation(ev.ServerLocation);
                 var local = GetActorPos(World.LocalEntity);
                 var dist = UnityEngine.Vector3.Distance(pos, local);
                 // Every ack is a server-side correction (the server only sends
@@ -2047,6 +2052,8 @@ namespace MmorpgClient.Game
 
         public int MoveAckCount { get; private set; }
         public int MoveReconcileCount { get; private set; }
+        public uint LastMoveInputSequence => _moveInputSeq;
+        public event Action<uint, UnityEngine.Vector3> OnMoveAcknowledged;
         public event Action<uint, UnityEngine.Vector3> OnMoveReconcile;
 
         // Machine-parsed by tools/run_move_test.ps1: always '.' decimals, whatever the OS locale.

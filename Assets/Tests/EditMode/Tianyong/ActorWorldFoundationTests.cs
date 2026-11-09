@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Google.Protobuf;
 using MmorpgClient.Game;
 using MmorpgClient.Net;
 using MmorpgClient.World;
@@ -279,6 +280,42 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 client.Disconnect();
                 if (client.World.Root != null)
                     UnityEngine.Object.DestroyImmediate(client.World.Root.gameObject);
+            }
+        }
+
+        [Test]
+        public void MoveAckDiagnosticObservesRealDispatchSequenceAndAxesWithoutRequiringLocalSnap()
+        {
+            var client = new GameClient("http://127.0.0.1:1");
+            try
+            {
+                uint observedSequence = 0;
+                Vector3 observedPosition = default;
+                client.OnMoveAcknowledged += (sequence, position) =>
+                { observedSequence = sequence; observedPosition = position; };
+                var ack = new MoveAckS2C
+                {
+                    InputSeq = 42,
+                    ServerLocation = new Location { X = 7, Y = 3, Z = .05 }
+                };
+                var envelope = new MessageContent
+                {
+                    MessageId = MessageIds.NotifyMoveAck,
+                    SerializedMessage = ack.ToByteString()
+                };
+                typeof(GameClient).GetMethod("DispatchInbound", BindingFlags.Instance | BindingFlags.NonPublic)
+                    .Invoke(client, new object[] { envelope });
+                Assert.That(observedSequence, Is.EqualTo(42));
+                Assert.That(observedPosition.x, Is.EqualTo(3f));
+                Assert.That(observedPosition.y, Is.EqualTo(.05f).Within(.0001f));
+                Assert.That(observedPosition.z, Is.EqualTo(7f));
+                Assert.That(client.MoveAckCount, Is.EqualTo(1));
+                Assert.That(client.MoveReconcileCount, Is.Zero, "真实137观测与是否需要本地回拉是两回事。");
+            }
+            finally
+            {
+                client.Disconnect();
+                if (client.World.Root != null) UnityEngine.Object.DestroyImmediate(client.World.Root.gameObject);
             }
         }
 

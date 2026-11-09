@@ -47,6 +47,35 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         private static string Source(CurrentMapTilesManifest manifest)
             => $"{{\"schemaVersion\":1,\"key\":\"{manifest.key}\",\"sceneId\":{manifest.sceneId},\"layoutSha256\":\"{Sha}\"}}";
 
+        [UnityTest]
+        public IEnumerator FestivalVisibleEvidenceRequiresActualActiveLoadedTileQuads()
+        {
+            Assert.That(Cache.Count, Is.Zero);
+            var root = new GameObject("FestivalVisibleTileEvidence");
+            var stream = root.AddComponent<CurrentMapTileStreaming>();
+            try
+            {
+                stream.Configure(CurrentMapCatalog.Find("map01001").ForAppearance("spring"));
+                Assert.That(stream.Manifest.tiles.Length, Is.EqualTo(2));
+                Invoke(stream, "SelectTiles", stream.Manifest.WorldRect, Time.unscaledTime);
+                Assert.That(stream.VisibleTileCount, Is.EqualTo(2));
+                Assert.That(stream.LoadedVisibleTilePaths, Is.Empty, "底图与manifest存在不能冒充运行块已加载。");
+                float deadline = Time.realtimeSinceStartup + 15f;
+                while (stream.LoadedVisibleTilePaths.Length < 2 && Time.realtimeSinceStartup < deadline)
+                {
+                    Invoke(stream, "TickView", stream.Manifest.WorldRect, Time.unscaledTime);
+                    yield return null;
+                }
+                Assert.That(stream.LoadedVisibleTilePaths.Length, Is.EqualTo(2));
+                Assert.That(stream.PendingTileCount, Is.Zero);
+                root.SetActive(false);
+                Assert.That(stream.LoadedVisibleTilePaths, Is.Empty, "被隐藏的旧图不能计为当前可见运行块。");
+                root.SetActive(true);
+                Assert.That(stream.LoadedVisibleTilePaths.Length, Is.EqualTo(2));
+            }
+            finally { stream.ReleaseAll(); Object.DestroyImmediate(root); }
+        }
+
         [TestCase("main", 16)]
         [TestCase("island", 14)]
         [TestCase("village", 14)]

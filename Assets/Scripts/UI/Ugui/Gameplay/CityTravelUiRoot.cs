@@ -166,6 +166,30 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending) return;
             var destination = CurrentMapCatalog.Find(sceneConfigId);
             if (destination == null || !destination.CanTravelOnline || destination.ForAppearance(appearance) == null || _app.WorldMap == null) return;
+            BeginTravel(sceneConfigId, appearance);
+        }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        public bool IsLocalTestTravelPending => _request.IsPending;
+        public string LocalTestTravelStatus => _status;
+
+        /// <summary>显式本机开发入口，复用正式请求/超时/断线处理，正式地图窗口仍拒绝 clientOnly 图。</summary>
+        public bool RequestLocalFestivalTravel(uint sceneConfigId, string appearance)
+        {
+            if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending ||
+                _app?.WorldMap == null ||
+                !FestivalMapLocalTestPolicy.CanConnect(Application.isEditor || Debug.isDebugBuild,
+                    FestivalMapLocalTestPolicy.IsRequested(System.Environment.GetCommandLineArgs()),
+                    _game.GatewayBaseUrl, _game.AssignedGate) ||
+                !FestivalMapLocalTestPolicy.IsDeliveredTarget(CurrentMapCatalog.Find(sceneConfigId), appearance)) return false;
+            Debug.Log($"[FestivalMapLocalTest] REQUEST scene={sceneConfigId} appearance={appearance} gate={_game.AssignedGate}");
+            BeginTravel(sceneConfigId, appearance);
+            return true;
+        }
+#endif
+
+        private void BeginTravel(uint sceneConfigId, string appearance)
+        {
             if (sceneConfigId == CurrentScene)
             {
                 _status = _app.WorldMap.TrySetAppearance(appearance)

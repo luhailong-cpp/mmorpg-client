@@ -95,8 +95,16 @@ namespace MmorpgClient.UI.Ugui.Role
         private UiTextButton _nextAppearanceButton;
         private System.Func<QdaoCharacterCatalog.Definition, QdaoCharacterCatalog.Appearance> _appearanceResolver
             = entry => entry?.ResolveCreationAppearance();
-        private System.Func<string, Sprite> _portraitResolver
-            = id => QdaoCharacterCatalog.LoadPortrait(id) ?? QdaoCoreFidelityArt.LoadCharacterPortrait(id);
+        // The creation window owns at most the current and its two adjacent portraits.
+        // Ordinary selection cards retain their shared portrait lifetime.
+        private System.Func<string, Sprite> _portraitResolver;
+        private System.Func<string, QdaoCharacterCatalog.CreationPortraitLease> _creationPortraitAcquire;
+        private CreationPortraitWindow _creationPortraitWindow;
+        private Coroutine _creationPortraitPreload;
+        private int _creationPortraitGeneration;
+        public int CachedCreationPortraitCount => _creationPortraitWindow?.Count ?? 0;
+        public IReadOnlyCollection<string> CachedCreationPortraitIds
+            => _creationPortraitWindow?.CachedIds ?? System.Array.Empty<string>();
         private TMP_Text _appearanceLabel;
         private TMP_Text _appearanceDetails;
 
@@ -162,6 +170,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 else ShowCreateMode();
             }
             while (!_resolved) yield return null;
+            ClearCreationPortraitWindow();
             _canvasGo.SetActive(false);
         }
 
@@ -242,10 +251,16 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private void Update()
         {
-            if (_canvasGo == null || !_canvasGo.activeSelf || _resolved) return;
+            if (_canvasGo == null || !_canvasGo.activeInHierarchy || _resolved)
+            {
+                if (_creationPortraitPreload != null || _creationPortraitWindow?.Count > 0)
+                    ClearCreationPortraitWindow();
+                return;
+            }
             // Import completion normally advances the revision. A bounded retry also
             // covers a portrait becoming loadable without another import notification.
             if (_creating && (_appearanceResourceRevision != QdaoCharacterCatalog.ResourceRevision ||
+                _creationResourcesReady && (_creationPortraitWindow == null || _creationPortraitWindow.Count == 0) ||
                 !_creationResourcesReady && Time.unscaledTime >= _appearanceRetryAt))
             {
                 RefreshAppearanceChoices();
@@ -266,11 +281,15 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private void OnDestroy()
         {
+            ClearCreationPortraitWindow();
             if (Instance == this) Instance = null;
         }
 
+        private void OnDisable() => ClearCreationPortraitWindow();
+
         private void ShowSelectMode()
         {
+            ClearCreationPortraitWindow();
             _creating = false;
             _title.text = "选择角色";
             _title.gameObject.SetActive(false);_exactSelectionTitle.gameObject.SetActive(true);_exactSelectionSeal.gameObject.SetActive(true);
@@ -409,6 +428,7 @@ namespace MmorpgClient.UI.Ugui.Role
             bool creatable = QdaoCharacterCatalog.IsCreatableAppearance(resolvedId) &&
                 (string.IsNullOrEmpty(PickedAppearanceId) || QdaoCharacterCatalog.IsCreatableAppearance(PickedAppearanceId));
             var appearance = creatable ? _appearanceResolver(QdaoCharacterCatalog.Find(resolvedId)) : null;
+            PrepareCreationPortraitWindow(creatable ? resolvedId : null, out var previousId, out var nextId);
             RefreshPreview(_pickedClassId, _pickedGender, 0, PickedAppearanceId);
             _creationResourcesReady = appearance != null && _hero.enabled && _hero.sprite != null;
             _creationResourceHint = !creatable ? "所选人物暂不可新建，请选择其他人物" : _appearanceChoices.Count == 0 ?
@@ -422,7 +442,82 @@ namespace MmorpgClient.UI.Ugui.Role
             if (!_creationResourcesReady) SetPreviewHint(_creationResourceHint, true);
             else if (!string.IsNullOrEmpty(_result?.RejectHint)) SetPreviewHint(_result.RejectHint, true);
             else RefreshNameHint();
+            ScheduleCreationPortraitPreload(previousId, nextId);
             return _creationResourcesReady;
+        }
+
+        private QdaoCharacterCatalog.CreationPortraitLease AcquireCreationPortrait(string id)
+        {
+            if (_creationPortraitAcquire != null) return _creationPortraitAcquire(id);
+            if (_portraitResolver != null)
+            {
+                var sprite = _portraitResolver(id);
+                return sprite == null ? null : QdaoCharacterCatalog.CreationPortraitLease.Borrow(sprite,
+                    () => _portraitResolver(id) == sprite);
+            }
+            return QdaoCharacterCatalog.AcquireCreationPortrait(id);
+        }
+
+        private string CreationPortraitIdAt(int slot)
+        {
+            string appearanceId = slot > 0 ? _appearanceChoices[slot - 1].Id : string.Empty;
+            string id = QdaoCharacterCatalog.ResolveRole(_pickedClassId, _pickedGender, appearanceId);
+            return QdaoCharacterCatalog.IsCreatableAppearance(id) ? id : null;
+        }
+
+        private void PrepareCreationPortraitWindow(string currentId, out string previousId, out string nextId)
+        {
+            StopCreationPortraitPreload();
+            _creationPortraitWindow ??= new CreationPortraitWindow(AcquireCreationPortrait,
+                () => QdaoCharacterCatalog.ResourceRevision);
+            previousId = CreationPortraitIdAt(AdjacentAppearanceChoice(-1));
+            nextId = CreationPortraitIdAt(AdjacentAppearanceChoice(1));
+            // Evict the outgoing edge before loading anything new, including rapid jumps.
+            _creationPortraitWindow.SetWindow(currentId, previousId, nextId);
+        }
+
+        private void ScheduleCreationPortraitPreload(string previousId, string nextId)
+        {
+            if (Application.isPlaying && isActiveAndEnabled)
+                _creationPortraitPreload = StartCoroutine(PreloadCreationPortraits(
+                    _creationPortraitGeneration, previousId, nextId));
+        }
+
+        private IEnumerator PreloadCreationPortraits(int generation, string previousId, string nextId)
+        {
+            // Let the selected portrait reach the screen first. Never load both neighbors
+            // in the button callback, and discard work for a selection that has moved on.
+            yield return null;
+            if (!CanPreloadCreationPortraits(generation)) yield break;
+            _creationPortraitWindow.GetOrLoad(previousId);
+            yield return null;
+            if (!CanPreloadCreationPortraits(generation)) yield break;
+            _creationPortraitWindow.GetOrLoad(nextId);
+            _creationPortraitPreload = null;
+        }
+
+        private bool CanPreloadCreationPortraits(int generation)
+            => generation == _creationPortraitGeneration && _creating && !_resolved &&
+               _canvasGo != null && _canvasGo.activeInHierarchy &&
+               _appearanceResourceRevision == QdaoCharacterCatalog.ResourceRevision;
+
+        private void StopCreationPortraitPreload()
+        {
+            _creationPortraitGeneration++;
+            if (_creationPortraitPreload == null) return;
+            StopCoroutine(_creationPortraitPreload);
+            _creationPortraitPreload = null;
+        }
+
+        private void ClearCreationPortraitWindow()
+        {
+            StopCreationPortraitPreload();
+            if (_creating && _hero != null)
+            {
+                _hero.sprite = null;
+                _hero.enabled = false;
+            }
+            _creationPortraitWindow?.Clear();
         }
 
         private string PickedAppearanceId => _pickedAppearanceId ?? string.Empty;
@@ -458,11 +553,16 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private void CycleAppearance(int delta)
         {
-            int count = _appearanceChoices.Count + 1;
-            _appearanceChoice = (_appearanceChoice + delta + count) % count;
+            _appearanceChoice = AdjacentAppearanceChoice(delta);
             _pickedAppearanceId = _appearanceChoice > 0 ? _appearanceChoices[_appearanceChoice - 1].Id : string.Empty;
             _hasAppearanceSelection = true;
             RefreshCreateHighlights();
+        }
+
+        private int AdjacentAppearanceChoice(int delta)
+        {
+            int count = _appearanceChoices.Count + 1;
+            return (_appearanceChoice + delta + count) % count;
         }
 
         private void RefreshPreview(uint classId, uint gender, ulong playerId, string appearanceId = null,
@@ -855,7 +955,9 @@ namespace MmorpgClient.UI.Ugui.Role
         private Sprite ResolvePortrait(uint classId, uint gender, string appearanceId = null)
         {
             string id=QdaoCharacterCatalog.ResolveRole(classId,gender,appearanceId);
-            return _portraitResolver(id);
+            if (_creating) return _creationPortraitWindow?.GetOrLoad(id);
+            if (_portraitResolver != null) return _portraitResolver(id);
+            return QdaoCharacterCatalog.LoadPortrait(id) ?? QdaoCoreFidelityArt.LoadCharacterPortrait(id);
         }
 
 #if UNITY_EDITOR

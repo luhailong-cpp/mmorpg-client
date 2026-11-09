@@ -72,6 +72,20 @@ internal static class Program
             });
 
             int tileCount = 0, appearanceCount = 0;
+            Check("Local development entry rejects release, implicit opt-in, remote and malformed endpoints", () =>
+            {
+                Require(FestivalMapLocalTestPolicy.CanConnect(true, true, "http://127.0.0.1:8081", "127.0.0.1:10001"));
+                Require(FestivalMapLocalTestPolicy.CanConnect(true, true, "http://localhost:8081", "[::1]:10001"));
+                Require(!FestivalMapLocalTestPolicy.CanConnect(false, true, "http://127.0.0.1:8081", "127.0.0.1:10001"));
+                Require(!FestivalMapLocalTestPolicy.CanConnect(true, false, "http://127.0.0.1:8081", "127.0.0.1:10001"));
+                foreach (string gateway in new[] { null, "file:///localhost/test", "http://localhost.example:8081", "http://192.168.1.1:8081", "http://name@localhost:8081" })
+                    Require(!FestivalMapLocalTestPolicy.CanConnect(true, true, gateway, "127.0.0.1:10001"));
+                foreach (string gate in new[] { null, "127.0.0.1", "127.0.0.1:0", "127.0.0.1:65536", "localhost.example:10001", "192.168.1.1:10001" })
+                    Require(!FestivalMapLocalTestPolicy.CanConnect(true, true, "http://127.0.0.1:8081", gate));
+                Require(!FestivalMapLocalTestPolicy.IsDeliveredTarget(CurrentMapCatalog.Find(1u), "spring"));
+                Require(FestivalMapLocalTestPolicy.IsRequested(new[] { "game.exe", "-festivalMapLocalTest" }));
+                Require(!FestivalMapLocalTestPolicy.IsRequested(new[] { "game.exe", "-festivalMapLocalTest=false" }));
+            });
             foreach (var registration in catalog.maps)
             {
                 string mapId = registration.key.Substring("map".Length);
@@ -85,6 +99,12 @@ internal static class Program
                 {
                     Require(selected.IsModern && !selected.CanTravelOnline && selected.Appearance == registration.DefaultAppearance);
                     Require(selected.ForAppearance("normal") == null && selected.ForAppearance("lantern") == null);
+                    Require(FestivalMapLocalTestPolicy.IsDeliveredTarget(selected, selected.Appearance));
+                    Require(!FestivalMapLocalTestPolicy.IsDeliveredTarget(selected, "normal"));
+                    if (mapId == "19004" || mapId == "23006")
+                        Require(!FestivalMapLocalTestPolicy.IsDeliveredTarget(selected, "spring"));
+                    if (mapId == "28007")
+                        Require(!FestivalMapLocalTestPolicy.IsDeliveredTarget(selected, "mid-autumn"));
                 });
                 byte[] firstMask = null;
                 CurrentMapDefinition firstDefinition = null;

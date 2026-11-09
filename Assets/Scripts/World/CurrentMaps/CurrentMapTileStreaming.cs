@@ -54,6 +54,24 @@ namespace MmorpgClient.World.CurrentMaps
         public CurrentMapTilesManifest Manifest { get; private set; }
         public int ResidentTileCount { get; private set; }
         public int PendingTileCount { get; private set; }
+        /// <summary>实际相机视域的分片计数；供验收区分底图回退和运行分片就绪。</summary>
+        public int VisibleTileCount
+        {
+            get { int count = 0; foreach (var tile in _tiles) if (tile.Visible) count++; return count; }
+        }
+        public string[] LoadedVisibleTilePaths
+        {
+            get
+            {
+                var paths = new List<string>();
+                foreach (var tile in _tiles)
+                    if (tile.Visible && tile.Quad != null && tile.Quad.activeInHierarchy &&
+                        tile.Material != null && tile.Lease?.Texture != null &&
+                        tile.Material.mainTexture == tile.Lease.Texture)
+                        paths.Add(tile.Entry.resourcePath);
+                return paths.ToArray();
+            }
+        }
         public static int GlobalLeaseCount => Cache.Count;
         public static int GlobalPendingCount
         {

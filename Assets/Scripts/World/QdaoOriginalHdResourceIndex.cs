@@ -31,6 +31,12 @@ namespace MmorpgClient.World
         public Entry[] entries = Array.Empty<Entry>();
         private static readonly Dictionary<string, QdaoOriginalHdResourceIndex> Cache = new();
         private static readonly Dictionary<string, string> Validated = new();
+        private static readonly Dictionary<string, string> CreationValidated = new();
+#if UNITY_EDITOR
+        // This proof is issued only after the editor builder checks every source file. It is
+        // deliberately not serialized: a fresh checkout/domain reload must validate its own files.
+        private static readonly Dictionary<string, string> EditorCreationVerified = new();
+#endif
         private static readonly string[] Directions = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
 
         public static IEnumerable<string> RequiredRelativePaths()
@@ -43,7 +49,55 @@ namespace MmorpgClient.World
             }
         }
 
-        public static void ClearCache() { Cache.Clear(); Validated.Clear(); }
+        public static void ClearCache() { Cache.Clear(); Validated.Clear(); CreationValidated.Clear(); }
+
+        public static void InvalidateCreationInventory(string folder)
+        {
+            CreationValidated.Remove(folder);
+#if UNITY_EDITOR
+            EditorCreationVerified.Remove(folder);
+#endif
+        }
+
+#if UNITY_EDITOR
+        public static void ResetEditorCreationInventories()
+        {
+            EditorCreationVerified.Clear();
+            CreationValidated.Clear();
+        }
+
+        /// <summary>Called by the importer only after full source hashes, GUIDs and geometry have passed.</summary>
+        public static void PublishEditorCreationInventory(QdaoOriginalHdResourceIndex index)
+        {
+            if (index == null) return;
+            EditorCreationVerified[index.resourceFolder] = Revision(index.manifestSha256, index.activationSha256, index.validationSha256);
+            CreationValidated.Remove(index.resourceFolder);
+        }
+#endif
+
+        private static string Revision(string manifestHash, string activationHash, string validationHash)
+            => manifestHash + ":" + activationHash + ":" + validationHash;
+
+        /// <summary>Checks the generated inventory and its small revision documents, never the PNG source files.</summary>
+        public static bool IsCompleteForCreation(string folder, string manifestHash, string activationHash)
+        {
+            if (string.IsNullOrEmpty(manifestHash) || string.IsNullOrEmpty(activationHash)) return false;
+            var index = Load(folder);
+            if (index == null) return false;
+            var revision = Revision(manifestHash, activationHash, index.validationSha256);
+#if UNITY_EDITOR
+            if (!EditorCreationVerified.TryGetValue(folder, out var verified) || verified != revision) return false;
+#endif
+            if (CreationValidated.TryGetValue(folder, out var prior) && prior == revision) return true;
+            if (!index.Validate(folder, manifestHash, activationHash, _ => true)) return false;
+            var validation = Resources.Load<TextAsset>(folder + "/validation");
+            if (validation == null) return false;
+            using var sha = SHA256.Create();
+            var digest = BitConverter.ToString(sha.ComputeHash(validation.bytes)).Replace("-", "").ToLowerInvariant();
+            if (digest != index.validationSha256) return false;
+            CreationValidated[folder] = revision;
+            return true;
+        }
 
         private static QdaoOriginalHdResourceIndex Load(string folder)
         {
@@ -80,6 +134,7 @@ namespace MmorpgClient.World
             var required = new HashSet<string>(RequiredRelativePaths(), StringComparer.Ordinal);
             var guids = new HashSet<string>(StringComparer.Ordinal);
             var mixed = resolutionMode == QdaoMixedResolutionContract.Mode;
+            var originalV13 = folder.StartsWith(QdaoCharacterCatalog.OriginalV13Root + "/", StringComparison.Ordinal);
             if (!string.IsNullOrEmpty(resolutionMode) && !mixed) return false;
             if (mixed && (!folder.StartsWith(QdaoCharacterCatalog.OriginalV14Root + "/", StringComparison.Ordinal) ||
                 !QdaoMixedResolutionContract.AllowedIdentity(folder.Substring(QdaoCharacterCatalog.OriginalV14Root.Length + 1)))) return false;
@@ -88,7 +143,8 @@ namespace MmorpgClient.World
             {
                 if (entry == null || !required.Remove(entry.path) || entry.height != entry.width ||
                     (mixed && entry.path != "portrait.png" ?
-                        (entry.width != 512 && entry.width != 1024) || entry.pixelsPerUnit != (entry.width == 512 ? 52f : 104f) : entry.width != 1024) ||
+                        (entry.width != 512 && entry.width != 1024) || entry.pixelsPerUnit != (entry.width == 512 ? 52f : 104f) :
+                        entry.width != (originalV13 && entry.path != "portrait.png" ? 512 : 1024)) ||
                     !Hex(entry.assetGuid, 32) || !guids.Add(entry.assetGuid) || !Hex(entry.sha256, 64) || entry.sourceBytes <= 24) return false;
                 if (entry.path != "portrait.png") { if (entry.width == 512) oldCount++; else newCount++; }
                 if (fileMatches != null)
@@ -112,7 +168,8 @@ namespace MmorpgClient.World
 
         public static bool TextureMatches(string resourcePath, int width, int height)
         {
-            var root = QdaoCharacterCatalog.OriginalV14Root + "/";
+            var root = resourcePath.StartsWith(QdaoCharacterCatalog.OriginalV13Root + "/", StringComparison.Ordinal)
+                ? QdaoCharacterCatalog.OriginalV13Root + "/" : QdaoCharacterCatalog.OriginalV14Root + "/";
             if (!resourcePath.StartsWith(root, StringComparison.Ordinal)) return false;
             var separator = resourcePath.IndexOf('/', root.Length);
             if (separator < 0) return false;

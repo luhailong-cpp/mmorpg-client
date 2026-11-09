@@ -25,6 +25,69 @@ namespace MmorpgClient.Tests.PlayMode
         private const string Second = "01_ice_sword_girl";
 
         [UnityTest]
+        public IEnumerator CreationResources_LoadsCurrentBeforeDeferredNeighbours()
+        {
+            using var fixture = new CreationResourceFixture();
+            const string preferred = "08_alchemy_prodigy_boy";
+            fixture.Add(First);
+            fixture.Add(Second);
+            fixture.Add(preferred);
+            fixture.Add(WindowDefault);
+            var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), new GameClient.PlayerChoice());
+            Assert.That(choose.MoveNext(), Is.True);
+            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { preferred }),
+                "The chooser must show the selected portrait before loading either neighbour.");
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[preferred]));
+            for (int i = 0; i < 3; i++) yield return null;
+            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { preferred, WindowDefault, First }));
+
+            fixture.PortraitRequests.Clear();
+            Click(fixture.Host, "NextAppearance");
+            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { First }));
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[First]));
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
+            for (int i = 0; i < 3; i++) yield return null;
+            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { preferred, First, Second }));
+        }
+
+        [UnityTest]
+        public IEnumerator CreationResources_PortraitOrInventoryLostAfterPreviewBlocksDirectSubmitAndPreservesInput()
+        {
+            using var fixture = new CreationResourceFixture();
+            fixture.Add(First);
+            var choice = new GameClient.PlayerChoice();
+            var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), choice);
+            Assert.That(choose.MoveNext(), Is.True);
+            yield return null;
+            var input = fixture.Host.GetComponentsInChildren<TMPro.TMP_InputField>(true).Single();
+            input.text = "云行客";
+            var portrait = fixture.Portraits[First];
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
+
+            fixture.Portraits.Remove(First);
+            fixture.Button("ConfirmCreate").onClick.Invoke();
+            Assert.That(choice.CreateNew, Is.False);
+            Assert.That(choose.MoveNext(), Is.True);
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").enabled, Is.False);
+            Assert.That(input.text, Is.EqualTo("云行客"));
+
+            fixture.Portraits[First] = portrait;
+            var appearance = fixture.Available[First];
+            fixture.Available.Remove(First);
+            fixture.Button("ConfirmCreate").onClick.Invoke();
+            Assert.That(choice.CreateNew, Is.False, "A cached portrait cannot bypass an invalidated selected inventory.");
+            Assert.That(choose.MoveNext(), Is.True);
+            Assert.That(input.text, Is.EqualTo("云行客"));
+
+            fixture.Available[First] = appearance;
+            fixture.Button("ConfirmCreate").onClick.Invoke();
+            Assert.That(choose.MoveNext(), Is.False);
+            Assert.That(choice.CreateNew, Is.True);
+            Assert.That(choice.AppearanceId, Is.EqualTo(First));
+            Assert.That(choice.Name, Is.EqualTo("云行客"));
+        }
+
+        [UnityTest]
         public IEnumerator CreationResources_LateImportRecoversOpenPageWithoutChangingSelectedIdentity()
         {
             using var fixture = new CreationResourceFixture();
@@ -556,6 +619,7 @@ namespace MmorpgClient.Tests.PlayMode
             public readonly RoleFlowUi Ui;
             public readonly Dictionary<string, QdaoCharacterCatalog.Appearance> Available = new();
             public readonly Dictionary<string, Sprite> Portraits = new();
+            public readonly List<string> PortraitRequests = new();
             public int AppearanceProbeCount;
 
             public CreationResourceFixture()
@@ -567,7 +631,11 @@ namespace MmorpgClient.Tests.PlayMode
                         AppearanceProbeCount++;
                         return entry != null && Available.TryGetValue(entry.Id, out var value) ? value : null;
                     };
-                Func<string, Sprite> portrait = id => Available.ContainsKey(id) && Portraits.TryGetValue(id, out var value) ? value : null;
+                Func<string, Sprite> portrait = id =>
+                {
+                    PortraitRequests.Add(id);
+                    return Available.ContainsKey(id) && Portraits.TryGetValue(id, out var value) ? value : null;
+                };
                 typeof(RoleFlowUi).GetField("_appearanceResolver", Hidden)?.SetValue(Ui, appearance);
                 typeof(RoleFlowUi).GetField("_portraitResolver", Hidden)?.SetValue(Ui, portrait);
                 typeof(RoleFlowUi).GetMethod("BuildCanvas", Hidden)?.Invoke(Ui, null);

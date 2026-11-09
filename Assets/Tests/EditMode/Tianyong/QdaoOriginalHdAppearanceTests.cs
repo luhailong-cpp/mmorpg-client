@@ -33,6 +33,257 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TearDown] public void Clear() => QdaoCharacterCatalog.RefreshAppearances();
 
         [Test]
+        public void CreationPreviewReadsOnlyMetadataAndIndexAndCannotPrimeFullAppearanceValidation()
+        {
+            var definition = QdaoCharacterCatalog.Find(Id);
+            var manifest = Manifest();
+            var approval = Approval(manifest);
+            var metadataReads = new List<string>();
+            var indexChecks = new List<string>();
+            var indexedImages = new List<string>();
+            string Metadata(string path)
+            {
+                metadataReads.Add(path);
+                Assert.That(path.EndsWith("/manifest") || path.EndsWith("/appearance"), Is.True,
+                    "Opening creation may read the signed contract, never idle/walk image bytes.");
+                return !path.Contains("V14/") ? null : path.EndsWith("/manifest") ? manifest : approval;
+            }
+            byte[] ResourceBytes(string path)
+            {
+                var value = Metadata(path);
+                return value == null ? null : Bytes(value);
+            }
+            bool CompleteIndex(string folder, string manifestHash, string activationHash)
+            {
+                indexChecks.Add(folder);
+                return folder.Contains("V14/") && manifestHash == Hash(manifest) && activationHash == Hash(approval);
+            }
+            bool IndexedImage(string path, int width, int height)
+            {
+                indexedImages.Add(path);
+                Assert.That(width, Is.EqualTo(1024));
+                Assert.That(height, Is.EqualTo(1024));
+                return true;
+            }
+
+            var preview = definition.ResolveCreationAppearance(Metadata, ResourceBytes, CompleteIndex, IndexedImage);
+            Assert.That(preview, Is.Not.Null);
+            Assert.That(preview.Id, Is.EqualTo(Id));
+            Assert.That(preview.Version, Is.EqualTo(14));
+            Assert.That(metadataReads, Is.Not.Empty);
+            Assert.That(indexChecks, Does.Contain(QdaoCharacterCatalog.OriginalV14Root + "/" + Id));
+            Assert.That(indexedImages, Is.Not.Empty, "Geometry must still be checked against the index.");
+
+            int fullFileChecks = 0;
+            var world = definition.ResolveAppearance(Metadata, (_, _, _) => false, ResourceBytes,
+                (_, _, _) => { fullFileChecks++; return false; });
+            Assert.That(world, Is.Null,
+                "A lightweight preview must not make a failed full runtime inventory look validated.");
+            Assert.That(fullFileChecks, Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void CreationPreviewRejectsUnavailableIndexAndRecoversAfterResourceRevisionWithoutChangingIdentity()
+        {
+            var definition = QdaoCharacterCatalog.Find(Id);
+            var manifest = Manifest();
+            string Metadata(string path) => !path.Contains("V14/") ? null :
+                path.EndsWith("/manifest") ? manifest : Approval(manifest);
+            byte[] ResourceBytes(string path)
+            {
+                var value = Metadata(path);
+                return value == null ? null : Bytes(value);
+            }
+            bool available = false;
+            bool CompleteIndex(string folder, string _, string __) => folder.Contains("V14/") && available;
+
+            Assert.That(definition.ResolveCreationAppearance(Metadata, ResourceBytes, CompleteIndex, (_, _, _) => true), Is.Null);
+            available = true;
+            QdaoCharacterCatalog.RefreshAppearances();
+            var accepted = definition.ResolveCreationAppearance(Metadata, ResourceBytes, CompleteIndex, (_, _, _) => true);
+            Assert.That(accepted, Is.Not.Null);
+            Assert.That(accepted.Id, Is.EqualTo(Id));
+            available = false;
+            QdaoCharacterCatalog.RefreshAppearances();
+            Assert.That(definition.ResolveCreationAppearance(Metadata, ResourceBytes, CompleteIndex, (_, _, _) => true), Is.Null,
+                "A removed or invalidated imported inventory must invalidate the preview too.");
+            available = true;
+            QdaoCharacterCatalog.RefreshAppearances();
+            Assert.That(definition.ResolveCreationAppearance(Metadata, ResourceBytes, CompleteIndex, (_, _, _) => true).Id,
+                Is.EqualTo(Id));
+        }
+
+        [Test]
+        public void CreationPreviewKeepsVerifiedV13UntilOwnHdIndexIsReady()
+        {
+            var definition = QdaoCharacterCatalog.Find(Id);
+            var hd = Manifest();
+            var old = Manifest(13);
+            string Metadata(string path) => path.EndsWith("/manifest") ? (path.Contains("V14/") ? hd : old) :
+                path.Contains("V14/") ? Approval(hd) : Approval(old, 13);
+            bool hdReady = false;
+            bool CompleteIndex(string folder, string _, string __) => !folder.Contains("V14/") || hdReady;
+            bool IndexedImage(string path, int width, int height)
+            {
+                var expected = path.Contains("V14/") || path.EndsWith("/portrait") ? 1024 : 512;
+                Assert.That(width, Is.EqualTo(expected));
+                Assert.That(height, Is.EqualTo(expected));
+                return true;
+            }
+            var fallback = definition.ResolveCreationAppearance(Metadata, path => Bytes(Metadata(path)), CompleteIndex, IndexedImage);
+            Assert.That(fallback, Is.Not.Null);
+            Assert.That(fallback.Version, Is.EqualTo(13));
+            Assert.That(fallback.Id, Is.EqualTo(Id));
+            hdReady = true;
+            var upgraded = definition.ResolveCreationAppearance(Metadata, path => Bytes(Metadata(path)), CompleteIndex, IndexedImage);
+            Assert.That(upgraded, Is.Not.Null);
+            Assert.That(upgraded.Version, Is.EqualTo(14));
+            Assert.That(upgraded.Id, Is.EqualTo(Id));
+            Assert.That(upgraded.CacheKey, Is.Not.EqualTo(fallback.CacheKey));
+        }
+
+        [TestCase(false, false)]
+        [TestCase(true, true)]
+        public void CreationPortraitFailureFallsBackOnlyToSameIdentityAndNewRevisionRetriesHd(bool wrongSize, bool refresh)
+        {
+            var hd = Manifest();
+            var old = Manifest(13);
+            string Metadata(string path) => path.EndsWith("/manifest") ? (path.Contains("V14/") ? hd : old) :
+                path.Contains("V14/") ? Approval(hd) : Approval(old, 13);
+            QdaoCharacterCatalog.Appearance Resolve(QdaoCharacterCatalog.Definition definition)
+                => definition.ResolveCreationAppearance(Metadata, path => Bytes(Metadata(path)), (_, _, _) => true, (_, _, _) => true);
+            var attempts = new List<string>();
+            var textures = new List<Texture2D>();
+            var sprites = new HashSet<Sprite>();
+            Texture2D hdPortrait = wrongSize ? new Texture2D(512, 512) : null;
+            if (hdPortrait != null) textures.Add(hdPortrait);
+            var oldPortrait = new Texture2D(1024, 1024);
+            textures.Add(oldPortrait);
+            Texture2D Load(string path)
+            {
+                attempts.Add(path);
+                return path.Contains("V14/") ? hdPortrait : oldPortrait;
+            }
+            var hdPath = QdaoCharacterCatalog.OriginalV14Root + "/" + Id + "/portrait";
+            var oldPath = QdaoCharacterCatalog.OriginalV13Root + "/" + Id + "/portrait";
+            try
+            {
+                var fallback = QdaoCharacterCatalog.LoadCreationPortrait(Id, Resolve, Load);
+                Assert.That(fallback, Is.Not.Null);
+                sprites.Add(fallback);
+                Assert.That(fallback.name, Is.EqualTo(Id + "_portrait"));
+                Assert.That(fallback.texture, Is.SameAs(oldPortrait));
+                Assert.That(attempts, Is.EqualTo(new[] { hdPath, oldPath }),
+                    "Only this identity's two portraits may load; no animation or unrelated identity may be probed.");
+
+                attempts.Clear();
+                Assert.That(QdaoCharacterCatalog.LoadCreationPortrait(Id, Resolve, Load), Is.SameAs(fallback));
+                Assert.That(attempts, Is.EqualTo(new[] { oldPath }), "A known failed HD portrait must not be retried every UI refresh.");
+
+                hdPortrait = new Texture2D(1024, 1024);
+                textures.Add(hdPortrait);
+                if (refresh) QdaoCharacterCatalog.RefreshAppearances();
+                else hd += " "; // A newly approved manifest must also invalidate the old failed portrait revision.
+                attempts.Clear();
+                var restored = QdaoCharacterCatalog.LoadCreationPortrait(Id, Resolve, Load);
+                Assert.That(restored, Is.Not.Null);
+                sprites.Add(restored);
+                Assert.That(restored.name, Is.EqualTo(Id + "_portrait"));
+                Assert.That(restored.texture, Is.SameAs(hdPortrait));
+                Assert.That(attempts, Is.EqualTo(new[] { hdPath }));
+            }
+            finally
+            {
+                foreach (var sprite in sprites) UnityEngine.Object.DestroyImmediate(sprite);
+                foreach (var texture in textures) UnityEngine.Object.DestroyImmediate(texture);
+            }
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void CreationPortraitFailureWithoutUsableSameIdentityFallbackReturnsNull(bool fallbackIndexReady)
+        {
+            var hd = Manifest();
+            var old = Manifest(13);
+            string Metadata(string path) => path.EndsWith("/manifest") ? (path.Contains("V14/") ? hd : old) :
+                path.Contains("V14/") ? Approval(hd) : Approval(old, 13);
+            QdaoCharacterCatalog.Appearance Resolve(QdaoCharacterCatalog.Definition definition)
+                => definition.ResolveCreationAppearance(Metadata, path => Bytes(Metadata(path)),
+                    (folder, _, _) => folder.Contains("V14/") || fallbackIndexReady, (_, _, _) => true);
+            var attempts = new List<string>();
+            Assert.That(QdaoCharacterCatalog.LoadCreationPortrait(Id, Resolve, path => { attempts.Add(path); return null; }), Is.Null);
+            var expected = new List<string> { QdaoCharacterCatalog.OriginalV14Root + "/" + Id + "/portrait" };
+            if (fallbackIndexReady) expected.Add(QdaoCharacterCatalog.OriginalV13Root + "/" + Id + "/portrait");
+            Assert.That(attempts, Is.EqualTo(expected), "Unavailable fallback must remain unavailable instead of borrowing another body.");
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void CreationPortraitLeasesShareTextureAndRespectLegacyPortraitOwners(bool legacyPinned)
+        {
+            var manifest = Manifest();
+            string Metadata(string path) => !path.Contains("V14/") ? null :
+                path.EndsWith("/manifest") ? manifest : Approval(manifest);
+            byte[] Resource(string path) { var value = Metadata(path); return value == null ? null : Bytes(value); }
+            QdaoCharacterCatalog.Appearance Resolve(QdaoCharacterCatalog.Definition definition)
+                => definition.ResolveCreationAppearance(Metadata, Resource, (folder, _, _) => folder.Contains("V14/"), (_, _, _) => true);
+            var texture = new Texture2D(1024, 1024);
+            int loads = 0, releases = 0;
+            Texture2D Load(string _) { loads++; return texture; }
+            Sprite pinned = null;
+            QdaoCharacterCatalog.CreationPortraitLease first = null, second = null;
+            try
+            {
+                if (legacyPinned) pinned = QdaoCharacterCatalog.LoadCreationPortrait(Id, Resolve, Load);
+                first = QdaoCharacterCatalog.AcquireCreationPortrait(Id, Resolve, Load, _ => releases++);
+                second = QdaoCharacterCatalog.AcquireCreationPortrait(Id, Resolve, Load, _ => releases++);
+                Assert.That(first, Is.Not.Null);
+                Assert.That(second, Is.Not.Null);
+                Assert.That(first.Sprite, Is.SameAs(second.Sprite));
+                Assert.That(loads, Is.EqualTo(1), "A second window owner must not reload the same portrait.");
+                if (legacyPinned) Assert.That(first.Sprite, Is.SameAs(pinned));
+                first.Dispose(); first.Dispose();
+                Assert.That(releases, Is.Zero);
+                Assert.That(second.Sprite, Is.Not.Null);
+                second.Dispose(); second.Dispose();
+                Assert.That(releases, Is.EqualTo(legacyPinned ? 0 : 1),
+                    "The last creation lease releases only when no existing role/UI portrait owner pins the asset.");
+                if (legacyPinned) Assert.That(pinned.texture, Is.SameAs(texture));
+            }
+            finally
+            {
+                first?.Dispose(); second?.Dispose();
+                if (pinned != null) UnityEngine.Object.DestroyImmediate(pinned);
+                UnityEngine.Object.DestroyImmediate(texture);
+            }
+        }
+
+        [Test]
+        public void CreationPortraitLeaseReleasesRejectedHdTextureBeforeHoldingSameIdentityFallback()
+        {
+            var hd = Manifest(); var old = Manifest(13);
+            string Metadata(string path) => path.EndsWith("/manifest") ? (path.Contains("V14/") ? hd : old) :
+                path.Contains("V14/") ? Approval(hd) : Approval(old, 13);
+            QdaoCharacterCatalog.Appearance Resolve(QdaoCharacterCatalog.Definition definition)
+                => definition.ResolveCreationAppearance(Metadata, path => Bytes(Metadata(path)), (_, _, _) => true, (_, _, _) => true);
+            var invalid = new Texture2D(512, 512);
+            var fallback = new Texture2D(1024, 1024);
+            var released = new List<Texture2D>();
+            QdaoCharacterCatalog.CreationPortraitLease lease = null;
+            try
+            {
+                lease = QdaoCharacterCatalog.AcquireCreationPortrait(Id, Resolve,
+                    path => path.Contains("V14/") ? invalid : fallback, texture => released.Add(texture));
+                Assert.That(lease, Is.Not.Null);
+                Assert.That(lease.Sprite.texture, Is.SameAs(fallback));
+                Assert.That(released, Is.EqualTo(new[] { invalid }));
+                lease.Dispose();
+                Assert.That(released, Is.EqualTo(new[] { invalid, fallback }));
+            }
+            finally { lease?.Dispose(); UnityEngine.Object.DestroyImmediate(invalid); UnityEngine.Object.DestroyImmediate(fallback); }
+        }
+
+        [Test]
         public void CompleteHdHas137Separate1024ImagesAndPreservesWorldSizeCadenceAndPivot()
         {
             var calls = new List<string>();

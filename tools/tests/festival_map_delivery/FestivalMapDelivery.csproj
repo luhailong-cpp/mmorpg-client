@@ -13,6 +13,7 @@
     <Compile Include="NativeApiAdapters.cs" />
     <Compile Include="../../../Assets/Scripts/World/CurrentMaps/MapDeliveryContract.cs" Link="Production/MapDeliveryContract.cs" />
     <Compile Include="../../../Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs" Link="Production/CurrentMapCatalog.cs" />
+    <Compile Include="../../../Assets/Scripts/World/CurrentMaps/FestivalMapLocalTestPolicy.cs" Link="Production/FestivalMapLocalTestPolicy.cs" />
     <Compile Include="../../../Assets/Scripts/World/CurrentMaps/CurrentMapTilesManifest.cs" Link="Production/CurrentMapTilesManifest.cs" />
     <Compile Include="../../../Assets/Scripts/World/Tianyong/CityTileManifest.cs" Link="Production/CityTileManifest.cs" />
     <Compile Include="../../../Assets/Scripts/World/Tianyong/TianyongNavigationGrid.cs" Link="Production/TianyongNavigationGrid.cs" />

@@ -113,6 +113,9 @@ namespace MmorpgClient.World
             private string _rejectedHdManifestHash;
             private string _rejectedHdCacheKey;
             private string _lastCreationProblem;
+            private Appearance _creationAppearance;
+            private string _creationRevision;
+            private string _rejectedCreationHdCacheKey;
             public string ResourceFolder => ResolveAppearance()?.ResourceFolder;
             public int FrameCount => ResolveAppearance()?.FrameCount ?? 0;
             public float FramesPerSecond => ResolveAppearance()?.FramesPerSecond ?? 0f;
@@ -134,8 +137,8 @@ namespace MmorpgClient.World
 
             internal Appearance ResolveCreationAppearance()
             {
-                var appearance = ResolveAppearance(LoadActivationText, TextureMatches, LoadResourceBytes,
-                    QdaoOriginalHdResourceIndex.IsComplete, problem =>
+                var appearance = ResolveCreationAppearance(LoadActivationText, LoadResourceBytes,
+                    QdaoOriginalHdResourceIndex.IsCompleteForCreation, QdaoOriginalHdResourceIndex.TextureMatches, problem =>
                     {
                         if (_lastCreationProblem == problem) return;
                         _lastCreationProblem = problem;
@@ -143,6 +146,53 @@ namespace MmorpgClient.World
                     });
                 if (appearance != null) _lastCreationProblem = null;
                 return appearance;
+            }
+
+            /// <summary>Uses an import/build-verified inventory; never loads animation textures or hashes PNG files.</summary>
+            public Appearance ResolveCreationAppearance(Func<string, string> metadata,
+                Func<string, byte[]> resourceBytes, Func<string, string, string, bool> completeIndex,
+                Func<string, int, int, bool> indexedTexture, Action<string> diagnose = null)
+            {
+                if (!IsOriginalRoster || metadata == null || resourceBytes == null || completeIndex == null || indexedTexture == null)
+                    return null;
+                var folder = OriginalV13Root + "/" + Id;
+                var hdFolder = OriginalV14Root + "/" + Id;
+                var activation = metadata(folder + "/appearance");
+                var hdActivation = metadata(hdFolder + "/appearance");
+                var manifest = resourceBytes(folder + "/manifest");
+                var hdManifest = resourceBytes(hdFolder + "/manifest");
+                var manifestHash = HashBytes(manifest);
+                var hdManifestHash = HashBytes(hdManifest);
+                string ActivationHash(string path, string json)
+                    => HashBytes(resourceBytes(path) ?? (json == null ? null : Encoding.UTF8.GetBytes(json)));
+                var activationHash = ActivationHash(folder + "/appearance", activation);
+                var hdActivationHash = ActivationHash(hdFolder + "/appearance", hdActivation);
+                var rejectedHd = !string.IsNullOrEmpty(hdActivation) && _rejectedHdActivationText == hdActivation &&
+                    _rejectedHdManifestHash == hdManifestHash;
+                var hdReady = !rejectedHd && completeIndex(hdFolder, hdManifestHash, hdActivationHash);
+                var ready = completeIndex(folder, manifestHash, activationHash);
+                var revision = activationHash + ":" + manifestHash + ":" + hdActivationHash + ":" + hdManifestHash +
+                    ":" + ready + ":" + hdReady;
+                if (_creationAppearance != null && _creationRevision == revision) return _creationAppearance;
+                _creationRevision = revision;
+                string problem = null;
+                var hdAppearance = hdReady ? SelectApprovedVersion(this, 14, hdActivation, indexedTexture,
+                    hdManifest, reason => problem = reason) : null;
+                if (hdAppearance != null && hdAppearance.CacheKey == _rejectedCreationHdCacheKey) hdAppearance = null;
+                _creationAppearance = hdAppearance ??
+                    (ready ? SelectApprovedVersion(this, 13, activation, indexedTexture,
+                        manifest, reason => problem = reason) : null);
+                if (_creationAppearance == null)
+                    diagnose?.Invoke(problem ?? "import/build-verified appearance inventory is not ready for this revision");
+                return _creationAppearance;
+            }
+
+            internal void RejectCreationPortrait(Appearance appearance)
+            {
+                if (appearance == null || !appearance.IsHd || appearance.Id != Id) return;
+                _rejectedCreationHdCacheKey = appearance.CacheKey;
+                _creationAppearance = null;
+                _creationRevision = null;
             }
 
             /// <summary>Resource providers also support deterministic import/reload verification.</summary>
@@ -213,6 +263,9 @@ namespace MmorpgClient.World
             internal void Invalidate()
             {
                 _appearance = null;
+                _creationAppearance = null;
+                _creationRevision = null;
+                _rejectedCreationHdCacheKey = null;
                 _v13ActivationText = _v12ActivationText = _originalManifestHash = _v14ActivationText = _originalHdManifestHash = null;
                 _rejectedHdActivationText = _rejectedHdManifestHash = _rejectedHdCacheKey = null;
                 BaselineAppearance = IsOriginalRoster ? null : new Appearance(Id, 11);
@@ -563,6 +616,40 @@ namespace MmorpgClient.World
 
         public static IReadOnlyList<Definition> All { get; } = Array.AsReadOnly(Entries);
         private static readonly Dictionary<string, Sprite> Portraits = new();
+        private static readonly Dictionary<Sprite, int> CreationPortraitLeases = new();
+        // Existing UI callers have no release contract. Preserve their sprite and texture for
+        // their full lifetime, including when a later import selects a different cache key.
+        private static readonly HashSet<Sprite> PinnedPortraits = new();
+        private static readonly HashSet<Texture2D> PinnedPortraitTextures = new();
+
+        /// <summary>An explicit creation-preview ownership scope; disposing twice is harmless.</summary>
+        public sealed class CreationPortraitLease : IDisposable
+        {
+            private Sprite _sprite;
+            private Action<Sprite> _release;
+            private readonly Func<bool> _isValid;
+            public bool IsValid => _sprite != null && _sprite.texture != null && (_isValid == null || _isValid());
+            public Sprite Sprite => IsValid ? _sprite : null;
+
+            public CreationPortraitLease(Sprite sprite, Action<Sprite> release, Func<bool> isValid = null)
+            {
+                _sprite = sprite;
+                _release = release;
+                _isValid = isValid;
+            }
+
+            public static CreationPortraitLease Borrow(Sprite sprite, Func<bool> isValid = null, Action release = null)
+                => sprite == null ? null : new CreationPortraitLease(sprite, _ => release?.Invoke(), isValid);
+
+            public void Dispose()
+            {
+                var sprite = _sprite;
+                var release = _release;
+                _sprite = null;
+                _release = null;
+                if (!ReferenceEquals(sprite, null)) release?.Invoke(sprite);
+            }
+        }
 
         public static Definition Find(string id)
         {
@@ -635,12 +722,104 @@ namespace MmorpgClient.World
                 texture = Resources.Load<Texture2D>(appearance.ResourceFolder + "/portrait");
             }
             if (Portraits.TryGetValue(appearance.CacheKey, out var cached) && cached != null && cached.texture == texture)
-                return cached;
+                return PinPortrait(cached);
             var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
                 new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect);
             sprite.name = entry.Id + "_portrait";
             Portraits[appearance.CacheKey] = sprite;
+            return PinPortrait(sprite);
+        }
+
+        /// <summary>Only the chosen portrait is loaded. Full animation validation stays in the import/build pipeline.</summary>
+        public static Sprite LoadCreationPortrait(string id)
+            => LoadCreationPortrait(id, entry => entry.ResolveCreationAppearance(), Resources.Load<Texture2D>);
+
+        public static Sprite LoadCreationPortrait(string id, Func<Definition, Appearance> resolveAppearance,
+            Func<string, Texture2D> loadTexture)
+            => LoadCreationPortraitCore(id, resolveAppearance, loadTexture, true, false, null);
+
+        public static CreationPortraitLease AcquireCreationPortrait(string id)
+            => AcquireCreationPortrait(id, entry => entry.ResolveCreationAppearance(), Resources.Load<Texture2D>,
+                texture => Resources.UnloadAsset(texture));
+
+        public static CreationPortraitLease AcquireCreationPortrait(string id, Func<Definition, Appearance> resolveAppearance,
+            Func<string, Texture2D> loadTexture, Action<Texture2D> releaseTexture)
+        {
+            var sprite = LoadCreationPortraitCore(id, resolveAppearance, loadTexture, false, true, releaseTexture);
+            if (sprite == null) return null;
+            CreationPortraitLeases.TryGetValue(sprite, out var count);
+            CreationPortraitLeases[sprite] = count + 1;
+            return new CreationPortraitLease(sprite, released => ReleaseCreationPortrait(released, releaseTexture));
+        }
+
+        private static Sprite LoadCreationPortraitCore(string id, Func<Definition, Appearance> resolveAppearance,
+            Func<string, Texture2D> loadTexture, bool pin, bool reuseCached, Action<Texture2D> releaseTexture)
+        {
+            var entry = Find(ResolveVisualId(id));
+            if (entry == null || !IsCreatableAppearance(entry.Id) || resolveAppearance == null || loadTexture == null) return null;
+            var appearance = resolveAppearance(entry);
+            if (appearance == null || appearance.Id != entry.Id) return null;
+            if (reuseCached && Portraits.TryGetValue(appearance.CacheKey, out var existing) && existing != null && existing.texture != null)
+                return pin ? PinPortrait(existing) : existing;
+            var texture = loadTexture(appearance.ResourceFolder + "/portrait");
+            if (texture == null || texture.width != appearance.PortraitWidth || texture.height != appearance.PortraitHeight)
+            {
+                ReleaseUnusedPortraitTexture(texture, releaseTexture);
+                if (!appearance.IsHd) return null;
+                // A missing imported HD portrait rejects only this creation revision. Re-select
+                // the same identity from its verified V13 index; never run full animation checks.
+                entry.RejectCreationPortrait(appearance);
+                appearance = resolveAppearance(entry);
+                if (appearance == null || appearance.IsHd || appearance.Id != entry.Id) return null;
+                if (reuseCached && Portraits.TryGetValue(appearance.CacheKey, out existing) && existing != null && existing.texture != null)
+                    return pin ? PinPortrait(existing) : existing;
+                texture = loadTexture(appearance.ResourceFolder + "/portrait");
+                if (texture == null || texture.width != appearance.PortraitWidth || texture.height != appearance.PortraitHeight)
+                {
+                    ReleaseUnusedPortraitTexture(texture, releaseTexture);
+                    return null;
+                }
+            }
+            if (Portraits.TryGetValue(appearance.CacheKey, out var cached) && cached != null && cached.texture == texture)
+                return pin ? PinPortrait(cached) : cached;
+            var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height),
+                new Vector2(.5f, .5f), 100f, 0, SpriteMeshType.FullRect);
+            sprite.name = entry.Id + "_portrait";
+            Portraits[appearance.CacheKey] = sprite;
+            return pin ? PinPortrait(sprite) : sprite;
+        }
+
+        private static Sprite PinPortrait(Sprite sprite)
+        {
+            if (sprite == null) return null;
+            PinnedPortraits.Add(sprite);
+            if (sprite.texture != null) PinnedPortraitTextures.Add(sprite.texture);
             return sprite;
+        }
+
+        private static void ReleaseCreationPortrait(Sprite sprite, Action<Texture2D> releaseTexture)
+        {
+            if (ReferenceEquals(sprite, null) || !CreationPortraitLeases.TryGetValue(sprite, out var count)) return;
+            if (count > 1) { CreationPortraitLeases[sprite] = count - 1; return; }
+            CreationPortraitLeases.Remove(sprite);
+            if (sprite == null || PinnedPortraits.Contains(sprite)) return;
+            var texture = sprite.texture;
+            var keys = new List<string>();
+            foreach (var pair in Portraits) if (pair.Value == sprite) keys.Add(pair.Key);
+            foreach (var key in keys) Portraits.Remove(key);
+            if (Application.isPlaying) UnityEngine.Object.Destroy(sprite);
+            else UnityEngine.Object.DestroyImmediate(sprite);
+            ReleaseUnusedPortraitTexture(texture, releaseTexture);
+        }
+
+        private static void ReleaseUnusedPortraitTexture(Texture2D texture, Action<Texture2D> releaseTexture)
+        {
+            if (texture == null || releaseTexture == null || PinnedPortraitTextures.Contains(texture)) return;
+            foreach (var sprite in Portraits.Values)
+                if (sprite != null && sprite.texture == texture) return;
+            foreach (var sprite in CreationPortraitLeases.Keys)
+                if (sprite != null && sprite.texture == texture) return;
+            releaseTexture(texture);
         }
     }
 }
