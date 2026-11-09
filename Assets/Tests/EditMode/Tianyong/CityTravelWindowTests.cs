@@ -79,7 +79,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void DynamicDestinations_OnlyListRegisteredIdentitiesAndRetainOldCities()
         {
             var destinations = CityTravelUiRoot.CreateDestinations();
-            Assert.That(destinations.Length, Is.EqualTo(CurrentMapCatalog.All.Count));
+            Assert.That(destinations.Length, Is.EqualTo(CurrentMapCatalog.All.Count + (CurrentMapCatalog.Find(4u) == null ? 1 : 0)));
             Assert.That(destinations.Select(x => x.SceneConfigId).Distinct().Count(), Is.EqualTo(destinations.Length));
             Assert.That(destinations.Any(x => x.SceneConfigId == uint.MaxValue), Is.False);
             foreach (uint id in new uint[] { 1, 2, 3 })
@@ -95,6 +95,23 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(formal.All(x => x.Available && !x.OnlineAvailable && x.DefaultAppearance == "spring"), Is.True);
             Assert.That(formal.Count(x => x.TexturePath("spring") != null) + formal.Count(x => x.TexturePath("mid-autumn") != null), Is.EqualTo(5));
             Assert.That(formal.All(x => x.TexturePath("normal") == null && x.TexturePath("lantern") == null), Is.True);
+        }
+
+        [Test]
+        public void UndeliveredFourthMap_IsUnavailableEvenForDirectButtonCallbacks()
+        {
+            if (CurrentMapCatalog.Find(4u) != null) Assert.Ignore("地图 4 已正式注册。");
+            _window.Show(1, false);
+            Assert.That(FindButton("CityDestination_4").interactable, Is.False);
+            Click("CityDestination_4");
+            Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(1));
+            uint requested = 0;
+            _window.TravelRequested += (scene, _) => requested = scene;
+            Click("TravelToSelectedCity");
+            Assert.That(requested, Is.Zero);
+            var destination = CityTravelUiRoot.CreateDestinations().Single(x => x.SceneConfigId == 4);
+            Assert.That(destination.Available, Is.False);
+            Assert.That(destination.Name, Does.Contain("未开放"));
         }
 
         [TestCase(21003u, "spring")]

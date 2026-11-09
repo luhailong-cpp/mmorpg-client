@@ -1,5 +1,4 @@
 using MmorpgClient.Game.Attribute;
-using MmorpgClient.World.Tianyong;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
@@ -138,7 +137,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             bool typing = EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null &&
                 EventSystem.current.currentSelectedGameObject.GetComponentInParent<TMP_InputField>()?.isFocused == true;
             if (typing) return;
-            if (!_window.IsVisible && GameplayInputGate.IsKeyboardBlocked) return;
+            if (!_window.IsVisible && MmorpgClient.World.Tianyong.GameplayInputGate.IsKeyboardBlocked) return;
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;
             if (keys == null) return;
@@ -153,7 +152,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             else if (Input.GetKeyDown(KeyCode.O)) Toggle(GameplayPage.Activities);
 #endif
         }
-
         public void HidePanel() { if (_window?.Root != null) _window.Hide(); }
         public void OpenMissions() => Open(GameplayPage.Missions);
 

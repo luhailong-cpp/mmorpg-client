@@ -102,7 +102,7 @@ namespace MmorpgClient.App
                     if (roles.Count > 0) { yield return Click("CreateNewRole"); if (Stopped) yield break; }
                     yield return Click("Class_" + _options.RoleClass); if (Stopped) yield break;
                     yield return Click(_options.RoleGender == 1 ? "GenderMale" : "GenderFemale"); if (Stopped) yield break;
-                    int count = QdaoCharacterCatalog.CreationOriginalAll.Count;
+                    int count = QdaoCharacterCatalog.CreationOriginalAll.Count + 1;
                     // The label and portrait are both read from the displayed UI, not its private selection fields.
                     while (count-- > 0 && !PreviewMatches())
                     { yield return Click("NextAppearance"); if (Stopped) yield break; }

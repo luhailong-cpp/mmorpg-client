@@ -719,9 +719,17 @@ namespace MmorpgClient.Game
                         { FailPipeline(gen, onError, "已返回选服"); yield break; }
                         if (!choice.CreateNew) { playerId = choice.SelectedPlayerId; break; }
 
+                        // A deliberate profession default is UI state, not a stable server identity.
+                        // Resolve it once for this request; leave choice unchanged for rejection/reopen.
+                        if (!TryResolveCreationAppearance(choice.ClassId, choice.Gender, choice.AppearanceId, out var requestAppearance))
+                        {
+                            choice.RejectHint = "所选人物暂不可新建，请选择其他人物";
+                            choice.CreateNew = false;
+                            continue;
+                        }
                         ulong newId = 0;
                         string reject = null;
-                        yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender, choice.Name, choice.AppearanceId,
+                        yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender, choice.Name, requestAppearance,
                             loginResp.Players, id => newId = id, hint => reject = hint, onError);
                         if (gen != _pipelineGen) yield break;
                         if (reject != null)
@@ -758,6 +766,17 @@ namespace MmorpgClient.Game
                 MmorpgClient.Core.ClientSettings.SetLastPlayer(zoneId, playerId);
 
             yield return EnterGameAndWaitScene(gen, playerId, onSuccess, onError);
+        }
+
+        private static bool TryResolveCreationAppearance(uint classId, uint gender, string selected, out string requestAppearance)
+        {
+            requestAppearance = null;
+            if (classId < 1 || classId > 4 || gender < 1 || gender > 2) return false;
+            if (!string.IsNullOrEmpty(selected) && !QdaoCharacterCatalog.IsCreatableAppearance(selected)) return false;
+            var resolved = QdaoCharacterCatalog.ResolveRole(classId, gender, selected);
+            if (!QdaoCharacterCatalog.IsCreatableAppearance(resolved)) return false;
+            requestAppearance = resolved;
+            return true;
         }
 
         /// <summary>

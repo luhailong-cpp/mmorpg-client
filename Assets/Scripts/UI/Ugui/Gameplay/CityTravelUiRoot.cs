@@ -384,11 +384,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 destinations.Add(new CityTravelDestination
                 {
                     SceneConfigId = map.SceneConfigId, Name = map.Name, Map = map,
-                    Description = map.CanTravelOnline ? "选择景色，沿石路自在游历。" : "景色已收录，此地图尚未开放传送。",
+                    Description = map.SceneConfigId == 1 ? "太极广场连着长街，沿着浅灰石路游历道观与庭院。" :
+                        map.SceneConfigId == 2 ? "八座仙居环绕中央庭园，沿石路探访海岛风光。" :
+                        map.SceneConfigId == 3 ? "码头停舟，渔舍临海，村中广场与街巷相连。" :
+                        map.CanTravelOnline ? "选择景色，沿石路自在游历。" : "景色已收录，此地图尚未开放传送。",
                     DayResourcePath = map.ForAppearance("normal")?.TexturePath,
                     FestivalResourcePath = map.ForAppearance("spring")?.TexturePath,
                     FestivalName = "春节", DefaultAppearance = map.Appearance,
                     OnlineAvailable = map.CanTravelOnline
+                });
+            if (CurrentMapCatalog.Find(4u) == null)
+                destinations.Add(new CityTravelDestination
+                {
+                    SceneConfigId = 4, Name = "揽仙镇 · 未开放", Description = "当前地图暂未开放。",
+                    Available = false, OnlineAvailable = false
                 });
             return destinations.ToArray();
         }

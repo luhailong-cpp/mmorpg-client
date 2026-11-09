@@ -77,30 +77,61 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator CreationNeverUsesLegacyProfessionDefaultOrOffersCancelledIdentities()
+        public IEnumerator CreationResources_ExplicitProfessionDefaultWaitsForItsOwnResources()
         {
             using var fixture = new CreationResourceFixture();
             fixture.Add(First);
-            fixture.Add(Second);
-            fixture.Add("07_moon_shadow_assassin_girl");
-            fixture.Add("14_short_hair_snow_summoner_girl");
+            var choice = new GameClient.PlayerChoice();
+            var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), choice);
+            Assert.That(choose.MoveNext(), Is.True);
+            yield return null;
+            Click(fixture.Host, "PreviousAppearance"); // Explicit profession default.
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("职业默认"));
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+
+            fixture.Add("08_alchemy_prodigy_boy");
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            yield return null;
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("职业默认"),
+                "A new preferred import must not replace an explicit profession-default choice.");
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+
+            const string professionDefault = "04_mountain_guardian_boy";
+            fixture.Add(professionDefault);
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            yield return null;
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[professionDefault]));
+            Click(fixture.Host, "ConfirmCreate");
+            Assert.That(choose.MoveNext(), Is.False);
+            Assert.That(choice.AppearanceId, Is.Empty);
+        }
+
+        [UnityTest]
+        public IEnumerator CreationRejectsUnreleasedProfessionDefaultButPreservesOldIdentity()
+        {
+            using var fixture = new CreationResourceFixture();
+            fixture.Add(First);
             fixture.Add("20_star_formation_master_girl");
             var choice = new GameClient.PlayerChoice();
             var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), choice);
             Assert.That(choose.MoveNext(), Is.True);
             yield return null;
+            Click(fixture.Host, "PreviousAppearance");
             Click(fixture.Host, "Class_2");
             Click(fixture.Host, "GenderFemale");
-            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[First]));
-            Click(fixture.Host, "PreviousAppearance");
-            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("2/2"));
-            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[Second]));
+            Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, ""), Is.EqualTo("20_star_formation_master_girl"));
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+            Assert.That(ReadText(fixture.Host, "PreviewHint"), Does.Contain("暂不可新建"));
+            fixture.Button("ConfirmCreate").onClick.Invoke();
+            Assert.That(choice.CreateNew, Is.False);
+            Click(fixture.Host, "NextAppearance");
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
             Click(fixture.Host, "ConfirmCreate");
             Assert.That(choose.MoveNext(), Is.False);
-            Assert.That(choice.AppearanceId, Is.EqualTo(Second));
-            Assert.That(choice.ClassId, Is.EqualTo(2u));
-            Assert.That(choice.Gender, Is.EqualTo(2u));
-            Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, ""), Is.EqualTo("20_star_formation_master_girl"));
+            Assert.That(choice.AppearanceId, Is.EqualTo(First));
         }
 
         [UnityTest]
@@ -135,17 +166,18 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [Test]
-        public void AllCreatableCharactersHaveCompleteBaseAppearances()
+        public void AllRetainedCharactersHaveElevenV14AndFourV13Appearances()
         {
             QdaoCharacterCatalog.RefreshAppearances();
-            var roster = QdaoCharacterCatalog.CreationOriginalAll.ToArray();
-            Assert.That(roster.Length, Is.EqualTo(12));
+            var roster = QdaoCharacterCatalog.RetainedOriginalAll.ToArray();
+            Assert.That(roster.Length, Is.EqualTo(15));
             var appearances = roster.Select(entry => entry.ResolveAppearance()).ToArray();
             Assert.That(appearances.All(appearance => appearance != null), Is.True,
                 "全部保留人物都必须具备可用资源，不能由 AvailableAll 过滤掉缺失角色而假通过。");
+            Assert.That(appearances.Count(appearance => appearance.Version == 14), Is.EqualTo(11));
+            Assert.That(appearances.Count(appearance => appearance.Version == 13), Is.EqualTo(4));
             foreach (var appearance in appearances)
             {
-                Assert.That(appearance.Version, Is.EqualTo(13).Or.EqualTo(14), appearance.Id);
                 Assert.That(appearance.FrameCount, Is.EqualTo(16), appearance.Id);
                 Assert.That(appearance.HasDedicatedIdle, Is.True, appearance.Id);
                 Assert.That(QdaoCharacterCatalog.AvailableAll.Any(entry => entry.Id == appearance.Id), Is.True);
@@ -200,9 +232,9 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator CreationChooser_VisitsExactlyTwelveAndPreservesExplicitSelectionAcrossReopenAndReject()
+        public IEnumerator CreationChooser_OrdersHdFirstAndPreservesExplicitProfessionDefaultAcrossReopenAndReject()
         {
-            var host = new GameObject("PreservedAppearanceSelectionRegression");
+            var host = new GameObject("PreservedProfessionDefaultRegression");
             var ui = host.AddComponent<RoleFlowUi>();
             var roles = new[] { new AccountSimplePlayer { PlayerId = 101, ClassId = 4, Gender = 2 } };
             try
@@ -219,30 +251,30 @@ namespace MmorpgClient.Tests.PlayMode
                 Assert.That(ReadText(host, "AppearanceDetails"), Is.EqualTo("选择喜欢的人物外观"));
                 Capture(host.GetComponentInChildren<Canvas>(), "create-default-alchemy-v14-disconnected-ui");
 
-                var available = QdaoCharacterCatalog.CreationOriginalAll;
+                var available = QdaoCharacterCatalog.CreationOriginalAll.Where(entry => entry.ResolveAppearance() != null).ToArray();
+                Assert.That(available.Length, Is.EqualTo(12));
                 var displayedIds = new HashSet<string>();
                 bool sawOlder = false;
-                for (int i = 0; i < available.Count; i++)
+                for (int i = 0; i < available.Length; i++)
                 {
                     var displayed = available.Single(entry => entry.Name == ReadText(host, "PreviewTitle"));
-                    Assert.That(displayedIds.Add(displayed.Id), Is.True, "Each appearance is displayed once per cycle.");
+                    Assert.That(displayedIds.Add(displayed.Id), Is.True);
                     Assert.That(ReadText(host, "AppearanceName"), Does.Contain($"{i + 1}/12"));
                     bool hd = displayed.ResolveAppearance().IsHd;
                     Assert.That(sawOlder && hd, Is.False, "All available HD characters precede older characters.");
                     sawOlder |= !hd;
                     Click(host, "NextAppearance");
                 }
-                Assert.That(ReadText(host, "AppearanceName"), Does.Contain("1/12"));
-                SelectAppearance(host, Second);
+                Assert.That(ReadText(host, "AppearanceName"), Does.Contain("职业默认"));
                 Click(host, "BackFromCreate");
                 Click(host, "CreateNewRole");
-                Assert.That(ReadText(host, "PreviewTitle"), Is.EqualTo("冰剑少女"),
-                    "Returning to creation must retain the player's explicit choice.");
+                Assert.That(ReadText(host, "AppearanceName"), Does.Contain("职业默认"),
+                    "Returning to creation must retain the player's deliberate default selection.");
                 Click(host, "Class_4");
                 Click(host, "GenderFemale");
                 Click(host, "ConfirmCreate");
                 Assert.That(choose.MoveNext(), Is.False);
-                Assert.That(choice.AppearanceId, Is.EqualTo(Second));
+                Assert.That(choice.AppearanceId, Is.Empty);
 
                 string submittedName = choice.Name;
                 choice.CreateNew = false;
@@ -250,13 +282,13 @@ namespace MmorpgClient.Tests.PlayMode
                 choose = Choose(ui, roles, choice);
                 Assert.That(choose.MoveNext(), Is.True);
                 yield return null;
-                Assert.That(ReadText(host, "PreviewTitle"), Is.EqualTo("冰剑少女"));
+                Assert.That(ReadText(host, "AppearanceName"), Does.Contain("职业默认"));
                 Assert.That(ReadText(host, "PreviewHint"), Is.EqualTo(choice.RejectHint));
                 Assert.That(host.GetComponentsInChildren<TMPro.TMP_InputField>(true).Single().text, Is.EqualTo(submittedName));
-                Assert.That(FindImage(host, "CharacterArtwork").sprite, Is.SameAs(QdaoCharacterCatalog.LoadPortrait(Second)));
+                Assert.That(FindImage(host, "CharacterArtwork").sprite, Is.SameAs(QdaoCharacterCatalog.LoadPortrait("26_osmanthus_healer")));
                 Click(host, "ConfirmCreate");
                 Assert.That(choose.MoveNext(), Is.False);
-                Assert.That(choice.AppearanceId, Is.EqualTo(Second));
+                Assert.That(choice.AppearanceId, Is.Empty);
                 Assert.That(choice.ClassId, Is.EqualTo(4u));
                 Assert.That(choice.Gender, Is.EqualTo(2u));
                 Assert.That(roles[0].AppearanceId, Is.Empty);
@@ -574,7 +606,7 @@ namespace MmorpgClient.Tests.PlayMode
         private static void SelectAppearance(GameObject host, string id)
         {
             var portrait = QdaoCharacterCatalog.LoadPortrait(id);
-            int remaining = QdaoCharacterCatalog.CreationOriginalAll.Count;
+            int remaining = QdaoCharacterCatalog.CreationOriginalAll.Count + 1;
             while (FindImage(host, "CharacterArtwork").sprite != portrait && remaining-- > 0)
                 Click(host, "NextAppearance");
             Assert.That(FindImage(host, "CharacterArtwork").sprite, Is.SameAs(portrait));

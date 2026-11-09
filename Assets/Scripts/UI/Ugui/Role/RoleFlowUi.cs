@@ -85,6 +85,7 @@ namespace MmorpgClient.UI.Ugui.Role
         private UiTextButton _confirmCreateButton;
         private readonly List<QdaoCharacterCatalog.Definition> _appearanceChoices = new();
         private int _appearanceChoice; // Zero keeps the existing profession/gender default.
+        private bool _hasAppearanceSelection; // An explicit zero must survive reopening and server rejection.
         private string _pickedAppearanceId;
         private int _appearanceResourceRevision = -1;
         private float _appearanceRetryAt;
@@ -154,6 +155,7 @@ namespace MmorpgClient.UI.Ugui.Role
                 _pickedGender = 1;
                 _appearanceChoice = 0;
                 _pickedAppearanceId = string.Empty;
+                _hasAppearanceSelection = false;
                 // 建角必填名字:先填一个随机建议,玩家可改可清空;清空后点创建会被本地预检拦下("请输入角色名")。
                 SetNameWithoutNotify(RoleNameRules.RandomName(_rng));
                 if (_players.Count > 0) ShowSelectMode();
@@ -167,9 +169,17 @@ namespace MmorpgClient.UI.Ugui.Role
         {
             if (choice.ClassId != 0) _pickedClassId = choice.ClassId;
             if (choice.Gender != 0) _pickedGender = choice.Gender;
-            // 回填仍可创建的外观。暂时缺资源时保留选中 ID，等待同身份的资源恢复。
-            _pickedAppearanceId = QdaoCharacterCatalog.IsCreatableAppearance(choice.AppearanceId)
-                ? choice.AppearanceId : string.Empty;
+            // 外观按 id 找回它在候选列表里的位置(先按当前资源重建一次候选列表);ShowCreateMode 重建时
+            // 按同一个 id 再对一次;暂不可用的身份仍保留并提示,不得悄悄改成职业默认。
+            _hasAppearanceSelection = true;
+            _pickedAppearanceId = choice.AppearanceId ?? string.Empty;
+            RefreshAppearanceChoices();
+            _appearanceChoice = 0;
+            if (!string.IsNullOrEmpty(choice.AppearanceId))
+            {
+                for (int i = 0; i < _appearanceChoices.Count; i++)
+                    if (_appearanceChoices[i].Id == choice.AppearanceId) _appearanceChoice = i + 1;
+            }
             SetNameWithoutNotify(choice.Name);
         }
 
@@ -204,10 +214,19 @@ namespace MmorpgClient.UI.Ugui.Role
                 SetPreviewHint("角色名包含无法显示的字", true);
                 return;
             }
+            // Imports can change while this screen is open; never submit a vanished candidate.
+            string appearanceId = PickedAppearanceId;
+            var resolvedId = QdaoCharacterCatalog.ResolveRole(_pickedClassId, _pickedGender, appearanceId);
+            if (!QdaoCharacterCatalog.IsCreatableAppearance(resolvedId) ||
+                _appearanceResolver(QdaoCharacterCatalog.Find(resolvedId)) == null)
+            {
+                SetPreviewHint("所选人物图片正在准备，请稍候", true);
+                return;
+            }
             _result.CreateNew = true;
             _result.ClassId = _pickedClassId;
             _result.Gender = _pickedGender;
-            _result.AppearanceId = PickedAppearanceId;
+            _result.AppearanceId = appearanceId;
             _result.Name = roleName;
             _result.RejectHint = null;
             _result.Cancelled = false;
@@ -383,17 +402,20 @@ namespace MmorpgClient.UI.Ugui.Role
             SetChoiceState(_femaleButton, _pickedGender == 2);
             var selected = QdaoCharacterCatalog.Find(PickedAppearanceId);
             _appearanceLabel.text = string.IsNullOrEmpty(PickedAppearanceId) ?
-                $"人物：图片准备中（0/{QdaoCharacterCatalog.CreationOriginalAll.Count}）" :
+                (_appearanceChoices.Count == 0 ? $"人物：图片准备中（0/{QdaoCharacterCatalog.CreationOriginalAll.Count}）" : "人物：职业默认") :
                 "人物：" + (selected?.Name ?? PickedAppearanceId) +
                 (_appearanceChoice > 0 ? $"（{_appearanceChoice}/{_appearanceChoices.Count}）" : "（图片准备中）");
-            var appearance = _appearanceChoice > 0 ? _appearanceResolver(selected) : null;
+            string resolvedId = QdaoCharacterCatalog.ResolveRole(_pickedClassId, _pickedGender, PickedAppearanceId);
+            bool creatable = QdaoCharacterCatalog.IsCreatableAppearance(resolvedId) &&
+                (string.IsNullOrEmpty(PickedAppearanceId) || QdaoCharacterCatalog.IsCreatableAppearance(PickedAppearanceId));
+            var appearance = creatable ? _appearanceResolver(QdaoCharacterCatalog.Find(resolvedId)) : null;
             RefreshPreview(_pickedClassId, _pickedGender, 0, PickedAppearanceId);
             _creationResourcesReady = appearance != null && _hero.enabled && _hero.sprite != null;
-            _creationResourceHint = _appearanceChoices.Count == 0 ?
+            _creationResourceHint = !creatable ? "所选人物暂不可新建，请选择其他人物" : _appearanceChoices.Count == 0 ?
                 "人物图片正在准备，请稍候" :
                 "所选人物图片正在准备，请稍候或选择其他人物";
             _appearanceDetails.text = _creationResourcesReady ? "选择喜欢的人物外观" :
-                "人物图片正在准备，请稍候";
+                _creationResourceHint;
             _previousAppearanceButton?.SetInteractable(_appearanceChoices.Count > 0);
             _nextAppearanceButton?.SetInteractable(_appearanceChoices.Count > 0);
             _confirmCreateButton.SetInteractable(_creationResourcesReady);
@@ -422,12 +444,13 @@ namespace MmorpgClient.UI.Ugui.Role
             _appearanceChoice = 0;
             for (int i = 0; i < _appearanceChoices.Count; i++)
                 if (_appearanceChoices[i].Id == selected) _appearanceChoice = i + 1;
-            // Default to an explicit identity as soon as a candidate is available.
-            // Resource refreshes preserve an earlier choice even when its art is temporarily unavailable.
-            if (string.IsNullOrEmpty(selected) && _appearanceChoices.Count > 0)
+            // Only a fresh creation flow receives the new default. Refreshes retain the chosen identity,
+            // including the explicit profession default; saved account roles never pass through this choice.
+            if (!_hasAppearanceSelection && _appearanceChoices.Count > 0)
             {
                 _appearanceChoice = 1;
                 _pickedAppearanceId = _appearanceChoices[0].Id;
+                _hasAppearanceSelection = true;
             }
             _appearanceResourceRevision = QdaoCharacterCatalog.ResourceRevision;
             _appearanceRetryAt = Time.unscaledTime + 1f;
@@ -435,11 +458,10 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private void CycleAppearance(int delta)
         {
-            int count = _appearanceChoices.Count;
-            if (count == 0) return;
-            _appearanceChoice = _appearanceChoice == 0 ? (delta < 0 ? count : 1)
-                : (_appearanceChoice - 1 + delta + count) % count + 1;
-            _pickedAppearanceId = _appearanceChoices[_appearanceChoice - 1].Id;
+            int count = _appearanceChoices.Count + 1;
+            _appearanceChoice = (_appearanceChoice + delta + count) % count;
+            _pickedAppearanceId = _appearanceChoice > 0 ? _appearanceChoices[_appearanceChoice - 1].Id : string.Empty;
+            _hasAppearanceSelection = true;
             RefreshCreateHighlights();
         }
 
@@ -447,11 +469,10 @@ namespace MmorpgClient.UI.Ugui.Role
             string roleName = null)
         {
             int index = ClassIndex(classId);
-            bool hasAppearance = !_creating || QdaoCharacterCatalog.IsCreatableAppearance(appearanceId);
-            _hero.sprite = hasAppearance ? ResolvePortrait(classId, gender, appearanceId) : null;
+            _hero.sprite = ResolvePortrait(classId, gender, appearanceId);
             _hero.enabled = _hero.sprite != null;
             // 标题保持"人物(外观)名",角色名单独一行:外观验收(DevRoleUiDriver.PreviewMatches)按标题比对外观名。
-            _previewTitle.text = hasAppearance ? CharacterName(classId, gender, appearanceId) : string.Empty;
+            _previewTitle.text = CharacterName(classId, gender, appearanceId);
             // 只在选角模式可见(挂在 _selectRoot 下);服务端没带名字的旧角色显示"未命名"
             if (_roleNameValue != null)
                 _roleNameValue.text = string.IsNullOrWhiteSpace(roleName) ? "未命名" : roleName;

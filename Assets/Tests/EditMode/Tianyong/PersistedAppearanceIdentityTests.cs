@@ -1,5 +1,5 @@
-using System.Linq;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using Google.Protobuf;
@@ -190,6 +190,25 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(QdaoCharacterCatalog.IsCreatableAppearance(null), Is.False);
             Assert.That(QdaoCharacterCatalog.IsCreatableAppearance("04_mountain_guardian"), Is.False);
             Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, ""), Is.EqualTo("20_star_formation_master_girl"));
+        }
+
+        [Test]
+        public void CreationRequestPinsAllowedProfessionDefaultWithoutChangingUiSelection()
+        {
+            var method = typeof(GameClient).GetMethod("TryResolveCreationAppearance", BindingFlags.Static | BindingFlags.NonPublic);
+            Assert.That(method, Is.Not.Null);
+            object[] args = { 1u, 1u, "", null };
+            Assert.That(method.Invoke(null, args), Is.True);
+            Assert.That(args[2], Is.EqualTo(""));
+            Assert.That(args[3], Is.EqualTo("04_mountain_guardian_boy"));
+            args = new object[] { 2u, 2u, "", null };
+            Assert.That(method.Invoke(null, args), Is.False);
+            Assert.That(args[3], Is.Null);
+            args = new object[] { 2u, 2u, "01_ice_sword_girl", null };
+            Assert.That(method.Invoke(null, args), Is.True);
+            Assert.That(args[3], Is.EqualTo("01_ice_sword_girl"));
+            args = new object[] { 2u, 2u, "20_star_formation_master_girl", null };
+            Assert.That(method.Invoke(null, args), Is.False);
         }
 
         [Test]
