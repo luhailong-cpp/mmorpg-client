@@ -112,6 +112,7 @@ namespace MmorpgClient.World
             private string _rejectedHdActivationText;
             private string _rejectedHdManifestHash;
             private string _rejectedHdCacheKey;
+            private string _lastCreationProblem;
             public string ResourceFolder => ResolveAppearance()?.ResourceFolder;
             public int FrameCount => ResolveAppearance()?.FrameCount ?? 0;
             public float FramesPerSecond => ResolveAppearance()?.FramesPerSecond ?? 0f;
@@ -131,10 +132,23 @@ namespace MmorpgClient.World
             public Appearance ResolveAppearance()
                 => ResolveAppearance(LoadActivationText, TextureMatches, LoadResourceBytes, QdaoOriginalHdResourceIndex.IsComplete);
 
+            internal Appearance ResolveCreationAppearance()
+            {
+                var appearance = ResolveAppearance(LoadActivationText, TextureMatches, LoadResourceBytes,
+                    QdaoOriginalHdResourceIndex.IsComplete, problem =>
+                    {
+                        if (_lastCreationProblem == problem) return;
+                        _lastCreationProblem = problem;
+                        Debug.Log($"[RoleFlowUi] Appearance {Id} unavailable: {problem}");
+                    });
+                if (appearance != null) _lastCreationProblem = null;
+                return appearance;
+            }
+
             /// <summary>Resource providers also support deterministic import/reload verification.</summary>
             public Appearance ResolveAppearance(Func<string, string> metadata,
                 Func<string, int, int, bool> validTexture, Func<string, byte[]> resourceBytes = null,
-                Func<string, string, string, bool> validHdIndex = null)
+                Func<string, string, string, bool> validHdIndex = null, Action<string> diagnose = null)
             {
                 if (IsOriginalRoster)
                 {
@@ -166,8 +180,18 @@ namespace MmorpgClient.World
                     _v14ActivationText = hdActivation;
                     _originalManifestHash = manifestHash;
                     _originalHdManifestHash = hdManifestHash;
-                    var originalSelection = (hdInventoryValid ? SelectOriginalHdAppearance(this, hdActivation, hdManifest, validTexture) : null) ??
-                        SelectOriginalAppearance(this, activation, manifest, validTexture);
+                    string hdProblem = null;
+                    string v13Problem = null;
+                    if (!hdInventoryValid && diagnose != null)
+                        hdProblem = rejectedHdRevision ? "previous frame load failed"
+                            : hdActivationHash == null ? "appearance.json missing"
+                            : hdManifestHash == null ? "manifest.json missing"
+                            : "runtime-index or validation does not match the approved frame inventory";
+                    var originalSelection = (hdInventoryValid ? SelectApprovedVersion(this, 14, hdActivation, validTexture,
+                        hdManifest, diagnose == null ? null : problem => hdProblem = problem) : null) ??
+                        SelectApprovedVersion(this, 13, activation, validTexture, manifest,
+                            diagnose == null ? null : problem => v13Problem = problem);
+                    if (originalSelection == null) diagnose?.Invoke($"V14: {hdProblem}; V13: {v13Problem}");
                     // An incomplete higher-priority HD import must be retried even while V13 is usable.
                     _appearance = originalSelection != null && (originalSelection.IsHd || string.IsNullOrEmpty(hdActivation) || rejectedHdRevision) ? originalSelection : null;
                     return originalSelection;
@@ -343,12 +367,17 @@ namespace MmorpgClient.World
         }
 
         private static Appearance SelectApprovedVersion(Definition definition, int version, string json,
-            Func<string, int, int, bool> validTexture, byte[] originalManifest = null)
+            Func<string, int, int, bool> validTexture, byte[] originalManifest = null, Action<string> diagnose = null)
         {
-            if (string.IsNullOrWhiteSpace(json) || validTexture == null) return null;
+            Appearance Reject(string reason)
+            {
+                diagnose?.Invoke(reason);
+                return null;
+            }
+            if (string.IsNullOrWhiteSpace(json) || validTexture == null) return Reject("appearance.json missing or empty");
             Activation record;
             try { record = JsonUtility.FromJson<Activation>(json); }
-            catch (ArgumentException) { return null; }
+            catch (ArgumentException) { return Reject("appearance.json is invalid JSON"); }
             var pinnedDelivery = definition.IsOriginalRoster &&
                 QdaoLocalPlaytestContract.Allows(definition.Id, version, json, originalManifest);
             if (record == null || record.version != version || record.characterId != definition.Id ||
@@ -357,7 +386,7 @@ namespace MmorpgClient.World
                 (version >= 13 ? record.contactFrame != 0 : record.contactFrame != 0 && record.contactFrame != 4) ||
                 record.status != "passed" || (record.visualReview != "passed" && !pinnedDelivery) ||
                 !IsSha256(record.manifest_sha256) || !IsSha256(record.qc_sha256) || !IsSha256(record.validation_sha256))
-                return null;
+                return Reject("appearance.json activation or approval contract mismatch");
             // The original 00-22 pack uses feet-aligned v2. Lu's separate V13
             // family keeps its strict fixed-head v3 contract; neither relaxes the other.
             var alignmentVersion = record.alignmentVersion == 0 ? 2 : record.alignmentVersion;
@@ -365,31 +394,36 @@ namespace MmorpgClient.World
             if (definition.IsOriginalRoster)
             {
                 if ((version != 13 && version != 14) || record.alignmentVersion != 2 ||
-                    !OriginalManifestMatches(definition.Id, version, originalManifest, record.manifest_sha256, pinnedDelivery)) return null;
+                    !OriginalManifestMatches(definition.Id, version, originalManifest, record.manifest_sha256, pinnedDelivery))
+                    return Reject("manifest.json missing or mismatched SHA-256, geometry, timing, or approval");
                 if (version == 14 && (record.cycleDurationMs != 480 || record.frameWidth != 1024 || record.frameHeight != 1024 ||
                     record.portraitWidth != 1024 || record.portraitHeight != 1024 ||
                     record.pixelsPerUnit != 104f || record.pivotX != .5f || record.pivotY != .08f || record.sourceCommit != "9adcf9291e4a867601868889a5965f3cd48630ba" ||
-                    record.sourceFamily != "original-00-22")) return null;
+                    record.sourceFamily != "original-00-22")) return Reject("appearance.json HD geometry or source mismatch");
                 if (version == 14 && !QdaoMixedResolutionContract.TryRead(definition.Id, originalManifest,
-                    record.resolutionMode, out frameGeometry)) return null;
-                if (version != 14 && !string.IsNullOrEmpty(record.resolutionMode)) return null;
+                    record.resolutionMode, out frameGeometry)) return Reject("manifest.json mixed resolution geometry mismatch");
+                if (version != 14 && !string.IsNullOrEmpty(record.resolutionMode)) return Reject("appearance.json has an invalid V13 resolution mode");
             }
             else if (version == 13 ? alignmentVersion != 3 : alignmentVersion != 2 && alignmentVersion != 3)
                 return null;
             var revision = record.manifest_sha256 + ":qc" + record.qc_sha256 + ":validation" + record.validation_sha256;
             var candidate = new Appearance(definition.Id, version, record.contactFrame, revision, alignmentVersion,
                 definition.IsOriginalRoster ? (version == 14 ? OriginalV14Root : OriginalV13Root) : null, frameGeometry);
-            if (!validTexture(candidate.ResourceFolder + "/portrait", candidate.PortraitWidth, candidate.PortraitHeight)) return null;
+            string portraitPath = candidate.ResourceFolder + "/portrait";
+            if (!validTexture(portraitPath, candidate.PortraitWidth, candidate.PortraitHeight))
+                return Reject($"Missing or invalid texture {portraitPath} ({candidate.PortraitWidth}x{candidate.PortraitHeight})");
             foreach (var direction in Directions)
             {
                 var idlePath = candidate.IdleResourcePath(direction);
                 var idleGeometry = candidate.GeometryForResource(idlePath);
-                if (!validTexture(idlePath, idleGeometry.Width, idleGeometry.Height)) return null;
+                if (!validTexture(idlePath, idleGeometry.Width, idleGeometry.Height))
+                    return Reject($"Missing or invalid texture {idlePath} ({idleGeometry.Width}x{idleGeometry.Height})");
                 for (var frame = 0; frame < candidate.FrameCount; frame++)
                 {
                     var framePath = candidate.FrameResourcePath(direction, frame);
                     var geometry = candidate.GeometryForResource(framePath);
-                    if (!validTexture(framePath, geometry.Width, geometry.Height)) return null;
+                    if (!validTexture(framePath, geometry.Width, geometry.Height))
+                        return Reject($"Missing or invalid texture {framePath} ({geometry.Width}x{geometry.Height})");
                 }
             }
             return candidate;
@@ -493,7 +527,7 @@ namespace MmorpgClient.World
         /// <summary>Original identities from restored commit 9adcf929; the second hero PNG is an alias, not a 24th identity.</summary>
         public static IReadOnlyList<Definition> OriginalAll { get; } = Array.AsReadOnly(OriginalEntries);
 
-        /// <summary>The retained delivery scope. Historical IDs remain resolvable but cannot re-enter selection.</summary>
+        /// <summary>The previously delivered artwork roster, including identities already saved on old roles.</summary>
         public static IReadOnlyList<Definition> RetainedOriginalAll { get; } = Array.AsReadOnly(
             Array.FindAll(OriginalEntries, entry => IsRetainedOriginal(entry.Id)));
 
@@ -507,7 +541,13 @@ namespace MmorpgClient.World
                id == "15_water_dragon_scholar_boy" || id == "17_ghost_script_calligrapher_boy" ||
                id == "20_star_formation_master_girl";
 
-        /// <summary>Only accepted, loaded identities from the current delivery are selectable.</summary>
+        /// <summary>The twelve identities released for the current creation flow.</summary>
+        public static IReadOnlyList<Definition> CreationOriginalAll { get; } = Array.AsReadOnly(
+            Array.FindAll(OriginalEntries, entry => IsCreatableAppearance(entry.Id)));
+
+        public static bool IsCreatableAppearance(string id) => QdaoRunVariants.AllowsCharacter(id);
+
+        /// <summary>Available artwork for the full historical delivery roster.</summary>
         public static IReadOnlyList<Definition> AvailableAll => SelectAvailableAppearances(entry => entry.ResolveAppearance());
 
         public static IReadOnlyList<Definition> SelectAvailableAppearances(Func<Definition, Appearance> resolve)

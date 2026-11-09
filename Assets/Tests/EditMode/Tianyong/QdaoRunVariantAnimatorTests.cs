@@ -118,6 +118,24 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void LocalPlayerComparisonTogglesOnlyBetweenDeliveredVersions()
+        {
+            var controller = _actor.AddComponent<TianyongPlayerController>();
+            Assert.That(_animator.TrySetRunVariant(QdaoRunVariant.Current), Is.True);
+            _missing.Add(QdaoRunVariants.LegacyRoot + "/S");
+            Assert.That(controller.TryToggleRunVariant(), Is.False);
+            Assert.That(_animator.RunVariant, Is.EqualTo(QdaoRunVariant.Current));
+            _missing.Clear();
+            var phase = _animator.RunCyclePhase;
+            Assert.That(controller.TryToggleRunVariant(), Is.True);
+            Assert.That(_animator.RunVariant, Is.EqualTo(QdaoRunVariant.Legacy));
+            Assert.That(_animator.RunCyclePhase, Is.EqualTo(phase).Within(.00001f));
+            Assert.That(controller.TryToggleRunVariant(), Is.True);
+            Assert.That(_animator.RunVariant, Is.EqualTo(QdaoRunVariant.Current));
+            Assert.That(_animator.CharacterId, Is.EqualTo(Id));
+        }
+
+        [Test]
         public void SwitchingVersionPreservesPhaseActorAppearanceAndActionClock()
         {
             var position = _actor.transform.position;

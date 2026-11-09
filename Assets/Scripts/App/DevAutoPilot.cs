@@ -429,8 +429,7 @@ namespace MmorpgClient.App
                 yield break;
             }
             var definition = QdaoCharacterCatalog.Find(_opt.AppearanceId);
-            if (definition == null || !QdaoCharacterCatalog.IsRetainedOriginal(_opt.AppearanceId) ||
-                definition.ResolveAppearance() == null)
+            if (definition?.ResolveAppearance() == null)
             {
                 choice.Cancelled = true;
                 Fail("appearance_select", "指定外观不是当前保留且完整验收的人物: " + _opt.AppearanceId);
@@ -447,6 +446,12 @@ namespace MmorpgClient.App
             {
                 choice.Cancelled = true;
                 Fail("appearance_select", "重登角色列表未恢复指定外观，禁止自动创建替代角色: " + _opt.AppearanceId);
+                yield break;
+            }
+            if (!QdaoCharacterCatalog.IsCreatableAppearance(_opt.AppearanceId))
+            {
+                choice.Cancelled = true;
+                Fail("appearance_select", "指定外观不可用于新建: " + _opt.AppearanceId);
                 yield break;
             }
             choice.CreateNew = true;

@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -164,6 +165,52 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             foreach (var id in visited) Assert.That(QdaoCharacterCatalog.IsRetainedOriginal(id), Is.True);
             Assert.That(visited, Does.Not.Contain("11_jade_fist_flat_top_boy"));
             Assert.That(visited, Does.Contain("20_star_formation_master_girl"));
+        }
+
+        [Test]
+        public void CurrentCreationWhitelistPreservesCancelledIdentityOnExistingRoles()
+        {
+            var ids = new[]
+            {
+                "00_reference_topright_boy", "01_ice_sword_girl", "02_fire_talisman_boy",
+                "03_lotus_healer_girl", "04_mountain_guardian_boy", "05_celestial_musician_girl",
+                "06_thunder_caster_boy", "08_alchemy_prodigy_boy", "09_bamboo_archer_girl",
+                "10_crimson_spear_girl", "15_water_dragon_scholar_boy", "17_ghost_script_calligrapher_boy"
+            };
+            Assert.That(QdaoCharacterCatalog.CreationOriginalAll.Select(entry => entry.Id), Is.EqualTo(ids));
+            foreach (var id in new[]
+            {
+                "07_moon_shadow_assassin_girl", "14_short_hair_snow_summoner_girl", "20_star_formation_master_girl"
+            })
+            {
+                Assert.That(QdaoCharacterCatalog.IsCreatableAppearance(id), Is.False, id);
+                Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, id), Is.EqualTo(id));
+                Assert.That(QdaoCharacterCatalog.Find(id), Is.Not.Null);
+            }
+            Assert.That(QdaoCharacterCatalog.IsCreatableAppearance(null), Is.False);
+            Assert.That(QdaoCharacterCatalog.IsCreatableAppearance("04_mountain_guardian"), Is.False);
+            Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, ""), Is.EqualTo("20_star_formation_master_girl"));
+        }
+
+        [Test]
+        public void CreatedPlayerRetryFindsExactRoleInFullListEvenIfAlreadyKnown()
+        {
+            var players = new[]
+            {
+                new AccountSimplePlayerWrapper { Player = new AccountSimplePlayer { PlayerId = 101, ClassId = 1,
+                    Gender = 2, AppearanceId = First, Name = "云行客" } },
+                new AccountSimplePlayerWrapper { Player = new AccountSimplePlayer { PlayerId = 102, ClassId = 1,
+                    Gender = 2, AppearanceId = First, Name = "听松客" } }
+            };
+            var known = new HashSet<ulong> { 101, 102 };
+            var match = typeof(GameClient).GetMethod("FindCreatedPlayer", BindingFlags.Static | BindingFlags.NonPublic);
+            Assert.That(match, Is.Not.Null);
+            ulong Resolve(string name, uint gender) => (ulong)match.Invoke(null, new object[] { players, known, name, 1u, gender });
+            Assert.That(Resolve("  云行客  ", 2), Is.EqualTo(101UL));
+            Assert.That(Resolve("云行客", 1), Is.Zero);
+            Assert.That(Resolve("", 2), Is.Zero);
+            known.Remove(102);
+            Assert.That(Resolve("", 2), Is.EqualTo(102UL));
         }
 
         [Test]

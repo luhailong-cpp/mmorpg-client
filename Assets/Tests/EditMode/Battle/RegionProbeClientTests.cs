@@ -52,6 +52,57 @@ namespace MmorpgClient.Tests.EditMode.Battle
             return net.CallsOf(MessageIds.JoinQueue).Last();
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void QueueRecoveryWaitsForRoleBindingOnLoginAndReconnect(bool notifyDisconnect)
+        {
+            const ulong player = 1001;
+            const string requestId = "ab8bf759-c39e-4dad-a131-4eadca24642c";
+            var net = new FakeBattleTransport { PlayerId = 0 };
+            bool enteredScene = false;
+            var battle = new BattleClient(net)
+            {
+                QueueSessionReady = () => enteredScene,
+                RegionProbe = new RegionProbeClient(net, () => new Connection(), work => work()),
+            };
+
+            battle.Tick(0);
+            Assert.That(battle.ProbeQueueStatus(_ => Assert.Fail("未绑定角色时不能查询队列")), Is.False);
+            Assert.That(net.Calls, Is.Empty);
+            net.PlayerId = player; // EnterGame 仅受理，尚未确认入场。
+            battle.Tick(0.5);
+            Assert.That(net.Calls, Is.Empty);
+            enteredScene = true;
+            battle.Tick(1);
+            var first = net.CallsOf(MessageIds.GetQueueStatus).Single();
+            Assert.That(((Match.GetQueueStatusRequest)first.Request).PlayerId, Is.EqualTo(player));
+            first.Respond(new Match.GetQueueStatusResponse { State = Match.QueueState.NotQueued });
+
+            enteredScene = false;
+            net.PlayerId = 0;
+            net.IsReady = false;
+            if (notifyDisconnect) net.RaiseDisconnected();
+            battle.Tick(2);
+            battle.QueueRecovery = new Recovery
+            {
+                Request = new Match.JoinQueueRequest { PlayerId = player, RequestId = requestId },
+            };
+            net.IsReady = true;
+            battle.Tick(3);
+            Assert.That(net.CallsOf(MessageIds.GetQueueStatus), Has.Count.EqualTo(1));
+            net.PlayerId = player;
+            battle.Tick(3.5);
+            Assert.That(net.CallsOf(MessageIds.GetQueueStatus), Has.Count.EqualTo(1));
+            enteredScene = true;
+            battle.Tick(4);
+            var calls = net.CallsOf(MessageIds.GetQueueStatus);
+            Assert.That(calls, Has.Count.EqualTo(2));
+            var resumed = (Match.GetQueueStatusRequest)calls.Last().Request;
+            Assert.That(resumed.PlayerId, Is.EqualTo(player));
+            Assert.That(resumed.RequestId, Is.EqualTo(requestId));
+            Assert.That(battle.Phase, Is.EqualTo(BattlePhase.Queued));
+        }
+
         [Test]
         public void SlowProbePlanDoesNotQueryAnUnsentSoloJoin()
         {

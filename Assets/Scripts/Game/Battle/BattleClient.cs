@@ -113,6 +113,8 @@ namespace MmorpgClient.Game.Battle
         private bool _joinSent;
         private double _refreshProbeAt;
         public IMatchJoinRecovery QueueRecovery { get; set; }
+        public Func<bool> QueueSessionReady { get; set; }
+        private bool QueueTransportReady => _net.IsReady && MyPlayerId != 0 && (QueueSessionReady?.Invoke() ?? true);
         private Match.JoinQueueRequest _joinIntent;
         private ulong _queueIntentPlayer;
         private bool _joinOutcomeUnknown;
@@ -290,16 +292,18 @@ namespace MmorpgClient.Game.Battle
         public void Tick(double nowSeconds)
         {
             _now = nowSeconds;
-            RestoreQueueIntent();
-            if (RegionProbe != null && !_net.IsReady && _lastTransportReady) { ++_queueGeneration; RegionProbe.Dispose(); }
+            // Gate 验票与 EnterGame 受理都可能早于会话完成角色绑定。等实际入场再恢复排队状态。
+            bool queueReady = QueueTransportReady;
+            if (queueReady) RestoreQueueIntent();
+            if (RegionProbe != null && !queueReady && _lastTransportReady) { ++_queueGeneration; RegionProbe.Dispose(); }
             RegionProbe?.Tick(nowSeconds);
-            if (RegionProbe != null && _net.IsReady && !_lastTransportReady)
+            if (RegionProbe != null && queueReady && !_lastTransportReady)
             {
                 if (_joinIntent != null && Phase == BattlePhase.None) SetPhase(BattlePhase.Queued);
                 if (_cancelRequested) SendGlobalCancellation(); else PollQueueStatus();
             }
-            _lastTransportReady = _net.IsReady;
-            if (_globalQueue && !_cancelRequested && !_joinOutcomeUnknown && Phase == BattlePhase.Queued && _net.IsReady && _now >= _refreshProbeAt && RegionProbe != null && !RegionProbe.Busy)
+            _lastTransportReady = queueReady;
+            if (_globalQueue && !_cancelRequested && !_joinOutcomeUnknown && Phase == BattlePhase.Queued && queueReady && _now >= _refreshProbeAt && RegionProbe != null && !RegionProbe.Busy)
             {
                 _refreshProbeAt = _now + 25;
                 RegionProbe.Prepare(_ => { }, error => OnError?.Invoke(error));
@@ -313,7 +317,7 @@ namespace MmorpgClient.Game.Battle
                 if (IsBattleChannelReady) PullState();
             }
 
-            if ((Phase == BattlePhase.Queued || (_globalQueue && Phase == BattlePhase.Preparing)) && _net.IsReady && _now >= _nextQueuePollAt)
+            if ((Phase == BattlePhase.Queued || (_globalQueue && Phase == BattlePhase.Preparing)) && queueReady && _now >= _nextQueuePollAt)
             {
                 _nextQueuePollAt = _now + QueuePollIntervalSeconds;
                 PollQueueStatus();
@@ -571,6 +575,9 @@ namespace MmorpgClient.Game.Battle
 
         private void PollQueueStatus()
         {
+            if (!QueueTransportReady) return;
+            var player = MyPlayerId;
+
             // 本机新匹配还在做地域探测,尚未提交入队。此时服务端的 NotQueued
             // 不能撤销这次意图;恢复记录与随队入队仍须照常向服务端求证。
             if (Phase == BattlePhase.Queued && RegionProbe?.Busy == true && !_joinSent &&
@@ -581,7 +588,6 @@ namespace MmorpgClient.Game.Battle
             int session = _queueSession;
             var generation = _queueGeneration;
             var query = ++_queuePollSequence;
-            var player = MyPlayerId;
             bool cancelVerify = _cancelVerifyPending;
             _cancelVerifyPending = false;
             var req = new Match.GetQueueStatusRequest { PlayerId = player, RequestId = _joinIntent?.RequestId ?? string.Empty };
@@ -688,11 +694,11 @@ namespace MmorpgClient.Game.Battle
         /// </summary>
         public bool ProbeQueueStatus(Action<Match.QueueState> onResult)
         {
-            if (Phase != BattlePhase.None || !_net.IsReady || _queuePollInFlightSeq != 0) return false;
+            if (Phase != BattlePhase.None || !QueueTransportReady || _queuePollInFlightSeq != 0) return false;
+            ulong player = MyPlayerId;
             int seq = BeginQueuePoll();
             int session = _queueSession;
             int generation = _queueGeneration;
-            ulong player = MyPlayerId;
             var req = new Match.GetQueueStatusRequest { PlayerId = player, RequestId = _joinIntent?.RequestId ?? string.Empty };
             _net.Call(MessageIds.GetQueueStatus, req, Match.GetQueueStatusResponse.Parser,
                 resp =>

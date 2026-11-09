@@ -71,7 +71,7 @@ namespace MmorpgClient.App
             }
             var definition = QdaoCharacterCatalog.Find(_options.AppearanceId);
             if (_host == null || _ui == null || _original?.Target != _ui ||
-                definition?.ResolveAppearance() == null || !QdaoCharacterCatalog.IsRetainedOriginal(_options.AppearanceId) ||
+                definition?.ResolveAppearance() == null ||
                 string.IsNullOrWhiteSpace(_options.ShotDir) || _options.RoleClass < 1 || _options.RoleClass > 4 ||
                 _options.RoleGender < 1 || _options.RoleGender > 2 || roles == null ||
                 _disconnectedCapture != null && _scope != "disconnected_ui_fixture")
@@ -83,6 +83,8 @@ namespace MmorpgClient.App
             var selected = matches.SingleOrDefault();
             if (selected != null && (selected.PlayerId == 0 || selected.ClassId != _options.RoleClass || selected.Gender != _options.RoleGender))
             { Reject("服务器角色职业/性别与验收目标不一致"); yield break; }
+            if (selected == null && !QdaoCharacterCatalog.IsCreatableAppearance(_options.AppearanceId))
+            { Reject("指定外观不可用于新建"); yield break; }
             if (selected == null && roles.Count >= 5)
             { Reject("正式角色位已满，不能自动创建或删除已有角色"); yield break; }
             foreach (var role in roles.Where(role => role != null))
@@ -100,7 +102,7 @@ namespace MmorpgClient.App
                     if (roles.Count > 0) { yield return Click("CreateNewRole"); if (Stopped) yield break; }
                     yield return Click("Class_" + _options.RoleClass); if (Stopped) yield break;
                     yield return Click(_options.RoleGender == 1 ? "GenderMale" : "GenderFemale"); if (Stopped) yield break;
-                    int count = QdaoCharacterCatalog.RetainedOriginalAll.Count(entry => entry.ResolveAppearance() != null) + 1;
+                    int count = QdaoCharacterCatalog.CreationOriginalAll.Count;
                     // The label and portrait are both read from the displayed UI, not its private selection fields.
                     while (count-- > 0 && !PreviewMatches())
                     { yield return Click("NextAppearance"); if (Stopped) yield break; }

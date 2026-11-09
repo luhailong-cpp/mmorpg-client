@@ -305,6 +305,7 @@ namespace MmorpgClient.Game
             var battleRoute = new DirectRoutingBattleTransport(new GameClientBattleTransport(this), BattleLink,
                 s => Log($"[battle-route] {s}"));
             Battle = BattleClient.Attach(battleRoute, battleRoute);
+            Battle.QueueSessionReady = () => InGame;
             Battle.RegionProbe = new RegionProbeClient(battleRoute, () => new GateTcpClient(_codec));
             Battle.QueueRecovery = new FileMatchJoinRecovery(System.IO.Path.Combine(Application.persistentDataPath, "match-intents"), gatewayBaseUrl);
             TeamMatchRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-match-intents"),gatewayBaseUrl);
@@ -808,15 +809,9 @@ namespace MmorpgClient.Game
             }
 
             CacheRoleMetadata(cpResp.Players);
-            // 响应是账号全量角色列表:新角色 = 不在请求前列表里的那一个
-            ulong newId = 0;
-            foreach (var w in cpResp.Players)
-                if (w.Player != null && !knownIds.Contains(w.Player.PlayerId))
-                    newId = w.Player.PlayerId;
-            if (newId == 0 && cpResp.Players.Count > 0)
-                newId = cpResp.Players[cpResp.Players.Count - 1].Player?.PlayerId ?? 0;
+            ulong newId = FindCreatedPlayer(cpResp.Players, knownIds, name, classId, gender);
             if (newId == 0)
-            { FailPipeline(gen, onError, "create player returned empty list"); yield break; }
+            { FailPipeline(gen, onError, "创角响应中没有唯一匹配的角色，请重新登录确认"); yield break; }
 
             // Validate the server-owned saved ID, not its display-only compatibility alias.
             if (!string.IsNullOrEmpty(appearanceId) &&
@@ -827,6 +822,29 @@ namespace MmorpgClient.Game
             }
             Log($"created new player {newId} class={classId} gender={gender} name={ResolveRoleName(newId)} appearance={ResolveCharacterId(newId)}");
             onCreated(newId);
+        }
+
+        private static ulong FindCreatedPlayer(IEnumerable<AccountSimplePlayerWrapper> players,
+            HashSet<ulong> knownIds, string name, uint classId, uint gender)
+        {
+            string normalized = null;
+            if (!string.IsNullOrEmpty(name) && !RoleNameRules.TryNormalize(name, out normalized, out _))
+                return 0;
+
+            // 已提交但应答丢失的具名请求可能已出现在登录列表。账号角色顺序不能用于确定重试的结果。
+            ulong match = 0;
+            foreach (var wrapper in players)
+            {
+                var role = wrapper?.Player;
+                if (role == null || role.PlayerId == 0) continue;
+                bool matches = normalized == null ? !knownIds.Contains(role.PlayerId)
+                    : string.Equals(role.Name, normalized, StringComparison.Ordinal) &&
+                      (classId == 0 || role.ClassId == classId) && (gender == 0 || role.Gender == gender);
+                if (!matches) continue;
+                if (match != 0) return 0;
+                match = role.PlayerId;
+            }
+            return match;
         }
 
         /// <summary>
