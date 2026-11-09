@@ -4,7 +4,7 @@ namespace MmorpgClient.World
     {
         public const string CurrentRoot = "World/Characters/QdaoRunVariants20261105/current";
 
-        /// <summary>只允许道童和本次保留的十一名角色，历史别名须由现有角色目录解析。</summary>
+        /// <summary>只允许道童和本次保留的十名角色，历史别名须由现有角色目录解析。</summary>
         public static bool AllowsCharacter(string id)
         {
             switch (id)
@@ -15,7 +15,6 @@ namespace MmorpgClient.World
                 case "03_lotus_healer_girl":
                 case "04_mountain_guardian_boy":
                 case "05_celestial_musician_girl":
-                case "06_thunder_caster_boy":
                 case "08_alchemy_prodigy_boy":
                 case "09_bamboo_archer_girl":
                 case "10_crimson_spear_girl":

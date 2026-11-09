@@ -17,7 +17,6 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TearDown]
         public void RefreshAfterTest() => QdaoCharacterCatalog.RefreshAppearances();
 
-        [TestCase("06_thunder_caster_boy")]
         [TestCase("08_alchemy_prodigy_boy")]
         [TestCase("09_bamboo_archer_girl")]
         [TestCase("10_crimson_spear_girl")]

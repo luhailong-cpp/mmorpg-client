@@ -160,8 +160,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var visited = new HashSet<string>();
             var result = QdaoCharacterCatalog.SelectAvailableAppearances(entry => { visited.Add(entry.Id); return null; });
             Assert.That(result.Count, Is.Zero, "Incomplete originals and retired artwork cannot appear in selection.");
-            Assert.That(visited.Count, Is.EqualTo(15));
-            Assert.That(QdaoCharacterCatalog.RetainedOriginalAll.Count, Is.EqualTo(15));
+            Assert.That(visited.Count, Is.EqualTo(14));
+            Assert.That(QdaoCharacterCatalog.RetainedOriginalAll.Count, Is.EqualTo(14));
             foreach (var id in visited) Assert.That(QdaoCharacterCatalog.IsRetainedOriginal(id), Is.True);
             Assert.That(visited, Does.Not.Contain("11_jade_fist_flat_top_boy"));
             Assert.That(visited, Does.Contain("20_star_formation_master_girl"));
@@ -174,7 +174,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             {
                 "00_reference_topright_boy", "01_ice_sword_girl", "02_fire_talisman_boy",
                 "03_lotus_healer_girl", "04_mountain_guardian_boy", "05_celestial_musician_girl",
-                "06_thunder_caster_boy", "08_alchemy_prodigy_boy", "09_bamboo_archer_girl",
+                "08_alchemy_prodigy_boy", "09_bamboo_archer_girl",
                 "10_crimson_spear_girl", "15_water_dragon_scholar_boy", "17_ghost_script_calligrapher_boy"
             };
             Assert.That(QdaoCharacterCatalog.CreationOriginalAll.Select(entry => entry.Id), Is.EqualTo(ids));

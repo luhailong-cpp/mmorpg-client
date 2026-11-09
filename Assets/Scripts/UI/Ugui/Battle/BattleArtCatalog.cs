@@ -131,7 +131,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static readonly string[] PortraitFiles =
         {
             "01_ice_sword_girl_v3", "02_fire_talisman_boy_v3", "03_lotus_healer_girl_v3",
-            "04_mountain_guardian_boy_v3", "05_celestial_musician_girl_v3", "06_thunder_caster_boy_v3",
+            "04_mountain_guardian_boy_v3", "05_celestial_musician_girl_v3", string.Empty,
             "07_moon_shadow_assassin_girl_v3", "08_alchemy_prodigy_boy_v3", "09_bamboo_archer_girl_v3",
             "10_crimson_spear_girl_v3", "11_jade_fist_flat_top_boy_v3", "12_iron_saber_flat_top_boy_v3",
             "13_short_hair_wind_blade_girl_v3", "14_short_hair_snow_summoner_girl_v3", "15_water_dragon_scholar_boy_v3",

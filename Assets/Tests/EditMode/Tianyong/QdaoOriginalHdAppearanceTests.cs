@@ -201,7 +201,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void DeliveredIndexChecksRealFilesWithoutRequiringProducerTimestamps()
         {
-            const string folder = QdaoCharacterCatalog.OriginalV14Root + "/06_thunder_caster_boy";
+            const string folder = QdaoCharacterCatalog.OriginalV14Root + "/08_alchemy_prodigy_boy";
             var delivered = Resources.Load<QdaoOriginalHdResourceIndex>(folder + "/runtime-index");
             Assert.That(delivered, Is.Not.Null, "Requires the committed HD inventory and its real PNG files.");
             var index = UnityEngine.Object.Instantiate(delivered);

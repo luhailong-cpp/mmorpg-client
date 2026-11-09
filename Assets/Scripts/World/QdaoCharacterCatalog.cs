@@ -506,7 +506,6 @@ namespace MmorpgClient.World
             new("03_lotus_healer_girl", "莲花医者", true),
             new("04_mountain_guardian_boy", "山岳守卫", true),
             new("05_celestial_musician_girl", "天音少女", true),
-            new("06_thunder_caster_boy", "雷法少年", true),
             new("07_moon_shadow_assassin_girl", "月影少女", true),
             new("08_alchemy_prodigy_boy", "炼丹童子", true),
             new("09_bamboo_archer_girl", "竹弓少女", true),
@@ -535,13 +534,13 @@ namespace MmorpgClient.World
             => id == "00_reference_topright_boy" || id == "01_ice_sword_girl" ||
                id == "02_fire_talisman_boy" || id == "03_lotus_healer_girl" ||
                id == "04_mountain_guardian_boy" || id == "05_celestial_musician_girl" ||
-               id == "06_thunder_caster_boy" || id == "07_moon_shadow_assassin_girl" ||
+               id == "07_moon_shadow_assassin_girl" ||
                id == "08_alchemy_prodigy_boy" || id == "09_bamboo_archer_girl" ||
                id == "10_crimson_spear_girl" || id == "14_short_hair_snow_summoner_girl" ||
                id == "15_water_dragon_scholar_boy" || id == "17_ghost_script_calligrapher_boy" ||
                id == "20_star_formation_master_girl";
 
-        /// <summary>The twelve identities released for the current creation flow.</summary>
+        /// <summary>The eleven identities released for the current creation flow.</summary>
         public static IReadOnlyList<Definition> CreationOriginalAll { get; } = Array.AsReadOnly(
             Array.FindAll(OriginalEntries, entry => IsCreatableAppearance(entry.Id)));
 
@@ -588,7 +587,6 @@ namespace MmorpgClient.World
                 case "13_short_hair_wind_blade_girl": return "01_ice_sword_girl";
                 case "16_golden_bell_dancer_girl": return "05_celestial_musician_girl";
                 case "18_desert_sun_monk_girl": return "10_crimson_spear_girl";
-                case "19_spirit_beast_tamer_boy": return "06_thunder_caster_boy";
                 case "21_lidazui_hair_cook_boy": return "08_alchemy_prodigy_boy";
                 case "22_lidazui_hair_waiter_saber_boy": return "00_reference_topright_boy";
                 case "23_lantern_courier": return "01_ice_sword_girl";
@@ -598,7 +596,6 @@ namespace MmorpgClient.World
                 case "27_ink_kite_ranger": return "08_alchemy_prodigy_boy";
                 case "28_moon_rabbit_artificer": return "20_star_formation_master_girl";
                 case "29_he_xiangu": return "03_lotus_healer_girl";
-                case "30_han_xiangzi": return "06_thunder_caster_boy";
                 default: return id;
             }
         }

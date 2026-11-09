@@ -166,7 +166,7 @@ class OriginalV14DeliveryTests(unittest.TestCase):
 
     def test_only_seven_independently_approved_full_hd_ids_are_allowed(self):
         self.assertEqual(set(importer.APPROVED_DELIVERIES), {
-            "06_thunder_caster_boy", "08_alchemy_prodigy_boy", "09_bamboo_archer_girl",
+            "08_alchemy_prodigy_boy", "09_bamboo_archer_girl",
             "10_crimson_spear_girl", "14_short_hair_snow_summoner_girl",
             "17_ghost_script_calligrapher_boy", "20_star_formation_master_girl",
         })

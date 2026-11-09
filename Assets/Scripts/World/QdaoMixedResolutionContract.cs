@@ -10,7 +10,7 @@ namespace MmorpgClient.World
     {
         public const string Mode = "mixed-preserved-v1";
         public static bool AllowedIdentity(string id) => id == "04_mountain_guardian_boy" ||
-            id == "05_celestial_musician_girl" || id == "06_thunder_caster_boy";
+            id == "05_celestial_musician_girl";
 
         public readonly struct Geometry
         {

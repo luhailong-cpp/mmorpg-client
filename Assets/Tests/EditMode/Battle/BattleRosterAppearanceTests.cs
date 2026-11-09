@@ -67,13 +67,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(BattleArtCatalog.LoadPlayerWalk(resolved, true), Is.Null);
         }
 
+        [TestCase("19_spirit_beast_tamer_boy")]
+        [TestCase("30_han_xiangzi")]
+        public void RetiredIdentityPreviouslyAliasedToRemovedRoleIsPreserved(string saved)
+        {
+            var actor = new BattleActorState { ActorId = 501, ActorType = eBattleActorType.BattleActorTypePlayer, AppearanceId = saved };
+            Assert.That(BattleArtCatalog.CharacterIdFor(actor, _ => "future_unavailable_identity"), Is.EqualTo(saved));
+            Assert.That(actor.AppearanceId, Is.EqualTo(saved));
+        }
+
         [TestCase("QdaoHeadbandBoy", "00_reference_topright_boy")]
         [TestCase("11_jade_fist_flat_top_boy", "04_mountain_guardian_boy")]
         [TestCase("12_iron_saber_flat_top_boy", "00_reference_topright_boy")]
         [TestCase("13_short_hair_wind_blade_girl", "01_ice_sword_girl")]
         [TestCase("16_golden_bell_dancer_girl", "05_celestial_musician_girl")]
         [TestCase("18_desert_sun_monk_girl", "10_crimson_spear_girl")]
-        [TestCase("19_spirit_beast_tamer_boy", "06_thunder_caster_boy")]
         [TestCase("21_lidazui_hair_cook_boy", "08_alchemy_prodigy_boy")]
         [TestCase("22_lidazui_hair_waiter_saber_boy", "00_reference_topright_boy")]
         [TestCase("23_lantern_courier", "01_ice_sword_girl")]
@@ -83,7 +91,6 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [TestCase("27_ink_kite_ranger", "08_alchemy_prodigy_boy")]
         [TestCase("28_moon_rabbit_artificer", "20_star_formation_master_girl")]
         [TestCase("29_he_xiangu", "03_lotus_healer_girl")]
-        [TestCase("30_han_xiangzi", "06_thunder_caster_boy")]
         public void RetiredSnapshotAndAccountIdentityResolveToSameCurrentBodyAndPortrait(string saved, string expected)
         {
             var actor = new BattleActorState

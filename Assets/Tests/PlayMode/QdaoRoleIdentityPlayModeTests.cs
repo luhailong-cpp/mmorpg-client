@@ -170,11 +170,11 @@ namespace MmorpgClient.Tests.PlayMode
         {
             QdaoCharacterCatalog.RefreshAppearances();
             var roster = QdaoCharacterCatalog.RetainedOriginalAll.ToArray();
-            Assert.That(roster.Length, Is.EqualTo(15));
+            Assert.That(roster.Length, Is.EqualTo(14));
             var appearances = roster.Select(entry => entry.ResolveAppearance()).ToArray();
             Assert.That(appearances.All(appearance => appearance != null), Is.True,
                 "全部保留人物都必须具备可用资源，不能由 AvailableAll 过滤掉缺失角色而假通过。");
-            Assert.That(appearances.Count(appearance => appearance.Version == 14), Is.EqualTo(11));
+            Assert.That(appearances.Count(appearance => appearance.Version == 14), Is.EqualTo(10));
             Assert.That(appearances.Count(appearance => appearance.Version == 13), Is.EqualTo(4));
             foreach (var appearance in appearances)
             {
@@ -252,14 +252,14 @@ namespace MmorpgClient.Tests.PlayMode
                 Capture(host.GetComponentInChildren<Canvas>(), "create-default-alchemy-v14-disconnected-ui");
 
                 var available = QdaoCharacterCatalog.CreationOriginalAll.Where(entry => entry.ResolveAppearance() != null).ToArray();
-                Assert.That(available.Length, Is.EqualTo(12));
+                Assert.That(available.Length, Is.EqualTo(11));
                 var displayedIds = new HashSet<string>();
                 bool sawOlder = false;
                 for (int i = 0; i < available.Length; i++)
                 {
                     var displayed = available.Single(entry => entry.Name == ReadText(host, "PreviewTitle"));
                     Assert.That(displayedIds.Add(displayed.Id), Is.True);
-                    Assert.That(ReadText(host, "AppearanceName"), Does.Contain($"{i + 1}/12"));
+                    Assert.That(ReadText(host, "AppearanceName"), Does.Contain($"{i + 1}/11"));
                     bool hd = displayed.ResolveAppearance().IsHd;
                     Assert.That(sawOlder && hd, Is.False, "All available HD characters precede older characters.");
                     sawOlder |= !hd;

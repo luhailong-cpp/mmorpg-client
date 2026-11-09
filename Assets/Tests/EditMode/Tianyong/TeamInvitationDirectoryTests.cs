@@ -81,7 +81,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             reply.Friends.Add(new FriendEntry { FriendPlayerId = 2, IsOnline = false, Name = "真名字", Level = 42, AppearanceId = "30_han_xiangzi" });
             _net.Reply(0, reply);
             Assert.That(_directory.Candidates[0].Name, Is.EqualTo("真名字"));
-            Assert.That(_directory.Candidates[0].CharacterId, Is.EqualTo("06_thunder_caster_boy"));
+            Assert.That(_directory.Candidates[0].CharacterId, Is.EqualTo("30_han_xiangzi"));
             Assert.That(reply.Friends[0].AppearanceId, Is.EqualTo("30_han_xiangzi"),
                 "Displaying current artwork must not rewrite the server-owned appearance.");
             Assert.That(_directory.Candidates[0].OnlineStatusKnown, Is.True);
@@ -92,7 +92,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 "A chat identity must be invitable for server-side presence validation, even after an earlier offline friend lookup.");
             Assert.That(_directory.Candidates[0].IsOnline, Is.False);
             Assert.That(_directory.Candidates[0].Level, Is.EqualTo(42));
-            Assert.That(_directory.Candidates[0].CharacterId, Is.EqualTo("06_thunder_caster_boy"));
+            Assert.That(_directory.Candidates[0].CharacterId, Is.EqualTo("30_han_xiangzi"));
         }
 
         [Test]

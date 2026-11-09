@@ -53,7 +53,6 @@ $resourcePaths = @(
     'Assets/Resources/World/Characters/QdaoOriginalRosterV13/01_ice_sword_girl',
     'Assets/Resources/World/Characters/QdaoOriginalRosterV13/03_lotus_healer_girl',
     'Assets/Resources/World/Characters/QdaoOriginalRosterV14/04_mountain_guardian_boy',
-    'Assets/Resources/World/Characters/QdaoOriginalRosterV14/06_thunder_caster_boy',
     'Assets/Resources/World/Characters/QdaoOriginalRosterV14/08_alchemy_prodigy_boy',
     'Assets/Resources/World/Characters/QdaoOriginalRosterV14/09_bamboo_archer_girl',
     'Assets/Resources/World/Characters/QdaoOriginalRosterV14/20_star_formation_master_girl'

@@ -27,7 +27,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
         [TestCase(1u, 1u, "04_mountain_guardian_boy")]
         [TestCase(1u, 2u, "01_ice_sword_girl")]
-        [TestCase(2u, 1u, "06_thunder_caster_boy")]
+        [TestCase(2u, 1u, "30_han_xiangzi")]
         [TestCase(2u, 2u, "20_star_formation_master_girl")]
         [TestCase(3u, 1u, "08_alchemy_prodigy_boy")]
         [TestCase(3u, 2u, "03_lotus_healer_girl")]
@@ -55,7 +55,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("13_short_hair_wind_blade_girl", "01_ice_sword_girl")]
         [TestCase("16_golden_bell_dancer_girl", "05_celestial_musician_girl")]
         [TestCase("18_desert_sun_monk_girl", "10_crimson_spear_girl")]
-        [TestCase("19_spirit_beast_tamer_boy", "06_thunder_caster_boy")]
+        [TestCase("19_spirit_beast_tamer_boy", "19_spirit_beast_tamer_boy")]
         [TestCase("21_lidazui_hair_cook_boy", "08_alchemy_prodigy_boy")]
         [TestCase("22_lidazui_hair_waiter_saber_boy", "00_reference_topright_boy")]
         [TestCase("23_lantern_courier", "01_ice_sword_girl")]
@@ -65,7 +65,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("27_ink_kite_ranger", "08_alchemy_prodigy_boy")]
         [TestCase("28_moon_rabbit_artificer", "20_star_formation_master_girl")]
         [TestCase("29_he_xiangu", "03_lotus_healer_girl")]
-        [TestCase("30_han_xiangzi", "06_thunder_caster_boy")]
+        [TestCase("30_han_xiangzi", "30_han_xiangzi")]
         public void RetiredAppearance_UsesCurrentArtAcrossAccountAndAoiWithoutRewritingSavedIdentity(string saved, string expected)
         {
             var role = new AccountSimplePlayer { PlayerId = 101, ClassId = 4, Gender = 2, AppearanceId = saved };
@@ -125,9 +125,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.World.Actors[0].CharacterId, Is.Null);
 
             _client.World.SetLocalPlayer(0);
-            Assert.That(_client.World.Actors[0].CharacterId, Is.EqualTo("06_thunder_caster_boy"));
+            Assert.That(_client.World.Actors[0].CharacterId, Is.EqualTo("30_han_xiangzi"));
             _client.World.SetLocalPlayer(7);
-            Assert.That(_client.World.Actors[7].CharacterId, Is.EqualTo("06_thunder_caster_boy"));
+            Assert.That(_client.World.Actors[7].CharacterId, Is.EqualTo("30_han_xiangzi"));
             Assert.That(_client.World.Actors[0].CharacterId, Is.Null,
                 "A guidless actor that loses local ownership must not retain the prior player's appearance.");
         }

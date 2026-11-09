@@ -30,10 +30,6 @@ DIRECTIONS = ("N", "NE", "E", "SE", "S", "SW", "W", "NW")
 # These pins come from the seven independently reviewed full-HD art deliveries.
 # A delivery profile is an input inventory, not an authority to approve itself.
 APPROVED_DELIVERIES = {
-    "06_thunder_caster_boy": (
-        "da2b07c19c4118ff2b0756afa5974ed097a75e1563d6ec5207512b6cb194f635",
-        "541bdf51ee82fbab61288ec2be126fbf143853b8fbc7231d7b3bad7104e35b78",
-        "abdfbe1fdc243ea6360a5d588f9ff1294fa2f0d43876d8b63aa452ec4889cd31"),
     "08_alchemy_prodigy_boy": (
         "d605cb139692c6d0e9b4fe0354829d41ed64b7e3b64bb73f7cf32e3b6d5c5107",
         "9853b7475f6b8dc7850d3c020692fbe7b3dc759a38687d6dd14ed099593eec65",
@@ -208,7 +204,7 @@ def document_slot_hashes(rows: object, path_field: str, prefix: str, label: str)
 def check_art_evidence(character_id: str, source: dict, approval: dict,
                        source_hash: str, approval_hash: str) -> dict[str, str]:
     """Bind profile slots to the reviewed art document, across its seven formats."""
-    identity_key = "character_id" if character_id[:2] in ("06", "08", "17") else "character"
+    identity_key = "character_id" if character_id[:2] in ("08", "17") else "character"
     require(source.get(identity_key) == character_id and approval.get(identity_key) == character_id,
             "Source and approval documents must identify the selected character")
     if character_id.startswith(("06_", "17_")):
