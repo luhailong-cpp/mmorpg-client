@@ -66,6 +66,11 @@ namespace MmorpgClient.Game
         // 每次 EnterGameAndWaitScene / RedirectFlow 换连接前复位。
         private bool _enterRejectedByServer;
         private bool _redirecting;             // RedirectToGateNotify flow active
+        // 收到 msg 124 之后被搬走的旧 gate 连接:RedirectFlow 摘掉它的派发时记下,换连接 / 断线时清掉。
+        // 旧 gate 对 124 之后到达的请求一律回 1003(确定未执行),而它的回包客户端已不再派发;所以从这一刻起
+        // 对它的发送当场以 NotSent 失败(可在新连接上重试),不再登记成在途、拖到换连接时变成「结果未知」。
+        // 服务端仓 docs/design/client-request-ordering.md O9、§4.6。
+        private GateTcpClient _retiredGate;
         private ulong _redirectPlayerId;       // 重定向前的角色 id(重连后沿用,不重新选角)
         // 本次 EnterGame 请求的角色 id。应答回来之前 PlayerId 仍是 0,而重定向推送(Kafka → gate)
         // 可能先于应答到达、并作废那条等应答的管线 —— 那时只能靠它沿用角色,见 ResolveRedirectPlayerId。
@@ -202,8 +207,11 @@ namespace MmorpgClient.Game
         /// <summary>TravelToZone 在途(已发出,还没等到 msg 124 / 失败 tip / 断线 / 超时)。</summary>
         public bool IsTravelPending => _travelPending;
 
-        /// <summary>gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。</summary>
-        public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified;
+        /// <summary>
+        /// gate 连接已建立且 token 校验通过(战斗排队轮询等周期请求的放行条件)。
+        /// 收到 msg 124 之后的旧连接不算就绪(见 _retiredGate),各功能这段时间不再发请求。
+        /// </summary>
+        public bool IsGateReady => _gate != null && _gate.Connected && TokenVerified && !ReferenceEquals(_gate, _retiredGate);
 
         /// <summary>当前真实 Gate 的不透明标识；仅用于引用比较，静默重登录/重定向也会改变。</summary>
         public object GateConnectionIdentity => _gate;
@@ -595,6 +603,7 @@ namespace MmorpgClient.Game
         {
             // 世代已经翻篇:预建的连接没人接管了,必须自己关掉,否则泄漏一条 TCP + 两个线程。
             if (gen != _pipelineGen) { preConnected?.Dispose(); yield break; }
+            _pipelineTicketAccepted = false;
             Status("正在连接服务器…");
             if (preConnected != null)
             {
@@ -659,6 +668,7 @@ namespace MmorpgClient.Game
             // 验票通过 = 这条连接确实挂在目标 gate 上了,"所在区"从这一刻起才算数。
             // 重定向时 zoneId 形参恒为 0(它只管选角过滤),所在区由 RedirectFlow 从票据里解出来。
             CurrentZoneId = _redirecting ? _redirectZoneId : zoneId;
+            _pipelineTicketAccepted = true;
             Log($"gate token verified, zone={CurrentZoneId}");
 
             // ── TCP Login: binds this TCP session to the account on the
@@ -1188,6 +1198,9 @@ namespace MmorpgClient.Game
             {
                 stale.OnMessage -= DispatchInbound;
                 stale.OnDisconnected -= HandleTransportDisconnected;
+                // 还排在旧 gate 队列里的请求,gate 已在 124 之前逐条回过 1003(先于 124 到达,已按请求号收口);
+                // 之后再发到旧 gate 的请求只会收到 1003 且回包不再派发,所以不再往它上面发(见 _retiredGate)。
+                _retiredGate = stale;
             }
 
             Status("正在切换服务器…");
@@ -1570,6 +1583,7 @@ namespace MmorpgClient.Game
         {
             var stale = _gate;
             _gate = null;
+            _retiredGate = null;
             stale?.Dispose();
             // 旧连接上的在途调用结局未知,以 Disconnected 完成(旧字符串 "disconnected",ZoneTravelClient 据此判传送已交接)。
             // 回调此刻看到的 _gate 为空:回调里重发会以 NotSent 失败,不会抢在新连接验票之前发出(gate 对未验签的请求直接断连)。
@@ -1651,7 +1665,9 @@ namespace MmorpgClient.Game
         /// <summary>
         /// 请求-响应调用,每次调用自带回调(<see cref="IRpcChannel"/> 的契约):发出即返回,done 恰好调用一次。
         /// 超时 <see cref="RpcTimeoutSec"/>,由 <see cref="Tick"/> 扫描;断线 / 换连接时以 Disconnected 完成;
-        /// 未连接或发送异常时在返回前同步以 NotSent 完成。回调全部落在主线程。
+        /// 未连接、连接已被 msg 124 搬走或发送异常时在返回前同步以 NotSent 完成。回调全部落在主线程。
+        /// gate 级失败(排队满 1008、排队超时 / 下游失败 / 重定向 1003 等)是带请求号、body 为空的错误信封,
+        /// 以 ServerTip 完成,不会当成功解析空 body(服务端仓 docs/design/client-request-ordering.md §4.7)。
         /// </summary>
         public void CallMethod<TResp>(uint messageId, IMessage request, MessageParser<TResp> parser, RpcDone<TResp> done)
             where TResp : IMessage<TResp>
@@ -1667,6 +1683,12 @@ namespace MmorpgClient.Game
             if (gate == null || !gate.Connected)
             {
                 completion(RpcStatus.NotSent("not connected"), null);
+                return;
+            }
+            if (ReferenceEquals(gate, _retiredGate))
+            {
+                // msg 124 之后的旧连接:gate 只会回 1003 且回包已不再派发。确定未执行,换到新连接后再发。
+                completion(RpcStatus.NotSent("gate redirected"), null);
                 return;
             }
 
@@ -1724,7 +1746,8 @@ namespace MmorpgClient.Game
         private bool TrySendOneWay(uint messageId, IMessage request)
         {
             var gate = _gate;
-            if (gate == null || !gate.Connected) return false;
+            // msg 124 之后的旧连接同样不再发(见 _retiredGate):gate 只会回 1003,移动等状态在新连接入场后重新上报。
+            if (gate == null || !gate.Connected || ReferenceEquals(gate, _retiredGate)) return false;
             try
             {
                 // 单向消息不登记回调,请求号填 0(不关联):服务端对它的错误信封同样带 id = 0,
@@ -1775,6 +1798,9 @@ namespace MmorpgClient.Game
             }
             // 推送,以及单向消息的错误信封(id = 0):按 message_id 派发。
             if (_notifyHandlers.TryGetValue(mc.MessageId, out var nh)) nh(mc);
+            else if ((mc.ErrorMessage?.Id ?? 0) != 0)
+                // 单向请求(应答为 Empty,如移动号)被 gate 拒绝的信封,body 为空、没有处理器:只记日志,不当数据用。
+                Log($"[rpc] one-way request rejected message_id={mc.MessageId} tip={mc.ErrorMessage.Id}");
             else Log($"[unhandled] message_id={mc.MessageId} bytes={mc.SerializedMessage.Length}");
         }
 
@@ -2177,6 +2203,7 @@ namespace MmorpgClient.Game
                 // MoveStop, which must now become a harmless no-op.
                 var gate = _gate;
                 _gate = null;
+                _retiredGate = null;
                 InGame = false;
                 TokenVerified = false;
                 CurrentSceneId = 0;

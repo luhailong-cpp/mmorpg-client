@@ -108,6 +108,21 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_source.LastRank, Is.EqualTo(6));
         }
 
+        // 存储重数可能高于本版本上限(scene 回滚窗口;服务端保留存储重数、按本版本上限生效,混版本持久字段保护设计 §12.2):
+        // 列表按上限显示,不出现「12/10」;修习按钮不可用。
+        [Test]
+        public void StoredRankAboveTheCurrentMaxIsShownCappedAndCannotBeUpgraded()
+        {
+            _source.State.Snapshot.Entries[0].Rank = 12;
+            Apply();
+            var rankTexts = _canvas.GetComponentsInChildren<TMPro.TMP_Text>(true)
+                .Where(text => text.name == "Rank").Select(text => text.text).ToList();
+            Assert.That(rankTexts, Has.Member("10/10"));
+            Assert.That(rankTexts, Has.None.EqualTo("12/10"));
+            foreach (var name in new[] { "UpgradePlate", "UpgradeTenPlate" })
+                Assert.That(Button(name).IsInteractable(), Is.False, name);
+        }
+
         [Test]
         public void ReusedStateWithNewPetDoesNotKeepThePreviousEmptyFilter()
         {

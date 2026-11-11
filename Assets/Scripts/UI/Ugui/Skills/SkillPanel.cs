@@ -279,7 +279,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 row.Icon.color = !readOnly && entry.Rank == 0 ? new Color(.72f, .72f, .72f, 1f) : Color.white;
                 row.Name.text = (entry.Id == _selectedId ? "✓ " : string.Empty) + definition.name;
                 row.Rank.text = readOnly ? "未同步" : entry.Rank == 0 ? "未学习" :
-                    definition.maxRank > 0 ? $"{entry.Rank}/{definition.maxRank}" : entry.Rank.ToString();
+                    definition.maxRank > 0 ? $"{Math.Min(entry.Rank, definition.maxRank)}/{definition.maxRank}" : entry.Rank.ToString(); // 存储重数可能高于本版本上限(回滚窗口),按上限显示,与服务端「按本版本上限生效」一致;修习请求仍带存储重数
                 row.Kind.text = definition.KindLabel;
                 row.Mana.text = definition.IsPassive ? "无消耗" :
                     $"{definition.manaPercent * 100:0.#}%法力";

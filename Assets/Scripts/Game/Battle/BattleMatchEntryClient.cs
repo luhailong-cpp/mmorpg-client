@@ -40,12 +40,24 @@ namespace MmorpgClient.Game.Battle
             ShowSoloStatus("正在发起单人 PVE…");
         }
 
+        /// <summary>
+        /// 每方 targetSize 人的 PVP 现在能不能发起:不小于队伍人数、不超过 5 人,4 人队不能打 5v5
+        /// (TeamClient.PvpPartySizeForbidden)。界面用它置灰人数档,服务端仍会复核。
+        /// </summary>
+        public bool PvpSizeAllowed(uint targetSize) =>
+            targetSize >= CurrentSize && targetSize <= 5 && !TeamClient.PvpPartySizeForbidden(targetSize, CurrentSize);
+
         public void StartPvp(uint targetSize)
         {
             if (!CanStart()) return;
             if (targetSize < CurrentSize || targetSize > 5)
             {
                 ShowStatus("每方人数不能小于当前队伍人数，且不超过 5 人。");
+                return;
+            }
+            if (TeamClient.PvpPartySizeForbidden(targetSize, CurrentSize))
+            {
+                ShowStatus(TeamClient.PvpFourStackMessage);
                 return;
             }
 

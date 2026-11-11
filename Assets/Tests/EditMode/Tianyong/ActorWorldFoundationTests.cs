@@ -4,6 +4,7 @@ using System.Reflection;
 using Google.Protobuf;
 using MmorpgClient.Game;
 using MmorpgClient.Net;
+using MmorpgClient.Net.Generated;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
@@ -416,6 +417,136 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(logs, Has.Some.Contains("[rpc] late reply dropped id=45"));
                 Assert.That(logs, Has.None.Contains("[movement]"),
                     "A late reply must not be dispatched as a push of the same message id.");
+            }
+            finally
+            {
+                client.Disconnect();
+                if (client.World.Root != null)
+                    UnityEngine.Object.DestroyImmediate(client.World.Root.gameObject);
+            }
+        }
+
+        // ── 组队跟随由服务器驱动(服务端 docs/design/team-follow-server-trail.md §5)────────────────
+
+        [Test]
+        public void LocalActor_WhileServerDriven_ShowsTheServerMovesLikeARemoteActor()
+        {
+            // 被驱动时发给自己的 ActorMoveS2C 按远端角色同一套外推显示,不再被本地控制器的路径挡掉。
+            const float dt = 1f / 60f;
+            float now = 70f;
+            _world = CreateWorld();
+            _world.Clock = () => now;
+            _world.SpawnActor(51, ActorKind.Player, 0, Vector3.zero, Vector3.zero);
+            _world.SetLocalPlayer(51);
+            var actor = _world.Actors[51].Go.transform;
+
+            _world.SetLocalServerDriven(true);
+            _world.ApplyMove(51, Vector3.zero, Vector3.zero, new Vector3(9f, 0f, 0f));
+            for (int frame = 0; frame < 30; frame++) { now += dt; _world.Tick(dt); }
+
+            Assert.That(actor.localPosition.x, Is.EqualTo(9f * 30 * dt).Within(0.01f));
+        }
+
+        [Test]
+        public void LocalActor_ReleasedFromTheServerDrive_SettlesOnTheLastServerPointAndStaysThere()
+        {
+            const float dt = 1f / 60f;
+            float now = 80f;
+            _world = CreateWorld();
+            _world.Clock = () => now;
+            _world.SpawnActor(52, ActorKind.Player, 0, new Vector3(4.5f, 0f, 0f), Vector3.zero);
+            _world.SetLocalPlayer(52);
+            var actor = _world.Actors[52].Go.transform;
+            _world.SetLocalServerDriven(true);
+
+            // 服务端停止驱动前补发了停步;插值才走了一帧,停止驱动就到了。
+            var stop = new Vector3(5f, 0f, 0f);
+            _world.ApplyMove(52, stop, Vector3.zero, Vector3.zero);
+            now += dt;
+            _world.Tick(dt);
+            Assert.That(actor.localPosition.x, Is.LessThan(stop.x - 0.1f), "前提:插值还没走完");
+
+            _world.SetLocalServerDriven(false);
+            Assert.That(Vector3.Distance(actor.localPosition, stop), Is.LessThan(0.001f), "交回本地控制时落在服务器最后给的位置");
+
+            // 发给自己的移动与跟随状态到达先后不保证:停止驱动之后迟到的移动照旧不碰本地角色。
+            _world.ApplyMove(52, new Vector3(20f, 0f, 0f), Vector3.zero, new Vector3(9f, 0f, 0f));
+            for (int frame = 0; frame < 30; frame++) { now += dt; _world.Tick(dt); }
+            Assert.That(Vector3.Distance(actor.localPosition, stop), Is.LessThan(0.001f));
+        }
+
+        [Test]
+        public void Clear_DropsTheServerDrive()
+        {
+            _world = CreateWorld();
+            _world.SpawnActor(53, ActorKind.Player, 0, Vector3.zero, Vector3.zero);
+            _world.SetLocalPlayer(53);
+            _world.SetLocalServerDriven(true);
+
+            _world.Clear(); // 换场景 / 断线
+
+            Assert.That(_world.LocalServerDriven, Is.False, "仍在跟随的,服务器在入场后会再推一次");
+        }
+
+        [Test]
+        public void LocalController_WhileServerDriven_DoesNotMoveItselfAndOnlyHints()
+        {
+            _world = CreateWorld();
+            _world.SpawnActor(54, ActorKind.Player, 0, Vector3.zero, Vector3.zero);
+            var actor = _world.Actors[54].Go;
+            var motor = actor.AddComponent<CharacterController>();
+            var movement = actor.AddComponent<TianyongPlayerController>();
+            typeof(TianyongPlayerController)
+                .GetField("_motor", BindingFlags.Instance | BindingFlags.NonPublic)
+                ?.SetValue(movement, motor);
+            _world.SetLocalPlayer(54);
+            var hints = 0;
+            movement.FollowInputRejected += () => hints++;
+
+            _world.SetLocalServerDriven(true);
+            Assert.That(movement.ServerDriven, Is.True);
+            Assert.That(motor.enabled, Is.False, "被驱动期间位置由 ActorWorld 写,CharacterController 不能把人拽回去");
+            Assert.That(movement.SetDestination(new Vector3(3f, 0f, 3f)), Is.False);
+            Assert.That(movement.PathDestination, Is.Null, "目的地没有被采纳");
+            Assert.That(hints, Is.EqualTo(1), "点了地面只换一句提示");
+
+            _world.SetLocalServerDriven(false);
+            Assert.That(movement.ServerDriven, Is.False);
+            Assert.That(motor.enabled, Is.True);
+        }
+
+        [Test]
+        public void FollowStatePush_DrivesTheLocalActorUntilTheNextSceneEntry()
+        {
+            var client = new GameClient("http://127.0.0.1:1");
+            try
+            {
+                var dispatch = typeof(GameClient).GetMethod(
+                    "DispatchInbound",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+                Assert.That(dispatch, Is.Not.Null);
+                void Push(uint messageId, ByteString body) => dispatch.Invoke(client, new object[]
+                {
+                    new MessageContent { Id = 0, MessageId = messageId, SerializedMessage = body },
+                });
+                var driven = new TeamFollowStateS2C { Driven = true, LeaderEntity = 7, Slot = 1 };
+
+                Push(SceneMovementClientPlayerRpc.NotifyTeamFollowStateMessageId, driven.ToByteString());
+                Assert.That(client.TeamFollowDriven, Is.True);
+                Assert.That(client.World.LocalServerDriven, Is.True);
+
+                var entryBefore = client.SceneEntryEpoch;
+                Push(MessageIds.NotifyEnterScene,
+                    new EnterSceneS2C { SceneInfo = new SceneInfoComp { SceneId = 9 } }.ToByteString());
+                Assert.That(client.TeamFollowDriven, Is.False, "换了场景:驱动作废,仍在跟随的服务器会再推");
+                Assert.That(client.World.LocalServerDriven, Is.False);
+                Assert.That(client.SceneEntryEpoch, Is.EqualTo(entryBefore + 1), "跟随声明按入场计数在新场景再说一次");
+
+                Push(SceneMovementClientPlayerRpc.NotifyTeamFollowStateMessageId, driven.ToByteString());
+                Push(SceneMovementClientPlayerRpc.NotifyTeamFollowStateMessageId,
+                    new TeamFollowStateS2C { Driven = false, Reason = TeamFollowStopReason.LeftFollow }.ToByteString());
+                Assert.That(client.TeamFollowDriven, Is.False);
+                Assert.That(client.World.LocalServerDriven, Is.False);
             }
             finally
             {

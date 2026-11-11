@@ -70,8 +70,9 @@ namespace MmorpgClient.UI.Ugui.Guild
             _window = new GuildWindow(design);
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };
             _window.EconomyRecoveryRequested += () => { if (_available) _client?.RecoverEconomyRequest(); };
-            _window.RankRequested += page => { if (_available) _client?.Browse(page, ZoneId); };
-            _window.CreateRequested += name => { if (_available) _client?.Create(name, ZoneId); };
+            // 榜单与建帮所在区都由服务端按玩家归属区决定，界面不再传区。
+            _window.RankRequested += page => { if (_available) _client?.Browse(page); };
+            _window.CreateRequested += name => { if (_available) _client?.Create(name); };
             // 申请制:排行页不再直接入帮,改为提交 / 撤回申请,由帮主或长老审批。
             _window.ApplyRequested += id => { if (_available) _client?.ApplyToJoin(id); };
             _window.CancelApplicationRequested += id => { if (_available) _client?.CancelApplication(id); };
@@ -100,7 +101,6 @@ namespace MmorpgClient.UI.Ugui.Guild
             _window.TrialInviteResponded += (lobby, accept) => { if (_available) _client?.RespondTrialInvite(lobby, accept); };
             _hud.gameObject.SetActive(false);
         }
-        private uint ZoneId => AppBootstrap.Instance?.Session?.SelectedZoneId ?? 0;
         private void Update()
         {
             if (!HasView) { UnbindClient(); return; }

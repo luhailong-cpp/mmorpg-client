@@ -45,6 +45,9 @@ namespace MmorpgClient.Net
         /// 传输层失败且请求可能已被服务端执行(超时 / 断线)。有副作用的请求按「结果未知」处理:
         /// 复用同一个业务幂等键重发,或先查询再决定。gate 级 1003 信封(下游调用失败)同样是结果未知,
         /// 但它属于 <see cref="RpcStatusCode.ServerTip"/>,由业务按 tip 表的 fault 列判断。
+        /// gate 推 msg 124 之前给还在排队的请求回的 1003 其实确定未执行,但客户端分不出它与「发出后失败」的 1003,
+        /// 一律按结果未知处理(不改业务状态、提示稍后重试、写请求复用幂等键);这对「确定未执行」同样安全。
+        /// 124 之后再发往旧 gate 的请求在本地就以 <see cref="RpcStatusCode.NotSent"/> 失败,不会发出。
         /// </summary>
         public bool OutcomeUnknown => Code == RpcStatusCode.Timeout || Code == RpcStatusCode.Disconnected;
 

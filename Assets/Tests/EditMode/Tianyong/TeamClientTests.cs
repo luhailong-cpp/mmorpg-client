@@ -911,7 +911,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 team_error.KTeamInviteNotFound, team_error.KTeamInviteLimit, team_error.KTeamInMatch,
                 team_error.KTeamMemberOffline, team_error.KTeamMemberInBattle, team_error.KTeamMemberNotReady,
                 team_error.KTeamDungeonNotOpen, team_error.KTeamSizeExceeded, team_error.KTeamStateChanged,
-                team_error.KTeamInternal
+                team_error.KTeamInternal, team_error.KTeamPvpPartySizeNotAllowed, team_error.KTeamRatingGapTooLarge
             };
             string unknown = TeamClient.DescribeTip(new TipInfoMessage { Id = 9999 });
             Assert.That(unknown, Does.Contain("9999"));
@@ -1410,6 +1410,37 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _client.RequestRegroup();
             _client.Reset();
             Assert.That(_client.RegroupQueued, Is.False, "新会话进场时服务端自己会跟随");
+        }
+
+        /// <summary>
+        /// 每侧 5 人的 PVP 不收 4 人队:本地直接拦下、不发请求,提示与服务端拒绝码 KTeamPvpPartySizeNotAllowed 同一句;
+        /// 同一支 4 人队开 4v4 照常发出。规则见 TeamClient.PvpPartySizeForbidden。
+        /// </summary>
+        [Test]
+        public void StartPvpMatch_FourStackCannotQueueFiveSide()
+        {
+            var view = View(100, 10, 5, 1, 10, 11, 12, 13);
+            view.PvpMatchSupported = true;
+            Loaded(view);
+            AssertRejected(() => _client.StartMatch(1, 5, Match.MatchMode.PvpTeam), TeamClient.PvpFourStackMessage);
+
+            _now += 0.5f;
+            Assert.That(_client.StartMatch(1, 4, Match.MatchMode.PvpTeam), Is.True);
+            var request = LastRequest<StartTeamMatchRequest>();
+            Assert.That(request.MatchMode, Is.EqualTo(Match.MatchMode.PvpTeam));
+            Assert.That(request.TargetTeamSize, Is.EqualTo(4u));
+
+            Assert.That(TeamClient.PvpPartySizeForbidden(5, 4), Is.True);
+            Assert.That(TeamClient.PvpPartySizeForbidden(5, 3), Is.False, "3 人队可以打 5v5");
+            Assert.That(TeamClient.PvpPartySizeForbidden(5, 5), Is.False, "满 5 人可以打 5v5");
+            Assert.That(TeamClient.PvpPartySizeForbidden(4, 4), Is.False, "4 人队可以打 4v4");
+        }
+
+        [Test]
+        public void DescribeTip_PvpPartyRulesHaveTheirOwnText()
+        {
+            Assert.That(TeamClient.DescribeTip(Tip(team_error.KTeamPvpPartySizeNotAllowed)), Is.EqualTo(TeamClient.PvpFourStackMessage));
+            Assert.That(TeamClient.DescribeTip(Tip(team_error.KTeamRatingGapTooLarge)), Is.EqualTo(TeamClient.PvpRatingGapMessage));
         }
 
         private void Loaded(TeamView view = null)

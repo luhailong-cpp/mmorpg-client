@@ -19,6 +19,9 @@ namespace MmorpgClient.Game.Team
         public const string ConnectingMessage = "正在连接组队服务…";
         public const string RecoveryMessage   = "组队请求状态尚未确认，请重新登录角色后再试。";
         public const string SuspendedMessage  = "组队服务暂不可用，请稍后重新登录再试。";
+        /// <summary>每侧 5 人的 PVP 不收 4 人队(服务端回 KTeamPvpPartySizeNotAllowed);本地先拦时用同一句。</summary>
+        public const string PvpFourStackMessage = "5V5 匹配不支持 4 人队伍，请调整到 1～3 人或满 5 人。";
+        public const string PvpRatingGapMessage = "队员之间的匹配评分相差过大，不能一起匹配。";
         // 与 robot 的 400ms 一致,只防连点;gate 的限流按 message_id 另算,见 MessageWindowSeconds。
         public const float  MinSendIntervalSeconds      = 0.4f;
         /// <summary>
@@ -501,6 +504,8 @@ namespace MmorpgClient.Game.Team
                 case (uint)team_error.KTeamSizeExceeded: return "队伍人数超过该副本上限。";
                 case (uint)team_error.KTeamStateChanged: return "队伍状态已变化，请重试。";
                 case (uint)team_error.KTeamInternal: return "服务器繁忙，请稍后再试。";
+                case (uint)team_error.KTeamPvpPartySizeNotAllowed: return PvpFourStackMessage;
+                case (uint)team_error.KTeamRatingGapTooLarge: return PvpRatingGapMessage;
                 // 含保留码 4000 / 4009 / 4010 / 4012 / 4015 / 4016。
                 default: return $"组队服务暂未完成请求（{tip.Id}），请稍后重试。";
             }
@@ -1018,6 +1023,7 @@ namespace MmorpgClient.Game.Team
                     if (mode == Match.MatchMode.PveTeam && start.BattleConfigId == 0) return "该副本未开放组队。";
                     if (mode == Match.MatchMode.PvpTeam && !Snapshot.PvpMatchSupported) return "当前服务器尚未开放整队 PVP 匹配。";
                     if (start.TargetTeamSize > 5 || (start.TargetTeamSize != 0 && start.TargetTeamSize < Snapshot.Members.Count)) return "目标人数不能小于当前队伍人数，且不超过 5 人。";
+                    if (mode == Match.MatchMode.PvpTeam && PvpPartySizeForbidden(start.TargetTeamSize, (uint)Snapshot.Members.Count)) return PvpFourStackMessage;
                     if (MatchQueued) return MatchQueuedMessage;
                     if (mode == Match.MatchMode.PveTeam && start.TargetTeamSize > Snapshot.Members.Count && !Snapshot.MatchFillSupported)
                         return "当前服务器未开放队伍补位匹配。";
@@ -1026,6 +1032,12 @@ namespace MmorpgClient.Game.Team
                     return null;   // Refresh / ListInvites 无前置条件
             }
         }
+
+        /// <summary>
+        /// 人数档真人 PVP 的组队人数规则:每侧 5 人的池不收 4 人队,免得一个单人被塞进 4 黑(服务端 team.CheckPvpPartySize,
+        /// 设计 global-match-hierarchical-pools.md 开头第 9 条)。客户端先拦一道、把 5v5 按钮置灰,服务端开战事务里仍以它为准。
+        /// </summary>
+        public static bool PvpPartySizeForbidden(uint perSide, uint members) => perSide == 5 && members == 4;
 
         /// <summary>发出时写入 Status 的进度文案(A.6)。</summary>
         public static string QueueDescription(TeamSnapshot snapshot) => snapshot.MatchMode == Match.MatchMode.PvpTeam

@@ -66,3 +66,26 @@ pwsh -File .codex-artifacts/heartbeat-20261106/compile-current-recovery.ps1 -Pro
 ```
 
 恢复测试最后一步在已准备的最小 Unity 工程中运行：将 `recovery-current/HeartbeatRuntime.dll` 复制到同级 `unity-recovery/Assets/Plugins/`，将当前 `GameClientReconnectTests.cs` 复制到其 `Assets/Tests/`，运行 `D:\luyuan\tools\Unity\6000.6.0f1\Editor\Unity.exe -batchmode -nographics -projectPath D:\luyuan\mmorpg-client\.codex-artifacts\heartbeat-20261106\unity-recovery -runTests -testPlatform EditMode -testFilter MmorpgClient.Tests.EditMode.Net.GameClientReconnectTests -testResults D:\luyuan\mmorpg-client\.codex-artifacts\heartbeat-20261106\recovery-current\unity-results.xml -logFile D:\luyuan\mmorpg-client\.codex-artifacts\heartbeat-20261106\recovery-current\unity.log`。该容器只隔离资源导入，加载的是上述全部当前源码编译的 DLL；常规开发也可直接在主项目 Unity Test Runner 执行这四个 Net 测试夹具。
+
+## 组队跟随改为服务器驱动(2026-11-06 起,2026-11-11 补齐)
+
+事实来源:服务端 `proto/scene/player_movement.proto` 末尾追加的两个方法,消息号由生成器分配:381 `SceneMovementClientPlayerTeamFollow`(`TeamFollowC2S{follow}`,单向)、382 `SceneMovementClientPlayerNotifyTeamFollowState`(`TeamFollowStateS2C{driven, leader_entity, slot, reason}`,推送)。客户端只用生成的 `SceneMovementClientPlayerRpc`(`TeamFollowMessageId` / `OnNotifyTeamFollowState`),不进 `MessageIds.cs` 的白名单。设计与时序见服务端 `docs/design/team-follow-server-trail.md` §5。
+
+- **谁在走**:队员走位由服务器沿队长走过的路驱动,客户端不再自己算轨迹(`TeamFollowTrail` / `TeamFollowPlanner` 已删除)。收到 driven=true 后本地角色按发给自己的 133 `ActorMoveS2C` 插值显示,本地控制器不走、不上报移动,点地 / 按键 / 点 NPC 寻路只出"正在跟随队长"的提示;driven=false 时落到最后一条移动给的位置,交回本地控制。
+- **到达先后**:发给自己的 133 与 382 不保证先后。客户端只在被驱动期间使用发给自己的 133,其余时间收到的一律忽略;130 `TeleportS2C` 任何时候照常吸附;被驱动期间到达的 137 `MoveAck` 只是驱动开始前那次上报的迟到裁决,不拿它回拉。
+- **声明**(`Game/Team/TeamFollowDeclaration.cs`):在队、不是队长、没暂离就跟。每次入场(`GameClient.SceneEntryEpoch` 变化)声明一次 true;声明过仍没被驱动,宽限 1.5 秒后每 5 秒再说一次,队长不在线时不重试;点「暂离」立刻发 false,暂离中仍被驱动每秒再撤一次;点「归队」立刻发 true。跟随状态只认服务器:入场通知与断线会把本地的驱动状态清零,服务器对仍在队形里的队员入场后补推 driven=true(包括开通挂机后杀掉客户端、再登录接回的角色)。原来的归队请求 `TeamClient.RequestRegroup` 不再由跟随使用。
+- **新客户端连旧服务器**:旧服务器不认识 381,也从不推 382,客户端停在"还没接上"(界面显示队长暂时不在视野内),本地角色照常由玩家自己控制;不会出现角色被锁住的情况。旧客户端连新服务器:不发 381,服务器按原规则对待(归队瞬移到队长脚下)。
+- **测试**:`Assets/Tests/EditMode/Tianyong/TeamFollowDeclarationTests.cs`(声明时机与 `IsFollower`)、`TeamRegroupPolicyTests.cs`(重试节奏)、`ActorWorldFoundationTests.cs` 的服务器驱动五条(驱动中按 133 外推、停止驱动落到最后位置之后不再挪人、`Clear` 复位、控制器被驱动时关掉 CharacterController 且只出提示、382 与入场通知的派发)。截至本节写入时都没有在 Unity 里运行过。
+
+## Gate 错误信封与重定向（2026-11-11）
+
+本节以服务端仓 `docs/design/client-request-ordering.md`（O4、O6、O9、§4.6、§4.7、§11 的「Q4 结论」）为事实源，没有协议改动。
+
+- Gate 拒绝请求时回带请求号、`message_id` 为原请求号、body 为空的错误信封，码包括 1003、1008、1006、1010 等。`OutstandingCalls` 按请求号认领，结局为 `ServerTip`；应答类型是 `Empty` 时也不会把空 body 当成功。认领不到的信封只记 `late reply dropped`，不交给推送处理器。
+- 单向请求的请求号为 0，例如 MoveStart / MoveSync / MoveStop，它们的信封按 `message_id` 交给各自的处理器，只记日志。没有处理器的单向信封记为 `[rpc] one-way request rejected`。
+- Gate 推 124 之前，会给还在排队的请求逐条回 1003。客户端分不出这种 1003 和「发出后失败」的 1003，所以一律按结果未知处理：不改业务状态，提示稍后重试，写请求复用幂等键。帮会和组队的「待确认」状态会在连接对象变化时自动解除。
+- 收到 124 后，`RedirectFlow` 把旧 gate 记为已搬走。之后对它的 `CallMethod` 当场以 `NotSent("gate redirected")` 失败，单向发送不再发出，`IsGateReady` 为假，直到换到新连接或断线。
+- 客户端不发 LeaveGame，所以 gate 的 LeaveGame 屏障不适用。战斗 RPC 只走直连，不会碰到 gate 的 battle 闸。
+- 不等回包就连发的依赖请求只有两类：匹配排队的 JoinQueue → CancelQueue，以及跨功能的 CancelQueue 与 StartTeamMatch / RespondGuildTrialInvite。两类都由 gate 路由 lane 按收包顺序执行。客户端只在功能内单飞，不做全局串行。
+
+改动文件：`Assets/Scripts/Game/GameClient.cs`、`Assets/Scripts/Net/RpcStatus.cs`（注释）、`Assets/Scripts/Game/Battle/DirectRoutingBattleTransport.cs`（注释），以及新测试 `Assets/Tests/EditMode/Net/GameClientGateEnvelopeTests.cs`（含 `.meta`，5 例，真实回环 TCP）。尚未编译，也没有在 Unity 里运行。验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-11「客户端请求保序:客户端配合」条。

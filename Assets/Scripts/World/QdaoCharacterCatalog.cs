@@ -137,6 +137,7 @@ namespace MmorpgClient.World
 
             internal Appearance ResolveCreationAppearance()
             {
+                using var profile = CreationPortraitProfiling.Resolve.Auto();
                 var appearance = ResolveCreationAppearance(LoadActivationText, LoadResourceBytes,
                     QdaoOriginalHdResourceIndex.IsCompleteForCreation, QdaoOriginalHdResourceIndex.TextureMatches, problem =>
                     {
@@ -761,7 +762,7 @@ namespace MmorpgClient.World
             if (appearance == null || appearance.Id != entry.Id) return null;
             if (reuseCached && Portraits.TryGetValue(appearance.CacheKey, out var existing) && existing != null && existing.texture != null)
                 return pin ? PinPortrait(existing) : existing;
-            var texture = loadTexture(appearance.ResourceFolder + "/portrait");
+            var texture = LoadCreationPortraitTexture(loadTexture, appearance);
             if (texture == null || texture.width != appearance.PortraitWidth || texture.height != appearance.PortraitHeight)
             {
                 ReleaseUnusedPortraitTexture(texture, releaseTexture);
@@ -773,7 +774,7 @@ namespace MmorpgClient.World
                 if (appearance == null || appearance.IsHd || appearance.Id != entry.Id) return null;
                 if (reuseCached && Portraits.TryGetValue(appearance.CacheKey, out existing) && existing != null && existing.texture != null)
                     return pin ? PinPortrait(existing) : existing;
-                texture = loadTexture(appearance.ResourceFolder + "/portrait");
+                texture = LoadCreationPortraitTexture(loadTexture, appearance);
                 if (texture == null || texture.width != appearance.PortraitWidth || texture.height != appearance.PortraitHeight)
                 {
                     ReleaseUnusedPortraitTexture(texture, releaseTexture);
@@ -789,6 +790,12 @@ namespace MmorpgClient.World
             return pin ? PinPortrait(sprite) : sprite;
         }
 
+        private static Texture2D LoadCreationPortraitTexture(Func<string, Texture2D> loadTexture, Appearance appearance)
+        {
+            using var profile = CreationPortraitProfiling.LoadTexture.Auto();
+            return loadTexture(appearance.ResourceFolder + "/portrait");
+        }
+
         private static Sprite PinPortrait(Sprite sprite)
         {
             if (sprite == null) return null;
@@ -799,6 +806,7 @@ namespace MmorpgClient.World
 
         private static void ReleaseCreationPortrait(Sprite sprite, Action<Texture2D> releaseTexture)
         {
+            using var profile = CreationPortraitProfiling.Release.Auto();
             if (ReferenceEquals(sprite, null) || !CreationPortraitLeases.TryGetValue(sprite, out var count)) return;
             if (count > 1) { CreationPortraitLeases[sprite] = count - 1; return; }
             CreationPortraitLeases.Remove(sprite);

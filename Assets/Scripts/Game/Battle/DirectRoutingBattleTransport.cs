@@ -9,8 +9,9 @@ namespace MmorpgClient.Game.Battle
     ///
     /// 上行:四条战斗 RPC(SubmitBattleAction / GetBattleState / StopWatchBattle / SetAutoBattle)
     /// 只走 <see cref="BattleDirectLink"/>;直连未就绪时**本地快速失败**(<see cref="BattleDirectLink.NotReadyError"/>),
-    /// 单向发送直接丢弃并记日志,**绝不走大厅** —— gate 两种模式都拒绝战斗消息,只回一条 id=0 的
-    /// TipToClient,大厅上的请求只会挂满 15s 超时。直连传输层失败也原样交给调用方,不改走大厅重发;
+    /// 单向发送直接丢弃并记日志,**绝不走大厅** —— gate 两种模式都拒绝战斗消息,只回一条带请求号与原
+    /// message_id 的 1003 错误信封(服务端仓 client-request-ordering.md §4.7,2026-10-15 起),走大厅只会换来拒绝。
+    /// 直连传输层失败也原样交给调用方,不改走大厅重发;
     /// 丢帧恢复由 BattleClient 在直连就绪(<see cref="Ready"/>)时 GetBattleState 补拉。
     /// 其余消息(排队 / 切磋 / 观战匹配 / RequestBattleTicket)照旧走大厅。
     ///
@@ -112,7 +113,7 @@ namespace MmorpgClient.Game.Battle
 
             if (!_link.IsVerified)
             {
-                // 未就绪:本地快速失败,不碰大厅(gate 拒绝战斗消息且不回带 id 的应答)
+                // 未就绪:本地快速失败,不碰大厅(gate 拒绝战斗消息,只回 1003 错误信封)
                 _log($"直连未就绪,战斗请求本地失败 message_id={messageId} link_state={_link.State} battle_id={_link.BattleId}");
                 onError?.Invoke(BattleDirectLink.NotReadyError);
                 return;

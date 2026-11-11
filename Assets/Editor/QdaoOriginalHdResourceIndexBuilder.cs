@@ -33,11 +33,19 @@ namespace MmorpgClient.Editor.Tianyong
 
         public static void RebuildAll()
         {
+            var timer = System.Diagnostics.Stopwatch.StartNew();
+            var folders = 0;
             QdaoOriginalHdResourceIndex.ResetEditorCreationInventories();
             foreach (var root in AssetRoots)
                 if (Directory.Exists(root))
-                    foreach (var folder in Directory.GetDirectories(root)) Rebuild(folder.Replace('\\', '/'));
+                    foreach (var folder in Directory.GetDirectories(root))
+                    {
+                        Rebuild(folder.Replace('\\', '/'));
+                        folders++;
+                    }
             QdaoCharacterCatalog.RefreshAppearances();
+            // 每次域重载（含进 Play）和构建前都会在主线程整套重算源 PNG 摘要；这行日志是测这段耗时的依据。
+            Debug.Log($"[QdaoOriginalHdResourceIndexBuilder] RebuildAll verified {folders} folders in {timer.ElapsedMilliseconds} ms");
         }
 
         private static void OnPostprocessAllAssets(string[] imported, string[] deleted, string[] moved, string[] movedFrom)

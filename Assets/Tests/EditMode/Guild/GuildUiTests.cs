@@ -173,10 +173,11 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
         [Test] public void ZoneAndNameRejectionsKeepTheEmptyStateWithReadableMessages()
         {
-            Empty(); _client.Create("青云门", 1);
+            Empty(); _client.Create("青云门");
             _net.Reply(new CreateGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNameTaken } });
             Assert.That(_client.Status, Does.Contain("已被使用")); Assert.That(_client.Info, Is.Null);
-            _client.Create("青云门二", 1);
+            // 区由服务端按归属区决定;归属区查不到时服务端回 HomeZoneUnknown,客户端照常提示,不靠请求里的区。
+            _client.Create("青云门二");
             _net.Reply(new CreateGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildHomeZoneUnknown } });
             Assert.That(_client.Status, Does.Contain("区服")); Assert.That(_client.Info, Is.Null);
             Assert.That(_client.RequiresReconnect, Is.False);

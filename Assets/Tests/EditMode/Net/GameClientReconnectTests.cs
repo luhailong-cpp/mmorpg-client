@@ -214,6 +214,127 @@ namespace MmorpgClient.Tests.EditMode.Net
             finally { release.Set(); freshListener.Stop(); _gatewayListener.Stop(); Assert.That(server.Join(3000), Is.True); }
         }
 
+        [UnityTest]
+        public IEnumerator RecoveryRetriesPastAStoppedGateWithinTheBudget()
+        {
+            using var ready = new ManualResetEventSlim();
+            using var release = new ManualResetEventSlim();
+            // 先占住新 gate 的端口，再造一个已停的 gate 端口，两者不会撞号。
+            var freshListener = new TcpListener(IPAddress.Loopback, 0); freshListener.Start();
+            int freshPort = ((IPEndPoint)freshListener.LocalEndpoint).Port;
+            var stopped = new TcpListener(IPAddress.Loopback, 0); stopped.Start();
+            int stoppedPort = ((IPEndPoint)stopped.LocalEndpoint).Port;
+            stopped.Stop();
+            Exception serverFailure = null;
+            var logs = new List<string>();
+            _game.OnLog += logs.Add;
+            var server = new Thread(() =>
+            {
+                try
+                {
+                    ServeAssignGate(stoppedPort); // gate 崩溃重启后，网关在旧注册过期前仍可能分到它
+                    ServeAssignGate(freshPort);   // 退避后重新领票，分到新 gate
+                    using var fresh = ServeEnteredGate(freshListener);
+                    ready.Set();
+                    release.Wait(5000);
+                }
+                catch (Exception ex) { serverFailure = ex; ready.Set(); }
+            }) { IsBackground = true };
+            server.Start();
+            try
+            {
+                _game.PlayerChooser = (_, __, ___) => throw new InvalidOperationException("恢复时不能重新选角");
+                PeerEof(); _game.Tick();
+                yield return PumpRecovery(_routines[0]);
+                Assert.That(ready.Wait(1000), Is.True, string.Join("\n", logs));
+                Assert.That(serverFailure, Is.Null);
+                Assert.That(_game.IsReconnecting, Is.False);
+                Assert.That(_game.InGame, Is.True);
+                Assert.That(_game.PlayerId, Is.EqualTo(42ul));
+                Assert.That(_disconnected, Is.Zero, "期限内恢复成功，不能弹断线");
+                Assert.That(logs.Exists(line => line.Contains("reconnect attempt 1 failed")), Is.True, string.Join("\n", logs));
+            }
+            finally { release.Set(); freshListener.Stop(); _gatewayListener.Stop(); Assert.That(server.Join(3000), Is.True); }
+        }
+
+        [UnityTest]
+        public IEnumerator DefinitiveAssignGateResultEndsRecoveryWithoutRetry()
+        {
+            Exception serverFailure = null;
+            var server = new Thread(() =>
+            {
+                try { ServeAssignGate(1, AssignGateResult.CodeQueueing); }
+                catch (Exception ex) { serverFailure = ex; }
+            }) { IsBackground = true };
+            server.Start();
+            PeerEof(); _game.Tick();
+            yield return PumpRecovery(_routines[0]);
+            Assert.That(server.Join(3000), Is.True);
+            Assert.That(serverFailure, Is.Null);
+            Assert.That(_game.IsReconnecting, Is.False);
+            Assert.That(_disconnected, Is.EqualTo(1));
+            Assert.That(_game.DisconnectReason, Is.EqualTo("重新连接失败，请重新进入游戏"));
+            Assert.That(_gatewayListener.Pending(), Is.False, "排队是确定结论：恢复流程不能替玩家排队，也不再领第二张票");
+        }
+
+        /// <summary>假网关:收一次 assign-gate,回指定 gate 端口与结果码。</summary>
+        private void ServeAssignGate(int gatePort, int code = AssignGateResult.CodeOk)
+        {
+            using var http = _gatewayListener.AcceptTcpClient();
+            http.GetStream().ReadTimeout = 5000;
+            using var reader = new StreamReader(http.GetStream(), Encoding.UTF8, false, 1024, true);
+            Assert.That(reader.ReadLine(), Does.StartWith("POST /api/assign-gate "));
+            int bodyLength = 0;
+            for (string line = reader.ReadLine(); !string.IsNullOrEmpty(line); line = reader.ReadLine())
+                if (line.StartsWith("Content-Length:", StringComparison.OrdinalIgnoreCase)) bodyLength = int.Parse(line.Substring(15));
+            var body = new char[bodyLength];
+            for (int offset = 0; offset < body.Length;)
+            { int n = reader.Read(body, offset, body.Length - offset); if (n == 0) throw new EndOfStreamException(); offset += n; }
+            Assert.That(new string(body), Does.Contain("heartbeat-test"));
+            string json = "{\"code\":" + code + ",\"gate_ip\":\"127.0.0.1\",\"gate_port\":" + gatePort +
+                ",\"token_payload\":\"AQID\",\"token_signature\":\"BAUG\"}";
+            byte[] response = Encoding.ASCII.GetBytes("HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: " +
+                json.Length + "\r\nConnection: close\r\n\r\n" + json);
+            http.GetStream().Write(response, 0, response.Length);
+        }
+
+        /// <summary>
+        /// 假新 gate:验票、令牌登录、按原角色进场并推入场。返回的连接由调用方持有到断言结束,
+        /// 提前关掉会被客户端当成又一次断线。
+        /// </summary>
+        private static TcpClient ServeEnteredGate(TcpListener listener)
+        {
+            var codec = new MuduoCodec();
+            codec.Register<ClientTokenVerifyRequest>(); codec.Register<ClientHeartbeatRequest>(); codec.Register<ClientRequest>();
+            var fresh = listener.AcceptTcpClient();
+            var stream = fresh.GetStream(); stream.ReadTimeout = 5000;
+            var verify = (ClientTokenVerifyRequest)ReadFrame(stream, codec);
+            Assert.That(verify.Payload.ToByteArray(), Is.EqualTo(new byte[] { 1, 2, 3 }));
+            WriteFrame(stream, codec, new ClientTokenVerifyResponse { Success = true, HeartbeatIntervalMs = 50, HeartbeatTimeoutMs = 1000 });
+            ClientRequest ReadRequest()
+            {
+                while (true)
+                {
+                    var message = ReadFrame(stream, codec);
+                    if (message is ClientHeartbeatRequest hb) { WriteFrame(stream, codec, new ClientHeartbeatResponse { Seq = hb.Seq }); continue; }
+                    return (ClientRequest)message;
+                }
+            }
+            var loginCall = ReadRequest();
+            Assert.That(loginCall.MessageId, Is.EqualTo(MessageIds.Login));
+            Assert.That(Loginpb.LoginRequest.Parser.ParseFrom(loginCall.Body).AuthType, Is.EqualTo("access_token"));
+            WriteFrame(stream, codec, new MessageContent { Id = loginCall.Id, MessageId = loginCall.MessageId,
+                SerializedMessage = new Loginpb.LoginResponse().ToByteString() });
+            var enterCall = ReadRequest();
+            Assert.That(enterCall.MessageId, Is.EqualTo(MessageIds.EnterGame));
+            Assert.That(Loginpb.EnterGameRequest.Parser.ParseFrom(enterCall.Body).PlayerId, Is.EqualTo(42ul));
+            WriteFrame(stream, codec, new MessageContent { Id = enterCall.Id, MessageId = enterCall.MessageId,
+                SerializedMessage = new Loginpb.EnterGameResponse { PlayerId = 42 }.ToByteString() });
+            WriteFrame(stream, codec, new MessageContent { MessageId = MessageIds.NotifyEnterScene,
+                SerializedMessage = new EnterSceneS2C { SceneInfo = new SceneInfoComp { SceneId = 123, SceneConfigId = 1 } }.ToByteString() });
+            return fresh;
+        }
+
         private IEnumerator PumpRecovery(IEnumerator routine)
         {
             // EditMode 不替 YieldInstruction 等待异步 HTTP；按生产协程语义显式等待 isDone。

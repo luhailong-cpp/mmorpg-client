@@ -198,6 +198,33 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator CreationResources_UnreleasedProfessionDefaultDoesNotRescanRosterPeriodically()
+        {
+            using var fixture = new CreationResourceFixture();
+            fixture.Add(First);
+            fixture.Add("20_star_formation_master_girl");
+            var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), new GameClient.PlayerChoice());
+            Assert.That(choose.MoveNext(), Is.True);
+            yield return null;
+            Click(fixture.Host, "PreviousAppearance");
+            Click(fixture.Host, "Class_2");
+            Click(fixture.Host, "GenderFemale");
+            Assert.That(ReadText(fixture.Host, "PreviewHint"), Does.Contain("暂不可新建"));
+
+            // 不可新建由代码决定，等多久都不会变；只有资源版本变化才值得重扫名单。
+            int probes = fixture.AppearanceProbeCount;
+            yield return new WaitForSecondsRealtime(1.1f);
+            yield return null;
+            Assert.That(fixture.AppearanceProbeCount, Is.EqualTo(probes),
+                "Waiting cannot make an unreleased profession default creatable, so the roster must not be rescanned.");
+
+            QdaoCharacterCatalog.RefreshAppearances();
+            yield return null;
+            Assert.That(fixture.AppearanceProbeCount, Is.GreaterThan(probes), "A resource revision still refreshes the page.");
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+        }
+
+        [UnityTest]
         public IEnumerator CreationResources_MissingPortraitRetriesWithoutResettingNameOrRescanningReadyPage()
         {
             using var fixture = new CreationResourceFixture();

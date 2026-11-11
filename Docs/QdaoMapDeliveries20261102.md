@@ -73,3 +73,52 @@ walkmask.txt保持Base64、MSB优先、从北向南行优先编码；长度为ce
 切换失败与成功回归项目为`tools/tests/map_runtime_transition/MapRuntimeTransition.csproj`，直接编译真实TianyongMapRuntime源码，以轻量依赖替身执行source/layout/tiles失败、候选准备失败、绑定失败回滚、独立外观成功及不同场景/冷启动失败行为。它验证运行时控制流与状态交接，不代替Unity原生渲染、物理、网络和目标设备验收；产物放`.codex-artifacts/map-runtime-transition/`。
 
 实现范围按Windows/WebGL/Android；未改WebGL正式网络通道，未构建、上传或部署，未新增iOS工作。
+
+## 整图加载方案（待新图交付后执行，2026-11-11记录）
+
+2026-11-10用户定：客户端不再按视野分片（九宫格）加载地图，改为切场景前把目标图整张加载完再切；等新图做完再改。旧三图整张8GB以上，只用1254底图又太糊，所以整图改造与新主城、八仙岛、东海渔村同批落地；在此之前运行时保持上文规则。本节只记方案，未改代码、未编译、未上真机。
+
+**现状数据（2026-11-11核对）**
+
+- 9图15套的layout.png与1024分片拼成的完整栅格同尺寸，全部为每世界单位10像素，最大map10000为4096×3072。`CurrentMapBuilder.Build()`已同步整张加载layout作地面，分片按视野叠在上面，不增加清晰度。两者只核了尺寸，逐像素一致未核。
+- 地图贴图全平台为未压缩RGB24（`CurrentMapTileImporter`不设平台覆盖），设备上每像素3～4字节：map10000一张layout即38～50MB，另加最多6块分片。15套layout与90块分片各9437万像素，贴图数据合计约566MB。
+- 旧三图（schemaVersion1）每块4096²、48～64MB，主城178块、八仙岛176块、东海渔村165块；六块预算即300～380MB。它们在Resources下全部进包：Windows包`resources.assets.resS`共52GB，旧分片约26GB。
+- 服务端进场连推79（NotifyEnterScene）→21（自己）→47（视野列表），没有“客户端加载完成”回执。
+
+**1. 出图规格**
+
+- 每套外观运行时一张贴图，单边≤4096。按每单位10像素，地图单边≤409.6单位，map10000已到上限。
+- 手机用ASTC：4x4每像素1字节（4096×3072约12.6MB），6x6约0.44字节（约5.6MB）；先用4x4看画质。每套外观手机显存估算≤16MB，切图瞬间新旧两张同时驻留约25MB。Windows内存充足可暂不改；WebGL同样不宜放未压缩RGB24，按WebGL构建选定的压缩格式设平台覆盖，落码时核对；iOS不在当前实现范围，加入时同样用ASTC。
+- 保持无mipmap、不可读、Clamp/Bilinear：最远缩放（正交半高55）在1080高屏幕约每单位9.8屏幕像素，贴图与屏幕约一比一。
+- 清晰度待美术定：默认缩放（半高35）在1080高屏幕需每单位约15.4像素，最近缩放（半高24）需22.5，现密度约放大1.5～2.25倍、偏软。要更清楚就得提高密度，单边会超4096，届时改为2048分片、进场全部加载（仍不按视野），预算按宽×高×每像素字节重算。
+
+**2. 加载流程（只改客户端，协议不变）**
+
+1. 点传送时目的地（场景+外观）已确定，立即异步预载目标贴图，与服务端交接并行；跨节点交接最长约1分钟。客户端事先不知道目标图时（首次登录、重连进场），收到79再加载。
+2. 收到79后，21/47照常写入`World`实体表（它们不依赖地图）；地图暂不替换，传送遮罩保持，输入锁住。
+3. 贴图就绪、导航校验通过后，在`TryInstallMap`内一帧提交：用预载贴图代替`CurrentMapDefinition.LoadTexture()`里的同步`Resources.Load`（尺寸校验保留），绑定导航、角色控制和相机，释放旧图，然后撤遮罩。现状是`CityTravelUiRoot.HandleSceneEntered`收到79就`HidePanel()`，改为以地图提交为准。
+4. 过期丢弃：加载请求记下`GameClient.SceneEntryEpoch`，途中又来79时，旧请求完成后直接卸载、不提交。贴图按资源路径计引用，A→B→A快速往返时不卸在用的图。
+5. 失败：服务端已切换场景时退不回旧图，重试一次，仍失败则报资源损坏，不显示半张图，并沿用现有“不同场景加载失败清理旧导航”；同图换外观失败才保留当前画面（现有行为）。
+6. 一次建好：现状79时`TianyongMapRuntime.EnterScene`沿用上一张图的外观（新图没有该外观则用默认）先建一次，随后`CityTravelUiRoot`调`TrySetAppearance(所选外观)`，两者不同就整张再建一次。改为79到达且场景与预载一致时，按预载的外观一次建好。
+
+**3. 删除清单**
+
+- 运行时：`CurrentMapTileStreaming.cs`（368行）、`CurrentMapHexGrid.cs`（201行）、`RedBlobHexGrid.cs`（240行，连同`RedBlobHexGrid.NOTICE.txt`）、`CityTileStreaming.cs`（342行；它读的`World/CityTiles4K`已不存在，调用方始终走“无高清层直接切换”分支）；`TianyongMapInstance`里`_cityTiles`、`_currentMapTiles`的配置、逐帧更新与释放，以及`FestivalRegionMap`、`TianyongPaintedCity`、`TianyongMapRuntime`、`TianyongSandboxBootstrap`中的调用。
+- 测试与工具：删`CurrentMapTileStreamingTests.cs`、`CityTileStreamingTests.cs`、`CurrentMapHexGridTests.cs`和`tools/run_city_tiles_tests.ps1`；`CurrentMapTests`、`TianyongCityNpcTests`、`FestivalRegionAutoVerify`、`tools/tests/map_delivery_contract/Program.cs`里对流式组件的引用改为断言整图。
+- 新图分片：运行时几何全部来自source.json，`CurrentMapCatalog`读tiles.json只为校验。整图后去掉这段校验，1024分片与tiles.json移出Resources，作交付验收文件保留、不进包；`tools/import_festival_maps.py`与tiles.json合同同步改。只留layout后，节庆图在Android包内的贴图数据由约566MB降到约94MB（ASTC 4x4）。
+- 旧三图：新主城、八仙岛、渔村按sceneId 1/2/3进catalog后（`ApplyDeliveries`按sceneId顶替旧登记），删除`Resources/World/CurrentMaps20261009`，以及`CurrentMapCatalog`的旧图登记、`CurrentMapTilesManifest`的schemaVersion1分支、`CurrentMapTileImporter`的4096分片分支。
+- 文档：`Docs/CityTiles4K.md`、`Docs/CityTilePublishing.md`随代码删除或改写；本文“新运行图块导入为1024、RGB24……”一段、source.json的8192上限与tiles.json合同按落地结果改写。
+
+**4. 预算守护与验收**
+
+- EditMode测试遍历catalog每套外观：Android（及WebGL、iOS加入时）平台覆盖为压缩格式、单边≤4096、显存估算≤16MB。交了超标的图测试直接失败，不等真机闪退。
+- 尺寸上限同改为4096：`CurrentMapCatalog`（layoutPixels≤8192）、`tools/import_festival_maps.py`（layout 8192与网格`max(columns, rows) * 1024 <= 8192`）、`CurrentMapTileImporter`（8192）。
+- `tools/tests/map_runtime_transition`补预载、过期丢弃、失败重试与遮罩撤除时机的用例。
+- 验证交Codex：Unity编译与EditMode；真机用一台低端Android，以Memory Profiler看切图峰值，记录从收到79到地图提交的耗时；WebGL记一次峰值。720高的低端屏在最远缩放时贴图约缩小1.5倍，无mipmap可能轻微闪烁，真机顺带看。
+- 落码前用脚本核一次layout与分片逐像素一致（按上文artStatus，layout应由已验收分片拼成）。
+
+**5. 跨仓影响**
+
+- 协议不变，服务端与Java版不改。只有将来加载要数秒、或进场即可能受击时，才考虑加“客户端加载完成”回执与进场保护。
+- 服务端`tools/navmesh_baker/sync_festival_maps.py`钉了冻结交接文件`Docs/VerificationEvidence/festival-maps-20261107/server-handoff-data.json`的SHA与计数（含`runtimeTiles=90`），并按路径与SHA校验每套的source.json、tiles.json、navigation.json、walkmask.txt。新图批次或tiles.json移动时要出新交接文件，服务端同批更新脚本并重烘导航。
+- 旧三图被替换时，服务端`data/scene_nav_bin/current_maps`（绑定旧layoutSha256）按新walkmask同批重烘。

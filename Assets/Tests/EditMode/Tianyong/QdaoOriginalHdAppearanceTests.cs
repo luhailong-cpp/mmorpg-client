@@ -450,6 +450,32 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void IndexEntryLookupKeepsFirstRowAndFollowsReplacedInventory()
+        {
+            var index = ScriptableObject.CreateInstance<QdaoOriginalHdResourceIndex>();
+            try
+            {
+                var first = new QdaoOriginalHdResourceIndex.Entry { path = "walk/N/01.png", width = 1024, height = 1024 };
+                var repeated = new QdaoOriginalHdResourceIndex.Entry { path = "walk/N/01.png", width = 512, height = 512 };
+                var portrait = new QdaoOriginalHdResourceIndex.Entry { path = "portrait.png", width = 1024, height = 1024 };
+                index.entries = new[] { null, new QdaoOriginalHdResourceIndex.Entry(), first, repeated, portrait };
+                Assert.That(index.FindEntry("walk/N/01.png"), Is.SameAs(first), "A repeated path keeps the first row, like the linear scan.");
+                Assert.That(index.FindEntry("portrait.png"), Is.SameAs(portrait));
+                Assert.That(index.FindEntry("walk/N/02.png"), Is.Null);
+                Assert.That(index.FindEntry(null), Is.Null);
+
+                // 重新导入会换掉整个数组，查找表必须跟着换，不能用旧表回答。
+                var replacement = new QdaoOriginalHdResourceIndex.Entry { path = "walk/N/02.png", width = 1024, height = 1024 };
+                index.entries = new[] { replacement };
+                Assert.That(index.FindEntry("walk/N/01.png"), Is.Null, "A replaced inventory must not answer from the previous table.");
+                Assert.That(index.FindEntry("walk/N/02.png"), Is.SameAs(replacement));
+                index.entries = null;
+                Assert.That(index.FindEntry("walk/N/02.png"), Is.Null);
+            }
+            finally { UnityEngine.Object.DestroyImmediate(index); }
+        }
+
+        [Test]
         public void DeliveredIndexChecksRealFilesWithoutRequiringProducerTimestamps()
         {
             const string folder = QdaoCharacterCatalog.OriginalV14Root + "/08_alchemy_prodigy_boy";

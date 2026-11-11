@@ -83,6 +83,9 @@ namespace MmorpgClient.Game.Guild
         private readonly Func<long> _economyUtcMs;
         // 服务端去重至少保留七天；留出一天余量，超窗不重发，只能核账后确认作废本机记录。
         public const long EconomyReplayWindowMs = 6L * 24 * 60 * 60 * 1000;
+        // 作废确认的最短间隔(负责人 2026-11-10 定,05-economy.md §5.44.2 末段):损坏或超窗警告写出满这么久之后的点击才算确认。
+        // 第一次点击只写警告、不进 Busy,按钮一直可点;不设间隔的话连点两下,第二下会在玩家读到警告之前就作废记录。
+        public const long EconomyRetireConfirmDelayMs = 1000;
         // 「恢复原请求」的结论:作废损坏记录、不在帮时作废超窗记录,以及预读之后的每个结局(回放结果、拒绝原因、待重试提示、超窗警告)。
         // 这些时候经济 / 活动快照可能刚被清空(作废、重连后首次读到帮会、换帮),窗口停在那一页会当场自动补拉。
         // 紧随其后的第一次无文案读取(本人申请列表、捐献页、商店页、活动页)发出时状态栏仍停在这句上、在途期间也没有推送改写状态栏,
@@ -376,7 +379,7 @@ namespace MmorpgClient.Game.Guild
             Info = null; Rank = null; HasLoaded = false; Busy = false;
             MyApplications = null; Applicants = null;
             RefreshQueued = ApplicantsQueued = MyApplicationsQueued = false; _pendingNotice = null; _writeNotice = null;
-            _staleEconomyRecord = null; _corruptEconomyRecord = null; _economyRecoveryNotice = null;
+            _staleEconomyRecord = null; _corruptEconomyRecord = null; _economyWarningShownAtMs = 0; _economyRecoveryNotice = null;
             // 落地恢复排的读取属于上一次落地:新落地会重新标脏、重新排(钩子 SyncReadStarted 不清,换角 / 重连不必重绑)。
             _syncReads = GuildSyncRead.None; _currentSyncAck = null;
             ClearEconomy(); ClearActivities(); ClearTrialInvite();
@@ -578,11 +581,11 @@ namespace MmorpgClient.Game.Guild
             if (_generation == before) RefreshQueued = queued;
         }
 
-        public void Browse(uint page = 1, uint zoneId = 0)
+        public void Browse(uint page = 1)
         {
-            // 服务端只返回玩家归属区的榜单，zoneId 仅作请求提示。
+            // 帮会榜只有本区榜：服务端按玩家归属区返回，请求里不带区（服务端 gate-online-identity.md §9.6）。
             Request(MessageIds.GetGuildRank, new GetGuildRankRequest
-                { Page = Math.Max(1, page), PageSize = 5, ZoneId = zoneId },
+                { Page = Math.Max(1, page), PageSize = 5 },
                 GetGuildRankResponse.Parser, response =>
                 {
                     if (!Accept(response.ErrorMessage)) return;
@@ -653,12 +656,13 @@ namespace MmorpgClient.Game.Guild
         // 写方法成功后直接应用响应里的权威快照,不再额外 Refresh:服务端在提交后
         // 读快照回带(第 2 部分 §5.3),多发一次 GetPlayerGuild 只会多一次等待与闪烁。
 
-        public void Create(string name, uint zoneId)
+        /// <summary>建帮。建帮者取会话、所在区取服务端记录的归属区，请求只带帮名。</summary>
+        public void Create(string name)
         {
             name = (name ?? "").Trim();
-            if (!CanJoin() || name.Length == 0 || name.Length > MaxNameLength || zoneId == 0)
-            { Reject("请先确认未入帮状态，填写 1–24 字帮名并选择有效区服。"); return; }
-            Request(MessageIds.CreateGuild, new CreateGuildRequest { PlayerId = PlayerId, Name = name, ZoneId = zoneId },
+            if (!CanJoin() || name.Length == 0 || name.Length > MaxNameLength)
+            { Reject("请先确认未入帮状态，并填写 1–24 字帮名。"); return; }
+            Request(MessageIds.CreateGuild, new CreateGuildRequest { Name = name },
                 CreateGuildResponse.Parser, response =>
                 { if (Accept(response.ErrorMessage)) Apply(response.Guild); });
         }
@@ -701,7 +705,9 @@ namespace MmorpgClient.Game.Guild
         {
             if (!CanAssignRoles || target == 0 || target == PlayerId || (role != GuildRoles.Member && role != GuildRoles.Officer))
             { Reject("仅帮主可任免长老。"); return; }
-            Request(MessageIds.SetGuildMemberRole, new SetGuildMemberRoleRequest { TargetPlayerId = target, Role = role },
+            // ExpectedGuildId:服务端在写事务里复核「操作者仍在这个帮」，超时后晚到的旧请求不会作用到新加入的帮会上。
+            Request(MessageIds.SetGuildMemberRole, new SetGuildMemberRoleRequest
+                { TargetPlayerId = target, Role = role, ExpectedGuildId = Info.GuildId },
                 SetGuildMemberRoleResponse.Parser, response =>
                 { if (AcceptWrite(response.ErrorMessage)) Apply(response.Guild); });
         }
@@ -711,7 +717,7 @@ namespace MmorpgClient.Game.Guild
         {
             GuildMember member = FindMember(target);
             if (member == null || !CanKick(member)) { Reject("当前身份无权请离该成员。"); return; }
-            Request(MessageIds.KickGuildMember, new KickGuildMemberRequest { TargetPlayerId = target },
+            Request(MessageIds.KickGuildMember, new KickGuildMemberRequest { TargetPlayerId = target, ExpectedGuildId = Info.GuildId },
                 KickGuildMemberResponse.Parser, response =>
                 { if (AcceptWrite(response.ErrorMessage)) Apply(response.Guild); });
         }
@@ -721,7 +727,7 @@ namespace MmorpgClient.Game.Guild
         {
             if (!CanAssignRoles || target == 0 || target == PlayerId || FindMember(target) == null)
             { Reject("仅帮主可转让帮会。"); return; }
-            Request(MessageIds.TransferGuildLeader, new TransferGuildLeaderRequest { TargetPlayerId = target },
+            Request(MessageIds.TransferGuildLeader, new TransferGuildLeaderRequest { TargetPlayerId = target, ExpectedGuildId = Info.GuildId },
                 TransferGuildLeaderResponse.Parser, response =>
                 { if (AcceptWrite(response.ErrorMessage)) Apply(response.Guild); });
         }
@@ -759,7 +765,7 @@ namespace MmorpgClient.Game.Guild
             if (text.Length > MaxAnnouncementChars || Encoding.UTF8.GetByteCount(text) > MaxAnnouncementBytes)
             { Reject("公告最多 " + MaxAnnouncementChars + " 字，请精简后再保存。"); return; }
             Request(MessageIds.SetGuildAnnouncement, new SetAnnouncementRequest
-                { GuildId = Info.GuildId, PlayerId = PlayerId, Announcement = text },
+                { GuildId = Info.GuildId, Announcement = text },
                 SetAnnouncementResponse.Parser, response =>
                 { if (Accept(response.ErrorMessage)) Apply(response.Guild); });
         }
@@ -767,17 +773,18 @@ namespace MmorpgClient.Game.Guild
         public void Leave()
         {
             if (Info == null || IsLeader) { Reject("帮主需先处理帮会，不能直接退出。"); return; }
-            Request(MessageIds.LeaveGuild, new LeaveGuildRequest { PlayerId = PlayerId },
+            // 身份取会话;ExpectedGuildId 让服务端只退这个帮。玩家已不在该帮时回「不在帮会」,AcceptWrite 排队重拉。
+            Request(MessageIds.LeaveGuild, new LeaveGuildRequest { ExpectedGuildId = Info.GuildId },
                 LeaveGuildResponse.Parser, response =>
-                { if (Accept(response.ErrorMessage)) Refresh(); });
+                { if (AcceptWrite(response.ErrorMessage)) Refresh(); });
         }
 
         public void Disband()
         {
             if (Info == null || !IsLeader) { Reject("仅帮主可解散帮会。"); return; }
-            Request(MessageIds.DisbandGuild, new DisbandGuildRequest { PlayerId = PlayerId },
+            Request(MessageIds.DisbandGuild, new DisbandGuildRequest { ExpectedGuildId = Info.GuildId },
                 DisbandGuildResponse.Parser, response =>
-                { if (Accept(response.ErrorMessage)) Refresh(); });
+                { if (AcceptWrite(response.ErrorMessage)) Refresh(); });
         }
 
         // ── 经济:捐献 / 升级 / 商店(B5)──────────────────────────────────────
@@ -1066,9 +1073,21 @@ namespace MmorpgClient.Game.Guild
         private string _staleEconomyRecord;
         // 损坏文本可能只剩同一个占位串，确认必须绑定该次读取的原始文件字节。
         private DurableRequestFileStore.Snapshot _corruptEconomyRecord;
+        // 当前这句作废警告(损坏或超窗)写出的时刻,单调时钟。只在写出警告时记;恢复结论沿用把同一句警告放回状态栏时不重记。
+        private long _economyWarningShownAtMs;
+
+        /// <summary>
+        /// 警告写出后是否已满 EconomyRetireConfirmDelayMs。不满时这一击不算确认:不作废、不发包、不重新计时、不改状态栏,
+        /// 满了之后的下一击照常确认。
+        /// </summary>
+        private bool RetireConfirmDelayElapsed() => _monotonicMs() - _economyWarningShownAtMs >= EconomyRetireConfirmDelayMs;
 
         private const string CorruptEconomyWarning = "帮会资产恢复记录损坏，无法安全重发；原请求可能已经到账。"
             + "请先核对背包、捐献页与商店页；确认不再追查后，再点一次「恢复原请求」作废本机记录。";
+
+        // 确认作废的这一击发现槽位已换成别的记录(05-economy.md §5.44.2):只提示变化,下一次由玩家主动恢复。
+        // 不能说成存储故障 —— 玩家照着"重新确认"再点,下一击恢复的是换进来的那条新请求。
+        private const string EconomyRecordChangedText = "待确认记录已变化，本次未作废也未重发；请重新读取后恢复。";
 
         private void RecoverCorruptEconomyRequest(DurableRequestFileStore.Snapshot snapshot)
         {
@@ -1076,12 +1095,16 @@ namespace MmorpgClient.Game.Guild
             if (_corruptEconomyRecord == null || !_corruptEconomyRecord.Matches(snapshot) || Status != CorruptEconomyWarning)
             {
                 _corruptEconomyRecord = snapshot;
+                _economyWarningShownAtMs = _monotonicMs();
                 Reject(CorruptEconomyWarning);
                 return;
             }
+            if (!RetireConfirmDelayElapsed()) return;
 
             _corruptEconomyRecord = null;
             try { _economyRecovery.ClearSnapshot(PlayerId, snapshot); }
+            // 读完快照到持锁复核之间,另一个守 .lock 协议的写者换掉了槽位:存储按契约抛 InvalidOperationException。
+            catch (InvalidOperationException) { Reject(EconomyRecordChangedText); return; }
             catch (Exception) { Reject("本机待确认记录未能作废，请检查本机存储后重新确认；原请求未重发。"); return; }
             // 损坏头没有可信的原方法，只读刷新帮会；旧经济页留给窗口进页时重新读取(停在本页时当场补拉,那一发沿用作废结论)。
             ClearEconomy();
@@ -1099,6 +1122,7 @@ namespace MmorpgClient.Game.Guild
         {
             _corruptEconomyRecord = null;
             _staleEconomyRecord = saved;
+            _economyWarningShownAtMs = _monotonicMs();
             Reject(StaleEconomyText(clockBehind));
         }
 
@@ -1111,6 +1135,8 @@ namespace MmorpgClient.Game.Guild
         {
             _staleEconomyRecord = null;
             try { _economyRecovery.Clear(PlayerId, saved); }
+            // 同 RecoverCorruptEconomyRequest:按原内容 CAS 删除时发现已换成别的记录。
+            catch (InvalidOperationException) { Reject(EconomyRecordChangedText); return; }
             catch (Exception) { Reject("本机待确认记录未能作废，请检查本机存储后重试。"); return; }
             const string retired = "已作废超期的待确认记录，原请求未重发；之后的捐献或兑换按新请求处理。";
             if (Info == null) { _economyRecoveryNotice = retired; Reject(retired); }
@@ -1242,7 +1268,11 @@ namespace MmorpgClient.Game.Guild
             if (!replayable)
             {
                 // 状态栏仍是这条记录的那句警告 = 玩家看着警告又点了一次,即确认作废;否则(首次、换过文案、重连过)先警告。
-                if (_staleEconomyRecord == saved && Status == StaleEconomyText(clockBehind)) RetireStaleEconomyRequest(saved, method);
+                // 警告写出不满 1 秒的那一击(连点的第二下)不算确认,什么都不改。
+                if (_staleEconomyRecord == saved && Status == StaleEconomyText(clockBehind))
+                {
+                    if (RetireConfirmDelayElapsed()) RetireStaleEconomyRequest(saved, method);
+                }
                 else WarnStaleEconomyRequest(saved, clockBehind);
                 return;
             }
@@ -1250,7 +1280,7 @@ namespace MmorpgClient.Game.Guild
             _staleEconomyRecord = null;
             if (confirmationChanged)
             {
-                Reject("待确认记录已变化，本次未作废也未重发；请重新读取后恢复。");
+                Reject(EconomyRecordChangedText);
                 return;
             }
             Request(MessageIds.GetPlayerGuild, new GetPlayerGuildRequest { PlayerId = PlayerId },

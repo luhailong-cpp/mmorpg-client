@@ -90,6 +90,8 @@ namespace MmorpgClient.UI.Ugui.Role
         private int _appearanceResourceRevision = -1;
         private float _appearanceRetryAt;
         private bool _creationResourcesReady;
+        // 所选人物可以新建、只是资源还没就绪：只有这种情况值得定时重试。
+        private bool _creationAwaitingResources;
         private string _creationResourceHint;
         private UiTextButton _previousAppearanceButton;
         private UiTextButton _nextAppearanceButton;
@@ -259,9 +261,10 @@ namespace MmorpgClient.UI.Ugui.Role
             }
             // Import completion normally advances the revision. A bounded retry also
             // covers a portrait becoming loadable without another import notification.
+            // 不可新建的人物（如玄霄的职业默认外观）由代码决定，等多久都不会变，不做定时重试。
             if (_creating && (_appearanceResourceRevision != QdaoCharacterCatalog.ResourceRevision ||
                 _creationResourcesReady && (_creationPortraitWindow == null || _creationPortraitWindow.Count == 0) ||
-                !_creationResourcesReady && Time.unscaledTime >= _appearanceRetryAt))
+                _creationAwaitingResources && Time.unscaledTime >= _appearanceRetryAt))
             {
                 RefreshAppearanceChoices();
                 RefreshCreateHighlights();
@@ -309,6 +312,7 @@ namespace MmorpgClient.UI.Ugui.Role
         private void ShowCreateMode()
         {
             if (_players != null && _players.Count >= MaxRows) return;
+            using var profile = CreationPortraitProfiling.Open.Auto();
             _creating = true;
             _title.text = "创建角色";
             _title.gameObject.SetActive(true);_exactSelectionTitle.gameObject.SetActive(false);_exactSelectionSeal.gameObject.SetActive(false);
@@ -413,8 +417,10 @@ namespace MmorpgClient.UI.Ugui.Role
             _roleScroll.verticalNormalizedPosition=range>0?1-Mathf.Clamp01(viewTop/range):1;
         }
 
-        private bool RefreshCreateHighlights()
+        /// <param name="travel">点“下一人物”为 1、“上一人物”为 -1，其他刷新为 0；决定先补载哪一侧邻居。</param>
+        private bool RefreshCreateHighlights(int travel = 0)
         {
+            using var profile = CreationPortraitProfiling.RefreshSelection.Auto();
             for (int i = 0; i < _classButtons.Count; i++)
                 SetChoiceState(_classButtons[i], Classes[i].id == _pickedClassId);
             SetChoiceState(_maleButton, _pickedGender == 1);
@@ -431,6 +437,8 @@ namespace MmorpgClient.UI.Ugui.Role
             PrepareCreationPortraitWindow(creatable ? resolvedId : null, out var previousId, out var nextId);
             RefreshPreview(_pickedClassId, _pickedGender, 0, PickedAppearanceId);
             _creationResourcesReady = appearance != null && _hero.enabled && _hero.sprite != null;
+            // 候选为空时名单本身还在准备，也要重试；不可新建的人物等多久都不会变。
+            _creationAwaitingResources = !_creationResourcesReady && (creatable || _appearanceChoices.Count == 0);
             _creationResourceHint = !creatable ? "所选人物暂不可新建，请选择其他人物" : _appearanceChoices.Count == 0 ?
                 "人物图片正在准备，请稍候" :
                 "所选人物图片正在准备，请稍候或选择其他人物";
@@ -442,7 +450,7 @@ namespace MmorpgClient.UI.Ugui.Role
             if (!_creationResourcesReady) SetPreviewHint(_creationResourceHint, true);
             else if (!string.IsNullOrEmpty(_result?.RejectHint)) SetPreviewHint(_result.RejectHint, true);
             else RefreshNameHint();
-            ScheduleCreationPortraitPreload(previousId, nextId);
+            ScheduleCreationPortraitPreload(previousId, nextId, travel);
             return _creationResourcesReady;
         }
 
@@ -476,23 +484,37 @@ namespace MmorpgClient.UI.Ugui.Role
             _creationPortraitWindow.SetWindow(currentId, previousId, nextId);
         }
 
-        private void ScheduleCreationPortraitPreload(string previousId, string nextId)
+        private void ScheduleCreationPortraitPreload(string previousId, string nextId, int travel)
         {
-            if (Application.isPlaying && isActiveAndEnabled)
-                _creationPortraitPreload = StartCoroutine(PreloadCreationPortraits(
-                    _creationPortraitGeneration, previousId, nextId));
+            if (!Application.isPlaying || !isActiveAndEnabled || _creationPortraitWindow == null) return;
+            // 先补玩家正在走向的那一侧：往后翻时上一位就是刚才的当前人物，早已在窗口里。
+            // 开页、切职业或性别没有方向，仍是先上后下。
+            string first = travel > 0 ? nextId : previousId;
+            string second = travel > 0 ? previousId : nextId;
+            if (second == first) second = null;
+            _creationPortraitPreload = StartCoroutine(PreloadCreationPortraits(
+                _creationPortraitGeneration, first, second));
         }
 
-        private IEnumerator PreloadCreationPortraits(int generation, string previousId, string nextId)
+        private IEnumerator PreloadCreationPortraits(int generation, string first, string second)
         {
-            // Let the selected portrait reach the screen first. Never load both neighbors
-            // in the button callback, and discard work for a selection that has moved on.
+            // Let the selected portrait reach the screen first. Never touch a neighbor in the
+            // button callback; each later frame loads at most one, a neighbor already in the
+            // window costs no frame, and work for a selection that has moved on is discarded.
             yield return null;
             if (!CanPreloadCreationPortraits(generation)) yield break;
-            _creationPortraitWindow.GetOrLoad(previousId);
-            yield return null;
-            if (!CanPreloadCreationPortraits(generation)) yield break;
-            _creationPortraitWindow.GetOrLoad(nextId);
+            bool loadedOne = false;
+            foreach (var id in new[] { first, second })
+            {
+                if (string.IsNullOrEmpty(id) || _creationPortraitWindow.TryGet(id, out _)) continue;
+                if (loadedOne)
+                {
+                    yield return null;
+                    if (!CanPreloadCreationPortraits(generation)) yield break;
+                }
+                using (CreationPortraitProfiling.Preload.Auto()) _creationPortraitWindow.GetOrLoad(id);
+                loadedOne = true;
+            }
             _creationPortraitPreload = null;
         }
 
@@ -524,6 +546,7 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private void RefreshAppearanceChoices()
         {
+            using var profile = CreationPortraitProfiling.RefreshChoices.Auto();
             string selected = PickedAppearanceId;
             _appearanceChoices.Clear();
             var older = new List<QdaoCharacterCatalog.Definition>();
@@ -556,7 +579,7 @@ namespace MmorpgClient.UI.Ugui.Role
             _appearanceChoice = AdjacentAppearanceChoice(delta);
             _pickedAppearanceId = _appearanceChoice > 0 ? _appearanceChoices[_appearanceChoice - 1].Id : string.Empty;
             _hasAppearanceSelection = true;
-            RefreshCreateHighlights();
+            RefreshCreateHighlights(delta);
         }
 
         private int AdjacentAppearanceChoice(int delta)

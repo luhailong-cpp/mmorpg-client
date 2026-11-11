@@ -7,8 +7,15 @@ namespace MmorpgClient.Game
 {
     public sealed partial class GameClient
     {
-        // 断线保留只有 25 秒；只做一次有总期限的恢复，失败后交回现有选服流程。
+        // 断线保留只有 25 秒；恢复有 20 秒总期限，失败后交回现有选服流程。
         private const double ReconnectBudgetSeconds = 20;
+        // 期限内只重试「还没连上新 gate」的暂时故障：gate 崩溃重启后，网关在旧注册过期前仍可能把玩家分到
+        // 已停的 gate，连接被拒或验票前断线。退避 0.5s 起翻倍、封顶 4s、±20% 抖动，避免一批玩家同时重试。
+        private const double ReconnectInitialBackoffSeconds = 0.5;
+        private const double ReconnectMaxBackoffSeconds = 4;
+        private readonly Random _reconnectJitter = new Random();
+        // ConnectAndEnter 写：本次连接的 gate 已接受票据、进入登录阶段。之后的失败是登录 / 进场的服务端结论，不重试。
+        private bool _pipelineTicketAccepted;
         private bool _reconnecting, _applicationPaused;
         private ulong _reconnectPlayerId;
         private double _reconnectDeadline;
@@ -51,27 +58,70 @@ namespace MmorpgClient.Game
                 SetTokens(refreshed.access_token, refreshed.refresh_token, refreshed.access_token_expire);
             }
 
-            // 重新分配并领新票据；旧 gate 的短期票据不能复用，gate 重启后也可能换地址。
-            AssignGateResult assigned = null;
-            string error = null;
-            yield return _http.AssignGate(new Net.AssignGateRequest
+            double backoff = ReconnectInitialBackoffSeconds;
+            for (int attempt = 1; ; ++attempt)
             {
-                zone_id = zoneId, account = Account, device_id = _deviceId ?? "", queue_token = ""
-            }, r => assigned = r, e => error = e);
-            if (gen != _pipelineGen) yield break;
-            if (error != null || assigned == null || assigned.code != AssignGateResult.CodeOk)
-            { FailReconnect(gen, error ?? $"assign gate code={assigned?.code}"); yield break; }
-
-            yield return ConnectAndEnter(gen, zoneId, assigned.gate_ip, (int)assigned.gate_port,
-                SafeBase64(assigned.token_payload), SafeBase64(assigned.token_signature), null,
-                () =>
+                // 每次都重新分配并领新票据；旧 gate 的短期票据不能复用，gate 重启后也可能换地址。
+                AssignGateResult assigned = null;
+                string error = null;
+                yield return _http.AssignGate(new Net.AssignGateRequest
                 {
-                    if (gen != _pipelineGen) return;
-                    CancelReconnect();
-                    Log($"[gate] reconnect complete player_id={PlayerId}");
-                    if (battleId != 0) BattleLink?.HandleReconnectHint(battleId);
-                }, e => FailReconnect(gen, e));
+                    zone_id = zoneId, account = Account, device_id = _deviceId ?? "", queue_token = ""
+                }, r => assigned = r, e => error = e);
+                if (gen != _pipelineGen) yield break;
+
+                bool retryable;
+                if (error != null || assigned == null)
+                {
+                    retryable = true; // 网关暂时连不上
+                    error ??= "assign gate: empty response";
+                }
+                else if (assigned.code != AssignGateResult.CodeOk)
+                {
+                    retryable = IsTransientAssignGateCode(assigned.code);
+                    error = $"assign gate code={assigned.code}";
+                }
+                else
+                {
+                    bool entered = false;
+                    string enterError = null;
+                    yield return ConnectAndEnter(gen, zoneId, assigned.gate_ip, (int)assigned.gate_port,
+                        SafeBase64(assigned.token_payload), SafeBase64(assigned.token_signature), null,
+                        () =>
+                        {
+                            if (gen != _pipelineGen) return;
+                            entered = true;
+                            CancelReconnect();
+                            Log($"[gate] reconnect complete player_id={PlayerId} attempts={attempt}");
+                            if (battleId != 0) BattleLink?.HandleReconnectHint(battleId);
+                        }, e => enterError = e);
+                    if (gen != _pipelineGen || entered) yield break;
+                    // 票据被拒、或新 gate 接受票据之后登录 / 进场被拒（令牌失效、被顶号、角色不能进）都是服务端结论，
+                    // 重试只会和它对抗；只有连不上、验票前断线或超时才算暂时故障。
+                    retryable = !_pipelineTicketAccepted && !_tokenRejectedByGate;
+                    error = enterError ?? "connect and enter failed";
+                }
+
+                if (!retryable) { FailReconnect(gen, error); yield break; }
+                double delay = backoff * (0.8 + 0.4 * _reconnectJitter.NextDouble());
+                if (MonotonicSeconds + delay >= _reconnectDeadline)
+                { FailReconnect(gen, $"{error}; no time left for attempt {attempt + 1}"); yield break; }
+                Log($"[gate] reconnect attempt {attempt} failed, retrying in {delay:F1}s: {error}");
+                double retryAt = MonotonicSeconds + delay;
+                while (MonotonicSeconds < retryAt)
+                {
+                    yield return null;
+                    if (gen != _pipelineGen) yield break; // 期限到、显式登出或新管线接管都会翻世代
+                }
+                backoff = Math.Min(backoff * 2, ReconnectMaxBackoffSeconds);
+            }
         }
+
+        // 网关的暂时性结论：限流、内部错误、区暂不可用（例如 gate 正在重启）。
+        // 排队、区不存在、排队过期是确定结论：恢复不能替玩家排队，交回选服流程。
+        private static bool IsTransientAssignGateCode(int code) =>
+            code == AssignGateResult.CodeRateLimited || code == AssignGateResult.CodeInternal ||
+            code == AssignGateResult.CodeZoneUnavailable;
 
         private void CheckReconnectDeadline()
         {

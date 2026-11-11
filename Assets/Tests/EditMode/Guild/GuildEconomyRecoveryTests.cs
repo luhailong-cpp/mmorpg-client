@@ -25,12 +25,14 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         private GuildClient _client;
         private object _identity;
         private long _now;
+        // 注入的单调时钟:作废确认要在警告写出满 EconomyRetireConfirmDelayMs 之后,用例用 PassConfirmDelay 表示「读完警告再点」。
+        private long _monoNow;
 
         [SetUp] public void SetUp()
         {
             _directory = Path.Combine(Path.GetTempPath(), "guild-economy-" + Guid.NewGuid().ToString("N"));
             _files = DurableRequestFileStore.ForOrigin(_directory, "https://guild-test.invalid");
-            _net = new RecoveryTransport(); _identity = new object(); _now = 1700000000000;
+            _net = new RecoveryTransport(); _identity = new object(); _now = 1700000000000; _monoNow = 10000;
             _client = CreateClient();
             Load();
         }
@@ -39,13 +41,15 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _client.Dispose();
             if (Directory.Exists(_directory)) Directory.Delete(_directory, true);
         }
-        private GuildClient CreateClient() => new GuildClient(_net, () => _identity,
-            economyRecovery: _files, economyUtcMs: () => _now);
+        private GuildClient CreateClient(Func<long> economyUtcMs = null) => new GuildClient(_net, () => _identity,
+            monotonicMs: () => _monoNow, economyRecovery: _files, economyUtcMs: economyUtcMs ?? (() => _now));
         private void Load()
         {
             _client.Refresh();
             _net.Reply(new GetPlayerGuildResponse { Guild = GuildClientTests.Fixture() });
         }
+        // 玩家读完警告再点:把单调时钟拨过作废确认的最短间隔(05-economy.md §5.44.2 末段)。在确认作废的那一击之前调用。
+        private void PassConfirmDelay() => _monoNow += GuildClient.EconomyRetireConfirmDelayMs;
         private void ConfirmRecoveryGuild(ulong guild = 555)
         {
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
@@ -113,6 +117,21 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.Status, Does.Contain("已作废损坏"));
             Assert.That(_client.Status, Does.Contain("原请求未重发"));
             Assert.That(_client.Status, Does.Contain("不能据此判断是否到账"));
+        }
+        // 一条超窗记录:捐献发出后没拿到订单视图,随后本机时间走过安全恢复期。返回记录文件路径。
+        private string SeedStaleRecord()
+        {
+            _client.Donate(2); _net.Reply(new DonateToGuildResponse());
+            _now += GuildClient.EconomyReplayWindowMs;
+            return Directory.GetFiles(_directory, "1.pending", SearchOption.AllDirectories).Single();
+        }
+        // 作废确认那一击之后的回包:损坏记录只读刷新帮会;超窗的捐献记录带着结论重拉捐献页。
+        private void ReplyAfterRetirement(bool corrupt)
+        {
+            if (corrupt) { ReplyAfterCorruptRetirement(); return; }
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildDonateOptions));
+            ReplyPageReload();
+            Assert.That(_client.Status, Does.Contain("已作废超期"));
         }
         // 照 GuildUiRoot 接线:窗口的恢复与本页读取事件进客户端,客户端的 Changed 重建窗口。窗口停在捐献 / 商店页时,
         // 本页快照一清空,下一次重建末尾就当场自动补拉(GuildWindow.MaybeAutoRequest)。body 拿到的是点「刷新 / 恢复原请求」键。
@@ -451,6 +470,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_files.Load(1), Is.EqualTo(corrupt));
             Assert.That(_client.Status, Does.Contain("损坏").And.Contain("再点一次"));
             Assert.That(_client.HasPendingEconomyWrite, Is.True);
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.Empty);
             Assert.That(_client.HasPendingEconomyWrite, Is.False);
@@ -469,6 +489,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
             Assert.That(_files.Load(1), Is.EqualTo(copied));
             Assert.That(_client.Status, Does.Contain("损坏").And.Contain("再点一次"));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.Empty);
             Assert.That(_files.Load(2), Is.EqualTo(copied));
@@ -491,6 +512,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
             Assert.That(_files.Load(1), Is.EqualTo(corrupt));
             Assert.That(_client.Status, Does.Contain("损坏").And.Contain("再点一次"));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.Empty);
             Assert.That(_client.Donations, Is.Null);
@@ -512,6 +534,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(File.ReadAllBytes(path), Is.EqualTo(original));
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
             Assert.That(_client.Status, Does.Contain("再点一次"));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(File.Exists(path), Is.False);
             Assert.That(_client.HasPendingEconomyWrite, Is.False);
@@ -534,6 +557,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(File.ReadAllBytes(path), Is.EqualTo(replacement));
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
             Assert.That(_client.Status, Does.Contain("再点一次"));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(File.Exists(path), Is.False);
             Assert.That(_net.Calls.Count, Is.EqualTo(before + 1));
@@ -559,6 +583,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(File.ReadAllBytes(path), Is.EqualTo(original));
             Assert.That(_client.Status, Does.Contain("再点一次"));
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(File.Exists(path), Is.False);
             ReplyAfterCorruptRetirement();
@@ -569,9 +594,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             string path = SeedRawRecoveryFile(new byte[0]);
             _client.RecoverEconomyRequest();
             int before = _net.Calls.Count;
-            // 允许读取和计算指纹,但不给 Delete 共享权限,确定性复现清除失败。
+            // 允许读取和计算指纹,但不给 Delete 共享权限,确定性复现清除失败(满确认间隔后的这一击才会走到删除)。
             using (var blocker = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
+                PassConfirmDelay();
                 _client.RecoverEconomyRequest();
                 Assert.That(File.Exists(path), Is.True);
                 Assert.That(_client.HasPendingEconomyWrite, Is.True);
@@ -581,6 +607,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(File.Exists(path), Is.True);
             Assert.That(_client.Status, Does.Contain("再点一次"));
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(File.Exists(path), Is.False);
             ReplyAfterCorruptRetirement();
@@ -604,6 +631,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(File.Exists(path), Is.True);
             Assert.That(_client.Status, Does.Contain("再点一次"));
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(File.Exists(path), Is.False);
             ReplyAfterCorruptRetirement();
@@ -621,6 +649,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(File.Exists(path), Is.True);
             Assert.That(_client.Status, Does.Contain("再点一次"));
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(File.Exists(path), Is.False);
             ReplyAfterCorruptRetirement();
@@ -629,7 +658,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test] public void CorruptRetirementConclusionSurvivesNotInGuildAndOneApplicationsRefresh()
         {
             string path = SeedRawRecoveryFile(new byte[0]);
-            _client.RecoverEconomyRequest(); _client.RecoverEconomyRequest();
+            _client.RecoverEconomyRequest(); PassConfirmDelay(); _client.RecoverEconomyRequest();
             Assert.That(File.Exists(path), Is.False);
             ReplyAfterCorruptRetirement(false);
             string conclusion = _client.Status;
@@ -644,7 +673,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test] public void AnApplicationPushDuringRefreshSupersedesTheCorruptRetirementConclusion()
         {
             SeedRawRecoveryFile(new byte[0]);
-            _client.RecoverEconomyRequest(); _client.RecoverEconomyRequest();
+            _client.RecoverEconomyRequest(); PassConfirmDelay(); _client.RecoverEconomyRequest();
             ReplyAfterCorruptRetirement(false);
             _client.DrainQueued(false);
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListMyGuildApplications));
@@ -659,7 +688,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test] public void AKickDuringCorruptRetirementRefreshTakesPrecedenceOverTheRetirementConclusion()
         {
             SeedRawRecoveryFile(new byte[0]);
-            _client.RecoverEconomyRequest(); _client.RecoverEconomyRequest();
+            _client.RecoverEconomyRequest(); PassConfirmDelay(); _client.RecoverEconomyRequest();
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
             _net.Notify(MessageIds.NotifyGuildChanged, new GuildChangedS2C
                 { GuildId = 555, TargetPlayerId = 1, Kind = GuildChangeKind.MemberKicked });
@@ -676,7 +705,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void CorruptRetirementRefreshFailureKeepsTheFileClearedAndShowsTheReadError(bool serviceFault)
         {
             string path = SeedRawRecoveryFile(new byte[0]);
-            _client.RecoverEconomyRequest(); _client.RecoverEconomyRequest();
+            _client.RecoverEconomyRequest(); PassConfirmDelay(); _client.RecoverEconomyRequest();
             Assert.That(File.Exists(path), Is.False);
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
             int calls = _net.Calls.Count;
@@ -725,6 +754,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.HasPendingEconomyWrite, Is.True);
             Assert.That(_client.Status, Does.Contain("再点一次"));
 
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.Empty);
             Assert.That(_client.HasPendingEconomyWrite, Is.False);
@@ -756,6 +786,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.EqualTo(original));
             Assert.That(_client.Status, Does.Contain("再点一次"));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.Empty);
             Assert.That(_client.Status, Does.Contain("已作废"));
@@ -815,6 +846,52 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_files.Load(1), Is.EqualTo(replacement));
         }
 
+        // 确认那一击读完快照之后、持锁复核之前,另一个守 .lock 协议的进程把槽位换成了窗口内的合法新请求(交接 §8.1 第 5 条)。
+        // 这一击只保留新记录并提示变化,不能按存储故障引导玩家「重新确认」;下一击才由玩家主动恢复,发的是新记录自己的键。
+        [TestCase(true)] [TestCase(false)]
+        public void ReplacementDuringTheConfirmingClickOnlyReportsTheChange(bool corruptWarning)
+        {
+            _client.Donate(2); ulong oldKey = LastKey(); string original = _files.Load(1);
+            _net.Reply(new DonateToGuildResponse());
+            string warned = original;
+            if (corruptWarning)
+            {
+                var fields = original.Split(':'); fields[5] = "not-base64";
+                warned = string.Join(":", fields);
+                _files.Transition(1, original, warned);
+            }
+            else _now += GuildClient.EconomyReplayWindowMs;
+            ulong replacementKey = oldKey == 17 ? 18ul : 17ul;
+            var replacementRequest = new DonateToGuildRequest { DonateId = 3, ClientRequestId = replacementKey, ExpectedGuildId = 555 };
+            string replacement = string.Join(":", "G1", "1", "555", _now.ToString(CultureInfo.InvariantCulture),
+                MessageIds.DonateToGuild.ToString(CultureInfo.InvariantCulture), Convert.ToBase64String(replacementRequest.ToByteArray()));
+            // 记录头校验后判恢复窗时读一次时钟,正落在「读完快照、持锁复核之前」:借这次读取按 .lock 协议换掉槽位。
+            bool replaceOnNextClockRead = false;
+            _client.Dispose();
+            _client = CreateClient(() =>
+            {
+                if (replaceOnNextClockRead) { replaceOnNextClockRead = false; _files.Transition(1, warned, replacement); }
+                return _now;
+            });
+            Load();
+            _client.RecoverEconomyRequest();
+            Assert.That(_client.Status, Does.Contain("再点一次"));
+
+            int before = _net.Calls.Count;
+            PassConfirmDelay();
+            replaceOnNextClockRead = true;
+            _client.RecoverEconomyRequest();
+            Assert.That(replaceOnNextClockRead, Is.False, "确认那一击没有在两次读取之间读时钟,本用例没有构造出替换竞态");
+            Assert.That(_files.Load(1), Is.EqualTo(replacement));
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.Status, Does.Contain("已变化").And.Contain("未作废也未重发").And.Not.Contain("存储"));
+
+            _client.RecoverEconomyRequest(); ConfirmRecoveryGuild();
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.DonateToGuild));
+            Assert.That(_net.Requests.Last().ToByteArray(), Is.EqualTo(SavedBytes(replacement)));
+            Assert.That(LastKey(), Is.EqualTo(replacementKey));
+        }
+
         [Test] public void StaleConfirmationDoesNotDeleteAReplacementRecord()
         {
             _client.Donate(2); string original = _files.Load(1);
@@ -847,6 +924,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_files.Load(1), Is.EqualTo(corruptPayload));
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
             Assert.That(_client.Status, Does.Contain("再点一次"));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.Empty);
             Assert.That(_net.Calls.Last(), Is.EqualTo(donation ? MessageIds.GetGuildDonateOptions : MessageIds.GetGuildShop));
@@ -863,6 +941,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.HasPendingEconomyWrite, Is.True);
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
             Assert.That(_client.Status, Does.Contain("损坏").And.Contain("再点一次"));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.Empty);
             Assert.That(_net.Calls.Count, Is.EqualTo(before + 1));
@@ -879,10 +958,59 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_net.Calls.Count, Is.EqualTo(before));
             Assert.That(_files.Load(1), Is.EqualTo(original));
             Assert.That(_client.Status, Does.Contain("再点一次"));
+            PassConfirmDelay();
             _client.RecoverEconomyRequest();
             Assert.That(_files.Load(1), Is.Empty);
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildDonateOptions));
             Assert.That(_net.Calls.Count(call => call == MessageIds.DonateToGuild), Is.EqualTo(1));
+        }
+
+        // 作废确认须在警告写出满 1 秒之后(05-economy.md §5.44.2 末段)。差 1 毫秒的那一击不算确认:不作废、不发包、状态栏照旧;
+        // 它也不重新计时 —— 从警告写出算起刚满 1 秒的下一击就作废。
+        [TestCase(true)] [TestCase(false)]
+        public void AClickBeforeTheWarningHasShownForOneSecondIsNotAConfirmation(bool corrupt)
+        {
+            string path = corrupt ? SeedRawRecoveryFile(new byte[0]) : SeedStaleRecord();
+            _client.RecoverEconomyRequest();
+            string warning = _client.Status;
+            Assert.That(warning, Does.Contain("再点一次"));
+            int before = _net.Calls.Count;
+            _monoNow += GuildClient.EconomyRetireConfirmDelayMs - 1;
+            _client.RecoverEconomyRequest();
+            Assert.That(File.Exists(path), Is.True);
+            Assert.That(_client.HasPendingEconomyWrite, Is.True);
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.Status, Is.EqualTo(warning));
+            _monoNow += 1;
+            _client.RecoverEconomyRequest();
+            Assert.That(File.Exists(path), Is.False);
+            Assert.That(_net.Calls.Count, Is.EqualTo(before + 1));
+            ReplyAfterRetirement(corrupt);
+        }
+
+        // 文案变了要重新警告,1 秒从这次重新写出警告时起算,不从第一次警告算。
+        [TestCase(true)] [TestCase(false)]
+        public void AWarningShownAgainRestartsTheOneSecondCount(bool corrupt)
+        {
+            string path = corrupt ? SeedRawRecoveryFile(new byte[0]) : SeedStaleRecord();
+            _client.RecoverEconomyRequest();
+            _monoNow += 600;
+            _client.Donate(3);
+            Assert.That(_client.Status, Does.Contain("已有待确认"));
+            _client.RecoverEconomyRequest();
+            string warning = _client.Status;
+            Assert.That(warning, Does.Contain("再点一次"));
+            int before = _net.Calls.Count;
+            // 距第一次警告已过 1200 ms,距这次重新写出只有 600 ms:仍不算确认。
+            _monoNow += 600;
+            _client.RecoverEconomyRequest();
+            Assert.That(File.Exists(path), Is.True);
+            Assert.That(_net.Calls.Count, Is.EqualTo(before));
+            Assert.That(_client.Status, Is.EqualTo(warning));
+            _monoNow += 400;
+            _client.RecoverEconomyRequest();
+            Assert.That(File.Exists(path), Is.False);
+            ReplyAfterRetirement(corrupt);
         }
 
         [Test] public void ExistingRefreshButtonExposesRecoveryWithoutCreatingAnotherPayment()
@@ -907,6 +1035,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         // 停在捐献 / 商店页作废损坏记录:作废清空了经济页快照,刷新回包后窗口当场补拉本页。作废结论要活过这一发,且只活这一次。
+        // 同一用例也守住按钮连点:警告写出不满 1 秒的第二下不算确认(05-economy.md §5.44.2 末段)。
         [TestCase(true)] [TestCase(false)]
         public void CorruptRetirementConclusionSurvivesTheVisiblePageReload(bool donatePage)
         {
@@ -916,6 +1045,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 string path = SeedRawRecoveryFile(new byte[0]);
                 clickRefresh();
                 Assert.That(_client.Status, Does.Contain("再点一次"));
+                int beforeDoubleClick = _net.Calls.Count;
+                clickRefresh();
+                Assert.That(File.Exists(path), Is.True);
+                Assert.That(_net.Calls.Count, Is.EqualTo(beforeDoubleClick));
+                Assert.That(_client.Status, Does.Contain("再点一次"));
+                PassConfirmDelay();
                 clickRefresh();
                 Assert.That(File.Exists(path), Is.False);
                 Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
@@ -964,6 +1099,28 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(_files.Load(1), Is.Empty);
                 ReplyEconomyPage(donation);
                 Assert.That(_client.Status, Is.EqualTo(GuildClient.TipText(tip)));
+            });
+        }
+
+        // 预读期间越过了安全恢复期:重发前才写出超窗警告,重连清空了捐献页,窗口当场补拉时把这句警告沿用回状态栏。
+        // 沿用不重新计时 —— 从警告真正写出算起满 1 秒,玩家这一击就作废(补拉落定在中途,若从那时重算就还差 500 ms)。
+        [Test] public void ARestoredStaleWarningKeepsItsOriginalConfirmTime()
+        {
+            WithWiredWindow(GuildPage.Donate, clickRefresh =>
+            {
+                ReplyEconomyPage(true);
+                Send(true); _net.Error("rpc timeout");
+                _identity = new object(); _client.ObserveConnection();
+                clickRefresh();
+                _now += GuildClient.EconomyReplayWindowMs;
+                ConfirmRecoveryGuild();
+                _monoNow += 500;
+                ReplyEconomyPage(true);
+                Assert.That(_client.Status, Does.Contain("再点一次"));
+                _monoNow += 500;
+                clickRefresh();
+                Assert.That(_files.Load(1), Is.Empty);
+                Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildDonateOptions));
             });
         }
 

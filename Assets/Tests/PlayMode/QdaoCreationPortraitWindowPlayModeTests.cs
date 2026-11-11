@@ -94,6 +94,33 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator CreationWindow_TravelDirectionLoadsMissingNeighbourOnFirstLaterFrame()
+        {
+            using var fixture = new CreationWindowFixture();
+            fixture.Open();
+            for (int i = 0; i < 3; i++) yield return null;
+            fixture.AssertResident(WindowPreferred, WindowDefault, First);
+
+            // 往后翻：上一位就是刚才的当前人物，早已在窗口里，不能让它白占一帧。
+            int clickFrame = Time.frameCount;
+            int loads = fixture.Loads.Count;
+            Click(fixture.Host, "NextAppearance");
+            for (int i = 0; i < 3; i++) yield return null;
+            fixture.AssertResident(First, WindowPreferred, Second);
+            Assert.That(fixture.Loads.Skip(loads), Is.EqualTo(new[] { (Second, clickFrame + 1) }),
+                "Forward travel must load the missing next portrait on the first frame after the click.");
+
+            // 往前翻：缺的上一位同样在点击后的第一帧补上。
+            clickFrame = Time.frameCount;
+            loads = fixture.Loads.Count;
+            Click(fixture.Host, "PreviousAppearance");
+            for (int i = 0; i < 3; i++) yield return null;
+            fixture.AssertResident(WindowPreferred, WindowDefault, First);
+            Assert.That(fixture.Loads.Skip(loads), Is.EqualTo(new[] { (WindowDefault, clickFrame + 1) }),
+                "Backward travel must load the missing previous portrait on the first frame after the click.");
+        }
+
+        [UnityTest]
         public IEnumerator CreationWindow_LeavingForSelectionCancellingDisablingOrDestroyingReleasesEveryLease()
         {
             foreach (string exit in new[] { "selection", "cancel", "disable", "destroy" })

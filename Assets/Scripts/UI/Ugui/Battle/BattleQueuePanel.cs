@@ -208,7 +208,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             var entry = _owner?.MatchEntry;
             uint members = entry?.CurrentSize ?? 1;
-            if (!_queueing && _pvpTeamSize < members) _pvpTeamSize = members;
+            // 选中的档现在发不了(小于队伍人数,或 4 人队选了 5v5)时退回到队伍人数那一档。
+            if (!_queueing && (_pvpTeamSize < members || entry?.PvpSizeAllowed(_pvpTeamSize) == false)) _pvpTeamSize = members;
             if (_sizeButtons != null)
                 for (int i = 0; i < _sizeButtons.Length; i++)
                 {
@@ -218,7 +219,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     bool selected = size == _pvpTeamSize;
                     if (button.Plate != null) button.Plate.color = selected ? BattleUiStyle.PveSizeSelectedPlate : BattleUiStyle.ButtonPlate;
                     button.SetText((selected ? "√" : "") + $"{size}v{size}");
-                    button.SetInteractable(!_queueing && entry?.Pending != true && size >= members);
+                    button.SetInteractable(!_queueing && entry?.Pending != true && (entry?.PvpSizeAllowed(size) ?? size >= members));
                 }
             _pveButton?.SetText($"PVE（{members}人 · 立即开战）");
             _pvpButton?.SetText($"匹配 PVP（{_pvpTeamSize}v{_pvpTeamSize} · 真人）");
@@ -227,6 +228,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _pvpButton?.SetInteractable(ready);
             if (_matchHint != null) _matchHint.text = entry?.IsMember == true ? "你是队员，请由队长发起全队战斗。"
                 : entry?.Pending == true ? "正在同步队伍，确认后发起战斗…"
+                : members < 5 && entry?.PvpSizeAllowed(5) == false ? "4 人队可以打 4v4；5v5 需要 1～3 人或满 5 人。"
                 : "上方人数为 PVP 每方目标。PVE 按现有人数开战；PVP 等待真人，队伍一起入场。";
         }
 

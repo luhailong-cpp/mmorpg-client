@@ -29,6 +29,10 @@ namespace MmorpgClient.World
         public string validationSha256;
         public string resolutionMode;
         public Entry[] entries = Array.Empty<Entry>();
+        // 按相对路径查条目的表。只在 entries 整个数组被替换时（重新导入、测试换数组）重建；
+        // 条目加载后视为只读，就地改某个条目的字段不会刷新这张表。
+        [NonSerialized] private Entry[] _lookupSource;
+        [NonSerialized] private Dictionary<string, Entry> _lookup;
         private static readonly Dictionary<string, QdaoOriginalHdResourceIndex> Cache = new();
         private static readonly Dictionary<string, string> Validated = new();
         private static readonly Dictionary<string, string> CreationValidated = new();
@@ -175,10 +179,26 @@ namespace MmorpgClient.World
             if (separator < 0) return false;
             var index = Load(resourcePath.Substring(0, separator));
             if (index == null || index.entries == null) return false;
-            var relative = resourcePath.Substring(separator + 1) + ".png";
-            foreach (var entry in index.entries)
-                if (entry != null && entry.path == relative) return entry.width == width && entry.height == height;
-            return false;
+            var entry = index.FindEntry(resourcePath.Substring(separator + 1) + ".png");
+            return entry != null && entry.width == width && entry.height == height;
+        }
+
+        /// <summary>
+        /// 按相对路径（如 "walk/N/01.png"）找清单条目，找不到返回 null。同一路径出现多次时以先出现的为准，
+        /// 与逐项扫描的结果一致。每个人物一次解析要查 137 次，所以用表查而不是每次扫全表。
+        /// </summary>
+        public Entry FindEntry(string relativePath)
+        {
+            if (entries == null || relativePath == null) return null;
+            if (_lookup == null || !ReferenceEquals(_lookupSource, entries))
+            {
+                var lookup = new Dictionary<string, Entry>(entries.Length, StringComparer.Ordinal);
+                foreach (var entry in entries)
+                    if (entry?.path != null) lookup.TryAdd(entry.path, entry);
+                _lookup = lookup;
+                _lookupSource = entries;
+            }
+            return _lookup.TryGetValue(relativePath, out var found) ? found : null;
         }
 
         public static bool PngSize(string path, out int width, out int height)

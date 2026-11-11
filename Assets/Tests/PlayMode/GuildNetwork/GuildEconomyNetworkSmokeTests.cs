@@ -42,6 +42,8 @@ namespace MmorpgClient.Tests.PlayMode
         private uint _zone;
         private ulong _ownGuild, _previousLastPlayer;
         private bool _restoreLastPlayer, _passed;
+        // 最近一次货币快照的槽位数;写过货币之后只增不减(见 Silver)。
+        private int _currencySlots;
 
         [UnityTest, Explicit("必须显式选择此用例并设置 MMORPG_GUILD_SMOKE_ENABLE=1；只连接本机 dev/test 服务")]
         public IEnumerator CorruptRecordRetirementAllowsRealDonationAndRedemption()
@@ -107,7 +109,7 @@ namespace MmorpgClient.Tests.PlayMode
             Assert.That(_net.Response<GetPlayerGuildResponse>(MessageIds.GetPlayerGuild).ErrorMessage?.Id ?? 0,
                 Is.EqualTo((uint)guild_error.KGuildNotInGuild));
             Assert.That(_guild.Info, Is.Null, "新角色不应已有帮会");
-            yield return GuildCall(() => _guild.Create("恢复验收" + Guid.NewGuid().ToString("N").Substring(0, 12), _zone),
+            yield return GuildCall(() => _guild.Create("恢复验收" + Guid.NewGuid().ToString("N").Substring(0, 12)),
                 MessageIds.CreateGuild, "创建本次专用帮会");
             AssertTip(_net.Response<CreateGuildResponse>(MessageIds.CreateGuild).ErrorMessage);
             Assert.That(_guild.Info, Is.Not.Null);
@@ -129,7 +131,7 @@ namespace MmorpgClient.Tests.PlayMode
             ulong fundsBefore = _guild.Info.Funds, balanceBefore = Me().ContributionBalance, totalBefore = Me().ContributionTotal;
             GetBagResponse initialBag = null;
             yield return ReadBag(response => initialBag = response);
-            ulong silverBefore = Silver(initialBag);
+            ulong silverBefore = SilverBeforeFirstWrite(initialBag);
             if (silverBefore < DonationCost)
             {
                 GmAddCurrencyResponse granted = null;
@@ -166,7 +168,9 @@ namespace MmorpgClient.Tests.PlayMode
             yield return ReadGuild();
             GetBagResponse afterDonation = null;
             yield return ReadBag(response => afterDonation = response);
-            Assert.That(Silver(afterDonation), Is.EqualTo(silverBefore - DonationCost));
+            // 只读一次:Silver 要求槽位按时间顺序只增不减,之后别再拿这份较早的快照去比。
+            ulong silverAfterDonation = Silver(afterDonation);
+            Assert.That(silverAfterDonation, Is.EqualTo(silverBefore - DonationCost));
             Assert.That(ItemCount(afterDonation), Is.EqualTo(itemsBefore));
             Assert.That(_guild.Info.Funds, Is.EqualTo(fundsBefore + FundsGain));
             Assert.That(Me().ContributionBalance, Is.EqualTo(balanceBefore + ContributionGain));
@@ -174,7 +178,7 @@ namespace MmorpgClient.Tests.PlayMode
             Assert.That(DonationOption().UsedToday, Is.EqualTo(1));
             Assert.That(_guild.Donations.ContributionBalance, Is.EqualTo(balanceBefore + ContributionGain));
             Assert.That(_guild.HasPendingEconomyWrite || File.Exists(_pending), Is.False);
-            Note("捐献到账", "silver=" + Silver(afterDonation) + " funds=" + _guild.Info.Funds
+            Note("捐献到账", "silver=" + silverAfterDonation + " funds=" + _guild.Info.Funds
                 + " contribution=" + Me().ContributionBalance + " used_today=" + DonationOption().UsedToday);
 
             yield return RetireCorruptRecord(Encoding.UTF8.GetBytes("本轮损坏头部，不能重发"), "兑换前坏头文件");
@@ -198,7 +202,7 @@ namespace MmorpgClient.Tests.PlayMode
             yield return ReadGuild();
             GetBagResponse afterShop = null;
             yield return ReadBag(response => afterShop = response);
-            Assert.That(Silver(afterShop), Is.EqualTo(Silver(afterDonation)));
+            Assert.That(Silver(afterShop), Is.EqualTo(silverAfterDonation));
             Assert.That(ItemCount(afterShop), Is.EqualTo(itemsBefore + RewardCount));
             Assert.That(_guild.Info.Funds, Is.EqualTo(fundsBefore + FundsGain));
             Assert.That(Me().ContributionBalance, Is.EqualTo(balanceBefore + ContributionGain - ShopCost));
@@ -290,6 +294,19 @@ namespace MmorpgClient.Tests.PlayMode
             StringAssert.Contains("损坏", _guild.Status);
             StringAssert.Contains("再点一次", _guild.Status);
             Note(_stage, "pending_retained=true guild_calls=0 economy_writes=0");
+
+            // 紧接着再点一下(连点):警告写出不满 1 秒,不算确认(05-economy.md §5.44.2 末段)。
+            string warning = _guild.Status;
+            _stage = label + "连点第二下";
+            _guild.RecoverEconomyRequest();
+            Assert.That(File.ReadAllBytes(_pending), Is.EqualTo(bytes), "不满确认间隔的点击必须保留原字节");
+            Assert.That(_net.TotalCalls, Is.EqualTo(allBefore), "不满确认间隔的点击不能发出任何帮会请求");
+            Assert.That(_guild.Status, Is.EqualTo(warning), "不满确认间隔的点击不能改状态栏");
+            Note(_stage, "pending_retained=true guild_calls=0");
+            // 按真实时间等过确认间隔(客户端默认单调时钟);留 0.2 秒余量。期间状态栏必须仍是那句警告,否则下一击只会重新警告。
+            double confirmAt = Time.realtimeSinceStartupAsDouble + GuildClient.EconomyRetireConfirmDelayMs / 1000.0 + 0.2;
+            yield return WaitFor(() => Time.realtimeSinceStartupAsDouble >= confirmAt, label + "等满确认间隔", RpcSeconds);
+            Assert.That(_guild.Status, Is.EqualTo(warning), "等待确认间隔期间状态栏被改写");
 
             _guild.RecoverEconomyRequest();
             Assert.That(File.Exists(_pending) || _guild.HasPendingEconomyWrite, Is.False);
@@ -431,12 +448,28 @@ namespace MmorpgClient.Tests.PlayMode
         private GuildShopGoodsView ShopGoods() => _guild.Shop.Goods.Single(goods => goods.GoodsId == GoodsId);
         private static ulong ItemCount(GetBagResponse response) => response.Bag.Items
             .Where(item => item.ConfigId == RewardItemId).Aggregate(0UL, (sum, item) => checked(sum + item.Count));
-        private static ulong Silver(GetBagResponse response)
+        /// <summary>
+        /// 补足前的第一次读取:同服务端 econCurrency / EnsureCurrencySlots,尚未写入的货币槽位为零,新角色的 repeated 可为空;
+        /// Currency 快照缺失仍然失败,不能冒充零余额。
+        /// </summary>
+        private ulong SilverBeforeFirstWrite(GetBagResponse response)
         {
             Assert.That(response.Bag.Currency, Is.Not.Null);
-            // 同服务端 econCurrency/EnsureCurrencySlots：尚未写入的货币槽位为零，
-            // 新角色的 repeated 可为空；Currency 快照缺失仍然失败，不能冒充零余额。
-            return response.Bag.Currency.Values.Count == 0 ? 0UL : response.Bag.Currency.Values[0];
+            _currencySlots = response.Bag.Currency.Values.Count;
+            return _currencySlots == 0 ? 0UL : response.Bag.Currency.Values[0];
+        }
+
+        /// <summary>
+        /// 写过货币(GM 补足、捐献扣款)之后的读取:服务端写货币时已经用 EnsureCurrencySlots 补齐槽位,之后的快照槽位必须在、
+        /// 且不少于上一次。空列表若也读作零,补足路径上「捐献后应为 0」与「兑换后银两不变」两条断言会在槽位丢失时空过。
+        /// </summary>
+        private ulong Silver(GetBagResponse response)
+        {
+            Assert.That(response.Bag.Currency, Is.Not.Null);
+            int slots = response.Bag.Currency.Values.Count;
+            Assert.That(slots, Is.Positive.And.AtLeast(_currencySlots), "货币写入后槽位缺失或变少，不能把空列表读作零余额");
+            _currencySlots = slots;
+            return response.Bag.Currency.Values[0];
         }
 
         private void AssertDonationOption()
