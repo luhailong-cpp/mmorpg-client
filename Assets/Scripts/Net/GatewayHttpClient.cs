@@ -55,7 +55,10 @@ namespace MmorpgClient.Net
         public string maintenance_msg;
         public long open_time;
         public bool is_new;
+        // 服务端按负载算出的推荐(2026-11-10 起):爆满、暂停创角、进不去的区不会被推荐。
         public bool recommended;
+        // 本区暂停创建新角色:已有角色照常进,新角色只能建在别的区(服务端建角回 kLoginZoneCreateRoleClosed)。
+        public bool create_role_closed;
     }
 
     [Serializable]

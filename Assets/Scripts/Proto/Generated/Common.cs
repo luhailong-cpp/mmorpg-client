@@ -23,7 +23,7 @@ public static partial class CommonReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ch5wcm90by9jb21tb24vYmFzZS9jb21tb24ucHJvdG8iKAoMRW5kcG9pbnRD",
-          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0iiAMKCE5vZGVJbmZvEg8K",
+          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0ilwMKCE5vZGVJbmZvEg8K",
           "B25vZGVfaWQYASABKA0SEQoJbm9kZV90eXBlGAIgASgNEhMKC2xhdW5jaF90",
           "aW1lGAMgASgEEhcKD3NjZW5lX25vZGVfdHlwZRgEIAEoDRIfCghlbmRwb2lu",
           "dBgFIAEoCzINLkVuZHBvaW50Q29tcBIPCgd6b25lX2lkGAYgASgNEhUKDXBy",
@@ -32,16 +32,16 @@ public static partial class CommonReflection {
           "bnRDb21wEiYKD2NsaWVudF9lbmRwb2ludBgLIAEoCzINLkVuZHBvaW50Q29t",
           "cBIXCg9waHlzaWNhbF9yZWdpb24YDCABKA0SFwoPbWF4X2Nvbm5lY3Rpb25z",
           "GA0gASgNEiEKCWFkbWlzc2lvbhgOIAEoDjIOLk5vZGVBZG1pc3Npb24SFQoN",
-          "cmVsZWFzZV90cmFjaxgPIAEoCSIqCg5OZXR3b3JrQWRkcmVzcxIKCgJpcBgB",
-          "IAEoCRIMCgRwb3J0GAIgASgNKmMKDU5vZGVBZG1pc3Npb24SHgoaTk9ERV9B",
-          "RE1JU1NJT05fVU5TUEVDSUZJRUQQABIXChNOT0RFX0FETUlTU0lPTl9PUEVO",
-          "EAESGQoVTk9ERV9BRE1JU1NJT05fQ0xPU0VEEAJCDVoLY29tbW9uL2Jhc2Vi",
-          "BnByb3RvMw=="));
+          "cmVsZWFzZV90cmFjaxgPIAEoCRINCgVidWlsZBgQIAEoCSIqCg5OZXR3b3Jr",
+          "QWRkcmVzcxIKCgJpcBgBIAEoCRIMCgRwb3J0GAIgASgNKmMKDU5vZGVBZG1p",
+          "c3Npb24SHgoaTk9ERV9BRE1JU1NJT05fVU5TUEVDSUZJRUQQABIXChNOT0RF",
+          "X0FETUlTU0lPTl9PUEVOEAESGQoVTk9ERV9BRE1JU1NJT05fQ0xPU0VEEAJC",
+          "DVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NodeAdmission), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EndpointComp), global::EndpointComp.Parser, new[]{ "Ip", "Port" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint", "PhysicalRegion", "MaxConnections", "Admission", "ReleaseTrack" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint", "PhysicalRegion", "MaxConnections", "Admission", "ReleaseTrack", "Build" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NetworkAddress), global::NetworkAddress.Parser, new[]{ "Ip", "Port" }, null, null, null, null)
         }));
   }
@@ -356,6 +356,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     maxConnections_ = other.maxConnections_;
     admission_ = other.admission_;
     releaseTrack_ = other.releaseTrack_;
+    build_ = other.build_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -555,11 +556,14 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
   public const int AdmissionFieldNumber = 14;
   private global::NodeAdmission admission_ = global::NodeAdmission.Unspecified;
   /// <summary>
-  /// 可分配状态（R6）：此刻接不接新房间。只由 battle 填写，其它节点留 0（UNSPECIFIED）。
-  /// battle 在 etcd 首次发布前填 CLOSED；建房准入闸打开且 Agones 放行许可后改 OPEN；排空、停机或维护关闸时改回 CLOSED。
-  /// 只在变化时写 etcd，并按 watch 回读到的自身登记对账（cpp/nodes/battle/battle_admission_advertise.h），稳态零写入。
+  /// 可分配状态（R6）：此刻接不接新工作。battle 与 scene 填写，其它节点留 0（UNSPECIFIED）。
+  /// - battle：新房间。etcd 首次发布前填 CLOSED；建房准入闸打开且 Agones 放行许可后改 OPEN；排空、停机或维护关闸时改回 CLOSED。
+  ///   match 选点排除 CLOSED。
+  /// - scene：新场景、新玩家与疏散落点。平时留 UNSPECIFIED（按开放处理）；计划排空开始时改 CLOSED，之后不再打开
+  ///   （docs/design/scene-node-planned-drain.md §4.2）。scene_manager 选点排除 CLOSED，不影响它是不是活着、是不是场景属主。
+  /// 只在变化时写 etcd，并按 watch 回读到的自身登记对账（cpp/libs/engine/core/node/system/node/node_admission_advertise.h），稳态零写入。
   /// 负载不放这里：房间数随 CreateBattleResponse.room_count 捎回，不周期写注册信息（写放大与读量随进程数平方增长）。
-  /// match 选点排除 CLOSED；UNSPECIFIED 视为可选（旧节点 / 未上报）。只是提示，能否建房仍由 battle 的准入判定。
+  /// UNSPECIFIED 视为可选（旧节点 / 未上报）。只是提示，能否建房、建场景仍由节点自己的准入判定。
   /// 字段号 14 上线后不复用；废弃时写 `reserved 14;`（AGENTS.md §4.3）。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -587,6 +591,25 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     get { return releaseTrack_; }
     set {
       releaseTrack_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "build" field.</summary>
+  public const int BuildFieldNumber = 16;
+  private string build_ = "";
+  /// <summary>
+  /// 部署构建标识（docs/design/scene-node-planned-drain.md §4.6）：与 Pod 标签 mmorpg.io/build 同一个值，
+  /// 部署经环境变量 MMORPG_BUILD_LABEL 注入，进程存续期间不变；空串 = 没上报（本机开发）。
+  /// 只用于选点偏好：scene_manager 把「本 zone 里有排空中节点的构建」当作外出构建，落点优先选别的构建。
+  /// 不参与任何提交判定，也不是发布轨道（release_track）。
+  /// 字段号 16 上线后不复用；废弃时写 `reserved 16;`（AGENTS.md §4.3）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Build {
+    get { return build_; }
+    set {
+      build_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
     }
   }
 
@@ -620,6 +643,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (MaxConnections != other.MaxConnections) return false;
     if (Admission != other.Admission) return false;
     if (ReleaseTrack != other.ReleaseTrack) return false;
+    if (Build != other.Build) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -642,6 +666,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (MaxConnections != 0) hash ^= MaxConnections.GetHashCode();
     if (Admission != global::NodeAdmission.Unspecified) hash ^= Admission.GetHashCode();
     if (ReleaseTrack.Length != 0) hash ^= ReleaseTrack.GetHashCode();
+    if (Build.Length != 0) hash ^= Build.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -720,6 +745,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(122);
       output.WriteString(ReleaseTrack);
     }
+    if (Build.Length != 0) {
+      output.WriteRawTag(130, 1);
+      output.WriteString(Build);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -790,6 +819,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(122);
       output.WriteString(ReleaseTrack);
     }
+    if (Build.Length != 0) {
+      output.WriteRawTag(130, 1);
+      output.WriteString(Build);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -844,6 +877,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
     if (ReleaseTrack.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(ReleaseTrack);
+    }
+    if (Build.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(Build);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -910,6 +946,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
     if (other.ReleaseTrack.Length != 0) {
       ReleaseTrack = other.ReleaseTrack;
+    }
+    if (other.Build.Length != 0) {
+      Build = other.Build;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -999,6 +1038,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
           ReleaseTrack = input.ReadString();
           break;
         }
+        case 130: {
+          Build = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -1085,6 +1128,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
         }
         case 122: {
           ReleaseTrack = input.ReadString();
+          break;
+        }
+        case 130: {
+          Build = input.ReadString();
           break;
         }
       }

@@ -58,55 +58,56 @@ public static partial class PlayerBattleReflection {
           "X21zGAUgASgEEiAKBHJvbGUYBiABKA4yEi5lQmF0dGxlVGlja2V0Um9sZRIe",
           "ChZzcGVjdGF0b3Jfb3BlcmF0aW9uX2lkGAcgASgJIj4KGEJhdHRsZVRva2Vu",
           "VmVyaWZ5UmVxdWVzdBIPCgdwYXlsb2FkGAEgASgMEhEKCXNpZ25hdHVyZRgC",
-          "IAEoDCJOChlCYXR0bGVUb2tlblZlcmlmeVJlc3BvbnNlEg8KB3N1Y2Nlc3MY",
-          "ASABKAgSDQoFZXJyb3IYAiABKAkSEQoJYmF0dGxlX2lkGAMgASgEIqoBChFC",
-          "YXR0bGVBc3NpZ25lZFMyQxIRCgliYXR0bGVfaWQYASABKAQSDAoEaG9zdBgC",
-          "IAEoCRIMCgRwb3J0GAMgASgNEhUKDXRva2VuX3BheWxvYWQYBCABKAwSFwoP",
-          "dG9rZW5fc2lnbmF0dXJlGAUgASgMEhQKDGV4cGlyZV9hdF9tcxgGIAEoBBIg",
-          "CgRyb2xlGAcgASgOMhIuZUJhdHRsZVRpY2tldFJvbGUiLwoaUmVxdWVzdEJh",
-          "dHRsZVRpY2tldFJlcXVlc3QSEQoJYmF0dGxlX2lkGAEgASgEIm0KG1JlcXVl",
-          "c3RCYXR0bGVUaWNrZXRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
-          "Mg8uVGlwSW5mb01lc3NhZ2USJgoKYXNzaWdubWVudBgCIAEoCzISLkJhdHRs",
-          "ZUFzc2lnbmVkUzJDIv0CCgxCYXR0bGVSZXBsYXkSEQoJYmF0dGxlX2lkGAEg",
-          "ASgEEhIKCm1hdGNoX21vZGUYAiABKA0SGAoQYmF0dGxlX2NvbmZpZ19pZBgD",
-          "IAEoDRIVCg1zdGFydGVkX2F0X21zGAQgASgEEhYKDmZpbmlzaGVkX2F0X21z",
-          "GAUgASgEEiAKB291dGNvbWUYBiABKA4yDy5lQmF0dGxlT3V0Y29tZRIrCgpl",
-          "bmRfcmVhc29uGAcgASgOMhcuZUJhdHRsZVJlcGxheUVuZFJlYXNvbhIUCgx0",
-          "b3RhbF9yb3VuZHMYCCABKA0SGQoRdGFibGVfZmluZ2VycHJpbnQYCSABKAkS",
-          "JAoLc3RhcnRfc3RhdGUYCiABKAsyDy5CYXR0bGVTdGF0ZVMyQxIeCgZyb3Vu",
-          "ZHMYCyADKAsyDi5UdXJuUmVzdWx0UzJDEiQKC2ZpbmFsX3N0YXRlGAwgASgL",
-          "Mg8uQmF0dGxlU3RhdGVTMkMSEQoJdHJ1bmNhdGVkGA0gASgIInYKFEJhdHRs",
-          "ZVJlcGxheUVudmVsb3BlEhYKDmZvcm1hdF92ZXJzaW9uGAEgASgNEiIKBWNv",
-          "ZGVjGAIgASgOMhMuZUJhdHRsZVJlcGxheUNvZGVjEhEKCXJhd19ieXRlcxgD",
-          "IAEoDRIPCgdwYXlsb2FkGAQgASgMKqYBChJlU3BlY3RhdGVFbmRSZWFzb24S",
-          "FQoRU1BFQ1RBVEVfRU5EX05PTkUQABIgChxTUEVDVEFURV9FTkRfQkFUVExF",
-          "X0ZJTklTSEVEEAESHwobU1BFQ1RBVEVfRU5EX0JBVFRMRV9BQk9SVEVEEAIS",
-          "GAoUU1BFQ1RBVEVfRU5EX1JFTU9WRUQQAxIcChhTUEVDVEFURV9FTkRfU09V",
-          "UkNFX0xPU1QQBCp1ChFlQmF0dGxlVGlja2V0Um9sZRIbChdCQVRUTEVfVElD",
-          "S0VUX1JPTEVfTk9ORRAAEiIKHkJBVFRMRV9USUNLRVRfUk9MRV9QQVJUSUNJ",
-          "UEFOVBABEh8KG0JBVFRMRV9USUNLRVRfUk9MRV9PQlNFUlZFUhACKlAKEmVC",
-          "YXR0bGVSZXBsYXlDb2RlYxIcChhCQVRUTEVfUkVQTEFZX0NPREVDX05PTkUQ",
-          "ABIcChhCQVRUTEVfUkVQTEFZX0NPREVDX0daSVAQASqAAQoWZUJhdHRsZVJl",
-          "cGxheUVuZFJlYXNvbhIhCh1CQVRUTEVfUkVQTEFZX0VORF9VTlNQRUNJRklF",
-          "RBAAEh4KGkJBVFRMRV9SRVBMQVlfRU5EX0ZJTklTSEVEEAESIwofQkFUVExF",
-          "X1JFUExBWV9FTkRfREVBRExJTkVfRFJBVxACMuUFChJCYXR0bGVDbGllbnRQ",
-          "bGF5ZXISTQoSU3VibWl0QmF0dGxlQWN0aW9uEhouU3VibWl0QmF0dGxlQWN0",
-          "aW9uUmVxdWVzdBobLlN1Ym1pdEJhdHRsZUFjdGlvblJlc3BvbnNlEjkKDkdl",
-          "dEJhdHRsZVN0YXRlEhYuR2V0QmF0dGxlU3RhdGVSZXF1ZXN0Gg8uQmF0dGxl",
-          "U3RhdGVTMkMSMwoRTm90aWZ5QmF0dGxlU3RhcnQSDy5CYXR0bGVTdGFydFMy",
-          "QxoGLkVtcHR5IgWImcgBAhIxChBOb3RpZnlUdXJuUmVzdWx0Eg4uVHVyblJl",
-          "c3VsdFMyQxoGLkVtcHR5IgWImcgBAhIvCg9Ob3RpZnlCYXR0bGVFbmQSDS5C",
-          "YXR0bGVFbmRTMkMaBi5FbXB0eSIFiJnIAQISOwoVTm90aWZ5QmF0dGxlUmVj",
-          "b25uZWN0EhMuQmF0dGxlUmVjb25uZWN0UzJDGgYuRW1wdHkiBYiZyAECEkQK",
-          "D1N0b3BXYXRjaEJhdHRsZRIXLlN0b3BXYXRjaEJhdHRsZVJlcXVlc3QaGC5T",
-          "dG9wV2F0Y2hCYXR0bGVSZXNwb25zZRI+Cg1TZXRBdXRvQmF0dGxlEhUuU2V0",
-          "QXV0b0JhdHRsZVJlcXVlc3QaFi5TZXRBdXRvQmF0dGxlUmVzcG9uc2USNwoT",
-          "Tm90aWZ5U3BlY3RhdGVTdGF0ZRIRLlNwZWN0YXRlU3RhdGVTMkMaBi5FbXB0",
-          "eSIFiJnIAQISOQoYTm90aWZ5U3BlY3RhdGVUdXJuUmVzdWx0Eg4uVHVyblJl",
-          "c3VsdFMyQxoGLkVtcHR5IgWImcgBAhIzChFOb3RpZnlTcGVjdGF0ZUVuZBIP",
-          "LlNwZWN0YXRlRW5kUzJDGgYuRW1wdHkiBYiZyAECEjkKFE5vdGlmeUJhdHRs",
-          "ZUFzc2lnbmVkEhIuQmF0dGxlQXNzaWduZWRTMkMaBi5FbXB0eSIFiJnIAQIa",
-          "BYiowwEBQgxaBmJhdHRsZZjUYR5iBnByb3RvMw=="));
+          "IAEoDCKLAQoZQmF0dGxlVG9rZW5WZXJpZnlSZXNwb25zZRIPCgdzdWNjZXNz",
+          "GAEgASgIEg0KBWVycm9yGAIgASgJEhEKCWJhdHRsZV9pZBgDIAEoBBIdChVo",
+          "ZWFydGJlYXRfaW50ZXJ2YWxfbXMYBCABKA0SHAoUaGVhcnRiZWF0X3RpbWVv",
+          "dXRfbXMYBSABKA0iqgEKEUJhdHRsZUFzc2lnbmVkUzJDEhEKCWJhdHRsZV9p",
+          "ZBgBIAEoBBIMCgRob3N0GAIgASgJEgwKBHBvcnQYAyABKA0SFQoNdG9rZW5f",
+          "cGF5bG9hZBgEIAEoDBIXCg90b2tlbl9zaWduYXR1cmUYBSABKAwSFAoMZXhw",
+          "aXJlX2F0X21zGAYgASgEEiAKBHJvbGUYByABKA4yEi5lQmF0dGxlVGlja2V0",
+          "Um9sZSIvChpSZXF1ZXN0QmF0dGxlVGlja2V0UmVxdWVzdBIRCgliYXR0bGVf",
+          "aWQYASABKAQibQobUmVxdWVzdEJhdHRsZVRpY2tldFJlc3BvbnNlEiYKDWVy",
+          "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRImCgphc3NpZ25t",
+          "ZW50GAIgASgLMhIuQmF0dGxlQXNzaWduZWRTMkMi/QIKDEJhdHRsZVJlcGxh",
+          "eRIRCgliYXR0bGVfaWQYASABKAQSEgoKbWF0Y2hfbW9kZRgCIAEoDRIYChBi",
+          "YXR0bGVfY29uZmlnX2lkGAMgASgNEhUKDXN0YXJ0ZWRfYXRfbXMYBCABKAQS",
+          "FgoOZmluaXNoZWRfYXRfbXMYBSABKAQSIAoHb3V0Y29tZRgGIAEoDjIPLmVC",
+          "YXR0bGVPdXRjb21lEisKCmVuZF9yZWFzb24YByABKA4yFy5lQmF0dGxlUmVw",
+          "bGF5RW5kUmVhc29uEhQKDHRvdGFsX3JvdW5kcxgIIAEoDRIZChF0YWJsZV9m",
+          "aW5nZXJwcmludBgJIAEoCRIkCgtzdGFydF9zdGF0ZRgKIAEoCzIPLkJhdHRs",
+          "ZVN0YXRlUzJDEh4KBnJvdW5kcxgLIAMoCzIOLlR1cm5SZXN1bHRTMkMSJAoL",
+          "ZmluYWxfc3RhdGUYDCABKAsyDy5CYXR0bGVTdGF0ZVMyQxIRCgl0cnVuY2F0",
+          "ZWQYDSABKAgidgoUQmF0dGxlUmVwbGF5RW52ZWxvcGUSFgoOZm9ybWF0X3Zl",
+          "cnNpb24YASABKA0SIgoFY29kZWMYAiABKA4yEy5lQmF0dGxlUmVwbGF5Q29k",
+          "ZWMSEQoJcmF3X2J5dGVzGAMgASgNEg8KB3BheWxvYWQYBCABKAwqpgEKEmVT",
+          "cGVjdGF0ZUVuZFJlYXNvbhIVChFTUEVDVEFURV9FTkRfTk9ORRAAEiAKHFNQ",
+          "RUNUQVRFX0VORF9CQVRUTEVfRklOSVNIRUQQARIfChtTUEVDVEFURV9FTkRf",
+          "QkFUVExFX0FCT1JURUQQAhIYChRTUEVDVEFURV9FTkRfUkVNT1ZFRBADEhwK",
+          "GFNQRUNUQVRFX0VORF9TT1VSQ0VfTE9TVBAEKnUKEWVCYXR0bGVUaWNrZXRS",
+          "b2xlEhsKF0JBVFRMRV9USUNLRVRfUk9MRV9OT05FEAASIgoeQkFUVExFX1RJ",
+          "Q0tFVF9ST0xFX1BBUlRJQ0lQQU5UEAESHwobQkFUVExFX1RJQ0tFVF9ST0xF",
+          "X09CU0VSVkVSEAIqUAoSZUJhdHRsZVJlcGxheUNvZGVjEhwKGEJBVFRMRV9S",
+          "RVBMQVlfQ09ERUNfTk9ORRAAEhwKGEJBVFRMRV9SRVBMQVlfQ09ERUNfR1pJ",
+          "UBABKoABChZlQmF0dGxlUmVwbGF5RW5kUmVhc29uEiEKHUJBVFRMRV9SRVBM",
+          "QVlfRU5EX1VOU1BFQ0lGSUVEEAASHgoaQkFUVExFX1JFUExBWV9FTkRfRklO",
+          "SVNIRUQQARIjCh9CQVRUTEVfUkVQTEFZX0VORF9ERUFETElORV9EUkFXEAIy",
+          "5QUKEkJhdHRsZUNsaWVudFBsYXllchJNChJTdWJtaXRCYXR0bGVBY3Rpb24S",
+          "Gi5TdWJtaXRCYXR0bGVBY3Rpb25SZXF1ZXN0GhsuU3VibWl0QmF0dGxlQWN0",
+          "aW9uUmVzcG9uc2USOQoOR2V0QmF0dGxlU3RhdGUSFi5HZXRCYXR0bGVTdGF0",
+          "ZVJlcXVlc3QaDy5CYXR0bGVTdGF0ZVMyQxIzChFOb3RpZnlCYXR0bGVTdGFy",
+          "dBIPLkJhdHRsZVN0YXJ0UzJDGgYuRW1wdHkiBYiZyAECEjEKEE5vdGlmeVR1",
+          "cm5SZXN1bHQSDi5UdXJuUmVzdWx0UzJDGgYuRW1wdHkiBYiZyAECEi8KD05v",
+          "dGlmeUJhdHRsZUVuZBINLkJhdHRsZUVuZFMyQxoGLkVtcHR5IgWImcgBAhI7",
+          "ChVOb3RpZnlCYXR0bGVSZWNvbm5lY3QSEy5CYXR0bGVSZWNvbm5lY3RTMkMa",
+          "Bi5FbXB0eSIFiJnIAQISRAoPU3RvcFdhdGNoQmF0dGxlEhcuU3RvcFdhdGNo",
+          "QmF0dGxlUmVxdWVzdBoYLlN0b3BXYXRjaEJhdHRsZVJlc3BvbnNlEj4KDVNl",
+          "dEF1dG9CYXR0bGUSFS5TZXRBdXRvQmF0dGxlUmVxdWVzdBoWLlNldEF1dG9C",
+          "YXR0bGVSZXNwb25zZRI3ChNOb3RpZnlTcGVjdGF0ZVN0YXRlEhEuU3BlY3Rh",
+          "dGVTdGF0ZVMyQxoGLkVtcHR5IgWImcgBAhI5ChhOb3RpZnlTcGVjdGF0ZVR1",
+          "cm5SZXN1bHQSDi5UdXJuUmVzdWx0UzJDGgYuRW1wdHkiBYiZyAECEjMKEU5v",
+          "dGlmeVNwZWN0YXRlRW5kEg8uU3BlY3RhdGVFbmRTMkMaBi5FbXB0eSIFiJnI",
+          "AQISOQoUTm90aWZ5QmF0dGxlQXNzaWduZWQSEi5CYXR0bGVBc3NpZ25lZFMy",
+          "QxoGLkVtcHR5IgWImcgBAhoFiKjDAQFCDFoGYmF0dGxlmNRhHmIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::BattleDataReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eSpectateEndReason), typeof(global::eBattleTicketRole), typeof(global::eBattleReplayCodec), typeof(global::eBattleReplayEndReason), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -126,7 +127,7 @@ public static partial class PlayerBattleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SetAutoBattleResponse), global::SetAutoBattleResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTicketPayload), global::BattleTicketPayload.Parser, new[]{ "BattleId", "PlayerId", "BattleNodeId", "BattleInstanceId", "ExpireAtMs", "Role", "SpectatorOperationId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyRequest), global::BattleTokenVerifyRequest.Parser, new[]{ "Payload", "Signature" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyResponse), global::BattleTokenVerifyResponse.Parser, new[]{ "Success", "Error", "BattleId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyResponse), global::BattleTokenVerifyResponse.Parser, new[]{ "Success", "Error", "BattleId", "HeartbeatIntervalMs", "HeartbeatTimeoutMs" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleAssignedS2C), global::BattleAssignedS2C.Parser, new[]{ "BattleId", "Host", "Port", "TokenPayload", "TokenSignature", "ExpireAtMs", "Role" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RequestBattleTicketRequest), global::RequestBattleTicketRequest.Parser, new[]{ "BattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RequestBattleTicketResponse), global::RequestBattleTicketResponse.Parser, new[]{ "ErrorMessage", "Assignment" }, null, null, null, null),
@@ -4413,6 +4414,9 @@ public sealed partial class BattleTokenVerifyRequest : pb::IMessage<BattleTokenV
 
 /// <summary>
 /// 握手应答(battle 节点 → 客户端)。失败时 battle 节点随后主动断开。
+/// 心跳两项与 gate 的 ClientTokenVerifyResponse 同义同值(docs/design/gate-client-heartbeat.md §14):成功时填,
+/// 客户端收到非 0 的间隔就要在这条直连上立即发第一条 ClientHeartbeatRequest、之后每个间隔一条;
+/// battle 从发出本应答起,连续 heartbeat_timeout_ms 收不到这条直连的任何一帧就断开它。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleTokenVerifyResponse>
@@ -4452,6 +4456,8 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
     success_ = other.success_;
     error_ = other.error_;
     battleId_ = other.battleId_;
+    heartbeatIntervalMs_ = other.heartbeatIntervalMs_;
+    heartbeatTimeoutMs_ = other.heartbeatTimeoutMs_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4503,6 +4509,36 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
     }
   }
 
+  /// <summary>Field number for the "heartbeat_interval_ms" field.</summary>
+  public const int HeartbeatIntervalMsFieldNumber = 4;
+  private uint heartbeatIntervalMs_;
+  /// <summary>
+  /// 客户端在本直连上每隔这么久发一条 ClientHeartbeatRequest;0 = 这台 battle 不支持心跳,不发
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint HeartbeatIntervalMs {
+    get { return heartbeatIntervalMs_; }
+    set {
+      heartbeatIntervalMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "heartbeat_timeout_ms" field.</summary>
+  public const int HeartbeatTimeoutMsFieldNumber = 5;
+  private uint heartbeatTimeoutMs_;
+  /// <summary>
+  /// battle 连续这么久收不到本直连任何一帧就断开;客户端同样按它判 battle 已死
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint HeartbeatTimeoutMs {
+    get { return heartbeatTimeoutMs_; }
+    set {
+      heartbeatTimeoutMs_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -4521,6 +4557,8 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
     if (Success != other.Success) return false;
     if (Error != other.Error) return false;
     if (BattleId != other.BattleId) return false;
+    if (HeartbeatIntervalMs != other.HeartbeatIntervalMs) return false;
+    if (HeartbeatTimeoutMs != other.HeartbeatTimeoutMs) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4531,6 +4569,8 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
     if (Success != false) hash ^= Success.GetHashCode();
     if (Error.Length != 0) hash ^= Error.GetHashCode();
     if (BattleId != 0UL) hash ^= BattleId.GetHashCode();
+    if (HeartbeatIntervalMs != 0) hash ^= HeartbeatIntervalMs.GetHashCode();
+    if (HeartbeatTimeoutMs != 0) hash ^= HeartbeatTimeoutMs.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4561,6 +4601,14 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
       output.WriteRawTag(24);
       output.WriteUInt64(BattleId);
     }
+    if (HeartbeatIntervalMs != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(HeartbeatIntervalMs);
+    }
+    if (HeartbeatTimeoutMs != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(HeartbeatTimeoutMs);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4583,6 +4631,14 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
       output.WriteRawTag(24);
       output.WriteUInt64(BattleId);
     }
+    if (HeartbeatIntervalMs != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(HeartbeatIntervalMs);
+    }
+    if (HeartbeatTimeoutMs != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(HeartbeatTimeoutMs);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -4601,6 +4657,12 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
     }
     if (BattleId != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BattleId);
+    }
+    if (HeartbeatIntervalMs != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HeartbeatIntervalMs);
+    }
+    if (HeartbeatTimeoutMs != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HeartbeatTimeoutMs);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -4622,6 +4684,12 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
     }
     if (other.BattleId != 0UL) {
       BattleId = other.BattleId;
+    }
+    if (other.HeartbeatIntervalMs != 0) {
+      HeartbeatIntervalMs = other.HeartbeatIntervalMs;
+    }
+    if (other.HeartbeatTimeoutMs != 0) {
+      HeartbeatTimeoutMs = other.HeartbeatTimeoutMs;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -4654,6 +4722,14 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
           BattleId = input.ReadUInt64();
           break;
         }
+        case 32: {
+          HeartbeatIntervalMs = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          HeartbeatTimeoutMs = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -4683,6 +4759,14 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
         }
         case 24: {
           BattleId = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          HeartbeatIntervalMs = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          HeartbeatTimeoutMs = input.ReadUInt32();
           break;
         }
       }

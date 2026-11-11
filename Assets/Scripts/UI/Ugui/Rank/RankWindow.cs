@@ -13,6 +13,7 @@ namespace MmorpgClient.UI.Ugui.Rank
     /// 论剑榜窗口(服务端 docs/design/leaderboard-system.md §4.6):一页 5 行 + 固定在列表下方的"我的名次" + 翻页。
     /// 窗口只渲染 <see cref="RankClient"/> 的快照、发出翻页 / 刷新意图;请求、代次与隔离都在 RankClient 里。
     /// 名字补全失败时服务端名字留空(fail-open,§4.3),这里回落成"道友 · 编号",与帮会成员列表同一口径。
+    /// 名次只精确到回包的 rank_limit 名(2026-11-11):排在其后的本人 / 附近条目显示「{rank_limit}+」,翻页也只到这一名。
     /// </summary>
     public sealed class RankWindow
     {
@@ -85,6 +86,7 @@ namespace MmorpgClient.UI.Ugui.Rank
             var entries = around?.Entries ?? page?.Entries;
             bool busy = _client?.Waiting == true || _client?.RequiresReconnect == true;
             ulong me = _client?.PlayerId ?? 0;
+            ulong rankLimit = _client?.RankLimit ?? 0;
             if (entries != null)
             {
                 for (int i = 0; i < entries.Count && i < RowCount; i++)
@@ -93,14 +95,15 @@ namespace MmorpgClient.UI.Ugui.Rank
                     float y = i * 94;
                     bool mine = entry.EntityId == me && me != 0;
                     var row = Art(_list, mine ? "tab_selected" : "tab_normal", 0, y, 1488, 84);
-                    row.name = "RankRow_" + entry.Rank;
+                    // 上限之后的条目名次都是 0,按编号起名,不撞名。
+                    row.name = entry.BeyondRankLimit ? "RankRow_Beyond_" + entry.EntityId : "RankRow_" + entry.Rank;
                     var ink = mine ? Cream : Ink;
-                    Text(_list, entry.Rank.ToString("D2"), 20, y + 14, 160, 56, 31, mine ? Cream : Gold);
+                    Text(_list, RankClient.FormatRowRank(entry, rankLimit), 20, y + 14, 160, 56, 31, mine ? Cream : Gold);
                     Text(_list, DisplayName(entry), 184, y + 14, 560, 56, 31, ink);
                     Text(_list, RankClient.FormatRating(entry.Score), 1044, y + 14, 340, 56, 30, ink);
                 }
             }
-            RenderSelf(around?.Self ?? page?.Self);
+            RenderSelf(around?.Self ?? page?.Self, rankLimit);
             uint current = _client?.CurrentPage ?? 1;
             ulong pages = _client?.PageCount ?? 1UL;
             _pageLabel.text = around != null ? "我的附近" : current + " / " + pages;
@@ -116,16 +119,17 @@ namespace MmorpgClient.UI.Ugui.Rank
         public static string DisplayName(RankEntry entry) =>
             string.IsNullOrWhiteSpace(entry.Name) ? "道友 · " + entry.EntityId : entry.Name;
 
-        private void RenderSelf(RankEntry self)
+        private void RenderSelf(RankEntry self, ulong rankLimit)
         {
-            if (self == null || self.Rank == 0)
+            // 不在榜上:没有 self,或名次为 0 而又不是「排在精确名次上限之后」。
+            if (self == null || (self.Rank == 0 && !self.BeyondRankLimit))
             {
                 _selfRank.text = "我的名次";
                 _selfName.text = _client?.Page == null && _client?.Around == null ? "" : "暂未上榜";
                 _selfRating.text = "";
                 return;
             }
-            _selfRank.text = "第 " + self.Rank + " 名";
+            _selfRank.text = RankClient.FormatSelfRank(self, rankLimit);
             _selfName.text = DisplayName(self);
             _selfRating.text = RankClient.FormatRating(self.Score);
         }

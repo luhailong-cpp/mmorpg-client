@@ -22,22 +22,24 @@ public static partial class RpcMessageReflection {
   static RpcMessageReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "CiNwcm90by9jb21tb24vYmFzZS9ycGNfbWVzc2FnZS5wcm90byKSAQoOR2Ft",
+          "CiNwcm90by9jb21tb24vYmFzZS9ycGNfbWVzc2FnZS5wcm90byLpAQoOR2Ft",
           "ZVJwY01lc3NhZ2USHgoEdHlwZRgBIAEoDjIQLkdhbWVNZXNzYWdlVHlwZRIP",
           "CgdyZXF1ZXN0GAIgASgMEhAKCHJlc3BvbnNlGAMgASgMEh0KBWVycm9yGAQg",
           "ASgOMg4uR2FtZUVycm9yQ29kZRISCgptZXNzYWdlX2lkGAUgASgNEgoKAmlk",
-          "GAYgASgEKnYKD0dhbWVNZXNzYWdlVHlwZRILCgdSRVFVRVNUEAASDAoIUkVT",
-          "UE9OU0UQARINCglSUENfRVJST1IQBBINCglIRUFSVEJFQVQQBSIECAIQAiIE",
-          "CAMQAyoSUlBDX0NMSUVOVF9SRVFVRVNUKgpOT0RFX1JPVVRFKrABCg1HYW1l",
-          "RXJyb3JDb2RlEhAKDFJQQ19OT19FUlJPUhAAEg8KC1dST05HX1BST1RPEAES",
-          "DgoKTk9fU0VSVklDRRACEg0KCU5PX01FVEhPRBADEhMKD0lOVkFMSURfUkVR",
-          "VUVTVBAEEhQKEElOVkFMSURfUkVTUE9OU0UQBRILCgdUSU1FT1VUEAYSEgoO",
-          "SEFORExFUl9GQUlMRUQQBxIRCg1SRVBMWV9EUk9QUEVEEAhCDVoLY29tbW9u",
-          "L2Jhc2ViBnByb3RvMw=="));
+          "GAYgASgEEhMKC3RyYWNlX2lkX2hpGAcgASgGEhMKC3RyYWNlX2lkX2xvGAgg",
+          "ASgGEhYKDnBhcmVudF9zcGFuX2lkGAkgASgGEhMKC3RyYWNlX2ZsYWdzGAog",
+          "ASgNKnYKD0dhbWVNZXNzYWdlVHlwZRILCgdSRVFVRVNUEAASDAoIUkVTUE9O",
+          "U0UQARINCglSUENfRVJST1IQBBINCglIRUFSVEJFQVQQBSIECAIQAiIECAMQ",
+          "AyoSUlBDX0NMSUVOVF9SRVFVRVNUKgpOT0RFX1JPVVRFKrABCg1HYW1lRXJy",
+          "b3JDb2RlEhAKDFJQQ19OT19FUlJPUhAAEg8KC1dST05HX1BST1RPEAESDgoK",
+          "Tk9fU0VSVklDRRACEg0KCU5PX01FVEhPRBADEhMKD0lOVkFMSURfUkVRVUVT",
+          "VBAEEhQKEElOVkFMSURfUkVTUE9OU0UQBRILCgdUSU1FT1VUEAYSEgoOSEFO",
+          "RExFUl9GQUlMRUQQBxIRCg1SRVBMWV9EUk9QUEVEEAhCDVoLY29tbW9uL2Jh",
+          "c2ViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameMessageType), typeof(global::GameErrorCode), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::GameRpcMessage), global::GameRpcMessage.Parser, new[]{ "Type", "Request", "Response", "Error", "MessageId", "Id" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::GameRpcMessage), global::GameRpcMessage.Parser, new[]{ "Type", "Request", "Response", "Error", "MessageId", "Id", "TraceIdHi", "TraceIdLo", "ParentSpanId", "TraceFlags" }, null, null, null, null)
         }));
   }
   #endregion
@@ -129,6 +131,10 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     error_ = other.error_;
     messageId_ = other.messageId_;
     id_ = other.id_;
+    traceIdHi_ = other.traceIdHi_;
+    traceIdLo_ = other.traceIdLo_;
+    parentSpanId_ = other.parentSpanId_;
+    traceFlags_ = other.traceFlags_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -215,6 +221,70 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     }
   }
 
+  /// <summary>Field number for the "trace_id_hi" field.</summary>
+  public const int TraceIdHiFieldNumber = 7;
+  private ulong traceIdHi_;
+  /// <summary>
+  /// 链路追踪(docs/design/distributed-tracing.md §5.2):W3C trace-context 的二进制形态,只在 REQUEST 上填。
+  /// 四个字段全 0 = 没有 trace(proto3 不编码 0 值,没有 trace 的帧不多一个字节),收方开新根;
+  /// trace_id 或 parent_span_id 为 0 同样当作没有。读写只经 network/rpc_trace_envelope.h。
+  /// hi / lo / parent_span_id 都按大端把字节拼成整数:%016llx 打出来与日志里的 trace_id / span_id 一致。
+  /// 用 fixed64 而不是 bytes:16 字节超过 MSVC 与 libstdc++ 的短串上限,bytes 每帧都要堆分配;随机值 varint 要 9-10 字节。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong TraceIdHi {
+    get { return traceIdHi_; }
+    set {
+      traceIdHi_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "trace_id_lo" field.</summary>
+  public const int TraceIdLoFieldNumber = 8;
+  private ulong traceIdLo_;
+  /// <summary>
+  /// TraceId.bytes[8..15]
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong TraceIdLo {
+    get { return traceIdLo_; }
+    set {
+      traceIdLo_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "parent_span_id" field.</summary>
+  public const int ParentSpanIdFieldNumber = 9;
+  private ulong parentSpanId_;
+  /// <summary>
+  /// 发送方当前 span;收方在它下面建子 span
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ParentSpanId {
+    get { return parentSpanId_; }
+    set {
+      parentSpanId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "trace_flags" field.</summary>
+  public const int TraceFlagsFieldNumber = 10;
+  private uint traceFlags_;
+  /// <summary>
+  /// W3C flags,只用最低位 sampled
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TraceFlags {
+    get { return traceFlags_; }
+    set {
+      traceFlags_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -236,6 +306,10 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     if (Error != other.Error) return false;
     if (MessageId != other.MessageId) return false;
     if (Id != other.Id) return false;
+    if (TraceIdHi != other.TraceIdHi) return false;
+    if (TraceIdLo != other.TraceIdLo) return false;
+    if (ParentSpanId != other.ParentSpanId) return false;
+    if (TraceFlags != other.TraceFlags) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -249,6 +323,10 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     if (Error != global::GameErrorCode.RpcNoError) hash ^= Error.GetHashCode();
     if (MessageId != 0) hash ^= MessageId.GetHashCode();
     if (Id != 0UL) hash ^= Id.GetHashCode();
+    if (TraceIdHi != 0UL) hash ^= TraceIdHi.GetHashCode();
+    if (TraceIdLo != 0UL) hash ^= TraceIdLo.GetHashCode();
+    if (ParentSpanId != 0UL) hash ^= ParentSpanId.GetHashCode();
+    if (TraceFlags != 0) hash ^= TraceFlags.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -291,6 +369,22 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
       output.WriteRawTag(48);
       output.WriteUInt64(Id);
     }
+    if (TraceIdHi != 0UL) {
+      output.WriteRawTag(57);
+      output.WriteFixed64(TraceIdHi);
+    }
+    if (TraceIdLo != 0UL) {
+      output.WriteRawTag(65);
+      output.WriteFixed64(TraceIdLo);
+    }
+    if (ParentSpanId != 0UL) {
+      output.WriteRawTag(73);
+      output.WriteFixed64(ParentSpanId);
+    }
+    if (TraceFlags != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(TraceFlags);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -325,6 +419,22 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
       output.WriteRawTag(48);
       output.WriteUInt64(Id);
     }
+    if (TraceIdHi != 0UL) {
+      output.WriteRawTag(57);
+      output.WriteFixed64(TraceIdHi);
+    }
+    if (TraceIdLo != 0UL) {
+      output.WriteRawTag(65);
+      output.WriteFixed64(TraceIdLo);
+    }
+    if (ParentSpanId != 0UL) {
+      output.WriteRawTag(73);
+      output.WriteFixed64(ParentSpanId);
+    }
+    if (TraceFlags != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(TraceFlags);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -352,6 +462,18 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     }
     if (Id != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Id);
+    }
+    if (TraceIdHi != 0UL) {
+      size += 1 + 8;
+    }
+    if (TraceIdLo != 0UL) {
+      size += 1 + 8;
+    }
+    if (ParentSpanId != 0UL) {
+      size += 1 + 8;
+    }
+    if (TraceFlags != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TraceFlags);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -382,6 +504,18 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
     }
     if (other.Id != 0UL) {
       Id = other.Id;
+    }
+    if (other.TraceIdHi != 0UL) {
+      TraceIdHi = other.TraceIdHi;
+    }
+    if (other.TraceIdLo != 0UL) {
+      TraceIdLo = other.TraceIdLo;
+    }
+    if (other.ParentSpanId != 0UL) {
+      ParentSpanId = other.ParentSpanId;
+    }
+    if (other.TraceFlags != 0) {
+      TraceFlags = other.TraceFlags;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -426,6 +560,22 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
           Id = input.ReadUInt64();
           break;
         }
+        case 57: {
+          TraceIdHi = input.ReadFixed64();
+          break;
+        }
+        case 65: {
+          TraceIdLo = input.ReadFixed64();
+          break;
+        }
+        case 73: {
+          ParentSpanId = input.ReadFixed64();
+          break;
+        }
+        case 80: {
+          TraceFlags = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -467,6 +617,22 @@ public sealed partial class GameRpcMessage : pb::IMessage<GameRpcMessage>
         }
         case 48: {
           Id = input.ReadUInt64();
+          break;
+        }
+        case 57: {
+          TraceIdHi = input.ReadFixed64();
+          break;
+        }
+        case 65: {
+          TraceIdLo = input.ReadFixed64();
+          break;
+        }
+        case 73: {
+          ParentSpanId = input.ReadFixed64();
+          break;
+        }
+        case 80: {
+          TraceFlags = input.ReadUInt32();
           break;
         }
       }

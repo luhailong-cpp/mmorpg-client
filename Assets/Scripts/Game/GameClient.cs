@@ -836,6 +836,12 @@ namespace MmorpgClient.Game
                     onRetryableReject(hint);
                     yield break;
                 }
+                // 本区暂停创建新角色(区服目录的运营开关):换个区才能建,原地重试没有用,回选服界面并给出原因。
+                if (tipId == (uint)login_error.KLoginZoneCreateRoleClosed)
+                {
+                    FailPipeline(gen, onError, "该区服已暂停创建新角色，请选择其他区服");
+                    yield break;
+                }
                 FailPipeline(gen, onError, $"创建角色失败(tip={tipId})");
                 yield break;
             }

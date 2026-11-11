@@ -23,7 +23,7 @@ public static partial class GuildErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZ3VpbGRfZXJyb3JfdGlwLnBy",
-          "b3RvKqwJCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
+          "b3RvKssJCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
           "dWlsZEFscmVhZHlJbkd1aWxkELBtEhMKDmtHdWlsZE5vdEZvdW5kELFtEhUK",
           "EGtHdWlsZE5vdEluR3VpbGQQsm0SDwoKa0d1aWxkRnVsbBCzbRIaChVrR3Vp",
           "bGRMZWFkZXJDYW50TGVhdmUQtG0SFAoPa0d1aWxkTm90TGVhZGVyELVtEhcK",
@@ -49,8 +49,9 @@ public static partial class GuildErrorTipReflection {
           "VG9vTG93ENRtEiAKG2tHdWlsZEFjdGl2aXR5Sm9pblRvb1JlY2VudBDVbRId",
           "ChhrR3VpbGRUcmlhbEludml0ZUV4cGlyZWQQ1m0SHgoZa0d1aWxkVHJpYWxJ",
           "bnZpdGVEZWNsaW5lZBDXbRIeChlrR3VpbGRUcmlhbEludml0ZUNvb2xkb3du",
-          "ENhtEhsKFmtHdWlsZFRyaWFsU2VydmljZUJ1c3kQ2W1CJAoOY29tLmdhbWUu",
-          "dGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
+          "ENhtEhsKFmtHdWlsZFRyaWFsU2VydmljZUJ1c3kQ2W0SHQoYa0d1aWxkVHJp",
+          "YWxCYXR0bGVBYm9ydGVkENptQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0",
+          "ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::guild_error), }, null, null));
@@ -103,6 +104,7 @@ public enum guild_error {
   [pbr::OriginalName("kGuildTrialInviteDeclined")] KGuildTrialInviteDeclined = 14039,
   [pbr::OriginalName("kGuildTrialInviteCooldown")] KGuildTrialInviteCooldown = 14040,
   [pbr::OriginalName("kGuildTrialServiceBusy")] KGuildTrialServiceBusy = 14041,
+  [pbr::OriginalName("kGuildTrialBattleAborted")] KGuildTrialBattleAborted = 14042,
 }
 
 #endregion

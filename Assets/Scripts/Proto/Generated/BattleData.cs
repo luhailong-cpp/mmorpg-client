@@ -131,17 +131,17 @@ public static partial class BattleDataReflection {
           "QRAOEhcKE0JBVFRMRV9FVkVOVF9SRVNJU1QQDyptCg5lQmF0dGxlSGl0S2lu",
           "ZBIVChFCQVRUTEVfSElUX05PUk1BTBAAEhQKEEJBVFRMRV9ISVRfQ09NQk8Q",
           "ARIWChJCQVRUTEVfSElUX0NPVU5URVIQAhIWChJCQVRUTEVfSElUX1JFRkxF",
-          "Q1QQAyqDAQoOZUJhdHRsZU91dGNvbWUSGgoWQkFUVExFX09VVENPTUVfT05H",
+          "Q1QQAyqcAQoOZUJhdHRsZU91dGNvbWUSGgoWQkFUVExFX09VVENPTUVfT05H",
           "T0lORxAAEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQV9XSU4QARIdChlCQVRU",
           "TEVfT1VUQ09NRV9TSURFX0JfV0lOEAISFwoTQkFUVExFX09VVENPTUVfRFJB",
-          "VxADKloKE2VCYXR0bGVBY3Rpdml0eUtpbmQSHQoZQkFUVExFX0FDVElWSVRZ",
-          "X0tJTkRfTk9ORRAAEiQKIEJBVFRMRV9BQ1RJVklUWV9LSU5EX0dVSUxEX1RS",
-          "SUFMEAEqewoTZVNwZWN0YXRlVmlzaWJpbGl0eRIjCh9TUEVDVEFURV9WSVNJ",
-          "QklMSVRZX1VOU1BFQ0lGSUVEEAASHwobU1BFQ1RBVEVfVklTSUJJTElUWV9Q",
-          "UklWQVRFEAESHgoaU1BFQ1RBVEVfVklTSUJJTElUWV9QVUJMSUMQAipfCg1l",
-          "U3BlY3RhdGVUaWVyEhgKFFNQRUNUQVRFX1RJRVJfRElSRUNUEAASFwoTU1BF",
-          "Q1RBVEVfVElFUl9SRUxBWRABEhsKF1NQRUNUQVRFX1RJRVJfQlJPQURDQVNU",
-          "EAJCCFoGYmF0dGxlYgZwcm90bzM="));
+          "VxADEhcKE0JBVFRMRV9PVVRDT01FX1ZPSUQQBCpaChNlQmF0dGxlQWN0aXZp",
+          "dHlLaW5kEh0KGUJBVFRMRV9BQ1RJVklUWV9LSU5EX05PTkUQABIkCiBCQVRU",
+          "TEVfQUNUSVZJVFlfS0lORF9HVUlMRF9UUklBTBABKnsKE2VTcGVjdGF0ZVZp",
+          "c2liaWxpdHkSIwofU1BFQ1RBVEVfVklTSUJJTElUWV9VTlNQRUNJRklFRBAA",
+          "Eh8KG1NQRUNUQVRFX1ZJU0lCSUxJVFlfUFJJVkFURRABEh4KGlNQRUNUQVRF",
+          "X1ZJU0lCSUxJVFlfUFVCTElDEAIqXwoNZVNwZWN0YXRlVGllchIYChRTUEVD",
+          "VEFURV9USUVSX0RJUkVDVBAAEhcKE1NQRUNUQVRFX1RJRVJfUkVMQVkQARIb",
+          "ChdTUEVDVEFURV9USUVSX0JST0FEQ0FTVBACQghaBmJhdHRsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, global::ActorAttributeStateCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleHitKind), typeof(global::eBattleOutcome), typeof(global::eBattleActivityKind), typeof(global::eSpectateVisibility), typeof(global::eSpectateTier), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -286,6 +286,12 @@ public enum eBattleOutcome {
   /// 回合打满等平局情形(PVE 中进攻方判负走 SIDE_B_WIN)
   /// </summary>
   [pbr::OriginalName("BATTLE_OUTCOME_DRAW")] BattleOutcomeDraw = 3,
+  /// <summary>
+  /// 作废:Match 为这一局写了唯一的 ABORT(执行进程失效、截止作废、帮会取消、人工处置等),全员没有任何效果。
+  /// 只由 Match 在 ABORT 事务里写进「作废结算」,battle 引擎永远不产出;客户端收到后退出战斗、提示本局作废
+  /// (docs/design/battle-instance-loss-early-abort.md §5、§6)。
+  /// </summary>
+  [pbr::OriginalName("BATTLE_OUTCOME_VOID")] BattleOutcomeVoid = 4,
 }
 
 /// <summary>

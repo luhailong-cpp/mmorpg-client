@@ -40,6 +40,18 @@ namespace MmorpgClient.Tests.EditMode.Ugui
             if (_appHost != null) Object.DestroyImmediate(_appHost);
         }
 
+        // 区服满员处理(2026-11-10):暂停创建新角色的区在副标题上标「暂停创角」,其它标签照旧。
+        [Test]
+        public void ZoneSubtitle_MarksRoleCreationPaused()
+        {
+            var subtitle = typeof(QdaoServerSelectView).GetMethod("ZoneSubtitle", BindingFlags.Static | BindingFlags.NonPublic);
+            Assert.That(subtitle, Is.Not.Null, "QdaoServerSelectView.ZoneSubtitle");
+            var paused = new ServerListZone { status = "OPEN", load_level = "FULL", create_role_closed = true };
+            Assert.That(subtitle.Invoke(null, new object[] { paused }), Is.EqualTo("爆满 · 暂停创角"));
+            var recommended = new ServerListZone { status = "OPEN", load_level = "SMOOTH", recommended = true };
+            Assert.That(subtitle.Invoke(null, new object[] { recommended }), Is.EqualTo("流畅 · 推荐"));
+        }
+
         [Test]
         public void Landing_PreservesOriginalFixedLetteringAndBothWorkingUtilityEntrypoints()
         {

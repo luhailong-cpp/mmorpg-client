@@ -1114,23 +1114,44 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
         // 预读期间越过了安全恢复期:重发前才写出超窗警告,重连清空了捐献页,窗口当场补拉时把这句警告沿用回状态栏。
         // 沿用不重新计时 —— 从警告真正写出算起满 1 秒,玩家这一击就作废(补拉落定在中途,若从那时重算就还差 500 ms)。
-        [Test] public void ARestoredStaleWarningKeepsItsOriginalConfirmTime()
+        [TestCase(true)] [TestCase(false)]
+        public void ARestoredStaleWarningKeepsItsOriginalConfirmTime(bool donation)
         {
-            WithWiredWindow(GuildPage.Donate, clickRefresh =>
+            WithWiredWindow(donation ? GuildPage.Donate : GuildPage.Shop, clickRefresh =>
             {
-                ReplyEconomyPage(true);
-                Send(true); _net.Error("rpc timeout");
+                ReplyEconomyPage(donation);
+                Send(donation); _net.Error("rpc timeout");
                 _identity = new object(); _client.ObserveConnection();
                 clickRefresh();
                 _now += GuildClient.EconomyReplayWindowMs;
                 ConfirmRecoveryGuild();
                 _monoNow += 500;
-                ReplyEconomyPage(true);
+                ReplyEconomyPage(donation);
                 Assert.That(_client.Status, Does.Contain("再点一次"));
                 _monoNow += 500;
                 clickRefresh();
                 Assert.That(_files.Load(1), Is.Empty);
-                Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildDonateOptions));
+                Assert.That(_net.Calls.Last(), Is.EqualTo(donation ? MessageIds.GetGuildDonateOptions : MessageIds.GetGuildShop));
+            });
+        }
+
+        // 空回包仍需保留原记录,提示在同步通知窗口前登记,否则窗口当场补拉会盖掉这句恢复结论。
+        [TestCase(true)] [TestCase(false)]
+        public void UnconfirmedReplayConclusionSurvivesTheVisiblePageReload(bool donation)
+        {
+            WithWiredWindow(donation ? GuildPage.Donate : GuildPage.Shop, clickRefresh =>
+            {
+                ReplyEconomyPage(donation);
+                Send(donation); _net.Error("rpc timeout");
+                string saved = _files.Load(1);
+                _identity = new object(); _client.ObserveConnection();
+                clickRefresh(); ConfirmRecoveryGuild();
+                ReplyWithoutOrder(donation);
+                ReplyEconomyPage(donation);
+                Assert.That(_client.Status, Does.Contain("尚未取得捐献或兑换的订单视图"));
+                Assert.That(_client.Status, Does.Contain("恢复原请求确认结果"));
+                Assert.That(_files.Load(1), Is.EqualTo(saved));
+                Assert.That(_net.Calls.Count(id => id == (donation ? MessageIds.DonateToGuild : MessageIds.BuyGuildShopGoods)), Is.EqualTo(2));
             });
         }
 

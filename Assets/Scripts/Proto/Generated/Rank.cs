@@ -28,42 +28,44 @@ namespace Rankpb {
             "dG9fb3B0aW9uLnByb3RvGhtwcm90by9jb21tb24vYmFzZS90aXAucHJvdG8i",
             "egoMUmFua0JvYXJkS2V5EhIKCmJvYXJkX3R5cGUYASABKA0SIAoFc2NvcGUY",
             "AiABKA4yES5yYW5rcGIuUmFua1Njb3BlEhAKCHNjb3BlX2lkGAMgASgEEg4K",
-            "BnBlcmlvZBgEIAEoCRISCgpnZW5lcmF0aW9uGAUgASgEIl4KCVJhbmtFbnRy",
+            "BnBlcmlvZBgEIAEoCRISCgpnZW5lcmF0aW9uGAUgASgEInkKCVJhbmtFbnRy",
             "eRIMCgRyYW5rGAEgASgEEhEKCWVudGl0eV9pZBgCIAEoBBINCgVzY29yZRgD",
-            "IAEoAxITCgthY2hpZXZlZF9tcxgEIAEoBBIMCgRuYW1lGAUgASgJIloKEkdl",
-            "dFJhbmtQYWdlUmVxdWVzdBIjCgVib2FyZBgBIAEoCzIULnJhbmtwYi5SYW5r",
-            "Qm9hcmRLZXkSDAoEcGFnZRgCIAEoDRIRCglwYWdlX3NpemUYAyABKA0inQIK",
-            "E0dldFJhbmtQYWdlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
-            "LlRpcEluZm9NZXNzYWdlEiMKBWJvYXJkGAIgASgLMhQucmFua3BiLlJhbmtC",
-            "b2FyZEtleRIiCgdlbnRyaWVzGAMgAygLMhEucmFua3BiLlJhbmtFbnRyeRIT",
-            "Cgt0b3RhbF9jb3VudBgEIAEoBBIMCgRwYWdlGAUgASgNEhEKCXBhZ2Vfc2l6",
-            "ZRgGIAEoDRISCgpwYWdlX2NvdW50GAcgASgEEh8KBHNlbGYYCCABKAsyES5y",
-            "YW5rcGIuUmFua0VudHJ5EioKBXN0YXRlGAkgASgOMhsucmFua3BiLlJhbmtH",
-            "ZW5lcmF0aW9uU3RhdGUiSwoUR2V0UmFua0Fyb3VuZFJlcXVlc3QSIwoFYm9h",
-            "cmQYASABKAsyFC5yYW5rcGIuUmFua0JvYXJkS2V5Eg4KBnJhZGl1cxgCIAEo",
-            "DSKpAQoVR2V0UmFua0Fyb3VuZFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
-            "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRIjCgVib2FyZBgCIAEoCzIULnJhbmtw",
-            "Yi5SYW5rQm9hcmRLZXkSIgoHZW50cmllcxgDIAMoCzIRLnJhbmtwYi5SYW5r",
-            "RW50cnkSHwoEc2VsZhgEIAEoCzIRLnJhbmtwYi5SYW5rRW50cnkqhAEKCVJh",
-            "bmtTY29wZRIaChZSQU5LX1NDT1BFX1VOU1BFQ0lGSUVEEAASFQoRUkFOS19T",
-            "Q09QRV9HTE9CQUwQARIUChBSQU5LX1NDT1BFX0dVSUxEEAISFwoTUkFOS19T",
-            "Q09QRV9JTlNUQU5DRRADEhUKEVJBTktfU0NPUEVfQ1VTVE9NEAQqbAoTUmFu",
-            "a0dlbmVyYXRpb25TdGF0ZRIfChtSQU5LX0dFTkVSQVRJT05fVU5TUEVDSUZJ",
-            "RUQQABIYChRSQU5LX0dFTkVSQVRJT05fT1BFThABEhoKFlJBTktfR0VORVJB",
-            "VElPTl9TRUFMRUQQAjKvAQoQQ2xpZW50UGxheWVyUmFuaxJGCgtHZXRSYW5r",
-            "UGFnZRIaLnJhbmtwYi5HZXRSYW5rUGFnZVJlcXVlc3QaGy5yYW5rcGIuR2V0",
-            "UmFua1BhZ2VSZXNwb25zZRJMCg1HZXRSYW5rQXJvdW5kEhwucmFua3BiLkdl",
-            "dFJhbmtBcm91bmRSZXF1ZXN0Gh0ucmFua3BiLkdldFJhbmtBcm91bmRSZXNw",
-            "b25zZRoFiKjDAQFCFVoPcmFuay9wcm90by9yYW5rmNRhEmIGcHJvdG8z"));
+            "IAEoAxITCgthY2hpZXZlZF9tcxgEIAEoBBIMCgRuYW1lGAUgASgJEhkKEWJl",
+            "eW9uZF9yYW5rX2xpbWl0GAYgASgIIloKEkdldFJhbmtQYWdlUmVxdWVzdBIj",
+            "CgVib2FyZBgBIAEoCzIULnJhbmtwYi5SYW5rQm9hcmRLZXkSDAoEcGFnZRgC",
+            "IAEoDRIRCglwYWdlX3NpemUYAyABKA0isQIKE0dldFJhbmtQYWdlUmVzcG9u",
+            "c2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiMK",
+            "BWJvYXJkGAIgASgLMhQucmFua3BiLlJhbmtCb2FyZEtleRIiCgdlbnRyaWVz",
+            "GAMgAygLMhEucmFua3BiLlJhbmtFbnRyeRITCgt0b3RhbF9jb3VudBgEIAEo",
+            "BBIMCgRwYWdlGAUgASgNEhEKCXBhZ2Vfc2l6ZRgGIAEoDRISCgpwYWdlX2Nv",
+            "dW50GAcgASgEEh8KBHNlbGYYCCABKAsyES5yYW5rcGIuUmFua0VudHJ5EioK",
+            "BXN0YXRlGAkgASgOMhsucmFua3BiLlJhbmtHZW5lcmF0aW9uU3RhdGUSEgoK",
+            "cmFua19saW1pdBgKIAEoBCJLChRHZXRSYW5rQXJvdW5kUmVxdWVzdBIjCgVi",
+            "b2FyZBgBIAEoCzIULnJhbmtwYi5SYW5rQm9hcmRLZXkSDgoGcmFkaXVzGAIg",
+            "ASgNIr0BChVHZXRSYW5rQXJvdW5kUmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
+            "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiMKBWJvYXJkGAIgASgLMhQucmFu",
+            "a3BiLlJhbmtCb2FyZEtleRIiCgdlbnRyaWVzGAMgAygLMhEucmFua3BiLlJh",
+            "bmtFbnRyeRIfCgRzZWxmGAQgASgLMhEucmFua3BiLlJhbmtFbnRyeRISCgpy",
+            "YW5rX2xpbWl0GAUgASgEKoQBCglSYW5rU2NvcGUSGgoWUkFOS19TQ09QRV9V",
+            "TlNQRUNJRklFRBAAEhUKEVJBTktfU0NPUEVfR0xPQkFMEAESFAoQUkFOS19T",
+            "Q09QRV9HVUlMRBACEhcKE1JBTktfU0NPUEVfSU5TVEFOQ0UQAxIVChFSQU5L",
+            "X1NDT1BFX0NVU1RPTRAEKmwKE1JhbmtHZW5lcmF0aW9uU3RhdGUSHwobUkFO",
+            "S19HRU5FUkFUSU9OX1VOU1BFQ0lGSUVEEAASGAoUUkFOS19HRU5FUkFUSU9O",
+            "X09QRU4QARIaChZSQU5LX0dFTkVSQVRJT05fU0VBTEVEEAIyrwEKEENsaWVu",
+            "dFBsYXllclJhbmsSRgoLR2V0UmFua1BhZ2USGi5yYW5rcGIuR2V0UmFua1Bh",
+            "Z2VSZXF1ZXN0GhsucmFua3BiLkdldFJhbmtQYWdlUmVzcG9uc2USTAoNR2V0",
+            "UmFua0Fyb3VuZBIcLnJhbmtwYi5HZXRSYW5rQXJvdW5kUmVxdWVzdBodLnJh",
+            "bmtwYi5HZXRSYW5rQXJvdW5kUmVzcG9uc2UaBYiowwEBQhVaD3JhbmsvcHJv",
+            "dG8vcmFua5jUYRJiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Rankpb.RankScope), typeof(global::Rankpb.RankGenerationState), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.RankBoardKey), global::Rankpb.RankBoardKey.Parser, new[]{ "BoardType", "Scope", "ScopeId", "Period", "Generation" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.RankEntry), global::Rankpb.RankEntry.Parser, new[]{ "Rank", "EntityId", "Score", "AchievedMs", "Name" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.RankEntry), global::Rankpb.RankEntry.Parser, new[]{ "Rank", "EntityId", "Score", "AchievedMs", "Name", "BeyondRankLimit" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.GetRankPageRequest), global::Rankpb.GetRankPageRequest.Parser, new[]{ "Board", "Page", "PageSize" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.GetRankPageResponse), global::Rankpb.GetRankPageResponse.Parser, new[]{ "ErrorMessage", "Board", "Entries", "TotalCount", "Page", "PageSize", "PageCount", "Self", "State" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.GetRankPageResponse), global::Rankpb.GetRankPageResponse.Parser, new[]{ "ErrorMessage", "Board", "Entries", "TotalCount", "Page", "PageSize", "PageCount", "Self", "State", "RankLimit" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.GetRankAroundRequest), global::Rankpb.GetRankAroundRequest.Parser, new[]{ "Board", "Radius" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.GetRankAroundResponse), global::Rankpb.GetRankAroundResponse.Parser, new[]{ "ErrorMessage", "Board", "Entries", "Self" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.GetRankAroundResponse), global::Rankpb.GetRankAroundResponse.Parser, new[]{ "ErrorMessage", "Board", "Entries", "Self", "RankLimit" }, null, null, null, null)
           }));
     }
     #endregion
@@ -473,6 +475,7 @@ namespace Rankpb {
       score_ = other.score_;
       achievedMs_ = other.achievedMs_;
       name_ = other.name_;
+      beyondRankLimit_ = other.beyondRankLimit_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -542,6 +545,22 @@ namespace Rankpb {
       }
     }
 
+    /// <summary>Field number for the "beyond_rank_limit" field.</summary>
+    public const int BeyondRankLimitFieldNumber = 6;
+    private bool beyondRankLimit_;
+    /// <summary>
+    /// 这一行排在精确名次上限(回包的 rank_limit)之后,名次不再精确计数;此时 rank 为 0,客户端显示「{rank_limit}+」
+    /// (2026-11-11,缺口清单第 18 条,负责人定「前 N 名精确、之后显示 N+」)。不在榜上仍是没有这一行 / self 为空。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool BeyondRankLimit {
+      get { return beyondRankLimit_; }
+      set {
+        beyondRankLimit_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -562,6 +581,7 @@ namespace Rankpb {
       if (Score != other.Score) return false;
       if (AchievedMs != other.AchievedMs) return false;
       if (Name != other.Name) return false;
+      if (BeyondRankLimit != other.BeyondRankLimit) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -574,6 +594,7 @@ namespace Rankpb {
       if (Score != 0L) hash ^= Score.GetHashCode();
       if (AchievedMs != 0UL) hash ^= AchievedMs.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (BeyondRankLimit != false) hash ^= BeyondRankLimit.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -612,6 +633,10 @@ namespace Rankpb {
         output.WriteRawTag(42);
         output.WriteString(Name);
       }
+      if (BeyondRankLimit != false) {
+        output.WriteRawTag(48);
+        output.WriteBool(BeyondRankLimit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -642,6 +667,10 @@ namespace Rankpb {
         output.WriteRawTag(42);
         output.WriteString(Name);
       }
+      if (BeyondRankLimit != false) {
+        output.WriteRawTag(48);
+        output.WriteBool(BeyondRankLimit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -666,6 +695,9 @@ namespace Rankpb {
       }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (BeyondRankLimit != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -693,6 +725,9 @@ namespace Rankpb {
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
+      }
+      if (other.BeyondRankLimit != false) {
+        BeyondRankLimit = other.BeyondRankLimit;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -733,6 +768,10 @@ namespace Rankpb {
             Name = input.ReadString();
             break;
           }
+          case 48: {
+            BeyondRankLimit = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -770,6 +809,10 @@ namespace Rankpb {
           }
           case 42: {
             Name = input.ReadString();
+            break;
+          }
+          case 48: {
+            BeyondRankLimit = input.ReadBool();
             break;
           }
         }
@@ -1104,6 +1147,7 @@ namespace Rankpb {
       pageCount_ = other.pageCount_;
       self_ = other.self_ != null ? other.self_.Clone() : null;
       state_ = other.state_;
+      rankLimit_ = other.rankLimit_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1220,6 +1264,22 @@ namespace Rankpb {
       }
     }
 
+    /// <summary>Field number for the "rank_limit" field.</summary>
+    public const int RankLimitFieldNumber = 10;
+    private ulong rankLimit_;
+    /// <summary>
+    /// 精确名次的上限:名次只精确数到第 rank_limit 名,翻页也只到这一名为止(page_count 按 min(total_count, rank_limit) 算,
+    /// 最后一页取到第 rank_limit 名为止);排在其后的 self 带 beyond_rank_limit。total_count 仍是榜上的真实人数。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RankLimit {
+      get { return rankLimit_; }
+      set {
+        rankLimit_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1244,6 +1304,7 @@ namespace Rankpb {
       if (PageCount != other.PageCount) return false;
       if (!object.Equals(Self, other.Self)) return false;
       if (State != other.State) return false;
+      if (RankLimit != other.RankLimit) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1260,6 +1321,7 @@ namespace Rankpb {
       if (PageCount != 0UL) hash ^= PageCount.GetHashCode();
       if (self_ != null) hash ^= Self.GetHashCode();
       if (State != global::Rankpb.RankGenerationState.RankGenerationUnspecified) hash ^= State.GetHashCode();
+      if (RankLimit != 0UL) hash ^= RankLimit.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1311,6 +1373,10 @@ namespace Rankpb {
         output.WriteRawTag(72);
         output.WriteEnum((int) State);
       }
+      if (RankLimit != 0UL) {
+        output.WriteRawTag(80);
+        output.WriteUInt64(RankLimit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1354,6 +1420,10 @@ namespace Rankpb {
         output.WriteRawTag(72);
         output.WriteEnum((int) State);
       }
+      if (RankLimit != 0UL) {
+        output.WriteRawTag(80);
+        output.WriteUInt64(RankLimit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1388,6 +1458,9 @@ namespace Rankpb {
       }
       if (State != global::Rankpb.RankGenerationState.RankGenerationUnspecified) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) State);
+      }
+      if (RankLimit != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RankLimit);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1434,6 +1507,9 @@ namespace Rankpb {
       }
       if (other.State != global::Rankpb.RankGenerationState.RankGenerationUnspecified) {
         State = other.State;
+      }
+      if (other.RankLimit != 0UL) {
+        RankLimit = other.RankLimit;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1499,6 +1575,10 @@ namespace Rankpb {
             State = (global::Rankpb.RankGenerationState) input.ReadEnum();
             break;
           }
+          case 80: {
+            RankLimit = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -1561,6 +1641,10 @@ namespace Rankpb {
           }
           case 72: {
             State = (global::Rankpb.RankGenerationState) input.ReadEnum();
+            break;
+          }
+          case 80: {
+            RankLimit = input.ReadUInt64();
             break;
           }
         }
@@ -1853,6 +1937,7 @@ namespace Rankpb {
       board_ = other.board_ != null ? other.board_.Clone() : null;
       entries_ = other.entries_.Clone();
       self_ = other.self_ != null ? other.self_.Clone() : null;
+      rankLimit_ = other.rankLimit_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1909,6 +1994,21 @@ namespace Rankpb {
       }
     }
 
+    /// <summary>Field number for the "rank_limit" field.</summary>
+    public const int RankLimitFieldNumber = 5;
+    private ulong rankLimit_;
+    /// <summary>
+    /// 同 GetRankPageResponse.rank_limit:排在其后的本人与附近条目带 beyond_rank_limit
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RankLimit {
+      get { return rankLimit_; }
+      set {
+        rankLimit_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1928,6 +2028,7 @@ namespace Rankpb {
       if (!object.Equals(Board, other.Board)) return false;
       if(!entries_.Equals(other.entries_)) return false;
       if (!object.Equals(Self, other.Self)) return false;
+      if (RankLimit != other.RankLimit) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1939,6 +2040,7 @@ namespace Rankpb {
       if (board_ != null) hash ^= Board.GetHashCode();
       hash ^= entries_.GetHashCode();
       if (self_ != null) hash ^= Self.GetHashCode();
+      if (RankLimit != 0UL) hash ^= RankLimit.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1970,6 +2072,10 @@ namespace Rankpb {
         output.WriteRawTag(34);
         output.WriteMessage(Self);
       }
+      if (RankLimit != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(RankLimit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1993,6 +2099,10 @@ namespace Rankpb {
         output.WriteRawTag(34);
         output.WriteMessage(Self);
       }
+      if (RankLimit != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(RankLimit);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2012,6 +2122,9 @@ namespace Rankpb {
       size += entries_.CalculateSize(_repeated_entries_codec);
       if (self_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Self);
+      }
+      if (RankLimit != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RankLimit);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2043,6 +2156,9 @@ namespace Rankpb {
           Self = new global::Rankpb.RankEntry();
         }
         Self.MergeFrom(other.Self);
+      }
+      if (other.RankLimit != 0UL) {
+        RankLimit = other.RankLimit;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2088,6 +2204,10 @@ namespace Rankpb {
             input.ReadMessage(Self);
             break;
           }
+          case 40: {
+            RankLimit = input.ReadUInt64();
+            break;
+          }
         }
       }
     #endif
@@ -2130,6 +2250,10 @@ namespace Rankpb {
               Self = new global::Rankpb.RankEntry();
             }
             input.ReadMessage(Self);
+            break;
+          }
+          case 40: {
+            RankLimit = input.ReadUInt64();
             break;
           }
         }

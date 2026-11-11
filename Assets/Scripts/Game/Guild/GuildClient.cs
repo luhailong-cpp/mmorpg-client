@@ -843,14 +843,13 @@ namespace MmorpgClient.Game.Guild
         /// </param>
         private void SendDonation(DonateToGuildRequest request, string saved, bool recovering = false)
         {
-            if (!OwnsEconomyRequest(saved)) { if (recovering) _economyRecoveryNotice = Status; return; }
+            if (!OwnsEconomyRequest(saved, recovering)) return;
             Request(MessageIds.DonateToGuild, request,
                 DonateToGuildResponse.Parser, response =>
                 {
                     var view = response.Donation;
                     bool validView = view != null && view.OpId != 0 && view.DonateId == request.DonateId && ValidOrderStatus(view.Status);
-                    if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView))
-                    { if (recovering) _economyRecoveryNotice = Status; return; }
+                    if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView, recovering)) return;
                     if (ConcludedOutsideOriginalGuild(request.ExpectedGuildId, response.ErrorMessage,
                             validView ? DonationResultText(view) : null, validView && SettledWithAssets(view.Status))) return;
                     // 请求者仍在帮时服务端总带最新快照(含结算中):资金与帮贡以它为准。
@@ -957,15 +956,14 @@ namespace MmorpgClient.Game.Guild
         /// <param name="recovering">同 SendDonation。</param>
         private void SendShopOrder(BuyGuildShopGoodsRequest request, string saved, bool recovering = false)
         {
-            if (!OwnsEconomyRequest(saved)) { if (recovering) _economyRecoveryNotice = Status; return; }
+            if (!OwnsEconomyRequest(saved, recovering)) return;
             Request(MessageIds.BuyGuildShopGoods, request,
                 BuyGuildShopGoodsResponse.Parser, response =>
                 {
                     var view = response.Order;
                     bool validView = view != null && view.OpId != 0 && view.GoodsId == request.GoodsId
                         && view.Count == request.Count && ValidOrderStatus(view.Status);
-                    if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView))
-                    { if (recovering) _economyRecoveryNotice = Status; return; }
+                    if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView, recovering)) return;
                     // 先于下面的帮贡就地更新:回放的余额属于原帮会(Java 版回放填 0),不能写进现帮会的成员快照。
                     if (ConcludedOutsideOriginalGuild(request.ExpectedGuildId, response.ErrorMessage,
                             validView ? ShopResultText(view) : null, validView && SettledWithAssets(view.Status))) return;
@@ -1045,7 +1043,7 @@ namespace MmorpgClient.Game.Guild
             catch (Exception) { Reject("请求未能安全保存，请检查本机存储后重试。"); return false; }
         }
 
-        private bool OwnsEconomyRequest(string saved)
+        private bool OwnsEconomyRequest(string saved, bool recovering)
         {
             if (_economyRecovery != null && _economyRecovery.Load(PlayerId) == saved)
             {
@@ -1055,10 +1053,10 @@ namespace MmorpgClient.Game.Guild
                 if (fields.Length == 6 && long.TryParse(fields[3], NumberStyles.None, CultureInfo.InvariantCulture, out long created)
                     && WithinReplayWindow(created, out clockBehind)) return true;
                 // 这一句也算作废前的那次提示:玩家紧接着再点「恢复原请求」即作废(见 RecoverEconomyRequest)。
-                WarnStaleEconomyRequest(saved, clockBehind);
+                WarnStaleEconomyRequest(saved, clockBehind, recovering);
                 return false;
             }
-            Reject("待确认记录已变化，请重新读取后恢复。");
+            RejectEconomyRecovery("待确认记录已变化，请重新读取后恢复。", recovering);
             return false;
         }
 
@@ -1124,12 +1122,12 @@ namespace MmorpgClient.Game.Guild
                 : "原请求已超出 " + EconomyReplayWindowMs / DayMs + " 天安全恢复期，不会再重发。")
             + "它可能已经到账，请先核对背包、捐献页与商店页；确认不再追查后，再点一次「恢复原请求」作废本机记录。";
 
-        private void WarnStaleEconomyRequest(string saved, bool clockBehind)
+        private void WarnStaleEconomyRequest(string saved, bool clockBehind, bool recovering = false)
         {
             _corruptEconomyRecord = null;
             _staleEconomyRecord = saved;
             _economyWarningShownAtMs = _monotonicMs();
-            Reject(StaleEconomyText(clockBehind));
+            RejectEconomyRecovery(StaleEconomyText(clockBehind), recovering);
         }
 
         /// <summary>
@@ -1178,20 +1176,28 @@ namespace MmorpgClient.Game.Guild
         private static bool ValidOrderStatus(GuildAssetOrderStatus status) =>
             (uint)status >= (uint)GuildAssetOrderStatus.Pending && (uint)status <= (uint)GuildAssetOrderStatus.AppliedPartial;
 
-        private bool ConfirmEconomyReply(string saved, TipInfoMessage error, bool validView)
+        // Reject 会同步通知窗口并触发本页补拉,恢复文案必须在通知前登记,不能等 Reject 返回后再取 Status。
+        private void RejectEconomyRecovery(string message, bool recovering)
+        {
+            if (Busy) return;
+            if (recovering) _economyRecoveryNotice = message;
+            Reject(message);
+        }
+
+        private bool ConfirmEconomyReply(string saved, TipInfoMessage error, bool validView, bool recovering)
         {
             uint tip = error?.Id ?? 0;
             // 有合法订单视图即已绑定原键；空成功、服务故障及繁忙均不能证明首次执行结果。
             if (!validView && (tip == 0 || tip == (uint)guild_error.KGuildBusyRetry || TipFaults.IsFault(tip)))
             {
-                Reject((tip == 0 ? "尚未取得捐献或兑换的订单视图。" : TipText(error)) + " 请恢复原请求确认结果。");
+                RejectEconomyRecovery((tip == 0 ? "尚未取得捐献或兑换的订单视图。" : TipText(error)) + " 请恢复原请求确认结果。", recovering);
                 return false;
             }
             try { _economyRecovery.Clear(PlayerId, saved); }
             // 回包到达前,另一个守 .lock 协议的进程已把槽位换成别的记录(多半已确认过这一单、又发了新请求):这份回包管不到它。
             // 不能说成本机故障叫玩家「恢复查账」—— 那一击恢复的是换进来的新请求。同作废确认里的替换,只提示变化。
-            catch (InvalidOperationException) { Reject(EconomyRecordChangedText); return false; }
-            catch (Exception) { Reject("服务端已回复，本机原记录尚未清理；请保留记录并恢复查账。"); return false; }
+            catch (InvalidOperationException) { RejectEconomyRecovery(EconomyRecordChangedText, recovering); return false; }
+            catch (Exception) { RejectEconomyRecovery("服务端已回复，本机原记录尚未清理；请保留记录并恢复查账。", recovering); return false; }
             return true;
         }
 

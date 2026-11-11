@@ -854,6 +854,7 @@ namespace MmorpgClient.UI.Ugui
             var tags = new List<string> { load };
             if (z.recommended) tags.Add("推荐");
             if (z.is_new) tags.Add("新服");
+            if (z.create_role_closed) tags.Add("暂停创角");
             return string.Join(" · ", tags);
         }
 

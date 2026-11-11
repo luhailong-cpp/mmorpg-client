@@ -80,6 +80,65 @@ namespace MmorpgClient.Tests.EditMode.Rank
             Assert.That(_client.Status, Is.Empty);
         }
 
+        /// <summary>
+        /// 名次只精确到回包的 rank_limit 名(服务端 docs/design/leaderboard-system.md「2026-11-11 前 N 名精确、之后显示 N+」):
+        /// 排在其后的条目 BeyondRankLimit = true、Rank = 0,列表与"我的名次"都显示「{rank_limit}+」;上限取自最近一次回包。
+        /// </summary>
+        [Test]
+        public void EntriesBeyondTheRankLimitShowLimitPlus()
+        {
+            Assert.That(RankClient.FormatRowRank(new RankEntry { Rank = 7 }, 10000), Is.EqualTo("07"));
+            Assert.That(RankClient.FormatRowRank(new RankEntry { BeyondRankLimit = true }, 10000), Is.EqualTo("10000+"));
+            Assert.That(RankClient.FormatSelfRank(new RankEntry { Rank = 1234 }, 10000), Is.EqualTo("第 1234 名"));
+            Assert.That(RankClient.FormatSelfRank(new RankEntry { BeyondRankLimit = true }, 10000), Is.EqualTo("10000+"));
+            Assert.That(RankClient.BeyondRankLabel(0), Is.EqualTo("未计名次"), "没带上限时不编数字");
+
+            _client.Load(1);
+            var response = Page(1, 2000, 1_000_000, (1, 7, "甲", 151629));
+            response.RankLimit = 10000;
+            response.Self = new RankEntry { EntityId = 1, Score = 90000, BeyondRankLimit = true };
+            _net.Reply(response);
+            Assert.That(_client.RankLimit, Is.EqualTo(10000));
+            Assert.That(_client.Page.Self.BeyondRankLimit, Is.True, "排在上限之后仍在榜上,不是「暂未上榜」");
+            Assert.That(RankClient.FormatSelfRank(_client.Page.Self, _client.RankLimit), Is.EqualTo("10000+"));
+        }
+
+        /// <summary>
+        /// 界面层:附近名次里本人与邻居都排在上限之后时,"我的名次"显示「10000+」而不是「暂未上榜」;
+        /// 上限之后的行名次都是 0,按编号起名,不撞名。
+        /// </summary>
+        [Test]
+        public void WindowShowsLimitPlusForSelfBeyondTheRankLimit()
+        {
+            var view = new UnityEngine.GameObject("RankWindowBeyondLimitTest", typeof(UnityEngine.RectTransform), typeof(UnityEngine.Canvas));
+            try
+            {
+                var window = new RankWindow(view.transform);
+                _client.ReadAround(RankClient.LatestBoard(), 1);
+                var around = new GetRankAroundResponse
+                {
+                    Board = new RankBoardKey { BoardType = 1, Scope = RankScope.Global, Period = "season", Generation = 7 }, RankLimit = 10000,
+                    Self = new RankEntry { EntityId = _net.PlayerId, Score = 90, BeyondRankLimit = true },
+                };
+                around.Entries.Add(new RankEntry { EntityId = 9, Score = 100, BeyondRankLimit = true });
+                around.Entries.Add(new RankEntry { EntityId = _net.PlayerId, Score = 90, BeyondRankLimit = true });
+                around.Entries.Add(new RankEntry { EntityId = 8, Score = 80, BeyondRankLimit = true });
+                _net.Reply(around);
+                window.Show(_client);
+
+                var selfRank = (TMPro.TMP_Text)typeof(RankWindow)
+                    .GetField("_selfRank", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                    .GetValue(window);
+                Assert.That(selfRank.text, Is.EqualTo("10000+"), "排在上限之后仍在榜上,不是「暂未上榜」");
+                var names = window.Root.GetComponentsInChildren<UnityEngine.RectTransform>(true).Select(t => t.name).ToList();
+                Assert.That(names, Does.Contain("RankRow_Beyond_9").And.Contain("RankRow_Beyond_8"), "上限之后的行按编号起名");
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(view);
+            }
+        }
+
         [Test]
         public void EmptyBoardIsNotAnError()
         {

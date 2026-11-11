@@ -59,6 +59,8 @@ namespace MmorpgClient.Game.Rank
         public string Status { get; private set; } = "";
         public uint CurrentPage => _page?.Page ?? 1;
         public ulong PageCount => Math.Max(1UL, _page?.PageCount ?? 1UL);
+        /// <summary>当前快照的精确名次上限(服务端只精确数到这一名,翻页也只到这一名);没有快照时为 0。</summary>
+        public ulong RankLimit => _around?.RankLimit ?? _page?.RankLimit ?? 0UL;
         public event Action Changed;
 
         public RankClient(IBattleTransport net, Func<object> connectionIdentity, Func<float> clock = null)
@@ -314,6 +316,24 @@ namespace MmorpgClient.Game.Rank
             return (negative ? "-" : "") + (value / 100).ToString(CultureInfo.InvariantCulture) + "."
                 + (value % 100).ToString("D2", CultureInfo.InvariantCulture);
         }
+
+        /// <summary>
+        /// 列表里的名次。服务端只精确数到第 rank_limit 名(docs/design/leaderboard-system.md「2026-11-11 前 N 名精确、之后显示 N+」),
+        /// 排在其后的条目 BeyondRankLimit = true、Rank = 0,显示「{rank_limit}+」。
+        /// </summary>
+        public static string FormatRowRank(RankEntry entry, ulong rankLimit) => entry.BeyondRankLimit
+            ? BeyondRankLabel(rankLimit)
+            : entry.Rank.ToString("D2", CultureInfo.InvariantCulture);
+
+        /// <summary>"我的名次"那一格:精确时"第 N 名",排在上限之后显示「{rank_limit}+」。</summary>
+        public static string FormatSelfRank(RankEntry self, ulong rankLimit) => self.BeyondRankLimit
+            ? BeyondRankLabel(rankLimit)
+            : "第 " + self.Rank.ToString(CultureInfo.InvariantCulture) + " 名";
+
+        /// <summary>上限之后的名次标签。服务端置 BeyondRankLimit 时总会带上限;万一没带,不编数字,显示"未计名次"。</summary>
+        public static string BeyondRankLabel(ulong rankLimit) => rankLimit == 0
+            ? "未计名次"
+            : rankLimit.ToString(CultureInfo.InvariantCulture) + "+";
 
         public static string DescribeTip(TipInfoMessage tip) => tip == null || tip.Id == 0 ? "" : DescribeTip(tip.Id);
 
