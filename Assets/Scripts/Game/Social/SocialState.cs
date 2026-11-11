@@ -40,6 +40,8 @@ namespace MmorpgClient.Game.Social
     public sealed class SocialState
     {
         public const int MessageLimit = 120;
+        /// <summary>每个频道在本地最多保留的消息条数(历史与推送合并后取最近的这么多条)。</summary>
+        public const int HistoryLimit = 100;
         public static readonly SocialChannel[] ChatChannels = { SocialChannel.Current, SocialChannel.World, SocialChannel.Guild, SocialChannel.Team };
         private readonly Func<long> _clock;
         private readonly Dictionary<SocialChannel,List<SocialMessage>> _messages = new();
@@ -97,24 +99,43 @@ namespace MmorpgClient.Game.Social
         public void ApplyHistory(SocialChannel channel, IEnumerable<ChatMessage> rows)
         {
             if (IsPreview) throw new InvalidOperationException("Preview state cannot consume live server data.");
-            var result = new List<SocialMessage>();
-            foreach (var m in rows ?? Array.Empty<ChatMessage>())
-            {
-                if (!Matches(channel, m.Channel)) continue;
-                result.Add(new SocialMessage { Sender = m.SenderPlayerId, Text = m.Content, TimeMs = m.SendTimeMs,
-                    Id = m.SenderPlayerId + ":" + m.SendTimeMs + ":" + m.Content, SenderName = m.SenderPlayerId == PlayerId ? "我" : "道友 " + m.SenderPlayerId });
-            }
-            result = result.OrderBy(m => m.TimeMs).TakeLast(100).ToList();
-            int added = result.Count(m => !_messages[channel].Any(old => old.Id == m.Id));
-            _messages[channel] = result;
-            if (Page != SocialPage.World || Channel != channel) _unread[channel] += added;
+            Merge(channel, (rows ?? Array.Empty<ChatMessage>()).Where(m => m != null && Matches(channel, m.Channel)).Select(FromProto));
             if (channel == SocialChannel.System)
             {
                 _rumors.Clear();
-                foreach (var m in result.AsEnumerable().Reverse()) _rumors.Add(new SocialRumor { Id = m.Id, Title = "系统传闻", Text = m.Text, TimeMs = m.TimeMs, Icon = "round_badge_taiji", Category = RumorCategory.All });
+                foreach (var m in _messages[channel].AsEnumerable().Reverse()) _rumors.Add(new SocialRumor { Id = m.Id, Title = "系统传闻", Text = m.Text, TimeMs = m.TimeMs, Icon = "round_badge_taiji", Category = RumorCategory.All });
             }
             Changed?.Invoke();
         }
+        /// <summary>
+        /// 世界频道推送(NotifyWorldChat,服务端 docs/design/chat-world-channel-fanout.md §4)。推送至多一次,真相仍是拉历史:
+        /// 推送与历史是同一份显示原件,按同一个 Id 合并,先后到达、拉历史途中到达都只留一份;丢了的由下次拉历史补上。
+        /// 重复的推送不触发 Changed。
+        /// </summary>
+        public void ApplyPushed(SocialChannel channel, ChatMessage message)
+        {
+            if (IsPreview) throw new InvalidOperationException("Preview state cannot consume live server data.");
+            if (message == null || !Matches(channel, message.Channel)) return;
+            if (Merge(channel, new[] { FromProto(message) }) > 0) Changed?.Invoke();
+        }
+        // 合进本地列表:按 Id 去重,按发送时刻升序,只留最近 HistoryLimit 条。拉历史以前是整表替换,拉取途中到达的推送会被冲掉;
+        // 合并之后两条路径互不覆盖(本地的每一条都来自服务端的历史或推送)。返回留下来的新消息条数,不在看这个频道时计入未读。
+        private int Merge(SocialChannel channel, IEnumerable<SocialMessage> incoming)
+        {
+            var known = new HashSet<string>(_messages[channel].Select(m => m.Id));
+            var fresh = new HashSet<string>();
+            var merged = new List<SocialMessage>(_messages[channel]);
+            foreach (var m in incoming)
+                if (known.Add(m.Id)) { fresh.Add(m.Id); merged.Add(m); }
+            if (fresh.Count == 0) return 0;
+            _messages[channel] = merged.OrderBy(m => m.TimeMs).TakeLast(HistoryLimit).ToList();
+            int added = _messages[channel].Count(m => fresh.Contains(m.Id));
+            if (Page != SocialPage.World || Channel != channel) _unread[channel] += added;
+            return added;
+        }
+        // 服务端显示原件转本地消息。ChatMessage 没有消息号,Id 用(发送者, 发送时刻, 正文)拼:同一条消息经历史或推送到达得到同一个 Id。
+        private SocialMessage FromProto(ChatMessage m) => new SocialMessage { Sender = m.SenderPlayerId, Text = m.Content, TimeMs = m.SendTimeMs,
+            Id = m.SenderPlayerId + ":" + m.SendTimeMs + ":" + m.Content, SenderName = m.SenderPlayerId == PlayerId ? "我" : "道友 " + m.SenderPlayerId };
         public static bool Matches(SocialChannel c, ChatChannelType proto) => c switch
         { SocialChannel.World => proto == ChatChannelType.World, SocialChannel.Team => proto == ChatChannelType.Team, SocialChannel.System => proto == ChatChannelType.System, _ => false };
         public static int TextLength(string text)

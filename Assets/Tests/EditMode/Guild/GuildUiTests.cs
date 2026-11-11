@@ -382,6 +382,34 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } });
             Assert.That(_client.Status, Is.EqualTo("尚未加入帮会，和同道相聚于此。"));
         }
+        /// <summary>
+        /// 本人申请列表的读取只换数据不换文案。被请离后、收到申请未获通过的推送后,都会排一次列表重拉;这一发没有调用方
+        /// 替它写文案,回包后要把读取前的那句放回状态栏,不能停在「正在读取帮会，请稍候…」把通知盖掉。
+        /// </summary>
+        [Test] public void QueuedMyApplicationsReadKeepsTheTextShownBeforeIt()
+        {
+            Load();
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 555, Kind = GuildChangeKind.MemberKicked, TargetPlayerId = 1 });
+            _client.DrainQueued(false);
+            _net.Reply(new GetPlayerGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } });
+            string kicked = _client.Status;
+            Assert.That(kicked, Does.Contain("请离"));
+            Assert.That(_client.MyApplicationsQueued, Is.True);
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListMyGuildApplications));
+            _net.Reply(new ListMyGuildApplicationsResponse());
+            Assert.That(_client.Status, Is.EqualTo(kicked));
+
+            _net.Push(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 556, Kind = GuildChangeKind.ApplicationRejected, TargetPlayerId = 1 });
+            string rejected = _client.Status;
+            Assert.That(rejected, Does.Contain("未获通过"));
+            _client.DrainQueued(false);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListMyGuildApplications));
+            _net.Reply(new ListMyGuildApplicationsResponse());
+            Assert.That(_client.Status, Is.EqualTo(rejected));
+        }
 
         // ── 经济：捐献 / 升级 / 商店（B5c）──────────────────────────────
 

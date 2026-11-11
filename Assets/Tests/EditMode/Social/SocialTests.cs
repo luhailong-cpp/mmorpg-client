@@ -41,6 +41,44 @@ namespace MmorpgClient.Tests.EditMode.Social
         {long now=1000000;var s=new SocialState(true,()=>now);s.FilterRumors(RumorCategory.Beast,"");Assert.That(s.FilteredRumors().Count(),Is.EqualTo(2));Assert.That(s.Rumors[0].StateLabel(now),Does.Contain("03:00"));now+=181000;Assert.That(s.Rumors[0].StateLabel(now),Does.Contain("现身时刻已到"));Assert.That(s.Rumors[0].Text,Does.Not.Contain("3分钟后"));s.FilterRumors(RumorCategory.Treasure,"不存在");Assert.That(s.FilteredRumors(),Is.Empty);Assert.That(s.PreviewSend(SocialChannel.System,"不能说话"),Is.False);}
         [Test] public void AuthoritativeHistoryFiltersWrongChannelAndSortsOldestFirst()
         {var s=new SocialState();s.Reset(8);s.ApplyHistory(SocialChannel.World,new[]{new ChatMessage{Channel=ChatChannelType.World,Content="新",SendTimeMs=20,SenderPlayerId=9},new ChatMessage{Channel=ChatChannelType.Team,Content="不属于世界",SendTimeMs=15},new ChatMessage{Channel=ChatChannelType.World,Content="旧",SendTimeMs=10,SenderPlayerId=8}});Assert.That(s.Messages(SocialChannel.World).Select(m=>m.Text),Is.EqualTo(new[]{"旧","新"}));Assert.That(s.Messages(SocialChannel.World)[0].SenderName,Is.EqualTo("我"));}
+        [Test] public void HistoryMergesWithEarlierPushesInsteadOfReplacingThem()
+        {
+            var s=new SocialState();s.Reset(8);
+            s.ApplyPushed(SocialChannel.World,World(9,"推送先到",30));
+            s.ApplyHistory(SocialChannel.World,new[]{World(8,"旧",10),World(9,"中",20)});
+            Assert.That(s.Messages(SocialChannel.World).Select(m=>m.Text),Is.EqualTo(new[]{"旧","中","推送先到"}),"拉历史途中或之前到达的推送不能被历史冲掉");
+            s.ApplyHistory(SocialChannel.World,new[]{World(8,"旧",10),World(9,"中",20),World(9,"推送先到",30)});
+            Assert.That(s.Messages(SocialChannel.World).Count,Is.EqualTo(3),"历史里补到同一条推送不重复");
+        }
+        [Test] public void DuplicateOrWrongChannelPushIsIgnoredWithoutChangeEvent()
+        {
+            var s=new SocialState();s.Reset(8);int changes=0;s.Changed+=()=>changes++;
+            s.ApplyPushed(SocialChannel.World,World(9,"你好",10));
+            s.ApplyPushed(SocialChannel.World,World(9,"你好",10));
+            s.ApplyPushed(SocialChannel.World,new ChatMessage{Channel=ChatChannelType.Team,SenderPlayerId=9,Content="队伍",SendTimeMs=11});
+            Assert.That(s.Messages(SocialChannel.World).Select(m=>m.Text),Is.EqualTo(new[]{"你好"}));
+            Assert.That(changes,Is.EqualTo(1));
+        }
+        [Test] public void PushCountsUnreadOnlyWhileTheChannelIsNotOnScreen()
+        {
+            var s=new SocialState();s.Reset(8);
+            s.ApplyPushed(SocialChannel.World,World(9,"第一条",10));
+            Assert.That(s.Unread(SocialChannel.World),Is.EqualTo(1));
+            s.SelectPage(SocialPage.World);s.SelectChannel(SocialChannel.World);
+            s.ApplyPushed(SocialChannel.World,World(9,"第二条",20));
+            Assert.That(s.Unread(SocialChannel.World),Is.Zero);
+        }
+        [Test] public void LocalWindowKeepsOnlyTheNewestMessages()
+        {
+            var s=new SocialState();s.Reset(8);s.SelectPage(SocialPage.World);s.SelectChannel(SocialChannel.World);
+            for(int i=1;i<=SocialState.HistoryLimit+5;i++)s.ApplyPushed(SocialChannel.World,World(9,"消息"+i,i));
+            Assert.That(s.Messages(SocialChannel.World).Count,Is.EqualTo(SocialState.HistoryLimit));
+            Assert.That(s.Messages(SocialChannel.World)[0].Text,Is.EqualTo("消息6"));
+            s.SelectPage(SocialPage.Groups);
+            s.ApplyHistory(SocialChannel.World,new[]{World(9,"更早的历史",0)});
+            Assert.That(s.Unread(SocialChannel.World),Is.Zero,"落在窗口之外的旧消息不算未读");
+        }
+        private static ChatMessage World(ulong sender,string text,long timeMs)=>new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=sender,Content=text,SendTimeMs=timeMs};
         [Test] public void SessionResetClearsEveryDraftMessageGroupAndRumor()
         {var s=new SocialState(true);s.SetDraft(SocialChannel.Team,"旧草稿");s.Reset(99);Assert.That(s.PlayerId,Is.EqualTo(99));Assert.That(s.Groups,Is.Empty);Assert.That(s.Rumors,Is.Empty);foreach(var c in SocialState.ChatChannels){Assert.That(s.Draft(c),Is.Empty);Assert.That(s.Messages(c),Is.Empty);}}
     }
@@ -82,6 +120,25 @@ namespace MmorpgClient.Tests.EditMode.Social
         {_net.IsReady=false;Assert.That(_client.Send(SocialChannel.World,"你好"),Is.False);Assert.That(_net.Calls,Is.Empty);}
         [Test]public void LiveClientRejectsPreviewState()
         {Assert.Throws<ArgumentException>(()=>new SocialClient(_net,new SocialState(true)));}
+        [Test]public void WorldPushAppearsWithoutAnyRequestAndDedupesWithHistory()
+        {
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=44,Content="推送",SendTimeMs=1000});
+            Assert.That(_state.Messages(SocialChannel.World).Single().Text,Is.EqualTo("推送"));
+            Assert.That(_net.Calls,Is.Empty,"推送不触发拉历史");
+            _client.Refresh(SocialChannel.World);_net.Calls[0].Success(History("推送"));
+            Assert.That(_state.Messages(SocialChannel.World).Count,Is.EqualTo(1));
+        }
+        [Test]public void PushIsIgnoredAfterDisposeOrWhileNotReadyAndMalformedPushIsDropped()
+        {
+            var message=new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=44,Content="推送",SendTimeMs=1000};
+            _net.IsReady=false;_net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,message);
+            Assert.That(_state.Messages(SocialChannel.World),Is.Empty);
+            _net.IsReady=true;
+            Assert.DoesNotThrow(()=>_net.Notifies[ClientPlayerChatRpc.NotifyWorldChatMessageId](new MessageContent{MessageId=ClientPlayerChatRpc.NotifyWorldChatMessageId,SerializedMessage=ByteString.CopyFrom(0xFF,0xFF,0xFF)}));
+            Assert.That(_state.Messages(SocialChannel.World),Is.Empty);
+            _client.Dispose();_net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,message);
+            Assert.That(_state.Messages(SocialChannel.World),Is.Empty);
+        }
         private static PullChatHistoryResponse History(string text){var response=new PullChatHistoryResponse();response.Messages.Add(new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=44,Content=text,SendTimeMs=1000});return response;}
     }
     public sealed class SocialUiRootLifecycleTests
@@ -136,7 +193,9 @@ namespace MmorpgClient.Tests.EditMode.Social
         internal sealed class CallRecord {public uint Id;public IMessage Request;public Action<IMessage> Success;public Action<string> Error;}
         public readonly List<CallRecord> Calls=new();public ulong PlayerId{get;set;}=11;public bool IsReady{get;set;}=true;public event Action Disconnected;
         public void Disconnect(){IsReady=false;Disconnected?.Invoke();}
-        public void RegisterNotify(uint id,Action<MessageContent> handler){}
+        public readonly Dictionary<uint,Action<MessageContent>> Notifies=new();
+        public void RegisterNotify(uint id,Action<MessageContent> handler)=>Notifies[id]=handler;
+        public void Push(uint id,IMessage message)=>Notifies[id](new MessageContent{MessageId=id,SerializedMessage=message.ToByteString()});
         public void SendOneWay(uint id,IMessage request)=>throw new InvalidOperationException("Social must use acknowledged RPCs.");
         public void Call<T>(uint id,IMessage request,MessageParser<T> parser,Action<T> success,Action<string> error)where T:IMessage<T>
         {Calls.Add(new CallRecord{Id=id,Request=request,Success=response=>success((T)response),Error=error});}

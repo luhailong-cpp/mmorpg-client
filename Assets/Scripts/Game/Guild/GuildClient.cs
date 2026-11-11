@@ -86,10 +86,11 @@ namespace MmorpgClient.Game.Guild
         // 作废确认的最短间隔(负责人 2026-11-10 定,05-economy.md §5.44.2 末段):损坏或超窗警告写出满这么久之后的点击才算确认。
         // 第一次点击只写警告、不进 Busy,按钮一直可点;不设间隔的话连点两下,第二下会在玩家读到警告之前就作废记录。
         public const long EconomyRetireConfirmDelayMs = 1000;
-        // 「恢复原请求」的结论:作废损坏记录、不在帮时作废超窗记录,以及预读之后的每个结局(回放结果、拒绝原因、待重试提示、超窗警告)。
+        // 「恢复原请求」在帮时的结论:作废损坏记录,以及预读之后的每个结局(回放结果、拒绝原因、待重试提示、超窗警告)。
         // 这些时候经济 / 活动快照可能刚被清空(作废、重连后首次读到帮会、换帮),窗口停在那一页会当场自动补拉。
-        // 紧随其后的第一次无文案读取(本人申请列表、捐献页、商店页、活动页)发出时状态栏仍停在这句上、在途期间也没有推送改写状态栏,
+        // 紧随其后的第一次无文案读取(捐献页、商店页、活动页)发出时状态栏仍停在这句上、在途期间也没有推送改写状态栏,
         // 回包后就沿用它一次(TakeRecoveryNotice / KeptRecoveryNotice)。带文案的本页重拉不取它,留给之后对另一页的补拉。
+        // 不在帮时只会接着拉本人申请列表,那一发本来就把读取前的文案放回去(见 LoadMyApplications),不用登记。
         private string _economyRecoveryNotice;
         public bool HasPendingEconomyWrite => PlayerId != 0 && _economyRecovery != null
             && !string.IsNullOrEmpty(_economyRecovery.Load(PlayerId));
@@ -101,6 +102,8 @@ namespace MmorpgClient.Game.Guild
         public bool Busy { get; private set; }
         public bool RequiresReconnect { get; private set; }
         public const string RecoveryMessage = "帮会请求状态尚未确认，请重新登录角色后再试。";
+        /// <summary>请求确定没有执行(见 DefinitelyNotExecuted):只提示重试,不锁面板。</summary>
+        public const string NotExecutedMessage = "本次帮会请求未被受理，也未执行，请稍后重试。";
         private const string LoadingMessage = "正在读取帮会，请稍候…";
         // 与服务端 go/guild/internal/constants 同值；服务端仍会自行校验。
         public const int MaxNameLength = 24;
@@ -373,7 +376,7 @@ namespace MmorpgClient.Game.Guild
 
         public void Reset()
         {
-            // 零编号 gRPC 回包无法相关到已取消请求；同连接不得重用其槽位。
+            // 在途请求随代次作废,它的结局再也无从得知(写请求可能已执行):按「结果未知」锁到换连接,同 Request 的失败分支。
             if (Busy) RequiresReconnect = true;
             ++_generation;
             Info = null; Rank = null; HasLoaded = false; Busy = false;
@@ -562,7 +565,6 @@ namespace MmorpgClient.Game.Guild
                         ApplyNotInGuild();
                         // 已不在帮会:优先说"被请离 / 已解散"(B2 的 _pendingNotice);"花灯已点亮"之类此时已无意义,丢弃。
                         Status = _pendingNotice ?? recoveryNotice ?? "尚未加入帮会，和同道相聚于此。"; _pendingNotice = null;
-                        if (keepStatus != null) _economyRecoveryNotice = Status == keepStatus ? keepStatus : null;
                         // "不在帮"也是一份落定的帮会状态,落地恢复照样确认。
                         CompleteSyncRead();
                         return;
@@ -596,26 +598,30 @@ namespace MmorpgClient.Game.Guild
                 });
         }
 
-        /// <summary>本人的待审入帮申请;未入帮时才有意义。</summary>
+        /// <summary>
+        /// 本人的待审入帮申请;未入帮时才有意义。回包只换列表、不写文案:Request 发出时会把状态栏写成「正在读取」,
+        /// 回包时若在途期间没有别的文案改写它,就放回读取前的那句。排队补拉与落地恢复发出的这一发没有调用方替它写文案,
+        /// 未入帮提示、被请离 / 解散通知、申请未获通过的推送、恢复结论都靠这一条留在状态栏;
+        /// 提交 / 撤回申请在发出本读取之后再写自己的结果,在途期间状态栏已不是「正在读取」,回包不会盖掉它。
+        /// </summary>
         public void LoadMyApplications()
         {
             if (!HasLoaded || Info != null) { Reject("请先读取帮会状态，已入帮时没有待审申请。"); return; }
-            string recoveryNotice = TakeRecoveryNotice();
+            string statusBefore = Status;
             Request(MessageIds.ListMyGuildApplications, new ListMyGuildApplicationsRequest(),
                 ListMyGuildApplicationsResponse.Parser, response =>
                 {
-                    string kept = KeptRecoveryNotice(recoveryNotice);
                     if (!AcceptWrite(response.ErrorMessage)) return;
                     // RepeatedField 与响应对象同生命周期,拷一份快照,避免界面持有回包内部集合。
                     MyApplications = new List<GuildApplicationView>(response.Applications);
                     CompleteSyncRead();
-                    if (kept != null) Status = kept;
+                    if (Status == LoadingMessage) Status = statusBefore;
                 }, GuildSyncRead.MyApplications);
         }
 
         /// <summary>
-        /// 无文案读取发出前调用:状态栏仍停在恢复结论上就取出它交给这次回包(见 _economyRecoveryNotice),
-        /// 否则结论作废。只取这一次:这次读取没发出去或失败,结论也不再恢复。
+        /// 捐献页、商店页、活动页的无文案读取发出前调用:状态栏仍停在恢复结论上就取出它交给这次回包
+        /// (见 _economyRecoveryNotice),否则结论作废。只取这一次:这次读取没发出去或失败,结论也不再恢复。
         /// </summary>
         private string TakeRecoveryNotice()
         {
@@ -1139,7 +1145,7 @@ namespace MmorpgClient.Game.Guild
             catch (InvalidOperationException) { Reject(EconomyRecordChangedText); return; }
             catch (Exception) { Reject("本机待确认记录未能作废，请检查本机存储后重试。"); return; }
             const string retired = "已作废超期的待确认记录，原请求未重发；之后的捐献或兑换按新请求处理。";
-            if (Info == null) { _economyRecoveryNotice = retired; Reject(retired); }
+            if (Info == null) Reject(retired);
             else if (method == MessageIds.DonateToGuild) RefreshDonations(retired);
             else RefreshShop(retired);
         }
@@ -1154,7 +1160,7 @@ namespace MmorpgClient.Game.Guild
         /// 恢复时预读的 GetPlayerGuild 说本人已不在发起时的帮会(不在任何帮,或已在别的帮):这份回包讲的是原帮会那一笔,
         /// 记录已由 ConfirmEconomyReply 作废,这里只写结论 —— 不拿它改现帮会的快照,也不重拉本页(本页属于现帮会,或根本没有);
         /// 也不排 Refresh:预读刚落定,那一发只会把结论盖成"尚未加入帮会 / 帮会信息已更新"。
-        /// 结论登记成恢复结论:不在帮时随后排的本人申请列表读取,或换帮后窗口停在本页的自动补拉,都沿用它一次。
+        /// 结论登记成恢复结论:换帮后窗口停在本页的自动补拉沿用它一次;不在帮时随后排的本人申请列表读取本来就放回读取前的文案。
         /// resultText 非空 = 服务端按 client_request_id 回放了原订单视图(首发其实已提交)。
         /// 发起时的帮会就是当前帮会(平常的捐献 / 兑换都是)时返回 false,走原流程。
         /// </summary>
@@ -1182,6 +1188,9 @@ namespace MmorpgClient.Game.Guild
                 return false;
             }
             try { _economyRecovery.Clear(PlayerId, saved); }
+            // 回包到达前,另一个守 .lock 协议的进程已把槽位换成别的记录(多半已确认过这一单、又发了新请求):这份回包管不到它。
+            // 不能说成本机故障叫玩家「恢复查账」—— 那一击恢复的是换进来的新请求。同作废确认里的替换,只提示变化。
+            catch (InvalidOperationException) { Reject(EconomyRecordChangedText); return false; }
             catch (Exception) { Reject("服务端已回复，本机原记录尚未清理；请保留记录并恢复查账。"); return false; }
             return true;
         }
@@ -1984,11 +1993,52 @@ namespace MmorpgClient.Game.Guild
             {
                 if (!Current(generation, player)) return;
                 Busy = false;
-                // GameClient 的 gRPC FIFO 无法区分超时旧响应，必须等真实断线后再发帮会请求。
-                RequiresReconnect = true;
-                Status = RecoveryMessage;
+                if (DefinitelyNotExecuted(error))
+                {
+                    // 服务端没有任何副作用,重试不会重复操作:只解除 Busy。排队位与落地恢复脏标不放回(同带错误码的回包),
+                    // 由玩家刷新或下次落地再拉,免得被限流时每帧重发。捐献 / 兑换的本机记录留着,
+                    // 重试走「恢复原请求」、沿用原 client_request_id。
+                    Status = NotExecutedMessage;
+                }
+                else
+                {
+                    // 结果未知:写请求可能已在服务端生效。回包已按请求号认领、不会串包,锁的是「结果未知时重复发写」:
+                    // 换连接后先读权威状态再操作,捐献 / 兑换按原 client_request_id 恢复。
+                    RequiresReconnect = true;
+                    Status = RecoveryMessage;
+                }
                 Changed?.Invoke();
             });
+        }
+
+        // GameClient.Call 经 RpcStatus.ToLegacyError 交来的错误串:信封错误是 "server tip=N",本地没发出(NotSent)只交出细节原文。
+        // 后三条与 GameClient.CallMethod 的 NotSent 细节逐字一致,两边改动必须同步;对不上时落到「结果未知」,只会多锁一次,不会误放行。
+        private const string ServerTipPrefix = "server tip=";
+        private const string NotConnectedError = "not connected";
+        private const string GateRedirectedError = "gate redirected";
+        private const string SendFailedPrefix = "send failed: ";
+
+        /// <summary>
+        /// 这次失败是否确定没有执行(服务端仓 docs/design/client-request-ordering.md §4.4、§4.7;router forwardlogic 转发前的拒绝):
+        /// - 本地没发出(RpcStatusCode.NotSent):未连接、已收到 msg 124 的旧 gate、发送前抛异常。
+        /// - gate / 路由服在转发前回的信封:1008 lane 满或限流、1010 包体超限、1006 GM 闸、
+        ///   1005 路由服转发前的拒绝(消息号不在路由表等;帮会业务自己的 1005 在回包体里,走成功回调,不经这里)、
+        ///   2028 发出前未登录或入队身份失配。
+        /// 1003 不算:排队超时、无路由服、重定向时回的 1003 确定未执行,可下游 gRPC 失败、本地截止回的也是 1003,
+        /// 客户端分不出,按结果未知处理(保守:最多多锁一次面板,不会在结果未知时重发写请求)。
+        /// 超时、断线、回包解析失败、不认识的串同样按结果未知。
+        /// </summary>
+        private static bool DefinitelyNotExecuted(string error)
+        {
+            if (string.IsNullOrEmpty(error)) return false;
+            if (!error.StartsWith(ServerTipPrefix, StringComparison.Ordinal))
+                return error == NotConnectedError || error == GateRedirectedError
+                    || error.StartsWith(SendFailedPrefix, StringComparison.Ordinal);
+            if (!uint.TryParse(error.Substring(ServerTipPrefix.Length), NumberStyles.None, CultureInfo.InvariantCulture, out uint tip))
+                return false;
+            return tip == (uint)common_error.KRateLimitExceeded || tip == (uint)common_error.KMessageSizeExceeded
+                || tip == (uint)common_error.KFeatureUnavailable || tip == (uint)common_error.KInvalidParameter
+                || tip == (uint)login_error.KLoginSessionNotFound;
         }
         private bool Current(int generation, ulong player) =>
             !_disposed && generation == _generation && _net.IsReady && PlayerId == player

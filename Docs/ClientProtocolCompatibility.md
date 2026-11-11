@@ -89,3 +89,5 @@ pwsh -File .codex-artifacts/heartbeat-20261106/compile-current-recovery.ps1 -Pro
 - 不等回包就连发的依赖请求只有两类：匹配排队的 JoinQueue → CancelQueue，以及跨功能的 CancelQueue 与 StartTeamMatch / RespondGuildTrialInvite。两类都由 gate 路由 lane 按收包顺序执行。客户端只在功能内单飞，不做全局串行。
 
 改动文件：`Assets/Scripts/Game/GameClient.cs`、`Assets/Scripts/Net/RpcStatus.cs`（注释）、`Assets/Scripts/Game/Battle/DirectRoutingBattleTransport.cs`（注释），以及新测试 `Assets/Tests/EditMode/Net/GameClientGateEnvelopeTests.cs`（含 `.meta`，5 例，真实回环 TCP）。尚未编译，也没有在 Unity 里运行。验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-11「客户端请求保序:客户端配合」条。
+
+帮会补充（同日）：`GuildClient` 不再对任何失败都隔离面板——确定未执行的失败（本地 `NotSent`，gate / 路由服转发前的 1008、1010、1006、1005、2028 信封）只解除忙碌、提示重试；1003、超时、解析失败等结果未知的失败仍隔离到换连接，捐献 / 兑换两类都保留本机记录、只能按原 client_request_id 恢复（测试 `Assets/Tests/EditMode/Guild/GuildRequestFailureTests.cs`，未编译、未运行，验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-11「帮会请求失败分类」条）。

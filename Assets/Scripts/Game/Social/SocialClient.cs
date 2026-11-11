@@ -6,7 +6,10 @@ using MmorpgClient.Net.Generated;
 
 namespace MmorpgClient.Game.Social
 {
-    /// <summary>Live text chat only. No invented group service, push event, profile metadata or rumor schema.</summary>
+    /// <summary>
+    /// Live text chat only. No invented group service, profile metadata or rumor schema.
+    /// 世界频道的新消息靠服务端推送 NotifyWorldChat(至多一次);打开面板、切换频道、点刷新和发送成功后拉一次历史补齐,不定时轮询。
+    /// </summary>
     public sealed class SocialClient : IDisposable
     {
         public const string RecoveryMessage="聊天请求状态尚未确认，请重新登录角色后再试。";
@@ -19,6 +22,17 @@ namespace MmorpgClient.Game.Social
             _net=net??throw new ArgumentNullException(nameof(net));_state=state??throw new ArgumentNullException(nameof(state));
             if(state.IsPreview)throw new ArgumentException("Live transport cannot bind to preview state.");
             _identity=connectionIdentity??(()=>net);_observed=_identity();_net.Disconnected+=Disconnected;_state.Reset(net.PlayerId);Publish("请刷新聊天频道。");
+            // 同一消息号只保留最后注册的处理器:换角色或重连后新建的 SocialClient 会替换掉旧的;旧实例 Dispose 之后它的处理器直接返回。
+            _net.RegisterNotify(ClientPlayerChatRpc.NotifyWorldChatMessageId,WorldChatPushed);
+        }
+        // 世界频道推送(docs/design/chat-world-channel-fanout.md §4):只收当前已就绪的角色;解析失败整条丢弃,下次拉历史补上。
+        private void WorldChatPushed(MessageContent content)
+        {
+            if(_disposed||content==null||!_net.IsReady||_net.PlayerId==0)return;
+            ChatMessage message;
+            try{message=ChatMessage.Parser.ParseFrom(content.SerializedMessage);}
+            catch(InvalidProtocolBufferException){return;}
+            _state.ApplyPushed(SocialChannel.World,message);
         }
         public void ObserveConnection()
         {

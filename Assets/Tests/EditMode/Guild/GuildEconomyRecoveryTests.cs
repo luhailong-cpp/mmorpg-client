@@ -391,7 +391,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [TestCase(true, false)] [TestCase(true, true)] [TestCase(false, false)] [TestCase(false, true)]
-        public void QueuedApplicationsRefreshPreservesTheOldGuildConclusionOnce(bool donation, bool hasOrder)
+        public void QueuedApplicationsRefreshKeepsTheOldGuildConclusion(bool donation, bool hasOrder)
         {
             string conclusion = ConcludeRecoveryAfterLeaving(donation, hasOrder);
             _client.DrainQueued(false);
@@ -401,20 +401,25 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.MyApplications, Is.Not.Null);
             Assert.That(_client.MyApplicationsQueued, Is.False);
 
-            // 这次自动补拉消费了文案;以后玩家主动刷新不再恢复这笔旧请求的结论。
+            // 列表读取只换数据不换文案:玩家之后的操作改写了文案,再拉列表就保留新文案,不会翻出旧结论,也不停在「正在读取」。
+            _client.Browse(); _net.Reply(new GetGuildRankResponse());
+            string browsed = _client.Status;
+            Assert.That(browsed, Is.Not.EqualTo(conclusion));
             _client.LoadMyApplications();
             _net.Reply(new ListMyGuildApplicationsResponse());
-            Assert.That(_client.Status, Is.Not.EqualTo(conclusion));
+            Assert.That(_client.Status, Is.EqualTo(browsed));
         }
 
         [Test] public void AnotherUserActionBeforeApplicationsRefreshSupersedesTheRecoveryConclusion()
         {
             string conclusion = ConcludeRecoveryAfterLeaving(true, true);
             _client.RecoverEconomyRequest();
-            Assert.That(_client.Status, Does.Contain("没有待确认"));
+            string superseding = _client.Status;
+            Assert.That(superseding, Does.Contain("没有待确认"));
             _client.DrainQueued(false);
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListMyGuildApplications));
             _net.Reply(new ListMyGuildApplicationsResponse());
+            Assert.That(_client.Status, Is.EqualTo(superseding));
             Assert.That(_client.Status, Is.Not.EqualTo(conclusion));
         }
 
@@ -428,6 +433,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             _client.DrainQueued(false);
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListMyGuildApplications));
             _net.Reply(new ListMyGuildApplicationsResponse());
+            Assert.That(_client.Status, Is.EqualTo("尚未加入帮会，和同道相聚于此。"));
             Assert.That(_client.Status, Is.Not.EqualTo(conclusion));
         }
 
@@ -446,12 +452,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             _client.Donate(2); var oldReply = _net.Pending;
             string original = _files.Load(1), replacement = original + "newer";
-            // 模拟其它进程已确认旧单并占用新请求槽；旧回包的CAS必须拒绝。
+            // 模拟其它进程已确认旧单并占用新请求槽；旧回包的CAS必须拒绝，且只提示记录已变化，
+            // 不能说成本机故障叫玩家「恢复查账」(那一击恢复的是换进来的新请求)。
             _files.Clear(1, original); _files.Save(1, replacement);
             oldReply(new DonateToGuildResponse { Donation = new GuildDonationView
                 { OpId = 9, DonateId = 2, Status = GuildAssetOrderStatus.Applied } });
             Assert.That(_files.Load(1), Is.EqualTo(replacement));
-            Assert.That(_client.Status, Does.Contain("尚未清理"));
+            Assert.That(_client.Status, Does.Contain("已变化").And.Not.Contain("尚未清理"));
         }
 
         [Test] public void OriginAndPlayerAreSeparateRecoveryNamespaces()
@@ -666,8 +673,11 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.ListMyGuildApplications));
             _net.Reply(new ListMyGuildApplicationsResponse());
             Assert.That(_client.Status, Is.EqualTo(conclusion));
+            // 之后的操作改写了文案,列表重拉就保留新文案,不会把旧结论翻出来。
+            _client.Browse(); _net.Reply(new GetGuildRankResponse());
+            string browsed = _client.Status;
             _client.LoadMyApplications(); _net.Reply(new ListMyGuildApplicationsResponse());
-            Assert.That(_client.Status, Is.Not.EqualTo(conclusion));
+            Assert.That(_client.Status, Is.EqualTo(browsed).And.Not.EqualTo(conclusion));
         }
 
         [Test] public void AnApplicationPushDuringRefreshSupersedesTheCorruptRetirementConclusion()
