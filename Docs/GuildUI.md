@@ -292,3 +292,11 @@ $env:MMORPG_GUILD_SMOKE_OUTPUT = Join-Path $liveRun 'evidence'
 **测试**：`GuildClientTests.QueuedMyApplicationsReadKeepsTheTextShownBeforeIt` 新增。恢复测试里四条随行为改了断言，其中原 `QueuedApplicationsRefreshPreservesTheOldGuildConclusionOnce` 改名为 `QueuedApplicationsRefreshKeepsTheOldGuildConclusion`；`LateProcessCannotClearAReplacementRecord` 改断言为「已变化」。
 
 **验证状态**：未编译、未运行，与上一节同一轮交 Codex。
+
+## 2026-11-11：Codex 合并复验与同步通知时序修复
+
+完整帮会与网络 EditMode **437/437**（帮会 323、网络 114），零失败、零跳过、Unity 退出 0。交接及补充回归按名核对 27 条全部通过，另一路请求失败分类 20 条全部通过；690 份源码和程序集配置摘要前后一致。运行时离线编译 451 份文件、0 错误。
+
+复验又修正一处真实时序：超窗警告或空回包后的恢复提示通过 `Reject` 同步通知窗口时，窗口已开始补拉，发送方法却在通知返回后才登记文案。现在先登记再通知，捐献与兑换对齐，一秒确认仍从原警告写出时起算。四条窗口回归在旧实现全部失败，修复后通过，原记录和写请求次数也有断言。
+
+正式绑定已补齐第 4 批及并行排行榜 / 登录所需类型，没有手改生成代码。源码摘要与测试证据存于服务端 `build/verification/guild-recovery-notice-20261110/`，详见交接 §8.6。全新账号联网复验 **1/1**、零失败、零跳过、退出 0，690 份源码配置摘要前后一致；两次损坏作废、一次捐献、一次兑换的真实资产断言通过，专用帮会已解散。使用冻结 Go / scene / battle / guild 与现存 gate 组成的隔离参考后端，不代表当前全部服务端改动。首轮账号预检曾发生单次 5 秒传输超时，原因未确证，补充业务就绪检查后以新账号、新目录复验通过，两轮证据均保留。未做播放器打包或界面像素验收。
