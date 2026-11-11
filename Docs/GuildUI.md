@@ -203,7 +203,7 @@
 
 ## 2026-11-06：损坏记录作废后的真实联网验收
 
-**联网已通过；Claude Code 独立审核尚未发送，待继续。** Unity 6000.6.0f1 的独立 PlayMode 进程连接本机网关 `http://127.0.0.1:18105`、区服 1，经正式 `GameClient`、`GameClientBattleTransport`、Gate/Scene 和 Go 帮会服务完成本次验收：**1/1 通过，零失败、零跳过、退出 0**；运行前后源码清单比较为 `sourceChanges: []`。
+**联网已通过；2026-11-10 已完成 Claude Code 两路只读审核，结论见服务端交接 §8，第 1 条的修复见本文末节。** Unity 6000.6.0f1 的独立 PlayMode 进程连接本机网关 `http://127.0.0.1:18105`、区服 1，经正式 `GameClient`、`GameClientBattleTransport`、Gate/Scene 和 Go 帮会服务完成本次验收：**1/1 通过，零失败、零跳过、退出 0**；运行前后源码清单比较为 `sourceChanges: []`。
 
 用例为 [GuildEconomyNetworkSmokeTests.cs](../Assets/Tests/PlayMode/GuildNetwork/GuildEconomyNetworkSmokeTests.cs)，独立程序集为 [MmorpgClient.Tests.PlayMode.GuildNetwork.asmdef](../Assets/Tests/PlayMode/GuildNetwork/MmorpgClient.Tests.PlayMode.GuildNetwork.asmdef)，显式引用 `MmorpgClient` 和 `Google.Protobuf.dll`。仅在精确选中该 `[Explicit]` 用例并设置启用环境变量时运行；不修改共用 PlayMode 程序集或生产启动器。
 
@@ -245,4 +245,14 @@ $env:MMORPG_GUILD_SMOKE_OUTPUT = Join-Path $liveRun 'evidence'
 
 此前失败证据 `attempt-1` 至 `attempt-3` 全部保留：第一次在编译期发现共用 PlayMode 程序集缺少 Protobuf 引用，尚未执行测试；第二次 HTTP 账号预检成功后，由未知世界保护发现自动创建的正式 `AppBootstrap`，尚未建角；第三次已真实建角、建帮并读页，因夹具错误要求新角色货币槽非空而失败。对应修复依次为独立程序集、受控启动隔离，以及按 `econCurrency`/`EnsureCurrencySlots` 契约将尚未写入的银两槽读为零；`Currency` 快照非空、真实读取及后续资产断言仍保留。
 
-本轮覆盖客户端业务入口与真实本机 Go 帮会链路，未切换到 Java 帮会实现，未构建或运行独立播放器，也不构成界面截图、真实跨区或压测证据。Claude Code 独立审核在发送前被停止，目前未发送、未取得审核结论。
+本轮覆盖客户端业务入口与真实本机 Go 帮会链路，未切换到 Java 帮会实现，未构建或运行独立播放器，也不构成界面截图、真实跨区或压测证据。Claude Code 的独立审核已于 2026-11-10 完成，结论见服务端交接 §8；本节 `attempt-1`~`attempt-4` 等证据目录已随忽略目录 `Logs/` 丢失，只剩上文摘要。
+
+## 2026-11-10：恢复结论活过窗口的进页补拉
+
+**问题（审核第 1 条）**：恢复流程清空了当前页的快照后，窗口停在捐献 / 商店页（换帮时还有活动页）会在下一次重建末尾当场自动补拉本页；`Request` 先把状态栏写成「正在读取帮会，请稍候…」，回包再写成「捐献信息已更新」之类的默认文案。作废损坏记录、预读发现已在别的帮、重连后在原帮会重发被拒（最常见的恢复路径），这几种结论都会一帧不剩地被盖掉。原有用例只驱动 `GuildClient`、不挂窗口，所以没有发现。
+
+**改法**：只改 `GuildClient`。把「离帮后本人申请列表首读保留结论一次」推广成一条规则：作废损坏记录、不在帮时作废超窗记录，以及恢复预读之后的每个结局（回放结果、拒绝原因、待重试提示、超窗警告）都登记成恢复结论。紧随其后的第一次无文案读取（本人申请列表、捐献页、商店页、活动页）发出时状态栏仍停在这句上、在途期间也没有推送改写状态栏，回包后就沿用它一次。带文案的本页重拉不取它，留给之后对另一页的补拉；读取失败、其他操作改写文案或 Reset 后不再恢复。普通捐献 / 兑换不登记，行为不变；窗口、布局、协议与两版服务端均未改。
+
+**测试**：`GuildEconomyRecoveryTests` 新增 8 条。照 `GuildUiRoot` 接线、分别停在捐献页与商店页的窗口用例三组，每组两条：损坏记录作废、换帮后重发、重连后重发被拒。另有两条只驱动 `GuildClient`：换帮后活动页首次重拉沿用结论，以及补拉在途期间推送优先。
+
+**验证状态**：未编译、未运行，待 Codex 按服务端交接 §8.2 执行。

@@ -83,7 +83,10 @@ namespace MmorpgClient.Game.Guild
         private readonly Func<long> _economyUtcMs;
         // 服务端去重至少保留七天；留出一天余量，超窗不重发，只能核账后确认作废本机记录。
         public const long EconomyReplayWindowMs = 6L * 24 * 60 * 60 * 1000;
-        // 离帮恢复的结论可随紧接着的申请列表读取保留一次，防止自动刷新盖掉结果。
+        // 「恢复原请求」的结论:作废损坏记录、不在帮时作废超窗记录,以及预读之后的每个结局(回放结果、拒绝原因、待重试提示、超窗警告)。
+        // 这些时候经济 / 活动快照可能刚被清空(作废、重连后首次读到帮会、换帮),窗口停在那一页会当场自动补拉。
+        // 紧随其后的第一次无文案读取(本人申请列表、捐献页、商店页、活动页)发出时状态栏仍停在这句上、在途期间也没有推送改写状态栏,
+        // 回包后就沿用它一次(TakeRecoveryNotice / KeptRecoveryNotice)。带文案的本页重拉不取它,留给之后对另一页的补拉。
         private string _economyRecoveryNotice;
         public bool HasPendingEconomyWrite => PlayerId != 0 && _economyRecovery != null
             && !string.IsNullOrEmpty(_economyRecovery.Load(PlayerId));
@@ -565,6 +568,8 @@ namespace MmorpgClient.Game.Guild
                     // 快照落定后把写操作的提示放回状态栏(否则停在"帮会信息已更新");快照无效时保留 Apply 写的原因。
                     bool applied = Apply(response.Guild);
                     if (applied && (recoveryNotice ?? writeNotice) != null) Status = recoveryNotice ?? writeNotice;
+                    // 作废结论落定后,窗口停在捐献 / 商店页会当场补拉(作废清空了经济页快照):登记下来让那一发沿用。
+                    if (keepStatus != null) _economyRecoveryNotice = applied && Status == keepStatus ? keepStatus : null;
                     // 快照无效或里面没有本人时不确认:脏标留着,下次落地或开窗再拉。
                     if (applied) CompleteSyncRead();
                     // 帮会仍在,说明“被请离 / 已解散”的提示已经过时,别再落到 Status 上。
@@ -592,18 +597,32 @@ namespace MmorpgClient.Game.Guild
         public void LoadMyApplications()
         {
             if (!HasLoaded || Info != null) { Reject("请先读取帮会状态，已入帮时没有待审申请。"); return; }
-            string recoveryNotice = Status == _economyRecoveryNotice ? _economyRecoveryNotice : null;
-            _economyRecoveryNotice = null;
+            string recoveryNotice = TakeRecoveryNotice();
             Request(MessageIds.ListMyGuildApplications, new ListMyGuildApplicationsRequest(),
                 ListMyGuildApplicationsResponse.Parser, response =>
                 {
+                    string kept = KeptRecoveryNotice(recoveryNotice);
                     if (!AcceptWrite(response.ErrorMessage)) return;
                     // RepeatedField 与响应对象同生命周期,拷一份快照,避免界面持有回包内部集合。
                     MyApplications = new List<GuildApplicationView>(response.Applications);
                     CompleteSyncRead();
-                    if (recoveryNotice != null && Status == LoadingMessage) Status = recoveryNotice;
+                    if (kept != null) Status = kept;
                 }, GuildSyncRead.MyApplications);
         }
+
+        /// <summary>
+        /// 无文案读取发出前调用:状态栏仍停在恢复结论上就取出它交给这次回包(见 _economyRecoveryNotice),
+        /// 否则结论作废。只取这一次:这次读取没发出去或失败,结论也不再恢复。
+        /// </summary>
+        private string TakeRecoveryNotice()
+        {
+            string notice = Status == _economyRecoveryNotice ? _economyRecoveryNotice : null;
+            _economyRecoveryNotice = null;
+            return notice;
+        }
+
+        /// <summary>回包时决定是否沿用取出的恢复结论:在途期间推送改写过状态栏(已不是"正在读取")就让给新通知。</summary>
+        private string KeptRecoveryNotice(string taken) => taken != null && Status == LoadingMessage ? taken : null;
 
         /// <summary>本帮待审申请人列表;仅长老 / 帮主可拉。</summary>
         public void LoadApplications() => LoadApplications(keepStatus: false);
@@ -771,9 +790,12 @@ namespace MmorpgClient.Game.Guild
         private void RefreshDonations(string keepStatus)
         {
             if (Info == null) { Reject("请先加入帮会。"); return; }
+            // 无文案的这一发可能是恢复结论之后窗口的自动补拉(本页快照刚被清空):沿用那句结论一次。
+            string recoveryNotice = keepStatus == null ? TakeRecoveryNotice() : null;
             Request(MessageIds.GetGuildDonateOptions, new GetGuildDonateOptionsRequest(),
                 GetGuildDonateOptionsResponse.Parser, response =>
                 {
+                    string kept = keepStatus ?? KeptRecoveryNotice(recoveryNotice);
                     if (!AcceptWrite(response.ErrorMessage)) return;
                     // 上次还在结算、这次不在待结算列表里的 = 刚结算完;文案取最近结果里的那一条(可能已滑出 10 分钟窗口)。
                     string settled = null;
@@ -784,7 +806,7 @@ namespace MmorpgClient.Game.Guild
                     foreach (var pending in response.PendingDonations) _pendingDonationIds.Add(pending.OpId);
                     Donations = response; _donationsStale = false;
                     CompleteSyncRead();
-                    Status = keepStatus ?? settled ?? (response.PendingDonations.Count > 0
+                    Status = kept ?? settled ?? (response.PendingDonations.Count > 0
                         ? response.PendingDonations.Count + " 笔捐献结算中：" + DonationPendingReasonText(response.PendingDonations[0].ReasonTipId)
                         : "捐献信息已更新");
                     if (settled != null) AssetsChanged?.Invoke();
@@ -802,22 +824,27 @@ namespace MmorpgClient.Game.Guild
             if (SaveEconomyRequest(MessageIds.DonateToGuild, request, out string saved)) SendDonation(request, saved);
         }
 
-        private void SendDonation(DonateToGuildRequest request, string saved)
+        /// <param name="recovering">
+        /// 「恢复原请求」重发原字节:每个结局都登记成恢复结论(见 _economyRecoveryNotice)。预读可能刚因重连或换帮清空了两页快照,
+        /// 窗口停在本页会当场补拉,不登记的话结论还没显示就被那一发的默认文案盖掉。
+        /// </param>
+        private void SendDonation(DonateToGuildRequest request, string saved, bool recovering = false)
         {
-            if (!OwnsEconomyRequest(saved)) return;
+            if (!OwnsEconomyRequest(saved)) { if (recovering) _economyRecoveryNotice = Status; return; }
             Request(MessageIds.DonateToGuild, request,
                 DonateToGuildResponse.Parser, response =>
                 {
                     var view = response.Donation;
                     bool validView = view != null && view.OpId != 0 && view.DonateId == request.DonateId && ValidOrderStatus(view.Status);
-                    if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView)) return;
+                    if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView))
+                    { if (recovering) _economyRecoveryNotice = Status; return; }
                     if (ConcludedOutsideOriginalGuild(request.ExpectedGuildId, response.ErrorMessage,
                             validView ? DonationResultText(view) : null, validView && SettledWithAssets(view.Status))) return;
                     // 请求者仍在帮时服务端总带最新快照(含结算中):资金与帮贡以它为准。
                     if (IsValidGuild(response.Guild)) Apply(response.Guild);
                     if (!AcceptWrite(response.ErrorMessage))
                     {
-                        AfterEconomyReject(response.ErrorMessage, Donations != null, RefreshDonations);
+                        AfterEconomyReject(response.ErrorMessage, Donations != null, RefreshDonations, recovering);
                         return;
                     }
                     var donation = response.Donation;
@@ -841,6 +868,7 @@ namespace MmorpgClient.Game.Guild
                         text = DonationResultText(donation);
                         if (donation.Status == GuildAssetOrderStatus.AppliedPartial) AssetsChanged?.Invoke();
                     }
+                    if (recovering) _economyRecoveryNotice = text;
                     RefreshDonations(text);
                 });
         }
@@ -876,9 +904,12 @@ namespace MmorpgClient.Game.Guild
         private void RefreshShop(string keepStatus)
         {
             if (Info == null) { Reject("请先加入帮会。"); return; }
+            // 同 RefreshDonations:恢复结论之后的那一发自动补拉沿用结论一次。
+            string recoveryNotice = keepStatus == null ? TakeRecoveryNotice() : null;
             Request(MessageIds.GetGuildShop, new GetGuildShopRequest(),
                 GetGuildShopResponse.Parser, response =>
                 {
+                    string kept = keepStatus ?? KeptRecoveryNotice(recoveryNotice);
                     if (!AcceptWrite(response.ErrorMessage)) return;
                     string settled = null;
                     foreach (ulong opId in _pendingShopIds)
@@ -891,7 +922,7 @@ namespace MmorpgClient.Game.Guild
                     // 没有待发放时写最近一单的完整结果:商店页脚只有 800 宽,拒绝原因、部分发放只写得下结论
                     // (GuildWindow.ShopFooterResultText),全文靠这里。断线重连后 _pendingShopIds 已清空、
                     // settled 为空,进页自动拉取也要看得到上一单(05 §5.32 W14)。
-                    Status = keepStatus ?? settled ?? (response.PendingOrders.Count > 0
+                    Status = kept ?? settled ?? (response.PendingOrders.Count > 0
                         ? response.PendingOrders.Count + " 单待发放：" + AssetReasonText(response.PendingOrders[0].ReasonTipId)
                         : response.RecentOrders.Count > 0 ? "最近一单：" + ShopResultText(response.RecentOrders[0])
                         : "帮会商店已更新");
@@ -910,22 +941,24 @@ namespace MmorpgClient.Game.Guild
             if (SaveEconomyRequest(MessageIds.BuyGuildShopGoods, request, out string saved)) SendShopOrder(request, saved);
         }
 
-        private void SendShopOrder(BuyGuildShopGoodsRequest request, string saved)
+        /// <param name="recovering">同 SendDonation。</param>
+        private void SendShopOrder(BuyGuildShopGoodsRequest request, string saved, bool recovering = false)
         {
-            if (!OwnsEconomyRequest(saved)) return;
+            if (!OwnsEconomyRequest(saved)) { if (recovering) _economyRecoveryNotice = Status; return; }
             Request(MessageIds.BuyGuildShopGoods, request,
                 BuyGuildShopGoodsResponse.Parser, response =>
                 {
                     var view = response.Order;
                     bool validView = view != null && view.OpId != 0 && view.GoodsId == request.GoodsId
                         && view.Count == request.Count && ValidOrderStatus(view.Status);
-                    if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView)) return;
+                    if (!ConfirmEconomyReply(saved, response.ErrorMessage, validView))
+                    { if (recovering) _economyRecoveryNotice = Status; return; }
                     // 先于下面的帮贡就地更新:回放的余额属于原帮会(Java 版回放填 0),不能写进现帮会的成员快照。
                     if (ConcludedOutsideOriginalGuild(request.ExpectedGuildId, response.ErrorMessage,
                             validView ? ShopResultText(view) : null, validView && SettledWithAssets(view.Status))) return;
                     if (!AcceptWrite(response.ErrorMessage))
                     {
-                        AfterEconomyReject(response.ErrorMessage, Shop != null, RefreshShop);
+                        AfterEconomyReject(response.ErrorMessage, Shop != null, RefreshShop, recovering);
                         return;
                     }
                     var order = response.Order;
@@ -953,6 +986,7 @@ namespace MmorpgClient.Game.Guild
                         text = ShopResultText(order);
                         if (order.Status == GuildAssetOrderStatus.AppliedPartial) AssetsChanged?.Invoke();
                     }
+                    if (recovering) _economyRecoveryNotice = text;
                     RefreshShop(text);
                 });
         }
@@ -1049,7 +1083,7 @@ namespace MmorpgClient.Game.Guild
             _corruptEconomyRecord = null;
             try { _economyRecovery.ClearSnapshot(PlayerId, snapshot); }
             catch (Exception) { Reject("本机待确认记录未能作废，请检查本机存储后重新确认；原请求未重发。"); return; }
-            // 损坏头没有可信的原方法，只读刷新帮会；旧经济页留待正常进页时重新读取。
+            // 损坏头没有可信的原方法，只读刷新帮会；旧经济页留给窗口进页时重新读取(停在本页时当场补拉,那一发沿用作废结论)。
             ClearEconomy();
             _economyRecoveryNotice = null;
             Refresh("已作废损坏的待确认记录，原请求未重发；不能据此判断是否到账。之后的捐献或兑换按新请求处理。");
@@ -1094,6 +1128,7 @@ namespace MmorpgClient.Game.Guild
         /// 恢复时预读的 GetPlayerGuild 说本人已不在发起时的帮会(不在任何帮,或已在别的帮):这份回包讲的是原帮会那一笔,
         /// 记录已由 ConfirmEconomyReply 作废,这里只写结论 —— 不拿它改现帮会的快照,也不重拉本页(本页属于现帮会,或根本没有);
         /// 也不排 Refresh:预读刚落定,那一发只会把结论盖成"尚未加入帮会 / 帮会信息已更新"。
+        /// 结论登记成恢复结论:不在帮时随后排的本人申请列表读取,或换帮后窗口停在本页的自动补拉,都沿用它一次。
         /// resultText 非空 = 服务端按 client_request_id 回放了原订单视图(首发其实已提交)。
         /// 发起时的帮会就是当前帮会(平常的捐献 / 兑换都是)时返回 false,走原流程。
         /// </summary>
@@ -1103,7 +1138,7 @@ namespace MmorpgClient.Game.Guild
             if (resultText != null) Status = resultText + "（原帮会）";
             else if (IsTip(tip, guild_error.KGuildNotInGuild)) Status = EconomyLeftGuildText;
             else if (!Accept(tip) && IsTip(tip, common_error.KInvalidParameter)) Status = EconomyKeyConflictText;
-            if (Info == null) _economyRecoveryNotice = Status;
+            _economyRecoveryNotice = Status;
             if (assetsChanged) AssetsChanged?.Invoke();
             return true;
         }
@@ -1134,11 +1169,13 @@ namespace MmorpgClient.Game.Guild
         /// - 未决指令过多 / 资产通道关闭(KGuildAssetPending):待结算列表多半已经过时。
         /// - 1005(kInvalidParameter):服务端说这个键已绑定另一笔请求(客户端复用了键),或去重记录指向的指令已清理
         ///   (05-economy.md 顶部「客户端幂等键」)。它是业务拒绝而非故障,原键不再重发;刷新后由玩家重新操作,那是新意图、新键。
+        /// recovering:恢复重发被拒时这句就是恢复结论,先登记再重拉(带文案的这一发不取它,留给之后对另一页的补拉)。
         /// </summary>
-        private void AfterEconomyReject(TipInfoMessage tip, bool pageLoaded, Action<string> reloadKeepingStatus)
+        private void AfterEconomyReject(TipInfoMessage tip, bool pageLoaded, Action<string> reloadKeepingStatus, bool recovering)
         {
             bool keyConflict = IsTip(tip, common_error.KInvalidParameter);
             if (keyConflict) Status = EconomyKeyConflictText;
+            if (recovering) _economyRecoveryNotice = Status;
             if (pageLoaded && (keyConflict || IsTip(tip, guild_error.KGuildAssetPending))) reloadKeepingStatus(Status);
         }
 
@@ -1229,8 +1266,8 @@ namespace MmorpgClient.Game.Guild
                         if (!AcceptWrite(response.ErrorMessage)) return;
                         if (!IsValidGuild(response.Guild) || !Apply(response.Guild)) return;
                     }
-                    if (method == MessageIds.DonateToGuild) SendDonation((DonateToGuildRequest)request, saved);
-                    else SendShopOrder((BuyGuildShopGoodsRequest)request, saved);
+                    if (method == MessageIds.DonateToGuild) SendDonation((DonateToGuildRequest)request, saved, recovering: true);
+                    else SendShopOrder((BuyGuildShopGoodsRequest)request, saved, recovering: true);
                 });
         }
 
@@ -1279,6 +1316,8 @@ namespace MmorpgClient.Game.Guild
             // 那一次留给它后面紧跟着的排队重拉(带文案的那一发还在路上时来了推送)。
             bool carried = keepStatus == null && _activityResult != null && Status == _activityResult;
             if (carried) keepStatus = _activityResult;
+            // 恢复结论之后的那一发(预读换帮清空了活动快照,窗口停在活动页排的重拉)同样沿用结论一次,见 _economyRecoveryNotice。
+            string recoveryNotice = keepStatus == null ? TakeRecoveryNotice() : null;
             // 同 Refresh:被 Busy / 隔离 / 未就绪挡掉时代次不变,把排队标志放回去,下一帧再发。
             int before = _generation;
             bool queued = ActivitiesQueued;
@@ -1286,6 +1325,7 @@ namespace MmorpgClient.Game.Guild
             Request(MessageIds.GetGuildActivities, new GetGuildActivitiesRequest(),
                 GetGuildActivitiesResponse.Parser, response =>
                 {
+                    string kept = keepStatus ?? KeptRecoveryNotice(recoveryNotice);
                     if (!AcceptWrite(response.ErrorMessage)) return;
                     Activities = response; _activitiesStale = false;
                     CompleteSyncRead();
@@ -1295,7 +1335,7 @@ namespace MmorpgClient.Game.Guild
                         if (AnchorActivityClock(response.Activities[i])) break; // 同一次回包里各视图的 server_time_ms 相同
                     // 有在途的历练时默认文案就写它的状态(谁邀请、几人已同意、为什么解散):这类变化都是别人的操作经推送触发的重拉
                     // 带回来的,状态栏是唯一写得下完整原因(带人名)的地方,卡片上只有一行短结论(GuildWindow.TrialLine)。
-                    Status = keepStatus ?? TrialStatusText(FindTrial()) ?? "帮会活动已更新";
+                    Status = kept ?? TrialStatusText(FindTrial()) ?? "帮会活动已更新";
                 }, GuildSyncRead.Activities);
             if (_generation == before) ActivitiesQueued = queued;
             else if (carried) _activityResult = null; // 真发出去了才算用掉这一次

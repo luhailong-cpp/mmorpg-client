@@ -114,6 +114,42 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.Status, Does.Contain("原请求未重发"));
             Assert.That(_client.Status, Does.Contain("不能据此判断是否到账"));
         }
+        // 照 GuildUiRoot 接线:窗口的恢复与本页读取事件进客户端,客户端的 Changed 重建窗口。窗口停在捐献 / 商店页时,
+        // 本页快照一清空,下一次重建末尾就当场自动补拉(GuildWindow.MaybeAutoRequest)。body 拿到的是点「刷新 / 恢复原请求」键。
+        private void WithWiredWindow(GuildPage page, Action<Action> body)
+        {
+            var root = new GameObject("GuildRecoveryNoticeWindow", typeof(RectTransform));
+            GuildWindow window = null;
+            try
+            {
+                var design = QdaoUguiFactory.CreateCenteredRect("Design", root.transform, 2560, 1080);
+                window = new GuildWindow(design);
+                var wired = window;
+                window.EconomyRecoveryRequested += _client.RecoverEconomyRequest;
+                window.DonationsRequested += _client.RefreshDonations;
+                window.ShopRequested += _client.RefreshShop;
+                _client.Changed += () => wired.SetClient(_client);
+                window.SetClient(_client); window.Show(page);
+                var refresh = root.GetComponentsInChildren<Button>(true).Single(value => value.name == "RefreshGuild");
+                body(refresh.onClick.Invoke);
+            }
+            finally { window?.Hide(); UnityEngine.Object.DestroyImmediate(root); }
+        }
+        private void ReplyEconomyPage(bool donation)
+        {
+            Assert.That(_net.Calls.Last(), Is.EqualTo(donation ? MessageIds.GetGuildDonateOptions : MessageIds.GetGuildShop));
+            if (donation) _net.Reply(GuildClientTests.DonateFixture());
+            else _net.Reply(GuildClientTests.ShopFixture(440));
+        }
+        // 预读发现已在别的帮(556):原帮会那一笔回 14002,记录作废,结论写进状态栏。
+        private string ConcludeReplayInAnotherGuild()
+        {
+            Send(true); ReplyWithoutOrder(true);
+            _client.RecoverEconomyRequest(); ConfirmRecoveryGuild(556);
+            _net.Reply(new DonateToGuildResponse { ErrorMessage = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild } });
+            Assert.That(_client.Status, Does.Contain("已不在原帮会"));
+            return _client.Status;
+        }
 
         [TestCase(true)] [TestCase(false)]
         public void SavesExactNonzeroRequestBeforeNetworkSend(bool donation)
@@ -868,6 +904,91 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
             }
             finally { window?.Hide(); UnityEngine.Object.DestroyImmediate(root); }
+        }
+
+        // 停在捐献 / 商店页作废损坏记录:作废清空了经济页快照,刷新回包后窗口当场补拉本页。作废结论要活过这一发,且只活这一次。
+        [TestCase(true)] [TestCase(false)]
+        public void CorruptRetirementConclusionSurvivesTheVisiblePageReload(bool donatePage)
+        {
+            WithWiredWindow(donatePage ? GuildPage.Donate : GuildPage.Shop, clickRefresh =>
+            {
+                ReplyEconomyPage(donatePage);
+                string path = SeedRawRecoveryFile(new byte[0]);
+                clickRefresh();
+                Assert.That(_client.Status, Does.Contain("再点一次"));
+                clickRefresh();
+                Assert.That(File.Exists(path), Is.False);
+                Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetPlayerGuild));
+                _net.Reply(new GetPlayerGuildResponse { Guild = GuildClientTests.Fixture() });
+                ReplyEconomyPage(donatePage);
+                Assert.That(_client.Status, Does.Contain("已作废损坏").And.Contain("不能据此判断是否到账"));
+                clickRefresh();
+                ReplyEconomyPage(donatePage);
+                Assert.That(_client.Status, Does.Not.Contain("已作废"));
+            });
+        }
+
+        // 恢复时预读发现已在别的帮:换帮清空了两页快照,原帮会那一笔的结论要活过窗口对现帮会本页的补拉。
+        [TestCase(true)] [TestCase(false)]
+        public void AnotherGuildReplayConclusionSurvivesTheVisiblePageReload(bool donation)
+        {
+            WithWiredWindow(donation ? GuildPage.Donate : GuildPage.Shop, clickRefresh =>
+            {
+                ReplyEconomyPage(donation);
+                Send(donation); ReplyWithoutOrder(donation);
+                clickRefresh(); ConfirmRecoveryGuild(556);
+                Assert.That(_net.Calls.Last(), Is.EqualTo(donation ? MessageIds.DonateToGuild : MessageIds.BuyGuildShopGoods));
+                var tip = new TipInfoMessage { Id = (uint)guild_error.KGuildNotInGuild };
+                if (donation) _net.Reply(new DonateToGuildResponse { ErrorMessage = tip });
+                else _net.Reply(new BuyGuildShopGoodsResponse { ErrorMessage = tip });
+                Assert.That(_files.Load(1), Is.Empty);
+                ReplyEconomyPage(donation);
+                Assert.That(_client.Info.GuildId, Is.EqualTo(556ul));
+                Assert.That(_client.Status, Does.Contain("已不在原帮会"));
+            });
+        }
+
+        // 最常见的恢复路径:写请求超时、重连后在原帮会重发,原请求被业务拒绝。重连清空了两页快照,拒绝原因要活过本页补拉。
+        [TestCase(true)] [TestCase(false)]
+        public void RejectedReplayAfterReconnectKeepsItsReasonThroughTheVisiblePageReload(bool donation)
+        {
+            WithWiredWindow(donation ? GuildPage.Donate : GuildPage.Shop, clickRefresh =>
+            {
+                ReplyEconomyPage(donation);
+                Send(donation); _net.Error("rpc timeout");
+                _identity = new object(); _client.ObserveConnection();
+                clickRefresh(); ConfirmRecoveryGuild();
+                var tip = new TipInfoMessage { Id = (uint)(donation ? guild_error.KGuildDonateLimit : guild_error.KGuildShopLimit) };
+                if (donation) _net.Reply(new DonateToGuildResponse { ErrorMessage = tip });
+                else _net.Reply(new BuyGuildShopGoodsResponse { ErrorMessage = tip });
+                Assert.That(_files.Load(1), Is.Empty);
+                ReplyEconomyPage(donation);
+                Assert.That(_client.Status, Is.EqualTo(GuildClient.TipText(tip)));
+            });
+        }
+
+        // 换帮也清空了活动快照:停在活动页时窗口排一次重拉(QueueActivities → DrainQueued),那一发同样沿用结论一次。
+        [Test] public void AnotherGuildReplayConclusionSurvivesTheFirstActivitiesReload()
+        {
+            string conclusion = ConcludeReplayInAnotherGuild();
+            _client.QueueActivities(); _client.DrainQueued(false, true);
+            Assert.That(_net.Calls.Last(), Is.EqualTo(MessageIds.GetGuildActivities));
+            _net.Reply(GuildClientTests.ActivitiesFixture());
+            Assert.That(_client.Status, Is.EqualTo(conclusion));
+            _client.RefreshActivities(); _net.Reply(GuildClientTests.ActivitiesFixture());
+            Assert.That(_client.Status, Is.Not.EqualTo(conclusion));
+        }
+
+        // 补拉在途期间来了推送、改写了状态栏:让给新通知,不再恢复旧结论(与本人申请列表同一规则)。
+        [Test] public void APushDuringTheFirstPageReloadSupersedesTheRecoveryConclusion()
+        {
+            string conclusion = ConcludeReplayInAnotherGuild();
+            _client.RefreshDonations();
+            _net.Notify(MessageIds.NotifyGuildChanged, new GuildChangedS2C
+                { GuildId = 556, TargetPlayerId = 1, Kind = GuildChangeKind.ActivityChanged });
+            Assert.That(_client.Status, Does.Contain("历练邀请"));
+            _net.Reply(GuildClientTests.DonateFixture());
+            Assert.That(_client.Status, Is.Not.EqualTo(conclusion));
         }
 
         [Test] public void CannotSendWhenPersistentStorageIsUnavailable()
