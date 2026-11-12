@@ -136,5 +136,38 @@ namespace MmorpgClient.Net.Generated
         public static void GetBattleReport(IRpcChannel channel, global::Match.GetBattleReportRequest request,
             RpcDone<global::Match.GetBattleReportResponse> done)
             => channel.CallMethod(GetBattleReportMessageId, request, global::Match.GetBattleReportResponse.Parser, done);
+
+        public const uint ListBattleScriptsMessageId = 389;
+        /// <summary>
+        /// ---- 战斗剧本(docs/design/battle-script.md §7):请求都不带 player_id,只认会话本人 ----
+        /// 官方剧本 + 本人的剧本(含审核状态)+ 本人的选用,一次全给。
+        /// </summary>
+        public static void ListBattleScripts(IRpcChannel channel, global::Match.ListBattleScriptsRequest request,
+            RpcDone<global::Match.ListBattleScriptsResponse> done)
+            => channel.CallMethod(ListBattleScriptsMessageId, request, global::Match.ListBattleScriptsResponse.Parser, done);
+
+        public const uint SubmitBattleScriptMessageId = 390;
+        /// <summary>
+        /// 新建或改写本人的剧本:校验通过即存为新版本、进入待审;审核通过前对局继续用上一份通过版。
+        /// </summary>
+        public static void SubmitBattleScript(IRpcChannel channel, global::Match.SubmitBattleScriptRequest request,
+            RpcDone<global::Match.SubmitBattleScriptResponse> done)
+            => channel.CallMethod(SubmitBattleScriptMessageId, request, global::Match.SubmitBattleScriptResponse.Parser, done);
+
+        public const uint DeleteBattleScriptMessageId = 391;
+        /// <summary>
+        /// 删除本人的剧本,选用了它的条目同一事务清掉。
+        /// </summary>
+        public static void DeleteBattleScript(IRpcChannel channel, global::Match.DeleteBattleScriptRequest request,
+            RpcDone<global::Match.DeleteBattleScriptResponse> done)
+            => channel.CallMethod(DeleteBattleScriptMessageId, request, global::Match.DeleteBattleScriptResponse.Parser, done);
+
+        public const uint SetBattleScriptLoadoutMessageId = 392;
+        /// <summary>
+        /// 为某种对局选用剧本(官方剧本或本人已通过审核的剧本),或清除这条选用。
+        /// </summary>
+        public static void SetBattleScriptLoadout(IRpcChannel channel, global::Match.SetBattleScriptLoadoutRequest request,
+            RpcDone<global::Match.SetBattleScriptLoadoutResponse> done)
+            => channel.CallMethod(SetBattleScriptLoadoutMessageId, request, global::Match.SetBattleScriptLoadoutResponse.Parser, done);
     }
 }
