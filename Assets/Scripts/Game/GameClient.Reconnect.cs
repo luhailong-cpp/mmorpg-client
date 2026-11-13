@@ -27,8 +27,9 @@ namespace MmorpgClient.Game
         private bool TryStartReconnect()
         {
             // 顶号/显式登出走 Disconnect，不从这里自动抢回会话；切服自有独立的迁移管线。
+            // 重连只凭 access token(分配 gate 与 gate 上绑定会话都用它),不看账号名:第三方登录的客户端不知道自己的账号名。
             if (_reconnecting || _redirecting || !InGame || PlayerId == 0 || CurrentZoneId == 0 ||
-                string.IsNullOrEmpty(Account) || string.IsNullOrEmpty(AccessToken) || CoroutineRunner == null)
+                string.IsNullOrEmpty(AccessToken) || CoroutineRunner == null)
                 return false;
             uint zoneId = CurrentZoneId;
             ulong battleId = BattleLink?.BattleId ?? 0;
@@ -64,10 +65,8 @@ namespace MmorpgClient.Game
                 // 每次都重新分配并领新票据；旧 gate 的短期票据不能复用，gate 重启后也可能换地址。
                 AssignGateResult assigned = null;
                 string error = null;
-                yield return _http.AssignGate(new Net.AssignGateRequest
-                {
-                    zone_id = zoneId, account = Account, device_id = _deviceId ?? "", queue_token = ""
-                }, r => assigned = r, e => error = e);
+                // 401(令牌被吊销)不在 IsTransientAssignGateCode 里:重试只会一直被拒,按失败结束,交玩家重新登录。
+                yield return _http.AssignGate(BuildAssignGateRequest(zoneId, AccessToken, _deviceId), r => assigned = r, e => error = e);
                 if (gen != _pipelineGen) yield break;
 
                 bool retryable;

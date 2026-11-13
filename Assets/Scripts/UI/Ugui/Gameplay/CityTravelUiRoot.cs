@@ -187,6 +187,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             BeginTravel(sceneConfigId, appearance);
             return true;
         }
+
+        /// <summary>手绘地图的本机联调请求；复用正式传送状态机，不改变正式地图目的地。</summary>
+        public bool RequestLocalAuthoredTravel(uint sceneConfigId)
+        {
+            if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending ||
+                _app?.WorldMap == null || !AuthoredFestivalLocalPolicy.CanUse(_game.GatewayBaseUrl, _game.AssignedGate))
+                return false;
+            string appearance = sceneConfigId == 26000 ? "mid-autumn" : sceneConfigId == 26008 ? "spring" : null;
+            var map = CurrentMapCatalog.Find(sceneConfigId);
+            if (appearance == null || map == null || !map.IsAuthoredFlat || map.ForAppearance(appearance) == null)
+                return false;
+            BeginTravel(sceneConfigId, appearance);
+            return true;
+        }
 #endif
 
         private void BeginTravel(uint sceneConfigId, string appearance)
@@ -339,6 +353,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _gateAtRequest = null;
             if (_request.ReceiveScene(scene?.SceneConfigId ?? 0, out bool festival))
             {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+                // 两个订阅者的回调顺序可能不同；等地图运行时完成入场，再报告手绘地图是否就绪。
+                if (AuthoredMapRegistry.IsEnabled && (scene.SceneConfigId == 26000 || scene.SceneConfigId == 26008))
+                {
+                    _status = "已收到抵达通知，正在确认地图…";
+                    StartCoroutine(ConfirmAuthoredArrival(scene.SceneConfigId, _pendingAppearance));
+                    HidePanel();
+                    Refresh();
+                    return;
+                }
+#endif
                 bool applied = _app.WorldMap != null && _app.WorldMap.TrySetAppearance(_pendingAppearance);
                 _status = applied ? "已抵达，沿着街巷自在游历吧。" : "已抵达，所选景色暂未准备好。";
                 HidePanel();
@@ -346,6 +371,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             else _status = "";
             Refresh();
         }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        private System.Collections.IEnumerator ConfirmAuthoredArrival(uint sceneConfigId, string appearance)
+        {
+            yield return null;
+            if (_game == null || !_game.InGame || _game.CurrentSceneConfigId != sceneConfigId) yield break;
+            var map = _app?.WorldMap;
+            bool applied = map != null && map.ActiveSceneConfigId == sceneConfigId && map.Appearance == appearance;
+            _status = applied ? "已抵达，地图已就绪。" : "已抵达，但地图未就绪，请重新进入或重连。";
+            Refresh();
+        }
+#endif
 
         /// <summary>
         /// 服务端提示到达时，如果有传送请求在途，判断这次行程是不是没成，没成就立刻收场。

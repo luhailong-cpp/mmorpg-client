@@ -55,56 +55,58 @@ public static partial class PlayerBagReflection {
           "ASgEEg0KBXdpZHRoGAMgASgNEg4KBmhlaWdodBgEIAEoDSKHAQoNQmFnTGF5",
           "b3V0SW5mbxIQCghiYWdfdHlwZRgBIAEoDRIQCghjYXBhY2l0eRgCIAEoDRIb",
           "CgVzbG90cxgDIAMoCzIMLkJhZ1Nsb3RJbmZvEhAKCGNhbl9zb3J0GAQgASgI",
-          "EiMKC2VxdWlwX3Nsb3RzGAUgAygLMg4uRXF1aXBTbG90SW5mbyJnCgdCYWdJ",
-          "bmZvEhsKBWl0ZW1zGAEgAygLMgwuQmFnSXRlbUluZm8SHgoGbGF5b3V0GAIg",
-          "ASgLMg4uQmFnTGF5b3V0SW5mbxIfCghjdXJyZW5jeRgDIAEoCzINLkN1cnJl",
-          "bmN5Q29tcCIhCg1HZXRCYWdSZXF1ZXN0EhAKCGJhZ190eXBlGAEgASgNIk8K",
-          "DkdldEJhZ1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJ",
-          "bmZvTWVzc2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJbmZvIiIKDlNvcnRCYWdS",
-          "ZXF1ZXN0EhAKCGJhZ190eXBlGAEgASgNImEKD1NvcnRCYWdSZXNwb25zZRIm",
-          "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoDYmFn",
-          "GAIgASgLMgguQmFnSW5mbxIPCgdjaGFuZ2VkGAMgASgIIiMKEEVxdWlwSXRl",
-          "bVJlcXVlc3QSDwoHaXRlbV9pZBgBIAEoBCJvChFFcXVpcEl0ZW1SZXNwb25z",
-          "ZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoD",
-          "YmFnGAIgASgLMgguQmFnSW5mbxIbCgllcXVpcG1lbnQYAyABKAsyCC5CYWdJ",
-          "bmZvIiUKElVuZXF1aXBJdGVtUmVxdWVzdBIPCgdpdGVtX2lkGAEgASgEInEK",
-          "E1VuZXF1aXBJdGVtUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
-          "LlRpcEluZm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8SGwoJZXF1",
-          "aXBtZW50GAMgASgLMgguQmFnSW5mbyI2ChJHbUdyYW50SXRlbVJlcXVlc3QS",
-          "EQoJY29uZmlnX2lkGAEgASgNEg0KBWNvdW50GAIgASgNIlQKE0dtR3JhbnRJ",
-          "dGVtUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
-          "ZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8iWQoTRW5oYW5jZUVxdWlw",
-          "UmVxdWVzdBIPCgdpdGVtX2lkGAEgASgEEhYKDmV4cGVjdGVkX2xldmVsGAIg",
-          "ASgNEhkKEWNsaWVudF9yZXF1ZXN0X2lkGAMgASgEIqwBChRFbmhhbmNlRXF1",
-          "aXBSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01l",
-          "c3NhZ2USFQoDYmFnGAIgASgLMgguQmFnSW5mbxIbCgllcXVpcG1lbnQYAyAB",
-          "KAsyCC5CYWdJbmZvEg8KB3N1Y2Nlc3MYBCABKAgSFQoNZW5oYW5jZV9sZXZl",
-          "bBgFIAEoDRIQCghyZXBsYXllZBgGIAEoCCJJCg9JbmxheUdlbVJlcXVlc3QS",
-          "DwoHaXRlbV9pZBgBIAEoBBIOCgZzb2NrZXQYAiABKA0SFQoNZ2VtX2NvbmZp",
-          "Z19pZBgDIAEoDSJuChBJbmxheUdlbVJlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
-          "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJ",
-          "bmZvEhsKCWVxdWlwbWVudBgDIAEoCzIILkJhZ0luZm8iMwoQUmVtb3ZlR2Vt",
-          "UmVxdWVzdBIPCgdpdGVtX2lkGAEgASgEEg4KBnNvY2tldBgCIAEoDSJvChFS",
-          "ZW1vdmVHZW1SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2USFQoDYmFnGAIgASgLMgguQmFnSW5mbxIbCgllcXVpcG1l",
-          "bnQYAyABKAsyCC5CYWdJbmZvIkIKHVJldHJpZXZlVGVtcG9yYXJ5SXRlbXNS",
-          "ZXF1ZXN0Eg8KB2l0ZW1faWQYASABKAQSEAoIdGFrZV9hbGwYAiABKAgifAoe",
-          "UmV0cmlldmVUZW1wb3JhcnlJdGVtc1Jlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
-          "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJ",
-          "bmZvEhsKCXRlbXBvcmFyeRgDIAEoCzIILkJhZ0luZm8yoAQKFFNjZW5lQmFn",
-          "Q2xpZW50UGxheWVyEikKBkdldEJhZxIOLkdldEJhZ1JlcXVlc3QaDy5HZXRC",
-          "YWdSZXNwb25zZRIsCgdTb3J0QmFnEg8uU29ydEJhZ1JlcXVlc3QaEC5Tb3J0",
-          "QmFnUmVzcG9uc2USMgoJRXF1aXBJdGVtEhEuRXF1aXBJdGVtUmVxdWVzdBoS",
-          "LkVxdWlwSXRlbVJlc3BvbnNlEjgKC1VuZXF1aXBJdGVtEhMuVW5lcXVpcEl0",
-          "ZW1SZXF1ZXN0GhQuVW5lcXVpcEl0ZW1SZXNwb25zZRI4CgtHbUdyYW50SXRl",
-          "bRITLkdtR3JhbnRJdGVtUmVxdWVzdBoULkdtR3JhbnRJdGVtUmVzcG9uc2US",
-          "OwoMRW5oYW5jZUVxdWlwEhQuRW5oYW5jZUVxdWlwUmVxdWVzdBoVLkVuaGFu",
-          "Y2VFcXVpcFJlc3BvbnNlEi8KCElubGF5R2VtEhAuSW5sYXlHZW1SZXF1ZXN0",
-          "GhEuSW5sYXlHZW1SZXNwb25zZRIyCglSZW1vdmVHZW0SES5SZW1vdmVHZW1S",
-          "ZXF1ZXN0GhIuUmVtb3ZlR2VtUmVzcG9uc2USWQoWUmV0cmlldmVUZW1wb3Jh",
-          "cnlJdGVtcxIeLlJldHJpZXZlVGVtcG9yYXJ5SXRlbXNSZXF1ZXN0Gh8uUmV0",
-          "cmlldmVUZW1wb3JhcnlJdGVtc1Jlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNj",
-          "ZW5lgAEBmNRhA2IGcHJvdG8z"));
+          "EiMKC2VxdWlwX3Nsb3RzGAUgAygLMg4uRXF1aXBTbG90SW5mbyIzCg9CYWdI",
+          "ZWxkSXRlbUluZm8SEQoJY29uZmlnX2lkGAEgASgNEg0KBWNvdW50GAIgASgE",
+          "Io0BCgdCYWdJbmZvEhsKBWl0ZW1zGAEgAygLMgwuQmFnSXRlbUluZm8SHgoG",
+          "bGF5b3V0GAIgASgLMg4uQmFnTGF5b3V0SW5mbxIfCghjdXJyZW5jeRgDIAEo",
+          "CzINLkN1cnJlbmN5Q29tcBIkCgpoZWxkX2l0ZW1zGAQgAygLMhAuQmFnSGVs",
+          "ZEl0ZW1JbmZvIiEKDUdldEJhZ1JlcXVlc3QSEAoIYmFnX3R5cGUYASABKA0i",
+          "TwoOR2V0QmFnUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRp",
+          "cEluZm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8iIgoOU29ydEJh",
+          "Z1JlcXVlc3QSEAoIYmFnX3R5cGUYASABKA0iYQoPU29ydEJhZ1Jlc3BvbnNl",
+          "EiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIVCgNi",
+          "YWcYAiABKAsyCC5CYWdJbmZvEg8KB2NoYW5nZWQYAyABKAgiIwoQRXF1aXBJ",
+          "dGVtUmVxdWVzdBIPCgdpdGVtX2lkGAEgASgEIm8KEUVxdWlwSXRlbVJlc3Bv",
+          "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIV",
+          "CgNiYWcYAiABKAsyCC5CYWdJbmZvEhsKCWVxdWlwbWVudBgDIAEoCzIILkJh",
+          "Z0luZm8iJQoSVW5lcXVpcEl0ZW1SZXF1ZXN0Eg8KB2l0ZW1faWQYASABKAQi",
+          "cQoTVW5lcXVpcEl0ZW1SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USFQoDYmFnGAIgASgLMgguQmFnSW5mbxIbCgll",
+          "cXVpcG1lbnQYAyABKAsyCC5CYWdJbmZvIjYKEkdtR3JhbnRJdGVtUmVxdWVz",
+          "dBIRCgljb25maWdfaWQYASABKA0SDQoFY291bnQYAiABKA0iVAoTR21HcmFu",
+          "dEl0ZW1SZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
+          "b01lc3NhZ2USFQoDYmFnGAIgASgLMgguQmFnSW5mbyJZChNFbmhhbmNlRXF1",
+          "aXBSZXF1ZXN0Eg8KB2l0ZW1faWQYASABKAQSFgoOZXhwZWN0ZWRfbGV2ZWwY",
+          "AiABKA0SGQoRY2xpZW50X3JlcXVlc3RfaWQYAyABKAQirAEKFEVuaGFuY2VF",
+          "cXVpcFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+          "TWVzc2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJbmZvEhsKCWVxdWlwbWVudBgD",
+          "IAEoCzIILkJhZ0luZm8SDwoHc3VjY2VzcxgEIAEoCBIVCg1lbmhhbmNlX2xl",
+          "dmVsGAUgASgNEhAKCHJlcGxheWVkGAYgASgIIkkKD0lubGF5R2VtUmVxdWVz",
+          "dBIPCgdpdGVtX2lkGAEgASgEEg4KBnNvY2tldBgCIAEoDRIVCg1nZW1fY29u",
+          "ZmlnX2lkGAMgASgNIm4KEElubGF5R2VtUmVzcG9uc2USJgoNZXJyb3JfbWVz",
+          "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJh",
+          "Z0luZm8SGwoJZXF1aXBtZW50GAMgASgLMgguQmFnSW5mbyIzChBSZW1vdmVH",
+          "ZW1SZXF1ZXN0Eg8KB2l0ZW1faWQYASABKAQSDgoGc29ja2V0GAIgASgNIm8K",
+          "EVJlbW92ZUdlbVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5U",
+          "aXBJbmZvTWVzc2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJbmZvEhsKCWVxdWlw",
+          "bWVudBgDIAEoCzIILkJhZ0luZm8iQgodUmV0cmlldmVUZW1wb3JhcnlJdGVt",
+          "c1JlcXVlc3QSDwoHaXRlbV9pZBgBIAEoBBIQCgh0YWtlX2FsbBgCIAEoCCJ8",
+          "Ch5SZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zUmVzcG9uc2USJgoNZXJyb3JfbWVz",
+          "c2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJh",
+          "Z0luZm8SGwoJdGVtcG9yYXJ5GAMgASgLMgguQmFnSW5mbzKgBAoUU2NlbmVC",
+          "YWdDbGllbnRQbGF5ZXISKQoGR2V0QmFnEg4uR2V0QmFnUmVxdWVzdBoPLkdl",
+          "dEJhZ1Jlc3BvbnNlEiwKB1NvcnRCYWcSDy5Tb3J0QmFnUmVxdWVzdBoQLlNv",
+          "cnRCYWdSZXNwb25zZRIyCglFcXVpcEl0ZW0SES5FcXVpcEl0ZW1SZXF1ZXN0",
+          "GhIuRXF1aXBJdGVtUmVzcG9uc2USOAoLVW5lcXVpcEl0ZW0SEy5VbmVxdWlw",
+          "SXRlbVJlcXVlc3QaFC5VbmVxdWlwSXRlbVJlc3BvbnNlEjgKC0dtR3JhbnRJ",
+          "dGVtEhMuR21HcmFudEl0ZW1SZXF1ZXN0GhQuR21HcmFudEl0ZW1SZXNwb25z",
+          "ZRI7CgxFbmhhbmNlRXF1aXASFC5FbmhhbmNlRXF1aXBSZXF1ZXN0GhUuRW5o",
+          "YW5jZUVxdWlwUmVzcG9uc2USLwoISW5sYXlHZW0SEC5JbmxheUdlbVJlcXVl",
+          "c3QaES5JbmxheUdlbVJlc3BvbnNlEjIKCVJlbW92ZUdlbRIRLlJlbW92ZUdl",
+          "bVJlcXVlc3QaEi5SZW1vdmVHZW1SZXNwb25zZRJZChZSZXRyaWV2ZVRlbXBv",
+          "cmFyeUl0ZW1zEh4uUmV0cmlldmVUZW1wb3JhcnlJdGVtc1JlcXVlc3QaHy5S",
+          "ZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zUmVzcG9uc2UaCoCowwEBiKjDAQFCDloF",
+          "c2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::CurrencyCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -115,7 +117,8 @@ public static partial class PlayerBagReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::BagItemInfo), global::BagItemInfo.Parser, new[]{ "ItemId", "ConfigId", "Count", "MaxStack", "EquipKind", "Name", "Description", "IconKey", "EquipLevel", "EquipClass", "EquipClassName", "BaseAttrs", "Affixes", "EnhanceLevel", "EnhanceMaxLevel", "EnhanceNext", "GemSockets", "GemType", "GemAttr", "EnhanceBonusPermyriad" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BagSlotInfo), global::BagSlotInfo.Parser, new[]{ "Slot", "ItemId", "Width", "Height" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BagLayoutInfo), global::BagLayoutInfo.Parser, new[]{ "BagType", "Capacity", "Slots", "CanSort", "EquipSlots" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BagInfo), global::BagInfo.Parser, new[]{ "Items", "Layout", "Currency" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BagHeldItemInfo), global::BagHeldItemInfo.Parser, new[]{ "ConfigId", "Count" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BagInfo), global::BagInfo.Parser, new[]{ "Items", "Layout", "Currency", "HeldItems" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetBagRequest), global::GetBagRequest.Parser, new[]{ "BagType" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetBagResponse), global::GetBagResponse.Parser, new[]{ "ErrorMessage", "Bag" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SortBagRequest), global::SortBagRequest.Parser, new[]{ "BagType" }, null, null, null, null),
@@ -3482,6 +3485,248 @@ public sealed partial class BagLayoutInfo : pb::IMessage<BagLayoutInfo>
 
 }
 
+/// <summary>
+/// 人物背包里一种物品被占住的数量(战斗道具预留,docs/design/battle-item-reservation.md):这些数量押在还没结算的战斗里,
+/// 交易、捐献等出包操作暂时动不了它们,那一局结算或作废之后放开。按配置号给数量,不指定是哪一堆、哪一格(AGENTS §11.6)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class BagHeldItemInfo : pb::IMessage<BagHeldItemInfo>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<BagHeldItemInfo> _parser = new pb::MessageParser<BagHeldItemInfo>(() => new BagHeldItemInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<BagHeldItemInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[7]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BagHeldItemInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BagHeldItemInfo(BagHeldItemInfo other) : this() {
+    configId_ = other.configId_;
+    count_ = other.count_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BagHeldItemInfo Clone() {
+    return new BagHeldItemInfo(this);
+  }
+
+  /// <summary>Field number for the "config_id" field.</summary>
+  public const int ConfigIdFieldNumber = 1;
+  private uint configId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ConfigId {
+    get { return configId_; }
+    set {
+      configId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "count" field.</summary>
+  public const int CountFieldNumber = 2;
+  private ulong count_;
+  /// <summary>
+  /// 被占住的数量,不超过背包里这种物品的总数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Count {
+    get { return count_; }
+    set {
+      count_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as BagHeldItemInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(BagHeldItemInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ConfigId != other.ConfigId) return false;
+    if (Count != other.Count) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ConfigId != 0) hash ^= ConfigId.GetHashCode();
+    if (Count != 0UL) hash ^= Count.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ConfigId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ConfigId);
+    }
+    if (Count != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(Count);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ConfigId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ConfigId);
+    }
+    if (Count != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(Count);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ConfigId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ConfigId);
+    }
+    if (Count != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Count);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(BagHeldItemInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ConfigId != 0) {
+      ConfigId = other.ConfigId;
+    }
+    if (other.Count != 0UL) {
+      Count = other.Count;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ConfigId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Count = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ConfigId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Count = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class BagInfo : pb::IMessage<BagInfo>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -3497,7 +3742,7 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3520,6 +3765,7 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
     items_ = other.items_.Clone();
     layout_ = other.layout_ != null ? other.layout_.Clone() : null;
     currency_ = other.currency_ != null ? other.currency_.Clone() : null;
+    heldItems_ = other.heldItems_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3567,6 +3813,21 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
     }
   }
 
+  /// <summary>Field number for the "held_items" field.</summary>
+  public const int HeldItemsFieldNumber = 4;
+  private static readonly pb::FieldCodec<global::BagHeldItemInfo> _repeated_heldItems_codec
+      = pb::FieldCodec.ForMessage(34, global::BagHeldItemInfo.Parser);
+  private readonly pbc::RepeatedField<global::BagHeldItemInfo> heldItems_ = new pbc::RepeatedField<global::BagHeldItemInfo>();
+  /// <summary>
+  /// 仅人物背包(bag_type = 0):被占住的数量,按 config_id 升序、互不重复;没有时为空。别的包恒为空。
+  /// 客户端据此显示「战斗结算中」的数量,并在选物品交易时只让选没被占住的部分;能不能出包仍由服务器裁决。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::BagHeldItemInfo> HeldItems {
+    get { return heldItems_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3585,6 +3846,7 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
     if(!items_.Equals(other.items_)) return false;
     if (!object.Equals(Layout, other.Layout)) return false;
     if (!object.Equals(Currency, other.Currency)) return false;
+    if(!heldItems_.Equals(other.heldItems_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3595,6 +3857,7 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
     hash ^= items_.GetHashCode();
     if (layout_ != null) hash ^= Layout.GetHashCode();
     if (currency_ != null) hash ^= Currency.GetHashCode();
+    hash ^= heldItems_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3622,6 +3885,7 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
       output.WriteRawTag(26);
       output.WriteMessage(Currency);
     }
+    heldItems_.WriteTo(output, _repeated_heldItems_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3641,6 +3905,7 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
       output.WriteRawTag(26);
       output.WriteMessage(Currency);
     }
+    heldItems_.WriteTo(ref output, _repeated_heldItems_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3658,6 +3923,7 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
     if (currency_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Currency);
     }
+    size += heldItems_.CalculateSize(_repeated_heldItems_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -3683,6 +3949,7 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
       }
       Currency.MergeFrom(other.Currency);
     }
+    heldItems_.Add(other.heldItems_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -3718,6 +3985,10 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
             Currency = new global::CurrencyComp();
           }
           input.ReadMessage(Currency);
+          break;
+        }
+        case 34: {
+          heldItems_.AddEntriesFrom(input, _repeated_heldItems_codec);
           break;
         }
       }
@@ -3757,6 +4028,10 @@ public sealed partial class BagInfo : pb::IMessage<BagInfo>
           input.ReadMessage(Currency);
           break;
         }
+        case 34: {
+          heldItems_.AddEntriesFrom(ref input, _repeated_heldItems_codec);
+          break;
+        }
       }
     }
   }
@@ -3779,7 +4054,7 @@ public sealed partial class GetBagRequest : pb::IMessage<GetBagRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3977,7 +4252,7 @@ public sealed partial class GetBagResponse : pb::IMessage<GetBagResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4230,7 +4505,7 @@ public sealed partial class SortBagRequest : pb::IMessage<SortBagRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4428,7 +4703,7 @@ public sealed partial class SortBagResponse : pb::IMessage<SortBagResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4722,7 +4997,7 @@ public sealed partial class EquipItemRequest : pb::IMessage<EquipItemRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[12]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4920,7 +5195,7 @@ public sealed partial class EquipItemResponse : pb::IMessage<EquipItemResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[13]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5228,7 +5503,7 @@ public sealed partial class UnequipItemRequest : pb::IMessage<UnequipItemRequest
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[14]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5426,7 +5701,7 @@ public sealed partial class UnequipItemResponse : pb::IMessage<UnequipItemRespon
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[15]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5728,7 +6003,7 @@ public sealed partial class GmGrantItemRequest : pb::IMessage<GmGrantItemRequest
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[16]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[17]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5963,7 +6238,7 @@ public sealed partial class GmGrantItemResponse : pb::IMessage<GmGrantItemRespon
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[17]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[18]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6231,7 +6506,7 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[18]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6512,7 +6787,7 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[19]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[20]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6943,7 +7218,7 @@ public sealed partial class InlayGemRequest : pb::IMessage<InlayGemRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[20]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[21]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7224,7 +7499,7 @@ public sealed partial class InlayGemResponse : pb::IMessage<InlayGemResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[21]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[22]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7532,7 +7807,7 @@ public sealed partial class RemoveGemRequest : pb::IMessage<RemoveGemRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[22]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[23]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7773,7 +8048,7 @@ public sealed partial class RemoveGemResponse : pb::IMessage<RemoveGemResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[23]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[24]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8090,7 +8365,7 @@ public sealed partial class RetrieveTemporaryItemsRequest : pb::IMessage<Retriev
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[24]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[25]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8325,7 +8600,7 @@ public sealed partial class RetrieveTemporaryItemsResponse : pb::IMessage<Retrie
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[25]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[26]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -513,7 +513,7 @@ namespace MmorpgClient.World
             if (view == null || !IsLocal(view.Entity) || view.Go == null) return;
             var movement = view.Go.GetComponent<TianyongPlayerController>();
             if (movement != null && movement.enabled)
-                movement.enabled = false;
+                movement.SuspendForMapChange();
         }
 
         private static void DestroyActorObject(GameObject actor)

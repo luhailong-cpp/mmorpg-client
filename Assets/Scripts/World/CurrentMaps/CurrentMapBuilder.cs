@@ -15,6 +15,7 @@ namespace MmorpgClient.World.CurrentMaps
         public static TianyongMapInstance Build(Transform parent, CurrentMapDefinition definition)
         {
             if (definition == null) throw new ArgumentNullException(nameof(definition));
+            if (definition.IsAuthoredFlat) return BuildAuthored(parent, definition);
             // Validate all delivered data before adding any world object.
             var texture = definition.LoadTexture();
             var navigation = definition.CreateNavigation();
@@ -58,6 +59,66 @@ namespace MmorpgClient.World.CurrentMaps
             catch
             {
                 root.SetActive(false);
+                instance.Dispose();
+                throw;
+            }
+        }
+
+        private static TianyongMapInstance BuildAuthored(Transform parent, CurrentMapDefinition definition)
+        {
+            var item = definition.Authored;
+            item.Validate();
+            var shader = Shader.Find("Unlit/Texture") ?? Shader.Find("Sprites/Default") ?? Shader.Find("UI/Default");
+            if (shader == null) throw new InvalidOperationException("手绘地图缺少纹理 Shader。");
+            var textures = new Texture2D[item.rows, item.columns];
+            for (int row = 0; row < item.rows; row++)
+            for (int col = 0; col < item.columns; col++)
+            {
+                string path = item.textureResourceRoot + $"r{row + 1:00}_c{col + 1:00}";
+                var texture = Resources.Load<Texture2D>(path);
+                if (texture == null || texture.width != 1024 || texture.height != 1024)
+                    throw new InvalidOperationException("手绘地图分块缺失或尺寸错误：" + path);
+                textures[row, col] = texture;
+            }
+            var root = new GameObject($"[AuthoredMap:{definition.Key}]");
+            root.SetActive(false);
+            var instance = new TianyongMapInstance(root, TianyongTheme.City, null);
+            try
+            {
+                root.transform.SetParent(parent, false);
+                instance.SetAuthoredNavigation(new AuthoredNavMeshNavigation(item.navMesh, item.worldRect, item.spawn));
+                var floor = new GameObject(TianyongMapBuilder.GroundColliderName);
+                floor.transform.SetParent(root.transform, false);
+                var collider = floor.AddComponent<BoxCollider>();
+                collider.center = new Vector3(item.worldRect.center.x, -.5f, item.worldRect.center.y);
+                collider.size = new Vector3(item.worldRect.width, 1f, item.worldRect.height);
+                float tileWidth = item.worldRect.width / item.columns;
+                float tileHeight = item.worldRect.height / item.rows;
+                for (int row = 0; row < item.rows; row++)
+                for (int col = 0; col < item.columns; col++)
+                {
+                    var tile = GameObject.CreatePrimitive(PrimitiveType.Quad);
+                    tile.name = $"r{row + 1:00}_c{col + 1:00}";
+                    tile.transform.SetParent(root.transform, false);
+                    tile.transform.localPosition = new Vector3(item.worldRect.xMin + (col + .5f) * tileWidth,
+                        -.01f, item.worldRect.yMax - (row + .5f) * tileHeight);
+                    tile.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+                    tile.transform.localScale = new Vector3(tileWidth, tileHeight, 1f);
+                    var tileCollider = tile.GetComponent<Collider>();
+                    tileCollider.enabled = false;
+                    if (Application.isPlaying) UnityEngine.Object.Destroy(tileCollider);
+                    else UnityEngine.Object.DestroyImmediate(tileCollider);
+                    var material = new Material(shader) { name = definition.Key + ":" + tile.name, mainTexture = textures[row, col] };
+                    instance._materials.Add(material);
+                    var renderer = tile.GetComponent<MeshRenderer>();
+                    renderer.sharedMaterial = material;
+                    renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    renderer.receiveShadows = false;
+                }
+                return instance;
+            }
+            catch
+            {
                 instance.Dispose();
                 throw;
             }

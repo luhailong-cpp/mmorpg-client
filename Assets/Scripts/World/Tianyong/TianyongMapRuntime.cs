@@ -122,6 +122,13 @@ namespace MmorpgClient.World.Tianyong
             // configured default map accepts that compatibility value.
             if (sceneConfigId == 0) sceneConfigId = SceneConfigId;
             var nextMapDefinition = CurrentMapCatalog.Find(sceneConfigId);
+            if (nextMapDefinition != null && nextMapDefinition.IsAuthoredFlat &&
+                !AuthoredFestivalLocalPolicy.CanUse(_client?.GatewayBaseUrl, _client?.AssignedGate))
+            {
+                Debug.LogError("[CurrentMap] 手绘地图仅可连接指定本机开发服务器。");
+                UnloadMap();
+                return;
+            }
             if (nextMapDefinition == null)
             {
                 // An installed-catalog refresh is not a server scene change.
@@ -167,16 +174,22 @@ namespace MmorpgClient.World.Tianyong
                     throw new System.InvalidOperationException("同图外观必须保留完全相同的导航和有效范围。");
                 candidate = CurrentMapBuilder.Build(transform, definition);
                 candidate.Root.SetActive(false);
-                // Source, bounds, chunks and recovery-spawn validation all happen
-                // while the old map and its actor/camera bindings remain intact.
+                // Prepare resources without registering another global NavMesh.
                 var spawn = definition.Spawn;
                 var bounds = definition.EffectiveWorldRect;
                 TianyongCameraController.ValidateWorldBounds(bounds);
                 candidate.UpdateVisibleChunks(spawn, VisibleChunkRadius);
-                if (playerObject != null)
-                    TianyongPlayerController.ResolveFallbackSpawn(candidate.Navigation, playerObject.transform.position, spawn);
                 restorePlayer = previousController?.CaptureMapBinding();
                 restoreCamera = _cameraController?.CaptureMapBinding();
+                if (previousController != null)
+                {
+                    previousController.SuspendForMapChange();
+                    previousController.enabled = false;
+                }
+                previousMap?.DeactivateNavigation();
+                candidate.ActivateNavigation();
+                if (playerObject != null)
+                    TianyongPlayerController.ResolveFallbackSpawn(candidate.ActiveNavigation, playerObject.transform.position, spawn);
 
                 _map = candidate;
                 _currentMap = definition;
@@ -196,6 +209,16 @@ namespace MmorpgClient.World.Tianyong
                 _playerRelocated = previousRelocated;
                 candidate?.Root.SetActive(false);
                 candidate?.Dispose();
+                if (preserveCurrentOnFailure)
+                {
+                    try { previousMap?.ActivateNavigation(); }
+                    catch (System.Exception restoreError)
+                    {
+                        Debug.LogError("[CurrentMap] 旧导航恢复失败，禁用地图：" + restoreError.Message);
+                        UnloadMap();
+                        return false;
+                    }
+                }
                 if (restorePlayer != null) restorePlayer();
                 else if (previousController == null && playerObject != null)
                 {
@@ -245,7 +268,11 @@ namespace MmorpgClient.World.Tianyong
             if (_localPlayer?.Go != null && _localPlayer != view)
             {
                 var previousController = _localPlayer.Go.GetComponent<TianyongPlayerController>();
-                if (previousController != null) previousController.enabled = false;
+                if (previousController != null)
+                {
+                    previousController.SuspendForMapChange();
+                    previousController.enabled = false;
+                }
             }
 
             _localPlayer = view;
@@ -255,7 +282,13 @@ namespace MmorpgClient.World.Tianyong
                 return;
             }
 
-            AttachLocalController(view);
+            try { AttachLocalController(view); }
+            catch (System.Exception error)
+            {
+                var failedController = view.Go.GetComponent<TianyongPlayerController>();
+                if (failedController != null) failedController.enabled = false;
+                Debug.LogError("[CurrentMap] 人物导航绑定失败，已停止移动：" + error.Message);
+            }
         }
 
         private void AttachLocalController(ActorView view, bool reportRelocation = true)
@@ -271,9 +304,11 @@ namespace MmorpgClient.World.Tianyong
             // relocation must be reported back, otherwise the server keeps the
             // illegal point and the first movement is judged from it.
             var relocated = false;
-            if (!_map.Navigation.IsWalkable(feetPosition))
+            if (!_map.ActiveNavigation.IsWalkable(feetPosition))
             {
-                if (!_map.Navigation.TryFindNearestWalkable(feetPosition, out feetPosition))
+                if (_map.ActiveNavigation.IsAuthoredFlat)
+                    throw new System.InvalidOperationException("服务端脚点与手绘导航不一致，已停止本地图移动。");
+                if (!_map.ActiveNavigation.TryFindNearestWalkable(feetPosition, out feetPosition))
                     feetPosition = CurrentSpawn;
                 relocated = true;
             }
@@ -285,13 +320,13 @@ namespace MmorpgClient.World.Tianyong
             controller.enabled = true;
             if (controller.Motor == null)
             {
-                controller.Initialize(_client, _map.Navigation, worldCamera, config, CurrentSpawn);
+                controller.Initialize(_client, _map.ActiveNavigation, worldCamera, config, CurrentSpawn);
                 controller.WarpTo(feetPosition);
             }
             else
             {
-                var fallback = TianyongPlayerController.ResolveFallbackSpawn(_map.Navigation, view.Go.transform.position, CurrentSpawn);
-                controller.ApplyPreparedMapNavigation(_map.Navigation, fallback, feetPosition);
+                var fallback = TianyongPlayerController.ResolveFallbackSpawn(_map.ActiveNavigation, view.Go.transform.position, CurrentSpawn);
+                controller.ApplyPreparedMapNavigation(_map.ActiveNavigation, fallback, feetPosition);
             }
             if (relocated)
             {
@@ -361,7 +396,11 @@ namespace MmorpgClient.World.Tianyong
             if (_localPlayer?.Go != null)
             {
                 var controller = _localPlayer.Go.GetComponent<TianyongPlayerController>();
-                if (controller != null) controller.enabled = false;
+                if (controller != null)
+                {
+                    controller.SuspendForMapChange();
+                    controller.enabled = false;
+                }
             }
 
             _map?.Dispose();

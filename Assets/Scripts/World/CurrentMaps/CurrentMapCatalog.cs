@@ -63,12 +63,15 @@ namespace MmorpgClient.World.CurrentMaps
 
         public static CurrentMapDefinition Find(string key)
         {
+            if (key == "26000-mid-autumn") return AuthoredMapRegistry.Find(26000);
+            if (key == "26008-spring") return AuthoredMapRegistry.Find(26008);
             foreach (var map in All) if (string.Equals(map.Key, key, StringComparison.Ordinal)) return map;
             return null;
         }
 
         public static CurrentMapDefinition Find(uint sceneConfigId)
         {
+            if (sceneConfigId == 26000 || sceneConfigId == 26008) return AuthoredMapRegistry.Find(sceneConfigId);
             foreach (var map in All) if (map.SceneConfigId == sceneConfigId) return map;
             return null;
         }
@@ -79,6 +82,7 @@ namespace MmorpgClient.World.CurrentMaps
         private CurrentMapData _data;
         private readonly MapDeliveryRegistration _delivery;
         private readonly MapAppearanceDelivery _appearance;
+        private readonly AuthoredFestivalAssets.Map _authored;
         internal CurrentMapDefinition(string key, string name, uint sceneConfigId)
         { Key = key; Name = name; SceneConfigId = sceneConfigId; }
         internal CurrentMapDefinition(MapDeliveryRegistration delivery, string appearance)
@@ -87,32 +91,43 @@ namespace MmorpgClient.World.CurrentMaps
             _appearance = delivery.Find(appearance) ?? throw new InvalidOperationException("未交付的地图外观：" + appearance);
             Key = delivery.key; Name = delivery.name; SceneConfigId = delivery.sceneId;
         }
+        internal CurrentMapDefinition(AuthoredFestivalAssets.Map authored)
+        {
+            _authored = authored ?? throw new ArgumentNullException(nameof(authored));
+            authored.Validate();
+            Key = authored.mapKey; Name = authored.mapKey; SceneConfigId = authored.sceneConfigId;
+        }
         public string Key { get; }
         public string Name { get; }
         public uint SceneConfigId { get; }
         public bool IsModern => _delivery != null;
-        public bool CanTravelOnline => _delivery == null || !_delivery.clientOnly;
-        public string Appearance => _appearance?.id ?? "normal";
-        public string Revision => _delivery?.revision ?? "legacy20261009";
-        public string ResourceFolder => _appearance?.resourceRoot ?? CurrentMapCatalog.ResourceRoot + Key + "/";
-        public string ContentIdentity => Key + ":" + Revision + ":" + Appearance + ":" + (_appearance?.layoutSha256 ?? "legacy");
+        public bool IsAuthoredFlat => _authored != null;
+        internal AuthoredFestivalAssets.Map Authored => _authored;
+        public bool CanTravelOnline => _authored == null && (_delivery == null || !_delivery.clientOnly);
+        public string Appearance => _authored?.appearance ?? _appearance?.id ?? "normal";
+        public string Revision => _authored != null ? "authored20261112" : _delivery?.revision ?? "legacy20261009";
+        public string ResourceFolder => _authored?.textureResourceRoot ?? _appearance?.resourceRoot ?? CurrentMapCatalog.ResourceRoot + Key + "/";
+        public string ContentIdentity => Key + ":" + Revision + ":" + Appearance + ":" + (_authored?.authoringGeometryHash ?? _appearance?.layoutSha256 ?? "legacy");
         public string TexturePath => ResourceFolder + "layout";
         public string SourcePath => ResourceFolder + "source";
         public string MaskPath => ResourceFolder + "walkmask";
-        public Vector3 Spawn => Data.Spawn;
-        public Rect WorldRect => Data.WorldRect;
-        public Rect EffectiveWorldRect => Data.EffectiveWorldRect;
-        public Rect NavigationWorldRect => IsModern ? WorldRect : new Rect(0, 0, TianyongMapDefinition.Width, TianyongMapDefinition.Depth);
+        public Vector3 Spawn => _authored != null ? _authored.spawn : Data.Spawn;
+        public Rect WorldRect => _authored != null ? _authored.worldRect : Data.WorldRect;
+        public Rect EffectiveWorldRect => _authored != null ? _authored.worldRect : Data.EffectiveWorldRect;
+        public Rect NavigationWorldRect => IsModern || IsAuthoredFlat ? WorldRect : new Rect(0, 0, TianyongMapDefinition.Width, TianyongMapDefinition.Depth);
         public bool IsWalkable(Vector3 world) => Data.IsWalkable(world);
         public TianyongNavigationGrid CreateNavigation()
             => new(Data.CellSize, IsWalkable, NavigationWorldRect, IsModern ? EffectiveWorldRect : NavigationWorldRect);
 
         public CurrentMapDefinition ForAppearance(string appearance)
-            => !MapDeliveryContract.IsAppearance(appearance) ? null : !IsModern ? appearance == "normal" ? this : null :
+            => _authored != null ? appearance == Appearance ? this : null :
+                !MapDeliveryContract.IsAppearance(appearance) ? null : !IsModern ? appearance == "normal" ? this : null :
                 _delivery.Find(appearance) == null ? null : new CurrentMapDefinition(_delivery, appearance);
 
         public bool SharesNavigationWith(CurrentMapDefinition other)
-            => other != null && Data.SharesNavigationWith(other.Data);
+            => other != null && (_authored != null || other._authored != null
+                ? _authored != null && other._authored != null && ContentIdentity == other.ContentIdentity
+                : Data.SharesNavigationWith(other.Data));
 
         public Texture2D LoadTexture()
         {

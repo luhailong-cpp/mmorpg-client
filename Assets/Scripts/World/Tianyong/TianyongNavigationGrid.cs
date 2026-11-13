@@ -10,7 +10,7 @@ namespace MmorpgClient.World.Tianyong
     /// avoids a NavMesh package dependency so the map works in the current
     /// bare Unity project and can later be replaced by server-authored navdata.
     /// </summary>
-    public sealed class TianyongNavigationGrid
+    public sealed class TianyongNavigationGrid : IMapNavigation
     {
         private static readonly Vector2Int[] Directions =
         {
@@ -96,6 +96,11 @@ namespace MmorpgClient.World.Tianyong
         public Rect EffectiveBounds { get; }
         public int Width { get; }
         public int Depth { get; }
+        public bool IsAuthoredFlat => false;
+
+        // The existing movement controller retains its original grid behavior;
+        // this query is available to callers that explicitly need a segment test.
+        public bool IsSegmentWalkable(Vector3 from, Vector3 to) => HasLineOfSight(from, to);
 
         public bool IsWalkable(Vector3 world)
         {
@@ -133,7 +138,7 @@ namespace MmorpgClient.World.Tianyong
             return true;
         }
 
-        internal Vector3 ResolveFallbackSpawn(Vector3 initialFeet, Vector3? requested)
+        public Vector3 ResolveFallbackSpawn(Vector3 initialFeet, Vector3? requested)
         {
             var candidate = requested ?? (IsWalkable(initialFeet) ? initialFeet : TianyongMapDefinition.DefaultSpawn);
             candidate = ClampXZ(candidate, 2f);

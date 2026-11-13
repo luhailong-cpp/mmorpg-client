@@ -51,15 +51,18 @@ namespace Rankpb {
             "Q09QRV9HVUlMRBACEhcKE1JBTktfU0NPUEVfSU5TVEFOQ0UQAxIVChFSQU5L",
             "X1NDT1BFX0NVU1RPTRAEKmwKE1JhbmtHZW5lcmF0aW9uU3RhdGUSHwobUkFO",
             "S19HRU5FUkFUSU9OX1VOU1BFQ0lGSUVEEAASGAoUUkFOS19HRU5FUkFUSU9O",
-            "X09QRU4QARIaChZSQU5LX0dFTkVSQVRJT05fU0VBTEVEEAIyrwEKEENsaWVu",
-            "dFBsYXllclJhbmsSRgoLR2V0UmFua1BhZ2USGi5yYW5rcGIuR2V0UmFua1Bh",
-            "Z2VSZXF1ZXN0GhsucmFua3BiLkdldFJhbmtQYWdlUmVzcG9uc2USTAoNR2V0",
-            "UmFua0Fyb3VuZBIcLnJhbmtwYi5HZXRSYW5rQXJvdW5kUmVxdWVzdBodLnJh",
-            "bmtwYi5HZXRSYW5rQXJvdW5kUmVzcG9uc2UaBYiowwEBQhVaD3JhbmsvcHJv",
-            "dG8vcmFua5jUYRJiBnByb3RvMw=="));
+            "X09QRU4QARIaChZSQU5LX0dFTkVSQVRJT05fU0VBTEVEEAIqkgEKDVJhbmtC",
+            "b2FyZFR5cGUSHwobUkFOS19CT0FSRF9UWVBFX1VOU1BFQ0lGSUVEEAASHQoZ",
+            "UkFOS19CT0FSRF9UWVBFX01BVENIXzFWMRABEh0KGVJBTktfQk9BUkRfVFlQ",
+            "RV9NQVRDSF81VjUQAhIiCh5SQU5LX0JPQVJEX1RZUEVfTUFUQ0hfUFZQX1RF",
+            "QU0QAzKvAQoQQ2xpZW50UGxheWVyUmFuaxJGCgtHZXRSYW5rUGFnZRIaLnJh",
+            "bmtwYi5HZXRSYW5rUGFnZVJlcXVlc3QaGy5yYW5rcGIuR2V0UmFua1BhZ2VS",
+            "ZXNwb25zZRJMCg1HZXRSYW5rQXJvdW5kEhwucmFua3BiLkdldFJhbmtBcm91",
+            "bmRSZXF1ZXN0Gh0ucmFua3BiLkdldFJhbmtBcm91bmRSZXNwb25zZRoFiKjD",
+            "AQFCFVoPcmFuay9wcm90by9yYW5rmNRhEmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Rankpb.RankScope), typeof(global::Rankpb.RankGenerationState), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Rankpb.RankScope), typeof(global::Rankpb.RankGenerationState), typeof(global::Rankpb.RankBoardType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.RankBoardKey), global::Rankpb.RankBoardKey.Parser, new[]{ "BoardType", "Scope", "ScopeId", "Period", "Generation" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.RankEntry), global::Rankpb.RankEntry.Parser, new[]{ "Rank", "EntityId", "Score", "AchievedMs", "Name", "BeyondRankLimit" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Rankpb.GetRankPageRequest), global::Rankpb.GetRankPageRequest.Parser, new[]{ "Board", "Page", "PageSize" }, null, null, null, null),
@@ -84,6 +87,28 @@ namespace Rankpb {
     [pbr::OriginalName("RANK_GENERATION_UNSPECIFIED")] RankGenerationUnspecified = 0,
     [pbr::OriginalName("RANK_GENERATION_OPEN")] RankGenerationOpen = 1,
     [pbr::OriginalName("RANK_GENERATION_SEALED")] RankGenerationSealed = 2,
+  }
+
+  /// <summary>
+  /// RankBoardKey.board_type 的取值登记处(2026-11-12)。board_type 是客户端契约:客户端按它找榜,两版服务器取同值。
+  /// 新增一种榜先在这里登记一个值,生产者与客户端都用生成的常量,不写数字;已上线的值不改、不复用(同字段编号)。
+  /// 字段本身仍是 uint32:rank 服务是通用榜,不按这里校验取值。
+  /// </summary>
+  public enum RankBoardType {
+    [pbr::OriginalName("RANK_BOARD_TYPE_UNSPECIFIED")] Unspecified = 0,
+    /// <summary>
+    /// 计分模式的评分榜,一个计分模式一张(docs/design/global-match-hierarchical-pools.md §8 R5);
+    /// 模式到榜的映射只在 go/match/internal/authority/rating.go 的 rankBoardTypes。
+    /// </summary>
+    [pbr::OriginalName("RANK_BOARD_TYPE_MATCH_1V1")] Match1V1 = 1,
+    /// <summary>
+    /// MATCH_MODE_5V5
+    /// </summary>
+    [pbr::OriginalName("RANK_BOARD_TYPE_MATCH_5V5")] Match5V5 = 2,
+    /// <summary>
+    /// MATCH_MODE_PVP_TEAM,各档每侧人数共用一张
+    /// </summary>
+    [pbr::OriginalName("RANK_BOARD_TYPE_MATCH_PVP_TEAM")] MatchPvpTeam = 3,
   }
 
   #endregion

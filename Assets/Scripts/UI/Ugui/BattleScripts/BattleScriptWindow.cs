@@ -11,6 +11,8 @@ using static MmorpgClient.UI.Ugui.Gameplay.GameplayUiArt;
 
 namespace MmorpgClient.UI.Ugui.BattleScripts
 {
+    using Transform = UnityEngine.Transform;
+
     /// <summary>
     /// 战斗剧本窗口(服务端 docs/design/battle-script.md §7)。左边是本人的剧本(审核状态、删除、选用),右边是玩法选择、
     /// 该玩法当前的选用、官方剧本,以及「粘贴 protobuf JSON 导入」的提交框。

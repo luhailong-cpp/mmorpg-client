@@ -26,7 +26,7 @@ public static partial class PlayerBattleResultCompReflection {
           "X2NvbXAucHJvdG8iQwoaUGxheWVyQmF0dGxlUmVzdWx0Q3VycmVuY3kSFQoN",
           "Y3VycmVuY3lfdHlwZRgBIAEoDRIOCgZhbW91bnQYAiABKAQiPgoWUGxheWVy",
           "QmF0dGxlUmVzdWx0SXRlbRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNv",
-          "dW50GAIgASgEIqoDChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
+          "dW50GAIgASgEIsADChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
           "cRgBIAEoBBIRCgliYXR0bGVfaWQYAiABKAQSDwoHb3V0Y29tZRgDIAEoDRIS",
           "Cgp0ZWFtX2luZGV4GAQgASgNEg8KB2lzX2RlYWQYBSABKAgSDAoEZmxlZBgG",
           "IAEoCBIUCgx0b3RhbF9yb3VuZHMYByABKA0SFgoOZmluaXNoZWRfYXRfbXMY",
@@ -35,16 +35,16 @@ public static partial class PlayerBattleResultCompReflection {
           "bmVkGAsgAygLMhcuUGxheWVyQmF0dGxlUmVzdWx0SXRlbRIvCg5pdGVtc19j",
           "b25zdW1lZBgMIAMoCzIXLlBsYXllckJhdHRsZVJlc3VsdEl0ZW0SFwoPbGlu",
           "ZXNfdHJ1bmNhdGVkGA0gASgIEgwKBHNlZW4YDiABKAgSEgoKbWF0Y2hfbW9k",
-          "ZRgPIAEoDRIYChBiYXR0bGVfY29uZmlnX2lkGBAgASgNIlcKFlBsYXllckJh",
-          "dHRsZVJlc3VsdENvbXASFwoPbGFzdF9yZXN1bHRfc2VxGAEgASgEEiQKB2Vu",
-          "dHJpZXMYAiADKAsyEy5QbGF5ZXJCYXR0bGVSZXN1bHRCEloQY29tbW9uL2Nv",
-          "bXBvbmVudGIGcHJvdG8z"));
+          "ZRgPIAEoDRIYChBiYXR0bGVfY29uZmlnX2lkGBAgASgNEhQKDGl0ZW1zX21h",
+          "aWxlZBgRIAEoCCJXChZQbGF5ZXJCYXR0bGVSZXN1bHRDb21wEhcKD2xhc3Rf",
+          "cmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRyaWVzGAIgAygLMhMuUGxheWVyQmF0",
+          "dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultCurrency), global::PlayerBattleResultCurrency.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultItem), global::PlayerBattleResultItem.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultComp), global::PlayerBattleResultComp.Parser, new[]{ "LastResultSeq", "Entries" }, null, null, null, null)
         }));
   }
@@ -588,6 +588,7 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     seen_ = other.seen_;
     matchMode_ = other.matchMode_;
     battleConfigId_ = other.battleConfigId_;
+    itemsMailed_ = other.itemsMailed_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -631,7 +632,7 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
   public const int OutcomeFieldNumber = 3;
   private uint outcome_;
   /// <summary>
-  /// eBattleOutcome:A 胜 / B 胜 / 平局,不会是 ONGOING
+  /// eBattleOutcome:A 胜 / B 胜 / 平局 / 作废(VOID:本局被 Match 作废,下面的明细全空);不会是 ONGOING
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -749,7 +750,7 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       = pb::FieldCodec.ForMessage(90, global::PlayerBattleResultItem.Parser);
   private readonly pbc::RepeatedField<global::PlayerBattleResultItem> itemsGained_ = new pbc::RepeatedField<global::PlayerBattleResultItem>();
   /// <summary>
-  /// 实际入包(含临时背包)的掉落,按 item_table_id 升序
+  /// 本人实得的掉落(入了人物背包或临时背包;items_mailed 时改由邮件发放),按 item_table_id 升序
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -831,6 +832,22 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
   }
 
+  /// <summary>Field number for the "items_mailed" field.</summary>
+  public const int ItemsMailedFieldNumber = 17;
+  private bool itemsMailed_;
+  /// <summary>
+  /// 掉落放不进人物背包与临时背包,整批改由邮件发放(docs/design/battle-overflow-mail.md)。items_gained 照常列出这批掉落
+  /// (它们已经是本人的,只是要去邮箱领);客户端据此在结算屏提示。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool ItemsMailed {
+    get { return itemsMailed_; }
+    set {
+      itemsMailed_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -862,6 +879,7 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (Seen != other.Seen) return false;
     if (MatchMode != other.MatchMode) return false;
     if (BattleConfigId != other.BattleConfigId) return false;
+    if (ItemsMailed != other.ItemsMailed) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -885,6 +903,7 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (Seen != false) hash ^= Seen.GetHashCode();
     if (MatchMode != 0) hash ^= MatchMode.GetHashCode();
     if (BattleConfigId != 0) hash ^= BattleConfigId.GetHashCode();
+    if (ItemsMailed != false) hash ^= ItemsMailed.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -958,6 +977,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(128, 1);
       output.WriteUInt32(BattleConfigId);
     }
+    if (ItemsMailed != false) {
+      output.WriteRawTag(136, 1);
+      output.WriteBool(ItemsMailed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1023,6 +1046,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(128, 1);
       output.WriteUInt32(BattleConfigId);
     }
+    if (ItemsMailed != false) {
+      output.WriteRawTag(136, 1);
+      output.WriteBool(ItemsMailed);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1074,6 +1101,9 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (BattleConfigId != 0) {
       size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BattleConfigId);
+    }
+    if (ItemsMailed != false) {
+      size += 2 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1128,6 +1158,9 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (other.BattleConfigId != 0) {
       BattleConfigId = other.BattleConfigId;
+    }
+    if (other.ItemsMailed != false) {
+      ItemsMailed = other.ItemsMailed;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1212,6 +1245,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
           BattleConfigId = input.ReadUInt32();
           break;
         }
+        case 136: {
+          ItemsMailed = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -1293,6 +1330,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
         }
         case 128: {
           BattleConfigId = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          ItemsMailed = input.ReadBool();
           break;
         }
       }

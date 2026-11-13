@@ -24,7 +24,8 @@ namespace MmorpgClient.World.Tianyong
 
         private readonly List<Vector3> _path = new();
         private GameClient _client;
-        private TianyongNavigationGrid _navigation;
+        private IMapNavigation _navigation;
+        private TianyongMapConfig _mapConfig;
         private Vector3 _fallbackSpawn = TianyongMapDefinition.DefaultSpawn;
         private Camera _camera;
         private CharacterController _motor;
@@ -71,12 +72,15 @@ namespace MmorpgClient.World.Tianyong
         /// (服务器整条丢弃),CharacterController 关掉 —— 位置由 <see cref="ActorWorld"/> 按发给自己的
         /// ActorMoveS2C 写,与远端角色同一套插值;TeleportS2C 照常吸附。玩家的点击 / 按键只触发
         /// <see cref="FollowInputRejected"/>(界面提示)。脚本化方向(<see cref="SetDebugDirection"/>)同样不生效。
-        /// 只由 <see cref="ActorWorld.SetLocalServerDriven"/> 与 <see cref="Initialize(GameClient, TianyongNavigationGrid, Camera, TianyongMapConfig, Vector3?)"/> 设置。
+        /// 只由 <see cref="ActorWorld.SetLocalServerDriven"/> 与 Initialize 设置。
         /// </summary>
         public bool ServerDriven => _serverDriven;
 
         /// <summary>服务器驱动期间,玩家点了地面或按了方向键(每次点击 / 每帧按住各触发一次,订阅方自己限频)。</summary>
         public event System.Action FollowInputRejected;
+
+        /// <summary>点击目标不可到达时通知界面，不接受部分路径。</summary>
+        public event System.Action<string> NavigationRejected;
 
         /// <summary>
         /// 进入 / 退出服务器驱动。两个方向都丢掉当前路径、不发停步:进入时服务器已经在驱动(上报会被丢弃),
@@ -124,7 +128,10 @@ namespace MmorpgClient.World.Tianyong
         public void SetScriptedInputOwner(bool owned) => _ignoreLocalInput = owned;
 
         /// <summary>The client-side walk mask this controller validates against (null before Initialize).</summary>
-        public TianyongNavigationGrid Navigation => _navigation;
+        public TianyongNavigationGrid Navigation => _navigation as TianyongNavigationGrid;
+
+        /// <summary>当前地图使用的导航；旧地图的网格接口仍可通过 Navigation 获取。</summary>
+        public IMapNavigation ActiveNavigation => _navigation;
 
         /// <summary>
         /// End point of the path currently being walked, i.e. the destination
@@ -164,13 +171,13 @@ namespace MmorpgClient.World.Tianyong
 
         public void Initialize(
             GameClient client,
-            TianyongNavigationGrid navigation,
+            IMapNavigation navigation,
             Camera worldCamera)
             => Initialize(client, navigation, worldCamera, TianyongMapConfig.LoadDefault());
 
         public void Initialize(
             GameClient client,
-            TianyongNavigationGrid navigation,
+            IMapNavigation navigation,
             Camera worldCamera,
             TianyongMapConfig config,
             Vector3? fallbackSpawn = null)
@@ -185,6 +192,7 @@ namespace MmorpgClient.World.Tianyong
 
             _client = client;
             _navigation = navigation;
+            _mapConfig = config;
             _fallbackSpawn = resolvedFallback;
             _camera = worldCamera;
             _moveSpeed = config != null ? config.MoveSpeed : DefaultMoveSpeed;
@@ -199,17 +207,7 @@ namespace MmorpgClient.World.Tianyong
             _motor = GetComponent<CharacterController>();
             if (_motor == null) _motor = gameObject.AddComponent<CharacterController>();
 
-            var height = config != null ? config.PlayerHeight : DefaultHeight;
-            var radius = config != null ? config.PlayerRadius : DefaultRadius;
-            var stepOffset = config != null ? config.PlayerStepOffset : DefaultStepOffset;
-            _motor.height = Mathf.Max(0.5f, height);
-            _motor.radius = Mathf.Clamp(radius, 0.1f, _motor.height * 0.49f);
-            _motor.center = Vector3.up * (_motor.height * 0.5f);
-            _motor.stepOffset = Mathf.Clamp(stepOffset, 0f, _motor.height * 0.49f);
-            _motor.slopeLimit = 45f;
-            _motor.skinWidth = Mathf.Clamp(_motor.radius * 0.15f, 0.02f, 0.1f);
-            _motor.minMoveDistance = 0f;
-            _arrivalDistance = Mathf.Max(0.25f, _motor.radius * 0.9f);
+            ConfigureMotor(navigation);
 
             // 上一轮服务器驱动可能把 CharacterController 关着留下(控制器被禁用后重新挂上):先复位成自己驱动。
             if (_serverDriven)
@@ -225,16 +223,42 @@ namespace MmorpgClient.World.Tianyong
             SetServerDriven(client?.World != null && client.World.LocalServerDriven);
         }
 
+        private void ConfigureMotor(IMapNavigation navigation)
+        {
+            var height = navigation != null && navigation.IsAuthoredFlat ? 1.8f : _mapConfig != null ? _mapConfig.PlayerHeight : DefaultHeight;
+            var radius = navigation != null && navigation.IsAuthoredFlat ? 0.4f : _mapConfig != null ? _mapConfig.PlayerRadius : DefaultRadius;
+            var stepOffset = navigation != null && navigation.IsAuthoredFlat ? 0.3f : _mapConfig != null ? _mapConfig.PlayerStepOffset : DefaultStepOffset;
+            _motor.height = Mathf.Max(0.5f, height);
+            _motor.radius = Mathf.Clamp(radius, 0.1f, _motor.height * 0.49f);
+            _motor.center = Vector3.up * (_motor.height * 0.5f);
+            _motor.stepOffset = Mathf.Clamp(stepOffset, 0f, _motor.height * 0.49f);
+            _motor.slopeLimit = 45f;
+            _motor.skinWidth = Mathf.Clamp(_motor.radius * 0.15f, 0.02f, 0.1f);
+            _motor.minMoveDistance = 0f;
+            _arrivalDistance = Mathf.Max(0.25f, _motor.radius * 0.9f);
+        }
+
         private Vector3 ClampToMap(Vector3 world, float margin = 2f)
             => _navigation != null ? _navigation.ClampXZ(world, margin) : TianyongMapDefinition.ClampXZ(world, margin);
 
         // A same-runtime map replacement only changes navigation and feet. It
         // must not destroy/recreate actor colliders as first initialization does.
-        internal void ApplyPreparedMapNavigation(TianyongNavigationGrid navigation, Vector3 fallback, Vector3 feet)
+        internal void ApplyPreparedMapNavigation(IMapNavigation navigation, Vector3 fallback, Vector3 feet)
         {
             _navigation = navigation;
             _fallbackSpawn = fallback;
+            if (_motor != null) ConfigureMotor(navigation);
             WarpTo(feet);
+        }
+
+        // The server may already have switched scenes; never report the old feet
+        // position while the map owner replaces its navigation transactionally.
+        internal void SuspendForMapChange()
+        {
+            _pendingReport = false;
+            _destination = null;
+            CancelPath(false);
+            enabled = false;
         }
 
         internal System.Action CaptureMapBinding()
@@ -257,6 +281,7 @@ namespace MmorpgClient.World.Tianyong
                 enabled = wasEnabled;
                 _navigation = navigation;
                 _fallbackSpawn = fallback;
+                if (_motor != null) ConfigureMotor(navigation);
                 _path.Clear();
                 _path.AddRange(path);
                 _waypoint = waypoint;
@@ -271,7 +296,7 @@ namespace MmorpgClient.World.Tianyong
             };
         }
 
-        internal static Vector3 ResolveFallbackSpawn(TianyongNavigationGrid navigation, Vector3 initialFeet, Vector3? requested)
+        internal static Vector3 ResolveFallbackSpawn(IMapNavigation navigation, Vector3 initialFeet, Vector3? requested)
             => navigation != null ? navigation.ResolveFallbackSpawn(initialFeet, requested) :
                 TianyongMapDefinition.ClampXZ(requested ?? TianyongMapDefinition.DefaultSpawn, 2f);
 
@@ -345,8 +370,15 @@ namespace MmorpgClient.World.Tianyong
 
             var stranded = FeetPosition;
             if (!_navigation.TryFindNearestWalkable(stranded, out var recovered))
+            {
+                if (_navigation.IsAuthoredFlat)
+                {
+                    Debug.LogError($"[TianyongPlayerController] server position {stranded} does not match the active authored NavMesh; movement remains blocked");
+                    return false;
+                }
                 recovered = _fallbackSpawn;
-            recovered.y = stranded.y;
+            }
+            if (!_navigation.IsAuthoredFlat) recovered.y = stranded.y;
             WarpTo(recovered);
 
             // Loop breaker: if the server keeps answering our recovery report
@@ -426,7 +458,9 @@ namespace MmorpgClient.World.Tianyong
             _networkTarget = _path.Count > 0 ? _path[^1] : (Vector3?)null;
             if (_waypoint < _path.Count) return true;
 
+            _destination = null;
             StopMoving();
+            if (_navigation.IsAuthoredFlat) NavigationRejected?.Invoke("目标不可到达");
             return false;
         }
 
@@ -503,7 +537,13 @@ namespace MmorpgClient.World.Tianyong
                 target.y = current.y;
                 var delta = target - current;
                 delta.y = 0f;
-                if (delta.sqrMagnitude < _arrivalDistance * _arrivalDistance)
+                // Near a corner, do not skip it if the shortcut to the next
+                // point crosses an obstacle. The old grid keeps its tolerance.
+                var arrival = _arrivalDistance;
+                if (_navigation.IsAuthoredFlat && _waypoint + 1 < _path.Count &&
+                    !_navigation.IsSegmentWalkable(current, _path[_waypoint + 1]))
+                    arrival = 0.02f;
+                if (delta.sqrMagnitude < arrival * arrival)
                 {
                     _waypoint++;
                     if (_waypoint >= _path.Count)
@@ -518,7 +558,10 @@ namespace MmorpgClient.World.Tianyong
                     delta.y = 0f;
                 }
 
-                if (!MoveInDirection(delta.normalized, Time.deltaTime))
+                var movementTime = _navigation.IsAuthoredFlat && _moveSpeed > 0f
+                    ? Mathf.Min(Time.deltaTime, delta.magnitude / _moveSpeed)
+                    : Time.deltaTime;
+                if (!MoveInDirection(delta.normalized, movementTime))
                     HandleBlockedPathStep();
                 return;
             }
@@ -555,7 +598,12 @@ namespace MmorpgClient.World.Tianyong
         /// </summary>
         public bool ClickAt(Vector3 groundPoint)
         {
-            if (!SetDestination(groundPoint)) return false;
+            if (!SetDestination(groundPoint))
+            {
+                if (_navigation != null && _navigation.IsAuthoredFlat && !_serverDriven)
+                    MmorpgClient.UI.Ugui.Battle.BattleUiRoot.Instance?.ShowToast("目标不可到达", true);
+                return false;
+            }
             TianyongClickMarker.Spawn(_path[^1], _camera);
             return true;
         }
@@ -594,8 +642,12 @@ namespace MmorpgClient.World.Tianyong
             var dt = Mathf.Min(Mathf.Max(deltaTime, 0f), 0.05f);
             var velocity = direction.normalized * _moveSpeed;
             var step = velocity * dt;
-            var candidateFeet = ClampToMap(FeetPosition + step, 2f);
-            if (!_debugIgnoreMask && !_navigation.IsWalkable(candidateFeet))
+            var before = FeetPosition;
+            var authored = _navigation.IsAuthoredFlat;
+            var checkNavigation = authored || !_debugIgnoreMask;
+            var candidateFeet = ClampToMap(before + step, 2f);
+            if (checkNavigation && (!_navigation.IsWalkable(candidateFeet) ||
+                (authored && !_navigation.IsSegmentWalkable(before, candidateFeet))))
             {
                 StopMoving();
                 return false;
@@ -606,8 +658,7 @@ namespace MmorpgClient.World.Tianyong
                 transform.rotation,
                 desiredRotation,
                 1f - Mathf.Exp(-TurnSpeed * dt));
-            var before = FeetPosition;
-            _motor.Move(step + Vector3.down * (Gravity * dt));
+            _motor.Move(step + (authored ? Vector3.zero : Vector3.down * (Gravity * dt)));
             // The CharacterController can slide a few centimetres off the
             // intended line (leftover collider edges, capsule skin). The mask
             // check above validated the intended step, not where the motor
@@ -615,11 +666,23 @@ namespace MmorpgClient.World.Tianyong
             // feet back on the last legal point so a legal walk never reports
             // an illegal position (the server would correct it and the
             // correction would look like a random pull-back to the player).
-            if (!_debugIgnoreMask && !_navigation.IsWalkable(FeetPosition))
+            if (authored && Mathf.Abs(FeetPosition.y) > 0.00001f && Mathf.Abs(FeetPosition.y) <= 0.02f)
+            {
+                var flatFeet = FeetPosition;
+                flatFeet.y = 0f;
+                PlaceFeet(flatFeet);
+            }
+            if (checkNavigation && (!_navigation.IsWalkable(FeetPosition) ||
+                (authored && !_navigation.IsSegmentWalkable(before, FeetPosition))))
             {
                 var back = before;
-                back.y = FeetPosition.y;
+                if (!authored) back.y = FeetPosition.y;
                 PlaceFeet(back);
+                if (authored)
+                {
+                    StopMoving();
+                    return false;
+                }
             }
 
             var reportNow = Time.unscaledTime;

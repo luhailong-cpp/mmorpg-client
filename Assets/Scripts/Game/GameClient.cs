@@ -227,7 +227,10 @@ namespace MmorpgClient.Game
         /// <summary>当前真实 Gate 的不透明标识；仅用于引用比较，静默重登录/重定向也会改变。</summary>
         public object GateConnectionIdentity => _gate;
 
-        /// <summary>Account used by the last EnterZone run (needed for redirect re-login).</summary>
+        /// <summary>
+        /// 最近一次 EnterZone 用口令登录时输入的账号;第三方登录为空串(账号由服务端从渠道凭证算出,客户端不知道)。
+        /// 登录之后的分配 gate、会话绑定、重连与跨区都只用 access token,不读它。
+        /// </summary>
         public string Account { get; private set; }
 
         public event Action<string> OnLog;
@@ -525,6 +528,14 @@ namespace MmorpgClient.Game
         /// </param>
         public IEnumerator EnterZone(uint zoneId, string account, string password, string deviceId,
                                      Action onSuccess, Action<string> onError, bool zoneCreateRoleClosed = false)
+            => EnterZone(zoneId, LoginCredential.ForPassword(account, password), deviceId, onSuccess, onError, zoneCreateRoleClosed);
+
+        /// <summary>
+        /// 用任一种登录方式进区(口令,或小游戏 / Apple / Google 等渠道凭证,见 <see cref="LoginCredential"/>)。
+        /// 只有第 1 步按登录方式组请求;之后分配 gate、gate 上绑定会话都只用这一步签发的 access token。
+        /// </summary>
+        public IEnumerator EnterZone(uint zoneId, LoginCredential credential, string deviceId,
+                                     Action onSuccess, Action<string> onError, bool zoneCreateRoleClosed = false)
         {
             CancelReconnect();
             _deviceId = deviceId;
@@ -533,7 +544,7 @@ namespace MmorpgClient.Game
             // 重定向跳数按"一次登录会话"计:这里是新会话的起点,把熔断计数归零,
             // 否则上一条会话用掉的跳数会把这条会话的正常重定向提前掐死。
             _redirectHops = 0;
-            Account = account;
+            Account = credential.IsPassword ? credential.Account : string.Empty;
 
             // ── 1. HTTP login (issues access/refresh tokens + player list) ──
             Status("正在登录账号…");
@@ -542,14 +553,7 @@ namespace MmorpgClient.Game
             {
                 GatewayLoginResult r = null;
                 string err = null;
-                yield return _http.Login(new GatewayLoginRequest
-                {
-                    zone_id = zoneId,
-                    account = account,
-                    password = password,
-                    auth_type = "password",
-                    device_id = deviceId,
-                }, x => r = x, e => err = e);
+                yield return _http.Login(BuildHttpLoginRequest(zoneId, credential, deviceId), x => r = x, e => err = e);
                 if (gen != _pipelineGen) yield break;
                 if (err != null) { onError(err); yield break; }
 
@@ -571,6 +575,13 @@ namespace MmorpgClient.Game
 
             if (!string.IsNullOrEmpty(loginHttp.access_token))
                 SetTokens(loginHttp.access_token, loginHttp.refresh_token, loginHttp.access_token_expire);
+            else if (!credential.IsPassword)
+            {
+                // 第三方登录没有口令可回退:gate 上只能凭 access token 绑定会话,而渠道凭证已被这一次登录用掉。
+                // 服务端签发失败时回的是故障码(走不到这里),这里只兜住异常的成功回包。
+                onError("登录失败:服务器没有签发登录凭证,请重新登录");
+                yield break;
+            }
             Log($"http login ok, players={loginHttp.players?.Length ?? 0}");
 
             // 所选区暂停创角、而账号在这个区没有角色:排完队进去也只能在建角时被拒,所以不去排队,直接回选服界面。
@@ -591,15 +602,7 @@ namespace MmorpgClient.Game
                 string err = null;
                 if (string.IsNullOrEmpty(queueToken))
                 {
-                    // 全限定:Loginpb.AssignGateRequest(proto)与 HTTP DTO 同名,
-                    // 两个命名空间都在 using 里,不限定会 CS0104。
-                    yield return _http.AssignGate(new MmorpgClient.Net.AssignGateRequest
-                    {
-                        zone_id = zoneId,
-                        account = account,
-                        device_id = deviceId,
-                        queue_token = "",
-                    }, x => r = x, e => err = e);
+                    yield return _http.AssignGate(BuildAssignGateRequest(zoneId, AccessToken, deviceId), x => r = x, e => err = e);
                 }
                 else
                 {
@@ -638,11 +641,41 @@ namespace MmorpgClient.Game
             Log($"assigned gate {assigned.gate_ip}:{assigned.gate_port}");
 
             // ── 3~6. Connect, verify, bind session, enter ──
+            // 口令回退只给口令登录:没拿到 token 时 gate 上用口令认证。第三方登录在上面已确认拿到了 token。
             yield return ConnectAndEnter(gen, zoneId,
                 assigned.gate_ip, (int)assigned.gate_port,
                 SafeBase64(assigned.token_payload), SafeBase64(assigned.token_signature),
-                password, onSuccess, onError);
+                credential.IsPassword ? credential.Password : null, onSuccess, onError);
         }
+
+        /// <summary>
+        /// POST /api/login 的请求体。口令登录带账号与口令;第三方登录只带登录方式与渠道凭证,账号与口令留空
+        /// (服务端从凭证算出账号,不读这两个字段)。
+        /// </summary>
+        public static GatewayLoginRequest BuildHttpLoginRequest(uint zoneId, LoginCredential credential, string deviceId)
+            => new GatewayLoginRequest
+            {
+                zone_id = zoneId,
+                account = credential.IsPassword ? credential.Account : string.Empty,
+                password = credential.IsPassword ? credential.Password : string.Empty,
+                auth_type = credential.AuthType,
+                auth_token = credential.IsPassword ? string.Empty : credential.AuthToken,
+                device_id = deviceId ?? string.Empty,
+            };
+
+        /// <summary>
+        /// POST /api/assign-gate 的请求体(首次分配,不带 queue_token)。带 access token:服务端只认它解出的账号
+        /// 做免排队判定与排队身份,不再接受客户端自报的账号名。
+        /// 全限定:Loginpb.AssignGateRequest(proto)与 HTTP DTO 同名,两个命名空间都在 using 里,不限定会 CS0104。
+        /// </summary>
+        public static MmorpgClient.Net.AssignGateRequest BuildAssignGateRequest(uint zoneId, string accessToken, string deviceId)
+            => new MmorpgClient.Net.AssignGateRequest
+            {
+                zone_id = zoneId,
+                access_token = accessToken ?? string.Empty,
+                device_id = deviceId ?? string.Empty,
+                queue_token = string.Empty,
+            };
 
         /// <summary>
         /// Steps 3-6 of the pipeline, shared with the redirect flow (which
@@ -1774,8 +1807,9 @@ namespace MmorpgClient.Game
         private static string LoginCodeDetail(GatewayLoginResult r)
             => string.IsNullOrEmpty(r.message) ? r.code.ToString() : r.message;
 
-        private static string DescribeAssignCode(AssignGateResult r) => r.code switch
+        public static string DescribeAssignCode(AssignGateResult r) => r.code switch
         {
+            AssignGateResult.CodeAuthRejected    => "登录已失效,请重新登录",
             AssignGateResult.CodeZoneNotFound    => "该区服不存在",
             AssignGateResult.CodeZoneUnavailable => DescribeZoneUnavailable(r.error),
             AssignGateResult.CodeRateLimited     => "操作过于频繁,请稍后重试",

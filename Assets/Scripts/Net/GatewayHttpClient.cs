@@ -12,6 +12,7 @@ namespace MmorpgClient.Net
     /// code semantics (see gateway AssignGateService):
     ///   0   admitted   — gate_ip/port/token* populated, connect now
     ///   100 queueing   — queue_token/queue_rank/queue_total/retry_after_ms populated
+    ///   401 access token rejected — log in again (not a transient failure)
     ///   404 zone_not_found
     ///   410 queue expired — restart from /api/assign-gate
     ///   429 rate-limited
@@ -23,6 +24,8 @@ namespace MmorpgClient.Net
     {
         public const int CodeOk           = 0;
         public const int CodeQueueing     = 100;
+        // access token 无效(过期、已吊销)或没带:要重新登录,不是暂时故障。
+        public const int CodeAuthRejected = 401;
         public const int CodeZoneNotFound = 404;
         public const int CodeQueueExpired = 410;
         public const int CodeRateLimited  = 429;
@@ -71,7 +74,9 @@ namespace MmorpgClient.Net
     public class AssignGateRequest
     {
         public uint zone_id;
-        public string account;
+        // /api/login 签发的 access token:服务端只认它解出的账号(已有在线会话的免排队、排队身份)。
+        // 2026-11-12 之前这里是自报的 account,服务端已不再读它。
+        public string access_token;
         public string device_id;
         public string queue_token;
     }
@@ -90,7 +95,7 @@ namespace MmorpgClient.Net
         public uint zone_id;
         public string account;
         public string password;
-        public string auth_type;   // "" / "password" / "wechat" / "qq" / "satoken" / "access_token"
+        public string auth_type;   // LoginAuthTypes 里的取值;"" 等同 "password"
         public string auth_token;
         public string device_id;
     }

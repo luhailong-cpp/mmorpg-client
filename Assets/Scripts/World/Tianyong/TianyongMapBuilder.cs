@@ -19,6 +19,11 @@ namespace MmorpgClient.World.Tianyong
         public GameObject Root { get; }
         public TianyongTheme Theme { get; }
         public TianyongNavigationGrid Navigation { get; internal set; }
+        public IMapNavigation ActiveNavigation => _authoredNavigation ?? (IMapNavigation)Navigation;
+        private AuthoredNavMeshNavigation _authoredNavigation;
+        internal void SetAuthoredNavigation(AuthoredNavMeshNavigation navigation) => _authoredNavigation = navigation;
+        internal void ActivateNavigation() => _authoredNavigation?.Activate();
+        internal void DeactivateNavigation() => _authoredNavigation?.Deactivate();
         public IReadOnlyDictionary<Vector2Int, GameObject> Chunks => _chunks;
 
         internal readonly Dictionary<Vector2Int, GameObject> _chunks = new();
@@ -64,6 +69,8 @@ namespace MmorpgClient.World.Tianyong
 
         public void Dispose()
         {
+            _authoredNavigation?.Dispose();
+            _authoredNavigation = null;
             if (_cityTiles != null) _cityTiles.ReleaseAll();
             if (_currentMapTiles != null) _currentMapTiles.ReleaseAll();
             DestroyObject(Root);
