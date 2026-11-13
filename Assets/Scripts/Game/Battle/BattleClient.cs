@@ -266,6 +266,13 @@ namespace MmorpgClient.Game.Battle
         public event Action<string> OnBattleVoidNotice;
 
         /// <summary>
+        /// 收到一份没有战斗上下文的终局(例如断线期间结算入账、重登之后才送达),不弹结算面板。参数:终局本身,以及这一局
+        /// 是否已经用 <see cref="OnBattleVoidNotice"/> 提示过玩家。近期战斗结果补查(<see cref="BattleResultRecoveryClient"/>)
+        /// 据此再查一次,把这一局补弹出来(服务端 docs/design/battle-result-recovery.md §7 第 3 条)。
+        /// </summary>
+        public event Action<BattleEndS2C, bool> OnBattleEndWithoutContext;
+
+        /// <summary>
         /// 这份终局是不是「本局作废」:服务端为这一局写了唯一的作废决定(战斗服进程失效、超过期限、活动取消等),
         /// 全员没有任何奖励与消耗,settlement 里只有身份与展示字段。结算数据在时以它的 outcome 为准,与结算面板同一口径。
         /// </summary>
@@ -1036,8 +1043,12 @@ namespace MmorpgClient.Game.Battle
             if (_battleId == 0 && !lateEndOfSettledBattle)
             {
                 // 没有上下文的作废通知(战斗服故障后退出游戏,重登时才送达):不弹结算面板,空闲时提示一句,
-                // 免得玩家不知道上一局为什么没有结果。排队 / 备战中不打扰;其余无上下文的终局照旧丢弃。
-                if (Phase == BattlePhase.None && IsVoidEnd(ev)) OnBattleVoidNotice?.Invoke(BattleVoidNoticeText);
+                // 免得玩家不知道上一局为什么没有结果。排队 / 备战中不打扰。
+                bool notified = Phase == BattlePhase.None && IsVoidEnd(ev);
+                if (notified) OnBattleVoidNotice?.Invoke(BattleVoidNoticeText);
+                // 没有上下文的终局都不在这里弹面板:交给近期战斗结果补查,查到之后补弹(battle-result-recovery.md §7 第 3 条);
+                // 已经提示过的作废局,补查时不再弹一次。
+                OnBattleEndWithoutContext?.Invoke(ev, notified);
                 return;
             }
             if (!lateEndOfSettledBattle && ev.BattleId != 0 && ev.BattleId != _battleId) return;

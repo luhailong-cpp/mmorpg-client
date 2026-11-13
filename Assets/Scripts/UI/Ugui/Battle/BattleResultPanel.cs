@@ -80,7 +80,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             _confirmButton = BattleUiWidgets.CreateTextButton("Confirm", _root,
                 (PanelW - 260f) * 0.5f, PanelH - 116f, 260f, 76f,
-                "返回场景", 26f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
+                LiveConfirmText, 26f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             BattleRoundCounter.ApplyNineSlice(_confirmButton.Plate, "button_9slice");
             _confirmGroup = _confirmButton.Rect.gameObject.AddComponent<CanvasGroup>();
             _confirmButton.Button.onClick.AddListener(() => onConfirm?.Invoke());
@@ -100,40 +100,63 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 必须排在胜负判断之前 —— 落进下面的 else 会显示成「失败」,奖励行还会列出「HP 0 / MP 0」。
             bool voided = BattleClient.IsVoidEnd(end);
 
-            string title;
-            Color titleColor;
+            ResolveTitle(outcome, myTeam, voided, out string title, out Color titleColor);
+            string subtitle = voided ? VoidSubtitle
+                : settlement != null ? $"共 {settlement.TotalRounds} 回合" : string.Empty;
+            var lines = voided ? BuildVoidLines() : BuildRewardLines(settlement, end.ItemsMailed);
+            Present(title, titleColor, subtitle, lines, LiveConfirmText);
+        }
+
+        /// <summary>
+        /// 补弹一局近期战斗结果(落地补查到的、玩家还没看过的那一局,服务端 docs/design/battle-result-recovery.md §7)。
+        /// 胜负口径与 <see cref="Show"/> 相同;记录里没有经验与战后血蓝(只记实际入账的货币与物品),所以不列这两项。
+        /// </summary>
+        public void ShowRecovered(PlayerBattleResult result)
+        {
+            if (result == null || _root == null) return;
+            bool voided = BattleResultRecoveryClient.IsVoid(result);
+            ResolveTitle((eBattleOutcome)result.Outcome, result.TeamIndex, voided, out string title, out Color titleColor);
+            Present(title, titleColor, voided ? VoidSubtitle : BuildRecoveredSubtitle(result), BuildRecoveredLines(result),
+                RecoveredConfirmText);
+        }
+
+        // 胜负大字:作废排在最前(落进「失败」分支会显示成输了);胜 = outcome 对照我方 team。
+        private static void ResolveTitle(eBattleOutcome outcome, uint myTeam, bool voided, out string title, out Color color)
+        {
             if (voided)
             {
                 title = VoidTitle;
-                titleColor = QdaoUguiTheme.MutedBrown;
+                color = QdaoUguiTheme.MutedBrown;
             }
             else if (outcome == eBattleOutcome.BattleOutcomeDraw)
             {
                 title = "平 局";
-                titleColor = QdaoUguiTheme.MutedBrown;
+                color = QdaoUguiTheme.MutedBrown;
             }
             else if ((outcome == eBattleOutcome.BattleOutcomeSideAWin && myTeam == 0) ||
                      (outcome == eBattleOutcome.BattleOutcomeSideBWin && myTeam == 1))
             {
                 title = "胜 利";
-                titleColor = QdaoUguiTheme.Html("#205B46");
+                color = QdaoUguiTheme.Html("#205B46");
             }
             else if (outcome == eBattleOutcome.BattleOutcomeOngoing)
             {
                 title = "战斗结束";
-                titleColor = BattleFidelityArt.Ink;
+                color = BattleFidelityArt.Ink;
             }
             else
             {
                 title = "失 败";
-                titleColor = BattleUiStyle.DamageText;
+                color = BattleUiStyle.DamageText;
             }
+        }
+
+        private void Present(string title, Color titleColor, string subtitle, List<string> lines, string confirmText)
+        {
             _titleText.text = title;
             _titleText.color = titleColor;
-            if (voided) _roundsText.text = VoidSubtitle;
-            else _roundsText.text = settlement != null ? $"共 {settlement.TotalRounds} 回合" : string.Empty;
-
-            var lines = voided ? BuildVoidLines() : BuildRewardLines(settlement, end.ItemsMailed);
+            _roundsText.text = subtitle;
+            _confirmButton.SetText(confirmText);
             KillTweens();
             ClearRows();
             _root.gameObject.SetActive(true);
@@ -214,6 +237,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>本局作废时标题下的一行(平时这里是「共 N 回合」)。</summary>
         public const string VoidSubtitle = "战斗未能完成,不计胜负";
 
+        /// <summary>现场结算面板的确认键:收起之后回到场景。</summary>
+        public const string LiveConfirmText = "返回场景";
+        /// <summary>补弹结果的确认键:玩家已经在场景里,只是看完。</summary>
+        public const string RecoveredConfirmText = "知道了";
+        /// <summary>补弹结果说明行的开头:告诉玩家这是之前没看到的一局。</summary>
+        public const string RecoveredSubtitlePrefix = "上次未查看的战斗 · ";
+        /// <summary>服务端只存下了一部分物品行(配置号最小的那些)时补一句。</summary>
+        public const string TruncatedLinesLine = "物品较多,只列出一部分";
+
         /// <summary>
         /// 本局作废时的说明行(纯逻辑,EditMode 可测),代替奖励行:作废的 settlement 里没有任何效果,
         /// 按 <see cref="BuildRewardLines"/> 列出来会是一串 +0 和「HP 0 / MP 0」。
@@ -245,16 +277,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (settlement.CurrencyGains.Count > 0)
             {
                 foreach (var currency in settlement.CurrencyGains)
-                {
-                    string name = currency.CurrencyType switch
-                    {
-                        0 => "银两",
-                        1 => "灵石",
-                        2 => "绑定灵石",
-                        _ => $"货币{currency.CurrencyType}"
-                    };
-                    lines.Add($"{name}  +{currency.Amount}");
-                }
+                    lines.Add($"{CurrencyName(currency.CurrencyType)}  +{currency.Amount}");
             }
             else
             {
@@ -282,6 +305,69 @@ namespace MmorpgClient.UI.Ugui.Battle
             lines.Add(state);
             return lines;
         }
+
+        /// <summary>
+        /// 补弹结果的说明行:这是之前没看到的一局、什么时候结束、打了几回合。
+        /// 时间用 finished_at_ms,为 0 时用 settled_at_ms,两者都没有就不写时间。
+        /// </summary>
+        public static string BuildRecoveredSubtitle(PlayerBattleResult result)
+        {
+            if (result == null) return string.Empty;
+            ulong ms = result.FinishedAtMs != 0 ? result.FinishedAtMs : result.SettledAtMs;
+            string when = ms != 0 && ms <= MaxUnixMilliseconds
+                ? DateTimeOffset.FromUnixTimeMilliseconds((long)ms).ToLocalTime()
+                      .ToString("MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture) + " 结束 · "
+                : string.Empty;
+            return $"{RecoveredSubtitlePrefix}{when}共 {result.TotalRounds} 回合";
+        }
+
+        private static readonly ulong MaxUnixMilliseconds = (ulong)DateTimeOffset.MaxValue.ToUnixTimeMilliseconds();
+
+        /// <summary>
+        /// 补弹结果的明细行(纯逻辑,EditMode 可测),取自服务端存下的近期战斗结果:只记实际入账的货币与物品,
+        /// 没有经验与战后血蓝。作废局与现场面板用同一套说明行。
+        /// </summary>
+        public static List<string> BuildRecoveredLines(PlayerBattleResult result)
+        {
+            if (result == null) return new List<string> { "(未收到结算数据)" };
+            if (BattleResultRecoveryClient.IsVoid(result)) return BuildVoidLines();
+            var lines = new List<string>();
+            if (result.Currencies.Count > 0)
+            {
+                foreach (var currency in result.Currencies)
+                    lines.Add($"{CurrencyName(currency.CurrencyType)}  +{currency.Amount}");
+            }
+            else
+            {
+                lines.Add("获得货币  无");
+            }
+            if (result.ItemsGained.Count > 0)
+            {
+                foreach (var item in result.ItemsGained)
+                    lines.Add($"获得  道具{item.ItemTableId} ×{item.Count}");
+                if (result.ItemsMailed) lines.Add(ItemsMailedLine);
+            }
+            else
+            {
+                lines.Add("获得道具  无");
+            }
+            foreach (var item in result.ItemsConsumed)
+                lines.Add($"消耗  道具{item.ItemTableId} ×{item.Count}");
+            if (result.LinesTruncated) lines.Add(TruncatedLinesLine);
+            if (result.IsDead && result.Fled) lines.Add("战后状态  阵亡、中途逃离");
+            else if (result.IsDead) lines.Add("战后状态  阵亡");
+            else if (result.Fled) lines.Add("战后状态  中途逃离");
+            return lines;
+        }
+
+        /// <summary>货币显示名(契约 §0-1 的叫法);不认识的类型原样带编号。</summary>
+        private static string CurrencyName(uint currencyType) => currencyType switch
+        {
+            0 => "银两",
+            1 => "灵石",
+            2 => "绑定灵石",
+            _ => $"货币{currencyType}"
+        };
 
         private void KillTweens()
         {

@@ -87,7 +87,7 @@ pwsh -File .codex-artifacts/heartbeat-20261106/compile-current-recovery.ps1 -Pro
 - 单向请求的请求号为 0，例如 MoveStart / MoveSync / MoveStop，它们的信封按 `message_id` 交给各自的处理器，只记日志。没有处理器的单向信封记为 `[rpc] one-way request rejected`。
 - Gate 推 124 之前，会给还在排队的请求逐条回 1003。客户端分不出这种 1003 和「发出后失败」的 1003，所以一律按结果未知处理：不改业务状态，提示稍后重试，写请求复用幂等键。帮会和组队的「待确认」状态会在连接对象变化时自动解除。
 - 收到 124 后，`RedirectFlow` 把旧 gate 记为已搬走。之后对它的 `CallMethod` 当场以 `NotSent("gate redirected")` 失败，单向发送不再发出，`IsGateReady` 为假，直到换到新连接或断线。
-- 客户端不发 LeaveGame，所以 gate 的 LeaveGame 屏障不适用。战斗 RPC 只走直连，不会碰到 gate 的 battle 闸。
+- 客户端只在进场失败（3023）之后、同一连接上换角时发 LeaveGame（2026-11-12 起，见文末一节），而且等它回包才发下一条 EnterGame，那时游戏内各功能都还没开始发请求，所以 gate 的 LeaveGame 屏障实际碰不到。战斗 RPC 只走直连，不会碰到 gate 的 battle 闸。
 - 不等回包就连发的依赖请求只有两类：匹配排队的 JoinQueue → CancelQueue，以及跨功能的 CancelQueue 与 StartTeamMatch / RespondGuildTrialInvite。两类都由 gate 路由 lane 按收包顺序执行。客户端只在功能内单飞，不做全局串行。
 
 改动文件：`Assets/Scripts/Game/GameClient.cs`、`Assets/Scripts/Net/RpcStatus.cs`（注释）、`Assets/Scripts/Game/Battle/DirectRoutingBattleTransport.cs`（注释），以及新测试 `Assets/Tests/EditMode/Net/GameClientGateEnvelopeTests.cs`（含 `.meta`，5 例，真实回环 TCP）。尚未编译，也没有在 Unity 里运行。验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-11「客户端请求保序:客户端配合」条。
@@ -102,9 +102,34 @@ pwsh -File .codex-artifacts/heartbeat-20261106/compile-current-recovery.ps1 -Pro
 |---|---|---|
 | `BagInfo.held_items = 4`（`BagHeldItemInfo { config_id, count }`，`proto/scene/player_bag.proto`） | 只有人物背包带。这种物品有多少押在还没结算的战斗里：交易、捐献暂时动不了，那一局结算或作废之后放开 | 背包详情加一行「战斗结算中 N（结算后可交易）」；聚宝斋「从背包选择」只让选没被占住的数量，全被占住就不让选 |
 | `BattleEndS2C.items_mailed = 4`（`proto/battle/player_battle.proto`） | 本局获得的道具两个背包都放不下，服务器整批改由邮件发放 | 结算屏在道具行之后加一行「背包已满，以上道具改由邮件发放，请留意邮箱」。写「改由」不写「已」：收到结算时邮件多半还在寄送途中，邮件服务不可达时会更晚到 |
-| `PlayerBattleResult.items_mailed = 17`（`proto/common/component/player_battle_result_comp.proto`） | 同一个事实，记在近期战斗结果里 | 客户端目前不读近期战斗结果，生成后只是多一个属性 |
+| `PlayerBattleResult.items_mailed = 17`（`proto/common/component/player_battle_result_comp.proto`） | 同一个事实，记在近期战斗结果里 | 落地补查到的结果补弹时，道具行之后同样加这一行（见下一节「近期战斗结果补查与补弹」） |
 
 - 被占住的数量只用于显示和选物品时的上限，能不能出包由服务器裁决。押的是数量，不指定哪一堆：同一种分几堆时，任何一堆最多只能选出这种物品没被占住的总数。
 - 展示推导都在 `EquipBagModel`（`HeldCountOf`、`AvailableCountOf`、`AvailableInStack`、`HeldLine`），不依赖 UnityEngine。背包格子上的数量角标没有改：效果图没有这个状态的设计。
 - 改动文件：`Assets/Scripts/UI/Ugui/Gameplay/EquipBagModel.cs`、`GameplayWindow.Fidelity.cs`，`Assets/Scripts/UI/Ugui/Jubaozhai/CommerceWindow.cs`，`Assets/Scripts/UI/Ugui/Battle/BattleResultPanel.cs`；测试 `Assets/Tests/EditMode/Battle/EquipForgeModelTests.cs`（2 例）、`DamageNumberLayoutTests.cs`（1 例）。
-- 这些代码引用了还没生成的类型和属性（`BagHeldItemInfo`、`BagInfo.HeldItems`、`BattleEndS2C.ItemsMailed`）：先从服务端当前 proto 重跑 `tools/gen_proto.ps1`，客户端才能编译。尚未生成、未编译，也没有在 Unity 里运行；验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-12「战斗掉落两包都放不下改投邮件」条。
+- 这些代码引用了还没生成的类型和属性（`BagHeldItemInfo`、`BagInfo.HeldItems`、`BattleEndS2C.ItemsMailed`、`PlayerBattleResult.ItemsMailed`）：先从服务端当前 proto 重跑 `tools/gen_proto.ps1`，客户端才能编译。尚未生成、未编译，也没有在 Unity 里运行；验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-12「战斗掉落两包都放不下改投邮件」条。
+
+## 近期战斗结果补查与补弹（2026-11-12）
+
+本节以服务端仓 `docs/design/battle-result-recovery.md` §6、§7 为事实源。协议早已生成（`SceneBattleResultClientPlayerRpc`：`GetRecentBattleResults` 371、`AckBattleResults` 372），本节不改协议，只把一直没接的客户端半边接上：以前断线或离线期间结算入账的那一局，玩家重登后看不到结果。
+
+- **什么时候查**：每次落地查一次（与 `LandingSyncClient` 同一口径：`InGame` 且传输就绪，`(PlayerId, 连接身份)` 变了就是一次新的落地；`InGame` 在 `NotifyEnterScene` 之后才为真）。收到没有战斗上下文的 `BattleEndS2C` 再查一次（`BattleClient.OnBattleEndWithoutContext`）。两种触发共用单飞：在途时再来的触发，只在它回来之后多查一次。
+- **失败**：传输错误、超时或回包带 tip，按 15 / 30 / 60 秒封顶退避，成功即归零。
+- **弹什么**：回包里 `seen = false`、本进程没展示过的，按 `result_seq` 从小到大逐个交给 `BattleUiRoot`。`BattleUiRoot` 只在空闲时弹（没有战斗屏、观战屏，也没有结算面板在显示），确认一局再弹下一局；确认键写「知道了」，不收战斗屏，也不调 `AckBattleEnd`。说明行是「上次未查看的战斗 · 时间 结束 · 共 N 回合」。明细只列服务端记下的实际入账（货币、获得与消耗的道具、改由邮件发放、物品行被截断、阵亡 / 逃离），没有经验与战后血蓝。作废局显示「本局作废」和作废说明行。
+- **确认**：面板真正弹出之后确认已读，现场的结算面板也确认（否则下次落地还会再弹一次）。一次至多 10 个 battle_id。失败（1006 冻结 / 交接中、超时）不重弹，留在待确认列表里，下次落地先补发再查。待确认只在内存里，进程退出最多让同一局再弹一次。没有上下文的作废局已经用提示告诉过玩家，视同展示过：直接确认，补查时不再弹面板。
+- **改动文件**：新 `Assets/Scripts/Game/Battle/BattleResultRecoveryClient.cs`（含 `.meta`，纯逻辑，不引用 UnityEngine）；`BattleClient.cs`（新事件 `OnBattleEndWithoutContext`，作废提示照旧）；`GameClient.cs`（`BattleResults` 装配与 `Tick` 驱动）；`Assets/Scripts/UI/Ugui/Battle/BattleResultPanel.cs`（`ShowRecovered`、`BuildRecoveredLines`、`BuildRecoveredSubtitle`，胜负标题与展示抽成 `ResolveTitle` / `Present` 两段，现场与补弹共用）；`BattleUiRoot.cs`（补弹排队与确认分支）。
+- **测试**：新 `Assets/Tests/EditMode/Battle/BattleResultRecoveryClientTests.cs`（含 `.meta`，13 例，假传输驱动：落地只查一次、只交未读并按序、没进场不查、10 个一批确认、现场展示过不再补弹、无上下文终局单飞多查一次、作废提示直接确认、15 / 30 / 60 秒退避、确认失败下次落地先补发、1006 留着、上一次落地的回包丢弃、没展示过的下次落地再交、服务端已读清掉待确认）；`DamageNumberLayoutTests.cs` 加 4 例（补弹明细行、无获得与逃离、作废、说明行）。
+- 尚未生成、未编译，也没有在 Unity 里运行；`PlayerBattleResult.ItemsMailed` 要先重跑 `tools/gen_proto.ps1`。验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-12「近期战斗结果客户端补查与补弹」条。
+
+## 强化期望等级与幂等键、临时格取回、进场失败后换角（2026-11-12）
+
+本节以服务端仓 `proto/scene/player_bag.proto`、`docs/design/equipment-enhance-inlay.md` §4.3 / §6.1、`docs/design/client-request-idempotency.md` §2.1、`docs/design/bag-rule-policy-layering.md` §6.6、`docs/design/battle-overflow-mail.md`、`docs/design/client-request-ordering.md` §6.2 为事实源。消息字段与 `SceneBagClientPlayerRpc.RetrieveTemporaryItems`（374）早已生成进本仓，只差 `bag_error` 的 tip 枚举（见末条）。
+
+- **幂等键**（`Assets/Scripts/Net/ClientRequestKeys.cs`）：每次点击、本地检查都过了才生成一个非 0 的随机 64 位键，这次操作拿到明确结果之前的重发都带它。`ShouldResendOnce` 只对超时（`OutstandingCalls.TimeoutDetail`）与信封 1003 为真；断线、1008 等确定没执行的信封、解析失败都不重发。信封串的反解收在 `RpcStatus.TryParseLegacyServerTip`，与 `ToLegacyError` 同处。带键请求在响应体里收到 1005 = 客户端把旧键用在了新操作上，记 `[client-request] key reused for another operation: <方法>` 错误日志。帮会经济的取键改为调同一个函数。
+- **强化**（`PlayerFeaturesClient.EnhanceEquip`）：请求带 `expected_level`（发包时快照里这件装备的等级，0 级填 0；两份快照缺一份时取还在的那份，都没有填 0）与 `client_request_id`。超时或 1003、连接与角色没变时用同一个请求对象原样重发一次，在途标志与发包间隔不动；重发也不明就按原样只重拉两份快照。`replayed = true` 当首次结果发布，每次点击至多一条 `OnEnhanceResult`，提示与特效只播一次。`kEquipEnhanceLevelChanged` 显示「无法强化:装备强化等级已变化,请刷新后再试」并重拉人物背包与装备栏。穿脱、镶嵌、取下不带键，行为不变。
+- **神秘商人购买、新建加点方案**：同一规则。购买的 1003 改按结果不明处理（以前当成确定没买成），重发后仍不明进入 `RequiresReconnect`；新建方案重发后仍不明就报错并重拉面板。其它加点写请求不带键、不重发。
+- **临时格**（`PlayerFeaturesClient.Temporary.cs`、`TemporaryBagModel.cs`、`TemporaryBagDialog.cs`）：背包页「工具」里新增「临时格 n/容量」入口，打开面板逐件「取回」或「全部取回」（`item_id` 与 `take_all` 二选一），成功用回包里的人物背包与临时格两份全量整体覆盖。`BagTemporaryItemNotFound` 重拉两个包；`BagTemporaryRetrieveBagFull` 提示先腾出人物背包空间（全部取回时加「或改为逐件取回」）；`BagTemporaryRetrieveBusy` 提示交接或传送途中稍后再试；战斗中不在本地拦。取回不带键，结果不明不重发、只重拉两个包。取回单飞，与整理、穿脱 / 强化 / 镶嵌 / 取下互斥，两次发包至少隔 700 毫秒。进游戏、从战斗界面回到大世界、打开 / 刷新背包页时拉一次临时格；占用 ≥ 90% 时背包页状态行显示提醒，由不满变满时飘字一次。面板里的满格说明按 2026-11-12 起的结算规则写：人物背包也放不下的新掉落改由邮件发放，邮件暂时发不出时那一局结算延后，取回腾位后自动补发。
+- **进场失败后换角**（`GameClient.RoleSwitch.cs`，`GameClient.ConnectAndEnter` / `EnterGameAndWaitScene`，`RoleFlowUi.Choose`）：有选角界面时，收到 3023 而连接还在就不拆连接，回到选角页，提示行显示「进入场景失败，请重新进入或选择其他角色」，一次登录最多回选角 3 次；重定向、短重连、无界面路径照旧拆连接回选服。同一连接上要进另一个角色（含新建的角色），先 LeaveGame（超时或 1003 时最多发 3 次，确认不了就拆连接），再 EnterGame；C++ 版 LeaveGame 会清掉本连接的登录态，EnterGame 回 2028 时在同一连接上重新 Login 一次再进。已绑定角色时换角收到 2005 先 LeaveGame，不当成登录会话不存在去重新登录。同一角色的 EnterGame 超时或 1003 后用同一个 request_id 重发一次；重发撞上前一次进场还占着锁（2005）时接着等进场结果。`GameClient.RedirectFlowWorstCaseSec` 因此多算一次 EnterGame（105 → 120 秒），`CityTravelRequest.CrossZoneTimeoutSeconds` 随之 195 → 210 秒。
+- **原图验收**：临时格面板、工具里的入口、状态行的满格提醒都没有效果图，沿用装备弹窗与工具栏的皮肤，只做了功能，视觉验收另算。
+- **测试**：新文件 `Assets/Tests/EditMode/Net/ClientRequestKeysTests.cs`、`EnterGameRoleSwitchTests.cs`、`Assets/Tests/EditMode/Battle/TemporaryBagClientTests.cs`（均含 `.meta`）；`EquipForgeClientTests.cs`、`AttributeClientTests.cs`、`Tianyong/MysteryMerchantClientTests.cs` 各补幂等键用例，原来「强化超时绝不重发」与购买超时的三条用例按新规则改为超时两次才收尾。
+- **生成物**：`tools/gen_proto.ps1` 加了 `generated/code/proto/tip/bag_error_tip.proto`，要先从服务端当前 proto 重跑它，生成 `BagErrorTip.cs`，否则 `bag_error` 报 CS0103。尚未生成、未编译，也没有在 Unity 里运行；命令见服务端仓 `docs/PROGRESS.md` 2026-11-12「客户端·强化期望等级与幂等键、临时格取回、进场失败后换角」条。

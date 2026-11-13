@@ -628,6 +628,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             ArriveOnMerchantLine();
             BuyShown(1, 1);
             LastCall.Fail("rpc timeout");
+            // 购买带幂等键:第一次结果不明原样重发一次(见下面「幂等键」一节),重发也超时才进入「结果未知」。
+            Assert.That(_client.BuyPending, Is.True);
+            LastCall.Fail("rpc timeout");
 
             Assert.That(_client.RequiresReconnect, Is.True, "结果未知：请求可能已经成交，核实前禁止重复购买");
             Assert.That(_client.Status, Is.EqualTo(MysteryMerchantClient.RecoveryMessage));
@@ -648,6 +651,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             ArriveOnMerchantLine();
             BuyShown(1, 1);
             LastCall.Fail("rpc timeout");
+            LastCall.Fail("rpc timeout"); // 重发那一次也超时
             Assert.That(_client.Status, Is.EqualTo(MysteryMerchantClient.RecoveryMessage));
 
             // 之后的查询失败、成功,以及本地拒绝,都不能把「购买结果未知,请重新登录」盖掉。
@@ -678,6 +682,100 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_net.Calls.Count, Is.EqualTo(sent));
             Advance(MysteryMerchantClient.RateLimitBackoffSeconds);
             Assert.That(BuyShown(1, 1), Is.True);
+        }
+
+        // ── 购买的幂等键(服务端 docs/design/client-request-idempotency.md §2.1)────────────
+
+        private int BuyCallCount()
+        {
+            int count = 0;
+            foreach (var call in _net.Calls)
+                if (call.Id == TestMessageIds.BuyGoods) ++count;
+            return count;
+        }
+
+        [Test]
+        public void Buy_CarriesANonZeroKey_AndEachPurchaseGetsItsOwn()
+        {
+            ArriveOnMerchantLine();
+            BuyShown(1, 1);
+            var first = (global::BuyMysteryMerchantGoodsRequest)LastCall.Request;
+            Assert.That(first.ClientRequestId, Is.Not.Zero);
+            LastCall.Reply(new global::BuyMysteryMerchantGoodsResponse { Info = ActiveInfo(Appear + 61_000, here: true) });
+
+            Advance(MysteryMerchantClient.MinBuyIntervalSeconds);
+            Assert.That(BuyShown(1, 1), Is.True);
+            var second = (global::BuyMysteryMerchantGoodsRequest)LastCall.Request;
+            Assert.That(second.ClientRequestId, Is.Not.Zero);
+            Assert.That(second.ClientRequestId, Is.Not.EqualTo(first.ClientRequestId), "上一次已经有明确结论:新的一次购买换新键");
+        }
+
+        [TestCase(false, TestName = "Buy_Timeout_ResendsTheSameBytesOnce_ReplayIsOnePurchase")]
+        [TestCase(true, TestName = "Buy_Envelope1003_ResendsTheSameBytesOnce_ReplayIsOnePurchase")]
+        public void Buy_UnknownOutcome_ResendsTheSameBytesOnce_AndTheReplayIsOnePurchase(bool envelope1003)
+        {
+            ArriveOnMerchantLine();
+            BuyShown(1, 2);
+            var first = LastCall;
+            first.Fail(envelope1003 ? "server tip=" + (uint)common_error.KServiceUnavailable : "rpc timeout");
+
+            Assert.That(BuyCallCount(), Is.EqualTo(2), "结果不明:原样重发一次");
+            var resent = LastCall;
+            Assert.That(resent.Request.ToByteArray(), Is.EqualTo(first.Request.ToByteArray()), "同一个键、同一份报价,逐字节相同");
+            Assert.That(_client.BuyPending, Is.True, "重发期间仍在途");
+            Assert.That(_client.RequiresReconnect, Is.False);
+
+            // 服务端按键认出这是重发:不再扣钱,回首次成交的结果并标 replayed。
+            var updated = ActiveInfo(Appear + 61_000, here: true);
+            updated.Goods[0].BoughtCount = 2;
+            resent.Reply(new global::BuyMysteryMerchantGoodsResponse { Info = updated, Replayed = true });
+            Assert.That(_client.BuyPending, Is.False);
+            Assert.That(_purchased, Is.EqualTo(new[] { (1u, 2u) }), "重放就是首次那一次的成交:只报一次");
+            Assert.That(_client.Status, Is.EqualTo("购买成功：商品1 ×20"));
+            Assert.That(_client.StatusIsError, Is.False);
+        }
+
+        [Test]
+        public void Buy_Envelope1003Twice_IsAnUnknownOutcome_NotAFailedPurchase()
+        {
+            ArriveOnMerchantLine();
+            BuyShown(1, 1);
+            string unknown = "server tip=" + (uint)common_error.KServiceUnavailable;
+            LastCall.Fail(unknown);
+            LastCall.Fail(unknown);
+
+            Assert.That(BuyCallCount(), Is.EqualTo(2), "每次购买至多重发一次");
+            Assert.That(_client.BuyPending, Is.False);
+            Assert.That(_client.RequiresReconnect, Is.True, "gate 等 scene 超时也回 1003:可能已经成交,不能说没买成");
+            Assert.That(_client.Status, Is.EqualTo(MysteryMerchantClient.RecoveryMessage));
+            Assert.That(_purchased, Is.Empty);
+        }
+
+        [Test]
+        public void Buy_Disconnected_IsNotResent()
+        {
+            ArriveOnMerchantLine();
+            BuyShown(1, 1);
+            LastCall.Fail("disconnected");
+
+            Assert.That(BuyCallCount(), Is.EqualTo(1), "断线:第一版不跨连接重发");
+            Assert.That(_client.RequiresReconnect, Is.True);
+        }
+
+        [Test]
+        public void Buy_KeyRejectedAsReused_IsReportedAsAClientDefect()
+        {
+            ArriveOnMerchantLine();
+            BuyShown(1, 1);
+            UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
+                "[client-request] key reused for another operation: BuyMysteryMerchantGoods");
+            LastCall.Reply(new global::BuyMysteryMerchantGoodsResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter },
+            });
+            Assert.That(_client.BuyPending, Is.False);
+            Assert.That(_purchased, Is.Empty);
+            Assert.That(BuyCallCount(), Is.EqualTo(1));
         }
 
         [Test]

@@ -147,6 +147,12 @@ namespace MmorpgClient.Game
         public BattleClient Battle { get; }
 
         /// <summary>
+        /// 近期战斗结果补查(服务端 docs/design/battle-result-recovery.md §7):每次落地查一次,收到没有上下文的终局再查一次,
+        /// 玩家没看过的结果由 BattleUiRoot 补弹,展示之后确认已读。由 <see cref="Tick"/> 驱动。
+        /// </summary>
+        public BattleResultRecoveryClient BattleResults { get; }
+
+        /// <summary>
         /// 观战网络层(与 Battle 平行的只读状态机,消息号不同互不干扰)。
         /// 与 Battle 共用同一个 DirectRoutingBattleTransport(消息号不相交,注册覆盖语义不冲突)
         /// 与同一条战斗直连。
@@ -328,6 +334,10 @@ namespace MmorpgClient.Game
                 s => Log($"[battle-route] {s}"));
             Battle = BattleClient.Attach(battleRoute, battleRoute);
             Battle.QueueSessionReady = () => InGame;
+            // 近期战斗结果走大厅管线(scene 的玩家 RPC),不走战斗直连;落地判定与 LandingSync 同一口径(InGame + 就绪 + 连接身份)。
+            BattleResults = BattleResultRecoveryClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => InGame, () => Time.realtimeSinceStartup, s => Log($"[battle-result] {s}"));
+            Battle.OnBattleEndWithoutContext += (end, notified) => BattleResults.HandleEndWithoutContext(end?.BattleId ?? 0, notified);
             Battle.RegionProbe = new RegionProbeClient(battleRoute, () => new GateTcpClient(_codec));
             Battle.QueueRecovery = new FileMatchJoinRecovery(System.IO.Path.Combine(Application.persistentDataPath, "match-intents"), gatewayBaseUrl);
             TeamMatchRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-match-intents"),gatewayBaseUrl);
@@ -413,6 +423,7 @@ namespace MmorpgClient.Game
             }
             // 落地判定 / 取摘要 / 超时退避 / 通知各域消费者。Call 的等待循环会重入这里,在途标志防重复发送。
             LandingSync?.Tick();
+            BattleResults?.Tick(); // 近期战斗结果:落地补查、失败退避、补发确认
             if (InGame) Features?.TickActivityRewardRecovery();
             MaybeRefreshToken();
             BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动

@@ -165,5 +165,64 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(BattleResultPanel.BuildRewardLines(noDrops, itemsMailed: true),
                 Has.None.EqualTo(BattleResultPanel.ItemsMailedLine), "没有获得道具就没有什么可提示的");
         }
+
+        // 补弹的近期战斗结果(服务端 docs/design/battle-result-recovery.md §7):只列服务端记下的实际入账,没有经验与战后血蓝。
+        [Test]
+        public void RecoveredResultLines_ListWhatTheServerRecorded()
+        {
+            var result = new PlayerBattleResult
+            {
+                Outcome = (uint)eBattleOutcome.BattleOutcomeSideAWin,
+                IsDead = true,
+                LinesTruncated = true,
+                ItemsMailed = true,
+            };
+            result.Currencies.Add(new PlayerBattleResultCurrency { CurrencyType = 0, Amount = 30 });
+            result.Currencies.Add(new PlayerBattleResultCurrency { CurrencyType = 8, Amount = 2 });
+            result.ItemsGained.Add(new PlayerBattleResultItem { ItemTableId = 1001, Count = 2 });
+            result.ItemsConsumed.Add(new PlayerBattleResultItem { ItemTableId = 7, Count = 1 });
+
+            CollectionAssert.AreEqual(new[]
+            {
+                "银两  +30",
+                "货币8  +2",
+                "获得  道具1001 ×2",
+                BattleResultPanel.ItemsMailedLine,
+                "消耗  道具7 ×1",
+                BattleResultPanel.TruncatedLinesLine,
+                "战后状态  阵亡",
+            }, BattleResultPanel.BuildRecoveredLines(result));
+        }
+
+        [Test]
+        public void RecoveredResultLines_SayNothingGainedAndOmitTheStateWhenAlive()
+        {
+            var lines = BattleResultPanel.BuildRecoveredLines(new PlayerBattleResult { Outcome = (uint)eBattleOutcome.BattleOutcomeDraw });
+            CollectionAssert.AreEqual(new[] { "获得货币  无", "获得道具  无" }, lines);
+
+            var fledLines = BattleResultPanel.BuildRecoveredLines(new PlayerBattleResult { Fled = true });
+            Assert.AreEqual("战后状态  中途逃离", fledLines[fledLines.Count - 1]);
+            Assert.AreEqual(1, BattleResultPanel.BuildRecoveredLines(null).Count);
+        }
+
+        [Test]
+        public void RecoveredVoidResult_UsesTheVoidLines()
+        {
+            var voided = new PlayerBattleResult { Outcome = (uint)eBattleOutcome.BattleOutcomeVoid };
+            CollectionAssert.AreEqual(BattleResultPanel.BuildVoidLines(), BattleResultPanel.BuildRecoveredLines(voided));
+        }
+
+        [Test]
+        public void RecoveredSubtitle_ShowsRoundsAndTheTimeWhenKnown()
+        {
+            var result = new PlayerBattleResult { TotalRounds = 6 };
+            string withoutTime = BattleResultPanel.BuildRecoveredSubtitle(result);
+            StringAssert.StartsWith(BattleResultPanel.RecoveredSubtitlePrefix, withoutTime);
+            StringAssert.EndsWith("共 6 回合", withoutTime);
+            StringAssert.DoesNotContain("结束", withoutTime, "没有时间就不写时间");
+
+            result.SettledAtMs = 1_700_000_000_000UL;
+            StringAssert.Contains(" 结束 · ", BattleResultPanel.BuildRecoveredSubtitle(result), "finished_at_ms 为 0 时用 settled_at_ms");
+        }
     }
 }

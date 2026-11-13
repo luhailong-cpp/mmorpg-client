@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Google.Protobuf;
 using MmorpgClient.Game.Attribute;
 using MmorpgClient.Net;
 using NUnit.Framework;
@@ -372,6 +373,102 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _client.RequestPanel();_net.RaiseDisconnected();
             _net.CallsOf(MessageIds.GetAttributePanel)[0].Respond(new GetAttributePanelResponse{Panel=MakePanel()});
             Assert.That(_client.HasPanel,Is.False);
+        }
+
+        // ── 新建方案的幂等键(服务端 docs/design/client-request-idempotency.md §2.1)────────
+
+        private static AttributePanelInfo PanelWithSecondScheme()
+        {
+            var panel = MakePanel();
+            panel.Schemes.Add(new AttributeSchemeInfo { SchemeId = 2, Name = "方案二" });
+            return panel;
+        }
+
+        [Test]
+        public void CreateSchemeCarriesANonZeroKeyAndEachClickGetsItsOwn()
+        {
+            _client.CreateScheme("方案二");
+            var first = _net.CallsOf(MessageIds.CreateAttributeScheme)[0];
+            var firstRequest = (CreateAttributeSchemeRequest)first.Request;
+            Assert.That(firstRequest.ClientRequestId, Is.Not.Zero);
+            Assert.That(firstRequest.Name, Is.EqualTo("方案二"));
+            first.Respond(new CreateAttributeSchemeResponse { Panel = PanelWithSecondScheme(), SchemeId = 2 });
+
+            _client.CreateScheme("方案三");
+            var second = (CreateAttributeSchemeRequest)_net.CallsOf(MessageIds.CreateAttributeScheme)[1].Request;
+            Assert.That(second.ClientRequestId, Is.Not.Zero);
+            Assert.That(second.ClientRequestId, Is.Not.EqualTo(firstRequest.ClientRequestId), "上一次已经有明确结论:换新键");
+        }
+
+        [TestCase(false, TestName = "CreateSchemeTimeout_ResendsTheSameBytesOnce_AppliesTheReplayedPanel")]
+        [TestCase(true, TestName = "CreateSchemeEnvelope1003_ResendsTheSameBytesOnce_AppliesTheReplayedPanel")]
+        public void CreateSchemeUnknownOutcomeResendsTheSameBytesOnceAndAppliesTheReplayedPanel(bool envelope1003)
+        {
+            string error = null;
+            _client.OnError += e => error = e;
+            _client.CreateScheme("方案二");
+            var first = _net.CallsOf(MessageIds.CreateAttributeScheme)[0];
+            first.FailWith(envelope1003 ? "server tip=" + (uint)common_error.KServiceUnavailable : "rpc timeout");
+
+            var calls = _net.CallsOf(MessageIds.CreateAttributeScheme);
+            Assert.That(calls, Has.Count.EqualTo(2), "结果不明:原样重发一次");
+            Assert.That(calls[1].Request.ToByteArray(), Is.EqualTo(first.Request.ToByteArray()), "同一个键、同一个名字");
+            Assert.That(_client.Busy, Is.True, "重发期间仍在途");
+            Assert.That(error, Is.Null);
+
+            // 重发命中首次那一次:服务端不再建、不再扣,回此刻的面板与首次建出的方案号。
+            calls[1].Respond(new CreateAttributeSchemeResponse { Panel = PanelWithSecondScheme(), SchemeId = 2, Replayed = true });
+            Assert.That(_client.Busy, Is.False);
+            Assert.That(_client.Panel.Schemes, Has.Count.EqualTo(2), "replayed 按成功处理:面板照常应用");
+            Assert.That(error, Is.Null);
+        }
+
+        [Test]
+        public void CreateSchemeTwiceUnknownReportsTheErrorAndRefetchesThePanel()
+        {
+            string error = null;
+            _client.OnError += e => error = e;
+            _client.CreateScheme("方案二");
+            _net.CallsOf(MessageIds.CreateAttributeScheme)[0].FailWith("rpc timeout");
+            _net.CallsOf(MessageIds.CreateAttributeScheme)[1].FailWith("rpc timeout");
+
+            Assert.That(_net.CallsOf(MessageIds.CreateAttributeScheme), Has.Count.EqualTo(2), "至多重发一次");
+            Assert.That(_client.Busy, Is.False);
+            Assert.That(error, Is.Not.Null);
+            Assert.That(_net.CallsOf(MessageIds.GetAttributePanel), Has.Count.EqualTo(1), "方案可能已经建好:重拉面板给玩家看");
+        }
+
+        [Test]
+        public void OtherAttributeWritesAreNotResentOnTimeout()
+        {
+            _client.Allocate(1, new Dictionary<uint, uint> { { 101, 1 } });
+            _net.CallsOf(MessageIds.AllocateAttributePoints)[0].FailWith("rpc timeout");
+            _client.ResetPool(1);
+            _net.CallsOf(MessageIds.ResetAttributePoints)[0].FailWith("rpc timeout");
+            _client.SwitchScheme(2);
+            _net.CallsOf(MessageIds.SwitchAttributeScheme)[0].FailWith("rpc timeout");
+            _client.RenameScheme(1, "新名字");
+            _net.CallsOf(MessageIds.RenameAttributeScheme)[0].FailWith("rpc timeout");
+
+            Assert.That(_net.CallsOf(MessageIds.AllocateAttributePoints), Has.Count.EqualTo(1));
+            Assert.That(_net.CallsOf(MessageIds.ResetAttributePoints), Has.Count.EqualTo(1));
+            Assert.That(_net.CallsOf(MessageIds.SwitchAttributeScheme), Has.Count.EqualTo(1));
+            Assert.That(_net.CallsOf(MessageIds.RenameAttributeScheme), Has.Count.EqualTo(1));
+            Assert.That(_client.Busy, Is.False);
+        }
+
+        [Test]
+        public void CreateSchemeKeyRejectedAsReusedIsReportedAsAClientDefect()
+        {
+            _client.CreateScheme("方案二");
+            UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
+                "[client-request] key reused for another operation: CreateAttributeScheme");
+            _net.CallsOf(MessageIds.CreateAttributeScheme)[0].Respond(new CreateAttributeSchemeResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter },
+            });
+            Assert.That(_client.Busy, Is.False);
+            Assert.That(_net.CallsOf(MessageIds.CreateAttributeScheme), Has.Count.EqualTo(1));
         }
     }
 }

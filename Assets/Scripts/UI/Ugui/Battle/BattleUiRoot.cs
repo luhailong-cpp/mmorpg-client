@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -62,6 +63,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         private BattleChallengePopup _challengePopup;
         private BattleScreen _battleScreen;
         private BattleResultPanel _resultPanel;
+        // 近期战斗结果补弹(服务端 docs/design/battle-result-recovery.md §7):补查到的、玩家还没看过的结果在这里排队,
+        // 空闲时(没有战斗屏、观战屏,也没有结算面板在显示)逐个弹,确认一局再弹下一局;弹出时告诉补查客户端,由它确认已读。
+        private BattleResultRecoveryClient _recovery;
+        private readonly Queue<PlayerBattleResult> _recoveredResults = new Queue<PlayerBattleResult>();
+        private ulong _recoveredShowingId; // 结算面板上正在显示的补弹局;0 = 没有(面板空着,或显示的是现场结算)
 
         private bool _battleOpen;
         private bool _playing;
@@ -259,11 +265,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnBattleChannelReady += HandleBattleChannelReady;
             _client.OnBattleChannelFailed += HandleBattleChannelFailed;
             _client.OnBattleVoidNotice += HandleBattleVoidNotice;
+            // 补查客户端与 BattleClient 同在 GameClient 构造时挂接,生命周期一致,随它一起绑。
+            _recovery = BattleResultRecoveryClient.Instance;
+            if (_recovery != null) _recovery.OnRecoveredResult += HandleRecoveredResult;
         }
 
         private void UnbindClient()
         {
             _clientBound = false;
+            if (_recovery != null)
+            {
+                _recovery.OnRecoveredResult -= HandleRecoveredResult;
+                _recovery = null;
+            }
             if (_client == null) return;
             _client.OnPhaseChanged -= HandlePhaseChanged;
             _client.OnBattleStart -= HandleBattleStart;
@@ -473,6 +487,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     // 结算面板挂在模态层,不依赖战斗屏,屏收了照样能弹(ShowResult)
                     if (!_resultShowing && !_playing && _pendingEnd == null)
                         CloseBattle();
+                    ShowNextRecoveredResult(); // 回到空闲:排着的补弹结果可以弹了
                     break;
             }
         }
@@ -503,6 +518,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             _pendingEnd = null;
             _resultShowing = false;
+            _recoveredShowingId = 0; // 开新局收起了面板上的补弹局:它弹出时已经确认过,不再排回去
             _resultPanel?.Hide();
             RefreshModalDim();
             OpenBattle(start?.State ?? _client?.State);
@@ -775,6 +791,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _battleScreen?.Close();
             // 战斗层与参战流程共用:仅参战屏也没占用时才熄灯
             if (_battleLayerGo != null && !_battleOpen) _battleLayerGo.SetActive(false);
+            ShowNextRecoveredResult(); // 观战收屏也是回到空闲
         }
 
         private void AbortSpectatePlayback()
@@ -790,6 +807,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 断线:战斗态整体作废(重连后由 NotifyBattleReconnect → 直连补签就绪 → 补拉恢复)
             _pendingEnd = null;
             _resultShowing = false;
+            // 排着的补弹结果作废:还没弹出的没有确认,下次落地补查会再交出来。
+            _recoveredShowingId = 0;
+            _recoveredResults.Clear();
             _channelReadyToast = null;
             if (_playCo != null) { StopCoroutine(_playCo); _playCo = null; }
             _playing = false;
@@ -857,8 +877,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void ShowResult(BattleEndS2C end)
         {
             _resultShowing = true;
+            _recoveredShowingId = 0; // 现场结算盖过面板上的补弹局:它弹出时已经确认过,不再排回去
             _resultPanel?.Show(end, _battleScreen?.MyTeamIndex ?? 0);
             RefreshModalDim();
+            // 现场结算面板展示过,也要确认已读;否则下次落地补查还会把这一局再弹一次(设计 §7 第 5 条)。
+            if (end != null) _recovery?.NoteShown(end.BattleId);
         }
 
         private void OnResultConfirmed()
@@ -866,9 +889,45 @@ namespace MmorpgClient.UI.Ugui.Battle
             _resultShowing = false;
             _resultPanel?.Hide();
             RefreshModalDim();
+            if (_recoveredShowingId != 0)
+            {
+                // 补弹的结果:没有战斗屏要收,也没有现场终局要确认(AckBattleEnd 只管当前这一局)。
+                _recoveredShowingId = 0;
+                ShowNextRecoveredResult();
+                return;
+            }
             CloseBattle();
             // 契约:结算面板收起后必须 Ack(连续战斗开着时 BattleClient 自动按记忆重排)
             _client?.AckBattleEnd();
+            ShowNextRecoveredResult();
+        }
+
+        private void HandleRecoveredResult(PlayerBattleResult result)
+        {
+            if (result == null || result.BattleId == 0 || result.BattleId == _recoveredShowingId) return;
+            foreach (var queued in _recoveredResults)
+                if (queued.BattleId == result.BattleId) return;
+            _recoveredResults.Enqueue(result);
+            ShowNextRecoveredResult();
+        }
+
+        /// <summary>
+        /// 空闲时弹下一局补查到的结果。战斗屏、观战屏开着,回合表现还在播,或已经有结算面板(现场的或补弹的)在显示时先不弹:
+        /// 相位回到空闲、观战收屏、或玩家确认了面板之后再弹。
+        /// </summary>
+        private void ShowNextRecoveredResult()
+        {
+            if (_resultPanel == null || _resultShowing || _battleOpen || _spectateOpen || _playing || _pendingEnd != null) return;
+            if (_client != null && _client.Phase != BattlePhase.None) return;
+            if (_recoveredResults.Count == 0) return;
+            var result = _recoveredResults.Dequeue();
+            _resultPanel.ShowRecovered(result);
+            // 画布已随退出 Play / 换场景销毁时面板弹不出来:这一局没有真正展示,不确认,下次落地补查再交。
+            if (!_resultPanel.IsVisible) return;
+            _resultShowing = true;
+            _recoveredShowingId = result.BattleId;
+            RefreshModalDim();
+            _recovery?.NoteShown(result.BattleId);
         }
 
         // ── HUD ─────────────────────────────────────────────
