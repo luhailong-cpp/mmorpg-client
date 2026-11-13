@@ -205,8 +205,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>
         /// 两个背包都放不下时,服务器把本局获得的道具整批改由邮件发放(BattleEndS2C.items_mailed,
         /// 服务端 docs/design/battle-overflow-mail.md)。这一行告诉玩家去邮箱领,别在背包里找。
+        /// 写「改由」不写「已」:收到结算时邮件多半还在寄送途中(存档提交之后才寄),邮件服务不可达时会更晚到。
         /// </summary>
-        public const string ItemsMailedLine = "背包已满，以上道具已通过邮件发放";
+        public const string ItemsMailedLine = "背包已满，以上道具改由邮件发放，请留意邮箱";
 
         /// <summary>本局作废时结算面板的标题。</summary>
         public const string VoidTitle = "本局作废";

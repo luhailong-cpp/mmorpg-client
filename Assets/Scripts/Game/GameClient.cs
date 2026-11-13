@@ -77,6 +77,11 @@ namespace MmorpgClient.Game
         private ulong _enterRequestPlayerId;
         private uint _redirectZoneId;          // 重定向目标 gate 所属的 zone(票据只读解析;解析不出时是重定向前的旧值)
         private int _redirectHops;             // 连续跟随的重定向次数(环路熔断;成功进场、EnterZone 与玩家主动传送时归零)
+        // 重定向前的战斗直连 battle_id:换连接会 Close 链路并清掉它,新连接进场后据此补签重建。链式重定向(搬到新 gate 的
+        // 途中又收到一条 msg 124)时上一段的成功回调不会再跑,所以放在字段里交给下一段,最后进场的那一段负责重建。
+        private ulong _redirectBattleId;
+        // 重定向世代:每启动一段 RedirectFlow +1。被下一段接管的旧协程退出时据此得知 _redirecting 已不归它管,不去清。
+        private int _redirectGen;
         // 跨 zone 传送在途:TravelToZone 已发出,正在等 msg 124(成了)或失败 tip(没成)。
         // 只覆盖"还连着老 gate"的那一段 —— msg 124 一到就交棒给 _redirecting。
         // 收口点一共四个,缺一个就会把"传送中"卡死:msg 124、msg 23、断线、Tick 超时。
@@ -1178,20 +1183,35 @@ namespace MmorpgClient.Game
             // 这一跳的序号:进场通知会把 _redirectHops 归零,完成日志要用这里记下的值。
             int hop = _redirectHops;
 
+            // 链式重定向:上一段 RedirectFlow 还没进场(_redirecting 仍为真),当前连接 —— 也就是上一段的目标 gate ——
+            // 又推来一条 msg 124。两种来源(服务端 docs/design/gate-drain-session-migration.md §13):
+            //   · gate 排空迁移撞上跨 zone 传送的交接:迁到同 zone 的新 gate 后,第二条腿的 EnterGame 被 login 按落点改派到别的 zone;
+            //   · 上一段的目标 gate 自己也开始排空。
+            // 这不是重复推送:旧连接的派发在上一段第一个 yield 之前就摘掉了,能派发到这里的只可能来自当前连接。
+            // 接着跟,受上面的跳数上限约束(与 robot 的 FollowRedirect 一致);不跟的话这条腿只能等满入场超时后失败。
+            // 上一段换连接时已把角色、所在区、战斗 battle_id 清掉,下面三处取不到新值时沿用上一段捕获的
+            // (CarryOverOnChainedRedirect)。上一段的协程在下一次恢复时按管线世代退出,不触发任何回调。
+            bool chained = _redirecting;
+            if (chained)
+                Log($"[gate] redirect arrived before the previous one entered a scene; following it hop={hop}/{MaxRedirectHops}");
+
             CancelReconnect();
-            int gen = ++_pipelineGen;   // 作废任何在跑的管线,重定向接管连接
+            int gen = ++_pipelineGen;   // 作废任何在跑的管线(链式时含上一段的第二条腿),重定向接管连接
+            int redirectGen = ++_redirectGen;
             _redirecting = true;
             // ResetConnectionState 会清 PlayerId,先捕获以沿用当前角色。EnterGame 应答还没回来时
             // PlayerId 是 0,退回本次请求里的角色 —— 否则第二条腿会重新弹选角,而目标区的角色列表
             // 按区过滤,玩家的角色(归属别的区)不在里面,只能选错或新建(GO-5 让登录时重定向更常见)。
-            _redirectPlayerId = ResolveRedirectPlayerId(PlayerId, _enterRequestPlayerId);
+            _redirectPlayerId = CarryOverOnChainedRedirect(
+                ResolveRedirectPlayerId(PlayerId, _enterRequestPlayerId), _redirectPlayerId, chained);
             // 目标 gate 属于哪个区:从票据里**只读**解出来,只为展示(CurrentZoneId)。票据本身仍然原样转发。
             // 解不出来不算重定向失败 —— 这不是安全校验,验票是目标 gate 的事;保留旧值并留一条日志即可。
             // 同样要赶在 ResetConnectionState 之前捕获旧值(它会把 CurrentZoneId 清零)。
             uint ticketZoneId = ParseTicketZoneId(ev.TokenPayload);
+            uint zoneBeforeRedirect = (uint)CarryOverOnChainedRedirect(CurrentZoneId, _redirectZoneId, chained);
             if (ticketZoneId == 0)
-                Log($"[gate] redirect ticket carries no zone id, keep current zone={CurrentZoneId}");
-            _redirectZoneId = ticketZoneId != 0 ? ticketZoneId : CurrentZoneId;
+                Log($"[gate] redirect ticket carries no zone id, keep current zone={zoneBeforeRedirect}");
+            _redirectZoneId = ticketZoneId != 0 ? ticketZoneId : zoneBeforeRedirect;
             // 战斗直连要在重定向后自愈,而 ResetConnectionState 会 Close 链路并清掉 battle_id,
             // 先捕获。**不能只指望服务端推 NotifyBattleReconnect**:那条推送只在
             // enter_gs_type==LOGIN_RECONNECT(旧会话已 StateDisconnecting)或实体被重建走
@@ -1201,7 +1221,9 @@ namespace MmorpgClient.Game
             // 重定向后唯一的恢复路径就是客户端用这里捕获的 battle_id 走 RequestBattleTicket 重建直连
             // (服务端若同时推 BattleReconnectS2C,链路按 battle_id + 在途补签去重)。
             // 补签失败不会静默:链路以 BattleGone / Unreachable 终结,BattleClient 据此收敛或提示玩家。
-            ulong battleIdBeforeRedirect = BattleLink?.BattleId ?? 0;
+            // 链式时上一段已 Close 链路、它的成功回调也不会再跑,battle_id 从 _redirectBattleId 接过来。
+            ulong battleIdBeforeRedirect = CarryOverOnChainedRedirect(BattleLink?.BattleId ?? 0, _redirectBattleId, chained);
+            _redirectBattleId = battleIdBeforeRedirect;
 
             // 从这一刻起,老连接不再驱动任何状态 —— 但**先不关**(还要留着兜底,见 ③)。
             //
@@ -1282,7 +1304,16 @@ namespace MmorpgClient.Game
                     },
                     preConnected: fresh);
             }
-            finally { _redirecting = false; }
+            finally
+            {
+                // 被下一段 RedirectFlow 接管(链式)时 _redirecting 与 battle_id 归下一段管,这里不碰;
+                // 其余退出(进场成功、失败、被登出或新的 EnterZone 作废)照旧清掉。
+                if (redirectGen == _redirectGen)
+                {
+                    _redirecting = false;
+                    _redirectBattleId = 0;
+                }
+            }
         }
 
         /// <summary>

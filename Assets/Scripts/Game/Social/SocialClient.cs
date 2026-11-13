@@ -74,7 +74,12 @@ namespace MmorpgClient.Game.Social
             if(!_net.IsReady||_net.PlayerId==0){Publish("请进入角色后使用聊天。");return false;}return true;
         }
         private bool Accept(TipInfoMessage tip)
-        {if(tip==null||tip.Id==0)return true;Publish("聊天服务未完成请求（"+tip.Id+"），请稍后重试。");return false;}
+        {
+            if(tip==null||tip.Id==0)return true;
+            // 限流码有两个来源：每秒条数，或世界频道的发言间隔（服务端配置，缺省 5 秒）。两种都没有落库，草稿保留，稍等再发即可。
+            Publish(tip.Id==(uint)common_error.KRateLimitExceeded?"发言太频繁（"+tip.Id+"），请稍等几秒再发。":"聊天服务未完成请求（"+tip.Id+"），请稍后重试。");
+            return false;
+        }
         private void Publish(string message)=>_state.RuntimeStatus(_net.IsReady&&_net.PlayerId!=0,_busy,_reconnect,message);
         private void Request<T>(uint id,IMessage request,MessageParser<T> parser,Action<T> success) where T:IMessage<T>
         {

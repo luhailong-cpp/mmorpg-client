@@ -101,7 +101,7 @@ pwsh -File .codex-artifacts/heartbeat-20261106/compile-current-recovery.ps1 -Pro
 | 消息字段 | 含义 | 客户端用在哪 |
 |---|---|---|
 | `BagInfo.held_items = 4`（`BagHeldItemInfo { config_id, count }`，`proto/scene/player_bag.proto`） | 只有人物背包带。这种物品有多少押在还没结算的战斗里：交易、捐献暂时动不了，那一局结算或作废之后放开 | 背包详情加一行「战斗结算中 N（结算后可交易）」；聚宝斋「从背包选择」只让选没被占住的数量，全被占住就不让选 |
-| `BattleEndS2C.items_mailed = 4`（`proto/battle/player_battle.proto`） | 本局获得的道具两个背包都放不下，服务器整批改由邮件发放 | 结算屏在道具行之后加一行「背包已满，以上道具已通过邮件发放」 |
+| `BattleEndS2C.items_mailed = 4`（`proto/battle/player_battle.proto`） | 本局获得的道具两个背包都放不下，服务器整批改由邮件发放 | 结算屏在道具行之后加一行「背包已满，以上道具改由邮件发放，请留意邮箱」。写「改由」不写「已」：收到结算时邮件多半还在寄送途中，邮件服务不可达时会更晚到 |
 | `PlayerBattleResult.items_mailed = 17`（`proto/common/component/player_battle_result_comp.proto`） | 同一个事实，记在近期战斗结果里 | 客户端目前不读近期战斗结果，生成后只是多一个属性 |
 
 - 被占住的数量只用于显示和选物品时的上限，能不能出包由服务器裁决。押的是数量，不指定哪一堆：同一种分几堆时，任何一堆最多只能选出这种物品没被占住的总数。

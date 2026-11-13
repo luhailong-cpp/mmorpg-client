@@ -120,6 +120,15 @@ namespace MmorpgClient.Tests.EditMode.Social
         {_net.IsReady=false;Assert.That(_client.Send(SocialChannel.World,"你好"),Is.False);Assert.That(_net.Calls,Is.Empty);}
         [Test]public void LiveClientRejectsPreviewState()
         {Assert.Throws<ArgumentException>(()=>new SocialClient(_net,new SocialState(true)));}
+        [Test]public void RateLimitTipTellsThePlayerToWaitAndOtherTipsKeepTheGenericText()
+        {
+            _state.SetDraft(SocialChannel.World,"你好");_client.Send(SocialChannel.World,"你好");
+            _net.Calls[0].Success(new SendChatResponse{ErrorMessage=new TipInfoMessage{Id=(uint)common_error.KRateLimitExceeded}});
+            Assert.That(_state.Status,Does.Contain("请稍等几秒再发"));Assert.That(_state.Draft(SocialChannel.World),Is.EqualTo("你好"),"被限流的发言没有落库，草稿保留");
+            Assert.That(_client.Send(SocialChannel.World,"你好"),Is.True,"限流是明确拒绝，可以直接重发");
+            _net.Calls[1].Success(new SendChatResponse{ErrorMessage=new TipInfoMessage{Id=(uint)common_error.KFeatureUnavailable}});
+            Assert.That(_state.Status,Does.Contain("聊天服务未完成请求"));
+        }
         [Test]public void WorldPushAppearsWithoutAnyRequestAndDedupesWithHistory()
         {
             _net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=44,Content="推送",SendTimeMs=1000});
