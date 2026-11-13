@@ -105,7 +105,7 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
   public const int PetIdFieldNumber = 1;
   private ulong petId_;
   /// <summary>
-  /// SnowFlake guid,由 scene 节点铸(tlsSnowflakeManager)
+  /// scene 从发号器 item 号段领号(宝宝沿用 item 身份域,PetSystem::GrantPet 铸),只当身份用,不能解析
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

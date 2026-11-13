@@ -30,12 +30,12 @@ public static partial class RpcMessageReflection {
           "ASgGEhYKDnBhcmVudF9zcGFuX2lkGAkgASgGEhMKC3RyYWNlX2ZsYWdzGAog",
           "ASgNKnYKD0dhbWVNZXNzYWdlVHlwZRILCgdSRVFVRVNUEAASDAoIUkVTUE9O",
           "U0UQARINCglSUENfRVJST1IQBBINCglIRUFSVEJFQVQQBSIECAIQAiIECAMQ",
-          "AyoSUlBDX0NMSUVOVF9SRVFVRVNUKgpOT0RFX1JPVVRFKrABCg1HYW1lRXJy",
+          "AyoSUlBDX0NMSUVOVF9SRVFVRVNUKgpOT0RFX1JPVVRFKsgBCg1HYW1lRXJy",
           "b3JDb2RlEhAKDFJQQ19OT19FUlJPUhAAEg8KC1dST05HX1BST1RPEAESDgoK",
           "Tk9fU0VSVklDRRACEg0KCU5PX01FVEhPRBADEhMKD0lOVkFMSURfUkVRVUVT",
           "VBAEEhQKEElOVkFMSURfUkVTUE9OU0UQBRILCgdUSU1FT1VUEAYSEgoOSEFO",
-          "RExFUl9GQUlMRUQQBxIRCg1SRVBMWV9EUk9QUEVEEAhCDVoLY29tbW9uL2Jh",
-          "c2ViBnByb3RvMw=="));
+          "RExFUl9GQUlMRUQQBxIRCg1SRVBMWV9EUk9QUEVEEAgSFgoSS0lMTF9TV0lU",
+          "Q0hfREVOSUVEEAlCDVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameMessageType), typeof(global::GameErrorCode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -85,6 +85,11 @@ public enum GameErrorCode {
   /// handler 接管 done 后未完成即释放:结果未知
   /// </summary>
   [pbr::OriginalName("REPLY_DROPPED")] ReplyDropped = 8,
+  /// <summary>
+  /// 被热关停规则拒绝(docs/design/rpc-kill-switch.md):派发前拒绝,handler 没有运行,确定未执行。
+  /// 没升级的调用方按 RpcStatus::FromRemoteError 的默认分支归为 kRemoteRejected,语义相同。
+  /// </summary>
+  [pbr::OriginalName("KILL_SWITCH_DENIED")] KillSwitchDenied = 9,
 }
 
 #endregion

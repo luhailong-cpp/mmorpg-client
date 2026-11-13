@@ -90,7 +90,11 @@ namespace MmorpgClient.World.CurrentMaps
                 var floor = new GameObject(TianyongMapBuilder.GroundColliderName);
                 floor.transform.SetParent(root.transform, false);
                 var collider = floor.AddComponent<BoxCollider>();
-                collider.center = new Vector3(item.worldRect.center.x, -.5f, item.worldRect.center.y);
+                // 手绘地图的角色脚点以导航原面 Y=0 为准，运动策略不施加重力。
+                // CharacterController 的 skinWidth 是 0.06；碰撞体顶面若同在 Y=0，
+                // PhysX 首步会把胶囊向上推出 0.06，超过服务端脚点 0.02 容差。
+                // 地板顶面留在 -0.1，防止皮肤重叠；不移动角色、导航或渲染地面。
+                collider.center = new Vector3(item.worldRect.center.x, -.6f, item.worldRect.center.y);
                 collider.size = new Vector3(item.worldRect.width, 1f, item.worldRect.height);
                 float tileWidth = item.worldRect.width / item.columns;
                 float tileHeight = item.worldRect.height / item.rows;

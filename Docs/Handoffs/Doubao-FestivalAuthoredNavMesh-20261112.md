@@ -1,8 +1,10 @@
 # 豆包客户端交接：26000／26008手绘NavMesh进入真实游戏
 
+> **2026-11-13 更新：客户端开发接入和 Unity Editor 验证已完成，可以按第六节构建 Development Player。** 两图真实 CharacterController PlayMode 1/1、相关 EditMode 46/46 通过，服务端两图已加载。启动须带 `-manual-play -authoredFestivalLocalTest -gateway http://127.0.0.1:18085`；实际打包 Player 的联网入场与试走尚待豆包验证。第八节是保留的历史方案审核。
+
 交接日期：2026-11-12。客户端工作目录：`D:/luyuan/mmorpg-client`。
 
-用户已完成26000和26008的当前手绘范围，要求进入游戏看实际效果。**客户端代码接入、真实游戏验证与打包由豆包负责；原线程继续负责C++服务器。** 第七节已补充真实两图导出、共同出生点、配对收据及本地Docker部署PASS；客户端实际构建Player仍须完成接入和验证。
+用户已完成26000和26008的当前手绘范围，要求进入游戏看实际效果。**客户端开发联调接入已完成；豆包负责打包及真实Player联网验收。** 本次工作区基于 `7f74de24f09720f34e965d758e71d26ba8728780` 并含未提交改动；打包时应以实际工作区为准，保留这些改动。当前已通过 Unity 编译及两图 Editor 验证，还没有完成实际构建Player的联网验收。
 
 ## 一、开始前必须保留的内容
 
@@ -10,7 +12,7 @@
 - 不重建、不覆盖用户草稿，不运行只适用于空白草稿的`PrepareFestivalDrafts.Run`。保留所有`.meta`／GUID和已有版本化NavMesh资产。
 - 原交接时Unity与绘图窗口处于运行状态；本次方案审核时用户补充说明豆包尝试的代码已回滚、Unity进程已清零。实施前重新核实当前占用和保存状态，不控制桌面、不强退编辑器。修改源码会触发domain reload；有未完成轮廓时须先确认已经保存，不能用重新编译试探。保存工具已支持未完成轮廓暂存，烘焙仍拒绝待修复的自交或少于3点区域。
 - 所有构建、日志和临时产物放本工程`Builds/`、`Logs/`、`.codex-artifacts/`或系统临时目录。禁止在`E:/work`顶层新增项目目录。
-- 本交接只新增文档，没有修改客户端代码、草稿、运行中的Unity或正式资源登记。
+- 本次已修改客户端运行代码与正式生成的协议文件，并生成手绘地图运行登记资产；保留用户草稿及原 NavMesh 资产，不要 reset 或清除当前工作区。
 
 ## 二、已经画好的实际资产，不是空白画布
 
@@ -42,7 +44,7 @@
 
 上述两份指纹现已通过本次隔离Unity的`NavMeshAuthoringAssetIO.IsBakeCurrent(draft)`及正式Export检查，原工程资产前后SHA锁定PASS，详见第七节delivery收据。豆包开始接入和出包前仍须检查是否出现后续变化；若用户改变了几何或合同导致失效，保留作者数据并重新烘焙，不重新描图。26008中秋草稿文件SHA256仍为`0848d836f642063db4c4cf9e8e94c93a6cb54df2a21222f9bc4d44a53fb1025c`。
 
-26008春节已由原线程在隔离Unity中选择**联调用安全脚点`[122.5,0,127.5]`**并写入共同delivery，原草稿仍保持`spawnSet=false`，没有自动修改作者资产。豆包的客户端运行配置必须读取共同delivery中的`spawnUnity`，不能各自选点或把它回写成作者已设置的出生点。详情及manifest路径见第七节；这项离线验证不代表联机入口已完成。
+26008春节已由原线程在隔离Unity中选择**联调用安全脚点`[122.5,0,127.5]`**并写入共同delivery，原草稿仍保持`spawnSet=false`，没有自动修改作者资产。豆包的客户端运行配置必须读取共同delivery中的`spawnUnity`，不能各自选点或把它回写成作者已设置的出生点。详情及manifest路径见第七节；后端已完成协议联机测试，实际客户端 Player 联网验证仍待进行。
 
 ## 三、图片、导航与坐标合同
 
@@ -77,70 +79,42 @@ Unity(x,y,z) → 服务器(X=z,Y=x,Z=y)
 
 26000现有Unity出生点对应服务器轴为约`(33.47244,110.92121,0)`。**OBJ本身保持Unity Y-up／X-Z地面，不能再按网络轴换一次。** Unity NavMeshData不是服务端UE5 double ABI的Detour MSET，两个文件不可互相替换。
 
-## 四、目前“进游戏”尚未连接这两份NavMesh
+## 四、客户端接入现状
 
-### 正式入口与旧路径
+26000 中秋和 26008 春节已接入本地开发联调路径：`CurrentMapCatalog` 对应独立 `AuthoredMapRegistry`，运行登记引用 `Assets/Resources/World/AuthoredFestival20261112/registry.asset`，由原有 `NavMeshData` 和手绘 PNG 提供导航与画面。该登记仅在 Development Player／Editor 且显式传入 `-authoredFestivalLocalTest` 时启用，两个场景分别保持固定外观。正式九图 catalog 不变，26008 中秋不在本次范围。
 
-当前`D:/luyuan/mmorpg-client/ProjectSettings/EditorBuildSettings.asset`启用：
+真实会话由 `AppBootstrap`、`TianyongMapRuntime` 和 `TianyongPlayerController` 处理；开发试走面板经 `CityTravelUiRoot` 向服务器发送真实 `EnterScene`，使用 gateway `127.0.0.1:18085`、gate `127.0.0.1:28000` 的本机门禁。点击和连续移动使用对应手绘 NavMesh，地图切换时处理旧网格释放。脚点经 `WorldCoordinateConverter` 上报。
 
-1. `D:/luyuan/mmorpg-client/Assets/Scenes/Bootstrap.unity`，GUID`26e024c5553180c4092e33083d99e6aa`。
-2. `D:/luyuan/mmorpg-client/Assets/Scenes/World/TianyongSandbox.unity`，GUID`57a6420b2aba63e459a32dce4e9e2873`。
+草稿看图场景和离线 `FestivalMaps.exe` 仍只是预览；应构建当前启用的 `Bootstrap.unity` 和 `TianyongSandbox.unity`，用真实登录场景验证。旧 r1 发布包生成于接入之前，不能用于本次试走。
 
-正式uGUI入口`D:/luyuan/mmorpg-client/Assets/Scripts/UI/AppBootstrap.cs`创建`GameClient`、设置ActorWorld根节点，并取得或添加`TianyongMapRuntime`，调用`WorldMap.Initialize(GameClient, worldCamera, directionalSun, mapConfig)`。
+## 五、当前验证与剩余工作
 
-真实协议地图入口在`D:/luyuan/mmorpg-client/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs`：订阅`GameClient.OnSceneEntered`／`World.OnLocalPlayerChanged`，按`SceneInfoComp.SceneConfigId`查询`CurrentMapCatalog`，由`TryInstallMap`构建、绑定本地角色、设置相机、卸载旧图。客户端游戏连接类在`D:/luyuan/mmorpg-client/Assets/Scripts/Game/GameClient.cs`。`AttachLocalController`及`ReportRelocatedPlayer`也需纳入新导航接入，否则入场后的旧mask恢复逻辑可能将角色重新拉回旧网格。
+- 主工程 Unity 编译与运行登记生成通过，日志：`D:/luyuan/mmorpg-client/.codex-artifacts/authored-client-20261113/registry-build-r3.log`。
+- Unity EditMode **46/46 通过**：`.codex-artifacts/authored-client-20261113/editmode-r2-results.xml`；Unity PlayMode **1/1 通过**：`.codex-artifacts/authored-client-20261113/playmode-r3-results.xml`，该用例覆盖两图真实 CharacterController 脚点、撞墙及点击绕障。这些是 Editor 内测试。
+- 正式 `tools/gen_proto.ps1` 读取当前 C++ 服务端协议，在隔离目录生成的 **61/61 份输出与当前客户端逐字节一致**；收据在 `.codex-artifacts/full-proto-sync-20261113/`。`Login.cs` 包含当前服务端安全合同：旧 `AssignGateRequest.account` 字段已由服务端保留编号。独立 Java 完整游戏服务器的协议尚未验证同步。
+- 截至本次只读检查，`xuanming-debug-scene` 运行中，两图导航目录为只读挂载；26000 和 26008 的 MSET SHA 与第七节一致。服务运行状态可能变化，打包联调前再次检查。
+- **豆包下一步只需构建 Development Player 并做真实联网验收。** 应检查两图实际进入、出生脚点、点击与 WASD、绕障、连续切图、相机及服务端是否纠偏。当前没有宣称实际 Player 已通过这些检查。
 
-现有正式catalog是`D:/luyuan/mmorpg-client/Assets/Resources/World/QdaoMaps20261102/catalog.json`，Resources入口为`World/QdaoMaps20261102/catalog`。其中目前登记21003、28007、35004、1001、1002、5008、10000、19004、23006，**没有26000／26008**，且现有交付均`clientOnly=true`。旧主城／八仙岛／东海渔村另保留sceneConfigId 1／2／3。不要把26000或26008偷偷映射成某张旧地图编号。
+## 六、Development 构建与启动
 
-以下接口仍是旧位图导航／A*：
-
-- `D:/luyuan/mmorpg-client/Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs`：`CurrentMapDefinition.CreateNavigation()`返回`TianyongNavigationGrid`；`Data`要求`source.json`和Base64 `walkmask`，现代交付还要求`tiles.json`。
-- `D:/luyuan/mmorpg-client/Assets/Scripts/World/CurrentMaps/CurrentMapBuilder.cs`：构建旧`TianyongMapInstance`及mask导航。
-- `D:/luyuan/mmorpg-client/Assets/Scripts/World/Tianyong/TianyongPlayerController.cs`：`Initialize`、地图绑定、`PlanPath→_navigation.FindPath`、WASD步进／服务器纠偏后的`IsWalkable`检查均强依赖`TianyongNavigationGrid`；移动由CharacterController驱动，并保留MoveStart／MoveSync／MoveStop、输入门禁、队伍服务器跟随等逻辑。
-- `D:/luyuan/mmorpg-client/Assets/Scripts/World/CurrentMaps/FestivalMapLocalTestPolicy.cs`：本机测试白名单也没有26000／26008；不能只加一个UI按钮就绕过catalog／旅行／场景登记。
-
-不能只把两份NavMesh放进工程后宣称真实游戏已使用。需要给这两张图增加可区分的NavMesh运行定义／场景映射，并让实际本地人物的寻路、步进、出生、恢复和网络位置上报统一使用它；保留其它旧地图已有行为。
-
-### 两种现成预览各自证明什么
-
-- `D:/luyuan/mmorpg-client/Assets/Scripts/World/Tianyong/FestivalMapVisualPreview.cs`及`Assets/Resources/World/FestivalPreview20261111/preview-catalog.json`只有三套看图入口。打开时会停用旧人物控制器、切换预览相机；这里没有接入导航或联机传送。
-- `D:/luyuan/mmorpg-client/Assets/Scenes/World/FestivalMaps.unity`（GUID`bdbd1a2380e7457683e44b0c546a4021`）及`TianyongSandboxBootstrap`上的26000／26008按钮仍调用该视觉预览。沙盒原有可玩地图列表是21003／28007／35004。
-- `D:/luyuan/mmorpg-client/Assets/Scripts/World/NavigationAuthoring/NavMeshDraftPreview.cs`是独立草稿试走，使用真实NavMeshAgent，但私有快照、独立场景、合成标记角色都不等于正式登录角色接入。
-- `D:/luyuan/mmorpg-client/Assets/Editor/FestivalVisualPreviewBuild.cs`明确只构建离线视觉包。**不要用它打出的FestivalMaps.exe替代用户要求的真实游戏试走客户端。**
-
-## 五、豆包要交付的客户端改动
-
-1. 以26000中秋和26008春节这两个**已画NavMesh**作为运行导航源；先核实指纹与出生点，再建立客户端可加载的资源映射。草稿和NavMesh现在位于`Resources`外，Editor的AssetDatabase路径不能直接用于Player；可用正式运行资产通过序列化引用持有NavMeshData／图块，或现有资源交付机制。不能手改`.asset`／GUID来凑引用。
-2. 为真实场景入场和退出接入地图生命周期：按最终服务端sceneConfigId+appearance解析，共享同一份worldRect／测试spawn；加载NavMeshData、原图块和角色后提交新图，切图失败保留合理旧状态，切图／断线时移除自己持有的NavMeshData实例与资源，避免双图全局查询污染。
-3. 真实人物点击移动仅接受完整可达路径；不可达断岛不能把partial路径宣称成功。WASD及连续步进必须受NavMesh约束，不能沿用旧mask拦截新图、也不能打开debugIgnoreMask绕过障碍。可复用现有控制器并引入导航抽象；不要让NavMeshAgent和非运动学Rigidbody／CharacterController同时争抢transform。
-4. 保留当前实际游戏的姓名、角色外观、方向动画、输入门禁、点击标记、队伍服务器跟随、速度和MoveStart／MoveSync／MoveStop协议行为。脚点上报继续经`WorldCoordinateConverter`；角色高度以源地面查询为准，不靠整体抬高.2修正。现有`FeetPosition`由`transform.TransformPoint(motor.center + Vector3.down * motor.height * .5)`取得，不能将胶囊中心当成脚点。现有motor尺寸来自`TianyongMapConfig.PlayerHeight／PlayerRadius／PlayerStepOffset`，接这两张图时须与草稿的`.4／1.8／.3`合同明确映射；仅设置NavMeshAgent类型ID不会自动完成映射。
-5. 图片仍逐块显示原PNG；使用现有角色跟随与滚轮缩放习惯。`D:/luyuan/mmorpg-client/Assets/Scripts/World/Tianyong/TianyongCameraController.cs`已有俯视、SetTarget、SetWorldBounds、平滑和边缘约束，可沿用。26000按300×240、26008按300×225设置本轮联调边界，不能沿用旧世界矩形或仅把整图静态塞满屏幕。
-6. 提供能从**真实游戏会话**进入两张图的联调入口，并显示地图身份／appearance以免混图。其场景ID及门禁必须与原线程最终服务器收据一致；联机入口未就绪时明确报告阻塞，不用草稿Play或纯看图来冒充。
-7. 26008中秋仍为空：本次不自动复用春节NavMesh，不宣称已完成；若未来要共用，必须验证两套地面／障碍同源和状态依据。
-
-## 六、验证、构建与回执
-
-已有工具链与合成验证文档：`D:/luyuan/mmorpg-client/tools/tests/navmesh_authoring/README.md`。可在不关闭当前主Unity的情况下运行隔离工具回归：
+Unity 版本固定为 `6000.6.0f1`。目前手绘入口受 Development 编译条件控制；普通 `tools/build_client.ps1` 输出的旧 r1 不足以启用该面板。下面的现有构建脚本调用 `CrossZoneVerifyBuild.Build`，使用 `BuildOptions.Development` 并构建当前所有启用场景。**`-OutDir` 与 `-LogFile` 请使用未使用过的新路径**，因为脚本会创建目录并覆盖同名日志。构建前确认同一工程没有其他 Unity 进程占用。
 
 ```powershell
-pwsh -File 'D:/luyuan/mmorpg-client/tools/tests/navmesh_authoring/run_verification.ps1' `
-  -UnityPath 'D:/luyuan/tools/Unity/6000.6.0f1/Editor/Unity.exe' `
-  -OutputDirectory 'D:/luyuan/mmorpg-client/.codex-artifacts/doubao-navmesh-tool-verification'
-```
-
-这类合成检查只证明工具链。豆包还必须对**当前两张真实资产和实际构建Player**检查：实际入场脚点、点击绕障、WASD边缘、窄路／桥、断岛拒绝、相机跟随与变焦边界、全图块清晰度与接缝、两图反复切换、重新登录、联机移动回执及服务器是否持续回拉。至少记录代码版本、草稿SHA、NavMesh GUID／指纹、场景映射和服务器manifest／MSET SHA。
-
-Unity固定版本是`6000.6.0f1`；本机路径`D:/luyuan/tools/Unity/6000.6.0f1/Editor/Unity.exe`。官方AI Navigation是2.0.16，项目已经安装；本次无需迁移NavMeshSurface。客户端本轮改动由豆包完成后，可使用实际主场景构建脚本：
-
-```powershell
-pwsh -File 'D:/luyuan/mmorpg-client/tools/build_client.ps1' `
+pwsh -File 'D:/luyuan/mmorpg-client/tools/build_crosszone_player.ps1' `
   -UnityExe 'D:/luyuan/tools/Unity/6000.6.0f1/Editor/Unity.exe' `
-  -OutDir 'D:/luyuan/mmorpg-client/Builds/festival-authored-navmesh-20261112-r1' -Zip
+  -ProjectPath 'D:/luyuan/mmorpg-client' `
+  -OutDir 'D:/luyuan/mmorpg-client/Builds/festival-authored-navmesh-20261113-dev-r1' `
+  -LogFile 'D:/luyuan/mmorpg-client/Logs/festival-authored-navmesh-20261113-dev-r1.log'
 ```
 
-`OutDir`必须是不存在的新目录；该脚本按当前已启用场景构建，产物是`mmorpg.exe`、`mmorpg_Data`、`UnityPlayer.dll`及可选ZIP，日志位于`Logs/`。脚本不能同时打开同一工程做batch构建；先让用户保存当前工作并协调编辑器占用，或使用符合根AGENTS的独立构建副本，不强退当前Unity。`tools/build_crosszone_player.ps1`面向跨区验证，默认Unity路径还指向旧版本，不是本次首选。
+启动该包时必须带以下参数；`-manual-play` 防止自动演示驱动，`-gateway` 指向当前测试服，手绘开关启用两图登记和面板：
 
-交付回执应包含：构建目录／ZIP／exe SHA、实际打包场景、代码版本、两份运行NavMesh与作者草稿的对应关系、26008联调spawn来源、入场及移动测试结果、服务器版本和manifest／MSET SHA、所有未完成项。截图标注来源是发布Player还是Editor；不能把历史预览图、切片哈希或编译通过单独当作当前游戏验收。
+```powershell
+& 'D:/luyuan/mmorpg-client/Builds/festival-authored-navmesh-20261113-dev-r1/mmorpg.exe' `
+  -manual-play -authoredFestivalLocalTest -gateway http://127.0.0.1:18085
+```
+
+进入真实游戏后，从“手绘地图 · 本机联调”面板选择 26000 中秋或 26008 春节，再收起面板试走。交付记录需包含实际工作区版本与改动、启用场景、构建日志、包路径和 exe／ZIP SHA、各图实际入场与移动测试及未完成项。不要把 Editor 测试或服务器机器人测试等同 Player 画面和交互验收。
 
 ## 七、已确认的真实地图交付与配对收据
 
@@ -195,13 +169,13 @@ Canonical Docker目标为 **`xuanming-debug-current`**，gateway端口**18085**�
 
 首轮旧robot认证夹具在登录时被拒绝，未入图／移动，原字节保存在`server-network-auth-fixture-failure.json`；仅修本次独立探针以复用当前HTTP及受控开发认证策略后，r2通过。未放宽服务器认证、未修改任何服务端凭据。后端探针没有Unity角色、碰撞体或相机，因此仍不能替代豆包的实际构建Player脚点、操作及画面验收。
 
-豆包仍须完成第四、五节的**正式catalog或新NavMesh运行登记、TianyongMapRuntime、真实角色控制器及入场入口**接入，再构建客户端并做真实会话验证。仅拿现有代码重新打包不会自动让26000／26008进入游戏。
+客户端开发接入和 Editor 验证已完成；豆包应使用第六节的 Development 构建与启动方式，并完成实际 Player 真实会话验证。
 
-**可直接转发给豆包：服务端已部署并通过两图真实入场／移动／障碍拦截检查，可以按第八节审核结论完成客户端运行接入并打包。连接Canonical gateway18085／gate28000；只接26000中秋和26008春节，使用本节共同manifest及spawn。出包前仍须验证实际Player脚点、反复切图与正常操作，26008中秋不做。**
+**可直接转发给豆包：客户端开发接入、Editor 验证和服务端部署已完成；请按第六节构建 Development Player 并带指定参数启动，完成实际联网入场、脚点、移动、障碍及切图验收。只测 26000 中秋和 26008 春节；26008 中秋不做。**
 
 ## 八、豆包八点方案审核结论与实施约束
 
-**审核结论：保留“公共导航接口＋旧grid实现＋新NavMesh实现”的方向，原方案须按本节补齐后实施；不能只改十处类型签名就直接打包。** 本节依据当前实际源码审查，尚未实现客户端改造；客户端实施和打包仍由豆包负责。文中行号以本次核查版本为准，改动后须重新核对。
+**以下保留 2026-11-12 的历史方案审查和约束，供追溯，不表示接入仍未实施。** 当前开发接入与验证状态以第四至六节为准；其中历史行号可能随实现变化。实际 Development Player 打包和联网验收仍由豆包负责。
 
 ### 8.1 五方法接口缺连续移动段查询，矩形Clamp不是导航约束
 
@@ -270,7 +244,7 @@ Canonical Docker目标为 **`xuanming-debug-current`**，gateway端口**18085**�
 - CharacterController／NavMeshAgent／ActorWorld服务器驱动必须有清楚的唯一位置权威。采用现有CC跟路径时，不让Agent同时更新transform；采用Agent时，不让CC重力又驱动同一位置。保持队伍服务器跟随切入／退出与MoveStart／Sync／Stop语义。
 - 上报取现有`FeetPosition`而不是胶囊中心，继续使用`WorldCoordinateConverter`。本次两个开发地图的实际构建Player在入场、连续步进、拐角、停步和纠偏后，脚点必须每轴`.02`内匹配合法源地面采样；失败必须在出包回执中报告，不能改宽容差。
 
-### 按此顺序实施和验收
+### 历史建议的实施和验收顺序（保留供追溯）
 
 1. 先完成公共查询语义、grid兼容与开发运行登记，编译所有受影响程序集；真实资产／GUID／共同spawn保持不变。
 2. 实现未激活资源准备、唯一Nav实例激活、失败回滚和服务器已切场景时的移动禁用；加入同类型双图重叠、连续切图、加载失败、断线和Dispose幂等回归。

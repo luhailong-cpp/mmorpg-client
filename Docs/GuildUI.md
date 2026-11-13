@@ -229,6 +229,8 @@
 | `MMORPG_GUILD_SMOKE_PASSWORD` | 仅由运行者注入进程环境，与本机测试登录配置匹配；不得写入命令行、文档或日志 |
 | `MMORPG_GUILD_SMOKE_OUTPUT` | 客户端 `Logs` 内尚不存在的绝对路径；每轮独立，恢复记录按网关来源隔离 |
 
+**开跑前先做业务就绪探针**（2026-11-13 补）：容器健康不等于能处理登录。对 `MMORPG_GUILD_SMOKE_GATEWAY` 依次请求 `GET /api/server-list` 和 `POST /api/login`，后者另用一个全新的 `robot_guild_recovery_` 诊断账号，不复用本轮用例账号。各给 8 秒预算：前者 HTTP 200，后者 `code` 为 0 且角色数为 0，才启动 Unity。原因是用例的账号预检走正式 `GatewayHttpClient`，超时只有 5 秒，刚起好的栈第一次登录可能超过它。2026-11-11 首轮就是在这一步 5 秒零字节超时；补做探针后，第二轮用新账号通过。探针或用例预检失败时，先用 `docker logs` 保存网关与 login 容器从启动到此刻的日志，再决定是否重跑。11-11 那次没留下当时的日志，原因至今无法确证。探针同样不得输出口令、令牌或响应原文。
+
 设置上述环境变量后，以下 PowerShell 命令以全新目录运行；不要加 `-quit`，不要复用旧账号或旧证据目录：
 
 ```powershell

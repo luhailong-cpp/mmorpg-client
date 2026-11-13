@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="46" result="Passed" total="46" passed="46" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-13 06:20:22Z" end-time="2026-11-13 06:20:23Z" duration="0.9844564">
+  <test-suite type="TestSuite" id="1000" name="unity" fullname="unity" runstate="Runnable" testcasecount="3281" result="Passed" start-time="2026-11-13 06:20:22Z" end-time="2026-11-13 06:20:23Z" duration="0.984456" total="46" passed="46" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="4729" name="MmorpgClient.Tests.EditMode.Tianyong.dll" fullname="D:/luyuan/mmorpg-client/Library/ScriptAssemblies/MmorpgClient.Tests.EditMode.Tianyong.dll" runstate="Runnable" testcasecount="1276" result="Passed" start-time="2026-11-13 06:20:22Z" end-time="2026-11-13 06:20:23Z" duration="0.871883" total="46" passed="46" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="96272" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="4730" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="1276" result="Passed" start-time="2026-11-13 06:20:22Z" end-time="2026-11-13 06:20:23Z" duration="0.865862" total="46" passed="46" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="4731" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="1276" result="Passed" start-time="2026-11-13 06:20:22Z" end-time="2026-11-13 06:20:23Z" duration="0.856457" total="46" passed="46" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="4732" name="EditMode" fullname="MmorpgClient.Tests.EditMode" runstate="Runnable" testcasecount="1276" result="Passed" start-time="2026-11-13 06:20:22Z" end-time="2026-11-13 06:20:23Z" duration="0.850634" total="46" passed="46" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestSuite" id="4734" name="Tianyong" fullname="MmorpgClient.Tests.EditMode.Tianyong" runstate="Runnable" testcasecount="1253" result="Passed" start-time="2026-11-13 06:20:22Z" end-time="2026-11-13 06:20:23Z" duration="0.843745" total="46" passed="46" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-suite type="TestFixture" id="3352" name="AuthoredFestivalLocalPolicyTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.033794" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="ParameterizedMethod" id="3363" name="RequiresCanonicalLoopbackEndpoints" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.030006" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="3353" name="RequiresCanonicalLoopbackEndpoints(&quot;http://127.0.0.1:18085&quot;,&quot;127.0.0.1:28000&quot;,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://127.0.0.1:18085&quot;,&quot;127.0.0.1:28000&quot;,True)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="2130215385" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.015168" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3354" name="RequiresCanonicalLoopbackEndpoints(&quot;http://localhost:18085&quot;,&quot;localhost:28000&quot;,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://localhost:18085&quot;,&quot;localhost:28000&quot;,True)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="767445702" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000264" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3355" name="RequiresCanonicalLoopbackEndpoints(&quot;http://[::1]:18085&quot;,&quot;[::1]:28000&quot;,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://[::1]:18085&quot;,&quot;[::1]:28000&quot;,True)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="1207383565" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.001911" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3356" name="RequiresCanonicalLoopbackEndpoints(&quot;http://127.0.0.1:18081&quot;,&quot;127.0.0.1:28000&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://127.0.0.1:18081&quot;,&quot;127.0.0.1:28000&quot;,False)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="1741542369" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000116" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3357" name="RequiresCanonicalLoopbackEndpoints(&quot;http://127.0.0.1:18085&quot;,&quot;127.0.0.1:28001&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://127.0.0.1:18085&quot;,&quot;127.0.0.1:28001&quot;,False)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="590534601" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000074" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3358" name="RequiresCanonicalLoopbackEndpoints(&quot;http://192.0.2.1:18085&quot;,&quot;127.0.0.1:28000&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://192.0.2.1:18085&quot;,&quot;127.0.0.1:28000&quot;,False)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="1411847026" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000056" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3359" name="RequiresCanonicalLoopbackEndpoints(&quot;http://127.0.0.1:18085&quot;,&quot;192.0.2.1:28000&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://127.0.0.1:18085&quot;,&quot;192.0.2.1:28000&quot;,False)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="2110453753" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000052" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3360" name="RequiresCanonicalLoopbackEndpoints(&quot;http://user@localhost:18085&quot;,&quot;localhost:28000&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://user@localhost:18085&quot;,&quot;localhost:28000&quot;,False)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="1176573097" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000060" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3361" name="RequiresCanonicalLoopbackEndpoints(&quot;ftp://localhost:18085&quot;,&quot;localhost:28000&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;ftp://localhost:18085&quot;,&quot;localhost:28000&quot;,False)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="1938584363" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000055" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3362" name="RequiresCanonicalLoopbackEndpoints(&quot;http://localhost:18085&quot;,&quot;localhost:bad&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests.RequiresCanonicalLoopbackEndpoints(&quot;http://localhost:18085&quot;,&quot;localhost:bad&quot;,False)" methodname="RequiresCanonicalLoopbackEndpoints" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredFestivalLocalPolicyTests" runstate="Runnable" seed="1377836622" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000050" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+              </test-suite>
+              <test-suite type="TestFixture" id="3364" name="AuthoredNavMeshNavigationTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.085212" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3370" name="ExistingGrid_PreservesOriginalDefaultBoundsAndSpawn" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests.ExistingGrid_PreservesOriginalDefaultBoundsAndSpawn" methodname="ExistingGrid_PreservesOriginalDefaultBoundsAndSpawn" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests" runstate="Runnable" seed="1943291659" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.004159" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3368" name="InstanceOwnership_SwitchesAndRollsBackWithoutDoubleRegistration" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests.InstanceOwnership_SwitchesAndRollsBackWithoutDoubleRegistration" methodname="InstanceOwnership_SwitchesAndRollsBackWithoutDoubleRegistration" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests" runstate="Runnable" seed="1118628763" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.020052" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="3367" name="RealMap_RespectsReferencePointsPathsAndFlatFootHeight" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests.RealMap_RespectsReferencePointsPathsAndFlatFootHeight" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.048143" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="3365" name="RealMap_RespectsReferencePointsPathsAndFlatFootHeight(&quot;26000-mid-autumn&quot;,&quot;26000-mid-autumn.navmesh-9d2185138bdcb22c.asset&quot;,240.0f,110.9212f,33.47244f)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests.RealMap_RespectsReferencePointsPathsAndFlatFootHeight(&quot;26000-mid-autumn&quot;,&quot;26000-mid-autumn.navmesh-9d2185138bdcb22c.asset&quot;,240.0f,110.9212f,33.47244f)" methodname="RealMap_RespectsReferencePointsPathsAndFlatFootHeight" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests" runstate="Runnable" seed="853235050" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.024352" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3366" name="RealMap_RespectsReferencePointsPathsAndFlatFootHeight(&quot;26008-spring&quot;,&quot;26008-spring.navmesh-504096e2f15fb98b.asset&quot;,225.0f,122.5f,127.5f)" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests.RealMap_RespectsReferencePointsPathsAndFlatFootHeight(&quot;26008-spring&quot;,&quot;26008-spring.navmesh-504096e2f15fb98b.asset&quot;,225.0f,122.5f,127.5f)" methodname="RealMap_RespectsReferencePointsPathsAndFlatFootHeight" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests" runstate="Runnable" seed="262347957" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.022637" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="3369" name="SyntheticHoleAndIsland_RejectsCrossingAndPartialPath" fullname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests.SyntheticHoleAndIsland_RejectsCrossingAndPartialPath" methodname="SyntheticHoleAndIsland_RejectsCrossingAndPartialPath" classname="MmorpgClient.Tests.EditMode.Tianyong.AuthoredNavMeshNavigationTests" runstate="Runnable" seed="118792509" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.011332" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="3462" name="CurrentMapTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.637384" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="3464" name="CellBoundariesMatchControllerGridWithOnlyNorthWestCellWalkable" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.CellBoundariesMatchControllerGridWithOnlyNorthWestCellWalkable" methodname="CellBoundariesMatchControllerGridWithOnlyNorthWestCellWalkable" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="111440743" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.082930" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-suite type="ParameterizedMethod" id="3480" name="DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.437100" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="3477" name="DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(&quot;main&quot;,1)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(&quot;main&quot;,1)" methodname="DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="509017999" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.178793" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3478" name="DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(&quot;island&quot;,2)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(&quot;island&quot;,2)" methodname="DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1453011737" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.114656" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3479" name="DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(&quot;village&quot;,3)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(&quot;village&quot;,3)" methodname="DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="219126974" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.139185" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="3488" name="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.046421" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="3482" name="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;main&quot;,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;main&quot;,True)" methodname="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1822251648" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.021036" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[[TianyongPlayerController] server snap (5.00, 0.00, 5.00) is not walkable; recovered to (199.00, 0.00, 133.00)
+]]></output>
+                  </test-case>
+                  <test-case id="3483" name="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;island&quot;,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;island&quot;,True)" methodname="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1861216118" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.004567" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[[TianyongPlayerController] server snap (5.00, 0.00, 5.00) is not walkable; recovered to (195.00, 0.00, 173.00)
+]]></output>
+                  </test-case>
+                  <test-case id="3484" name="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;village&quot;,True)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;village&quot;,True)" methodname="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="590677281" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.004448" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[[TianyongPlayerController] server snap (5.00, 0.00, 5.00) is not walkable; recovered to (201.00, 0.00, 147.00)
+]]></output>
+                  </test-case>
+                  <test-case id="3485" name="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;main&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;main&quot;,False)" methodname="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1767095728" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.004265" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[[TianyongPlayerController] server snap (5.00, 0.00, 5.00) is not walkable; recovered to (199.00, 0.00, 133.00)
+]]></output>
+                  </test-case>
+                  <test-case id="3486" name="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;island&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;island&quot;,False)" methodname="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="2084292299" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.004341" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[[TianyongPlayerController] server snap (5.00, 0.00, 5.00) is not walkable; recovered to (195.00, 0.00, 173.00)
+]]></output>
+                  </test-case>
+                  <test-case id="3487" name="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;village&quot;,False)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(&quot;village&quot;,False)" methodname="FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="2004386688" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.004398" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                    <output><![CDATA[[TianyongPlayerController] server snap (5.00, 0.00, 5.00) is not walkable; recovered to (201.00, 0.00, 147.00)
+]]></output>
+                  </test-case>
+                </test-suite>
+                <test-suite type="ParameterizedMethod" id="3476" name="InvalidDeliveriesFailBeforeWorldConstruction" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.007194" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="3465" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;version&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;version&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1016361149" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.001855" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3466" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;identity&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;identity&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="384710092" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000157" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3467" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;layout-size&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;layout-size&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="909320553" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000102" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3468" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;mask-size&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;mask-size&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="593283677" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000106" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3469" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;cell-size&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;cell-size&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1788473399" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000093" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3470" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;world-bounds&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;world-bounds&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1299161091" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000103" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3471" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;spawn-outside&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;spawn-outside&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1201564643" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000122" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3472" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;blocked-spawn&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;blocked-spawn&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="466526512" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000087" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3473" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;base64&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;base64&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="654886647" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000337" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3474" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;length&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;length&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1953935647" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000086" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="3475" name="InvalidDeliveriesFailBeforeWorldConstruction(&quot;padding&quot;)" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.InvalidDeliveriesFailBeforeWorldConstruction(&quot;padding&quot;)" methodname="InvalidDeliveriesFailBeforeWorldConstruction" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="4495826" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000075" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="3463" name="MaskUsesNorthWestOriginMostSignificantBitAndBlockedExterior" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.MaskUsesNorthWestOriginMostSignificantBitAndBlockedExterior" methodname="MaskUsesNorthWestOriginMostSignificantBitAndBlockedExterior" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="1880074072" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000646" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3481" name="MissingResourceLeavesNoPartialMapUnderParent" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.MissingResourceLeavesNoPartialMapUnderParent" methodname="MissingResourceLeavesNoPartialMapUnderParent" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="428690668" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000703" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="3489" name="RuntimeSceneRoundTripRebindsNavigationAndCannotRestoreOldArt" fullname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests.RuntimeSceneRoundTripRebindsNavigationAndCannotRestoreOldArt" methodname="RuntimeSceneRoundTripRebindsNavigationAndCannotRestoreOldArt" classname="MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests" runstate="Runnable" seed="870723865" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.055084" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[[CurrentMap] ready scene=1 map=main spawn=(199.00, 0.00, 133.00)
+[CurrentMap] ready scene=2 map=island spawn=(195.00, 0.00, 173.00)
+[CurrentMap] ready scene=3 map=village spawn=(201.00, 0.00, 147.00)
+[CurrentMap] ready scene=1 map=main spawn=(199.00, 0.00, 133.00)
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-suite type="TestFixture" id="4653" name="TianyongNavigationGridTests" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.011681" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-suite type="ParameterizedMethod" id="4659" name="CrossCanalPath_UsesEachRequestedStoneBridge" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests.CrossCanalPath_UsesEachRequestedStoneBridge" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.005467" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                  <properties />
+                  <test-case id="4656" name="CrossCanalPath_UsesEachRequestedStoneBridge(0)" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests.CrossCanalPath_UsesEachRequestedStoneBridge(0)" methodname="CrossCanalPath_UsesEachRequestedStoneBridge" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" seed="530850413" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.004028" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4657" name="CrossCanalPath_UsesEachRequestedStoneBridge(1)" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests.CrossCanalPath_UsesEachRequestedStoneBridge(1)" methodname="CrossCanalPath_UsesEachRequestedStoneBridge" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" seed="422692063" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000215" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                  <test-case id="4658" name="CrossCanalPath_UsesEachRequestedStoneBridge(2)" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests.CrossCanalPath_UsesEachRequestedStoneBridge(2)" methodname="CrossCanalPath_UsesEachRequestedStoneBridge" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" seed="1024133400" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000167" asserts="0">
+                    <properties>
+                      <property name="retryIteration" value="0" />
+                      <property name="repeatIteration" value="0" />
+                    </properties>
+                  </test-case>
+                </test-suite>
+                <test-case id="4655" name="DefaultSpawn_IsInsideMapAndWalkable" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests.DefaultSpawn_IsInsideMapAndWalkable" methodname="DefaultSpawn_IsInsideMapAndWalkable" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" seed="1300775559" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000321" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4654" name="MapDefinition_UsesAuthoritativeFourHundredByThreeHundredWorld" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests.MapDefinition_UsesAuthoritativeFourHundredByThreeHundredWorld" methodname="MapDefinition_UsesAuthoritativeFourHundredByThreeHundredWorld" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" seed="1292432645" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.000248" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4660" name="PathAcrossBuildingDistrict_DoesNotCutThroughBlockedFootprints" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests.PathAcrossBuildingDistrict_DoesNotCutThroughBlockedFootprints" methodname="PathAcrossBuildingDistrict_DoesNotCutThroughBlockedFootprints" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" seed="1021056108" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.001060" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="4661" name="TargetInsideBuilding_IsProjectedToWalkableApproachPoint" fullname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests.TargetInsideBuilding_IsProjectedToWalkableApproachPoint" methodname="TargetInsideBuilding_IsProjectedToWalkableApproachPoint" classname="MmorpgClient.Tests.EditMode.Tianyong.TianyongNavigationGridTests" runstate="Runnable" seed="679426587" result="Passed" start-time="2026-11-13 06:20:23Z" end-time="2026-11-13 06:20:23Z" duration="0.002022" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+                </test-case>
+              </test-suite>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

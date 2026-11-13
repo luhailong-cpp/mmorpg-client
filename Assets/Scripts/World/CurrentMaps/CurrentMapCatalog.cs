@@ -247,7 +247,7 @@ namespace MmorpgClient.World.CurrentMaps
                 source.walkmaskColumns != Mathf.CeilToInt(rect.width / source.cellSize) ||
                 source.walkmaskRows != Mathf.CeilToInt(rect.height / source.cellSize) ||
                 !new MapDeliveryRect { x = rect.x, y = rect.y, width = rect.width, height = rect.height }.Contains(source.effectiveWorldRect)))
-                throw new InvalidOperationException("新地图必须包含正式图块总览、有效范围和同源矩形导航。");
+                throw new InvalidOperationException($"新地图必须包含正式图块总览、有效范围和同源矩形导航：{key}");
             var spawn = source.spawnWorld;
             if (!Finite(spawn.x) || !Finite(spawn.y) || !Finite(spawn.z) || spawn.y != 0f ||
                 spawn.x < rect.xMin || spawn.x >= rect.xMax || spawn.z < rect.yMin || spawn.z >= rect.yMax)

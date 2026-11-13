@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-13 06:18:44Z" end-time="2026-11-13 06:18:45Z" duration="0.871369">
+  <test-suite type="TestSuite" id="1129" name="unity" fullname="unity" runstate="Runnable" testcasecount="99" result="Passed" start-time="2026-11-13 06:18:44Z" end-time="2026-11-13 06:18:45Z" duration="0.871369" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1117" name="MmorpgClient.Tests.PlayMode.dll" fullname="D:/luyuan/mmorpg-client/Library/ScriptAssemblies/MmorpgClient.Tests.PlayMode.dll" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-13 06:18:44Z" end-time="2026-11-13 06:18:45Z" duration="0.845395" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="61156" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1118" name="MmorpgClient" fullname="MmorpgClient" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-13 06:18:44Z" end-time="2026-11-13 06:18:45Z" duration="0.834950" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1119" name="Tests" fullname="MmorpgClient.Tests" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-13 06:18:44Z" end-time="2026-11-13 06:18:45Z" duration="0.829912" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1120" name="PlayMode" fullname="MmorpgClient.Tests.PlayMode" runstate="Runnable" testcasecount="98" result="Passed" start-time="2026-11-13 06:18:44Z" end-time="2026-11-13 06:18:45Z" duration="0.824840" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1001" name="AuthoredFestivalMotorPlayModeTests" fullname="MmorpgClient.Tests.PlayMode.AuthoredFestivalMotorPlayModeTests" classname="MmorpgClient.Tests.PlayMode.AuthoredFestivalMotorPlayModeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-13 06:18:44Z" end-time="2026-11-13 06:18:45Z" duration="0.813730" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1002" name="BothAuthoredMaps_RealMotorWalksToWallAndFollowsCornerWithoutLeavingGround" fullname="MmorpgClient.Tests.PlayMode.AuthoredFestivalMotorPlayModeTests.BothAuthoredMaps_RealMotorWalksToWallAndFollowsCornerWithoutLeavingGround" methodname="BothAuthoredMaps_RealMotorWalksToWallAndFollowsCornerWithoutLeavingGround" classname="MmorpgClient.Tests.PlayMode.AuthoredFestivalMotorPlayModeTests" runstate="Runnable" seed="539121922" result="Passed" start-time="2026-11-13 06:18:44Z" end-time="2026-11-13 06:18:45Z" duration="0.792261" asserts="0">
+                <properties>
+                  <property name="_JOINTYPE" value="UnityCombinatorial" />
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[AuthoredMotorFirstFrame] 26000 dt=0.0166666675 scale=1 enabled=True active=True motor=True grounded=False moving=True speed=18 scripted=(0.00, 0.00, -1.00) keyboardBlocked=False before=(110.92, 0.00, 9.78) after=(110.92, 0.00, 9.48) candidate=(110.92, 0.00, 9.48) candidateWalkable=True candidateSegment=True motorVelocity=(0.00, 0.00, -18.00) contacts=[[AuthoredMotorTestPlayer]]
+[AuthoredMotorFirstFrame] 26008 dt=0.0166666675 scale=1 enabled=True active=True motor=True grounded=False moving=True speed=18 scripted=(-0.38, 0.00, -0.92) keyboardBlocked=False before=(103.08, 0.00, 80.62) after=(102.97, 0.00, 80.34) candidate=(102.97, 0.00, 80.34) candidateWalkable=True candidateSegment=True motorVelocity=(-6.89, 0.00, -16.63) contacts=[[AuthoredMotorTestPlayer]]
+Saving results to: C:/Users/luyua/AppData/LocalLow/DefaultCompany/unity\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

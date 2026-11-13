@@ -804,7 +804,9 @@ public sealed partial class BattleBuffEntry : pb::IMessage<BattleBuffEntry>
   public const int BuffIdFieldNumber = 1;
   private ulong buffId_;
   /// <summary>
-  /// buff 实例 SnowFlake id
+  /// buff 实例 id,只在所属单位的 buff 列表里用来认出这一条,不跨重启:快照带来的沿用 scene 的进程内临时号
+  /// (tlsIdGeneratorManager.buffIdGenerator,[node_id][seq] 拼成),战斗内新加的由引擎在局内自增域里接着往上发
+  /// (turn_battle_engine 的 nextBuffInstanceId)。不是 SnowFlake,也不是发号器的永久 ID,不要解析。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -7831,7 +7833,7 @@ public sealed partial class BattleActivityContext : pb::IMessage<BattleActivityC
   public const int GuildIdFieldNumber = 2;
   private ulong guildId_;
   /// <summary>
-  /// 发起帮会(SnowFlake 17-bit 布局);guild 写、guild 读
+  /// 发起帮会(发号器永久 ID,biz_tag=guild,只当身份用);guild 写、guild 读
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
