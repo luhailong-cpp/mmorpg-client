@@ -193,6 +193,13 @@ namespace MmorpgClient.UI.Ugui.Role
                 if (_players.Count > 0) ShowSelectMode();
                 else ShowCreateMode();
             }
+            // 上一次进场被服务端以「进场失败」退回、连接还在(GameClient 把同一个 choice 再交回来):提示行显示原因,
+            // 玩家可以重进同一角色,也可以换角或建角(换角由 GameClient 先 LeaveGame)。显示过就清掉,下一轮不再冒出来。
+            if (choice != null && !string.IsNullOrEmpty(choice.EnterRejectHint))
+            {
+                SetPreviewHint(choice.EnterRejectHint, true);
+                choice.EnterRejectHint = null;
+            }
             while (!_resolved) yield return null;
             ClearCreationPortraitWindow();
             _canvasGo.SetActive(false);

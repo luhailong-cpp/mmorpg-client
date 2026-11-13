@@ -1077,7 +1077,8 @@ namespace MmorpgClient.Game
         // 有界各段之和见 RedirectFlowWorstCaseSec):
         //   探测(ProbeGate)                 ≤ RedirectProbeTimeoutSec,之后查世代;
         //   验票(ConnectAndEnter)           ≤ TokenVerifyTimeoutSec,gate 明确拒票或连接已失当帧收口;
-        //   Login / EnterGame                走 Call,各 ≤ RpcTimeoutSec,断线当帧收口;
+        //   Login / EnterGame                走 Call,各 ≤ RpcTimeoutSec,断线当帧收口;EnterGame 结果不明(超时 / 1003)时
+        //                                    同一请求重发一次(GameClient.RoleSwitch.cs),所以 EnterGame 一段 ≤ 2 × RpcTimeoutSec;
         //   等入场(EnterGameAndWaitScene)   ≤ SceneEntryTimeoutSec,进场失败 tip 或连接已失当帧收口。
         // 验票与等入场的判定共用 ClassifyPipelineWait,"连接已失"只看主线程的 _gate(IsStillCurrentGate)。
         // 两个例外,不在任何上界内:
@@ -1121,14 +1122,15 @@ namespace MmorpgClient.Game
 
         /// <summary>
         /// 收到 msg 124 之后,RedirectFlow 换连接这一段有界各段的最坏耗时(秒)
-        /// = 探测 + 验票 + 2 个 RPC + 等入场。2 个 RPC 指新连接上的 Login 与 EnterGame。
+        /// = 探测 + 验票 + 3 个 RPC + 等入场。3 个 RPC 指新连接上的 Login、EnterGame,以及 EnterGame 结果不明时
+        /// 同一请求的那一次重发(EnterGameOnConnection)。新连接上没有绑着的角色,不会走换角的 LeaveGame / 重新 Login。
         /// 不含选角(只在 _redirectPlayerId==0 时出现,等玩家操作,没有上界)与 OpenGate 的同步建连
         /// (时长由操作系统决定)—— 后者连同按帧检查的粒度,由 CityTravelRequest.CrossZoneSlackSeconds 的余量去盖。
         /// <see cref="CityTravelRequest.CrossZoneTimeoutSeconds"/> 由它推出;别处不许手抄这个和,
         /// 任何一段改值,总上限都在编译期跟着变。
         /// </summary>
         public const float RedirectFlowWorstCaseSec =
-            RedirectProbeTimeoutSec + TokenVerifyTimeoutSec + 2f * RpcTimeoutSec + SceneEntryTimeoutSec;
+            RedirectProbeTimeoutSec + TokenVerifyTimeoutSec + 3f * RpcTimeoutSec + SceneEntryTimeoutSec;
 
         /// <summary>
         /// 只做本地可判的检查,不碰网络;返回 null 表示通过,否则是给人看的失败原因。

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Google.Protobuf;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
@@ -613,7 +614,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         // ── 传输失败 / 回包残缺 ─────────────────────────────
 
-        [TestCase("enhance", "无法强化")]
+        // 强化带幂等键,结果不明时原样重发一次,见下面「幂等键」一节;镶嵌 / 取下不带键,绝不重发(回归)。
         [TestCase("inlay", "镶嵌失败")]
         [TestCase("remove", "取下失败")]
         public void TransportFailureNeverResendsAndOnlyResyncs(string kind, string operation)
@@ -628,7 +629,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.BusyEquip, Is.False);
             Assert.That(_errors, Is.EqualTo(new[] { message }), "传输层的内部英文串不上屏");
             Assert.That(_client.EquipmentError, Is.EqualTo(message));
-            Assert.That(ForgeCallCount(), Is.EqualTo(1), "绝不自动重发:强化不是幂等操作,再发一次就是再扣一次");
+            Assert.That(ForgeCallCount(), Is.EqualTo(1), "不带幂等键的操作绝不自动重发:再发一次就是再做一次");
             Assert.That(BagReadsFrom(3), Is.EqualTo(new uint[] { 0, 2 }), "服务器可能已经执行:只重拉快照");
             Assert.That(_net.Calls.Count, Is.EqualTo(5));
             Assert.That(_client.CharacterBag, Is.SameAs(bagBefore));
@@ -1281,6 +1282,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
             LoadBoth();
             var timedOut = Send("enhance");
             timedOut.FailWith("rpc timeout");
+            // 强化带幂等键:第一次超时原样重发一次,重发也超时才收口。
+            var resentTimedOut = LastEnhance(Sword);
+            Assert.That(resentTimedOut, Is.Not.SameAs(timedOut));
+            resentTimedOut.FailWith("rpc timeout");
             Assert.That(_client.BusyEquip, Is.False);
 
             _now += PlayerFeaturesClient.ForgeMinIntervalMs;
@@ -1292,6 +1297,11 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Bag = StandardBag(gold: 49000), Equipment = StandardEquipment(), Success = true, EnhanceLevel = 1,
             });
             timedOut.FailWith("更早的旧错误");
+            resentTimedOut.Respond(new EnhanceEquipResponse
+            {
+                Bag = StandardBag(gold: 49000), Equipment = StandardEquipment(), Success = true, EnhanceLevel = 1, Replayed = true,
+            });
+            resentTimedOut.FailWith("rpc timeout");
 
             Assert.That(_client.BusyEquip, Is.True, "上一次请求的迟到回调不得结束这一次");
             Assert.That(_client.EquipmentError, Is.Empty);
@@ -1418,6 +1428,155 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_net.Calls.Count, Is.EqualTo(sent));
             Assert.That(_client.BusyEquip, Is.False);
             Assert.That(_client.EquipmentError, Is.EqualTo("任务正在处理中，请稍候"));
+        }
+
+        // ── 强化的期望等级与幂等键(服务端 equipment-enhance-inlay.md §4.3、client-request-idempotency.md §2.1)──
+
+        private static EnhanceEquipRequest EnhanceRequestOf(FakeBattleTransport.RecordedCall call) => (EnhanceEquipRequest)call.Request;
+
+        [TestCase(Sword, 0u)]
+        [TestCase(WornSword, 3u)]
+        public void EnhanceCarriesTheShownLevelAndANonZeroKey(ulong itemId, uint shownLevel)
+        {
+            LoadBoth();
+            _client.EnhanceEquip(itemId);
+            var request = EnhanceRequestOf(LastEnhance(itemId));
+            Assert.That(request.ExpectedLevel, Is.EqualTo(shownLevel), "期望等级 = 快照里这件装备此刻的强化等级,0 级也填 0");
+            Assert.That(request.ClientRequestId, Is.Not.Zero);
+        }
+
+        [Test]
+        public void EachClickGetsItsOwnKeyAndTheLevelFollowsTheNewSnapshot()
+        {
+            LoadBoth();
+            EnhanceOnce();
+            ulong first = EnhanceRequestOf(_net.CallsOf(MessageIds.EnhanceEquip)[0]).ClientRequestId;
+            _client.EnhanceEquip(Sword);
+            var second = EnhanceRequestOf(LastEnhance(Sword));
+            Assert.That(second.ClientRequestId, Is.Not.Zero);
+            Assert.That(second.ClientRequestId, Is.Not.EqualTo(first), "上一次已经拿到明确结果:新的一次点击换新键");
+            Assert.That(second.ExpectedLevel, Is.EqualTo(1u), "期望等级取回包覆盖之后的快照");
+        }
+
+        [Test]
+        public void EnhanceWithOneSnapshotMissingSendsTheLevelItCanStillSee()
+        {
+            // 人物背包还没拉到:不做本地拒绝,直接发包;期望等级取装备栏里这一件的等级。
+            Load(null, StandardEquipment());
+            _client.EnhanceEquip(WornSword);
+            Assert.That(EnhanceRequestOf(LastEnhance(WornSword)).ExpectedLevel, Is.EqualTo(3u));
+        }
+
+        [Test]
+        public void EnhanceWithoutSnapshotsSendsLevelZeroAndAKey()
+        {
+            _client.EnhanceEquip(Sword);
+            var request = EnhanceRequestOf(LastEnhance(Sword));
+            Assert.That(request.ExpectedLevel, Is.Zero, "哪份快照都没有:填 0,对不上由服务器回「等级已变化」");
+            Assert.That(request.ClientRequestId, Is.Not.Zero);
+        }
+
+        [TestCase(false, TestName = "EnhanceTimeout_ResendsTheSameBytesOnce_ReplayIsPublishedOnce")]
+        [TestCase(true, TestName = "EnhanceEnvelope1003_ResendsTheSameBytesOnce_ReplayIsPublishedOnce")]
+        public void UnknownEnhanceOutcomeResendsTheSameBytesOnceAndTheReplayIsPublishedOnce(bool envelope1003)
+        {
+            LoadBoth();
+            _client.EnhanceEquip(Sword);
+            var first = LastEnhance(Sword);
+            int calls = _net.Calls.Count;
+            first.FailWith(envelope1003 ? "server tip=" + (uint)common_error.KServiceUnavailable : "rpc timeout");
+
+            Assert.That(_net.Calls.Count, Is.EqualTo(calls + 1), "结果不明:原样重发一次,不先重拉快照");
+            var resent = LastEnhance(Sword);
+            Assert.That(resent.Request.ToByteArray(), Is.EqualTo(first.Request.ToByteArray()),
+                "同一个键、同一个期望等级,逐字节相同");
+            Assert.That(_client.BusyEquip, Is.True, "重发期间仍在途");
+            Assert.That(_errors, Is.Empty);
+            Assert.That(_outcomes, Is.Empty, "结果不明的那一次不发布结果");
+
+            // 服务端按键认出这是重发:回首次那一次的结果(掷骰没过、没掉级)并标 replayed,快照是此刻的状态。
+            resent.Respond(new EnhanceEquipResponse
+            {
+                Bag = StandardBag(gold: 49000, stones: 4), Equipment = StandardEquipment(),
+                Success = false, EnhanceLevel = 0, Replayed = true,
+            });
+            Assert.That(_client.BusyEquip, Is.False);
+            AssertOutcome(Sword, false, 0);
+            Assert.That(_outcomes.Count, Is.EqualTo(1), "首次结果只发布一次:提示与特效只播一次");
+            Assert.That(_errors, Is.Empty, "replayed 按首次结果展示,不提示失败");
+            Assert.That(Find(_client.CharacterBag, 6001).Count, Is.EqualTo(4u));
+            Assert.That(ForgeCallCount(), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void SecondUnknownEnhanceOutcomeIsNotResentAndOnlyResyncs()
+        {
+            LoadBoth();
+            _client.EnhanceEquip(Sword);
+            LastEnhance(Sword).FailWith("rpc timeout");
+            var resent = LastEnhance(Sword);
+            int calls = _net.Calls.Count;
+            resent.FailWith("rpc timeout");
+
+            Assert.That(ForgeCallCount(), Is.EqualTo(2), "每次点击至多重发一次");
+            Assert.That(BagReadsFrom(calls), Is.EqualTo(new uint[] { 0, 2 }), "仍不明:只重拉两份快照,让玩家看过结果再决定");
+            Assert.That(_client.BusyEquip, Is.False);
+            Assert.That(_client.EquipmentError, Is.EqualTo("无法强化:网络异常,请稍后重试"));
+            Assert.That(_outcomes, Is.Empty);
+        }
+
+        [TestCase(false, TestName = "EnhanceDisconnected_IsNotResent")]
+        [TestCase(true, TestName = "EnhanceRateLimited_IsNotResent")]
+        public void DisconnectedOrRateLimitedEnhanceIsNotResent(bool rateLimited)
+        {
+            LoadBoth();
+            _client.EnhanceEquip(Sword);
+            int calls = _net.Calls.Count;
+            LastEnhance(Sword).FailWith(rateLimited ? "server tip=" + (uint)common_error.KRateLimitExceeded : "disconnected");
+
+            Assert.That(ForgeCallCount(), Is.EqualTo(1), rateLimited ? "限流:包没到 scene,确定没执行" : "断线:第一版不跨连接重发");
+            Assert.That(BagReadsFrom(calls), Is.EqualTo(rateLimited ? new uint[0] : new uint[] { 0, 2 }));
+            Assert.That(_client.BusyEquip, Is.False);
+        }
+
+        [Test]
+        public void LevelChangedRefetchesBothSnapshotsSaysTheLevelChangedAndTheNextClickUsesTheNewLevel()
+        {
+            LoadBoth();
+            _client.EnhanceEquip(Sword);
+            int calls = _net.Calls.Count;
+            LastEnhance(Sword).Respond(new EnhanceEquipResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)equip_error.KEquipEnhanceLevelChanged },
+            });
+
+            Assert.That(_errors, Is.EqualTo(new[] { "无法强化:装备强化等级已变化,请刷新后再试" }));
+            Assert.That(BagReadsFrom(calls), Is.EqualTo(new uint[] { 0, 2 }), "本地快照已被证明过期:两份都重拉");
+            Assert.That(ForgeCallCount(), Is.EqualTo(1), "明确的拒绝不重发");
+            Assert.That(_outcomes, Is.Empty);
+
+            _net.Calls[calls].Respond(new GetBagResponse { Bag = StandardBag(swordLevel: 2) });
+            _net.Calls[calls + 1].Respond(new GetBagResponse { Bag = StandardEquipment() });
+            _now += PlayerFeaturesClient.ForgeMinIntervalMs;
+            _client.EnhanceEquip(Sword);
+            var next = EnhanceRequestOf(LastEnhance(Sword));
+            Assert.That(next.ExpectedLevel, Is.EqualTo(2u), "重拉之后按服务器的等级发");
+            Assert.That(next.ClientRequestId, Is.Not.EqualTo(EnhanceRequestOf(_net.CallsOf(MessageIds.EnhanceEquip)[0]).ClientRequestId));
+        }
+
+        [Test]
+        public void KeyRejectedAsReusedIsReportedAsAClientDefect()
+        {
+            LoadBoth();
+            _client.EnhanceEquip(Sword);
+            UnityEngine.TestTools.LogAssert.Expect(UnityEngine.LogType.Error,
+                "[client-request] key reused for another operation: EnhanceEquip");
+            LastEnhance(Sword).Respond(new EnhanceEquipResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter },
+            });
+            Assert.That(_client.BusyEquip, Is.False);
+            Assert.That(ForgeCallCount(), Is.EqualTo(1));
         }
 
         [TestCase(false, 9101ul)]

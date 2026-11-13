@@ -103,7 +103,7 @@ namespace MmorpgClient.App
             // ZoneTravelClient.TravelBudgetSec 等;收到 msg 124 之后换连接的那一段(探测 + 验票 + Login
             // + EnterGame + 等 NotifyEnterScene)见 GameClient.RedirectFlowWorstCaseSec,所以默认比其它阶段都长。
             // 硬约束只有一条:必须大于 ZoneTravelClient.TravelBudgetSec,否则验收会抢在服务端给结论之前判超时,
-            // FAIL 行里看不到真正的失败 tip。各段同时踩满最坏值(按客户端预算约 180s,推导见
+            // FAIL 行里看不到真正的失败 tip。各段同时踩满最坏值(按客户端预算约 195s,推导见
             // CityTravelRequest.CrossZoneTimeoutSeconds)不在默认值的覆盖范围内 —— 验收脚本有意设得更严,
             // 那样的环境本身就该判不通过;确要排查时用 -travelTimeout 放宽。
             public float TravelTimeout = 120f;

@@ -47,8 +47,8 @@ namespace MmorpgClient.Game.WorldTravel
         ///    超过它底层就不再等待，地图窗走“底层已不再等待”分支收场，不靠本上限；
         ///    所以地图窗在途时收到 msg 124，一定是在这 75 秒之内。
         /// ② 收到 msg 124 之后换连接：≤ <see cref="GameClient.RedirectFlowWorstCaseSec"/>
-        ///    （探测 5 + 验票 10 + Login 15 + EnterGame 15 + 等入场 60 = 105 秒）。
-        /// 二者相加 180 秒，再加 <see cref="CrossZoneSlackSeconds"/> 15 秒，共 195 秒。
+        ///    （探测 5 + 验票 10 + Login 15 + EnterGame 15 + EnterGame 结果不明时的一次重发 15 + 等入场 60 = 120 秒）。
+        /// 二者相加 195 秒，再加 <see cref="CrossZoneSlackSeconds"/> 15 秒，共 210 秒。
         /// 比它短，会在换连接途中先报“未收到抵达消息”、随后玩家又真的到了。
         /// 这个值只是换连接阶段的兜底：常见失败（失败提示、踢线、断线、底层 75 秒到期）都会更早收场。
         /// 常量表达式在编译期内联，任何一段改值都会跟着变；不要改回字面量。
