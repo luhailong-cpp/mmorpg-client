@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Google.Protobuf;
 
 namespace MmorpgClient.Net
@@ -68,10 +69,26 @@ namespace MmorpgClient.Net
             switch (Code)
             {
                 case RpcStatusCode.Ok: return null;
-                case RpcStatusCode.ServerTip: return $"server tip={TipId}";
+                case RpcStatusCode.ServerTip: return LegacyServerTipPrefix + TipId.ToString(CultureInfo.InvariantCulture);
                 case RpcStatusCode.ParseError: return $"parse response: {Detail}";
                 default: return transportPrefix + Detail;
             }
+        }
+
+        /// <summary>旧字符串契约里「服务端用信封拒绝」的前缀,只由 <see cref="ToLegacyError"/> 写出。</summary>
+        public const string LegacyServerTipPrefix = "server tip=";
+
+        /// <summary>
+        /// <see cref="ToLegacyError"/> 的反解:legacyError 形如 "server tip=N"(N 为非 0 的十进制)时取出 N。
+        /// 只给仍走旧字符串契约的业务判码用(IBattleTransport.Call 的 onError);新代码直接读 <see cref="TipId"/>。
+        /// </summary>
+        public static bool TryParseLegacyServerTip(string legacyError, out uint tipId)
+        {
+            tipId = 0;
+            return legacyError != null && legacyError.StartsWith(LegacyServerTipPrefix, StringComparison.Ordinal)
+                && uint.TryParse(legacyError.Substring(LegacyServerTipPrefix.Length), NumberStyles.None,
+                    CultureInfo.InvariantCulture, out tipId)
+                && tipId != 0;
         }
 
         public override string ToString()

@@ -101,6 +101,9 @@ namespace MmorpgClient.Net
         public ulong player_id;
         public string name;
         public int level;
+        // 这个角色现在所在的区(2026-11-12 起网关下发;合服之后是目标区)。0 = 不知道:老网关没发,或加字段之前的存量角色。
+        // 账号的角色列表是全服的,排队之前用它判断「所选区暂停创角、而账号在这个区没有角色」(GameClient.MustCreateRoleInClosedZone)。
+        public uint zone_id;
     }
 
     /// <summary>

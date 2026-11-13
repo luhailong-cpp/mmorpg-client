@@ -231,17 +231,56 @@ namespace MmorpgClient.Game.Attribute
                 err => { if (CurrentAuto(stamp)) { _latestAuto = 0; OnError?.Invoke(err); } });
         }
 
-        /// <summary>开启新方案(超出免费数后按表扣银两)。</summary>
+        /// <summary>
+        /// 开启新方案(超出免费数后按表扣银两)。请求带这一次点击的幂等键(服务端 docs/design/client-request-idempotency.md §2.1):
+        /// 结果不明(超时 / 信封 1003)、连接没变时原样重发一次,服务端按键去重,不会建两个、扣两次;
+        /// 重发也不明就报错并重拉面板(服务端可能已经建好了)。replayed = true 的应答按成功处理:
+        /// 面板就是此刻的面板,新方案是首次建出来的那一个。其它写请求不带键、不重发。
+        /// </summary>
         public void CreateScheme(string name)
         {
             if (!BeginWrite(null, out var stamp))
             {
                 return;
             }
-            _net.Call(MessageIds.CreateAttributeScheme, new CreateAttributeSchemeRequest { Name = name ?? string.Empty },
-                CreateAttributeSchemeResponse.Parser,
-                resp => CompleteWrite(stamp, "开启新方案失败", resp.ErrorMessage, resp.Panel),
-                err => FailWrite(stamp, err));
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey))
+            {
+                FinishWrite(stamp, false);
+                OnError?.Invoke(ClientRequestKeys.UnavailableText);
+                return;
+            }
+            // 只构造一次:重发必须逐字节相同(同一个键、同一个名字),服务端按参数指纹认重发。
+            var request = new CreateAttributeSchemeRequest { Name = name ?? string.Empty, ClientRequestId = requestKey };
+            // 回调只认最近一次发出的那一个:重发之后前一次的迟到回调不能收掉这一次。
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(MessageIds.CreateAttributeScheme, request, CreateAttributeSchemeResponse.Parser,
+                    resp =>
+                    {
+                        if (mine != attempt) return;
+                        if (resp.ErrorMessage?.Id == (uint)common_error.KInvalidParameter && CurrentWrite(stamp))
+                            ClientRequestKeys.ReportKeyReused("CreateAttributeScheme");
+                        CompleteWrite(stamp, "开启新方案失败", resp.ErrorMessage, resp.Panel);
+                    },
+                    err =>
+                    {
+                        if (mine != attempt) return;
+                        bool unknown = ClientRequestKeys.ShouldResendOnce(err);
+                        if (unknown && !resent && CurrentWrite(stamp))
+                        {
+                            resent = true; // Busy 保持为真
+                            Send();
+                            return;
+                        }
+                        // 重发也不明:方案可能已经建好、银两可能已经扣了,写入结束时重拉面板,让玩家看到真实状态。
+                        if (unknown && CurrentWrite(stamp)) _refreshAfterWrite = true;
+                        FailWrite(stamp, err);
+                    });
+            }
+            Send();
         }
 
         /// <summary>切换当前生效方案(服务器侧有冷却,战斗中拒绝)。</summary>

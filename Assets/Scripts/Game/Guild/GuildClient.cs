@@ -1013,17 +1013,12 @@ namespace MmorpgClient.Game.Guild
             return true;
         }
 
+        /// <summary>帮会经济的业务幂等键,与强化、神秘商人、新建加点方案共用 <see cref="ClientRequestKeys.TryCreate"/>。</summary>
         private ulong EconomyRequestId()
         {
-            try
-            {
-                using var random = RandomNumberGenerator.Create();
-                var bytes = new byte[8];
-                ulong id;
-                do { random.GetBytes(bytes); id = BitConverter.ToUInt64(bytes, 0); } while (id == 0);
-                return id;
-            }
-            catch (CryptographicException) { Reject("无法安全生成请求编号，本次操作未发送。"); return 0; }
+            if (ClientRequestKeys.TryCreate(out ulong id)) return id;
+            Reject("无法安全生成请求编号，本次操作未发送。");
+            return 0;
         }
 
         private bool SaveEconomyRequest(uint method, IMessage request, out string saved)

@@ -337,6 +337,9 @@ namespace MmorpgClient.Game.MysteryMerchant
                 return RejectLocally(MysteryMerchantModels.LimitReachedText);
             float now = _clock();
             if (now < _nextBuyAt) return RejectLocally(TooFastMessage);
+            // 这一次购买的幂等键(服务端 client-request-idempotency.md §2.1):本地检查都过了才生成,
+            // 这次购买拿到明确结果之前的重发都带它,服务端按 (玩家, 键) 去重,不会买两份。
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
 
             _nextBuyAt = now + MinBuyIntervalSeconds;
             BuyPending = true;
@@ -346,53 +349,74 @@ namespace MmorpgClient.Game.MysteryMerchant
             var seen = goods.Clone();
             SetStatus(BuyPendingMessage, false);
             Changed?.Invoke();
-            _net.Call(_messageIds.BuyGoods,
-                new global::BuyMysteryMerchantGoodsRequest
-                {
-                    RoundId = quote.RoundId,
-                    GoodsId = quote.GoodsId,
-                    Count = count,
-                    ExpectedPrice = quote.Price,
-                    ExpectedCurrencyType = quote.CurrencyType,
-                    ExpectedItemConfigId = quote.ItemConfigId,
-                    ExpectedItemCount = quote.ItemCount,
-                },
-                global::BuyMysteryMerchantGoodsResponse.Parser,
-                response =>
-                {
-                    if (!IsCurrent(generation)) return;
-                    EndBuy();
-                    uint tipId = response.ErrorMessage?.Id ?? 0;
-                    if (tipId != 0)
+            // 只构造一次:结果不明时的重发必须逐字节相同(同一个键、同一份报价),服务端按参数指纹认重发。
+            var request = new global::BuyMysteryMerchantGoodsRequest
+            {
+                RoundId = quote.RoundId,
+                GoodsId = quote.GoodsId,
+                Count = count,
+                ExpectedPrice = quote.Price,
+                ExpectedCurrencyType = quote.CurrencyType,
+                ExpectedItemConfigId = quote.ItemConfigId,
+                ExpectedItemCount = quote.ItemCount,
+                ClientRequestId = requestKey,
+            };
+            // 回调只认最近一次发出的那一个:真实传输层每次调用恰好回调一次,这里再挡一道,
+            // 重发之后前一次的迟到回调不能收掉这一次。
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.BuyGoods, request, global::BuyMysteryMerchantGoodsResponse.Parser,
+                    response =>
                     {
-                        FailBuy(tipId);
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        EndBuy();
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            if (tipId == (uint)common_error.KInvalidParameter) ClientRequestKeys.ReportKeyReused("BuyMysteryMerchantGoods");
+                            FailBuy(tipId);
+                            Changed?.Invoke();
+                            return;
+                        }
+                        // replayed = true 是首次那一次的结果(重发命中了已成交的那一次,没有再扣钱):与普通成功走同一条路,
+                        // 玩家之前没看到过这次结果,照常报「已购买」,Purchased 只触发这一次。
+                        if (response.Info != null) ApplyInfo(response.Info, true);
+                        if (response.Bag?.Currency != null) Currency = response.Bag.Currency;
+                        SetStatus(MysteryMerchantModels.PurchasedText(seen, count), false);
                         Changed?.Invoke();
-                        return;
-                    }
-                    if (response.Info != null) ApplyInfo(response.Info, true);
-                    if (response.Bag?.Currency != null) Currency = response.Bag.Currency;
-                    SetStatus(MysteryMerchantModels.PurchasedText(seen, count), false);
-                    Changed?.Invoke();
-                    Purchased?.Invoke(seen, count);
-                },
-                error =>
-                {
-                    if (!IsCurrent(generation)) return;
-                    EndBuy();
-                    uint tipId = ParseEnvelopeTip(error);
-                    if (tipId != 0)
+                        Purchased?.Invoke(seen, count);
+                    },
+                    error =>
                     {
-                        // gate 层带码拒绝(限流等):请求没有到达 scene,结果是确定的「没买成」。
-                        FailBuy(tipId);
-                    }
-                    else
-                    {
-                        // 超时 / 传输失败：请求可能已经成交，重连后取得权威状态再允许购买。
-                        RequiresReconnect = true;
-                        SetStatus(RecoveryMessage, true);
-                    }
-                    Changed?.Invoke();
-                });
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        // 结果不明(超时 / 信封 1003)、连接没变、还没重发过:保持在途,原样重发一次。
+                        if (!resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        EndBuy();
+                        uint tipId = ParseEnvelopeTip(error);
+                        if (tipId != 0 && tipId != (uint)common_error.KServiceUnavailable)
+                        {
+                            // gate / 路由层带码拒绝(限流等):请求没有到达 scene,结果是确定的「没买成」。
+                            FailBuy(tipId);
+                        }
+                        else
+                        {
+                            // 结果不明:超时、断线,或 1003(gate 等 scene 超时也回 1003,那时可能已经成交)。
+                            // 重连后取得权威状态再允许购买;服务端记着这个键,以后带原键重发也只会成交一次。
+                            RequiresReconnect = true;
+                            SetStatus(RecoveryMessage, true);
+                        }
+                        Changed?.Invoke();
+                    });
+            }
+            Send();
             return true;
         }
 

@@ -268,6 +268,12 @@ namespace MmorpgClient.Game
             /// 回到建角页并显示它;离开建角页时由 UI 清掉。
             /// </summary>
             public string RejectHint;
+            /// <summary>
+            /// 上一次进场被服务端以「进场失败」(3023)退回、连接还在时给人看的文案;null = 没有。管线把同一个 PlayerChoice
+            /// 再交给选角 UI(CreateNew 已复位),UI 回到选角页显示它,玩家可以重进同一角色,也可以换角或建角
+            /// (换角由管线先 LeaveGame,见 GameClient.RoleSwitch.cs);UI 显示过就清掉。
+            /// </summary>
+            public string EnterRejectHint;
             /// <summary>true = 放弃进入,回到选服界面。</summary>
             public bool Cancelled;
         }
@@ -382,11 +388,13 @@ namespace MmorpgClient.Game
         private void CacheRoleMetadata(IEnumerable<AccountSimplePlayerWrapper> players)
         {
             _knownRoles.Clear();
+            _roleRoster.Clear();
             foreach (var wrapper in players)
             {
                 var role = wrapper?.Player;
                 if (role == null || role.PlayerId == 0) continue;
                 _knownRoles[role.PlayerId] = role.Clone();
+                _roleRoster.Add(_knownRoles[role.PlayerId]);
             }
             World.RefreshAppearances();
         }
@@ -469,9 +477,30 @@ namespace MmorpgClient.Game
             _accessTokenExpire = accessExpire;
         }
 
+        /// <summary>本区暂停创建新角色时给玩家的文案:服务端建角被拒(tip kLoginZoneCreateRoleClosed)与排队前的预判共用。</summary>
+        public const string ZoneCreateRoleClosedMessage = "该区服已暂停创建新角色，请选择其他区服";
+
+        /// <summary>
+        /// 排队之前能不能断定「这个账号在所选区要新建角色、而这个区已暂停创角」。能断定就不必去排队:
+        /// 排完队、连上 gate 之后也只会在 CreatePlayer 被拒(服务端 docs/design/zone-full-handling.md §6)。
+        /// <paramref name="players"/> 是 /api/login 回的账号角色列表(全服的,每个带所在区)。判据与进区后挑本区角色的过滤一致:
+        /// zone_id 等于所选区、或为 0(老网关不带这个字段,或加字段之前的存量角色)都算「可能有」,不拦。
+        /// 拦错的代价是老玩家进不了区,所以只在确定没有时才拦;漏掉的仍由服务端在 CreatePlayer 拒绝。
+        /// </summary>
+        public static bool MustCreateRoleInClosedZone(bool zoneCreateRoleClosed, GatewayPlayerInfo[] players, uint zoneId)
+        {
+            if (!zoneCreateRoleClosed) return false;
+            if (players == null) return true;
+            foreach (var p in players)
+                if (p != null && (p.zone_id == zoneId || p.zone_id == 0)) return false;
+            return true;
+        }
+
         // ── EnterZone: the full multi-step pipeline ───────────────────────
         //
         //   1. POST /api/login        (zone-pinned HTTP login, queue-aware)
+        //      then stop here if the zone is closed for new characters and the
+        //      account has none in it (MustCreateRoleInClosedZone) — no queueing
         //   2. POST /api/assign-gate  (queue-aware, may poll /api/queue-status)
         //   3. TCP connect + ClientTokenVerifyRequest handshake
         //   4. TCP Login (auth_type=access_token) — binds session -> account
@@ -479,8 +508,12 @@ namespace MmorpgClient.Game
         //   6. EnterGame — reply only means "accepted"; success is the
         //      NotifyEnterScene push (entergamelogic.go finishes async).
 
+        /// <param name="zoneCreateRoleClosed">
+        /// 区服列表里这个区的 create_role_closed。只用于排队前的预判(见 <see cref="MustCreateRoleInClosedZone"/>);
+        /// 不传或列表过期时照常走完整条管线,由服务端裁定。
+        /// </param>
         public IEnumerator EnterZone(uint zoneId, string account, string password, string deviceId,
-                                     Action onSuccess, Action<string> onError)
+                                     Action onSuccess, Action<string> onError, bool zoneCreateRoleClosed = false)
         {
             CancelReconnect();
             _deviceId = deviceId;
@@ -528,6 +561,14 @@ namespace MmorpgClient.Game
             if (!string.IsNullOrEmpty(loginHttp.access_token))
                 SetTokens(loginHttp.access_token, loginHttp.refresh_token, loginHttp.access_token_expire);
             Log($"http login ok, players={loginHttp.players?.Length ?? 0}");
+
+            // 所选区暂停创角、而账号在这个区没有角色:排完队进去也只能在建角时被拒,所以不去排队,直接回选服界面。
+            if (MustCreateRoleInClosedZone(zoneCreateRoleClosed, loginHttp.players, zoneId))
+            {
+                Log($"zone {zoneId} is closed for new characters and the account has none there; not queueing");
+                onError(ZoneCreateRoleClosedMessage);
+                yield break;
+            }
 
             // ── 2. Assign gate (queue-aware) ──
             Status("正在分配服务器…");
@@ -681,9 +722,7 @@ namespace MmorpgClient.Game
             // Prefer token re-auth so the password never rides the game TCP;
             // fall back to password when the HTTP step didn't issue tokens.
             Status("正在验证会话…");
-            var loginReq = !string.IsNullOrEmpty(AccessToken)
-                ? new LoginRequest { Account = Account, AuthType = "access_token", AuthToken = AccessToken }
-                : new LoginRequest { Account = Account, Password = passwordFallback ?? "", AuthType = "password" };
+            var loginReq = BuildSessionLoginRequest(passwordFallback);
 
             LoginResponse loginResp = null;
             yield return Call(MessageIds.Login, loginReq,
@@ -712,54 +751,69 @@ namespace MmorpgClient.Game
             }
             else
             {
-                // 按选中区过滤;zone_id==0 的存量角色(加字段前创建)在任何区都可见,
-                // 避免旧账号一夜之间"角色消失"。
-                var zonePlayers = new List<AccountSimplePlayer>();
-                foreach (var w in loginResp.Players)
-                {
-                    var p = w.Player;
-                    if (p == null) continue;
-                    if (zoneId == 0 || p.ZoneId == zoneId || p.ZoneId == 0)
-                        zonePlayers.Add(p);
-                }
+                // 按选中区过滤(规则见 ZonePlayers):角色列表取自刚才 Login 应答(CacheRoleMetadata 已记下)。
+                var zonePlayers = ZonePlayers(_roleRoster, zoneId);
 
                 if (PlayerChooser != null)
                 {
                     // 建角被服务端以"可修正"的原因拒绝(名字不合规 / 重名 / 敏感词 / 服务端繁忙)时,
                     // 带着同一个 choice 回到建角页让玩家改名或再点一次。不设轮数上限:玩家随时可以取消回选服
                     // (服务端 docs/design/guild-phase2/03-names.md §3.22)。传输错误仍由 CreatePlayerCo 收掉整条管线。
+                    // 进场失败(3023)且连接还在时也回到这里(EnterGameAndWaitScene 的 onReselect):服务端保留了本连接的登录态,
+                    // 同一连接上可以重进同一角色,也可以换角或建角,换角由 EnterGameOnConnection 先 LeaveGame。
+                    // 所以有选角界面时「选角 → 进场」是一个循环,在这里收尾;重定向 / 短重连 / 无界面路径走下面的统一出口。
                     var choice = new PlayerChoice();
+                    int reselects = 0;
                     while (true)
                     {
-                        yield return PlayerChooser(zoneId, zonePlayers, choice);
-                        if (gen != _pipelineGen) yield break;
-                        if (choice.Cancelled)
-                        { FailPipeline(gen, onError, "已返回选服"); yield break; }
-                        if (!choice.CreateNew) { playerId = choice.SelectedPlayerId; break; }
+                        while (true)
+                        {
+                            yield return PlayerChooser(zoneId, zonePlayers, choice);
+                            if (gen != _pipelineGen) yield break;
+                            if (choice.Cancelled)
+                            { FailPipeline(gen, onError, "已返回选服"); yield break; }
+                            if (!choice.CreateNew) { playerId = choice.SelectedPlayerId; break; }
 
-                        // A deliberate profession default is UI state, not a stable server identity.
-                        // Resolve it once for this request; leave choice unchanged for rejection/reopen.
-                        if (!TryResolveCreationAppearance(choice.ClassId, choice.Gender, choice.AppearanceId, out var requestAppearance))
-                        {
-                            choice.RejectHint = "所选人物暂不可新建，请选择其他人物";
-                            choice.CreateNew = false;
-                            continue;
+                            // A deliberate profession default is UI state, not a stable server identity.
+                            // Resolve it once for this request; leave choice unchanged for rejection/reopen.
+                            if (!TryResolveCreationAppearance(choice.ClassId, choice.Gender, choice.AppearanceId, out var requestAppearance))
+                            {
+                                choice.RejectHint = "所选人物暂不可新建，请选择其他人物";
+                                choice.CreateNew = false;
+                                continue;
+                            }
+                            ulong newId = 0;
+                            string reject = null;
+                            yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender, choice.Name, requestAppearance,
+                                loginResp.Players, id => newId = id, hint => reject = hint, onError);
+                            if (gen != _pipelineGen) yield break;
+                            if (reject != null)
+                            {
+                                // Name / ClassId / Gender / AppearanceId 原样保留,建角页据此回填
+                                choice.RejectHint = reject;
+                                choice.CreateNew = false;
+                                continue;
+                            }
+                            if (newId == 0) yield break; // CreatePlayerCo 已 FailPipeline
+                            playerId = newId;
+                            break;
                         }
-                        ulong newId = 0;
-                        string reject = null;
-                        yield return CreatePlayerCo(gen, choice.ClassId, choice.Gender, choice.Name, requestAppearance,
-                            loginResp.Players, id => newId = id, hint => reject = hint, onError);
-                        if (gen != _pipelineGen) yield break;
-                        if (reject != null)
-                        {
-                            // Name / ClassId / Gender / AppearanceId 原样保留,建角页据此回填
-                            choice.RejectHint = reject;
-                            choice.CreateNew = false;
-                            continue;
-                        }
-                        if (newId == 0) yield break; // CreatePlayerCo 已 FailPipeline
-                        playerId = newId;
-                        break;
+                        if (playerId == 0)
+                        { FailPipeline(gen, onError, "未选择角色"); yield break; }
+                        // 记住该区最近进入的角色(选角屏用来标注 [上次])
+                        if (!_redirecting && zoneId != 0)
+                            MmorpgClient.Core.ClientSettings.SetLastPlayer(zoneId, playerId);
+                        string reselectHint = null;
+                        Action<string> reselect = null;
+                        if (!_redirecting && !_reconnecting && reselects < MaxEnterReselects) reselect = hint => reselectHint = hint;
+                        yield return EnterGameAndWaitScene(gen, playerId, onSuccess, onError, passwordFallback, reselect);
+                        if (gen != _pipelineGen || reselectHint == null) yield break;
+                        ++reselects;
+                        choice.CreateNew = false;
+                        choice.EnterRejectHint = reselectHint;
+                        playerId = 0;
+                        // 建角或换角重新 Login 之后角色列表可能变了:按最新的应答重建。
+                        zonePlayers = ZonePlayers(_roleRoster, zoneId);
                     }
                 }
                 else if (zonePlayers.Count == 0)
@@ -783,7 +837,8 @@ namespace MmorpgClient.Game
             if (!_redirecting && zoneId != 0)
                 MmorpgClient.Core.ClientSettings.SetLastPlayer(zoneId, playerId);
 
-            yield return EnterGameAndWaitScene(gen, playerId, onSuccess, onError);
+            // 重定向 / 短重连 / 无界面路径:进场失败照旧拆连接回选服(不传 onReselect)。
+            yield return EnterGameAndWaitScene(gen, playerId, onSuccess, onError, passwordFallback);
         }
 
         private static bool TryResolveCreationAppearance(uint classId, uint gender, string selected, out string requestAppearance)
@@ -844,7 +899,7 @@ namespace MmorpgClient.Game
                 // 本区暂停创建新角色(区服目录的运营开关):换个区才能建,原地重试没有用,回选服界面并给出原因。
                 if (tipId == (uint)login_error.KLoginZoneCreateRoleClosed)
                 {
-                    FailPipeline(gen, onError, "该区服已暂停创建新角色，请选择其他区服");
+                    FailPipeline(gen, onError, ZoneCreateRoleClosedMessage);
                     yield break;
                 }
                 FailPipeline(gen, onError, $"创建角色失败(tip={tipId})");
@@ -895,7 +950,13 @@ namespace MmorpgClient.Game
         /// only means "request accepted" — the login service finishes the data
         /// load / scene routing asynchronously (entergamelogic.go).
         /// </summary>
-        private IEnumerator EnterGameAndWaitScene(int gen, ulong playerId, Action onSuccess, Action<string> onError)
+        /// <param name="passwordFallback">换角时 LeaveGame 清掉了登录态、要在同一连接上重新 Login 时用(同 ConnectAndEnter)。</param>
+        /// <param name="onReselect">
+        /// 非 null = 有选角界面、可以回选角:服务端推进场失败(3023)而连接还在时不拆连接,把给人看的原因交给它,
+        /// 由调用方回到选角(服务端特意保留了本连接的登录态,供同一连接重试)。null = 照旧拆连接回选服。
+        /// </param>
+        private IEnumerator EnterGameAndWaitScene(int gen, ulong playerId, Action onSuccess, Action<string> onError,
+            string passwordFallback = null, Action<string> onReselect = null)
         {
             Status("正在进入游戏…");
             _enteredScene = false;
@@ -906,14 +967,14 @@ namespace MmorpgClient.Game
             _enterRejectedByServer = false;
             _enterFailedTipId = 0;
             _awaitingSceneEntry = true;
-            _enterRequestPlayerId = playerId;
-            EnterGameResponse egResp = null;
-            yield return Call(MessageIds.EnterGame,
-                new EnterGameRequest { PlayerId = playerId, RequestId = Guid.NewGuid().ToString("N") },
-                EnterGameResponse.Parser, r => egResp = r,
-                e => FailPipeline(gen, onError, $"enter game: {e}"));
+            // 发 EnterGame:同一连接上换角先 LeaveGame、结果不明时同一请求重发一次、LeaveGame 清掉登录态后重新 Login,
+            // 都在 EnterGameOnConnection(GameClient.RoleSwitch.cs);它在真正发出 EnterGame 之前再复位一次失败 tip,
+            // 并负责记 _enterRequestPlayerId(它要先读到「本连接上可能还绑着的角色」)。
+            var outcome = new EnterGameOutcome();
+            yield return EnterGameOnConnection(gen, playerId, passwordFallback, onError, outcome);
             if (gen != _pipelineGen) yield break;
-            if (egResp == null) yield break;
+            var egResp = outcome.Response;
+            if (egResp == null) yield break; // 管线已收口(EnterGameOnConnection 里 FailPipeline 过)
             if (egResp.ErrorMessage != null && egResp.ErrorMessage.Id != 0)
             { FailPipeline(gen, onError, $"进入游戏失败(tip={egResp.ErrorMessage.Id})"); yield break; }
             PlayerId = egResp.PlayerId != 0 ? egResp.PlayerId : playerId;
@@ -947,6 +1008,17 @@ namespace MmorpgClient.Game
                 // (_enterFailedTipId 不随断线清零,见字段注释;所以它与断线同一次 Poll 派发时仍判成这一支。)
                 uint failedTip = _enterFailedTipId;
                 Log($"[enter] server reported enter failure tip={failedTip}");
+                // 有选角界面、连接还在:不拆连接,回到选角。服务端特意保留了本连接的登录态供同一连接重试
+                // (entergamelogic.go notifyEnterGameFailed);再进同一角色直接 EnterGame,换角先 LeaveGame
+                // (C++ 版 3023 不解绑,见 GameClient.RoleSwitch.cs)。连接已失(3023 常紧跟踢线)照旧拆连接回选服。
+                if (onReselect != null && IsStillCurrentGate(enterGate))
+                {
+                    Log("[enter] keeping the connection and returning to role selection");
+                    _awaitingSceneEntry = false;
+                    PlayerId = 0;
+                    onReselect(EnterRejectedReselectHint);
+                    yield break;
+                }
                 _enterRejectedByServer = true;
                 FailPipeline(gen, onError, DescribeTravelTip(failedTip));
                 yield break;
@@ -1008,18 +1080,21 @@ namespace MmorpgClient.Game
         //   Login / EnterGame                走 Call,各 ≤ RpcTimeoutSec,断线当帧收口;
         //   等入场(EnterGameAndWaitScene)   ≤ SceneEntryTimeoutSec,进场失败 tip 或连接已失当帧收口。
         // 验票与等入场的判定共用 ClassifyPipelineWait,"连接已失"只看主线程的 _gate(IsStillCurrentGate)。
-        // 三个例外,不在任何上界内:
+        // 两个例外,不在任何上界内:
         //   · 选角:只在 _redirectPlayerId==0 时出现,等的是玩家操作,本来就没有上界;
-        //   · OpenGate 同步建连:阻塞主线程,时长由操作系统决定(探测通过后目标才变黑洞时约 21s);
-        //   · 第二条腿上再来一条 msg 124:因 _redirecting 被忽略,等入场仍要等满期限。按 §12.7
-        //     第二条腿走票据分支、不会再重定向,正常路径不可达。
-        // finally 里清 _redirecting 的时机不变:上面各点收口越早,它清得越早。
+        //   · OpenGate 同步建连:阻塞主线程,时长由操作系统决定(探测通过后目标才变黑洞时约 21s)。
+        // 第二条腿上再来一条 msg 124(链式重定向)不再干等:新的一段 RedirectFlow 当帧接管,上一段按管线世代退出。
+        // 上面的上界是「一段」的;链式时整体最多 MaxRedirectHops 段。跨 zone 传送的第二条腿走票据分支、不会再被改派
+        // (§12.7),链式只出现在 gate 排空迁移上(同 zone 的票据不带目标区),见 RedirectFlow 里 chained 一段。
+        // finally 里清 _redirecting 的时机:本段没被下一段接管时照旧在退出时清,上面各点收口越早,它清得越早;
+        // 被接管时不清,归下一段管(_redirectGen)。
 
         /// <summary>
         /// 两次成功进场之间允许连续跟随的重定向次数上限,与 robot 的 MaxRedirectHops 同值。
         /// 配错的归属映射(A 的映射指向 B、B 的又指回 A)会让两边 gate 互相踢皮球,
         /// 没有这道熔断就是一个不停重连的死循环。
         /// 计数在成功进场(NotifyEnterScene)时归零,见 <see cref="NoteSceneEnteredForRedirect"/>。
+        /// 还没进场又被改派(链式重定向)时逐跳累计,正是这个上限要管的情形。
         /// </summary>
         public const int MaxRedirectHops = 3;
 
@@ -1428,6 +1503,15 @@ namespace MmorpgClient.Game
         /// </summary>
         public static ulong ResolveRedirectPlayerId(ulong currentPlayerId, ulong enterRequestPlayerId) =>
             currentPlayerId != 0 ? currentPlayerId : enterRequestPlayerId;
+
+        /// <summary>
+        /// 链式重定向(搬到新 gate 的途中、还没进场又收到一条 msg 124)时要不要沿用上一段捕获的值:
+        /// 本段取到非 0 就用本段的;取不到 —— 上一段换连接时清掉了 —— 且确实是链式,才沿用上一段的。
+        /// 不是链式时一律用本段的值,哪怕是 0:上一次重定向留下的旧值与这一次无关。
+        /// 角色、所在区、战斗 battle_id 三项同一规则,见 RedirectFlow。
+        /// </summary>
+        public static ulong CarryOverOnChainedRedirect(ulong fresh, ulong previous, bool chained) =>
+            fresh != 0 || !chained ? fresh : previous;
 
         /// <summary>管线等待点(验票、等入场)每一帧的判定结果,见 <see cref="ClassifyPipelineWait"/>。</summary>
         public enum PipelineWaitOutcome
@@ -1905,12 +1989,10 @@ namespace MmorpgClient.Game
             OnNotify(MessageIds.RedirectToGate, mc =>
             {
                 var ev = RedirectToGateNotify.Parser.ParseFrom(mc.SerializedMessage);
-                if (_redirecting)
-                {
-                    // 已经在搬了,重复推送忽略即可 —— 玩家没有被丢下,不算静默丢弃。
-                    Log($"[gate] redirect ignored (already redirecting) target={ev.TargetIp}:{ev.TargetPort}");
-                    return;
-                }
+                // _redirecting 为真时再来的 124 不是重复推送,照样交给 RedirectFlow(它按链式重定向处理并受跳数上限约束)。
+                // 旧连接的重复推送到不了这里:RedirectFlow 在第一个 yield 之前就摘掉了旧连接的派发,GateTcpClient.Poll
+                // 逐帧读事件,同一批里排在后面的帧也不会再派发。以前这里一律忽略,第二条腿上被 login 改派
+                // (gate 排空迁移撞上跨 zone 传送)或新 gate 也开始排空时,玩家只能干等满入场超时后掉回登录界面。
                 if (CoroutineRunner == null)
                 {
                     // 没有协程宿主 = 没人能跑这套流程。老 gate 的登录会话早已被 EnterGame 清掉,
@@ -2264,6 +2346,7 @@ namespace MmorpgClient.Game
                 _enterRequestPlayerId = 0; // RedirectFlow 在 ResetConnectionState 之前已捕获
                 CurrentZoneId = 0;      // 所在区 = 当前连着的 gate 所属的区;连接没了就没有"所在区"
                 _knownRoles.Clear();
+                _roleRoster.Clear();
                 _sceneAppearances.Clear();
                 _enteredScene = false;
                 _awaitingSceneEntry = false;

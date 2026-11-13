@@ -121,6 +121,86 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(Get("_redirectHops"), Is.EqualTo(0));
         }
 
+        // ── 链式重定向:搬到新 gate 的途中、还没进场又收到一条 msg 124 ──
+        // 来源是 gate 排空迁移撞上跨 zone 传送的交接(第二条腿的 EnterGame 被 login 按落点改派),或新 gate 自己也开始排空
+        // (服务端 docs/design/gate-drain-session-migration.md §13)。旧实现一律当重复推送忽略,这条腿只能等满 60 秒
+        // 入场超时后掉回登录界面。下面几例里协程由用例手动推进:第一次 MoveNext 停在探测目标 gate 那一步,不碰网络。
+
+        [Test]
+        public void RedirectArrivingMidRedirectIsFollowedAndInheritsRoleZoneAndBattle()
+        {
+            // 上一段已经换过连接:角色、所在区、战斗直连都被清掉了,只剩上一段捕获在字段里的值。
+            Set("_redirecting", true); Set("_redirectPlayerId", 42ul); Set("_redirectZoneId", 7u); Set("_redirectBattleId", 9001ul);
+            SetProperty("PlayerId", 0ul); SetProperty("CurrentZoneId", 0u);
+
+            Invoke("DispatchInbound", RedirectFrame(65000));
+
+            Assert.That(_routines.Count, Is.EqualTo(1), "链式重定向要启动新的一段,不能当重复推送忽略");
+            Assert.That(_routines[0].MoveNext(), Is.True);
+            Assert.That(_game.IsRedirecting, Is.True);
+            Assert.That(Get("_redirectHops"), Is.EqualTo(1), "链式的每一跳照常计数,受 MaxRedirectHops 约束");
+            Assert.That(Get("_redirectPlayerId"), Is.EqualTo(42ul), "沿用上一段捕获的角色,不重新弹选角");
+            Assert.That(Get("_redirectZoneId"), Is.EqualTo(7u), "票据不带区号、当前区已清零:沿用上一段的区");
+            Assert.That(Get("_redirectBattleId"), Is.EqualTo(9001ul), "战斗直连的 battle_id 交给这一段,进场后由它补签重建");
+        }
+
+        [Test]
+        public void FreshRedirectDoesNotInheritWhatAnEarlierRedirectLeftBehind()
+        {
+            // 不是链式(上一次重定向早已结束):字段里的旧值与这一次无关。角色取不到就是 0,第二条腿回选角。
+            Set("_redirecting", false); Set("_redirectPlayerId", 42ul); Set("_redirectBattleId", 9001ul);
+            SetProperty("PlayerId", 0ul);
+
+            Invoke("DispatchInbound", RedirectFrame(65000));
+
+            Assert.That(_routines[0].MoveNext(), Is.True);
+            Assert.That(Get("_redirectPlayerId"), Is.EqualTo(0ul));
+            Assert.That(Get("_redirectBattleId"), Is.EqualTo(0ul));
+        }
+
+        [Test]
+        public void SupersededRedirectLeavesTheRedirectingFlagToItsSuccessor()
+        {
+            Invoke("DispatchInbound", RedirectFrame(65000));
+            var first = _routines[0];
+            Assert.That(first.MoveNext(), Is.True);
+            Invoke("DispatchInbound", RedirectFrame(65001));
+            Assert.That(_routines.Count, Is.EqualTo(2));
+            var second = _routines[1];
+            Assert.That(second.MoveNext(), Is.True);
+            Assert.That(Get("_redirectHops"), Is.EqualTo(2));
+
+            // 上一段在下一次恢复时按管线世代退出;它退出时不能把后继那一段还在用的 _redirecting 清掉。
+            Assert.That(first.MoveNext(), Is.False);
+            Assert.That(_game.IsRedirecting, Is.True, "后继那一段还没结束,UI 仍应显示切换中、各功能仍应暂停发请求");
+
+            // 后继那一段自己结束(这里用显式登出作废它)时才清。
+            _game.Disconnect();
+            Assert.That(second.MoveNext(), Is.False);
+            Assert.That(_game.IsRedirecting, Is.False);
+        }
+
+        [Test]
+        public void ChainedRedirectsAreStillCutOffAtTheHopLimit()
+        {
+            Set("_redirecting", true); Set("_redirectHops", GameClient.MaxRedirectHops);
+            LogAssert.Expect(UnityEngine.LogType.Error, new System.Text.RegularExpressions.Regex("hop limit reached"));
+
+            Invoke("DispatchInbound", RedirectFrame(65000));
+
+            Assert.That(_routines[0].MoveNext(), Is.False, "到跳数上限就不再跟,防配置环路把客户端拖进不停重连");
+            Assert.That(_disconnected, Is.EqualTo(1));
+            Assert.That(_game.DisconnectReason, Is.EqualTo("切换服务器失败,请重新登录"));
+        }
+
+        [Test]
+        public void CarryOverOnChainedRedirectPrefersFreshValuesAndOnlyInheritsWhenChained()
+        {
+            Assert.That(GameClient.CarryOverOnChainedRedirect(5, 9, chained: true), Is.EqualTo(5ul), "本段取到了就用本段的");
+            Assert.That(GameClient.CarryOverOnChainedRedirect(0, 9, chained: true), Is.EqualTo(9ul), "链式且本段取不到:沿用上一段的");
+            Assert.That(GameClient.CarryOverOnChainedRedirect(0, 9, chained: false), Is.EqualTo(0ul), "不是链式:旧值不算数");
+        }
+
         [Test]
         public void ResumeClosesOldConnectionAndStartsRecoveryOnlyOnce()
         {
@@ -386,6 +466,16 @@ namespace MmorpgClient.Tests.EditMode.Net
         }
         private static void WriteFrame(NetworkStream stream, MuduoCodec codec, IMessage message)
         { byte[] bytes = codec.Encode(message); stream.Write(bytes, 0, bytes.Length); }
+
+        /// <summary>
+        /// 一条指向本机 <paramref name="port"/> 的 msg 124。票据留空:客户端只原样转发票据,解不出区号时沿用旧值。
+        /// 用例只推进到探测目标 gate 之前,这个端口不会真的被连接。
+        /// </summary>
+        private static MessageContent RedirectFrame(int port) => new MessageContent
+        {
+            MessageId = MessageIds.RedirectToGate,
+            SerializedMessage = new RedirectToGateNotify { TargetIp = "127.0.0.1", TargetPort = (uint)port }.ToByteString()
+        };
 
         private void PeerEof()
         {

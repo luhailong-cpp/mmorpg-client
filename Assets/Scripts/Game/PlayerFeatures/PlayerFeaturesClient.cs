@@ -292,29 +292,55 @@ namespace MmorpgClient.Game.PlayerFeatures
         /// 结果看 <see cref="OnEnhanceResult"/> / <see cref="LastEnhanceOutcome"/>:掷骰没过不是错误,不走 OnError。
         /// 金币 / 材料够不够不在这里拦(快照可能偏旧,拦了会把人锁死),由服务器裁决;
         /// 按钮置灰用 EquipBagModel.CheckEnhance。
+        /// 请求带两样东西(服务端 equipment-enhance-inlay.md §4.3、client-request-idempotency.md §2.1):
+        /// expected_level = 发包那一刻快照里这件装备的强化等级(0 级也填 0),对不上服务器整笔拒绝(kEquipEnhanceLevelChanged);
+        /// client_request_id = 这一次点击的幂等键,结果不明(超时 / 信封 1003)、连接没变时原样重发一次,服务端按键去重。
         /// </summary>
         public void EnhanceEquip(ulong itemId)
         {
             // 发包那一刻本地快照对「金币 / 材料够不够」的判断。被这两个码拒绝时据此区分
             // 「本来就知道不够」(不重拉)与「本地以为够」(快照过期,重拉)。
             var knownAtSend = EquipEnhanceCheck.Unknown;
+            uint expectedLevel = 0;
+            ulong requestKey = 0;
             string RejectLocally()
             {
                 if (itemId == 0) return "请先选择要强化的装备";
-                if (!TryFindForgeTarget(itemId, out var target)) return null;
-                if (target == null) return $"{EnhanceOperation}:{ItemNotFoundText}";
-                if (target.EnhanceMaxLevel == 0) return $"{EnhanceOperation}:{EnhanceUnavailableText}";
-                if (target.EnhanceLevel >= target.EnhanceMaxLevel) return $"{EnhanceOperation}:{EnhanceMaxLevelText}";
-                knownAtSend = EquipBagModel.CheckEnhance(target, CharacterBag);
+                if (TryFindForgeTarget(itemId, out var target))
+                {
+                    if (target == null) return $"{EnhanceOperation}:{ItemNotFoundText}";
+                    if (target.EnhanceMaxLevel == 0) return $"{EnhanceOperation}:{EnhanceUnavailableText}";
+                    if (target.EnhanceLevel >= target.EnhanceMaxLevel) return $"{EnhanceOperation}:{EnhanceMaxLevelText}";
+                    knownAtSend = EquipBagModel.CheckEnhance(target, CharacterBag);
+                    expectedLevel = target.EnhanceLevel;
+                }
+                // 两份快照有一份还没拉到:不做本地拒绝,直接发包。期望等级取还在的那份快照里的这一件,
+                // 哪份都没有就填 0 —— 对不上时服务器回 kEquipEnhanceLevelChanged、什么都不扣,两份快照随即重拉。
+                else expectedLevel = FindInAnySnapshot(itemId)?.EnhanceLevel ?? 0;
+                // 本地检查都过了才生成键:被本地拦下的点击不算一次操作。
+                if (!ClientRequestKeys.TryCreate(out requestKey)) return $"{EnhanceOperation}:{ClientRequestKeys.UnavailableText}";
                 return null;
             }
+            EnhanceEquipRequest request = null;
             PerformEquipAction(EnhanceOperation, true, RejectLocally,
-                (complete, fail) => _net.Call(MessageIds.EnhanceEquip, new EnhanceEquipRequest { ItemId = itemId },
-                    EnhanceEquipResponse.Parser,
-                    response => complete(response.ErrorMessage, response.Bag, response.Equipment,
-                        () => LastEnhanceOutcome = new EquipEnhanceOutcome(itemId, response.Success, response.EnhanceLevel)),
-                    fail),
-                tipId => IsRuleRejection(tipId, knownAtSend));
+                (complete, fail) =>
+                {
+                    // 只构造一次:结果不明时的重发必须逐字节相同(同一个键、同一个期望等级),服务端按参数指纹认重发。
+                    request ??= new EnhanceEquipRequest { ItemId = itemId, ExpectedLevel = expectedLevel, ClientRequestId = requestKey };
+                    _net.Call(MessageIds.EnhanceEquip, request, EnhanceEquipResponse.Parser,
+                        response =>
+                        {
+                            if (response.ErrorMessage?.Id == (uint)common_error.KInvalidParameter)
+                                ClientRequestKeys.ReportKeyReused("EnhanceEquip");
+                            // replayed = true 是首次那一次的结果(重发命中了已受理的那一次,没有再扣、再掷):
+                            // 按首次结果照常发布。每次点击至多发布一次结果,结果不明的那一次没有发布过,所以特效只播一次。
+                            complete(response.ErrorMessage, response.Bag, response.Equipment,
+                                () => LastEnhanceOutcome = new EquipEnhanceOutcome(itemId, response.Success, response.EnhanceLevel));
+                        },
+                        fail);
+                },
+                tipId => IsRuleRejection(tipId, knownAtSend),
+                resendOnceOnUnknown: true);
         }
 
         /// <summary>
@@ -390,6 +416,18 @@ namespace MmorpgClient.Game.PlayerFeatures
             return true;
         }
 
+        /// <summary>两份快照里还在的那份(先人物背包后装备栏)中的这件物品;都没有或都没拉到时为 null。</summary>
+        private BagItemInfo FindInAnySnapshot(ulong itemId)
+        {
+            if (CharacterBag != null)
+                foreach (var item in CharacterBag.Items)
+                    if (item.ItemId == itemId) return item;
+            if (Equipment != null)
+                foreach (var item in Equipment.Items)
+                    if (item.ItemId == itemId) return item;
+            return null;
+        }
+
         /// <summary>
         /// 装备类操作的响应体出口:tip、人物背包、装备栏;applied 在两份快照覆盖之后、通知之前执行
         /// (强化在这里记下结果),被拒绝或缺快照时不执行。
@@ -405,8 +443,14 @@ namespace MmorpgClient.Game.PlayerFeatures
         /// <param name="rejectLocally">发包前的本地检查:返回拒绝文案,null = 放行。确认了角色与互斥之后才调用。</param>
         /// <param name="send">发包:响应体交给第一个回调,传输层 / 信封错误交给第二个。</param>
         /// <param name="isRuleRejection">这个拒绝码是否不必重拉;不传 = IsRuleRejection 的通用判定。</param>
+        /// <param name="resendOnceOnUnknown">
+        /// 请求带业务幂等键(目前只有强化):结果不明(<see cref="ClientRequestKeys.ShouldResendOnce"/>)、连接与角色没变、
+        /// 请求序号没变、还没重发过时,原样再发一次(send 必须复用同一个请求对象),在途标志与发包间隔都不动。
+        /// 不带键的操作(穿脱 / 镶嵌 / 取下)不传,行为不变:结果不明一律只重拉快照。
+        /// </param>
         private void PerformEquipAction(string operation, bool forge, Func<string> rejectLocally,
-            Action<EquipActionReply, Action<string>> send, Func<uint, bool> isRuleRejection = null)
+            Action<EquipActionReply, Action<string>> send, Func<uint, bool> isRuleRejection = null,
+            bool resendOnceOnUnknown = false)
         {
             if (!PrepareRequest(out var playerId)) return;
             if (BusyEquip) return; // 连点:上一次还没回包,不发第二个包也不报错
@@ -420,6 +464,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             LastEnhanceOutcome = null;
             if (BusyMissionAction) { FailEquipAction("任务正在处理中，请稍候"); return; }
             if (BusySort) { FailEquipAction("背包正在整理，请稍候"); return; }
+            if (BusyTemporary) { FailEquipAction(TemporaryBusyText); return; }
             string localError = rejectLocally();
             if (localError != null) { FailEquipAction(localError); return; }
 
@@ -471,18 +516,37 @@ namespace MmorpgClient.Game.PlayerFeatures
                     OnEnhanceResult?.Invoke(enhanced.Value);
                 SendDeferredReads(epoch, playerId);
             }
+            // 这一请求已经发出的次数。回调只认最近一次发出的那个:真实传输层每次调用恰好回调一次,
+            // 这里再挡一道,重发之后前一次的迟到回调不能收掉这一次。
+            int attempt = 0;
+            bool resent = false;
             void Fail(string error)
             {
                 if (!IsCurrent(epoch, playerId) || request != _equipActionRequest) return;
+                // 带幂等键的请求(强化)结果不明时原样重发一次:服务端按 (玩家, 键) 去重,重发只会拿到首次的结果
+                // 或首次执行,不会扣两次(client-request-idempotency.md §2.1)。只在同一条连接上重发:换了连接
+                // IsCurrent 已经拦下。重发也不明就走下面的收尾,只重拉快照,让玩家看过结果再决定点不点。
+                if (resendOnceOnUnknown && !resent && ClientRequestKeys.ShouldResendOnce(error))
+                {
+                    resent = true;
+                    SendAttempt();
+                    return;
+                }
                 // 信封上的码(gate / 路由层)与响应体里的码走同一套文案、同一个判定;其余是传输层失败
                 // (超时 / 断线 / 解析失败):内部英文串不上屏,而且服务器可能已经执行,要重新同步。
-                // 绝不自动重发:强化不是幂等操作,再发一次就是再扣一次。
+                // 不带键的操作绝不自动重发:再发一次就是再做一次。
                 if (TryParseEnvelopeTip(error, out uint tipId))
                     Reject(DescribeEquipTip(operation, new TipInfoMessage { Id = tipId }), !isRuleRejection(tipId));
                 else Reject($"{operation}:{NetworkErrorText}", true);
             }
+            void SendAttempt()
+            {
+                int mine = ++attempt;
+                send((tip, bag, equipment, applied) => { if (mine == attempt) Complete(tip, bag, equipment, applied); },
+                    error => { if (mine == attempt) Fail(error); });
+            }
             if (forge) _lastForgeSendMs = now;
-            send(Complete, Fail);
+            SendAttempt();
         }
 
         /// <summary>
@@ -504,6 +568,8 @@ namespace MmorpgClient.Game.PlayerFeatures
             if (BusyActivityReward) { FailBag("活跃奖励正在处理中，请稍候"); return; }
             if (BusyMissionAction) { FailBag("任务正在处理中，请稍候"); return; }
             if (BusyEquip) { FailBag("装备正在更换，请稍候"); return; }
+            // 取回的回包整体覆盖人物背包并作废在途读取(_bagRequest),与整理共用这个序号:不能同时在途。
+            if (BusyTemporary) { FailBag(TemporaryBusyText); return; }
             if (BusySort || BagLoading) { FailBag("背包正在处理中，请稍候"); return; }
             if (Bag?.Layout == null) { FailBag("请先读取背包"); return; }
             if (!Bag.Layout.CanSort || Bag.Layout.BagType > 1) { FailBag("此背包暂不支持整理"); return; }
@@ -732,6 +798,9 @@ namespace MmorpgClient.Game.PlayerFeatures
                 (uint)equip_error.KEquipGemSocketEmpty => GemSocketEmptyText,
                 (uint)equip_error.KEquipGemTypeMismatch => "宝石类型与孔位不符",
                 (uint)equip_error.KEquipGemBagFull => "背包已满,无法取下宝石",
+                // 发包时的期望等级与服务器的有效等级对不上(本地快照过期,或这是一次旧请求的重发):
+                // 什么都没扣、没掷骰。两份快照随即重拉(IsRuleRejection 不收它),玩家看过新等级再决定点不点。
+                (uint)equip_error.KEquipEnhanceLevelChanged => "装备强化等级已变化,请刷新后再试",
                 _ => null,
             };
             return text == null ? DescribeTip(operation, tip) : $"{operation}:{text}";
@@ -768,6 +837,8 @@ namespace MmorpgClient.Game.PlayerFeatures
             (uint)equip_error.KEquipEnhanceMaterialNotEnough => knownAtSend == EquipEnhanceCheck.MaterialNotEnough,
             (uint)equip_error.KEquipEnhanceGoldNotEnough => knownAtSend == EquipEnhanceCheck.GoldNotEnough,
             (uint)equip_error.KEquipEnhanceUnavailable => knownAtSend == EquipEnhanceCheck.Unavailable,
+            // 等级变了 = 本地快照已被证明过期:重拉两份快照(服务端 equipment-enhance-inlay.md §6.1)。
+            (uint)equip_error.KEquipEnhanceLevelChanged => false,
             _ => false,
         };
 
@@ -837,6 +908,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             ++_epoch;
             ResetActivityRewardSession();
+            ResetTemporarySession();
             _snapshotPlayerId = 0;
             Array.Clear(_bags, 0, _bags.Length);
             Missions = null;

@@ -167,6 +167,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!_bagTools) RenderExactBagTools(count);
             RenderNativeItem(chosen, selectedWorn);
             if (!string.IsNullOrEmpty(state)) NativeStatus(state, 1260, 622, 474, !string.IsNullOrEmpty(_bagError) || !string.IsNullOrEmpty(_equipError));
+            // 临时格快满 / 已满的提醒(服务端 bag-rule-policy-layering.md §6.6 (5)):别的状态都没有时占这一行,用醒目色。
+            // 原图没有这一状态,位置沿用状态行,视觉验收另算。
+            else if (TemporaryBagModel.BagPageNotice(_temporary) is string temporaryNotice)
+                NativeStatus(temporaryNotice, 1260, 622, 474, true);
             if (_bagTools) RenderExactBagTools(count);
         }
 
@@ -187,6 +191,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             NativeHit(_body, "RefreshBag", "刷新", 1260, 302, 187, 47, Refresh, !_bagLoading && !_sorting && !_equipBusy, 26);
             NativeHit(_body, "WornEquipment", "已穿戴", 1460, 302, 187, 47, () => { _bagFilter = 3; _bagPage = 0; _bagTools = false; Render(); }, font: 26);
             NativeHit(_body, "OtherItems", "其他物品", 1260, 355, 187, 47, () => { _bagFilter = 2; _bagPage = 0; _bagTools = false; Render(); }, font: 26);
+            // 临时格入口(原图没有这一格,沿用工具栏的按钮皮肤,视觉验收另算):标题带占用,打开面板逐件或全部取回。
+            NativeHit(_body, "TemporaryBag", TemporaryBagModel.OccupancyText(_temporary), 1460, 355, 187, 47,
+                () => { _bagTools = false; Render(); OpenTemporaryBag(); }, font: 22);
             NativeText(_body, "丹药、材料分类及出售尚未开放", 1260, 416, 405, 38, 21, Muted);
             NativeHit(_body, "CloseBagTools", "收起", 1460, 480, 187, 47, () => { _bagTools = false; Render(); }, font: 26);
         }
@@ -217,7 +224,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             // 押在还没结算的战斗里的数量(人物背包快照的 held_items):说明这几件为什么暂时交易不了。穿在身上的不在人物背包里,不标。
             string heldLine = worn ? null : EquipBagModel.HeldLine(_bag, item);
             if (heldLine != null) lines.Add(new EquipDetailLine(heldLine, Muted));
-            bool hasNotice = !string.IsNullOrEmpty(_bagError) || _bagLoading || !string.IsNullOrEmpty(_equipError) || _equipBusy || !string.IsNullOrEmpty(_equipmentNotice);
+            bool hasNotice = !string.IsNullOrEmpty(_bagError) || _bagLoading || !string.IsNullOrEmpty(_equipError) || _equipBusy || !string.IsNullOrEmpty(_equipmentNotice)
+                || TemporaryBagModel.BagPageNotice(_temporary) != null;
             float detailsHeight = hasNotice ? 132 : 178;
             var details = NativeScroll(panel, "ItemDetailsScroll", 1276, 482, 467, detailsHeight, detailsHeight, 1, _ => { });
             float y = 0;

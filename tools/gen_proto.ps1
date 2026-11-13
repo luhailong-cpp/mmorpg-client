@@ -89,6 +89,10 @@ $files = @(
     "proto/scene/player_activity.proto",
     # 装备穿脱错误码由服务端 Tip.xlsx 导表生成，客户端不手写码值。
     "generated/code/proto/tip/equip_error_tip.proto",
+    # 背包域 tip:临时格取回的 kBagTemporaryItemNotFound / RetrieveBagFull / RetrieveBusy
+    # (服务端 docs/design/bag-rule-policy-layering.md §6.6),PlayerFeaturesClient.Temporary.cs 按 bag_error 枚举分辨;
+    # 漏配这一行会缺少 bag_error 枚举(CS0103)。
+    "generated/code/proto/tip/bag_error_tip.proto",
 
     # 回合制战斗 + 匹配/切磋(docs/design/turn-based-battle-server.md 一期客户端协议)
     "proto/battle/battle_data.proto",

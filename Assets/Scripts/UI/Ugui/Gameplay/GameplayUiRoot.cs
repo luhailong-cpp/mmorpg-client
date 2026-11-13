@@ -30,6 +30,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private RectTransform _hud;
         private ulong _playerId;
         private bool _available;
+        // 上一次通知时临时格是不是已满:由不满变满时飘字提示一次(服务端 bag-rule-policy-layering.md §6.6 (5))。
+        private bool _temporaryFullNotified;
         private bool HasView => _window != null && _window.Root != null && _hud != null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -72,6 +74,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _window.BagRequested += type => _client?.RequestBag(type);
             _window.SortRequested += () => _client?.SortBag();
             _window.EquipmentRequested += () => _client?.RequestEquipment();
+            _window.TemporaryRequested += () => _client?.RequestTemporary();
+            _window.TemporaryRetrieveRequested += id => _client?.RetrieveTemporaryItem(id);
+            _window.TemporaryRetrieveAllRequested += () => _client?.RetrieveAllTemporaryItems();
             _window.EquipRequested += id => _client?.EquipItem(id);
             _window.UnequipRequested += id => _client?.UnequipItem(id);
             _window.AttributesRequested += () => AttributeUiRoot.Instance?.OpenPanel();
@@ -127,9 +132,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (sessionChanged) Changed();
             // 装备 tooltip 的等级要求标红用:属性面板拉到过才有等级,没有就是 0(不标红)。值没变时窗口不重画。
             _window.SetCharacterLevel(AttributeClient.Instance?.Panel?.Level ?? 0);
+            bool wasAvailable = _available;
             _available = inGame && _client != null && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
             _hud.gameObject.SetActive(_available);
             if (!_available) { HidePanel(); return; }
+            // 进游戏、从战斗界面回到大世界时补拉一次临时格:放不进人物背包的战斗掉落会进临时格,满了要让玩家马上知道。
+            if (!wasAvailable) _client.RequestTemporary();
             // 发包间隔按时间走完,数据层不为它发通知:面板开着时每帧看一眼,冷却结束才重画。
             _forge.Tick();
             // 子弹窗独占键盘；Esc 由弹窗自己的输入组件处理，避免同一按键把背包一起关掉。
@@ -208,6 +216,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             _window.SetBagPage(_client.Bag, _client.BagLoading, _client.BagError, _client.BusySort,
                 _client.Equipment, _client.EquipmentLoading, _client.EquipmentError, _client.BusyEquip);
+            _window.SetTemporary(_client.Temporary, _client.TemporaryLoading, _client.TemporaryError, _client.BusyTemporary);
+            // 临时格由不满变满:飘字提示一次(背包页状态行另有常驻提醒)。战斗界面开着时先不提示,回到大世界补拉之后再提示;
+            // 快照作废(断线 / 换角色)或取回到不满之后从头算。
+            if (!TemporaryBagModel.IsFull(_client.Temporary)) _temporaryFullNotified = false;
+            else if (!_temporaryFullNotified && _available)
+            {
+                _temporaryFullNotified = true;
+                BattleUiRoot.Instance?.ShowToast(TemporaryBagModel.FullToast);
+            }
             _window.SetMissions(_client.Missions, _client.MissionsLoading, _client.MissionsError, _client.BusyMissionAction);
             _window.SetMissionTracking(_client.MissionTracking);
             _window.SetActivityContext(_client.SnapshotPlayerId);
@@ -223,7 +240,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             _client = null;
             _playerId = 0;
-            _available = _forgeNoticeShown = false;
+            _available = _forgeNoticeShown = _temporaryFullNotified = false;
             _forge.Bind(null);
         }
         private void OnDestroy()

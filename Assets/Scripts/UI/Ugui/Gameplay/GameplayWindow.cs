@@ -19,6 +19,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action SortRequested;
         /// <summary>打开 / 刷新背包页时与 <see cref="BagRequested"/> 一起发:装备栏是另一份快照(bag_type = 2)。</summary>
         public event Action EquipmentRequested;
+        /// <summary>打开 / 刷新背包页、打开临时格面板时发:临时格是另一份快照(bag_type = 3)。</summary>
+        public event Action TemporaryRequested;
+        /// <summary>参数是临时格里物品的实例 id:取回这一件(一堆)到人物背包。</summary>
+        public event Action<ulong> TemporaryRetrieveRequested;
+        public event Action TemporaryRetrieveAllRequested;
         /// <summary>参数是物品实例 id:穿上人物背包里的装备 / 卸下装备栏里的装备。</summary>
         public event Action<ulong> EquipRequested;
         public event Action<ulong> UnequipRequested;
@@ -33,7 +38,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public RectTransform Root => _root;
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
         public bool HasEquipmentModal => _actions.IsVisible || _wish.IsVisible || (_forgeDialog?.IsVisible ?? false);
-        public bool EquipmentModalOwnsKeyboard => HasEquipmentModal || _modalClosedFrame == Time.frameCount;
+        // 临时格面板不挂在某件装备上,不算 HasEquipmentModal(Render 会关掉找不到装备的弹窗),但同样独占键盘。
+        public bool EquipmentModalOwnsKeyboard => HasEquipmentModal || _temporaryDialog.IsVisible || _modalClosedFrame == Time.frameCount;
         public GameplayPage Page { get; private set; }
         private readonly RectTransform _root, _body;
         private readonly TextMeshProUGUI _title, _subtitle;
@@ -44,6 +50,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly EquipWishDialog _wish;
         private readonly EquipForgeUiState _forge;
         private readonly EquipForgeDialog _forgeDialog;
+        private readonly TemporaryBagDialog _temporaryDialog;
+        private BagInfo _temporary;
+        private bool _temporaryLoading, _temporaryBusy;
+        private string _temporaryError = string.Empty;
         private readonly CanvasGroup _frameControls;
         private ulong _modalItemId;
         private string _equipmentNotice;
@@ -90,6 +100,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _tooltip = new EquipTooltip(frame, 1255, 145); _tooltip.Hide();
             _actions = new EquipActionsDialog(_root); _wish = new EquipWishDialog(_root);
             _forge = forge; _forgeDialog = forge == null ? null : new EquipForgeDialog(_root, forge);
+            _temporaryDialog = new TemporaryBagDialog(_root);
+            _temporaryDialog.RetrieveRequested += id => TemporaryRetrieveRequested?.Invoke(id);
+            _temporaryDialog.RetrieveAllRequested += () => TemporaryRetrieveAllRequested?.Invoke();
+            _temporaryDialog.RefreshRequested += () => TemporaryRequested?.Invoke();
             Hide();
         }
 
@@ -111,7 +125,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void Dispose() { _missionTracking.OnChanged -= MissionTrackingChanged; if (_root != null) CloseEquipmentModals(); _forgeDialog?.Dispose(); }
         public void Back()
         {
-            if (HasEquipmentModal) CloseEquipmentModals();
+            if (_temporaryDialog.IsVisible) _temporaryDialog.Close();
+            else if (HasEquipmentModal) CloseEquipmentModals();
             else if (Page == GameplayPage.Activities && (_activityClaimConfirmation != 0 || _activityUtility != 0 || _activityDetails != 0 || _activityTools))
             { _activityClaimConfirmation = _activityDetails = 0; _activityUtility = 0; _activityTools = false; Render(); }
             else Hide();
@@ -128,7 +143,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void Refresh()
         {
             _equipmentNotice = null;
-            if (Page == GameplayPage.Bag) { BagRequested?.Invoke(_bagType); EquipmentRequested?.Invoke(); }
+            if (Page == GameplayPage.Bag) { BagRequested?.Invoke(_bagType); EquipmentRequested?.Invoke(); TemporaryRequested?.Invoke(); }
             else if (Page == GameplayPage.Missions) MissionsRequested?.Invoke();
             else { ActivitiesRequested?.Invoke(); MissionsRequested?.Invoke(); }
         }
@@ -146,6 +161,28 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             _equipment = equipment; _equipLoading = equipLoading; _equipError = equipError; _equipBusy = equipBusy;
             SetBag(bag, bagLoading, bagError, sorting);
+        }
+        /// <summary>
+        /// 临时格快照(bag_type = 3)与取回状态(busy = 取回在途;error 是取回或读取的失败原因,原样显示)。
+        /// 面板开着就重画面板;背包页只在占用或满格提醒变了时重画(工具里的入口与状态行的提醒)。
+        /// </summary>
+        public void SetTemporary(BagInfo temporary, bool loading, string error, bool busy)
+        {
+            string before = TemporaryBagModel.OccupancyText(_temporary) + "|" + TemporaryBagModel.BagPageNotice(_temporary);
+            _temporary = temporary; _temporaryLoading = loading; _temporaryError = error ?? string.Empty; _temporaryBusy = busy;
+            if (_temporaryDialog.IsVisible) _temporaryDialog.Render(_temporary, _temporaryLoading, _temporaryError, _temporaryBusy);
+            string after = TemporaryBagModel.OccupancyText(_temporary) + "|" + TemporaryBagModel.BagPageNotice(_temporary);
+            if (before != after && IsVisible && Page == GameplayPage.Bag) Render();
+        }
+        /// <summary>打开临时格面板(背包页「工具」里的入口),同时拉一次最新的临时格。</summary>
+        public void OpenTemporaryBag()
+        {
+            if (!IsVisible || Page != GameplayPage.Bag) return;
+            CloseEquipmentModals();
+            SetModalControls(true);
+            _temporaryDialog.Render(_temporary, _temporaryLoading, _temporaryError, _temporaryBusy);
+            _temporaryDialog.Show(EquipmentModalClosed);
+            TemporaryRequested?.Invoke();
         }
         /// <summary>角色等级(0 = 未知),只用来给 tooltip 的等级要求标红;能不能穿由服务器裁决。</summary>
         public void SetCharacterLevel(uint level)
@@ -193,6 +230,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _activityCategory = -1; _activityRewardFilter = 0; _activityClaimConfirmation = 0; _activityUtility = 0;
             _activityRewardBusy = false; _activityRewardError = string.Empty;
             _bag = null; _equipment = null; _missions = null; _activities = null;
+            _temporary = null; _temporaryLoading = _temporaryBusy = false; _temporaryError = string.Empty;
             if (!_externalMissionTracking) _missionTracking.UpdateSnapshot(null);
             _selectedItem = 0; _selectedMission = 0; _selectedActivity = 0;
             _bagPage = _missionPage = _activityPage = _objectivePage = _equipPage = 0;
@@ -296,7 +334,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void CloseEquipmentModals()
         {
-            _actions.Close(); _wish.Hide(); _forgeDialog?.Close(); _forge?.Close(); EquipmentModalClosed();
+            _actions.Close(); _wish.Hide(); _forgeDialog?.Close(); _forge?.Close(); _temporaryDialog?.Close(); EquipmentModalClosed();
         }
 
         private void EquipmentModalClosed() { _modalItemId = 0; SetModalControls(false); }

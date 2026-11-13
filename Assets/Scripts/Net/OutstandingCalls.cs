@@ -73,8 +73,14 @@ namespace MmorpgClient.Net
         /// <summary>该调用是否仍在等回包(测试与诊断用)。</summary>
         public bool IsOutstanding(ulong id) => _calls.ContainsKey(id);
 
+        /// <summary>
+        /// 超时结局的默认细节;经 <see cref="RpcStatus.ToLegacyError"/> 就是大厅调用旧字符串契约里的超时串。
+        /// 业务按它认「结果不明」(<see cref="ClientRequestKeys.ShouldResendOnce"/>),改文案前先改那里。
+        /// </summary>
+        public const string TimeoutDetail = "rpc timeout";
+
         /// <summary>让期限已到(deadline ≤ now)的调用以 Timeout 完成。由所有者的 Tick 驱动。</summary>
-        public void ExpireDue(double now, string detail = "rpc timeout")
+        public void ExpireDue(double now, string detail = TimeoutDetail)
         {
             if (_calls.Count == 0) return;
             List<Entry> expired = null;

@@ -722,7 +722,9 @@ namespace MmorpgClient.UI.Ugui
                     _busy = false;
                     RefreshVisualState();
                     SetStatus(err);
-                }));
+                },
+                // 暂停创角的区:账号在这个区没有角色时不去排队,登录后直接给出原因(GameClient.MustCreateRoleInClosedZone)。
+                zoneCreateRoleClosed: zone.create_role_closed));
         }
 
         // ── rendering ────────────────────────────────────────────

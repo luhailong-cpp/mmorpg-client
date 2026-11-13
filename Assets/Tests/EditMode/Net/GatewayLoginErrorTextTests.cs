@@ -53,4 +53,59 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(text, Is.EqualTo("登录失败(teapot)"));
         }
     }
+
+    /// <summary>
+    /// 排队之前的预判(GameClient.MustCreateRoleInClosedZone):所选区暂停创角、而账号在这个区没有角色时不去排队。
+    /// 契约见服务端 docs/design/zone-full-handling.md §6:/api/login 的 players[].zone_id 是角色现在所在的区,
+    /// 0 = 不知道(老网关没发,或加字段之前的存量角色)。只在确定没有角色时才拦,拦错的代价是老玩家进不了区。
+    /// </summary>
+    public sealed class ZoneCreateRoleClosedPrecheckTests
+    {
+        private const uint Zone = 101;
+
+        private static GatewayPlayerInfo Role(ulong playerId, uint zoneId)
+            => new GatewayPlayerInfo { player_id = playerId, zone_id = zoneId };
+
+        [Test]
+        public void OpenZone_NeverBlocks_EvenWithoutAnyRole()
+        {
+            Assert.That(GameClient.MustCreateRoleInClosedZone(false, null, Zone), Is.False);
+            Assert.That(GameClient.MustCreateRoleInClosedZone(false, new GatewayPlayerInfo[0], Zone), Is.False);
+        }
+
+        [Test]
+        public void ClosedZone_BlocksAccountWithNoRoleAtAll()
+        {
+            Assert.That(GameClient.MustCreateRoleInClosedZone(true, null, Zone), Is.True);
+            Assert.That(GameClient.MustCreateRoleInClosedZone(true, new GatewayPlayerInfo[0], Zone), Is.True);
+        }
+
+        [Test]
+        public void ClosedZone_BlocksAccountWhoseRolesAreAllInOtherZones()
+        {
+            var players = new[] { Role(1, 102), Role(2, 103) };
+            Assert.That(GameClient.MustCreateRoleInClosedZone(true, players, Zone), Is.True);
+        }
+
+        [Test]
+        public void ClosedZone_LetsInAccountWithARoleInThatZone()
+        {
+            var players = new[] { Role(1, 102), Role(2, Zone) };
+            Assert.That(GameClient.MustCreateRoleInClosedZone(true, players, Zone), Is.False);
+        }
+
+        [Test]
+        public void ClosedZone_UnknownRoleZone_IsNotBlocked()
+        {
+            // 老网关不发 zone_id(全是 0),或加字段之前建的存量角色:进区后的过滤把它们算作本区可见,这里同样不拦。
+            var players = new[] { Role(1, 0) };
+            Assert.That(GameClient.MustCreateRoleInClosedZone(true, players, Zone), Is.False);
+        }
+
+        [Test]
+        public void BlockedMessage_IsTheSameTextAsTheServerRejection()
+        {
+            Assert.That(GameClient.ZoneCreateRoleClosedMessage, Is.EqualTo("该区服已暂停创建新角色，请选择其他区服"));
+        }
+    }
 }
