@@ -206,6 +206,50 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return total;
         }
 
+        // ── 战斗道具预留(服务端 docs/design/battle-item-reservation.md)────────
+        // 人物背包快照的 held_items 按 config 给出「押在还没结算的战斗里」的数量:交易、捐献等出包操作暂时动不了它们,
+        // 那一局结算或作废之后放开。押的是这种物品的数量,不指定哪一堆、哪一格。
+        // 这一段只用于显示和选物品时的上限;能不能出包由服务器裁决。
+
+        /// <summary>
+        /// 人物背包里某种物品被占住的数量。没有预留、快照还没拉到(null)、或服务器没下发这一段时为 0。
+        /// 同一 config 出现多行(服务器约定不会)取先出现的那一行。
+        /// </summary>
+        public static ulong HeldCountOf(BagInfo characterBag, uint configId)
+        {
+            if (characterBag == null) return 0;
+            foreach (var held in characterBag.HeldItems)
+                if (held.ConfigId == configId) return held.Count;
+            return 0;
+        }
+
+        /// <summary>某种物品此刻能拿去交易的数量 = 背包里的总数 − 被占住的数量;不够减时为 0。</summary>
+        public static ulong AvailableCountOf(BagInfo characterBag, uint configId)
+        {
+            ulong total = CountOf(characterBag, configId);
+            ulong held = HeldCountOf(characterBag, configId);
+            return total > held ? total - held : 0;
+        }
+
+        /// <summary>
+        /// 一堆物品里此刻能拿去交易的数量。同一种分几堆时,任何一堆最多都只能拿出「这种物品没被占住的总数」,
+        /// 所以是这一堆的数量与 <see cref="AvailableCountOf"/> 两者取小。
+        /// </summary>
+        public static ulong AvailableInStack(BagInfo characterBag, BagItemInfo item)
+        {
+            if (item == null) return 0;
+            ulong available = AvailableCountOf(characterBag, item.ConfigId);
+            return item.Count < available ? item.Count : available;
+        }
+
+        /// <summary>物品详情里的占用说明行;这种物品没有被占住的数量时为 null(不显示)。</summary>
+        public static string HeldLine(BagInfo characterBag, BagItemInfo item)
+        {
+            if (item == null) return null;
+            ulong held = HeldCountOf(characterBag, item.ConfigId);
+            return held == 0 ? null : $"战斗结算中  {held}（结算后可交易）";
+        }
+
         /// <summary>
         /// 这个孔能嵌哪些宝石:人物背包里的宝石物品(gem_type != 0)中,类型被这个孔接纳的(孔的 gem_type 为 0 = 任意,
         /// 否则要相等),按 config 汇总数量,config 升序。

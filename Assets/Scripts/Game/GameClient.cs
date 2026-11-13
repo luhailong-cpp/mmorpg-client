@@ -76,7 +76,7 @@ namespace MmorpgClient.Game
         // 可能先于应答到达、并作废那条等应答的管线 —— 那时只能靠它沿用角色,见 ResolveRedirectPlayerId。
         private ulong _enterRequestPlayerId;
         private uint _redirectZoneId;          // 重定向目标 gate 所属的 zone(票据只读解析;解析不出时是重定向前的旧值)
-        private int _redirectHops;             // 本会话已跟随的重定向次数(环路熔断;EnterZone 与玩家主动传送时归零)
+        private int _redirectHops;             // 连续跟随的重定向次数(环路熔断;成功进场、EnterZone 与玩家主动传送时归零)
         // 跨 zone 传送在途:TravelToZone 已发出,正在等 msg 124(成了)或失败 tip(没成)。
         // 只覆盖"还连着老 gate"的那一段 —— msg 124 一到就交棒给 _redirecting。
         // 收口点一共四个,缺一个就会把"传送中"卡死:msg 124、msg 23、断线、Tick 超时。
@@ -1011,11 +1011,21 @@ namespace MmorpgClient.Game
         // finally 里清 _redirecting 的时机不变:上面各点收口越早,它清得越早。
 
         /// <summary>
-        /// 一条登录会话允许连续跟随的重定向次数上限,与 robot 的 MaxRedirectHops 同值。
+        /// 两次成功进场之间允许连续跟随的重定向次数上限,与 robot 的 MaxRedirectHops 同值。
         /// 配错的归属映射(A 的映射指向 B、B 的又指回 A)会让两边 gate 互相踢皮球,
         /// 没有这道熔断就是一个不停重连的死循环。
+        /// 计数在成功进场(NotifyEnterScene)时归零,见 <see cref="NoteSceneEnteredForRedirect"/>。
         /// </summary>
         public const int MaxRedirectHops = 3;
+
+        /// <summary>
+        /// 记一次成功进场,把跟随重定向的跳数归零(与 robot 的 NoteSceneEntered 同语义)。
+        /// 熔断防的是重定向来回弹:来回弹发生在登录期,弹的过程中不会成功进场,所以进场后归零不削弱它。
+        /// 进场之后再收到的 msg 124 是新的一次换 gate(gate 排空迁移、跨 zone 传送),不能和之前的跳数累计:
+        /// 一个 zone 的 gate 逐台换完,同一个玩家可能被迁不止 MaxRedirectHops 次,累计下去第 4 次就会被拒并断线
+        /// (服务端 docs/design/gate-drain-session-migration.md §7.3、§10 第 2 条)。
+        /// </summary>
+        private void NoteSceneEnteredForRedirect() => _redirectHops = 0;
 
         /// <summary>目标 gate 可达性探测预算(秒),与 robot redirectDialTimeout 同值。</summary>
         private const float RedirectProbeTimeoutSec = 5f;
@@ -1165,6 +1175,8 @@ namespace MmorpgClient.Game
                 yield break;
             }
             _redirectHops++;
+            // 这一跳的序号:进场通知会把 _redirectHops 归零,完成日志要用这里记下的值。
+            int hop = _redirectHops;
 
             CancelReconnect();
             int gen = ++_pipelineGen;   // 作废任何在跑的管线,重定向接管连接
@@ -1210,7 +1222,7 @@ namespace MmorpgClient.Game
             }
 
             Status("正在切换服务器…");
-            Log($"[gate] redirect to {target} hop={_redirectHops}/{MaxRedirectHops} " +
+            Log($"[gate] redirect to {target} hop={hop}/{MaxRedirectHops} " +
                 $"token_payload={ev.TokenPayload.Length}B deadline={ev.TokenDeadline}");
             try
             {
@@ -1245,7 +1257,7 @@ namespace MmorpgClient.Game
                     null,
                     () =>
                     {
-                        Log($"[gate] redirect complete gate={AssignedGate} player_id={PlayerId} hops={_redirectHops}");
+                        Log($"[gate] redirect complete gate={AssignedGate} player_id={PlayerId} hop={hop}");
                         if (battleIdBeforeRedirect != 0)
                         {
                             // 与服务端可能推来的 NotifyBattleReconnect 幂等(链路内部按
@@ -1839,6 +1851,7 @@ namespace MmorpgClient.Game
                 CurrentSceneId = ev.SceneInfo?.SceneId ?? 0;
                 CurrentSceneConfigId = ev.SceneInfo?.SceneConfigId ?? 0;
                 _enteredScene = true;
+                NoteSceneEnteredForRedirect();
                 Log($"[scene] entered scene_id={CurrentSceneId}, config={CurrentSceneConfigId}");
                 World.Clear();
                 // 组队跟随:驱动随旧场景作废,仍在跟随的服务器入场后再推;入场计数让跟随声明在新场景再说一次。

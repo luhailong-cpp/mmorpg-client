@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d9dbbdced62bc4fb209b55e2ae3162, type: 3}
+  m_Name: 26008-mid-autumn
+  m_EditorClassIdentifier: MmorpgClient::MmorpgClient.World.NavigationAuthoring.NavMeshAuthoringDraft
+  mapKey: 26008-mid-autumn
+  displayName: "26008 \u4E2D\u79CB"
+  worldRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 300
+    height: 225
+  boundsConfirmed: 0
+  imageWidth: 4096
+  imageHeight: 3072
+  backgroundTiles:
+  - texture: {fileID: 2800000, guid: 893a9fed9b9306541bbdcdab8e641585, type: 3}
+    row: 1
+    column: 1
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r01_c01.png
+    sha256: 9f99fdab59859aa0ea15e900a8f6abbdacdde88085e22bb1bdea998e52a37111
+  - texture: {fileID: 2800000, guid: f2926d6dac1f2874f822dd76e39a14ae, type: 3}
+    row: 1
+    column: 2
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r01_c02.png
+    sha256: f6b43379b14c3612a9316655d05c6cf9ae8f27bb0b8bb16d54aa2219924eb7d1
+  - texture: {fileID: 2800000, guid: f527f6ac3d51bee459124220dd5f9c72, type: 3}
+    row: 1
+    column: 3
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r01_c03.png
+    sha256: e3c1e3f590135b49a3061c4d6b3b65c7c3fa9b96404f76d08b4356d8d2793d4b
+  - texture: {fileID: 2800000, guid: 7fd80b59df6130b4c868023dc9913fb3, type: 3}
+    row: 1
+    column: 4
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r01_c04.png
+    sha256: ad0f58ed32a92a2c330ff00a1fdceba2e17a6008232cc5ac46d4b7d5295635d5
+  - texture: {fileID: 2800000, guid: 96b4e099483b0f34bb84113a1a8785be, type: 3}
+    row: 2
+    column: 1
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r02_c01.png
+    sha256: 5763ec15f9509aebdb6342a9f957f7b052ff4df84eee55d9589c5cc1c1005f69
+  - texture: {fileID: 2800000, guid: 54455d85971e72349a9f050613e19e2f, type: 3}
+    row: 2
+    column: 2
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r02_c02.png
+    sha256: a846e48d5a3546d405d0401aa9eea9b751ed42823b0a0451407b8aa9c4d7a43d
+  - texture: {fileID: 2800000, guid: e6b816e4509a32342b94f48dc1953868, type: 3}
+    row: 2
+    column: 3
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r02_c03.png
+    sha256: a30d9bdb443cf6ea677ff18a742995692a04c55c4e2ed58eeed3f9dc44be221a
+  - texture: {fileID: 2800000, guid: e557ac8da1dbebf43858d927845359f7, type: 3}
+    row: 2
+    column: 4
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r02_c04.png
+    sha256: 7b0470c5be60d7d7040f967264957e6f8651e10b793968f62b357a2b35d97cdb
+  - texture: {fileID: 2800000, guid: aa83f7ee452744646811d93dd4db6c2a, type: 3}
+    row: 3
+    column: 1
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r03_c01.png
+    sha256: 15611bfd7cfe46b8b14ea73b7dae7bc916fb518bdcaf03cf44f502067cac69e2
+  - texture: {fileID: 2800000, guid: 5b1995a3670c3ef44b5f2837c2de9faf, type: 3}
+    row: 3
+    column: 2
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r03_c02.png
+    sha256: 2c3383b6c2fa5dcd71a8372edd0fb6a88472aa1055eb0fa07fe69e3e621a5430
+  - texture: {fileID: 2800000, guid: 3755b1247216eee4489217a208dda7ef, type: 3}
+    row: 3
+    column: 3
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r03_c03.png
+    sha256: 1c50d69d84e4fd74411970a67350a7f4134e8f2ecf8bec0232a30807ec7ceb92
+  - texture: {fileID: 2800000, guid: c0ba170b734a04a489effefb03638b75, type: 3}
+    row: 3
+    column: 4
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r03_c04.png
+    sha256: d3d56cdff3eeab7ded1bff68e78237184d9a1ef56f9aa37b18277443fb951b50
+  polygons: []
+  spawnSet: 0
+  spawn: {x: 0, y: 0}
+  agentTypeId: 0
+  agentRadius: 0.4
+  agentHeight: 1.8
+  agentClimb: 0.3
+  agentSlope: 45
+  voxelSize: 0.1
+  bakedData: {fileID: 0}
+  bakedGeometrySha256: 

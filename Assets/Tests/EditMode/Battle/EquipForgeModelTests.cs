@@ -311,6 +311,49 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(EquipBagModel.CountOf(huge, Stone), Is.EqualTo(2ul * uint.MaxValue), "合计不按 32 位回绕");
         }
 
+        // ── EquipBagModel:战斗道具预留(人物背包快照的 held_items)─────────────────────
+
+        private const uint Potion = 10;
+
+        [Test]
+        public void HeldAndAvailableCountsFollowTheServerHeldItems()
+        {
+            // 两堆药共 6 瓶,服务器说其中 5 瓶押在还没结算的战斗里。
+            var bag = Bag(100, Stack(6101, Potion, 4), Stack(6102, Potion, 2), Stack(6103, Stone, 3));
+            bag.HeldItems.Add(new BagHeldItemInfo { ConfigId = Potion, Count = 5 });
+
+            Assert.That(EquipBagModel.HeldCountOf(bag, Potion), Is.EqualTo(5ul));
+            Assert.That(EquipBagModel.AvailableCountOf(bag, Potion), Is.EqualTo(1ul), "总数 − 被占住的数量");
+            Assert.That(EquipBagModel.HeldCountOf(bag, Stone), Is.Zero, "没被占住的种类");
+            Assert.That(EquipBagModel.AvailableCountOf(bag, Stone), Is.EqualTo(3ul));
+            Assert.That(EquipBagModel.HeldCountOf(null, Potion), Is.Zero, "快照还没拉到");
+            Assert.That(EquipBagModel.AvailableCountOf(null, Potion), Is.Zero);
+
+            // 押的是数量不是哪一堆:任何一堆最多都只能拿出这种物品没被占住的总数。
+            Assert.That(EquipBagModel.AvailableInStack(bag, bag.Items[0]), Is.EqualTo(1ul));
+            Assert.That(EquipBagModel.AvailableInStack(bag, bag.Items[1]), Is.EqualTo(1ul));
+            Assert.That(EquipBagModel.AvailableInStack(bag, bag.Items[2]), Is.EqualTo(3ul), "没被占住:整堆可用");
+            Assert.That(EquipBagModel.AvailableInStack(bag, null), Is.Zero);
+
+            // 服务器给的数量比背包里的还多(不该出现):可用数夹到 0,不回绕成巨大的数。
+            bag.HeldItems[0].Count = 99;
+            Assert.That(EquipBagModel.AvailableCountOf(bag, Potion), Is.Zero);
+            Assert.That(EquipBagModel.AvailableInStack(bag, bag.Items[0]), Is.Zero);
+        }
+
+        [Test]
+        public void HeldLineOnlyShowsForKindsWithHeldQuantity()
+        {
+            var bag = Bag(100, Stack(6101, Potion, 4), Stack(6103, Stone, 3));
+            Assert.That(EquipBagModel.HeldLine(bag, bag.Items[0]), Is.Null, "没有预留时不显示");
+
+            bag.HeldItems.Add(new BagHeldItemInfo { ConfigId = Potion, Count = 3 });
+            Assert.That(EquipBagModel.HeldLine(bag, bag.Items[0]), Is.EqualTo("战斗结算中  3（结算后可交易）"));
+            Assert.That(EquipBagModel.HeldLine(bag, bag.Items[1]), Is.Null, "别的种类不受影响");
+            Assert.That(EquipBagModel.HeldLine(bag, null), Is.Null);
+            Assert.That(EquipBagModel.HeldLine(null, bag.Items[0]), Is.Null, "快照还没拉到");
+        }
+
         [Test]
         public void GemChoicesListFittingGemsAggregatedByConfigInConfigOrder()
         {

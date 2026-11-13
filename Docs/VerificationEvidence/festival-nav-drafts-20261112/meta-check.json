@@ -1,0 +1,54 @@
+{
+  "tool": "check_unity_project",
+  "schema": 1,
+  "root": "D:/luyuan/mmorpg-client",
+  "files_checked": 21205,
+  "error_count": 0,
+  "warning_count": 6,
+  "errors": [],
+  "warnings": [
+    {
+      "code": "class-name-mismatch",
+      "file": "Assets/Scripts/UI/Ugui/Attribute/AttributeFidelityLayout.cs",
+      "line": 169,
+      "message": "class 'AttributeFidelitySummary' derives from MonoBehaviour but the file is 'AttributeFidelityLayout.cs'; Unity only links the script to a class with the same name as the file",
+      "fix": "rename the file to 'AttributeFidelitySummary.cs' (and its .meta to 'AttributeFidelitySummary.cs.meta'), or rename the class to 'AttributeFidelityLayout'"
+    },
+    {
+      "code": "class-name-mismatch",
+      "file": "Assets/Scripts/UI/Ugui/Attribute/AttributeUiWidgets.cs",
+      "line": 15,
+      "message": "class 'UiPointerHoverRelay' derives from MonoBehaviour but the file is 'AttributeUiWidgets.cs'; Unity only links the script to a class with the same name as the file",
+      "fix": "rename the file to 'UiPointerHoverRelay.cs' (and its .meta to 'UiPointerHoverRelay.cs.meta'), or rename the class to 'AttributeUiWidgets'"
+    },
+    {
+      "code": "class-name-mismatch",
+      "file": "Assets/Scripts/UI/Ugui/Tween/RealtimeTween.cs",
+      "line": 432,
+      "message": "class 'RealtimeTweenRunner' derives from MonoBehaviour but the file is 'RealtimeTween.cs'; Unity only links the script to a class with the same name as the file",
+      "fix": "rename the file to 'RealtimeTweenRunner.cs' (and its .meta to 'RealtimeTweenRunner.cs.meta'), or rename the class to 'RealtimeTween'"
+    },
+    {
+      "code": "class-name-mismatch",
+      "file": "Assets/Scripts/World/Tianyong/GameplayInputGate.cs",
+      "line": 36,
+      "message": "class 'GameplayInputBlocker' derives from MonoBehaviour but the file is 'GameplayInputGate.cs'; Unity only links the script to a class with the same name as the file",
+      "fix": "rename the file to 'GameplayInputBlocker.cs' (and its .meta to 'GameplayInputBlocker.cs.meta'), or rename the class to 'GameplayInputGate'"
+    },
+    {
+      "code": "class-name-mismatch",
+      "file": "Assets/Scripts/World/WorldNameplate.cs",
+      "line": 204,
+      "message": "class 'WorldNameplateBackdrop' derives from MonoBehaviour but the file is 'WorldNameplate.cs'; Unity only links the script to a class with the same name as the file",
+      "fix": "rename the file to 'WorldNameplateBackdrop.cs' (and its .meta to 'WorldNameplateBackdrop.cs.meta'), or rename the class to 'WorldNameplate'"
+    },
+    {
+      "code": "class-name-mismatch",
+      "file": "Assets/Tests/PlayMode/GuildNetwork/GuildEconomyNetworkSmokeTests.cs",
+      "line": 620,
+      "message": "class 'GuildEconomySmokePump' derives from MonoBehaviour but the file is 'GuildEconomyNetworkSmokeTests.cs'; Unity only links the script to a class with the same name as the file",
+      "fix": "rename the file to 'GuildEconomySmokePump.cs' (and its .meta to 'GuildEconomySmokePump.cs.meta'), or rename the class to 'GuildEconomyNetworkSmokeTests'"
+    }
+  ],
+  "truncated": false
+}

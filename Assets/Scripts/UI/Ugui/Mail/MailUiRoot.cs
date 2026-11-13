@@ -89,6 +89,7 @@ namespace MmorpgClient.UI.Ugui.Mail
             MysteryMerchantUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();Guild.GuildUiRoot.Instance?.HidePanel();Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();Social.SocialUiRoot.Instance?.HidePanel();
             MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();CityTravelUiRoot.Instance?.HidePanel();AttributeUiRoot.Instance?.HidePanel();PetUiRoot.Instance?.HidePanel();
             Skills.SkillUiRoot.Instance?.HidePanel();
             _window.Show();

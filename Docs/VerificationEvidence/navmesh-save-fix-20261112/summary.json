@@ -1,0 +1,34 @@
+{
+  "result": "PASS",
+  "installed": true,
+  "saveChecks": 8,
+  "navigationRegressionChecks": 23,
+  "metaErrors": 0,
+  "preExistingMetaWarnings": 6,
+  "userAssetFilesWritten": [],
+  "assetFilesVerifiedUnchangedDuringInstallation": 20,
+  "unityRestart": "Left to the user as requested",
+  "sources": [
+    {
+      "path": "Assets/Editor/NavigationAuthoring/NavMeshAuthoringWindow.cs",
+      "sha256": "0168d2d082afdb25dde849bcae2a7a1bc28cf5d6b4d536b9287ebf9940236a01"
+    },
+    {
+      "path": "Assets/Scripts/World/NavigationAuthoring/NavigationPolygonGeometry.cs",
+      "sha256": "d68c633285a314e632011e074a33dbbcd93a485593d5b8d7b3094030b7201e97"
+    },
+    {
+      "path": "tools/tests/navmesh_authoring/NavMeshSaveVerification.cs",
+      "sha256": "9079e5c444d501c9a8976e9bbfe1f209ba91e1b3ab6b197c2fa047795fa6a5de"
+    },
+    {
+      "path": "tools/tests/navmesh_authoring/NavigationAuthoringVerification.cs",
+      "sha256": "54e701f26fc1f3d8d56731447caa30532c5dfbdc93da29fbf96b182372273317"
+    },
+    {
+      "path": "tools/tests/navmesh_authoring/run_verification.ps1",
+      "sha256": "e72bf7ff5939be87206247361d52306a0f51d60c3a5781748c2649692be82136"
+    }
+  ],
+  "scope": "Synthetic isolated tests; saves raw pending polygons and rejects invalid bake. Existing user draft files were not overwritten."
+}

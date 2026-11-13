@@ -492,7 +492,9 @@ namespace MmorpgClient.World
 
             var folder = appearance?.ResourceFolder ?? ResourceFolder;
             var count = appearance?.FrameCount ?? FramesPerDirection;
-            if (appearance != null)
+            // 原版人物的头像已在选外观时按逐个文件校验过的清单核对，动画本身不用头像：
+            // 不为检查去加载一张 4 MiB 的头像纹理。旧名单（非原版 V11/V12/V13）没有清单，仍按实图核对。
+            if (appearance != null && !appearance.IsOriginalRoster)
             {
                 var portraitPath = folder + "/portrait";
                 var portrait = loadTexture(portraitPath);

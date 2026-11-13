@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.UI.Ugui.Tweening;
 using TMPro;
 using UnityEngine;
@@ -95,10 +96,18 @@ namespace MmorpgClient.UI.Ugui.Battle
             var settlement = end.Settlement;
             eBattleOutcome outcome = settlement != null ? settlement.Outcome : end.Outcome;
             uint myTeam = settlement != null ? settlement.PlayerTeamIndex : fallbackTeamIndex;
+            // 本局作废(服务端为这一局写了作废决定):没有胜负、奖励、消耗与战后状态,settlement 里只有身份与展示字段。
+            // 必须排在胜负判断之前 —— 落进下面的 else 会显示成「失败」,奖励行还会列出「HP 0 / MP 0」。
+            bool voided = BattleClient.IsVoidEnd(end);
 
             string title;
             Color titleColor;
-            if (outcome == eBattleOutcome.BattleOutcomeDraw)
+            if (voided)
+            {
+                title = VoidTitle;
+                titleColor = QdaoUguiTheme.MutedBrown;
+            }
+            else if (outcome == eBattleOutcome.BattleOutcomeDraw)
             {
                 title = "平 局";
                 titleColor = QdaoUguiTheme.MutedBrown;
@@ -121,9 +130,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             _titleText.text = title;
             _titleText.color = titleColor;
-            _roundsText.text = settlement != null ? $"共 {settlement.TotalRounds} 回合" : string.Empty;
+            if (voided) _roundsText.text = VoidSubtitle;
+            else _roundsText.text = settlement != null ? $"共 {settlement.TotalRounds} 回合" : string.Empty;
 
-            var lines = BuildRewardLines(settlement);
+            var lines = voided ? BuildVoidLines() : BuildRewardLines(settlement, end.ItemsMailed);
             KillTweens();
             ClearRows();
             _root.gameObject.SetActive(true);
@@ -192,8 +202,37 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_root != null) _root.gameObject.SetActive(false);
         }
 
-        /// <summary>奖励行文案(纯逻辑,EditMode 可测)。</summary>
-        public static List<string> BuildRewardLines(BattleSettlementData settlement)
+        /// <summary>
+        /// 两个背包都放不下时,服务器把本局获得的道具整批改由邮件发放(BattleEndS2C.items_mailed,
+        /// 服务端 docs/design/battle-overflow-mail.md)。这一行告诉玩家去邮箱领,别在背包里找。
+        /// </summary>
+        public const string ItemsMailedLine = "背包已满，以上道具已通过邮件发放";
+
+        /// <summary>本局作废时结算面板的标题。</summary>
+        public const string VoidTitle = "本局作废";
+        /// <summary>本局作废时标题下的一行(平时这里是「共 N 回合」)。</summary>
+        public const string VoidSubtitle = "战斗未能完成,不计胜负";
+
+        /// <summary>
+        /// 本局作废时的说明行(纯逻辑,EditMode 可测),代替奖励行:作废的 settlement 里没有任何效果,
+        /// 按 <see cref="BuildRewardLines"/> 列出来会是一串 +0 和「HP 0 / MP 0」。
+        /// 原因(战斗服故障、超过期限、活动取消)服务端不区分下发,这里只说对玩家有用的事实。
+        /// </summary>
+        public static List<string> BuildVoidLines()
+        {
+            return new List<string>
+            {
+                "没有奖励,也没有消耗",
+                "带进战斗的道具已原样放回",
+                "可以重新发起战斗",
+            };
+        }
+
+        /// <summary>
+        /// 奖励行文案(纯逻辑,EditMode 可测)。itemsMailed:本局获得的道具改由邮件发放,在道具行之后加一行提示;
+        /// 没有获得道具时不加。
+        /// </summary>
+        public static List<string> BuildRewardLines(BattleSettlementData settlement, bool itemsMailed = false)
         {
             var lines = new List<string>();
             if (settlement == null)
@@ -225,6 +264,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 foreach (var item in settlement.ItemsGained)
                     lines.Add($"获得  道具{item.ItemTableId} ×{item.Count}");
+                if (itemsMailed) lines.Add(ItemsMailedLine);
             }
             else
             {

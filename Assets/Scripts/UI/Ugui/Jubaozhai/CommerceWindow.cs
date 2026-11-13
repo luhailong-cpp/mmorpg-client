@@ -312,18 +312,25 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             }
             else
             {
-                var list = game?.Features?.CharacterBag?.Items;
+                var bag = game?.Features?.CharacterBag;
+                var list = bag?.Items;
                 if (list == null) { game?.Features?.RequestBag(); Text("正在读取背包，请稍后刷新。", 24, 24); }
                 else for (int i = start; i < list.Count && i < start + 7; i++)
                 {
                     var item = list[i]; float y = (i - start) * 70;
-                    Text(item.Name + " × " + item.Count + (item.MaxStack == 1 ? " · 独立实例" : ""), 24, y, 1450);
-                    Action("选择", 1600, y, 350, () =>
+                    // 押在还没结算的战斗里的数量拿不出来(服务端战斗道具预留):只让选没被占住的部分,全被占住就不让选。
+                    // 选了也过不去 —— 服务器会一直回「稍后重试」,直到那一局结算。
+                    ulong held = EquipBagModel.HeldCountOf(bag, item.ConfigId);
+                    uint available = (uint)EquipBagModel.AvailableInStack(bag, item);
+                    Text(item.Name + " × " + item.Count + (item.MaxStack == 1 ? " · 独立实例" : "")
+                        + (held != 0 ? " · 战斗结算中 " + held + "，可交易 " + available : ""), 24, y, 1450);
+                    var choose = Action("选择", 1600, y, 350, () =>
                     {
                         _selection = new TradeAssetSelection();
-                        if (item.MaxStack == 1) _selection.ItemUuids.Add(item.ItemId); else _selection.Items[item.ConfigId] = item.Count;
-                        _selectedName = item.Name + " × " + item.Count; Clear(); ShowSellForm(); Changed();
+                        if (item.MaxStack == 1) _selection.ItemUuids.Add(item.ItemId); else _selection.Items[item.ConfigId] = available;
+                        _selectedName = item.Name + " × " + available; Clear(); ShowSellForm(); Changed();
                     });
+                    choose.interactable = available != 0;
                 }
             }
             Action("上一页", 24, 592, 240, () => ShowAssets(pets, Math.Max(0, page - 1)));

@@ -108,6 +108,20 @@ namespace MmorpgClient.Tests.EditMode.Net
         }
 
         [Test]
+        public void SceneEntryResetsRedirectHopsSoRepeatedGateMigrationsAreNotCutOff()
+        {
+            // 一个 zone 的 gate 逐台换完,同一个玩家会被迁不止 MaxRedirectHops 次;每次迁完成功进场都从头计数,
+            // 否则第 4 次迁移会撞上环路熔断、被强制断线(服务端 gate-drain-session-migration.md §7.3)。
+            Set("_redirectHops", GameClient.MaxRedirectHops);
+            Invoke("DispatchInbound", new MessageContent
+            {
+                MessageId = MessageIds.NotifyEnterScene,
+                SerializedMessage = new EnterSceneS2C { SceneInfo = new SceneInfoComp { SceneId = 123, SceneConfigId = 1 } }.ToByteString()
+            });
+            Assert.That(Get("_redirectHops"), Is.EqualTo(0));
+        }
+
+        [Test]
         public void ResumeClosesOldConnectionAndStartsRecoveryOnlyOnce()
         {
             _game.OnApplicationPause(false);

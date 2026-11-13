@@ -1,0 +1,26 @@
+[
+  {
+    "path": "Assets/Scripts/World/NavigationAuthoring/NavMeshAuthoringDraft.cs",
+    "sha256": "c5fdf4b6c0c3609b37e30f361b8cf348d67f180114c1fbbcf5c83fd050e8e824"
+  },
+  {
+    "path": "Assets/Scripts/World/NavigationAuthoring/NavigationPolygonGeometry.cs",
+    "sha256": "d68c633285a314e632011e074a33dbbcd93a485593d5b8d7b3094030b7201e97"
+  },
+  {
+    "path": "Assets/Scripts/World/NavigationAuthoring/NavMeshDraftPreview.cs",
+    "sha256": "96ba9859651ee8ef5165e1e65b495320c558084f64f27e959f7c457184c55b2e"
+  },
+  {
+    "path": "Assets/Editor/NavigationAuthoring/NavMeshAuthoringAssetIO.cs",
+    "sha256": "00a5b630ef97153134bcf815664721d78a74468c4a04c3aa7e611ebcfd7fc839"
+  },
+  {
+    "path": "Assets/Editor/NavigationAuthoring/NavMeshAuthoringWindow.cs",
+    "sha256": "0168d2d082afdb25dde849bcae2a7a1bc28cf5d6b4d536b9287ebf9940236a01"
+  },
+  {
+    "path": "Assets/Editor/NavigationAuthoring/FestivalNavMeshDraftPresets.cs",
+    "sha256": "d767e31495f0b636417cdab34c7ad04329bc9305a16bfec4d7a36fb518a5ee27"
+  }
+]

@@ -1,0 +1,2596 @@
+{
+  "result": "PASS",
+  "scope": "Synthetic same-OBJ Unity/MSET queries; no production map or live-server acceptance",
+  "unityQueriesSha256": "fb57f7843e000cbad4567733e0549e81f29d7db64e0baf679f68aee3c10c659e",
+  "bakerSha256": "7d22adc031d97385d13cf3b76cd6fd701387a8566ded216cf2499fc4ff8e6fbd",
+  "querySha256": "363c8c4d1e687e63f9209a7f11d1899b9a625e0d683b848f953908e053fc093f",
+  "cases": [
+    {
+      "name": "26000-mid-autumn",
+      "result": "PASS",
+      "objSha256": "d74b8e85b812f1037ec6c5ccd5f08cd8e6a81ad49e5ddf853f3650914e93f343",
+      "msetSha256": "889942f36dd8c272cd4688070a279119709069aa3896bc4e6fa6e6cafcd8ee1f",
+      "arguments": [
+        "--obj",
+        "world-y-up.obj",
+        "--out",
+        "scene-nav.bin",
+        "--profile",
+        "authored-flat",
+        "--cs",
+        "0.1",
+        "--ch",
+        "0.2",
+        "--agent-radius",
+        "0.4",
+        "--agent-height",
+        "1.8",
+        "--agent-climb",
+        "0.3",
+        "--agent-slope",
+        "45",
+        "--tile-size",
+        "256",
+        "--min-region-area",
+        "0",
+        "--filter-ledges",
+        "1",
+        "--probe",
+        "110.921211,0,33.47244"
+      ],
+      "checks": [
+        {
+          "input": [
+            110.921211,
+            0.0,
+            33.47244
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            147.5,
+            0.0,
+            62.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            27.5,
+            0.0,
+            12.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            107.5,
+            0.0,
+            22.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            197.5,
+            0.0,
+            32.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            97.5,
+            0.0,
+            47.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            142.5,
+            0.0,
+            57.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            62.5,
+            0.0,
+            72.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            112.5,
+            0.0,
+            82.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            32.5,
+            0.0,
+            92.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            222.5,
+            0.0,
+            97.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            162.5,
+            0.0,
+            107.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            112.5,
+            0.0,
+            117.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            142.5,
+            0.0,
+            127.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            62.5,
+            0.0,
+            137.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            257.5,
+            0.0,
+            142.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            42.5,
+            0.0,
+            157.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            197.5,
+            0.0,
+            167.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            212.5,
+            0.0,
+            177.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            227.5,
+            0.0,
+            187.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            212.5,
+            0.0,
+            207.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            247.5,
+            0.0,
+            227.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            -2.0,
+            0.0,
+            120.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            302.0,
+            0.0,
+            120.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            150.0,
+            0.0,
+            -2.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            150.0,
+            0.0,
+            242.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            110.921211,
+            0.2,
+            33.47244
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            167.482376,
+            0.0,
+            165.772827
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            128.996841,
+            0.0,
+            127.264404
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            253.147552,
+            0.0,
+            227.729645
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            270.9509,
+            0.0,
+            225.174713
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            261.088257,
+            0.0,
+            198.995956
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            298.290833,
+            0.0,
+            206.439331
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            229.431366,
+            0.0,
+            83.5096
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            252.541183,
+            0.0,
+            95.00154
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            2.5,
+            0.0,
+            2.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            7.5,
+            0.0,
+            2.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            12.5,
+            0.0,
+            2.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            17.5,
+            0.0,
+            2.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            110.921211,
+            0.0,
+            33.47244
+          ],
+          "to": [
+            292.5,
+            0.0,
+            207.5
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            110.921211,
+            0.0,
+            33.47244
+          ],
+          "to": [
+            247.5,
+            0.0,
+            227.5
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            110.921211,
+            0.0,
+            33.47244
+          ],
+          "to": [
+            212.5,
+            0.0,
+            207.5
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            110.921211,
+            0.0,
+            33.47244
+          ],
+          "to": [
+            227.5,
+            0.0,
+            187.5
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            110.921211,
+            0.0,
+            33.47244
+          ],
+          "to": [
+            257.5,
+            0.0,
+            142.5
+          ],
+          "complete": true,
+          "rayBlocked": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            110.921211,
+            0.0,
+            33.47244
+          ],
+          "to": [
+            -2.0,
+            0.0,
+            120.0
+          ],
+          "complete": false,
+          "rayBlocked": true,
+          "result": "PASS"
+        }
+      ],
+      "bakerOutput": "ledge filter: on\nobj geometry: 9063 verts, 3021 tris\nbake config: profile=authored-flat cs=0.10000000000000001 ch=0.20000000000000001 agent_radius=0.40000000000000002 agent_height=1.8 agent_climb=0.29999999999999999 agent_slope=45 tile_size=256 min_region_area=0 merge_region_area=4 ground_y=0 walkable_radius_voxels=4 walkable_height_voxels=9 walkable_climb_voxels=1\nbounds: (0.28 -0.20 7.58)-(299.66 2.00 232.36), tiles 12x9\nbuilt 100 tiles\nprobe unity=(110.92,0.00,33.47) server=(33.47,110.92,0.00): ON MESH nearest=(110.92,0.00,33.47) poly=147849216\nsaved scene-nav.bin: 100 tiles\n",
+      "serverQueries": {
+        "schemaVersion": 1,
+        "coordinateSystem": "Unity Y-up X/Z",
+        "points": [
+          {
+            "input": [
+              110.921211,
+              0,
+              33.47244
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 147849216,
+            "nearest": [
+              110.921211,
+              0,
+              33.47244
+            ]
+          },
+          {
+            "input": [
+              147.5,
+              0,
+              62.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 160432128,
+            "nearest": [
+              147.5,
+              0,
+              62.5
+            ]
+          },
+          {
+            "input": [
+              27.5,
+              0,
+              12.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 135266306,
+            "nearest": [
+              27.5,
+              0,
+              12.5
+            ]
+          },
+          {
+            "input": [
+              107.5,
+              0,
+              22.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 138412035,
+            "nearest": [
+              107.5,
+              0,
+              22.5
+            ]
+          },
+          {
+            "input": [
+              197.5,
+              0,
+              32.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 141557762,
+            "nearest": [
+              197.5,
+              0,
+              32.5
+            ]
+          },
+          {
+            "input": [
+              97.5,
+              0,
+              47.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 146800646,
+            "nearest": [
+              97.5,
+              0,
+              47.5
+            ]
+          },
+          {
+            "input": [
+              142.5,
+              0,
+              57.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 148897792,
+            "nearest": [
+              142.5,
+              0,
+              57.5
+            ]
+          },
+          {
+            "input": [
+              62.5,
+              0,
+              72.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 157286402,
+            "nearest": [
+              62.5,
+              0,
+              72.5
+            ]
+          },
+          {
+            "input": [
+              112.5,
+              0,
+              82.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 159383552,
+            "nearest": [
+              112.5,
+              0,
+              82.5
+            ]
+          },
+          {
+            "input": [
+              32.5,
+              0,
+              92.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 168820736,
+            "nearest": [
+              32.5,
+              0,
+              92.5
+            ]
+          },
+          {
+            "input": [
+              222.5,
+              0,
+              97.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 176160769,
+            "nearest": [
+              222.5,
+              0,
+              97.5
+            ]
+          },
+          {
+            "input": [
+              162.5,
+              0,
+              107.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 174063617,
+            "nearest": [
+              162.5,
+              0,
+              107.5
+            ]
+          },
+          {
+            "input": [
+              112.5,
+              0,
+              117.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 184549380,
+            "nearest": [
+              112.5,
+              0,
+              117.5
+            ]
+          },
+          {
+            "input": [
+              142.5,
+              0,
+              127.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 185597955,
+            "nearest": [
+              142.5,
+              0,
+              127.5
+            ]
+          },
+          {
+            "input": [
+              62.5,
+              0,
+              137.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 195035136,
+            "nearest": [
+              62.5,
+              0,
+              137.5
+            ]
+          },
+          {
+            "input": [
+              257.5,
+              0,
+              142.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 203423744,
+            "nearest": [
+              257.5,
+              0,
+              142.5
+            ]
+          },
+          {
+            "input": [
+              42.5,
+              0,
+              157.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 193986562,
+            "nearest": [
+              42.5,
+              0,
+              157.5
+            ]
+          },
+          {
+            "input": [
+              197.5,
+              0,
+              167.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 212860932,
+            "nearest": [
+              197.5,
+              0,
+              167.5
+            ]
+          },
+          {
+            "input": [
+              212.5,
+              0,
+              177.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 213909504,
+            "nearest": [
+              212.5,
+              0,
+              177.5
+            ]
+          },
+          {
+            "input": [
+              227.5,
+              0,
+              187.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 225443841,
+            "nearest": [
+              227.5,
+              0,
+              187.5
+            ]
+          },
+          {
+            "input": [
+              212.5,
+              0,
+              207.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 225443842,
+            "nearest": [
+              212.5,
+              0,
+              207.5
+            ]
+          },
+          {
+            "input": [
+              247.5,
+              0,
+              227.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 235929611,
+            "nearest": [
+              247.5,
+              0,
+              227.5
+            ]
+          },
+          {
+            "input": [
+              -2,
+              0,
+              120
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              302,
+              0,
+              120
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              150,
+              0,
+              -2
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              150,
+              0,
+              242
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              110.921211,
+              0.2,
+              33.47244
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 147849216,
+            "nearest": [
+              110.921211,
+              0,
+              33.47244
+            ]
+          },
+          {
+            "input": [
+              167.482376,
+              0,
+              165.772827
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 211812358,
+            "nearest": [
+              168.0930953375231,
+              0,
+              167.05533760879857
+            ]
+          },
+          {
+            "input": [
+              128.996841,
+              0,
+              127.264404
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 185597955,
+            "nearest": [
+              129.2545761686938,
+              0,
+              127.70406987600708
+            ]
+          },
+          {
+            "input": [
+              253.147552,
+              0,
+              227.729645
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 235929614,
+            "nearest": [
+              253.46360063746175,
+              0,
+              228.40124835460625
+            ]
+          },
+          {
+            "input": [
+              270.9509,
+              0,
+              225.174713
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              261.088257,
+              0,
+              198.995956
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 227541008,
+            "nearest": [
+              261.4958477116308,
+              0,
+              199.70923974535387
+            ]
+          },
+          {
+            "input": [
+              298.290833,
+              0,
+              206.439331
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 228589578,
+            "nearest": [
+              297.8462462673513,
+              0,
+              206.75689295189193
+            ]
+          },
+          {
+            "input": [
+              229.431366,
+              0,
+              83.5096
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 176160770,
+            "nearest": [
+              229.6026477185964,
+              0,
+              85.09395589701661
+            ]
+          },
+          {
+            "input": [
+              252.541183,
+              0,
+              95.00154
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 177209350,
+            "nearest": [
+              252.120171008,
+              0,
+              95.422551992
+            ]
+          },
+          {
+            "input": [
+              2.5,
+              0,
+              2.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              7.5,
+              0,
+              2.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              12.5,
+              0,
+              2.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              17.5,
+              0,
+              2.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          }
+        ],
+        "routes": [
+          {
+            "start": [
+              110.921211,
+              0,
+              33.47244
+            ],
+            "end": [
+              292.5,
+              0,
+              207.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 37,
+            "corners": [
+              [
+                110.921211,
+                0,
+                33.47244
+              ],
+              [
+                197.575582016,
+                0,
+                122.677963
+              ],
+              [
+                230.675582016,
+                0,
+                161.177963
+              ],
+              [
+                252.975582016,
+                0,
+                191.67796300000003
+              ],
+              [
+                256.275582016,
+                0,
+                195.37796300000002
+              ],
+              [
+                260.475582016,
+                0,
+                200.07796300000004
+              ],
+              [
+                292.5,
+                0,
+                207.5
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.7103442318051468,
+              "position": [
+                239.90465638431385,
+                0,
+                157.0919134211241
+              ],
+              "normal": [
+                -0.5547001962252303,
+                0,
+                -0.832050294337843
+              ]
+            }
+          },
+          {
+            "start": [
+              110.921211,
+              0,
+              33.47244
+            ],
+            "end": [
+              247.5,
+              0,
+              227.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 26,
+            "corners": [
+              [
+                110.921211,
+                0,
+                33.47244
+              ],
+              [
+                197.575582016,
+                0,
+                122.677963
+              ],
+              [
+                205.075582016,
+                0,
+                135.577963
+              ],
+              [
+                227.475582016,
+                0,
+                218.077963
+              ],
+              [
+                229.075582016,
+                0,
+                221.37796300000002
+              ],
+              [
+                229.575582016,
+                0,
+                221.87796300000002
+              ],
+              [
+                247.5,
+                0,
+                227.5
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.4061251129173553,
+              "position": [
+                166.38928710474065,
+                0,
+                112.27190471407894
+              ],
+              "normal": [
+                -0.560848145169514,
+                0,
+                -0.8279186904883328
+              ]
+            }
+          },
+          {
+            "start": [
+              110.921211,
+              0,
+              33.47244
+            ],
+            "end": [
+              212.5,
+              0,
+              207.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 26,
+            "corners": [
+              [
+                110.921211,
+                0,
+                33.47244
+              ],
+              [
+                128.27558201600002,
+                0,
+                58.777963
+              ],
+              [
+                153.87558201599998,
+                0,
+                84.37796300000001
+              ],
+              [
+                197.175582016,
+                0,
+                122.277963
+              ],
+              [
+                197.575582016,
+                0,
+                122.677963
+              ],
+              [
+                219.075582016,
+                0,
+                200.57796300000004
+              ],
+              [
+                218.575582016,
+                0,
+                201.17796300000003
+              ],
+              [
+                212.5,
+                0,
+                207.5
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.46308617592957096,
+              "position": [
+                157.96094395356675,
+                0,
+                114.06219726675397
+              ],
+              "normal": [
+                0.020614175367216155,
+                0,
+                -0.9997875053099681
+              ]
+            }
+          },
+          {
+            "start": [
+              110.921211,
+              0,
+              33.47244
+            ],
+            "end": [
+              227.5,
+              0,
+              187.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 15,
+            "corners": [
+              [
+                110.921211,
+                0,
+                33.47244
+              ],
+              [
+                197.575582016,
+                0,
+                122.677963
+              ],
+              [
+                205.075582016,
+                0,
+                135.577963
+              ],
+              [
+                227.5,
+                0,
+                187.5
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.5005088427591657,
+              "position": [
+                169.26992577265497,
+                0,
+                110.56459580861795
+              ],
+              "normal": [
+                -0.5038710255240858,
+                0,
+                -0.8637789008984337
+              ]
+            }
+          },
+          {
+            "start": [
+              110.921211,
+              0,
+              33.47244
+            ],
+            "end": [
+              257.5,
+              0,
+              142.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 16,
+            "corners": [
+              [
+                110.921211,
+                0,
+                33.47244
+              ],
+              [
+                205.075582016,
+                0,
+                109.977963
+              ],
+              [
+                257.5,
+                0,
+                142.5
+              ]
+            ],
+            "raycast": {
+              "hit": false,
+              "t": 1,
+              "position": [
+                257.5,
+                0,
+                142.5
+              ],
+              "normal": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "start": [
+              110.921211,
+              0,
+              33.47244
+            ],
+            "end": [
+              -2,
+              0,
+              120
+            ],
+            "startOnMesh": true,
+            "endOnMesh": false,
+            "complete": false,
+            "pathStatus": 0,
+            "polyCount": 0,
+            "corners": [],
+            "raycast": {
+              "hit": true,
+              "t": 0.18640478681441539,
+              "position": [
+                89.87215673671938,
+                0,
+                49.601591375371534
+              ],
+              "normal": [
+                0.9429903335828891,
+                0,
+                -0.3328201177351389
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "26008-spring",
+      "result": "PASS",
+      "objSha256": "913daa70771f356617b85dc20435d0f1ef41761985cdae4373ae407ba1bb2263",
+      "msetSha256": "79673906ee2ce6a47fe7fc51488b5ba9d0e538e0b2d85b240cb88ce15de9557e",
+      "arguments": [
+        "--obj",
+        "world-y-up.obj",
+        "--out",
+        "scene-nav.bin",
+        "--profile",
+        "authored-flat",
+        "--cs",
+        "0.1",
+        "--ch",
+        "0.2",
+        "--agent-radius",
+        "0.4",
+        "--agent-height",
+        "1.8",
+        "--agent-climb",
+        "0.3",
+        "--agent-slope",
+        "45",
+        "--tile-size",
+        "256",
+        "--min-region-area",
+        "0",
+        "--filter-ledges",
+        "1",
+        "--probe",
+        "122.5,0,127.5"
+      ],
+      "checks": [
+        {
+          "input": [
+            122.5,
+            0.0,
+            127.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            27.5,
+            0.0,
+            47.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            122.5,
+            0.0,
+            72.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            87.5,
+            0.0,
+            87.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            172.5,
+            0.0,
+            92.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            77.5,
+            0.0,
+            102.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            107.5,
+            0.0,
+            107.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            127.5,
+            0.0,
+            112.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            137.5,
+            0.0,
+            117.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            127.5,
+            0.0,
+            122.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            102.5,
+            0.0,
+            127.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            82.5,
+            0.0,
+            132.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            77.5,
+            0.0,
+            137.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            97.5,
+            0.0,
+            142.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            137.5,
+            0.0,
+            147.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            167.5,
+            0.0,
+            152.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            77.5,
+            0.0,
+            162.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            197.5,
+            0.0,
+            167.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            222.5,
+            0.0,
+            172.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            22.5,
+            0.0,
+            182.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            77.5,
+            0.0,
+            207.5
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            -2.0,
+            0.0,
+            112.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            302.0,
+            0.0,
+            112.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            150.0,
+            0.0,
+            -2.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            150.0,
+            0.0,
+            227.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            122.5,
+            0.2,
+            127.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            2.5,
+            0.0,
+            2.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            7.5,
+            0.0,
+            2.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            12.5,
+            0.0,
+            2.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            17.5,
+            0.0,
+            2.5
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            122.5,
+            0.0,
+            127.5
+          ],
+          "to": [
+            242.5,
+            0.0,
+            197.5
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            122.5,
+            0.0,
+            127.5
+          ],
+          "to": [
+            27.5,
+            0.0,
+            47.5
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            122.5,
+            0.0,
+            127.5
+          ],
+          "to": [
+            22.5,
+            0.0,
+            182.5
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            122.5,
+            0.0,
+            127.5
+          ],
+          "to": [
+            222.5,
+            0.0,
+            172.5
+          ],
+          "complete": true,
+          "rayBlocked": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            122.5,
+            0.0,
+            127.5
+          ],
+          "to": [
+            77.5,
+            0.0,
+            207.5
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            122.5,
+            0.0,
+            127.5
+          ],
+          "to": [
+            -2.0,
+            0.0,
+            112.5
+          ],
+          "complete": false,
+          "rayBlocked": true,
+          "result": "PASS"
+        }
+      ],
+      "bakerOutput": "ledge filter: on\nobj geometry: 2835 verts, 945 tris\nbake config: profile=authored-flat cs=0.10000000000000001 ch=0.20000000000000001 agent_radius=0.40000000000000002 agent_height=1.8 agent_climb=0.29999999999999999 agent_slope=45 tile_size=256 min_region_area=0 merge_region_area=4 ground_y=0 walkable_radius_voxels=4 walkable_height_voxels=9 walkable_climb_voxels=1\nbounds: (4.46 -0.20 42.86)-(247.91 2.00 208.74), tiles 10x7\nbuilt 59 tiles\nprobe unity=(122.50,0.00,127.50) server=(127.50,122.50,0.00): ON MESH nearest=(122.50,0.00,127.50) poly=163577856\nsaved scene-nav.bin: 59 tiles\n",
+      "serverQueries": {
+        "schemaVersion": 1,
+        "coordinateSystem": "Unity Y-up X/Z",
+        "points": [
+          {
+            "input": [
+              122.5,
+              0,
+              127.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 163577856,
+            "nearest": [
+              122.5,
+              0,
+              127.5
+            ]
+          },
+          {
+            "input": [
+              27.5,
+              0,
+              47.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 134217731,
+            "nearest": [
+              27.5,
+              0,
+              47.5
+            ]
+          },
+          {
+            "input": [
+              122.5,
+              0,
+              72.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 144703488,
+            "nearest": [
+              122.5,
+              0,
+              72.5
+            ]
+          },
+          {
+            "input": [
+              87.5,
+              0,
+              87.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 143654915,
+            "nearest": [
+              87.5,
+              0,
+              87.5
+            ]
+          },
+          {
+            "input": [
+              172.5,
+              0,
+              92.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 146800642,
+            "nearest": [
+              172.5,
+              0,
+              92.5
+            ]
+          },
+          {
+            "input": [
+              77.5,
+              0,
+              102.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 150994944,
+            "nearest": [
+              77.5,
+              0,
+              102.5
+            ]
+          },
+          {
+            "input": [
+              107.5,
+              0,
+              107.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 153092096,
+            "nearest": [
+              107.5,
+              0,
+              107.5
+            ]
+          },
+          {
+            "input": [
+              127.5,
+              0,
+              112.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 153092096,
+            "nearest": [
+              127.5,
+              0,
+              112.5
+            ]
+          },
+          {
+            "input": [
+              137.5,
+              0,
+              117.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 154140672,
+            "nearest": [
+              137.5,
+              0,
+              117.5
+            ]
+          },
+          {
+            "input": [
+              127.5,
+              0,
+              122.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 163577856,
+            "nearest": [
+              127.5,
+              0,
+              122.5
+            ]
+          },
+          {
+            "input": [
+              102.5,
+              0,
+              127.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 162529280,
+            "nearest": [
+              102.5,
+              0,
+              127.5
+            ]
+          },
+          {
+            "input": [
+              82.5,
+              0,
+              132.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 162529280,
+            "nearest": [
+              82.5,
+              0,
+              132.5
+            ]
+          },
+          {
+            "input": [
+              77.5,
+              0,
+              137.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 161480704,
+            "nearest": [
+              77.5,
+              0,
+              137.5
+            ]
+          },
+          {
+            "input": [
+              97.5,
+              0,
+              142.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 162529280,
+            "nearest": [
+              97.5,
+              0,
+              142.5
+            ]
+          },
+          {
+            "input": [
+              137.5,
+              0,
+              147.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 175112192,
+            "nearest": [
+              137.5,
+              0,
+              147.5
+            ]
+          },
+          {
+            "input": [
+              167.5,
+              0,
+              152.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 176160770,
+            "nearest": [
+              167.5,
+              0,
+              152.5
+            ]
+          },
+          {
+            "input": [
+              77.5,
+              0,
+              162.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 171966467,
+            "nearest": [
+              77.5,
+              0,
+              162.5
+            ]
+          },
+          {
+            "input": [
+              197.5,
+              0,
+              167.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 177209355,
+            "nearest": [
+              197.5,
+              0,
+              167.5
+            ]
+          },
+          {
+            "input": [
+              222.5,
+              0,
+              172.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 188743680,
+            "nearest": [
+              222.5,
+              0,
+              172.5
+            ]
+          },
+          {
+            "input": [
+              22.5,
+              0,
+              182.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 180355073,
+            "nearest": [
+              22.5,
+              0,
+              182.5
+            ]
+          },
+          {
+            "input": [
+              77.5,
+              0,
+              207.5
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 191889414,
+            "nearest": [
+              77.5,
+              0,
+              207.5
+            ]
+          },
+          {
+            "input": [
+              -2,
+              0,
+              112.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              302,
+              0,
+              112.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              150,
+              0,
+              -2
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              150,
+              0,
+              227
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              122.5,
+              0.2,
+              127.5
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 163577856,
+            "nearest": [
+              122.5,
+              0,
+              127.5
+            ]
+          },
+          {
+            "input": [
+              2.5,
+              0,
+              2.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              7.5,
+              0,
+              2.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              12.5,
+              0,
+              2.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              17.5,
+              0,
+              2.5
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          }
+        ],
+        "routes": [
+          {
+            "start": [
+              122.5,
+              0,
+              127.5
+            ],
+            "end": [
+              242.5,
+              0,
+              197.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 20,
+            "corners": [
+              [
+                122.5,
+                0,
+                127.5
+              ],
+              [
+                158.057321,
+                0,
+                145.2600922
+              ],
+              [
+                184.857321,
+                0,
+                155.8600922
+              ],
+              [
+                209.25732100000002,
+                0,
+                170.8600922
+              ],
+              [
+                232.65732100000002,
+                0,
+                187.8600922
+              ],
+              [
+                242.5,
+                0,
+                197.5
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.4579665277014221,
+              "position": [
+                177.45598332417066,
+                0,
+                159.55765693909956
+              ],
+              "normal": [
+                -0.45828913319500725,
+                0,
+                -0.8888031674084926
+              ]
+            }
+          },
+          {
+            "start": [
+              122.5,
+              0,
+              127.5
+            ],
+            "end": [
+              27.5,
+              0,
+              47.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 22,
+            "corners": [
+              [
+                122.5,
+                0,
+                127.5
+              ],
+              [
+                55.657321,
+                0,
+                119.66009220000001
+              ],
+              [
+                30.057321,
+                0,
+                94.06009219999999
+              ],
+              [
+                19.657321000000003,
+                0,
+                85.96009219999999
+              ],
+              [
+                19.157321000000003,
+                0,
+                85.46009219999999
+              ],
+              [
+                19.257321,
+                0,
+                84.96009219999999
+              ],
+              [
+                27.5,
+                0,
+                47.5
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.4563638336504946,
+              "position": [
+                79.14543580320301,
+                0,
+                90.99089330796043
+              ],
+              "normal": [
+                0.43863440055120473,
+                0,
+                0.8986656011292994
+              ]
+            }
+          },
+          {
+            "start": [
+              122.5,
+              0,
+              127.5
+            ],
+            "end": [
+              22.5,
+              0,
+              182.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 22,
+            "corners": [
+              [
+                122.5,
+                0,
+                127.5
+              ],
+              [
+                83.05732100000002,
+                0,
+                169.96009220000002
+              ],
+              [
+                82.45732100000002,
+                0,
+                170.46009220000002
+              ],
+              [
+                74.257321,
+                0,
+                173.1600922
+              ],
+              [
+                71.557321,
+                0,
+                173.6600922
+              ],
+              [
+                22.5,
+                0,
+                182.5
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.5814591021387283,
+              "position": [
+                64.35408978612716,
+                0,
+                159.48025061763005
+              ],
+              "normal": [
+                0.4691552259617497,
+                0,
+                -0.8831157194574104
+              ]
+            }
+          },
+          {
+            "start": [
+              122.5,
+              0,
+              127.5
+            ],
+            "end": [
+              222.5,
+              0,
+              172.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 16,
+            "corners": [
+              [
+                122.5,
+                0,
+                127.5
+              ],
+              [
+                158.057321,
+                0,
+                145.2600922
+              ],
+              [
+                184.857321,
+                0,
+                155.8600922
+              ],
+              [
+                222.5,
+                0,
+                172.5
+              ]
+            ],
+            "raycast": {
+              "hit": false,
+              "t": 1,
+              "position": [
+                222.5,
+                0,
+                172.5
+              ],
+              "normal": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "start": [
+              122.5,
+              0,
+              127.5
+            ],
+            "end": [
+              77.5,
+              0,
+              207.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 34,
+            "corners": [
+              [
+                122.5,
+                0,
+                127.5
+              ],
+              [
+                106.85732100000001,
+                0,
+                145.2600922
+              ],
+              [
+                83.05732100000002,
+                0,
+                169.96009220000002
+              ],
+              [
+                82.45732100000002,
+                0,
+                170.46009220000002
+              ],
+              [
+                81.25732100000002,
+                0,
+                170.8600922
+              ],
+              [
+                74.257321,
+                0,
+                173.1600922
+              ],
+              [
+                64.657321,
+                0,
+                175.2600922
+              ],
+              [
+                63.45732100000001,
+                0,
+                175.56009219999999
+              ],
+              [
+                57.557321,
+                0,
+                178.1600922
+              ],
+              [
+                46.657321,
+                0,
+                186.9600922
+              ],
+              [
+                46.257321000000005,
+                0,
+                187.3600922
+              ],
+              [
+                46.257321000000005,
+                0,
+                187.6600922
+              ],
+              [
+                46.757321000000005,
+                0,
+                188.1600922
+              ],
+              [
+                68.857321,
+                0,
+                201.96009220000002
+              ],
+              [
+                77.5,
+                0,
+                207.5
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.6064621407365436,
+              "position": [
+                95.20920366685554,
+                0,
+                176.0169712589235
+              ],
+              "normal": [
+                0.46788772041903276,
+                0,
+                -0.8837879163470619
+              ]
+            }
+          },
+          {
+            "start": [
+              122.5,
+              0,
+              127.5
+            ],
+            "end": [
+              -2,
+              0,
+              112.5
+            ],
+            "startOnMesh": true,
+            "endOnMesh": false,
+            "complete": false,
+            "pathStatus": 0,
+            "polyCount": 0,
+            "corners": [],
+            "raycast": {
+              "hit": true,
+              "t": 0.7477749643199859,
+              "position": [
+                29.40201694216175,
+                0,
+                116.28337553520021
+              ],
+              "normal": [
+                0.4424242364890124,
+                0,
+                0.8968058847750245
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

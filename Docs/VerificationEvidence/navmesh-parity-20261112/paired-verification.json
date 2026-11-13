@@ -1,0 +1,1454 @@
+{
+  "result": "PASS",
+  "scope": "Synthetic same-OBJ Unity/MSET queries; no production map or live-server acceptance",
+  "unityQueriesSha256": "c6b381da3155f9f9845aa78fd9b38e99de2b01b8ee2b06f9af663ae49f48f821",
+  "bakerSha256": "7d22adc031d97385d13cf3b76cd6fd701387a8566ded216cf2499fc4ff8e6fbd",
+  "querySha256": "363c8c4d1e687e63f9209a7f11d1899b9a625e0d683b848f953908e053fc093f",
+  "cases": [
+    {
+      "name": "hole",
+      "result": "PASS",
+      "objSha256": "72b9031814400d8a41c08a687cf16ffaebc549a98a00c9b63652a362e825f766",
+      "msetSha256": "ae6a9f1afda1ca0a3d5ee183ae357e45dbdeb61bce01f8bcb6f3a555551dd98e",
+      "arguments": [
+        "--obj",
+        "world-y-up.obj",
+        "--out",
+        "scene-nav.bin",
+        "--profile",
+        "authored-flat",
+        "--cs",
+        "0.1",
+        "--ch",
+        "0.2",
+        "--agent-radius",
+        "0.4",
+        "--agent-height",
+        "1.9",
+        "--agent-climb",
+        "0.4",
+        "--agent-slope",
+        "37",
+        "--tile-size",
+        "256",
+        "--min-region-area",
+        "0",
+        "--filter-ledges",
+        "1",
+        "--probe",
+        "3,0,6"
+      ],
+      "checks": [
+        {
+          "input": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            17.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            10.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            0.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            3.0,
+            0.2,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            7.4,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            7.8,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            12.6,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            12.2,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            1.3,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            1.7,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "to": [
+            17.0,
+            0.0,
+            6.0
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        }
+      ],
+      "bakerOutput": "ledge filter: on\nobj geometry: 54 verts, 18 tris\nbake config: profile=authored-flat cs=0.10000000000000001 ch=0.20000000000000001 agent_radius=0.40000000000000002 agent_height=1.8999999999999999 agent_climb=0.40000000000000002 agent_slope=37 tile_size=256 min_region_area=0 merge_region_area=4 ground_y=0 walkable_radius_voxels=4 walkable_height_voxels=10 walkable_climb_voxels=2\nbounds: (1.00 -0.20 1.00)-(19.00 2.10 11.00), tiles 1x1\nbuilt 1 tiles\nprobe unity=(3.00,0.00,6.00) server=(6.00,3.00,0.00): ON MESH nearest=(3.00,0.00,6.00) poly=1048580\nsaved scene-nav.bin: 1 tiles\n",
+      "serverQueries": {
+        "schemaVersion": 1,
+        "coordinateSystem": "Unity Y-up X/Z",
+        "points": [
+          {
+            "input": [
+              3,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048580,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              17,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048585,
+            "nearest": [
+              17,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              10,
+              0,
+              6
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              0,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048580,
+            "nearest": [
+              1.5,
+              0,
+              5.999999999999999
+            ]
+          },
+          {
+            "input": [
+              3,
+              0.2,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048580,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              7.4,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048580,
+            "nearest": [
+              7.4,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              7.8,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048580,
+            "nearest": [
+              7.6000000000000005,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              12.6,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048585,
+            "nearest": [
+              12.6,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              12.2,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048585,
+            "nearest": [
+              12.5,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              1.3,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048580,
+            "nearest": [
+              1.5,
+              0,
+              5.999999999999999
+            ]
+          },
+          {
+            "input": [
+              1.7,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048580,
+            "nearest": [
+              1.7,
+              0,
+              6
+            ]
+          }
+        ],
+        "routes": [
+          {
+            "start": [
+              3,
+              0,
+              6
+            ],
+            "end": [
+              17,
+              0,
+              6
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 6,
+            "corners": [
+              [
+                3,
+                0,
+                6
+              ],
+              [
+                8,
+                0,
+                2.6
+              ],
+              [
+                12.100000000000001,
+                0,
+                2.6
+              ],
+              [
+                17,
+                0,
+                6
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.3285714285714286,
+              "position": [
+                7.6000000000000005,
+                0,
+                6
+              ],
+              "normal": [
+                -1,
+                0,
+                0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "islands",
+      "result": "PASS",
+      "objSha256": "406d16b399bc1d2fc91dd090adf725d55f792fa75f2563ba7082d53eb5e78179",
+      "msetSha256": "4eec00f2eec8805a9c1c5595a97b1600ed8bcde113a238e16ca1995a1d88a6cf",
+      "arguments": [
+        "--obj",
+        "world-y-up.obj",
+        "--out",
+        "scene-nav.bin",
+        "--profile",
+        "authored-flat",
+        "--cs",
+        "0.1",
+        "--ch",
+        "0.2",
+        "--agent-radius",
+        "0.4",
+        "--agent-height",
+        "1.9",
+        "--agent-climb",
+        "0.4",
+        "--agent-slope",
+        "37",
+        "--tile-size",
+        "256",
+        "--min-region-area",
+        "0",
+        "--filter-ledges",
+        "1",
+        "--probe",
+        "3,0,6"
+      ],
+      "checks": [
+        {
+          "input": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            17.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            10.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            0.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            3.0,
+            0.2,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "to": [
+            17.0,
+            0.0,
+            6.0
+          ],
+          "complete": false,
+          "rayBlocked": true,
+          "result": "PASS"
+        }
+      ],
+      "bakerOutput": "ledge filter: on\nobj geometry: 12 verts, 4 tris\nbake config: profile=authored-flat cs=0.10000000000000001 ch=0.20000000000000001 agent_radius=0.40000000000000002 agent_height=1.8999999999999999 agent_climb=0.40000000000000002 agent_slope=37 tile_size=256 min_region_area=0 merge_region_area=4 ground_y=0 walkable_radius_voxels=4 walkable_height_voxels=10 walkable_climb_voxels=2\nbounds: (1.00 -0.20 1.00)-(19.00 2.10 11.00), tiles 1x1\nbuilt 1 tiles\nprobe unity=(3.00,0.00,6.00) server=(6.00,3.00,0.00): ON MESH nearest=(3.00,0.00,6.00) poly=1048576\nsaved scene-nav.bin: 1 tiles\n",
+      "serverQueries": {
+        "schemaVersion": 1,
+        "coordinateSystem": "Unity Y-up X/Z",
+        "points": [
+          {
+            "input": [
+              3,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048576,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              17,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048577,
+            "nearest": [
+              17,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              10,
+              0,
+              6
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              0,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048576,
+            "nearest": [
+              1.5,
+              0,
+              5.999999999999999
+            ]
+          },
+          {
+            "input": [
+              3,
+              0.2,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048576,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          }
+        ],
+        "routes": [
+          {
+            "start": [
+              3,
+              0,
+              6
+            ],
+            "end": [
+              17,
+              0,
+              6
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": false,
+            "pathStatus": 1073741888,
+            "polyCount": 1,
+            "corners": [],
+            "raycast": {
+              "hit": true,
+              "t": 0.2571428571428572,
+              "position": [
+                6.6000000000000005,
+                0,
+                6
+              ],
+              "normal": [
+                -1,
+                0,
+                0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "narrow-closed",
+      "result": "PASS",
+      "objSha256": "83188768157c2351fe72e9953725b464a0f5ecc93acec9b0e81766917e914a61",
+      "msetSha256": "5d0e995e241057bb70ad525731369cf2fd423583557d2b03cc0175bac5543490",
+      "arguments": [
+        "--obj",
+        "world-y-up.obj",
+        "--out",
+        "scene-nav.bin",
+        "--profile",
+        "authored-flat",
+        "--cs",
+        "0.1",
+        "--ch",
+        "0.2",
+        "--agent-radius",
+        "0.6",
+        "--agent-height",
+        "1.9",
+        "--agent-climb",
+        "0.4",
+        "--agent-slope",
+        "37",
+        "--tile-size",
+        "256",
+        "--min-region-area",
+        "0",
+        "--filter-ledges",
+        "1",
+        "--probe",
+        "3,0,6"
+      ],
+      "checks": [
+        {
+          "input": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            17.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            10.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            0.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            3.0,
+            0.2,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "to": [
+            17.0,
+            0.0,
+            6.0
+          ],
+          "complete": false,
+          "rayBlocked": true,
+          "result": "PASS"
+        }
+      ],
+      "bakerOutput": "ledge filter: on\nobj geometry: 24 verts, 8 tris\nbake config: profile=authored-flat cs=0.10000000000000001 ch=0.20000000000000001 agent_radius=0.59999999999999998 agent_height=1.8999999999999999 agent_climb=0.40000000000000002 agent_slope=37 tile_size=256 min_region_area=0 merge_region_area=4 ground_y=0 walkable_radius_voxels=6 walkable_height_voxels=10 walkable_climb_voxels=2\nbounds: (1.00 -0.20 1.00)-(19.00 2.10 11.00), tiles 1x1\nbuilt 1 tiles\nprobe unity=(3.00,0.00,6.00) server=(6.00,3.00,0.00): ON MESH nearest=(3.00,0.00,6.00) poly=1048576\nsaved scene-nav.bin: 1 tiles\n",
+      "serverQueries": {
+        "schemaVersion": 1,
+        "coordinateSystem": "Unity Y-up X/Z",
+        "points": [
+          {
+            "input": [
+              3,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048576,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              17,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048579,
+            "nearest": [
+              17,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              10,
+              0,
+              6
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              0,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048576,
+            "nearest": [
+              1.7000000000000002,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              3,
+              0.2,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048576,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          }
+        ],
+        "routes": [
+          {
+            "start": [
+              3,
+              0,
+              6
+            ],
+            "end": [
+              17,
+              0,
+              6
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": false,
+            "pathStatus": 1073741888,
+            "polyCount": 2,
+            "corners": [],
+            "raycast": {
+              "hit": true,
+              "t": 0.2589285714285714,
+              "position": [
+                6.625,
+                0,
+                6
+              ],
+              "normal": [
+                -0.8000000000000005,
+                0,
+                0.5999999999999995
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "wide-open",
+      "result": "PASS",
+      "objSha256": "a8cafb904caaf4a818b8d7d7a47df7d0580245ce2a7e1186806f02fb985fb882",
+      "msetSha256": "fcf8c6e74538b9e1de59f4e6d62c63902e9273f865b4834e322dc3c52e08614c",
+      "arguments": [
+        "--obj",
+        "world-y-up.obj",
+        "--out",
+        "scene-nav.bin",
+        "--profile",
+        "authored-flat",
+        "--cs",
+        "0.1",
+        "--ch",
+        "0.2",
+        "--agent-radius",
+        "0.4",
+        "--agent-height",
+        "1.9",
+        "--agent-climb",
+        "0.4",
+        "--agent-slope",
+        "37",
+        "--tile-size",
+        "256",
+        "--min-region-area",
+        "0",
+        "--filter-ledges",
+        "1",
+        "--probe",
+        "3,0,6"
+      ],
+      "checks": [
+        {
+          "input": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            17.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            10.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            0.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            3.0,
+            0.2,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "to": [
+            17.0,
+            0.0,
+            6.0
+          ],
+          "complete": true,
+          "rayBlocked": false,
+          "result": "PASS"
+        }
+      ],
+      "bakerOutput": "ledge filter: on\nobj geometry: 24 verts, 8 tris\nbake config: profile=authored-flat cs=0.10000000000000001 ch=0.20000000000000001 agent_radius=0.40000000000000002 agent_height=1.8999999999999999 agent_climb=0.40000000000000002 agent_slope=37 tile_size=256 min_region_area=0 merge_region_area=4 ground_y=0 walkable_radius_voxels=4 walkable_height_voxels=10 walkable_climb_voxels=2\nbounds: (1.00 -0.20 1.00)-(19.00 2.10 11.00), tiles 1x1\nbuilt 1 tiles\nprobe unity=(3.00,0.00,6.00) server=(6.00,3.00,0.00): ON MESH nearest=(3.00,0.00,6.00) poly=1048578\nsaved scene-nav.bin: 1 tiles\n",
+      "serverQueries": {
+        "schemaVersion": 1,
+        "coordinateSystem": "Unity Y-up X/Z",
+        "points": [
+          {
+            "input": [
+              3,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048578,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              17,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048582,
+            "nearest": [
+              17,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              10,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 1048584,
+            "nearest": [
+              10,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              0,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048578,
+            "nearest": [
+              1.5,
+              0,
+              5.999999999999999
+            ]
+          },
+          {
+            "input": [
+              3,
+              0.2,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 1048578,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          }
+        ],
+        "routes": [
+          {
+            "start": [
+              3,
+              0,
+              6
+            ],
+            "end": [
+              17,
+              0,
+              6
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 5,
+            "corners": [
+              [
+                3,
+                0,
+                6
+              ],
+              [
+                17,
+                0,
+                6
+              ]
+            ],
+            "raycast": {
+              "hit": false,
+              "t": 1,
+              "position": [
+                17,
+                0,
+                6
+              ],
+              "normal": [
+                0,
+                0,
+                0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "small-island",
+      "result": "PASS",
+      "objSha256": "6065c0a6a2404dd1d8f467d6eec42fc342915603fa69462905f8c1139d1a7d39",
+      "msetSha256": "61da432c77502cfc1f6288936bd0fdf600615323022b1fd4bc695007cf391dd9",
+      "arguments": [
+        "--obj",
+        "world-y-up.obj",
+        "--out",
+        "scene-nav.bin",
+        "--profile",
+        "authored-flat",
+        "--cs",
+        "0.05",
+        "--ch",
+        "0.2",
+        "--agent-radius",
+        "0.1",
+        "--agent-height",
+        "1.9",
+        "--agent-climb",
+        "0.4",
+        "--agent-slope",
+        "37",
+        "--tile-size",
+        "256",
+        "--min-region-area",
+        "0",
+        "--filter-ledges",
+        "1",
+        "--probe",
+        "3,0,6"
+      ],
+      "checks": [
+        {
+          "input": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            15.3,
+            0.0,
+            6.3
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            10.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            0.0,
+            0.0,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            3.0,
+            0.2,
+            6.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            3.0,
+            0.0,
+            6.0
+          ],
+          "to": [
+            15.3,
+            0.0,
+            6.3
+          ],
+          "complete": false,
+          "rayBlocked": true,
+          "result": "PASS"
+        }
+      ],
+      "bakerOutput": "ledge filter: on\nobj geometry: 12 verts, 4 tris\nbake config: profile=authored-flat cs=0.050000000000000003 ch=0.20000000000000001 agent_radius=0.10000000000000001 agent_height=1.8999999999999999 agent_climb=0.40000000000000002 agent_slope=37 tile_size=256 min_region_area=0 merge_region_area=1 ground_y=0 walkable_radius_voxels=2 walkable_height_voxels=10 walkable_climb_voxels=2\nbounds: (1.00 -0.20 1.00)-(15.60 2.10 11.00), tiles 2x1\nbuilt 2 tiles\nprobe unity=(3.00,0.00,6.00) server=(6.00,3.00,0.00): ON MESH nearest=(3.00,0.00,6.00) poly=2097152\nsaved scene-nav.bin: 2 tiles\n",
+      "serverQueries": {
+        "schemaVersion": 1,
+        "coordinateSystem": "Unity Y-up X/Z",
+        "points": [
+          {
+            "input": [
+              3,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 2097152,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              15.3,
+              0,
+              6.3
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 3145728,
+            "nearest": [
+              15.3,
+              0,
+              6.3
+            ]
+          },
+          {
+            "input": [
+              10,
+              0,
+              6
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              0,
+              0,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 2097152,
+            "nearest": [
+              1.15,
+              0,
+              6
+            ]
+          },
+          {
+            "input": [
+              3,
+              0.2,
+              6
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 2097152,
+            "nearest": [
+              3,
+              0,
+              6
+            ]
+          }
+        ],
+        "routes": [
+          {
+            "start": [
+              3,
+              0,
+              6
+            ],
+            "end": [
+              15.3,
+              0,
+              6.3
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": false,
+            "pathStatus": 1073741888,
+            "polyCount": 1,
+            "corners": [],
+            "raycast": {
+              "hit": true,
+              "t": 0.3170731707317073,
+              "position": [
+                6.9,
+                0,
+                6.095121951219512
+              ],
+              "normal": [
+                -1,
+                0,
+                0
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "multi-tile",
+      "result": "PASS",
+      "objSha256": "04ebf49ca5004baac45a908f08ee267d61bf5c6e643090a5989cdefbaea64bd9",
+      "msetSha256": "45da3f742660d4a62cb93d7c1361caacf84633d452fbee72e8385419c6a241ed",
+      "arguments": [
+        "--obj",
+        "world-y-up.obj",
+        "--out",
+        "scene-nav.bin",
+        "--profile",
+        "authored-flat",
+        "--cs",
+        "0.1",
+        "--ch",
+        "0.2",
+        "--agent-radius",
+        "0.4",
+        "--agent-height",
+        "1.9",
+        "--agent-climb",
+        "0.4",
+        "--agent-slope",
+        "37",
+        "--tile-size",
+        "256",
+        "--min-region-area",
+        "0",
+        "--filter-ledges",
+        "1",
+        "--probe",
+        "12,0,24"
+      ],
+      "checks": [
+        {
+          "input": [
+            12.0,
+            0.0,
+            24.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            68.0,
+            0.0,
+            24.0
+          ],
+          "onMesh": true,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            40.0,
+            0.0,
+            24.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            0.0,
+            0.0,
+            24.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "input": [
+            12.0,
+            0.2,
+            24.0
+          ],
+          "onMesh": false,
+          "result": "PASS"
+        },
+        {
+          "from": [
+            12.0,
+            0.0,
+            24.0
+          ],
+          "to": [
+            68.0,
+            0.0,
+            24.0
+          ],
+          "complete": true,
+          "rayBlocked": true,
+          "result": "PASS"
+        }
+      ],
+      "bakerOutput": "ledge filter: on\nobj geometry: 54 verts, 18 tris\nbake config: profile=authored-flat cs=0.10000000000000001 ch=0.20000000000000001 agent_radius=0.40000000000000002 agent_height=1.8999999999999999 agent_climb=0.40000000000000002 agent_slope=37 tile_size=256 min_region_area=0 merge_region_area=4 ground_y=0 walkable_radius_voxels=4 walkable_height_voxels=10 walkable_climb_voxels=2\nbounds: (4.00 -0.20 4.00)-(76.00 2.10 44.00), tiles 3x2\nbuilt 6 tiles\nprobe unity=(12.00,0.00,24.00) server=(24.00,12.00,0.00): ON MESH nearest=(12.00,0.00,24.00) poly=8388612\nsaved scene-nav.bin: 6 tiles\n",
+      "serverQueries": {
+        "schemaVersion": 1,
+        "coordinateSystem": "Unity Y-up X/Z",
+        "points": [
+          {
+            "input": [
+              12,
+              0,
+              24
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 8388612,
+            "nearest": [
+              12,
+              0,
+              24
+            ]
+          },
+          {
+            "input": [
+              68,
+              0,
+              24
+            ],
+            "found": true,
+            "onMesh": true,
+            "polyRef": 10485763,
+            "nearest": [
+              68,
+              0,
+              24
+            ]
+          },
+          {
+            "input": [
+              40,
+              0,
+              24
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              0,
+              0,
+              24
+            ],
+            "found": false,
+            "onMesh": false,
+            "polyRef": 0,
+            "nearest": null
+          },
+          {
+            "input": [
+              12,
+              0.2,
+              24
+            ],
+            "found": true,
+            "onMesh": false,
+            "polyRef": 8388612,
+            "nearest": [
+              12,
+              0,
+              24
+            ]
+          }
+        ],
+        "routes": [
+          {
+            "start": [
+              12,
+              0,
+              24
+            ],
+            "end": [
+              68,
+              0,
+              24
+            ],
+            "startOnMesh": true,
+            "endOnMesh": true,
+            "complete": true,
+            "pathStatus": 1073741824,
+            "polyCount": 13,
+            "corners": [
+              [
+                12,
+                0,
+                24
+              ],
+              [
+                31.900000000000002,
+                0,
+                36.400000000000006
+              ],
+              [
+                48,
+                0,
+                36.400000000000006
+              ],
+              [
+                68,
+                0,
+                24
+              ]
+            ],
+            "raycast": {
+              "hit": true,
+              "t": 0.3482142857142857,
+              "position": [
+                31.5,
+                0,
+                24
+              ],
+              "normal": [
+                -1,
+                0,
+                0
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

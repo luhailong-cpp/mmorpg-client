@@ -313,7 +313,7 @@ namespace MmorpgClient.World.Tianyong
 
         private void DrawDeliveredMapControls()
         {
-            GUI.Box(new Rect(16, 16, 560, 240), "节庆地图离线预览");
+            GUI.Box(new Rect(16, 16, 560, 300), "节庆地图离线预览");
             GUI.Label(new Rect(30, 43, 532, 24), "WASD / 鼠标左键移动，滚轮缩放，F5 切换角色");
             for (int i = 0; i < DeliveredPreviewMapIds.Length; i++)
             {
@@ -333,7 +333,21 @@ namespace MmorpgClient.World.Tianyong
                     SelectDeliveredMap(deliveredMapId, appearance);
             }
             GUI.enabled = true;
-            GUI.Label(new Rect(30, 185, 532, 50), _deliveryStatus);
+            GUI.Label(new Rect(30, 154, 532, 24), "视觉预览（仅看图，未接入导航或联机传送）");
+            if (GUI.Button(new Rect(30, 180, 170, 32), "26000 中秋")) OpenVisualPreview(26000, "mid-autumn");
+            if (GUI.Button(new Rect(208, 180, 170, 32), "26008 春节")) OpenVisualPreview(26008, "spring");
+            if (GUI.Button(new Rect(386, 180, 170, 32), "26008 中秋")) OpenVisualPreview(26008, "mid-autumn");
+            GUI.Label(new Rect(30, 245, 532, 50), _deliveryStatus);
+        }
+
+        private void OpenVisualPreview(uint id, string appearance)
+        {
+            try { FestivalMapVisualPreview.Open(this, id, appearance); }
+            catch (System.Exception error)
+            {
+                _deliveryStatus = "视觉预览无法打开：" + error.Message;
+                Debug.LogError("[FestivalVisualPreview] " + _deliveryStatus);
+            }
         }
 
         private void OnDestroy()

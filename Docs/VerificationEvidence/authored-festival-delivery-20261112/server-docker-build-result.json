@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "images": {
+    "gate": {
+      "image": "local/xuanming-node:debug-20261112t140808.551745z",
+      "imageId": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804"
+    },
+    "scene": {
+      "image": "local/xuanming-node:debug-20261112t140808.551745z",
+      "imageId": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804"
+    },
+    "battle": {
+      "image": "local/xuanming-node:debug-20261112t140808.551745z",
+      "imageId": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804"
+    }
+  },
+  "manifestPaths": {
+    "gate": "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\docker-rebuild-cpp-20261112T140318.508298Z\\build\\source_meta\\source-manifest.json",
+    "scene": "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\docker-rebuild-cpp-20261112T140318.508298Z\\build\\source_meta\\source-manifest.json",
+    "battle": "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\docker-rebuild-cpp-20261112T140318.508298Z\\build\\source_meta\\source-manifest.json"
+  }
+}

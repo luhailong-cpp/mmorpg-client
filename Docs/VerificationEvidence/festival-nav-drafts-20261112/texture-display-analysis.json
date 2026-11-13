@@ -1,0 +1,73 @@
+{
+  "scope": "Read-only analysis of existing festival tiles and saved GameView layout; no changes to source PNGs, importer metadata, scene, or the user's running Unity editor.",
+  "imageCommit": "06ba7d8169f8d93173973a55b615998f4075564b",
+  "cases": [
+    { "mapId": 26000, "appearance": "mid-autumn", "columns": 5, "rows": 4, "tiles": 20, "sourcePixels": [5120, 4096] },
+    { "mapId": 26008, "appearance": "spring", "columns": 4, "rows": 3, "tiles": 12, "sourcePixels": [4096, 3072] },
+    { "mapId": 26008, "appearance": "mid-autumn", "columns": 4, "rows": 3, "tiles": 12, "sourcePixels": [4096, 3072] }
+  ],
+  "tileSourceReceipt": "D:/luyuan/mmorpg-client/.codex-artifacts/festival-maps-offline-preview-20261112/image-transfer-verification.json",
+  "unityImportReceipt": "D:/luyuan/mmorpg-client/.codex-artifacts/festival-nav-drafts-20261112/draft-preparation-verification.json",
+  "unityImportScope": "Unity 6000.6.0f1 isolated project with copies of the 44 source PNGs and their original importer metadata. It does not directly inspect the running editor's texture cache.",
+  "unityImportResult": {
+    "count": 44,
+    "sourceShaAndTextureGuidMatch": true,
+    "runtimeTextureWidth": 1024,
+    "runtimeTextureHeight": 1024,
+    "runtimeTextureFormat": "RGB24",
+    "mipmapCount": 1,
+    "filterMode": "Bilinear",
+    "inference": "No texture-resolution reduction or compressed runtime texture was found in the isolated import; bilinear filtering is active."
+  },
+  "metadata": {
+    "count": 44,
+    "defaultPlatformMaxTextureSize": 1024,
+    "defaultPlatformTextureCompression": 0,
+    "mipmapEnabled": false,
+    "standaloneOverrideEnabled": false,
+    "note": "Standalone metadata includes compression=1, but its override is disabled; the isolated editor import produced RGB24."
+  },
+  "previewImplementation": {
+    "source": "D:/luyuan/mmorpg-client/Assets/Scripts/World/Tianyong/FestivalMapVisualPreview.cs",
+    "perTileResourceLoading": true,
+    "requiredRuntimeTilePixels": [1024, 1024],
+    "spritePixelsPerUnit": 1024,
+    "gridOrigin": "row 1 at north, column 1 at west",
+    "defaultView": "Orthographic camera fits the complete tile grid into the GameView."
+  },
+  "savedGameViewLayout": {
+    "path": "D:/luyuan/mmorpg-client/UserSettings/Layouts/CurrentMaximizeLayout.dwlt",
+    "isLiveReading": false,
+    "targetSize": [1931, 814],
+    "drawArea": [1102, 506],
+    "savedViewScale": 0.5706888,
+    "note": "A saved editor layout, not a measurement of the user's current live GameView, monitor DPI, or zoom."
+  },
+  "fitScaleEstimatesFromSavedLayout": [
+    {
+      "map": "26000 mid-autumn",
+      "fitDimension": "height",
+      "targetPixelsPerTile": 203.5,
+      "postSavedViewScaleUnitsPerTile": 116.1351708,
+      "sourcePixelsPerTile": 1024
+    },
+    {
+      "map": "26008 spring and mid-autumn",
+      "fitDimension": "height",
+      "targetPixelsPerTile": 271.3333333333,
+      "postSavedViewScaleUnitsPerTile": 154.8468944,
+      "sourcePixelsPerTile": 1024
+    }
+  ],
+  "conclusion": "Showing all tiles at once necessarily downscales the source and loses fine detail; saved GameView zoom adds further display scaling. The isolated import does not indicate a 1024-to-smaller texture import problem. The actual live GameView settings, display scaling, and any additional visual effects are unverified.",
+  "authoringTool": {
+    "source": "D:/luyuan/mmorpg-client/Assets/Editor/NavigationAuthoring/NavMeshAuthoringWindow.cs",
+    "nativePixelView": "The 1:1 control sets canvas zoom to 1 / EditorGUIUtility.pixelsPerPoint; use middle-drag to inspect other locations.",
+    "zoomValidation": "Verified in the isolated Unity authoring test recorded by unityImportReceipt."
+  },
+  "limitations": [
+    "Source SHA and coordinate receipts establish the selected tiles and import; they do not establish that valid world boundaries or original 4:3 mapping are known.",
+    "No screenshot or visual observation of the user's current live GameView was collected.",
+    "PNG source details cannot all be seen at once at native pixels on a smaller display; zoom reveals a portion, it does not add details."
+  ]
+}

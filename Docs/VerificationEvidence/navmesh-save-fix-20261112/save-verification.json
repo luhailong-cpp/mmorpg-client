@@ -1,0 +1,38 @@
+{
+  "result": "PASS",
+  "unityVersion": "6000.6.0f1",
+  "checks": [
+    {
+      "name": "invalid completion retains points and identifies conflicting original edges",
+      "result": "PASS"
+    },
+    {
+      "name": "Save preserves existing 88/113-point outlines exactly across asset reload",
+      "result": "PASS"
+    },
+    {
+      "name": "Save persists invalid outline, invalidates old bake and permits rebake after repair",
+      "result": "PASS"
+    },
+    {
+      "name": "one-point and two-point outlines survive asset reload",
+      "result": "PASS"
+    },
+    {
+      "name": "Return and KeypadEnter complete polygons through actual window events",
+      "result": "PASS"
+    },
+    {
+      "name": "serialized window restores pending type, draft, selection and view",
+      "result": "PASS"
+    },
+    {
+      "name": "reopening same draft preserves pending and switching drafts saves it",
+      "result": "PASS"
+    },
+    {
+      "name": "Undo and Redo restore both pending window state and stored polygon",
+      "result": "PASS"
+    }
+  ]
+}

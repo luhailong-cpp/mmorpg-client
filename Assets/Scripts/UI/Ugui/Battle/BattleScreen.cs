@@ -58,8 +58,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         public static readonly Rect ReconnectRect = new Rect(1916f, 210f, 200f, 64f);
 
-        /// <summary>直连判定连不上时横幅的文案(客户端本地字符串,服务端没有对应消息)。</summary>
-        public const string ChannelFailedBannerText = "无法连接战斗服务器(可能是网络或防火墙拦截了战斗端口),本局将由系统自动出手";
+        /// <summary>
+        /// 直连判定连不上时横幅的文案(客户端本地字符串,服务端没有对应消息)。客户端分不清是本机网络的问题还是战斗服故障,
+        /// 两种结局都要说到(同 <see cref="BattleClient.BattleChannelFailedText"/>):前者由服务端代为出手,后者本局会被作废。
+        /// 横幅宽 1088、字号 22、超出按省略号截断:文案不得比 46 个全角字更长(现 36 字)。
+        /// </summary>
+        public const string ChannelFailedBannerText = "无法连接战斗服务器:网络受阻时本局由系统代为出手,服务器故障时本局会作废";
+        /// <summary>直连已判定连不上、轮到本人出手时底部提示的文案。</summary>
+        public const string ChannelFailedHintText = "无法连接战斗服务器,战斗若仍在进行,本回合到时由系统代为出手";
         /// <summary>直连握手中 / 断线恢复中超过宽限期时横幅的文案。</summary>
         public const string ChannelConnectingBannerText = "正在连接战斗服务器…";
         /// <summary>直连已判定连不上时左上相位文字(链路不会自己恢复,不能再说「等待」)。</summary>
@@ -1172,7 +1178,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             else if (_playing) SetHint("回合播放中…");
             // 排在「已提交」之前:已提交但直连断了,回合结果也要等重连后补拉才到,连接状态更要紧
             else if (!channelReady && _phase == BattlePhase.WaitingAction)
-                SetHint(channelFailed ? "无法连接战斗服务器,本回合到时由系统自动出手" : BattleClient.BattleChannelConnectingText);
+                SetHint(channelFailed ? ChannelFailedHintText : BattleClient.BattleChannelConnectingText);
             else if (_submitted && _phase == BattlePhase.WaitingAction) SetHint("已提交行动,等待其他玩家…");
             else if (_phase == BattlePhase.WaitingAction) SetHint(canFlee ? string.Empty : "PVP 战斗不可逃跑");
             else SetHint(string.Empty);

@@ -141,5 +141,29 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             Assert.AreEqual("货币8  +16", lines[1]);
         }
+
+        // 两个背包都放不下时服务器把本局获得的道具改由邮件发放(BattleEndS2C.items_mailed):
+        // 道具行之后紧跟一行提示;没有获得道具时不提示,不带这个标记时与原来逐行相同。
+        [Test]
+        public void ResultRewardLines_TellThePlayerWhenTheDropsWereMailed()
+        {
+            var settlement = new BattleSettlementData { ExpGain = 1, GoldGain = 2, Health = 3, Mana = 4 };
+            settlement.ItemsGained.Add(new BattleItemEntry { ItemTableId = 1001, Count = 2 });
+            settlement.ItemsGained.Add(new BattleItemEntry { ItemTableId = 1002, Count = 1 });
+            settlement.ItemsConsumed.Add(new BattleItemEntry { ItemTableId = 7, Count = 1 });
+
+            var plain = BattleResultPanel.BuildRewardLines(settlement);
+            var mailed = BattleResultPanel.BuildRewardLines(settlement, itemsMailed: true);
+
+            Assert.AreEqual(plain.Count + 1, mailed.Count);
+            Assert.AreEqual(BattleResultPanel.ItemsMailedLine, mailed[4], "紧跟在两行获得道具之后");
+            StringAssert.Contains("1002", mailed[3]);
+            StringAssert.Contains("道具7", mailed[5]);
+            Assert.That(plain, Has.None.EqualTo(BattleResultPanel.ItemsMailedLine));
+
+            var noDrops = new BattleSettlementData { ExpGain = 1 };
+            Assert.That(BattleResultPanel.BuildRewardLines(noDrops, itemsMailed: true),
+                Has.None.EqualTo(BattleResultPanel.ItemsMailedLine), "没有获得道具就没有什么可提示的");
+        }
     }
 }

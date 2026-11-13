@@ -1,0 +1,120 @@
+{
+    "result": "PASS",
+    "unityVersion": "6000.6.0f1",
+    "scope": "Isolated actual-source NavMesh authoring checks; synthetic test art only; not production-map acceptance.",
+    "checks": [
+        {
+            "name": "pixel/world north-west direction roundtrip",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "geometry concave floor and positive Y winding",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "geometry union overlap avoids duplicate floor",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "geometry obstacle holes subtract correct area",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "invalid/self-intersecting polygons rejected",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "flat ground queries preserve original foot height",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "shared bake settings do not depend on global agent defaults",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "production spawn and editor route reject 3cm edge snapping",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "official NavMesh bake routes around obstacle hole",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "official NavMesh keeps disconnected islands disconnected",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "agent clearance closes narrow connection",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "invalid draft geometry and parameters rejected",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "editor imports whole image with source SHA",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "editor imports actual legacy island polygon source",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "editor imports complete row/column tile set",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "editor rejects missing tile coordinate",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "editor polygon edit undo/redo and canvas coordinate mapping",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "editor native bake and export preserve same geometry",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "Play entry rejects changed source PNG and accepts exact restoration",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "native bake identity stays safe after restoring older authoring state",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "paired fixtures export actual Unity queries and shared OBJ inputs",
+            "result": "PASS",
+            "detail": ""
+        },
+        {
+            "name": "actual Play NavMeshAgent moves around obstacle",
+            "result": "PASS",
+            "detail": "Play frames=39429; final=(16.76, 5.83)"
+        }
+    ],
+    "playScreenshot": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\navmesh-parity-20261112\\unity\\navmesh-play-synthetic-smoke.png",
+    "routeScreenshot": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\navmesh-parity-20261112\\unity\\navmesh-play-route-synthetic-smoke.png",
+    "error": ""
+}

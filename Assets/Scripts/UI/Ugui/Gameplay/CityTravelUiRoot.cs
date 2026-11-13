@@ -147,6 +147,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             MysteryMerchantUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
             MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             AttributeUiRoot.Instance?.HidePanel();

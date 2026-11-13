@@ -1,0 +1,26 @@
+[
+  {
+    "sha256": "4f2dd783a75591356ae2569f96a859c324fff6fbf902a4afb67eddb7a509ce0d",
+    "path": "tools\\navmesh_baker\\navmesh_baker.cpp"
+  },
+  {
+    "sha256": "1ebfeae2e419c1c4aae04a5e04a69236244fb381c1f80c7bfac45db453c70067",
+    "path": "tools\\navmesh_baker\\navmesh_query.cpp"
+  },
+  {
+    "sha256": "8b026d1f7686714e3413b17882cf129879d93d8edebb2f102c1595651ab55678",
+    "path": "tools\\navmesh_baker\\CMakeLists.txt"
+  },
+  {
+    "sha256": "732d7e63f0fce7a1565e050ddedf0e6bcdb848cbc840c2c1aaa20bb71bab617d",
+    "path": "tools\\navmesh_baker\\test_authored_flat.py"
+  },
+  {
+    "sha256": "56f137e6e4c25f0e8e6fcb5cc8b98b4e49fe7a20a156d57a011175dc55cfe40f",
+    "path": "tools\\navmesh_baker\\test_navmesh_query.py"
+  },
+  {
+    "sha256": "d399f180a6e16ae42497ca5faad5e08db8e503d51299d299ed7479b36647159f",
+    "path": "tools\\navmesh_baker\\test_baker.py"
+  }
+]

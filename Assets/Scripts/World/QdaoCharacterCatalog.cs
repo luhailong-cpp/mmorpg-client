@@ -196,10 +196,14 @@ namespace MmorpgClient.World
                 _creationRevision = null;
             }
 
-            /// <summary>Resource providers also support deterministic import/reload verification.</summary>
+            /// <summary>
+            /// Resource providers also support deterministic import/reload verification.
+            /// validIndex 对 V14、V13 两个版本都适用：原版人物只认导入期 / 构建期逐个文件校验过的清单，
+            /// 不为确认完整性去加载动画纹理（V13 一套 137 张、约 140 MiB）。为 null 时只按 validTexture 判断。
+            /// </summary>
             public Appearance ResolveAppearance(Func<string, string> metadata,
                 Func<string, int, int, bool> validTexture, Func<string, byte[]> resourceBytes = null,
-                Func<string, string, string, bool> validHdIndex = null, Action<string> diagnose = null)
+                Func<string, string, string, bool> validIndex = null, Action<string> diagnose = null)
             {
                 if (IsOriginalRoster)
                 {
@@ -213,20 +217,25 @@ namespace MmorpgClient.World
                         var value = metadata(path);
                         return value == null ? null : Encoding.UTF8.GetBytes(value);
                     }
+                    string ActivationHash(string path, string json)
+                    {
+                        var bytes = resourceBytes?.Invoke(path);
+                        return bytes != null ? HashBytes(bytes) : json == null ? null : HashBytes(Encoding.UTF8.GetBytes(json));
+                    }
                     var manifest = Manifest(folder + "/manifest");
                     var hdManifest = Manifest(hdFolder + "/manifest");
                     var manifestHash = HashBytes(manifest);
                     var hdManifestHash = HashBytes(hdManifest);
-                    var hdActivationBytes = resourceBytes?.Invoke(hdFolder + "/appearance");
-                    var hdActivationHash = hdActivationBytes != null ? HashBytes(hdActivationBytes) :
-                        hdActivation == null ? null : HashBytes(Encoding.UTF8.GetBytes(hdActivation));
+                    var activationHash = ActivationHash(folder + "/appearance", activation);
+                    var hdActivationHash = ActivationHash(hdFolder + "/appearance", hdActivation);
                     var rejectedHdRevision = !string.IsNullOrEmpty(hdActivation) && _rejectedHdActivationText == hdActivation &&
                         _rejectedHdManifestHash == hdManifestHash;
-                    var hdInventoryValid = !rejectedHdRevision && (validHdIndex == null || validHdIndex(hdFolder,
+                    var hdInventoryValid = !rejectedHdRevision && (validIndex == null || validIndex(hdFolder,
                         hdManifestHash, hdActivationHash));
+                    var inventoryValid = validIndex == null || validIndex(folder, manifestHash, activationHash);
                     if (_appearance != null && _v13ActivationText == activation && _v14ActivationText == hdActivation &&
                         _originalManifestHash == manifestHash && _originalHdManifestHash == hdManifestHash &&
-                        (!_appearance.IsHd || hdInventoryValid)) return _appearance;
+                        (_appearance.IsHd ? hdInventoryValid : inventoryValid)) return _appearance;
                     _v13ActivationText = activation;
                     _v14ActivationText = hdActivation;
                     _originalManifestHash = manifestHash;
@@ -238,10 +247,14 @@ namespace MmorpgClient.World
                             : hdActivationHash == null ? "appearance.json missing"
                             : hdManifestHash == null ? "manifest.json missing"
                             : "runtime-index or validation does not match the approved frame inventory";
+                    if (!inventoryValid && diagnose != null)
+                        v13Problem = activationHash == null ? "appearance.json missing"
+                            : manifestHash == null ? "manifest.json missing"
+                            : "runtime-index or validation does not match the approved frame inventory";
                     var originalSelection = (hdInventoryValid ? SelectApprovedVersion(this, 14, hdActivation, validTexture,
                         hdManifest, diagnose == null ? null : problem => hdProblem = problem) : null) ??
-                        SelectApprovedVersion(this, 13, activation, validTexture, manifest,
-                            diagnose == null ? null : problem => v13Problem = problem);
+                        (inventoryValid ? SelectApprovedVersion(this, 13, activation, validTexture, manifest,
+                            diagnose == null ? null : problem => v13Problem = problem) : null);
                     if (originalSelection == null) diagnose?.Invoke($"V14: {hdProblem}; V13: {v13Problem}");
                     // An incomplete higher-priority HD import must be retried even while V13 is usable.
                     _appearance = originalSelection != null && (originalSelection.IsHd || string.IsNullOrEmpty(hdActivation) || rejectedHdRevision) ? originalSelection : null;
@@ -506,9 +519,12 @@ namespace MmorpgClient.World
             if (rejected.IsOriginalRoster)
             {
                 if (!rejected.IsHd) return null;
-                return SelectOriginalAppearance(Find(rejected.Id),
-                    LoadActivationText($"{OriginalV13Root}/{rejected.Id}/appearance"),
-                    LoadResourceBytes($"{OriginalV13Root}/{rejected.Id}/manifest"), TextureMatches);
+                // 同身份 V13 也只认校验过的清单，与 ResolveAppearance 一致；清单不完整就不退，交给调用方按缺图处理。
+                var folder = $"{OriginalV13Root}/{rejected.Id}";
+                var manifest = LoadResourceBytes(folder + "/manifest");
+                if (!QdaoOriginalHdResourceIndex.IsComplete(folder, HashBytes(manifest), HashBytes(LoadResourceBytes(folder + "/appearance"))))
+                    return null;
+                return SelectOriginalAppearance(Find(rejected.Id), LoadActivationText(folder + "/appearance"), manifest, TextureMatches);
             }
             return SelectFallbackAppearance(rejected, LoadActivationText($"{V12Root}/{rejected.Id}/appearance"), TextureMatches);
         }
@@ -526,7 +542,10 @@ namespace MmorpgClient.World
 
         private static bool TextureMatches(string path, int width, int height)
         {
-            if (path.StartsWith(OriginalV14Root + "/", StringComparison.Ordinal))
+            // 原版人物（V14、V13）都有逐个文件校验过的清单，按清单核对尺寸；为确认完整性去加载纹理，
+            // 会让一张头像带出整套动画帧常驻内存。真正加载帧的地方（世界角色、战斗）仍逐张核对，缺了就回退。
+            if (path.StartsWith(OriginalV14Root + "/", StringComparison.Ordinal) ||
+                path.StartsWith(OriginalV13Root + "/", StringComparison.Ordinal))
                 return QdaoOriginalHdResourceIndex.TextureMatches(path, width, height);
             var texture = Resources.Load<Texture2D>(path);
             return texture != null && texture.width == width && texture.height == height;
@@ -751,6 +770,41 @@ namespace MmorpgClient.World
             CreationPortraitLeases.TryGetValue(sprite, out var count);
             CreationPortraitLeases[sprite] = count + 1;
             return new CreationPortraitLease(sprite, released => ReleaseCreationPortrait(released, releaseTexture));
+        }
+
+        /// <summary>
+        /// 把一个创角头像纹理异步读进内存，读完（不论成败）在主线程调用 completed。只做预取：不发租约、不建 Sprite；
+        /// 要用时仍由 <see cref="AcquireCreationPortrait(string)"/> 同步取，那时纹理已在内存里，不再读盘。
+        /// completed 返回后，纹理若没有被租约、旧接口或缓存持有就立即卸载，所以没人要的预取不会常驻。
+        /// 身份不可新建、资源未就绪或纹理已在缓存里时直接调用 completed，不发起读取。
+        /// </summary>
+        public static void PrefetchCreationPortraitTexture(string id, Action completed)
+            => PrefetchCreationPortraitTexture(id, entry => entry.ResolveCreationAppearance(), LoadTextureAsync,
+                texture => Resources.UnloadAsset(texture), completed);
+
+        public static void PrefetchCreationPortraitTexture(string id, Func<Definition, Appearance> resolveAppearance,
+            Action<string, Action<Texture2D>> loadTextureAsync, Action<Texture2D> releaseTexture, Action completed)
+        {
+            var entry = Find(ResolveVisualId(id));
+            var appearance = entry != null && IsCreatableAppearance(entry.Id) && resolveAppearance != null ? resolveAppearance(entry) : null;
+            bool alreadyLoaded = appearance != null && Portraits.TryGetValue(appearance.CacheKey, out var cached) &&
+                cached != null && cached.texture != null;
+            if (appearance == null || appearance.Id != entry.Id || loadTextureAsync == null || alreadyLoaded)
+            {
+                completed?.Invoke();
+                return;
+            }
+            loadTextureAsync(appearance.ResourceFolder + "/portrait", texture =>
+            {
+                try { completed?.Invoke(); }
+                finally { ReleaseUnusedPortraitTexture(texture, releaseTexture); }
+            });
+        }
+
+        private static void LoadTextureAsync(string path, Action<Texture2D> completed)
+        {
+            var request = Resources.LoadAsync<Texture2D>(path);
+            request.completed += _ => completed(request.asset as Texture2D);
         }
 
         private static Sprite LoadCreationPortraitCore(string id, Func<Definition, Appearance> resolveAppearance,

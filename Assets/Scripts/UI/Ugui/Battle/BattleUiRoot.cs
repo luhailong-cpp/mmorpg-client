@@ -258,6 +258,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnError += HandleClientError;
             _client.OnBattleChannelReady += HandleBattleChannelReady;
             _client.OnBattleChannelFailed += HandleBattleChannelFailed;
+            _client.OnBattleVoidNotice += HandleBattleVoidNotice;
         }
 
         private void UnbindClient()
@@ -275,6 +276,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnError -= HandleClientError;
             _client.OnBattleChannelReady -= HandleBattleChannelReady;
             _client.OnBattleChannelFailed -= HandleBattleChannelFailed;
+            _client.OnBattleVoidNotice -= HandleBattleVoidNotice;
             _client = null;
         }
 
@@ -527,6 +529,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 战斗屏开着:常驻横幅 +「重新连接」已写明原因,不再 toast 同一件事。
             // 屏没开(大厅重连后直连起不来,相位停在 None):toast 一次引起注意,主城入口随之变为「重新连接战斗」
             if (!_battleOpen) ShowToast(message, true);
+        }
+
+        private void HandleBattleVoidNotice(string message)
+        {
+            // 空闲时才会收到(BattleClient.OnBattleVoidNotice):上一局在玩家不在场时被作废,没有战斗屏可收尾,
+            // 也不弹结算面板,提示一句、写进排队面板状态行(开着的话)即可。不是错误,不按错误着色。
+            ShowToast(message);
+            if (_queuePanel != null && _queuePanel.IsVisible) _queuePanel.SetStatus(message);
         }
 
         private void HandleTurnResult(TurnResultS2C result)

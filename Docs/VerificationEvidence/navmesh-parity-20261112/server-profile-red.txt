@@ -1,0 +1,82 @@
+test_diagnostic_raised_foot_point_stays_rejected (test_authored_flat.AuthoredFlatContractTest.test_diagnostic_raised_foot_point_stays_rejected) ... FAIL
+test_generic_obj_keeps_legacy_quantized_height (test_authored_flat.AuthoredFlatContractTest.test_generic_obj_keeps_legacy_quantized_height) ... ok
+test_invalid_profile_parameters_fail_without_output (test_authored_flat.AuthoredFlatContractTest.test_invalid_profile_parameters_fail_without_output) ... ok
+test_nonplanar_obj_is_rejected_before_output (test_authored_flat.AuthoredFlatContractTest.test_nonplanar_obj_is_rejected_before_output) ... FAIL
+test_original_ground_and_nonzero_planes_keep_their_exact_height (test_authored_flat.AuthoredFlatContractTest.test_original_ground_and_nonzero_planes_keep_their_exact_height) ... 
+  test_original_ground_and_nonzero_planes_keep_their_exact_height (test_authored_flat.AuthoredFlatContractTest.test_original_ground_and_nonzero_planes_keep_their_exact_height) (y=0) ... FAIL
+  test_original_ground_and_nonzero_planes_keep_their_exact_height (test_authored_flat.AuthoredFlatContractTest.test_original_ground_and_nonzero_planes_keep_their_exact_height) (y=2.3) ... FAIL
+  test_original_ground_and_nonzero_planes_keep_their_exact_height (test_authored_flat.AuthoredFlatContractTest.test_original_ground_and_nonzero_planes_keep_their_exact_height) (y=-1.3) ... FAIL
+test_profile_reports_shared_and_server_only_parameters (test_authored_flat.AuthoredFlatContractTest.test_profile_reports_shared_and_server_only_parameters) ... FAIL
+test_profile_requires_explicit_original_spawn_probe (test_authored_flat.AuthoredFlatContractTest.test_profile_requires_explicit_original_spawn_probe) ... FAIL
+
+======================================================================
+FAIL: test_diagnostic_raised_foot_point_stays_rejected (test_authored_flat.AuthoredFlatContractTest.test_diagnostic_raised_foot_point_stays_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\luyuan\xuanming-server-mmo-cpp\tools\navmesh_baker\test_authored_flat.py", line 51, in test_diagnostic_raised_foot_point_stays_rejected
+    self.assertIn("OFF MESH", result.stdout)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'OFF MESH' not found in ''
+
+======================================================================
+FAIL: test_nonplanar_obj_is_rejected_before_output (test_authored_flat.AuthoredFlatContractTest.test_nonplanar_obj_is_rejected_before_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\luyuan\xuanming-server-mmo-cpp\tools\navmesh_baker\test_authored_flat.py", line 67, in test_nonplanar_obj_is_rejected_before_output
+    self.assertIn("coplanar", result.stderr)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'coplanar' not found in 'unknown arg: --profile\n'
+
+======================================================================
+FAIL: test_original_ground_and_nonzero_planes_keep_their_exact_height (test_authored_flat.AuthoredFlatContractTest.test_original_ground_and_nonzero_planes_keep_their_exact_height) (y=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\luyuan\xuanming-server-mmo-cpp\tools\navmesh_baker\test_authored_flat.py", line 43, in test_original_ground_and_nonzero_planes_keep_their_exact_height
+    self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : unknown arg: --profile
+
+
+======================================================================
+FAIL: test_original_ground_and_nonzero_planes_keep_their_exact_height (test_authored_flat.AuthoredFlatContractTest.test_original_ground_and_nonzero_planes_keep_their_exact_height) (y=2.3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\luyuan\xuanming-server-mmo-cpp\tools\navmesh_baker\test_authored_flat.py", line 43, in test_original_ground_and_nonzero_planes_keep_their_exact_height
+    self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : unknown arg: --profile
+
+
+======================================================================
+FAIL: test_original_ground_and_nonzero_planes_keep_their_exact_height (test_authored_flat.AuthoredFlatContractTest.test_original_ground_and_nonzero_planes_keep_their_exact_height) (y=-1.3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\luyuan\xuanming-server-mmo-cpp\tools\navmesh_baker\test_authored_flat.py", line 43, in test_original_ground_and_nonzero_planes_keep_their_exact_height
+    self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : unknown arg: --profile
+
+
+======================================================================
+FAIL: test_profile_reports_shared_and_server_only_parameters (test_authored_flat.AuthoredFlatContractTest.test_profile_reports_shared_and_server_only_parameters)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\luyuan\xuanming-server-mmo-cpp\tools\navmesh_baker\test_authored_flat.py", line 92, in test_profile_reports_shared_and_server_only_parameters
+    self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : unknown arg: --profile
+
+
+======================================================================
+FAIL: test_profile_requires_explicit_original_spawn_probe (test_authored_flat.AuthoredFlatContractTest.test_profile_requires_explicit_original_spawn_probe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\luyuan\xuanming-server-mmo-cpp\tools\navmesh_baker\test_authored_flat.py", line 73, in test_profile_requires_explicit_original_spawn_probe
+    self.assertIn("requires at least one explicit --probe", result.stderr)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'requires at least one explicit --probe' not found in 'unknown arg: --profile\n'
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.244s
+
+FAILED (failures=7)

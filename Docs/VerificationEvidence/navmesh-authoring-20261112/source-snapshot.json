@@ -1,0 +1,22 @@
+[
+  {
+    "path": "Assets/Scripts/World/NavigationAuthoring/NavMeshAuthoringDraft.cs",
+    "sha256": "2a6c58941c1ce675e707d525ec08268040e792fdd26dde2864a15e84e6f56894"
+  },
+  {
+    "path": "Assets/Scripts/World/NavigationAuthoring/NavigationPolygonGeometry.cs",
+    "sha256": "e3f3ec9b4ee0ce7486cc52cd9e9acd5f18825c68d9fcb5c4698c42a0f2d6a6a7"
+  },
+  {
+    "path": "Assets/Scripts/World/NavigationAuthoring/NavMeshDraftPreview.cs",
+    "sha256": "712e2a3ad392d4a1226879d110e483da938335bc2d58f90637ace51e100fc5f6"
+  },
+  {
+    "path": "Assets/Editor/NavigationAuthoring/NavMeshAuthoringAssetIO.cs",
+    "sha256": "389ac675f3835a7ae00bf1bad3fd29157bc8a2994f9584f65ff77f6e0fc2d00b"
+  },
+  {
+    "path": "Assets/Editor/NavigationAuthoring/NavMeshAuthoringWindow.cs",
+    "sha256": "20bb0fa87a2e72366d78601249e0a86b0d4be40ee9c13e0c5e6f71a759d69b8d"
+  }
+]

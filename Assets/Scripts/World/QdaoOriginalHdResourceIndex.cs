@@ -116,9 +116,17 @@ namespace MmorpgClient.World
             if (string.IsNullOrEmpty(manifestHash) || string.IsNullOrEmpty(activationHash)) return false;
             var index = Load(folder);
             if (index == null) return false;
-            var revision = manifestHash + ":" + activationHash + ":" + index.validationSha256;
+            var revision = Revision(manifestHash, activationHash, index.validationSha256);
             if (Validated.TryGetValue(folder, out var prior) && prior == revision) return true;
+#if UNITY_EDITOR
+            // 构建器已对同一版本逐个源文件算过摘要并发了证明：只核对结构和 validation.json，不再把整套 PNG 重算一遍。
+            // 没有证明（构建器还没跑完、或测试直接调用）时照旧逐个文件核对。
+            var proven = EditorCreationVerified.TryGetValue(folder, out var verified) && verified == revision;
+            Func<Entry, bool> trustProvenFiles = _ => true;
+            if (!index.Validate(folder, manifestHash, activationHash, proven ? trustProvenFiles : null)) return false;
+#else
             if (!index.Validate(folder, manifestHash, activationHash)) return false;
+#endif
             var validation = Resources.Load<TextAsset>(folder + "/validation");
             if (validation == null) return false;
             using var sha = SHA256.Create();

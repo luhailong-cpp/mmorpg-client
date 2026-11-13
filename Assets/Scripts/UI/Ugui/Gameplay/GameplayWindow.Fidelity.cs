@@ -214,6 +214,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 foreach (var socket in EquipDisplay.SocketsOf(item)) lines.Add(new EquipDetailLine(EquipDisplay.FormatSocketLine(socket), socket.GemConfigId != 0 && socket.Attr != null ? EquipUiSkin.Green : Muted));
             }
             else { lines.Add(new EquipDetailLine("持有数量  " + item.Count, Ink)); lines.Add(new EquipDetailLine("叠放上限  " + item.MaxStack, Ink)); }
+            // 押在还没结算的战斗里的数量(人物背包快照的 held_items):说明这几件为什么暂时交易不了。穿在身上的不在人物背包里,不标。
+            string heldLine = worn ? null : EquipBagModel.HeldLine(_bag, item);
+            if (heldLine != null) lines.Add(new EquipDetailLine(heldLine, Muted));
             bool hasNotice = !string.IsNullOrEmpty(_bagError) || _bagLoading || !string.IsNullOrEmpty(_equipError) || _equipBusy || !string.IsNullOrEmpty(_equipmentNotice);
             float detailsHeight = hasNotice ? 132 : 178;
             var details = NativeScroll(panel, "ItemDetailsScroll", 1276, 482, 467, detailsHeight, detailsHeight, 1, _ => { });

@@ -12,7 +12,8 @@ namespace MmorpgClient.UI.Ugui
     public enum WorldHudEntry
     {
         Role, Pet, Bag, Missions, Activities, Battle, Spectate, Rank,
-        Team, Guild, Social, Mail, Trade, Map, Channel, Skills, MysteryMerchant, TeamFollow
+        Team, Guild, Social, Mail, Trade, Map, Channel, Skills, MysteryMerchant, TeamFollow,
+        BattleScript // 追加在末尾:不挪动已有入口的枚举值
     }
 
     /// <summary>
@@ -497,6 +498,7 @@ namespace MmorpgClient.UI.Ugui
             WorldHudEntry.Rank => "论剑题名", WorldHudEntry.Team => "结伴同行",
             WorldHudEntry.Guild => "同门相聚", WorldHudEntry.Social => "道友往来",
             WorldHudEntry.Mail => "尺素传情", WorldHudEntry.Trade => "寄售寻宝",
+            WorldHudEntry.BattleScript => "运筹帷幄",
             _ => string.Empty
         };
 

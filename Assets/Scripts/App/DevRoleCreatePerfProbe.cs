@@ -194,6 +194,9 @@ namespace MmorpgClient.App
                 if (!AppReady()) { Fail("boot", "AppBootstrap, GameClient.PlayerChooser or RoleFlowUi is not ready"); yield break; }
                 if (DevAutoPilot.IsActive) { Fail("boot", "DevAutoPilot is active; run the probe without -zone"); yield break; }
                 _ui = RoleFlowUi.Instance;
+                // 正式流程里登录、选服要好几秒，候选预解析早已跑完；测速也从这个状态开始，不把它算进开页。
+                for (int frame = 0; frame < BootFrameLimit && !_ui.CreationChoicesPrewarmed; frame++) yield return null;
+                if (!_ui.CreationChoicesPrewarmed) { Fail("boot", "creation choice prewarm did not finish"); yield break; }
                 if (!BindUi()) yield break;
                 _canWaitForEndOfFrame = SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
                 StartRecorders();

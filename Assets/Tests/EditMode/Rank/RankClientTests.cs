@@ -40,7 +40,8 @@ namespace MmorpgClient.Tests.EditMode.Rank
 
         private static GetRankPageResponse Page(uint page, uint pageCount, uint total, params (uint rank, ulong player, string name, long rating)[] rows)
         {
-            var response = new GetRankPageResponse { Board = new RankBoardKey { BoardType = 1, Scope = RankScope.Global, Period = "season", Generation = 7 }, Page = page, PageCount = pageCount, PageSize = RankClient.PageSize, TotalCount = total, Self = new RankEntry() };
+            // 本文件的用例都在默认榜上;回包回显的榜类型必须与请求一致(按榜分开的用例见 RankBoardSelectionTests)。
+            var response = new GetRankPageResponse { Board = Board(), Page = page, PageCount = pageCount, PageSize = RankClient.PageSize, TotalCount = total, Self = new RankEntry() };
             foreach (var row in rows)
                 response.Entries.Add(new RankEntry { Rank = row.rank, EntityId = row.player, Name = row.name, Score = row.rating });
             return response;
@@ -52,7 +53,7 @@ namespace MmorpgClient.Tests.EditMode.Rank
             _client.Load(3);
             Assert.That(_net.Calls, Is.EqualTo(new[] { MessageIds.RankGetRankPage }));
             var request = (GetRankPageRequest)_net.LastRequest;
-            Assert.That(request.Board, Is.EqualTo(RankClient.LatestBoard()));
+            Assert.That(request.Board, Is.EqualTo(RankClient.LatestBoard(RankClient.DefaultBoardType)));
             Assert.That(request.Page, Is.EqualTo(3));
             Assert.That(request.PageSize, Is.EqualTo(RankClient.PageSize));
             // 身份只取 gate 会话(D-9):请求协议里根本没有 player_id 字段。
@@ -114,10 +115,10 @@ namespace MmorpgClient.Tests.EditMode.Rank
             try
             {
                 var window = new RankWindow(view.transform);
-                _client.ReadAround(RankClient.LatestBoard(), 1);
+                _client.ReadAround(RankClient.LatestBoard(RankClient.DefaultBoardType), 1);
                 var around = new GetRankAroundResponse
                 {
-                    Board = new RankBoardKey { BoardType = 1, Scope = RankScope.Global, Period = "season", Generation = 7 }, RankLimit = 10000,
+                    Board = Board(), RankLimit = 10000,
                     Self = new RankEntry { EntityId = _net.PlayerId, Score = 90, BeyondRankLimit = true },
                 };
                 around.Entries.Add(new RankEntry { EntityId = 9, Score = 100, BeyondRankLimit = true });
@@ -403,7 +404,8 @@ namespace MmorpgClient.Tests.EditMode.Rank
         }
 
         // 以下保留本地新版协议的原有三项语义，并覆盖与远端交互合并后的接缝。
-        private static RankBoardKey Board() => new() { BoardType = 1, Scope = RankScope.Global, Period = "season", Generation = 7 };
+        // 默认榜上已解析出代次的榜键(服务端回显);本文件的回包都用它,榜类型与请求一致。
+        private static RankBoardKey Board() => new() { BoardType = RankClient.DefaultBoardType, Scope = RankScope.Global, Period = "season", Generation = 7 };
 
         [Test]
         public void PageAndSelfAreAuthoritativeAndSnapshotsAreDetached()
@@ -498,7 +500,7 @@ namespace MmorpgClient.Tests.EditMode.Rank
             _net.Reply(Page(2, 5, 25));
             Later();
             _client.Refresh();
-            Assert.That(((GetRankPageRequest)_net.LastRequest).Board, Is.EqualTo(RankClient.LatestBoard()));
+            Assert.That(((GetRankPageRequest)_net.LastRequest).Board, Is.EqualTo(RankClient.LatestBoard(RankClient.DefaultBoardType)));
             Assert.That(((GetRankPageRequest)_net.LastRequest).Page, Is.EqualTo(1));
         }
 
@@ -560,7 +562,7 @@ namespace MmorpgClient.Tests.EditMode.Rank
         [Test]
         public void PagingAfterNearbyReadKeepsItsResolvedBoard()
         {
-            _client.ReadAround(RankClient.LatestBoard(), 2);
+            _client.ReadAround(RankClient.LatestBoard(RankClient.DefaultBoardType), 2);
             _net.Reply(new GetRankAroundResponse { Board = Board() });
             Later();
             _client.Load(2);

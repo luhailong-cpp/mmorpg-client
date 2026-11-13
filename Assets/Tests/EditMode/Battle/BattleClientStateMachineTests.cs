@@ -25,6 +25,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private List<BattlePhase> _phases;
         private List<string> _errors;
         private List<string> _channelFailures;
+        private List<string> _voidNotices;
         private int _channelReadies;
         private int _starts;
         private int _turnResults;
@@ -45,6 +46,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _phases = new List<BattlePhase>();
             _errors = new List<string>();
             _channelFailures = new List<string>();
+            _voidNotices = new List<string>();
             _channelReadies = 0;
             _starts = _turnResults = _ends = 0;
             _client.OnPhaseChanged += p => _phases.Add(p);
@@ -54,6 +56,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _client.OnBattleEnd += _ => _ends++;
             _client.OnBattleChannelFailed += t => _channelFailures.Add(t);
             _client.OnBattleChannelReady += () => _channelReadies++;
+            _client.OnBattleVoidNotice += t => _voidNotices.Add(t);
         }
 
         private void UseChannel() => Build(new FakeBattleChannel());
@@ -370,6 +373,98 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             Assert.That(_ends, Is.EqualTo(0), "无战斗上下文的结束消息丢弃");
             Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None));
+            Assert.That(_voidNotices, Is.Empty, "有胜负的终局不是作废,不提示");
+        }
+
+        // ── 本局作废(服务端 docs/design/battle-instance-loss-early-abort.md)──────────────
+
+        /// <summary>作废的终局:outcome = BATTLE_OUTCOME_VOID,settlement 只有身份与展示字段。</summary>
+        private static BattleEndS2C MakeVoidEnd(ulong battleId)
+        {
+            return new BattleEndS2C
+            {
+                BattleId = battleId,
+                Outcome = eBattleOutcome.BattleOutcomeVoid,
+                Settlement = new BattleSettlementData
+                {
+                    BattleId = battleId,
+                    PlayerId = MyId,
+                    Outcome = eBattleOutcome.BattleOutcomeVoid,
+                },
+            };
+        }
+
+        [Test]
+        public void IsVoidEnd_FollowsTheSettlementOutcomeWhenPresent()
+        {
+            Assert.That(BattleClient.IsVoidEnd(null), Is.False);
+            Assert.That(BattleClient.IsVoidEnd(MakeVoidEnd(TheBattleId)), Is.True);
+            Assert.That(BattleClient.IsVoidEnd(new BattleEndS2C { Outcome = eBattleOutcome.BattleOutcomeVoid }), Is.True,
+                "没有结算数据时看终局包自己的 outcome");
+            Assert.That(BattleClient.IsVoidEnd(new BattleEndS2C { Outcome = eBattleOutcome.BattleOutcomeDraw }), Is.False);
+            Assert.That(BattleClient.IsVoidEnd(new BattleEndS2C
+            {
+                Outcome = eBattleOutcome.BattleOutcomeVoid,
+                Settlement = new BattleSettlementData { Outcome = eBattleOutcome.BattleOutcomeSideAWin },
+            }), Is.False, "结算数据在时以它为准,与结算面板同一口径");
+        }
+
+        [Test]
+        public void BattleEnd_Void_DuringBattle_EndsTheBattleThroughOnBattleEnd()
+        {
+            PushBattleStart();
+            _phases.Clear();
+
+            _net.PushNotify(MessageIds.NotifyBattleEnd, MakeVoidEnd(TheBattleId));
+
+            Assert.That(_ends, Is.EqualTo(1), "有上下文的作废照常走 OnBattleEnd,由结算面板按作废展示");
+            Assert.That(_phases, Is.EqualTo(new[] { BattlePhase.Ended, BattlePhase.None }));
+            Assert.That(_client.HasActiveBattle, Is.False, "作废之后不再占着战斗,可以重新排队");
+            Assert.That(_voidNotices, Is.Empty, "已经走结算面板,不再另外提示");
+        }
+
+        [Test]
+        public void BattleEnd_Void_WithoutBattleContext_OnlyRaisesTheNotice()
+        {
+            _net.PushNotify(MessageIds.NotifyBattleEnd, MakeVoidEnd(TheBattleId));
+
+            Assert.That(_ends, Is.EqualTo(0), "没有战斗屏可收尾,不走 OnBattleEnd");
+            Assert.That(_voidNotices, Is.EqualTo(new[] { BattleClient.BattleVoidNoticeText }));
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None));
+        }
+
+        [Test]
+        public void BattleEnd_Void_WhileQueued_IsDiscardedSilently()
+        {
+            _client.Tick(0);
+            _client.JoinQueue(Match.MatchMode.PveSolo, 1);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.Queued));
+
+            _net.PushNotify(MessageIds.NotifyBattleEnd, MakeVoidEnd(TheBattleId));
+
+            Assert.That(_ends, Is.EqualTo(0));
+            Assert.That(_voidNotices, Is.Empty, "排队 / 备战中不打扰");
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.Queued));
+        }
+
+        /// <summary>
+        /// 结算面板的作废说明行:作废的 settlement 没有任何效果,不能按奖励行列出来(那会是一串 +0 和「HP 0 / MP 0」),
+        /// 标题也不能落成「失败」。
+        /// </summary>
+        [Test]
+        public void VoidResultLines_SayNothingAboutRewardsOrPostBattleState()
+        {
+            var lines = BattleResultPanel.BuildVoidLines();
+
+            Assert.That(lines, Is.Not.Empty);
+            foreach (var line in lines)
+            {
+                Assert.That(line, Does.Not.Contain("HP"), "作废没有战后状态");
+                Assert.That(line, Does.Not.Contain("+"), "作废没有任何入账");
+            }
+            Assert.That(BattleResultPanel.VoidTitle, Is.Not.EqualTo("失 败"));
+            Assert.That(BattleResultPanel.BuildRewardLines(MakeVoidEnd(TheBattleId).Settlement),
+                Has.Some.Contains("HP 0"), "反例:作废的结算按奖励行列出来就是这个样子,所以面板必须走作废分支");
         }
 
         // ── 断线与重连补拉 ──────────────────────────────────

@@ -1,0 +1,47 @@
+{
+    "samples": [
+        {
+            "voxel": 0.05000000074505806,
+            "y": 0.02500000037252903,
+            "triangleY": 0.02500000037252903,
+            "heightMesh": false,
+            "found": true
+        },
+        {
+            "voxel": 0.05000000074505806,
+            "y": 0.0,
+            "triangleY": 0.02500000037252903,
+            "heightMesh": true,
+            "found": true
+        },
+        {
+            "voxel": 0.10000000149011612,
+            "y": 0.05000000074505806,
+            "triangleY": 0.05000000074505806,
+            "heightMesh": false,
+            "found": true
+        },
+        {
+            "voxel": 0.10000000149011612,
+            "y": 0.0,
+            "triangleY": 0.05000000074505806,
+            "heightMesh": true,
+            "found": true
+        },
+        {
+            "voxel": 0.20000000298023224,
+            "y": 0.10000000149011612,
+            "triangleY": 0.10000000149011612,
+            "heightMesh": false,
+            "found": true
+        },
+        {
+            "voxel": 0.20000000298023224,
+            "y": 0.0,
+            "triangleY": 0.10000000149011612,
+            "heightMesh": true,
+            "found": true
+        }
+    ],
+    "error": ""
+}

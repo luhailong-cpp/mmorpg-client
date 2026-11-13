@@ -51,6 +51,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             Gameplay.SceneChannelUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
             MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();
             Social.SocialUiRoot.Instance?.HidePanel();
             Mail.MailUiRoot.Instance?.HidePanel();

@@ -186,6 +186,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             AttributeUiRoot.Instance?.HidePanel();
             PetUiRoot.Instance?.HidePanel();
             MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
         }
         /// <summary>
         /// 收到同道历练邀请(GuildClient.TrialInvitePending)时把帮会窗口带到活动页,邀请框由窗口在拿到视图后自己弹出。

@@ -1,0 +1,26 @@
+[
+  {
+    "path": "cpp/libs/services/scene/spatial/comp/authored_nav_bounds.h",
+    "sha256": "f59f0e0c02a12887e65ddfea7a0bbebfbe0f191ec57b9110b6005955dea9f6a7"
+  },
+  {
+    "path": "cpp/libs/services/scene/spatial/comp/nav_comp.h",
+    "sha256": "5bcc562488eee6d89e2edce8cd055bb10e586543f2f23aac1c27c555f8006fa7"
+  },
+  {
+    "path": "cpp/libs/services/scene/spatial/system/navigation.cpp",
+    "sha256": "9af0038549490f273c09bf3d34c2656b7c00bc9d1b8457f08201e9e056f000bb"
+  },
+  {
+    "path": "cpp/libs/services/scene/spatial/system/nav_query.cpp",
+    "sha256": "327eea55f0172d65854493e3528ee151a78fb11bc0b377ff03775efbaa6ef6f0"
+  },
+  {
+    "path": "cpp/libs/services/scene/player/system/asset_op_system.cpp",
+    "sha256": "6a47d070c64f51a76c1964cffea3a39dd3f92eed6e0b7b76c9a71950810961da"
+  },
+  {
+    "path": "cpp/tests/bag_test/festival_navigation_test.cpp",
+    "sha256": "f1b17640252ce96a0695020c4108aee994efa5d3c637aae10fab7cd739725159"
+  }
+]

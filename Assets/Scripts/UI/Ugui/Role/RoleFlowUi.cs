@@ -101,12 +101,18 @@ namespace MmorpgClient.UI.Ugui.Role
         // Ordinary selection cards retain their shared portrait lifetime.
         private System.Func<string, Sprite> _portraitResolver;
         private System.Func<string, QdaoCharacterCatalog.CreationPortraitLease> _creationPortraitAcquire;
+        // 邻居头像的异步预取：参数是人物身份和“纹理已在内存”的回调。null = 按取法自动选（见 PrefetchCreationPortrait），测试可替换。
+        private System.Action<string, System.Action> _creationPortraitPrefetch;
+        // 正在异步读取的身份：同一身份同时只发一个读取，读完移除。
+        private readonly HashSet<string> _creationPortraitPrefetching = new(System.StringComparer.Ordinal);
         private CreationPortraitWindow _creationPortraitWindow;
         private Coroutine _creationPortraitPreload;
         private int _creationPortraitGeneration;
         public int CachedCreationPortraitCount => _creationPortraitWindow?.Count ?? 0;
         public IReadOnlyCollection<string> CachedCreationPortraitIds
             => _creationPortraitWindow?.CachedIds ?? System.Array.Empty<string>();
+        /// <summary>登录期间的候选预解析已走完（或因进了创角页而提前结束）。</summary>
+        public bool CreationChoicesPrewarmed { get; private set; }
         private TMP_Text _appearanceLabel;
         private TMP_Text _appearanceDetails;
 
@@ -136,10 +142,26 @@ namespace MmorpgClient.UI.Ugui.Role
                 DontDestroyOnLoad(go);
                 Instance = go.AddComponent<RoleFlowUi>();
                 Instance.BuildCanvas();
+                Instance.StartCoroutine(Instance.PrewarmCreationChoices());
             }
             if (app != null && app.GameClient != null)
                 app.GameClient.PlayerChooser = Instance.Choose;
             return Instance;
+        }
+
+        /// <summary>
+        /// 登录、选服期间每帧解析一位可新建人物的元数据（读清单、核对索引，不加载纹理），
+        /// 第一次进创角页时候选刷新只剩命中缓存的读取。进了创角页就停，剩下的由开页自己解析。
+        /// </summary>
+        private IEnumerator PrewarmCreationChoices()
+        {
+            foreach (var entry in QdaoCharacterCatalog.CreationOriginalAll)
+            {
+                yield return null;
+                if (_creating) break;
+                _appearanceResolver(entry);
+            }
+            CreationChoicesPrewarmed = true;
         }
 
         private IEnumerator Choose(uint zoneId, IReadOnlyList<AccountSimplePlayer> players,
@@ -180,17 +202,10 @@ namespace MmorpgClient.UI.Ugui.Role
         {
             if (choice.ClassId != 0) _pickedClassId = choice.ClassId;
             if (choice.Gender != 0) _pickedGender = choice.Gender;
-            // 外观按 id 找回它在候选列表里的位置(先按当前资源重建一次候选列表);ShowCreateMode 重建时
-            // 按同一个 id 再对一次;暂不可用的身份仍保留并提示,不得悄悄改成职业默认。
+            // 外观按 id 找回:紧接着的 ShowCreateMode 重建候选时按这个 id 定位它在环里的位置(见 RefreshAppearanceChoices),
+            // 这里不再先重建一遍;暂不可用的身份仍保留并提示,不得悄悄改成职业默认。
             _hasAppearanceSelection = true;
             _pickedAppearanceId = choice.AppearanceId ?? string.Empty;
-            RefreshAppearanceChoices();
-            _appearanceChoice = 0;
-            if (!string.IsNullOrEmpty(choice.AppearanceId))
-            {
-                for (int i = 0; i < _appearanceChoices.Count; i++)
-                    if (_appearanceChoices[i].Id == choice.AppearanceId) _appearanceChoice = i + 1;
-            }
             SetNameWithoutNotify(choice.Name);
         }
 
@@ -498,24 +513,38 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private IEnumerator PreloadCreationPortraits(int generation, string first, string second)
         {
-            // Let the selected portrait reach the screen first. Never touch a neighbor in the
-            // button callback; each later frame loads at most one, a neighbor already in the
-            // window costs no frame, and work for a selection that has moved on is discarded.
+            // Let the selected portrait reach the screen first and never touch a neighbor in the
+            // button callback. Neighbor textures are read asynchronously and adopted when they
+            // arrive; one already in the window or already being read starts nothing.
             yield return null;
             if (!CanPreloadCreationPortraits(generation)) yield break;
-            bool loadedOne = false;
             foreach (var id in new[] { first, second })
             {
-                if (string.IsNullOrEmpty(id) || _creationPortraitWindow.TryGet(id, out _)) continue;
-                if (loadedOne)
-                {
-                    yield return null;
-                    if (!CanPreloadCreationPortraits(generation)) yield break;
-                }
-                using (CreationPortraitProfiling.Preload.Auto()) _creationPortraitWindow.GetOrLoad(id);
-                loadedOne = true;
+                if (string.IsNullOrEmpty(id) || _creationPortraitWindow.TryGet(id, out _) ||
+                    !_creationPortraitPrefetching.Add(id)) continue;
+                using (CreationPortraitProfiling.Preload.Auto())
+                    PrefetchCreationPortrait(id, () => AdoptPrefetchedCreationPortrait(id));
             }
             _creationPortraitPreload = null;
+        }
+
+        private void PrefetchCreationPortrait(string id, System.Action completed)
+        {
+            if (_creationPortraitPrefetch != null) _creationPortraitPrefetch(id, completed);
+            // 注入的取法（测试夹具）不经 Resources，没有可预取的纹理，直接进入收取。
+            else if (_creationPortraitAcquire != null || _portraitResolver != null) completed();
+            else QdaoCharacterCatalog.PrefetchCreationPortraitTexture(id, completed);
+        }
+
+        /// <summary>
+        /// 读完后同步收进窗口，这时纹理已在内存里，不再读盘。读完时页面可能已关、组件已销毁或选择已变：
+        /// 不在当前三人范围里的不收（窗口拒绝），纹理由预取方按无人持有回收。
+        /// </summary>
+        private void AdoptPrefetchedCreationPortrait(string id)
+        {
+            _creationPortraitPrefetching.Remove(id);
+            if (this == null || !_creating || _resolved || _creationPortraitWindow == null) return;
+            using (CreationPortraitProfiling.Preload.Auto()) _creationPortraitWindow.GetOrLoad(id);
         }
 
         private bool CanPreloadCreationPortraits(int generation)

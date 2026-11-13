@@ -1,0 +1,182 @@
+--- before/Assets/Scripts/World/NavigationAuthoring/NavMeshAuthoringDraft.cs
++++ after/Assets/Scripts/World/NavigationAuthoring/NavMeshAuthoringDraft.cs
+@@ -26,6 +26,14 @@
+     /// <summary>Hand-authored polygons for future image maps, independent of the formal map catalog.</summary>
+     public sealed class NavMeshAuthoringDraft : ScriptableObject
+     {
++        // 图片地图使用显式烘焙合同；升级使旧结果失效，不重写作者的草稿内容。
++        public const string BakeContractRevision = "authored-flat-v2";
++        public const int TileSize = 256;
++        public const float MinRegionArea = 0f;
++        public const float GroundPointTolerance = .02f;
++        // 仅服务端使用：Unity未公开可对应配置的垂直体素高度。
++        public const float ServerCellHeight = .2f;
++
+         public string mapKey = "new-map", displayName = "新地图";
+         public Rect worldRect = new Rect(0, 0, 300, 300);
+         public bool boundsConfirmed;
+@@ -46,6 +54,12 @@
+         public Vector2 WorldToPixel(Vector2 world) => new Vector2(
+             (world.x - worldRect.xMin) / worldRect.width * imageWidth,
+             (worldRect.yMax - world.y) / worldRect.height * imageHeight);
++
++        // 与服务端原脚点探针按每轴比较，不能因体素变粗而扩大水平吸附范围。
++        public static bool MatchesGroundPoint(UnityEngine.Vector3 requested, UnityEngine.Vector3 sampled) =>
++            Mathf.Abs(sampled.x - requested.x) <= GroundPointTolerance &&
++            Mathf.Abs(sampled.y - requested.y) <= GroundPointTolerance &&
++            Mathf.Abs(sampled.z - requested.z) <= GroundPointTolerance;
+ 
+         public void Validate(bool requireSpawn = false)
+         {
+@@ -92,7 +106,14 @@
+             settings.agentSlope = agentSlope;
+             settings.overrideVoxelSize = true;
+             settings.voxelSize = voxelSize;
+-            settings.minRegionArea = 0;
++            settings.overrideTileSize = true;
++            settings.tileSize = TileSize;
++            settings.minRegionArea = MinRegionArea;
++            // 高度网格保留源平面的脚点高度，避免普通近似网格上浮半个水平体素。
++            settings.buildHeightMesh = true;
++            // 不继承全局角色类型的自动跨越设置，断开的作者区域须保持断开。
++            settings.ledgeDropHeight = 0;
++            settings.maxJumpAcrossDistance = 0;
+             return settings;
+         }
+ 
+--- before/Assets/Scripts/World/NavigationAuthoring/NavMeshDraftPreview.cs
++++ after/Assets/Scripts/World/NavigationAuthoring/NavMeshDraftPreview.cs
+@@ -280,21 +280,17 @@
+         {
+             point = default;
+             if (!Finite(target.x) || !Finite(target.y)) return false;
+-            float tolerance = SnapTolerance();
+             var position = new UVector3(target.x, 0, target.y);
+-            // The mesh generated from the y=0 source can sit above that plane
+-            // by a voxel. Search vertically, but never snap horizontally to a
+-            // distant polygon or accept a different elevation.
++            // 手绘平面的 HeightMesh 保留原始脚点高度；搜索范围不代表验收容差。
++            // 与服务端探针一样，只接受原地面上下 2cm 内的结果。
+             float sampleRadius = Mathf.Max(_runtimeDraft.agentHeight, _runtimeDraft.voxelSize * 2f);
+-            float verticalTolerance = Mathf.Max(.05f, _runtimeDraft.voxelSize * 2f);
+             if (!NavMesh.SamplePosition(position, out NavMeshHit hit, sampleRadius, _filter) ||
+-                Vector2.Distance(new Vector2(hit.position.x, hit.position.z), target) > tolerance ||
+-                Mathf.Abs(hit.position.y) > verticalTolerance) return false;
++                !NavMeshAuthoringDraft.MatchesGroundPoint(position, hit.position)) return false;
+             point = hit.position;
+             return true;
+         }
+ 
+-        private float SnapTolerance() => Mathf.Max(.01f, _runtimeDraft.voxelSize * .5f);
++        private float SnapTolerance() => NavMeshAuthoringDraft.GroundPointTolerance;
+         private static bool Finite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+ 
+         private void RefreshLine()
+--- before/Assets/Editor/NavigationAuthoring/NavMeshAuthoringAssetIO.cs
++++ after/Assets/Editor/NavigationAuthoring/NavMeshAuthoringAssetIO.cs
+@@ -152,22 +152,25 @@
+             var mesh = NavigationPolygonGeometry.Build(draft);
+             try
+             {
+-                string obj = ToObj(mesh); string nav = Document(draft).ToString() + "\n"; string objHash = Sha(Encoding.UTF8.GetBytes(obj));
+-                var metadata = new JObject { ["format"] = "hand-authored-navmesh-source-v1", ["status"] = "draft",
++                var document = Document(draft);
++                string obj = ToObj(mesh); string nav = document.ToString() + "\n"; string objHash = Sha(Encoding.UTF8.GetBytes(obj));
++                var arguments = ServerBakeArguments(draft);
++                string argumentJson = arguments.ToString() + "\n";
++                var metadata = new JObject { ["format"] = "hand-authored-navmesh-source-v2", ["status"] = "draft",
+                     ["mapKey"] = draft.mapKey, ["geometrySha256"] = objHash, ["authoringSha256"] = Sha(Encoding.UTF8.GetBytes(nav)),
++                    ["serverBakeArgumentsSha256"] = Sha(Encoding.UTF8.GetBytes(argumentJson)),
+                     ["coordinateSystem"] = "Unity Y-up; X/Z ground; OBJ has no axis conversion",
+                     ["boundsConfirmedByAuthor"] = draft.boundsConfirmed, ["serverAcceptance"] = "NOT_RUN",
+-                    ["notes"] = "Unity NavMeshData is not a Detour MSET. Bake this OBJ with the server's own baker; validate paired queries.",
+-                    ["agent"] = Document(draft)["agent"].DeepClone() };
++                    ["notes"] = "Shared source geometry and exposed inputs do not guarantee identical navigation. Unity NavMeshData is not a Detour MSET; validate paired spawn, obstacle, edge and route queries.",
++                    ["agent"] = document["agent"].DeepClone(), ["bakeContract"] = document["bakeContract"].DeepClone() };
+                 Directory.CreateDirectory(output);
+                 Write(output, "world-y-up.obj", obj); Write(output, "navigation.json", nav);
++                Write(output, "server-bake-args.json", argumentJson);
+                 Write(output, "source.json", metadata.ToString() + "\n");
+-                string n(float f) => f.ToString("R", CultureInfo.InvariantCulture);
+-                string command = "navmesh_baker.exe --obj \"world-y-up.obj\" --out \"scene-nav.bin\" --cs " + n(draft.voxelSize) +
+-                    " --ch 0.2 --agent-radius " + n(draft.agentRadius) + " --agent-height " + n(draft.agentHeight) +
+-                    " --agent-climb " + n(draft.agentClimb) + " --tile-size 128 --filter-ledges 1 --probe " + n(draft.spawn.x) + ",0," + n(draft.spawn.y);
++                string command = "navmesh_baker.exe " + string.Join(" ", arguments.Values<string>().Select(a => "\"" + a + "\""));
+                 Write(output, "server-bake-command.txt", "Run from this exported folder with the server's matching UE5-double-ABI baker.\n" + command +
+-                    "\nThe inspected server baker source fixes slope to 50 degrees and --ch to 0.2; it has no slope CLI flag. Verify the executable matches that source and compare spawn/obstacle/route queries on both ends.\n");
++                    "\nMachine-readable arguments are in server-bake-args.json; source.json binds their SHA-256. The authored-flat profile requires a coplanar OBJ and restores its source-plane height.\n" +
++                    "The server cell height 0.2 and region-merge implementation are server-only; Unity does not expose an equivalent cell-height setting. Matching shared parameters does not prove matching queries.\n");
+             }
+             finally { UnityEngine.Object.DestroyImmediate(mesh); }
+         }
+@@ -178,13 +181,47 @@
+                 ["assetPath"] = t.assetPath, ["sha256"] = t.sha256, ["pixelWidth"] = t.pixelWidth, ["pixelHeight"] = t.pixelHeight });
+             var polygons = new JArray(); foreach (var p in d.polygons) { var points = new JArray(); foreach (var v in p.points) points.Add(new JArray(v.x, v.y));
+                 polygons.Add(new JObject { ["name"] = p.name, ["blocked"] = p.blocked, ["points"] = points }); }
+-            return new JObject { ["format"] = "hand-authored-navmesh-v1", ["mapKey"] = d.mapKey, ["displayName"] = d.displayName,
++            return new JObject { ["format"] = "hand-authored-navmesh-v2", ["mapKey"] = d.mapKey, ["displayName"] = d.displayName,
+                 ["imageWidth"] = d.imageWidth, ["imageHeight"] = d.imageHeight, ["imagePixelOrigin"] = "north-west",
+                 ["worldRect"] = new JObject { ["x"] = d.worldRect.x, ["z"] = d.worldRect.y, ["width"] = d.worldRect.width, ["depth"] = d.worldRect.height },
+                 ["boundsConfirmedByAuthor"] = d.boundsConfirmed, ["spawnSet"] = d.spawnSet, ["spawn"] = new JArray(d.spawn.x, 0, d.spawn.y),
+                 ["agent"] = new JObject { ["typeId"] = d.agentTypeId, ["radius"] = d.agentRadius, ["height"] = d.agentHeight,
+-                    ["climb"] = d.agentClimb, ["slope"] = d.agentSlope, ["voxelSize"] = d.voxelSize }, ["tiles"] = tiles, ["polygons"] = polygons };
+-        }
++                    ["climb"] = d.agentClimb, ["slope"] = d.agentSlope, ["voxelSize"] = d.voxelSize },
++                ["bakeContract"] = BakeContract(d), ["tiles"] = tiles, ["polygons"] = polygons };
++        }
++
++        private static JObject BakeContract(NavMeshAuthoringDraft draft)
++        {
++            // 按实际CLI字符串解析为double，与C++烘焙器使用相同的量化输入。
++            double serverClimb = double.Parse(Number(draft.agentClimb), CultureInfo.InvariantCulture);
++            double serverCellHeight = double.Parse(Number(NavMeshAuthoringDraft.ServerCellHeight), CultureInfo.InvariantCulture);
++            double climbVoxels = Math.Floor(serverClimb / serverCellHeight);
++            return new JObject {
++                ["revision"] = NavMeshAuthoringDraft.BakeContractRevision,
++                ["serverProfile"] = "authored-flat", ["tileSizeVoxels"] = NavMeshAuthoringDraft.TileSize,
++                ["minRegionAreaWorld"] = NavMeshAuthoringDraft.MinRegionArea,
++                ["unity"] = new JObject { ["overrideVoxelSize"] = true, ["overrideTileSize"] = true,
++                    ["heightMesh"] = true, ["ledgeDropHeight"] = 0, ["maxJumpAcrossDistance"] = 0,
++                    ["groundPointTolerancePerAxis"] = NavMeshAuthoringDraft.GroundPointTolerance,
++                    ["cellHeight"] = "not exposed by Unity NavMeshBuildSettings" },
++                ["serverOnly"] = new JObject { ["cellHeight"] = NavMeshAuthoringDraft.ServerCellHeight,
++                    ["filterLedges"] = true, ["mergeRegionAreaVoxels"] = 400,
++                    ["walkableClimbVoxels"] = climbVoxels, ["effectiveClimb"] = climbVoxels * serverCellHeight,
++                    ["climbQuantization"] = "floor(agentClimb / cellHeight)",
++                    ["heightPolicy"] = "authored-flat restores the original coplanar OBJ height" },
++                ["queryEquivalence"] = "NOT_PROVEN; paired-query validation required" };
++        }
++
++        private static JArray ServerBakeArguments(NavMeshAuthoringDraft draft)
++            => new JArray("--obj", "world-y-up.obj", "--out", "scene-nav.bin", "--profile", "authored-flat",
++                "--cs", Number(draft.voxelSize), "--ch", Number(NavMeshAuthoringDraft.ServerCellHeight),
++                "--agent-radius", Number(draft.agentRadius), "--agent-height", Number(draft.agentHeight),
++                "--agent-climb", Number(draft.agentClimb), "--agent-slope", Number(draft.agentSlope),
++                "--tile-size", NavMeshAuthoringDraft.TileSize.ToString(CultureInfo.InvariantCulture),
++                "--min-region-area", Number(NavMeshAuthoringDraft.MinRegionArea), "--filter-ledges", "1",
++                "--probe", Number(draft.spawn.x) + ",0," + Number(draft.spawn.y));
++
++        private static string Number(float value) => value.ToString("R", CultureInfo.InvariantCulture);
+ 
+         public static string GeometryHash(NavMeshAuthoringDraft draft)
+         {
+@@ -202,7 +239,7 @@
+             {
+                 var filter = new NavMeshQueryFilter { agentTypeID = draft.agentTypeId, areaMask = NavMesh.AllAreas };
+                 if (!instance.valid || !NavMesh.SamplePosition(new UnityEngine.Vector3(draft.spawn.x, 20000, draft.spawn.y), out var hit, Mathf.Max(draft.agentHeight, draft.voxelSize * 2), filter) ||
+-                    Vector2.Distance(new Vector2(hit.position.x, hit.position.z), draft.spawn) > Mathf.Max(.02f, draft.voxelSize * .5f))
++                    !NavMeshAuthoringDraft.MatchesGroundPoint(new UnityEngine.Vector3(draft.spawn.x, 20000, draft.spawn.y), hit.position))
+                     throw new InvalidOperationException("出生点不在当前NavMesh上，请在绿色区域内重新设置。");
+             }
+             finally { if (instance.valid) instance.Remove(); }
+--- before/Assets/Editor/NavigationAuthoring/NavMeshAuthoringWindow.cs
++++ after/Assets/Editor/NavigationAuthoring/NavMeshAuthoringWindow.cs
+@@ -386,7 +386,7 @@
+             var filter = new NavMeshQueryFilter { agentTypeID = _draft.agentTypeId, areaMask = NavMesh.AllAreas };
+             var position = new UnityEngine.Vector3(world.x, QueryOffset.y, world.y);
+             if (!NavMesh.SamplePosition(position, out var hit, Mathf.Max(_draft.agentHeight, _draft.voxelSize * 2), filter) ||
+-                Vector2.Distance(new Vector2(hit.position.x, hit.position.z), world) > Mathf.Max(.02f, _draft.voxelSize * .5f))
++                !NavMeshAuthoringDraft.MatchesGroundPoint(position, hit.position))
+                 throw new InvalidOperationException("此点不在实际NavMesh上。");
+             if (!_routeStart.HasValue) { _routeStart = new Vector2(hit.position.x, hit.position.z); _route.Clear(); _status = "已选起点，再点终点。"; return; }
+             var start = new UnityEngine.Vector3(_routeStart.Value.x, QueryOffset.y, _routeStart.Value.y); _routeStart = null;

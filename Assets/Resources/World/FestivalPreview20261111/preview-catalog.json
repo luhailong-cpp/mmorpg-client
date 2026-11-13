@@ -1,0 +1,7 @@
+{
+  "maps": [
+    {"mapId":26000,"appearance":"mid-autumn","resourceRoot":"World/FestivalPreview20261111/26000/mid-autumn/","columns":5,"rows":4,"tilePixels":1024,"validRectKnown":false},
+    {"mapId":26008,"appearance":"spring","resourceRoot":"World/FestivalPreview20261111/26008/spring/","columns":4,"rows":3,"tilePixels":1024,"validRectKnown":false},
+    {"mapId":26008,"appearance":"mid-autumn","resourceRoot":"World/FestivalPreview20261111/26008/mid-autumn/","columns":4,"rows":3,"tilePixels":1024,"validRectKnown":false}
+  ]
+}

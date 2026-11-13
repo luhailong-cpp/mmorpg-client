@@ -1,0 +1,73 @@
+{
+  "deliverySha256": "f5cc6fa645f79180b5d1a3a71f279004bc6dbb5101c8c05e15a028de40bd3f79",
+  "maps": [
+    {
+      "approachUnity": [
+        110.921211,
+        0,
+        9.777963
+      ],
+      "blockedTargetUnity": [
+        110.921211,
+        0,
+        7.027963
+      ],
+      "mapKey": "26000-mid-autumn",
+      "rayHitUnity": [
+        110.921211,
+        0,
+        8.277963
+      ],
+      "referenceMsetSha256": "889942f36dd8c272cd4688070a279119709069aa3896bc4e6fa6e6cafcd8ee1f",
+      "result": "PASS",
+      "safeApproachDistance": 23.694477,
+      "safeOneMetreEndUnity": [
+        110.921211,
+        0,
+        32.47244
+      ],
+      "sceneConfigId": 26000,
+      "spawnUnity": [
+        110.921211,
+        0,
+        33.47244
+      ]
+    },
+    {
+      "approachUnity": [
+        103.08192571827907,
+        0,
+        80.62062171390122
+      ],
+      "blockedTargetUnity": [
+        102.02954627927507,
+        0,
+        78.07995299949518
+      ],
+      "mapKey": "26008-spring",
+      "rayHitUnity": [
+        102.50790056973143,
+        0,
+        79.23480241513428
+      ],
+      "referenceMsetSha256": "79673906ee2ce6a47fe7fc51488b5ba9d0e538e0b2d85b240cb88ce15de9557e",
+      "result": "PASS",
+      "safeApproachDistance": 50.74187341142996,
+      "safeOneMetreEndUnity": [
+        122.11731656763492,
+        0,
+        126.5761204674887
+      ],
+      "sceneConfigId": 26008,
+      "spawnUnity": [
+        122.5,
+        0,
+        127.5
+      ]
+    }
+  ],
+  "pairedReportSha256": "f5d962ce762b5af1065c5393dffb8a398bcf5c6115c0a9bf03856f2a8d1769cf",
+  "queryExeSha256": "363c8c4d1e687e63f9209a7f11d1899b9a625e0d683b848f953908e053fc093f",
+  "result": "PASS",
+  "scope": "Offline original authored-map MSET references only; no login or movement network requests"
+}

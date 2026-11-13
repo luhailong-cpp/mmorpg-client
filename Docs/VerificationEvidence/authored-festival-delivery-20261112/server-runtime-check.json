@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "services": [
+    {
+      "service": "gate",
+      "success": true,
+      "differences": [],
+      "imageId": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804",
+      "runtimeDataManifestSha256": "7347baa31da832675bc80b9137f6e14867321af61d19db8ddb199231b423c875",
+      "officialTableManifestSha256": "75373a800f64ce87a3642b08ee1470586ef14d9b8b66d509e01fe88c0f93d904",
+      "sourceCount": 21987
+    },
+    {
+      "service": "scene",
+      "success": true,
+      "differences": [],
+      "imageId": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804",
+      "runtimeDataManifestSha256": "7347baa31da832675bc80b9137f6e14867321af61d19db8ddb199231b423c875",
+      "officialTableManifestSha256": "75373a800f64ce87a3642b08ee1470586ef14d9b8b66d509e01fe88c0f93d904",
+      "sourceCount": 21987
+    },
+    {
+      "service": "battle",
+      "success": true,
+      "differences": [],
+      "imageId": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804",
+      "runtimeDataManifestSha256": "7347baa31da832675bc80b9137f6e14867321af61d19db8ddb199231b423c875",
+      "officialTableManifestSha256": "75373a800f64ce87a3642b08ee1470586ef14d9b8b66d509e01fe88c0f93d904",
+      "sourceCount": 21987
+    },
+    {
+      "service": "login",
+      "success": true,
+      "differences": [],
+      "imageId": "sha256:e759efd7001435b0fdc074d724c373bd00fef5f3948b73e658d1f48e638ba302",
+      "runtimeDataManifestSha256": "7347baa31da832675bc80b9137f6e14867321af61d19db8ddb199231b423c875",
+      "officialTableManifestSha256": "75373a800f64ce87a3642b08ee1470586ef14d9b8b66d509e01fe88c0f93d904",
+      "sourceCount": 750
+    },
+    {
+      "service": "scene-manager",
+      "success": true,
+      "differences": [],
+      "imageId": "sha256:83e7e0ed8dccb993c9cd00c2f6cbd289b133c719a028cc3a7995f956e0ccf4ae",
+      "runtimeDataManifestSha256": "7347baa31da832675bc80b9137f6e14867321af61d19db8ddb199231b423c875",
+      "officialTableManifestSha256": "75373a800f64ce87a3642b08ee1470586ef14d9b8b66d509e01fe88c0f93d904",
+      "sourceCount": 733
+    },
+    {
+      "service": "player-locator",
+      "success": true,
+      "differences": [],
+      "imageId": "sha256:4f14240e43bd5760a03fcf82c56883442ad24d0d82eaf1bd1edc48f3699d14bb",
+      "runtimeDataManifestSha256": "7347baa31da832675bc80b9137f6e14867321af61d19db8ddb199231b423c875",
+      "officialTableManifestSha256": "75373a800f64ce87a3642b08ee1470586ef14d9b8b66d509e01fe88c0f93d904",
+      "sourceCount": 686
+    }
+  ]
+}

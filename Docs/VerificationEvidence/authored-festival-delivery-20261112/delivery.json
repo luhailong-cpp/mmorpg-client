@@ -1,0 +1,654 @@
+{
+  "schemaVersion": 1,
+  "result": "PASS",
+  "scope": "Actual authored-map source export and sampled Unity queries; not whole-map, deployed-server or live-game acceptance",
+  "unityVersion": "6000.6.0f1",
+  "maps": [
+    {
+      "mapKey": "26000-mid-autumn",
+      "sceneId": 26000,
+      "sceneConfigId": 26000,
+      "appearance": "mid-autumn",
+      "authoredAsset": "Assets/MapNavigationDrafts/Festival20261111/26000-mid-autumn.asset",
+      "authoredAssetGuid": "cba6b37b52a47cf4ca0424b245c6b51f",
+      "authoredAssetSha256": "401ce609036473e50afc24c0e35990cde82ff80a8303e8e62f79645417f6fdf2",
+      "sourceAssetPath": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26000-mid-autumn.asset",
+      "sourceAssetSha256": "401ce609036473e50afc24c0e35990cde82ff80a8303e8e62f79645417f6fdf2",
+      "navMeshAsset": "Assets/MapNavigationDrafts/Festival20261111/26000-mid-autumn.navmesh-9d2185138bdcb22c.asset",
+      "navMeshGuid": "c871785b2398fba4cbddeab29609e37a",
+      "navMeshAssetSha256": "afec23c154e96428869cc021bc097ec4e74251638557d9e95db5129acea7540f",
+      "bakedGeometrySha256": "9d2185138bdcb22cd7c296a028d28c93d24b8dd3b48ec96da36b1a7e16ac78d4",
+      "authoringGeometryHash": "9d2185138bdcb22cd7c296a028d28c93d24b8dd3b48ec96da36b1a7e16ac78d4",
+      "isBakeCurrent": true,
+      "worldRect": {
+        "x": 0.0,
+        "z": 0.0,
+        "width": 300.0,
+        "depth": 240.0
+      },
+      "boundsConfirmed": false,
+      "authoredSpawnSet": true,
+      "authoredSpawnUnity": [
+        110.921211,
+        0.0,
+        33.47244
+      ],
+      "testSpawnUnity": [
+        110.921211,
+        0.0,
+        33.47244
+      ],
+      "spawnUnity": [
+        110.921211,
+        0.0,
+        33.47244
+      ],
+      "testSpawnServer": [
+        33.47244,
+        110.921211,
+        0.0
+      ],
+      "spawnReason": "Author-saved spawn, kept unchanged",
+      "candidateCount": 1739,
+      "sampledConnectedGroupSizes": [
+        1739
+      ],
+      "selectedSpawnClearance": 25.17244,
+      "polygons": [
+        {
+          "index": 0,
+          "name": "地面1",
+          "blocked": false,
+          "points": 88
+        },
+        {
+          "index": 1,
+          "name": "障碍2",
+          "blocked": true,
+          "points": 113
+        },
+        {
+          "index": 2,
+          "name": "障碍3",
+          "blocked": true,
+          "points": 23
+        },
+        {
+          "index": 3,
+          "name": "障碍4",
+          "blocked": true,
+          "points": 51
+        },
+        {
+          "index": 4,
+          "name": "障碍5",
+          "blocked": true,
+          "points": 18
+        },
+        {
+          "index": 5,
+          "name": "障碍6",
+          "blocked": true,
+          "points": 30
+        },
+        {
+          "index": 6,
+          "name": "障碍7",
+          "blocked": true,
+          "points": 13
+        },
+        {
+          "index": 7,
+          "name": "障碍8",
+          "blocked": true,
+          "points": 13
+        },
+        {
+          "index": 8,
+          "name": "障碍9",
+          "blocked": true,
+          "points": 5
+        }
+      ],
+      "sourceVertexCount": 9063,
+      "sourceTriangleCount": 3021,
+      "exportDirectory": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\authored-festival-export-20261112\\delivery\\26000-mid-autumn",
+      "sourceJsonSha256": "627418cbf0f686584742014fa2dec23196e4c17d8d2f11f1655f6d255622a6c9",
+      "sourceSha256": "627418cbf0f686584742014fa2dec23196e4c17d8d2f11f1655f6d255622a6c9",
+      "authoringJsonSha256": "2e4a495efa61e471a49891e527b08b72d345259fe99e817f7fe3bc8a1cf72c27",
+      "objSha256": "d74b8e85b812f1037ec6c5ccd5f08cd8e6a81ad49e5ddf853f3650914e93f343",
+      "serverBakeArgumentsSha256": "456e3cf6d2f8726afcb1826655088ab3bd3f641347845caaa4fa9541ba28107b",
+      "unityQueriesSha256": "a2d3e7c088678bcc64211c9caf9f414e23d6e40357fda8a9afdc48f15e30c5f5",
+      "agent": {
+        "typeId": 0,
+        "radius": 0.4,
+        "height": 1.8,
+        "climb": 0.3,
+        "slope": 45.0,
+        "voxelSize": 0.1
+      },
+      "bakeContract": {
+        "revision": "authored-flat-v2",
+        "serverProfile": "authored-flat",
+        "tileSizeVoxels": 256,
+        "minRegionAreaWorld": 0.0,
+        "unity": {
+          "overrideVoxelSize": true,
+          "overrideTileSize": true,
+          "heightMesh": true,
+          "ledgeDropHeight": 0,
+          "maxJumpAcrossDistance": 0,
+          "groundPointTolerancePerAxis": 0.02,
+          "cellHeight": "not exposed by Unity NavMeshBuildSettings"
+        },
+        "serverOnly": {
+          "cellHeight": 0.2,
+          "filterLedges": true,
+          "mergeRegionAreaVoxels": 400,
+          "walkableClimbVoxels": 1.0,
+          "effectiveClimb": 0.2,
+          "climbQuantization": "floor(agentClimb / cellHeight)",
+          "heightPolicy": "authored-flat restores the original coplanar OBJ height"
+        },
+        "queryEquivalence": "NOT_PROVEN; paired-query validation required"
+      },
+      "serverAcceptance": "NOT_RUN",
+      "liveGameAcceptance": "NOT_RUN"
+    },
+    {
+      "mapKey": "26008-spring",
+      "sceneId": 26008,
+      "sceneConfigId": 26008,
+      "appearance": "spring",
+      "authoredAsset": "Assets/MapNavigationDrafts/Festival20261111/26008-spring.asset",
+      "authoredAssetGuid": "4bbc7c586cc5b2843ac3dc1fd1c98a0c",
+      "authoredAssetSha256": "dd1d5f603bd3d1376b3a0631e923839e79477eaa85c3e37837f025223e706bf4",
+      "sourceAssetPath": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-spring.asset",
+      "sourceAssetSha256": "dd1d5f603bd3d1376b3a0631e923839e79477eaa85c3e37837f025223e706bf4",
+      "navMeshAsset": "Assets/MapNavigationDrafts/Festival20261111/26008-spring.navmesh-504096e2f15fb98b.asset",
+      "navMeshGuid": "1492049b46b65574c8f4500302a2a533",
+      "navMeshAssetSha256": "37aa02eae243d1aebe74c27e1adb8bb94b795fb7017af7d939547b0fb1f0637f",
+      "bakedGeometrySha256": "504096e2f15fb98b5de8e0e7a036c13c7d31a9e0adaa17b8927dc8607a3e6609",
+      "authoringGeometryHash": "504096e2f15fb98b5de8e0e7a036c13c7d31a9e0adaa17b8927dc8607a3e6609",
+      "isBakeCurrent": true,
+      "worldRect": {
+        "x": 0.0,
+        "z": 0.0,
+        "width": 300.0,
+        "depth": 225.0
+      },
+      "boundsConfirmed": false,
+      "authoredSpawnSet": false,
+      "authoredSpawnUnity": null,
+      "testSpawnUnity": [
+        122.5,
+        0.0,
+        127.5
+      ],
+      "spawnUnity": [
+        122.5,
+        0.0,
+        127.5
+      ],
+      "testSpawnServer": [
+        127.5,
+        122.5,
+        0.0
+      ],
+      "spawnReason": "Test-only snapshot spawn: maximum edge clearance within the largest sampled PathComplete-connected group; 5-world-unit grid",
+      "candidateCount": 809,
+      "sampledConnectedGroupSizes": [
+        809
+      ],
+      "selectedSpawnClearance": 52.1483536,
+      "polygons": [
+        {
+          "index": 0,
+          "name": "地面1",
+          "blocked": false,
+          "points": 26
+        },
+        {
+          "index": 1,
+          "name": "地面2",
+          "blocked": false,
+          "points": 15
+        },
+        {
+          "index": 2,
+          "name": "地面3",
+          "blocked": false,
+          "points": 16
+        },
+        {
+          "index": 3,
+          "name": "地面4",
+          "blocked": false,
+          "points": 8
+        },
+        {
+          "index": 4,
+          "name": "地面5",
+          "blocked": false,
+          "points": 60
+        },
+        {
+          "index": 5,
+          "name": "地面6",
+          "blocked": false,
+          "points": 24
+        }
+      ],
+      "sourceVertexCount": 2835,
+      "sourceTriangleCount": 945,
+      "exportDirectory": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\authored-festival-export-20261112\\delivery\\26008-spring",
+      "sourceJsonSha256": "066177889eab819566994f733cb6751199baa0230b44786639ae205606600e63",
+      "sourceSha256": "066177889eab819566994f733cb6751199baa0230b44786639ae205606600e63",
+      "authoringJsonSha256": "f34a40ec5532b391bd7750f9612d16b7c01f870c4a522b82c01202568fe36eba",
+      "objSha256": "913daa70771f356617b85dc20435d0f1ef41761985cdae4373ae407ba1bb2263",
+      "serverBakeArgumentsSha256": "9c3a55201de687bf419fb95d853b769f663a6915a8eae058fdeb1dfd6c49c2fe",
+      "unityQueriesSha256": "72c0e5c7c40336f25a2ff0b178e6ab2d216939649eaf2c65e586870343070f65",
+      "agent": {
+        "typeId": 0,
+        "radius": 0.4,
+        "height": 1.8,
+        "climb": 0.3,
+        "slope": 45.0,
+        "voxelSize": 0.1
+      },
+      "bakeContract": {
+        "revision": "authored-flat-v2",
+        "serverProfile": "authored-flat",
+        "tileSizeVoxels": 256,
+        "minRegionAreaWorld": 0.0,
+        "unity": {
+          "overrideVoxelSize": true,
+          "overrideTileSize": true,
+          "heightMesh": true,
+          "ledgeDropHeight": 0,
+          "maxJumpAcrossDistance": 0,
+          "groundPointTolerancePerAxis": 0.02,
+          "cellHeight": "not exposed by Unity NavMeshBuildSettings"
+        },
+        "serverOnly": {
+          "cellHeight": 0.2,
+          "filterLedges": true,
+          "mergeRegionAreaVoxels": 400,
+          "walkableClimbVoxels": 1.0,
+          "effectiveClimb": 0.2,
+          "climbQuantization": "floor(agentClimb / cellHeight)",
+          "heightPolicy": "authored-flat restores the original coplanar OBJ height"
+        },
+        "queryEquivalence": "NOT_PROVEN; paired-query validation required"
+      },
+      "serverAcceptance": "NOT_RUN",
+      "liveGameAcceptance": "NOT_RUN"
+    }
+  ],
+  "sourceProject": "D:\\luyuan\\mmorpg-client",
+  "isolatedProject": "D:\\luyuan\\mmorpg-client\\.codex-artifacts\\authored-festival-export-20261112\\export-project",
+  "contract": "authored-flat-v2",
+  "sourceFiles": [
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26000-mid-autumn.asset",
+      "sha256": "401ce609036473e50afc24c0e35990cde82ff80a8303e8e62f79645417f6fdf2",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26000-mid-autumn.asset.meta",
+      "sha256": "24f596ceaf57883f473df60cfe3e6d6e4bad416f7fd5f8438ddab68db55b312e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26000-mid-autumn.navmesh-9d2185138bdcb22c.asset",
+      "sha256": "afec23c154e96428869cc021bc097ec4e74251638557d9e95db5129acea7540f",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26000-mid-autumn.navmesh-9d2185138bdcb22c.asset.meta",
+      "sha256": "be7a11098c8c6d753a7d28b1a603ace49bb92e80a710b0e7cf7fdf3adc07e62e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c01.png",
+      "sha256": "8a16010f66b4b46fbc805b1deb8c7d505ec9389a7ae545831af87e68dc37d457",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c01.png.meta",
+      "sha256": "8a44fc24738708634e96c2d9bde7ebd8e95b9121c29db42e1aab984cfb53bda5",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c02.png",
+      "sha256": "60fd7310d96c8035e0735adc833d020ebf0c93187a9dcf4217c8af0547d28871",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c02.png.meta",
+      "sha256": "1c6157191ae9a45f7a75d1c6ee0855969d6f02e83d059d47c486e7b702533f77",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c03.png",
+      "sha256": "98b560fba0f1201954ee291c00a4755e42d0a9153204dd29bc07ed0fcc137ef6",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c03.png.meta",
+      "sha256": "6e00b4feadf12a050a7d9d8f42d924c0886f982429cc123385efd7d7f739a714",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c04.png",
+      "sha256": "008559fe9a0a2af8761d4363c72941dfeada4fdb35573be5f43ee4c3b9fff971",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c04.png.meta",
+      "sha256": "827024748677de67002a90ea61f78221e18d1b4a8834e1051d503b625dd04831",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c05.png",
+      "sha256": "a611135a02543f81fa0ae2eee6e4e6a453351ac6b4f1a96e5153ebeb1a529a55",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r01_c05.png.meta",
+      "sha256": "4bc2d4e05296a5e46b74412a4cfb6d4543304a2d8c1e62ae4c403fa289b8ed32",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c01.png",
+      "sha256": "a6b6d2912309b101b71883b5db54f9ba69d3dcb443cfea012957e5996f45f655",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c01.png.meta",
+      "sha256": "db96129751a6114f069160dd3103e2377d0c636a8ce3b737967f847cd4202d40",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c02.png",
+      "sha256": "296ebbbd94358f0ea4ade38281d6f0c6a6f0a0a888117a51ec8218110105dd0a",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c02.png.meta",
+      "sha256": "a17293c559573fdf877ac6529a89b0dfdb6dec420a4dff21749cf37a23840e79",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c03.png",
+      "sha256": "dd0f5fc14efb3850cc61559f77656515709477a4f149fab67af4c04c12491454",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c03.png.meta",
+      "sha256": "c608c65e8aef2069bf4e2c80da1780f275d409bd5fedfbc44efe0a47c308587d",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c04.png",
+      "sha256": "ee83bfb15cbed7c3bf794a65d4336c347e787ec2808cbe35bca06c261bc0362e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c04.png.meta",
+      "sha256": "cea7a4f2d926cc1a6a53cf84c6ce2990e145a2a20b13b1a40ef8d85f8e389b69",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c05.png",
+      "sha256": "ca725c756df287f04c8b7496c29e48c69564d2d9b58b95e9dc61c2742bdc7ff5",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r02_c05.png.meta",
+      "sha256": "2a06f9841b70a54b27c520e765294cb7f2d82f43b5bf3b3c9b9a98657e47eb73",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c01.png",
+      "sha256": "e7e459c9af55ee44b15d7393f604a464de8f7d362113be829c9e8de305f1d350",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c01.png.meta",
+      "sha256": "083ee4c7858345ebba1e070fcb9cdda888ac07a2cc4fb387518e984bf3bda862",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c02.png",
+      "sha256": "1997d5062ff90622648479a153d7ba52a4c4a1c632a4efc10f348d27da50e19e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c02.png.meta",
+      "sha256": "dded4cc85f388a75046999ec57a30b3014fe5acd443885e958f1c1e35dff400d",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c03.png",
+      "sha256": "f554c8ccc9abc13effd7f4fb06e40e3a04d501f07fe13e8ffaacb142195cce61",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c03.png.meta",
+      "sha256": "d0d0a2a6df7b796e22640c091cd4502739ffefedc354d21e31b0a5064f5b9de8",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c04.png",
+      "sha256": "abc95368a1e4894b244f63910ed50c2d5883341b15f42d6d10b1329180e08ea7",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c04.png.meta",
+      "sha256": "e116a12b6d540818c40dbcd1de62b249cda4585bc3c9d92e1188ff1ea5dc79cb",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c05.png",
+      "sha256": "76c2022f31c9ba89b89520004d6628921080a94e583926b0767ed961d5814963",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r03_c05.png.meta",
+      "sha256": "68b7d2b9ea680b4011caefcd4d3135b0ff5a369b3a11820784c4af09034e11f4",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c01.png",
+      "sha256": "623605c215dc1c63a6f8ac2e9ceea6bda57562300deef2d11ae04b8cf627544b",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c01.png.meta",
+      "sha256": "2908815b9b15c3c793e4267bfa8f2b8a601d8bd1239a9110782c7cd2f7596e09",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c02.png",
+      "sha256": "a5bbec5ab0710ac209fa596ccfba5ed202d9465aeb24ef847ddffa7c9d41e9cd",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c02.png.meta",
+      "sha256": "9f58e9621be0139ffaff94b4ed5673605eb28a6cea947ace735ba9bbc5664a79",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c03.png",
+      "sha256": "cf06e27243ccb9c279974b0057e8e8d6fb51ab11a711977eddfb662fc58741c7",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c03.png.meta",
+      "sha256": "4de8cf9f715a28ed9fd54f53fc74c9613fb5304edf36fa8608d72b32f5265ade",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c04.png",
+      "sha256": "4b33c8ff646eb75dc55ae8ebf00543da9817ecb0e349b04e57654b28aaa86d7e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c04.png.meta",
+      "sha256": "682cc9efd17ff84edc2ca52325760e7052b50c8a166bb20f5ad8b180fd2c36bc",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c05.png",
+      "sha256": "0798beda31aa157244a5f8e16ef7418958796b7b45fea7963c4dfd834c9260df",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26000\\mid-autumn\\r04_c05.png.meta",
+      "sha256": "27a20d729d43fd65e8e339748f7ce98e0e3e24564b0bc282725abae000294c3e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-spring.asset",
+      "sha256": "dd1d5f603bd3d1376b3a0631e923839e79477eaa85c3e37837f025223e706bf4",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-spring.asset.meta",
+      "sha256": "2ad5660c65afac9cd2dc74249d7fc7fcb7c183074407655cb94194511b91833d",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-spring.navmesh-504096e2f15fb98b.asset",
+      "sha256": "37aa02eae243d1aebe74c27e1adb8bb94b795fb7017af7d939547b0fb1f0637f",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-spring.navmesh-504096e2f15fb98b.asset.meta",
+      "sha256": "c764c790b999188d7155cb0a07d2197e13da979acd6c11bca23f623314fb58e7",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r01_c01.png",
+      "sha256": "590ed96737c66375902253adcc60da41c9d39d2dbc3ce5f47e485b19b279fbb1",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r01_c01.png.meta",
+      "sha256": "7739e7e4656d52f0f033c44980e7a85fc601134bcf98b77ac94775fa2e3a65d1",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r01_c02.png",
+      "sha256": "c3d92e83538040d2e08c0c42765e2580cda43ca3134b947fd0c1ad289084fe9f",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r01_c02.png.meta",
+      "sha256": "9eec2f92b2b03ef7ceb61ff6d1789c6c5d07c96c09e1face7e055e398af07e0b",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r01_c03.png",
+      "sha256": "3c02fccef564353ebb7c440345df067b82eb5cced1c79d154aa8b9ac8a4a15fa",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r01_c03.png.meta",
+      "sha256": "ea05d228318a0b5ba1b5145c42f91ac3ce3411df2eb9aea6341c8640bb0151f5",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r01_c04.png",
+      "sha256": "d2e5c2ceda6d89b42b4bf26f5e3763425475b480618908151779223bcb41c5f1",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r01_c04.png.meta",
+      "sha256": "a424d43ae43078184250d2e5051c11592e3af8f2231fff4836f4d7d99cff4834",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r02_c01.png",
+      "sha256": "31d1090ad5ab88e4606ca0d550d09e7ab9bda1ed1d542788feccc02831600d2b",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r02_c01.png.meta",
+      "sha256": "bea7f8c00e58bcc634f1a806ba8bce9fb97a1cb6b5233dedff85f9c8bb5240d4",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r02_c02.png",
+      "sha256": "2e0f801e04a50820738217fa0ace5efce18603416f0a98bd8f7b188dad5f310a",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r02_c02.png.meta",
+      "sha256": "a5e42aae3ca491dffbfd2c4a9ceba72b5dae49a17b45a7b127c7aa8b93a78ab1",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r02_c03.png",
+      "sha256": "a8c3e98fc006eeeafc48580a44ecac74991da335a13a1115714447921b9b0cc2",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r02_c03.png.meta",
+      "sha256": "9cdeefd20634f30789e173e279527a0609802b07d0e28ac35d1775cdb2af3e1e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r02_c04.png",
+      "sha256": "a811d1a602e54c821a101b302d293d4bfd7e8f1889806bc863a11be7b4275549",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r02_c04.png.meta",
+      "sha256": "535264c543acfde20bb3a580f57bd7f720a8155b2e3a48407f8360dd32439525",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r03_c01.png",
+      "sha256": "f5023b8cbcd44852d37043b63a52d57d8a12d92f78640b2eec63b16c8efcf45d",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r03_c01.png.meta",
+      "sha256": "d2db4952c2ddb97b0a0454887453d26cc9bab80ff63819437f8551b0ddcb6405",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r03_c02.png",
+      "sha256": "eab376992ba1f9221a83f5ed91ff0d92ea8c3f516a9370dc2b98df6a1bf4737e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r03_c02.png.meta",
+      "sha256": "2e0a051269aea9176639db90bd2e6963e7ab75fef29cdf637c03e28df98f3477",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r03_c03.png",
+      "sha256": "9875b2ba8a82b0d21fa4573e5b8255804eeb66fdad115a75695b867e1463f339",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r03_c03.png.meta",
+      "sha256": "5cfe117bbd145ab9d6ac2e3f2849a98ab9834b3a7a3d5e42c72775c9fbed9b6b",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r03_c04.png",
+      "sha256": "7683e05ac5dec754002161c2f52416dd18fd8a3fea94d6fd2cf10f8157917046",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\Resources\\World\\FestivalPreview20261111\\26008\\spring\\r03_c04.png.meta",
+      "sha256": "85fca5c32ad0372abebe29e85aecfa2692dee7fa97d390f3104bb8a667da7786",
+      "unchanged": true
+    }
+  ],
+  "pairedUnityQueriesSha256": "fb57f7843e000cbad4567733e0549e81f29d7db64e0baf679f68aee3c10c659e"
+}

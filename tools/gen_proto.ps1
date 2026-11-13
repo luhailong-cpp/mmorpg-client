@@ -93,6 +93,14 @@ $files = @(
     # 回合制战斗 + 匹配/切磋(docs/design/turn-based-battle-server.md 一期客户端协议)
     "proto/battle/battle_data.proto",
     "proto/battle/player_battle.proto",
+    # 战斗剧本(docs/design/battle-script.md §7):MatchService 的 389-392 契约
+    # (ListBattleScripts / SubmitBattleScript / DeleteBattleScript / SetBattleScriptLoadout)
+    # 的 8 个请求与响应类型由 match_service.proto 生成到 MatchService.cs。
+    # 本文件生成 BattleScript.cs，提供这些消息依赖的剧本正文类型；漏配会缺少 BattleScript 等类型(CS0246)。
+    "proto/battle/battle_script.proto",
+    # 战斗剧本面板按 match_error 段的 kMatchBattleScript* 等码给出文案(BattleScriptClient.DescribeTip);
+    # 漏配会缺少 match_error 枚举(CS0103)。
+    "generated/code/proto/tip/match_error_tip.proto",
     # 全量 RPC 调用桩包含观战与待确认战斗结果,消息类必须同批生成。
     "proto/gate/gate_client_spectate.proto",
     "proto/scene/player_battle_result.proto",

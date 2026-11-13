@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "nativeTests": 24,
+  "authoredTests": 9,
+  "realOverlayRows": 23,
+  "registered": {
+    "1": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "2": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/penglai_scene.bin",
+    "3": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/donghai_scene.bin",
+    "4": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/lanxian_scene.bin",
+    "5": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "6": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "7": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "8": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "9": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "10": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "11": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "12": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "13": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "14": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "15": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "16": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/main_scene.bin",
+    "17": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/dungeon_scene.bin",
+    "18": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/dungeon_scene.bin",
+    "19": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/dungeon_scene.bin",
+    "20": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/mirror_scene.bin",
+    "21": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/mirror_scene.bin",
+    "26000": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/authored_maps/26000/scene.bin",
+    "26008": "D:/luyuan/xuanming-server-mmo-cpp/data/scene_nav_bin/authored_maps/26008/scene.bin"
+  },
+  "scope": "Real NavigationSystem::LoadNavBins and original-foot-point checks; not live deployment.",
+  "tableJsonSha256": "42f2942a13f5663030e1ebc7c83180bd6a6fe1695ad32169e178d97e48b1fe10"
+}

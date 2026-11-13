@@ -128,7 +128,9 @@ InitTestScene*.unity*
 
 # 本机开发支持文件与离线包，保留在客户端目录内。
 /.mcp.json
-/tools/unity-packages/
+/tools/unity-packages/*
+!/tools/unity-packages/com.unity.ai.navigation-2.0.16.tgz
+!/tools/unity-packages/AI-Navigation-2.0.16.md
 
 # 装备锻造本地验收原始日志与截图；交接文档保留路径引用。
 /Docs/Verification/forge-ui-qa-20261016/

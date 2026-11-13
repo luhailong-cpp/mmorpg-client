@@ -32,6 +32,14 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.ai.navigation": {
+      "version": "file:../tools/unity-packages/com.unity.ai.navigation-2.0.16.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.unity.modules.ai": "1.0.0"
+      }
+    },
     "com.unity.burst": {
       "version": "2.0.0",
       "depth": 1,
@@ -146,6 +154,12 @@
         "com.unity.modules.physics2d": "1.0.0",
         "com.unity.modules.physics": "1.0.0"
       }
+    },
+    "com.unity.modules.ai": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
     },
     "com.unity.modules.androidjni": {
       "version": "1.0.0",

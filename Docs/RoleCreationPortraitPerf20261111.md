@@ -1,6 +1,6 @@
-# 创角页头像窗口：测速与阶段 1 优化（2026-11-11）
+# 创角页头像窗口：测速与优化（2026-11-11～11-12）
 
-本轮只改客户端，未编译、未在 Unity 里运行，待 Codex 验证。服务端和协议不变，Java 版不适用。
+只改客户端，服务端和协议不变，Java 版不适用。11-11 的阶段 0、1 已随客户端 `0ef7a0a6` 提交，编辑器构建器部分随 `8e3687e1` 提交；11-12 的其余改动在 main 工作区。全部未编译、未在 Unity 里运行，待 Codex 验证。
 
 ## 1. 背景与审查结论
 
@@ -8,7 +8,7 @@
 - 创角解析改走索引；
 - 窗口只持有当前人物和左右邻居三张头像。
 
-本次复查结论：
+11-11 复查结论：
 
 - 三人物窗口的逻辑没有发现缺陷，以下几点核对无误：
   - 先释放离开范围的，再加载新的；
@@ -21,17 +21,20 @@
   - 历史回归用的 `QdaoCharacterCatalog` 还含雷法少年。
 - 头像被导入设置强制为不压缩、无 mip，每张 1024² = 4 MiB。客户端 UI 要求与效果图逐像素一致，所以不能靠压缩提速。
 
-## 2. 本轮改动
+负责人 11-11 要求：查出的问题现在就改，不等测速数据，按标准做法定。下面第 2 节就是按这个要求做完的全部改动。
 
-### 阶段 0：测量手段（不改行为）
+## 2. 改动
 
-- `Assets/Scripts/World/CreationPortraitProfiling.cs`（新文件，GUID `8ce22786f9264a5fa688c138d99ca8bb`）：创角页的 `ProfilerMarker`，见下表。名字是测速驱动的读取契约。
-- `RoleFlowUi`、`QdaoCharacterCatalog` 在对应位置挂上这些埋点。
-- `Assets/Scripts/App/DevRoleCreatePerfProbe.cs`（新文件，GUID `30931a78df074737ab410804fe6cb816`）：测速驱动。
+### 2.1 测量手段
+
+- **埋点**：`Assets/Scripts/World/CreationPortraitProfiling.cs`（GUID `8ce22786f9264a5fa688c138d99ca8bb`）定义创角页的 `ProfilerMarker`，见下表。名字是测速驱动的读取契约。`RoleFlowUi`、`QdaoCharacterCatalog` 在对应位置挂上这些埋点。
+- **测速驱动**：`Assets/Scripts/App/DevRoleCreatePerfProbe.cs`（GUID `30931a78df074737ab410804fe6cb816`）。
   - 只编进编辑器和开发版。
-  - 不登录：把假角色列表交给真实的 `GameClient.PlayerChooser`，再调用真实按钮。
+  - 不登录：等登录期预解析跑完，把假角色列表交给真实的 `GameClient.PlayerChooser`，再调用真实按钮。
   - 结束时点“返回”取消，不会创建角色。
-- `QdaoOriginalHdResourceIndexBuilder.RebuildAll` 结束时打一行英文日志：`RebuildAll verified N folders in X ms`，用来量编辑器域重载（含进 Play）时的重建耗时。
+- **编辑器日志**：构建器每次运行都打一行英文耗时日志：
+  - 域重载时：`Domain reload restored N proofs and verified M folders in X ms`；
+  - 全量重验时：`RebuildAll verified N folders in X ms`。
 
 | 埋点 | 覆盖范围 |
 |---|---|
@@ -39,35 +42,88 @@
 | `RoleCreate.RefreshChoices` | 重新解析全部候选 |
 | `RoleCreate.RefreshSelection` | 刷新当前选择，含当前头像的同步加载 |
 | `RoleCreate.ResolveAppearance` | 单个人物的创角解析 |
-| `RoleCreate.LoadPortraitTexture` | 一次头像纹理加载 |
-| `RoleCreate.PreloadNeighbour` | 补载一位邻居 |
+| `RoleCreate.LoadPortraitTexture` | 一次头像纹理同步加载 |
+| `RoleCreate.PreloadNeighbour` | 发起邻居异步读取、读完收进窗口 |
 | `RoleCreate.ReleasePortrait` | 归还一份租约 |
 
-### 阶段 1：三处小改（不动 UI 布局、完整性校验和共享引用规则）
+### 2.2 创角页
 
-1. **邻居预载按翻页方向排序，已缓存的邻居不占帧**（`RoleFlowUi.ScheduleCreationPortraitPreload / PreloadCreationPortraits`）。
-   - 原来固定“先上一位、后下一位”。往后翻时，上一位就是刚才的当前人物，白占一帧，新的下一位要到第 2 帧才加载。
-   - 现在往后翻先补下一位，往前翻先补上一位；开页、切职业或性别时仍是先上后下。
-   - 点击那一帧仍然不碰邻居；之后每帧最多真正加载一位。
-2. **只对“可新建但资源没就绪”定时重试**（`RoleFlowUi._creationAwaitingResources`）。
+1. **邻居改异步预取**（`RoleFlowUi.PreloadCreationPortraits`、`QdaoCharacterCatalog.PrefetchCreationPortraitTexture`）。
+   - 当前人物仍同步加载，保证点下去的那一帧画面里就有图，创建按钮的门控也不变。
+   - 点击那一帧不碰邻居。下一帧起，对缺的邻居发出 `Resources.LoadAsync`，按翻页方向排序：往后翻先读下一位，往前翻先读上一位；开页、切职业或性别时先上后下。
+   - 读完后在主线程同步收进窗口。这时纹理已在内存里，不再读盘。
+   - 只做预取，不发租约。租约仍由原来的同步接口发，所有权规则一处不变。
+   - 读完时如果不再需要（选择已变、页面已关、组件已销毁），窗口拒收；预取方检查到纹理没被任何租约、旧接口或缓存持有，就立即卸载。
+   - 同一身份同时只发一个读取。还在读的时候用户点到它，同步加载会等这次读取完成后拿到同一个纹理。
+   - 做法沿用仓库里 `CityTileStreaming` 的模式：异步读取，读完时没人要就回收。
+2. **登录期预解析候选**（`RoleFlowUi.PrewarmCreationChoices`）。
+   - 客户端启动、挂上选角界面后，每帧解析一位可新建人物的元数据：读清单、核对索引，不加载纹理。
+   - 第一次进创角页时，候选刷新只剩命中缓存的读取。
+   - 进了创角页就停，剩下的由开页自己解析。
+3. **只对“可新建但资源没就绪”定时重试**（`RoleFlowUi._creationAwaitingResources`）。
    - 玄霄的职业默认外观男女都不可新建，这是有意的，有测试守着。
-   - 原来停在这个槽位，每秒会把 11 人全部重新解析一遍，并对约 330 KB 清单做 SHA-256。
-   - 不可新建是代码写死的，等多久都不会变，所以现在只在资源版本变化时刷新。
+   - 原来停在这个槽位，每秒会把 11 人全部重新解析一遍。现在只在资源版本变化时刷新。
    - 候选名单为空时，名单本身还在准备，仍定时重试。
-3. **索引查找改成字典**（`QdaoOriginalHdResourceIndex.FindEntry`，`TextureMatches` 改用它）。
+4. **索引查找改字典**（`QdaoOriginalHdResourceIndex.FindEntry`）。
    - 原来每次查找都扫 137 项，首次开页约 10 万次字符串比较。
    - 重复路径仍以先出现的为准，与逐项扫描结果一致。
    - `entries` 整个数组被替换时，查找表跟着重建。
+5. **服务端退回创建后不再连刷两遍候选**（`RoleFlowUi.RestoreRejectedCreation`）。回填只记下身份，位置由紧接着的开页按同一个 id 定位。
 
-没有采用“按 `ResourceRevision` 缓存候选快照”。`CreationPreviewKeepsVerifiedV13UntilOwnHdIndexIsReady` 等测试要求：HD 索引就绪或清单变化时，即使资源版本号没有推进，也必须被识别出来。按版本号缓存会破坏这条契约。
+### 2.3 同一类问题的其他入口
 
-新增测试（都加在现有测试文件里，没有新增 .meta）：
+1. **`LoadPortrait` 不再为一张头像加载整套动画帧**。
+   - 原版人物的完整解析 `ResolveAppearance` 对 V13 也只认逐个文件校验过的清单：`TextureMatches` 走索引，并且要求 `IsComplete` 通过。
+   - 原来选角卡片、队伍、邀请、战斗头像遇到 V13 人物（00–03），会为一张头像加载 137 张 512² 帧（约 140 MiB），一直留到下次切场景，播放器里也一样。
+   - 真正加载动画帧的世界角色和战斗仍逐张核对，缺了就回退。
+   - 同身份 V13 的回退（`ResolveFallbackAppearance`）同样要求清单完整。
+   - 参数名 `validHdIndex` 改为 `validIndex`，两个版本都适用。
+2. **世界角色不再为检查尺寸加载头像**（`QdaoBoySpriteAnimator.LoadFrameSetWithResources`）。
+   - 原版人物的头像在选外观时已按清单核对过，动画本身不用头像，所以不再为检查去加载 4 MiB。
+   - 旧名单（非原版 V11/V12/V13）没有清单，仍按实图核对。
+3. **守卫测试** `CharacterPortraitTexturesAreLoadedOnlyThroughTheCatalog`。
+   - `Assets/Scripts` 里出现 `".../portrait"` 路径的文件只能是 Catalog 和三个有理由的例外：宠物、怪物、旧名单完整性检查。
+   - 原因：创角窗口和预取会卸载没人持有的头像纹理，只有经 Catalog 取到的引用才在它的持有者名单里。
 
-| 测试 | 文件 | 在旧实现上的结果 |
+### 2.4 编辑器与构建
+
+1. **域重载不再整套重算约 1.2 GB 的 PNG 摘要**（`QdaoOriginalHdResourceIndexBuilder.RestoreOrRebuildAll`）。
+   - 每个文件夹完整校验通过后，把指纹存进 `SessionState`。指纹由三部分组成：规则版本、三份小文档的内容摘要、运行时索引与 137 张图在 AssetDatabase 里的依赖哈希。
+   - 每次重编译、每次进 Play，指纹没变的文件夹直接恢复证明，变了的才全量重算。
+   - 编辑器重启后会话状态清空，第一次仍全量校验。
+   - 依赖哈希随源文件内容、`.meta` 和导入设置变化。Unity 没察觉的源文件改动也进不了运行时用的导入结果，构建前仍逐个文件重算。
+2. **构建器写回索引后不再触发第二次重算**。
+   - 写之前登记“写的是什么”。导入回调看到同一路径、同样内容就跳过。
+   - 内容不同说明是外部改动（例如 git 检出），照常重验。
+3. **构建时资源损坏让构建失败**（`OnPreprocessBuild`）。
+   - 已登记人物有一个校验不通过，就抛 `BuildFailedException`，列出文件夹。原来只删索引，发行包会悄悄少一个人物。
+   - 编辑器里（域重载、导入）只告警，这些人物在运行时显示为不可用。
+4. **完整解析在编辑器里复用证明**（`QdaoOriginalHdResourceIndex.IsComplete`）。
+   - 构建器对同一版本已经逐个文件算过摘要时，只核对结构和 `validation.json`，不再每次资源版本变化后把整套 PNG 重算一遍。
+   - 没有证明时照旧逐个文件核对。
+
+### 2.5 刻意不改的
+
+- **没有采用“按 `ResourceRevision` 缓存候选快照”**。`CreationPreviewKeepsVerifiedV13UntilOwnHdIndexIsReady` 等测试要求：HD 索引就绪或清单变化时，即使资源版本号没推进，也必须被识别。登录期预解析已经把首次开页的冷开销挪走了。
+- **头像不改压缩**：UI 要求逐像素一致。
+- **旧接口长期持有头像**：选角卡片、队伍、战斗的长期持有上限是“本进程显示过的人物数 × 4 MiB”，有界。改成显式租约要动五六个界面，收益只是这几十 MiB 能否提前释放，本轮不做。
+- **全局资源版本号**：播放器里恒定，编辑器导入时窗口最多重载 3 张，代价可接受。
+
+### 2.6 测试
+
+新增或修改的测试都在现有测试文件里，没有新增 `.meta`：
+
+| 测试 | 文件 | 说明 |
 |---|---|---|
-| `CreationWindow_TravelDirectionLoadsMissingNeighbourOnFirstLaterFrame` | `Assets/Tests/PlayMode/QdaoCreationPortraitWindowPlayModeTests.cs` | 往后翻那半段会失败 |
-| `CreationResources_UnreleasedProfessionDefaultDoesNotRescanRosterPeriodically` | `Assets/Tests/PlayMode/QdaoRoleIdentityPlayModeTests.cs` | 会失败 |
-| `IndexEntryLookupKeepsFirstRowAndFollowsReplacedInventory` | `Assets/Tests/EditMode/Tianyong/QdaoOriginalHdAppearanceTests.cs` | — |
+| `CreationWindow_ShowsCurrentImmediatelyAndPrefetchesNeighboursAfterTheClickFrame` | `Assets/Tests/PlayMode/QdaoCreationPortraitWindowPlayModeTests.cs` | 改名改断言：原来要求“每帧补一位”，现在要求点击帧不发读取、下一帧按序发两个读取、读完才收 |
+| `CreationWindow_PrefetchCompletingAfterSelectionMovedOnIsNotAdopted` | 同上 | 新增：读取挂起期间换了人物，迟到的读取不收、同一身份不重复读 |
+| `CreationWindow_TravelDirectionLoadsMissingNeighbourOnFirstLaterFrame` | 同上 | 11-11 新增 |
+| `CreationResources_UnreleasedProfessionDefaultDoesNotRescanRosterPeriodically` | `Assets/Tests/PlayMode/QdaoRoleIdentityPlayModeTests.cs` | 11-11 新增 |
+| `CreationPortraitPrefetchReleasesUnclaimedTextureAndKeepsAdoptedOne` | `Assets/Tests/EditMode/Tianyong/QdaoOriginalHdAppearanceTests.cs` | 新增：没人收的预取立即卸载，收进租约的保留到租约归还，已缓存或不可新建的不发读取 |
+| `OriginalV13NeedsItsOwnVerifiedInventoryBeforeAnyTextureCheck` | 同上 | 新增：V13 清单没校验过就不选、也不逐张核对纹理 |
+| `CharacterPortraitTexturesAreLoadedOnlyThroughTheCatalog` | 同上 | 新增守卫 |
+| `IndexEntryLookupKeepsFirstRowAndFollowsReplacedInventory` | 同上 | 11-11 新增 |
+| `MissingHdIndexDoesNotProbeTexturePixelsAndImportCompletionUpgradesFallback` | 同上 | 改：索引判断现在对 V13 也生效，测试里的索引函数对 V13 文件夹返回 true |
 
 ## 3. 测速驱动用法
 
@@ -97,42 +153,30 @@
 
 ## 4. 验收口径
 
+参考机：Codex 跑测试的开发机。机器信息以 `summary.json` 里记录的为准；定下最低配置后，在那台机器上按同一口径复测一次。
+
 正确性（必须）：
-- 编译通过；指定的 EditMode / PlayMode 集合全部通过，包括第 2 节的三条新测试。
+- 编译通过；指定的 EditMode / PlayMode 集合全部通过，包括 §2.6 的新测试。
+- 构建开发版时，日志里有 `RebuildAll verified 14 folders`，并且构建没有因 `BuildFailedException` 失败。
 - 测速 `summary.json` 里 `passed=true`，即：
   - 任何一帧窗口都不超过 3 张；
   - 每次退出后持有数为 0；
   - 只以取消结束，没有提交创建。
 
-性能（建议值，参考机待负责人指定；先在开发机上测出基线）：
+性能（达标线）：
 
-| 指标 | 来源 | 建议门槛 |
+| 指标 | 来源 | 达标线 |
 |---|---|---|
 | 首次开页 | `open.callbackMs`，10 次新进程 | p95 ≤ 50 ms，且 `open.endOfFrameMs` 那一帧画面里已有当前人物 |
 | 再次开页 | `reopen.callbackMs` | p95 ≤ 16 ms |
-| 切到已预载的人物 | `switch.hit.callbackMs` | p95 ≤ 2 ms |
-| 缺的邻居就位 | `frames.tsv` | 往后、往前翻时，`RoleCreate.PreloadNeighbourMs > 0` 都出现在点击后的下一帧 |
-| 预载帧的额外开销 | `frame.preload.mainThreadMs` p95 − `frame.baseline.mainThreadMs` p50 | ≤ 8 ms，超了就做阶段 2a |
+| 切到已预取的人物 | `switch.hit.callbackMs` | p95 ≤ 2 ms |
+| 预取帧的额外开销 | `frame.preload.mainThreadMs` p95 − `frame.baseline.mainThreadMs` p50 | ≤ 4 ms（读盘在后台线程，主线程只剩发起读取和收进窗口） |
 | 反复开关 | `closed.textureMemoryDriftMb`，50 次开关 | ≤ 4 MiB |
+| 编辑器域重载 | 日志 `Domain reload restored ... in X ms`，同一会话第 2 次起 | ≤ 500 ms，并且 14 个文件夹全部是 restored |
 
 不要拿历史数字当这一版的基线。历史数字跑的是旧副本，样本也有问题。
 
-## 5. 阶段 2（看数据再决定）
+## 5. 仍要做的
 
-- **2a 邻居改异步预载**：只有预载帧的额外开销超过门槛才做。
-  - 只改邻居，当前人物仍同步加载，保证首帧有图，创建按钮的门控也不用变。
-  - 复用 `CityTileStreaming` 的模式：`Resources.LoadAsync` + 引用计数 + 加载完成时没人要就回收。
-  - 加载中的请求占用 3 个名额；退出时还在加载的请求，完成后回收。
-- **2b 首次开页预热**：只有首次开页在播放器里超过门槛才做。在选角页的空闲帧里逐个预先解析候选，只碰元数据，不加载纹理。
-
-## 6. 范围外待办（单开任务）
-
-- **编辑器重建太重**：
-  - 每次域重载都在主线程同步重算 14 个文件夹（约 1.2 GB PNG）的摘要；进 Play 也会重载域。
-  - 索引写回后，同一文件夹还会再算一遍。
-  - 要不要改成“Unity 判定文件变了才重算”，属于完整性策略，需要负责人决定。
-- **构建时资源损坏不报错**：现在只删索引，发行包会悄悄少一个人物。是否改成直接让构建失败，需要负责人决定。
-- **`LoadPortrait` 走完整解析**：
-  - 选角卡片、队伍、邀请、战斗头像都调用它。
-  - V13 人物会为一张头像加载 137 张未压缩帧（约 140 MiB），一直留到下次切场景，播放器里也一样。
-- **`QdaoBoySpriteAnimator` 的尺寸检查**：为了检查尺寸，加载了一整张 4 MiB 头像。
+- 本轮全部改动的编译、测试、开发版构建和测速，见服务端 `docs/PROGRESS.md` 2026-11-12 的创角页条目。
+- 如果测出某项不达标，先看 `frames.tsv` 里是哪个埋点，再改对应实现。达标线不随结果下调。

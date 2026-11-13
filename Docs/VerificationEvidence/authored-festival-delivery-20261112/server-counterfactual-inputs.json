@@ -1,0 +1,12 @@
+[
+  {
+    "source": "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\authored-nav-runtime-20261112\\old-navigation.cpp",
+    "gitSpec": "HEAD:cpp/libs/services/scene/spatial/system/navigation.cpp",
+    "sha256": "9e1712fd408a266d6e5a912a02be02a8e94f59068f02250b29b5c6c4ceab539c"
+  },
+  {
+    "source": "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\authored-nav-runtime-20261112\\old-nav_query.cpp",
+    "gitSpec": "HEAD:cpp/libs/services/scene/spatial/system/nav_query.cpp",
+    "sha256": "21abb44bf2cb9988e42848f5dd7eae7444a1a46d36647fa65d6e88ccf9e1ee68"
+  }
+]

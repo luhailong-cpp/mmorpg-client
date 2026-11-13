@@ -1,0 +1,97 @@
+{
+  "oldExeSha256": "24b84837c8cf127cda51321fa604b606a48895c5dd0e9c687ce862573847aec5",
+  "newExeSha256": "7d22adc031d97385d13cf3b76cd6fd701387a8566ded216cf2499fc4ff8e6fbd",
+  "cases": [
+    {
+      "name": "legacy-mask",
+      "args": [
+        "--mask-base64",
+        "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\legacy-input-mask.txt",
+        "--probe",
+        "250,0,100"
+      ],
+      "outputs": {
+        "old": {
+          "nav": "fa20415af52cbd041c465cab5da55105c16fb38435cfb4bad8cc49204a865836"
+        },
+        "new": {
+          "nav": "fa20415af52cbd041c465cab5da55105c16fb38435cfb4bad8cc49204a865836"
+        }
+      },
+      "byteIdentical": true
+    },
+    {
+      "name": "legacy-rect-mask",
+      "args": [
+        "--mask-base64",
+        "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\legacy-rect-mask.txt",
+        "--mask-grid",
+        "13,7,2,10,20,25.5,13.5",
+        "--effective-rect",
+        "12,20,22,13.5",
+        "--probe",
+        "15,0,32.75"
+      ],
+      "outputs": {
+        "old": {
+          "nav": "1f3ab7285465a79fc6101e18b7d62dadf9cfe467b09867bd3050e87e8d988919",
+          "mask": "6787161b7bf764aae9211059e335b6da1de710116fa56e65397f148d3dde9ac2"
+        },
+        "new": {
+          "nav": "1f3ab7285465a79fc6101e18b7d62dadf9cfe467b09867bd3050e87e8d988919",
+          "mask": "6787161b7bf764aae9211059e335b6da1de710116fa56e65397f148d3dde9ac2"
+        }
+      },
+      "byteIdentical": true
+    },
+    {
+      "name": "generic-obj",
+      "args": [
+        "--obj",
+        "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\legacy-input.obj",
+        "--probe",
+        "3,0.2,6"
+      ],
+      "outputs": {
+        "old": {
+          "nav": "ef9574ea385723dfea213190a5a850e4fa2ec8793cf3900809c71aebeb13c3e9"
+        },
+        "new": {
+          "nav": "ef9574ea385723dfea213190a5a850e4fa2ec8793cf3900809c71aebeb13c3e9"
+        }
+      },
+      "byteIdentical": true
+    }
+  ],
+  "original-height-red": {
+    "args": [
+      "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\legacy-navmesh_baker.exe",
+      "--obj",
+      "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\legacy-input.obj",
+      "--probe",
+      "3,0,6",
+      "--out",
+      "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\original-height-red.bin"
+    ],
+    "exitCode": 1,
+    "stdout": "ledge filter: on\nobj geometry: 4 verts, 2 tris\nbounds: (0.00 -0.20 0.00)-(20.00 2.00 20.00), tiles 1x1\nbuilt 1 tiles\nprobe unity=(3.00,0.00,6.00) server=(6.00,3.00,0.00): OFF MESH\n",
+    "stderr": "error: probe point(s) off the navmesh, refusing to write D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\original-height-red.bin (spawn contract broken \u2014 check mask/coordinate mapping)\n"
+  },
+  "authored-height-green": {
+    "args": [
+      "D:\\luyuan\\xuanming-server-mmo-cpp\\tools\\navmesh_baker\\build\\authored-flat-20261112\\Release\\navmesh_baker.exe",
+      "--obj",
+      "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\legacy-input.obj",
+      "--profile",
+      "authored-flat",
+      "--probe",
+      "3,0,6",
+      "--out",
+      "D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\authored-height-green.bin"
+    ],
+    "exitCode": 0,
+    "stdout": "ledge filter: on\nobj geometry: 4 verts, 2 tris\nbake config: profile=authored-flat cs=0.25 ch=0.20000000000000001 agent_radius=0 agent_height=1.8 agent_climb=0.34999999999999998 agent_slope=45 tile_size=256 min_region_area=0 merge_region_area=25 ground_y=0 walkable_radius_voxels=0 walkable_height_voxels=9 walkable_climb_voxels=1\nbounds: (0.00 -0.20 0.00)-(20.00 2.00 20.00), tiles 1x1\nbuilt 1 tiles\nprobe unity=(3.00,0.00,6.00) server=(6.00,3.00,0.00): ON MESH nearest=(3.00,0.00,6.00) poly=1048576\nsaved D:\\luyuan\\xuanming-server-mmo-cpp\\build\\verification\\navmesh-authored-flat-20261112\\authored-height-green.bin: 1 tiles\n",
+    "stderr": ""
+  },
+  "passed": true
+}

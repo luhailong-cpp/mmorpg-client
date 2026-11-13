@@ -270,6 +270,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             Pet.PetUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
             MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
             Gameplay.GameplayUiRoot.Instance?.HidePanel();
             if (_root != null) _root.gameObject.SetActive(true);
             CloseSchemeList();

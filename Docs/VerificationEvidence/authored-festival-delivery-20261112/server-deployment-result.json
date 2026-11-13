@@ -1,0 +1,96 @@
+{
+  "success": true,
+  "executeRequested": true,
+  "configurationUpdated": true,
+  "completedPhases": [
+    [
+      "gate",
+      "scene",
+      "battle"
+    ],
+    [
+      "login-sql-boot",
+      "scene-manager",
+      "player-locator",
+      "login"
+    ]
+  ],
+  "attemptedPhases": [
+    [
+      "gate",
+      "scene",
+      "battle"
+    ],
+    [
+      "login-sql-boot",
+      "scene-manager",
+      "player-locator",
+      "login"
+    ]
+  ],
+  "containerUpdateStarted": true,
+  "envAfterSha256": "d369f9f83fd2d1bcf4574c4c21feea1f72f54f25d41a4083aea510b05d5abf6a",
+  "status": "DEPLOYED_AND_VERIFIED",
+  "beforeImages": {
+    "battle": "sha256:23a5d8248dc70625516a0a0bc376a6238050ace2d7803f3bd1d987d3a0eaa515",
+    "client-rpc-router": "sha256:5f85a1e726ef8efefe61475cf9651c2d228207199663b05d2b6253632aa0cfaf",
+    "data-migrate": "sha256:2c48342348a07ed4c5cf2fb1e768a288e081708d915a340429cd5156bc993ab2",
+    "data-service": "sha256:2c48342348a07ed4c5cf2fb1e768a288e081708d915a340429cd5156bc993ab2",
+    "data-service-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "db": "sha256:5315e07a37a129b307428dff31279b014c99af8f4b4a2f767c8a1dd14ed405c4",
+    "db-migrate": "sha256:d69d401611cf7e5e7bcd8276eabbaf4e7848d010daee457fec070174bfbc816f",
+    "db-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "etcd": "sha256:a9c7cc12156f4b26ca41f0b57ba5b76c45037ff6c1e47ea3d68cb7908d48a965",
+    "gateway": "sha256:ca65a520877342c873ce1563639c73a4669ab622a78e71abf158066a8b2550f5",
+    "gateway-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "kafka": "sha256:77e3df9054047a88b520d0cc46e16696d3b22022e1d580aeccd2632df6532837",
+    "kafka-init": "sha256:77e3df9054047a88b520d0cc46e16696d3b22022e1d580aeccd2632df6532837",
+    "login": "sha256:e759efd7001435b0fdc074d724c373bd00fef5f3948b73e658d1f48e638ba302",
+    "login-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "match": "sha256:3b06793bf1261edb3f42fb9c0d43cce0babd91bb83ceb75b48da737c21724ab6",
+    "match-migrate": "sha256:3b06793bf1261edb3f42fb9c0d43cce0babd91bb83ceb75b48da737c21724ab6",
+    "match-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "mysql": "sha256:893418c8a7a34c60d2d961cc30ef136095da141478562ed2101ae3f5faba9c3f",
+    "player-inbox": "sha256:f99f6976e4a6399581e218293ee30bce9130b7bd5731b4aff4b9d7f5313c654d",
+    "player-inbox-migrate": "sha256:f99f6976e4a6399581e218293ee30bce9130b7bd5731b4aff4b9d7f5313c654d",
+    "player-inbox-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "player-locator": "sha256:4f14240e43bd5760a03fcf82c56883442ad24d0d82eaf1bd1edc48f3699d14bb",
+    "redis": "sha256:46f15cf64fdef63e483dcda99e74e3d51c017b1175547b6bb874152ee2391aad",
+    "scene-manager": "sha256:83e7e0ed8dccb993c9cd00c2f6cbd289b133c719a028cc3a7995f956e0ccf4ae",
+    "sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "history:0c7f861c8ad390fcefae0fd3a739ba9372ced5648ee2c4c1c77deae478e4d753": "sha256:c2c2bfa60e36f63ff43faf32feda05c610dd088114d331da8f4d2434d192e401",
+    "gate": "sha256:23a5d8248dc70625516a0a0bc376a6238050ace2d7803f3bd1d987d3a0eaa515",
+    "scene": "sha256:23a5d8248dc70625516a0a0bc376a6238050ace2d7803f3bd1d987d3a0eaa515"
+  },
+  "afterImages": {
+    "battle": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804",
+    "client-rpc-router": "sha256:5f85a1e726ef8efefe61475cf9651c2d228207199663b05d2b6253632aa0cfaf",
+    "data-migrate": "sha256:2c48342348a07ed4c5cf2fb1e768a288e081708d915a340429cd5156bc993ab2",
+    "data-service": "sha256:2c48342348a07ed4c5cf2fb1e768a288e081708d915a340429cd5156bc993ab2",
+    "data-service-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "db": "sha256:5315e07a37a129b307428dff31279b014c99af8f4b4a2f767c8a1dd14ed405c4",
+    "db-migrate": "sha256:d69d401611cf7e5e7bcd8276eabbaf4e7848d010daee457fec070174bfbc816f",
+    "db-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "etcd": "sha256:a9c7cc12156f4b26ca41f0b57ba5b76c45037ff6c1e47ea3d68cb7908d48a965",
+    "gateway": "sha256:ca65a520877342c873ce1563639c73a4669ab622a78e71abf158066a8b2550f5",
+    "gateway-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "kafka": "sha256:77e3df9054047a88b520d0cc46e16696d3b22022e1d580aeccd2632df6532837",
+    "kafka-init": "sha256:77e3df9054047a88b520d0cc46e16696d3b22022e1d580aeccd2632df6532837",
+    "login": "sha256:e759efd7001435b0fdc074d724c373bd00fef5f3948b73e658d1f48e638ba302",
+    "login-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "match": "sha256:3b06793bf1261edb3f42fb9c0d43cce0babd91bb83ceb75b48da737c21724ab6",
+    "match-migrate": "sha256:3b06793bf1261edb3f42fb9c0d43cce0babd91bb83ceb75b48da737c21724ab6",
+    "match-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "mysql": "sha256:893418c8a7a34c60d2d961cc30ef136095da141478562ed2101ae3f5faba9c3f",
+    "player-inbox": "sha256:f99f6976e4a6399581e218293ee30bce9130b7bd5731b4aff4b9d7f5313c654d",
+    "player-inbox-migrate": "sha256:f99f6976e4a6399581e218293ee30bce9130b7bd5731b4aff4b9d7f5313c654d",
+    "player-inbox-sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "player-locator": "sha256:4f14240e43bd5760a03fcf82c56883442ad24d0d82eaf1bd1edc48f3699d14bb",
+    "redis": "sha256:46f15cf64fdef63e483dcda99e74e3d51c017b1175547b6bb874152ee2391aad",
+    "scene-manager": "sha256:83e7e0ed8dccb993c9cd00c2f6cbd289b133c719a028cc3a7995f956e0ccf4ae",
+    "sql-boot": "sha256:abaf47f0203c5cfe91f36c5c138c7082e5cb7bd5ea9fe46ccf932d36b01cf942",
+    "history:0c7f861c8ad390fcefae0fd3a739ba9372ced5648ee2c4c1c77deae478e4d753": "sha256:c2c2bfa60e36f63ff43faf32feda05c610dd088114d331da8f4d2434d192e401",
+    "gate": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804",
+    "scene": "sha256:bfb8190e6ec06cfb9a4f14e1899868b55bec9d0f843cae119858a8262d342804"
+  }
+}

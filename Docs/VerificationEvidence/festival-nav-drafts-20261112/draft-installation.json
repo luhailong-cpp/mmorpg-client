@@ -1,0 +1,49 @@
+{
+  "result": "PASS",
+  "installedUtc": "2026-11-12T08:57:58.9109012Z",
+  "existingTargetsOverwritten": false,
+  "files": [
+    {
+      "path": "Assets/MapNavigationDrafts/Festival20261111/26000-mid-autumn.asset.meta",
+      "sha256": "24f596ceaf57883f473df60cfe3e6d6e4bad416f7fd5f8438ddab68db55b312e",
+      "bytes": 189,
+      "initialSha256": "24f596ceaf57883f473df60cfe3e6d6e4bad416f7fd5f8438ddab68db55b312e"
+    },
+    {
+      "path": "Assets/MapNavigationDrafts/Festival20261111/26000-mid-autumn.asset",
+      "sha256": "b2c7bd012fbf692206c5ce40703ac45f77f42703d5b032c0119dab83d4ca1085",
+      "bytes": 7235,
+      "initialSha256": "3d9721cba1a3c7e24d046ffebf7ebaf7144410d024c6c3d260ff006423c35ed5",
+      "matchesMainAssemblyTestedBlankDraft": true
+    },
+    {
+      "path": "Assets/MapNavigationDrafts/Festival20261111/26008-spring.asset.meta",
+      "sha256": "2ad5660c65afac9cd2dc74249d7fc7fcb7c183074407655cb94194511b91833d",
+      "bytes": 189,
+      "initialSha256": "2ad5660c65afac9cd2dc74249d7fc7fcb7c183074407655cb94194511b91833d"
+    },
+    {
+      "path": "Assets/MapNavigationDrafts/Festival20261111/26008-spring.asset",
+      "sha256": "efd17e907c8a911ebd1f50713e57710f26c47da2c1da94ccaf64b1bae613094a",
+      "bytes": 4651,
+      "initialSha256": "847721b793e27de6d89f2fc4ce5abbc0a5449695725e2f4999a14055275682ce",
+      "matchesMainAssemblyTestedBlankDraft": true
+    },
+    {
+      "path": "Assets/MapNavigationDrafts/Festival20261111/26008-mid-autumn.asset.meta",
+      "sha256": "d026a633476233de8f9ba520a27b3cac7fa83d8b4b632eb3d55a219995ba56e3",
+      "bytes": 189,
+      "initialSha256": "d026a633476233de8f9ba520a27b3cac7fa83d8b4b632eb3d55a219995ba56e3"
+    },
+    {
+      "path": "Assets/MapNavigationDrafts/Festival20261111/26008-mid-autumn.asset",
+      "sha256": "0848d836f642063db4c4cf9e8e94c93a6cb54df2a21222f9bc4d44a53fb1025c",
+      "bytes": 4707,
+      "initialSha256": "c7bf206cc7755d7fe447294651bdbd41681c2241a29523c94644e067f6716b83",
+      "matchesMainAssemblyTestedBlankDraft": true
+    }
+  ],
+  "serializationClassIdentifier": "MmorpgClient::MmorpgClient.World.NavigationAuthoring.NavMeshAuthoringDraft",
+  "correctedFieldOnly": "m_EditorClassIdentifier",
+  "assemblyCorrectionUtc": "2026-11-12T09:03:39.1771126Z"
+}

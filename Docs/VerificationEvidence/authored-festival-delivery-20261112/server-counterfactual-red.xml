@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="9" failures="9" disabled="0" errors="0" time="0.103" timestamp="2026-11-12T09:21:01.183" name="AllTests">
+  <testsuite name="AuthoredNavigationTest" tests="9" failures="9" disabled="0" skipped="0" errors="0" time="0.102" timestamp="2026-11-12T09:21:01.183">
+    <testcase name="RealLoaderRegistersRequiredNavWithoutLegacyMask" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="227" status="run" result="completed" time="0.01" timestamp="2026-11-12T09:21:01.183" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:232&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:232
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+    </testcase>
+    <testcase name="MissingContractRejectsRegistrationAndEntry" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="237" status="run" result="completed" time="0.009" timestamp="2026-11-12T09:21:01.194" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382256AD0&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382256AD0
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+    </testcase>
+    <testcase name="MissingChecksumsRejectsRegistrationAndEntry" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="240" status="run" result="completed" time="0.009" timestamp="2026-11-12T09:21:01.204" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382256AD0&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382256AD0
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+    </testcase>
+    <testcase name="CorruptNavIsRejectedBeforeDetourParse" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="243" status="run" result="completed" time="0.009" timestamp="2026-11-12T09:21:01.214" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+    </testcase>
+    <testcase name="CorruptContractChecksumIsRejected" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="247" status="run" result="completed" time="0.009" timestamp="2026-11-12T09:21:01.223" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382277300&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382277300
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+    </testcase>
+    <testcase name="ResidualLegacyMaskIsRejected" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="251" status="run" result="completed" time="0.013" timestamp="2026-11-12T09:21:01.233" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382277300&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382277300
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+    </testcase>
+    <testcase name="InvalidSignedContractCannotChangeGroundOrIgnoreTrailingGarbage" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="254" status="run" result="completed" time="0.018" timestamp="2026-11-12T09:21:01.247" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382277300&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382277300
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382277300&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382277300
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382277300&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382277300
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382277300&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382277300
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382277300&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382277300
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 0000017382277300&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 0000017382277300
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+    </testcase>
+    <testcase name="OriginalGroundToleranceRejectsThreeCentimeterOrRaisedFootPoint" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="261" status="run" result="completed" time="0.008" timestamp="2026-11-12T09:21:01.265" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:267&#x0A;Value of: NavQuerySystem::SnapToMesh(*nav, target, accepted)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:267
+Value of: NavQuerySystem::SnapToMesh(*nav, target, accepted)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:268&#x0A;Value of: NavQuerySystem::ValidateMove(*nav, spawn, target, accepted)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:268
+Value of: NavQuerySystem::ValidateMove(*nav, spawn, target, accepted)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:267&#x0A;Value of: NavQuerySystem::SnapToMesh(*nav, target, accepted)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:267
+Value of: NavQuerySystem::SnapToMesh(*nav, target, accepted)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:268&#x0A;Value of: NavQuerySystem::ValidateMove(*nav, spawn, target, accepted)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:268
+Value of: NavQuerySystem::ValidateMove(*nav, spawn, target, accepted)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:267&#x0A;Value of: NavQuerySystem::SnapToMesh(*nav, target, accepted)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:267
+Value of: NavQuerySystem::SnapToMesh(*nav, target, accepted)
+  Actual: true
+Expected: false
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:268&#x0A;Value of: NavQuerySystem::ValidateMove(*nav, spawn, target, accepted)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:268
+Value of: NavQuerySystem::ValidateMove(*nav, spawn, target, accepted)
+  Actual: true
+Expected: false
+]]></failure>
+    </testcase>
+    <testcase name="HalfOpenBoundsRejectExactEastEdgeAndOutside" file="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp" line="271" status="run" result="completed" time="0.011" timestamp="2026-11-12T09:21:01.274" classname="AuthoredNavigationTest">
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78&#x0A;Expected equality of these values:&#x0A;  nullptr&#x0A;    Which is: NULL&#x0A;  SceneNavManager::Instance().Get(SceneId())&#x0A;    Which is: 00000173828E1940&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:78
+Expected equality of these values:
+  nullptr
+    Which is: NULL
+  SceneNavManager::Instance().Get(SceneId())
+    Which is: 00000173828E1940
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79&#x0A;Value of: NavQuerySystem::RequiresNavigation(SceneId())&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:79
+Value of: NavQuerySystem::RequiresNavigation(SceneId())
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82&#x0A;Expected equality of these values:&#x0A;  kServiceUnavailable&#x0A;    Which is: 1003&#x0A;  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)&#x0A;    Which is: 1000&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:82
+Expected equality of these values:
+  kServiceUnavailable
+    Which is: 1003
+  PlayerSceneSystem::CheckEnterScene(Guid{42}, scene)
+    Which is: 1000
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85&#x0A;Value of: NavQuerySystem::MissingRequiredNavigation(actor)&#x0A;  Actual: false&#x0A;Expected: true&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:85
+Value of: NavQuerySystem::MissingRequiredNavigation(actor)
+  Actual: false
+Expected: true
+]]></failure>
+      <failure message="D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89&#x0A;Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)&#x0A;  Actual: true&#x0A;Expected: false&#x0A;" type=""><![CDATA[D:\luyuan\xuanming-server-mmo-cpp\cpp\tests\bag_test\festival_navigation_test.cpp:89
+Value of: MovementSystem::TeleportWithinScene(actor,target,Rotation(),kTeleportReasonTeamRegroup)
+  Actual: true
+Expected: false
+]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

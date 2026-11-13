@@ -259,6 +259,58 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void CreationPortraitPrefetchReleasesUnclaimedTextureAndKeepsAdoptedOne()
+        {
+            var manifest = Manifest();
+            string Metadata(string path) => !path.Contains("V14/") ? null : path.EndsWith("/manifest") ? manifest : Approval(manifest);
+            byte[] Resource(string path) { var value = Metadata(path); return value == null ? null : Bytes(value); }
+            QdaoCharacterCatalog.Appearance Resolve(QdaoCharacterCatalog.Definition definition)
+                => definition.ResolveCreationAppearance(Metadata, Resource, (folder, _, _) => folder.Contains("V14/"), (_, _, _) => true);
+            var texture = new Texture2D(1024, 1024);
+            var requests = new List<string>();
+            var released = new List<Texture2D>();
+            Action<Texture2D> pending = null;
+            void LoadAsync(string path, Action<Texture2D> completed) { requests.Add(path); pending = completed; }
+            QdaoCharacterCatalog.CreationPortraitLease lease = null;
+            try
+            {
+                // 读完没人收：立即卸载，预取不留常驻。
+                int completions = 0;
+                QdaoCharacterCatalog.PrefetchCreationPortraitTexture(Id, Resolve, LoadAsync, released.Add, () => completions++);
+                Assert.That(requests, Is.EqualTo(new[] { QdaoCharacterCatalog.OriginalV14Root + "/" + Id + "/portrait" }));
+                Assert.That(completions, Is.Zero, "Completion waits for the asynchronous read.");
+                pending(texture);
+                Assert.That(completions, Is.EqualTo(1));
+                Assert.That(released, Is.EqualTo(new[] { texture }));
+
+                // 读完时收进租约：纹理被持有，预取不卸载；租约归还时才卸载。
+                released.Clear();
+                QdaoCharacterCatalog.PrefetchCreationPortraitTexture(Id, Resolve, LoadAsync, released.Add,
+                    () => lease = QdaoCharacterCatalog.AcquireCreationPortrait(Id, Resolve, _ => texture, released.Add));
+                pending(texture);
+                Assert.That(lease?.Sprite, Is.Not.Null);
+                Assert.That(released, Is.Empty, "A texture adopted by a lease must stay loaded.");
+
+                // 已在缓存里、或身份不可新建：不发读取，直接完成。
+                requests.Clear();
+                int immediate = 0;
+                QdaoCharacterCatalog.PrefetchCreationPortraitTexture(Id, Resolve, LoadAsync, released.Add, () => immediate++);
+                QdaoCharacterCatalog.PrefetchCreationPortraitTexture("20_star_formation_master_girl", Resolve, LoadAsync,
+                    released.Add, () => immediate++);
+                Assert.That(requests, Is.Empty);
+                Assert.That(immediate, Is.EqualTo(2));
+
+                lease.Dispose();
+                Assert.That(released, Is.EqualTo(new[] { texture }));
+            }
+            finally
+            {
+                lease?.Dispose();
+                UnityEngine.Object.DestroyImmediate(texture);
+            }
+        }
+
+        [Test]
         public void CreationPortraitLeaseReleasesRejectedHdTextureBeforeHoldingSameIdentityFallback()
         {
             var hd = Manifest(); var old = Manifest(13);
@@ -359,16 +411,37 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             string Metadata(string path) => path.EndsWith("/manifest") ? (path.Contains("V14/") ? hd : old) :
                 path.Contains("V14/") ? Approval(hd) : Approval(old, 13);
             bool Inventory(string path, int _, int __) { if (path.Contains("V14/")) hdTextureProbes++; return true; }
-            var fallback = definition.ResolveAppearance(Metadata, Inventory, null, (_, _, _) => complete);
+            var fallback = definition.ResolveAppearance(Metadata, Inventory, null, (folder, _, _) => !folder.Contains("V14/") || complete);
             Assert.That(fallback.Version, Is.EqualTo(13)); Assert.That(hdTextureProbes, Is.Zero);
             complete = true;
-            var selected = definition.ResolveAppearance(Metadata, Inventory, null, (_, _, _) => complete);
+            var selected = definition.ResolveAppearance(Metadata, Inventory, null, (folder, _, _) => !folder.Contains("V14/") || complete);
             Assert.That(selected.Version, Is.EqualTo(14)); Assert.That(hdTextureProbes, Is.EqualTo(137));
             Assert.That(selected.CacheKey, Is.Not.EqualTo(fallback.CacheKey));
             hd += " ";
             // The metadata is recomputed in this fixture, so this is a new accepted revision and must invalidate the cache.
-            var revision = definition.ResolveAppearance(Metadata, Inventory, null, (_, _, _) => complete);
+            var revision = definition.ResolveAppearance(Metadata, Inventory, null, (folder, _, _) => !folder.Contains("V14/") || complete);
             Assert.That(revision.CacheKey, Is.Not.EqualTo(selected.CacheKey));
+        }
+
+        [Test]
+        public void OriginalV13NeedsItsOwnVerifiedInventoryBeforeAnyTextureCheck()
+        {
+            var definition = QdaoCharacterCatalog.Find(Id);
+            var old = Manifest(13);
+            string Metadata(string path) => path.Contains("V14/") ? null : path.EndsWith("/manifest") ? old : Approval(old, 13);
+            var textureChecks = 0;
+            bool Inventory(string path, int _, int __) { textureChecks++; return true; }
+            var complete = false;
+            bool Index(string folder, string _, string __) => folder.Contains("V13/") && complete;
+            // 清单没校验过就不选 V13，也不逐张核对纹理：完整性只认导入期 / 构建期逐个文件算过的清单。
+            Assert.That(definition.ResolveAppearance(Metadata, Inventory, null, Index), Is.Null);
+            Assert.That(textureChecks, Is.Zero, "An unverified V13 inventory must not be probed texture by texture.");
+            complete = true;
+            var selected = definition.ResolveAppearance(Metadata, Inventory, null, Index);
+            Assert.That(selected, Is.Not.Null);
+            Assert.That(selected.Version, Is.EqualTo(13));
+            Assert.That(selected.Id, Is.EqualTo(Id));
+            Assert.That(textureChecks, Is.EqualTo(137));
         }
 
         [Test]
@@ -447,6 +520,27 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(QdaoOriginalHdResourceIndex.IsComplete(QdaoCharacterCatalog.OriginalV14Root + "/not-a-character", Sha, Sha), Is.False);
             Assert.That(QdaoOriginalHdResourceIndex.TextureMatches(QdaoCharacterCatalog.OriginalV14Root + "/not-a-character/walk/N/01", 1024, 1024), Is.False);
             Assert.That(QdaoOriginalHdResourceIndex.RequiredRelativePaths().Count(), Is.EqualTo(137));
+        }
+
+        [Test]
+        public void CharacterPortraitTexturesAreLoadedOnlyThroughTheCatalog()
+        {
+            // 创角窗口和预取会卸载没人持有的头像纹理，只有经 QdaoCharacterCatalog 取到的引用才在它的持有者名单里。
+            // 新代码要显示角色头像就调 Catalog，不要自己按 ".../portrait" 路径加载。
+            var allowed = new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["QdaoCharacterCatalog.cs"] = "owns character portrait loading and release",
+                ["QdaoBoySpriteAnimator.cs"] = "completeness check for legacy non-original rosters only",
+                ["QdaoPetCatalog.cs"] = "pet portraits live under the pet root",
+                ["BattleArtCatalog.cs"] = "monster portraits live under the monster root",
+            };
+            var offenders = System.IO.Directory.GetFiles(System.IO.Path.Combine(Application.dataPath, "Scripts"), "*.cs",
+                    System.IO.SearchOption.AllDirectories)
+                .Where(path => System.IO.File.ReadAllText(path).Contains("/portrait\""))
+                .Select(path => System.IO.Path.GetFileName(path))
+                .Where(name => !allowed.ContainsKey(name))
+                .ToArray();
+            Assert.That(offenders, Is.Empty, "Load character portraits through QdaoCharacterCatalog so release can see every holder.");
         }
 
         [Test]

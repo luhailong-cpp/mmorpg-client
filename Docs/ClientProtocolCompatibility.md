@@ -36,6 +36,8 @@ CPP 远端契约的查询、购买、公告消息号为 264、265、266；本地
 
 采用本地 CPP/Java 的现行 schema 与消息号，保留客户端双方的行为实现。远端 `GetRankPage = 275` 已与本地探针方案冲突，必须映射到当前正式 `ClientPlayerRankGetRankPage` 的消息号；不能继续沿用旧生成值。邮件附件/清理等业务字段同样以本地现行 proto 为准，界面和回调适配该事实源。
 
+2026-11-12：服务端 `proto/rank/rank.proto` 新增枚举 `RankBoardType`，登记评分榜的 `board_type`（1 = 1V1、2 = 5V5、3 = PVP_TEAM，线上取值不变）。`RankClient` 与论剑榜的模式页签都用生成常量选榜，不写数字；拉到这一版服务端后先从服务端仓重跑 `tools/gen_proto.ps1`，否则 `Rank.cs` 里没有这个枚举，编译报 CS0246。
+
 ## 组队写请求恢复（2026-10-21）
 
 普通组队写请求在发送前保存 UUID 和完整正文。故障回包、未知传输结局或重建后加载的原件继续保留，只能按同一请求恢复；其他写不能覆盖它。只有此前没有未知尝试、且首次发送被 Gate 按原请求明确限流时，才清理本次未执行意图并允许新的写。旧未知请求重试遇到限流，只能证明这一次没有执行，不能抹掉之前的未知结果。清理本机原件失败时保留保护状态。
@@ -91,3 +93,18 @@ pwsh -File .codex-artifacts/heartbeat-20261106/compile-current-recovery.ps1 -Pro
 改动文件：`Assets/Scripts/Game/GameClient.cs`、`Assets/Scripts/Net/RpcStatus.cs`（注释）、`Assets/Scripts/Game/Battle/DirectRoutingBattleTransport.cs`（注释），以及新测试 `Assets/Tests/EditMode/Net/GameClientGateEnvelopeTests.cs`（含 `.meta`，5 例，真实回环 TCP）。尚未编译，也没有在 Unity 里运行。验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-11「客户端请求保序:客户端配合」条。
 
 帮会补充（同日）：`GuildClient` 不再对任何失败都隔离面板——确定未执行的失败（本地 `NotSent`，gate / 路由服转发前的 1008、1010、1006、1005、2028 信封）只解除忙碌、提示重试；1003、超时、解析失败等结果未知的失败仍隔离到换连接，捐献 / 兑换两类都保留本机记录、只能按原 client_request_id 恢复（测试 `Assets/Tests/EditMode/Guild/GuildRequestFailureTests.cs`，未编译、未运行，验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-11「帮会请求失败分类」条）。
+
+## 战斗道具预留与背包满改投邮件（2026-11-12）
+
+本节以服务端仓 `docs/design/battle-item-reservation.md`、`docs/design/battle-overflow-mail.md` 为事实源。服务端只追加字段，消息号不变；旧客户端忽略新字段，行为与原来相同。
+
+| 消息字段 | 含义 | 客户端用在哪 |
+|---|---|---|
+| `BagInfo.held_items = 4`（`BagHeldItemInfo { config_id, count }`，`proto/scene/player_bag.proto`） | 只有人物背包带。这种物品有多少押在还没结算的战斗里：交易、捐献暂时动不了，那一局结算或作废之后放开 | 背包详情加一行「战斗结算中 N（结算后可交易）」；聚宝斋「从背包选择」只让选没被占住的数量，全被占住就不让选 |
+| `BattleEndS2C.items_mailed = 4`（`proto/battle/player_battle.proto`） | 本局获得的道具两个背包都放不下，服务器整批改由邮件发放 | 结算屏在道具行之后加一行「背包已满，以上道具已通过邮件发放」 |
+| `PlayerBattleResult.items_mailed = 17`（`proto/common/component/player_battle_result_comp.proto`） | 同一个事实，记在近期战斗结果里 | 客户端目前不读近期战斗结果，生成后只是多一个属性 |
+
+- 被占住的数量只用于显示和选物品时的上限，能不能出包由服务器裁决。押的是数量，不指定哪一堆：同一种分几堆时，任何一堆最多只能选出这种物品没被占住的总数。
+- 展示推导都在 `EquipBagModel`（`HeldCountOf`、`AvailableCountOf`、`AvailableInStack`、`HeldLine`），不依赖 UnityEngine。背包格子上的数量角标没有改：效果图没有这个状态的设计。
+- 改动文件：`Assets/Scripts/UI/Ugui/Gameplay/EquipBagModel.cs`、`GameplayWindow.Fidelity.cs`，`Assets/Scripts/UI/Ugui/Jubaozhai/CommerceWindow.cs`，`Assets/Scripts/UI/Ugui/Battle/BattleResultPanel.cs`；测试 `Assets/Tests/EditMode/Battle/EquipForgeModelTests.cs`（2 例）、`DamageNumberLayoutTests.cs`（1 例）。
+- 这些代码引用了还没生成的类型和属性（`BagHeldItemInfo`、`BagInfo.HeldItems`、`BattleEndS2C.ItemsMailed`）：先从服务端当前 proto 重跑 `tools/gen_proto.ps1`，客户端才能编译。尚未生成、未编译，也没有在 Unity 里运行；验证命令见服务端仓 `docs/PROGRESS.md` 2026-11-12「战斗掉落两包都放不下改投邮件」条。

@@ -1,0 +1,133 @@
+{
+  "deliverySha256": "f5cc6fa645f79180b5d1a3a71f279004bc6dbb5101c8c05e15a028de40bd3f79",
+  "gateway": "http://127.0.0.1:18085",
+  "maps": [
+    {
+      "authoringGeometryHash": "9d2185138bdcb22cd7c296a028d28c93d24b8dd3b48ec96da36b1a7e16ac78d4",
+      "authoritativeSpawnUnity": [
+        110.921211,
+        0,
+        33.47244
+      ],
+      "barrierReference": {
+        "approach": [
+          110.921211,
+          0,
+          9.777963
+        ],
+        "blockedTarget": [
+          110.921211,
+          0,
+          7.027963
+        ],
+        "rayHit": [
+          110.921211,
+          0,
+          8.277963
+        ]
+      },
+      "blockedMove": {
+        "acceptedUnity": [
+          110.921211,
+          0,
+          8.327963
+        ],
+        "moveAcks": 1,
+        "reportIntervalMs": 250,
+        "reportedSpeedLimit": 3,
+        "requestedUnity": [
+          110.921211,
+          0,
+          7.027963
+        ],
+        "result": "PASS"
+      },
+      "disconnectedIsland": {
+        "reason": "No disconnected on-mesh endpoint in the locked sampled receipt",
+        "result": "NOT_APPLICABLE"
+      },
+      "mapKey": "26000-mid-autumn",
+      "referenceMsetSha256": "889942f36dd8c272cd4688070a279119709069aa3896bc4e6fa6e6cafcd8ee1f",
+      "result": "PASS",
+      "safeMove": {
+        "distance": 1,
+        "endUnity": [
+          110.921211,
+          0,
+          32.47244
+        ],
+        "moveAcks": 0,
+        "observerConfirmed": true
+      },
+      "sceneConfigId": 26000,
+      "sceneInstanceId": "90397362090115072",
+      "sourceAssetSha256": "401ce609036473e50afc24c0e35990cde82ff80a8303e8e62f79645417f6fdf2"
+    },
+    {
+      "authoringGeometryHash": "504096e2f15fb98b5de8e0e7a036c13c7d31a9e0adaa17b8927dc8607a3e6609",
+      "authoritativeSpawnUnity": [
+        122.5,
+        0,
+        127.5
+      ],
+      "barrierReference": {
+        "approach": [
+          103.08192571827907,
+          0,
+          80.62062171390122
+        ],
+        "blockedTarget": [
+          102.02954627927507,
+          0,
+          78.07995299949518
+        ],
+        "rayHit": [
+          102.50790056973143,
+          0,
+          79.23480241513428
+        ]
+      },
+      "blockedMove": {
+        "acceptedUnity": [
+          102.52703474134968,
+          0,
+          79.28099639175986
+        ],
+        "moveAcks": 1,
+        "reportIntervalMs": 250,
+        "reportedSpeedLimit": 3,
+        "requestedUnity": [
+          102.02954627927507,
+          0,
+          78.07995299949518
+        ],
+        "result": "PASS"
+      },
+      "disconnectedIsland": {
+        "reason": "No disconnected on-mesh endpoint in the locked sampled receipt",
+        "result": "NOT_APPLICABLE"
+      },
+      "mapKey": "26008-spring",
+      "referenceMsetSha256": "79673906ee2ce6a47fe7fc51488b5ba9d0e538e0b2d85b240cb88ce15de9557e",
+      "result": "PASS",
+      "safeMove": {
+        "distance": 1,
+        "endUnity": [
+          122.11731656763492,
+          0,
+          126.5761204674887
+        ],
+        "moveAcks": 0,
+        "observerConfirmed": true
+      },
+      "sceneConfigId": 26008,
+      "sceneInstanceId": "90397362090115073",
+      "sourceAssetSha256": "dd1d5f603bd3d1376b3a0631e923839e79477eaa85c3e37837f025223e706bf4"
+    }
+  ],
+  "pairedReportSha256": "f5d962ce762b5af1065c5393dffb8a398bcf5c6115c0a9bf03856f2a8d1769cf",
+  "queryExeSha256": "363c8c4d1e687e63f9209a7f11d1899b9a625e0d683b848f953908e053fc093f",
+  "result": "PASS",
+  "scope": "Native backend login, scene entry and movement only; no Unity Player or visual acceptance",
+  "zone": 1
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "source": "D:\\luyuan\\xuanming-server-mmo-cpp\\tools\\navmesh_baker\\build\\authored-flat-20261112\\Release\\navmesh_baker.exe",
+    "sha256": "7D22ADC031D97385D13CF3B76CD6FD701387A8566DED216CF2499FC4FF8E6FBD",
+    "tool": "navmesh_baker.exe",
+    "byteIdentical": true,
+    "target": "D:\\luyuan\\xuanming-server-mmo-cpp\\tools\\navmesh_baker\\build\\Release\\navmesh_baker.exe"
+  },
+  {
+    "source": "D:\\luyuan\\xuanming-server-mmo-cpp\\tools\\navmesh_baker\\build\\authored-flat-20261112\\Release\\navmesh_query.exe",
+    "sha256": "363C8C4D1E687E63F9209A7F11D1899B9A625E0D683B848F953908E053FC093F",
+    "tool": "navmesh_query.exe",
+    "byteIdentical": true,
+    "target": "D:\\luyuan\\xuanming-server-mmo-cpp\\tools\\navmesh_baker\\build\\Release\\navmesh_query.exe"
+  }
+]

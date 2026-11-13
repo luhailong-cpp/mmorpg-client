@@ -1,0 +1,9 @@
+{
+  "containerId": "23a9cdd7e7cb242fab40fec1758197b1fe8cfede945fe2408073c91421dc023f",
+  "startedAt": "2026-11-12T14:27:15.141080004Z",
+  "hostname": "23a9cdd7e7cb",
+  "files": [
+    "/app/bin/logs/cpp_nodes/scene.20261112-142716.23a9cdd7e7cb.1.log"
+  ],
+  "stdoutSince": "2026-11-12T14:27:15.141080004Z"
+}

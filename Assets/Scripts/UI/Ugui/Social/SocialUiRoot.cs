@@ -118,6 +118,7 @@ namespace MmorpgClient.UI.Ugui.Social
             Team.TeamUiRoot.Instance?.HidePanel();
             Guild.GuildUiRoot.Instance?.HidePanel();
             MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
+            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
             Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
             GameplayUiRoot.Instance?.HidePanel();
             CityTravelUiRoot.Instance?.HidePanel();

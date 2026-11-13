@@ -1,0 +1,269 @@
+{
+  "result": "PASS",
+  "files": [
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r01_c01.png.meta",
+      "mainSha256": "8a44fc24738708634e96c2d9bde7ebd8e95b9121c29db42e1aab984cfb53bda5",
+      "isolatedImportedSha256": "8a44fc24738708634e96c2d9bde7ebd8e95b9121c29db42e1aab984cfb53bda5",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r01_c02.png.meta",
+      "mainSha256": "1c6157191ae9a45f7a75d1c6ee0855969d6f02e83d059d47c486e7b702533f77",
+      "isolatedImportedSha256": "1c6157191ae9a45f7a75d1c6ee0855969d6f02e83d059d47c486e7b702533f77",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r01_c03.png.meta",
+      "mainSha256": "6e00b4feadf12a050a7d9d8f42d924c0886f982429cc123385efd7d7f739a714",
+      "isolatedImportedSha256": "6e00b4feadf12a050a7d9d8f42d924c0886f982429cc123385efd7d7f739a714",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r01_c04.png.meta",
+      "mainSha256": "827024748677de67002a90ea61f78221e18d1b4a8834e1051d503b625dd04831",
+      "isolatedImportedSha256": "827024748677de67002a90ea61f78221e18d1b4a8834e1051d503b625dd04831",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r01_c05.png.meta",
+      "mainSha256": "4bc2d4e05296a5e46b74412a4cfb6d4543304a2d8c1e62ae4c403fa289b8ed32",
+      "isolatedImportedSha256": "4bc2d4e05296a5e46b74412a4cfb6d4543304a2d8c1e62ae4c403fa289b8ed32",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r02_c01.png.meta",
+      "mainSha256": "db96129751a6114f069160dd3103e2377d0c636a8ce3b737967f847cd4202d40",
+      "isolatedImportedSha256": "db96129751a6114f069160dd3103e2377d0c636a8ce3b737967f847cd4202d40",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r02_c02.png.meta",
+      "mainSha256": "a17293c559573fdf877ac6529a89b0dfdb6dec420a4dff21749cf37a23840e79",
+      "isolatedImportedSha256": "a17293c559573fdf877ac6529a89b0dfdb6dec420a4dff21749cf37a23840e79",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r02_c03.png.meta",
+      "mainSha256": "c608c65e8aef2069bf4e2c80da1780f275d409bd5fedfbc44efe0a47c308587d",
+      "isolatedImportedSha256": "c608c65e8aef2069bf4e2c80da1780f275d409bd5fedfbc44efe0a47c308587d",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r02_c04.png.meta",
+      "mainSha256": "cea7a4f2d926cc1a6a53cf84c6ce2990e145a2a20b13b1a40ef8d85f8e389b69",
+      "isolatedImportedSha256": "cea7a4f2d926cc1a6a53cf84c6ce2990e145a2a20b13b1a40ef8d85f8e389b69",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r02_c05.png.meta",
+      "mainSha256": "2a06f9841b70a54b27c520e765294cb7f2d82f43b5bf3b3c9b9a98657e47eb73",
+      "isolatedImportedSha256": "2a06f9841b70a54b27c520e765294cb7f2d82f43b5bf3b3c9b9a98657e47eb73",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r03_c01.png.meta",
+      "mainSha256": "083ee4c7858345ebba1e070fcb9cdda888ac07a2cc4fb387518e984bf3bda862",
+      "isolatedImportedSha256": "083ee4c7858345ebba1e070fcb9cdda888ac07a2cc4fb387518e984bf3bda862",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r03_c02.png.meta",
+      "mainSha256": "dded4cc85f388a75046999ec57a30b3014fe5acd443885e958f1c1e35dff400d",
+      "isolatedImportedSha256": "dded4cc85f388a75046999ec57a30b3014fe5acd443885e958f1c1e35dff400d",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r03_c03.png.meta",
+      "mainSha256": "d0d0a2a6df7b796e22640c091cd4502739ffefedc354d21e31b0a5064f5b9de8",
+      "isolatedImportedSha256": "d0d0a2a6df7b796e22640c091cd4502739ffefedc354d21e31b0a5064f5b9de8",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r03_c04.png.meta",
+      "mainSha256": "e116a12b6d540818c40dbcd1de62b249cda4585bc3c9d92e1188ff1ea5dc79cb",
+      "isolatedImportedSha256": "e116a12b6d540818c40dbcd1de62b249cda4585bc3c9d92e1188ff1ea5dc79cb",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r03_c05.png.meta",
+      "mainSha256": "68b7d2b9ea680b4011caefcd4d3135b0ff5a369b3a11820784c4af09034e11f4",
+      "isolatedImportedSha256": "68b7d2b9ea680b4011caefcd4d3135b0ff5a369b3a11820784c4af09034e11f4",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r04_c01.png.meta",
+      "mainSha256": "2908815b9b15c3c793e4267bfa8f2b8a601d8bd1239a9110782c7cd2f7596e09",
+      "isolatedImportedSha256": "2908815b9b15c3c793e4267bfa8f2b8a601d8bd1239a9110782c7cd2f7596e09",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r04_c02.png.meta",
+      "mainSha256": "9f58e9621be0139ffaff94b4ed5673605eb28a6cea947ace735ba9bbc5664a79",
+      "isolatedImportedSha256": "9f58e9621be0139ffaff94b4ed5673605eb28a6cea947ace735ba9bbc5664a79",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r04_c03.png.meta",
+      "mainSha256": "4de8cf9f715a28ed9fd54f53fc74c9613fb5304edf36fa8608d72b32f5265ade",
+      "isolatedImportedSha256": "4de8cf9f715a28ed9fd54f53fc74c9613fb5304edf36fa8608d72b32f5265ade",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r04_c04.png.meta",
+      "mainSha256": "682cc9efd17ff84edc2ca52325760e7052b50c8a166bb20f5ad8b180fd2c36bc",
+      "isolatedImportedSha256": "682cc9efd17ff84edc2ca52325760e7052b50c8a166bb20f5ad8b180fd2c36bc",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26000/mid-autumn/r04_c05.png.meta",
+      "mainSha256": "27a20d729d43fd65e8e339748f7ce98e0e3e24564b0bc282725abae000294c3e",
+      "isolatedImportedSha256": "27a20d729d43fd65e8e339748f7ce98e0e3e24564b0bc282725abae000294c3e",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r01_c01.png.meta",
+      "mainSha256": "7739e7e4656d52f0f033c44980e7a85fc601134bcf98b77ac94775fa2e3a65d1",
+      "isolatedImportedSha256": "7739e7e4656d52f0f033c44980e7a85fc601134bcf98b77ac94775fa2e3a65d1",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r01_c02.png.meta",
+      "mainSha256": "9eec2f92b2b03ef7ceb61ff6d1789c6c5d07c96c09e1face7e055e398af07e0b",
+      "isolatedImportedSha256": "9eec2f92b2b03ef7ceb61ff6d1789c6c5d07c96c09e1face7e055e398af07e0b",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r01_c03.png.meta",
+      "mainSha256": "ea05d228318a0b5ba1b5145c42f91ac3ce3411df2eb9aea6341c8640bb0151f5",
+      "isolatedImportedSha256": "ea05d228318a0b5ba1b5145c42f91ac3ce3411df2eb9aea6341c8640bb0151f5",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r01_c04.png.meta",
+      "mainSha256": "a424d43ae43078184250d2e5051c11592e3af8f2231fff4836f4d7d99cff4834",
+      "isolatedImportedSha256": "a424d43ae43078184250d2e5051c11592e3af8f2231fff4836f4d7d99cff4834",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r02_c01.png.meta",
+      "mainSha256": "bea7f8c00e58bcc634f1a806ba8bce9fb97a1cb6b5233dedff85f9c8bb5240d4",
+      "isolatedImportedSha256": "bea7f8c00e58bcc634f1a806ba8bce9fb97a1cb6b5233dedff85f9c8bb5240d4",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r02_c02.png.meta",
+      "mainSha256": "a5e42aae3ca491dffbfd2c4a9ceba72b5dae49a17b45a7b127c7aa8b93a78ab1",
+      "isolatedImportedSha256": "a5e42aae3ca491dffbfd2c4a9ceba72b5dae49a17b45a7b127c7aa8b93a78ab1",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r02_c03.png.meta",
+      "mainSha256": "9cdeefd20634f30789e173e279527a0609802b07d0e28ac35d1775cdb2af3e1e",
+      "isolatedImportedSha256": "9cdeefd20634f30789e173e279527a0609802b07d0e28ac35d1775cdb2af3e1e",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r02_c04.png.meta",
+      "mainSha256": "535264c543acfde20bb3a580f57bd7f720a8155b2e3a48407f8360dd32439525",
+      "isolatedImportedSha256": "535264c543acfde20bb3a580f57bd7f720a8155b2e3a48407f8360dd32439525",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r03_c01.png.meta",
+      "mainSha256": "d2db4952c2ddb97b0a0454887453d26cc9bab80ff63819437f8551b0ddcb6405",
+      "isolatedImportedSha256": "d2db4952c2ddb97b0a0454887453d26cc9bab80ff63819437f8551b0ddcb6405",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r03_c02.png.meta",
+      "mainSha256": "2e0a051269aea9176639db90bd2e6963e7ab75fef29cdf637c03e28df98f3477",
+      "isolatedImportedSha256": "2e0a051269aea9176639db90bd2e6963e7ab75fef29cdf637c03e28df98f3477",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r03_c03.png.meta",
+      "mainSha256": "5cfe117bbd145ab9d6ac2e3f2849a98ab9834b3a7a3d5e42c72775c9fbed9b6b",
+      "isolatedImportedSha256": "5cfe117bbd145ab9d6ac2e3f2849a98ab9834b3a7a3d5e42c72775c9fbed9b6b",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/spring/r03_c04.png.meta",
+      "mainSha256": "85fca5c32ad0372abebe29e85aecfa2692dee7fa97d390f3104bb8a667da7786",
+      "isolatedImportedSha256": "85fca5c32ad0372abebe29e85aecfa2692dee7fa97d390f3104bb8a667da7786",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r01_c01.png.meta",
+      "mainSha256": "4879277104d6bd9e0385902fbeee0cabf4fb62cf48e84262fc80f5d7921c689c",
+      "isolatedImportedSha256": "4879277104d6bd9e0385902fbeee0cabf4fb62cf48e84262fc80f5d7921c689c",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r01_c02.png.meta",
+      "mainSha256": "808e3d9a01019759c1a0a355cdd0310f0c2e082158f018788156c0b32e42accc",
+      "isolatedImportedSha256": "808e3d9a01019759c1a0a355cdd0310f0c2e082158f018788156c0b32e42accc",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r01_c03.png.meta",
+      "mainSha256": "6faa17c741114253701446260e9b496ab880f43f1ec9cf8bfcb007e2e876087a",
+      "isolatedImportedSha256": "6faa17c741114253701446260e9b496ab880f43f1ec9cf8bfcb007e2e876087a",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r01_c04.png.meta",
+      "mainSha256": "5eb1b4cea1b58fecbaf7a2838f3c1b47722a36d8073e850df3b92e36b82973c5",
+      "isolatedImportedSha256": "5eb1b4cea1b58fecbaf7a2838f3c1b47722a36d8073e850df3b92e36b82973c5",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r02_c01.png.meta",
+      "mainSha256": "c3ae8535a0d7551965238221cdf231e092df8a5a983fd3908b8c6d74b1114694",
+      "isolatedImportedSha256": "c3ae8535a0d7551965238221cdf231e092df8a5a983fd3908b8c6d74b1114694",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r02_c02.png.meta",
+      "mainSha256": "6f8bd0bcecaa2a2798bcd3a433230d5796d29103659608bbe0b7d9918de31c8a",
+      "isolatedImportedSha256": "6f8bd0bcecaa2a2798bcd3a433230d5796d29103659608bbe0b7d9918de31c8a",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r02_c03.png.meta",
+      "mainSha256": "e46ace57417ef77eefa89b7d3bd21c2d2421f269c1322dc2fe6966d4d87c13f8",
+      "isolatedImportedSha256": "e46ace57417ef77eefa89b7d3bd21c2d2421f269c1322dc2fe6966d4d87c13f8",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r02_c04.png.meta",
+      "mainSha256": "e48a9d4a161b2a5614898278ddda901668a278ffeba40dfa8a818e373ce0e7fc",
+      "isolatedImportedSha256": "e48a9d4a161b2a5614898278ddda901668a278ffeba40dfa8a818e373ce0e7fc",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r03_c01.png.meta",
+      "mainSha256": "d9d127f2f9bfe8768b0d58ff682e40cb57bc11886768aab448be92099a35c0ca",
+      "isolatedImportedSha256": "d9d127f2f9bfe8768b0d58ff682e40cb57bc11886768aab448be92099a35c0ca",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r03_c02.png.meta",
+      "mainSha256": "25b9a55446daba35a2dcb54121bb7a89156f1dea0d963302fafa0a6f0f9d9bb4",
+      "isolatedImportedSha256": "25b9a55446daba35a2dcb54121bb7a89156f1dea0d963302fafa0a6f0f9d9bb4",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r03_c03.png.meta",
+      "mainSha256": "4d88554dacd1a32bf75735fc4f1f05a4b9177197b87e2ca692f9604bfcebc68a",
+      "isolatedImportedSha256": "4d88554dacd1a32bf75735fc4f1f05a4b9177197b87e2ca692f9604bfcebc68a",
+      "matches": true
+    },
+    {
+      "path": "Assets/Resources/World/FestivalPreview20261111/26008/mid-autumn/r03_c04.png.meta",
+      "mainSha256": "9a4f37dff3d4e139d8b75b15e81a747b64097fa97dbd3b291f5733f23247915d",
+      "isolatedImportedSha256": "9a4f37dff3d4e139d8b75b15e81a747b64097fa97dbd3b291f5733f23247915d",
+      "matches": true
+    }
+  ]
+}

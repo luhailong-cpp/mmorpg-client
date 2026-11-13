@@ -1,0 +1,134 @@
+{
+  "result": "PASS",
+  "contract": "authored-flat-v2",
+  "scope": "Synthetic planar authoring bake/export and offline real-MSET queries; not production map or live server acceptance",
+  "unityVersion": "6000.6.0f1",
+  "unityChecks": 22,
+  "serverRegressionTests": 28,
+  "pairedFixtures": 6,
+  "pairedPointChecks": 36,
+  "pairedRouteChecks": 6,
+  "heightResult": "Original Y=0 source points and actual Unity Play agent remain at ground; Y+0.2 negative probes rejected",
+  "edgeTolerance": "Production spawn, editor route, Play and server probe use XYZ per-axis 0.02; 0.03 outside-edge regression red then green",
+  "legacyByteIdenticalCases": 3,
+  "drafts": [
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26000-mid-autumn.asset",
+      "sha256": "b2c7bd012fbf692206c5ce40703ac45f77f42703d5b032c0119dab83d4ca1085",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26000-mid-autumn.asset.meta",
+      "sha256": "24f596ceaf57883f473df60cfe3e6d6e4bad416f7fd5f8438ddab68db55b312e",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-mid-autumn.asset",
+      "sha256": "0848d836f642063db4c4cf9e8e94c93a6cb54df2a21222f9bc4d44a53fb1025c",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-mid-autumn.asset.meta",
+      "sha256": "d026a633476233de8f9ba520a27b3cac7fa83d8b4b632eb3d55a219995ba56e3",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-spring.asset",
+      "sha256": "efd17e907c8a911ebd1f50713e57710f26c47da2c1da94ccaf64b1bae613094a",
+      "unchanged": true
+    },
+    {
+      "path": "D:\\luyuan\\mmorpg-client\\Assets\\MapNavigationDrafts\\Festival20261111\\26008-spring.asset.meta",
+      "sha256": "2ad5660c65afac9cd2dc74249d7fc7fcb7c183074407655cb94194511b91833d",
+      "unchanged": true
+    }
+  ],
+  "bakerSha256": "7d22adc031d97385d13cf3b76cd6fd701387a8566ded216cf2499fc4ff8e6fbd",
+  "querySha256": "363c8c4d1e687e63f9209a7f11d1899b9a625e0d683b848f953908e053fc093f",
+  "clientHead": "94b0d29a85940c6a36a6f0537f2ad68c1995ec23",
+  "serverHead": "4edb25640d172cca6c60168f841c74328857afa6",
+  "workingTree": "Changes remain uncommitted; sourceHashes identify the tested versions",
+  "sourceHashes": [
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "Assets/Scripts/World/NavigationAuthoring/NavMeshAuthoringDraft.cs",
+      "sha256": "c5fdf4b6c0c3609b37e30f361b8cf348d67f180114c1fbbcf5c83fd050e8e824"
+    },
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "Assets/Scripts/World/NavigationAuthoring/NavigationPolygonGeometry.cs",
+      "sha256": "e3f3ec9b4ee0ce7486cc52cd9e9acd5f18825c68d9fcb5c4698c42a0f2d6a6a7"
+    },
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "Assets/Scripts/World/NavigationAuthoring/NavMeshDraftPreview.cs",
+      "sha256": "96ba9859651ee8ef5165e1e65b495320c558084f64f27e959f7c457184c55b2e"
+    },
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "Assets/Editor/NavigationAuthoring/NavMeshAuthoringAssetIO.cs",
+      "sha256": "00a5b630ef97153134bcf815664721d78a74468c4a04c3aa7e611ebcfd7fc839"
+    },
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "Assets/Editor/NavigationAuthoring/NavMeshAuthoringWindow.cs",
+      "sha256": "0df9836b5345493c4c06c3fa1adbae1042a9d1666e30488f060d467c98b0a067"
+    },
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "Assets/Editor/NavigationAuthoring/FestivalNavMeshDraftPresets.cs",
+      "sha256": "d767e31495f0b636417cdab34c7ad04329bc9305a16bfec4d7a36fb518a5ee27"
+    },
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "tools/tests/navmesh_authoring/NavigationAuthoringVerification.cs",
+      "sha256": "dd3ec1a0539f89332878c5c1ceb2bf1f034c87095590a54e94c046ad50d85c67"
+    },
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "tools/tests/navmesh_authoring/run_verification.ps1",
+      "sha256": "de82c5902c6c7e0d4464da5f8cc99c08b2cfd55f4e4ed0ce2198042a0ac51bcf"
+    },
+    {
+      "root": "D:\\luyuan\\mmorpg-client",
+      "path": "tools/tests/navmesh_authoring/verify_server_parity.py",
+      "sha256": "52ef515a743f8d3e80d40d9d10e5a9e5ed4bbd2bc77e8a632055e776ea61079b"
+    },
+    {
+      "root": "D:\\luyuan\\xuanming-server-mmo-cpp",
+      "path": "tools\\navmesh_baker\\navmesh_baker.cpp",
+      "sha256": "4f2dd783a75591356ae2569f96a859c324fff6fbf902a4afb67eddb7a509ce0d"
+    },
+    {
+      "root": "D:\\luyuan\\xuanming-server-mmo-cpp",
+      "path": "tools\\navmesh_baker\\navmesh_query.cpp",
+      "sha256": "1ebfeae2e419c1c4aae04a5e04a69236244fb381c1f80c7bfac45db453c70067"
+    },
+    {
+      "root": "D:\\luyuan\\xuanming-server-mmo-cpp",
+      "path": "tools\\navmesh_baker\\CMakeLists.txt",
+      "sha256": "8b026d1f7686714e3413b17882cf129879d93d8edebb2f102c1595651ab55678"
+    },
+    {
+      "root": "D:\\luyuan\\xuanming-server-mmo-cpp",
+      "path": "tools\\navmesh_baker\\test_authored_flat.py",
+      "sha256": "732d7e63f0fce7a1565e050ddedf0e6bcdb848cbc840c2c1aaa20bb71bab617d"
+    },
+    {
+      "root": "D:\\luyuan\\xuanming-server-mmo-cpp",
+      "path": "tools\\navmesh_baker\\test_navmesh_query.py",
+      "sha256": "56f137e6e4c25f0e8e6fcb5cc8b98b4e49fe7a20a156d57a011175dc55cfe40f"
+    },
+    {
+      "root": "D:\\luyuan\\xuanming-server-mmo-cpp",
+      "path": "tools\\navmesh_baker\\test_baker.py",
+      "sha256": "d399f180a6e16ae42497ca5faad5e08db8e503d51299d299ed7479b36647159f"
+    }
+  ],
+  "limits": [
+    "Unity and UE Recast contours are not bit-identical: synthetic hole left boundary is X=7.5 in Unity and X=7.6 in server; shared inputs do not prove all edge points identical.",
+    "Unity raw path corners and triangulation remain on its approximate mesh (e.g. Y=0.05); HeightMesh queries and actual agent feet use Y=0.",
+    "Unity does not expose cellHeight or all filtering/region internals; server-only values and effective climb quantization are recorded in exports.",
+    "Production world bounds, authoritative mask/range migration and live movement require verification after the user authors each map."
+  ]
+}

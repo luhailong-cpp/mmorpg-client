@@ -18,7 +18,8 @@ namespace MmorpgClient.UI.Ugui.Rank
 {
     /// <summary>
     /// 主城左栏论剑榜入口(服务端 docs/design/leaderboard-system.md §4.6)。由真实会话驱动:换连接重建 RankClient,
-    /// 换角 / 退出 / 战斗中关闭窗口并作废快照。打开即读第 1 页;窗口开着时 RankClient.Changed 驱动重画。
+    /// 换角 / 退出 / 战斗中关闭窗口并作废快照。打开即读选中榜(换角后回到默认的 PVP_TEAM 榜)最新一代的第 1 页;
+    /// 窗口开着时 RankClient.Changed 驱动重画。
     /// </summary>
     public sealed class RankUiRoot : MonoBehaviour
     {
@@ -69,10 +70,9 @@ namespace MmorpgClient.UI.Ugui.Rank
             _window = new RankWindow(design);
             _window.PageRequested += page => { if (_available) _client?.Load(page); };
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };
-            _window.AroundRequested += () =>
-            {
-                if (_available) _client?.ReadAround(_client.Page?.Board ?? _client.Around?.Board ?? RankClient.LatestBoard(), 2);
-            };
+            // 附近名次沿用选中榜正在显示的榜键(RankClient.LoadAround),不会落到别的模式的榜上。
+            _window.AroundRequested += () => { if (_available) _client?.LoadAround(RankWindow.AroundRadius); };
+            _window.BoardSelected += boardType => { if (_available) _client?.SelectBoard(boardType); };
             _hud.gameObject.SetActive(false);
         }
 
@@ -123,6 +123,7 @@ namespace MmorpgClient.UI.Ugui.Rank
         /// <summary>主城的几个大面板互斥:打开论剑榜前收起别的(列表同 MysteryMerchantUiRoot,含分线列表)。</summary>
         private static void HideOtherPanels()
         {
+            BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
             MysteryMerchantUiRoot.Instance?.HidePanel();
             SceneChannelUiRoot.Instance?.HidePanel();
             Team.TeamUiRoot.Instance?.HidePanel();

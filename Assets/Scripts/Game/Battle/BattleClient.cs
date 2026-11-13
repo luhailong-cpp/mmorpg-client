@@ -66,8 +66,16 @@ namespace MmorpgClient.Game.Battle
         /// <summary>Preparing 相位超时(秒):gather 失败无下文时收敛回 None(补偿矩阵 §3.2)。</summary>
         public const double PreparingTimeoutSeconds = 15.0;
 
-        /// <summary>直连判定连不上(Unreachable)时 <see cref="OnBattleChannelFailed"/> 带出的文案(客户端本地字符串)。</summary>
-        public const string BattleChannelFailedText = "无法连接战斗服务器,本局将由系统自动出手,可点击重新连接";
+        /// <summary>
+        /// 直连判定连不上(Unreachable)时 <see cref="OnBattleChannelFailed"/> 带出的文案(客户端本地字符串)。
+        /// 连不上有两种可能,客户端此刻分不清,文案不能只说其中一种:战斗服还在(本机网络或防火墙的问题),
+        /// 回合到时由服务端代为出手;战斗服进程已经不在,服务端会把本局作废并经大厅推
+        /// <c>NotifyBattleEnd(outcome = BATTLE_OUTCOME_VOID)</c>(服务端 docs/design/battle-instance-loss-early-abort.md)。
+        /// </summary>
+        public const string BattleChannelFailedText = "无法连接战斗服务器,可点击重新连接。战斗若仍在进行将由系统代为出手,若服务器故障本局会作废";
+
+        /// <summary>没有战斗上下文时收到作废通知,<see cref="OnBattleVoidNotice"/> 带出的文案。</summary>
+        public const string BattleVoidNoticeText = "上一场战斗已作废:没有奖励,也没有消耗";
 
         /// <summary>直连未就绪时 <see cref="SubmitAction"/> 经 OnError 给出的文案。</summary>
         public const string BattleChannelConnectingText = "正在连接战斗服务器,请稍候…";
@@ -249,6 +257,24 @@ namespace MmorpgClient.Game.Battle
         /// (调 <see cref="RetryBattleChannel"/>)。手动重连再次失败会再次触发。
         /// </summary>
         public event Action<string> OnBattleChannelFailed;
+
+        /// <summary>
+        /// 空闲时收到一局没有上下文的作废通知(参数为 <see cref="BattleVoidNoticeText"/>):例如战斗服故障后玩家退出游戏,
+        /// 重登时服务端才把作废送达。不走 <see cref="OnBattleEnd"/>(没有战斗屏可收尾,也不弹结算面板),UI 提示一句即可。
+        /// 有上下文的作废照常走 <see cref="OnBattleEnd"/>,结算面板按作废展示。
+        /// </summary>
+        public event Action<string> OnBattleVoidNotice;
+
+        /// <summary>
+        /// 这份终局是不是「本局作废」:服务端为这一局写了唯一的作废决定(战斗服进程失效、超过期限、活动取消等),
+        /// 全员没有任何奖励与消耗,settlement 里只有身份与展示字段。结算数据在时以它的 outcome 为准,与结算面板同一口径。
+        /// </summary>
+        public static bool IsVoidEnd(BattleEndS2C end)
+        {
+            if (end == null) return false;
+            var outcome = end.Settlement != null ? end.Settlement.Outcome : end.Outcome;
+            return outcome == eBattleOutcome.BattleOutcomeVoid;
+        }
 
         // ── 构造/挂接 ───────────────────────────────────────
 
@@ -1007,7 +1033,13 @@ namespace MmorpgClient.Game.Battle
             // 只在空闲时接受,不打断新的排队 / 战斗。
             bool lateEndOfSettledBattle = _battleId == 0 && Phase == BattlePhase.None
                                           && ev.BattleId != 0 && ev.BattleId == _endPendingBattleId;
-            if (_battleId == 0 && !lateEndOfSettledBattle) return;
+            if (_battleId == 0 && !lateEndOfSettledBattle)
+            {
+                // 没有上下文的作废通知(战斗服故障后退出游戏,重登时才送达):不弹结算面板,空闲时提示一句,
+                // 免得玩家不知道上一局为什么没有结果。排队 / 备战中不打扰;其余无上下文的终局照旧丢弃。
+                if (Phase == BattlePhase.None && IsVoidEnd(ev)) OnBattleVoidNotice?.Invoke(BattleVoidNoticeText);
+                return;
+            }
             if (!lateEndOfSettledBattle && ev.BattleId != 0 && ev.BattleId != _battleId) return;
             _endPendingBattleId = 0;
 
