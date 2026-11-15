@@ -270,7 +270,7 @@ namespace MmorpgClient.App
                 float entryDeadline = Time.realtimeSinceStartup + 60f;
                 while (!_done && Time.realtimeSinceStartup < entryDeadline &&
                        (_game.CurrentSceneConfigId != YuexiBaySceneId || _sceneNotifications <= noticeBefore ||
-                        !TryController(out _controller) || !MapReady(spring) || !serverSpawn.HasValue))
+                        !TryController(out _controller) || !serverSpawn.HasValue))
                     yield return null;
                 if (_done) yield break;
                 entry.serverSpawn = serverSpawn.HasValue ? Coordinates(serverSpawn.Value) : null;
@@ -278,10 +278,20 @@ namespace MmorpgClient.App
                 entry.sceneInstanceId = _game.CurrentSceneId.ToString(CultureInfo.InvariantCulture);
                 entry.serverSpawnVerified = serverSpawn.HasValue && Vector3.Distance(serverSpawn.Value, spring.Spawn) < .05f;
                 if (!entry.serverSpawnVerified || _game.CurrentSceneConfigId != YuexiBaySceneId || entry.sceneNotifications <= 0 ||
-                    _game.CurrentSceneId == 0 || !TryController(out _controller) || !MapReady(spring))
-                { Finish(false, "服务器入场、原始出生坐标、角色控制器或月汐湾运行图未匹配。"); yield break; }
+                    _game.CurrentSceneId == 0 || !TryController(out _controller))
+                { Finish(false, "服务器入场、原始出生坐标或角色控制器未匹配。"); yield break; }
             }
             finally { _game.World.OnActorSpawned -= ObserveSpawn; }
+
+            // 和玩家滚轮拉近使用相同的相机范围。全景时可见分片超出流送预算，底图会补齐。
+            var cameraRig = _app.WorldMap.CameraRig;
+            if (cameraRig == null)
+            { Finish(false, "月汐湾没有活动地图相机。"); yield break; }
+            cameraRig.SetZoom(cameraRig.MinimumZoom);
+            cameraRig.Snap();
+            SetPhase("spring_spawn_tiles");
+            yield return WaitForTiles(spring);
+            if (_done) yield break;
 
             _controller.SetScriptedInputOwner(true);
             entry.arrivedAt = Coordinates(_controller.FeetPosition);
