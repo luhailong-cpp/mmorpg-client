@@ -14,7 +14,8 @@ namespace MmorpgClient.World.Tianyong
     [DisallowMultipleComponent]
     public sealed class TianyongPlayerController : MonoBehaviour
     {
-        private const float DefaultMoveSpeed = 9f * TianyongMapConfig.PlayerMovementSpeedMultiplier;
+        private const float BaseMoveSpeed = 9f;
+        private const float DefaultMoveSpeed = BaseMoveSpeed * TianyongMapConfig.PlayerMovementSpeedMultiplier;
         private const float DefaultHeight = 1.8f;
         private const float DefaultRadius = 0.38f;
         private const float DefaultStepOffset = 0.35f;
@@ -34,6 +35,7 @@ namespace MmorpgClient.World.Tianyong
         private float _nextSyncAt;
         // Heading and time of the last movement report, for the turn-triggered sync.
         private Vector3 _reportedDirection;
+        private Vector3 _reportedFeet;
         private float _reportedAt = -100f;
         private const float SyncInterval = 0.25f;
         // A turn sharper than ~20 degrees is reported right away instead of waiting for the
@@ -129,6 +131,7 @@ namespace MmorpgClient.World.Tianyong
 
         /// <summary>The client-side walk mask this controller validates against (null before Initialize).</summary>
         public TianyongNavigationGrid Navigation => _navigation as TianyongNavigationGrid;
+        private bool UsesPreciseNetworkMovement => _client != null && Navigation?.PreciseNetworkMovement == true;
 
         /// <summary>当前地图使用的导航；旧地图的网格接口仍可通过 Navigation 获取。</summary>
         public IMapNavigation ActiveNavigation => _navigation;
@@ -195,7 +198,6 @@ namespace MmorpgClient.World.Tianyong
             _mapConfig = config;
             _fallbackSpawn = resolvedFallback;
             _camera = worldCamera;
-            _moveSpeed = config != null ? config.MoveSpeed : DefaultMoveSpeed;
 
             foreach (var collider in GetComponents<Collider>())
             {
@@ -225,6 +227,8 @@ namespace MmorpgClient.World.Tianyong
 
         private void ConfigureMotor(IMapNavigation navigation)
         {
+            _moveSpeed = _mapConfig != null ? _mapConfig.MoveSpeed : DefaultMoveSpeed;
+            if (UsesPreciseNetworkMovement) _moveSpeed = Mathf.Min(_moveSpeed, BaseMoveSpeed);
             var height = navigation != null && navigation.IsAuthoredFlat ? 1.8f : _mapConfig != null ? _mapConfig.PlayerHeight : DefaultHeight;
             var radius = navigation != null && navigation.IsAuthoredFlat ? 0.4f : _mapConfig != null ? _mapConfig.PlayerRadius : DefaultRadius;
             var stepOffset = navigation != null && navigation.IsAuthoredFlat ? 0.3f : _mapConfig != null ? _mapConfig.PlayerStepOffset : DefaultStepOffset;
@@ -539,10 +543,10 @@ namespace MmorpgClient.World.Tianyong
                 delta.y = 0f;
                 // Near a corner, do not skip it if the shortcut to the next
                 // point crosses an obstacle. The old grid keeps its tolerance.
-                var arrival = _arrivalDistance;
-                if (_navigation.IsAuthoredFlat && _waypoint + 1 < _path.Count &&
-                    !_navigation.IsSegmentWalkable(current, _path[_waypoint + 1]))
-                    arrival = 0.02f;
+                bool precise = UsesPreciseNetworkMovement;
+                bool intermediateWaypoint = _waypoint + 1 < _path.Count;
+                var arrival = intermediateWaypoint && (precise || (_navigation.IsAuthoredFlat &&
+                    !_navigation.IsSegmentWalkable(current, _path[_waypoint + 1]))) ? .02f : _arrivalDistance;
                 if (delta.sqrMagnitude < arrival * arrival)
                 {
                     _waypoint++;
@@ -558,7 +562,7 @@ namespace MmorpgClient.World.Tianyong
                     delta.y = 0f;
                 }
 
-                var movementTime = _navigation.IsAuthoredFlat && _moveSpeed > 0f
+                var movementTime = (precise || _navigation.IsAuthoredFlat) && _moveSpeed > 0f
                     ? Mathf.Min(Time.deltaTime, delta.magnitude / _moveSpeed)
                     : Time.deltaTime;
                 if (!MoveInDirection(delta.normalized, movementTime))
@@ -640,20 +644,34 @@ namespace MmorpgClient.World.Tianyong
             }
 
             var dt = Mathf.Min(Mathf.Max(deltaTime, 0f), 0.05f);
-            var velocity = direction.normalized * _moveSpeed;
+            var heading = direction.normalized;
+            var velocity = heading * _moveSpeed;
             var step = velocity * dt;
             var before = FeetPosition;
             var authored = _navigation.IsAuthoredFlat;
-            var checkNavigation = authored || !_debugIgnoreMask;
+            var exactGrid = UsesPreciseNetworkMovement ? Navigation : null;
+            var checkNavigation = authored || exactGrid != null || !_debugIgnoreMask;
             var candidateFeet = ClampToMap(before + step, 2f);
-            if (checkNavigation && (!_navigation.IsWalkable(candidateFeet) ||
-                (authored && !_navigation.IsSegmentWalkable(before, candidateFeet))))
+            if (checkNavigation && !CanWalkStep(before, candidateFeet, authored, exactGrid))
             {
                 StopMoving();
                 return false;
             }
 
-            var desiredRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+            var reportNow = Time.unscaledTime;
+            var online = _client != null && _client.InGame;
+            bool turned = Vector3.Dot(heading, _reportedDirection) < TurnSyncCosine;
+            if (online && _moving && exactGrid != null &&
+                (turned || !exactGrid.IsSegmentWalkable(_reportedFeet, candidateFeet)))
+            {
+                // This report ends the old leg at the pivot before moving on the next leg.
+                // Wait at the pivot if the Gate's normal MoveSync budget is still occupied.
+                if (reportNow < _reportedAt + TurnSyncMinInterval) return true;
+                _client.SendMoveSync(before, transform.eulerAngles, velocity);
+                RecordMovementReport(before, heading, reportNow);
+            }
+
+            var desiredRotation = Quaternion.LookRotation(heading, Vector3.up);
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
                 desiredRotation,
@@ -672,41 +690,45 @@ namespace MmorpgClient.World.Tianyong
                 flatFeet.y = 0f;
                 PlaceFeet(flatFeet);
             }
-            if (checkNavigation && (!_navigation.IsWalkable(FeetPosition) ||
-                (authored && !_navigation.IsSegmentWalkable(before, FeetPosition))))
+            if (checkNavigation && !CanWalkStep(before, FeetPosition, authored, exactGrid))
             {
                 var back = before;
                 if (!authored) back.y = FeetPosition.y;
                 PlaceFeet(back);
-                if (authored)
+                if (authored || exactGrid != null)
                 {
                     StopMoving();
                     return false;
                 }
             }
 
-            var reportNow = Time.unscaledTime;
-            var heading = direction.normalized;
             if (!_moving)
             {
                 _moving = true;
-                if (_client != null && _client.InGame)
+                if (online)
                     _client.SendMoveStart(FeetPosition, transform.eulerAngles, velocity, _networkTarget);
-                _nextSyncAt = reportNow + SyncInterval;
-                _reportedDirection = heading;
-                _reportedAt = reportNow;
+                RecordMovementReport(FeetPosition, heading, reportNow);
             }
-            else if (_client != null && _client.InGame &&
+            else if (online &&
                      (reportNow >= _nextSyncAt ||
-                      (reportNow >= _reportedAt + TurnSyncMinInterval &&
-                       Vector3.Dot(heading, _reportedDirection) < TurnSyncCosine)))
+                      (exactGrid == null && reportNow >= _reportedAt + TurnSyncMinInterval && turned)))
             {
                 _client.SendMoveSync(FeetPosition, transform.eulerAngles, velocity);
-                _nextSyncAt = reportNow + SyncInterval;
-                _reportedDirection = heading;
-                _reportedAt = reportNow;
+                RecordMovementReport(FeetPosition, heading, reportNow);
             }
             return true;
+        }
+
+        private bool CanWalkStep(Vector3 from, Vector3 to, bool authored, TianyongNavigationGrid exactGrid)
+            => exactGrid != null ? exactGrid.IsSegmentWalkable(from, to) :
+                _navigation.IsWalkable(to) && (!authored || _navigation.IsSegmentWalkable(from, to));
+
+        private void RecordMovementReport(Vector3 feet, Vector3 heading, float time)
+        {
+            _reportedFeet = feet;
+            _reportedDirection = heading;
+            _reportedAt = time;
+            _nextSyncAt = time + SyncInterval;
         }
 
         /// <summary>Moves the feet without touching the current path or network state.</summary>

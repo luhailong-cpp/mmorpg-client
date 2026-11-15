@@ -132,7 +132,8 @@ namespace MmorpgClient.World.CurrentMaps
         public Rect NavigationWorldRect => IsModern || IsAuthoredFlat ? WorldRect : new Rect(0, 0, TianyongMapDefinition.Width, TianyongMapDefinition.Depth);
         public bool IsWalkable(Vector3 world) => Data.IsWalkable(world);
         public TianyongNavigationGrid CreateNavigation()
-            => new(Data.CellSize, IsWalkable, NavigationWorldRect, IsModern ? EffectiveWorldRect : NavigationWorldRect);
+            => new(Data.CellSize, IsWalkable, NavigationWorldRect, IsModern ? EffectiveWorldRect : NavigationWorldRect,
+                FestivalMapLocalTestPolicy.IsYuexiBayTarget(this, Appearance));
 
         public CurrentMapDefinition ForAppearance(string appearance)
             => _authored != null ? appearance == Appearance ? this : null :
