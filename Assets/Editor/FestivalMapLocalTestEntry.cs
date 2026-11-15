@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using MmorpgClient.App;
 using MmorpgClient.World.CurrentMaps;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -12,8 +13,11 @@ namespace MmorpgClient.Editor
     {
         public static void OpenBootstrap()
         {
-            if (!FestivalMapLocalTestPolicy.IsRequested(Environment.GetCommandLineArgs()))
-                throw new InvalidOperationException("请使用本机节庆联调启动脚本及显式 -festivalMapLocalTest。");
+            var arguments = Environment.GetCommandLineArgs();
+            bool verifyYuexi = Array.Exists(arguments, arg => string.Equals(arg,
+                FestivalRegionAutoVerify.YuexiBayVerifyArgument, StringComparison.OrdinalIgnoreCase));
+            if (!FestivalMapLocalTestPolicy.IsRequested(arguments) && !verifyYuexi)
+                throw new InvalidOperationException("请通过显式联调参数打开正式 Bootstrap。");
             if (EditorApplication.isPlayingOrWillChangePlaymode) return;
             for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
                 if (UnityEngine.SceneManagement.SceneManager.GetSceneAt(i).isDirty)
@@ -22,7 +26,8 @@ namespace MmorpgClient.Editor
             EditorApplication.ExecuteMenuItem("Window/General/Game");
             EditorApplication.delayCall += () =>
             {
-                Debug.Log("[FestivalMapLocalTest] 进入正式 Bootstrap Play；左上面板可切换9图及已交付外观。");
+                Debug.Log(verifyYuexi ? "[FestivalMapLocalTest] 进入月汐湾联机验收。" :
+                    "[FestivalMapLocalTest] 进入正式 Bootstrap Play，左上面板可切换现有九图及已交付外观。");
                 EditorApplication.EnterPlaymode();
             };
         }

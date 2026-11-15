@@ -178,11 +178,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public bool RequestLocalFestivalTravel(uint sceneConfigId, string appearance)
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending ||
-                _app?.WorldMap == null ||
-                !FestivalMapLocalTestPolicy.CanConnect(Application.isEditor || Debug.isDebugBuild,
-                    FestivalMapLocalTestPolicy.IsRequested(System.Environment.GetCommandLineArgs()),
-                    _game.GatewayBaseUrl, _game.AssignedGate) ||
-                !FestivalMapLocalTestPolicy.IsDeliveredTarget(CurrentMapCatalog.Find(sceneConfigId), appearance)) return false;
+                _app?.WorldMap == null) return false;
+            var map = CurrentMapCatalog.Find(sceneConfigId);
+            if (!FestivalMapLocalTestPolicy.CanUseLocalDelivery(map, appearance, Application.isEditor || Debug.isDebugBuild,
+                    System.Environment.GetCommandLineArgs(), _game.GatewayBaseUrl, _game.AssignedGate)) return false;
             Debug.Log($"[FestivalMapLocalTest] REQUEST scene={sceneConfigId} appearance={appearance} gate={_game.AssignedGate}");
             BeginTravel(sceneConfigId, appearance);
             return true;

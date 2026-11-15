@@ -51,6 +51,53 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(CurrentMapCatalog.FindForOnline("unpublished-test"), Is.Null);
         }
 
+        [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", true, true)]
+        [TestCase("http://[::1]:18286", "[::1]:28200", true, true)]
+        [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", false, false)]
+        [TestCase("http://127.0.0.1:18285", "127.0.0.1:28200", true, false)]
+        [TestCase("http://127.0.0.1:18286", "127.0.0.1:28201", true, false)]
+        [TestCase("http://192.0.2.1:18286", "127.0.0.1:28200", true, false)]
+        [TestCase("http://127.0.0.1:18286", "192.0.2.1:28200", true, false)]
+        public void YuexiBayRequiresExactIsolatedLoopbackEndpoints(string gateway, string gate, bool development, bool expected)
+        {
+            var arguments = new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort", "28200" };
+            Assert.That(FestivalMapLocalTestPolicy.CanUseYuexiBay(development, arguments, gateway, gate), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void YuexiBayRejectsSharedPortsAndIncompleteOrAmbiguousOptIn()
+        {
+            foreach (string gatewayPort in new[] { "8081", "18086" })
+            {
+                var arguments = new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", gatewayPort, "-yuexiBayGatePort", "28200" };
+                Assert.That(FestivalMapLocalTestPolicy.CanUseYuexiBay(true, arguments, $"http://127.0.0.1:{gatewayPort}", "127.0.0.1:28200"), Is.False);
+            }
+            var sharedGate = new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort", "28000" };
+            Assert.That(FestivalMapLocalTestPolicy.CanUseYuexiBay(true, sharedGate, "http://127.0.0.1:18286", "127.0.0.1:28000"), Is.False);
+            foreach (var arguments in new[] {
+                new[] { "-festivalMapLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort", "28200" },
+                new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort" },
+                new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort", "28200", "-yuexiBayGatePort", "28200" }
+            })
+                Assert.That(FestivalMapLocalTestPolicy.CanUseYuexiBay(true, arguments, "http://127.0.0.1:18286", "127.0.0.1:28200"), Is.False);
+        }
+
+        [Test]
+        public void YuexiBayLocalTargetDoesNotAcceptOtherVillageRevisionsOrUnregisteredAppearances()
+        {
+            var registration = Registration("village", 3u, true);
+            var catalog = new MapDeliveryCatalog { schemaVersion = 2, maps = new[] { registration } };
+            CurrentMapCatalog.ApplyDeliveries(catalog);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.Find(3u), "spring"), Is.False);
+            registration.appearances[0].resourceRoot = registration.appearances[0].resourceRoot.Replace(registration.revision, "yuexi-bay-20261115");
+            registration.revision = "yuexi-bay-20261115";
+            CurrentMapCatalog.ApplyDeliveries(catalog);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.Find(3u), "spring"), Is.True);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.Find(3u), "mid-autumn"), Is.False);
+            Assert.That(CurrentMapCatalog.FindForOnline(3u).IsModern, Is.False);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.FindForOnline(3u), "spring"), Is.False);
+        }
+
         [Test]
         public void PublishedReplacementAndNewSceneUseTheirPublishedDefinitions()
         {

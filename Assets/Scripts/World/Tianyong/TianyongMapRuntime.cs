@@ -122,11 +122,9 @@ namespace MmorpgClient.World.Tianyong
             if (installed != null && installed.IsAuthoredFlat &&
                 AuthoredFestivalLocalPolicy.CanUse(_client?.GatewayBaseUrl, _client?.AssignedGate))
                 return installed;
-            if (installed != null &&
-                FestivalMapLocalTestPolicy.CanConnect(Application.isEditor || Debug.isDebugBuild,
-                    FestivalMapLocalTestPolicy.IsRequested(System.Environment.GetCommandLineArgs()),
-                    _client?.GatewayBaseUrl, _client?.AssignedGate) &&
-                FestivalMapLocalTestPolicy.IsDeliveredTarget(installed, installed.Appearance))
+            if (installed != null && FestivalMapLocalTestPolicy.CanUseLocalDelivery(installed, installed.Appearance,
+                    Application.isEditor || Debug.isDebugBuild, System.Environment.GetCommandLineArgs(),
+                    _client?.GatewayBaseUrl, _client?.AssignedGate))
                 return installed;
             return CurrentMapCatalog.FindForOnline(sceneConfigId);
         }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 
 namespace MmorpgClient.World.CurrentMaps
@@ -8,14 +9,20 @@ namespace MmorpgClient.World.CurrentMaps
     public static class FestivalMapLocalTestPolicy
     {
         public const string Argument = "-festivalMapLocalTest";
+        public const string YuexiBayArgument = "-yuexiBayLocalTest";
+        private const string YuexiBayGatewayPortArgument = "-yuexiBayGatewayPort";
+        private const string YuexiBayGatePortArgument = "-yuexiBayGatePort";
         public static readonly IReadOnlyList<string> MapIds = Array.AsReadOnly(new[]
             { "01001", "01002", "05008", "10000", "19004", "21003", "23006", "28007", "35004" });
 
         public static bool IsRequested(IReadOnlyList<string> arguments)
+            => HasArgument(arguments, Argument);
+
+        private static bool HasArgument(IReadOnlyList<string> arguments, string expected)
         {
             if (arguments == null) return false;
             foreach (string value in arguments)
-                if (string.Equals(value, Argument, StringComparison.OrdinalIgnoreCase)) return true;
+                if (string.Equals(value, expected, StringComparison.OrdinalIgnoreCase)) return true;
             return false;
         }
 
@@ -28,6 +35,44 @@ namespace MmorpgClient.World.CurrentMaps
             int colon = assignedGate?.LastIndexOf(':') ?? -1;
             return colon > 0 && int.TryParse(assignedGate.Substring(colon + 1), out int port) &&
                 port > 0 && port <= 65535 && IsLoopbackHost(assignedGate.Substring(0, colon));
+        }
+
+        /// <summary>Only an explicitly selected isolated development stack may use Yuexi Bay's client-only runtime map.</summary>
+        public static bool CanUseYuexiBay(bool developmentBuild, IReadOnlyList<string> arguments, string gateway, string assignedGate)
+        {
+            if (!CanConnect(developmentBuild, HasArgument(arguments, YuexiBayArgument), gateway, assignedGate) ||
+                !TryReadIsolatedPort(arguments, YuexiBayGatewayPortArgument, out int gatewayPort) ||
+                !TryReadIsolatedPort(arguments, YuexiBayGatePortArgument, out int gatePort)) return false;
+            int colon = assignedGate.LastIndexOf(':');
+            return new Uri(gateway).Port == gatewayPort &&
+                int.TryParse(assignedGate.Substring(colon + 1), out int actualGatePort) && actualGatePort == gatePort;
+        }
+
+        public static bool IsYuexiBayTarget(CurrentMapDefinition definition, string appearance)
+            => definition != null && definition.IsModern && !definition.CanTravelOnline &&
+                definition.SceneConfigId == 3 && definition.Key == "village" && definition.Revision == "yuexi-bay-20261115" &&
+                (appearance == "spring" || appearance == "mid-autumn") && definition.ForAppearance(appearance) != null;
+
+        internal static bool CanUseLocalDelivery(CurrentMapDefinition definition, string appearance,
+            bool developmentBuild, IReadOnlyList<string> arguments, string gateway, string assignedGate)
+        {
+            if (IsYuexiBayTarget(definition, appearance))
+                return CanUseYuexiBay(developmentBuild, arguments, gateway, assignedGate);
+            return IsDeliveredTarget(definition, appearance) && CanConnect(developmentBuild, IsRequested(arguments), gateway, assignedGate);
+        }
+
+        private static bool TryReadIsolatedPort(IReadOnlyList<string> arguments, string option, out int port)
+        {
+            port = 0;
+            for (int i = 0; i < arguments.Count; ++i)
+            {
+                if (!string.Equals(arguments[i], option, StringComparison.OrdinalIgnoreCase)) continue;
+                if (port != 0 || i + 1 >= arguments.Count ||
+                    !int.TryParse(arguments[i + 1], NumberStyles.None, CultureInfo.InvariantCulture, out port) ||
+                    port <= 0 || port > 65535 || port == 8081 || port == 18086 || port == 28000) return false;
+                ++i;
+            }
+            return port != 0;
         }
 
         public static bool IsDeliveredTarget(CurrentMapDefinition definition, string appearance)
