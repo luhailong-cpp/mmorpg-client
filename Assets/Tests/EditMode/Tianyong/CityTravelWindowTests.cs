@@ -30,6 +30,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             _window?.Hide();
             if (_root != null) Object.DestroyImmediate(_root);
+            CurrentMapCatalog.ReloadDeliveries();
         }
 
         [Test]
@@ -95,6 +96,36 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(formal.All(x => x.Available && !x.OnlineAvailable && x.DefaultAppearance == "spring"), Is.True);
             Assert.That(formal.Count(x => x.TexturePath("spring") != null) + formal.Count(x => x.TexturePath("mid-autumn") != null), Is.EqualTo(5));
             Assert.That(formal.All(x => x.TexturePath("normal") == null && x.TexturePath("lantern") == null), Is.True);
+        }
+
+        [Test]
+        public void OfflineReplacementKeepsOldIslandTravelAndHidesItsUnpublishedAppearances()
+        {
+            var legacy = CurrentMapCatalog.FindForOnline(2u);
+            var sha = new string('a', 64);
+            CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = new[] {
+                new MapDeliveryRegistration {
+                    key = "island", name = "Offline island fixture", sceneId = 2, revision = "online-policy-test",
+                    clientOnly = true, defaultAppearance = "spring", appearances = new[] { new MapAppearanceDelivery {
+                        id = "spring", artStatus = "formal_art_delivery", layoutSha256 = sha,
+                        resourceRoot = MapDeliveryContract.ResourceRoot + "island/online-policy-test/spring/" + sha + "/"
+                    } }
+                }
+            } });
+            var destinations = CityTravelUiRoot.CreateDestinations();
+            var island = destinations.Single(x => x.SceneConfigId == 2);
+            Assert.That(island.Map, Is.SameAs(legacy));
+            Assert.That(island.OnlineAvailable, Is.True);
+            Assert.That(island.DefaultAppearance, Is.EqualTo("normal"));
+            Assert.That(island.TexturePath("spring"), Is.Null);
+            _window.SetDestinations(destinations);
+            _window.Show(1, false);
+            Click("OpenCityTravelOptions");
+            Click("CityDestination_2");
+            uint requested = 0;
+            _window.TravelRequested += (id, _) => requested = id;
+            Click("TravelToSelectedCity");
+            Assert.That(requested, Is.EqualTo(2));
         }
 
         [Test]

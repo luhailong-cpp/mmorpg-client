@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "observedAtUtc": "2026-11-15T09:01:06.9199656Z",
+  "auditPurpose": "Read-only source inventory audit for Bajing body integration preparation; this file is not a final-art, engine, navigation, or release acceptance.",
+  "imageRepository": {
+    "localRoot": "D:/work/image",
+    "headSha": "1b363d9cde27e6a7f6b0c50c0d0fd4a7d96ed5cc",
+    "worktreePorcelainAtObservation": [],
+    "worktreeClean": true,
+    "remoteWasNotFetchedOrChanged": true
+  },
+  "measurementMethods": {
+    "bytes": "Filesystem file length",
+    "dimensions": "PNG IHDR width/height header, no image resampling or pixel modification",
+    "sha256": "SHA-256 over complete local PNG bytes",
+    "scope": "The explicit Bajing body source-inventory directory and a tracked tree search for the final batch name.",
+    "notClaimed": [
+      "full PNG decode/visual acceptance",
+      "actual returned image-generation model or quality",
+      "final tile adoption",
+      "runtime 1024 derivation",
+      "navigation mask acceptance",
+      "Unity rendering/physics/movement acceptance",
+      "server scene publication"
+    ]
+  },
+  "observedInventorySummaries": [
+    {
+      "placeId": "current-eight-immortals-island",
+      "sourceImageRelativeRoot": "designs/map-production-delivery-20261108/current-eight-immortals-island",
+      "pngCount": 7,
+      "totalBytes": 10568226,
+      "appearanceCounts": {
+        "midautumn": 1,
+        "spring": 6
+      },
+      "nonPngFileCount": 0,
+      "provenanceAndAdoptionMetadataWithinThisRootIdentified": false,
+      "actualNavigationDataWithinThisRootIdentified": false,
+      "completeFinalRuntimeDeliveryVerified": false
+    }
+  ],
+  "bajingBodyFinalBatch": {
+    "placeId": "current-eight-immortals-island",
+    "userNamedBatch": "bajingbody20261114",
+    "expectedFinalRuntimeTiles": 176,
+    "expectedPerAppearanceTiles": {
+      "spring": 88,
+      "midautumn": 88
+    },
+    "finalBatchDirectoryLocation": "unknown; no exact missing filesystem directory is asserted",
+    "trackedTreeBatchNameSearch": {
+      "patterns": [
+        "bajingbody20261114",
+        "bajing-body-20261114"
+      ],
+      "matchingPathCount": 0,
+      "matchingPaths": []
+    },
+    "final176TileDeliveryIdentified": false,
+    "linkedFinalAcceptanceAndSourceManifestIdentified": false,
+    "linkedActualNavigationEvidenceIdentified": false,
+    "conclusion": "Only 7 native source-inventory PNGs are observed in the audited delivery inventory; no matching named final batch or complete 176-tile delivery has been identified in this checkout.",
+    "oldClient20000BranchUsed": false
+  },
+  "images": [
+    {
+      "placeId": "current-eight-immortals-island",
+      "appearance": "midautumn",
+      "coordinate": "r03_c11",
+      "sourceImageRelativePath": "designs/map-production-delivery-20261108/current-eight-immortals-island/midautumn/r03_c11/v001/5c708528bb235d9c/native.png",
+      "bytes": 1505427,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "5c708528bb235d9cee197a9661c63cd903fb0564c45c5f86de63bfb01ab9dd50",
+      "sha256MatchesDirectoryPrefix": true,
+      "classification": "unverified_native_source_inventory_not_final_runtime_delivery",
+      "formalAdoptionVerified": false,
+      "navigationVerified": false
+    },
+    {
+      "placeId": "current-eight-immortals-island",
+      "appearance": "spring",
+      "coordinate": "r02_c11",
+      "sourceImageRelativePath": "designs/map-production-delivery-20261108/current-eight-immortals-island/spring/r02_c11/v001/8441eef3427663b8/native.png",
+      "bytes": 1484360,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "8441eef3427663b82470d05fd451cbbf049e3bd0d2959ea22bd7486f2ed9132a",
+      "sha256MatchesDirectoryPrefix": true,
+      "classification": "unverified_native_source_inventory_not_final_runtime_delivery",
+      "formalAdoptionVerified": false,
+      "navigationVerified": false
+    },
+    {
+      "placeId": "current-eight-immortals-island",
+      "appearance": "spring",
+      "coordinate": "r03_c11",
+      "sourceImageRelativePath": "designs/map-production-delivery-20261108/current-eight-immortals-island/spring/r03_c11/v001/b30c1fccc79a4e6f/native.png",
+      "bytes": 1508541,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "b30c1fccc79a4e6f2600765f1d78fbfe1ec533c75e635ddd930448108502a163",
+      "sha256MatchesDirectoryPrefix": true,
+      "classification": "unverified_native_source_inventory_not_final_runtime_delivery",
+      "formalAdoptionVerified": false,
+      "navigationVerified": false
+    },
+    {
+      "placeId": "current-eight-immortals-island",
+      "appearance": "spring",
+      "coordinate": "r04_c11",
+      "sourceImageRelativePath": "designs/map-production-delivery-20261108/current-eight-immortals-island/spring/r04_c11/v001/4aff00dd45b58b44/native.png",
+      "bytes": 1502412,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "4aff00dd45b58b44c4117e57a7123c7579f54984b7d4647c6a8c00f395503dae",
+      "sha256MatchesDirectoryPrefix": true,
+      "classification": "unverified_native_source_inventory_not_final_runtime_delivery",
+      "formalAdoptionVerified": false,
+      "navigationVerified": false
+    },
+    {
+      "placeId": "current-eight-immortals-island",
+      "appearance": "spring",
+      "coordinate": "r05_c11",
+      "sourceImageRelativePath": "designs/map-production-delivery-20261108/current-eight-immortals-island/spring/r05_c11/v001/073c88092f4e2d7b/native.png",
+      "bytes": 1555771,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "073c88092f4e2d7b7debca5ba1b7268566e028062ff3750b6a99183da367f6cd",
+      "sha256MatchesDirectoryPrefix": true,
+      "classification": "unverified_native_source_inventory_not_final_runtime_delivery",
+      "formalAdoptionVerified": false,
+      "navigationVerified": false
+    },
+    {
+      "placeId": "current-eight-immortals-island",
+      "appearance": "spring",
+      "coordinate": "r07_c01",
+      "sourceImageRelativePath": "designs/map-production-delivery-20261108/current-eight-immortals-island/spring/r07_c01/v001/896a405aa00e33ca/native.png",
+      "bytes": 1505124,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "896a405aa00e33caf0b43b7e6885a98b4c272d1676e6290d4368ebc0500edc40",
+      "sha256MatchesDirectoryPrefix": true,
+      "classification": "unverified_native_source_inventory_not_final_runtime_delivery",
+      "formalAdoptionVerified": false,
+      "navigationVerified": false
+    },
+    {
+      "placeId": "current-eight-immortals-island",
+      "appearance": "spring",
+      "coordinate": "r08_c01",
+      "sourceImageRelativePath": "designs/map-production-delivery-20261108/current-eight-immortals-island/spring/r08_c01/v001/3554f7caabceb2e6/native.png",
+      "bytes": 1506591,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3554f7caabceb2e6fa73ad823b4b7a0f6c6873e31ea149bee2aaf4ea0e624233",
+      "sha256MatchesDirectoryPrefix": true,
+      "classification": "unverified_native_source_inventory_not_final_runtime_delivery",
+      "formalAdoptionVerified": false,
+      "navigationVerified": false
+    }
+  ],
+  "auditActions": {
+    "imageRepositoryMutated": false,
+    "imageFilesCopied": false,
+    "imagePixelsModified": false,
+    "aiGenerationCalls": 0,
+    "gitCommitCreated": false,
+    "gitPushPerformed": false
+  },
+  "currentIntegrationScope": "Bajing body spring and mid-autumn only."
+}

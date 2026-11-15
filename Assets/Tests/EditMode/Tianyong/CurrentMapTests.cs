@@ -18,6 +18,99 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             "\"worldRect\":{\"x\":50,\"y\":0,\"width\":300,\"height\":300}," +
             "\"spawnWorld\":{\"x\":51,\"y\":0,\"z\":299}}";
 
+        [TearDown]
+        public void RestoreInstalledCatalog() => CurrentMapCatalog.ReloadDeliveries();
+
+        private static MapDeliveryRegistration Registration(string key, uint scene, bool clientOnly)
+        {
+            var sha = new string('a', 64);
+            return new MapDeliveryRegistration
+            {
+                key = key, sceneId = scene, name = "Offline navigation fixture", revision = "online-policy-test",
+                clientOnly = clientOnly, defaultAppearance = "spring",
+                appearances = new[] { new MapAppearanceDelivery {
+                    id = "spring", artStatus = "formal_art_delivery", layoutSha256 = sha,
+                    resourceRoot = MapDeliveryContract.ResourceRoot + key + "/online-policy-test/spring/" + sha + "/"
+                } }
+            };
+        }
+
+        [Test]
+        public void OnlineLookupKeepsLegacySceneWhileOfflineReplacementRemainsDiscoverable()
+        {
+            var legacy = CurrentMapCatalog.FindForOnline(2u);
+            CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                maps = new[] { Registration("island", 2u, true), Registration("unpublished-test", 42002u, true) } });
+
+            Assert.That(CurrentMapCatalog.Find(2u).IsModern, Is.True);
+            Assert.That(CurrentMapCatalog.Find(2u).Appearance, Is.EqualTo("spring"));
+            Assert.That(CurrentMapCatalog.FindForOnline(2u), Is.SameAs(legacy));
+            Assert.That(CurrentMapCatalog.FindForOnline("island"), Is.SameAs(legacy));
+            Assert.That(CurrentMapCatalog.FindForOnline(2u).ForAppearance("spring"), Is.Null);
+            Assert.That(CurrentMapCatalog.FindForOnline(42002u), Is.Null);
+            Assert.That(CurrentMapCatalog.FindForOnline("unpublished-test"), Is.Null);
+        }
+
+        [Test]
+        public void PublishedReplacementAndNewSceneUseTheirPublishedDefinitions()
+        {
+            CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                maps = new[] { Registration("island", 2u, false), Registration("published-test", 42002u, false) } });
+            foreach (uint id in new[] { 2u, 42002u })
+            {
+                Assert.That(CurrentMapCatalog.FindForOnline(id), Is.SameAs(CurrentMapCatalog.Find(id)));
+                Assert.That(CurrentMapCatalog.FindForOnline(id).Appearance, Is.EqualTo("spring"));
+                Assert.That(CurrentMapCatalog.FindForOnline(id).IsModern, Is.True);
+            }
+        }
+
+        [Test]
+        public void FirstServerEntryAndAppearanceRefreshCannotInstallOfflineReplacement()
+        {
+            var legacy = CurrentMapCatalog.FindForOnline(2u);
+            var root = new GameObject("OfflineReplacementFirstServerEntry");
+            var runtime = root.AddComponent<TianyongMapRuntime>();
+            try
+            {
+                runtime.Initialize(null, null, null, null);
+                CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                    maps = new[] { Registration("island", 2u, true) } });
+                // The offline fixture deliberately has no image or mask. A bad resolution must fail,
+                // rather than silently building placeholder resources for this test.
+                Invoke(runtime, "HandleSceneEntered", new SceneInfoComp { SceneConfigId = 2u });
+                Assert.That(runtime.Map, Is.Not.Null);
+                Assert.That(runtime.CurrentSpawn, Is.EqualTo(legacy.Spawn));
+                Assert.That(runtime.Map.Navigation.Bounds, Is.EqualTo(legacy.NavigationWorldRect));
+                var onlineMap = runtime.Map;
+                Assert.That(runtime.TrySetAppearance("spring"), Is.False);
+                Assert.That(runtime.TrySetAppearance("normal"), Is.True);
+                Invoke(runtime, "EnterScene", 2u);
+                Assert.That(runtime.Map, Is.SameAs(onlineMap));
+                runtime.RefreshCurrentDelivery();
+                Assert.That(runtime.Map, Is.SameAs(onlineMap));
+                Assert.That(runtime.Appearance, Is.EqualTo("normal"));
+                Assert.That(runtime.CurrentSpawn, Is.EqualTo(legacy.Spawn));
+            }
+            finally { Object.DestroyImmediate(root); }
+        }
+
+        [Test]
+        public void ServerEntryForUnpublishedSceneWithoutLegacyLeavesNoMap()
+        {
+            CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                maps = new[] { Registration("unpublished-test", 42002u, true) } });
+            var root = new GameObject("UnpublishedServerScene");
+            var runtime = root.AddComponent<TianyongMapRuntime>();
+            try
+            {
+                runtime.Initialize(null, null, null, null);
+                Invoke(runtime, "HandleSceneEntered", new SceneInfoComp { SceneConfigId = 42002u });
+                Assert.That(runtime.Map, Is.Null);
+                Assert.That(runtime.ActiveSceneConfigId, Is.Zero);
+            }
+            finally { Object.DestroyImmediate(root); }
+        }
+
         [Test]
         public void MaskUsesNorthWestOriginMostSignificantBitAndBlockedExterior()
         {

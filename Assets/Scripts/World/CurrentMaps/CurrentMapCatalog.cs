@@ -75,6 +75,21 @@ namespace MmorpgClient.World.CurrentMaps
             foreach (var map in All) if (map.SceneConfigId == sceneConfigId) return map;
             return null;
         }
+
+        /// <summary>Resolve server-published navigation, retaining a legacy scene until its replacement is published.</summary>
+        public static CurrentMapDefinition FindForOnline(uint sceneConfigId)
+        {
+            var installed = Find(sceneConfigId);
+            if (installed != null && installed.CanTravelOnline) return installed;
+            foreach (var legacy in Legacy) if (legacy.SceneConfigId == sceneConfigId) return legacy;
+            return null;
+        }
+
+        public static CurrentMapDefinition FindForOnline(string key)
+        {
+            var installed = Find(key);
+            return installed != null ? FindForOnline(installed.SceneConfigId) : null;
+        }
     }
 
     public sealed class CurrentMapDefinition

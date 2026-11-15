@@ -13,12 +13,16 @@
     <Compile Include="NativeApiAdapters.cs" />
     <Compile Include="../../../Assets/Scripts/World/CurrentMaps/MapDeliveryContract.cs" Link="Production/MapDeliveryContract.cs" />
     <Compile Include="../../../Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs" Link="Production/CurrentMapCatalog.cs" />
+    <Compile Include="../../../Assets/Scripts/World/CurrentMaps/AuthoredFestivalAssets.cs" Link="Production/AuthoredFestivalAssets.cs" />
+    <Compile Include="../../../Assets/Scripts/World/CurrentMaps/AuthoredMapRegistry.cs" Link="Production/AuthoredMapRegistry.cs" />
     <Compile Include="../../../Assets/Scripts/World/CurrentMaps/FestivalMapLocalTestPolicy.cs" Link="Production/FestivalMapLocalTestPolicy.cs" />
     <Compile Include="../../../Assets/Scripts/World/CurrentMaps/CurrentMapTilesManifest.cs" Link="Production/CurrentMapTilesManifest.cs" />
     <Compile Include="../../../Assets/Scripts/World/Tianyong/CityTileManifest.cs" Link="Production/CityTileManifest.cs" />
     <Compile Include="../../../Assets/Scripts/World/Tianyong/TianyongNavigationGrid.cs" Link="Production/TianyongNavigationGrid.cs" />
+    <Compile Include="../../../Assets/Scripts/World/Tianyong/IMapNavigation.cs" Link="Production/IMapNavigation.cs" />
     <Compile Include="../../../Assets/Scripts/World/Tianyong/TianyongMapDefinition.cs" Link="Production/TianyongMapDefinition.cs" />
     <Reference Include="UnityEngine.CoreModule"><HintPath>$(UnityManagedPath)/UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.AIModule"><HintPath>$(UnityManagedPath)/UnityEngine.AIModule.dll</HintPath></Reference>
   </ItemGroup>
   <Target Name="RequireUnityManagedGeometry" BeforeTargets="ResolveReferences" Condition="!Exists('$(UnityManagedPath)/UnityEngine.CoreModule.dll')">
     <Error Text="Pass -p:UnityManagedPath=&lt;Unity Editor Data/Managed/UnityEngine&gt;. Real managed geometry is required." />
