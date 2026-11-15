@@ -301,6 +301,7 @@ namespace MmorpgClient.App
 
             SetPhase("spring_south_dock");
             yield return WalkYuexiDock(spring, YuexiSouthDock, entry);
+            yield return WaitForTiles(spring);
             if (_done) yield break;
             entry.passed = true;
             CaptureTileEvidence(entry);
@@ -326,6 +327,7 @@ namespace MmorpgClient.App
 
             SetPhase("mid_autumn_north_dock");
             yield return WalkYuexiDock(autumn, YuexiNorthDock, second);
+            yield return WaitForTiles(autumn);
             if (_done) yield break;
             second.passed = true;
             CaptureTileEvidence(second);
@@ -358,18 +360,10 @@ namespace MmorpgClient.App
             if (evidence.pathError >= .4f || _controller.IsMoving || _game.IsMoving)
             { Finish(false, $"实际联网控制器没有停在目标码头。误差 {evidence.pathError:F3} 米。"); yield break; }
 
-            // 从实际脚点选同一码头边缘附近的第一个禁行格，不以远距离超速请求充当阻挡探针。
-            Vector3 forbidden = default;
-            bool found = false;
-            for (float distance = .125f; distance <= .75f && !found; distance += .125f)
-                foreach (var direction in Directions)
-                {
-                    var probe = stopped + direction * distance;
-                    if (region.IsWalkable(probe)) continue;
-                    forbidden = probe; found = true; break;
-                }
-            if (!found || !CanUseYuexiBay())
-            { Finish(false, "未找到相邻禁行点或当前连接不再属于隔离开发服。"); yield break; }
+            // 两个码头的北侧都是水面。选择足够深的邻近点，让阻挡位移越过服务端 0.5 米回执阈值。
+            var forbidden = target + Vector3.forward * 1.5f;
+            if (region.IsWalkable(forbidden) || !CanUseYuexiBay())
+            { Finish(false, "码头北侧水面探针有效性检查失败，或当前连接不再属于隔离开发服。"); yield break; }
 
             Vector3? authoritative = null;
             uint sequence = 0;
@@ -393,8 +387,9 @@ namespace MmorpgClient.App
                 evidence.illegalMoveServerPosition = authoritative.HasValue ? Coordinates(authoritative.Value) : null;
                 evidence.illegalMoveClientPosition = Coordinates(_controller.FeetPosition);
                 evidence.illegalMoveRejected = authoritative.HasValue && _game.CurrentSceneId == instance &&
-                    region.IsWalkable(authoritative.Value) && Distance(authoritative.Value, forbidden) > .03f;
+                    region.IsWalkable(authoritative.Value) && Distance(authoritative.Value, forbidden) > .5f;
                 evidence.authoritativeLegalEndpointConfirmed = evidence.illegalMoveRejected &&
+                    Distance(authoritative.Value, target) <= .4f &&
                     Distance(authoritative.Value, stopped) <= .4f &&
                     Distance(authoritative.Value, _controller.FeetPosition) <= .3f;
                 if (!evidence.authoritativeLegalEndpointConfirmed)
