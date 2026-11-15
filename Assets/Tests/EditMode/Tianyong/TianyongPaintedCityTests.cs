@@ -46,9 +46,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void AllCurrentLayoutsAndMatchingNavigation_AreDeliveredRuntimeResources()
         {
-            Assert.That(CurrentMapCatalog.All.Count, Is.EqualTo(3));
-            foreach (var definition in CurrentMapCatalog.All)
+            foreach (var sceneId in new[] { 1u, 2u, 3u })
             {
+                var definition = CurrentMapCatalog.FindForOnline(sceneId);
+                Assert.That(definition, Is.Not.Null);
                 Assert.That(Resources.Load<TextAsset>(definition.SourcePath), Is.Not.Null, definition.Key);
                 Assert.That(Resources.Load<TextAsset>(definition.MaskPath), Is.Not.Null, definition.Key);
                 var texture = definition.LoadTexture();

@@ -20,6 +20,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             "Assets/Prefabs/World/Tianyong/TianyongDebugPlayer.prefab";
         private const string ConfigPath =
             "Assets/Resources/World/Tianyong/TianyongMapConfig.asset";
+        private static readonly uint[] StandardOnlineScenes = { 1u, 2u, 3u };
 
         private static readonly string[] TexturePaths =
         {
@@ -48,9 +49,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             StringAssert.DoesNotContain("6aef98b5e7df8384ca8489d3c1247c6f", System.IO.File.ReadAllText(AppRootPrefabPath));
             StringAssert.DoesNotContain("6aef98b5e7df8384ca8489d3c1247c6f", System.IO.File.ReadAllText(SandboxScenePath));
             Assert.That(AssetDatabase.LoadAssetAtPath<TianyongMapConfig>(ConfigPath), Is.Null);
-            CollectionAssert.AreEqual(new uint[] { 1, 2, 3 }, CurrentMapCatalog.All.Select(map => map.SceneConfigId));
-            foreach (var definition in CurrentMapCatalog.All)
+            foreach (var sceneId in StandardOnlineScenes)
             {
+                var definition = CurrentMapCatalog.FindForOnline(sceneId);
+                Assert.That(definition?.SceneConfigId, Is.EqualTo(sceneId));
                 Assert.That(Resources.Load<TextAsset>(definition.SourcePath), Is.Not.Null, definition.Key);
                 Assert.That(Resources.Load<TextAsset>(definition.MaskPath), Is.Not.Null, definition.Key);
                 Assert.That(definition.LoadTexture().width, Is.EqualTo(1254), definition.Key);
@@ -117,8 +119,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void CurrentLayoutTextures_KeepTheirOfficialNativeImportSettings()
         {
-            foreach (var definition in CurrentMapCatalog.All)
+            foreach (var sceneId in StandardOnlineScenes)
             {
+                var definition = CurrentMapCatalog.FindForOnline(sceneId);
+                Assert.That(definition, Is.Not.Null);
                 var path = "Assets/Resources/" + definition.TexturePath + ".png";
                 var importer = AssetImporter.GetAtPath(path) as TextureImporter;
                 Assert.That(importer, Is.Not.Null, path);

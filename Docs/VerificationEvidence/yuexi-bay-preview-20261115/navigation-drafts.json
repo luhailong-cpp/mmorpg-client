@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "scope": "Image-backed manual navigation authoring drafts",
+  "map": "月汐湾",
+  "imageCommit": "8ee9f4e4b93c9ff9e9a856647512c220073408a7",
+  "gridPlan": "designs/world-expansion-20261027/hd36-production-20261027/legacy-fishing-village/compact-world-v008/wendao-scene-v001-20261102/reference-proportion-runtime-v002/grid-manifest-v002.json",
+  "gridPlanAuthorSha256": "c3d5b3ac707bb1db05e0770327215ddc6622f59d1d00829452b3c2f4d4e0acd0",
+  "gridPlanGitBlobSha256": "840257aa24d9894ad1e03b515d5b3d02fff06dabc41e54d57b1cbdaf079ead9e",
+  "midAutumnGeometryPlan": "designs/legacy-fishing-village-midautumn-r9/contracts/evidence/geometry-plan-midautumn-r5-v001.json",
+  "midAutumnGeometryPlanSha256": "03655513d4043f97dc63a4d8126068e807854a0379e2b9a0410bb087eaea4021",
+  "canvasPixels": [
+    6144,
+    5120
+  ],
+  "columns": 6,
+  "rows": 5,
+  "worldTileExtent": [
+    14.4,
+    14.4
+  ],
+  "planningWorldRect": [
+    0,
+    0,
+    86.4,
+    72
+  ],
+  "planningCoreRect": [
+    0,
+    0,
+    72,
+    72
+  ],
+  "planningContentRect": [
+    0,
+    0,
+    80,
+    72
+  ],
+  "planningNonwalkableSea": [
+    [
+      72,
+      0,
+      80,
+      72
+    ],
+    [
+      80,
+      0,
+      86.4,
+      72
+    ]
+  ],
+  "pixelToPlanningWorld": "X = pixelX * 9/640; Z = 72 - pixelY * 9/640",
+  "worldBoundsConfirmed": false,
+  "polygonsPerDraft": 0,
+  "spawnSet": false,
+  "bakedNavigation": false,
+  "sharedNavigationVerified": false,
+  "serverScenePublished": false,
+  "validation": {
+    "installedPngBytesAndShaMatch": 60,
+    "tilePlacementRecordsAgree": 60,
+    "uniqueReferencedTextureGuids": 60,
+    "existingFestivalDraftFilesUnchanged": 32
+  },
+  "drafts": [
+    {
+      "appearance": "spring",
+      "asset": "Assets/MapNavigationDrafts/YuexiBay/yuexi-bay-spring.asset",
+      "assetSha256": "d5a126350596a11d9d4dd819e81ba7016eb465d50be9d4ebed8a0b4d201a404b",
+      "assetGuid": "9a57d5056e2f553890784ee97748e852",
+      "referencedTiles": 30,
+      "artManifest": "designs/legacy-fishing-village-spring-r19/PACKAGE_MANIFEST.json",
+      "artManifestSha256": "a0e9c04a2a597580872f84af1fe20110e2954d173f7347878ce7ae6e536ceba6"
+    },
+    {
+      "appearance": "mid-autumn",
+      "asset": "Assets/MapNavigationDrafts/YuexiBay/yuexi-bay-mid-autumn.asset",
+      "assetSha256": "a354dc9a9c08122bffa204324dd3885e5e99b3da119706bbdf859b07fb2ddd06",
+      "assetGuid": "08e6dde943ad5fd8804276b1565d07e7",
+      "referencedTiles": 30,
+      "artManifest": "designs/legacy-fishing-village-midautumn-r9/PORTABLE_MANIFEST.json",
+      "artManifestSha256": "166670f3dc58d96c95e03032efdecd770374cf943a4d6c7335536ba41b77fdca"
+    }
+  ]
+}

@@ -33,7 +33,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase(3u)]
         public void SpawnHasSafeWasdAndConnectedClickTargets(uint sceneConfigId)
         {
-            var region = CurrentMapCatalog.Find(sceneConfigId);
+            var region = CurrentMapCatalog.FindForOnline(sceneConfigId);
             Assert.That(region, Is.Not.Null);
             var nav = region.CreateNavigation();
             Assert.That(nav.IsWalkable(region.Spawn), Is.True);

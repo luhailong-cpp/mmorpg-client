@@ -230,7 +230,7 @@ namespace MmorpgClient.App
             ResetController();
             var evidence = new SceneEvidence { sceneConfigId = sceneConfigId };
             _report.scenes.Add(evidence);
-            var region = CurrentMapCatalog.Find(sceneConfigId);
+            var region = _localFestival ? CurrentMapCatalog.Find(sceneConfigId) : CurrentMapCatalog.FindForOnline(sceneConfigId);
             if (region == null) { Finish(false, "目标场景没有当前地图交付。"); yield break; }
             evidence.mapKey = region.Key;
             evidence.appearance = region.Appearance;

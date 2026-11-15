@@ -179,8 +179,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("village", 3u)]
         public void DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(string key, uint scene)
         {
-            var definition = CurrentMapCatalog.Find(key);
-            Assert.That(CurrentMapCatalog.Find(scene), Is.SameAs(definition));
+            var definition = CurrentMapCatalog.FindForOnline(key);
+            Assert.That(CurrentMapCatalog.FindForOnline(scene), Is.SameAs(definition));
             var texture = definition.LoadTexture();
             Assert.That(texture.width, Is.EqualTo(1254));
             Assert.That(texture.height, Is.EqualTo(1254));
@@ -242,7 +242,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("village", false)]
         public void FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(string key, bool explicitSpawn)
         {
-            var definition = CurrentMapCatalog.Find(key);
+            var definition = CurrentMapCatalog.FindForOnline(key);
             var navigation = definition.CreateNavigation();
             var invalid = new Vector3(5f, 0f, 5f);
             Assert.That(navigation.TryFindNearestWalkable(invalid, out _), Is.False,

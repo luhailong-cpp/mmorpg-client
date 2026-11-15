@@ -1,0 +1,35 @@
+{
+  "maskPackedSha256": "e18dde078030d723473074502c1e5c0ad67ece1fef86d822cd20667c8099d582",
+  "cases": {
+    "north_dock": {
+      "removed": 4,
+      "cutUnityXZHalfOpen": [
+        54,
+        43,
+        55,
+        47
+      ],
+      "componentsAfterCut": [
+        932,
+        16
+      ],
+      "spawnAndDockRemainWalkable": true,
+      "routeBreaks": true
+    },
+    "south_dock": {
+      "removed": 4,
+      "cutUnityXZHalfOpen": [
+        43.5,
+        21,
+        44.5,
+        24.5
+      ],
+      "componentsAfterCut": [
+        934,
+        14
+      ],
+      "spawnAndDockRemainWalkable": true,
+      "routeBreaks": true
+    }
+  }
+}

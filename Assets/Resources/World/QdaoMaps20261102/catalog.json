@@ -180,6 +180,28 @@
           "artStatus": "formal_art_delivery"
         }
       ]
+    },
+    {
+      "key": "village",
+      "sceneId": 3,
+      "name": "月汐湾",
+      "revision": "yuexi-bay-20261115",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/",
+          "layoutSha256": "1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/village/yuexi-bay-20261115/mid-autumn/1d970a4634492f3f009e6c3d3dd7ff7bdb5a1338bbce9259a367a4c2c8f44dd9/",
+          "layoutSha256": "1d970a4634492f3f009e6c3d3dd7ff7bdb5a1338bbce9259a367a4c2c8f44dd9",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
     }
   ]
 }
