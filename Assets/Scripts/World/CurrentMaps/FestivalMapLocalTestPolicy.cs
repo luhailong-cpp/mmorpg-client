@@ -49,8 +49,7 @@ namespace MmorpgClient.World.CurrentMaps
         }
 
         public static bool IsYuexiBayTarget(CurrentMapDefinition definition, string appearance)
-            => definition != null && definition.IsModern && !definition.CanTravelOnline &&
-                definition.SceneConfigId == 3 && definition.Key == "village" && definition.Revision == "yuexi-bay-20261115" &&
+            => definition?.IsYuexiBay == true && !definition.CanTravelOnline &&
                 (appearance == "spring" || appearance == "mid-autumn") && definition.ForAppearance(appearance) != null;
 
         internal static bool CanUseLocalDelivery(CurrentMapDefinition definition, string appearance,

@@ -273,8 +273,7 @@ namespace MmorpgClient.World.Tianyong
             _map.UpdateVisibleChunks(CurrentSpawn, VisibleChunkRadius);
             TianyongLighting.Apply(TianyongTheme.City, directionalSun);
             _cameraController?.SetTheme(TianyongTheme.City, true);
-            _cameraController?.SetMapMinimumZoom(
-                FestivalMapLocalTestPolicy.IsYuexiBayTarget(_currentMap, _currentMap.Appearance) ? 6f : null);
+            _cameraController?.SetMapMinimumZoom(_currentMap.IsYuexiBay ? 6f : null);
             _cameraController?.SetWorldBounds(_currentMap.EffectiveWorldRect);
             if (_localPlayer?.Go != null) AttachLocalController(_localPlayer, reportRelocation);
             Debug.Log($"[CurrentMap] ready scene={_activeSceneConfigId} map={_currentMap.Key} spawn={CurrentSpawn}");

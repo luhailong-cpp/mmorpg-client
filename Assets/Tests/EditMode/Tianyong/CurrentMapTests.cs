@@ -99,6 +99,29 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void YuexiBayKeepsNarrowDockMovementWhenPublishedForOnlineTravel()
+        {
+            var catalog = JsonUtility.FromJson<MapDeliveryCatalog>(Resources.Load<TextAsset>(MapDeliveryContract.CatalogPath).text);
+            var registration = Array.Find(catalog.maps, entry => entry.sceneId == 3 && entry.revision == "yuexi-bay-20261115");
+            Assert.That(registration, Is.Not.Null);
+            var from = new Vector3(59.1f, 0f, 44.375f);
+            var to = new Vector3(59.4f, 0f, 44.375f);
+
+            registration.clientOnly = true;
+            CurrentMapCatalog.ApplyDeliveries(catalog);
+            var installed = CurrentMapCatalog.Find(3u);
+            Assert.That(installed.CreateNavigation().IsSegmentWalkable(from, to), Is.True);
+            var oldClearance = new TianyongNavigationGrid(.5f, installed.IsWalkable, installed.WorldRect, installed.EffectiveWorldRect);
+            Assert.That(oldClearance.IsSegmentWalkable(from, to), Is.False);
+
+            registration.clientOnly = false;
+            CurrentMapCatalog.ApplyDeliveries(catalog);
+            var online = CurrentMapCatalog.FindForOnline(3u);
+            Assert.That(online.CreateNavigation().IsSegmentWalkable(from, to), Is.True);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(online, "spring"), Is.False);
+        }
+
+        [Test]
         public void PublishedReplacementAndNewSceneUseTheirPublishedDefinitions()
         {
             CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,

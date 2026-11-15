@@ -116,6 +116,7 @@ namespace MmorpgClient.World.CurrentMaps
         public string Name { get; }
         public uint SceneConfigId { get; }
         public bool IsModern => _delivery != null;
+        internal bool IsYuexiBay => IsModern && SceneConfigId == 3 && Key == "village" && Revision == "yuexi-bay-20261115";
         public bool IsAuthoredFlat => _authored != null;
         internal AuthoredFestivalAssets.Map Authored => _authored;
         public bool CanTravelOnline => _authored == null && (_delivery == null || !_delivery.clientOnly);
@@ -133,7 +134,7 @@ namespace MmorpgClient.World.CurrentMaps
         public bool IsWalkable(Vector3 world) => Data.IsWalkable(world);
         public TianyongNavigationGrid CreateNavigation()
             => new(Data.CellSize, IsWalkable, NavigationWorldRect, IsModern ? EffectiveWorldRect : NavigationWorldRect,
-                FestivalMapLocalTestPolicy.IsYuexiBayTarget(this, Appearance));
+                IsYuexiBay);
 
         public CurrentMapDefinition ForAppearance(string appearance)
             => _authored != null ? appearance == Appearance ? this : null :
