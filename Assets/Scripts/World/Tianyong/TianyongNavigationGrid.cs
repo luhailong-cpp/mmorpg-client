@@ -65,7 +65,8 @@ namespace MmorpgClient.World.Tianyong
         public TianyongNavigationGrid(float cellSize, System.Func<Vector3, bool> walkableSampler, Rect bounds)
             : this(cellSize, walkableSampler, bounds, bounds) { }
 
-        public TianyongNavigationGrid(float cellSize, System.Func<Vector3, bool> walkableSampler, Rect bounds, Rect effectiveBounds)
+        public TianyongNavigationGrid(float cellSize, System.Func<Vector3, bool> walkableSampler, Rect bounds, Rect effectiveBounds,
+            bool preciseNetworkMovement = false)
         {
             if (float.IsNaN(bounds.x) || float.IsNaN(bounds.y) || float.IsNaN(bounds.width) || float.IsNaN(bounds.height) ||
                 float.IsInfinity(bounds.x) || float.IsInfinity(bounds.y) || float.IsInfinity(bounds.width) || float.IsInfinity(bounds.height) ||
@@ -80,6 +81,7 @@ namespace MmorpgClient.World.Tianyong
                 throw new System.ArgumentException("The effective navigation rectangle must be inside its grid.", nameof(effectiveBounds));
             Bounds = bounds;
             EffectiveBounds = effectiveBounds;
+            PreciseNetworkMovement = preciseNetworkMovement;
             CellSize = Mathf.Max(0.5f, cellSize);
             Width = Mathf.CeilToInt(bounds.width / CellSize);
             Depth = Mathf.CeilToInt(bounds.height / CellSize);
@@ -97,10 +99,46 @@ namespace MmorpgClient.World.Tianyong
         public int Width { get; }
         public int Depth { get; }
         public bool IsAuthoredFlat => false;
+        internal bool PreciseNetworkMovement { get; }
 
-        // The existing movement controller retains its original grid behavior;
-        // this query is available to callers that explicitly need a segment test.
-        public bool IsSegmentWalkable(Vector3 from, Vector3 to) => HasLineOfSight(from, to);
+        public bool IsSegmentWalkable(Vector3 from, Vector3 to)
+            => PreciseNetworkMovement ? IsMaskSegmentWalkable(from, to) : HasLineOfSight(from, to);
+
+        // Match the server's FMASK segment rule. The path smoother's side clearance is
+        // intentionally wider and can reject legal movement through a single grid cell.
+        private bool IsMaskSegmentWalkable(Vector3 from, Vector3 to)
+        {
+            if (!IsWalkable(from) || !IsWalkable(to)) return false;
+            var cell = WorldToCell(from);
+            var end = WorldToCell(to);
+            double dx = (double)to.x - from.x, dz = (double)to.z - from.z;
+            int stepX = System.Math.Sign(dx), stepZ = System.Math.Sign(dz);
+            double deltaX = stepX == 0 ? double.PositiveInfinity : CellSize / System.Math.Abs(dx);
+            double deltaZ = stepZ == 0 ? double.PositiveInfinity : CellSize / System.Math.Abs(dz);
+            double nextX = cell.x == end.x ? double.PositiveInfinity :
+                (Bounds.xMin + (cell.x + (stepX > 0 ? 1 : 0)) * (double)CellSize - from.x) / dx;
+            double nextZ = cell.y == end.y ? double.PositiveInfinity :
+                (Bounds.yMin + (cell.y + (stepZ > 0 ? 1 : 0)) * (double)CellSize - from.z) / dz;
+            while (cell != end)
+            {
+                bool corner = System.Math.Abs(nextX - nextZ) <= 1e-12;
+                bool advanceX = corner || nextX < nextZ;
+                if (corner && (!IsWalkable(cell.x + stepX, cell.y) || !IsWalkable(cell.x, cell.y + stepZ)))
+                    return false;
+                if (advanceX)
+                {
+                    cell.x += stepX;
+                    nextX = cell.x == end.x ? double.PositiveInfinity : nextX + deltaX;
+                }
+                if (corner || !advanceX)
+                {
+                    cell.y += stepZ;
+                    nextZ = cell.y == end.y ? double.PositiveInfinity : nextZ + deltaZ;
+                }
+                if (!IsWalkable(cell.x, cell.y)) return false;
+            }
+            return true;
+        }
 
         public bool IsWalkable(Vector3 world)
         {

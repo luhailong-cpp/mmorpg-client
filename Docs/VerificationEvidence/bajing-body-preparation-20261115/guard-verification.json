@@ -1,0 +1,59 @@
+{
+  "scope": "Bajing body integration preparation; only the online legacy-map guard is implemented and tested here.",
+  "clientRemoteBaseSha": "67b9c589f105069ab2b5216e33ca51b4bd312408",
+  "imageRemoteMainSha": "1b363d9cde27e6a7f6b0c50c0d0fd4a7d96ed5cc",
+  "sourceHashes": {
+    "Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs": "f2aee75ff5dac155e702e886ecdfe3d32880d1d9c27c45ff4cd0367639f726cb",
+    "Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs": "c80659b15d8357737e9467eb68732fa423d5542096508c8c02d0e073fdc276b3",
+    "Assets/Scripts/UI/Ugui/Gameplay/CityTravelUiRoot.cs": "c392d2c65b1193e2c3cb12c104837d2c1b8f021976b29163869c04b8b2702175",
+    "Assets/Tests/EditMode/Tianyong/CityTravelWindowTests.cs": "ead2330d19fba46e42cecf7c5e7d17683ba1fabd739781e9e6ab08c1552977dc",
+    "Assets/Tests/EditMode/Tianyong/CurrentMapTests.cs": "37199a3d988842fe963030ea0821ace71c8b22377af827808b1d16f9aa15cdfd",
+    "tools/tests/festival_map_delivery/FestivalMapDelivery.csproj": "bdfb4ef160cf2d0f5c237ed6010f80735cfcec70995a6595d219c4d7f6d3cd39",
+    "tools/tests/festival_map_delivery/NativeApiAdapters.cs": "c0c84f15e794a3da8570e05190db5ffb4512382853f333051dee2d00ad1f0e9d",
+    "tools/tests/festival_map_delivery/Program.cs": "02fbc3c5537b288e4245af55e522832891a65f507cb6c6719015aa00b87736e6"
+  },
+  "unityEditMode": {
+    "editor": "6000.6.0f1",
+    "testFilter": "MmorpgClient.Tests.EditMode.Tianyong.CurrentMapTests;MmorpgClient.Tests.EditMode.Tianyong.CityTravelWindowTests;MmorpgClient.Tests.EditMode.Tianyong.CityTravelRequestTests",
+    "result": "Passed",
+    "exitCode": 0,
+    "startedUtc": "2026-11-15 09:07:23Z",
+    "endedUtc": "2026-11-15 09:07:25Z",
+    "passed": 70,
+    "failed": 0,
+    "newTests": {
+      "OfflineReplacementKeepsOldIslandTravelAndHidesItsUnpublishedAppearances": "Passed",
+      "FirstServerEntryAndAppearanceRefreshCannotInstallOfflineReplacement": "Passed",
+      "OnlineLookupKeepsLegacySceneWhileOfflineReplacementRemainsDiscoverable": "Passed",
+      "PublishedReplacementAndNewSceneUseTheirPublishedDefinitions": "Passed",
+      "ServerEntryForUnpublishedSceneWithoutLegacyLeavesNoMap": "Passed"
+    },
+    "testReport": {
+      "localPath": ".codex-artifacts/map-integration-20261115/unity/editmode-retry-results.xml",
+      "sha256": "80e4df0c7616a2e853c53a675d91a5cf5d8871d19b117977f734e9f2299d70e8"
+    },
+    "editorLog": {
+      "localPath": ".codex-artifacts/map-integration-20261115/unity/editmode-retry.log",
+      "sha256": "5f1e48bbaf6af54d80ba199c92b8d55362d0b28047b9ef3bb2f69a075d0375b9"
+    }
+  },
+  "portableRegression": {
+    "command": "dotnet run --project tools/tests/festival_map_delivery/FestivalMapDelivery.csproj --configuration Release -p:UnityManagedPath=D:/luyuan/tools/Unity/6000.6.0f1/Editor/Data/Managed/UnityEngine -p:ArtifactsPath=D:/luyuan/mmorpg-client/.codex-artifacts/map-integration-20261115/portable -- D:/luyuan/mmorpg-client D:/luyuan/mmorpg-client/.codex-artifacts/map-integration-20261115/portable/result.json 9 15 90",
+    "originalMaps": 9,
+    "originalAppearances": 15,
+    "originalTiles": 90,
+    "passedChecks": 109,
+    "assertions": 280489,
+    "report": {
+      "localPath": ".codex-artifacts/map-integration-20261115/portable/result.json",
+      "sha256": "8e3166e0835eb812d929bce98dc2085cea6d9120828a10600a4ad815cabc7053"
+    }
+  },
+  "pythonRegression": {
+    "test_import_festival_maps.py": 14,
+    "test_festival_map_navigation.py": 12
+  },
+  "finalBajingAssetsInstalled": false,
+  "bajingUnityPlayAndRenderAccepted": false,
+  "bajingServerNavPublished": false
+}

@@ -19,6 +19,10 @@ namespace MmorpgClient.App
     public sealed class FestivalRegionAutoVerify : MonoBehaviour
     {
         private const string Prefix = "[CurrentMapVerify]";
+        public const string YuexiBayVerifyArgument = "-yuexiBayVerify";
+        private const uint YuexiBaySceneId = 3;
+        private static readonly Vector3 YuexiSouthDock = new(48.15f, 0, 21.88125f);
+        private static readonly Vector3 YuexiNorthDock = new(59.34375f, 0, 44.4375f);
 
         [Serializable]
         public sealed class SceneEvidence
@@ -55,6 +59,9 @@ namespace MmorpgClient.App
             public float illegalMoveServerFromClientBefore;
             public float illegalMoveServerFromSpawn;
             public bool authoritativeLegalEndpointConfirmed;
+            public float[] serverSpawn;
+            public bool serverSpawnVerified;
+            public bool feetPreservedOnSwitch;
             public int illegalMoveAckCount;
             public float illegalMoveElapsedSeconds;
             public string resourcePath;
@@ -99,13 +106,14 @@ namespace MmorpgClient.App
         private int _sceneNotifications;
         private string _exception;
         private bool _localFestival;
+        private bool _localYuexiBay;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void AutoSpawn()
         {
             var args = Environment.GetCommandLineArgs();
             if (!HasArgument(args, "-currentMapVerify") && !HasArgument(args, "-festivalMapVerify") &&
-                !HasArgument(args, "-festivalMapLocalVerify")) return;
+                !HasArgument(args, "-festivalMapLocalVerify") && !HasArgument(args, YuexiBayVerifyArgument)) return;
             if (FindAnyObjectByType<FestivalRegionAutoVerify>() != null) return;
             var go = new GameObject("[CurrentMapVerify]");
             DontDestroyOnLoad(go);
@@ -115,7 +123,8 @@ namespace MmorpgClient.App
         private void Start()
         {
             var args = Environment.GetCommandLineArgs();
-            _localFestival = HasArgument(args, "-festivalMapLocalVerify");
+            _localYuexiBay = HasArgument(args, YuexiBayVerifyArgument);
+            _localFestival = !_localYuexiBay && HasArgument(args, "-festivalMapLocalVerify");
             _output = ArgumentValue(args, "-currentMapVerifyOut") ?? ArgumentValue(args, "-festivalMapVerifyOut")
                 ?? Path.GetFullPath("current-map-verification");
             _quit = !HasArgument(args, "-currentMapVerifyNoQuit") && !HasArgument(args, "-festivalMapVerifyNoQuit");
@@ -135,6 +144,11 @@ namespace MmorpgClient.App
             {
                 _report.scope = "local-festival-nine-maps-fifteen-appearances";
                 _report.remainingChecks = "合法移动先记录客户端行走与零纠偏；须逐图核对越界137裁决与发送前脚底的距离及authoritativeLegalEndpointConfirmed，不能仅凭整体PASS认定合法移动已获权威接受；网络越界反例可能同时命中距离/速度限制，不能单独证明精确mask校验；未覆盖缺坏导航、跨区、超时故障注入或重连；10000画面接缝待修。";
+            }
+            if (_localYuexiBay)
+            {
+                _report.scope = "yuexi-bay-paired-loopback";
+                Application.targetFrameRate = 60;
             }
             if (!DevAutoPilot.IsActive || DevAutoPilot.Current.MoveTest || !string.IsNullOrEmpty(DevAutoPilot.Current.AutoQueue))
             {
@@ -173,6 +187,12 @@ namespace MmorpgClient.App
             _report.gate = _game.AssignedGate;
             yield return new WaitForSecondsRealtime(.8f);
 
+            if (_localYuexiBay)
+            {
+                yield return VerifyYuexiBay();
+                yield break;
+            }
+
             foreach (uint sceneConfigId in _localFestival ? LocalFestivalVerificationRoute(_game.CurrentSceneConfigId) : VerificationRoute(_game.CurrentSceneConfigId))
             {
                 if (_done) yield break;
@@ -196,6 +216,204 @@ namespace MmorpgClient.App
                 ? "9 图真实同区入场、客户端行走与零纠偏、网络越界拒绝、15 外观及返城检查通过；权威合法移动接受与正式解锁仍待验收。"
                 : "三张当前地图真实传送、原图加载、导航一致性、移动及返城验收通过。");
         }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        private bool CanUseYuexiBay() => FestivalMapLocalTestPolicy.CanUseYuexiBay(
+            Application.isEditor || Debug.isDebugBuild, Environment.GetCommandLineArgs(),
+            _game.GatewayBaseUrl, _game.AssignedGate);
+
+        private IEnumerator VerifyYuexiBay()
+        {
+            if (!CanUseYuexiBay())
+            { Finish(false, "实际网关或 Gate 不属于显式指定的月汐湾隔离开发服。"); yield break; }
+            var region = CurrentMapCatalog.Find(YuexiBaySceneId);
+            if (!FestivalMapLocalTestPolicy.IsYuexiBayTarget(region, "spring") ||
+                !FestivalMapLocalTestPolicy.IsYuexiBayTarget(region, "mid-autumn"))
+            { Finish(false, "月汐湾双节交付未就绪。"); yield break; }
+
+            var travel = CityTravelUiRoot.Instance;
+            if (_game.CurrentSceneConfigId == YuexiBaySceneId)
+            {
+                int beforeLeave = _sceneNotifications;
+                travel.RequestTravel(1u, "normal");
+                float leaveDeadline = Time.realtimeSinceStartup + 40f;
+                while (!_done && Time.realtimeSinceStartup < leaveDeadline &&
+                       (_game.CurrentSceneConfigId != 1 || _sceneNotifications == beforeLeave || !TryController(out _)))
+                    yield return null;
+                if (_done) yield break;
+                if (_game.CurrentSceneConfigId != 1 || _sceneNotifications == beforeLeave)
+                { Finish(false, "已有角色未按服务器通知离开月汐湾。"); yield break; }
+                yield return null;
+            }
+
+            SetPhase("enter_yuexi");
+            var spring = region.ForAppearance("spring");
+            var autumn = region.ForAppearance("mid-autumn");
+            var entry = new SceneEvidence {
+                sceneConfigId = YuexiBaySceneId, mapKey = spring.Key, appearance = spring.Appearance,
+                expectedSpawn = Coordinates(spring.Spawn), resourcePath = spring.TexturePath
+            };
+            _report.scenes.Add(entry);
+            int noticeBefore = _sceneNotifications;
+            Vector3? serverSpawn = null;
+            void ObserveSpawn(MmorpgClient.World.ActorView view)
+            {
+                if (_game.CurrentSceneConfigId == YuexiBaySceneId && view.PlayerId == _game.PlayerId &&
+                    view.Go != null && !serverSpawn.HasValue)
+                    serverSpawn = view.Go.transform.position;
+            }
+            _game.World.OnActorSpawned += ObserveSpawn;
+            try
+            {
+                if (!travel.RequestLocalFestivalTravel(YuexiBaySceneId, spring.Appearance))
+                { Finish(false, "月汐湾真实传送请求被本机门禁或传送状态机拒绝。"); yield break; }
+                float entryDeadline = Time.realtimeSinceStartup + 60f;
+                while (!_done && Time.realtimeSinceStartup < entryDeadline &&
+                       (_game.CurrentSceneConfigId != YuexiBaySceneId || _sceneNotifications <= noticeBefore ||
+                        !TryController(out _controller) || !serverSpawn.HasValue))
+                    yield return null;
+                if (_done) yield break;
+                entry.serverSpawn = serverSpawn.HasValue ? Coordinates(serverSpawn.Value) : null;
+                entry.sceneNotifications = _sceneNotifications - noticeBefore;
+                entry.sceneInstanceId = _game.CurrentSceneId.ToString(CultureInfo.InvariantCulture);
+                entry.serverSpawnVerified = serverSpawn.HasValue && Vector3.Distance(serverSpawn.Value, spring.Spawn) < .05f;
+                if (!entry.serverSpawnVerified || _game.CurrentSceneConfigId != YuexiBaySceneId || entry.sceneNotifications <= 0 ||
+                    _game.CurrentSceneId == 0 || !TryController(out _controller))
+                { Finish(false, "服务器入场、原始出生坐标或角色控制器未匹配。"); yield break; }
+            }
+            finally { _game.World.OnActorSpawned -= ObserveSpawn; }
+
+            // 和玩家滚轮拉近使用相同的相机范围。全景时可见分片超出流送预算，底图会补齐。
+            var cameraRig = _app.WorldMap.CameraRig;
+            if (cameraRig == null)
+            { Finish(false, "月汐湾没有活动地图相机。"); yield break; }
+            cameraRig.SetZoom(cameraRig.MinimumZoom);
+            cameraRig.Snap();
+            SetPhase("spring_spawn_tiles");
+            yield return WaitForTiles(spring);
+            if (_done) yield break;
+
+            _controller.SetScriptedInputOwner(true);
+            entry.arrivedAt = Coordinates(_controller.FeetPosition);
+            entry.spawnError = Distance(_controller.FeetPosition, spring.Spawn);
+            var navigation = _controller.Navigation;
+            for (int x = 0; x < navigation.Width; x++)
+            for (int z = 0; z < navigation.Depth; z++)
+            {
+                var point = NavigationProbeCenter(navigation, x, z);
+                bool walkable = navigation.IsWalkable(point);
+                if (walkable) entry.walkableCells++; else entry.blockedCells++;
+                if (walkable != spring.IsWalkable(point)) entry.navigationMismatches++;
+            }
+            if (entry.walkableCells != 952 || entry.walkableCells + entry.blockedCells != 24912 ||
+                entry.navigationMismatches != 0 || entry.spawnError > .05f || !spring.SharesNavigationWith(autumn))
+            { Finish(false, "客户端活动导航与已发布的双节掩码或出生点不同。"); yield break; }
+
+            SetPhase("spring_south_dock");
+            yield return WalkYuexiDock(spring, YuexiSouthDock, entry);
+            yield return WaitForTiles(spring);
+            if (_done) yield break;
+            entry.passed = true;
+            CaptureTileEvidence(entry);
+
+            SetPhase("mid_autumn_switch");
+            var switchFeet = _controller.FeetPosition;
+            ulong instance = _game.CurrentSceneId, entity = _game.World.LocalEntity;
+            int notices = _sceneNotifications;
+            if (!travel.RequestLocalFestivalTravel(YuexiBaySceneId, autumn.Appearance))
+            { Finish(false, "月汐湾中秋外观未通过同图切换入口。"); yield break; }
+            yield return WaitForTiles(autumn);
+            if (_done || !ControllerValid()) yield break;
+            var second = new SceneEvidence {
+                sceneConfigId = YuexiBaySceneId, sceneInstanceId = entry.sceneInstanceId,
+                mapKey = autumn.Key, appearance = autumn.Appearance, appearanceOnly = true,
+                arrivedAt = Coordinates(_controller.FeetPosition), resourcePath = autumn.TexturePath,
+                feetPreservedOnSwitch = Vector3.Distance(switchFeet, _controller.FeetPosition) < .05f &&
+                    _game.CurrentSceneId == instance && _game.World.LocalEntity == entity && _sceneNotifications == notices,
+            };
+            _report.scenes.Add(second);
+            if (!second.feetPreservedOnSwitch)
+            { Finish(false, "双节切换改变了服务器场景、人物或脚点。"); yield break; }
+
+            SetPhase("mid_autumn_north_dock");
+            yield return WalkYuexiDock(autumn, YuexiNorthDock, second);
+            yield return WaitForTiles(autumn);
+            if (_done) yield break;
+            second.passed = true;
+            CaptureTileEvidence(second);
+            Finish(true, "月汐湾真实进场、服务器出生、双码头权威落点、禁行输入拒绝及双节切换通过。");
+        }
+
+        private IEnumerator WalkYuexiDock(CurrentMapDefinition region, Vector3 target, SceneEvidence evidence)
+        {
+            evidence.pathTarget = Coordinates(target);
+            int beforeReconcile = _game.MoveReconcileCount, beforeAck = _game.MoveAckCount;
+            if (!_controller.ClickAt(target))
+            { Finish(false, "实际控制器拒绝月汐湾码头的点击目标。"); yield break; }
+            float deadline = Time.realtimeSinceStartup + 30f;
+            while (!_done && Time.realtimeSinceStartup < deadline &&
+                   (_controller.PathDestination.HasValue || _controller.IsMoving || _game.IsMoving))
+            {
+                if (!ControllerValid()) yield break;
+                if (!_controller.Navigation.IsWalkable(_controller.FeetPosition))
+                { Finish(false, "控制器脚点进入已标阻挡格。"); yield break; }
+                yield return null;
+            }
+            if (_done || !ControllerValid()) yield break;
+            yield return new WaitForSecondsRealtime(.35f);
+            if (_done || !ControllerValid()) yield break;
+            var stopped = _controller.FeetPosition;
+            evidence.pathEnd = Coordinates(stopped);
+            evidence.pathError = Distance(stopped, target);
+            evidence.movementAcks = _game.MoveAckCount - beforeAck;
+            evidence.movementReconciles = _game.MoveReconcileCount - beforeReconcile;
+            if (evidence.pathError >= .4f || _controller.IsMoving || _game.IsMoving)
+            { Finish(false, $"实际联网控制器没有停在目标码头。误差 {evidence.pathError:F3} 米。"); yield break; }
+
+            // 两个码头的北侧都是水面。选择足够深的邻近点，让阻挡位移越过服务端 0.5 米回执阈值。
+            var forbidden = target + Vector3.forward * 1.5f;
+            if (region.IsWalkable(forbidden) || !CanUseYuexiBay())
+            { Finish(false, "码头北侧水面探针有效性检查失败，或当前连接不再属于隔离开发服。"); yield break; }
+
+            Vector3? authoritative = null;
+            uint sequence = 0;
+            void Observe(uint input, Vector3 position)
+            {
+                if (input == sequence) authoritative = position;
+            }
+            _game.OnMoveAcknowledged += Observe;
+            ulong instance = _game.CurrentSceneId;
+            try
+            {
+                _game.SendMoveStop(forbidden, _controller.transform.eulerAngles);
+                sequence = _game.LastMoveInputSequence;
+                evidence.illegalMoveInputSequence = sequence;
+                evidence.illegalMoveReported = Coordinates(forbidden);
+                evidence.illegalMoveClientBefore = Coordinates(stopped);
+                deadline = Time.realtimeSinceStartup + 5f;
+                while (!_done && !authoritative.HasValue && Time.realtimeSinceStartup < deadline)
+                    yield return null;
+                if (_done || !ControllerValid()) yield break;
+                evidence.illegalMoveServerPosition = authoritative.HasValue ? Coordinates(authoritative.Value) : null;
+                evidence.illegalMoveClientPosition = Coordinates(_controller.FeetPosition);
+                evidence.illegalMoveRejected = authoritative.HasValue && _game.CurrentSceneId == instance &&
+                    region.IsWalkable(authoritative.Value) && Distance(authoritative.Value, forbidden) > .5f;
+                evidence.authoritativeLegalEndpointConfirmed = evidence.illegalMoveRejected &&
+                    Distance(authoritative.Value, target) <= .4f &&
+                    Distance(authoritative.Value, stopped) <= .4f &&
+                    Distance(authoritative.Value, _controller.FeetPosition) <= .3f;
+                if (!evidence.authoritativeLegalEndpointConfirmed)
+                    Finish(false, "未收到匹配的服务端阻挡裁决，或权威位置未到达码头。");
+            }
+            finally { _game.OnMoveAcknowledged -= Observe; }
+        }
+#else
+        private IEnumerator VerifyYuexiBay()
+        {
+            Finish(false, "月汐湾联调只允许在开发构建运行。");
+            yield break;
+        }
+#endif
 
         public static uint[] LocalFestivalVerificationRoute(uint currentScene)
         {
@@ -230,7 +448,7 @@ namespace MmorpgClient.App
             ResetController();
             var evidence = new SceneEvidence { sceneConfigId = sceneConfigId };
             _report.scenes.Add(evidence);
-            var region = CurrentMapCatalog.Find(sceneConfigId);
+            var region = _localFestival ? CurrentMapCatalog.Find(sceneConfigId) : CurrentMapCatalog.FindForOnline(sceneConfigId);
             if (region == null) { Finish(false, "目标场景没有当前地图交付。"); yield break; }
             evidence.mapKey = region.Key;
             evidence.appearance = region.Appearance;
@@ -649,7 +867,7 @@ namespace MmorpgClient.App
             if (_quit)
             {
 #if UNITY_EDITOR
-                if (_localFestival && Application.isEditor)
+                if ((_localFestival || _localYuexiBay) && Application.isEditor)
                 { UnityEditor.EditorApplication.Exit(passed ? 0 : 1); return; }
 #endif
                 Application.Quit(passed ? 0 : 1);
@@ -660,7 +878,8 @@ namespace MmorpgClient.App
         {
             _report.elapsedSeconds = Time.realtimeSinceStartup - _startTime;
             _report.sceneNotifications = _sceneNotifications;
-            File.WriteAllText(Path.Combine(_output, _localFestival ? "festival-local-verification.json" : "current-map-verification.json"), JsonUtility.ToJson(_report, true));
+            File.WriteAllText(Path.Combine(_output, _localYuexiBay ? "yuexi-bay-network-verification.json" :
+                _localFestival ? "festival-local-verification.json" : "current-map-verification.json"), JsonUtility.ToJson(_report, true));
         }
 
         private void OnDestroy()

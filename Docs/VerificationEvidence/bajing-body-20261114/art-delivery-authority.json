@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "artLatest": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/FINAL_DELIVERY_LATEST.json",
+    "sha256": "8ac39725b38305513c21d02fb483303c5c05b9a4ffa6758f513d0ad2bd6a54d3",
+    "bytes": 1936
+  },
+  "artFinalAcceptance": {
+    "schemaVersion": 1,
+    "atUtc": "2026-11-14T19:20:07.463877+00:00",
+    "status": "PASS_WHOLEMAP_ART_BOTH_FESTIVALS",
+    "mapId": "current-eight-immortals-island",
+    "formalAccepted": {
+      "spring": 88,
+      "midautumn": 88
+    },
+    "deliveryManifest": {
+      "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/DELIVERY_MANIFEST.json",
+      "sha256": "72cd030b9e36b24b35ee8fd31de7de12a7c785d7e200c3375162a5d5432d8bb3",
+      "bytes": 537790
+    },
+    "technicalVerification": {
+      "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/TECHNICAL_VERIFICATION.json",
+      "sha256": "2210410a33d23c466cd77f209c2a88d5ba373ea378d631c45b70a4fa0f8b86f3",
+      "bytes": 1164
+    },
+    "independentVisualReviews": [
+      {
+        "appearance": "spring",
+        "review": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/SPRING_FINAL_INDEPENDENT_VISUAL_REVIEW.json",
+          "sha256": "9853e9a4ac4cc0ff8a54882e04ac485dd5aa32834c776896ba7ce87b82984300",
+          "bytes": 8146
+        }
+      },
+      {
+        "appearance": "midautumn",
+        "review": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/MIDAUTUMN_FINAL_INDEPENDENT_VISUAL_REVIEW.json",
+          "sha256": "7355d0720356dcddb21a76e7c5d114f3bda291c23ab3fcb769b5396c294eae1e",
+          "bytes": 5564
+        }
+      }
+    ],
+    "parentActuallyViewed": [
+      {
+        "image": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/parent-overview-spring-preview1408.jpg",
+          "sha256": "ad5b6de7a6b203c04c1c819c6006619339688bc7e7cb901a4fd8a199c7d1619a",
+          "bytes": 564936
+        },
+        "observation": "春节主岛、四石桥及分支岛地标清楚，红灯笼春联鞭炮等主题明确，日景柔和。",
+        "decision": "PASS",
+        "actuallyViewedBy": "/root",
+        "derived": true,
+        "newImageCall": false,
+        "derivedFrom": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/spring/overview2816x2048.png",
+          "sha256": "2271c50ecf545527427bfad4c8d612d0ec053f2f7c08010bd09d20176661476c",
+          "bytes": 9168061
+        },
+        "operation": "QA LANCZOS overview 2816x2048 to1408x1024 JPEG quality90"
+      },
+      {
+        "image": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/parent-overview-midautumn-preview1408.jpg",
+          "sha256": "c5caee5ac61305b9c1d76cf81c69d617f3f1429f378cef0fea0e18fa324181cf",
+          "bytes": 513462
+        },
+        "observation": "中秋月兔、月饼茶席与月纹地标明确，路线连续，海色与光照自然。",
+        "decision": "PASS",
+        "actuallyViewedBy": "/root",
+        "derived": true,
+        "newImageCall": false,
+        "derivedFrom": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/midautumn/overview2816x2048.png",
+          "sha256": "2ee0d286155bcbd038e7e6afcf300b14fa03faaa9f16ea709eab9e15c4bbd6c4",
+          "bytes": 8881905
+        },
+        "operation": "QA LANCZOS overview 2816x2048 to1408x1024 JPEG quality90"
+      },
+      {
+        "image": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/spring/wholemap-qa/V-r06-c05.png",
+          "sha256": "eb129879abbeef75096cc6d0f2ab52a63050f4bed1afc4a43593327be15a66da",
+          "bytes": 733596
+        },
+        "observation": "共享平台两段雕云与石铺面自然相接，既有圆端成为完整雕饰终端。",
+        "decision": "PASS",
+        "actuallyViewedBy": "/root",
+        "derived": true,
+        "newImageCall": false,
+        "derivedFrom": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/spring/WHOLEMAP_QA_RENDER_INDEX.json",
+          "sha256": "5d3e26c17d406a49fe4018b6e07585b40327710e77871e03e63e39b9470c3ee3",
+          "bytes": 767804
+        },
+        "operation": "Actual runtime input panel; source pixels and geometry indexed in qaRenderIndex"
+      },
+      {
+        "image": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/spring/wholemap-qa/K-r07-c05.png",
+          "sha256": "0a3a5731e6b3e6afdc2812b8dec3280f0041c2a167fe84fe7d656035f02fb062",
+          "bytes": 1254919
+        },
+        "observation": "入口台阶、平台挡沿和木栈头形成完整连续结构，水面无显著硬带。",
+        "decision": "PASS",
+        "actuallyViewedBy": "/root",
+        "derived": true,
+        "newImageCall": false,
+        "derivedFrom": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/spring/WHOLEMAP_QA_RENDER_INDEX.json",
+          "sha256": "5d3e26c17d406a49fe4018b6e07585b40327710e77871e03e63e39b9470c3ee3",
+          "bytes": 767804
+        },
+        "operation": "Actual runtime input panel; source pixels and geometry indexed in qaRenderIndex"
+      },
+      {
+        "image": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/midautumn/wholemap-qa/V-r01-c07.png",
+          "sha256": "e1d658bb580b175e8ed85d988aa8e69c8c5bb7791884dd7e5cc22e795ac59dcd",
+          "bytes": 804642
+        },
+        "observation": "栏杆主梁和立柱连续；细小竹梢可读作接榫，不形成显著结构断裂。",
+        "decision": "PASS",
+        "actuallyViewedBy": "/root",
+        "derived": true,
+        "newImageCall": false,
+        "derivedFrom": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/midautumn/WHOLEMAP_QA_RENDER_INDEX.json",
+          "sha256": "f478e4b06ccc2535cb2eb8905aedfd2bedfd08fe64d3b71f59b11a5333b5b16b",
+          "bytes": 776616
+        },
+        "operation": "Actual runtime input panel; source pixels and geometry indexed in qaRenderIndex"
+      },
+      {
+        "image": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/midautumn/wholemap-qa/H-r02-c06.png",
+          "sha256": "cbd0ef0fc082a7f85276a715e0ba669e6f82956c1d991ef3e78f719294d6e9a4",
+          "bytes": 581462
+        },
+        "observation": "左侧灰岩和岸线自然收口，海面通畅无显著横向硬带。",
+        "decision": "PASS",
+        "actuallyViewedBy": "/root",
+        "derived": true,
+        "newImageCall": false,
+        "derivedFrom": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/midautumn/WHOLEMAP_QA_RENDER_INDEX.json",
+          "sha256": "f478e4b06ccc2535cb2eb8905aedfd2bedfd08fe64d3b71f59b11a5333b5b16b",
+          "bytes": 776616
+        },
+        "operation": "Actual runtime input panel; source pixels and geometry indexed in qaRenderIndex"
+      }
+    ],
+    "unchangedContactEvidenceAudit": {
+      "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/SOURCE_CONTACT_REUSE_AUDIT_LIMITED.json",
+      "sha256": "58cff7d18fd7ed232f37091ea4cdcabc74c5a5a877ee73e9c0e08e6beae8649e",
+      "bytes": 3051
+    },
+    "acceptanceBasis": "实际全图观察、重点结构正常游戏尺度检查，结合输入与范围未变的既有有效接触PASS；海面纹理和岩面细微相位不要求像素或RGB零差。",
+    "renderedQaCounts": {
+      "sharedEdges": 314,
+      "fourTileCorners": 140
+    },
+    "allRenderedQaViewsNewlyReinspected": false,
+    "wholeMapAccepted": true,
+    "wholeMapArtAccepted": true,
+    "clientOrNavigationAccepted": false,
+    "currentVisualHolds": [],
+    "rootAdoptionCommitReceipts": [
+      {
+        "path": "D:/work/image/.codex-artifacts/window-replacement-20261114-r19-coordinator/bajing-thirteen-COMMITTED.json",
+        "sha256": "ab7be1ab038bcee3d5abc718e5bcc89ddd5fd1954d6dabdda4c325a783d01cf2",
+        "bytes": 3959
+      },
+      {
+        "path": "D:/work/image/.codex-artifacts/window-replacement-20261114-r19-coordinator/bajing-nineteen-COMMITTED.json",
+        "sha256": "c31cee31506b0173a759de870b242fadd056a18598dc9798f1c0a6f86bf50e2b",
+        "bytes": 4605
+      }
+    ],
+    "historicalStatePreserved": {
+      "client20000": {
+        "path": "D:/work/image/.work/production-staging/20261103/current-eight-immortals-island/client-map-20000/production-state-20261106-v006.json",
+        "sha256": "63daac2b98364babd139dc7900fa58ce9e793149d4cd414d7d5f8c28e4ed4a69",
+        "bytes": 6792
+      },
+      "clientStop": {
+        "path": "D:/work/image-production-staging-20261103/current-eight-immortals-island/client-map-20000/r3-generation-stop-connection-20261106-v001.json",
+        "sha256": "5509844e83fd26de14c5ccfa87b943cf60d40e6fda5ea7a26123a4accab8c358",
+        "bytes": 961
+      },
+      "originalUnknownRequests": [
+        {
+          "requestId": "R11_H1958NY_BAJING_CNY_SHOULDER_FOOT_REFERENCE_E1",
+          "hostTerminal": "HOST_INPUT_VALIDATION_REJECTED_NO_IMAGE_RETURN_OBSERVED",
+          "error": "`referenced_image_paths` must contain at most 5 paths",
+          "backendDispatchEvidence": null,
+          "physicalConsumption": "UNCONFIRMED",
+          "remoteInFlight": "UNKNOWN_NOT_ASSERTED_ACTIVE_OR_CANCELLED",
+          "exactGate": "Missing original E1 backend non-dispatch/terminal receipt; cannot prove no same-map outstanding request or settle its repair consumption",
+          "originalRequestReplayAllowed": false,
+          "newRequestAllowedWhileThisGateOpen": false
+        }
+      ],
+      "originalClientUnknownNoReplay": [
+        "client-20000-spring-r01_c03-v002",
+        "client-20000-midautumn-r04_c02-v002"
+      ],
+      "quota": {
+        "issueKey": "current-eight-immortals-island/spring/H-r01-c01+K-r01-c02-rock-shoulder-foot",
+        "initialGenerationSpentSeparately": 1,
+        "repairLimit": 30,
+        "verifiedOrdinaryRepairsSpent": 9,
+        "verifiedExceptionalRepairsSpent": 1,
+        "verifiedRepairsSpent": 10,
+        "remainingAfterVerifiedRepairs": 20,
+        "unconfirmedExceptionalRequest": "R11_H1958NY_BAJING_CNY_SHOULDER_FOOT_REFERENCE_E1",
+        "unconfirmedExceptionalPhysicalConsumption": null,
+        "remainingIfE1ConsumedOneRepair": 19,
+        "executableRemainingWhileE1Unknown": null,
+        "oldCountOnlyStopSuperseded": true,
+        "structuralHoldRemains": false,
+        "perCallGoRequiredAfterOriginalUnknownResolved": false,
+        "oldE1ConservativeRepairReserve": 1,
+        "conservativeRemainingAfterKnownSpendAndE1Reserve": 19,
+        "thisHumanExceptionInvocationsSpent": 1,
+        "thisHumanExceptionRemaining": 0,
+        "resolvedByRepair10": true
+      },
+      "serialIssueUsage": {
+        "current-eight-immortals-island/spring/H-r06-c09-north-south-reef-foot": {
+          "repairUsedExact": null,
+          "repairUsedUpperBound": 24,
+          "guaranteedRemaining": 6,
+          "lastRequestId": "R19_BAJING_SPRING_R06C10_SOUTH_REEF_FOOT_REPAIR_V001_20261114",
+          "originalAudit": {
+            "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/spring-r06c10-south-reef-repair-v001/QUOTA_AUDIT_BEFORE.json",
+            "sha256": "0b8cbf33cd9afaa8fee422d371608b16e55d838b5ca5f1b3056df8087d6ef136",
+            "bytes": 97382
+          }
+        },
+        "current-eight-immortals-island/spring/bajing-reference11000-v004-common-layout/V-r06-c05": {
+          "repairUsedExact": null,
+          "repairUsedUpperBound": 29,
+          "guaranteedRemaining": 1,
+          "lastRequestId": "R19_BAJING_SPRING_R07C05_SHARED_PLATFORM_REPAIR_V008_20261114",
+          "originalAudit": {
+            "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/serial-operations/spring-r07c05-shared-platform-v007-ingest-v001/RETURN_COMMITTED.json",
+            "sha256": "748a0e57253a498f0608f6f3dd892a25b731cf374fba89626f61e81d0bcdfec3",
+            "bytes": 8562
+          }
+        },
+        "current-eight-immortals-island/midautumn/bajing-reference11000-v004-common-layout/V-r01-c07": {
+          "repairUsedExact": null,
+          "repairUsedUpperBound": 23,
+          "guaranteedRemaining": 7,
+          "lastRequestId": "R19_BAJING_MIDAUTUMN_R02C07_RAIL_AND_SHORE_ROCK_REPAIR_V002_20261114",
+          "originalAudit": {
+            "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/midautumn-r02c07-quota-audit-v001/QUOTA_AUDIT_BEFORE.json",
+            "sha256": "a667bae132fe097b8811d8c4c64eb0ba2379e72b4634e61a79e092b0e2dac2cb",
+            "bytes": 124310
+          }
+        },
+        "current-eight-immortals-island/midautumn/bajing-reference11000-v004-common-layout/H-r02-c06": {
+          "repairUsedExact": null,
+          "repairUsedUpperBound": 23,
+          "guaranteedRemaining": 7,
+          "lastRequestId": "R19_BAJING_MIDAUTUMN_R02C07_RAIL_AND_SHORE_ROCK_REPAIR_V002_20261114",
+          "originalAudit": {
+            "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/midautumn-r02c07-quota-audit-v001/QUOTA_AUDIT_BEFORE.json",
+            "sha256": "a667bae132fe097b8811d8c4c64eb0ba2379e72b4634e61a79e092b0e2dac2cb",
+            "bytes": 124310
+          }
+        }
+      },
+      "globalHistoricalDetailGap": 5,
+      "gapEvidence": {
+        "path": "D:/work/image/.work/production-staging/20261103/coordination/root/R11_H1958NY_BAJING_PHYSICAL_CALL_ACCOUNTING_CORRECTION_20261110-v001.json",
+        "sha256": "3dec3516f2fe621662cc17760674e7b3633ae51a71fb5ee5593c6b12ce089cc7",
+        "bytes": 13651
+      },
+      "boundOriginalManifest": {
+        "path": "D:/work/image/designs/world-expansion-20261027/hd36-production-20261027/current-eight-immortals-island/compact-world-v008/formal/source-bound-v004-reference11000-runtime1024/manifest.json",
+        "sha256": "c7df7bf3650e6239bd307324a62a830d23dbc5f007c00f8bf8d24f4cd18a77f1",
+        "bytes": 198419
+      },
+      "physicalCalls": {
+        "spring": 157,
+        "midautumn": 114
+      },
+      "nativeReturnVersions": {
+        "spring": 153,
+        "midautumn": 107
+      },
+      "clientOrNavigationAccepted": false,
+      "unknownRequestsSettledByExport": false
+    },
+    "imageOrProductionAccountingChangesDuringFinalExport": {
+      "physicalCalls": 0,
+      "nativeReturns": 0,
+      "formalCredits": 0,
+      "unknownSettlements": 0
+    },
+    "immutableEarlierPendingRecordsRetained": true,
+    "phaseNote": "DELIVERY_MANIFEST和原七控制中的pending whole-map字段记录导出/串行阶段；本独立后续回执记录其后的实际ART验收，不回写旧事实。"
+  },
+  "deliveryManifest": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/DELIVERY_MANIFEST.json",
+    "sha256": "72cd030b9e36b24b35ee8fd31de7de12a7c785d7e200c3375162a5d5432d8bb3",
+    "bytes": 537790
+  },
+  "historicalAndClientState": {
+    "client20000": {
+      "path": "D:/work/image/.work/production-staging/20261103/current-eight-immortals-island/client-map-20000/production-state-20261106-v006.json",
+      "sha256": "63daac2b98364babd139dc7900fa58ce9e793149d4cd414d7d5f8c28e4ed4a69",
+      "bytes": 6792
+    },
+    "clientStop": {
+      "path": "D:/work/image-production-staging-20261103/current-eight-immortals-island/client-map-20000/r3-generation-stop-connection-20261106-v001.json",
+      "sha256": "5509844e83fd26de14c5ccfa87b943cf60d40e6fda5ea7a26123a4accab8c358",
+      "bytes": 961
+    },
+    "originalUnknownRequests": [
+      {
+        "requestId": "R11_H1958NY_BAJING_CNY_SHOULDER_FOOT_REFERENCE_E1",
+        "hostTerminal": "HOST_INPUT_VALIDATION_REJECTED_NO_IMAGE_RETURN_OBSERVED",
+        "error": "`referenced_image_paths` must contain at most 5 paths",
+        "backendDispatchEvidence": null,
+        "physicalConsumption": "UNCONFIRMED",
+        "remoteInFlight": "UNKNOWN_NOT_ASSERTED_ACTIVE_OR_CANCELLED",
+        "exactGate": "Missing original E1 backend non-dispatch/terminal receipt; cannot prove no same-map outstanding request or settle its repair consumption",
+        "originalRequestReplayAllowed": false,
+        "newRequestAllowedWhileThisGateOpen": false
+      }
+    ],
+    "originalClientUnknownNoReplay": [
+      "client-20000-spring-r01_c03-v002",
+      "client-20000-midautumn-r04_c02-v002"
+    ],
+    "quota": {
+      "issueKey": "current-eight-immortals-island/spring/H-r01-c01+K-r01-c02-rock-shoulder-foot",
+      "initialGenerationSpentSeparately": 1,
+      "repairLimit": 30,
+      "verifiedOrdinaryRepairsSpent": 9,
+      "verifiedExceptionalRepairsSpent": 1,
+      "verifiedRepairsSpent": 10,
+      "remainingAfterVerifiedRepairs": 20,
+      "unconfirmedExceptionalRequest": "R11_H1958NY_BAJING_CNY_SHOULDER_FOOT_REFERENCE_E1",
+      "unconfirmedExceptionalPhysicalConsumption": null,
+      "remainingIfE1ConsumedOneRepair": 19,
+      "executableRemainingWhileE1Unknown": null,
+      "oldCountOnlyStopSuperseded": true,
+      "structuralHoldRemains": false,
+      "perCallGoRequiredAfterOriginalUnknownResolved": false,
+      "oldE1ConservativeRepairReserve": 1,
+      "conservativeRemainingAfterKnownSpendAndE1Reserve": 19,
+      "thisHumanExceptionInvocationsSpent": 1,
+      "thisHumanExceptionRemaining": 0,
+      "resolvedByRepair10": true
+    },
+    "serialIssueUsage": {
+      "current-eight-immortals-island/spring/H-r06-c09-north-south-reef-foot": {
+        "repairUsedExact": null,
+        "repairUsedUpperBound": 24,
+        "guaranteedRemaining": 6,
+        "lastRequestId": "R19_BAJING_SPRING_R06C10_SOUTH_REEF_FOOT_REPAIR_V001_20261114",
+        "originalAudit": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/spring-r06c10-south-reef-repair-v001/QUOTA_AUDIT_BEFORE.json",
+          "sha256": "0b8cbf33cd9afaa8fee422d371608b16e55d838b5ca5f1b3056df8087d6ef136",
+          "bytes": 97382
+        }
+      },
+      "current-eight-immortals-island/spring/bajing-reference11000-v004-common-layout/V-r06-c05": {
+        "repairUsedExact": null,
+        "repairUsedUpperBound": 29,
+        "guaranteedRemaining": 1,
+        "lastRequestId": "R19_BAJING_SPRING_R07C05_SHARED_PLATFORM_REPAIR_V008_20261114",
+        "originalAudit": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/serial-operations/spring-r07c05-shared-platform-v007-ingest-v001/RETURN_COMMITTED.json",
+          "sha256": "748a0e57253a498f0608f6f3dd892a25b731cf374fba89626f61e81d0bcdfec3",
+          "bytes": 8562
+        }
+      },
+      "current-eight-immortals-island/midautumn/bajing-reference11000-v004-common-layout/V-r01-c07": {
+        "repairUsedExact": null,
+        "repairUsedUpperBound": 23,
+        "guaranteedRemaining": 7,
+        "lastRequestId": "R19_BAJING_MIDAUTUMN_R02C07_RAIL_AND_SHORE_ROCK_REPAIR_V002_20261114",
+        "originalAudit": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/midautumn-r02c07-quota-audit-v001/QUOTA_AUDIT_BEFORE.json",
+          "sha256": "a667bae132fe097b8811d8c4c64eb0ba2379e72b4634e61a79e092b0e2dac2cb",
+          "bytes": 124310
+        }
+      },
+      "current-eight-immortals-island/midautumn/bajing-reference11000-v004-common-layout/H-r02-c06": {
+        "repairUsedExact": null,
+        "repairUsedUpperBound": 23,
+        "guaranteedRemaining": 7,
+        "lastRequestId": "R19_BAJING_MIDAUTUMN_R02C07_RAIL_AND_SHORE_ROCK_REPAIR_V002_20261114",
+        "originalAudit": {
+          "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/midautumn-r02c07-quota-audit-v001/QUOTA_AUDIT_BEFORE.json",
+          "sha256": "a667bae132fe097b8811d8c4c64eb0ba2379e72b4634e61a79e092b0e2dac2cb",
+          "bytes": 124310
+        }
+      }
+    },
+    "globalHistoricalDetailGap": 5,
+    "gapEvidence": {
+      "path": "D:/work/image/.work/production-staging/20261103/coordination/root/R11_H1958NY_BAJING_PHYSICAL_CALL_ACCOUNTING_CORRECTION_20261110-v001.json",
+      "sha256": "3dec3516f2fe621662cc17760674e7b3633ae51a71fb5ee5593c6b12ce089cc7",
+      "bytes": 13651
+    },
+    "boundOriginalManifest": {
+      "path": "D:/work/image/designs/world-expansion-20261027/hd36-production-20261027/current-eight-immortals-island/compact-world-v008/formal/source-bound-v004-reference11000-runtime1024/manifest.json",
+      "sha256": "c7df7bf3650e6239bd307324a62a830d23dbc5f007c00f8bf8d24f4cd18a77f1",
+      "bytes": 198419
+    },
+    "physicalCalls": {
+      "spring": 157,
+      "midautumn": 114
+    },
+    "nativeReturnVersions": {
+      "spring": 153,
+      "midautumn": 107
+    },
+    "clientOrNavigationAccepted": false,
+    "unknownRequestsSettledByExport": false
+  },
+  "sourceCoordinateConvention": "原美术oldWorldZ向南；Unity Z向北，unityZ=420-oldWorldZ；图像不翻转，11x8旧世界比例保持。",
+  "sourceGeometryId": "bajing-reference11000-v004-common-layout",
+  "clientMapKey": "island",
+  "sceneId": 2,
+  "legacy20000NotImportedOrReplayed": true,
+  "newImageCalls": 0
+}

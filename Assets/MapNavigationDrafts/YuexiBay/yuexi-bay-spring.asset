@@ -1,0 +1,247 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d9dbbdced62bc4fb209b55e2ae3162, type: 3}
+  m_Name: yuexi-bay-spring
+  m_EditorClassIdentifier: MmorpgClient::MmorpgClient.World.NavigationAuthoring.NavMeshAuthoringDraft
+  mapKey: yuexi-bay-spring
+  displayName: "\u6708\u6c50\u6e7e \u6625\u8282"
+  worldRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 86.4
+    height: 72
+  boundsConfirmed: 0
+  imageWidth: 6144
+  imageHeight: 5120
+  backgroundTiles:
+  - texture: {fileID: 2800000, guid: 0e83ecbd91da5db99edf7debb053cdad, type: 3}
+    row: 1
+    column: 1
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r01_c01.png
+    sha256: fbe98aae2a3fb5f7e39468ae74d466638f0ace15e476376819c63288f234e135
+  - texture: {fileID: 2800000, guid: ae19a6e0762b56c783ecfe81c80dc4af, type: 3}
+    row: 1
+    column: 2
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r01_c02.png
+    sha256: 8931945f3f225931d44b7fd7cadcd719875a628be7e02e829725a734cc8af28d
+  - texture: {fileID: 2800000, guid: 0ec2e186e34d562183152581476228a2, type: 3}
+    row: 1
+    column: 3
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r01_c03.png
+    sha256: 1ae4b0b8b1ff873ed0d417906b08bc1383bb6369723ce839e9747f09f80c5854
+  - texture: {fileID: 2800000, guid: cd413b8fb7a65eafa513919ef798bcc5, type: 3}
+    row: 1
+    column: 4
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r01_c04.png
+    sha256: 1162bdab38bdd491c49d56d8371cf1eaabf8fdd0ea7986258000b7c753424cb6
+  - texture: {fileID: 2800000, guid: 52479a81fb5853deb0605abad4e8c827, type: 3}
+    row: 1
+    column: 5
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r01_c05.png
+    sha256: 48203043cf76872fb2c67096f5c38d94e7c3718f8fffba6c5fbdaca6138ab477
+  - texture: {fileID: 2800000, guid: 9abc56253b085a738f08f239450122d5, type: 3}
+    row: 1
+    column: 6
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r01_c06.png
+    sha256: 0265ebeae1f664c9d7e24906d7d7a1934b0cead3e5580f9c99749f7566321e6a
+  - texture: {fileID: 2800000, guid: 39375dd411b55d178fbee50e40bf154e, type: 3}
+    row: 2
+    column: 1
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r02_c01.png
+    sha256: 3db368351069a9554a8141b86a859ba32bc82d404a5ad2ff3ceb77e6af309f6c
+  - texture: {fileID: 2800000, guid: c96a66223c0956f29e4fce00e9c9d84e, type: 3}
+    row: 2
+    column: 2
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r02_c02.png
+    sha256: 2e0caf9b806ce29ac098c55d31e19432ce373afcaa047e94b4107fe50da68bbe
+  - texture: {fileID: 2800000, guid: daf2d1f15e3c51f69ecd75f4fd823780, type: 3}
+    row: 2
+    column: 3
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r02_c03.png
+    sha256: 46e15ff0e3d485a00e4d20197195b0a0a33a3985ad68e8598740ffcd9a97c219
+  - texture: {fileID: 2800000, guid: 8cb92c09a2d35b389103f841306bb53b, type: 3}
+    row: 2
+    column: 4
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r02_c04.png
+    sha256: fe691e4fefee93941a4118f2de55dd26ca6080653f0da4cf5a001d6ee91e184c
+  - texture: {fileID: 2800000, guid: 83d0e1a018715f558f079a6758b7eed9, type: 3}
+    row: 2
+    column: 5
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r02_c05.png
+    sha256: b5dad62f808c60cf0d9152b86e45014b3e00189c075f40b552c3348fd1f5e3eb
+  - texture: {fileID: 2800000, guid: 8097633cf1345882bb21f5b77f14a674, type: 3}
+    row: 2
+    column: 6
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r02_c06.png
+    sha256: 39608e956b2b0b970c096f4b199863c83bf5bdc5133a66a460fbe920c59f8c6f
+  - texture: {fileID: 2800000, guid: 34abdd936b985dd9acb8542877dfc89c, type: 3}
+    row: 3
+    column: 1
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r03_c01.png
+    sha256: c38e4f93b6bb7d1ef38cef358b386ac56e414704a9a170c41a5fe5c85701c736
+  - texture: {fileID: 2800000, guid: f7f4be9ac18e53d6b5fec01d9ebc636b, type: 3}
+    row: 3
+    column: 2
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r03_c02.png
+    sha256: 4587627284d090f6ad70afec8a440627abd7b1edc2582a94da5c4b2ebe2cb1b6
+  - texture: {fileID: 2800000, guid: bd53b0db157b5c7d86c14287b4b9ca23, type: 3}
+    row: 3
+    column: 3
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r03_c03.png
+    sha256: 8a116982b3036f6cb0c9163627b081b2ebd5e720cfee7dde52c9d2c9d012c6ca
+  - texture: {fileID: 2800000, guid: 526158a799b3595daad69241851e5c09, type: 3}
+    row: 3
+    column: 4
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r03_c04.png
+    sha256: 0b3d50c80ca8298451a3172a91717f959b0f9592fcdcda70325d0ed9339ee9b9
+  - texture: {fileID: 2800000, guid: 231d0e695b225d0fa13ea3b36e5be648, type: 3}
+    row: 3
+    column: 5
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r03_c05.png
+    sha256: 225847795ca505b47bd98bdd7091878ed0912d04bfae9d9ff9866a6f9417141d
+  - texture: {fileID: 2800000, guid: 9aa4ce3a283c594b83994c3b06e1e39c, type: 3}
+    row: 3
+    column: 6
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r03_c06.png
+    sha256: 47f00e658799dcf7481d0d622757fb43ad5212427e00c03a088569eb797df5f5
+  - texture: {fileID: 2800000, guid: 2d2973f943d05bb3be31b908ac02f4ea, type: 3}
+    row: 4
+    column: 1
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r04_c01.png
+    sha256: b6c18fc93dabb995c521b241ef6a41df19deee93b18f90e6688fa000b438c820
+  - texture: {fileID: 2800000, guid: caed602cf4c5573cb5c716de73eb5a18, type: 3}
+    row: 4
+    column: 2
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r04_c02.png
+    sha256: 1edeb9aa7a3df55d029f459585a3553a28741052ebacb98339a5f60dd6a6d1ce
+  - texture: {fileID: 2800000, guid: d658b07f897e5636b4c8e1a0f2adc841, type: 3}
+    row: 4
+    column: 3
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r04_c03.png
+    sha256: a33d20036647a8a367ef25735e72ee3ba7f0e9e43c29c9f1fa5ee76d48b0385d
+  - texture: {fileID: 2800000, guid: 5e7fa2552ecf5964be08228052ddfdc8, type: 3}
+    row: 4
+    column: 4
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r04_c04.png
+    sha256: 66e86b28a14aa5e76e48f390cffdb72dc74aebb92f0b57ead29f4d16f81edc9c
+  - texture: {fileID: 2800000, guid: 86b543f20e7d5be395eb4e0767f8f87c, type: 3}
+    row: 4
+    column: 5
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r04_c05.png
+    sha256: 6d09c3f9dcb17d860ffde3c695e0b7840aa9c7658668ffc6381560590d03bc95
+  - texture: {fileID: 2800000, guid: 95a01bcdd7955146a6af1a775c14bc7d, type: 3}
+    row: 4
+    column: 6
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r04_c06.png
+    sha256: ad1f668d450fd8c0c8d8d696584e032e4bb753a00e52acb2c631c40f5e2bc356
+  - texture: {fileID: 2800000, guid: 02f3d6dc65e95bb4a2ea631009533ea8, type: 3}
+    row: 5
+    column: 1
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r05_c01.png
+    sha256: 09df1c8d3686b7d2fd923b8eaf17a8df3e4b2380987e390e6cd9e7890fc6ecca
+  - texture: {fileID: 2800000, guid: 9a4dd156cd4956b08dfd4e169325b142, type: 3}
+    row: 5
+    column: 2
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r05_c02.png
+    sha256: defc930d24c07b7df2eeb3d9cc5bc0d5d7574e3cd461197a91e62ee3dec99d2a
+  - texture: {fileID: 2800000, guid: 0b42ee493884570a8c334372e5c899bc, type: 3}
+    row: 5
+    column: 3
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r05_c03.png
+    sha256: b8fd6351c88142fd937c4e47677e08d0f412a8d7d1d744023d0b445bfde77948
+  - texture: {fileID: 2800000, guid: 5ce242a4b8a65490a1b9993538257eba, type: 3}
+    row: 5
+    column: 4
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r05_c04.png
+    sha256: e86cb4bbdd4c17e73bbc8acc7e4f29ff5f3b4785d44b906f549f99bde55b5420
+  - texture: {fileID: 2800000, guid: d5c023ab875e5493a330ddf6aa2c9766, type: 3}
+    row: 5
+    column: 5
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r05_c05.png
+    sha256: 730a627aa8abf7dac245ac2b4eebc18c0d01517acffaab8d4b2bd3ffbcd78c2b
+  - texture: {fileID: 2800000, guid: 24206bf17e715f36b22935ac85819b26, type: 3}
+    row: 5
+    column: 6
+    pixelWidth: 1024
+    pixelHeight: 1024
+    assetPath: Assets/Resources/World/QdaoMaps20261102/village/yuexi-bay-20261115/spring/1434311d8576a300720996a44e37cd2d0cfce7098e82c47fdd58802e468d1d6d/tiles/r05_c06.png
+    sha256: ce1ebfd3ed061a01a06261e73408c29ed30c8293f1966d9a0f5c95aad53d2cac
+  polygons: []
+  spawnSet: 0
+  spawn: {x: 0, y: 0}
+  agentTypeId: 0
+  agentRadius: 0.4
+  agentHeight: 1.8
+  agentClimb: 0.3
+  agentSlope: 45
+  voxelSize: 0.1
+  bakedData: {fileID: 0}
+  bakedGeometrySha256:

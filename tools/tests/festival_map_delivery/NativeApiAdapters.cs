@@ -58,7 +58,14 @@ namespace UnityEngine
 
     public static class Debug
     {
+        // This portable process is neither the Editor nor a development player.
+        public static bool isDebugBuild => false;
         public static readonly List<string> Errors = new();
         public static void LogError(object value) => Errors.Add(value?.ToString() ?? "");
+    }
+
+    public static class Application
+    {
+        public static bool isEditor => false;
     }
 }

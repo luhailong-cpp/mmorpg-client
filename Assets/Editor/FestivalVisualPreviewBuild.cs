@@ -17,7 +17,7 @@ namespace MmorpgClient.Editor.CurrentMaps
     /// </summary>
     public static class FestivalVisualPreviewBuild
     {
-        public const string DefaultOutput = "Builds/festival-maps-offline-20261112/player/FestivalMaps.exe";
+        public const string DefaultOutput = "Builds/festival-maps-offline-20261116/player/FestivalMaps.exe";
         private const string Tag = "[FestivalVisualPreviewBuild]";
         private const BuildTarget Target = BuildTarget.StandaloneWindows64;
 
@@ -44,7 +44,7 @@ namespace MmorpgClient.Editor.CurrentMaps
             public double durationSeconds;
         }
 
-        [MenuItem("MMORPG/Maps/打包三套离线视觉预览")]
+        [MenuItem("MMORPG/Maps/打包节庆地图离线视觉预览")]
         public static void Build()
         {
             string outputDirectory = null;

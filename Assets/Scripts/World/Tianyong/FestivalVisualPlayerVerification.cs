@@ -13,10 +13,12 @@ namespace MmorpgClient.World.Tianyong
     {
         private const float Tolerance = .002f;
         private const double TimeoutSeconds = 180;
-        private static readonly uint[] MapIds = { 26000, 26008, 26008 };
-        private static readonly string[] Appearances = { "mid-autumn", "spring", "mid-autumn" };
-        private static readonly int[] Columns = { 5, 4, 4 };
-        private static readonly int[] Rows = { 4, 3, 3 };
+        private static readonly (uint MapId, string MapKey, string Appearance, int Columns, int Rows)[] Cases =
+        {
+            (26000, null, "spring", 5, 4), (26000, null, "mid-autumn", 5, 4),
+            (26008, null, "spring", 4, 3), (26008, null, "mid-autumn", 4, 3),
+            (0, "biyuan-water-palace", "spring", 5, 4)
+        };
         private static FestivalVisualPlayerVerification _active;
 
         [Serializable]
@@ -37,6 +39,7 @@ namespace MmorpgClient.World.Tianyong
         private sealed class MapResult
         {
             public uint mapId;
+            public string mapKey;
             public string appearance;
             public int columns;
             public int rows;
@@ -85,7 +88,7 @@ namespace MmorpgClient.World.Tianyong
             public bool appearanceSwitchVerified;
             public string error;
             public string[] runtimeErrors;
-            public MapResult[] maps = new MapResult[3];
+            public MapResult[] maps = new MapResult[Cases.Length];
         }
 
         private readonly List<string> _runtimeErrors = new List<string>();
@@ -198,16 +201,19 @@ namespace MmorpgClient.World.Tianyong
             if (Screen.width < 640 || Screen.height < 360)
                 throw new InvalidOperationException("The player framebuffer must be at least 640x360.");
 
-            for (int index = 0; index < MapIds.Length; index++)
+            for (int index = 0; index < Cases.Length; index++)
             {
+                var entry = Cases[index];
+                string stem = (entry.MapKey ?? entry.MapId.ToString()) + "-" + entry.Appearance;
                 int selectedFrame = Time.frameCount;
                 if (index == 0)
                 {
-                    FestivalMapVisualPreview.Open(sandbox, MapIds[index], Appearances[index]);
+                    FestivalMapVisualPreview.Open(sandbox, entry.MapId, entry.Appearance);
                     _preview = sandbox.GetComponent<FestivalMapVisualPreview>();
                 }
-                else if (_preview == null || !_preview.Select(MapIds[index], Appearances[index]))
-                    throw new InvalidOperationException("Unable to select map " + MapIds[index] + "/" + Appearances[index]);
+                else if (_preview == null || !(entry.MapKey == null ? _preview.Select(entry.MapId, entry.Appearance) :
+                    _preview.Select(entry.MapKey, entry.Appearance)))
+                    throw new InvalidOperationException("Unable to select map " + stem);
                 for (int wait = 0; wait < 3; wait++) yield return null;
 
                 MapResult result = ValidateMap(index, selectedFrame);
@@ -224,7 +230,6 @@ namespace MmorpgClient.World.Tianyong
                 CheckNear(camera.orthographicSize, .15f, "minimum camera zoom");
                 result.minimumZoomVerified = true;
 
-                string stem = MapIds[index] + "-" + Appearances[index];
                 // 每个视角均在 Update 后设置，在该帧渲染及 OnGUI 完成后读取真实窗口。
                 yield return null;
                 _preview.SetView(bounds.center, fit);
@@ -263,9 +268,10 @@ namespace MmorpgClient.World.Tianyong
 
         private MapResult ValidateMap(int index, int selectedFrame)
         {
-            if (_preview == null || _preview.CurrentMapId != MapIds[index] || _preview.CurrentAppearance != Appearances[index])
+            var (mapId, mapKey, appearance, columns, rows) = Cases[index];
+            if (_preview == null || _preview.CurrentMapId != mapId || _preview.CurrentMapKey != mapKey ||
+                _preview.CurrentAppearance != appearance)
                 throw new InvalidOperationException("Selected map or appearance does not match the requested case.");
-            int columns = Columns[index], rows = Rows[index];
             if (_preview.Columns != columns || _preview.Rows != rows || _preview.LoadedTileCount != columns * rows)
                 throw new InvalidOperationException("Unexpected grid or loaded tile count.");
             GameObject root = _preview.VisualRoot;
@@ -298,11 +304,15 @@ namespace MmorpgClient.World.Tianyong
             if (bounds.width <= 0 || bounds.height <= 0 || bounds.xMin < -Tolerance || bounds.yMin < -Tolerance ||
                 bounds.xMax > columns + Tolerance || bounds.yMax > rows + Tolerance)
                 throw new InvalidOperationException("Visual bounds extend outside the tile grid.");
-            if (index == 1) _springTexture = firstTexture;
-            if (index == 2)
-                _report.appearanceSwitchVerified = _springTexture != null && firstTexture != null && firstTexture != _springTexture;
+            if (appearance == "spring") _springTexture = firstTexture;
+            else if (appearance == "mid-autumn")
+            {
+                if (_springTexture == null || firstTexture == null || firstTexture == _springTexture)
+                    throw new InvalidOperationException("Spring and Mid-Autumn map textures did not switch.");
+                _report.appearanceSwitchVerified = true;
+            }
             return new MapResult {
-                mapId = MapIds[index], appearance = Appearances[index], columns = columns, rows = rows,
+                mapId = mapId, mapKey = mapKey, appearance = appearance, columns = columns, rows = rows,
                 loadedTiles = _preview.LoadedTileCount, rendererCount = renderers.Length,
                 validBoundsKnown = _preview.ValidBoundsKnown,
                 visualBounds = new[] { bounds.x, bounds.y, bounds.width, bounds.height },

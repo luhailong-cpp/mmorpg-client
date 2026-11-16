@@ -31,11 +31,12 @@ namespace MmorpgClient.World.Tianyong
         public TianyongTheme Theme => TianyongTheme.City;
         public TianyongMapConfig Config => config;
         public Camera WorldCamera => worldCamera;
+        internal TianyongCameraController CameraRig => _cameraController;
         public Light DirectionalSun => directionalSun;
         public uint ActiveSceneConfigId => _activeSceneConfigId;
         public bool FestivalAppearance => _currentMap != null && _currentMap.Appearance != "normal";
         public string Appearance => _currentMap?.Appearance ?? "normal";
-        public Vector3 CurrentSpawn => (_currentMap ?? CurrentMapCatalog.Find(1u)).Spawn;
+        public Vector3 CurrentSpawn => (_currentMap ?? CurrentMapCatalog.FindForOnline(1u)).Spawn;
 
         public void SetFestivalAppearance(bool festival)
         {
@@ -46,7 +47,7 @@ namespace MmorpgClient.World.Tianyong
         public bool TrySetAppearance(string appearance)
         {
             if (_currentMap == null || !MapDeliveryContract.IsAppearance(appearance)) return false;
-            var selected = CurrentMapCatalog.Find(_activeSceneConfigId)?.ForAppearance(appearance);
+            var selected = FindForServerScene(_activeSceneConfigId)?.ForAppearance(appearance);
             if (selected == null) return false;
             if (selected.ContentIdentity == _currentMap.ContentIdentity) return true;
             return TryInstallMap(selected, true, true);
@@ -116,19 +117,33 @@ namespace MmorpgClient.World.Tianyong
 
         private void HandleDisconnected() => UnloadMap();
 
+        private CurrentMapDefinition FindForServerScene(uint sceneConfigId)
+        {
+            var installed = CurrentMapCatalog.Find(sceneConfigId);
+            if (installed != null && installed.IsAuthoredFlat &&
+                AuthoredFestivalLocalPolicy.CanUse(_client?.GatewayBaseUrl, _client?.AssignedGate))
+                return installed;
+            if (installed != null && FestivalMapLocalTestPolicy.CanUseLocalDelivery(installed, installed.Appearance,
+                    Application.isEditor || Debug.isDebugBuild, System.Environment.GetCommandLineArgs(),
+                    _client?.GatewayBaseUrl, _client?.AssignedGate))
+                return installed;
+            return CurrentMapCatalog.FindForOnline(sceneConfigId);
+        }
+
         private void EnterScene(uint sceneConfigId)
         {
             // The current first-enter packet may omit scene_conf_id. Only the
             // configured default map accepts that compatibility value.
             if (sceneConfigId == 0) sceneConfigId = SceneConfigId;
-            var nextMapDefinition = CurrentMapCatalog.Find(sceneConfigId);
-            if (nextMapDefinition != null && nextMapDefinition.IsAuthoredFlat &&
+            var installed = CurrentMapCatalog.Find(sceneConfigId);
+            if (installed != null && installed.IsAuthoredFlat &&
                 !AuthoredFestivalLocalPolicy.CanUse(_client?.GatewayBaseUrl, _client?.AssignedGate))
             {
                 Debug.LogError("[CurrentMap] 手绘地图仅可连接指定本机开发服务器。");
                 UnloadMap();
                 return;
             }
+            var nextMapDefinition = FindForServerScene(sceneConfigId);
             if (nextMapDefinition == null)
             {
                 // An installed-catalog refresh is not a server scene change.
@@ -258,6 +273,7 @@ namespace MmorpgClient.World.Tianyong
             _map.UpdateVisibleChunks(CurrentSpawn, VisibleChunkRadius);
             TianyongLighting.Apply(TianyongTheme.City, directionalSun);
             _cameraController?.SetTheme(TianyongTheme.City, true);
+            _cameraController?.SetMapMinimumZoom(_currentMap.IsYuexiBay ? 6f : null);
             _cameraController?.SetWorldBounds(_currentMap.EffectiveWorldRect);
             if (_localPlayer?.Go != null) AttachLocalController(_localPlayer, reportRelocation);
             Debug.Log($"[CurrentMap] ready scene={_activeSceneConfigId} map={_currentMap.Key} spawn={CurrentSpawn}");

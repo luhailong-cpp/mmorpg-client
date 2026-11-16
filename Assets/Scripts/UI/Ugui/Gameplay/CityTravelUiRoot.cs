@@ -165,7 +165,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void RequestTravel(uint sceneConfigId, string appearance)
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending) return;
-            var destination = CurrentMapCatalog.Find(sceneConfigId);
+            var destination = CurrentMapCatalog.FindForOnline(sceneConfigId);
             if (destination == null || !destination.CanTravelOnline || destination.ForAppearance(appearance) == null || _app.WorldMap == null) return;
             BeginTravel(sceneConfigId, appearance);
         }
@@ -178,11 +178,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public bool RequestLocalFestivalTravel(uint sceneConfigId, string appearance)
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending ||
-                _app?.WorldMap == null ||
-                !FestivalMapLocalTestPolicy.CanConnect(Application.isEditor || Debug.isDebugBuild,
-                    FestivalMapLocalTestPolicy.IsRequested(System.Environment.GetCommandLineArgs()),
-                    _game.GatewayBaseUrl, _game.AssignedGate) ||
-                !FestivalMapLocalTestPolicy.IsDeliveredTarget(CurrentMapCatalog.Find(sceneConfigId), appearance)) return false;
+                _app?.WorldMap == null) return false;
+            var map = CurrentMapCatalog.Find(sceneConfigId);
+            if (!FestivalMapLocalTestPolicy.CanUseLocalDelivery(map, appearance, Application.isEditor || Debug.isDebugBuild,
+                    System.Environment.GetCommandLineArgs(), _game.GatewayBaseUrl, _game.AssignedGate)) return false;
             Debug.Log($"[FestivalMapLocalTest] REQUEST scene={sceneConfigId} appearance={appearance} gate={_game.AssignedGate}");
             BeginTravel(sceneConfigId, appearance);
             return true;
@@ -250,7 +249,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void RequestZoneTravel(uint zoneId, uint sceneConfigId, string appearance)
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow() || _request.IsPending) return;
-            var destination = CurrentMapCatalog.Find(sceneConfigId);
+            var destination = CurrentMapCatalog.FindForOnline(sceneConfigId);
             if (zoneId == 0 || destination == null || !destination.CanTravelOnline || destination.ForAppearance(appearance) == null || _app.WorldMap == null) return;
             int generation = _request.Begin(sceneConfigId, appearance != "normal", Time.realtimeSinceStartup,
                 CityTravelRequest.CrossZoneTimeoutSeconds);
@@ -442,7 +441,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public static CityTravelDestination[] CreateDestinations()
         {
             var destinations = new List<CityTravelDestination>();
-            foreach (var map in CurrentMapCatalog.All)
+            foreach (var installed in CurrentMapCatalog.All)
+            {
+                var map = CurrentMapCatalog.FindForOnline(installed.SceneConfigId) ?? installed;
                 destinations.Add(new CityTravelDestination
                 {
                     SceneConfigId = map.SceneConfigId, Name = map.Name, Map = map,
@@ -455,6 +456,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     FestivalName = "春节", DefaultAppearance = map.Appearance,
                     OnlineAvailable = map.CanTravelOnline
                 });
+            }
             if (CurrentMapCatalog.Find(4u) == null)
                 destinations.Add(new CityTravelDestination
                 {

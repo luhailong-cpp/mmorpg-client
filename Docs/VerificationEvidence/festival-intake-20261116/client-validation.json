@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "editorPlayReportSha256": "b27e017bca81fcec2b58ffcf15c6b1d794c6b1287c990ee073d434498c6cf36d",
+  "editorPlay": {
+    "result": "PASS",
+    "scope": "Unity Editor Play mode; offline visual preview only; no navigation or collision validation",
+    "startedUtc": "2026-11-16T06:31:54.0015086Z",
+    "finishedUtc": "2026-11-16T06:32:53.6470467Z",
+    "unityVersion": "6000.6.0f1",
+    "scene": "Assets/Scenes/World/FestivalMaps.unity",
+    "error": "",
+    "menuOpened": true,
+    "playModeEntered": true,
+    "playFramesObserved": 21,
+    "appearanceSwitchVerified": true,
+    "runtimeErrors": [],
+    "maps": [
+      {
+        "mapId": 26000,
+        "mapKey": "",
+        "appearance": "spring",
+        "columns": 5,
+        "rows": 4,
+        "loadedTiles": 20,
+        "validBoundsKnown": true,
+        "visualBounds": [
+          0.0,
+          0.125,
+          5.0,
+          3.75
+        ],
+        "overview": "26000-spring-overview.png",
+        "lowerLeft": "26000-spring-lower-left.png",
+        "upperRight": "26000-spring-upper-right.png",
+        "coordinatesVerified": true,
+        "edgeClampVerified": true,
+        "zoomVerified": true
+      },
+      {
+        "mapId": 26000,
+        "mapKey": "",
+        "appearance": "mid-autumn",
+        "columns": 5,
+        "rows": 4,
+        "loadedTiles": 20,
+        "validBoundsKnown": true,
+        "visualBounds": [
+          0.0,
+          0.125,
+          5.0,
+          3.75
+        ],
+        "overview": "26000-mid-autumn-overview.png",
+        "lowerLeft": "26000-mid-autumn-lower-left.png",
+        "upperRight": "26000-mid-autumn-upper-right.png",
+        "coordinatesVerified": true,
+        "edgeClampVerified": true,
+        "zoomVerified": true
+      },
+      {
+        "mapId": 26008,
+        "mapKey": "",
+        "appearance": "spring",
+        "columns": 4,
+        "rows": 3,
+        "loadedTiles": 12,
+        "validBoundsKnown": false,
+        "visualBounds": [
+          0.0,
+          0.0,
+          4.0,
+          3.0
+        ],
+        "overview": "26008-spring-overview.png",
+        "lowerLeft": "26008-spring-lower-left.png",
+        "upperRight": "26008-spring-upper-right.png",
+        "coordinatesVerified": true,
+        "edgeClampVerified": true,
+        "zoomVerified": true
+      },
+      {
+        "mapId": 26008,
+        "mapKey": "",
+        "appearance": "mid-autumn",
+        "columns": 4,
+        "rows": 3,
+        "loadedTiles": 12,
+        "validBoundsKnown": false,
+        "visualBounds": [
+          0.0,
+          0.0,
+          4.0,
+          3.0
+        ],
+        "overview": "26008-mid-autumn-overview.png",
+        "lowerLeft": "26008-mid-autumn-lower-left.png",
+        "upperRight": "26008-mid-autumn-upper-right.png",
+        "coordinatesVerified": true,
+        "edgeClampVerified": true,
+        "zoomVerified": true
+      },
+      {
+        "mapId": 0,
+        "mapKey": "biyuan-water-palace",
+        "appearance": "spring",
+        "columns": 5,
+        "rows": 4,
+        "loadedTiles": 20,
+        "validBoundsKnown": true,
+        "visualBounds": [
+          0.0,
+          0.125,
+          5.0,
+          3.75
+        ],
+        "overview": "biyuan-water-palace-spring-overview.png",
+        "lowerLeft": "biyuan-water-palace-spring-lower-left.png",
+        "upperRight": "biyuan-water-palace-spring-upper-right.png",
+        "coordinatesVerified": true,
+        "edgeClampVerified": true,
+        "zoomVerified": true
+      }
+    ]
+  },
+  "screenshots": {
+    "workingDirectory": ".codex-artifacts/map-intake-20261116/visual",
+    "files": [
+      {
+        "file": "26000-spring-overview.png",
+        "bytes": 2568295,
+        "sha256": "54184ce617667e621e4969d76f128fce822d4272c817aa8700b283093bcb6f47"
+      },
+      {
+        "file": "26000-spring-lower-left.png",
+        "bytes": 2678331,
+        "sha256": "00986033a3713de4541f4dfdec30c34a70840dcebd79bb62e05b486280767c4f"
+      },
+      {
+        "file": "26000-spring-upper-right.png",
+        "bytes": 2720059,
+        "sha256": "138d2b4772d9c90899c788c2a9d12c59a4e87c17b008179df8017897633f266b"
+      },
+      {
+        "file": "26000-mid-autumn-overview.png",
+        "bytes": 2608949,
+        "sha256": "cc863a1856133ba7a3ac5a9701d4c61a4546625af9cc46653d60fc572b896a57"
+      },
+      {
+        "file": "26000-mid-autumn-lower-left.png",
+        "bytes": 2742821,
+        "sha256": "527ee719555d290823457bf79fde11beedaf6b6b8f5dd849cb715977abf7aa2f"
+      },
+      {
+        "file": "26000-mid-autumn-upper-right.png",
+        "bytes": 2825461,
+        "sha256": "51c7fe378f21cf2e6422607da644d307bdf944c78c3adbc8baa483dc9af8128d"
+      },
+      {
+        "file": "26008-spring-overview.png",
+        "bytes": 2545364,
+        "sha256": "442b968470c9c2daf1f318f85ab2726d7bc931de646452b2a12eba4c9f866b61"
+      },
+      {
+        "file": "26008-spring-lower-left.png",
+        "bytes": 2555710,
+        "sha256": "ef551a560636ed323500dc906700e04106423a667e2222923bec73d1d3c9bf2a"
+      },
+      {
+        "file": "26008-spring-upper-right.png",
+        "bytes": 2874255,
+        "sha256": "7b8f8b8a7d282bcbd5ec790eb81d5bca76d63c3eb3ce6fab46d467ba912ccbdb"
+      },
+      {
+        "file": "26008-mid-autumn-overview.png",
+        "bytes": 2472663,
+        "sha256": "4838fc68b3b3eaf36f567c4337170cd3e27496fd01c30bb3fd4e412a20fabf38"
+      },
+      {
+        "file": "26008-mid-autumn-lower-left.png",
+        "bytes": 2404545,
+        "sha256": "1d8b4b18cf68877fab4f4182720e1df6a575cccc87f9b2d6e9f2ff92996d8231"
+      },
+      {
+        "file": "26008-mid-autumn-upper-right.png",
+        "bytes": 2609410,
+        "sha256": "c266c501cb2c4444364a238e49b6bba90297a823abe7b3c7cc13ba4eadc9cda4"
+      },
+      {
+        "file": "biyuan-water-palace-spring-overview.png",
+        "bytes": 2461655,
+        "sha256": "45aea7405254f1289ce50d432b2f7e8a151a54ccda59338b089532f0744f7803"
+      },
+      {
+        "file": "biyuan-water-palace-spring-lower-left.png",
+        "bytes": 2483157,
+        "sha256": "e99f5618e191f1e71370cc4b7e120e3043e109f0fd332490de7e35f04429b5b0"
+      },
+      {
+        "file": "biyuan-water-palace-spring-upper-right.png",
+        "bytes": 2696582,
+        "sha256": "e40ebc0289c541ada7bede82ee865b7f35fe569d5f375992c29e099c2e95f882"
+      }
+    ]
+  },
+  "editorEditMode": {
+    "filter": "CurrentMapTests|CityTravelWindowTests",
+    "xmlSha256": "6267a8c59bc2bdaafad9f27c408be4ad64d0d66e8a1a4839c59aed1f7256a856",
+    "result": "PASS",
+    "testsPassed": 54
+  },
+  "fileVerification": {
+    "playableMaps": 11,
+    "playableAppearances": 19,
+    "playableTileHashesAndDimensionsPassed": 326,
+    "azurePreviewTileHashesAndDimensionsPassed": 60
+  },
+  "acceptanceScope": "Editor preview and targeted map contract tests only. No production build, release framebuffer comparison, or server publication.",
+  "clientBaseCommit": "e5f8b4592a74cf80580d1755b4aa294c6bb4297b",
+  "clientSourceGitBlobs": {
+    "Assets/Scripts/World/Tianyong/FestivalMapVisualPreview.cs": "8ce430a4a63ed376c10ec5ea232521362fc176f2",
+    "Assets/Scripts/World/Tianyong/TianyongSandboxBootstrap.cs": "3f21174d737e78d14dbe1565e92026f513851253",
+    "Assets/Editor/FestivalVisualPlayVerification.cs": "8e50484270a864e8a4061920c07d3a0db19e0497",
+    "Assets/Editor/FestivalVisualPreviewImporter.cs": "606966cf14ee742999cb0f31f26ad5e50a1db775",
+    "Assets/Resources/World/FestivalPreview20261111/preview-catalog.json": "934d0f7e10337ec5de8f79906ec3881a2c9d8c1d",
+    "Assets/Resources/World/QdaoMaps20261102/catalog.json": "6649563f6ce3ca4dad1b71679f0d6d6780779ad1",
+    "Assets/Scenes/World/FestivalMaps.unity": "174a096cdb3560935d669c8f24fddaf1d44338cb"
+  }
+}

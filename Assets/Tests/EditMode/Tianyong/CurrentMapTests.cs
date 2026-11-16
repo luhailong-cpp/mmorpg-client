@@ -18,6 +18,205 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             "\"worldRect\":{\"x\":50,\"y\":0,\"width\":300,\"height\":300}," +
             "\"spawnWorld\":{\"x\":51,\"y\":0,\"z\":299}}";
 
+        [TearDown]
+        public void RestoreInstalledCatalog() => CurrentMapCatalog.ReloadDeliveries();
+
+        private static MapDeliveryRegistration Registration(string key, uint scene, bool clientOnly)
+        {
+            var sha = new string('a', 64);
+            return new MapDeliveryRegistration
+            {
+                key = key, sceneId = scene, name = "Offline navigation fixture", revision = "online-policy-test",
+                clientOnly = clientOnly, defaultAppearance = "spring",
+                appearances = new[] { new MapAppearanceDelivery {
+                    id = "spring", artStatus = "formal_art_delivery", layoutSha256 = sha,
+                    resourceRoot = MapDeliveryContract.ResourceRoot + key + "/online-policy-test/spring/" + sha + "/"
+                } }
+            };
+        }
+
+        [Test]
+        public void OnlineLookupKeepsLegacySceneWhileOfflineReplacementRemainsDiscoverable()
+        {
+            var legacy = CurrentMapCatalog.FindForOnline(2u);
+            CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                maps = new[] { Registration("island", 2u, true), Registration("unpublished-test", 42002u, true) } });
+
+            Assert.That(CurrentMapCatalog.Find(2u).IsModern, Is.True);
+            Assert.That(CurrentMapCatalog.Find(2u).Appearance, Is.EqualTo("spring"));
+            Assert.That(CurrentMapCatalog.FindForOnline(2u), Is.SameAs(legacy));
+            Assert.That(CurrentMapCatalog.FindForOnline("island"), Is.SameAs(legacy));
+            Assert.That(CurrentMapCatalog.FindForOnline(2u).ForAppearance("spring"), Is.Null);
+            Assert.That(CurrentMapCatalog.FindForOnline(42002u), Is.Null);
+            Assert.That(CurrentMapCatalog.FindForOnline("unpublished-test"), Is.Null);
+        }
+
+        [Test]
+        public void InstalledBajingBodySharesNavigationAcrossFestivalsAndKeepsLegacyOnline()
+        {
+            var spring = CurrentMapCatalog.Find(2u);
+            Assert.That(spring.Revision, Is.EqualTo("bajingbody20261114"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.False);
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.Spawn, Is.EqualTo(new Vector3(205, 0, 70)));
+            Assert.That(spring.EffectiveWorldRect.width, Is.EqualTo(420f));
+            Assert.That(spring.EffectiveWorldRect.height, Is.EqualTo(420f));
+            var navigation = spring.CreateNavigation();
+            var centralTaiji = new Vector3(166.66667f, 0f, 200.41667f);
+            Assert.That(navigation.FindPath(spring.Spawn, centralTaiji).Count, Is.GreaterThanOrEqualTo(2));
+            Assert.That(navigation.IsWalkable(new Vector3(-12.5f, 0f, 198.33333f)), Is.False);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(4096));
+                Assert.That(layout.height, Is.EqualTo(2979));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/r08_c11");
+                Assert.That(tile, Is.Not.Null);
+                Assert.That(tile.width, Is.EqualTo(1024));
+                Assert.That(tile.height, Is.EqualTo(1024));
+            }
+
+            var online = CurrentMapCatalog.FindForOnline(2u);
+            Assert.That(online.IsModern, Is.False);
+            Assert.That(online.CanTravelOnline, Is.True);
+            Assert.That(online.ForAppearance("spring"), Is.Null);
+        }
+
+        [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", true, true)]
+        [TestCase("http://[::1]:18286", "[::1]:28200", true, true)]
+        [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", false, false)]
+        [TestCase("http://127.0.0.1:18285", "127.0.0.1:28200", true, false)]
+        [TestCase("http://127.0.0.1:18286", "127.0.0.1:28201", true, false)]
+        [TestCase("http://192.0.2.1:18286", "127.0.0.1:28200", true, false)]
+        [TestCase("http://127.0.0.1:18286", "192.0.2.1:28200", true, false)]
+        public void YuexiBayRequiresExactIsolatedLoopbackEndpoints(string gateway, string gate, bool development, bool expected)
+        {
+            var arguments = new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort", "28200" };
+            Assert.That(FestivalMapLocalTestPolicy.CanUseYuexiBay(development, arguments, gateway, gate), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void YuexiBayRejectsSharedPortsAndIncompleteOrAmbiguousOptIn()
+        {
+            foreach (string gatewayPort in new[] { "8081", "18086" })
+            {
+                var arguments = new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", gatewayPort, "-yuexiBayGatePort", "28200" };
+                Assert.That(FestivalMapLocalTestPolicy.CanUseYuexiBay(true, arguments, $"http://127.0.0.1:{gatewayPort}", "127.0.0.1:28200"), Is.False);
+            }
+            var sharedGate = new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort", "28000" };
+            Assert.That(FestivalMapLocalTestPolicy.CanUseYuexiBay(true, sharedGate, "http://127.0.0.1:18286", "127.0.0.1:28000"), Is.False);
+            foreach (var arguments in new[] {
+                new[] { "-festivalMapLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort", "28200" },
+                new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort" },
+                new[] { "-yuexiBayLocalTest", "-yuexiBayGatewayPort", "18286", "-yuexiBayGatePort", "28200", "-yuexiBayGatePort", "28200" }
+            })
+                Assert.That(FestivalMapLocalTestPolicy.CanUseYuexiBay(true, arguments, "http://127.0.0.1:18286", "127.0.0.1:28200"), Is.False);
+        }
+
+        [Test]
+        public void YuexiBayLocalTargetDoesNotAcceptOtherVillageRevisionsOrUnregisteredAppearances()
+        {
+            var registration = Registration("village", 3u, true);
+            var catalog = new MapDeliveryCatalog { schemaVersion = 2, maps = new[] { registration } };
+            CurrentMapCatalog.ApplyDeliveries(catalog);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.Find(3u), "spring"), Is.False);
+            registration.appearances[0].resourceRoot = registration.appearances[0].resourceRoot.Replace(registration.revision, "yuexi-bay-20261115");
+            registration.revision = "yuexi-bay-20261115";
+            CurrentMapCatalog.ApplyDeliveries(catalog);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.Find(3u), "spring"), Is.True);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.Find(3u), "mid-autumn"), Is.False);
+            Assert.That(CurrentMapCatalog.FindForOnline(3u).IsModern, Is.False);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.FindForOnline(3u), "spring"), Is.False);
+        }
+
+        [Test]
+        public void YuexiBayKeepsNarrowDockMovementWhenPublishedForOnlineTravel()
+        {
+            var catalog = JsonUtility.FromJson<MapDeliveryCatalog>(Resources.Load<TextAsset>(MapDeliveryContract.CatalogPath).text);
+            var registration = Array.Find(catalog.maps, entry => entry.sceneId == 3 && entry.revision == "yuexi-bay-20261115");
+            Assert.That(registration, Is.Not.Null);
+            var from = new Vector3(59.1f, 0f, 44.375f);
+            var to = new Vector3(59.4f, 0f, 44.375f);
+
+            registration.clientOnly = true;
+            CurrentMapCatalog.ApplyDeliveries(catalog);
+            var installed = CurrentMapCatalog.Find(3u);
+            Assert.That(installed.CreateNavigation().IsSegmentWalkable(from, to), Is.True);
+            var oldClearance = new TianyongNavigationGrid(.5f, installed.IsWalkable, installed.WorldRect, installed.EffectiveWorldRect);
+            Assert.That(oldClearance.IsSegmentWalkable(from, to), Is.False);
+
+            registration.clientOnly = false;
+            CurrentMapCatalog.ApplyDeliveries(catalog);
+            var online = CurrentMapCatalog.FindForOnline(3u);
+            Assert.That(online.CreateNavigation().IsSegmentWalkable(from, to), Is.True);
+            Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(online, "spring"), Is.False);
+        }
+
+        [Test]
+        public void PublishedReplacementAndNewSceneUseTheirPublishedDefinitions()
+        {
+            CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                maps = new[] { Registration("island", 2u, false), Registration("published-test", 42002u, false) } });
+            foreach (uint id in new[] { 2u, 42002u })
+            {
+                Assert.That(CurrentMapCatalog.FindForOnline(id), Is.SameAs(CurrentMapCatalog.Find(id)));
+                Assert.That(CurrentMapCatalog.FindForOnline(id).Appearance, Is.EqualTo("spring"));
+                Assert.That(CurrentMapCatalog.FindForOnline(id).IsModern, Is.True);
+            }
+        }
+
+        [Test]
+        public void FirstServerEntryAndAppearanceRefreshCannotInstallOfflineReplacement()
+        {
+            var legacy = CurrentMapCatalog.FindForOnline(2u);
+            var root = new GameObject("OfflineReplacementFirstServerEntry");
+            var runtime = root.AddComponent<TianyongMapRuntime>();
+            try
+            {
+                runtime.Initialize(null, null, null, null);
+                CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                    maps = new[] { Registration("island", 2u, true) } });
+                // The offline fixture deliberately has no image or mask. A bad resolution must fail,
+                // rather than silently building placeholder resources for this test.
+                Invoke(runtime, "HandleSceneEntered", new SceneInfoComp { SceneConfigId = 2u });
+                Assert.That(runtime.Map, Is.Not.Null);
+                Assert.That(runtime.CurrentSpawn, Is.EqualTo(legacy.Spawn));
+                Assert.That(runtime.Map.Navigation.Bounds, Is.EqualTo(legacy.NavigationWorldRect));
+                var onlineMap = runtime.Map;
+                Assert.That(runtime.TrySetAppearance("spring"), Is.False);
+                Assert.That(runtime.TrySetAppearance("normal"), Is.True);
+                Invoke(runtime, "EnterScene", 2u);
+                Assert.That(runtime.Map, Is.SameAs(onlineMap));
+                runtime.RefreshCurrentDelivery();
+                Assert.That(runtime.Map, Is.SameAs(onlineMap));
+                Assert.That(runtime.Appearance, Is.EqualTo("normal"));
+                Assert.That(runtime.CurrentSpawn, Is.EqualTo(legacy.Spawn));
+            }
+            finally { Object.DestroyImmediate(root); }
+        }
+
+        [Test]
+        public void ServerEntryForUnpublishedSceneWithoutLegacyLeavesNoMap()
+        {
+            CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                maps = new[] { Registration("unpublished-test", 42002u, true) } });
+            var root = new GameObject("UnpublishedServerScene");
+            var runtime = root.AddComponent<TianyongMapRuntime>();
+            try
+            {
+                runtime.Initialize(null, null, null, null);
+                Invoke(runtime, "HandleSceneEntered", new SceneInfoComp { SceneConfigId = 42002u });
+                Assert.That(runtime.Map, Is.Null);
+                Assert.That(runtime.ActiveSceneConfigId, Is.Zero);
+            }
+            finally { Object.DestroyImmediate(root); }
+        }
+
         [Test]
         public void MaskUsesNorthWestOriginMostSignificantBitAndBlockedExterior()
         {
@@ -86,8 +285,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("village", 3u)]
         public void DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(string key, uint scene)
         {
-            var definition = CurrentMapCatalog.Find(key);
-            Assert.That(CurrentMapCatalog.Find(scene), Is.SameAs(definition));
+            var definition = CurrentMapCatalog.FindForOnline(key);
+            Assert.That(CurrentMapCatalog.FindForOnline(scene), Is.SameAs(definition));
             var texture = definition.LoadTexture();
             Assert.That(texture.width, Is.EqualTo(1254));
             Assert.That(texture.height, Is.EqualTo(1254));
@@ -149,7 +348,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("village", false)]
         public void FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(string key, bool explicitSpawn)
         {
-            var definition = CurrentMapCatalog.Find(key);
+            var definition = CurrentMapCatalog.FindForOnline(key);
             var navigation = definition.CreateNavigation();
             var invalid = new Vector3(5f, 0f, 5f);
             Assert.That(navigation.TryFindNearestWalkable(invalid, out _), Is.False,

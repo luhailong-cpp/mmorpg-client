@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "revision": "bajingbody20261114",
+  "evidenceDirectory": "Docs/VerificationEvidence/bajing-body-20261114",
+  "scope": [
+    {
+      "mapId": "2",
+      "key": "island",
+      "name": "八景岛",
+      "sceneId": 2,
+      "sourceMapId": "current-eight-immortals-island",
+      "appearance": "spring",
+      "columns": 11,
+      "rows": 8
+    },
+    {
+      "mapId": "2",
+      "key": "island",
+      "name": "八景岛",
+      "sceneId": 2,
+      "sourceMapId": "current-eight-immortals-island",
+      "appearance": "mid-autumn",
+      "columns": 11,
+      "rows": 8
+    }
+  ]
+}

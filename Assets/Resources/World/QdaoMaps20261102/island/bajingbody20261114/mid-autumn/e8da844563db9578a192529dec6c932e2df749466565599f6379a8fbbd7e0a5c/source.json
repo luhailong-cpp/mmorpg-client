@@ -1,0 +1,60 @@
+{
+  "worldRect": {
+    "x": -83.33333333333333,
+    "y": -3.3333333333333335,
+    "width": 586.6666666666666,
+    "height": 426.6666666666667
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": -4.440892098500626e-16,
+    "width": 419.99999999999994,
+    "height": 419.99999999999994
+  },
+  "cellSize": 1,
+  "imageRect": {
+    "x": 1600,
+    "y": 64,
+    "width": 8064,
+    "height": 8064
+  },
+  "referenceWidth": 1254,
+  "referenceHeight": 1254,
+  "walkmaskColumns": 587,
+  "walkmaskRows": 427,
+  "spawnWorld": {
+    "x": 205.0,
+    "y": 0.0,
+    "z": 70.00000000000001
+  },
+  "schemaVersion": 2,
+  "key": "island",
+  "sceneId": 2,
+  "name": "八景岛",
+  "navigationMapId": "2",
+  "revision": "bajingbody20261114",
+  "appearance": "mid-autumn",
+  "resourceRoot": "World/QdaoMaps20261102/island/bajingbody20261114/mid-autumn/e8da844563db9578a192529dec6c932e2df749466565599f6379a8fbbd7e0a5c/",
+  "clientOnly": true,
+  "authoritativeServerRegistered": false,
+  "artStatus": "formal_tiles_overview",
+  "layoutPixels": {
+    "width": 4096,
+    "height": 2979
+  },
+  "layoutSha256": "e8da844563db9578a192529dec6c932e2df749466565599f6379a8fbbd7e0a5c",
+  "sourceSelectionPath": "Docs/VerificationEvidence/bajing-body-20261114/selection.json",
+  "sourceSelectionSha256": "c7596fad542dd95a21ea7f28266491fb916ccfe387d4a9e06f430a653def5b67",
+  "sourceEvidencePath": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/delivery.json",
+  "sourceEvidenceSha256": "a7e5f3bf11546aa86970b4b402099d43f656cd148ca82813b97a5cc5f374d9bb",
+  "navigationPlanPath": "Docs/VerificationEvidence/bajing-body-20261114/navigation-plan.json",
+  "navigationPlanSha256": "9e0006ecd0b1ea00289b572cb255de831c38c8cd8030b3832fff85a6333d41b5",
+  "navigationSha256": "bf49fa6d3b5df10e4460cd48b1eadc4acb713375b0af65d17417d64c8ce7b20e",
+  "walkmaskSha256": "59076a3f1a18efca460651bf9b4d5b6d142eb2702060cd33767fc3675f1219e0",
+  "walkmaskPackedSha256": "72a15d67e0916d0e41d4e2e5a9a26849e39f78819da7f3e28a9fc375cf6293a5",
+  "navigationStatus": "conservative_visible_ground_client_only",
+  "runtimeEngineAcceptance": false,
+  "sourceMapId": "current-eight-immortals-island",
+  "runtimeAssemblySha256": "2547ea8c752179292afed15ae14c49fe5625a12edb173eca0d49f641d1d0a397",
+  "layoutDerivation": "uniform-lanczos-long-edge-4096"
+}

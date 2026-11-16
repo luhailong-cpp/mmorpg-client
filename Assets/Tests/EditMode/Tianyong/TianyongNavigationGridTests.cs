@@ -35,6 +35,35 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 "Default spawn must stay clear of the central fountain.");
         }
 
+        [Test]
+        public void PreciseMovement_AllowsBothLegsOfNarrowTurnAndRejectsTheChord()
+        {
+            var bounds = new Rect(0f, 0f, 2f, 2f);
+            var grid = new TianyongNavigationGrid(.5f, p => p.z < .5f || p.x >= 1.5f,
+                bounds, bounds, preciseNetworkMovement: true);
+            var start = new Vector3(.25f, 0f, .25f);
+            var turn = new Vector3(1.75f, 0f, .25f);
+            var destination = new Vector3(1.75f, 0f, 1.75f);
+
+            Assert.That(grid.IsSegmentWalkable(start, turn), Is.True);
+            Assert.That(grid.IsSegmentWalkable(turn, destination), Is.True);
+            Assert.That(grid.IsSegmentWalkable(destination, turn), Is.True);
+            Assert.That(grid.IsSegmentWalkable(start, destination), Is.False);
+        }
+
+        [Test]
+        public void PreciseMovement_DiagonalRequiresBothSideCellsAtAGridCorner()
+        {
+            var bounds = new Rect(0f, 0f, 1f, 1f);
+            var grid = new TianyongNavigationGrid(.5f, p => p.x < .5f || p.z >= .5f,
+                bounds, bounds, preciseNetworkMovement: true);
+            var low = new Vector3(.25f, 0f, .25f);
+            var high = new Vector3(.75f, 0f, .75f);
+
+            Assert.That(grid.IsSegmentWalkable(low, high), Is.False);
+            Assert.That(grid.IsSegmentWalkable(high, low), Is.False);
+        }
+
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]

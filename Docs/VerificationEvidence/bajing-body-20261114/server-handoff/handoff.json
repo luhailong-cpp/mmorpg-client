@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "status": "PREPARED_NOT_BAKED_NOT_DEPLOYED",
+  "mapId": "current-eight-immortals-island",
+  "clientKey": "island",
+  "existingSceneConfigId": 2,
+  "revision": "bajingbody20261114",
+  "source": {
+    "path": "Assets/Resources/World/QdaoMaps20261102/island/bajingbody20261114/spring/89b2b51459c2a3f04670d6ba1c90521504795db18cc252f76cc5abb3a4d8bfd8/source.json",
+    "sha256": "d01a9e327ecc6da64c8bb8e41b3798255c5d528e3b36e42cfb6700c9b0eca0df",
+    "bytes": 2304
+  },
+  "walkmask": {
+    "path": "Assets/Resources/World/QdaoMaps20261102/island/bajingbody20261114/spring/89b2b51459c2a3f04670d6ba1c90521504795db18cc252f76cc5abb3a4d8bfd8/walkmask.txt",
+    "sha256": "59076a3f1a18efca460651bf9b4d5b6d142eb2702060cd33767fc3675f1219e0",
+    "bytes": 41776
+  },
+  "packedMaskSha256": "72a15d67e0916d0e41d4e2e5a9a26849e39f78819da7f3e28a9fc375cf6293a5",
+  "sameMaskForBothFestivals": true,
+  "groundObj": {
+    "path": "Docs/VerificationEvidence/bajing-body-20261114/server-handoff/bajing-body-ground.obj",
+    "sha256": "0f227572defc8a7c3cc775743808c50b2a045e7cdd1613e75941d4de42b81b4c",
+    "bytes": 177443
+  },
+  "coveredWalkableCells": 24016,
+  "rowRunQuads": 742,
+  "triangles": 1484,
+  "worldRect": {
+    "x": -83.33333333333333,
+    "y": -3.3333333333333335,
+    "width": 586.6666666666666,
+    "height": 426.6666666666667
+  },
+  "effectiveWorldRect": {
+    "x": 0.0,
+    "y": -4.440892098500626e-16,
+    "width": 419.99999999999994,
+    "height": 419.99999999999994
+  },
+  "clientSpawnUnity": {
+    "x": 205.0,
+    "y": 0.0,
+    "z": 70.00000000000001
+  },
+  "proposedServerSpawn": {
+    "x": 70.00000000000001,
+    "y": 205.0,
+    "z": 0.0
+  },
+  "coordinateConversion": "nav Unity=(serverY,serverZ,serverX)，server=(navZ,navX,navY)",
+  "plannedBakerArguments": [
+    "--obj",
+    "Docs/VerificationEvidence/bajing-body-20261114/server-handoff/bajing-body-ground.obj",
+    "--out",
+    "<NEW_STAGING_BIN>",
+    "--agent-radius",
+    "0",
+    "--filter-ledges",
+    "0",
+    "--probe",
+    "205.0,0,70.00000000000001"
+  ],
+  "blockers": [
+    "本机缺少服务端匹配的ue5navmesh依赖和已编译baker；未产生MSET导航bin",
+    "服务端scene2当前仍为旧penglai导航与旧出生点；不得仅改clientOnly开放"
+  ],
+  "serverSceneTableModified": false,
+  "serverBinReplaced": false,
+  "serverNavigationPublished": false,
+  "newImageCalls": 0,
+  "originalUnknownAndUsagePreserved": true
+}

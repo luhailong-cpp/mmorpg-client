@@ -20,6 +20,7 @@ namespace MmorpgClient.World.Tianyong
         private readonly Camera _camera;
         private readonly float _zoomMin;
         private readonly float _zoomMax;
+        private float? _mapZoomMin;
         private Transform _target;
         private Vector3 _focus = TianyongMapDefinition.DefaultSpawn;
         private Vector3 _velocity;
@@ -45,6 +46,7 @@ namespace MmorpgClient.World.Tianyong
         public bool IsTopDown => _topDown;
         public Camera RenderCamera => _camera;
         public Rect WorldBounds => _bounds;
+        internal float MinimumZoom => _mapZoomMin ?? _zoomMin;
         public void SetWorldBounds(Rect bounds)
         {
             ValidateWorldBounds(bounds);
@@ -65,6 +67,7 @@ namespace MmorpgClient.World.Tianyong
             var focus = _focus;
             var velocity = _velocity;
             var zoom = _orthographicSize;
+            var mapZoomMin = _mapZoomMin;
             var topDown = _topDown;
             var bounds = _bounds;
             var position = _camera != null ? _camera.transform.position : Vector3.zero;
@@ -76,7 +79,7 @@ namespace MmorpgClient.World.Tianyong
             return () =>
             {
                 _target = target; _focus = focus; _velocity = velocity;
-                _orthographicSize = zoom; _topDown = topDown; _bounds = bounds;
+                _orthographicSize = zoom; _mapZoomMin = mapZoomMin; _topDown = topDown; _bounds = bounds;
                 if (_camera == null) return;
                 _camera.transform.SetPositionAndRotation(position, rotation);
                 _camera.orthographicSize = size;
@@ -172,7 +175,13 @@ namespace MmorpgClient.World.Tianyong
         /// clamped to the configured window.
         /// </summary>
         public void SetZoom(float orthographicSize)
-            => _orthographicSize = Mathf.Clamp(orthographicSize, _zoomMin, _zoomMax);
+            => _orthographicSize = Mathf.Clamp(orthographicSize, MinimumZoom, _zoomMax);
+
+        internal void SetMapMinimumZoom(float? zoom)
+        {
+            _mapZoomMin = zoom.HasValue ? Mathf.Clamp(zoom.Value, 1f, _zoomMax) : null;
+            SetZoom(_orthographicSize);
+        }
 
         /// <summary>Only close views lift from the feet towards the authored frame centre.</summary>
         public static float CloseUpFramingWeight(float orthographicSize, float frameHeight)

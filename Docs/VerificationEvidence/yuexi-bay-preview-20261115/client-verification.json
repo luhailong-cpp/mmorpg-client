@@ -1,0 +1,106 @@
+{
+  "imageCommit": "8ee9f4e4b93c9ff9e9a856647512c220073408a7",
+  "mapKey": "village",
+  "sceneId": 3,
+  "revision": "yuexi-bay-20261115",
+  "visualPreview": {
+    "result": "PASS",
+    "report": {
+      "path": ".codex-artifacts/yuexi-bay-preview-20261115/final-visual/play-verification.json",
+      "sha256": "9eb822d3f7fc785634d77a8844e37bd8b202915fe43b8c15f1f008e90ff3d07d"
+    },
+    "captureMode": "Unity Editor Play mode, camera captures at 1600x900",
+    "appearances": [
+      {
+        "appearance": "spring",
+        "captures": [
+          {
+            "path": ".codex-artifacts/yuexi-bay-preview-20261115/final-visual/3-spring-overview.png",
+            "sha256": "1e6ac0610909a5ce7cba28832a1dd653974e8b50d6f9abad3824dacf613b7a2f"
+          },
+          {
+            "path": ".codex-artifacts/yuexi-bay-preview-20261115/final-visual/3-spring-lower-left.png",
+            "sha256": "801cabd2370bd10dfc9bc82613eeeb9392fd81fa4302a7b479c529bfdfc5d3fa"
+          },
+          {
+            "path": ".codex-artifacts/yuexi-bay-preview-20261115/final-visual/3-spring-upper-right.png",
+            "sha256": "68384bde3cfa950933f783ccae834980833d423a342ae3f980498640ea1475e4"
+          }
+        ]
+      },
+      {
+        "appearance": "mid-autumn",
+        "captures": [
+          {
+            "path": ".codex-artifacts/yuexi-bay-preview-20261115/final-visual/3-mid-autumn-overview.png",
+            "sha256": "5f1f7b408e15d1f90778b1ee31dde46b5752c4556c065a4c0b5dcfb532f42fed"
+          },
+          {
+            "path": ".codex-artifacts/yuexi-bay-preview-20261115/final-visual/3-mid-autumn-lower-left.png",
+            "sha256": "da4c89cd42584db4312451d6506a3f9c01482e72dd34de26fd2c22e2871ffdfc"
+          },
+          {
+            "path": ".codex-artifacts/yuexi-bay-preview-20261115/final-visual/3-mid-autumn-upper-right.png",
+            "sha256": "f09188f23be27caef1ed430d9fc5ba85ae7523e6e3fd192d57a0609b33483282"
+          }
+        ]
+      }
+    ]
+  },
+  "playableScene": {
+    "result": "PASS",
+    "report": {
+      "path": ".codex-artifacts/yuexi-bay-preview-20261115/dock-walk/results.xml",
+      "sha256": "bbb620174c13c69220cae40daaa4e9a1ba26a9fc30eb6420ef72edc8cb82f233"
+    },
+    "verified": [
+      "actual Unity Physics raycast",
+      "spring spawn and walking to south dock",
+      "mid-autumn appearance switch preserves player and feet",
+      "walking to north dock",
+      "walkable feet on each frame",
+      "actual production route sampling and blocked targets"
+    ]
+  },
+  "signedInputNotes": {
+    "runtimePngCount": 60,
+    "importedByteForByte": true,
+    "publishedSpringPreviewIsJpeg": true,
+    "comparisonMidAutumnMosaicExact": true,
+    "visibleSpringSeaColorStepAtLastColumnPresentInSourceAndRender": true
+  },
+  "scope": {
+    "strictSharedNavigation": "952 walkable cells across the traced roads and dock decks",
+    "clientOnlineActivation": false,
+    "networkAcceptance": false
+  },
+  "evidence": {
+    "sourceBytes": {
+      "path": "Docs/VerificationEvidence/yuexi-bay-preview-20261115/asset-provenance.json",
+      "sha256": "376ac6272c4004e4e2d7bcc6d76e1504be55a61080b227d6c4d9cca037030454"
+    },
+    "geometry": {
+      "path": "Docs/VerificationEvidence/yuexi-bay-preview-20261115/navigation-plan.json",
+      "sha256": "5c01ae672ef3e930b231121c7b39901aa972ad75b058a722bacc33d9cb962bc0"
+    },
+    "navigation": {
+      "path": "Docs/VerificationEvidence/yuexi-bay-preview-20261115/navigation-result.json",
+      "sha256": "178a4f186a78bbe954f59b1988604a95d08826e1dfe7d625a5c279adc652f244"
+    },
+    "dockIsolation": {
+      "path": "Docs/VerificationEvidence/yuexi-bay-preview-20261115/dock-route-counterfactual.json",
+      "sha256": "a97059bca266230669bd94b7e53ff104d166f4e84a3ea9c3e1939543010a9995"
+    }
+  },
+  "editMode": {
+    "result": "Passed",
+    "total": "79",
+    "passed": "79",
+    "failed": "0",
+    "skipped": "0",
+    "report": {
+      "path": ".codex-artifacts/yuexi-bay-preview-20261115/editmode/results.xml",
+      "sha256": "88d81e05253479a60d8a1c5c2881ec9c9f15516e4ed66652fe62789861b21d83"
+    }
+  }
+}

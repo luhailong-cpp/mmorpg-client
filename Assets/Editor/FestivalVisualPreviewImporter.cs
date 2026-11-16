@@ -9,8 +9,10 @@ namespace MmorpgClient.Editor.CurrentMaps
     {
         private void OnPreprocessTexture()
         {
-            const string root = "Assets/Resources/World/FestivalPreview20261111/";
-            if (!assetPath.StartsWith(root, StringComparison.Ordinal) ||
+            const string existingRoot = "Assets/Resources/World/FestivalPreview20261111/";
+            const string intakeRoot = "Assets/Resources/World/FestivalPreview20261116/";
+            if ((!assetPath.StartsWith(existingRoot, StringComparison.Ordinal) &&
+                 !assetPath.StartsWith(intakeRoot, StringComparison.Ordinal)) ||
                 !assetPath.EndsWith(".png", StringComparison.OrdinalIgnoreCase)) return;
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Default;

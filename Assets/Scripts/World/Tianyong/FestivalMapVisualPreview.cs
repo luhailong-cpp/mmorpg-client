@@ -12,12 +12,16 @@ namespace MmorpgClient.World.Tianyong
         public const string CatalogPath = "World/FestivalPreview20261111/preview-catalog";
         private const int PreviewLayer = 30;
 
+        [SerializeField] private uint standaloneMapId;
+        [SerializeField] private string standaloneAppearance = "spring";
+        [SerializeField] private string standaloneName;
+
         [Serializable] private sealed class Catalog { public Map[] maps; }
         [Serializable] private sealed class PixelRect { public float x, y, width, height; }
         [Serializable] private sealed class Map
         {
             public uint mapId;
-            public string appearance, resourceRoot;
+            public string mapKey, name, appearance, resourceRoot;
             public int columns, rows, tilePixels;
             public bool validRectKnown;
             public PixelRect validRect;
@@ -35,9 +39,12 @@ namespace MmorpgClient.World.Tianyong
         private Map _current;
         private Rect _bounds;
         private Vector2 _focus;
+        private Vector2 _lastPointer;
         private float _zoom;
         private string _status = "";
+        public bool IsStandalone => standaloneMapId != 0;
         public uint CurrentMapId => _current?.mapId ?? 0;
+        public string CurrentMapKey => _current?.mapKey;
         public string CurrentAppearance => _current?.appearance;
         public int Columns => _current?.columns ?? 0;
         public int Rows => _current?.rows ?? 0;
@@ -64,6 +71,21 @@ namespace MmorpgClient.World.Tianyong
             ApplyCamera();
         }
 
+        private void Start()
+        {
+            if (IsStandalone) ShowStandaloneAppearance(standaloneAppearance);
+        }
+
+        private void ShowStandaloneAppearance(string appearance)
+        {
+            try { Activate(null, standaloneMapId, appearance); }
+            catch (Exception error)
+            {
+                _status = error.Message;
+                Debug.LogException(error, this);
+            }
+        }
+
         public static void Open(TianyongSandboxBootstrap sandbox, uint mapId, string appearance)
         {
             if (sandbox == null) throw new ArgumentNullException(nameof(sandbox));
@@ -80,7 +102,7 @@ namespace MmorpgClient.World.Tianyong
 
         private void Activate(TianyongSandboxBootstrap sandbox, uint mapId, string appearance)
         {
-            if (_sandbox != null)
+            if (_camera != null)
             {
                 if (!Select(mapId, appearance)) throw new InvalidOperationException(_status);
                 return;
@@ -90,13 +112,13 @@ namespace MmorpgClient.World.Tianyong
             _maps = JsonUtility.FromJson<Catalog>(json.text)?.maps;
             if (_maps == null || _maps.Length == 0) throw new InvalidOperationException("离线预览清单为空。");
             _sandbox = sandbox;
-            _sandboxWasEnabled = sandbox.enabled;
-            _previousPlayerController = sandbox.Player != null
+            _sandboxWasEnabled = sandbox != null && sandbox.enabled;
+            _previousPlayerController = sandbox != null && sandbox.Player != null
                 ? sandbox.Player.GetComponent<TianyongPlayerController>() : null;
             _playerControllerWasEnabled = _previousPlayerController != null && _previousPlayerController.enabled;
             try
             {
-                _sandbox.enabled = false;
+                if (_sandbox != null) _sandbox.enabled = false;
                 if (_previousPlayerController != null) _previousPlayerController.enabled = false;
                 foreach (var camera in Camera.allCameras)
                     if (camera != null && camera.enabled) { camera.enabled = false; _disabledCameras.Add(camera); }
@@ -121,10 +143,28 @@ namespace MmorpgClient.World.Tianyong
 
         public bool Select(uint mapId, string appearance)
         {
-            Map selected = null;
-            foreach (var map in _maps)
-                if (map.mapId == mapId && map.appearance == appearance) { selected = map; break; }
-            if (selected == null) { _status = "未找到地图或外观"; return false; }
+            if (mapId == 0 || (IsStandalone && mapId != standaloneMapId)) return false;
+            foreach (var map in _maps ?? Array.Empty<Map>())
+                if (map.mapId == mapId && map.appearance == appearance) return Select(map);
+            _status = "未找到地图或外观";
+            return false;
+        }
+
+        public bool Select(string mapKey, string appearance)
+        {
+            if (IsStandalone || string.IsNullOrEmpty(mapKey)) return false;
+            foreach (var map in _maps ?? Array.Empty<Map>())
+                if (map.mapKey == mapKey && map.appearance == appearance) return Select(map);
+            _status = "未找到地图或外观";
+            return false;
+        }
+
+        private static string MapName(Map map) => !string.IsNullOrEmpty(map.name) ? map.name :
+            !string.IsNullOrEmpty(map.mapKey) ? map.mapKey : map.mapId.ToString();
+
+        private bool Select(Map selected)
+        {
+            if (_camera == null) return false;
             if (selected.columns <= 0 || selected.rows <= 0 || selected.tilePixels != 1024 ||
                 string.IsNullOrEmpty(selected.resourceRoot)) { _status = "预览元数据无效"; return false; }
 
@@ -165,7 +205,8 @@ namespace MmorpgClient.World.Tianyong
                 _bounds = bounds;
                 _focus = bounds.center;
                 Fit();
-                _status = $"{mapId} {AppearanceName(appearance)} · {selected.columns}×{selected.rows} · {sprites.Count} 块" +
+                string mapLabel = string.IsNullOrEmpty(standaloneName) ? MapName(selected) : standaloneName;
+                _status = $"{mapLabel} {AppearanceName(selected.appearance)} · {selected.columns}×{selected.rows} · {sprites.Count} 块" +
                     (selected.validRectKnown ? " · 已绑定有效边界" : " · 按方形图格显示；有效边界和原图比例映射待核");
                 Debug.Log("[FestivalVisualPreview] " + _status);
                 return true;
@@ -206,27 +247,56 @@ namespace MmorpgClient.World.Tianyong
             if (Mathf.Abs(wheel) > .001f) _zoom *= Mathf.Pow(.85f, wheel);
             var motion = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             _focus += motion * (_zoom * Time.unscaledDeltaTime);
+            if (IsStandalone)
+            {
+                Vector2 pointer = Input.mousePosition;
+                if (Input.GetMouseButton(2) && !Input.GetMouseButtonDown(2))
+                    _focus -= (pointer - _lastPointer) * (2f * _zoom / Mathf.Max(1, _camera.pixelHeight));
+                _lastPointer = pointer;
+            }
             if (Input.GetKeyDown(KeyCode.Home)) { _focus = _bounds.center; Fit(); }
             ApplyCamera();
         }
 
         private void OnGUI()
         {
+            if (IsStandalone)
+            {
+                GUI.Box(new Rect(12, 12, 580, 126), standaloneName + " · 美术预览（无导航与碰撞）");
+                if (GUI.Button(new Rect(24, 40, 165, 32), "春节")) ShowStandaloneAppearance("spring");
+                if (GUI.Button(new Rect(198, 40, 165, 32), "中秋")) ShowStandaloneAppearance("mid-autumn");
+                GUI.Label(new Rect(24, 78, 550, 26), _status);
+                GUI.Label(new Rect(24, 104, 532, 28), "方向键/WASD 或中键拖动 · 滚轮缩放 · Home 显示全图");
+                return;
+            }
             if (_current == null) return;
-            GUI.Box(new Rect(12, 12, 580, 160), "节庆地图 · 离线视觉预览（无导航与碰撞）");
-            if (GUI.Button(new Rect(24, 40, 165, 32), "26000 中秋")) Select(26000, "mid-autumn");
-            if (GUI.Button(new Rect(198, 40, 165, 32), "26008 春节")) Select(26008, "spring");
-            if (GUI.Button(new Rect(372, 40, 165, 32), "26008 中秋")) Select(26008, "mid-autumn");
-            GUI.Label(new Rect(24, 78, 550, 30), _status);
-            GUI.Label(new Rect(24, 107, 450, 28), "方向键/WASD 平移 · 滚轮缩放 · Home 显示全图");
-            if (GUI.Button(new Rect(450, 132, 120, 27), "返回旧地图")) Close();
+            const int columns = 3;
+            const float rowHeight = 36;
+            float width = Mathf.Min(580, Screen.width - 24);
+            float buttonWidth = (width - 24 - (columns - 1) * 8) / columns;
+            float statusY = 40 + Mathf.CeilToInt(_maps.Length / (float)columns) * rowHeight;
+            GUI.Box(new Rect(12, 12, width, statusY + 70), "节庆地图 · 离线视觉预览（无导航与碰撞）");
+            for (int i = 0; i < _maps.Length; i++)
+            {
+                var map = _maps[i];
+                var rect = new Rect(24 + i % columns * (buttonWidth + 8), 40 + i / columns * rowHeight,
+                    buttonWidth, rowHeight - 4);
+                if (GUI.Button(rect, MapName(map) + " " + AppearanceName(map.appearance))) Select(map);
+            }
+            GUI.Label(new Rect(24, statusY, width - 24, 30), _status);
+            GUI.Label(new Rect(24, statusY + 29, width - 24, 28), "方向键/WASD 平移 · 滚轮缩放 · Home 显示全图");
+            if (GUI.Button(new Rect(width - 132, statusY + 52, 132, 27), "返回离线走图")) Close();
         }
 
         private static string AppearanceName(string appearance) => appearance == "spring" ? "春节" : "中秋";
 
         private void ReleaseMap()
         {
-            if (_visualRoot != null) Destroy(_visualRoot);
+            if (_visualRoot != null)
+            {
+                _visualRoot.SetActive(false);
+                Destroy(_visualRoot);
+            }
             _visualRoot = null;
             foreach (var sprite in _sprites) if (sprite != null) Destroy(sprite);
             _sprites.Clear();

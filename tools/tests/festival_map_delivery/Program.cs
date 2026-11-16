@@ -60,15 +60,60 @@ internal static class Program
             Resources.Root = Path.Combine(root, "Assets", "Resources");
             string catalogText = File.ReadAllText(ResourceFile(MapDeliveryContract.CatalogPath, ".json"));
             var catalog = JsonUtility.FromJson<MapDeliveryCatalog>(catalogText);
-            Check("Real production catalog parses all requested client-only holiday registrations", () =>
+            catalog.Validate();
+            var historicFestivalKeys = FestivalMapLocalTestPolicy.MapIds.Select(id => "map" + id).ToHashSet(StringComparer.Ordinal);
+            var festivalMaps = catalog.maps.Where(map => historicFestivalKeys.Contains(map.key)).ToArray();
+            var legacySceneIds = new[] { 1u, 2u, 3u };
+            int expectedRegisteredScenes = catalog.maps.Select(map => map.sceneId).Union(legacySceneIds).Count();
+            Check("Real production catalog parses the requested 20261106/07 festival registrations", () =>
             {
-                catalog.Validate();
-                Require(catalog.maps.Length == expectedMaps);
-                Require(catalog.maps.All(m => m.clientOnly && m.Find(m.DefaultAppearance) != null));
-                Require(catalog.maps.Sum(m => m.appearances.Length) == expectedAppearances);
+                Require(festivalMaps.Length == expectedMaps);
+                Require(festivalMaps.All(m => m.clientOnly && m.Find(m.DefaultAppearance) != null));
+                Require(festivalMaps.Sum(m => m.appearances.Length) == expectedAppearances);
                 CurrentMapCatalog.ApplyDeliveries(catalog);
-                Require(CurrentMapCatalog.All.Count == expectedMaps + 3);
+                Require(CurrentMapCatalog.All.Count == expectedRegisteredScenes);
                 Require(CurrentMapCatalog.Find(1u).Key == "main" && CurrentMapCatalog.Find(2u).Key == "island" && CurrentMapCatalog.Find(3u).Key == "village");
+            });
+
+            Check("Pending island replacement stays offline while online lookup retains the published legacy island", () =>
+            {
+                var publishedIsland = CurrentMapCatalog.FindForOnline(2u);
+                Require(publishedIsland != null && !publishedIsland.IsModern && publishedIsland.CanTravelOnline);
+                var pending = festivalMaps[0].Snapshot();
+                pending.key = "island";
+                pending.name = "Synthetic pending island registration";
+                pending.sceneId = 2;
+                pending.revision = "pending-island-verification";
+                foreach (var appearance in pending.appearances)
+                    appearance.resourceRoot = MapDeliveryContract.ResourceRoot + pending.key + "/" + pending.revision + "/" +
+                        appearance.id + "/" + appearance.layoutSha256 + "/";
+                try
+                {
+                    CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
+                        maps = catalog.maps.Where(registration => registration.sceneId != 2u).Append(pending).ToArray() });
+                    var offlineIsland = CurrentMapCatalog.Find(2u);
+                    Require(offlineIsland != null && offlineIsland.IsModern && !offlineIsland.CanTravelOnline);
+                    Require(offlineIsland.Revision == pending.revision && offlineIsland.Appearance == pending.DefaultAppearance);
+                    Require(ReferenceEquals(CurrentMapCatalog.FindForOnline(2u), publishedIsland));
+                    Require(ReferenceEquals(CurrentMapCatalog.FindForOnline("island"), publishedIsland));
+                    Require(publishedIsland.ForAppearance(pending.DefaultAppearance) == null,
+                        "A pending holiday appearance leaked into the old online island.");
+                    foreach (var registration in festivalMaps)
+                    {
+                        Require(CurrentMapCatalog.Find(registration.sceneId) != null);
+                        Require(CurrentMapCatalog.FindForOnline(registration.sceneId) == null);
+                        Require(CurrentMapCatalog.FindForOnline(registration.key) == null);
+                    }
+                    Require(CurrentMapCatalog.FindForOnline(999999u) == null && CurrentMapCatalog.FindForOnline("__absent_map") == null);
+
+                    pending.clientOnly = false;
+                    CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = new[] { pending } });
+                    var replacement = CurrentMapCatalog.Find(2u);
+                    Require(replacement.IsModern && replacement.CanTravelOnline && replacement.Revision == pending.revision);
+                    Require(ReferenceEquals(CurrentMapCatalog.FindForOnline(2u), replacement));
+                    Require(ReferenceEquals(CurrentMapCatalog.FindForOnline("island"), replacement));
+                }
+                finally { CurrentMapCatalog.ApplyDeliveries(catalog); }
             });
 
             int tileCount = 0, appearanceCount = 0;
@@ -86,7 +131,7 @@ internal static class Program
                 Require(FestivalMapLocalTestPolicy.IsRequested(new[] { "game.exe", "-festivalMapLocalTest" }));
                 Require(!FestivalMapLocalTestPolicy.IsRequested(new[] { "game.exe", "-festivalMapLocalTest=false" }));
             });
-            foreach (var registration in catalog.maps)
+            foreach (var registration in festivalMaps)
             {
                 string mapId = registration.key.Substring("map".Length);
                 using var sourceDocument = JsonDocument.Parse(File.ReadAllText(
@@ -219,11 +264,11 @@ internal static class Program
                 Require(tileCount == expectedTiles && appearanceCount == expectedAppearances);
                 Require(Debug.Errors.Count == 0, string.Join("\n", Debug.Errors));
                 CurrentMapCatalog.ReloadDeliveries();
-                Require(CurrentMapCatalog.All.Count == expectedMaps + 3 && CurrentMapCatalog.Find(35004u).Appearance == "spring");
+                Require(CurrentMapCatalog.All.Count == expectedRegisteredScenes && CurrentMapCatalog.Find(35004u).Appearance == "spring");
             });
             var result = new { ok = true, assertions = Assertions, checks = Passed.Count, passed = Passed,
-                productionSourcesLinked = new[] { "MapDeliveryContract.cs", "CurrentMapCatalog.cs", "CurrentMapTilesManifest.cs", "CityTileManifest.cs", "TianyongNavigationGrid.cs", "TianyongMapDefinition.cs" },
-                realManagedGeometry = "UnityEngine.CoreModule.dll", nativeAdaptersOnly = new[] { "JsonUtility (System.Text.Json field adapter)", "Resources (read-only local files)", "Texture2D (PNG dimensions only)", "TextAsset", "Debug" },
+                productionSourcesLinked = new[] { "MapDeliveryContract.cs", "CurrentMapCatalog.cs", "AuthoredFestivalAssets.cs", "AuthoredMapRegistry.cs", "CurrentMapTilesManifest.cs", "CityTileManifest.cs", "TianyongNavigationGrid.cs", "IMapNavigation.cs", "TianyongMapDefinition.cs" },
+                realManagedGeometry = "UnityEngine.CoreModule.dll", nativeAdaptersOnly = new[] { "JsonUtility (System.Text.Json field adapter)", "Resources (read-only local files)", "Texture2D (PNG dimensions only)", "TextAsset", "Debug (non-development portable process)", "Application (non-Editor portable process)" },
                 tileCount, appearanceCount, deliveries = Deliveries, engineExecuted = false, renderedScreenAccepted = false,
                 serverRequestsSent = 0, serverNavigationPublished = false };
             string output = Path.GetFullPath(args[1]);

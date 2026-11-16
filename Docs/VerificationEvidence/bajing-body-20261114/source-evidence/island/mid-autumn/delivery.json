@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "key": "island",
+  "sceneId": 2,
+  "revision": "bajingbody20261114",
+  "appearance": "mid-autumn",
+  "layoutSha256": "e8da844563db9578a192529dec6c932e2df749466565599f6379a8fbbd7e0a5c",
+  "sourceSelectionSha256": "c7596fad542dd95a21ea7f28266491fb916ccfe387d4a9e06f430a653def5b67",
+  "navigationPlanSha256": "9e0006ecd0b1ea00289b572cb255de831c38c8cd8030b3832fff85a6333d41b5",
+  "sourceLayoutPreview": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/midautumn/wholemap-runtime11264x8192.png",
+    "sha256": "2547ea8c752179292afed15ae14c49fe5625a12edb173eca0d49f641d1d0a397",
+    "bytes": 111812550
+  },
+  "selectionAuthority": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/FINAL_ART_ACCEPTANCE.json",
+    "sha256": "97e5821a48d36306d28f0b5ce6f5730c46d0433d55bed2e57fb3117aee111a17",
+    "bytes": 14365
+  },
+  "tileEvidence": [
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c01.json",
+      "sha256": "fde82a27a78d16561247ea31e5581799133af3f16351ae21abbd4071cfb78fc2"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c02.json",
+      "sha256": "03c1083172fe596b34aa05593abdb19248fb92e85aaa604f1445aa4d90a26a3b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c03.json",
+      "sha256": "a448edf67565b3be42bad30e743a18370ca3ac3e2727ff051b9de5dae51b5fa7"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c04.json",
+      "sha256": "8a3c75d9e25a0bd99dc3781dee7febd80bc33b54c3053b2d18ee420079d26f79"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c05.json",
+      "sha256": "8262c368ce29b58dd15fdac69bd00c4f31ca11fe67bd243338b3a09e35f38164"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c06.json",
+      "sha256": "5f4ece9d8d061128139df39456f4b2971a88dac451cab59db4ebf0bdd645a896"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c07.json",
+      "sha256": "04a24b487d73eb2a577e833dea0a1563b6244ea17e517b9367a02039876464d6"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c08.json",
+      "sha256": "d546eaf059a2cc18b879109478792b044d37867529785587a1c18e953a567dfb"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c09.json",
+      "sha256": "f832c824fde6204b4cffb5fa711a46432cd173bb883c9c4ffb5ff1a3df335b88"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c10.json",
+      "sha256": "2cb419e89bc4c41e3e4fcdfd135642070f965cfda47aaabef9a181f1fc0c8a04"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r01_c11.json",
+      "sha256": "973bac771f76e245748698552e4f9f99c66e637cb57d9b5f3e1780a0b675e45c"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c01.json",
+      "sha256": "c32c98462278f61e319b00192650bbc310abff0fea3d01afa7b0124feeb249e7"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c02.json",
+      "sha256": "0473871ec89648caa25b4dd2497428a44b0752ea81853fc80e88d1feb9bf1e9a"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c03.json",
+      "sha256": "4665493594dd133e4b4bc206c1a8f194a3be6f9185da1af7420f22f73ac4fbaf"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c04.json",
+      "sha256": "ae0f6e1816bc1b9b4514d4b1f81b0579e760343e8fcbe966d1c933665bfd8f02"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c05.json",
+      "sha256": "9ba666dd4962f4286475be974b66ed8c9063eb10a597105711ceece3cf5fd01f"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c06.json",
+      "sha256": "da8dfe6e71e6e9862ff0429b3b0844986c9b9a69ccf7d530c22bb4a17d1c0452"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c07.json",
+      "sha256": "a5f045f2cb07c360b7c51987e006074c5a831e4c86bf7d6493cf8eef2d8d52dc"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c08.json",
+      "sha256": "faf54bbf85843f5fe8b50a6b309c21bb135fa51f5fe8ae19766bb10435529c47"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c09.json",
+      "sha256": "5ca3ab703f4844b7a8b9a695b4e36ce4e39bc20f826c93f853a79b42a795ab31"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c10.json",
+      "sha256": "57e103eff8be071be6dc021e35ee5c0ccaaafce2eeeaa848265e0e511ebbb6e2"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r02_c11.json",
+      "sha256": "1d178a9a9a52db496e6c05c90078cf83e9138355ba842041355823ccf7e7b5ac"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c01.json",
+      "sha256": "67a6404a5cf79c0a9dc7dc9d4241f26c32cbfd9462b31b457e25cf5dfd3165d8"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c02.json",
+      "sha256": "8046cbb524a51390ede79deefb4bdb906ee8e9117a96f6c587eea568767d7d78"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c03.json",
+      "sha256": "21678fbc97ba420a9361f2a155ded439a8961aa31f000491cee43b8badbecd78"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c04.json",
+      "sha256": "4a79eb610e25697c885c491f1215f348c88de2f9c91abf9a5eb4c3597e5d9815"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c05.json",
+      "sha256": "3f39894bb4c641d7af0d80a9f37ae4e0962dc16d6dc4cd55913b0b3dd1972910"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c06.json",
+      "sha256": "b34d0f827b32ea8c88fad02dcfe89447247d2b38133c35cc93010d39464fb1c7"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c07.json",
+      "sha256": "7c64e59d9ed3ac8d584417640b449f89265592e30ff8b6013e0000d63b1bacce"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c08.json",
+      "sha256": "0f863084985a76ff18e621bc3d80b240a27e61a96a384d9cfbfba7c1df42cc7c"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c09.json",
+      "sha256": "164f6cebfb78a16fa7eaebae336f577bd1f09d080fd6eb6c234321e78ca32013"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c10.json",
+      "sha256": "26427b58b376ced5fe13bec302a70df2128621ccdd4155c676e8d8493ef70a21"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r03_c11.json",
+      "sha256": "a285d7d0c2ab7432995677610b6384ea156a546b6cc8fd090048c91781e6a678"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c01.json",
+      "sha256": "d1e5a9b69e82e55509676f72c0af56dc57f0be529fbb9d62fc024e1f2fd8ca6c"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c02.json",
+      "sha256": "f1cf7ac3df772949f5b08ef52fc5b820f19812080c6781907e96be62448f1aa0"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c03.json",
+      "sha256": "4ccea43ccd98c0a73c0885fb7525f803824f1fcc381ef565d0646ae1647d8713"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c04.json",
+      "sha256": "4660ea6a691b99820fb7bf4c26f2f75205952c3295ef1e9f7482cc400269dc94"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c05.json",
+      "sha256": "9e10fc7b72963be3d4a3c643ec33b7fe8c06c4a2e50e016d8f8d9e340efc7997"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c06.json",
+      "sha256": "9697fcde435bb01c61a68ff83c103ca3ad6169e335987a206bfb6a713a91b8c1"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c07.json",
+      "sha256": "8a7135837ebff0ea42f99086512858ea210f9fea7c76c35cbd1f49c095e0c4fb"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c08.json",
+      "sha256": "730df2a9ed75b5106ab87f9360e57cc2302edb5d848ace4c57922fcf9e308b00"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c09.json",
+      "sha256": "d1d6944bb781f41d6553b23a4b46487bdcef35bb8394c52f3c95ff92e5a7b65b"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c10.json",
+      "sha256": "47cea16119ba9788f1165ab4149eed3c88c726a66e1c72d6429bc68b527ce159"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r04_c11.json",
+      "sha256": "d88a910ad8bbf0fa8d2ee8a38a911098cfe694070f19e97973e87c02bd7fff00"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c01.json",
+      "sha256": "366d0ed722c0e16b5c42dfa5c2a8be895ecc6ad4a99f9fb756b2a8c9bac2a223"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c02.json",
+      "sha256": "068ef9586ae5b65cada8ab906ddccad47cc7fed707de247fd45e23e992cd2af3"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c03.json",
+      "sha256": "cc79ebc318988ba42d6e9219ab32b620fcfa6345e1e73dd22c97c19478b3f546"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c04.json",
+      "sha256": "d0c8b39ac388731c0e08d53612a4d7c092b6d60663553082e812431bee0817b1"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c05.json",
+      "sha256": "e71d071a99456b6aeb7609db795ed0ce92f6b0d494036e881832e67823d709dd"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c06.json",
+      "sha256": "36b86219766ae8da208ff5ce7564dc402084b6a6fa7333ec9aeeb361838ca6f0"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c07.json",
+      "sha256": "76aa765a8a7adb617b91871f8982c943e39319e7221bbb7e2689ddbaae185cef"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c08.json",
+      "sha256": "5164e85466826b72a30b08f12f0975ea9f3a011b80d9fcdad371c49a835dd8ef"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c09.json",
+      "sha256": "4b526ea6ab10dc3c538196868d4f04a263b0f0bd47d44b26a5c95978fd4443f3"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c10.json",
+      "sha256": "db3aad9777c01fee214cced1d05c2f35b2f5828725527a28e3ba3b687a2b2032"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r05_c11.json",
+      "sha256": "c8603785bd10e491fa5aa2734a0f9d2b6b79e9000986c836feb7e72d74e7f568"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c01.json",
+      "sha256": "02fc6444464312134eadf2f66cc8ecf2c44f2673bdb11dd02a935c3856034f42"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c02.json",
+      "sha256": "b722731a853225d2b86fcceafa3a9b2e37e807941eb27e1b7891937b63769fde"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c03.json",
+      "sha256": "8d99f5dfdecbb8b64d43da759a2c1487d890e1f898f28893f59cc292e88d348d"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c04.json",
+      "sha256": "d44f3a2638e467769a9fe2bf48c7ec71b6512f0fd4ccee3fea416684dd2c62da"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c05.json",
+      "sha256": "c7a6822ca6a77efe43aeca4ecb9b7b0c4ae5b2766b2ddb1f011abb5001da5390"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c06.json",
+      "sha256": "4993490c12abbfae995422f91970fdd5e7e6625b0bc1d55a53de28fb48adae76"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c07.json",
+      "sha256": "baf30b3e42e64e03a95546d2da1cd71125b769a413f61011c5a8f9c2c2b24ab4"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c08.json",
+      "sha256": "2c5ad63a211bc04ef5e5fb69a2ff7269859fe7cf9ad5d42ec2fb99acad8bac29"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c09.json",
+      "sha256": "e48492d06ef3ce302ca82d270fb806cccf892b44645dc87d3b4d2bf074c84eea"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c10.json",
+      "sha256": "24636221f40ca93068fbc049dc11e205a44cd8241f258dba7baeb5e54cbd7a8f"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r06_c11.json",
+      "sha256": "5eea5574af7d53243e0e61252def695975521697045d9bac052f286ed2ffc055"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c01.json",
+      "sha256": "d9925f76f7894454b78a8023db8d6a06ca086d4dbc1bbba2edd6dafa1305649c"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c02.json",
+      "sha256": "e0161c30bb9d4b5090e556faedd60fc4c72de9d63a2d30605cbd316bd16e5f96"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c03.json",
+      "sha256": "f02cd7bf3382b67fa29570187499b8d904dea2fdb94cf70368ed3b91e03980ae"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c04.json",
+      "sha256": "1dfaec88bfd97e4076542fd7f5038ed6b174253c9d7f44de0029e24d35bf5641"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c05.json",
+      "sha256": "e9b74d13048491ff62249a0d8f5bee5e823bc564d73cd20830447cd309b8d67e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c06.json",
+      "sha256": "d66de4c5c168cecb5c9cfb6401cb26178fec7adf8bb785bf589c8d46573abfc1"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c07.json",
+      "sha256": "f3076c50ff7855de652db37dafc503ab53e8414c0506e6c02d12d6f65e2ddce6"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c08.json",
+      "sha256": "278c5f4a7abe3d0f6e1d6a8e7148badfc9491326b7bf99e66e9098cce18f67ed"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c09.json",
+      "sha256": "4fe03fb26d3f71302f9961cbd957ed45d90762d199f12aec928cdbdb0bf48083"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c10.json",
+      "sha256": "0ed33e82146ef4e4e7281bd19cfe1fa105cdf0d873f55ac1ba295ed50572dd16"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r07_c11.json",
+      "sha256": "c85ad4fd54fdefd1dee4fb0bc9e62eaaea3901fa746ceb1d4d38ad34555e21ed"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c01.json",
+      "sha256": "be0e2124ccd89a911d6cecc882e1da8c602c1fea8667ec044f0e687f812997d9"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c02.json",
+      "sha256": "f7d471ff4f463ae1e544610b8c156bb20b9cea538acfd6d1195cd2174b84b882"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c03.json",
+      "sha256": "96b9e7a188bdb695ba99eb80ef96919b5d3cc841c46bd8abb72f148f0e96a478"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c04.json",
+      "sha256": "33e166b02397a524c546d12400c4cca957cc7216e1ff4aa5911de813a249998d"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c05.json",
+      "sha256": "42af2240a7acbfddbc6200cd4f4fc3a5861f39e810025d67899256acfdae509c"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c06.json",
+      "sha256": "a89ff584df4ec236ff8dac3d61d5e49f8ac81bc008b9cf4e05fd75fd005b5e6f"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c07.json",
+      "sha256": "8faa875c1e883f1bbbe349e7f4f857d9f6bad56b95510918a57cb869e7011435"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c08.json",
+      "sha256": "c76c58d8c26267119a38e4e71513661c4b3aa3af8c2a79912b224690dbd5c75e"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c09.json",
+      "sha256": "794340bd0d1ead09c25ccff32a4b1810c7971a61feffecf248ec9c53a82ca159"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c10.json",
+      "sha256": "a2d0ef6b7ca1e2644ae0912aef77a14ffed92003d2ff09f403f131b8d9e815ec"
+    },
+    {
+      "path": "Docs/VerificationEvidence/bajing-body-20261114/source-evidence/island/mid-autumn/r08_c11.json",
+      "sha256": "fade2b9f738a45b75baf37baa03b9c579b8f57a9083686089d98f88683b91512"
+    }
+  ],
+  "formalArtAccepted": true,
+  "authoritativeServerRegistered": false,
+  "sourceMapId": "current-eight-immortals-island",
+  "runtimeAssemblySha256": "2547ea8c752179292afed15ae14c49fe5625a12edb173eca0d49f641d1d0a397",
+  "layoutDerivation": "uniform-lanczos-long-edge-4096"
+}

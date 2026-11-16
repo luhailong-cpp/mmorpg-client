@@ -21,6 +21,7 @@ namespace MmorpgClient.World.Tianyong
         [SerializeField] private string characterId = QdaoCharacterCatalog.DefaultId;
         [SerializeField] private uint deliveredMapId;
         [SerializeField] private string deliveredAppearance = "spring";
+        [SerializeField] private bool lockDeliveredMap;
         private TMPro.TMP_Text _playerLabel;
 
         private TianyongMapInstance _map;
@@ -114,8 +115,9 @@ namespace MmorpgClient.World.Tianyong
             var label = _playerLabel;
             try
             {
-                if (System.Array.IndexOf(DeliveredPreviewMapIds, mapId) < 0)
-                    throw new System.InvalidOperationException("本场景仅预览已接入的三张节庆地图。");
+                bool allowed = lockDeliveredMap ? mapId == deliveredMapId : System.Array.IndexOf(DeliveredPreviewMapIds, mapId) >= 0;
+                if (!allowed)
+                    throw new System.InvalidOperationException("所选地图不在本场景的预览范围内。");
                 var installed = CurrentMapCatalog.Find(mapId);
                 var selected = installed?.ForAppearance(appearance ?? installed.Appearance);
                 if (selected == null || !selected.IsModern)
@@ -304,11 +306,21 @@ namespace MmorpgClient.World.Tianyong
             if (!showHelp) return;
             if (deliveredMapId != 0)
             {
-                DrawDeliveredMapControls();
+                if (lockDeliveredMap) DrawSingleMapControls();
+                else DrawDeliveredMapControls();
                 return;
             }
             GUI.Box(new Rect(16f, 16f, 400f, 142f),
                 "天墉城离线测试\nWASD / 鼠标左键移动，滚轮缩放\nF1 主城  F2 年货  F3 瑞雪  F4 灯会\nF5 切换已完成角色");
+        }
+
+        private void DrawSingleMapControls()
+        {
+            string name = _deliveredDefinition?.Name ?? "节庆地图";
+            GUI.Box(new Rect(16, 16, 440, 128), name + " · 离线走图");
+            GUI.Label(new Rect(30, 42, 406, 24), "WASD / 鼠标左键移动，滚轮缩放，F5 切换角色");
+            DrawDeliveredAppearanceButtons(70);
+            GUI.Label(new Rect(30, 106, 406, 30), _deliveryStatus);
         }
 
         private void DrawDeliveredMapControls()
@@ -323,21 +335,26 @@ namespace MmorpgClient.World.Tianyong
                 if (GUI.Button(new Rect(30 + i * 178, 74, 170, 32), map?.Name ?? id.ToString()))
                     SelectDeliveredMap(id);
             }
+            GUI.enabled = true;
+            DrawDeliveredAppearanceButtons(116);
+            GUI.Label(new Rect(30, 154, 532, 24), "视觉预览（仅看图，未接入导航或联机传送）");
+            if (GUI.Button(new Rect(30, 180, 170, 32), "打开美术预览")) OpenVisualPreview(26000, "mid-autumn");
+            GUI.Label(new Rect(30, 245, 532, 50), _deliveryStatus);
+        }
+
+        private void DrawDeliveredAppearanceButtons(float y)
+        {
             var installed = CurrentMapCatalog.Find(deliveredMapId);
             var appearances = new[] { "spring", "mid-autumn" };
+            bool wasEnabled = GUI.enabled;
             for (int i = 0; i < appearances.Length; i++)
             {
                 string appearance = appearances[i];
-                GUI.enabled = installed?.ForAppearance(appearance) != null;
-                if (GUI.Button(new Rect(30 + i * 125, 116, 116, 32), AppearanceName(appearance)))
+                GUI.enabled = wasEnabled && installed?.IsModern == true && installed.ForAppearance(appearance) != null;
+                if (GUI.Button(new Rect(30 + i * 125, y, 116, 32), AppearanceName(appearance)))
                     SelectDeliveredMap(deliveredMapId, appearance);
             }
-            GUI.enabled = true;
-            GUI.Label(new Rect(30, 154, 532, 24), "视觉预览（仅看图，未接入导航或联机传送）");
-            if (GUI.Button(new Rect(30, 180, 170, 32), "26000 中秋")) OpenVisualPreview(26000, "mid-autumn");
-            if (GUI.Button(new Rect(208, 180, 170, 32), "26008 春节")) OpenVisualPreview(26008, "spring");
-            if (GUI.Button(new Rect(386, 180, 170, 32), "26008 中秋")) OpenVisualPreview(26008, "mid-autumn");
-            GUI.Label(new Rect(30, 245, 532, 50), _deliveryStatus);
+            GUI.enabled = wasEnabled;
         }
 
         private void OpenVisualPreview(uint id, string appearance)

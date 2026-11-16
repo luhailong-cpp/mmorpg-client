@@ -35,6 +35,7 @@ namespace MmorpgClient.UI
             // production client root would cover it with login UI and make
             // scene tests depend on network state.
             if (FindAnyObjectByType<TianyongSandboxBootstrap>() != null) return;
+            if (FindAnyObjectByType<FestivalMapVisualPreview>()?.IsStandalone == true) return;
             if (FindAnyObjectByType<AppBootstrap>() != null) return;
             var go = new GameObject(GameObjectName);
             go.AddComponent<AppBootstrap>();

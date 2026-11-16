@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-11-14T19:20:07.463877+00:00",
+  "status": "TECHNICAL_PACKAGE_VERIFIED",
+  "deliveryManifest": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/DELIVERY_MANIFEST.json",
+    "sha256": "72cd030b9e36b24b35ee8fd31de7de12a7c785d7e200c3375162a5d5432d8bb3",
+    "bytes": 537790
+  },
+  "verificationScript": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/verify_delivery.py",
+    "sha256": "c775cfb40276c21b03fbc939b1ec16c58efcf7647eaa147d61194685e2ae6479",
+    "bytes": 4118
+  },
+  "observedExecution": {
+    "sessionId": 79289,
+    "exitCode": 0,
+    "stdout": {
+      "status": "TECHNICAL_PACKAGE_VERIFIED",
+      "runtimeTiles": 176,
+      "sharedEdgeViews": 314,
+      "cornerViews": 140,
+      "wholeMapAccepted": false,
+      "clientOrNavigationAccepted": false,
+      "writes": 0
+    }
+  },
+  "recordedBy": "/root after observing actual completed tool result",
+  "sourceControlsStillIdenticalAtFinalization": true,
+  "note": "This is technical verification. Subsequent ART acceptance is a separate receipt."
+}

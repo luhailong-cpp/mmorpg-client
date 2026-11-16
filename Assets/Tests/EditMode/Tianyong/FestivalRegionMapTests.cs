@@ -16,7 +16,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase(3u)]
         public void CurrentLayouts_KeepNativeSquareTexturesAndMatchingPlayableGeometry(uint sceneId)
         {
-            var region = CurrentMapCatalog.Find(sceneId);
+            var region = CurrentMapCatalog.FindForOnline(sceneId);
             Assert.That(region, Is.Not.Null);
             var day = region.LoadTexture();
             Assert.That(day, Is.Not.Null);
