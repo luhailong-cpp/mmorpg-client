@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 1,
+  "createdAtUtc": "2026-11-15T04:59:45.839421+00:00",
+  "mapId": "2",
+  "navigationPlan": "D:\\work\\mmorpg-client\\Docs\\VerificationEvidence\\bajing-body-20261114\\navigation-plan.json",
+  "annotationSources": [
+    {
+      "appearance": "spring",
+      "path": "D:\\work\\image\\.codex-artifacts\\bajing-resume-20261114-r19\\final-delivery-prep-v001\\delivery-v001\\parent-overview-spring-preview1408.jpg",
+      "sha256": "ad5b6de7a6b203c04c1c819c6006619339688bc7e7cb901a4fd8a199c7d1619a",
+      "reviewedPixels": [
+        1408,
+        1024
+      ],
+      "canvasPixels": [
+        11264,
+        8192
+      ],
+      "scaleToCanvas": 8,
+      "reviewer": "Codex visual annotation agent; actual image viewing",
+      "humanApprovalClaimed": false
+    },
+    {
+      "appearance": "midautumn",
+      "path": "D:\\work\\image\\.codex-artifacts\\bajing-resume-20261114-r19\\final-delivery-prep-v001\\delivery-v001\\parent-overview-midautumn-preview1408.jpg",
+      "sha256": "c5caee5ac61305b9c1d76cf81c69d617f3f1429f378cef0fea0e18fa324181cf",
+      "reviewedPixels": [
+        1408,
+        1024
+      ],
+      "canvasPixels": [
+        11264,
+        8192
+      ],
+      "scaleToCanvas": 8,
+      "reviewer": "Codex visual annotation agent; actual image viewing",
+      "humanApprovalClaimed": false
+    }
+  ],
+  "decisions": [
+    "Conservative hand annotation from both actual final appearance previews; no image generation, color thresholding, or sea fill.",
+    "Navigation describes 2D actor foot positions and real ground occupancy. Tree roots, sign support feet, plinths, tables, walls, ponds and cliff edges block. Elevated crowns, eaves, sign faces and shadows are not promoted to ground walls.",
+    "The common foot-position route south of the main hall east wall may pass under the projected moon-sign face/tree canopy; this is not permission to cross the sign stand, trunk/root footprint, or wall base. No foreground occlusion artwork/layer is created by this plan.",
+    "Only manually traced paths, plazas and conservative usable grass are open; remaining land and all exterior water stay closed by default.",
+    "Southwest lotus landmark is the reachable grass approach outside its fenced water garden; no invented bridge crosses its pool.",
+    "All four direction islands are connected to the main island only by their actual drawn stone bridge decks; each direction two pavilion approaches are joined by the observed internal footpath.",
+    "Cell size 1 world unit retains narrow real paths around lower pavilion foundations and pond fence; no widening through obstacles is used.",
+    "The lotus pavilion approach is at preview (444,753), on reachable grass outside the northeast fence. The east-side grass at (507,804) is physically separated by the north rock/fence and is deliberately closed; the pool and rock are never bridged by navigation.",
+    "Only the spawn-connected component is retained by the explicit builder option; unreachable ground and isolated raster fringe remain closed. Pruned cell counts are reported, and every landmark is validated after pruning. This is conservative navigation scope, not an art HOLD."
+  ],
+  "validation": {
+    "status": "PASS_OFFLINE_NAVIGATION",
+    "engineAccepted": false,
+    "serverNavigationPublished": false,
+    "planSha256": "bde478c8604f49d1f2b1ee610cf687599805610444b1be5beb7e7bae2b699d2d",
+    "maskSha256": "72a15d67e0916d0e41d4e2e5a9a26849e39f78819da7f3e28a9fc375cf6293a5",
+    "componentCount": 1,
+    "walkableCells": 24016,
+    "all18LandmarksReachable": true,
+    "all17ListedRoutesExist": true,
+    "all16BlockedPointsBlocked": true,
+    "outsideActiveImageWalkableCells": 0,
+    "bridgeCutTests": {
+      "northwest_bridge_deck": {
+        "removedDeckCells": 328,
+        "bothPavilionApproachesRequireThisRealBridge": true,
+        "disconnectedFromSpawnAfterDeckCut": {
+          "northwest_fan_pavilion_front": true,
+          "northwest_upper_pavilion_front": true
+        }
+      },
+      "northeast_bridge_deck": {
+        "removedDeckCells": 345,
+        "bothPavilionApproachesRequireThisRealBridge": true,
+        "disconnectedFromSpawnAfterDeckCut": {
+          "northeast_gourd_pavilion_front": true,
+          "northeast_telescope_pavilion_front": true
+        }
+      },
+      "southwest_bridge_deck": {
+        "removedDeckCells": 365,
+        "bothPavilionApproachesRequireThisRealBridge": true,
+        "disconnectedFromSpawnAfterDeckCut": {
+          "southwest_flute_pavilion_front": true,
+          "southwest_lotus_pavilion_fenced_forecourt": true
+        }
+      },
+      "southeast_bridge_deck": {
+        "removedDeckCells": 469,
+        "bothPavilionApproachesRequireThisRealBridge": true,
+        "disconnectedFromSpawnAfterDeckCut": {
+          "southeast_book_pavilion_front": true,
+          "southeast_flower_pavilion_front": true
+        }
+      }
+    },
+    "productionBuilderStats": {
+      "walkableCells": 24016,
+      "totalCells": 250649,
+      "componentCount": 1,
+      "componentSizes": [
+        24016
+      ],
+      "spawnComponent": 0,
+      "landmarks": {
+        "south_dock_spawn": {
+          "pixel": [
+            5536,
+            6784
+          ],
+          "world": {
+            "x": 205.0,
+            "y": 0.0,
+            "z": 70.00000000000001
+          },
+          "component": 0
+        },
+        "central_south_stair": {
+          "pixel": [
+            5576,
+            6280
+          ],
+          "world": {
+            "x": 207.08333333333331,
+            "y": 0.0,
+            "z": 96.25000000000001
+          },
+          "component": 0
+        },
+        "central_south_junction": {
+          "pixel": [
+            5656,
+            5936
+          ],
+          "world": {
+            "x": 211.25,
+            "y": 0.0,
+            "z": 114.16666666666667
+          },
+          "component": 0
+        },
+        "central_taiji": {
+          "pixel": [
+            4800,
+            4280
+          ],
+          "world": {
+            "x": 166.66666666666669,
+            "y": 0.0,
+            "z": 200.41666666666666
+          },
+          "component": 0
+        },
+        "central_north_junction": {
+          "pixel": [
+            5008,
+            3792
+          ],
+          "world": {
+            "x": 177.5,
+            "y": 0.0,
+            "z": 225.83333333333334
+          },
+          "component": 0
+        },
+        "central_main_hall_front": {
+          "pixel": [
+            5624,
+            3520
+          ],
+          "world": {
+            "x": 209.58333333333331,
+            "y": 0.0,
+            "z": 240.0
+          },
+          "component": 0
+        },
+        "bridge_northwest": {
+          "pixel": [
+            3600,
+            2896
+          ],
+          "world": {
+            "x": 104.16666666666667,
+            "y": 0.0,
+            "z": 272.50000000000006
+          },
+          "component": 0
+        },
+        "bridge_northeast": {
+          "pixel": [
+            7584,
+            2896
+          ],
+          "world": {
+            "x": 311.6666666666667,
+            "y": 0.0,
+            "z": 272.50000000000006
+          },
+          "component": 0
+        },
+        "bridge_southwest": {
+          "pixel": [
+            4280,
+            5360
+          ],
+          "world": {
+            "x": 139.58333333333331,
+            "y": 0.0,
+            "z": 144.16666666666666
+          },
+          "component": 0
+        },
+        "bridge_southeast": {
+          "pixel": [
+            7152,
+            5344
+          ],
+          "world": {
+            "x": 289.1666666666667,
+            "y": 0.0,
+            "z": 145.0
+          },
+          "component": 0
+        },
+        "northwest_fan_pavilion_front": {
+          "pixel": [
+            3120,
+            2624
+          ],
+          "world": {
+            "x": 79.16666666666664,
+            "y": 0.0,
+            "z": 286.6666666666667
+          },
+          "component": 0
+        },
+        "northwest_upper_pavilion_front": {
+          "pixel": [
+            4328,
+            1472
+          ],
+          "world": {
+            "x": 142.08333333333331,
+            "y": 0.0,
+            "z": 346.6666666666667
+          },
+          "component": 0
+        },
+        "northeast_gourd_pavilion_front": {
+          "pixel": [
+            7424,
+            1616
+          ],
+          "world": {
+            "x": 303.3333333333333,
+            "y": 0.0,
+            "z": 339.1666666666667
+          },
+          "component": 0
+        },
+        "northeast_telescope_pavilion_front": {
+          "pixel": [
+            8336,
+            2704
+          ],
+          "world": {
+            "x": 350.8333333333333,
+            "y": 0.0,
+            "z": 282.50000000000006
+          },
+          "component": 0
+        },
+        "southwest_flute_pavilion_front": {
+          "pixel": [
+            3032,
+            5304
+          ],
+          "world": {
+            "x": 74.58333333333333,
+            "y": 0.0,
+            "z": 147.08333333333334
+          },
+          "component": 0
+        },
+        "southwest_lotus_pavilion_fenced_forecourt": {
+          "pixel": [
+            3552,
+            6024
+          ],
+          "world": {
+            "x": 101.66666666666664,
+            "y": 0.0,
+            "z": 109.58333333333334
+          },
+          "component": 0
+        },
+        "southeast_book_pavilion_front": {
+          "pixel": [
+            8152,
+            5408
+          ],
+          "world": {
+            "x": 341.24999999999994,
+            "y": 0.0,
+            "z": 141.66666666666666
+          },
+          "component": 0
+        },
+        "southeast_flower_pavilion_front": {
+          "pixel": [
+            8000,
+            6616
+          ],
+          "world": {
+            "x": 333.3333333333333,
+            "y": 0.0,
+            "z": 78.75000000000001
+          },
+          "component": 0
+        }
+      },
+      "blockedLandmarks": [
+        "open_sea_west",
+        "open_sea_east",
+        "sea_between_northwest_and_main",
+        "sea_between_southwest_and_main",
+        "sea_between_southeast_and_main",
+        "central_hall_roof",
+        "northwest_hall_roof",
+        "northeast_hall_roof",
+        "southern_lotus_pond_water",
+        "central_tree_roots",
+        "central_moon_sign_stand",
+        "central_gold_plinth",
+        "central_table_footprint",
+        "central_west_cliff",
+        "northwest_east_cliff",
+        "southeast_south_cliff"
+      ],
+      "connectedRoutes": [
+        [
+          "south_dock_spawn",
+          "central_south_stair"
+        ],
+        [
+          "central_south_stair",
+          "central_south_junction"
+        ],
+        [
+          "central_south_junction",
+          "central_taiji"
+        ],
+        [
+          "central_taiji",
+          "central_north_junction"
+        ],
+        [
+          "central_north_junction",
+          "central_main_hall_front"
+        ],
+        [
+          "central_main_hall_front",
+          "bridge_northeast"
+        ],
+        [
+          "central_north_junction",
+          "bridge_northwest"
+        ],
+        [
+          "central_south_junction",
+          "bridge_southwest"
+        ],
+        [
+          "central_south_junction",
+          "bridge_southeast"
+        ],
+        [
+          "bridge_northwest",
+          "northwest_fan_pavilion_front"
+        ],
+        [
+          "northwest_fan_pavilion_front",
+          "northwest_upper_pavilion_front"
+        ],
+        [
+          "bridge_northeast",
+          "northeast_telescope_pavilion_front"
+        ],
+        [
+          "northeast_telescope_pavilion_front",
+          "northeast_gourd_pavilion_front"
+        ],
+        [
+          "bridge_southwest",
+          "southwest_flute_pavilion_front"
+        ],
+        [
+          "southwest_flute_pavilion_front",
+          "southwest_lotus_pavilion_fenced_forecourt"
+        ],
+        [
+          "bridge_southeast",
+          "southeast_book_pavilion_front"
+        ],
+        [
+          "southeast_book_pavilion_front",
+          "southeast_flower_pavilion_front"
+        ]
+      ],
+      "routeMeasurements": [
+        {
+          "from": "south_dock_spawn",
+          "to": "central_south_stair",
+          "gridDistanceWorldUnits": 26.82842712474619
+        },
+        {
+          "from": "central_south_stair",
+          "to": "central_south_junction",
+          "gridDistanceWorldUnits": 19.65685424949238
+        },
+        {
+          "from": "central_south_junction",
+          "to": "central_taiji",
+          "gridDistanceWorldUnits": 104.22539674441607
+        },
+        {
+          "from": "central_taiji",
+          "to": "central_north_junction",
+          "gridDistanceWorldUnits": 30.142135623730955
+        },
+        {
+          "from": "central_north_junction",
+          "to": "central_main_hall_front",
+          "gridDistanceWorldUnits": 37.79898987322332
+        },
+        {
+          "from": "central_main_hall_front",
+          "to": "bridge_northeast",
+          "gridDistanceWorldUnits": 116.25483399593895
+        },
+        {
+          "from": "central_north_junction",
+          "to": "bridge_northwest",
+          "gridDistanceWorldUnits": 92.05382386916229
+        },
+        {
+          "from": "central_south_junction",
+          "to": "bridge_southwest",
+          "gridDistanceWorldUnits": 84.42640687119277
+        },
+        {
+          "from": "central_south_junction",
+          "to": "bridge_southeast",
+          "gridDistanceWorldUnits": 90.84062043356586
+        },
+        {
+          "from": "bridge_northwest",
+          "to": "northwest_fan_pavilion_front",
+          "gridDistanceWorldUnits": 31.213203435596434
+        },
+        {
+          "from": "northwest_fan_pavilion_front",
+          "to": "northwest_upper_pavilion_front",
+          "gridDistanceWorldUnits": 97.22539674441609
+        },
+        {
+          "from": "bridge_northeast",
+          "to": "northeast_telescope_pavilion_front",
+          "gridDistanceWorldUnits": 43.14213562373095
+        },
+        {
+          "from": "northeast_telescope_pavilion_front",
+          "to": "northeast_gourd_pavilion_front",
+          "gridDistanceWorldUnits": 83.91168824543136
+        },
+        {
+          "from": "bridge_southwest",
+          "to": "southwest_flute_pavilion_front",
+          "gridDistanceWorldUnits": 72.04163056034258
+        },
+        {
+          "from": "southwest_flute_pavilion_front",
+          "to": "southwest_lotus_pavilion_fenced_forecourt",
+          "gridDistanceWorldUnits": 57.970562748477136
+        },
+        {
+          "from": "bridge_southeast",
+          "to": "southeast_book_pavilion_front",
+          "gridDistanceWorldUnits": 54.071067811865476
+        },
+        {
+          "from": "southeast_book_pavilion_front",
+          "to": "southeast_flower_pavilion_front",
+          "gridDistanceWorldUnits": 97.91168824543136
+        }
+      ],
+      "maximumListedRouteSecondsAt18": 6.458601888663275,
+      "separatedRoutes": [],
+      "maskSha256": "72a15d67e0916d0e41d4e2e5a9a26849e39f78819da7f3e28a9fc375cf6293a5",
+      "maskBytes": 31332,
+      "engineAccepted": false,
+      "serverNavigationPublished": false,
+      "pruningApplied": true,
+      "originalComponentCount": 5,
+      "originalWalkableCells": 24110,
+      "prunedUnreachableCellCount": 94
+    },
+    "evidence": "D:\\work\\mmorpg-client\\.codex-artifacts\\bajing-body-nav\\final-verification.json",
+    "finalOverlays": [
+      "D:\\work\\mmorpg-client\\.codex-artifacts\\bajing-body-nav\\final-navigation-overlay-spring.jpg",
+      "D:\\work\\mmorpg-client\\.codex-artifacts\\bajing-body-nav\\final-navigation-overlay-midautumn.jpg"
+    ],
+    "finalOverlayVisualReview": {
+      "reviewedAtUtc": "2026-11-15T05:08:12.483502+00:00",
+      "reviewer": "Codex visual annotation agent",
+      "actualBothImagesViewed": true,
+      "humanApprovalClaimed": false,
+      "scope": "Both full 1408x1024 final navigation overlays, actual production walkmask and all 17 listed grid paths; four real stone bridges and the revised outside-fence lotus approach reviewed. Elevated canopy/sign projections are footpoint occlusion, not ground blockers. No foreground occlusion layer was created."
+    }
+  },
+  "updatedAtUtc": "2026-11-15T05:07:22.227152+00:00",
+  "lotusApproach": {
+    "previewPixel": [
+      444,
+      753
+    ],
+    "canvasPixel": [
+      3552,
+      6024
+    ],
+    "reason": "Reachable grass outside northeast pond fence, west of real shoreline rock. East-side grass at original preview (507,804) is physically isolated by rock/fence; not opened and no sea/pond bridge invented.",
+    "originalDiagnosticIsolatedCellsAtCellSize1": 187,
+    "status": "conservative_navigation_boundary_not_art_hold"
+  },
+  "formalAssemblyFilesDirectlyHashedAndDimensionsChecked": [
+    {
+      "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/spring/wholemap-runtime11264x8192.png",
+      "sha256": "1195a9aab50dcc7d02102033f41f278b804ba5ba368dd4ffab358f6497721ed8",
+      "bytes": 114112334,
+      "pixels": [
+        11264,
+        8192
+      ],
+      "matchesParentBindings": true
+    },
+    {
+      "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/midautumn/wholemap-runtime11264x8192.png",
+      "sha256": "2547ea8c752179292afed15ae14c49fe5625a12edb173eca0d49f641d1d0a397",
+      "bytes": 111812550,
+      "pixels": [
+        11264,
+        8192
+      ],
+      "matchesParentBindings": true
+    }
+  ]
+}

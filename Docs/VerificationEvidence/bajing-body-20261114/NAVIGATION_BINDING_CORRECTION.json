@@ -1,0 +1,19 @@
+{
+  "atUtc": "2026-11-15T05:09:09.934633+00:00",
+  "kind": "NAVIGATION_PROVENANCE_FIELD_SCHEMA_LOCATION_CORRECTION",
+  "before": {
+    "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/navigation-plan-before-binding-schema-fix.json",
+    "sha256": "bde478c8604f49d1f2b1ee610cf687599805610444b1be5beb7e7bae2b699d2d",
+    "bytes": 53442
+  },
+  "after": {
+    "path": "D:/work/mmorpg-client/Docs/VerificationEvidence/bajing-body-20261114/navigation-plan.json",
+    "sha256": "9e0006ecd0b1ea00289b572cb255de831c38c8cd8030b3832fff85a6333d41b5",
+    "bytes": 50666
+  },
+  "change": "将visuallyReviewedFormalAssemblies放到importer要求的计划顶层；地图多边形、网格、脚点及mask判定不变。",
+  "geometryChanged": false,
+  "originalMaskSha256": "72a15d67e0916d0e41d4e2e5a9a26849e39f78819da7f3e28a9fc375cf6293a5",
+  "originalAnnotationReviewNotRewritten": true,
+  "newImageCalls": 0
+}

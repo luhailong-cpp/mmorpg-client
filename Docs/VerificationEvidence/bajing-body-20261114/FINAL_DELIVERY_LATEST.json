@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-11-14T19:20:07.463877+00:00",
+  "status": "COMPLETE_BOTH_FESTIVALS_BODY_ART_AND_RUNTIME_DELIVERY",
+  "mapId": "current-eight-immortals-island",
+  "formal": {
+    "spring": 88,
+    "midautumn": 88
+  },
+  "wholeMapArtAccepted": true,
+  "clientOrNavigationAccepted": false,
+  "readme": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/README.md",
+    "sha256": "be8fe54380946771b5bfe67cc78a8fbbb4e511f6012f1f17747685186a6ee625",
+    "bytes": 2733
+  },
+  "finalArtAcceptance": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/FINAL_ART_ACCEPTANCE.json",
+    "sha256": "97e5821a48d36306d28f0b5ce6f5730c46d0433d55bed2e57fb3117aee111a17",
+    "bytes": 14365
+  },
+  "technicalVerification": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/TECHNICAL_VERIFICATION.json",
+    "sha256": "2210410a33d23c466cd77f209c2a88d5ba373ea378d631c45b70a4fa0f8b86f3",
+    "bytes": 1164
+  },
+  "deliveryManifest": {
+    "path": "D:/work/image/.codex-artifacts/bajing-resume-20261114-r19/final-delivery-prep-v001/delivery-v001/DELIVERY_MANIFEST.json",
+    "sha256": "72cd030b9e36b24b35ee8fd31de7de12a7c785d7e200c3375162a5d5432d8bb3",
+    "bytes": 537790
+  },
+  "rootAdoptionCommitReceipts": [
+    {
+      "path": "D:/work/image/.codex-artifacts/window-replacement-20261114-r19-coordinator/bajing-thirteen-COMMITTED.json",
+      "sha256": "ab7be1ab038bcee3d5abc718e5bcc89ddd5fd1954d6dabdda4c325a783d01cf2",
+      "bytes": 3959
+    },
+    {
+      "path": "D:/work/image/.codex-artifacts/window-replacement-20261114-r19-coordinator/bajing-nineteen-COMMITTED.json",
+      "sha256": "c31cee31506b0173a759de870b242fadd056a18598dc9798f1c0a6f86bf50e2b",
+      "bytes": 4605
+    }
+  ],
+  "unknownAndOriginalUsagePreserved": true,
+  "productionControlsMutatedByFinalization": false
+}

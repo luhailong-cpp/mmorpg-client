@@ -338,9 +338,7 @@ namespace MmorpgClient.World.Tianyong
             GUI.enabled = true;
             DrawDeliveredAppearanceButtons(116);
             GUI.Label(new Rect(30, 154, 532, 24), "视觉预览（仅看图，未接入导航或联机传送）");
-            if (GUI.Button(new Rect(30, 180, 170, 32), "26000 中秋")) OpenVisualPreview(26000, "mid-autumn");
-            if (GUI.Button(new Rect(208, 180, 170, 32), "26008 春节")) OpenVisualPreview(26008, "spring");
-            if (GUI.Button(new Rect(386, 180, 170, 32), "26008 中秋")) OpenVisualPreview(26008, "mid-autumn");
+            if (GUI.Button(new Rect(30, 180, 170, 32), "打开美术预览")) OpenVisualPreview(26000, "mid-autumn");
             GUI.Label(new Rect(30, 245, 532, 50), _deliveryStatus);
         }
 

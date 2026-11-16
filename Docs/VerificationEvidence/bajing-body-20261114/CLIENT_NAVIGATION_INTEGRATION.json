@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "atUtc": "2026-11-15T05:19:14.127164+00:00",
+  "status": "CLIENT_RESOURCES_AND_LOCAL_NAVIGATION_INTEGRATED_ENGINE_VALIDATION_BLOCKED",
+  "mapId": "current-eight-immortals-island",
+  "clientKey": "island",
+  "sceneConfigId": 2,
+  "revision": "bajingbody20261114",
+  "clientResourcesIntegrated": true,
+  "localNavigationDataVerified": true,
+  "clientNativeEngineAccepted": false,
+  "serverNavigationPublished": false,
+  "endToEndComplete": false,
+  "runtimeTiles": 176,
+  "appearances": {
+    "spring": 88,
+    "mid-autumn": 88
+  },
+  "navigation": {
+    "maskSha256": "72a15d67e0916d0e41d4e2e5a9a26849e39f78819da7f3e28a9fc375cf6293a5",
+    "grid": [
+      587,
+      427
+    ],
+    "cellSize": 1,
+    "walkableCells": 24016,
+    "connectedComponents": 1,
+    "reachableLandmarks": 18,
+    "connectedListedRoutes": 17,
+    "blockedPoints": 16,
+    "bridgeCutTestsPassed": 4,
+    "bothFestivalsShareExactMask": true,
+    "clientSpawnUnity": [
+      205,
+      0,
+      70
+    ]
+  },
+  "verification": {
+    "bodyRuntimeAndSourceVerification": {
+      "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/BODY_VERIFICATION_FINAL.json",
+      "sha256": "46a932ff40d34556a2f6236b567a61c61484e2a4b8a7895534d2627f117517e4",
+      "bytes": 24020
+    },
+    "legacy90TileVerification": {
+      "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/legacy-deliveries-after-integration.json",
+      "sha256": "b0c5f9d91a5c0995bf197a3fb9cc97278a05653c6f6dfb77e768da55019de438",
+      "bytes": 1402
+    },
+    "pythonRegression": {
+      "tests": 35,
+      "exitCode": 0,
+      "log": {
+        "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/python-regression.log",
+        "sha256": "f8044ae245f3e81ad40063caf3524235b297fb8bb21c0fbd2af66d7fa0f4a757",
+        "bytes": 367
+      }
+    },
+    "narrowCSharpBuild": {
+      "reportedByIndependentAgent": "/root/bajing_client_contract",
+      "buildSucceeded": true,
+      "warnings": 0,
+      "errors": 0,
+      "testExecutionPassed": false,
+      "testExecutionBlock": "Windows Application Control 0x800711C7",
+      "artifacts": [
+        {
+          "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/online-guard/runtime-transition/bin/MapRuntimeTransition/release/MapRuntimeTransition.dll",
+          "sha256": "d193951dfe3eb7431aaddbc3ac85e6a660131a6e88a3e1dd5b3813da8a3ebece",
+          "bytes": 33280
+        },
+        {
+          "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/online-guard/delivery-contract/bin/MapDeliveryContract/release/MapDeliveryContract.dll",
+          "sha256": "548f575753f37dbad21a5575fe2c077f2f3fb20601fc5dacb0b1236722dd3614",
+          "bytes": 68096
+        }
+      ]
+    },
+    "nativeUnityAttempt": {
+      "exe": "D:/Unity/Hub/Editor/6000.6.0f1/Editor/Unity.exe",
+      "processId": 36160,
+      "log": {
+        "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/unity-editor.log",
+        "sha256": "97774893b4f61e4946ce0a947ce9c9117cee5795b0c31c3d295eea8dc0e99b85",
+        "bytes": 6928
+      },
+      "exitCode": 198,
+      "status": "BLOCKED_NO_VALID_EDITOR_LICENSE",
+      "renderedScreenshotsProduced": false,
+      "physicsAcceptanceClaimed": false
+    }
+  },
+  "navigationPlan": {
+    "path": "D:/work/mmorpg-client/Docs/VerificationEvidence/bajing-body-20261114/navigation-plan.json",
+    "sha256": "9e0006ecd0b1ea00289b572cb255de831c38c8cd8030b3832fff85a6333d41b5",
+    "bytes": 50666
+  },
+  "annotationReview": {
+    "path": "D:/work/mmorpg-client/Docs/VerificationEvidence/bajing-body-20261114/annotation-notes.json",
+    "sha256": "947fcb33c7c18d3872c21e15c27132f00b485d01605858f3b2806a6b7a90dde1",
+    "bytes": 18154
+  },
+  "bindingMetadataCorrection": {
+    "path": "D:/work/mmorpg-client/Docs/VerificationEvidence/bajing-body-20261114/NAVIGATION_BINDING_CORRECTION.json",
+    "sha256": "7cf7bb374bb665596cc3386f64b35a9e100fb942fbe0b1be2c20cf531432ef64",
+    "bytes": 949
+  },
+  "installedCatalog": {
+    "path": "D:/work/mmorpg-client/Assets/Resources/World/QdaoMaps20261102/catalog.json",
+    "sha256": "2ca880d043aab4696d2ec59181b202d8a8045eccd2ada2f2930a596e6dd4814c",
+    "bytes": 8070
+  },
+  "selection": {
+    "path": "D:/work/mmorpg-client/Docs/VerificationEvidence/bajing-body-20261114/selection.json",
+    "sha256": "c7596fad542dd95a21ea7f28266491fb916ccfe387d4a9e06f430a653def5b67",
+    "bytes": 959357
+  },
+  "sourceCode": {
+    "Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs": {
+      "path": "D:/work/mmorpg-client/Assets/Scripts/World/CurrentMaps/CurrentMapCatalog.cs",
+      "sha256": "55b89d2a7b2168827182258f2e3485253fd3db848fca4b4476fa40b6f7962159",
+      "bytes": 16598
+    },
+    "Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs": {
+      "path": "D:/work/mmorpg-client/Assets/Scripts/World/Tianyong/TianyongMapRuntime.cs",
+      "sha256": "cffed7e10675498b9ea557a7f5e613036d1e9e8c74e1ddf6b03ce2d5473668d1",
+      "bytes": 18065
+    },
+    "Assets/Scripts/World/Tianyong/TianyongSandboxBootstrap.cs": {
+      "path": "D:/work/mmorpg-client/Assets/Scripts/World/Tianyong/TianyongSandboxBootstrap.cs",
+      "sha256": "703ac21f31449ff5452671edcebd8ab5a05ae68751c54ffc352905336a067e38",
+      "bytes": 18276
+    },
+    "Assets/Editor/BajingBodyIntegrationVerification.cs": {
+      "path": "D:/work/mmorpg-client/Assets/Editor/BajingBodyIntegrationVerification.cs",
+      "sha256": "a2170bbc97f4b86a08f14dd46a13e07562cdb53895f1cd6bffd85af67c4fe916",
+      "bytes": 23912
+    },
+    "Assets/Editor/BajingBodyPreviewMenu.cs": {
+      "path": "D:/work/mmorpg-client/Assets/Editor/BajingBodyPreviewMenu.cs",
+      "sha256": "dade8d37c5cfef0ab7e5506202e04c3a802584f54b765585a8cdcd8313bab362",
+      "bytes": 581
+    },
+    "tools/import_festival_maps.py": {
+      "path": "D:/work/mmorpg-client/tools/import_festival_maps.py",
+      "sha256": "5e730a31191e9906e5fcfcad9ba46318e4944e7839b8c541bb335912dbd6142f",
+      "bytes": 43536
+    },
+    "tools/festival_map_navigation.py": {
+      "path": "D:/work/mmorpg-client/tools/festival_map_navigation.py",
+      "sha256": "42aa0d1f0d8a400ae90eeaccbf1a601b542bfe7f0a862af2591dee50c8b0549b",
+      "bytes": 15806
+    },
+    "tools/prepare_bajing_body_delivery.py": {
+      "path": "D:/work/mmorpg-client/tools/prepare_bajing_body_delivery.py",
+      "sha256": "353fe87a1aec5f783500a1c4c924dc470c75e073deaed59179c7a438b89e0741",
+      "bytes": 7221
+    },
+    "tools/export_bajing_navigation_handoff.py": {
+      "path": "D:/work/mmorpg-client/tools/export_bajing_navigation_handoff.py",
+      "sha256": "d22a078517e09b8816306389c6a8616b9bbab0456ea26a6333fececa353b706c",
+      "bytes": 4160
+    }
+  },
+  "preservation": {
+    "before": {
+      "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/PRESERVATION_BEFORE.json",
+      "sha256": "ccd102d39cad7fbae606bde1a3768c12c27fbdbdce72ad6e79518dfced483852",
+      "bytes": 2568
+    },
+    "after": {
+      "path": "D:/work/mmorpg-client/.codex-artifacts/bajing-body-integration-20261114/PRESERVATION_AFTER.json",
+      "sha256": "e5152e7083ccdf192e369235a6ec797e43e8fccf51c94725506db6504b986ec2",
+      "bytes": 250
+    },
+    "allEightHistoricalControlFilesStillByteIdentical": true,
+    "newImageCalls": 0,
+    "newNativeReturns": 0,
+    "newFormalCredits": 0,
+    "unknownSettled": false,
+    "usageReset": false,
+    "physicalCallsPreserved": {
+      "spring": 157,
+      "midautumn": 114
+    }
+  },
+  "serverHandoffPrepared": {
+    "path": "D:/work/mmorpg-client/Docs/VerificationEvidence/bajing-body-20261114/server-handoff/handoff.json",
+    "sha256": "d0f519a8e02b8a325ac4b2c64b6a88df067c03c9c12ce6393baae397d58867a0",
+    "bytes": 2504
+  },
+  "onlineGuard": "正式新图保持clientOnly；首次服务器入场即使InGame尚未true也只解析FindForOnline，scene2仍用旧联机定义，其他未登记图被拒绝。",
+  "remaining": [
+    "激活本机Unity许可证后执行实际导入、路径、PhysX与渲染验收入口；当前不冒称通过",
+    "服务端需匹配依赖烘焙新MSET、同步场景2出生点并进行服务端阻挡/联机传送验证；当前旧bin和旧表未改"
+  ],
+  "readme": {
+    "path": "D:/work/mmorpg-client/Docs/BajingBodyIntegration20261115.md",
+    "sha256": "0309563b7e71673d1c381f179fcd01a7249768a89f6b2b65ccd4c9f58aa79938",
+    "bytes": 4126
+  },
+  "sharedGitHeadIndexRefsModified": false,
+  "committedOrPushed": false
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "imageRevision": "8eb27570b2c514c6a6f8abb46afbd62aa1222e3b",
+  "artPackage": "designs/bajing-body-final-20261115/PACKAGE_MANIFEST.json",
+  "packageManifestSha256": "4172276ddafdfb300185b5e882e60413fd59cc4530bfa23a2b3057304f67ad40",
+  "clientKey": "island",
+  "sceneId": 2,
+  "clientOnly": true,
+  "revision": "bajingbody20261114",
+  "tileCoordinatesDimensionsBytesAndSha256Verified": true,
+  "fallbackDerivation": {
+    "sourceCanvas": [11264, 8192],
+    "targetLayout": [4096, 2979],
+    "resampling": "Pillow LANCZOS",
+    "matchingPixelsBothAppearances": true
+  },
+  "unityEditMode": {
+    "editorVersion": "6000.6.0f1",
+    "suites": ["CurrentMapTests", "CityTravelWindowTests"],
+    "passed": 54,
+    "failed": 0,
+    "bajingTest": "InstalledBajingBodySharesNavigationAcrossFestivalsAndKeepsLegacyOnline",
+    "reportSha256": "6267a8c59bc2bdaafad9f27c408be4ad64d0d66e8a1a4839c59aed1f7256a856",
+    "renderingOrPublishedClientAcceptance": false
+  },
+  "appearances": {
+    "spring": {
+      "runtimeTiles": 88,
+      "runtimeBytes": 110336209,
+      "layoutSha256": "89b2b51459c2a3f04670d6ba1c90521504795db18cc252f76cc5abb3a4d8bfd8",
+      "layoutPixels": {
+        "width": 4096,
+        "height": 2979
+      },
+      "sourceSha256": "d01a9e327ecc6da64c8bb8e41b3798255c5d528e3b36e42cfb6700c9b0eca0df",
+      "tilesManifestSha256": "e9a39f562d321dc2f37a825c8eca97c4b9708aff128d16978c020d531d9e4cb8",
+      "navigationSha256": "bf49fa6d3b5df10e4460cd48b1eadc4acb713375b0af65d17417d64c8ce7b20e",
+      "walkmaskTextSha256": "59076a3f1a18efca460651bf9b4d5b6d142eb2702060cd33767fc3675f1219e0"
+    },
+    "mid-autumn": {
+      "runtimeTiles": 88,
+      "runtimeBytes": 108291205,
+      "layoutSha256": "e8da844563db9578a192529dec6c932e2df749466565599f6379a8fbbd7e0a5c",
+      "layoutPixels": {
+        "width": 4096,
+        "height": 2979
+      },
+      "sourceSha256": "cf61fa4a2afbef2792433df8e6dddd1aabb94f161a1b16d6a2f2953ee73c4edc",
+      "tilesManifestSha256": "10444a6dc991e1b4d93e3d76934819706f2342bb2e84f0acc5ef547f227a086e",
+      "navigationSha256": "bf49fa6d3b5df10e4460cd48b1eadc4acb713375b0af65d17417d64c8ce7b20e",
+      "walkmaskTextSha256": "59076a3f1a18efca460651bf9b4d5b6d142eb2702060cd33767fc3675f1219e0"
+    }
+  },
+  "navigation": {
+    "columns": 587,
+    "rows": 427,
+    "cellSize": 1,
+    "walkableCells": 24016,
+    "componentCount": 1,
+    "sharedBothAppearances": true,
+    "packedMaskSha256": "72a15d67e0916d0e41d4e2e5a9a26849e39f78819da7f3e28a9fc375cf6293a5",
+    "spawnWorld": [
+      205,
+      0,
+      70
+    ]
+  }
+}

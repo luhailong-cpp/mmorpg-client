@@ -51,6 +51,42 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(CurrentMapCatalog.FindForOnline("unpublished-test"), Is.Null);
         }
 
+        [Test]
+        public void InstalledBajingBodySharesNavigationAcrossFestivalsAndKeepsLegacyOnline()
+        {
+            var spring = CurrentMapCatalog.Find(2u);
+            Assert.That(spring.Revision, Is.EqualTo("bajingbody20261114"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.False);
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.Spawn, Is.EqualTo(new Vector3(205, 0, 70)));
+            Assert.That(spring.EffectiveWorldRect.width, Is.EqualTo(420f));
+            Assert.That(spring.EffectiveWorldRect.height, Is.EqualTo(420f));
+            var navigation = spring.CreateNavigation();
+            var centralTaiji = new Vector3(166.66667f, 0f, 200.41667f);
+            Assert.That(navigation.FindPath(spring.Spawn, centralTaiji).Count, Is.GreaterThanOrEqualTo(2));
+            Assert.That(navigation.IsWalkable(new Vector3(-12.5f, 0f, 198.33333f)), Is.False);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(4096));
+                Assert.That(layout.height, Is.EqualTo(2979));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/r08_c11");
+                Assert.That(tile, Is.Not.Null);
+                Assert.That(tile.width, Is.EqualTo(1024));
+                Assert.That(tile.height, Is.EqualTo(1024));
+            }
+
+            var online = CurrentMapCatalog.FindForOnline(2u);
+            Assert.That(online.IsModern, Is.False);
+            Assert.That(online.CanTravelOnline, Is.True);
+            Assert.That(online.ForAppearance("spring"), Is.Null);
+        }
+
         [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", true, true)]
         [TestCase("http://[::1]:18286", "[::1]:28200", true, true)]
         [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", false, false)]

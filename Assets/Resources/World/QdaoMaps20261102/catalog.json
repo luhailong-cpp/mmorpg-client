@@ -202,6 +202,28 @@
           "artStatus": "formal_art_delivery"
         }
       ]
+    },
+    {
+      "key": "island",
+      "sceneId": 2,
+      "name": "八景岛",
+      "revision": "bajingbody20261114",
+      "clientOnly": true,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/island/bajingbody20261114/spring/89b2b51459c2a3f04670d6ba1c90521504795db18cc252f76cc5abb3a4d8bfd8/",
+          "layoutSha256": "89b2b51459c2a3f04670d6ba1c90521504795db18cc252f76cc5abb3a4d8bfd8",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/island/bajingbody20261114/mid-autumn/e8da844563db9578a192529dec6c932e2df749466565599f6379a8fbbd7e0a5c/",
+          "layoutSha256": "e8da844563db9578a192529dec6c932e2df749466565599f6379a8fbbd7e0a5c",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
     }
   ]
 }

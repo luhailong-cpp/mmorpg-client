@@ -1,0 +1,770 @@
+{
+  "schemaVersion": 1,
+  "scope": "Visual preview assets. PNG byte validation only.",
+  "assetRepository": "https://luyuacpp.visualstudio.com/image/_git/image",
+  "assetCommit": "b7578568c94cef99f0ff1ba458c94e7b1ac16cb3",
+  "geometrySources": [
+    {
+      "gitPath": ".codex-artifacts/biyuan-succession-20261115-21h-01a1e22a/publication/BIYUAN_PUBLISH_SCOPE_v001.md",
+      "sha256": "b2d765856971660989917bd54dca13baa400c57c8bf671d7037314bbc693e5b3"
+    },
+    {
+      "gitPath": "designs/client-map-qdao-20261102/26000/manifest-r3-festivals-source-binding-20261106.json",
+      "sha256": "5d782681c0f54d1d456ce52dc727dd5570ae1fe28b1eac6536fa1de9971b0071"
+    }
+  ],
+  "mapAppearances": [
+    {
+      "mapKey": "biyuan-water-palace",
+      "appearance": "spring",
+      "columns": 5,
+      "rows": 4,
+      "tilePixels": 1024,
+      "validSceneRuntimeRectHalfOpen": [
+        0,
+        128,
+        5120,
+        3968
+      ],
+      "sourceRecord": {
+        "gitPath": ".codex-artifacts/biyuan-handoff-20261114-01a1da2b/body-runtime-export-r19-v001.json",
+        "sha256": "2e06da6fd9f7d17243228cb0498cd1b212541fe794c33483ebd86d775fb08890"
+      },
+      "clientResourceRoot": "World/FestivalPreview20261116/biyuan-water-palace/spring/",
+      "tiles": [
+        {
+          "coordinate": "r01_c01",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c01.png.generation.json",
+            "sha256": "b52f9a4f611440440fecad9cf11202ef0a4d49898a7d6f1bb58a98296f63a5a7"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r01_c01.png",
+          "sha256": "48d2718890085262ae99c4d27ec1354705b89967c75f62757761cef4543b2019",
+          "bytes": 1621080
+        },
+        {
+          "coordinate": "r01_c02",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c02.png.generation.json",
+            "sha256": "aa6e170544917f7c40276277a7fc3da5b8868f2654c3c73b05a239c15e9ce25e"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r01_c02.png",
+          "sha256": "691547a3bb5aeb9a2eae494fbf3ddfb18f7d68fcd67944617bd18687b675a6bb",
+          "bytes": 1577107
+        },
+        {
+          "coordinate": "r01_c03",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c03.png.generation.json",
+            "sha256": "ad65e9afafe4d594c33a43c1fdc95e079496c56df5ab44cd57be3784e0770329"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r01_c03.png",
+          "sha256": "7e29433020d40f5b5c3ad896a08460da080bdc47829bcc5193c38f94bd7e1220",
+          "bytes": 1454725
+        },
+        {
+          "coordinate": "r01_c04",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c04.png.generation.json",
+            "sha256": "ad5aab6bec480823f40ee353f94ca94e30aff2fb576283e1e87195555f221edd"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r01_c04.png",
+          "sha256": "598af1f21c29b4c8510acc5482ceb6c4a9a93497e0c863d7e50f5a21c2b6fc4b",
+          "bytes": 1441289
+        },
+        {
+          "coordinate": "r01_c05",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r01_c05.png.generation.json",
+            "sha256": "aaae53f99721dc65cc7ce0dcf42b627b2e5cdfb71c3dadf6690ac83ca39283f9"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r01_c05.png",
+          "sha256": "00e9a17d5afdc1fbec24e2453b784ba5be1805ed36f97501f95e8bf4d7674390",
+          "bytes": 1660094
+        },
+        {
+          "coordinate": "r02_c01",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r02_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r02_c01.png.generation.json",
+            "sha256": "943894e9b51c63328a674e63a09e3546862d7f2abe6ca13c88934dc992bd4403"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r02_c01.png",
+          "sha256": "bb0ca6c1b87de9d415c19db6d08a564f66930bf4027ac064c867114d1b618ecd",
+          "bytes": 1670649
+        },
+        {
+          "coordinate": "r02_c02",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r02_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r02_c02.png.generation.json",
+            "sha256": "3f146c9264f8bda82b820907791119457124f78837c553e0665aec2756079401"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r02_c02.png",
+          "sha256": "07f5d01d646b91389ceb1f73f0542808db5479073ece66d744114b3d00ce390c",
+          "bytes": 1966633
+        },
+        {
+          "coordinate": "r02_c03",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r02_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r02_c03.png.generation.json",
+            "sha256": "3f2c6a41b0cc4ff1610350a58e8800b4f9bf69e93dacd7970d5c1b2ca6140e0f"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r02_c03.png",
+          "sha256": "290b93adb921d3b986eea3b7536983f0fc8ffbb56e464ba85d7063541cc9e237",
+          "bytes": 1920667
+        },
+        {
+          "coordinate": "r02_c04",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r02_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r02_c04.png.generation.json",
+            "sha256": "91c70d4c63c1bd7af961e8669576de2d67dc78aa35d6378b3ebc82eb881dad60"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r02_c04.png",
+          "sha256": "0c53c0418daa8d51e2d16ff206d116b762a3688dcb77e6227b2c2179f65bf379",
+          "bytes": 1654260
+        },
+        {
+          "coordinate": "r02_c05",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r02_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r02_c05.png.generation.json",
+            "sha256": "ef74ce36e5e08e648698e415b09542a56c4bcad3933cd018f72477a23b70a6cc"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r02_c05.png",
+          "sha256": "79227663295bf692e26974c41a517a604326a6b333bc187878d61d9de5c278c0",
+          "bytes": 1814232
+        },
+        {
+          "coordinate": "r03_c01",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r03_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r03_c01.png.generation.json",
+            "sha256": "931546483c4dda066f210aa067a04063e81c83c1b11db8ebf4676bf62bba364d"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r03_c01.png",
+          "sha256": "d1280c5b1731f8af465d18071ea6688c6773e2c2d74c292c43f850717a7eec2a",
+          "bytes": 1584130
+        },
+        {
+          "coordinate": "r03_c02",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r03_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r03_c02.png.generation.json",
+            "sha256": "b98fbc3dfbd6cd539fe172fc6887fada5c041fd163b40fa16a7f5e1368239b73"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r03_c02.png",
+          "sha256": "498123d15cda0d4b8a4417cca096328cb5e98f036a4ac6cfd04b96a302483ade",
+          "bytes": 1755672
+        },
+        {
+          "coordinate": "r03_c03",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r03_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r03_c03.png.generation.json",
+            "sha256": "7906507c15c54369ad1074a64364e3dbd053f276e7f30be5c183b2fbe1a4194b"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r03_c03.png",
+          "sha256": "280d6bb3b95c99a08514a14cbfba5346bbd22d7374dcc9b5592ca4877b92b547",
+          "bytes": 1541530
+        },
+        {
+          "coordinate": "r03_c04",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r03_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r03_c04.png.generation.json",
+            "sha256": "47892914866cb05c5199f0320b2eb6dc96beb479d10dd7cd1f7345a36e053710"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r03_c04.png",
+          "sha256": "5c65aebc5ba323181a4d9d1f4bb98811398558c41e26a0a3cf272dab31938c7c",
+          "bytes": 1564183
+        },
+        {
+          "coordinate": "r03_c05",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r03_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r03_c05.png.generation.json",
+            "sha256": "8b358a1a8be3db62f49e0e79bada532b4dd84a47d35b09bc19ffec449425f5ea"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r03_c05.png",
+          "sha256": "3483d51d6185a425afe2a457afec61c695900ca36e7aabcbacec74840f5010fc",
+          "bytes": 1551269
+        },
+        {
+          "coordinate": "r04_c01",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c01.png.generation.json",
+            "sha256": "e826a64c9b2a9da3d870e6a4c84c99463b786d9b9f4d19ee43d77e042d3cd82c"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r04_c01.png",
+          "sha256": "21013abad6312268eb0797483590f06862588e86b5d0c2cf6a072c30bdce581b",
+          "bytes": 1513265
+        },
+        {
+          "coordinate": "r04_c02",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c02.png.generation.json",
+            "sha256": "3d7c1bd7a4b96a005c2af72ad37b69e13704cf487a94a3ee1d0f929a9b36bd59"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r04_c02.png",
+          "sha256": "37e10694eb0f37cbf466889334ce37c5b27190d5e4353c35b227787a2104f2ea",
+          "bytes": 1465470
+        },
+        {
+          "coordinate": "r04_c03",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c03.png.generation.json",
+            "sha256": "c8dac30586c592f4d253b1e97b016f167677b67ad8c42e5d239b64deb18291c3"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r04_c03.png",
+          "sha256": "49b69afa3bec2c03a3e801a0fec671750d028309c1956941032159e875d1b7ff",
+          "bytes": 1291882
+        },
+        {
+          "coordinate": "r04_c04",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c04.png.generation.json",
+            "sha256": "5d84afbd8ad807fd74038f048c3143ff24650db58a23d6f7b51bb4e89664dd93"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r04_c04.png",
+          "sha256": "f8190af57210694b709c9bd26693f03accefd61d5231dde8be0aae021ee202f2",
+          "bytes": 1714268
+        },
+        {
+          "coordinate": "r04_c05",
+          "sourceGitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261106/r04_c05.png.generation.json",
+            "sha256": "3e8be3aa6f55a01f2a593f709fa5c51f7195cadd62b10469463197e87e694d44"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/biyuan-water-palace/spring/r04_c05.png",
+          "sha256": "67d43eb340b3582529e6df42fd08d913fe68c371510585a2188e2da9016db90a",
+          "bytes": 1601014
+        }
+      ]
+    },
+    {
+      "mapKey": "26000",
+      "appearance": "spring",
+      "columns": 5,
+      "rows": 4,
+      "tilePixels": 1024,
+      "validSceneRuntimeRectHalfOpen": [
+        0,
+        128,
+        5120,
+        3968
+      ],
+      "sourceRecord": {
+        "gitPath": "designs/client-map-qdao-20261102/26000/manifest-r3-festivals-source-binding-20261106.json",
+        "sha256": "5d782681c0f54d1d456ce52dc727dd5570ae1fe28b1eac6536fa1de9971b0071"
+      },
+      "clientResourceRoot": "World/FestivalPreview20261116/26000/spring/",
+      "tiles": [
+        {
+          "coordinate": "r01_c01",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c01.png.generation.json",
+            "sha256": "f8ae3933d7b648abf6f5d94cf0a9264ebea92a5aa6e2c321d829aff2a7735d26"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r01_c01.png",
+          "sha256": "3fdf6a438f7db0f3787ea39c4245285cf1e483d6ecedf1c319bc777c267d7c41",
+          "bytes": 1702635
+        },
+        {
+          "coordinate": "r01_c02",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c02.png.generation.json",
+            "sha256": "a1e7de15f7a5a1ca63ac10cc61caa221822e2506f823f09468e1e5c74972568c"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r01_c02.png",
+          "sha256": "8405697496709654cbe636970ff400b620eb57eee62ac366aa62cdaaa3375c22",
+          "bytes": 1679455
+        },
+        {
+          "coordinate": "r01_c03",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c03.png.generation.json",
+            "sha256": "be2b80eebff6848a2774b6b81bc7e4028dbe418f600346e4b7f780d9f9e6685c"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r01_c03.png",
+          "sha256": "00e71e8534047948103a1a03e481d83ccb5763a00b237b62bc6d01d74a2b4fd8",
+          "bytes": 1533269
+        },
+        {
+          "coordinate": "r01_c04",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c04.png.generation.json",
+            "sha256": "4de919a1e4304057182f72df3b4c3517bec7310d28ed32082aa1dda551453a05"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r01_c04.png",
+          "sha256": "a7743d0dbdcbec03779efa794b1fbb3ef453fbe16f33caeec04694e812399def",
+          "bytes": 1551714
+        },
+        {
+          "coordinate": "r01_c05",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r01_c05.png.generation.json",
+            "sha256": "534471dfc6471ed54ce679649cecf391e1a7d2b2ca0d97fd9d2e7c9f7b82c5e6"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r01_c05.png",
+          "sha256": "16c4173a30bf94ee6b0d7ba6e4f43c4e7caafc3530b5e69cc0fd21e61815fcc8",
+          "bytes": 1687629
+        },
+        {
+          "coordinate": "r02_c01",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c01.png.generation.json",
+            "sha256": "5b549bdf8b6752a60e231e09c1e78712389d4892727bc7f12cbe109542edb8af"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r02_c01.png",
+          "sha256": "c463d49d2563022f3577b3ad05e952dfa94b8cea3f4cfeb35f17c63b5b45f566",
+          "bytes": 1736752
+        },
+        {
+          "coordinate": "r02_c02",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c02.png.generation.json",
+            "sha256": "6bc3cce31cecda52b5f34c8d60e7a4036e0e7338e68219d3b153b0f53fb941c6"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r02_c02.png",
+          "sha256": "a9a9ebbe52a15494a716ff807794be1109dddc44456e4e1a23e9787dca3c14f9",
+          "bytes": 1727817
+        },
+        {
+          "coordinate": "r02_c03",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c03.png.generation.json",
+            "sha256": "8c29405d5a1221fc4e43ad2da63143e8ccd2403bd19f182737f89cf24cd047aa"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r02_c03.png",
+          "sha256": "390516f18fd952d0416c8dd79e151e99d302693c4e9fa900da2d4867fcd81727",
+          "bytes": 1812465
+        },
+        {
+          "coordinate": "r02_c04",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c04.png.generation.json",
+            "sha256": "8ff6faf317ebcbaac399d55a5f7d35e06c390cdda189b25496bdd1f976c83c07"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r02_c04.png",
+          "sha256": "e91779551eb4e33ecf5e84896a0b4ebab6752ca8456d400b37f9094bc9045835",
+          "bytes": 1753820
+        },
+        {
+          "coordinate": "r02_c05",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r02_c05.png.generation.json",
+            "sha256": "ecaeae2faca6215386df88c844fa778bd17d63112379ad5e1777a8a84e151b4d"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r02_c05.png",
+          "sha256": "00b89132b12c2403f7305f3b33ee9d69a96c941d1fcb685ccc7e04286ef6998b",
+          "bytes": 1845268
+        },
+        {
+          "coordinate": "r03_c01",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c01.png.generation.json",
+            "sha256": "3dd9241cf92ea8f9db6233f859e677a6e5f329984565851cff0c0645df72bcc2"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r03_c01.png",
+          "sha256": "0c5d3460dc0042d06c431fdaca7310ce6926ea6bf98deeda9949967846c5c3e0",
+          "bytes": 1712672
+        },
+        {
+          "coordinate": "r03_c02",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c02.png.generation.json",
+            "sha256": "4085adab4cede386dd48b129cdc781fc001643cd04f6846cdbaeabe5a626a678"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r03_c02.png",
+          "sha256": "b30bec448903e26224eb59347ab1c93e985f7e7e0d89c15becc667ae2bde3284",
+          "bytes": 1746910
+        },
+        {
+          "coordinate": "r03_c03",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c03.png.generation.json",
+            "sha256": "b6d502369eb2150c94c5d8f8cf61f8cdd5a892d0baa61c82c4f2cb9657e30726"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r03_c03.png",
+          "sha256": "f17358ab7c3fc6ca41e124534e9dc6e016a47f3ffe12ecffa9efe4b749d5e906",
+          "bytes": 1713255
+        },
+        {
+          "coordinate": "r03_c04",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c04.png.generation.json",
+            "sha256": "8c6a45acac16910606c401b1be088e515d1d3c3f785ba0a3b4ff6657c764bbfb"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r03_c04.png",
+          "sha256": "c8a2c0b719ada42f108cde00a9294d3577b38d3eb8a05985c3a144561fef36f3",
+          "bytes": 1810784
+        },
+        {
+          "coordinate": "r03_c05",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r03_c05.png.generation.json",
+            "sha256": "6154bd08b296408c1b6ef7754aad922ba14d956fb47480f2420ea2557b4cf2dc"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r03_c05.png",
+          "sha256": "9ce84e412b13d8e9caeb3949116cd34bdfa3a772abfdfd8a9065463242c7eff4",
+          "bytes": 1886124
+        },
+        {
+          "coordinate": "r04_c01",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c01.png.generation.json",
+            "sha256": "00518ba7814b3f60060763fa16d47d671561baf018a0e65571b153bc4ea774e4"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r04_c01.png",
+          "sha256": "662010faec9b579552987155c00e7cdc877bcf650ad74fdb4f890145ba71b2ad",
+          "bytes": 1595184
+        },
+        {
+          "coordinate": "r04_c02",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c02.png.generation.json",
+            "sha256": "34f0775d6703e3aa213e3b96ca32802daf2a02050ef6dfc4b5fb4b82b240c5f8"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r04_c02.png",
+          "sha256": "827cf76118cdc85f7e1906de02949e2b19a6ff9c01eb0a5f465511a36949ea90",
+          "bytes": 1593130
+        },
+        {
+          "coordinate": "r04_c03",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c03.png.generation.json",
+            "sha256": "aad7f90b7924594ce64bc2c47310742e3806de60e7f993299deda9b558c5c95d"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r04_c03.png",
+          "sha256": "2e3475ebef01fe1bcaae9d52fd0043bd73eb9ff347cc3e666586cbf399b0b585",
+          "bytes": 1496295
+        },
+        {
+          "coordinate": "r04_c04",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c04.png.generation.json",
+            "sha256": "50cad4e2819b103269b6637f98f471612ae5873a0fe9d842f616dcc8f35c552d"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r04_c04.png",
+          "sha256": "42bdf495a1a0c8230a5cdb5f350d289957aa9a085a1b416597c755e6764a9bcb",
+          "bytes": 1757106
+        },
+        {
+          "coordinate": "r04_c05",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/spring/r04_c05.png.generation.json",
+            "sha256": "b9052fd6aa40212bee4b11ecb0f1c807ae4bc92aa355868aca74b00e7ece9b93"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/spring/r04_c05.png",
+          "sha256": "3edb4754d9aa8ad664f189328d83bd1f25ef6bed929b698fb6f3d284c911f394",
+          "bytes": 1820418
+        }
+      ]
+    },
+    {
+      "mapKey": "26000",
+      "appearance": "mid-autumn",
+      "columns": 5,
+      "rows": 4,
+      "tilePixels": 1024,
+      "validSceneRuntimeRectHalfOpen": [
+        0,
+        128,
+        5120,
+        3968
+      ],
+      "sourceRecord": {
+        "gitPath": "designs/client-map-qdao-20261102/26000/manifest-r3-festivals-source-binding-20261106.json",
+        "sha256": "5d782681c0f54d1d456ce52dc727dd5570ae1fe28b1eac6536fa1de9971b0071"
+      },
+      "clientResourceRoot": "World/FestivalPreview20261116/26000/mid-autumn/",
+      "tiles": [
+        {
+          "coordinate": "r01_c01",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c01.png.generation.json",
+            "sha256": "39f689c8cbf737d7913e7e34b6230c2a53125cc7956a93ec108f79e62721349f"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r01_c01.png",
+          "sha256": "8a16010f66b4b46fbc805b1deb8c7d505ec9389a7ae545831af87e68dc37d457",
+          "bytes": 1790797,
+          "previousPreviewSha256": "8a16010f66b4b46fbc805b1deb8c7d505ec9389a7ae545831af87e68dc37d457"
+        },
+        {
+          "coordinate": "r01_c02",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c02.png.generation.json",
+            "sha256": "a00bde66f95cca29b0fd7e7398da5a06bf307c9c37e624ceab2b7c3fc58e5411"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r01_c02.png",
+          "sha256": "60fd7310d96c8035e0735adc833d020ebf0c93187a9dcf4217c8af0547d28871",
+          "bytes": 1859077,
+          "previousPreviewSha256": "60fd7310d96c8035e0735adc833d020ebf0c93187a9dcf4217c8af0547d28871"
+        },
+        {
+          "coordinate": "r01_c03",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c03.png.generation.json",
+            "sha256": "30022f71f6aa157f61c9fa09627efda26f1a43c9cc2c89d282820a0fa9cdf464"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r01_c03.png",
+          "sha256": "98b560fba0f1201954ee291c00a4755e42d0a9153204dd29bc07ed0fcc137ef6",
+          "bytes": 1696603,
+          "previousPreviewSha256": "98b560fba0f1201954ee291c00a4755e42d0a9153204dd29bc07ed0fcc137ef6"
+        },
+        {
+          "coordinate": "r01_c04",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c04.png.generation.json",
+            "sha256": "7f30dd697c8e8fa90ad2e823b6696b4729d5adca52410e398c9b528de2d963b2"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r01_c04.png",
+          "sha256": "008559fe9a0a2af8761d4363c72941dfeada4fdb35573be5f43ee4c3b9fff971",
+          "bytes": 1723822,
+          "previousPreviewSha256": "008559fe9a0a2af8761d4363c72941dfeada4fdb35573be5f43ee4c3b9fff971"
+        },
+        {
+          "coordinate": "r01_c05",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r01_c05.png.generation.json",
+            "sha256": "ea5c19133345f6a4a2410ef234400d358dd7de8e9c01c2457205cd774c626050"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r01_c05.png",
+          "sha256": "a611135a02543f81fa0ae2eee6e4e6a453351ac6b4f1a96e5153ebeb1a529a55",
+          "bytes": 1798532,
+          "previousPreviewSha256": "a611135a02543f81fa0ae2eee6e4e6a453351ac6b4f1a96e5153ebeb1a529a55"
+        },
+        {
+          "coordinate": "r02_c01",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c01.png.generation.json",
+            "sha256": "1dd07e2e76aa428d17e0f67037de9eaa084d7615c7a01e4e4fac35c2ce32e65f"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r02_c01.png",
+          "sha256": "f8a3e974a1d909fa0a3226d14c9e540cadbd02a7e60e036ad7b788012ecd4386",
+          "bytes": 1892635,
+          "previousPreviewSha256": "a6b6d2912309b101b71883b5db54f9ba69d3dcb443cfea012957e5996f45f655"
+        },
+        {
+          "coordinate": "r02_c02",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c02.png.generation.json",
+            "sha256": "b47c5fc7c1efded0a9359e1b6b1064ca4bcdbb24b8258e89950fab7599d7d371"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r02_c02.png",
+          "sha256": "296ebbbd94358f0ea4ade38281d6f0c6a6f0a0a888117a51ec8218110105dd0a",
+          "bytes": 1813651,
+          "previousPreviewSha256": "296ebbbd94358f0ea4ade38281d6f0c6a6f0a0a888117a51ec8218110105dd0a"
+        },
+        {
+          "coordinate": "r02_c03",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c03.png.generation.json",
+            "sha256": "be27666590b06a4084b5548b67fdb5f890488cb46016901aed8ea0e20b221fe8"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r02_c03.png",
+          "sha256": "dd0f5fc14efb3850cc61559f77656515709477a4f149fab67af4c04c12491454",
+          "bytes": 1755029,
+          "previousPreviewSha256": "dd0f5fc14efb3850cc61559f77656515709477a4f149fab67af4c04c12491454"
+        },
+        {
+          "coordinate": "r02_c04",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c04.png.generation.json",
+            "sha256": "b97928e1479a083b250deceb4f0224c16c53c5bf90e8743690a35b563c4d6925"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r02_c04.png",
+          "sha256": "ee83bfb15cbed7c3bf794a65d4336c347e787ec2808cbe35bca06c261bc0362e",
+          "bytes": 1738764,
+          "previousPreviewSha256": "ee83bfb15cbed7c3bf794a65d4336c347e787ec2808cbe35bca06c261bc0362e"
+        },
+        {
+          "coordinate": "r02_c05",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r02_c05.png.generation.json",
+            "sha256": "0c29f1b102354cc2db41c4a734c50faacd3fd3e9e567b696af877b9b83dbbe65"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r02_c05.png",
+          "sha256": "ca725c756df287f04c8b7496c29e48c69564d2d9b58b95e9dc61c2742bdc7ff5",
+          "bytes": 1960514,
+          "previousPreviewSha256": "ca725c756df287f04c8b7496c29e48c69564d2d9b58b95e9dc61c2742bdc7ff5"
+        },
+        {
+          "coordinate": "r03_c01",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c01.png.generation.json",
+            "sha256": "3cd8a0d6bb339f0dd255c66c5a2608837b4af1d59db65c894402c30a139a632a"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r03_c01.png",
+          "sha256": "e7e459c9af55ee44b15d7393f604a464de8f7d362113be829c9e8de305f1d350",
+          "bytes": 1860858,
+          "previousPreviewSha256": "e7e459c9af55ee44b15d7393f604a464de8f7d362113be829c9e8de305f1d350"
+        },
+        {
+          "coordinate": "r03_c02",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c02.png.generation.json",
+            "sha256": "a7b92808b213d97a99af40e7891e9a86ece6d6b8b77457d3d353cc7ff5a19abe"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r03_c02.png",
+          "sha256": "1997d5062ff90622648479a153d7ba52a4c4a1c632a4efc10f348d27da50e19e",
+          "bytes": 1694025,
+          "previousPreviewSha256": "1997d5062ff90622648479a153d7ba52a4c4a1c632a4efc10f348d27da50e19e"
+        },
+        {
+          "coordinate": "r03_c03",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c03.png.generation.json",
+            "sha256": "851bb6ebf9d2c8d42a7ca4a28d65a453a4d23b9f2a9b11324ca533c118853ca6"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r03_c03.png",
+          "sha256": "f554c8ccc9abc13effd7f4fb06e40e3a04d501f07fe13e8ffaacb142195cce61",
+          "bytes": 1697320,
+          "previousPreviewSha256": "f554c8ccc9abc13effd7f4fb06e40e3a04d501f07fe13e8ffaacb142195cce61"
+        },
+        {
+          "coordinate": "r03_c04",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c04.png.generation.json",
+            "sha256": "ba669cafeede0d2a2e5d24a6b100441bd1ba01b6718a76e65fcccace302385df"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r03_c04.png",
+          "sha256": "abc95368a1e4894b244f63910ed50c2d5883341b15f42d6d10b1329180e08ea7",
+          "bytes": 1867483,
+          "previousPreviewSha256": "abc95368a1e4894b244f63910ed50c2d5883341b15f42d6d10b1329180e08ea7"
+        },
+        {
+          "coordinate": "r03_c05",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r03_c05.png.generation.json",
+            "sha256": "c39d99b97ae41c2f39f50dff66ed370f131a963f1bf9d99390168691e5c0b086"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r03_c05.png",
+          "sha256": "76c2022f31c9ba89b89520004d6628921080a94e583926b0767ed961d5814963",
+          "bytes": 2036801,
+          "previousPreviewSha256": "76c2022f31c9ba89b89520004d6628921080a94e583926b0767ed961d5814963"
+        },
+        {
+          "coordinate": "r04_c01",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c01.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c01.png.generation.json",
+            "sha256": "c02cf164fe3619eeb3ad78051c16912df36ed3aadb5acbe44fcaaa0698ee0abf"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r04_c01.png",
+          "sha256": "623605c215dc1c63a6f8ac2e9ceea6bda57562300deef2d11ae04b8cf627544b",
+          "bytes": 1646440,
+          "previousPreviewSha256": "623605c215dc1c63a6f8ac2e9ceea6bda57562300deef2d11ae04b8cf627544b"
+        },
+        {
+          "coordinate": "r04_c02",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c02.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c02.png.generation.json",
+            "sha256": "5e0ee688f4420540f468cecd5c42f0671e0ce33e22041e5c0874f91030b57e91"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r04_c02.png",
+          "sha256": "a5bbec5ab0710ac209fa596ccfba5ed202d9465aeb24ef847ddffa7c9d41e9cd",
+          "bytes": 1623066,
+          "previousPreviewSha256": "a5bbec5ab0710ac209fa596ccfba5ed202d9465aeb24ef847ddffa7c9d41e9cd"
+        },
+        {
+          "coordinate": "r04_c03",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c03.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c03.png.generation.json",
+            "sha256": "87c69cff2a08061ce7a3a515b0fc623decf20b55379121f345e886da0358625a"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r04_c03.png",
+          "sha256": "cf06e27243ccb9c279974b0057e8e8d6fb51ab11a711977eddfb662fc58741c7",
+          "bytes": 1623904,
+          "previousPreviewSha256": "cf06e27243ccb9c279974b0057e8e8d6fb51ab11a711977eddfb662fc58741c7"
+        },
+        {
+          "coordinate": "r04_c04",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c04.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c04.png.generation.json",
+            "sha256": "0410211289c6e3a84beaf82567a1f5a4721f2266aa6b2de0f0192903a319fd19"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r04_c04.png",
+          "sha256": "4b33c8ff646eb75dc55ae8ebf00543da9817ecb0e349b04e57654b28aaa86d7e",
+          "bytes": 1748155,
+          "previousPreviewSha256": "4b33c8ff646eb75dc55ae8ebf00543da9817ecb0e349b04e57654b28aaa86d7e"
+        },
+        {
+          "coordinate": "r04_c05",
+          "sourceGitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c05.png",
+          "sourceSidecar": {
+            "gitPath": "designs/client-map-qdao-20261102/26000/runtime/midautumn/r04_c05.png.generation.json",
+            "sha256": "7dd4a333614f3d0db77d71006bf589d42f6e750df85f55a8e1c2e9d9740344a1"
+          },
+          "clientPath": "Assets/Resources/World/FestivalPreview20261116/26000/mid-autumn/r04_c05.png",
+          "sha256": "0798beda31aa157244a5f8e16ef7418958796b7b45fea7963c4dfd834c9260df",
+          "bytes": 1907421,
+          "previousPreviewSha256": "0798beda31aa157244a5f8e16ef7418958796b7b45fea7963c4dfd834c9260df"
+        }
+      ]
+    }
+  ],
+  "retained26008Preview": {
+    "assetCommit": "06ba7d8169f8d93173973a55b615998f4075564b",
+    "reference": {
+      "gitPath": "handoffs/machine-transfer-20261111/inventories/maps-a-current.json",
+      "sha256": "31e341f50aa261c2dc188be0d2801a0bae457ab36d1cf42f7063228d4acb3f90"
+    },
+    "matchingExistingTiles": {
+      "spring": 12,
+      "mid-autumn": 12
+    },
+    "latestPublishedRuntimeReplacement": false
+  }
+}

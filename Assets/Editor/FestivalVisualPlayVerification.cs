@@ -23,13 +23,17 @@ namespace MmorpgClient.Editor.CurrentMaps
         private const int Width = 1600;
         private const int Height = 900;
         private const float Tolerance = 0.002f;
-        private static readonly (uint MapId, string Appearance, int Columns, int Rows)[] LegacyCases =
-            { (26000, "mid-autumn", 5, 4), (26008, "spring", 4, 3), (26008, "mid-autumn", 4, 3) };
-        private static readonly (uint MapId, string Appearance, int Columns, int Rows)[] YuexiBayCases =
-            { (3, "spring", 6, 5), (3, "mid-autumn", 6, 5) };
+        private static readonly (uint MapId, string MapKey, string Appearance, int Columns, int Rows)[] FestivalCases =
+        {
+            (26000, null, "spring", 5, 4), (26000, null, "mid-autumn", 5, 4),
+            (26008, null, "spring", 4, 3), (26008, null, "mid-autumn", 4, 3),
+            (0, "biyuan-water-palace", "spring", 5, 4)
+        };
+        private static readonly (uint MapId, string MapKey, string Appearance, int Columns, int Rows)[] YuexiBayCases =
+            { (3, null, "spring", 6, 5), (3, null, "mid-autumn", 6, 5) };
         private static bool IsYuexiBay => SessionState.GetBool(YuexiBayKey, false);
-        private static (uint MapId, string Appearance, int Columns, int Rows)[] Cases =>
-            IsYuexiBay ? YuexiBayCases : LegacyCases;
+        private static (uint MapId, string MapKey, string Appearance, int Columns, int Rows)[] Cases =>
+            IsYuexiBay ? YuexiBayCases : FestivalCases;
         private static string ScenePath =>
             IsYuexiBay ? FestivalMapPreviewMenu.YuexiBayScenePath : FestivalMapPreviewMenu.ScenePath;
 
@@ -46,6 +50,7 @@ namespace MmorpgClient.Editor.CurrentMaps
         private sealed class MapResult
         {
             public uint mapId;
+            public string mapKey;
             public string appearance;
             public int columns;
             public int rows;
@@ -85,17 +90,17 @@ namespace MmorpgClient.Editor.CurrentMaps
             if (SessionState.GetBool(ArmedKey, false)) RegisterCallbacks();
         }
 
-        [MenuItem("MMORPG/Maps/验证三套离线视觉预览")]
+        [MenuItem("MMORPG/Maps/验证节庆地图离线视觉预览")]
         public static void RunInteractive()
         {
             // 手动验收完成后保留编辑器，只退出本次 Play。
             SessionState.SetBool(KeepEditorKey, true);
             SessionState.SetString(OutputKey, Path.GetFullPath(Path.Combine(Application.dataPath,
-                "../Builds/festival-maps-offline-20261112/editor-play-verification-final")));
+                "../Builds/festival-maps-offline-20261116/editor-play-verification")));
             Run();
         }
 
-        [MenuItem("MMORPG/Maps/验证三套离线视觉预览", true)]
+        [MenuItem("MMORPG/Maps/验证节庆地图离线视觉预览", true)]
         private static bool CanRunInteractive() => !EditorApplication.isPlayingOrWillChangePlaymode &&
             !EditorApplication.isCompiling && !SessionState.GetBool(ArmedKey, false);
 
@@ -226,8 +231,10 @@ namespace MmorpgClient.Editor.CurrentMaps
                     return;
                 }
                 var next = Cases[_index];
-                if (!_preview.Select(next.MapId, next.Appearance))
-                    throw new InvalidOperationException($"Unable to select map {next.MapId}/{next.Appearance}.");
+                bool selected = next.MapKey == null ? _preview.Select(next.MapId, next.Appearance) :
+                    _preview.Select(next.MapKey, next.Appearance);
+                if (!selected)
+                    throw new InvalidOperationException($"Unable to select map {next.MapKey ?? next.MapId.ToString()}/{next.Appearance}.");
                 _waitFrames = 3; // allow Unity's delayed Destroy to remove the previous visual root
             }
             catch (Exception error) { Finish(false, error); }
@@ -235,8 +242,9 @@ namespace MmorpgClient.Editor.CurrentMaps
 
         private static void VerifyAndCapture(int index)
         {
-            var (mapId, appearance, columns, rows) = Cases[index];
-            if (_preview.CurrentMapId != mapId || _preview.CurrentAppearance != appearance)
+            var (mapId, mapKey, appearance, columns, rows) = Cases[index];
+            bool publishedBoundary = mapId == 26000 || mapKey == "biyuan-water-palace";
+            if (_preview.CurrentMapId != mapId || _preview.CurrentMapKey != mapKey || _preview.CurrentAppearance != appearance)
                 throw new InvalidOperationException("Selected map/appearance does not match the requested case.");
             if (_preview.Columns != columns || _preview.Rows != rows || _preview.LoadedTileCount != columns * rows)
                 throw new InvalidOperationException("Unexpected grid or loaded tile count.");
@@ -254,7 +262,7 @@ namespace MmorpgClient.Editor.CurrentMaps
                 if (renderer == null || renderer.sprite == null || renderer.sprite.texture == null ||
                     renderer.sprite.texture.width != 1024 || renderer.sprite.texture.height != 1024)
                     throw new InvalidOperationException("Bad image dimensions or renderer: " + name);
-                if (IsYuexiBay && (renderer.sprite.texture.format != TextureFormat.RGB24 ||
+                if ((IsYuexiBay || publishedBoundary) && (renderer.sprite.texture.format != TextureFormat.RGB24 ||
                     renderer.sprite.texture.mipmapCount != 1))
                     throw new InvalidOperationException("Unexpected preview texture import settings: " + name);
                 CheckNear(tile.localPosition.x, column - .5f, name + " x");
@@ -273,13 +281,22 @@ namespace MmorpgClient.Editor.CurrentMaps
                 throw new InvalidOperationException("A graphics device and render textures are required; do not pass -nographics.");
             camera.aspect = Width / (float)Height;
             Rect bounds = _preview.VisualBounds;
+            if (_preview.ValidBoundsKnown != publishedBoundary)
+                throw new InvalidOperationException("Unexpected source boundary status.");
+            if (publishedBoundary)
+            {
+                CheckNear(bounds.x, 0, "source bounds x");
+                CheckNear(bounds.y, .125f, "source bounds y");
+                CheckNear(bounds.width, 5, "source bounds width");
+                CheckNear(bounds.height, 3.75f, "source bounds height");
+            }
             if (bounds.width <= 0 || bounds.height <= 0 || bounds.xMin < -Tolerance || bounds.yMin < -Tolerance ||
                 bounds.xMax > columns + Tolerance || bounds.yMax > rows + Tolerance)
                 throw new InvalidOperationException("Invalid visual bounds.");
             float fit = Mathf.Max(bounds.height * .5f, bounds.width * .5f / camera.aspect);
             _preview.SetView(bounds.center, fit);
             CheckNear(_preview.Zoom, fit, "fit zoom");
-            string stem = $"{mapId}-{appearance}";
+            string stem = $"{mapKey ?? mapId.ToString()}-{appearance}";
             string overview = stem + "-overview.png";
             Capture(camera, Path.Combine(OutputDirectory(), overview));
 
@@ -299,7 +316,7 @@ namespace MmorpgClient.Editor.CurrentMaps
             _preview.SetView(bounds.center, fit);
 
             _report.maps[index] = new MapResult {
-                mapId = mapId, appearance = appearance, columns = columns, rows = rows,
+                mapId = mapId, mapKey = mapKey, appearance = appearance, columns = columns, rows = rows,
                 loadedTiles = sprites.Length, validBoundsKnown = _preview.ValidBoundsKnown,
                 visualBounds = new[] { bounds.x, bounds.y, bounds.width, bounds.height },
                 overview = overview, lowerLeft = lowerLeft, upperRight = upperRight,
