@@ -6,10 +6,10 @@ namespace MmorpgClient.UI.Ugui.Battle
 {
     /// <summary>
     /// Forest-bridge battle stage in the same 2560x1080 design space as its painting.
-    /// Each team retains front slots 0-4 and back slots 5-9, ordered lower-left to
-    /// upper-right. The positions follow the two stone platforms rather than the
-    /// unrelated historical video coordinates. Slot assignment and protocol IDs
-    /// are unchanged. Back-row pets share the corresponding front-row position;
+    /// Each team retains front slots 0-4 and back slots 5-9, positioned by the
+    /// shared BattleFormationLayout asset in design coordinates. Player-only
+    /// teams of up to five use the back row for players and the front row for pets.
+    /// Back-row pets share the corresponding front-row position;
     /// reserved front-row pets stand a short distance toward the opposing team.
     /// Ground/shadow bounds were traced independently from the accepted painting
     /// in qdao_festival_scenes_20260910/runtime/battle-platform-ground.json.
@@ -23,8 +23,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float HudTopBand = 140f;
 
         /// <summary>
-        /// 底部 HUD 带(设计坐标 y):目标提示/确认/取消条从这里开始。所有槽位脚下名字(脚底 + 40)必须落在其上。
-        /// 校准后的最低脚点为 920；保留既有 992 的确认条布局合同。
+        /// 底部 HUD 带(设计坐标 y):目标提示、确认和取消条从这里开始。
         /// </summary>
         public const float HudBottomBand = 992f;
 
@@ -32,7 +31,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float UnitWidth = 220f;
         public const float UnitHeight = 200f;
 
-        /// <summary>深度缩放基准:我方玩家排 slot0 脚底 y(全场最低点)= 缩放 1.0。</summary>
+        /// <summary>深度缩放基准:设计坐标 y=920 时缩放为 1.0。</summary>
         public const float DepthScaleReferenceY = 920f;
         /// <summary>每往上 1 设计像素缩 0.01%(视频里可检出的深度缩放 ≤6%)。</summary>
         public const float DepthScalePerPixel = 1f / 10000f;
@@ -50,84 +49,38 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static Func<BattleActorState, ulong> PetOwnerResolver =
             actor => actor != null ? actor.OwnerPlayerId : 0UL;
 
-        /// <summary>一个槽位的美术适配坐标(设计坐标,y 向下):脚底点 + 宝宝脚底点。</summary>
-        private readonly struct SlotEntry
-        {
-            public readonly float X;
-            public readonly float Y;
-            public readonly float PetX;
-            public readonly float PetY;
+        private static BattleFormationLayout s_layout;
 
-            public SlotEntry(float x, float y, float petX, float petY)
-            {
-                X = x; Y = y; PetX = petX; PetY = petY;
-            }
-
-            public Vector2 Foot => new Vector2(X, Y);
-            public Vector2 PetFoot => new Vector2(PetX, PetY);
-        }
-
-        private static readonly SlotEntry[] EnemyFront =
-        {
-            new SlotEntry(520f, 515f, 555f, 522f),
-            new SlotEntry(615f, 505f, 650f, 512f),
-            new SlotEntry(710f, 495f, 745f, 502f),
-            new SlotEntry(805f, 475f, 840f, 482f),
-            new SlotEntry(950f, 405f, 980f, 415f),
-        };
-
-        private static readonly SlotEntry[] EnemyBack =
-        {
-            new SlotEntry(450f, 440f, 520f, 515f),
-            new SlotEntry(550f, 430f, 615f, 505f),
-            new SlotEntry(650f, 420f, 710f, 495f),
-            new SlotEntry(750f, 400f, 805f, 475f),
-            new SlotEntry(846f, 393f, 950f, 405f),
-        };
-
-        private static readonly SlotEntry[] AllyFront =
-        {
-            new SlotEntry(1470f, 820f, 1450f, 795f),
-            new SlotEntry(1570f, 780f, 1540f, 750f),
-            new SlotEntry(1670f, 740f, 1640f, 710f),
-            new SlotEntry(1770f, 700f, 1740f, 670f),
-            new SlotEntry(1870f, 660f, 1840f, 630f),
-        };
-
-        private static readonly SlotEntry[] AllyBack =
-        {
-            new SlotEntry(1555f, 920f, 1470f, 820f),
-            new SlotEntry(1650f, 880f, 1570f, 780f),
-            new SlotEntry(1745f, 840f, 1670f, 740f),
-            new SlotEntry(1840f, 800f, 1770f, 700f),
-            new SlotEntry(1935f, 760f, 1870f, 660f),
-        };
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetLayoutResource() => s_layout = null;
 
         public static bool IsBackRow(int slot) => NormalizeSlot(slot) >= FrontRowCount;
 
-        /// <summary>槽位在排内的列(0-4,左下→右上)。</summary>
+        /// <summary>槽位在排内的逻辑列号(0-4)。</summary>
         public static int Column(int slot) => NormalizeSlot(slot) % FrontRowCount;
 
-        private static SlotEntry Entry(bool teamIsMine, int slot)
+        /// <summary>读取配置中的脚底点，坐标以画布左上为原点。</summary>
+        public static Vector2 SlotPosition(bool teamIsMine, int slot)
         {
             slot = NormalizeSlot(slot);
-            bool back = slot >= FrontRowCount;
-            int col = slot % FrontRowCount;
-            if (teamIsMine) return back ? AllyBack[col] : AllyFront[col];
-            return back ? EnemyBack[col] : EnemyFront[col];
+            if (s_layout == null)
+                s_layout = Resources.Load<BattleFormationLayout>(BattleFormationLayout.ResourcePath);
+            return s_layout != null ? s_layout.GetPosition(teamIsMine, slot) : BattleFormationLayout.GetDefaultPosition(teamIsMine, slot);
         }
 
-        /// <summary>槽位脚底点(设计坐标,y 向下)—— 直接查表。</summary>
-        public static Vector2 SlotPosition(bool teamIsMine, int slot) => Entry(teamIsMine, slot).Foot;
-
-        /// <summary>槽位缩放:极弱线性深度模型(脚底越低越大),全场约 0.947~1.0。</summary>
+        /// <summary>槽位缩放:极弱线性深度模型，脚底越低越大。</summary>
         public static float SlotScale(bool teamIsMine, int slot) => DepthScale(SlotPosition(teamIsMine, slot).y);
 
         /// <summary>按脚底 y 算深度缩放:基准 <see cref="DepthScaleReferenceY"/> 为 1.0,每往上 1px 缩 <see cref="DepthScalePerPixel"/>。</summary>
         public static float DepthScale(float footY) => 1f - (DepthScaleReferenceY - footY) * DepthScalePerPixel;
 
-        /// <summary>主人在 ownerSlot 时,其宝宝的脚底点(设计坐标)—— 直接查表(后排主人的宝宝位 = 同列前排位置)。</summary>
-        public static Vector2 PetSlotPosition(bool teamIsMine, int ownerSlot) => Entry(teamIsMine, ownerSlot).PetFoot;
+        /// <summary>后排主人的宝宝站同列前排，前排主人的预留宝宝位略靠近对方。</summary>
+        public static Vector2 PetSlotPosition(bool teamIsMine, int ownerSlot)
+        {
+            if (IsBackRow(ownerSlot)) return SlotPosition(teamIsMine, Column(ownerSlot));
+            var offset = teamIsMine ? new Vector2(-30f, -25f) : new Vector2(35f, 8f);
+            return SlotPosition(teamIsMine, ownerSlot) + offset;
+        }
 
         /// <summary>宝宝缩放:主人缩放 × <see cref="PetRelativeScale"/>。</summary>
         public static float PetSlotScale(bool teamIsMine, int ownerSlot) => SlotScale(teamIsMine, ownerSlot) * PetRelativeScale;
@@ -209,7 +162,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         }
 
         /// <summary>
-        /// 一次算出全部 actors 的槽位(两队),队伍归属按 myTeam 判定;返回 actorId → (teamIsMine, slot)。
+        /// 一次算出全部 actors 的显示槽位。至多五人的玩家队在后排布阵，宝宝在同列前排。
+        /// 队伍归属按 myTeam 判定;返回 actorId → (teamIsMine, slot)。
         /// 宝宝的条目是 (主人的 teamIsMine, 主人的 slot):调用方用 <see cref="PetOwnerOf"/> 区分后改用
         /// <see cref="PetSlotPosition"/>/<see cref="PetSlotScale"/> 摆放。
         /// </summary>
@@ -219,7 +173,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (actors == null) return result;
             var list = new List<BattleActorState>(actors);
 
-            var mine = AssignSlots(list, myTeam);
+            var mine = AssignDisplaySlots(list, myTeam);
             foreach (var kv in mine) result[kv.Key] = (true, kv.Value);
 
             // 敌方可能不止一个 team_index(多方混战预留):按出现顺序各自分配,同槽位重叠
@@ -231,7 +185,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
             foreach (uint team in enemyTeams)
             {
-                foreach (var kv in AssignSlots(list, team)) result[kv.Key] = (false, kv.Value);
+                foreach (var kv in AssignDisplaySlots(list, team)) result[kv.Key] = (false, kv.Value);
             }
 
             // 宝宝跟主人:沿用主人的 (teamIsMine, slot)
@@ -242,6 +196,48 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (owner != 0UL && result.TryGetValue(owner, out var ownerPlacement)) result[actor.ActorId] = ownerPlacement;
             }
             return result;
+        }
+
+        private static Dictionary<ulong, int> AssignDisplaySlots(List<BattleActorState> actors, uint teamIndex)
+        {
+            var slots = AssignSlots(actors, teamIndex);
+            if (slots.Count == 0 || slots.Count > FrontRowCount) return slots;
+
+            foreach (var actor in actors)
+            {
+                if (actor != null && actor.TeamIndex == teamIndex && slots.ContainsKey(actor.ActorId)
+                    && actor.ActorType != eBattleActorType.BattleActorTypePlayer)
+                    return slots;
+            }
+
+            // 保留服务端已经指定的后排位置，再把前排槽号转换为同列后排显示位。
+            var occupied = new bool[SlotsPerTeam];
+            foreach (int slot in slots.Values) occupied[slot] = true;
+
+            var displaced = new List<ulong>();
+            foreach (var actor in actors)
+            {
+                if (actor == null || actor.TeamIndex != teamIndex
+                    || !slots.TryGetValue(actor.ActorId, out int slot) || IsBackRow(slot))
+                    continue;
+
+                int backSlot = slot + FrontRowCount;
+                if (occupied[backSlot])
+                {
+                    displaced.Add(actor.ActorId);
+                    continue;
+                }
+                occupied[backSlot] = true;
+                slots[actor.ActorId] = backSlot;
+            }
+            // 同列已有角色时，等其他角色落位后再补到空列。
+            foreach (ulong actorId in displaced)
+            {
+                int backSlot = Array.IndexOf(occupied, false, FrontRowCount);
+                occupied[backSlot] = true;
+                slots[actorId] = backSlot;
+            }
+            return slots;
         }
 
         /// <summary>

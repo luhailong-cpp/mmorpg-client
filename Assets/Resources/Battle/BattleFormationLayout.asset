@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b98b3b29cf4d489035d07b45ffd658, type: 3}
+  m_Name: BattleFormationLayout
+  m_EditorClassIdentifier: 
+  enemy:
+  - {x: 719, y: 724}
+  - {x: 864.375, y: 611.75}
+  - {x: 1009.75, y: 499.5}
+  - {x: 1155.125, y: 387.25}
+  - {x: 1300.5, y: 275}
+  - {x: 593.125, y: 594}
+  - {x: 738.5, y: 481.75}
+  - {x: 883.875, y: 369.5}
+  - {x: 1029.25, y: 257.25}
+  - {x: 1174.625, y: 145}
+  ally:
+  - {x: 1356.625, y: 757}
+  - {x: 1502, y: 644.75}
+  - {x: 1647.375, y: 532.5}
+  - {x: 1792.75, y: 420.25}
+  - {x: 1938.125, y: 308}
+  - {x: 1566, y: 899.125}
+  - {x: 1711.375, y: 786.875}
+  - {x: 1856.75, y: 674.625}
+  - {x: 2002.125, y: 562.375}
+  - {x: 2147.5, y: 450.125}

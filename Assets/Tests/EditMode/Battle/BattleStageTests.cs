@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using MmorpgClient.UI.Ugui;
 using MmorpgClient.UI.Ugui.Battle;
 using NUnit.Framework;
@@ -78,10 +79,83 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         private static string Tag(bool mine, int slot) => $"{(mine ? "我" : "敌")}{slot}";
 
-        [TearDown]
-        public void RestorePetResolver()
+        private static readonly FieldInfo RuntimeLayoutField = typeof(BattleStage).GetField(
+            "s_layout", BindingFlags.Static | BindingFlags.NonPublic);
+
+        private Func<BattleActorState, ulong> _previousPetOwnerResolver;
+        private BattleFormationLayout _previousLayout;
+        private BattleFormationLayout _layout;
+
+        [SetUp]
+        public void UseDefaultFormation()
         {
-            BattleStage.PetOwnerResolver = _ => 0UL;
+            Assert.NotNull(RuntimeLayoutField);
+            _previousPetOwnerResolver = BattleStage.PetOwnerResolver;
+            _previousLayout = (BattleFormationLayout)RuntimeLayoutField.GetValue(null);
+            // 几何合同只约束出厂站位，编辑器保存的自定义阵型不参与这些断言。
+            _layout = ScriptableObject.CreateInstance<BattleFormationLayout>();
+            _layout.ResetToDefaults();
+            RuntimeLayoutField.SetValue(null, _layout);
+        }
+
+        [TearDown]
+        public void RestoreStageSettings()
+        {
+            BattleStage.PetOwnerResolver = _previousPetOwnerResolver;
+            RuntimeLayoutField.SetValue(null, _previousLayout);
+            UnityEngine.Object.DestroyImmediate(_layout);
+        }
+
+        [Test]
+        public void StageLoadsSavedFormationFromResources()
+        {
+            var resource = Resources.Load<BattleFormationLayout>(BattleFormationLayout.ResourcePath);
+            Assert.NotNull(resource, "游戏需要随包读取站位编辑器写入的 Resources 资源");
+            RuntimeLayoutField.SetValue(null, null);
+
+            foreach (var (mine, slot) in AllSlots())
+                Assert.AreEqual(resource.GetPosition(mine, slot), BattleStage.SlotPosition(mine, slot));
+
+            Assert.AreEqual(resource, RuntimeLayoutField.GetValue(null));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void EditingAColumnMovesTheRoleAndItsPetOnThatSideOnly(bool mine)
+        {
+            const int front = 2;
+            const int back = front + BattleStage.FrontRowCount;
+            var oppositeRole = BattleStage.SlotPosition(!mine, back);
+            var oppositePet = BattleStage.PetSlotPosition(!mine, back);
+            var movedRole = BattleStage.SlotPosition(mine, back) + new Vector2(18f, -9f);
+            var movedPet = BattleStage.PetSlotPosition(mine, back) + new Vector2(-12f, 7f);
+
+            _layout.SetPosition(mine, back, movedRole);
+            _layout.SetPosition(mine, front, movedPet);
+
+            Assert.AreEqual(movedRole, BattleStage.SlotPosition(mine, back));
+            Assert.AreEqual(movedPet, BattleStage.SlotPosition(mine, front));
+            Assert.AreEqual(movedPet, BattleStage.PetSlotPosition(mine, back));
+            Assert.AreEqual(oppositeRole, BattleStage.SlotPosition(!mine, back));
+            Assert.AreEqual(oppositePet, BattleStage.PetSlotPosition(!mine, back));
+        }
+
+        [Test]
+        public void ResetRestoresAllTwentyDefaultPositions()
+        {
+            var defaults = new Dictionary<(bool mine, int slot), Vector2>();
+            foreach (var (mine, slot) in AllSlots())
+            {
+                var original = BattleStage.SlotPosition(mine, slot);
+                defaults.Add((mine, slot), original);
+                _layout.SetPosition(mine, slot, original + new Vector2(7f, 11f));
+                Assert.AreNotEqual(original, BattleStage.SlotPosition(mine, slot));
+            }
+
+            _layout.ResetToDefaults();
+
+            foreach (var (mine, slot) in AllSlots())
+                Assert.AreEqual(defaults[(mine, slot)], BattleStage.SlotPosition(mine, slot));
         }
 
         // ── 协议槽号与前后排语义 ────────────────────────────
@@ -214,9 +288,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void Rows_AreDiagonalBands_LowerLeftToUpperRight()
+        public void Rows_AreParallelAndEvenlySpaced_LowerLeftToUpperRight()
         {
-            // 同排相邻列仍从左下向右上,允许为较浅的石台透视放平斜带。
+            var referenceStep = BattleStage.SlotPosition(false, 1) - BattleStage.SlotPosition(false, 0);
+            // 敌我前后四排沿同一方向等距布阵，角度适配石台。
             foreach (bool mine in new[] { false, true })
             {
                 foreach (bool back in new[] { false, true })
@@ -226,6 +301,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                         var a = BattleStage.SlotPosition(mine, SlotOf(back, c - 1));
                         var b = BattleStage.SlotPosition(mine, SlotOf(back, c));
                         var step = b - a;
+                        Assert.AreEqual(referenceStep, step, $"槽位 {Tag(mine, SlotOf(back, c))} 的列距或方向与其他排不同");
                         Assert.Greater(step.x, 0f, $"{(mine ? "我" : "敌")}方{(back ? "后" : "前")}排列 {c} 应在列 {c - 1} 右侧");
                         Assert.Less(step.y, 0f, $"{(mine ? "我" : "敌")}方{(back ? "后" : "前")}排列 {c} 应在列 {c - 1} 上方");
                         float angle = Mathf.Atan2(-step.y, step.x) * Mathf.Rad2Deg;
@@ -474,6 +550,96 @@ namespace MmorpgClient.Tests.EditMode.Battle
         // ── 槽位分配 ─────────────────────────────────────────
 
         [Test]
+        public void AssignAll_FullPlayerTeamsPlaceFiveRolesBehindFivePetsOnBothSides()
+        {
+            var actors = new List<BattleActorState>();
+            var pairs = new List<(BattleActorState player, BattleActorState pet)>();
+            for (uint team = 0; team < 2; team++)
+            {
+                for (uint col = 0; col < BattleStage.FrontRowCount; col++)
+                {
+                    ulong playerId = 1UL + 100UL * team + col;
+                    var player = new BattleActorState
+                    {
+                        ActorId = playerId,
+                        ActorType = eBattleActorType.BattleActorTypePlayer,
+                        TeamIndex = team,
+                        FormationSlot = col,
+                    };
+                    var pet = new BattleActorState
+                    {
+                        ActorId = (1UL << 63) | playerId,
+                        ActorType = eBattleActorType.BattleActorTypePet,
+                        TeamIndex = team,
+                        FormationSlot = col + (uint)BattleStage.FrontRowCount,
+                        OwnerPlayerId = playerId,
+                    };
+                    actors.Add(player);
+                    actors.Add(pet);
+                    pairs.Add((player, pet));
+                }
+            }
+
+            const uint myTeam = 1;
+            var teamZero = BattleStage.AssignSlots(actors, 0);
+            var teamOne = BattleStage.AssignSlots(actors, 1);
+            Assert.AreEqual(5, teamZero.Count);
+            Assert.AreEqual(5, teamOne.Count);
+
+            var display = BattleStage.AssignAll(actors, myTeam);
+            var feet = new HashSet<Vector2>();
+            Assert.AreEqual(20, display.Count);
+            foreach (var (player, pet) in pairs)
+            {
+                bool mine = player.TeamIndex == myTeam;
+                int front = (int)player.FormationSlot;
+                int back = front + BattleStage.FrontRowCount;
+                Assert.AreEqual(front, (mine ? teamOne : teamZero)[player.ActorId]);
+                Assert.AreEqual((mine, back), display[player.ActorId]);
+                Assert.AreEqual((mine, back), display[pet.ActorId]);
+                Assert.IsTrue(BattleStage.IsPetPlacement(pet, display));
+
+                var roleFoot = BattleStage.SlotPosition(mine, display[player.ActorId].slot);
+                var petFoot = BattleStage.PetSlotPosition(mine, display[pet.ActorId].slot);
+                Assert.AreEqual(BattleStage.SlotPosition(mine, front), petFoot);
+                Assert.IsTrue(feet.Add(roleFoot), "角色脚点应独占一个槽位");
+                Assert.IsTrue(feet.Add(petFoot), "宠物脚点应独占一个槽位");
+            }
+        }
+
+        [Test]
+        public void AssignAll_PreservesAvailableColumnsBeforeFillingPlayerColumnConflicts()
+        {
+            var actors = new[]
+            {
+                new BattleActorState { ActorId = 1, ActorType = eBattleActorType.BattleActorTypePlayer, FormationSlot = 0 },
+                new BattleActorState { ActorId = 2, ActorType = eBattleActorType.BattleActorTypePlayer, FormationSlot = 5 },
+                new BattleActorState { ActorId = 3, ActorType = eBattleActorType.BattleActorTypePlayer, FormationSlot = 1 },
+            };
+
+            var display = BattleStage.AssignAll(actors, myTeam: 0);
+
+            Assert.AreEqual((true, 5), display[2]);
+            Assert.AreEqual((true, 6), display[3]);
+            Assert.AreEqual((true, 7), display[1]);
+        }
+
+        [Test]
+        public void AssignAll_KeepsProtocolSlotsForMixedPlayerAndMonsterTeams()
+        {
+            var actors = new[]
+            {
+                new BattleActorState { ActorId = 1, ActorType = eBattleActorType.BattleActorTypePlayer, FormationSlot = 0 },
+                new BattleActorState { ActorId = 2, ActorType = eBattleActorType.BattleActorTypeMonster, FormationSlot = 1 },
+            };
+
+            var display = BattleStage.AssignAll(actors, myTeam: 0);
+
+            Assert.AreEqual((true, 0), display[1]);
+            Assert.AreEqual((true, 1), display[2]);
+        }
+
+        [Test]
         public void AssignSlots_FallsBackToActorOrder_AndSeparatesTeams()
         {
             var actors = new List<BattleActorState>
@@ -539,7 +705,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         [Test]
         public void Pets_DoNotConsumeSlots_AndFollowOwnerPlacement()
         {
-            // 宝宝归属由 PetOwnerResolver 决定(默认恒 0 = 无宝宝);主人在场的宝宝不占槽、条目沿用主人的 (teamIsMine, slot)
+            // 主人在场的宝宝不占槽，条目沿用主人的 (teamIsMine, slot)。
             var owners = new Dictionary<ulong, ulong> { [21] = 1, [22] = 2, [23] = 99 /* 主人不在场 → 孤儿 */ };
             BattleStage.PetOwnerResolver = a => owners.TryGetValue(a.ActorId, out var o) ? o : 0UL;
 
