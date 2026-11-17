@@ -9,7 +9,7 @@ using UnityEngine;
 namespace MmorpgClient.Tests.EditMode.Battle
 {
     /// <summary>
-    /// 森林石桥战斗舞台的行为与几何约束:
+    /// 战斗舞台的行为与几何约束:
     /// 协议槽号/前后排/列顺序保持稳定;敌左上、我右下;脚位有间距且按脚底深度缩放;
     /// 完整名牌避开 HUD;宝宝跟随同列主人;槽位分配回退与归属业务保持不变。
     /// </summary>
@@ -21,45 +21,35 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private const float NameplateHalfWidth = 120f;
         private const float NameplateBelowFeet = 40f;
 
-        // 固定美术合同:从森林石桥背景的干净石台内缘独立手工描出,不是从槽位坐标生成。
-        // 来源:qdao_festival_scenes_20260910/runtime/battle-platform-ground.json (v1),2560x1080,y 向下。
-        // 敌方多边形还避开下沿桥头金柱;不包括水面、栏杆、桥面或植被。
-        private static readonly Vector2[] EnemyStonePlatform =
+        // 独立描绘当前圆台背景的石面外缘。设计坐标 2560×1080，y 向下。
+        // 来源：image 3cf49b6df89 的 battle-round-platform-runtime-2560x1080.png。
+        private static readonly Vector2[] StonePlatform =
         {
-            new Vector2(404f, 392f),
-            new Vector2(476f, 320f),
-            new Vector2(614f, 286f),
-            new Vector2(774f, 290f),
-            new Vector2(906f, 316f),
-            new Vector2(1000f, 358f),
-            new Vector2(1044f, 412f),
-            new Vector2(975f, 440f),
-            new Vector2(884f, 488f),
-            new Vector2(820f, 516f),
-            new Vector2(672f, 532f),
-            new Vector2(528f, 546f),
-            new Vector2(424f, 532f),
-            new Vector2(376f, 506f),
-            new Vector2(366f, 464f),
-        };
-
-        private static readonly Vector2[] AllyStonePlatform =
-        {
-            new Vector2(1390f, 824f),
-            new Vector2(1430f, 740f),
-            new Vector2(1515f, 680f),
-            new Vector2(1640f, 626f),
-            new Vector2(1770f, 596f),
-            new Vector2(1940f, 580f),
-            new Vector2(2100f, 596f),
-            new Vector2(2225f, 660f),
-            new Vector2(2260f, 748f),
-            new Vector2(2210f, 836f),
-            new Vector2(2090f, 920f),
-            new Vector2(1910f, 983f),
-            new Vector2(1700f, 1000f),
-            new Vector2(1555f, 970f),
-            new Vector2(1450f, 914f),
+            new Vector2(1240f, 240f),
+            new Vector2(890f, 251f),
+            new Vector2(595f, 305f),
+            new Vector2(353f, 365f),
+            new Vector2(181f, 447f),
+            new Vector2(88f, 524f),
+            new Vector2(72f, 591f),
+            new Vector2(125f, 680f),
+            new Vector2(253f, 782f),
+            new Vector2(420f, 863f),
+            new Vector2(650f, 934f),
+            new Vector2(936f, 983f),
+            new Vector2(1240f, 1008f),
+            new Vector2(1540f, 995f),
+            new Vector2(1820f, 962f),
+            new Vector2(2055f, 909f),
+            new Vector2(2240f, 815f),
+            new Vector2(2360f, 722f),
+            new Vector2(2410f, 630f),
+            new Vector2(2420f, 552f),
+            new Vector2(2375f, 474f),
+            new Vector2(2200f, 384f),
+            new Vector2(1980f, 312f),
+            new Vector2(1680f, 260f),
+            new Vector2(1440f, 245f),
         };
 
         private static int SlotOf(bool back, int col) => back ? col + BattleStage.FrontRowCount : col;
@@ -92,7 +82,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.NotNull(RuntimeLayoutField);
             _previousPetOwnerResolver = BattleStage.PetOwnerResolver;
             _previousLayout = (BattleFormationLayout)RuntimeLayoutField.GetValue(null);
-            // 几何合同只约束出厂站位，编辑器保存的自定义阵型不参与这些断言。
+            // 多数测试使用出厂站位，实际圆台检查会单独加载随包的站位资源。
             _layout = ScriptableObject.CreateInstance<BattleFormationLayout>();
             _layout.ResetToDefaults();
             RuntimeLayoutField.SetValue(null, _layout);
@@ -374,16 +364,11 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void PetScale_IsSmallerThanOwner_ByFixedRatio()
+        public void PetScale_MatchesOwnerAtEverySlot()
         {
-            Assert.That(BattleStage.PetRelativeScale, Is.InRange(0.6f, 0.7f));
             foreach (var (mine, slot) in AllSlots())
-            {
-                float owner = BattleStage.SlotScale(mine, slot);
-                float pet = BattleStage.PetSlotScale(mine, slot);
-                Assert.AreEqual(owner * BattleStage.PetRelativeScale, pet, 1e-5f);
-                Assert.Less(pet, owner);
-            }
+                Assert.AreEqual(BattleStage.SlotScale(mine, slot), BattleStage.PetSlotScale(mine, slot),
+                    1e-5f, Tag(mine, slot));
         }
 
         // ── ④ 在 HUD 带之间、在屏内 ──────────────────────────
@@ -442,26 +427,29 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
-        public void AllSlotsAndPetShadows_StayInsidePaintedStonePlatforms()
+        public void SavedSlotsAndPetShadows_StayInsidePaintedStonePlatform()
         {
-            void Check(string label, Vector2 foot, float scale, Vector2[] platform)
+            var savedLayout = Resources.Load<BattleFormationLayout>(BattleFormationLayout.ResourcePath);
+            Assert.NotNull(savedLayout, "圆台检查需要客户端随包的战斗站位。");
+            RuntimeLayoutField.SetValue(null, savedLayout);
+
+            void Check(string label, Vector2 foot, float scale)
             {
-                Assert.IsTrue(IsInsidePlatform(foot, platform), $"{label} 脚底不在石台内");
+                Assert.IsTrue(IsInsidePlatform(foot, StonePlatform), $"{label} 脚底不在石台内");
                 // BattleUnitView 的脚底阴影为 120x44 椭圆;中心入台仍不足以保证阴影落地。
                 const int samples = 32;
                 for (int sample = 0; sample < samples; sample++)
                 {
                     float angle = sample * 2f * Mathf.PI / samples;
                     var edge = foot + new Vector2(60f * scale * Mathf.Cos(angle), 22f * scale * Mathf.Sin(angle));
-                    Assert.IsTrue(IsInsidePlatform(edge, platform),
+                    Assert.IsTrue(IsInsidePlatform(edge, StonePlatform),
                         $"{label} 阴影边界采样 {sample}/{samples} ({edge.x:0.0},{edge.y:0.0}) 离开石台");
                 }
             }
             foreach (var (mine, slot) in AllSlots())
             {
-                var platform = mine ? AllyStonePlatform : EnemyStonePlatform;
-                Check($"槽位 {Tag(mine, slot)}", BattleStage.SlotPosition(mine, slot), BattleStage.SlotScale(mine, slot), platform);
-                Check($"宝宝位 {Tag(mine, slot)}", BattleStage.PetSlotPosition(mine, slot), BattleStage.PetSlotScale(mine, slot), platform);
+                Check($"槽位 {Tag(mine, slot)}", BattleStage.SlotPosition(mine, slot), BattleStage.SlotScale(mine, slot));
+                Check($"宝宝位 {Tag(mine, slot)}", BattleStage.PetSlotPosition(mine, slot), BattleStage.PetSlotScale(mine, slot));
             }
         }
 

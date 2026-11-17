@@ -515,7 +515,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _viewById.Clear();
 
             // 槽位分配:宝宝(BattleStage.PetOwnerResolver 判定,主人在场)不占槽,条目沿用主人的 (teamIsMine, slot),
-            // 摆到主人的宝宝位(PetSlotPosition,视频里主人左上方贴着站)并按 PetSlotScale 缩小
+            // 摆到主人的宝宝位 (PetSlotPosition)，显示缩放与主人一致。
             var placement = BattleStage.AssignAll(state.Actors, _myTeam);
             foreach (var actor in state.Actors)
             {

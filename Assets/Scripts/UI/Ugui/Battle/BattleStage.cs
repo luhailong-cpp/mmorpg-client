@@ -5,14 +5,12 @@ using UnityEngine;
 namespace MmorpgClient.UI.Ugui.Battle
 {
     /// <summary>
-    /// Forest-bridge battle stage in the same 2560x1080 design space as its painting.
+    /// Battle stage in the same 2560x1080 design space as the arena background.
     /// Each team retains front slots 0-4 and back slots 5-9, positioned by the
     /// shared BattleFormationLayout asset in design coordinates. Player-only
     /// teams of up to five use the back row for players and the front row for pets.
     /// Back-row pets share the corresponding front-row position;
     /// reserved front-row pets stand a short distance toward the opposing team.
-    /// Ground/shadow bounds were traced independently from the accepted painting
-    /// in qdao_festival_scenes_20260910/runtime/battle-platform-ground.json.
     /// </summary>
     public static class BattleStage
     {
@@ -35,9 +33,6 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float DepthScaleReferenceY = 920f;
         /// <summary>每往上 1 设计像素缩 0.01%(视频里可检出的深度缩放 ≤6%)。</summary>
         public const float DepthScalePerPixel = 1f / 10000f;
-
-        /// <summary>宝宝相对主人的缩放(视频里酷酷龙 53 视频 px vs 主人 100~110;人形幻化宠与主人等大,取折中)。</summary>
-        public const float PetRelativeScale = 0.65f;
 
         /// <summary>
         /// 宝宝归属判定入口:返回该单位主人的 actorId,0 = 不是宝宝。
@@ -82,8 +77,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             return SlotPosition(teamIsMine, ownerSlot) + offset;
         }
 
-        /// <summary>宝宝缩放:主人缩放 × <see cref="PetRelativeScale"/>。</summary>
-        public static float PetSlotScale(bool teamIsMine, int ownerSlot) => SlotScale(teamIsMine, ownerSlot) * PetRelativeScale;
+        /// <summary>宝宝与主人使用相同的战斗显示缩放。</summary>
+        public static float PetSlotScale(bool teamIsMine, int ownerSlot) => SlotScale(teamIsMine, ownerSlot);
 
         /// <summary>绘制排序键:脚底 y(越大越后画)。</summary>
         public static float SortKey(bool teamIsMine, int slot) => SlotPosition(teamIsMine, slot).y;
