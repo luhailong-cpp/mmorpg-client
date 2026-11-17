@@ -341,6 +341,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                     Log($"{Name(beat.ActorId)} {(beat.Success ? "逃跑成功" : "逃跑失败")}");
                     actor?.PlayFlee(beat.Success);
                     break;
+                case BeatKind.Capture:
+                    Log($"{Name(beat.ActorId)} 捕捉 {Name(beat.CaptureTargetId)}{(beat.Success ? "成功，战斗结算后获得宝宝" : "失败")}");
+                    actor?.PlayDefend();
+                    if (beat.Success) _resolveView(beat.CaptureTargetId)?.PlayCaptured();
+                    break;
                 case BeatKind.BuffTick:
                     Log($"{Name(beat.ActorId)} 的 buff{beat.BuffId} 生效");
                     ApplyOutcomes(beat);
@@ -379,6 +384,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_fastForward)
             {
                 if (beat.Kind == BeatKind.Death) _resolveView(beat.ActorId)?.ShowDeadMark();
+                if (beat.Kind == BeatKind.Capture && beat.Success) _resolveView(beat.CaptureTargetId)?.PlayCaptured();
                 if (beat.HasActorManaAfter) _resolveView(beat.ActorId)?.SetManaDuringPlayback(beat.ActorManaAfter);
             }
         }
@@ -576,7 +582,27 @@ namespace MmorpgClient.UI.Ugui.Battle
                     case TargetEffect.Mana:
                         Log($"{Name(target.ActorId)} 法力 {(target.Value >= 0 ? "+" : string.Empty)}{target.Value}");
                         break;
+                    case TargetEffect.Revive:
+                        view?.ReviveDuringPlayback(target.HealthAfter, target.MaxHealthAfter);
+                        view?.SpawnFx("heal_ring", true, 320f);
+                        Log($"{Name(target.ActorId)} 复活");
+                        break;
+                    case TargetEffect.MaxHealth:
+                        view?.SetMaxHealthDuringPlayback(target.MaxHealthAfter);
+                        Log($"{Name(target.ActorId)} 气血上限变为 {target.MaxHealthAfter}");
+                        break;
+                    case TargetEffect.PetRetreat:
+                        if (!target.Success) { Log($"{Name(target.ActorId)} 劝退未生效"); break; }
+                        if (target.Value == 0) view?.ReturnDuringPlayback();
+                        else view?.PlayCaptured();
+                        Log($"{Name(target.ActorId)} {(target.Value == 0 ? "返回战场" : "离场")}");
+                        break;
+                    case TargetEffect.Shield:
+                        view?.SpawnFloatText($"护盾 {target.ShieldAfter}", BattleUiStyle.WarnText, false);
+                        Log($"{Name(target.ActorId)} 护盾剩余 {target.ShieldAfter}");
+                        break;
                 }
+                if (target.Absorbed > 0) Log($"{Name(target.ActorId)} 护盾吸收 {target.Absorbed}");
 
                 if (view != null)
                 {

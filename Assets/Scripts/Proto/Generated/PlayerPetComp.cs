@@ -23,21 +23,27 @@ public static partial class PlayerPetCompReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Cixwcm90by9jb21tb24vY29tcG9uZW50L3BsYXllcl9wZXRfY29tcC5wcm90",
-          "byLcAgoLUGV0SW5zdGFuY2USDgoGcGV0X2lkGAEgASgEEhQKDHBldF90YWJs",
+          "byLCAwoLUGV0SW5zdGFuY2USDgoGcGV0X2lkGAEgASgEEhQKDHBldF90YWJs",
           "ZV9pZBgCIAEoDRIMCgRuYW1lGAMgASgJEg0KBWxldmVsGAQgASgNEi4KCWFs",
           "bG9jYXRlZBgFIAMoCzIbLlBldEluc3RhbmNlLkFsbG9jYXRlZEVudHJ5EiwK",
           "CGFwdGl0dWRlGAYgAygLMhouUGV0SW5zdGFuY2UuQXB0aXR1ZGVFbnRyeRIO",
           "CgZoZWFsdGgYByABKAQSDAoEbWFuYRgIIAEoBBISCgpjcmVhdGVkX2F0GAkg",
-          "ASgEEhcKD3NraWxsX3RhYmxlX2lkcxgKIAMoDRowCg5BbGxvY2F0ZWRFbnRy",
-          "eRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBGi8KDUFwdGl0dWRl",
-          "RW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgNOgI4ASJCCg1QbGF5",
-          "ZXJQZXRDb21wEhoKBHBldHMYASADKAsyDC5QZXRJbnN0YW5jZRIVCg1hY3Rp",
-          "dmVfcGV0X2lkGAIgASgEQhJaEGNvbW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
+          "ASgEEhcKD3NraWxsX3RhYmxlX2lkcxgKIAMoDRIxCgtza2lsbF9yYW5rcxgL",
+          "IAMoCzIcLlBldEluc3RhbmNlLlNraWxsUmFua3NFbnRyeRowCg5BbGxvY2F0",
+          "ZWRFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBGi8KDUFw",
+          "dGl0dWRlRW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgNOgI4ARox",
+          "Cg9Ta2lsbFJhbmtzRW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgN",
+          "OgI4ASLGAQoNUGxheWVyUGV0Q29tcBIaCgRwZXRzGAEgAygLMgwuUGV0SW5z",
+          "dGFuY2USFQoNYWN0aXZlX3BldF9pZBgCIAEoBBIeChZsYXN0X3B1cmNoYXNl",
+          "X3NlcXVlbmNlGAMgASgEEiIKGmxhc3RfcHVyY2hhc2VfcGV0X3RhYmxlX2lk",
+          "GAQgASgNEhwKFGxhc3RfcHVyY2hhc2VfcGV0X2lkGAUgASgEEiAKGGxhc3Rf",
+          "cHVyY2hhc2VfcHJpY2VfZ29sZBgGIAEoBEISWhBjb21tb24vY29tcG9uZW50",
+          "YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::PetInstance), global::PetInstance.Parser, new[]{ "PetId", "PetTableId", "Name", "Level", "Allocated", "Aptitude", "Health", "Mana", "CreatedAt", "SkillTableIds" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerPetComp), global::PlayerPetComp.Parser, new[]{ "Pets", "ActivePetId" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PetInstance), global::PetInstance.Parser, new[]{ "PetId", "PetTableId", "Name", "Level", "Allocated", "Aptitude", "Health", "Mana", "CreatedAt", "SkillTableIds", "SkillRanks" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerPetComp), global::PlayerPetComp.Parser, new[]{ "Pets", "ActivePetId", "LastPurchaseSequence", "LastPurchasePetTableId", "LastPurchasePetId", "LastPurchasePriceGold" }, null, null, null, null)
         }));
   }
   #endregion
@@ -92,6 +98,7 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     mana_ = other.mana_;
     createdAt_ = other.createdAt_;
     skillTableIds_ = other.skillTableIds_.Clone();
+    skillRanks_ = other.skillRanks_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -250,6 +257,20 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     get { return skillTableIds_; }
   }
 
+  /// <summary>Field number for the "skill_ranks" field.</summary>
+  public const int SkillRanksFieldNumber = 11;
+  private static readonly pbc::MapField<uint, uint>.Codec _map_skillRanks_codec
+      = new pbc::MapField<uint, uint>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForUInt32(16, 0), 90);
+  private readonly pbc::MapField<uint, uint> skillRanks_ = new pbc::MapField<uint, uint>();
+  /// <summary>
+  /// 公共技能原型的已学等级，由 PetSystem 唯一写入。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::MapField<uint, uint> SkillRanks {
+    get { return skillRanks_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -275,6 +296,7 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     if (Mana != other.Mana) return false;
     if (CreatedAt != other.CreatedAt) return false;
     if(!skillTableIds_.Equals(other.skillTableIds_)) return false;
+    if (!SkillRanks.Equals(other.SkillRanks)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -292,6 +314,7 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     if (Mana != 0UL) hash ^= Mana.GetHashCode();
     if (CreatedAt != 0UL) hash ^= CreatedAt.GetHashCode();
     hash ^= skillTableIds_.GetHashCode();
+    hash ^= SkillRanks.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -341,6 +364,7 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
       output.WriteUInt64(CreatedAt);
     }
     skillTableIds_.WriteTo(output, _repeated_skillTableIds_codec);
+    skillRanks_.WriteTo(output, _map_skillRanks_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -382,6 +406,7 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
       output.WriteUInt64(CreatedAt);
     }
     skillTableIds_.WriteTo(ref output, _repeated_skillTableIds_codec);
+    skillRanks_.WriteTo(ref output, _map_skillRanks_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -416,6 +441,7 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(CreatedAt);
     }
     size += skillTableIds_.CalculateSize(_repeated_skillTableIds_codec);
+    size += skillRanks_.CalculateSize(_map_skillRanks_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -452,6 +478,7 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
       CreatedAt = other.CreatedAt;
     }
     skillTableIds_.Add(other.skillTableIds_);
+    skillRanks_.MergeFrom(other.skillRanks_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -510,6 +537,10 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
         case 82:
         case 80: {
           skillTableIds_.AddEntriesFrom(input, _repeated_skillTableIds_codec);
+          break;
+        }
+        case 90: {
+          skillRanks_.AddEntriesFrom(input, _map_skillRanks_codec);
           break;
         }
       }
@@ -572,6 +603,10 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
           skillTableIds_.AddEntriesFrom(ref input, _repeated_skillTableIds_codec);
           break;
         }
+        case 90: {
+          skillRanks_.AddEntriesFrom(ref input, _map_skillRanks_codec);
+          break;
+        }
       }
     }
   }
@@ -619,6 +654,10 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
   public PlayerPetComp(PlayerPetComp other) : this() {
     pets_ = other.pets_.Clone();
     activePetId_ = other.activePetId_;
+    lastPurchaseSequence_ = other.lastPurchaseSequence_;
+    lastPurchasePetTableId_ = other.lastPurchasePetTableId_;
+    lastPurchasePetId_ = other.lastPurchasePetId_;
+    lastPurchasePriceGold_ = other.lastPurchasePriceGold_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -654,6 +693,57 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
     }
   }
 
+  /// <summary>Field number for the "last_purchase_sequence" field.</summary>
+  public const int LastPurchaseSequenceFieldNumber = 3;
+  private ulong lastPurchaseSequence_;
+  /// <summary>
+  /// 商店购买的单调序号与最近成功回执，和扣款、宠物实例一起存盘。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong LastPurchaseSequence {
+    get { return lastPurchaseSequence_; }
+    set {
+      lastPurchaseSequence_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "last_purchase_pet_table_id" field.</summary>
+  public const int LastPurchasePetTableIdFieldNumber = 4;
+  private uint lastPurchasePetTableId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LastPurchasePetTableId {
+    get { return lastPurchasePetTableId_; }
+    set {
+      lastPurchasePetTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "last_purchase_pet_id" field.</summary>
+  public const int LastPurchasePetIdFieldNumber = 5;
+  private ulong lastPurchasePetId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong LastPurchasePetId {
+    get { return lastPurchasePetId_; }
+    set {
+      lastPurchasePetId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "last_purchase_price_gold" field.</summary>
+  public const int LastPurchasePriceGoldFieldNumber = 6;
+  private ulong lastPurchasePriceGold_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong LastPurchasePriceGold {
+    get { return lastPurchasePriceGold_; }
+    set {
+      lastPurchasePriceGold_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -671,6 +761,10 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
     }
     if(!pets_.Equals(other.pets_)) return false;
     if (ActivePetId != other.ActivePetId) return false;
+    if (LastPurchaseSequence != other.LastPurchaseSequence) return false;
+    if (LastPurchasePetTableId != other.LastPurchasePetTableId) return false;
+    if (LastPurchasePetId != other.LastPurchasePetId) return false;
+    if (LastPurchasePriceGold != other.LastPurchasePriceGold) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -680,6 +774,10 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
     int hash = 1;
     hash ^= pets_.GetHashCode();
     if (ActivePetId != 0UL) hash ^= ActivePetId.GetHashCode();
+    if (LastPurchaseSequence != 0UL) hash ^= LastPurchaseSequence.GetHashCode();
+    if (LastPurchasePetTableId != 0) hash ^= LastPurchasePetTableId.GetHashCode();
+    if (LastPurchasePetId != 0UL) hash ^= LastPurchasePetId.GetHashCode();
+    if (LastPurchasePriceGold != 0UL) hash ^= LastPurchasePriceGold.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -703,6 +801,22 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
       output.WriteRawTag(16);
       output.WriteUInt64(ActivePetId);
     }
+    if (LastPurchaseSequence != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(LastPurchaseSequence);
+    }
+    if (LastPurchasePetTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(LastPurchasePetTableId);
+    }
+    if (LastPurchasePetId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(LastPurchasePetId);
+    }
+    if (LastPurchasePriceGold != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(LastPurchasePriceGold);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -718,6 +832,22 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
       output.WriteRawTag(16);
       output.WriteUInt64(ActivePetId);
     }
+    if (LastPurchaseSequence != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(LastPurchaseSequence);
+    }
+    if (LastPurchasePetTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(LastPurchasePetTableId);
+    }
+    if (LastPurchasePetId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(LastPurchasePetId);
+    }
+    if (LastPurchasePriceGold != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(LastPurchasePriceGold);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -731,6 +861,18 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
     size += pets_.CalculateSize(_repeated_pets_codec);
     if (ActivePetId != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ActivePetId);
+    }
+    if (LastPurchaseSequence != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LastPurchaseSequence);
+    }
+    if (LastPurchasePetTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LastPurchasePetTableId);
+    }
+    if (LastPurchasePetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LastPurchasePetId);
+    }
+    if (LastPurchasePriceGold != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(LastPurchasePriceGold);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -747,6 +889,18 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
     pets_.Add(other.pets_);
     if (other.ActivePetId != 0UL) {
       ActivePetId = other.ActivePetId;
+    }
+    if (other.LastPurchaseSequence != 0UL) {
+      LastPurchaseSequence = other.LastPurchaseSequence;
+    }
+    if (other.LastPurchasePetTableId != 0) {
+      LastPurchasePetTableId = other.LastPurchasePetTableId;
+    }
+    if (other.LastPurchasePetId != 0UL) {
+      LastPurchasePetId = other.LastPurchasePetId;
+    }
+    if (other.LastPurchasePriceGold != 0UL) {
+      LastPurchasePriceGold = other.LastPurchasePriceGold;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -775,6 +929,22 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
           ActivePetId = input.ReadUInt64();
           break;
         }
+        case 24: {
+          LastPurchaseSequence = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          LastPurchasePetTableId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          LastPurchasePetId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          LastPurchasePriceGold = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -800,6 +970,22 @@ public sealed partial class PlayerPetComp : pb::IMessage<PlayerPetComp>
         }
         case 16: {
           ActivePetId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          LastPurchaseSequence = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          LastPurchasePetTableId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          LastPurchasePetId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          LastPurchasePriceGold = input.ReadUInt64();
           break;
         }
       }

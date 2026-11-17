@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
@@ -18,7 +19,7 @@ namespace MmorpgClient.Game.Skills
     ///    换号 / 断线 / 连接替换之后到的旧回包一律丢弃,不覆盖新状态。
     ///  - 超时 / 网络失败不猜结果:修习结果未确认时写进 Error(UI 据此禁用修习、只留刷新),等刷新拿到权威状态。
     ///  - 断线:作废在途请求并清掉权威快照(<see cref="DisconnectedMessage"/>),重连后由 UI 再次 Refresh。
-    ///  - 宠物技能:服务端还没有宠物技能协议(class-skills.md §9),宠物上下文只给只读空目录与说明,不伪造数据。
+    ///  - 宠物技能按 pet_id 请求同一技能书接口，回包必须匹配当前查看的实例。
     ///  - <see cref="Changed"/> 只在调用方线程(UI)或传输回调(GameClient.CallMethod,主线程)里触发。
     /// </summary>
     public sealed class SkillBookClient : Ui.ISkillBookSource, IDisposable
@@ -28,9 +29,8 @@ namespace MmorpgClient.Game.Skills
         public const string NotInGameMessage = "尚未进入游戏,技能信息未同步";
         public const string LoadingMessage = "正在同步技能信息…";
         public const string UpgradingMessage = "正在修习…";
-        public const string EmptyCatalogMessage = "服务器没有下发本职业的技能目录";
+        public const string EmptyCatalogMessage = "服务器没有下发可学习的技能目录";
         public const string DisconnectedMessage = "连接已断开,技能信息已过期,重连后请刷新";
-        public const string PetUnsupportedMessage = "宠物技能服务端尚未开放,暂不能查看与修习";
         public const string InvalidCountMessage = "修习次数只能是 1 次或 10 次";
 
         private readonly IBattleTransport _net;
@@ -41,6 +41,40 @@ namespace MmorpgClient.Game.Skills
         private ulong _player;
         private long _epoch, _serial, _activeRead, _activeWrite;
         private bool _disposed;
+        private readonly Dictionary<uint, Ui.SkillDefinition> _battlePresentation = new();
+        private readonly HashSet<ulong> _catalogSubjects = new();
+        private readonly Dictionary<ulong, List<Action<bool>>> _catalogRequests = new();
+
+        public Ui.SkillDefinition FindBattlePresentation(uint id) =>
+            _battlePresentation.TryGetValue(id, out var definition) ? definition : null;
+
+        /// <summary>战斗打开时预取权威目录，不切换或覆盖正在查看的技能书。</summary>
+        public void EnsureBattleCatalog(ulong petId, Action<bool> completed)
+        {
+            ObserveSession();
+            if (!Ready) { completed?.Invoke(false); return; }
+            if (_catalogSubjects.Contains(petId)) { completed?.Invoke(true); return; }
+            if (_catalogRequests.TryGetValue(petId, out var callbacks))
+            { callbacks.Add(completed); return; }
+            callbacks = new List<Action<bool>> { completed };
+            _catalogRequests.Add(petId, callbacks);
+            var stamp = Capture();
+            SceneSkillClientPlayerRpc.ListSkills(_rpc, new ListSkillsRequest { PetId = petId }, (status, response) =>
+            {
+                if (!Current(stamp)) return;
+                _catalogRequests.Remove(petId);
+                bool success = status.IsOk && response != null && response.PetId == petId && !HasTip(response.ErrorMessage);
+                if (success) CachePresentation(response, SkillBookMapper.ToSnapshot(response, _presentation));
+                foreach (var callback in callbacks) callback?.Invoke(success);
+            });
+        }
+
+        private void CachePresentation(ListSkillsResponse response, Ui.SkillBookSnapshot snapshot)
+        {
+            foreach (var entry in snapshot.Entries)
+                if (entry.Definition != null) _battlePresentation[entry.Id] = entry.Definition;
+            _catalogSubjects.Add(response.PetId);
+        }
 
         private readonly struct RequestStamp
         {
@@ -90,19 +124,14 @@ namespace MmorpgClient.Game.Skills
         {
             if (_disposed || context == null) return;
             ObserveSession();
-            if (context.IsPet)
-            {
-                _activeRead = 0;
-                Publish(PetState(context));
-                return;
-            }
             if (!Ready)
             {
                 Publish(new Ui.SkillBookViewState { Context = context, Message = NotInGameMessage });
                 return;
             }
             // 修习回包本身就是最新的完整技能书,等它回来;读请求在途时不叠第二个
-            if (_activeWrite != 0 || _activeRead != 0) return;
+            if (State != null && !context.Matches(State.Context)) _activeRead = 0;
+            if (_activeWrite != 0 && context.Matches(State?.Context) || _activeRead != 0) return;
 
             var stamp = Capture();
             _activeRead = stamp.Id;
@@ -114,7 +143,7 @@ namespace MmorpgClient.Game.Skills
                 IsConnected = true,
                 Message = LoadingMessage,
             });
-            SceneSkillClientPlayerRpc.ListSkills(_rpc, new ListSkillsRequest(),
+            SceneSkillClientPlayerRpc.ListSkills(_rpc, new ListSkillsRequest { PetId = context.IsPet ? context.PetId : 0 },
                 (status, response) =>
                 {
                     if (!CurrentRead(stamp)) return;
@@ -128,11 +157,6 @@ namespace MmorpgClient.Game.Skills
         {
             if (_disposed || context == null) return;
             ObserveSession();
-            if (context.IsPet)
-            {
-                Publish(PetState(context));
-                return;
-            }
             if (!Ready)
             {
                 Publish(new Ui.SkillBookViewState { Context = context, Message = NotInGameMessage });
@@ -159,7 +183,8 @@ namespace MmorpgClient.Game.Skills
                 Message = UpgradingMessage,
             });
             // expectedRank 用 UI 提交时看到的值,不能换成回包后更新的等级(那样重放保护就失效了)
-            var request = new UpgradeSkillRequest { SkillTableId = skillId, ExpectedRank = expectedRank, Count = count };
+            var request = new UpgradeSkillRequest { SkillTableId = skillId, ExpectedRank = expectedRank, Count = count,
+                PetId = context.IsPet ? context.PetId : 0 };
             SceneSkillClientPlayerRpc.UpgradeSkill(_rpc, request,
                 (status, response) =>
                 {
@@ -216,7 +241,14 @@ namespace MmorpgClient.Game.Skills
                 PublishError(context, SkillBookMapper.DescribeTip("刷新技能失败", response.ErrorMessage));
                 return;
             }
+            if (response.PetId != (context.IsPet ? context.PetId : 0))
+            {
+                PublishError(context, "服务器返回的技能归属不匹配，请刷新");
+                return;
+            }
             var snapshot = SkillBookMapper.ToSnapshot(response, _presentation);
+            CachePresentation(response, snapshot);
+            if (context.IsPet) snapshot.Title = (context.DisplayName ?? "宝宝") + "的技能";
             Publish(new Ui.SkillBookViewState
             {
                 Context = context,
@@ -237,15 +269,6 @@ namespace MmorpgClient.Game.Skills
                 Error = error,
             });
         }
-
-        private Ui.SkillBookViewState PetState(Ui.SkillBookContext context) => new Ui.SkillBookViewState
-        {
-            Context = context,
-            Snapshot = new Ui.SkillBookSnapshot { Title = (context.DisplayName ?? "宠物") + "的技能" },
-            IsConnected = Ready,
-            IsReadOnly = true,
-            Message = PetUnsupportedMessage,
-        };
 
         private Ui.SkillBookSnapshot SnapshotFor(Ui.SkillBookContext context) =>
             State != null && context.Matches(State.Context) ? State.Snapshot : null;
@@ -301,6 +324,9 @@ namespace MmorpgClient.Game.Skills
         {
             ++_epoch;
             _activeRead = _activeWrite = 0;
+            _battlePresentation.Clear();
+            _catalogSubjects.Clear();
+            _catalogRequests.Clear();
             _player = _net.PlayerId;
             _connection = _connectionIdentity();
             Publish(new Ui.SkillBookViewState

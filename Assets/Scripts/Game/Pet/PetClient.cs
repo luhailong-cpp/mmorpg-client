@@ -18,7 +18,7 @@ namespace MmorpgClient.Game.Pet
     ///    —— 服务器侧 Allocate 是"目标值"幂等语义,重复提交也不会多扣点,这里只是省掉无谓往返;
     ///  - 断线:清空列表与在途状态,重连后由 UI 重新 RequestList。
     /// </summary>
-    public sealed class PetClient
+    public sealed partial class PetClient
     {
         /// <summary>单例挂接(实例由 GameClient 持有,静态 Instance 供 UI 路解析;测试直接 new)。</summary>
         public static PetClient Instance { get; private set; }
@@ -326,6 +326,7 @@ namespace MmorpgClient.Game.Pet
 
         private void HandleDisconnected()
         {
+            InvalidateShop();
             ++_listRequestVersion;
             ++_grantRequestVersion;
             ListRequestPending = false;

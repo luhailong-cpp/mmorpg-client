@@ -7,15 +7,21 @@
   默认安装目录和工作区的 tools/Unity 目录，也可以用 -UnityExe 指定编辑器。
   默认构建到 Builds/windows-x64-<本次构建编号>/mmorpg.exe，日志在 Logs/ 下。
   -OutDir 可以指定一个尚不存在的输出目录。加 -Zip 会在其旁边生成 ZIP。
+  默认使用 BuildOptions.None。只有显式 -Development 才启用 DEVELOPMENT_BUILD，
+  结果与实际构建选项（含数值旗标）记录在输出目录的 build-manifest.json。
+  构建会话限制为 2 个 Job Worker、1 个导入 Worker，降低并发内存压力。
 .EXAMPLE
   pwsh -File tools/build_client.ps1
 .EXAMPLE
   pwsh -File tools/build_client.ps1 -OutDir 'Builds/QA Client' -Zip
+.EXAMPLE
+  pwsh -File tools/build_client.ps1 -Development -Zip
 #>
 [CmdletBinding()]
 param(
     [string]$UnityExe,
     [string]$OutDir,
+    [switch]$Development,
     [switch]$Zip
 )
 
@@ -40,7 +46,8 @@ if (-not $UnityExe -or -not (Test-Path -LiteralPath $UnityExe -PathType Leaf)) {
 $UnityExe = (Resolve-Path -LiteralPath $UnityExe).Path
 
 $buildId = "$(Get-Date -Format 'yyyyMMdd-HHmmss-fff')-$PID"
-if (-not $OutDir) { $OutDir = Join-Path $projectPath "Builds/windows-x64-$buildId" }
+$buildFlavor = if ($Development) { 'development' } else { 'release' }
+if (-not $OutDir) { $OutDir = Join-Path $projectPath "Builds/windows-x64-$buildFlavor-$buildId" }
 $OutDir = [IO.Path]::TrimEndingDirectorySeparator(
     $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutDir))
 if (Test-Path -LiteralPath $OutDir) {
@@ -61,15 +68,23 @@ $playerExe = Join-Path $OutDir 'mmorpg.exe'
 
 $unityArgs = @(
     '-batchmode', '-nographics', '-quit',
+    '-job-worker-count', '2',
+    '-desiredWorkerCount', '1',
+    '-standbyWorkerCount', '1',
+    '-idleWorkerShutdownDelay', '1000',
+    '-log-memory-performance-stats',
     '-projectPath', $projectPath,
     '-buildTarget', 'win64',
     '-standaloneBuildSubtarget', 'Player',
-    '-buildWindows64Player', $playerExe,
+    '-executeMethod', 'MmorpgClient.Editor.ClientPlayerBuild.Build',
+    '-clientOutputDirectory', $OutDir,
     '-logFile', $logFile
 )
+if ($Development) { $unityArgs += '-clientDevelopment' }
 
 Write-Host "[build] Unity $unityVersion | $UnityExe"
 Write-Host "[build] output=$OutDir"
+Write-Host "[build] flavor=$buildFlavor"
 Write-Host "[build] log=$logFile"
 $startInfo = [Diagnostics.ProcessStartInfo]::new($UnityExe)
 $startInfo.UseShellExecute = $false
@@ -95,7 +110,29 @@ if ($unityExitCode -ne 0 -or
     throw "客户端构建失败或产物不完整（Unity 退出码 $unityExitCode）。日志 $logFile"
 }
 
+$manifestPath = Join-Path $OutDir 'build-manifest.json'
+if (-not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) {
+    throw "Build manifest is missing: $manifestPath"
+}
+$manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+$expectedOptions = if ($Development) { 1 } else { 0 }
+# Unity's Mono can include deprecated zero-valued aliases in enum.ToString().
+# Numeric flags and the explicit flavor are authoritative; strings are diagnostic.
+$validRequestedOptions = $manifest.requestedBuildOptionsValue -is [int] -or $manifest.requestedBuildOptionsValue -is [long]
+$validActualOptions = $manifest.actualBuildOptionsValue -is [int] -or $manifest.actualBuildOptionsValue -is [long]
+if ($manifest.schemaVersion -ne 1 -or $manifest.result -cne 'Succeeded' -or
+    $manifest.target -cne 'StandaloneWindows64' -or $manifest.subtarget -cne 'Player' -or
+    $manifest.buildFlavor -cne $buildFlavor -or
+    -not $validRequestedOptions -or $manifest.requestedBuildOptionsValue -ne $expectedOptions -or
+    -not $validActualOptions -or (($manifest.actualBuildOptionsValue -band 1) -ne $expectedOptions) -or
+    $manifest.development -isnot [bool] -or $manifest.development -ne [bool]$Development -or
+    [IO.Path]::GetFullPath($manifest.executable) -cne [IO.Path]::GetFullPath($playerExe) -or
+    $manifest.executableSha256 -cne (Get-FileHash -LiteralPath $playerExe -Algorithm SHA256).Hash.ToLowerInvariant()) {
+    throw "Build manifest does not match the requested player or build flavor: $manifestPath"
+}
+
 Write-Host "[build] exe=$playerExe"
+Write-Host "[build] manifest=$manifestPath"
 if ($Zip) {
     # Use tar's ZIP64 support for large Unity resource files and archives.
     $tempZip = "$zipPath.$buildId.tmp"

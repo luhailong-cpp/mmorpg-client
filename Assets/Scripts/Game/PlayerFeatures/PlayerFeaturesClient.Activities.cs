@@ -30,6 +30,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         public void ClaimActivityVitalityReward(uint ruleId, ulong periodId, uint thresholdId, ulong configurationRevision)
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (HasPendingEquipmentCraft) { ActivityRewardFailure(EquipmentCraftPendingText); return; }
             RestoreActivityReward(playerId);
             if (BusyActivityReward) return;
             if (_activityRecoveryBlocked) { ActivityRewardFailure("领取恢复记录无法读取，请保留记录并联系支持"); return; }
@@ -78,6 +79,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         public void RecoverActivityReward()
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (HasPendingEquipmentCraft) return;
             RestoreActivityReward(playerId);
             if (_pendingActivityReward == null || _activityRecoveryBlocked || BusyActivityReward) return;
             if (_nowMs() < _activityRecoveryAtMs) return;
@@ -91,6 +93,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             if (_disposed || !_net.IsReady || _net.PlayerId == 0 || BusyActivityReward) return;
             if (!PrepareRequest(out var playerId)) return;
+            if (HasPendingEquipmentCraft) return;
             RestoreActivityReward(playerId);
             if (_pendingActivityReward == null || _activityRecoveryBlocked
                 || _activityRecoveryAttempts >= ActivityAutomaticRecoveryLimit || _nowMs() < _activityRecoveryAtMs) return;
@@ -205,14 +208,14 @@ namespace MmorpgClient.Game.PlayerFeatures
             if (selected != CharacterBagType) _bags[CharacterBagType] = null;
             RequestBag(selected);
             if (selected == CharacterBagType || selected != RequestedBagType || !IsCurrent(epoch, playerId)
-                || BusySort || BusyEquip || BusyMissionAction || BusyActivityReward || HasPendingActivityReward) return;
+                || BusySort || BusyEquip || BusyMissionAction || BusyActivityReward || HasPendingActivityReward || HasPendingEquipmentCraft) return;
             int generation = _bagRequest;
             int equipGeneration = _equipActionRequest;
             int missionGeneration = _missionRequest;
             bool Current() => IsCurrent(epoch, playerId) && generation == _bagRequest
                 && equipGeneration == _equipActionRequest
                 && missionGeneration == _missionRequest
-                && !BusySort && !BusyEquip && !BusyMissionAction && !BusyActivityReward && !HasPendingActivityReward;
+                && !BusySort && !BusyEquip && !BusyMissionAction && !BusyActivityReward && !HasPendingActivityReward && !HasPendingEquipmentCraft;
             _net.Call(SceneBagClientPlayerRpc.GetBagMessageId,
                 new GetBagRequest { BagType = CharacterBagType }, GetBagResponse.Parser,
                 response =>

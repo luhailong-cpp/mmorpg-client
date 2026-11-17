@@ -176,7 +176,7 @@ namespace Trade {
             "X1RSQURFEAISIwofQ09NTUVSQ0VfT1JERVJfS0lORF9DT05TSUdOTUVOVBAD",
             "EiQKIENPTU1FUkNFX09SREVSX0tJTkRfTUFSS0VUX01BVENIEAQSIwofQ09N",
             "TUVSQ0VfT1JERVJfS0lORF9BVUNUSU9OX0xPVBAFEicKI0NPTU1FUkNFX09S",
-            "REVSX0tJTkRfUk1CX0NPTlNJR05NRU5UEAYq3QMKEkNvbW1lcmNlT3JkZXJT",
+            "REVSX0tJTkRfUk1CX0NPTlNJR05NRU5UEAYqpAQKEkNvbW1lcmNlT3JkZXJT",
             "dGF0ZRIkCiBDT01NRVJDRV9PUkRFUl9TVEFURV9VTlNQRUNJRklFRBAAEi0K",
             "KUNPTU1FUkNFX09SREVSX1NUQVRFX1dBSVRJTkdfQ09ORklSTUFUSU9OEAES",
             "KQolQ09NTUVSQ0VfT1JERVJfU1RBVEVfQVdBSVRJTkdfUEFZTUVOVBACEiIK",
@@ -187,10 +187,11 @@ namespace Trade {
             "RBAHEicKI0NPTU1FUkNFX09SREVSX1NUQVRFX1JFRlVORF9QRU5ESU5HEAgS",
             "IQodQ09NTUVSQ0VfT1JERVJfU1RBVEVfUkVGVU5ERUQQCRIfChtDT01NRVJD",
             "RV9PUkRFUl9TVEFURV9NQU5VQUwQChIgChxDT01NRVJDRV9PUkRFUl9TVEFU",
-            "RV9TRVRUTEVEEAsqawoPTWFya2V0T3JkZXJTaWRlEiEKHU1BUktFVF9PUkRF",
-            "Ul9TSURFX1VOU1BFQ0lGSUVEEAASGQoVTUFSS0VUX09SREVSX1NJREVfQlVZ",
-            "EAESGgoWTUFSS0VUX09SREVSX1NJREVfU0VMTBACQgdaBXRyYWRlYgZwcm90",
-            "bzM="));
+            "RV9TRVRUTEVEEAsSIgoeQ09NTUVSQ0VfT1JERVJfU1RBVEVfUkVWRVJTSU5H",
+            "EAwSIQodQ09NTUVSQ0VfT1JERVJfU1RBVEVfUkVWRVJTRUQQDSprCg9NYXJr",
+            "ZXRPcmRlclNpZGUSIQodTUFSS0VUX09SREVSX1NJREVfVU5TUEVDSUZJRUQQ",
+            "ABIZChVNQVJLRVRfT1JERVJfU0lERV9CVVkQARIaChZNQVJLRVRfT1JERVJf",
+            "U0lERV9TRUxMEAJCB1oFdHJhZGViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Trade.CommerceOrderKind), typeof(global::Trade.CommerceOrderState), typeof(global::Trade.MarketOrderSide), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -276,6 +277,12 @@ namespace Trade {
     [pbr::OriginalName("COMMERCE_ORDER_STATE_REFUNDED")] Refunded = 9,
     [pbr::OriginalName("COMMERCE_ORDER_STATE_MANUAL")] Manual = 10,
     [pbr::OriginalName("COMMERCE_ORDER_STATE_SETTLED")] Settled = 11,
+    /// <summary>
+    /// 官方订单的付款被渠道修订之后(用户在渠道侧退款、作废,或撤销又被撤回;payment-recharge.md §22.6):
+    /// REVERSING 正在把游戏内发放收敛到渠道的最新结论(扣回或补发),REVERSED 已扣回。补发完成回到 DELIVERED。
+    /// </summary>
+    [pbr::OriginalName("COMMERCE_ORDER_STATE_REVERSING")] Reversing = 12,
+    [pbr::OriginalName("COMMERCE_ORDER_STATE_REVERSED")] Reversed = 13,
   }
 
   public enum MarketOrderSide {

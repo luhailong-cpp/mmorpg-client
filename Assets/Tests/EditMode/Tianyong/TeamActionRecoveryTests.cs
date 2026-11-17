@@ -277,6 +277,22 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         private string RateLimitError => "server tip=" + (uint)common_error.KRateLimitExceeded;
+
+        [Test]
+        public void MissingTargetTeamReleasesOldRequestAndAllowsCorrectedPlayerNumber()
+        {
+            var original = ApplyJoinTeamRequest.Parser.ParseFrom(BeginApplication(out _));
+            var rejected = NoTeamReply();
+            rejected.ErrorMessage = new TipInfoMessage { Id = (uint)team_error.KTeamHasNotTeamId };
+            _net.Reply(rejected);
+            Assert.That(_store.Load(10), Is.Empty);
+            Assert.That(_client.Status, Does.Contain("核对其玩家编号"));
+            _now += TeamClient.MessageWindowSeconds + 1;
+            Assert.That(_client.ApplyJoin(157), Is.True, _client.Status);
+            var corrected = (ApplyJoinTeamRequest)LastRequest;
+            Assert.That(corrected.TargetPlayerId, Is.EqualTo(157UL));
+            Assert.That(corrected.RequestId, Is.Not.EqualTo(original.RequestId));
+        }
         private uint LastId => _net.Calls[_net.Calls.Count - 1].Id;
         private IMessage LastRequest => _net.Calls[_net.Calls.Count - 1].Request;
 

@@ -59,6 +59,45 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void FivePlayerPartyRendersAllCardsWithoutOverlapAndDimsTheDeadMember()
+        {
+            var fixture = new GameObject("FivePlayerPartyTest", typeof(RectTransform), typeof(Canvas));
+            var party = new BattlePartyCards(fixture.transform);
+            try
+            {
+                var members = new List<BattleActorState>();
+                for (ulong id = 1; id <= 5; id++)
+                    members.Add(new BattleActorState
+                    {
+                        ActorId = id, ActorType = eBattleActorType.BattleActorTypePlayer,
+                        MaxHealth = 100, MaxMana = 50, IsDead = id == 5,
+                        Attributes = new BaseAttributesComp { Health = id == 5 ? 0UL : 100UL, Mana = 50 },
+                    });
+                party.Refresh(members, id => new BattleTileInfo { Name = $"队员{id}", IsSelf = id == 1 });
+
+                Assert.AreEqual(5, party.Count);
+                var root = fixture.transform.Find("PartyCards");
+                Assert.AreEqual(5, root.childCount);
+                var visible = BattleUiLayout.VisibleDesignRect(1920f, 1080f);
+                for (int i = 0; i < members.Count; i++)
+                {
+                    var card = (RectTransform)root.Find("Card_" + members[i].ActorId);
+                    var expected = BattlePartyCards.CardRect(i);
+                    Assert.AreEqual(new Vector2(expected.x, -expected.y), card.anchoredPosition);
+                    Assert.AreEqual(new Vector2(expected.width, expected.height), card.sizeDelta);
+                    Assert.IsTrue(BattleUiLayout.Contains(visible, expected));
+                    if (i > 0) Assert.IsFalse(BattlePartyCards.CardRect(i - 1).Overlaps(expected));
+                }
+                Assert.AreEqual(0.45f, root.Find("Card_5").GetComponent<CanvasGroup>().alpha);
+            }
+            finally
+            {
+                party.Clear();
+                UnityEngine.Object.DestroyImmediate(fixture);
+            }
+        }
+
+        [Test]
         public void LegacyMatchWidthOrHeight_WouldClipCancelAutoAt1080p()
         {
             // 复审证据:1920×1080、match 0.5 → scale 0.866,画布宽 2217,两侧各裁 171.5px

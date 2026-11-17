@@ -109,7 +109,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>
         /// 补弹一局近期战斗结果(落地补查到的、玩家还没看过的那一局,服务端 docs/design/battle-result-recovery.md §7)。
-        /// 胜负口径与 <see cref="Show"/> 相同;记录里没有经验与战后血蓝(只记实际入账的货币与物品),所以不列这两项。
+        /// 胜负口径与 <see cref="Show"/> 相同，奖励明细取已提交的战果。
         /// </summary>
         public void ShowRecovered(PlayerBattleResult result)
         {
@@ -324,14 +324,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         private static readonly ulong MaxUnixMilliseconds = (ulong)DateTimeOffset.MaxValue.ToUnixTimeMilliseconds();
 
         /// <summary>
-        /// 补弹结果的明细行(纯逻辑,EditMode 可测),取自服务端存下的近期战斗结果:只记实际入账的货币与物品,
-        /// 没有经验与战后血蓝。作废局与现场面板用同一套说明行。
+        /// 补弹结果取自服务端存下的近期战果。作废局与现场面板共用说明行。
         /// </summary>
         public static List<string> BuildRecoveredLines(PlayerBattleResult result)
         {
             if (result == null) return new List<string> { "(未收到结算数据)" };
             if (BattleResultRecoveryClient.IsVoid(result)) return BuildVoidLines();
             var lines = new List<string>();
+            if (result.ExpGain > 0) lines.Add($"经验  +{result.ExpGain}");
             if (result.Currencies.Count > 0)
             {
                 foreach (var currency in result.Currencies)

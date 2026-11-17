@@ -314,7 +314,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float CardWidth = 330f;
         public const float CardHeight = 92f;
         public const float Gap = 8f;
-        public const int MaxCards = 4;
+        public const int MaxCards = 5;
         public const float RightMargin = 40f;
         public const float Top = 20f;
 

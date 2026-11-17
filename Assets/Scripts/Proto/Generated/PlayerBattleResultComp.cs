@@ -26,7 +26,7 @@ public static partial class PlayerBattleResultCompReflection {
           "X2NvbXAucHJvdG8iQwoaUGxheWVyQmF0dGxlUmVzdWx0Q3VycmVuY3kSFQoN",
           "Y3VycmVuY3lfdHlwZRgBIAEoDRIOCgZhbW91bnQYAiABKAQiPgoWUGxheWVy",
           "QmF0dGxlUmVzdWx0SXRlbRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNv",
-          "dW50GAIgASgEIsADChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
+          "dW50GAIgASgEItIDChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
           "cRgBIAEoBBIRCgliYXR0bGVfaWQYAiABKAQSDwoHb3V0Y29tZRgDIAEoDRIS",
           "Cgp0ZWFtX2luZGV4GAQgASgNEg8KB2lzX2RlYWQYBSABKAgSDAoEZmxlZBgG",
           "IAEoCBIUCgx0b3RhbF9yb3VuZHMYByABKA0SFgoOZmluaXNoZWRfYXRfbXMY",
@@ -36,15 +36,16 @@ public static partial class PlayerBattleResultCompReflection {
           "b25zdW1lZBgMIAMoCzIXLlBsYXllckJhdHRsZVJlc3VsdEl0ZW0SFwoPbGlu",
           "ZXNfdHJ1bmNhdGVkGA0gASgIEgwKBHNlZW4YDiABKAgSEgoKbWF0Y2hfbW9k",
           "ZRgPIAEoDRIYChBiYXR0bGVfY29uZmlnX2lkGBAgASgNEhQKDGl0ZW1zX21h",
-          "aWxlZBgRIAEoCCJXChZQbGF5ZXJCYXR0bGVSZXN1bHRDb21wEhcKD2xhc3Rf",
-          "cmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRyaWVzGAIgAygLMhMuUGxheWVyQmF0",
-          "dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
+          "aWxlZBgRIAEoCBIQCghleHBfZ2FpbhgSIAEoBCJXChZQbGF5ZXJCYXR0bGVS",
+          "ZXN1bHRDb21wEhcKD2xhc3RfcmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRyaWVz",
+          "GAIgAygLMhMuUGxheWVyQmF0dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21wb25l",
+          "bnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultCurrency), global::PlayerBattleResultCurrency.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultItem), global::PlayerBattleResultItem.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultComp), global::PlayerBattleResultComp.Parser, new[]{ "LastResultSeq", "Entries" }, null, null, null, null)
         }));
   }
@@ -589,6 +590,7 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     matchMode_ = other.matchMode_;
     battleConfigId_ = other.battleConfigId_;
     itemsMailed_ = other.itemsMailed_;
+    expGain_ = other.expGain_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -848,6 +850,21 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
   }
 
+  /// <summary>Field number for the "exp_gain" field.</summary>
+  public const int ExpGainFieldNumber = 18;
+  private ulong expGain_;
+  /// <summary>
+  /// 本局实际计入 LevelComp.total_exp 的经验；旧结果缺字段为 0
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ExpGain {
+    get { return expGain_; }
+    set {
+      expGain_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -880,6 +897,7 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (MatchMode != other.MatchMode) return false;
     if (BattleConfigId != other.BattleConfigId) return false;
     if (ItemsMailed != other.ItemsMailed) return false;
+    if (ExpGain != other.ExpGain) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -904,6 +922,7 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (MatchMode != 0) hash ^= MatchMode.GetHashCode();
     if (BattleConfigId != 0) hash ^= BattleConfigId.GetHashCode();
     if (ItemsMailed != false) hash ^= ItemsMailed.GetHashCode();
+    if (ExpGain != 0UL) hash ^= ExpGain.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -981,6 +1000,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(136, 1);
       output.WriteBool(ItemsMailed);
     }
+    if (ExpGain != 0UL) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt64(ExpGain);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1050,6 +1073,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(136, 1);
       output.WriteBool(ItemsMailed);
     }
+    if (ExpGain != 0UL) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt64(ExpGain);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1104,6 +1131,9 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (ItemsMailed != false) {
       size += 2 + 1;
+    }
+    if (ExpGain != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(ExpGain);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1161,6 +1191,9 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (other.ItemsMailed != false) {
       ItemsMailed = other.ItemsMailed;
+    }
+    if (other.ExpGain != 0UL) {
+      ExpGain = other.ExpGain;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1249,6 +1282,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
           ItemsMailed = input.ReadBool();
           break;
         }
+        case 144: {
+          ExpGain = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -1334,6 +1371,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
         }
         case 136: {
           ItemsMailed = input.ReadBool();
+          break;
+        }
+        case 144: {
+          ExpGain = input.ReadUInt64();
           break;
         }
       }

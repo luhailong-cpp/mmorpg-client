@@ -25,6 +25,11 @@ namespace MmorpgClient.Game.Battle.Presentation
         public const int Miss = 12;
         public const int Block = 13;
         public const int Mana = 14;
+        public const int Capture = 16;
+        public const int Revive = 17;
+        public const int MaxHealth = 18;
+        public const int PetRetreat = 19;
+        public const int Shield = 20;
     }
 
     /// <summary>一拍演出的类型。</summary>
@@ -50,6 +55,11 @@ namespace MmorpgClient.Game.Battle.Presentation
         Flee,
         /// <summary>孤立的 MP 变化。</summary>
         Mana,
+        Capture,
+        Revive,
+        MaxHealth,
+        PetRetreat,
+        Shield,
     }
 
     /// <summary>拍内每个目标承受的效果类型。</summary>
@@ -68,6 +78,10 @@ namespace MmorpgClient.Game.Battle.Presentation
         /// 表现层按 HealthAfter 与当前 HP 比较决定按伤害还是治疗演出(<see cref="TurnPlan.TickIsHeal"/>)。
         /// </summary>
         Tick,
+        Revive,
+        MaxHealth,
+        PetRetreat,
+        Shield,
     }
 
     /// <summary>
@@ -95,6 +109,9 @@ namespace MmorpgClient.Game.Battle.Presentation
         /// </summary>
         public long ManaDelta;
         public bool HasManaDelta;
+        public ulong MaxHealthAfter;
+        public ulong ShieldAfter;
+        public ulong Absorbed;
 
         public static TurnEventInput From(BattleEventItem ev)
         {
@@ -112,6 +129,9 @@ namespace MmorpgClient.Game.Battle.Presentation
                 IsCritical = ev.IsCritical,
                 Success = ev.Success,
                 HealthAfter = ev.TargetHealthAfter,
+                MaxHealthAfter = ev.TargetMaxHealthAfter,
+                ShieldAfter = ev.ShieldAfter,
+                Absorbed = ev.Absorbed,
                 GroupId = ev.GroupId,
                 HitIndex = unchecked((int)ev.HitIndex),
                 ManaAfter = ev.TargetManaAfter,
@@ -147,6 +167,9 @@ namespace MmorpgClient.Game.Battle.Presentation
         /// 表现层可据此在拍末不回 idle)。
         /// </summary>
         public bool Died;
+        public ulong MaxHealthAfter;
+        public ulong ShieldAfter;
+        public ulong Absorbed;
     }
 
     /// <summary>演出指令的最小单位:一拍(拍内多目标并行,拍间串行)。</summary>
@@ -167,6 +190,7 @@ namespace MmorpgClient.Game.Battle.Presentation
         public uint GroupId;
         /// <summary>FLEE 等带成败的事件结果(拍级)。</summary>
         public bool Success;
+        public ulong CaptureTargetId;
         /// <summary>出手者是否我方(Build(TurnResultS2C, myTeam) 按 state.actors 判定;未知为 false)。</summary>
         public bool ActorIsMine;
         /// <summary>出手者自身的 MP 变化(施法耗蓝);HasActorManaAfter=false 表示本拍无此信息。</summary>
@@ -379,6 +403,31 @@ namespace MmorpgClient.Game.Battle.Presentation
                         break;
                     }
 
+                    case BattleEventCodes.Revive:
+                    case BattleEventCodes.MaxHealth:
+                    case BattleEventCodes.PetRetreat:
+                    case BattleEventCodes.Shield:
+                    {
+                        // 死亡后复活不能并回之前的攻击拍，否则倒地回调会再次隐藏已经复活的单位。
+                        FlushDeaths();
+                        if (plan.Beats.Count > 0 && plan.Beats[plan.Beats.Count - 1].Kind == BeatKind.Death)
+                            plan.Beats[plan.Beats.Count - 1].OverlapNextSeconds = 0f;
+                        if (ev.Type == BattleEventCodes.Revive)
+                            for (int d = plan.Beats.Count - 1; d >= 0; --d)
+                                if (plan.Beats[d].Kind == BeatKind.Death && plan.Beats[d].ActorId == ev.TargetId)
+                                { plan.Beats[d].OverlapNextSeconds = 0f; break; }
+                        var kind = ev.Type == BattleEventCodes.Revive ? BeatKind.Revive :
+                            ev.Type == BattleEventCodes.MaxHealth ? BeatKind.MaxHealth :
+                            ev.Type == BattleEventCodes.PetRetreat ? BeatKind.PetRetreat : BeatKind.Shield;
+                        var effect = ev.Type == BattleEventCodes.Revive ? TargetEffect.Revive :
+                            ev.Type == BattleEventCodes.MaxHealth ? TargetEffect.MaxHealth :
+                            ev.Type == BattleEventCodes.PetRetreat ? TargetEffect.PetRetreat : TargetEffect.Shield;
+                        var beat = NewBeat(plan, kind, ev.SourceId, LoneBuffSeconds, ev, i, isMine);
+                        AddTarget(beat, ev, effect);
+                        current = null;
+                        break;
+                    }
+
                     case BattleEventCodes.Heal:
                     {
                         if (CanMergeSupport(current, ev, anyGroup))
@@ -486,6 +535,16 @@ namespace MmorpgClient.Game.Battle.Presentation
                         break;
                     }
 
+                    case BattleEventCodes.Capture:
+                    {
+                        FlushDeaths();
+                        var beat = NewBeat(plan, BeatKind.Capture, ev.SourceId, FleeSeconds, ev, i, isMine);
+                        beat.Success = ev.Success;
+                        beat.CaptureTargetId = ev.TargetId;
+                        current = null;
+                        break;
+                    }
+
                     default:
                         // 未知/NONE:忽略
                         break;
@@ -562,8 +621,11 @@ namespace MmorpgClient.Game.Battle.Presentation
                 Value = ev.Value,
                 IsCrit = ev.IsCritical,
                 HealthAfter = ev.HealthAfter,
+                MaxHealthAfter = ev.MaxHealthAfter,
+                ShieldAfter = ev.ShieldAfter,
+                Absorbed = ev.Absorbed,
                 HasHealthAfter = effect == TargetEffect.Damage || effect == TargetEffect.Heal || effect == TargetEffect.Block
-                                 || effect == TargetEffect.Tick,
+                                 || effect == TargetEffect.Tick || effect == TargetEffect.Revive || effect == TargetEffect.MaxHealth,
                 ManaAfter = ev.ManaAfter,
                 HasManaAfter = ev.HasManaAfter,
                 BuffId = ev.BuffId,

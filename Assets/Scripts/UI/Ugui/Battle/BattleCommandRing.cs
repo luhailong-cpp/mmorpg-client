@@ -14,7 +14,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         Spell,
         Defend,
         Item,
-        Summon,
+        Capture,
         Flee,
         Auto,
     }
@@ -29,8 +29,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
     /// <summary>
     /// 右下问道式命令环(turn-battle-presentation.md §4):
-    ///  - UI/command_ring.png 做底,攻击/法术/防御/道具/召唤/逃跑/自动 七键圆形排布(BattleHudLogic.RingPosition);
-    ///  - 召唤预留置灰;PVP 逃跑置灰;不可行动时除"自动"外全部置灰;
+    ///  - UI/command_ring.png 做底,攻击/法术/防御/道具/捕捉/逃跑/自动 七键圆形排布(BattleHudLogic.RingPosition);
+    ///  - 仅野怪允许捕捉;PVP 逃跑置灰;不可行动时除"自动"外全部置灰;
     ///  - 自动战斗中整环换成"角色 / 宠物 / 取消自动"三键(金框方形)。
     /// </summary>
     public sealed class BattleCommandRing
@@ -47,7 +47,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const float AutoKeyGap = 16f;
         public const int AutoKeyCount = 3;
 
-        private static readonly string[] Labels = { "攻击", "法术", "防御", "道具", "召唤", "逃跑", "自动" };
+        private static readonly string[] Labels = { "攻击", "法术", "防御", "道具", "捕捉", "逃跑", "自动" };
 
         /// <summary>命令环第 index 键的矩形(设计坐标,y 向下)。</summary>
         public static Rect ButtonRect(int index)
@@ -135,10 +135,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         }
 
         /// <summary>
-        /// 可用态:canAct 影响攻击/法术/防御/道具;canFlee 单独控制逃跑;召唤恒灰;
+        /// 可用态:canAct 影响攻击/法术/防御/道具;canFlee、canCapture分别控制逃跑与捕捉;
         /// autoInteractable 控制"自动"键,autoOn 决定其文案。
         /// </summary>
-        public void SetState(bool canAct, bool canFlee, bool autoInteractable, bool autoOn)
+        public void SetState(bool canAct, bool canFlee, bool autoInteractable, bool autoOn, bool canCapture = false, bool canItem = true,
+            bool canRecallPet = false)
         {
             for (int i = 0; i < _buttons.Count; i++)
             {
@@ -146,14 +147,16 @@ namespace MmorpgClient.UI.Ugui.Battle
                 bool interactable;
                 switch (command)
                 {
-                    case BattleCommand.Summon: interactable = false; break;
+                    case BattleCommand.Capture: interactable = canAct && (canCapture || canRecallPet); break;
                     case BattleCommand.Flee: interactable = canAct && canFlee; break;
+                    case BattleCommand.Item: interactable = canAct && canItem; break;
                     case BattleCommand.Auto: interactable = autoInteractable; break;
                     default: interactable = canAct; break;
                 }
                 _buttons[i].SetInteractable(interactable);
             }
             _buttons[(int)BattleCommand.Auto].SetText(autoOn ? "自动:开" : "自动");
+            _buttons[(int)BattleCommand.Capture].SetText(canRecallPet ? "召回" : "捕捉");
         }
 
         public void SetAutoKeysInteractable(bool interactable)

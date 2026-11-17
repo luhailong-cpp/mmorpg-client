@@ -90,14 +90,14 @@ namespace MmorpgClient.UI.Ugui.Pet
             AttributeFidelityLayout.Place(_statusText.rectTransform,1108.8f,676.8f,1088,38.4f);AttributeFidelityLayout.Font(_statusText,19.2f,null,true);
             if(string.IsNullOrEmpty(_statusText.text))_statusText.text="分配后点击确认，才会保存本次加点";
             var hidden=AttributeFidelityLayout.Find(_root,"TaijiWatermark");if(hidden!=null)hidden.gameObject.SetActive(false);
-            var menu=AttributeFidelityLayout.MoreMenu(_root,496);
-            string[] tabs={"属性","加点","技能","坐骑","图鉴"};for(int i=0;i<tabs.Length;i++)
+            var menu=AttributeFidelityLayout.MoreMenu(_root,560);
+            string[] tabs={"属性","加点","技能","商店","图鉴","捕捉"};for(int i=0;i<tabs.Length;i++)
             {
                 var rect=AttributeFidelityLayout.Find(_root,"Tab"+tabs[i]+"Plate");if(rect==null)continue;
                 AttributeFidelityLayout.MenuAction(_root,menu,"Tab"+tabs[i]+"Plate",i);
             }
-            AttributeFidelityLayout.MenuAction(_root,menu,"CultivationHelp",5);
-            AttributeFidelityLayout.MenuAction(_root,menu,"Resistance",6);
+            AttributeFidelityLayout.MenuAction(_root,menu,"CultivationHelp",6);
+            AttributeFidelityLayout.MenuAction(_root,menu,"Resistance",7);
             AttributeFidelityLayout.Footer(_root,"山海相伴，灵契同心",()=>SetStatus("拖动滑杆或使用加减号分配；确认后提交服务器。重置撤销未确认加点，洗点规则以服务器为准。"));
         }
     }

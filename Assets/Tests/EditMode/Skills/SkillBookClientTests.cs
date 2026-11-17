@@ -62,6 +62,37 @@ namespace MmorpgClient.Tests.EditMode.Skills
         }
 
         [Test]
+        public void BattleCatalogPrefetchKeepsTheVisibleBookAndCachesRevivalRules()
+        {
+            LoadBook(Book(5000, Row(1101, 1, 10, 200)));
+            var visible = _client.State;
+            bool completed = false;
+            _client.EnsureBattleCatalog(88, success => completed = success);
+            var revive = Row(2101, 0, 10, 200, team: 2);
+            revive.ClassId = 0;
+            revive.AllowDeadTarget = true;
+            var pet = Book(5000, revive);
+            pet.PetId = 88;
+            _net.Reply(pet);
+            Assert.That(completed, Is.True);
+            Assert.That(_client.State, Is.SameAs(visible));
+            Assert.That(_client.FindBattlePresentation(2101).allowDeadTarget, Is.True);
+            _net.Disconnect();
+            Assert.That(_client.FindBattlePresentation(2101), Is.Null);
+        }
+
+        [Test]
+        public void WrongPetResponseCannotReplaceTheSelectedBook()
+        {
+            _client.Refresh(SkillBookContext.Pet(88, "小白"));
+            var wrong = Book(5000, Row(1101, 1, 10, 200));
+            wrong.PetId = 99;
+            _net.Reply(wrong);
+            Assert.That(_client.State.Snapshot, Is.Null);
+            Assert.That(_client.State.Error, Does.Contain("归属不匹配"));
+        }
+
+        [Test]
         public void RefreshSendsListSkillsAndReplacesTheWholeSnapshot()
         {
             _client.Refresh(SkillBookContext.Character());
@@ -241,19 +272,24 @@ namespace MmorpgClient.Tests.EditMode.Skills
         }
 
         [Test]
-        public void PetContextIsReadOnlyAndNeverFakesSkills()
+        public void PetContextLoadsAndUpgradesTheOwnedInstance()
         {
             var pet = SkillBookContext.Pet(88, "小白");
             _client.Refresh(pet);
-            Assert.That(_net.Calls, Is.Empty, "没有宠物技能协议,不发任何请求");
+            Assert.That(((ListSkillsRequest)_net.LastRequest).PetId, Is.EqualTo(88UL));
+            var book = Book(5000, Row(1101, 0, 10, 200));
+            book.PetId = 88;
+            _net.Reply(book);
             var state = _client.State;
             Assert.That(pet.Matches(state.Context), Is.True);
-            Assert.That(state.IsReadOnly, Is.True);
-            Assert.That(state.Snapshot.Entries, Is.Empty);
-            Assert.That(state.Message, Is.EqualTo(SkillBookClient.PetUnsupportedMessage));
+            Assert.That(state.IsReadOnly, Is.False);
+            Assert.That(state.Snapshot.Find(1101).Rank, Is.Zero);
 
             _client.Upgrade(pet, 1101, 0, 1);
-            Assert.That(_net.Calls, Is.Empty);
+            Assert.That(((UpgradeSkillRequest)_net.LastRequest).PetId, Is.EqualTo(88UL));
+            book.Catalog[0].Rank = 1;
+            _net.Reply(new UpgradeSkillResponse { State = book, UpgradedCount = 1 });
+            Assert.That(_client.State.Snapshot.Find(1101).Rank, Is.EqualTo(1));
         }
 
         [Test]
@@ -261,9 +297,10 @@ namespace MmorpgClient.Tests.EditMode.Skills
         {
             LoadBook(Book(100000, Row(1102, 1, 10, 500)));
             _client.Upgrade(SkillBookContext.Character(), 1102, 1, 1);
+            var replyCharacter = _net.ReplyHandler;
             var pet = SkillBookContext.Pet(88, "小白");
             _client.Refresh(pet);
-            _net.Reply(new UpgradeSkillResponse { UpgradedCount = 1, State = Book(99500, Row(1102, 2, 10, 1000)) });
+            replyCharacter(new UpgradeSkillResponse { UpgradedCount = 1, State = Book(99500, Row(1102, 2, 10, 1000)) });
             Assert.That(pet.Matches(_client.State.Context), Is.True);
 
             _client.Refresh(SkillBookContext.Character());  // 回到角色页重新拉取
@@ -306,6 +343,7 @@ namespace MmorpgClient.Tests.EditMode.Skills
         public List<uint> Calls { get; } = new();
         public IMessage LastRequest;
         private Action<IMessage> _pending;
+        public Action<IMessage> ReplyHandler => _pending;
         private Action<RpcStatus> _error;
         public void Reply(IMessage response) => _pending(response);
         public void Fail(string error) => Fail(RpcStatus.Timeout(error));

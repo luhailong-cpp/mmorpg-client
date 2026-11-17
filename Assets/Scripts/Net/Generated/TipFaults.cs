@@ -44,6 +44,7 @@ namespace MmorpgClient.Net.Generated
             9000u,
             14008u,
             14041u,
+            16004u,
             26016u,
             27004u,
             27007u,

@@ -825,10 +825,10 @@ namespace MmorpgClient.Game.Battle
         /// <summary>
         /// 提交本回合行动。返回 true = 请求已发出(结果仍以 NotifyTurnResult / OnError 为准);
         /// false = 本地拒绝、未发任何网络请求(相位不对 / 指令为空 / 直连未就绪),原因已经 OnError 抛出。
-        /// UI 只在返回 true 时把本回合标为「已提交」。失败不重发:请求没有回合号(D40 未做),
-        /// 重发可能落进下一回合,宁可让引擎的回合超时兜底默认出手。
+        /// 请求携带正在指挥的 actor 与回合号；完成回调让 UI 按单位恢复被拒绝的指令入口。
+        /// 不自动重发；服务器校验归属、回合与重复提交。
         /// </summary>
-        public bool SubmitAction(BattleAction action)
+        public bool SubmitAction(BattleAction action, ulong actorId = 0, Action<bool> completed = null, uint roundIndex = 0)
         {
             if (Phase != BattlePhase.WaitingAction)
             {
@@ -851,15 +851,19 @@ namespace MmorpgClient.Game.Battle
             {
                 BattleId = _battleId,
                 Action = action,
+                ActorId = actorId == 0 ? MyPlayerId : actorId,
+                RoundIndex = roundIndex != 0 ? roundIndex : State?.RoundIndex ?? 0,
             };
             _net.Call(MessageIds.SubmitBattleAction, req, SubmitBattleActionResponse.Parser,
                 resp =>
                 {
-                    if (HasTip(resp.ErrorMessage))
+                    bool success = !HasTip(resp.ErrorMessage);
+                    if (!success)
                         OnError?.Invoke(DescribeActionTip("提交行动失败", resp.ErrorMessage));
+                    completed?.Invoke(success);
                     // 成功不改相位:等 NotifyTurnResult 驱动 Resolving
                 },
-                err => OnError?.Invoke($"提交行动失败:{err}"));
+                err => { OnError?.Invoke($"提交行动失败:{err}"); completed?.Invoke(false); });
             return true;
         }
 

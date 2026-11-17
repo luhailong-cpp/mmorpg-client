@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MmorpgClient.Game;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Sync;
@@ -82,6 +83,12 @@ namespace MmorpgClient.UI.Ugui.Team
             WorldHudNavigation.Register(WorldHudEntry.Team, (RectTransform)_entry.transform, _entry, _entryLabel);
             _window = new TeamWindow(design);
             _window.FreshViewAvailable = () => _client?.HasFreshView == true;
+            _window.GetNearbyPlayers = () =>
+            {
+                if (!_available || _directory == null) return null;
+                _directory.Refresh(TeamInvitationSource.Nearby);
+                return new List<TeamRole>(_directory.Candidates);
+            };
             _invitations = new TeamInvitationWindow(design);
             _invitations.FreshViewAvailable = () => _client?.HasFreshView == true;
             _window.RefreshRequested += () => { if (_available) _client?.Refresh(); };
@@ -267,7 +274,7 @@ namespace MmorpgClient.UI.Ugui.Team
             // A probe answered without a view (server read failure) leaves a placeholder "no team"
             // snapshot; the window must show "not synced" rather than offer Create / Apply to a member.
             State.Sync(_client.Snapshot, _client.Invites, _client.HasLoaded && _client.HasView, _client.ServiceAvailable,
-                _client.PendingAction, _client.PendingTarget, _client.HighlightPlayerId, _client.Status,
+                _client.MatchNetworkPreparing ? TeamAction.StartMatch : _client.PendingAction, _client.PendingTarget, _client.HighlightPlayerId, _client.Status,
                 _client.InvitationCoolingDown, _client.CreationCoolingDown);
         }
 

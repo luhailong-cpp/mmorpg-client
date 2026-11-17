@@ -41,6 +41,7 @@ namespace MmorpgClient.UI.Ugui.Team
         public bool IsModalOpen => _modal != null;
         /// <summary>生产宿主提供队伍视图新鲜度；离线预览可省略，不影响只读刷新与浏览。</summary>
         public Func<bool> FreshViewAvailable { get; set; }
+        public Func<IReadOnlyList<TeamRole>> GetNearbyPlayers { get; set; }
         // Kept for callers that open a particular list. Both lists remain visible.
         public TeamPage Page { get; private set; }
         public int MemberPageIndex { get; private set; }
@@ -63,6 +64,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private readonly TMP_Text _memberPageLabel, _applicationPageLabel, _refreshLabel, _startMatchLabel;
         private readonly Button _refresh, _close, _memberPrevious, _memberNext, _applicationPrevious, _applicationNext;
         private readonly Button _startMatch, _invite, _disband, _leave, _create, _apply;
+        private readonly Button _teamNumber;
         private TeamUiState _state;
         private GameObject _returnFocus, _modalReturnFocus;
         // Row buttons are rebuilt by every Render, so the opener is also remembered by name and list.
@@ -93,6 +95,9 @@ namespace MmorpgClient.UI.Ugui.Team
             _summary=Label(frame,"队伍信息尚未同步",1207,112,332,36,20,BodyInk);
             _teamCountValue=Label(frame,"",1288,114,51,36,20,BodyInk,TextAlignmentOptions.Center);
             _teamIdValue=Label(frame,"",1462,114,68,36,20,BodyInk,TextAlignmentOptions.Center);
+            _teamNumber = QdaoUguiFactory.CreateHitButton("ShowTeamNumbers", frame, 1344, 111, 198, 43);
+            _teamNumber.navigation = new Navigation { mode = Navigation.Mode.Automatic };
+            _teamNumber.onClick.AddListener(ShowTeamNumbers);
             Art(frame,"badge_self",1545,110,159,44);
             _leaderState=Label(frame,"待同步",1553,110,143,44,24,Cream,TextAlignmentOptions.Center);
             _exactLeaderState=ExactArt(frame,"leader-state",1543,108,161,47);
@@ -119,7 +124,7 @@ namespace MmorpgClient.UI.Ugui.Team
             _footerSync=Label(frame,"队伍信息待同步",288,734,258,43,23,BodyMuted);
             _exactFooterSync=ExactArt(frame,"footer-sync",284,732,174,45);
             // Added gameplay actions retain fixed slots inside the original panel's footer.
-            _startMatch=Control(frame,"开始战斗",568,733,166,44,ConfirmStartMatch,true,size:23);_startMatch.name="StartTeamMatch";
+            _startMatch=Control(frame,"开始 PVE",568,733,166,44,ConfirmStartMatch,true,size:23);_startMatch.name="StartTeamMatch";
             _startMatchLabel=_startMatch.GetComponentInChildren<TMP_Text>(true);
             _invite=Control(frame,"邀请道友",741,733,166,44,PromptInvite,size:23);_invite.name="InviteToTeam";
             _disband=Control(frame,"解散队伍",914,733,166,44,ConfirmDisband,size:23);_disband.name="DisbandTeam";
@@ -241,6 +246,7 @@ namespace MmorpgClient.UI.Ugui.Team
             _summary.color=hasTeam?Color.clear:BodyInk;
             _teamCountValue.text=hasTeam?$"{members}/{capacity}":"";
             _teamIdValue.text=hasTeam?data.TeamId.ToString():"";
+            _teamNumber.gameObject.SetActive(hasTeam);
             _leaderState.text=hasTeam?(leader?"你是队长":"你是队员"):"尚未入队";
             _exactLeaderState.gameObject.SetActive(hasTeam&&leader);
             _leaderState.color=hasTeam&&leader?Color.clear:Cream;
@@ -338,7 +344,7 @@ namespace MmorpgClient.UI.Ugui.Team
             Footer(_create, noTeam, CanCreate);
             Footer(_apply, noTeam, CanJoin);
             _startMatchLabel.text = _state?.MatchStarting == true ? "集合中…"
-                : _state?.MatchQueued == true ? "匹配中…" : "开始战斗";
+                : _state?.MatchQueued == true ? "匹配中…" : "开始 PVE";
         }
 
         private static void Footer(Button button, bool visible, bool enabled)
@@ -503,8 +509,19 @@ namespace MmorpgClient.UI.Ugui.Team
         private void PromptApply()
         {
             if (!CanJoin) return;
-            TargetPrompt("申请入队", "输入对方的玩家编号，申请加入其所在的队伍。", "提交申请",
-                () => CanJoin, id => ApplyRequested?.Invoke(id));
+            TargetPrompt("申请入队", "点选周围玩家，或输入队员的玩家编号。队友可点队伍编号复制。", "提交申请",
+                () => CanJoin, id => ApplyRequested?.Invoke(id), GetNearbyPlayers?.Invoke());
+        }
+
+        private void ShowTeamNumbers()
+        {
+            if (_state?.HasTeam != true) return;
+            ulong teamId = _state.Snapshot.TeamId, leaderId = _state.Snapshot.LeaderId;
+            if (leaderId == 0) return;
+            string playerNumber = leaderId.ToString(CultureInfo.InvariantCulture);
+            Confirm("队伍编号", $"队伍编号　{teamId}\n入队申请可填写队长的玩家编号　{playerNumber}",
+                () => _state?.Snapshot.TeamId == teamId && _state.Snapshot.LeaderId == leaderId,
+                () => GUIUtility.systemCopyBuffer = playerNumber, "复制玩家编号");
         }
 
         private void PromptInvite()
@@ -611,14 +628,14 @@ namespace MmorpgClient.UI.Ugui.Team
         }
 
         /// <summary>The permission is re-checked on confirm; the state may have changed while the dialog was open.</summary>
-        private void Confirm(string title, string description, Func<bool> allowed, Action action)
+        private void Confirm(string title, string description, Func<bool> allowed, Action action, string confirmLabel = "确认")
         {
             var frame = Modal(title, description, allowed);
             _modalHint = Label(frame, "", 66, 356, 968, 44, 25, ErrorInk);
             _modalHint.name = "TeamModalError";
             var cancel = Control(frame, "取消", 66, 440, 300, 82, CloseModal);
             cancel.name = "TeamModalCancel";
-            var confirm = Control(frame, "确认", 692, 440, 340, 82, () => SubmitModal(action), primary: true);
+            var confirm = Control(frame, confirmLabel, 692, 440, 340, 82, () => SubmitModal(action), primary: true);
             confirm.name = "TeamModalConfirm";
             EventSystem.current?.SetSelectedGameObject(cancel.gameObject);
         }
@@ -653,7 +670,7 @@ namespace MmorpgClient.UI.Ugui.Team
         }
 
         private void TargetPrompt(string title, string description, string confirmLabel, Func<bool> allowed,
-            Action<ulong> submit)
+            Action<ulong> submit, IReadOnlyList<TeamRole> nearby = null)
         {
             var frame = Modal(title, description, allowed);
             Solid(frame, "TeamTargetInputBorder", 149, 269, 802, 78, Border);
@@ -675,6 +692,8 @@ namespace MmorpgClient.UI.Ugui.Team
             var error = Label(frame, "", 150, 356, 800, 44, 25, ErrorInk);
             error.name = "TeamModalError";
             _modalHint = error;
+            if (nearby != null && nearby.Count > 0)
+                AddNearbyTargets(frame, nearby, id => { input.text = id.ToString(CultureInfo.InvariantCulture); error.text = ""; });
             var cancel = Control(frame, "取消", 66, 440, 300, 82, CloseModal);
             cancel.name = "TeamModalCancel";
             var confirm = Control(frame, confirmLabel, 692, 440, 340, 82, () =>
@@ -693,6 +712,33 @@ namespace MmorpgClient.UI.Ugui.Team
             }, primary: true);
             confirm.name = "TeamModalConfirm";
             EventSystem.current?.SetSelectedGameObject(input.gameObject);
+        }
+
+        private static void AddNearbyTargets(RectTransform frame, IReadOnlyList<TeamRole> targets, Action<ulong> select)
+        {
+            const int perPage = 3;
+            int page = 0;
+            var names = QdaoUguiFactory.CreateRect("NearbyApplyCandidates", frame, 150, 209, 800, 54);
+            Button previous = null, next = null;
+            void ShowPage(int index)
+            {
+                page = index;
+                Clear(names);
+                previous.interactable = page > 0;
+                next.interactable = (page + 1) * perPage < targets.Count;
+                for (int slot = 0; slot < perPage && page * perPage + slot < targets.Count; ++slot)
+                {
+                    var target = targets[page * perPage + slot];
+                    var button = Control(names, DisplayName(target), 65 + 225 * slot, 0, 220, 54,
+                        () => select(target.PlayerId), size: 23);
+                    button.name = "ApplyCandidate_" + target.PlayerId;
+                }
+            }
+            previous = Control(frame, "‹", 150, 209, 55, 54, () => { if (page > 0) ShowPage(page - 1); });
+            next = Control(frame, "›", 895, 209, 55, 54, () => { if ((page + 1) * perPage < targets.Count) ShowPage(page + 1); });
+            previous.name = "PreviousNearbyApplyCandidates";
+            next.name = "NextNearbyApplyCandidates";
+            ShowPage(0);
         }
 
         private void CloseModal()

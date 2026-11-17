@@ -116,6 +116,42 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public static string SlotName(uint slot, string name)
             => string.IsNullOrWhiteSpace(name) ? $"栏位 {slot}" : name;
 
+        /// <summary>
+        /// 查询服务器定义的目标装备槽；未知槽或容量外的定义不提供穿戴候选。
+        /// 已穿但缺少定义的旧槽仍由 Slots 展示以便卸下，不从占用物品反推可接纳类型。
+        /// </summary>
+        public static EquipSlotInfo FindEquipSlot(BagInfo equipment, uint targetSlot)
+        {
+            if (equipment?.Layout == null || equipment.Layout.BagType != PlayerFeaturesClient.EquipmentBagType ||
+                targetSlot >= equipment.Layout.Capacity) return null;
+            foreach (var definition in equipment.Layout.EquipSlots)
+                if (definition.Slot == targetSlot) return definition;
+            return null;
+        }
+
+        /// <summary>
+        /// 按目标槽接纳的类型列出人物背包实例，保持背包条目顺序；只按 item_id 去重，
+        /// 同名、同模板的不同实例分别保留。已穿实例不能再次从背包发起穿戴。
+        /// 这里只筛容器和类型，等级、职业、同名法宝等最终资格仍由服务器裁决。
+        /// </summary>
+        public static List<BagItemInfo> EquipCandidates(BagInfo characterBag, BagInfo equipment, uint targetSlot)
+        {
+            var result = new List<BagItemInfo>();
+            var definition = FindEquipSlot(equipment, targetSlot);
+            if (characterBag?.Layout == null || characterBag.Layout.BagType != PlayerFeaturesClient.CharacterBagType ||
+                definition == null || definition.EquipKind == 0) return result;
+
+            var worn = new HashSet<ulong>();
+            foreach (var item in equipment.Items)
+                if (item.ItemId != 0) worn.Add(item.ItemId);
+            var seen = new HashSet<ulong>();
+            foreach (var item in characterBag.Items)
+                if (item.ItemId != 0 && seen.Add(item.ItemId) && !worn.Contains(item.ItemId) &&
+                    item.Count != 0 && item.EquipKind == definition.EquipKind)
+                    result.Add(item);
+            return result;
+        }
+
         /// <summary>穿在身上的那件;不在装备栏里返回 null。</summary>
         public static BagItemInfo FindWorn(IReadOnlyList<EquipSlotView> slots, ulong itemId)
         {

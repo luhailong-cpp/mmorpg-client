@@ -266,7 +266,7 @@ namespace MmorpgClient.Game.Team
             float now = _clock();
             // 过期邀请即使 Busy 也照样剔除。
             if (_invites.RemoveAll(invite => invite.ExpiresAt <= now) > 0) Changed?.Invoke();
-            if (Busy || RequiresReconnect || Suspended || !_net.IsReady || PlayerId == 0) return;
+            if (Busy || MatchNetworkPreparing || RequiresReconnect || Suspended || !_net.IsReady || PlayerId == 0) return;
             if (Snapshot.TeamId != 0 && PrepareMatchNetwork != null && now >= _nextNetworkProbeAt)
             {
                 _nextNetworkProbeAt = now + 25;
@@ -438,7 +438,23 @@ namespace MmorpgClient.Game.Team
         {
             if(_pendingStart==null)return;
             var view=response.MatchIntent;
-            if (view != null && view.RequestId == _pendingStart.RequestId) _backfillIntentRecoverySupported = true;
+            if (view != null && view.RequestId == _pendingStart.RequestId)
+            {
+                _backfillIntentRecoverySupported = true;
+                // 同一原请求的排队已受理或无战斗撤销都是确定结果；未知/预留中仍保留原意图。
+                if (view.BattleId == 0 && (view.State == 2 || view.State == 5))
+                {
+                    try { ClearStartIntent(); }
+                    catch (Exception) { Status = "原匹配结果已确认，本机恢复记录尚未清理。"; return; }
+                    if (view.State == 2)
+                    {
+                        Status = "原队伍匹配已确认入队。";
+                        if (!MatchQueued) ExpectQueuedView();
+                    }
+                    else Status = "原队伍开局已确认中止。";
+                    return;
+                }
+            }
             // 旧补位契约没有恢复意图：当前同一队伍/副本/目标人数的权威队列足以证明所求效果已存在。
             // 不以空闲视图证明旧请求失败，也不把异队/异副本/异目标的队列当成原意图。
             var team = response.Team;
@@ -642,7 +658,9 @@ namespace MmorpgClient.Game.Team
                 if (action == TeamAction.RespondInvite) RemoveInvite(target);
                 return;
             }
-            Status = DescribeTip(tip);
+            Status = action == TeamAction.Apply && IsTip(tip, team_error.KTeamHasNotTeamId)
+                ? "该玩家当前没有队伍。请选择已有队伍的道友，或核对其玩家编号。"
+                : DescribeTip(tip);
             if (IsMemberStateTip(tip)) HighlightPlayerId = TipPlayerId(tip);
             if (action == TeamAction.RespondInvite
                 && (IsTip(tip, team_error.KTeamInviteNotFound) || IsTip(tip, team_error.KTeamHasNotTeamId)))

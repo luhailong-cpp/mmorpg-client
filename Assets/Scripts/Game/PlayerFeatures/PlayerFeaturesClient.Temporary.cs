@@ -101,6 +101,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         private void RetrieveTemporary(ulong itemId, bool takeAll)
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (HasPendingEquipmentCraft) { FailTemporaryAction(EquipmentCraftPendingText); return; }
             if (BusyTemporary) return; // 连点:上一次还没回包,不发第二个包也不报错
             if (BusyEquip) { FailTemporaryAction("装备正在更换，请稍候"); return; }
             if (BusySort) { FailTemporaryAction("背包正在整理，请稍候"); return; }

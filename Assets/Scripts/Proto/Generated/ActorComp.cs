@@ -35,10 +35,11 @@ public static partial class ActorCompReflection {
           "b21wEhAKCHN0cmVuZ3RoGAEgASgEEg8KB3N0YW1pbmEYAiABKAQSDgoGaGVh",
           "bHRoGAMgASgEEgwKBG1hbmEYBCABKAQSEgoKY3JpdGNoYW5jZRgFIAEoBBIN",
           "CgVhcm1vchgGIAEoBBISCgpyZXNpc3RhbmNlGAcgASgEEg0KBXNwZWVkGAgg",
-          "ASgEIhoKCUxldmVsQ29tcBINCgVsZXZlbBgBIAEoDSJ2Cg5BY3RvclN0YXRl",
-          "Q29tcBIyCgpzdGF0ZV9saXN0GAEgAygLMh4uQWN0b3JTdGF0ZUNvbXAuU3Rh",
-          "dGVMaXN0RW50cnkaMAoOU3RhdGVMaXN0RW50cnkSCwoDa2V5GAEgASgNEg0K",
-          "BXZhbHVlGAIgASgIOgI4AUISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
+          "ASgEIi0KCUxldmVsQ29tcBINCgVsZXZlbBgBIAEoDRIRCgl0b3RhbF9leHAY",
+          "AiABKAQidgoOQWN0b3JTdGF0ZUNvbXASMgoKc3RhdGVfbGlzdBgBIAMoCzIe",
+          "LkFjdG9yU3RhdGVDb21wLlN0YXRlTGlzdEVudHJ5GjAKDlN0YXRlTGlzdEVu",
+          "dHJ5EgsKA2tleRgBIAEoDRINCgV2YWx1ZRgCIAEoCDoCOAFCEloQY29tbW9u",
+          "L2NvbXBvbmVudGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::BaseCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -50,7 +51,7 @@ public static partial class ActorCompReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::Acceleration), global::Acceleration.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ViewRadius), global::ViewRadius.Parser, new[]{ "Radius" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BaseAttributesComp), global::BaseAttributesComp.Parser, new[]{ "Strength", "Stamina", "Health", "Mana", "Critchance", "Armor", "Resistance", "Speed" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::LevelComp), global::LevelComp.Parser, new[]{ "Level" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::LevelComp), global::LevelComp.Parser, new[]{ "Level", "TotalExp" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorStateComp), global::ActorStateComp.Parser, new[]{ "StateList" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
         }));
   }
@@ -2442,6 +2443,7 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public LevelComp(LevelComp other) : this() {
     level_ = other.level_;
+    totalExp_ = other.totalExp_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2466,6 +2468,22 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
     }
   }
 
+  /// <summary>Field number for the "total_exp" field.</summary>
+  public const int TotalExpFieldNumber = 2;
+  private ulong totalExp_;
+  /// <summary>
+  /// 已实际入账的累计角色经验，与等级一起持久化。升级曲线尚未开放，入账不自行改等级；
+  /// GM 调级也不清空累计经验。旧存档缺字段时从 0 开始，不把历史已结算奖励自动重放。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong TotalExp {
+    get { return totalExp_; }
+    set {
+      totalExp_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2482,6 +2500,7 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
       return true;
     }
     if (Level != other.Level) return false;
+    if (TotalExp != other.TotalExp) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2490,6 +2509,7 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
   public override int GetHashCode() {
     int hash = 1;
     if (Level != 0) hash ^= Level.GetHashCode();
+    if (TotalExp != 0UL) hash ^= TotalExp.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2512,6 +2532,10 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
       output.WriteRawTag(8);
       output.WriteUInt32(Level);
     }
+    if (TotalExp != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(TotalExp);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2526,6 +2550,10 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
       output.WriteRawTag(8);
       output.WriteUInt32(Level);
     }
+    if (TotalExp != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(TotalExp);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2538,6 +2566,9 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
     int size = 0;
     if (Level != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Level);
+    }
+    if (TotalExp != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TotalExp);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2553,6 +2584,9 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
     }
     if (other.Level != 0) {
       Level = other.Level;
+    }
+    if (other.TotalExp != 0UL) {
+      TotalExp = other.TotalExp;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2577,6 +2611,10 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
           Level = input.ReadUInt32();
           break;
         }
+        case 16: {
+          TotalExp = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -2598,6 +2636,10 @@ public sealed partial class LevelComp : pb::IMessage<LevelComp>
           break;
         case 8: {
           Level = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TotalExp = input.ReadUInt64();
           break;
         }
       }

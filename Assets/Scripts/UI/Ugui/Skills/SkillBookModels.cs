@@ -82,6 +82,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         public uint unlockLevel;
         public uint maxRank;
         public string targetTeam;
+        public bool allowDeadTarget;
         public uint maxTargets;
         public double manaPercent;
         public uint cooldownRounds;

@@ -53,6 +53,7 @@ $files = @(
     "proto/common/component/actor_attribute_state_comp.proto",
     "proto/common/component/player_attribute_comp.proto",
     "proto/common/component/currency_comp.proto",
+    "proto/common/component/equipment_effects.proto",
     "proto/db/proto_option.proto",
     "proto/login/login.proto",
     # 登录域的 tip 码(含角色名 kRoleNameInvalid / kRoleNameTaken / kRoleNameSensitive 与建角可重试失败)。
@@ -121,6 +122,8 @@ $files = @(
     # 刻意不进客户端包。trade_error / common_error 两份 tip 由服务端导表器生成,客户端按枚举映射文案。
     "proto/trade/jubaozhai.proto",
     "proto/trade/commerce.proto",
+    # 支付调用桩 ClientPlayerPaymentRpc 引用 Paymentpb 类型，须与服务端支付协议一起生成。
+    "proto/payment/payment.proto",
     "proto/mail/mail.proto",
     "proto/rank/rank.proto",
     "proto/common/base/service_call_auth.proto",

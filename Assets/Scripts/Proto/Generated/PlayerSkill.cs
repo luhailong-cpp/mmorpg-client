@@ -37,34 +37,37 @@ public static partial class PlayerSkillReflection {
           "IAEoDRIQCghza2lsbF9pZBgFIAEoBCJ9CgxTa2lsbFVzZWRTMkMSDgoGZW50",
           "aXR5GAEgASgEEhUKDXRhcmdldF9lbnRpdHkYAiADKAQSFgoOc2tpbGxfdGFi",
           "bGVfaWQYAyABKA0SGgoIcG9zaXRpb24YBCABKAsyCC5WZWN0b3IzEhIKCnRp",
-          "bWVfc3RhbXAYBSABKAQiEwoRTGlzdFNraWxsc1JlcXVlc3QizQEKEkxpc3RT",
-          "a2lsbHNSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5m",
-          "b01lc3NhZ2USKAoKc2tpbGxfbGlzdBgCIAEoCzIULlBsYXllclNraWxsTGlz",
-          "dENvbXASIwoHY2F0YWxvZxgDIAMoCzISLlNraWxsQ2F0YWxvZ0VudHJ5EhQK",
-          "DHBsYXllcl9sZXZlbBgEIAEoDRIQCghjbGFzc19pZBgFIAEoDRIYChBjdXJy",
-          "ZW5jeV9iYWxhbmNlGAYgASgEIocDChFTa2lsbENhdGFsb2dFbnRyeRIWCg5z",
-          "a2lsbF90YWJsZV9pZBgBIAEoDRIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0",
-          "aW9uGAMgASgJEhAKCGljb25fa2V5GAQgASgJEhAKCGNsYXNzX2lkGAUgASgN",
-          "EhAKCGNhdGVnb3J5GAYgASgJEg8KB3Bhc3NpdmUYByABKAgSEwoLdGFyZ2V0",
-          "X3RlYW0YCCABKA0SEwoLbWF4X3RhcmdldHMYCSABKA0SFAoMdW5sb2NrX2xl",
-          "dmVsGAogASgNEhAKCG1heF9yYW5rGAsgASgNEgwKBHJhbmsYDCABKA0SEgoK",
-          "cmFua19saW1pdBgNIAEoDRIUCgxtYW5hX3BlcmNlbnQYDiABKAESFwoPY29v",
-          "bGRvd25fcm91bmRzGA8gASgNEhYKDm5leHRfcmFua19jb3N0GBAgASgEEhwK",
-          "FHVwZ3JhZGVfYmxvY2tfdGlwX2lkGBEgASgNEhcKD2R1cmF0aW9uX3JvdW5k",
-          "cxgSIAEoDSJTChNVcGdyYWRlU2tpbGxSZXF1ZXN0EhYKDnNraWxsX3RhYmxl",
-          "X2lkGAEgASgNEhUKDWV4cGVjdGVkX3JhbmsYAiABKA0SDQoFY291bnQYAyAB",
-          "KA0ijwEKFFVwZ3JhZGVTa2lsbFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
-          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRIiCgVzdGF0ZRgCIAEoCzITLkxpc3RT",
-          "a2lsbHNSZXNwb25zZRIWCg51cGdyYWRlZF9jb3VudBgDIAEoDRITCgtzdG9w",
-          "X3RpcF9pZBgEIAEoDTLFAgoWU2NlbmVTa2lsbENsaWVudFBsYXllchI7CgxS",
-          "ZWxlYXNlU2tpbGwSFC5SZWxlYXNlU2tpbGxSZXF1ZXN0GhUuUmVsZWFzZVNr",
-          "aWxsUmVzcG9uc2USLwoPTm90aWZ5U2tpbGxVc2VkEg0uU2tpbGxVc2VkUzJD",
-          "GgYuRW1wdHkiBYiZyAECEj0KFk5vdGlmeVNraWxsSW50ZXJydXB0ZWQSFC5T",
-          "a2lsbEludGVycnVwdGVkUzJDGgYuRW1wdHkiBYiZyAECEjUKCkxpc3RTa2ls",
-          "bHMSEi5MaXN0U2tpbGxzUmVxdWVzdBoTLkxpc3RTa2lsbHNSZXNwb25zZRI7",
-          "CgxVcGdyYWRlU2tpbGwSFC5VcGdyYWRlU2tpbGxSZXF1ZXN0GhUuVXBncmFk",
-          "ZVNraWxsUmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZw",
-          "cm90bzM="));
+          "bWVfc3RhbXAYBSABKAQiIwoRTGlzdFNraWxsc1JlcXVlc3QSDgoGcGV0X2lk",
+          "GAEgASgEIt0BChJMaXN0U2tpbGxzUmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
+          "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEigKCnNraWxsX2xpc3QYAiABKAsy",
+          "FC5QbGF5ZXJTa2lsbExpc3RDb21wEiMKB2NhdGFsb2cYAyADKAsyEi5Ta2ls",
+          "bENhdGFsb2dFbnRyeRIUCgxwbGF5ZXJfbGV2ZWwYBCABKA0SEAoIY2xhc3Nf",
+          "aWQYBSABKA0SGAoQY3VycmVuY3lfYmFsYW5jZRgGIAEoBBIOCgZwZXRfaWQY",
+          "ByABKAQi4gMKEVNraWxsQ2F0YWxvZ0VudHJ5EhYKDnNraWxsX3RhYmxlX2lk",
+          "GAEgASgNEgwKBG5hbWUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSEAoI",
+          "aWNvbl9rZXkYBCABKAkSEAoIY2xhc3NfaWQYBSABKA0SEAoIY2F0ZWdvcnkY",
+          "BiABKAkSDwoHcGFzc2l2ZRgHIAEoCBITCgt0YXJnZXRfdGVhbRgIIAEoDRIT",
+          "CgttYXhfdGFyZ2V0cxgJIAEoDRIUCgx1bmxvY2tfbGV2ZWwYCiABKA0SEAoI",
+          "bWF4X3JhbmsYCyABKA0SDAoEcmFuaxgMIAEoDRISCgpyYW5rX2xpbWl0GA0g",
+          "ASgNEhQKDG1hbmFfcGVyY2VudBgOIAEoARIXCg9jb29sZG93bl9yb3VuZHMY",
+          "DyABKA0SFgoObmV4dF9yYW5rX2Nvc3QYECABKAQSHAoUdXBncmFkZV9ibG9j",
+          "a190aXBfaWQYESABKA0SFwoPZHVyYXRpb25fcm91bmRzGBIgASgNEhkKEWFs",
+          "bG93X2RlYWRfdGFyZ2V0GBMgASgIEhQKDGFiaWxpdHlfa2luZBgUIAEoDRIT",
+          "CgtjYXN0ZXJfbWFzaxgVIAEoDRITCgthY3Rpb25fdGFncxgWIAEoDSJjChNV",
+          "cGdyYWRlU2tpbGxSZXF1ZXN0EhYKDnNraWxsX3RhYmxlX2lkGAEgASgNEhUK",
+          "DWV4cGVjdGVkX3JhbmsYAiABKA0SDQoFY291bnQYAyABKA0SDgoGcGV0X2lk",
+          "GAQgASgEIo8BChRVcGdyYWRlU2tpbGxSZXNwb25zZRImCg1lcnJvcl9tZXNz",
+          "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIgoFc3RhdGUYAiABKAsyEy5M",
+          "aXN0U2tpbGxzUmVzcG9uc2USFgoOdXBncmFkZWRfY291bnQYAyABKA0SEwoL",
+          "c3RvcF90aXBfaWQYBCABKA0yxQIKFlNjZW5lU2tpbGxDbGllbnRQbGF5ZXIS",
+          "OwoMUmVsZWFzZVNraWxsEhQuUmVsZWFzZVNraWxsUmVxdWVzdBoVLlJlbGVh",
+          "c2VTa2lsbFJlc3BvbnNlEi8KD05vdGlmeVNraWxsVXNlZBINLlNraWxsVXNl",
+          "ZFMyQxoGLkVtcHR5IgWImcgBAhI9ChZOb3RpZnlTa2lsbEludGVycnVwdGVk",
+          "EhQuU2tpbGxJbnRlcnJ1cHRlZFMyQxoGLkVtcHR5IgWImcgBAhI1CgpMaXN0",
+          "U2tpbGxzEhIuTGlzdFNraWxsc1JlcXVlc3QaEy5MaXN0U2tpbGxzUmVzcG9u",
+          "c2USOwoMVXBncmFkZVNraWxsEhQuVXBncmFkZVNraWxsUmVxdWVzdBoVLlVw",
+          "Z3JhZGVTa2lsbFJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRh",
+          "A2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::BaseCompReflection.Descriptor, global::EmptyReflection.Descriptor, global::PlayerSkillCompReflection.Descriptor, global::ActorCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -72,10 +75,10 @@ public static partial class PlayerSkillReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::ReleaseSkillResponse), global::ReleaseSkillResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SkillInterruptedS2C), global::SkillInterruptedS2C.Parser, new[]{ "Entity", "TargetEntity", "SkillTableId", "ReasonCode", "SkillId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SkillUsedS2C), global::SkillUsedS2C.Parser, new[]{ "Entity", "TargetEntity", "SkillTableId", "Position", "TimeStamp" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsRequest), global::ListSkillsRequest.Parser, null, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsResponse), global::ListSkillsResponse.Parser, new[]{ "ErrorMessage", "SkillList", "Catalog", "PlayerLevel", "ClassId", "CurrencyBalance" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SkillCatalogEntry), global::SkillCatalogEntry.Parser, new[]{ "SkillTableId", "Name", "Description", "IconKey", "ClassId", "Category", "Passive", "TargetTeam", "MaxTargets", "UnlockLevel", "MaxRank", "Rank", "RankLimit", "ManaPercent", "CooldownRounds", "NextRankCost", "UpgradeBlockTipId", "DurationRounds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillRequest), global::UpgradeSkillRequest.Parser, new[]{ "SkillTableId", "ExpectedRank", "Count" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsRequest), global::ListSkillsRequest.Parser, new[]{ "PetId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsResponse), global::ListSkillsResponse.Parser, new[]{ "ErrorMessage", "SkillList", "Catalog", "PlayerLevel", "ClassId", "CurrencyBalance", "PetId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SkillCatalogEntry), global::SkillCatalogEntry.Parser, new[]{ "SkillTableId", "Name", "Description", "IconKey", "ClassId", "Category", "Passive", "TargetTeam", "MaxTargets", "UnlockLevel", "MaxRank", "Rank", "RankLimit", "ManaPercent", "CooldownRounds", "NextRankCost", "UpgradeBlockTipId", "DurationRounds", "AllowDeadTarget", "AbilityKind", "CasterMask", "ActionTags" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillRequest), global::UpgradeSkillRequest.Parser, new[]{ "SkillTableId", "ExpectedRank", "Count", "PetId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillResponse), global::UpgradeSkillResponse.Parser, new[]{ "ErrorMessage", "State", "UpgradedCount", "StopTipId" }, null, null, null, null)
         }));
   }
@@ -1362,6 +1365,7 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ListSkillsRequest(ListSkillsRequest other) : this() {
+    petId_ = other.petId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1369,6 +1373,21 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ListSkillsRequest Clone() {
     return new ListSkillsRequest(this);
+  }
+
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 1;
+  private ulong petId_;
+  /// <summary>
+  /// 0 查人物；非 0 查会话所属宝宝的完整技能目录。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1386,6 +1405,7 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (PetId != other.PetId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1393,6 +1413,7 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1411,6 +1432,10 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
+    if (PetId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PetId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1421,6 +1446,10 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (PetId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(PetId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1431,6 +1460,9 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1442,6 +1474,9 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
   public void MergeFrom(ListSkillsRequest other) {
     if (other == null) {
       return;
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1462,6 +1497,10 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
+        case 8: {
+          PetId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -1481,6 +1520,10 @@ public sealed partial class ListSkillsRequest : pb::IMessage<ListSkillsRequest>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
+        case 8: {
+          PetId = input.ReadUInt64();
+          break;
+        }
       }
     }
   }
@@ -1534,6 +1577,7 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     playerLevel_ = other.playerLevel_;
     classId_ = other.classId_;
     currencyBalance_ = other.currencyBalance_;
+    petId_ = other.petId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1620,6 +1664,21 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     }
   }
 
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 7;
+  private ulong petId_;
+  /// <summary>
+  /// 返回本次目录主体，防止切换人物/宝宝后的迟到响应覆盖界面。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1641,6 +1700,7 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     if (PlayerLevel != other.PlayerLevel) return false;
     if (ClassId != other.ClassId) return false;
     if (CurrencyBalance != other.CurrencyBalance) return false;
+    if (PetId != other.PetId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1654,6 +1714,7 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     if (PlayerLevel != 0) hash ^= PlayerLevel.GetHashCode();
     if (ClassId != 0) hash ^= ClassId.GetHashCode();
     if (CurrencyBalance != 0UL) hash ^= CurrencyBalance.GetHashCode();
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1693,6 +1754,10 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
       output.WriteRawTag(48);
       output.WriteUInt64(CurrencyBalance);
     }
+    if (PetId != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(PetId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1724,6 +1789,10 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
       output.WriteRawTag(48);
       output.WriteUInt64(CurrencyBalance);
     }
+    if (PetId != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(PetId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1749,6 +1818,9 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     }
     if (CurrencyBalance != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(CurrencyBalance);
+    }
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1783,6 +1855,9 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
     }
     if (other.CurrencyBalance != 0UL) {
       CurrencyBalance = other.CurrencyBalance;
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1833,6 +1908,10 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
           CurrencyBalance = input.ReadUInt64();
           break;
         }
+        case 56: {
+          PetId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -1880,6 +1959,10 @@ public sealed partial class ListSkillsResponse : pb::IMessage<ListSkillsResponse
         }
         case 48: {
           CurrencyBalance = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          PetId = input.ReadUInt64();
           break;
         }
       }
@@ -1946,6 +2029,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     nextRankCost_ = other.nextRankCost_;
     upgradeBlockTipId_ = other.upgradeBlockTipId_;
     durationRounds_ = other.durationRounds_;
+    allowDeadTarget_ = other.allowDeadTarget_;
+    abilityKind_ = other.abilityKind_;
+    casterMask_ = other.casterMask_;
+    actionTags_ = other.actionTags_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2198,6 +2285,66 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     }
   }
 
+  /// <summary>Field number for the "allow_dead_target" field.</summary>
+  public const int AllowDeadTargetFieldNumber = 19;
+  private bool allowDeadTarget_;
+  /// <summary>
+  /// 仅复生类配置允许选择倒地单位，普通治疗不能选尸体。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool AllowDeadTarget {
+    get { return allowDeadTarget_; }
+    set {
+      allowDeadTarget_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "ability_kind" field.</summary>
+  public const int AbilityKindFieldNumber = 20;
+  private uint abilityKind_;
+  /// <summary>
+  /// 1主动、2被动、3追击、4开场。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint AbilityKind {
+    get { return abilityKind_; }
+    set {
+      abilityKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "caster_mask" field.</summary>
+  public const int CasterMaskFieldNumber = 21;
+  private uint casterMask_;
+  /// <summary>
+  /// 1人物、2宝宝；按施法者资格区分。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CasterMask {
+    get { return casterMask_; }
+    set {
+      casterMask_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "action_tags" field.</summary>
+  public const int ActionTagsFieldNumber = 22;
+  private uint actionTags_;
+  /// <summary>
+  /// 攻击、治疗、辅助、障碍分类位，与 SkillTable 同源。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActionTags {
+    get { return actionTags_; }
+    set {
+      actionTags_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2231,6 +2378,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     if (NextRankCost != other.NextRankCost) return false;
     if (UpgradeBlockTipId != other.UpgradeBlockTipId) return false;
     if (DurationRounds != other.DurationRounds) return false;
+    if (AllowDeadTarget != other.AllowDeadTarget) return false;
+    if (AbilityKind != other.AbilityKind) return false;
+    if (CasterMask != other.CasterMask) return false;
+    if (ActionTags != other.ActionTags) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2256,6 +2407,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     if (NextRankCost != 0UL) hash ^= NextRankCost.GetHashCode();
     if (UpgradeBlockTipId != 0) hash ^= UpgradeBlockTipId.GetHashCode();
     if (DurationRounds != 0) hash ^= DurationRounds.GetHashCode();
+    if (AllowDeadTarget != false) hash ^= AllowDeadTarget.GetHashCode();
+    if (AbilityKind != 0) hash ^= AbilityKind.GetHashCode();
+    if (CasterMask != 0) hash ^= CasterMask.GetHashCode();
+    if (ActionTags != 0) hash ^= ActionTags.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2346,6 +2501,22 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
       output.WriteRawTag(144, 1);
       output.WriteUInt32(DurationRounds);
     }
+    if (AllowDeadTarget != false) {
+      output.WriteRawTag(152, 1);
+      output.WriteBool(AllowDeadTarget);
+    }
+    if (AbilityKind != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(AbilityKind);
+    }
+    if (CasterMask != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(CasterMask);
+    }
+    if (ActionTags != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(ActionTags);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2428,6 +2599,22 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
       output.WriteRawTag(144, 1);
       output.WriteUInt32(DurationRounds);
     }
+    if (AllowDeadTarget != false) {
+      output.WriteRawTag(152, 1);
+      output.WriteBool(AllowDeadTarget);
+    }
+    if (AbilityKind != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(AbilityKind);
+    }
+    if (CasterMask != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(CasterMask);
+    }
+    if (ActionTags != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(ActionTags);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2491,6 +2678,18 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     }
     if (DurationRounds != 0) {
       size += 2 + pb::CodedOutputStream.ComputeUInt32Size(DurationRounds);
+    }
+    if (AllowDeadTarget != false) {
+      size += 2 + 1;
+    }
+    if (AbilityKind != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(AbilityKind);
+    }
+    if (CasterMask != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(CasterMask);
+    }
+    if (ActionTags != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(ActionTags);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2558,6 +2757,18 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     if (other.DurationRounds != 0) {
       DurationRounds = other.DurationRounds;
     }
+    if (other.AllowDeadTarget != false) {
+      AllowDeadTarget = other.AllowDeadTarget;
+    }
+    if (other.AbilityKind != 0) {
+      AbilityKind = other.AbilityKind;
+    }
+    if (other.CasterMask != 0) {
+      CasterMask = other.CasterMask;
+    }
+    if (other.ActionTags != 0) {
+      ActionTags = other.ActionTags;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -2647,6 +2858,22 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
         }
         case 144: {
           DurationRounds = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          AllowDeadTarget = input.ReadBool();
+          break;
+        }
+        case 160: {
+          AbilityKind = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          CasterMask = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          ActionTags = input.ReadUInt32();
           break;
         }
       }
@@ -2740,6 +2967,22 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
           DurationRounds = input.ReadUInt32();
           break;
         }
+        case 152: {
+          AllowDeadTarget = input.ReadBool();
+          break;
+        }
+        case 160: {
+          AbilityKind = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          CasterMask = input.ReadUInt32();
+          break;
+        }
+        case 176: {
+          ActionTags = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -2788,6 +3031,7 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
     skillTableId_ = other.skillTableId_;
     expectedRank_ = other.expectedRank_;
     count_ = other.count_;
+    petId_ = other.petId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2839,6 +3083,21 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
     }
   }
 
+  /// <summary>Field number for the "pet_id" field.</summary>
+  public const int PetIdFieldNumber = 4;
+  private ulong petId_;
+  /// <summary>
+  /// 0 修习人物技能；非 0 必须属于当前会话玩家。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PetId {
+    get { return petId_; }
+    set {
+      petId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2857,6 +3116,7 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
     if (SkillTableId != other.SkillTableId) return false;
     if (ExpectedRank != other.ExpectedRank) return false;
     if (Count != other.Count) return false;
+    if (PetId != other.PetId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2867,6 +3127,7 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
     if (SkillTableId != 0) hash ^= SkillTableId.GetHashCode();
     if (ExpectedRank != 0) hash ^= ExpectedRank.GetHashCode();
     if (Count != 0) hash ^= Count.GetHashCode();
+    if (PetId != 0UL) hash ^= PetId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2897,6 +3158,10 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
       output.WriteRawTag(24);
       output.WriteUInt32(Count);
     }
+    if (PetId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(PetId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2919,6 +3184,10 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
       output.WriteRawTag(24);
       output.WriteUInt32(Count);
     }
+    if (PetId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(PetId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2937,6 +3206,9 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
     }
     if (Count != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Count);
+    }
+    if (PetId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PetId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2958,6 +3230,9 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
     }
     if (other.Count != 0) {
       Count = other.Count;
+    }
+    if (other.PetId != 0UL) {
+      PetId = other.PetId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2990,6 +3265,10 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
           Count = input.ReadUInt32();
           break;
         }
+        case 32: {
+          PetId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -3019,6 +3298,10 @@ public sealed partial class UpgradeSkillRequest : pb::IMessage<UpgradeSkillReque
         }
         case 24: {
           Count = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          PetId = input.ReadUInt64();
           break;
         }
       }

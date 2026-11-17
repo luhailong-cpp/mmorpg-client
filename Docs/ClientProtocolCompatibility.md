@@ -1,5 +1,7 @@
 # 客户端协议分支兼容
 
+2026-11-15：PVE 经验入账契约新增 `LevelComp.total_exp = 2` 与 `PlayerBattleResult.exp_gain = 18`（uint64）。前者是角色累计实得经验，后者是本局实际入账额；旧存档、旧战果缺字段时为 0。升级曲线未配置，累计经验不自动改等级。`ActorComp.cs` 与 `PlayerBattleResultComp.cs` 使用服务端正式 protoc 在独立目录生成后同步，没有手改生成类。
+
 2026-10-19 的客户端同步同时保留本地恢复逻辑与远端神秘商人、归队、组队补位界面。服务端两套 Git 分支的新增协议尚未统一；本次没有改动服务端，没有猜测或分配新的消息号、字段号。
 
 事实来源固定为两个服务端版本：
@@ -115,7 +117,7 @@ pwsh -File .codex-artifacts/heartbeat-20261106/compile-current-recovery.ps1 -Pro
 
 - **什么时候查**：每次落地查一次（与 `LandingSyncClient` 同一口径：`InGame` 且传输就绪，`(PlayerId, 连接身份)` 变了就是一次新的落地；`InGame` 在 `NotifyEnterScene` 之后才为真）。收到没有战斗上下文的 `BattleEndS2C` 再查一次（`BattleClient.OnBattleEndWithoutContext`）。两种触发共用单飞：在途时再来的触发，只在它回来之后多查一次。
 - **失败**：传输错误、超时或回包带 tip，按 15 / 30 / 60 秒封顶退避，成功即归零。
-- **弹什么**：回包里 `seen = false`、本进程没展示过的，按 `result_seq` 从小到大逐个交给 `BattleUiRoot`。`BattleUiRoot` 只在空闲时弹（没有战斗屏、观战屏，也没有结算面板在显示），确认一局再弹下一局；确认键写「知道了」，不收战斗屏，也不调 `AckBattleEnd`。说明行是「上次未查看的战斗 · 时间 结束 · 共 N 回合」。明细只列服务端记下的实际入账（货币、获得与消耗的道具、改由邮件发放、物品行被截断、阵亡 / 逃离），没有经验与战后血蓝。作废局显示「本局作废」和作废说明行。
+- **弹什么**：回包里 `seen = false`、本进程没展示过的，按 `result_seq` 从小到大逐个交给 `BattleUiRoot`。`BattleUiRoot` 只在空闲时弹（没有战斗屏、观战屏，也没有结算面板在显示），确认一局再弹下一局；确认键写「知道了」，不收战斗屏，也不调 `AckBattleEnd`。说明行是「上次未查看的战斗 · 时间 结束 · 共 N 回合」。明细只列服务端记下的实际入账（经验、货币、获得与消耗的道具、改由邮件发放、物品行被截断、阵亡 / 逃离）。旧战果没有经验字段，沿用原有明细。作废局显示「本局作废」和作废说明行。
 - **确认**：面板真正弹出之后确认已读，现场的结算面板也确认（否则下次落地还会再弹一次）。一次至多 10 个 battle_id。失败（1006 冻结 / 交接中、超时）不重弹，留在待确认列表里，下次落地先补发再查。待确认只在内存里，进程退出最多让同一局再弹一次。没有上下文的作废局已经用提示告诉过玩家，视同展示过：直接确认，补查时不再弹面板。
 - **改动文件**：新 `Assets/Scripts/Game/Battle/BattleResultRecoveryClient.cs`（含 `.meta`，纯逻辑，不引用 UnityEngine）；`BattleClient.cs`（新事件 `OnBattleEndWithoutContext`，作废提示照旧）；`GameClient.cs`（`BattleResults` 装配与 `Tick` 驱动）；`Assets/Scripts/UI/Ugui/Battle/BattleResultPanel.cs`（`ShowRecovered`、`BuildRecoveredLines`、`BuildRecoveredSubtitle`，胜负标题与展示抽成 `ResolveTitle` / `Present` 两段，现场与补弹共用）；`BattleUiRoot.cs`（补弹排队与确认分支）。
 - **测试**：新 `Assets/Tests/EditMode/Battle/BattleResultRecoveryClientTests.cs`（含 `.meta`，13 例，假传输驱动：落地只查一次、只交未读并按序、没进场不查、10 个一批确认、现场展示过不再补弹、无上下文终局单飞多查一次、作废提示直接确认、15 / 30 / 60 秒退避、确认失败下次落地先补发、1006 留着、上一次落地的回包丢弃、没展示过的下次落地再交、服务端已读清掉待确认）；`DamageNumberLayoutTests.cs` 加 4 例（补弹明细行、无获得与逃离、作废、说明行）。
@@ -133,3 +135,35 @@ pwsh -File .codex-artifacts/heartbeat-20261106/compile-current-recovery.ps1 -Pro
 - **原图验收**：临时格面板、工具里的入口、状态行的满格提醒都没有效果图，沿用装备弹窗与工具栏的皮肤，只做了功能，视觉验收另算。
 - **测试**：新文件 `Assets/Tests/EditMode/Net/ClientRequestKeysTests.cs`、`EnterGameRoleSwitchTests.cs`、`Assets/Tests/EditMode/Battle/TemporaryBagClientTests.cs`（均含 `.meta`）；`EquipForgeClientTests.cs`、`AttributeClientTests.cs`、`Tianyong/MysteryMerchantClientTests.cs` 各补幂等键用例，原来「强化超时绝不重发」与购买超时的三条用例按新规则改为超时两次才收尾。
 - **生成物**：`tools/gen_proto.ps1` 加了 `generated/code/proto/tip/bag_error_tip.proto`，要先从服务端当前 proto 重跑它，生成 `BagErrorTip.cs`，否则 `bag_error` 报 CS0103。尚未生成、未编译，也没有在 Unity 里运行；命令见服务端仓 `docs/PROGRESS.md` 2026-11-12「客户端·强化期望等级与幂等键、临时格取回、进场失败后换角」条。
+
+## 本地开发版银两测试按钮与构建（2026-11-16）
+
+在 Unity Play 或显式 Development 测试包中，角色进入本机测试服后，游戏画面顶部显示「本地 GM：增加 10 万银两」。每次主动点击调用现有 `SceneCurrencyClientPlayerRpc.GmAddCurrency`，固定 `currency_type = 0`、`amount = 100000`，只增加当前角色的银两。收到服务器成功响应才显示 `balance_after`，并刷新当前角色的背包与宠物商店余额。`MMORPG/GM/银两测试说明` 编辑器菜单只显示使用说明，不发送请求；游戏内按钮共用唯一在途状态。
+
+`Assets/Scripts/App/LocalGmCurrencyClient.cs` 与 `LocalGmCurrencyDebugUi.cs` 的全部实现都在 `#if UNITY_EDITOR || DEVELOPMENT_BUILD` 内；正式包不包含这两个新增类型、自动挂载或加银两实现。已有生成的 GM 协议类型与 RPC 桩保持原状，不能把生成桩的存在当作正式包包含测试按钮。开发按钮仅在 gateway HTTP(S) 地址与分配的 gate TCP 地址都是 loopback、已进入角色且连接就绪时显示，每次实际发送前再次检查。没有内嵌管理员密钥，也没有凭客户端按钮授予账号权限。
+
+服务端沿用既有 Gate 与 Scene 的运行模式闸门：`GATE_RUN_MODE` / `SCENE_RUN_MODE` 的 dev/test 模式允许客户端 GM，prod、未设置或无法识别的模式拒绝。当前 localdev 测试服的测试账号均可使用此能力，并非仅某个管理员账号；不能声称开发服普通账号被账号权限隔离。面向玩家的正式包通过编译排除入口，生产服通过服务端模式拒绝请求。客户端 loopback 检查是本地测试范围限制，服务端仍是授权边界。
+
+请求在途时按钮不可再次提交。超时、断线、解析失败或服务端故障等无法确认的结局显示「结果未知」，不会自动补发；角色或连接已变化也不会把旧响应当作当前角色成功。此 GM 协议没有幂等键，用户应先核对余额；未知结果后的按钮明确表示一次「新加 10 万」操作。成功后的延迟刷新只执行只读查询，并核对原角色与原连接。
+
+正式构建入口为 `Assets/Editor/ClientPlayerBuild.cs`，由 `tools/build_client.ps1` 调用。默认 `BuildOptions.None`；只有显式 `-Development` 才设置 `BuildOptions.Development`，让 Unity 定义 `DEVELOPMENT_BUILD`。脚本默认分别创建 `Builds/windows-x64-release-<构建编号>` 或 `Builds/windows-x64-development-<构建编号>`；显式 `-OutDir` 必须是尚不存在的新目录。执行前需退出占用同一工程的 Unity 编辑器。
+
+```powershell
+Set-Location D:\luyuan\mmorpg-client
+# 普通发布包：不含新增测试按钮和发送实现。
+pwsh -File tools/build_client.ps1
+# 本机测试包：包含开发功能，勿作为普通玩家发布包。
+pwsh -File tools/build_client.ps1 -Development
+```
+
+构建使用当前已启用且保存的场景、Windows x64 Player 目标和 `BuildPipeline.BuildPlayer`，不修改工程构建设置；若项目手工配置 `UNITY_EDITOR` / `DEVELOPMENT_BUILD` 宏则拒绝，以免污染正式包。输出 `build-manifest.json` 记录实际 `BuildReport` 结果、请求与实际构建选项、Unity 版本、后端、场景、设置哈希及 EXE SHA-256。外层脚本按数值旗标、`buildFlavor`、开发标志与完整输出核验，枚举字符串仅用于诊断，避免 Unity Mono 的废弃零值别名影响判断；失败产物保留，不覆盖既有输出目录。构建会话限制为 2 个 Job Worker、1 个导入 Worker，并记录退出时内存统计；没有更改系统分页文件或资源导入设置，没有启用 LZ4。
+
+本轮已完成的验证：
+
+- 全部 483 个当前运行时源码分别按 Development / Release 编译成功；元数据检查确认 Development 有新增 GM 类型与方法，Release 中新增 GM 类型和方法均为 0，编译期间源码未变化。证据：`.codex-artifacts/local-gm-runtime-20261116/full-runtime-20261116/verification-summary.json`。
+- 纯逻辑测试 20/20 通过，覆盖端点门禁、固定货币与金额、单飞、未知结果、会话变化及刷新。证据：`.codex-artifacts/local-gm-runtime-20261116/tests-results.json`。
+- Unity 原生首批 21 项为 20 通过、1 失败；失败项是 UI 测试依赖内部对象名字，修正后单独重跑该 UI 用例 1/1 通过。保留首批失败证据，不将其改写为全通过：`native-editmode.xml` 与 `native-ui-final.xml`，均位于上述证据目录。
+- 构建脚本 PowerShell 解析、Development / Release 参数检查，以及使用本机 Unity 6000.6.0f1 真实引用的 Editor 构建入口离线编译通过；未以离线编译代替实际 Player 打包。
+- 服务端 Gate 运行模式与 GM 闸门定向测试 6/6 通过；使用实际 Scene 闸门头文件的独立进程探针 5/5 通过（未设置/prod/未知值拒绝，dev/test 允许）。完整 Scene 测试程序因配置加载失败未执行，不能记为通过。证据在服务端仓 `build/verification/gm-client-gate-audit-20261116/`。
+
+出包最终状态：首轮 `Builds/windows-x64-gm-test-20261116` 在读取 Resources 纹理时发生 native 内存不足崩溃（dump 确认 Mimalloc error 12；日志 `Logs/build-client-20261116-093437-411-7004.log`）。修正构建清单兼容性并限制并发后，`windows-x64-gm-test-20261116-r2` 重试由用户明确取消，构建进程已停止。本轮没有生成新的可运行 Player，也未完成连接真实服务器后的游戏内按钮点击与余额变化验收；不得将原生 UI 夹具通过当作这项验收。以上测试不构成客户端画面与原图一致的验收。

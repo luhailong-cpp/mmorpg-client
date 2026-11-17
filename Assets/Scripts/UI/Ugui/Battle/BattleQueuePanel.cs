@@ -223,11 +223,11 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
             _pveButton?.SetText($"PVE（{members}人 · 立即开战）");
             _pvpButton?.SetText($"匹配 PVP（{_pvpTeamSize}v{_pvpTeamSize} · 真人）");
-            bool ready = !_queueing && entry?.Pending != true && entry?.IsMember != true;
+            bool ready = !_queueing && entry?.CanStartNow == true;
             _pveButton?.SetInteractable(ready);
             _pvpButton?.SetInteractable(ready);
-            if (_matchHint != null) _matchHint.text = entry?.IsMember == true ? "你是队员，请由队长发起全队战斗。"
-                : entry?.Pending == true ? "正在同步队伍，确认后发起战斗…"
+            if (_matchHint != null) _matchHint.text = entry == null ? "正在同步战斗与队伍模块，请稍候…"
+                : !entry.CanStartNow ? entry.StartBlockedReason
                 : members < 5 && entry?.PvpSizeAllowed(5) == false ? "4 人队可以打 4v4；5v5 需要 1～3 人或满 5 人。"
                 : "上方人数为 PVP 每方目标。PVE 按现有人数开战；PVP 等待真人，队伍一起入场。";
         }

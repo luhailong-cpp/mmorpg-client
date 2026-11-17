@@ -53,6 +53,15 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             Assert.That(BattleTargetPresentation.AllowsTarget("self", 0, 7, 0, 7, false, false), Is.False);
         }
+
+        [Test]
+        public void OnlyConfiguredRevivalMaySelectADeadAllyAndNeverAFledUnit()
+        {
+            Assert.That(BattleTargetPresentation.AllowsTarget("ally", 1001, 7, 1002, 7, true, false, true), Is.True);
+            Assert.That(BattleTargetPresentation.AllowsTarget("ally", 1001, 7, 1002, 7, true, false), Is.False);
+            Assert.That(BattleTargetPresentation.AllowsTarget("ally", 1001, 7, 2001, 9, true, false, true), Is.False);
+            Assert.That(BattleTargetPresentation.AllowsTarget("ally", 1001, 7, 1002, 7, true, true, true), Is.False);
+        }
     }
 
     /// <summary>真实 BattleScreen 的按钮、单位点击、快照和确认链路；只用假传输记录出站请求。</summary>
@@ -133,6 +142,122 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _screen.OnPhaseChanged(BattlePhase.Ended);
             _screen.Tick();
             Assert.That(timer.gameObject.activeSelf, Is.False, "终局不留下空计时框");
+        }
+
+        [Test]
+        public void CharacterAndOwnedPetSubmitSeparatelyAndPetCannotUsePlayerOnlyCommands()
+        {
+            var pet = _state.Actors.Single(a => a.ActorId == PetId);
+            pet.OwnerPlayerId = MyId;
+            pet.SkillTableIds.Add(SelfSkill);
+            _state.PendingActorIds.Add(PetId);
+            _screen.ApplyState(_state);
+            Click("Cmd_Defend");
+            var first = (SubmitBattleActionRequest)_transport.CallsOf(MessageIds.SubmitBattleAction)[0].Request;
+            Assert.That(first.ActorId, Is.EqualTo(MyId));
+            Assert.That(first.RoundIndex, Is.EqualTo(1));
+            Assert.That(Button("Cmd_Item").interactable, Is.False);
+            Assert.That(Button("Cmd_Flee").interactable, Is.False);
+            Assert.That(Button("Cmd_Capture").interactable, Is.False);
+            Pick(SelfSkill);
+            AssertHighlight(SlotHighlight.Selected, PetId);
+            Click("ConfirmAction");
+            var second = (SubmitBattleActionRequest)_transport.CallsOf(MessageIds.SubmitBattleAction)[1].Request;
+            Assert.That(second.ActorId, Is.EqualTo(PetId));
+            Assert.That(second.Action.TargetId, Is.EqualTo(PetId));
+            Assert.That(Button("Cmd_Defend").interactable, Is.False);
+            _state.RoundIndex = 2;
+            _screen.ApplyState(_state);
+            Assert.That(Button("Cmd_Defend").interactable, Is.True);
+        }
+
+        [Test]
+        public void RejectedSubmissionAllowsThatActorToChooseAgain()
+        {
+            Click("Cmd_Defend");
+            _transport.CallsOf(MessageIds.SubmitBattleAction)[0].FailWith("rejected");
+            Assert.That(Button("Cmd_Defend").interactable, Is.True);
+        }
+
+        [Test]
+        public void OwnerConfirmsRecallOnlyAfterRetreatWaitEnds()
+        {
+            var pet = _state.Actors.Single(a => a.ActorId == PetId);
+            pet.OwnerPlayerId = MyId;
+            pet.Fled = true;
+            pet.WithdrawUntilRound = 2;
+            _screen.ApplyState(_state);
+            Assert.That(Button("Cmd_Capture").interactable, Is.False);
+            _state.RoundIndex = 2;
+            _screen.ApplyState(_state);
+            Click("Cmd_Capture");
+            Assert.That(_transport.CallsOf(MessageIds.SubmitBattleAction), Is.Empty);
+            Click("ConfirmAction");
+            var recall = (SubmitBattleActionRequest)_transport.CallsOf(MessageIds.SubmitBattleAction).Single().Request;
+            Assert.That(recall.ActorId, Is.EqualTo(MyId));
+            Assert.That(recall.RoundIndex, Is.EqualTo(2));
+            Assert.That(recall.Action.ActionType, Is.EqualTo(eBattleActionType.BattleActionRecallPet));
+            Assert.That(recall.Action.TargetId, Is.EqualTo(PetId));
+            Assert.That(Button("Cmd_Defend").interactable, Is.False);
+        }
+
+        [Test]
+        public void DeadCharacterStaysVisibleAndRevivalRestoresPoseWhileDeadPetHides()
+        {
+            var character = _state.Actors.Single(a => a.ActorId == MyId);
+            var pet = _state.Actors.Single(a => a.ActorId == PetId);
+            character.IsDead = pet.IsDead = true;
+            _screen.ApplyState(_state);
+            var characterGroup = (CanvasGroup)typeof(BattleUnitView).GetField("_group", Hidden).GetValue(Views[MyId]);
+            var petGroup = (CanvasGroup)typeof(BattleUnitView).GetField("_group", Hidden).GetValue(Views[PetId]);
+            var body = (RectTransform)typeof(BattleUnitView).GetField("_bodyRect", Hidden).GetValue(Views[MyId]);
+            Assert.That(characterGroup.alpha, Is.EqualTo(1));
+            Assert.That(Quaternion.Angle(body.localRotation, Quaternion.identity), Is.GreaterThan(60));
+            Assert.That(petGroup.alpha, Is.Zero);
+            Views[MyId].ReviveDuringPlayback(50, 120);
+            Assert.That(Views[MyId].IsDead, Is.False);
+            Assert.That(Quaternion.Angle(body.localRotation, Quaternion.identity), Is.LessThan(1));
+            Views[PetId].ReviveDuringPlayback(25, 100);
+            Assert.That(petGroup.alpha, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void CaptureHighlightsOnlyEligibleMonstersAndRequiresTargetConfirmation()
+        {
+            _state.Actors.Single(actor => actor.ActorId == MyId).Level = 10;
+            var monster = _state.Actors.Single(actor => actor.ActorId == EnemyId);
+            monster.CapturePetTableId = 1;
+            monster.CaptureMinLevel = 1;
+            _screen.ApplyState(_state);
+            Click("Cmd_Capture");
+            AssertHighlight(SlotHighlight.Targetable, EnemyId);
+            AssertHighlight(SlotHighlight.None, MyId, AllyId, PetId, DeadId, FledId);
+            ClickUnit(EnemyId);
+            Assert.That(_transport.CallsOf(MessageIds.SubmitBattleAction), Is.Empty);
+            Click("ConfirmAction");
+            var action = ((SubmitBattleActionRequest)_transport.CallsOf(MessageIds.SubmitBattleAction).Single().Request).Action;
+            Assert.That(action.ActionType, Is.EqualTo(eBattleActionType.BattleActionCapture));
+            Assert.That(action.TargetId, Is.EqualTo(EnemyId));
+        }
+
+        [Test]
+        public void CaptureRejectsLevelLockedAndAlreadyCapturedTargets()
+        {
+            var monster = _state.Actors.Single(actor => actor.ActorId == EnemyId);
+            monster.CapturePetTableId = 1;
+            monster.CaptureMinLevel = 10;
+            _state.Actors.Single(actor => actor.ActorId == MyId).Level = 1;
+            _screen.ApplyState(_state);
+            Assert.That(Button("Cmd_Capture").interactable, Is.False);
+            monster.CaptureMinLevel = 1;
+            _screen.ApplyState(_state);
+            Click("Cmd_Capture");
+            ClickUnit(EnemyId);
+            monster.CapturedByPlayerId = AllyId;
+            _screen.ApplyState(_state);
+            Assert.That(IsVisible("ConfirmAction"), Is.False);
+            Button("ConfirmAction").onClick.Invoke();
+            Assert.That(_transport.CallsOf(MessageIds.SubmitBattleAction), Is.Empty);
         }
 
         [Test]

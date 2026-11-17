@@ -22,6 +22,21 @@ namespace MmorpgClient.Game.Battle
         public uint CurrentSize => _team.HasTeam ? (uint)Math.Max(1, _team.Snapshot.Members.Count) : 1;
         public bool IsMember => _team.HasTeam && !_team.IsLeader;
         public bool Pending => _team.MatchNetworkPreparing || _team.PendingAction == TeamAction.StartMatch;
+        public bool CanStartNow => StartBlockedReason.Length == 0;
+        public string StartBlockedReason
+        {
+            get
+            {
+                if (!_team.HasFreshView || !_team.ServiceAvailable) return "队伍信息尚未就绪，请稍候重试。";
+                if (IsMember) return "请由队长发起全队战斗。";
+                if (Pending) return "正在准备匹配，请稍候重试。";
+                if (_team.MatchStarting || _team.MatchQueued || _battle.Phase != BattlePhase.None)
+                    return "已有匹配或战斗正在进行。";
+                if (_team.HasTeam && _team.Busy) return "正在同步队伍，请稍候重试。";
+                if (_team.HasTeam && _team.StartMatchCoolingDown) return "操作冷却中，请稍候再试。";
+                return string.Empty;
+            }
+        }
         public string Status { get; private set; } = string.Empty;
         public event Action<string> Notice;
 
@@ -78,23 +93,11 @@ namespace MmorpgClient.Game.Battle
 
         private bool CanStart()
         {
-            if (!_team.HasFreshView || !_team.ServiceAvailable)
-            {
-                _team.RequestRefresh();
-                ShowStatus("队伍信息尚未就绪，请稍候重试。");
-                return false;
-            }
-            if (IsMember)
-            {
-                ShowStatus("请由队长发起全队战斗。");
-                return false;
-            }
-            if (Pending || _team.MatchStarting || _team.MatchQueued || _battle.Phase != BattlePhase.None)
-            {
-                ShowStatus("已有匹配或战斗正在进行。");
-                return false;
-            }
-            return true;
+            string reason = StartBlockedReason;
+            if (reason.Length == 0) return true;
+            if (!_team.HasFreshView || !_team.ServiceAvailable) _team.RequestRefresh();
+            ShowStatus(reason);
+            return false;
         }
 
         private void ShowSoloStatus(string message)

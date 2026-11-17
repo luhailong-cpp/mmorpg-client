@@ -640,6 +640,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var targets = new List<uint>();
             _window.StartMatchRequested += () => direct++;
             _window.BackfillRequested += targets.Add;
+            Assert.That(ButtonText("StartTeamMatch"), Is.EqualTo("开始 PVE"));
             Click("StartTeamMatch");
             Assert.That(_window.IsModalOpen, Is.True);
             Assert.That(ActiveText(), Does.Contain("按当前队伍人数立即进入 PVE"));
@@ -738,6 +739,37 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Click("TeamModalConfirm");
             Assert.That(applications, Is.EqualTo(new List<ulong> { 12345 }));
             Assert.That(_window.IsModalOpen, Is.False);
+        }
+
+        [Test]
+        public void NearbySelectionFillsThePlayerNumberAndWaitsForConfirmation()
+        {
+            const ulong playerId = 6538919023702345471;
+            var nearby = ApplicationRoles(3);
+            nearby.Add(Role(playerId, "周围的队长", 60, 1, 1));
+            _window.GetNearbyPlayers = () => nearby;
+            Mirror(NoTeamSnapshot(), null);
+            _window.Show();
+            var applications = new List<ulong>();
+            _window.ApplyRequested += applications.Add;
+            Click("ApplyJoinTeam");
+            Click("NextNearbyApplyCandidates");
+            Click("ApplyCandidate_" + playerId);
+            Assert.That(FindInput("TeamTargetInput").text, Is.EqualTo(playerId.ToString()));
+            Assert.That(applications, Is.Empty);
+            Click("TeamModalConfirm");
+            Assert.That(applications, Is.EqualTo(new[] { playerId }));
+        }
+
+        [Test]
+        public void TeamNumbersOffersTheLeaderPlayerNumberForApplications()
+        {
+            Mirror(_snapshot, null);
+            _window.Show();
+            Click("ShowTeamNumbers");
+            Assert.That(FindLabel("TeamModalDescription").text, Does.Contain("队伍编号　1001"));
+            Assert.That(FindLabel("TeamModalDescription").text, Does.Contain("队长的玩家编号　11"));
+            Assert.That(ButtonText("TeamModalConfirm"), Is.EqualTo("复制玩家编号"));
         }
 
         [Test]

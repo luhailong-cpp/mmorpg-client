@@ -166,7 +166,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Has.None.EqualTo(BattleResultPanel.ItemsMailedLine), "没有获得道具就没有什么可提示的");
         }
 
-        // 补弹的近期战斗结果(服务端 docs/design/battle-result-recovery.md §7):只列服务端记下的实际入账,没有经验与战后血蓝。
+        // 补弹的近期战果只列服务端确认入账的奖励。
         [Test]
         public void RecoveredResultLines_ListWhatTheServerRecorded()
         {
@@ -176,6 +176,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 IsDead = true,
                 LinesTruncated = true,
                 ItemsMailed = true,
+                ExpGain = 100,
             };
             result.Currencies.Add(new PlayerBattleResultCurrency { CurrencyType = 0, Amount = 30 });
             result.Currencies.Add(new PlayerBattleResultCurrency { CurrencyType = 8, Amount = 2 });
@@ -184,6 +185,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             CollectionAssert.AreEqual(new[]
             {
+                "经验  +100",
                 "银两  +30",
                 "货币8  +2",
                 "获得  道具1001 ×2",

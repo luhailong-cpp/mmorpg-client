@@ -65,6 +65,67 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_net.CallsOf(MessageIds.GetPetList).Count, Is.EqualTo(2));
         }
 
+        private void OpenShop(ulong sequence = 7, ulong price = 500, ulong gold = 1000)
+        {
+            _net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = MakeList() });
+            _client.RequestShop();
+            var response = new GetPetShopResponse { Gold = gold, NextPurchaseSequence = sequence };
+            response.Offers.Add(new PetShopOffer { PetTableId = 1, Name = "灵狐", PriceGold = price });
+            _net.CallsOf(MessageIds.GetPetShop).Last().Respond(response);
+        }
+
+        [Test]
+        public void PurchaseTimeoutRetriesOriginalSequenceAndPriceAfterRefresh()
+        {
+            OpenShop();
+            _client.BuyPet(1, 500);
+            var first = _net.CallsOf(MessageIds.BuyPet).Single();
+            _client.BuyPet(1, 500);
+            Assert.That(_net.CallsOf(MessageIds.BuyPet).Count, Is.EqualTo(1));
+            first.FailWith("timeout");
+            Assert.That(_client.HasPendingPurchase, Is.True);
+            OpenShop(sequence: 8, price: 600);
+            _client.RetryPurchase();
+            var retry = _net.CallsOf(MessageIds.BuyPet).Last();
+            Assert.That(retry.Request, Is.EqualTo(first.Request));
+            ulong purchased = 0;
+            _client.OnPurchased += id => purchased = id;
+            retry.Respond(new BuyPetResponse { Pets = MakeList(), PetId = PetA, Gold = 500, NextPurchaseSequence = 8 });
+            Assert.That(purchased, Is.EqualTo(PetA));
+            Assert.That(_client.HasPendingPurchase, Is.False);
+            Assert.That(_client.Shop.Gold, Is.EqualTo(500));
+            Assert.That(_client.Shop.NextPurchaseSequence, Is.EqualTo(8));
+        }
+
+        [Test]
+        public void ShopRejectsUnavailableOffersFullRosterAndChangedQuoteBeforeSending()
+        {
+            OpenShop();
+            _client.BuyPet(99, 500);
+            _client.BuyPet(1, 499);
+            _client.Pets.MaxPets = (uint)_client.Pets.Pets.Count;
+            _client.BuyPet(1, 500);
+            Assert.That(_net.CallsOf(MessageIds.BuyPet), Is.Empty);
+            Assert.That(_client.Busy, Is.False);
+        }
+
+        [Test]
+        public void PurchaseDisconnectIgnoresOldResponseAndRetryKeepsOriginalRequest()
+        {
+            OpenShop();
+            _client.BuyPet(1, 500);
+            var old = _net.CallsOf(MessageIds.BuyPet).Single();
+            _net.RaiseDisconnected();
+            old.Respond(new BuyPetResponse { Pets = MakeList(), PetId = PetA, NextPurchaseSequence = 8 });
+            Assert.That(_client.Shop, Is.Null);
+            Assert.That(_client.Pets, Is.Null);
+            OpenShop();
+            _client.RetryPurchase();
+            Assert.That(_net.CallsOf(MessageIds.BuyPet).Last().Request, Is.EqualTo(old.Request));
+            old.FailWith("stale failure");
+            Assert.That(_client.Busy, Is.True);
+        }
+
         [Test]
         public void GrantRequiresAuthoritativeListAndIgnoresResponseAfterDisconnect()
         {

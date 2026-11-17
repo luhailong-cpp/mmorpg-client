@@ -13,13 +13,14 @@ namespace MmorpgClient.Tests.EditMode.Net
 {
     public sealed class GateTcpClientHeartbeatTests
     {
-        [Test]
-        public void VerificationStartsHeartbeatWithoutMainThreadPollAndRepliesStayOffBusinessQueue()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void VerificationStartsHeartbeatWithoutMainThreadPollAndRepliesStayOffBusinessQueue(bool battle)
         {
             using var pair = new Peer();
             var seen = new List<IMessage>();
             pair.Client.OnMessage += seen.Add;
-            pair.SendVerify(50, 1000);
+            pair.SendVerify(50, 1000, battle);
             // 连续回复跨过判死期限：整个窗口不 Poll，模拟主线程长时间加载场景。
             for (ulong seq = 1; seq <= 24; seq++)
             {
@@ -31,20 +32,21 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(seen, Is.Empty);
             pair.Client.Poll();
             Assert.That(seen.Count, Is.EqualTo(1));
-            Assert.That(seen[0], Is.TypeOf<ClientTokenVerifyResponse>());
+            Assert.That(seen[0], Is.TypeOf(battle ? typeof(BattleTokenVerifyResponse) : typeof(ClientTokenVerifyResponse)));
             Assert.That(pair.Client.HeartbeatRoundTripMs, Is.Not.Null);
         }
 
-        [TestCase(false)]
-        [TestCase(true)]
-        public void UnverifiedOrUnannouncedConnectionNeverSendsHeartbeat(bool verify)
+        [TestCase(false, false)]
+        [TestCase(true, false)]
+        [TestCase(true, true)]
+        public void UnverifiedOrUnannouncedConnectionNeverSendsHeartbeat(bool verify, bool battle)
         {
             using var pair = new Peer();
             if (verify)
             {
                 bool seen = false;
                 pair.Client.OnMessage += _ => seen = true;
-                pair.SendVerify(0, 0);
+                pair.SendVerify(0, 0, battle);
                 Assert.That(SpinWait.SpinUntil(() => { pair.Client.Poll(); return seen; }, 3000), Is.True);
             }
             pair.Client.Send(new ClientTokenVerifyRequest());
@@ -52,26 +54,28 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(GetThread(pair.Client, "_heartbeatThread"), Is.Null);
         }
 
-        [Test]
-        public void RejectedVerificationDoesNotStartHeartbeat()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void RejectedVerificationDoesNotStartHeartbeat(bool battle)
         {
             using var pair = new Peer();
-            pair.Send(new ClientTokenVerifyResponse { Success = false, HeartbeatIntervalMs = 50, HeartbeatTimeoutMs = 500 });
+            pair.SendVerify(50, 500, battle, success: false);
             bool seen = false;
             pair.Client.OnMessage += _ => seen = true;
             Assert.That(SpinWait.SpinUntil(() => { pair.Client.Poll(); return seen; }, 3000), Is.True);
             Assert.That(GetThread(pair.Client, "_heartbeatThread"), Is.Null);
         }
 
-        [Test]
-        public void SilentGateClosesTransportAndRaisesOneDisconnect()
+        [TestCase(false)]
+        [TestCase(true)]
+        public void SilentPeerClosesTransportAndRaisesOneDisconnect(bool battle)
         {
             using var pair = new Peer();
             var errors = new List<string>();
             int disconnected = 0;
             pair.Client.OnError += errors.Add;
             pair.Client.OnDisconnected += () => disconnected++;
-            pair.SendVerify(50, 300);
+            pair.SendVerify(50, 300, battle);
             Assert.That(pair.Read<ClientHeartbeatRequest>().Seq, Is.EqualTo(1));
             Assert.That(SpinWait.SpinUntil(() => !pair.Client.Connected, 3000), Is.True);
             Assert.That(GetThread(pair.Client, "_readerThread").Join(3000), Is.True);
@@ -133,6 +137,7 @@ namespace MmorpgClient.Tests.EditMode.Net
             public Peer()
             {
                 Codec.Register<ClientTokenVerifyRequest>(); Codec.Register<ClientTokenVerifyResponse>();
+                Codec.Register<BattleTokenVerifyResponse>();
                 Codec.Register<ClientHeartbeatRequest>(); Codec.Register<ClientHeartbeatResponse>();
                 _listener.Start();
                 Client = new GateTcpClient(Codec);
@@ -140,8 +145,13 @@ namespace MmorpgClient.Tests.EditMode.Net
                 Remote = _listener.AcceptTcpClient();
                 Stream.ReadTimeout = 3000;
             }
-            public void SendVerify(uint interval, uint timeout) => Send(new ClientTokenVerifyResponse
-            { Success = true, HeartbeatIntervalMs = interval, HeartbeatTimeoutMs = timeout });
+            public void SendVerify(uint interval, uint timeout, bool battle = false, bool success = true)
+            {
+                if (battle) Send(new BattleTokenVerifyResponse
+                { Success = success, BattleId = 7, HeartbeatIntervalMs = interval, HeartbeatTimeoutMs = timeout });
+                else Send(new ClientTokenVerifyResponse
+                { Success = success, HeartbeatIntervalMs = interval, HeartbeatTimeoutMs = timeout });
+            }
             public void Send(IMessage message) { var bytes = Codec.Encode(message); Stream.Write(bytes, 0, bytes.Length); }
             public T Read<T>() where T : class, IMessage { var message = ReadMessage(); Assert.That(message, Is.TypeOf<T>()); return (T)message; }
             public IMessage ReadMessage()

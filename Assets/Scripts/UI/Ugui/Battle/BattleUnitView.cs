@@ -102,6 +102,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public bool IsPet { get; private set; }
         public uint PetTableId { get; private set; }
         public uint MonsterTableId { get; private set; }
+        private bool UsesMonsterArt => IsMonster && BattleArtCatalog.VisualPetTableId(_lastState) == 0;
+        private bool UsesPetArt => IsPet || BattleArtCatalog.VisualPetTableId(_lastState) != 0;
         public string CharacterId { get; private set; } = BattleArtCatalog.DefaultCharacterId;
         /// <summary>当前目标高亮态(目标选择模式下 BattleScreen 据此判可选/已选)。</summary>
         public SlotHighlight Highlight => _highlight;
@@ -359,6 +361,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             string name = string.IsNullOrEmpty(state.Name)
                 ? (IsMonster ? $"怪物{state.MonsterTableId}" : IsPet ? $"宝宝{state.PetTableId}" : $"玩家{state.ActorId}")
                 : state.Name;
+            if (IsMonster && state.CapturePetTableId != 0)
+                name = MmorpgClient.World.QdaoPetCatalog.Resolve(state.CapturePetTableId)?.displayName ?? name;
             _name.text = $"{(IsSelf ? "★" : string.Empty)}Lv{state.Level} {name}";
             _name.color = NameColor(IsMonster);
 
@@ -366,18 +370,20 @@ namespace MmorpgClient.UI.Ugui.Battle
             RebuildBuffIcons(state);
 
             bool dead = state.IsDead;
-            bool fled = state.Fled;
-            if (dead && !IsDead) ShowDeadMark();           // 权威说已死而本地没播过:直接落终态
+            bool captured = state.CapturedByPlayerId != 0;
+            bool fled = state.Fled || captured;
+            if (dead) ShowDeadMark();                     // 重连/跳过演出也保留倒地姿态
             if (!dead && IsDead) ReviveVisual();            // 复活(PVE 多回合复活)
             IsDead = dead;
             Fled = fled;
-            if (fled) ShowBadge("逃", BattleUiStyle.BuffCutText);
+            if (captured) ShowBadge("捕", BattleUiStyle.BuffCutText);
+            else if (fled) ShowBadge("逃", BattleUiStyle.BuffCutText);
             else if (dead) ShowBadge("亡", BattleUiStyle.DamageText);
             else if (state.IsDefending) ShowBadge("防", BattleUiStyle.WarnText);
             else HideBadge();
 
-            // 死亡:尸体不保留(spec §1),立绘与名牌一并隐藏;逃离:半透明留位
-            _group.alpha = dead ? 0f : fled ? 0.4f : 1f;
+            // 人物倒地后保留模型与阵位供复生选择；宝宝死亡隐藏，但逻辑实例仍保留。
+            _group.alpha = (dead || fled) && IsPet || captured ? 0f : fled ? 0.4f : 1f;
             SetHighlight(SlotHighlight.None);
             if (!dead && !fled && !_actionActive && !RealtimeTween.IsTweening(_idleToken)) PlayIdle();
         }
@@ -418,14 +424,50 @@ namespace MmorpgClient.UI.Ugui.Battle
             Tween(fromW, toW, 0.2f, RealtimeEase.QuadOut, t => SetWidth(_mpFillRect, t.Value.x)).SetTarget(_mpFillRect);
         }
 
-        /// <summary>回合播放中的死亡终态(PlayDeath 播完或权威状态直接给):整个单位(含名牌/条/buff)隐藏,尸体不保留。</summary>
+        public void SetMaxHealthDuringPlayback(ulong maximum)
+        {
+            if (maximum == 0) return;
+            _maxHealth = maximum;
+            SetBarsImmediate();
+        }
+
+        public void ReviveDuringPlayback(ulong health, ulong maximum)
+        {
+            KillActionTweens();
+            IsDead = false;
+            Fled = false;
+            ReviveVisual();
+            if (_group != null) _group.alpha = 1f;
+            HideBadge();
+            SetMaxHealthDuringPlayback(maximum);
+            SetHealthDuringPlayback(health);
+            PlayIdle();
+        }
+
+        public void ReturnDuringPlayback()
+        {
+            if (IsDead) return;
+            KillActionTweens();
+            Fled = false;
+            ReviveVisual();
+            if (_group != null) _group.alpha = 1f;
+            HideBadge();
+            PlayIdle();
+        }
+
+        /// <summary>人物保留可选中的倒地模型；宝宝死亡隐藏，复生或新快照可重新显示。</summary>
         public void ShowDeadMark()
         {
             IsDead = true;
             KillActionTweens();
             ShowBadge("亡", BattleUiStyle.DamageText);
-            if (_group != null) _group.alpha = 0f;
+            if (_group != null) _group.alpha = IsPet ? 0f : 1f;
             if (_body != null) _body.color = new Color(0.45f, 0.45f, 0.5f, 1f);
+            if (_bodyRect != null && !IsPet)
+            {
+                _bodyRect.localRotation = Quaternion.Euler(0f, 0f, TeamIsMine ? -75f : 75f);
+                _bodyRect.anchoredPosition = new Vector2(RootWidth * 0.5f, _bodyBaseY - 12f);
+            }
         }
 
         public void SetHighlight(SlotHighlight highlight)
@@ -488,7 +530,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var dir = targetFoot - from;
             float dist = dir.magnitude;
             var dest = dist > 1f ? targetFoot - dir / dist * LungeStopDistance : from;
-            var strip = IsMonster
+            var strip = UsesMonsterArt
                 ? BattleArtCatalog.LoadMonsterAction(MonsterTableId, "attack", _facingEast)
                 : BattleArtCatalog.LoadCharacterAction(CharacterId, "attack", _facingEast);
             _actionStrip = strip; // Retain while approaching; cancellation must release the pending swing too.
@@ -626,7 +668,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_root == null || IsDead) return;
             BeginAction();
 
-            var strip = IsMonster
+            var strip = UsesMonsterArt
                 ? BattleArtCatalog.LoadMonsterAction(MonsterTableId, "cast", _facingEast)
                 : BattleArtCatalog.LoadCharacterAction(CharacterId, "cast", _facingEast);
             SpawnFx("cast_charge", true, 300f);
@@ -674,7 +716,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_root == null || IsDead || Fled) return;
             BeginAction();
 
-            var strip = IsMonster
+            var strip = UsesMonsterArt
                 ? BattleArtCatalog.LoadMonsterAction(MonsterTableId, "hit", _facingEast)
                 : BattleArtCatalog.LoadCharacterAction(CharacterId, "hit", _facingEast);
 
@@ -745,15 +787,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             IsDead = true;
             HideBadge();
 
-            var strip = IsMonster
+            var strip = UsesMonsterArt
                 ? BattleArtCatalog.LoadMonsterAction(MonsterTableId, "die", _facingEast)
                 : BattleArtCatalog.LoadCharacterAction(CharacterId, "die", _facingEast);
-            SpawnFx("death_dissolve", true, 300f);
+            if (IsPet) SpawnFx("death_dissolve", true, 300f);
 
             if (strip != null && strip.Count > 0)
             {
                 PlayStrip(strip, 0.9f, null, () => ShowDeadMark());
-                Tween(1f, 0f, 1.0f, RealtimeEase.QuadIn, t => { if (_group != null) _group.alpha = t.Value.x; });
+                if (IsPet) Tween(1f, 0f, 1.0f, RealtimeEase.QuadIn, t => { if (_group != null) _group.alpha = t.Value.x; });
                 return;
             }
 
@@ -768,8 +810,10 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _body.color = Color.Lerp(startColor, new Color(0.45f, 0.45f, 0.5f, 1f), k);
             }, () =>
             {
-                Tween(1f, 0f, 0.5f, RealtimeEase.QuadIn, t => { if (_group != null) _group.alpha = t.Value.x; },
-                    () => ShowDeadMark());
+                if (IsPet)
+                    Tween(1f, 0f, 0.5f, RealtimeEase.QuadIn, t => { if (_group != null) _group.alpha = t.Value.x; },
+                        () => ShowDeadMark());
+                else ShowDeadMark();
             });
         }
 
@@ -797,6 +841,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         }
 
         /// <summary>逃跑:成功 → 向阵营外侧冲出并淡到 0.2 且标记逃离;失败 → 起步又缩回 + 抖动。</summary>
+        public void PlayCaptured()
+        {
+            StopAction();
+            RealtimeTween.Kill(_idleToken);
+            Fled = true;
+            if (_group != null) _group.alpha = 0f;
+        }
+
         public void PlayFlee(bool success)
         {
             if (_root == null || IsDead) return;
@@ -907,7 +959,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_lastState != null) Apply(_lastState);
             else
             {
-                if (_group != null) _group.alpha = IsDead ? 0f : Fled ? 0.4f : 1f;
+                if (IsDead) ShowDeadMark();
+                if (_group != null) _group.alpha = (IsDead || Fled) && IsPet ? 0f : Fled ? 0.4f : 1f;
                 if (!IsDead && !Fled) PlayIdle();
             }
         }
@@ -917,7 +970,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_root == null || IsDead || Fled) return;
             BeginAction();
-            var strip = IsMonster ? null : BattleArtCatalog.LoadCharacterAction(CharacterId, "win", _facingEast);
+            var strip = UsesMonsterArt ? null : BattleArtCatalog.LoadCharacterAction(CharacterId, "win", _facingEast);
             if (strip != null && strip.Count > 0)
             {
                 PlayStrip(strip, 0.8f, null, () => EndAction());
@@ -1082,7 +1135,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             StripAnim acquired = null;
             bool mirrored = false;
             float height;
-            if (IsMonster)
+            if (UsesMonsterArt)
             {
                 var strip = BattleArtCatalog.LoadMonsterAction(MonsterTableId, "idle", _facingEast);
                 if (strip != null && strip.Count > 0)
@@ -1111,7 +1164,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
                 else
                 {
-                    sprite = IsPet ? BattleArtCatalog.GetMonsterSilhouette(_lastState.PetTableId)
+                    sprite = UsesPetArt ? BattleArtCatalog.GetMonsterSilhouette(BattleArtCatalog.VisualPetTableId(_lastState))
                         : BattleArtCatalog.LoadPlayerIdle(CharacterId, _facingEast, out mirrored, _artLeaseOwner);
                 }
                 height = PlayerHeight;
@@ -1209,8 +1262,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>Metadata-only duration lookup, used before choosing the round's playback speed.</summary>
         public float ActionDurationSeconds(string action)
         {
-            float authored = IsMonster ? 0f : MmorpgClient.World.QdaoActionResources.GetDurationSeconds(
-                CharacterId, action, _facingEast ? "E" : "W", IsPet ? MmorpgClient.World.QdaoActionResources.PetResourceRoot : MmorpgClient.World.QdaoActionResources.ResourceRoot);
+            float authored = UsesMonsterArt ? 0f : MmorpgClient.World.QdaoActionResources.GetDurationSeconds(
+                CharacterId, action, _facingEast ? "E" : "W", UsesPetArt ? MmorpgClient.World.QdaoActionResources.PetResourceRoot : MmorpgClient.World.QdaoActionResources.ResourceRoot);
             if (action == "attack") return AttackReturnStart(authored > 0f ? authored : 0.3f) + AttackReturnSeconds;
             if (action == "cast") return Mathf.Max(CastActionSeconds, authored);
             if (action == "hit") return Mathf.Max(0.25f, authored);
@@ -1219,8 +1272,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         public float ActionEventDelaySeconds(string action)
         {
-            float authored = IsMonster ? -1f : MmorpgClient.World.QdaoActionResources.GetEventTimeSeconds(
-                CharacterId, action, _facingEast ? "E" : "W", IsPet ? MmorpgClient.World.QdaoActionResources.PetResourceRoot : MmorpgClient.World.QdaoActionResources.ResourceRoot);
+            float authored = UsesMonsterArt ? -1f : MmorpgClient.World.QdaoActionResources.GetEventTimeSeconds(
+                CharacterId, action, _facingEast ? "E" : "W", UsesPetArt ? MmorpgClient.World.QdaoActionResources.PetResourceRoot : MmorpgClient.World.QdaoActionResources.ResourceRoot);
             return action == "attack"
                 ? authored >= 0f ? AttackApproachSeconds + authored : AttackHitDelaySeconds
                 : authored >= 0f ? authored : CastReleaseDelaySeconds;

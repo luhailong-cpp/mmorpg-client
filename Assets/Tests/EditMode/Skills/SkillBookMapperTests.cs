@@ -59,10 +59,12 @@ namespace MmorpgClient.Tests.EditMode.Skills
         }
 
         [Test]
-        public void RowsOfAnotherClassAreIgnored()
+        public void FreeCatalogDoesNotApplyAClientClassRestriction()
         {
-            var book = OneRow(new SkillCatalogEntry { SkillTableId = 1101, ClassId = 1 }, classId: 3);
-            Assert.That(SkillBookMapper.ToSnapshot(book, _ => null).Entries, Is.Empty);
+            var book = OneRow(new SkillCatalogEntry { SkillTableId = 2101, ClassId = 0, AllowDeadTarget = true }, classId: 3);
+            var entry = SkillBookMapper.ToSnapshot(book, _ => null).Find(2101);
+            Assert.That(entry, Is.Not.Null);
+            Assert.That(entry.Definition.allowDeadTarget, Is.True);
         }
 
         [TestCase("UI/Skills/1101", 1101u, "UI/Skills/1101")]

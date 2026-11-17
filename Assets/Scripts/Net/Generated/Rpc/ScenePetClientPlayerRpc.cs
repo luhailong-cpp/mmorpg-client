@@ -68,5 +68,15 @@ namespace MmorpgClient.Net.Generated
         public static void GmGrantPet(IRpcChannel channel, global::GmGrantPetRequest request,
             RpcDone<global::GmGrantPetResponse> done)
             => channel.CallMethod(GmGrantPetMessageId, request, global::GmGrantPetResponse.Parser, done);
+
+        public const uint GetPetShopMessageId = 402;
+        public static void GetPetShop(IRpcChannel channel, global::GetPetShopRequest request,
+            RpcDone<global::GetPetShopResponse> done)
+            => channel.CallMethod(GetPetShopMessageId, request, global::GetPetShopResponse.Parser, done);
+
+        public const uint BuyPetMessageId = 403;
+        public static void BuyPet(IRpcChannel channel, global::BuyPetRequest request,
+            RpcDone<global::BuyPetResponse> done)
+            => channel.CallMethod(BuyPetMessageId, request, global::BuyPetResponse.Parser, done);
     }
 }

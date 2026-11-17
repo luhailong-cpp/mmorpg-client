@@ -41,6 +41,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             _client.OnList += _panel.ApplyList;
             _client.OnBusyChanged += _panel.ApplyBusy;
             _client.OnError += _panel.ApplyError;
+            _client.OnShopChanged += _panel.RefreshShop;
+            _client.OnPurchased += _panel.ApplyPurchased;
 
             _list = MakeList();
             _panel.Show();
@@ -56,6 +58,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 _client.OnList -= _panel.ApplyList;
                 _client.OnBusyChanged -= _panel.ApplyBusy;
                 _client.OnError -= _panel.ApplyError;
+                _client.OnShopChanged -= _panel.RefreshShop;
+                _client.OnPurchased -= _panel.ApplyPurchased;
             }
             if (_uiRoot != null) Object.DestroyImmediate(_uiRoot);
         }
@@ -86,6 +90,28 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var rename = _net.CallsOf(MessageIds.RenamePet).Single();
             Assert.That(((RenamePetRequest)rename.Request).PetId, Is.EqualTo(PetId));
             Assert.That(((RenamePetRequest)rename.Request).Name, Is.EqualTo("新灵狐"));
+        }
+
+        [Test]
+        public void ShopRequiresPriceConfirmationAndSelectsPurchasedInstance()
+        {
+            Click("Tab商店");
+            var response = new GetPetShopResponse { Gold = 1000, NextPurchaseSequence = 1 };
+            response.Offers.Add(new PetShopOffer { PetTableId = 2, Name = "石灵", ModelId = 1002, PriceGold = 500 });
+            _net.CallsOf(MessageIds.GetPetShop).Single().Respond(response);
+            Click("ShopBuy");
+            Assert.That(_net.CallsOf(MessageIds.BuyPet), Is.Empty);
+            Click("ShopBuy");
+            var request = (BuyPetRequest)_net.CallsOf(MessageIds.BuyPet).Single().Request;
+            Assert.That(request.PetTableId, Is.EqualTo(2));
+            Assert.That(request.PriceGold, Is.EqualTo(500));
+            var next = _list.Clone();
+            next.Pets.Add(new PetInfo { PetId = PetId + 1, PetTableId = 2, ModelId = 1002, Name = "石灵" });
+            _net.CallsOf(MessageIds.BuyPet).Single().Respond(new BuyPetResponse
+            { Pets = next, PetId = PetId + 1, Gold = 500, NextPurchaseSequence = 2 });
+            Assert.That(Button("ShopBuy").gameObject.activeInHierarchy, Is.False);
+            Click("Summon");
+            Assert.That(((SummonPetRequest)_net.CallsOf(MessageIds.SummonPet).Single().Request).PetId, Is.EqualTo(PetId + 1));
         }
 
         [TestCase(false)]

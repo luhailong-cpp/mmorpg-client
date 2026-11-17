@@ -40,7 +40,7 @@ namespace MmorpgClient.Game.Skills
         }
 
         /// <summary>
-        /// 整份技能书 → 一次性替换用的快照。只收当前职业的目录行(服务端本来就只发当前职业),按 id 升序。
+        /// 整份技能书 → 一次性替换用的快照。服务端已经过滤人物/宝宝资格，客户端按 id 升序展示。
         /// presentation 取本地图鉴的展示元数据;传 null 用 <see cref="Ui.SkillCatalog.Find"/>。
         /// </summary>
         public static Ui.SkillBookSnapshot ToSnapshot(ListSkillsResponse response,
@@ -57,7 +57,7 @@ namespace MmorpgClient.Game.Skills
             };
             foreach (var row in response.Catalog)
             {
-                if (row == null || row.SkillTableId == 0 || row.ClassId != response.ClassId) continue;
+                if (row == null || row.SkillTableId == 0) continue;
                 var local = presentation(row.SkillTableId);
                 snapshot.Entries.Add(new Ui.SkillEntryState
                 {
@@ -73,10 +73,12 @@ namespace MmorpgClient.Game.Skills
                         className = local?.className,
                         name = row.Name,
                         type = row.Passive ? "passive" : "active",
+                        originLabel = row.AbilityKind == 3 ? "追击" : row.AbilityKind == 4 ? "开场" : null,
                         category = row.Category,
                         unlockLevel = row.UnlockLevel,
                         maxRank = row.MaxRank,
                         targetTeam = TargetTeamName(row.TargetTeam),
+                        allowDeadTarget = row.AllowDeadTarget,
                         maxTargets = row.MaxTargets,
                         manaPercent = row.ManaPercent,
                         cooldownRounds = row.CooldownRounds,

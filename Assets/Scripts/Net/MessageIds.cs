@@ -14,6 +14,7 @@ namespace MmorpgClient.Net
         public const uint AutoAllocatePetPoints  =  188; // ScenePetClientPlayerAutoAllocatePetPoints
         public const uint BuyGuildShopGoods      =  233; // GuildServiceBuyGuildShopGoods
         public const uint BuyMysteryMerchantGoods =  315; // SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods
+        public const uint BuyPet                 =  403; // ScenePetClientPlayerBuyPet
         public const uint CancelGuildApplication =  219; // GuildServiceCancelGuildApplication
         public const uint CancelQueue            =  148; // MatchServiceCancelQueue
         public const uint ChallengePlayer        =  152; // MatchServiceChallengePlayer
@@ -46,6 +47,7 @@ namespace MmorpgClient.Net
         public const uint GetMyTeam              =  207; // ClientPlayerTeamGetMyTeam
         public const uint GetNetworkProbePlan    =  275; // MatchServiceGetNetworkProbePlan
         public const uint GetPetList             =  181; // ScenePetClientPlayerGetPetList
+        public const uint GetPetShop             =  402; // ScenePetClientPlayerGetPetShop
         public const uint GetPlayerGuild         =   35; // GuildServiceGetPlayerGuild
         public const uint GetQueueStatus         =  153; // MatchServiceGetQueueStatus
         public const uint GetSyncDigest          =  253; // SceneSceneClientPlayerGetSyncDigest

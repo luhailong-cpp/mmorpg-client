@@ -194,7 +194,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             if (!PrepareRequest(out var playerId)) return;
             if (bagType > MaxBagType) { FailBag("背包类型不存在"); return; }
             if (BusySort) { FailBag("背包正在整理，请稍候"); return; }
-            if (BusyEquip)
+            if (BusyEquip || BusyEquipmentCraft)
             {
                 // 正在看的这一类会被穿脱回包整体覆盖:不发、也不报错(报了会盖住穿脱自己的失败原因),
                 // 记下这一次刷新,穿脱收口后补发。切到别的类型仍然要等。
@@ -237,7 +237,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             if (!PrepareRequest(out var playerId)) return;
             // 穿脱回包自带装备栏全量:不发、也不报错,记下这一次刷新,穿脱收口后补发。
-            if (BusyEquip) { _equipmentReadDeferred = true; return; }
+            if (BusyEquip || BusyEquipmentCraft) { _equipmentReadDeferred = true; return; }
             _equipActionError = string.Empty; // 玩家主动刷新:上一次穿脱的失败原因一并收起
             ReadEquipment(playerId);
         }
@@ -454,6 +454,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             if (!PrepareRequest(out var playerId)) return;
             if (BusyEquip) return; // 连点:上一次还没回包,不发第二个包也不报错
+            if (HasPendingEquipmentCraft) { FailEquipAction(EquipmentCraftPendingText); return; }
             if (BusyActivityReward) { FailEquipAction("活跃奖励正在处理中，请稍候"); return; }
             // 连点的另一种形态:上一包已经回来,但离它发出还不到最小间隔。同样不发、不报错。
             // 差值为负 = 时钟被换过:放行(宁可多发一包,不能把人永久锁在间隔里)。
@@ -555,9 +556,9 @@ namespace MmorpgClient.Game.PlayerFeatures
         /// </summary>
         private void SendDeferredReads(int epoch, ulong playerId)
         {
-            if (_bagReadDeferred && !BusyEquip && IsCurrent(epoch, playerId))
+            if (_bagReadDeferred && !BusyEquip && !BusyEquipmentCraft && IsCurrent(epoch, playerId))
             { _bagReadDeferred = false; RequestBag(RequestedBagType); }
-            if (_equipmentReadDeferred && !BusyEquip && IsCurrent(epoch, playerId))
+            if (_equipmentReadDeferred && !BusyEquip && !BusyEquipmentCraft && IsCurrent(epoch, playerId))
             { _equipmentReadDeferred = false; ReadEquipment(playerId); }
         }
 
@@ -565,6 +566,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         public void SortBag()
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (HasPendingEquipmentCraft) { FailBag(EquipmentCraftPendingText); return; }
             if (BusyActivityReward) { FailBag("活跃奖励正在处理中，请稍候"); return; }
             if (BusyMissionAction) { FailBag("任务正在处理中，请稍候"); return; }
             if (BusyEquip) { FailBag("装备正在更换，请稍候"); return; }
@@ -668,6 +670,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         private void PerformMissionAction(uint scope, uint missionId, bool claim)
         {
             if (!PrepareRequest(out var playerId)) return;
+            if (HasPendingEquipmentCraft) { FailMissions(EquipmentCraftPendingText); return; }
             if (BusyMissionAction) return;
             if (BusyActivityReward) { FailMissions("活跃奖励正在处理中，请稍候"); return; }
             if (BusySort) { FailMissions("背包正在整理，请稍候"); return; }
@@ -739,6 +742,8 @@ namespace MmorpgClient.Game.PlayerFeatures
                 return false;
             }
             _snapshotPlayerId = playerId;
+            // 任何资产入口都先发现磁盘未决意图，不能等主循环第一次恢复后才拦截。
+            RestoreEquipmentCraft(playerId);
             return true;
         }
 
@@ -908,6 +913,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             ++_epoch;
             ResetActivityRewardSession();
+            ResetEquipmentCraftSession();
             ResetTemporarySession();
             _snapshotPlayerId = 0;
             Array.Clear(_bags, 0, _bags.Length);
@@ -934,6 +940,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             OnError = null;
             OnEnhanceResult = null;
             OnActivityRewardClaimed = null;
+            OnEquipmentCraftApplied = null;
         }
     }
 }

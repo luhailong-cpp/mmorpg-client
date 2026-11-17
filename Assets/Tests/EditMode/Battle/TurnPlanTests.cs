@@ -16,6 +16,41 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private const ulong A = 11, B = 22, C = 33, D = 44;
         private const float Eps = 1e-4f;
 
+        [Test]
+        public void RevivalRunsAfterDeathWithoutOverlappingTheDeathCallback()
+        {
+            var plan = TurnPlan.Build(new[] {
+                Ev(BattleEventCodes.Attack, A, B, group: 9),
+                Ev(BattleEventCodes.Damage, A, B, 100, group: 9),
+                Ev(BattleEventCodes.Death, A, B, group: 9),
+                new TurnEventInput { Type = BattleEventCodes.Revive, SourceId = C, TargetId = B,
+                    HealthAfter = 25, MaxHealthAfter = 120, GroupId = 9 },
+            });
+            Assert.That(plan.Beats.Count, Is.EqualTo(3));
+            Assert.That(plan.Beats[1].Kind, Is.EqualTo(BeatKind.Death));
+            Assert.That(plan.Beats[1].OverlapNextSeconds, Is.Zero);
+            Assert.That(plan.Beats[2].Targets[0].Effect, Is.EqualTo(TargetEffect.Revive));
+            Assert.That(plan.Beats[2].Targets[0].HealthAfter, Is.EqualTo(25));
+            Assert.That(plan.Beats[2].Targets[0].MaxHealthAfter, Is.EqualTo(120));
+        }
+
+        [Test]
+        public void ProtoCarriesMaxHealthShieldAndRetreatInEventOrder()
+        {
+            var result = new TurnResultS2C();
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventMaxHealth,
+                TargetId = B, TargetHealthAfter = 80, TargetMaxHealthAfter = 150 });
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventShield,
+                TargetId = B, ShieldAfter = 40, Absorbed = 20 });
+            result.Events.Add(new BattleEventItem { EventType = eBattleEventType.BattleEventPetRetreat, TargetId = B });
+            var plan = TurnPlan.Build(result, 0);
+            Assert.That(plan.Beats[0].Targets[0].HasHealthAfter, Is.True);
+            Assert.That(plan.Beats[0].Targets[0].MaxHealthAfter, Is.EqualTo(150));
+            Assert.That(plan.Beats[1].Targets[0].ShieldAfter, Is.EqualTo(40));
+            Assert.That(plan.Beats[1].Targets[0].Absorbed, Is.EqualTo(20));
+            Assert.That(plan.Beats[2].Kind, Is.EqualTo(BeatKind.PetRetreat));
+        }
+
         private static TurnEventInput Ev(int type, ulong src, ulong dst, long value = 0, uint group = 0,
             bool crit = false, ulong hpAfter = 0, uint skill = 0, uint buff = 0, bool success = true)
             => new TurnEventInput
@@ -25,6 +60,22 @@ namespace MmorpgClient.Tests.EditMode.Battle
             };
 
         // ── 合并 ────────────────────────────────────────────
+
+        [TestCase(true)]
+        [TestCase(false)]
+        public void CaptureEventRetainsTargetAndOutcomeWithoutDamage(bool success)
+        {
+            var plan = TurnPlan.Build(new List<TurnEventInput>
+            {
+                Ev(BattleEventCodes.Capture, A, B, success: success),
+            });
+            Assert.That(plan.Count, Is.EqualTo(1));
+            Assert.That(plan.Beats[0].Kind, Is.EqualTo(BeatKind.Capture));
+            Assert.That(plan.Beats[0].ActorId, Is.EqualTo(A));
+            Assert.That(plan.Beats[0].CaptureTargetId, Is.EqualTo(B));
+            Assert.That(plan.Beats[0].Success, Is.EqualTo(success));
+            Assert.That(plan.Beats[0].Targets, Is.Empty);
+        }
 
         [Test]
         public void AttackAndDamage_SameGroup_MergeIntoOneAttackBeat()

@@ -14,7 +14,7 @@ namespace MmorpgClient.UI.Ugui.Battle
     ///   - 演出:TurnResult 到达 → TurnPlan.Build → BattlePresenter/BattleSequencer 逐拍播放
     ///     (冲刺/施法/受击/飘字/特效/暴击顿帧震屏/死亡),播完全量应用 state(Ack 由 BattleUiRoot 调);
     ///   - HUD:左上回合数(翻数)+ 战斗记录;顶部行动预告条;右上自己与队友卡片;
-    ///     右下命令环(攻击/法术/防御/道具/召唤(灰)/逃跑/自动;自动战斗中换成 角色/宠物/取消自动);
+    ///     右下命令环(攻击/法术/防御/道具/捕捉/逃跑/自动;自动战斗中换成 角色/宠物/取消自动);
     ///   - 目标选择:点单位(BattleUnitView 点击区)高亮,确认后 SubmitAction;
     ///   - 回合倒计时:环形 + 数字(action_deadline_ms);已提交显示「等待其他玩家…」;
     ///   - 观战只读模式(OpenSpectate):隐藏命令环,顶部显示观众数;回合播放复用 CoPlayTurn
@@ -27,7 +27,7 @@ namespace MmorpgClient.UI.Ugui.Battle
     /// </summary>
     public sealed class BattleScreen
     {
-        private enum PendingKind { None, Attack, Skill, Item }
+        private enum PendingKind { None, Attack, Skill, Item, Capture, RecallPet }
 
         // ── HUD 固定控件矩形(设计坐标,y 向下;BattleUiLayout 用它们断言任何分辨率下都在屏内) ──
         public const float RoundCounterX = 40f;
@@ -134,6 +134,8 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private BattleStateS2C _state;
         private ulong _myId;
+        private ulong _actingId;
+        private readonly HashSet<ulong> _submittedActors = new();
         private uint _myTeam;
         private uint _lastRound;
         private ulong _deadlineMs;
@@ -143,7 +145,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private uint _pendingSkillId;
         private uint _pendingItemId;
         private ulong _selectedTargetId;
-        private bool _submitted;
+        private bool _submitted => IsSubmitted(_actingId);
         private bool _playing;
         private bool _playDone = true;
         private bool _spectate;
@@ -369,7 +371,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _myTeam = 0;
             }
             _myId = myPlayerId;
-            _submitted = false;
+            _actingId = myPlayerId;
+            _submittedActors.Clear();
             _playing = false;
             _playDone = true;
             _lastRound = 0;
@@ -484,12 +487,11 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (state.RoundIndex != _lastRound)
             {
                 _lastRound = state.RoundIndex;
-                _submitted = false;
+                _submittedActors.Clear();
                 ExitTargetMode();
             }
-            // 服务器 pending 列表是权威:不含本人即已提交
-            if (state.PendingActorIds.Count > 0)
-                _submitted = !state.PendingActorIds.Contains(_myId);
+            SelectNextActorIfNeeded();
+            EnsureSkillCatalog();
 
             // 终局:胜方存活单位做胜利姿势(一次)
             if (state.Outcome != eBattleOutcome.BattleOutcomeOngoing && state.Outcome != _shownOutcome)
@@ -666,16 +668,32 @@ namespace MmorpgClient.UI.Ugui.Battle
                     break;
                 case BattleCommand.Item:
                     if (!CanAct()) return;
+                    if (FindMyActor()?.ActorType == eBattleActorType.BattleActorTypePet) { SetHint("宝宝只能攻击、施放技能或防御"); return; }
                     if (_itemPanel.gameObject.activeSelf) { _itemPanel.gameObject.SetActive(false); return; }
                     ExitTargetMode();
                     _itemPanel.gameObject.SetActive(true);
                     _itemPanel.SetAsLastSibling();
                     break;
-                case BattleCommand.Summon:
-                    SetHint("召唤(宠物)功能尚未开放");
+                case BattleCommand.Capture:
+                    if (!CanAct()) return;
+                    var recallPet = FindRecallablePet();
+                    if (recallPet != null)
+                    {
+                        ExitTargetMode();
+                        _pending = PendingKind.RecallPet;
+                        EnterTargetMode($"召回 {ResolveName(recallPet.ActorId)} 将消耗人物本回合行动");
+                        _selectedTargetId = recallPet.ActorId;
+                        RefreshTargetSelection();
+                        break;
+                    }
+                    if (!HasCaptureTarget()) return;
+                    ExitTargetMode();
+                    _pending = PendingKind.Capture;
+                    EnterTargetMode("请选择可捕捉野怪，气血越低越容易成功");
                     break;
                 case BattleCommand.Flee:
                     if (!CanAct()) return;
+                    if (FindMyActor()?.ActorType == eBattleActorType.BattleActorTypePet) { SetHint("宝宝只能攻击、施放技能或防御"); return; }
                     if (!IsPveBattle()) { SetHint("PVP 战斗不可逃跑"); return; }
                     CloseSubPanels();
                     Submit(new BattleAction { ActionType = eBattleActionType.BattleActionFlee });
@@ -691,10 +709,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             switch (command)
             {
                 case AutoBattleCommand.Character:
-                    SetHint("角色面板暂未接入");
+                    SelectActingActor(_myId);
                     break;
                 case AutoBattleCommand.Pet:
-                    SetHint("宠物系统暂未接入");
+                    if (_state != null)
+                        foreach (var actor in _state.Actors)
+                            if (actor.ActorType == eBattleActorType.BattleActorTypePet && IsControlled(actor))
+                            { SelectActingActor(actor.ActorId); break; }
                     break;
                 case AutoBattleCommand.CancelAuto:
                 {
@@ -710,6 +731,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void OnSkillPicked(uint skillTableId)
         {
             if (!CanAct()) return;
+            if (Skills.SkillUiRoot.FindPresentation(skillTableId) == null && MmorpgClient.Game.Skills.SkillBookClient.Instance != null)
+            { EnsureSkillCatalog(); SetHint("技能信息正在同步，请稍后再选择"); return; }
             _skillPanel.gameObject.SetActive(false);
             _pending = PendingKind.Skill;
             _pendingSkillId = skillTableId;
@@ -718,7 +741,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             var name = definition?.name ?? $"技能{skillTableId}";
             EnterTargetMode(self ? $"【{name}】作用于自身，请确认行动" : $"请为【{name}】选择目标");
             // 自身技能只预选本人，复用现有确认按钮；选择技能本身不发送行动。
-            if (self) OnUnitClicked(_myId);
+            if (self) OnUnitClicked(_actingId);
         }
 
         private void OnItemPicked()
@@ -768,7 +791,12 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void OnUnitClicked(ulong actorId)
         {
-            if (_pending == PendingKind.None || !CanAct()) return;
+            if (_pending == PendingKind.None)
+            {
+                SelectActingActor(actorId);
+                return;
+            }
+            if (!CanAct()) return;
             if (!_viewById.TryGetValue(actorId, out var view)) return;
             if (!IsTargetable(view)) return;
 
@@ -779,11 +807,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         private bool IsTargetable(BattleUnitView view)
         {
             if (view == null || _pending == PendingKind.None) return false;
+            if (_pending == PendingKind.RecallPet) return CanRecallPet(FindActor(view.ActorId));
+            if (_pending == PendingKind.Capture) return CanCapture(FindActor(view.ActorId));
             // 这里只过滤可见目标；最终施放资格和战斗规则仍由业务与服务端校验。
             var targetTeam = _pending == PendingKind.Attack ? "enemy" :
                 _pending == PendingKind.Skill ? Skills.SkillUiRoot.FindPresentation(_pendingSkillId)?.targetTeam : null;
-            return BattleTargetPresentation.AllowsTarget(targetTeam, _myId, _myTeam,
-                view.ActorId, view.TeamIndex, view.IsDead, view.Fled);
+            bool allowDead = _pending == PendingKind.Skill &&
+                Skills.SkillUiRoot.FindPresentation(_pendingSkillId)?.allowDeadTarget == true;
+            return BattleTargetPresentation.AllowsTarget(targetTeam, _actingId, _myTeam,
+                view.ActorId, view.TeamIndex, view.IsDead, view.Fled, allowDead);
         }
 
         private void RefreshTargetSelection()
@@ -833,6 +865,16 @@ namespace MmorpgClient.UI.Ugui.Battle
             BattleAction action;
             switch (_pending)
             {
+                case PendingKind.RecallPet:
+                    action = new BattleAction { ActionType = eBattleActionType.BattleActionRecallPet, TargetId = _selectedTargetId };
+                    break;
+                case PendingKind.Capture:
+                    action = new BattleAction
+                    {
+                        ActionType = eBattleActionType.BattleActionCapture,
+                        TargetId = _selectedTargetId,
+                    };
+                    break;
                 case PendingKind.Attack:
                     action = new BattleAction
                     {
@@ -869,15 +911,25 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 只有请求真的发出才算本回合已提交。本地拒绝(直连未就绪 / 相位已变)时原因已由
             // BattleClient.OnError 弹出:不置 _submitted、保留目标选择,直连就绪后可直接再点确认
             // (置了就会一直显示「等待其他玩家」、按钮全灰,玩家再也出不了手,turn-based §22 D74)
-            if (!client.SubmitAction(action))
+            ulong actorId = _actingId;
+            uint round = _lastRound;
+            ulong battleId = _state?.BattleId ?? 0;
+            _submittedActors.Add(actorId);
+            if (!client.SubmitAction(action, actorId, success =>
             {
+                if (_state?.BattleId != battleId || _lastRound != round) return;
+                if (!success) _submittedActors.Remove(actorId);
+                SelectNextActorIfNeeded();
+                RefreshActionBar();
+            }, round))
+            {
+                _submittedActors.Remove(actorId);
                 RefreshActionBar();
                 return;
             }
-            _submitted = true;
             ExitTargetMode();
+            SelectNextActorIfNeeded();
             RefreshActionBar();
-            SetHint("已提交行动,等待其他玩家…");
         }
 
         private bool CanAct() => CanChooseAction() && IsChannelReady();
@@ -887,10 +939,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_spectate) return false;
             // 自动战斗中禁止手动出招(is_auto 单位不进 pending,提交会被服务端拒)
-            if (_owner?.Client != null && _owner.Client.IsMyActorAuto) return false;
             var me = FindMyActor();
             return _phase == BattlePhase.WaitingAction && !_playing && !_submitted
-                   && me != null && !me.IsDead && !me.Fled;
+                   && IsControlled(me) && !me.IsAuto && !me.IsDead && !me.Fled;
         }
 
         /// <summary>
@@ -1031,7 +1082,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (actor != null)
             {
                 info.IsMine = actor.TeamIndex == _myTeam;
-                bool monster = actor.ActorType == eBattleActorType.BattleActorTypeMonster;
+                bool monster = actor.ActorType == eBattleActorType.BattleActorTypeMonster && actor.CapturePetTableId == 0;
                 info.Portrait = monster
                     ? BattleArtCatalog.LoadMonsterPortrait(actor.MonsterTableId)
                     : BattleArtCatalog.LoadPlayerPortrait(actor, playerId => AppBootstrap.Instance?.GameClient?.ResolveCharacterId(playerId));
@@ -1079,7 +1130,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             int index = 0;
             if (me != null)
             {
-                foreach (var skillId in me.SkillTableIds)
+                var skillIds = new List<uint>(me.SkillTableIds);
+                skillIds.Sort((a, b) =>
+                {
+                    int Category(uint id) { var d = Skills.SkillUiRoot.FindPresentation(id);
+                        return d?.IsObstacle == true ? 1 : d?.IsSupport == true ? 2 : 0; }
+                    int group = Category(a).CompareTo(Category(b));
+                    return group != 0 ? group : a.CompareTo(b);
+                });
+                foreach (var skillId in skillIds)
                 {
                     // 列表归属仍来自战斗快照；这里只补显示元数据，不授予技能或计算战斗规则。
                     var definition = Skills.SkillUiRoot.FindPresentation(skillId);
@@ -1104,7 +1163,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     skillName.textWrappingMode = TextWrappingModes.NoWrap;
                     skillName.overflowMode = TextOverflowModes.Ellipsis;
                     var detail = cooldown > 0 ? $"冷却 {cooldown} 回合" :
-                        definition == null ? "选择目标后施放" : $"{definition.TargetLabel} · {definition.manaPercent * 100:0.#}%法力";
+                        definition == null ? "选择目标后施放" : $"{definition.KindLabel} · {definition.TargetLabel} · {definition.manaPercent * 100:0.#}%法力";
                     var caption = QdaoUguiFactory.CreateText("Detail", button.Rect, 80f, 45f, 182f, 30f,
                         detail, 19f, cooldown > 0 ? BattleUiStyle.WarnText : QdaoUguiTheme.Cream);
                     caption.raycastTarget = false;
@@ -1153,7 +1212,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
 
             var me = FindMyActor();
-            bool myAuto = _owner?.Client != null && _owner.Client.IsMyActorAuto;
+            bool myAuto = me?.IsAuto == true;
             bool alive = me != null && !me.IsDead && !me.Fled;
             // 直连未就绪时出手按钮置灰(turn-based §22 D74);记下这次看到的值,Tick 据此判断要不要重刷
             bool channelReady = IsChannelReady();
@@ -1162,13 +1221,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             _channelFailedShown = channelFailed;
             bool canAct = CanAct();
             // 一期规则:PVP 不可逃跑(客户端以「敌方含玩家」近似判定,见 open_issues)
-            bool canFlee = IsPveBattle();
+            bool petCommand = me?.ActorType == eBattleActorType.BattleActorTypePet;
+            bool canFlee = IsPveBattle() && !petCommand;
             // 「自动」不受已提交/播放中限制:战斗内活着随时可切(Resolving 切换下回合生效)
             bool inRound = _phase == BattlePhase.WaitingAction || _phase == BattlePhase.Resolving;
             bool autoInteractable = alive && inRound;
 
             _commandRing.SetAutoMode(myAuto);
-            _commandRing.SetState(canAct, canFlee, autoInteractable, myAuto);
+            _commandRing.SetState(canAct, canFlee, autoInteractable, myAuto, HasCaptureTarget(), !petCommand, FindRecallablePet() != null);
             _commandRing.SetAutoKeysInteractable(true);
 
             if (me == null) SetHint(string.Empty);
@@ -1180,7 +1240,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             else if (!channelReady && _phase == BattlePhase.WaitingAction)
                 SetHint(channelFailed ? ChannelFailedHintText : BattleClient.BattleChannelConnectingText);
             else if (_submitted && _phase == BattlePhase.WaitingAction) SetHint("已提交行动,等待其他玩家…");
-            else if (_phase == BattlePhase.WaitingAction) SetHint(canFlee ? string.Empty : "PVP 战斗不可逃跑");
+            else if (_phase == BattlePhase.WaitingAction)
+                SetHint($"正在为 {ResolveName(_actingId)} 选择行动 · 点击自己的角色或宝宝切换" +
+                    (petCommand ? " · 宝宝可攻击、技能、防御" : RecallWaitHint() + (canFlee ? "" : " · PVP 不可逃跑")));
             else SetHint(string.Empty);
         }
 
@@ -1198,10 +1260,83 @@ namespace MmorpgClient.UI.Ugui.Battle
             return !BattleHudLogic.IsPvp(_state.Actors, _myTeam);
         }
 
+        private bool HasCaptureTarget()
+        {
+            if (_state == null || !IsPveBattle()) return false;
+            foreach (var actor in _state.Actors)
+                if (CanCapture(actor)) return true;
+            return false;
+        }
+
+        private bool CanRecallPet(BattleActorState pet) => FindMyActor()?.ActorId == _myId &&
+            pet != null && pet.ActorType == eBattleActorType.BattleActorTypePet && pet.OwnerPlayerId == _myId &&
+            pet.Fled && !pet.IsDead && pet.WithdrawUntilRound > 0 && _state != null && _state.RoundIndex >= pet.WithdrawUntilRound;
+
+        private BattleActorState FindRecallablePet()
+        {
+            if (_state != null) foreach (var actor in _state.Actors) if (CanRecallPet(actor)) return actor;
+            return null;
+        }
+
+        private string RecallWaitHint()
+        {
+            if (_state != null) foreach (var actor in _state.Actors)
+                if (actor.ActorType == eBattleActorType.BattleActorTypePet && actor.OwnerPlayerId == _myId &&
+                    actor.Fled && !actor.IsDead && actor.WithdrawUntilRound > _state.RoundIndex)
+                    return $" · 宝宝 {actor.WithdrawUntilRound - _state.RoundIndex} 回合后可召回";
+            return string.Empty;
+        }
+
+        private bool CanCapture(BattleActorState target)
+        {
+            var owner = FindMyActor();
+            return IsPveBattle() && owner != null && target != null &&
+                owner.ActorType == eBattleActorType.BattleActorTypePlayer &&
+                target.ActorType == eBattleActorType.BattleActorTypeMonster && target.TeamIndex != _myTeam &&
+                target.CapturePetTableId != 0 && target.CapturedByPlayerId == 0 &&
+                !target.IsDead && !target.Fled && owner.Level >= target.CaptureMinLevel;
+        }
+
         private BattleActorState FindMyActor()
         {
-            if (_state == null || _myId == 0) return null;
-            return FindActor(_myId);
+            if (_state == null || _actingId == 0) return null;
+            return FindActor(_actingId);
+        }
+
+        private bool IsControlled(BattleActorState actor) => actor != null && _myId != 0 &&
+            (actor.ActorId == _myId || actor.ActorType == eBattleActorType.BattleActorTypePet && actor.OwnerPlayerId == _myId);
+
+        private bool IsSubmitted(ulong id) => _submittedActors.Contains(id) ||
+            _state != null && _state.PendingActorIds.Count > 0 && !_state.PendingActorIds.Contains(id);
+
+        private void SelectNextActorIfNeeded()
+        {
+            bool Available(BattleActorState a) => IsControlled(a) && !a.IsDead && !a.Fled && !a.IsAuto && !IsSubmitted(a.ActorId);
+            if (Available(FindActor(_actingId)) || _state == null) return;
+            foreach (var actor in _state.Actors)
+                if (Available(actor)) { _actingId = actor.ActorId; ExitTargetMode(); EnsureSkillCatalog(); return; }
+        }
+
+        private void SelectActingActor(ulong id)
+        {
+            if (_spectate || _playing || _phase != BattlePhase.WaitingAction || !IsControlled(FindActor(id))) return;
+            _actingId = id;
+            ExitTargetMode();
+            EnsureSkillCatalog();
+            RefreshActionBar();
+        }
+
+        private void EnsureSkillCatalog()
+        {
+            var actor = FindMyActor();
+            var source = MmorpgClient.Game.Skills.SkillBookClient.Instance;
+            if (_spectate || source == null || !IsControlled(actor)) return;
+            ulong actorId = actor.ActorId;
+            source.EnsureBattleCatalog(actor.ActorType == eBattleActorType.BattleActorTypePet ? actor.PetId : 0, success =>
+            {
+                if (!success || _actingId != actorId) return;
+                if (_skillPanel.gameObject.activeSelf) PopulateSkillPanel();
+            });
         }
 
         private void SetHint(string value)
@@ -1214,9 +1349,9 @@ namespace MmorpgClient.UI.Ugui.Battle
     public static class BattleTargetPresentation
     {
         public static bool AllowsTarget(string targetTeam, ulong actingId, uint actingTeam,
-            ulong targetId, uint targetTeamIndex, bool isDead, bool fled)
+            ulong targetId, uint targetTeamIndex, bool isDead, bool fled, bool allowDeadTarget = false)
         {
-            if (isDead || fled) return false;
+            if (fled || isDead && !allowDeadTarget) return false;
             if (string.Equals(targetTeam, "enemy", System.StringComparison.OrdinalIgnoreCase))
                 return targetTeamIndex != actingTeam;
             if (string.Equals(targetTeam, "ally", System.StringComparison.OrdinalIgnoreCase))

@@ -102,6 +102,8 @@ namespace MmorpgClient.UI.Ugui.Pet
                     _client.OnAutoSuggestion += HandleAutoSuggestion;
                     _client.OnBusyChanged += HandleBusyChanged;
                     _client.OnError += HandleError;
+                    _client.OnShopChanged += HandleShopChanged;
+                    _client.OnPurchased += HandlePurchased;
                     _clientBound = true;
                 }
             }
@@ -114,6 +116,8 @@ namespace MmorpgClient.UI.Ugui.Pet
             _client.OnAutoSuggestion -= HandleAutoSuggestion;
             _client.OnBusyChanged -= HandleBusyChanged;
             _client.OnError -= HandleError;
+            _client.OnShopChanged -= HandleShopChanged;
+            _client.OnPurchased -= HandlePurchased;
             _clientBound = false;
         }
 
@@ -184,6 +188,8 @@ namespace MmorpgClient.UI.Ugui.Pet
         // ── 事件 ────────────────────────────────────────────
 
         private void HandleList(PetListInfo list) => _panel?.ApplyList(list);
+        private void HandleShopChanged() => _panel?.RefreshShop();
+        private void HandlePurchased(ulong petId) => _panel?.ApplyPurchased(petId);
 
         private void HandleAutoSuggestion(ulong petId, IReadOnlyDictionary<uint, uint> suggested)
             => _panel?.ApplyAutoSuggestion(petId, suggested);

@@ -150,7 +150,9 @@ namespace MmorpgClient.Net
                         offset += consumed;
                         // 验签通告和心跳在网络线程处理，主线程加载场景或不 Poll 也照常保活。
                         if (msg is ClientTokenVerifyResponse verify && verify.Success)
-                            StartHeartbeat(verify);
+                            StartHeartbeat(verify.HeartbeatIntervalMs, verify.HeartbeatTimeoutMs);
+                        else if (msg is BattleTokenVerifyResponse battleVerify && battleVerify.Success)
+                            StartHeartbeat(battleVerify.HeartbeatIntervalMs, battleVerify.HeartbeatTimeoutMs);
                         if (msg is ClientHeartbeatResponse heartbeat)
                         {
                             lock (_lifecycle) _heartbeat.NoteResponse(heartbeat.Seq, MonotonicMilliseconds);
@@ -177,12 +179,12 @@ namespace MmorpgClient.Net
             _inbox.Enqueue(new DisconnectedSentinel());
         }
 
-        private void StartHeartbeat(ClientTokenVerifyResponse response)
+        private void StartHeartbeat(uint intervalMs, uint timeoutMs)
         {
             lock (_lifecycle)
             {
-                if (!_running || _disposed || !_heartbeat.Start(response.HeartbeatIntervalMs,
-                        response.HeartbeatTimeoutMs, MonotonicMilliseconds)) return;
+                if (!_running || _disposed || !_heartbeat.Start(intervalMs,
+                        timeoutMs, MonotonicMilliseconds)) return;
                 _heartbeatThread = new Thread(HeartbeatLoop) { IsBackground = true, Name = "GateHeartbeat" };
                 _heartbeatThread.Start();
             }

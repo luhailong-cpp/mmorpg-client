@@ -947,6 +947,90 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(LastRequest<StartTeamMatchRequest>().RequestId,Is.Not.EqualTo(original.RequestId));
         }
 
+        [TestCase(2u)]
+        [TestCase(5u)]
+        public void DroppedPvpStartCanReleaseItsDurableIntentAfterTheOriginalQueueIsConfirmedOrWithdrawn(uint state)
+        {
+            string directory = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "team-queue-recovery-" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                _client.MatchRecovery = new DurableRequestFileStore(directory);
+                Loaded(PvpPairView(1));
+                Assert.That(_client.StartMatch(1, 2, Match.MatchMode.PvpTeam), Is.True);
+                var original = LastRequest<StartTeamMatchRequest>().Clone();
+                _net.Fail("rpc timeout");
+                _net.Identity = new object();
+                _client.ObserveConnection();
+                _now += 4;
+                _client.DrainQueued(false);
+                Assert.That(LastRequest<GetMyTeamRequest>().MatchRequestId, Is.EqualTo(original.RequestId));
+                var view = PvpPairView(2);
+                if (state == 2)
+                {
+                    view.MatchState = TeamBackfillProtocol.QueuedState;
+                    view.MatchMode = Match.MatchMode.PvpTeam;
+                    view.MatchTargetSize = 2;
+                    view.MatchBattleConfigId = 1;
+                    view.MatchQueuedAtMs = 5000;
+                }
+                _net.Reply(new TeamResponse
+                {
+                    Team = view,
+                    MatchIntent = new TeamMatchIntent { RequestId = original.RequestId, State = state },
+                });
+                Assert.That(_client.MatchRecovery.Load(10), Is.Empty, "battle_id=0 的确定结果也必须清理原文件");
+                if (state == 2)
+                {
+                    Assert.That(_client.MatchQueued, Is.True);
+                    _push(new TeamSnapshotS2C { Team = PvpPairView(3), Reason = TeamBackfillProtocol.MatchQueueCanceledReason });
+                }
+                _now += 1;
+                Assert.That(_client.StartMatch(1, 3, Match.MatchMode.PvpTeam), Is.True,
+                    "原队列结束后队长可以主动重新选择人数档");
+                Assert.That(LastRequest<StartTeamMatchRequest>().RequestId, Is.Not.EqualTo(original.RequestId));
+            }
+            finally
+            {
+                string full = System.IO.Path.GetFullPath(directory);
+                Assert.That(System.IO.Path.GetDirectoryName(full), Is.EqualTo(System.IO.Path.GetFullPath(System.IO.Path.GetTempPath()).TrimEnd(System.IO.Path.DirectorySeparatorChar)));
+                Assert.That(System.IO.Path.GetFileName(full).StartsWith("team-queue-recovery-", StringComparison.Ordinal), Is.True);
+                if (System.IO.Directory.Exists(full)) System.IO.Directory.Delete(full, true);
+            }
+        }
+
+        [TestCase(0u, true)]
+        [TestCase(1u, true)]
+        [TestCase(4u, true)]
+        [TestCase(99u, true)]
+        [TestCase(2u, false)]
+        [TestCase(5u, false)]
+        public void BattlelessRecoveryDoesNotReleaseAnUnknownReservedOrDifferentRequest(uint state, bool sameRequest)
+        {
+            Loaded(PvpPairView(1));
+            Assert.That(_client.StartMatch(1, 2, Match.MatchMode.PvpTeam), Is.True);
+            string originalId = LastRequest<StartTeamMatchRequest>().RequestId;
+            _net.Fail("rpc timeout");
+            _net.Identity = new object();
+            _client.ObserveConnection();
+            _now += 4;
+            _client.DrainQueued(false);
+            _net.Reply(new TeamResponse
+            {
+                Team = PvpPairView(2),
+                MatchIntent = new TeamMatchIntent { RequestId = sameRequest ? originalId : Guid.NewGuid().ToString("D"), State = state },
+            });
+            _now += 1;
+            AssertRejected(() => _client.StartMatch(1, 3, Match.MatchMode.PvpTeam), "上一笔队伍开局结果尚未确认，请先恢复原请求。");
+        }
+
+        private static TeamView PvpPairView(ulong version)
+        {
+            var view = View(100, 10, 5, version, 10, 11);
+            view.PvpMatchSupported = true;
+            view.MatchFillSupported = true;
+            return view;
+        }
+
         [Test]
         public void StartMatchRecoveryFileReopensOriginalIntentAndCorruptionBlocksNewStart()
         {

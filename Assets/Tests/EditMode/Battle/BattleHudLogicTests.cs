@@ -141,6 +141,23 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void FivePlayerPartyKeepsEveryPlayerCardIncludingTheDeadAndExcludesPets()
+        {
+            var dead = Actor(3, 0);
+            dead.IsDead = true;
+            var pet = Actor(400, 0, type: eBattleActorType.BattleActorTypePet);
+            pet.OwnerPlayerId = 7UL;
+            var actors = new List<BattleActorState>
+            { Actor(9, 0), pet, dead, Actor(1, 0), Actor(7, 0), Actor(2, 0), Actor(5, 1) };
+
+            var cards = BattleHudLogic.PartyCardOrder(actors, myId: 7, myTeam: 0, BattlePartyCards.MaxCards);
+
+            Assert.AreEqual(5, cards.Count);
+            CollectionAssert.AreEqual(new ulong[] { 7UL, 1UL, 2UL, 3UL, 9UL }, cards.ConvertAll(a => a.ActorId));
+            Assert.That(cards[3].IsDead, Is.True, "阵亡队友仍保留头像卡，舞台死亡表现单独处理");
+        }
+
+        [Test]
         public void IsPvp_TrueOnlyWhenEnemyHasPlayer()
         {
             var pve = new List<BattleActorState> { Actor(1, 0), Actor(2, 1, type: eBattleActorType.BattleActorTypeMonster) };

@@ -24,6 +24,18 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void CapturableMonsterUsesTheAwardedSpeciesArtAndPortrait()
+        {
+            var wild = new BattleActorState { ActorType = eBattleActorType.BattleActorTypeMonster,
+                MonsterTableId = 1, CapturePetTableId = 2 };
+            var pet = new BattleActorState { ActorType = eBattleActorType.BattleActorTypePet, PetTableId = 2 };
+            Assert.That(BattleArtCatalog.CharacterIdFor(wild), Is.EqualTo(BattleArtCatalog.CharacterIdFor(pet)));
+            Assert.That(BattleArtCatalog.LoadPlayerPortrait(wild, null), Is.SameAs(BattleArtCatalog.LoadPlayerPortrait(pet, null)));
+            wild.CapturePetTableId = 0;
+            Assert.That(BattleArtCatalog.VisualPetTableId(wild), Is.Zero, "普通副本怪物仍使用怪物美术。");
+        }
+
+        [Test]
         public void SpawnRingReloadsAfterCachedSpriteIsDestroyed()
         {
             CreateTemporarySprite();

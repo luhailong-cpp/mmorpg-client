@@ -79,5 +79,20 @@ namespace MmorpgClient.Net.Generated
         public static void RetrieveTemporaryItems(IRpcChannel channel, global::RetrieveTemporaryItemsRequest request,
             RpcDone<global::RetrieveTemporaryItemsResponse> done)
             => channel.CallMethod(RetrieveTemporaryItemsMessageId, request, global::RetrieveTemporaryItemsResponse.Parser, done);
+
+        public const uint GetEquipmentCraftRulesMessageId = 404;
+        public static void GetEquipmentCraftRules(IRpcChannel channel, global::GetEquipmentCraftRulesRequest request,
+            RpcDone<global::GetEquipmentCraftRulesResponse> done)
+            => channel.CallMethod(GetEquipmentCraftRulesMessageId, request, global::GetEquipmentCraftRulesResponse.Parser, done);
+
+        public const uint PreviewEquipmentCraftMessageId = 405;
+        public static void PreviewEquipmentCraft(IRpcChannel channel, global::PreviewEquipmentCraftRequest request,
+            RpcDone<global::PreviewEquipmentCraftResponse> done)
+            => channel.CallMethod(PreviewEquipmentCraftMessageId, request, global::PreviewEquipmentCraftResponse.Parser, done);
+
+        public const uint CommitEquipmentCraftMessageId = 406;
+        public static void CommitEquipmentCraft(IRpcChannel channel, global::CommitEquipmentCraftRequest request,
+            RpcDone<global::CommitEquipmentCraftResponse> done)
+            => channel.CallMethod(CommitEquipmentCraftMessageId, request, global::CommitEquipmentCraftResponse.Parser, done);
     }
 }

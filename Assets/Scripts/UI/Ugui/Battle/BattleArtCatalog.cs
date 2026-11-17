@@ -215,14 +215,19 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         public static string CharacterIdFor(BattleActorState actor)
         {
-            if (actor?.ActorType == eBattleActorType.BattleActorTypePet)
-                return QdaoPetCatalog.Resolve(actor.PetTableId)?.id ?? QdaoPetCatalog.UnknownIdentity;
+            if (VisualPetTableId(actor) != 0 || actor?.ActorType == eBattleActorType.BattleActorTypePet)
+                return QdaoPetCatalog.Resolve(VisualPetTableId(actor))?.id ?? QdaoPetCatalog.UnknownIdentity;
             if (actor != null && actor.ActorType == eBattleActorType.BattleActorTypePlayer)
                 return QdaoCharacterCatalog.ResolveRole(actor.ClassId, actor.Gender, actor.AppearanceId);
             if (actor == null || CharacterIds.Length == 0) return DefaultCharacterId;
             int index = BattleHudLogic.PortraitIndexFor(actor.ActorId, CharacterIds.Length);
             return CharacterIds[index];
         }
+
+        /// <summary>可捕捉野生单位与捕获后的宠物使用同一物种外观。</summary>
+        public static uint VisualPetTableId(BattleActorState actor)
+            => actor?.ActorType == eBattleActorType.BattleActorTypePet ? actor.PetTableId
+                : actor?.ActorType == eBattleActorType.BattleActorTypeMonster ? actor.CapturePetTableId : 0;
 
         /// <summary>Only real player actor IDs identify account roles; OwnerPlayerId belongs to pets.</summary>
         public static string CharacterIdFor(BattleActorState actor, Func<ulong, string> resolveCharacterId)
@@ -550,8 +555,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static Sprite LoadPlayerPortrait(BattleActorState actor, Func<ulong, string> resolveCharacterId)
         {
             if (actor == null) return null;
-            if (actor.ActorType == eBattleActorType.BattleActorTypePet)
-                return QdaoPetCatalog.LoadPortrait(QdaoPetCatalog.Resolve(actor.PetTableId)?.id) ?? GetMonsterSilhouette(actor.PetTableId);
+            if (VisualPetTableId(actor) != 0 || actor.ActorType == eBattleActorType.BattleActorTypePet)
+                return QdaoPetCatalog.LoadPortrait(QdaoPetCatalog.Resolve(VisualPetTableId(actor))?.id) ?? GetMonsterSilhouette(VisualPetTableId(actor));
             string characterId = CharacterIdFor(actor, resolveCharacterId);
             var entry = QdaoCharacterCatalog.Find(characterId);
             if (entry == null) return null;

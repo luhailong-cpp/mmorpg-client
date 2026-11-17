@@ -39,8 +39,24 @@ namespace MmorpgClient.UI.Ugui.Skills
             Instance.ShowContext(SkillBookContext.Pet(petId, name));
         }
         /// <summary>战斗列表仅取展示元数据；不据此判断技能归属或施放合法性。</summary>
-        public static SkillDefinition FindPresentation(uint id) =>
-            Instance?.Source?.State?.Snapshot?.Find(id)?.Definition ?? SkillCatalog.Find(id);
+        public static SkillDefinition FindPresentation(uint id)
+        {
+            var owned = Instance?.Source?.State?.Snapshot?.Find(id)?.Definition ??
+                MmorpgClient.Game.Skills.SkillBookClient.Instance?.FindBattlePresentation(id);
+            if (owned != null) return owned;
+            // 战斗可能先于技能窗口打开：表只补展示，归属以 battle actor 的已学列表为准。
+            var row = MmorpgClient.Table.SkillTableManager.Instance.FindById(id);
+            if (row != null && !string.IsNullOrEmpty(row.Name))
+                return new SkillDefinition { id = id, name = row.Name, classId = row.ClassId,
+                    type = row.BattleModel == 1 ? (row.AbilityKind == 1 ? "active" : "passive") :
+                        (string.IsNullOrEmpty(row.PassiveStat) ? "active" : "passive"),
+                    category = row.Category, description = row.Description, maxRank = row.MaxRank,
+                    targetTeam = MmorpgClient.Game.Skills.SkillBookMapper.TargetTeamName(row.TargetTeam),
+                    allowDeadTarget = row.AllowDeadTarget != 0, maxTargets = row.MaxTargets,
+                    manaPercent = row.ManaPercent, cooldownRounds = row.CooldownRounds,
+                    iconResource = MmorpgClient.Game.Skills.SkillBookMapper.NormalizeIconKey(row.IconKey, id) };
+            return SkillCatalog.Find(id);
+        }
         private void ShowContext(SkillBookContext context)
         {
             Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();

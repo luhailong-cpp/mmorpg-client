@@ -42,6 +42,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private TMP_Text _statusText;
         private RectTransform _detailsRoot;
         private PetArchivePreview _archivePreview;
+        private PetShopPanel _shop;
         private TMP_Text _detailText;
         private TMP_InputField _renameInput;
         private UiTextButton _renameConfirm;
@@ -84,6 +85,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 #else
             _archivePreview.Build();
 #endif
+            _shop = new PetShopPanel(_root, () => _owner.Client, () => SetStatus(string.Empty));
 
             _tooltip = QdaoUguiFactory.CreateRect("Tooltip", _root, 0f, 0f, 650f, 88f);
             var tooltipPlate = _tooltip.gameObject.AddComponent<Image>();
@@ -252,7 +254,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void BuildTabs()
         {
-            string[] names = { "属性", "加点", "技能", "坐骑", "图鉴" };
+            string[] names = { "属性", "加点", "技能", "商店", "图鉴", "捕捉" };
             for (int i = 0; i < names.Length; i++)
             {
                 string label = names[i];
@@ -269,7 +271,9 @@ namespace MmorpgClient.UI.Ugui.Pet
                     _archivePreview.gameObject.SetActive(false);
                 });
                 else if (i == 2) tab.Button.onClick.AddListener(OpenSkills);
+                else if (i == 3) tab.Button.onClick.AddListener(OpenShop);
                 else if (i == 4) tab.Button.onClick.AddListener(() => _archivePreview.gameObject.SetActive(true));
+                else if (i == 5) tab.Button.onClick.AddListener(StartWildCapture);
                 else
                 {
                     tab.SetInteractable(false);
@@ -284,6 +288,39 @@ namespace MmorpgClient.UI.Ugui.Pet
             var pet = FindPet(_selectedPetId);
             if (pet == null) { SetStatus("请先选择一只宝宝。", true); return; }
             Skills.SkillUiRoot.OpenPet(pet.PetId, pet.Name);
+        }
+
+        private void OpenShop()
+        {
+            if (PendingDelta() > 0) { SetStatus("有未确认的加点，请先确认或重置。", true); return; }
+            _archivePreview.gameObject.SetActive(false);
+            _detailsRoot.gameObject.SetActive(false);
+            _shop.Show();
+        }
+
+        private void StartWildCapture()
+        {
+            if (PendingDelta() > 0) { SetStatus("有未确认的加点，请先确认或重置。", true); return; }
+            var pets = _owner.Client;
+            if (pets?.IsReady != true || !pets.HasList) { SetStatus("请先等待宝宝列表加载完成。", true); return; }
+            if (pets.Busy || pets.HasPendingPurchase) { SetStatus("请先完成正在处理的宝宝操作。", true); return; }
+            if (pets.Pets.Pets.Count >= pets.Pets.MaxPets) { SetStatus("宝宝携带数量已满。", true); return; }
+            var battle = BattleUiRoot.Instance?.Client;
+            if (battle == null || battle.Phase != MmorpgClient.Game.Battle.BattlePhase.None)
+            { SetStatus("当前无法进入野外捕捉，请先结束匹配或战斗。", true); return; }
+            battle.JoinQueue(Match.MatchMode.PveSolo, 4);
+            if (battle.Phase != MmorpgClient.Game.Battle.BattlePhase.None) Hide();
+        }
+
+        public void RefreshShop() => _shop?.Refresh();
+
+        public void ApplyPurchased(ulong petId)
+        {
+            if (FindPet(petId) == null) return;
+            _selectedPetId = petId;
+            _shop.Hide();
+            ApplyList(_owner.Client.Pets);
+            SetStatus("购买成功，已选中宝宝，点击「出战」即可参战。");
         }
 
         private void BuildDetails()
@@ -420,6 +457,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         public void Hide()
         {
+            _shop?.Hide();
             _reopenDetailsAfterRefresh = false;
             _requestedPetTableId = 0;
             HideTooltip();
@@ -449,6 +487,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         public void SetStatus(string value, bool warn = false)
         {
+            _shop?.SetNotice(value, warn);
             _archivePreview?.SetNotice(value, warn);
             if (_statusText == null) return;
             _statusText.text = value ?? string.Empty;
@@ -504,6 +543,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         /// <summary>在途状态变化:按钮与加点行一起进 / 出 Busy(失败回包后必须解锁)。</summary>
         public void ApplyBusy(bool busy)
         {
+            _shop?.Refresh();
             if (_owner.Client?.HasList != true) _requestedPetTableId = 0;
             RefreshRowRanges();
             RefreshActionButtons();
