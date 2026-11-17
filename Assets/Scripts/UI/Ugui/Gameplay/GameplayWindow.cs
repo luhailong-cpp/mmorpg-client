@@ -29,6 +29,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action<ulong> UnequipRequested;
         public event Action<BagItemInfo> EquipmentShareRequested;
         public event Action AttributesRequested;
+        public event Action EquipmentOverviewRequested;
         public event Action MissionsRequested;
         public event Action ActivitiesRequested;
         public event Action<uint, uint> MissionAcceptRequested;

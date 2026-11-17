@@ -1,0 +1,1874 @@
+{
+  "schemaVersion": 1,
+  "name": "装备 UI 20261117 运行资源导入清单",
+  "createdAtUtc": "2026-11-17T12:06:51.480483+00:00",
+  "sourceRepository": {
+    "path": "D:/work/image",
+    "commit": "e4f7a20374f60aa1a75a88f718e3c765a86584b2"
+  },
+  "sourceDocuments": [
+    {
+      "source": "designs/equipment-ui-20261117/README.md",
+      "sha256": "54371d7f185dd87ef59ca50a45c91f469fabfb38c102fe05709dd245c6ad62d6"
+    },
+    {
+      "source": "designs/equipment-ui-20261117/manifest.json",
+      "sha256": "9f635e30bfaf310fcaff97e41341d3f774a89837fa80c4737546cfc5ae27f344"
+    },
+    {
+      "source": "designs/equipment-ui-20261117/ui/CONTROL-USAGE.md",
+      "sha256": "49b8d665b4a9670386b045bf7b49ae9d548b8a54c62de4ea0c70246ad0a5bcdb"
+    }
+  ],
+  "destinationRoot": "Assets/Resources/UI/Ugui/Equipment20261117",
+  "imageOperation": "原字节复制；未裁剪、缩放、重编码或改色。",
+  "counts": {
+    "icons": 17,
+    "controls": 23,
+    "runtimePngs": 40,
+    "twoDimensionalNineSlice": 2,
+    "horizontalOnly": 4,
+    "fixedControls": 17
+  },
+  "validation": {
+    "sourcePngCount": 51,
+    "lfsPointerCount": 0,
+    "pngSignatureChunksCrcAndInflateChecked": true,
+    "generationRecordHashesMatched": true,
+    "runtimeCopiesByteIdentical": true,
+    "unityOpened": false,
+    "unityImportExecuted": false,
+    "runtimeVisualAcceptanceExecuted": false,
+    "limitation": "文件与元数据静态核对不代表 Unity 导入、业务功能或发布客户端整屏像素验收通过。"
+  },
+  "restrictions": [
+    "禁止将 screens 效果图或状态板作为运行时背景、贴图或截图覆盖层。",
+    "本批不修改旧 EquipmentV1 目录；新图片仅放在 Equipment20261117。",
+    "九宫格和条形控件的固定边距使用源图像素；须遵循逐项 usage 限制。"
+  ],
+  "folders": [
+    {
+      "path": "Assets/Resources/UI/Ugui/Equipment20261117",
+      "guid": "76152292966e4774bbf8fff0b39c032f"
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/Equipment20261117/Icons",
+      "guid": "d80f70b756e4403b8ee962c192a970d5"
+    },
+    {
+      "path": "Assets/Resources/UI/Ugui/Equipment20261117/Controls",
+      "guid": "d46f8db117be44f098ccb1b7138b0143"
+    }
+  ],
+  "assets": [
+    {
+      "category": "Icons",
+      "purpose": "青云灵剑",
+      "source": "designs/equipment-ui-20261117/icons/equip_weapon.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/equip_weapon.png.generation.json",
+      "sourceGenerationRecordSha256": "dc79ad786fafcfc79c5a4284f53a948e9358adae78c81bc6e6fae71050922b87",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_weapon.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/equip_weapon",
+      "sourceSha256": "64418e2879d0d2ba561f08d4ff613c426be7486857d8efd268e9b5febbd16e92",
+      "destinationSha256": "64418e2879d0d2ba561f08d4ff613c426be7486857d8efd268e9b5febbd16e92",
+      "sourceByteLength": 130714,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "b8e5e628037b457ebb9c8a7ac46a3995",
+      "metaSha256": "31bba7c397c6f66435a3105bc00d2d71e7c06e06a721d568f14d0a1041d9444f",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "圆润道冠",
+      "source": "designs/equipment-ui-20261117/icons/equip_hat.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/equip_hat.png.generation.json",
+      "sourceGenerationRecordSha256": "5e9ae7cba514c8cddb21d23f719ea2e4993e3b5ace3b65420f50762982fcbc66",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_hat.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/equip_hat",
+      "sourceSha256": "aad769ee767176b5ff12b78451bddd8dfcc9fc6f0f89b09b6f733c9447638c3e",
+      "destinationSha256": "aad769ee767176b5ff12b78451bddd8dfcc9fc6f0f89b09b6f733c9447638c3e",
+      "sourceByteLength": 241308,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "0fb9735f59744082bcf92ed8aacd573f",
+      "metaSha256": "836faf5dab7600d07c06f2fc9aa67d164087024aa35e72a4c9bd762a2d9fdbb2",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "道袍",
+      "source": "designs/equipment-ui-20261117/icons/equip_robe.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/equip_robe.png.generation.json",
+      "sourceGenerationRecordSha256": "98e7eda521db5b735c6ae1b9c878024d3ece89da7310b2219a54b2cb9304289c",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_robe.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/equip_robe",
+      "sourceSha256": "8de120eda94e6594252c26919f3310e1b9cbce4d0c55ccccbcfab924e4bcca5a",
+      "destinationSha256": "8de120eda94e6594252c26919f3310e1b9cbce4d0c55ccccbcfab924e4bcca5a",
+      "sourceByteLength": 355424,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "bb338f0e917645148cf159824ea87d34",
+      "metaSha256": "d69b732a7de9841989a1ab68063e01f91195ed8122bc464e80555f198061fe04",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "踏云靴",
+      "source": "designs/equipment-ui-20261117/icons/equip_boots.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/equip_boots.png.generation.json",
+      "sourceGenerationRecordSha256": "1b2f036085b469159d699a567c1a186e242bd5d3287d82ab70f93478bb2f6e6d",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_boots.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/equip_boots",
+      "sourceSha256": "26189606608847ab4f9e14b810f00e334f597c04dac9e7e0c10c154912e22ae6",
+      "destinationSha256": "26189606608847ab4f9e14b810f00e334f597c04dac9e7e0c10c154912e22ae6",
+      "sourceByteLength": 242720,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "839ce48258bf499ea0afe9731466c471",
+      "metaSha256": "6d4b1b4facd548cae52d941ccde070bdc5e59485eab3819d4bec3bc690aa4fc4",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "白玉环佩",
+      "source": "designs/equipment-ui-20261117/icons/jewelry_jade_pendant.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/jewelry_jade_pendant.png.generation.json",
+      "sourceGenerationRecordSha256": "38d5b1522d90bb61019c382d821442c410ec1c175877ce9a25c86dc90ac21453",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/jewelry_jade_pendant.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/jewelry_jade_pendant",
+      "sourceSha256": "8f9112b8efd287a8077b9f65cdc08d08d7bd298852f47465bb6f35f50fea5652",
+      "destinationSha256": "8f9112b8efd287a8077b9f65cdc08d08d7bd298852f47465bb6f35f50fea5652",
+      "sourceByteLength": 192515,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "f5294e073ba542888a95a35c26a7df45",
+      "metaSha256": "21f56f53fc24c7e98197dc511d1961d72c015147e50a47f6e23e3768ffaa8a60",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "青玉结饰",
+      "source": "designs/equipment-ui-20261117/icons/jewelry_jade_knot.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/jewelry_jade_knot.png.generation.json",
+      "sourceGenerationRecordSha256": "7199ccb8844dfda8d8ebf8db30e678f5b5c6f4a0c93c4f69ab204c3df8d1d47d",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/jewelry_jade_knot.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/jewelry_jade_knot",
+      "sourceSha256": "edb700e064aa6030b038fe4f217eb0fe23dd34c4f18722b8b01423ffca9f8c79",
+      "destinationSha256": "edb700e064aa6030b038fe4f217eb0fe23dd34c4f18722b8b01423ffca9f8c79",
+      "sourceByteLength": 126200,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "799068620ed141a6989d55092a44d913",
+      "metaSha256": "9eb5c250d5c5e038e7aef910f7fb4c972d25b6079a3fb184f77bf34dfd62762a",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "破阵刃",
+      "source": "designs/equipment-ui-20261117/icons/artifact_pozhen.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/artifact_pozhen.png.generation.json",
+      "sourceGenerationRecordSha256": "62c8644e0d1f756bcac79e0dcc7b1b2dbcc74034ba50967f4cc55320f05d38bd",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_pozhen.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/artifact_pozhen",
+      "sourceSha256": "e53bac5680cc83cab4f097e6578e9dacacee66285e534a82c1527b41fcd4e7ed",
+      "destinationSha256": "e53bac5680cc83cab4f097e6578e9dacacee66285e534a82c1527b41fcd4e7ed",
+      "sourceByteLength": 153486,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "591c4a8114a844fd921fd689f94cb351",
+      "metaSha256": "1489862faceedbc10c09793251897d8daed4f20ed2cac974f749bf7c6e49ca35",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "照影镜",
+      "source": "designs/equipment-ui-20261117/icons/artifact_zhaoying.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/artifact_zhaoying.png.generation.json",
+      "sourceGenerationRecordSha256": "33b48c6bbe71d039138dcc607443bdc6b07961f45c8fa4a5d4278810c9f7c6ca",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_zhaoying.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/artifact_zhaoying",
+      "sourceSha256": "345577d78540a5e76f3ad2009c507ede923797840b96e71f28a38281ed249aec",
+      "destinationSha256": "345577d78540a5e76f3ad2009c507ede923797840b96e71f28a38281ed249aec",
+      "sourceByteLength": 203964,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "ae29b570906c4d07b18976aa3a15eee8",
+      "metaSha256": "6f1d3acc1a6a109ec83688f143c6e29bb330bd59f87bc12e11b28e79f65da8b7",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "回响铃",
+      "source": "designs/equipment-ui-20261117/icons/artifact_huixiang.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/artifact_huixiang.png.generation.json",
+      "sourceGenerationRecordSha256": "ce81dc5eab2a7ede89c39b10d16e3108a67ea7c284e929b953d41f24e569ea5b",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_huixiang.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/artifact_huixiang",
+      "sourceSha256": "4a5411596d200fb6ca2721b48c16d1d688f54ad7e831b005ca90082a0454fbca",
+      "destinationSha256": "4a5411596d200fb6ca2721b48c16d1d688f54ad7e831b005ca90082a0454fbca",
+      "sourceByteLength": 229342,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "71275da998404d1c8e5c17e11e13e051",
+      "metaSha256": "5532ddfcd7ebba9c07d6748f470a131765c708a72b728f1472b30dcd7eeca989",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "济生佩",
+      "source": "designs/equipment-ui-20261117/icons/artifact_jisheng.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/artifact_jisheng.png.generation.json",
+      "sourceGenerationRecordSha256": "3aed97dc3aae26cd54cf3173330131af5dfdbeba868d483fe6287ebc18f1b30a",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_jisheng.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/artifact_jisheng",
+      "sourceSha256": "bb7b27660e6b2352d53ae5eb2b7aaf8d46958f44b0115db178d809757565a23a",
+      "destinationSha256": "bb7b27660e6b2352d53ae5eb2b7aaf8d46958f44b0115db178d809757565a23a",
+      "sourceByteLength": 215023,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "7a3e2f8f1dda4c9ba73c621bcd8c68a5",
+      "metaSha256": "275e5027ba17de9e0b8ccd8b52d3f0572756d54d6c2c739fff0a782b39e7eceb",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "固元印",
+      "source": "designs/equipment-ui-20261117/icons/artifact_guyuan.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/artifact_guyuan.png.generation.json",
+      "sourceGenerationRecordSha256": "9acb820975b11b239a7a1fe563a816412149c47c1e8c02d622f2d3de89800b04",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_guyuan.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/artifact_guyuan",
+      "sourceSha256": "4826ff6cc0768bcf77a6a7e0040a05081d3cb0ab63700277460748cc2d5e986c",
+      "destinationSha256": "4826ff6cc0768bcf77a6a7e0040a05081d3cb0ab63700277460748cc2d5e986c",
+      "sourceByteLength": 215301,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "5e52d8bd64194749afc0a8165cfbdead",
+      "metaSha256": "6e0e883b86942249e9acc69185bfd3f85988852a133b729de0fac51364d58b6f",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "护心珠",
+      "source": "designs/equipment-ui-20261117/icons/artifact_huxin.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/artifact_huxin.png.generation.json",
+      "sourceGenerationRecordSha256": "62f4102c51cdab5ab870eefb4e83e7cec6e92ccb16a6f47e012b195d29fcc1b7",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_huxin.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/artifact_huxin",
+      "sourceSha256": "28fcdb17132c1a3711646f498a2a76f59a0bfd925b534f45924e403f05a032e3",
+      "destinationSha256": "28fcdb17132c1a3711646f498a2a76f59a0bfd925b534f45924e403f05a032e3",
+      "sourceByteLength": 160007,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "65c7a7fe0a8943af86139a35467df9dc",
+      "metaSha256": "29dcc0552ed62ebfa0f9ab7d8a96d6c68fbe84eda9821760d6b5dacbcf10e011",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "归元葫",
+      "source": "designs/equipment-ui-20261117/icons/artifact_guiyuan.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/artifact_guiyuan.png.generation.json",
+      "sourceGenerationRecordSha256": "4b1a55777982f8f3dd927ac57c9ca8e610e4feb25135cfee7be4717545d0c0fb",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_guiyuan.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/artifact_guiyuan",
+      "sourceSha256": "6abdbd02fb5b6aed4e1c1c90ddba4e64c711fad730e44109740f36c0544d8467",
+      "destinationSha256": "6abdbd02fb5b6aed4e1c1c90ddba4e64c711fad730e44109740f36c0544d8467",
+      "sourceByteLength": 215295,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "19a075226d524e279f28846f15714a0d",
+      "metaSha256": "7b440f0c498ca220ebdf7ac4270b8c7cfad8c4902dd81bf3e4875b42a0df0fdd",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "清心符",
+      "source": "designs/equipment-ui-20261117/icons/artifact_qingxin.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/artifact_qingxin.png.generation.json",
+      "sourceGenerationRecordSha256": "a99bdb33af8c03f668431de0ccb39a8cefa99f342332d37d10d8be661190bf7e",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_qingxin.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/artifact_qingxin",
+      "sourceSha256": "c81fd488f1a84e2021a174b58837327e713d71fdeec0d92e1ae97ef8b0e30863",
+      "destinationSha256": "c81fd488f1a84e2021a174b58837327e713d71fdeec0d92e1ae97ef8b0e30863",
+      "sourceByteLength": 204367,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "80b62c403cdd46e59df1e566f73bd37e",
+      "metaSha256": "fbe8e582b98741d3f3075b5a02e0580c6372f5ba2472a172e16eab7ad55fc9cf",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "打造材料",
+      "source": "designs/equipment-ui-20261117/icons/material_crafting.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/material_crafting.png.generation.json",
+      "sourceGenerationRecordSha256": "5fbd22cf82b232814c72af76d04ce2ebcb1d493f40a42fe865e9b86c0d50a5c8",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/material_crafting.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/material_crafting",
+      "sourceSha256": "464aaa549331a8515dbac85eabe16d928c5bc1b6d15d82844926600a3d0fc107",
+      "destinationSha256": "464aaa549331a8515dbac85eabe16d928c5bc1b6d15d82844926600a3d0fc107",
+      "sourceByteLength": 164869,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "f309bd0d0f184859b2b94b28de4e66ad",
+      "metaSha256": "dab47df1983575f3584b7664dec6859593581fab57382323be5bf289da7381a1",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "强化石",
+      "source": "designs/equipment-ui-20261117/icons/material_enhancement.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/material_enhancement.png.generation.json",
+      "sourceGenerationRecordSha256": "814c5cef2a65954f8635a07911568eef1bd97a29e9e971f27d71adce322acea7",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/material_enhancement.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/material_enhancement",
+      "sourceSha256": "5dfb0d19122153b1142e5424beeac6647b18f8dfb7a9cd1124f4fd7a2a7918be",
+      "destinationSha256": "5dfb0d19122153b1142e5424beeac6647b18f8dfb7a9cd1124f4fd7a2a7918be",
+      "sourceByteLength": 190915,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "42c5ec79fcae444f89537349bdf5f0cd",
+      "metaSha256": "14bd5fbd844446a92d22d78defbe1da553bcd69d476b05897cf81ada4bf4df43",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Icons",
+      "purpose": "材料宝匣",
+      "source": "designs/equipment-ui-20261117/icons/reward_choice.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/icons/reward_choice.png.generation.json",
+      "sourceGenerationRecordSha256": "b766aca3deed77b3c2deb1a751b9ed25b8854a60230599b964f8517af6720c08",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/reward_choice.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Icons/reward_choice",
+      "sourceSha256": "cff3c7089f67fdde03fc546b9eeba74b765601173079038998cde9886c495584",
+      "destinationSha256": "cff3c7089f67fdde03fc546b9eeba74b765601173079038998cde9886c495584",
+      "sourceByteLength": 227736,
+      "byteIdentical": true,
+      "width": 512,
+      "height": 512,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "5cf373ed646b4557a023e5027a781a44",
+      "metaSha256": "34a1ac6ecb4228ccf77ce84eb5ae8b2575a556b2489fa0b87a42048eb20c556b",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "保持比例的图标",
+        "preserveAspectRatio": true,
+        "restriction": "无九宫格边距；保持原图比例显示。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "main-panel",
+      "source": "designs/equipment-ui-20261117/ui/main-panel.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/main-panel.png.generation.json",
+      "sourceGenerationRecordSha256": "8f68458dd8e923ffe5a8005e05738a66b039adf7d3d4c21a5cac9f97fde98273",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/main-panel.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/main-panel",
+      "sourceSha256": "347924a00c57e262a8b04507ea485d51f9511456e3fbfa55f9969e5ccafbc645",
+      "destinationSha256": "347924a00c57e262a8b04507ea485d51f9511456e3fbfa55f9969e5ccafbc645",
+      "sourceByteLength": 194754,
+      "byteIdentical": true,
+      "width": 345,
+      "height": 315,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "6d0aa6caf45b42428834bae097cd6944",
+      "metaSha256": "289b691856fe86333140f3dbb8ade4c9c07a904d0c5e5b906e8d44609f8d2e27",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "title-plaque",
+      "source": "designs/equipment-ui-20261117/ui/title-plaque.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/title-plaque.png.generation.json",
+      "sourceGenerationRecordSha256": "9d8cfc3b800a1540016209ba636aeb9ef0e21f679adb28a860cf182b2db9c856",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/title-plaque.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/title-plaque",
+      "sourceSha256": "b0c835f68821f4f1def79c722cc4ce88e5ecee59217098f3048e2dc9d7dac414",
+      "destinationSha256": "b0c835f68821f4f1def79c722cc4ce88e5ecee59217098f3048e2dc9d7dac414",
+      "sourceByteLength": 107243,
+      "byteIdentical": true,
+      "width": 365,
+      "height": 170,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "241d48243e8041198203c92fa8a01eaa",
+      "metaSha256": "af028d8a7e69b32c249c48d47271a7bdeca557c51fc596dca56406372a1e944b",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "detail-card",
+      "source": "designs/equipment-ui-20261117/ui/detail-card.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/detail-card.png.generation.json",
+      "sourceGenerationRecordSha256": "d2364670e48a862a607f2c9f2ce2b6adc79e04246c219147ab49f209714dc53f",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/detail-card.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/detail-card",
+      "sourceSha256": "49aa4f61a5bc295e2d48f4a2311320ca1814bffbe2fde76433ea9cde35861eb9",
+      "destinationSha256": "49aa4f61a5bc295e2d48f4a2311320ca1814bffbe2fde76433ea9cde35861eb9",
+      "sourceByteLength": 146057,
+      "byteIdentical": true,
+      "width": 335,
+      "height": 305,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "8d716a53ed0440cb81ca1bdc41960c4b",
+      "metaSha256": "2edb0edd1126f18dac5a3170a62e5de4e5fce4f5d0172006dda322a839592ea5",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "comparison-card",
+      "source": "designs/equipment-ui-20261117/ui/comparison-card.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/comparison-card.png.generation.json",
+      "sourceGenerationRecordSha256": "653a390063ce0c18c6e6b9711cb37f85f08057a3c4310f179a415df1d5bc440a",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/comparison-card.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/comparison-card",
+      "sourceSha256": "ab589dbb69e9228be0d14210e1c9b4fcb0000797f749d65ff2b309e23d645a9f",
+      "destinationSha256": "ab589dbb69e9228be0d14210e1c9b4fcb0000797f749d65ff2b309e23d645a9f",
+      "sourceByteLength": 180117,
+      "byteIdentical": true,
+      "width": 375,
+      "height": 305,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "3016632f7b1244259351aa5598cf9dc4",
+      "metaSha256": "5c4f44bda2569ecb17ebd5f20119ee0e84d5aa787de5954cd0eec5434da67e48",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "selection-dialog",
+      "source": "designs/equipment-ui-20261117/ui/selection-dialog.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/selection-dialog.png.generation.json",
+      "sourceGenerationRecordSha256": "811d22dda5d869d52bfe3f4f388b98328c23ed1bfc3125134dc4817f5e0d40ea",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/selection-dialog.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/selection-dialog",
+      "sourceSha256": "42e103b34ce44aa756156dd4db12c18f538c065fc59f8f502ad35fdd84fe2bd3",
+      "destinationSha256": "42e103b34ce44aa756156dd4db12c18f538c065fc59f8f502ad35fdd84fe2bd3",
+      "sourceByteLength": 191753,
+      "byteIdentical": true,
+      "width": 345,
+      "height": 300,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "e6291c5c2b59475d84d268d7ce93fca0",
+      "metaSha256": "b0a04cd441676449c070cedb0316cf0f32df2e130b450dae72f0dcd81bdcbfe9",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "tab",
+      "source": "designs/equipment-ui-20261117/ui/tab.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/tab.png.generation.json",
+      "sourceGenerationRecordSha256": "7af3ac96fa51fc20e010e3da72717543269d5709fc922d55fa782143c5ffcde7",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/tab.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/tab",
+      "sourceSha256": "1dd544cae9c9477945ac5f90e2bff97d8223a70a176bb2720da1d04e194ac74d",
+      "destinationSha256": "1dd544cae9c9477945ac5f90e2bff97d8223a70a176bb2720da1d04e194ac74d",
+      "sourceByteLength": 63670,
+      "byteIdentical": true,
+      "width": 330,
+      "height": 130,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "14cb5fd432e54c579f14d64f814805b4",
+      "metaSha256": "80a95773b43d5cb5c0a0e28a21432ccdba677b4c935b3ada23c7b7d68de5ef28",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "primary-button",
+      "source": "designs/equipment-ui-20261117/ui/primary-button.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/primary-button.png.generation.json",
+      "sourceGenerationRecordSha256": "c7fd542c76cfebcc13a89cf8f6e534badd984336b28362d59b077deb35a5f1dc",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/primary-button.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/primary-button",
+      "sourceSha256": "193bc07a34e7e4e3ad9fcfdb5aaaf3b7f5f984f66df13d9ac2b4bb239fbdc05f",
+      "destinationSha256": "193bc07a34e7e4e3ad9fcfdb5aaaf3b7f5f984f66df13d9ac2b4bb239fbdc05f",
+      "sourceByteLength": 89138,
+      "byteIdentical": true,
+      "width": 355,
+      "height": 140,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "e91923a01b6344c195362692c0a99ef2",
+      "metaSha256": "ef2a1f64377fa1cbc1d751ce7ac776aa493eb1409663431d95970a94df6bce20",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          120,
+          0,
+          120,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "仅横向三段拉伸",
+        "requiredHeight": 140,
+        "preserveCornerSourcePixels": true,
+        "restriction": "必须保持原高度及左右固定宽度；仅拉伸中段，不允许纵向拉伸或缩放角饰。",
+        "sourceVerifiedSize": [
+          555,
+          140
+        ]
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "secondary-button",
+      "source": "designs/equipment-ui-20261117/ui/secondary-button.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/secondary-button.png.generation.json",
+      "sourceGenerationRecordSha256": "369f2b46dabe506ddf763558784639f3c62f46d25aa30102d9ebab6bbbfd6e40",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/secondary-button.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/secondary-button",
+      "sourceSha256": "8028820ca0c0da081c9d08c0a60aa5e779a0a20e262ff9c60581fbdfc3930f79",
+      "destinationSha256": "8028820ca0c0da081c9d08c0a60aa5e779a0a20e262ff9c60581fbdfc3930f79",
+      "sourceByteLength": 73324,
+      "byteIdentical": true,
+      "width": 350,
+      "height": 140,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "7c4d7146aa2d4895922fd4fad41fea85",
+      "metaSha256": "480cc2a7e084cf71a7397294465e602f0aefd05e84df5d8da589ea28cea1e1a4",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          120,
+          0,
+          120,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "仅横向三段拉伸",
+        "requiredHeight": 140,
+        "preserveCornerSourcePixels": true,
+        "restriction": "必须保持原高度及左右固定宽度；仅拉伸中段，不允许纵向拉伸或缩放角饰。",
+        "sourceVerifiedSize": [
+          550,
+          140
+        ]
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "close-button",
+      "source": "designs/equipment-ui-20261117/ui/close-button.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/close-button.png.generation.json",
+      "sourceGenerationRecordSha256": "683d32909a4ab1223263364966d4f84ca46c313b70374bac0ac7c93e9600714f",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/close-button.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/close-button",
+      "sourceSha256": "22853bcee545cba9f5fa1dfa3a5e4ab763029b49cf18e9de03a4b9184aa86a83",
+      "destinationSha256": "22853bcee545cba9f5fa1dfa3a5e4ab763029b49cf18e9de03a4b9184aa86a83",
+      "sourceByteLength": 115061,
+      "byteIdentical": true,
+      "width": 255,
+      "height": 300,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "ebc28666eec14f958957ab2011c34eb2",
+      "metaSha256": "929d8f75a77ea2f824a6fc0e6c64583c51afb1522d4fa2a842a12a9f7ea57e15",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "equipment-slot",
+      "source": "designs/equipment-ui-20261117/ui/equipment-slot.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/equipment-slot.png.generation.json",
+      "sourceGenerationRecordSha256": "0b1bf90b82dd6d05a29b9ef6650aa346e01a1905fc3209b9e2a657551d250e0d",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/equipment-slot.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/equipment-slot",
+      "sourceSha256": "57bd2126a06e614012a8633fe0299a0cd7497967270615869fbde9d3da348be0",
+      "destinationSha256": "57bd2126a06e614012a8633fe0299a0cd7497967270615869fbde9d3da348be0",
+      "sourceByteLength": 149123,
+      "byteIdentical": true,
+      "width": 315,
+      "height": 300,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "b5d451801ad84289a38685c3f698a26b",
+      "metaSha256": "26a2ccea8fb8b5fcb899bf603e6c13b752203f5affe3ba221636a984735ec8fb",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "empty-slot",
+      "source": "designs/equipment-ui-20261117/ui/empty-slot.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/empty-slot.png.generation.json",
+      "sourceGenerationRecordSha256": "8a6121f3bafca3c2f8fd46bd651c71c3b94d9d08385385e8ced76794a140500b",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/empty-slot.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/empty-slot",
+      "sourceSha256": "242088326a77f1390a2561160d2a627e1b117415e82f6d3533ebccb240a89118",
+      "destinationSha256": "242088326a77f1390a2561160d2a627e1b117415e82f6d3533ebccb240a89118",
+      "sourceByteLength": 147230,
+      "byteIdentical": true,
+      "width": 320,
+      "height": 300,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "eb00bb7a11ec4d09986a1b7e7fd378a8",
+      "metaSha256": "5db04ced671c13af3e3343d12e74d28f1488532a3408c1016655760687a76344",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "selected-frame",
+      "source": "designs/equipment-ui-20261117/ui/selected-frame.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/selected-frame.png.generation.json",
+      "sourceGenerationRecordSha256": "fbb0da71dd17ebe8763648a70ebaf3df1fa0b2d7d0c6361fa7fe7fdfe41c9a6b",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/selected-frame.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/selected-frame",
+      "sourceSha256": "37e692230beb4921dd95176e9fc98286bddccba997132a1543fb29af4be7020e",
+      "destinationSha256": "37e692230beb4921dd95176e9fc98286bddccba997132a1543fb29af4be7020e",
+      "sourceByteLength": 71096,
+      "byteIdentical": true,
+      "width": 330,
+      "height": 300,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "a6aad36074764f3e9a719b760dba1d2a",
+      "metaSha256": "58a155ae1fcfe639de8bf5d3fde1519bf8f163fd23a7c01df10ef18a328a840e",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "radio-empty",
+      "source": "designs/equipment-ui-20261117/ui/radio-empty.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/radio-empty.png.generation.json",
+      "sourceGenerationRecordSha256": "6ddff9b62b0d24edc88f8f0fa7382fc95babe026bb61005485a6610bb9150510",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/radio-empty.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/radio-empty",
+      "sourceSha256": "de33fea241c6fbe5fdf97d19036b9e03ecadb7f2ee05a5b186d351cf1990e323",
+      "destinationSha256": "de33fea241c6fbe5fdf97d19036b9e03ecadb7f2ee05a5b186d351cf1990e323",
+      "sourceByteLength": 40768,
+      "byteIdentical": true,
+      "width": 210,
+      "height": 200,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "09f5e847a0d842a998aedb26a2ac7fa6",
+      "metaSha256": "c5140f2a3dbf0b7619b53f6f11d56943168e7d9c9764b5489511cc2296055bec",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "radio-selected",
+      "source": "designs/equipment-ui-20261117/ui/radio-selected.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/radio-selected.png.generation.json",
+      "sourceGenerationRecordSha256": "32c5b72b97925dbd1099c7b160b8cee7a25aa66e06dec570c8736c3d591d46ac",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/radio-selected.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/radio-selected",
+      "sourceSha256": "04a73abe82f26da23060c8386ff569324ab60603fa58fed9efd239813910a726",
+      "destinationSha256": "04a73abe82f26da23060c8386ff569324ab60603fa58fed9efd239813910a726",
+      "sourceByteLength": 45514,
+      "byteIdentical": true,
+      "width": 190,
+      "height": 200,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "b2468dc2dfa542cdbf9bca787a319bfb",
+      "metaSha256": "2746f0fc6208ba750f7f10c60f8e421a468e4e1e364b42135cd7f203996e9c67",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "checkmark",
+      "source": "designs/equipment-ui-20261117/ui/checkmark.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/checkmark.png.generation.json",
+      "sourceGenerationRecordSha256": "c6d65b399b302b48d95f3f68030982920d19bfa8a776fc522d61474a53def70e",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/checkmark.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/checkmark",
+      "sourceSha256": "2bdebfdab9fe5a154580351258977cdcd5734af96cc3e3a109e1108af06cb8f9",
+      "destinationSha256": "2bdebfdab9fe5a154580351258977cdcd5734af96cc3e3a109e1108af06cb8f9",
+      "sourceByteLength": 29075,
+      "byteIdentical": true,
+      "width": 220,
+      "height": 190,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "8012ef859dc64e2bac5cfad89ba24e21",
+      "metaSha256": "878e8cc400b569b4b70697315449e74f712ac15a11c7334802463e74657dc516",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "material-bar",
+      "source": "designs/equipment-ui-20261117/ui/material-bar.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/material-bar.png.generation.json",
+      "sourceGenerationRecordSha256": "484b1744ddb370f8f4c2eaa656cbb20d6894f9ac496ea9fd04aab1f9a05b95d8",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/material-bar.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/material-bar",
+      "sourceSha256": "207cb0b61e2a4c8f530cd347dac7b182f3e9ad49d9df50c7adfe44dafd7654dd",
+      "destinationSha256": "207cb0b61e2a4c8f530cd347dac7b182f3e9ad49d9df50c7adfe44dafd7654dd",
+      "sourceByteLength": 166306,
+      "byteIdentical": true,
+      "width": 535,
+      "height": 210,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "beb24375f068466b973532e7bda28068",
+      "metaSha256": "9f7dc609389ee5d678742c2ae00449be190c69aa8c5d19638d61487f61f5acbf",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          200,
+          0,
+          200,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "仅横向三段拉伸",
+        "requiredHeight": 210,
+        "preserveCornerSourcePixels": true,
+        "restriction": "必须保持原高度及左右固定宽度；仅拉伸中段，不允许纵向拉伸或缩放角饰。",
+        "sourceVerifiedSize": [
+          735,
+          210
+        ]
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "quantity-minus",
+      "source": "designs/equipment-ui-20261117/ui/quantity-minus.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/quantity-minus.png.generation.json",
+      "sourceGenerationRecordSha256": "1fa948aeef59900a8fdf242fe5f49b61cb74dc7606539cc368450fa4bd21dfb8",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/quantity-minus.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/quantity-minus",
+      "sourceSha256": "c3a8c17b2c0bdfec3179fcdfaf8b28f5f7cb1aba03d824e7237a92bd67b7f634",
+      "destinationSha256": "c3a8c17b2c0bdfec3179fcdfaf8b28f5f7cb1aba03d824e7237a92bd67b7f634",
+      "sourceByteLength": 72848,
+      "byteIdentical": true,
+      "width": 290,
+      "height": 190,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "663b6514de86444ab8f20076d4f7fa7d",
+      "metaSha256": "0166186aa8b5614b440a01d3e07f9fa7b941fcaef4a90ec1fb309401db67485a",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "quantity-plus",
+      "source": "designs/equipment-ui-20261117/ui/quantity-plus.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/quantity-plus.png.generation.json",
+      "sourceGenerationRecordSha256": "d1b21619e5521a20bac794e7e0923bddf62e7dad76927488087c864d4c9881fb",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/quantity-plus.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/quantity-plus",
+      "sourceSha256": "7bbe0b8f86f0e54b844f83f8ff3a76ab35e80398d94a5b9483a743748296e833",
+      "destinationSha256": "7bbe0b8f86f0e54b844f83f8ff3a76ab35e80398d94a5b9483a743748296e833",
+      "sourceByteLength": 76391,
+      "byteIdentical": true,
+      "width": 290,
+      "height": 190,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "17313b9b25184fc0a679a5bc79c55299",
+      "metaSha256": "dc93600da9ab195671964790fd905f506578de40e183ef9d27353673c7564331",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "status-tag",
+      "source": "designs/equipment-ui-20261117/ui/status-tag.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/status-tag.png.generation.json",
+      "sourceGenerationRecordSha256": "bbab0706d3ed3a7b629cc6bf7ded6c0aa5f1b3f6d33f27489c81eb0ffc8b4450",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/status-tag.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/status-tag",
+      "sourceSha256": "034b3e73ffca89ee3c0c12ff62ce709b64f51e7830596e7812e3998e469f1511",
+      "destinationSha256": "034b3e73ffca89ee3c0c12ff62ce709b64f51e7830596e7812e3998e469f1511",
+      "sourceByteLength": 116315,
+      "byteIdentical": true,
+      "width": 460,
+      "height": 180,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "d72d12b98675411fa3d3c306ce484d6b",
+      "metaSha256": "17f6b5d99bf39a4974863c94dc1399a06873453c0aadae06379592f882b25378",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          150,
+          0,
+          150,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "仅横向三段拉伸",
+        "requiredHeight": 180,
+        "preserveCornerSourcePixels": true,
+        "restriction": "必须保持原高度及左右固定宽度；仅拉伸中段，不允许纵向拉伸或缩放角饰。",
+        "sourceVerifiedSize": [
+          660,
+          180
+        ]
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "scrollbar",
+      "source": "designs/equipment-ui-20261117/ui/scrollbar.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/scrollbar.png.generation.json",
+      "sourceGenerationRecordSha256": "db6d54eeb24de06067a2c4ca8932d83558f8755a3e2522426a99cc08b89514cb",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/scrollbar.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/scrollbar",
+      "sourceSha256": "83b1673cfdfc8490ccb7e949c659d4d7d803bcf3dcd8fa6e409653001de66dcd",
+      "destinationSha256": "83b1673cfdfc8490ccb7e949c659d4d7d803bcf3dcd8fa6e409653001de66dcd",
+      "sourceByteLength": 52743,
+      "byteIdentical": true,
+      "width": 120,
+      "height": 440,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "8b2f2288fbb54837b0ad0e478c0210a2",
+      "metaSha256": "6ecb6abdccefa86af78ab4e6a11199ba11c954e3a7ba48821d67afb0a2444663",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "tooltip-bubble",
+      "source": "designs/equipment-ui-20261117/ui/tooltip-bubble.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/tooltip-bubble.png.generation.json",
+      "sourceGenerationRecordSha256": "216beee1da94f6ada90b96dcb2a7a2e882bc55c5de0f6aa1c0bda9dcfbc5aa54",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/tooltip-bubble.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/tooltip-bubble",
+      "sourceSha256": "d8fc9c1d92e6f2de63a8db0d2575a4713196876d1d377f5659d270bdbfcd504e",
+      "destinationSha256": "d8fc9c1d92e6f2de63a8db0d2575a4713196876d1d377f5659d270bdbfcd504e",
+      "sourceByteLength": 167214,
+      "byteIdentical": true,
+      "width": 515,
+      "height": 265,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "84fa1fd0912844ccbb369273a63cb173",
+      "metaSha256": "a807d9b3ba237d7ea5c220971bfd9c0b67fc7fbf5544c4a152af17ff8a8dd88f",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "固定原尺寸",
+        "preserveAspectRatio": true,
+        "restriction": "保持原图宽高与比例；不作横向、纵向或九宫格拉伸。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "main-panel-nine",
+      "source": "designs/equipment-ui-20261117/ui/main-panel-nine.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/main-panel-nine.png.generation.json",
+      "sourceGenerationRecordSha256": "61a45c4338289817663e1cae7bd2ab203d0ed955d4375261ec0f1c437e2f8111",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/main-panel-nine.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/main-panel-nine",
+      "sourceSha256": "c33ce50d3ba7435856be347d9f10df69fe6ba53e945ce130deae33eb26ba0fd9",
+      "destinationSha256": "c33ce50d3ba7435856be347d9f10df69fe6ba53e945ce130deae33eb26ba0fd9",
+      "sourceByteLength": 1673569,
+      "byteIdentical": true,
+      "width": 1774,
+      "height": 887,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "f847229313dd446db36330f8d626f2d0",
+      "metaSha256": "1662de9ff7cc93355ea3c3ab99ff520fdb2338401643f27d3d6114a49d2ce166",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          190,
+          165,
+          190,
+          150
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "二维九宫格",
+        "preserveCornerSourcePixels": true,
+        "restriction": "固定四角尺寸，只拉伸边缘中段与中心；目标宽度应大于380、高度应大于315。",
+        "recommendedMinimumExclusive": {
+          "width": 380,
+          "height": 315
+        },
+        "sourceVerifiedSizes": [
+          [
+            2200,
+            1200
+          ],
+          [
+            1000,
+            650
+          ]
+        ],
+        "verificationLimit": "来源仅验证离线最近邻九宫格预览；尚未在 Unity 或发布客户端验收。"
+      }
+    },
+    {
+      "category": "Controls",
+      "purpose": "detail-card-nine",
+      "source": "designs/equipment-ui-20261117/ui/detail-card-nine.png",
+      "sourceGenerationRecord": "designs/equipment-ui-20261117/ui/detail-card-nine.png.generation.json",
+      "sourceGenerationRecordSha256": "63a2ea6329e1c7dc0aabb83fe789e2c6c9bbdfd771264c9f73a2434774eb5e53",
+      "destination": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/detail-card-nine.png",
+      "resourcesKey": "UI/Ugui/Equipment20261117/Controls/detail-card-nine",
+      "sourceSha256": "50d76c6777dca013956617522464f7a465e067ee77e06172e7c2631e73e6ba2f",
+      "destinationSha256": "50d76c6777dca013956617522464f7a465e067ee77e06172e7c2631e73e6ba2f",
+      "sourceByteLength": 1044469,
+      "byteIdentical": true,
+      "width": 1774,
+      "height": 887,
+      "bitDepth": 8,
+      "colorType": 6,
+      "hasAlphaChannel": true,
+      "guid": "b70b598073cb4ebfbd4df72bc17548e2",
+      "metaSha256": "e74502dd23c346d839c0b78aa0d691a55c69ca043fa3120325d057bdc27e4701",
+      "importer": {
+        "textureType": "Sprite",
+        "spriteMode": "Single",
+        "spriteMeshType": "FullRect",
+        "alphaIsTransparency": true,
+        "mipmaps": false,
+        "npotScale": "None",
+        "textureCompression": "Uncompressed",
+        "maxTextureSize": 2048,
+        "borderLeftBottomRightTop": [
+          190,
+          165,
+          190,
+          150
+        ],
+        "pixelsPerUnit": 100
+      },
+      "usage": {
+        "mode": "二维九宫格",
+        "preserveCornerSourcePixels": true,
+        "restriction": "固定四角尺寸，只拉伸边缘中段与中心；目标宽度应大于380、高度应大于315。",
+        "recommendedMinimumExclusive": {
+          "width": 380,
+          "height": 315
+        },
+        "sourceVerifiedSizes": [
+          [
+            2200,
+            1200
+          ],
+          [
+            1000,
+            650
+          ]
+        ],
+        "verificationLimit": "来源仅验证离线最近邻九宫格预览；尚未在 Unity 或发布客户端验收。"
+      }
+    }
+  ],
+  "referenceOnlyScreens": [
+    {
+      "source": "designs/equipment-ui-20261117/screens/01-equipment-overview.png",
+      "sha256": "07f169c7160a68d91c756f1c026a6ec0fb29c6f0f483bd39dcffb1225cb71426",
+      "width": 1983,
+      "height": 793,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/02-equipment-compare.png",
+      "sha256": "1e702b6096e9e20b7c35fb0fd764b460666e9e27f9ff0e301683bce943283575",
+      "width": 1983,
+      "height": 793,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/03-crafting.png",
+      "sha256": "eebb7c4b360b80ef6a7976975395a2a29052ae2c766526ffa88eb48f0473a87e",
+      "width": 1931,
+      "height": 814,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/04a-direction-affixes.png",
+      "sha256": "7463bfe906bfea498038acd76f76c8ab33d2c7d446e8517b9ed5c8b09c77f886",
+      "width": 1931,
+      "height": 814,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/04b-efficiency-affixes.png",
+      "sha256": "0519ec65a8eae1fe8e959eae971fc8e17a9dd254702c396adf122f9a4693d11c",
+      "width": 1933,
+      "height": 814,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/04c-jewelry-affixes.png",
+      "sha256": "240cabc6bdb5681aa67baa6d1ea3fba9c5b2783b9fcc2592239c798893285f08",
+      "width": 1931,
+      "height": 814,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/05-enhancement.png",
+      "sha256": "826b3356b3532e0717d6f39ed79d314af350daa8c9b0db9ea330afc2e98fce7a",
+      "width": 1931,
+      "height": 814,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/06-artifact-catalog.png",
+      "sha256": "06321fe648cc9f9e2f87a52f41a7a0c40423fcf355248623d217498666b7cab0",
+      "width": 1933,
+      "height": 814,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/07-artifact-detail.png",
+      "sha256": "a096bef4b24e8555e414dbafaee800e6b97f9023df88221f452da10214cb39b8",
+      "width": 1933,
+      "height": 813,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/08-material-choice.png",
+      "sha256": "a8b156e486c5bc63519a3c67b8135581fa57e747fd043bf0a75313d56b464628",
+      "width": 1932,
+      "height": 814,
+      "copiedToRuntimeResources": false
+    },
+    {
+      "source": "designs/equipment-ui-20261117/screens/09-ui-states.png",
+      "sha256": "96c340fe05238de7177b6ba647e1fbc34f56842a04911f3485b87f391fd6085a",
+      "width": 1933,
+      "height": 813,
+      "copiedToRuntimeResources": false
+    }
+  ]
+}

@@ -27,6 +27,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private bool _forgeNoticeShown;
         private PlayerFeaturesClient _client;
         private GameplayWindow _window;
+        private EquipmentWindow _equipmentWindow;
         private RectTransform _hud;
         private ulong _playerId;
         private bool _available;
@@ -71,6 +72,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 WorldHudNavigation.Register(entryId, (RectTransform)b.transform, b, b.GetComponentInChildren<TMP_Text>());
             }
             _window = new GameplayWindow(design, _forge);
+            _equipmentWindow = new EquipmentWindow(design);
+            _window.EquipmentOverviewRequested += OpenEquipment;
             _window.BagRequested += type => _client?.RequestBag(type);
             _window.SortRequested += () => _client?.SortBag();
             _window.EquipmentRequested += () => _client?.RequestEquipment();
@@ -121,6 +124,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 if (_client != null) _client.OnChanged -= Changed;
                 _window.ResetSession();
+                _equipmentWindow.Hide();
                 _client = game?.Features;
                 _window.SetMissionTracking(_client?.MissionTracking);
                 if (_client != null) _client.OnChanged += Changed;
@@ -128,7 +132,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             bool inGame = game != null && game.InGame && game.IsGateReady;
             if (_playerId != (inGame ? game.PlayerId : 0))
-            { _window.ResetSession(); _playerId = inGame ? game.PlayerId : 0; sessionChanged = true; }
+            { _window.ResetSession(); _equipmentWindow.Hide(); _playerId = inGame ? game.PlayerId : 0; sessionChanged = true; }
+            _equipmentWindow.Bind(_client, AttributeClient.Instance);
             if (sessionChanged) Changed();
             // 装备 tooltip 的等级要求标红用:属性面板拉到过才有等级,没有就是 0(不标红)。值没变时窗口不重画。
             _window.SetCharacterLevel(AttributeClient.Instance?.Panel?.Level ?? 0);
@@ -140,6 +145,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!wasAvailable) _client.RequestTemporary();
             // 发包间隔按时间走完,数据层不为它发通知:面板开着时每帧看一眼,冷却结束才重画。
             _forge.Tick();
+            _equipmentWindow.Tick();
+            // The equipment window owns Escape/Tab and modal focus while visible.
+            if (_equipmentWindow.IsVisible) return;
             // 子弹窗独占键盘；Esc 由弹窗自己的输入组件处理，避免同一按键把背包一起关掉。
             if (_window.EquipmentModalOwnsKeyboard) return;
             bool typing = EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null &&
@@ -160,7 +168,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             else if (Input.GetKeyDown(KeyCode.O)) Toggle(GameplayPage.Activities);
 #endif
         }
-        public void HidePanel() { if (_window?.Root != null) _window.Hide(); }
+        public void HidePanel() { if (_window?.Root != null) _window.Hide(); _equipmentWindow?.Hide(); }
         public void OpenMissions() => Open(GameplayPage.Missions);
 
         public void OpenMission(uint scope, uint missionId)
@@ -177,7 +185,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void OpenEquipment()
         {
             if (!HasView || !_available) return;
-            PrepareOpen(); Changed(); _window.ShowEquipment();
+            PrepareOpen(); _window.Hide(); Changed();
+            _equipmentWindow.Bind(_client, AttributeClient.Instance);
+            _equipmentWindow.Show();
             AttributeClient.Instance?.RequestPanel();
         }
         private void Toggle(GameplayPage page)
@@ -186,6 +196,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (!HasView || !_available) return;
             PrepareOpen();
+            _equipmentWindow.Hide();
             Changed(); _window.Show(page);
             if (page == GameplayPage.Bag) AttributeClient.Instance?.RequestPanel();
         }
@@ -242,11 +253,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _playerId = 0;
             _available = _forgeNoticeShown = _temporaryFullNotified = false;
             _forge.Bind(null);
+            _equipmentWindow?.Bind(null, null);
         }
         private void OnDestroy()
         {
             UnbindClient();
             _window?.Dispose(); _window = null;
+            _equipmentWindow?.Dispose(); _equipmentWindow = null;
             _forge.Dispose();
             if (Instance == this) Instance = null;
         }

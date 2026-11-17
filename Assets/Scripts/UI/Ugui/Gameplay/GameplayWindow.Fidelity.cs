@@ -196,6 +196,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 () => { _bagTools = false; Render(); OpenTemporaryBag(); }, font: 22);
             NativeText(_body, "丹药、材料分类及出售尚未开放", 1260, 416, 405, 38, 21, Muted);
             NativeHit(_body, "CloseBagTools", "收起", 1460, 480, 187, 47, () => { _bagTools = false; Render(); }, font: 26);
+            NativeHit(_body, "OpenEquipmentOverview", "装备养成", 1260, 480, 187, 47,
+                () => EquipmentOverviewRequested?.Invoke(), font: 26);
         }
 
         private void RenderNativeItem(BagItemInfo item, bool worn)

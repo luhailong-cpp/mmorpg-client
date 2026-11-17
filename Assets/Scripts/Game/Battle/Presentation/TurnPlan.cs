@@ -30,6 +30,7 @@ namespace MmorpgClient.Game.Battle.Presentation
         public const int MaxHealth = 18;
         public const int PetRetreat = 19;
         public const int Shield = 20;
+        public const int Artifact = 21;
     }
 
     /// <summary>一拍演出的类型。</summary>
@@ -112,6 +113,8 @@ namespace MmorpgClient.Game.Battle.Presentation
         public ulong MaxHealthAfter;
         public ulong ShieldAfter;
         public ulong Absorbed;
+        public ulong ArtifactItemId;
+        public uint ArtifactEffectId;
 
         public static TurnEventInput From(BattleEventItem ev)
         {
@@ -132,6 +135,8 @@ namespace MmorpgClient.Game.Battle.Presentation
                 MaxHealthAfter = ev.TargetMaxHealthAfter,
                 ShieldAfter = ev.ShieldAfter,
                 Absorbed = ev.Absorbed,
+                ArtifactItemId = ev.ArtifactItemId,
+                ArtifactEffectId = ev.ArtifactEffectId,
                 GroupId = ev.GroupId,
                 HitIndex = unchecked((int)ev.HitIndex),
                 ManaAfter = ev.TargetManaAfter,
@@ -257,6 +262,11 @@ namespace MmorpgClient.Game.Battle.Presentation
         public const float LoneManaSeconds = 0.3f;
 
         public readonly List<Beat> Beats = new List<Beat>();
+        /// <summary>
+        /// 法宝触发的原事件位置和权威元数据；独立保留来源、回执值与成败，不生成额外演出拍，
+        /// 不把法宝收益再计入HP/MP/护盾(这些由相应数值事件承载)。Value沿输入的原始位模式保存。
+        /// </summary>
+        public readonly List<(int EventIndex, TurnEventInput Input)> ArtifactEvents = new List<(int, TurnEventInput)>();
         public uint RoundIndex;
         /// <summary>出手序(D3 action_order);旧服务端为空。</summary>
         public readonly List<ulong> ActionOrder = new List<ulong>();
@@ -544,6 +554,10 @@ namespace MmorpgClient.Game.Battle.Presentation
                         current = null;
                         break;
                     }
+
+                    case BattleEventCodes.Artifact:
+                        plan.ArtifactEvents.Add((i, ev));
+                        break;
 
                     default:
                         // 未知/NONE:忽略
