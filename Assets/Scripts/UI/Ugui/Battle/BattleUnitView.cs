@@ -89,6 +89,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private const float MpBarHeight = 6f;
         private const float BuffIconSize = 26f;
         private const int MaxBuffIcons = 6;
+        private static readonly Vector2 NameAnchor = new Vector2(RootWidth * 0.5f - 110f, -(GroundY + 4f));
 
         // ── 只读状态 ──
         public ulong ActorId { get; private set; }
@@ -270,8 +271,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             // buff 图标行(条上方,左对齐)
             _buffRow = QdaoUguiFactory.CreateRect("Buffs", _plate, barX, 4f, BarWidth + 60f, BuffIconSize + 2f);
 
-            // 脚下名字(阵营配色 + 黑描边;≥22px,宽 220 不压相邻单位)
-            _name = QdaoUguiFactory.CreateText("Name", _plate, RootWidth * 0.5f - 110f, GroundY + 4f, 220f, 34f, string.Empty, 24f,
+            // 脚下名字默认居中，稳态拥挤时由 BattleScreen 微调位置。
+            _name = QdaoUguiFactory.CreateText("Name", _plate, NameAnchor.x, -NameAnchor.y, 220f, 34f, string.Empty, 24f,
                 NameColor(false), TextAlignmentOptions.Center);
             _name.fontStyle = FontStyles.Bold;
             BattleUiWidgets.ApplyOutline(_name, 0.26f, new Color32(0, 0, 0, 235));
@@ -330,6 +331,46 @@ namespace MmorpgClient.UI.Ugui.Battle
         }
 
         // ── 权威状态 ─────────────────────────────────────────
+
+        /// <summary>待机时的文字、立绘与血蓝条边界，均为舞台坐标 (y 向下)。</summary>
+        internal bool TryGetRestingNameplate(List<Rect> obstacles, out Rect name)
+        {
+            name = default;
+            if (_group.alpha <= 0f || _name.font == null) return false;
+
+            _name.ForceMeshUpdate(ignoreActiveState: true);
+            var glyphs = _name.textBounds;
+            if (glyphs.size.x <= 0f || glyphs.size.y <= 0f) return false;
+            var anchor = FootPosition + new Vector2(NameAnchor.x - RootWidth * 0.5f, -NameAnchor.y - GroundY) * Scale;
+            name = Rect.MinMaxRect(anchor.x + glyphs.min.x * Scale, anchor.y - glyphs.max.y * Scale,
+                anchor.x + glyphs.max.x * Scale, anchor.y - glyphs.min.y * Scale);
+
+            var sprite = _idleSprite;
+            float width = sprite != null ? _bodyHeight * sprite.rect.width / sprite.rect.height : _bodyHeight * 0.55f;
+            float pivotY = sprite != null ? sprite.pivot.y / sprite.rect.height : 0f;
+            void AddBodyBand(Rect ink)
+            {
+                if (_mirrored) ink.x = 1f - ink.xMax;
+                obstacles.Add(Rect.MinMaxRect(
+                    FootPosition.x + (ink.xMin - 0.5f) * width * Scale,
+                    FootPosition.y + (pivotY - ink.yMax) * _bodyHeight * Scale,
+                    FootPosition.x + (ink.xMax - 0.5f) * width * Scale,
+                    FootPosition.y + (pivotY - ink.yMin) * _bodyHeight * Scale));
+            }
+
+            var bands = BattleArtCatalog.MeasureVisibleBands(sprite);
+            if (bands.Count == 0) AddBodyBand(new Rect(0f, 0f, 1f, 1f));
+            else foreach (var band in bands) AddBodyBand(band);
+            obstacles.Add(new Rect(FootPosition.x - BarWidth * 0.5f * Scale, FootPosition.y + (_hpY - GroundY) * Scale,
+                BarWidth * Scale, (HpBarHeight + 2f + MpBarHeight) * Scale));
+            return true;
+        }
+
+        internal void SetNameOffset(Vector2 stageOffset)
+        {
+            var offset = new Vector2(stageOffset.x, -stageOffset.y) / Scale;
+            _name.rectTransform.anchoredPosition = NameAnchor + offset;
+        }
 
         /// <summary>按权威状态全量刷新(名字/等级/HP/MP/buff/徽标/外观)。</summary>
         public void Apply(BattleActorState state)

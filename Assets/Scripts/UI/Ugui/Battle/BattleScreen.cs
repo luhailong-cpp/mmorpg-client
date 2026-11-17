@@ -58,6 +58,10 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         public static readonly Rect ReconnectRect = new Rect(1916f, 210f, 200f, 64f);
 
+        private const int NameOffsetLimit = 48;
+        private const int NameOffsetStep = 4;
+        private const float NameClearance = 2f;
+
         /// <summary>
         /// 直连判定连不上时横幅的文案(客户端本地字符串,服务端没有对应消息)。客户端分不清是本机网络的问题还是战斗服故障,
         /// 两种结局都要说到(同 <see cref="BattleClient.BattleChannelFailedText"/>):前者由服务端代为出手,后者本局会被作废。
@@ -478,6 +482,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     if (_viewById.TryGetValue(actor.ActorId, out var view)) view.Apply(actor);
                 }
             }
+            LayoutUnitNames();
 
             _roundCounter.SetRound(state.RoundIndex, state.RoundIndex != _roundCounter.Round && _roundCounter.Round != 0);
             _partyCards.Refresh(BattleHudLogic.PartyCardOrder(state.Actors, _myId, _myTeam, BattlePartyCards.MaxCards), ResolveTile);
@@ -546,6 +551,71 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 绘制顺序:脚底 y 升序(下方的后画,盖住上方的);宝宝脚底在主人左上方,自然被主人盖住(与视频一致)
             _views.Sort((a, b) => BattleStage.CompareDepth(a.FootPosition, b.FootPosition));
             for (int i = 0; i < _views.Count; i++) _views[i].SetSiblingIndex(i);
+        }
+
+        private void LayoutUnitNames()
+        {
+            var names = new List<(BattleUnitView view, Rect rect)>(_views.Count);
+            var obstacles = new List<Rect>(_views.Count * 2);
+            foreach (var view in _views)
+            {
+                if (!view.TryGetRestingNameplate(obstacles, out var name)) continue;
+                names.Add((view, Rect.MinMaxRect(name.xMin - NameClearance, name.yMin - NameClearance,
+                    name.xMax + NameClearance, name.yMax + NameClearance)));
+            }
+
+            var nearby = new List<Rect>();
+            for (int i = 0; i < names.Count; i++)
+            {
+                var (view, original) = names[i];
+                var searchArea = Rect.MinMaxRect(original.xMin - NameOffsetLimit, original.yMin - NameOffsetLimit,
+                    original.xMax + NameOffsetLimit, original.yMax + NameOffsetLimit);
+                nearby.Clear();
+                foreach (var obstacle in obstacles)
+                    if (searchArea.Overlaps(obstacle)) nearby.Add(obstacle);
+                float Overlap(Rect candidate)
+                {
+                    float sum = 0f;
+                    foreach (var obstacle in nearby) sum += OverlapArea(candidate, obstacle);
+                    for (int j = 0; j < names.Count; j++)
+                        if (i != j) sum += 2f * OverlapArea(candidate, names[j].rect);
+                    return sum;
+                }
+
+                var bestOffset = Vector2.zero;
+                var bestRect = original;
+                float bestOverlap = Overlap(original);
+                if (bestOverlap > 0f)
+                {
+                    // Keep one fixed offset during playback so the label follows its unit without jumping.
+                    for (int y = NameOffsetLimit; y >= -NameOffsetLimit; y -= NameOffsetStep)
+                    for (int x = -NameOffsetLimit; x <= NameOffsetLimit; x += NameOffsetStep)
+                    {
+                        var offset = new Vector2(x, y);
+                        float distance = offset.sqrMagnitude;
+                        if (distance > NameOffsetLimit * NameOffsetLimit ||
+                            (bestOverlap == 0f && distance >= bestOffset.sqrMagnitude)) continue;
+                        var candidate = original;
+                        candidate.position += offset;
+                        if (candidate.xMin < 0f || candidate.xMax > QdaoUguiTheme.DesignWidth ||
+                            candidate.yMin < 0f || candidate.yMax > BattleStage.HudBottomBand) continue;
+                        float overlap = Overlap(candidate);
+                        if (overlap > bestOverlap || (overlap == bestOverlap && distance >= bestOffset.sqrMagnitude)) continue;
+                        bestOffset = offset;
+                        bestRect = candidate;
+                        bestOverlap = overlap;
+                    }
+                }
+                view.SetNameOffset(bestOffset);
+                names[i] = (view, bestRect);
+            }
+        }
+
+        private static float OverlapArea(Rect a, Rect b)
+        {
+            float width = Mathf.Min(a.xMax, b.xMax) - Mathf.Max(a.xMin, b.xMin);
+            float height = Mathf.Min(a.yMax, b.yMax) - Mathf.Max(a.yMin, b.yMin);
+            return width > 0f && height > 0f ? width * height : 0f;
         }
 
         // ── 每帧驱动(倒计时) ────────────────────────────────
