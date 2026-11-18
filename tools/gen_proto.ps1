@@ -211,6 +211,10 @@ try {
     & $Protoc @args
     if ($LASTEXITCODE -ne 0) { throw "protoc exited with $LASTEXITCODE" }
 
+    # protoc 不写 Unity 元数据；无效 GUID 会令 Unity 忽略源码，而直接 Roslyn 编译仍通过。
+    $metadata = & (Join-Path $PSScriptRoot 'sync_proto_script_meta.ps1') -GeneratedDirectory $outDir
+    Write-Host "[gen_proto] Unity script metadata: checked=$($metadata.Checked), created=$($metadata.Created), repaired=$($metadata.Repaired)"
+
     Write-Host "[gen_proto] done. Generated files:"
     Get-ChildItem $outDir -Filter *.cs | ForEach-Object { Write-Host "  $($_.Name)" }
 }

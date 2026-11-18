@@ -94,5 +94,15 @@ namespace MmorpgClient.Net.Generated
         public static void CommitEquipmentCraft(IRpcChannel channel, global::CommitEquipmentCraftRequest request,
             RpcDone<global::CommitEquipmentCraftResponse> done)
             => channel.CallMethod(CommitEquipmentCraftMessageId, request, global::CommitEquipmentCraftResponse.Parser, done);
+
+        public const uint GetEquipmentMaterialRewardMessageId = 407;
+        public static void GetEquipmentMaterialReward(IRpcChannel channel, global::GetEquipmentMaterialRewardRequest request,
+            RpcDone<global::GetEquipmentMaterialRewardResponse> done)
+            => channel.CallMethod(GetEquipmentMaterialRewardMessageId, request, global::GetEquipmentMaterialRewardResponse.Parser, done);
+
+        public const uint ClaimEquipmentMaterialRewardMessageId = 408;
+        public static void ClaimEquipmentMaterialReward(IRpcChannel channel, global::ClaimEquipmentMaterialRewardRequest request,
+            RpcDone<global::ClaimEquipmentMaterialRewardResponse> done)
+            => channel.CallMethod(ClaimEquipmentMaterialRewardMessageId, request, global::ClaimEquipmentMaterialRewardResponse.Parser, done);
     }
 }

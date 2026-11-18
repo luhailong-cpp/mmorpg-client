@@ -76,6 +76,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             if (!PrepareRequest(out var playerId)) return;
             if (HasPendingEquipmentCraft) { CraftFailure(EquipmentCraftPendingText); return; }
+            if (HasPendingMaterialReward) { CraftFailure(MaterialRewardPendingText); return; }
             // 换选项即作废上一份预览，包括非法选项；迟回不能重新激活旧选择。
             int generation = ++_craftPreviewRequest;
             _craftPreview = null;
@@ -115,6 +116,7 @@ namespace MmorpgClient.Game.PlayerFeatures
         {
             if (!PrepareRequest(out var playerId)) return;
             if (HasPendingEquipmentCraft) { CraftFailure(EquipmentCraftPendingText); return; }
+            if (HasPendingMaterialReward) { CraftFailure(MaterialRewardPendingText); return; }
             RestoreActivityReward(playerId);
             if (CraftOtherWriteBusy || HasPendingActivityReward)
             { CraftFailure("其他资产操作正在处理中，请稍候"); return; }
@@ -160,7 +162,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             SendEquipmentCraft(playerId);
         }
 
-        private bool CraftOtherWriteBusy => BusyEquip || BusySort || BusyTemporary || BusyMissionAction || BusyActivityReward;
+        private bool CraftOtherWriteBusy => BusyEquip || BusySort || BusyTemporary || BusyMissionAction || BusyActivityReward || BusyMaterialReward;
         private bool CanRecoverCraft() => _pendingCraft != null && !_craftRecoveryBlocked && !BusyEquipmentCraft
             && !CraftOtherWriteBusy && _nowMs() >= _craftRecoveryAtMs && CanSendCraft();
 

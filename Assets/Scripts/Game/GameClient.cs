@@ -356,6 +356,8 @@ namespace MmorpgClient.Game
                 System.IO.Path.Combine(Application.persistentDataPath, "activity-reward-intents"), gatewayBaseUrl);
             Features.EquipmentCraftRecovery = DurableRequestFileStore.ForOrigin(
                 System.IO.Path.Combine(Application.persistentDataPath, "equipment-craft-intents"), gatewayBaseUrl);
+            Features.MaterialRewardRecovery = DurableRequestFileStore.ForOrigin(
+                System.IO.Path.Combine(Application.persistentDataPath, "equipment-material-intents"), gatewayBaseUrl);
             ZoneTravel = new ZoneTravelClient(this);
             // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按 (gateway 地址哈希, 玩家) 分键存 PlayerPrefs。
             LandingSync = new LandingSyncClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
@@ -429,8 +431,9 @@ namespace MmorpgClient.Game
             // 落地判定 / 取摘要 / 超时退避 / 通知各域消费者。Call 的等待循环会重入这里,在途标志防重复发送。
             LandingSync?.Tick();
             BattleResults?.Tick(); // 近期战斗结果:落地补查、失败退避、补发确认
-            if (InGame) Features?.TickActivityRewardRecovery();
             if (InGame) Features?.TickEquipmentCraftRecovery();
+            if (InGame) Features?.TickMaterialRewardRecovery();
+            if (InGame) Features?.TickActivityRewardRecovery();
             MaybeRefreshToken();
             BattleLink?.Tick(Time.realtimeSinceStartup); // 直连握手期限/重连倒计时/请求超时由主循环驱动
             Battle?.Tick(Time.realtimeSinceStartup); // 排队轮询/准备超时由主循环驱动

@@ -53,9 +53,9 @@ public static class EquipmentWindowVerification
                 CheckOverview(capture, report);
                 capture.Shoot("01-overview");
             }
-            Check(report.screenshots.Count == 12, "Exactly twelve native screenshots must be recorded.");
+            Check(report.screenshots.Count == 15, "Exactly fifteen native screenshots must be recorded.");
             report.status = "PASS";
-            Debug.Log("EQUIPMENT_WINDOW_CAPTURE_PASSED|12 screenshots|" + OutputDirectory);
+            Debug.Log("EQUIPMENT_WINDOW_CAPTURE_PASSED|15 screenshots|" + OutputDirectory);
         }
         catch (Exception error)
         {
@@ -167,18 +167,87 @@ public static class EquipmentWindowVerification
 
         capture.Click("EquipmentTab_0");
         capture.Click("EquipmentMaterialEntry");
+        Check(capture.Transport.Count<GetEquipmentMaterialRewardRequest>() > 0,
+            "Opening material choice must query the server reward snapshot.");
+        var materialOffer = capture.Client.EquipmentMaterialReward;
+        Check(materialOffer != null && materialOffer.AvailableUnits == 20 && materialOffer.BatchUnits == 20 && materialOffer.CanClaim,
+            "The fixture must expose twenty authoritative reward units.");
         var claim = capture.Find<Button>("MaterialChoiceClaim");
-        Check(!claim.interactable, "Material-choice claim must be disabled without a server offer.");
-        int beforeClaim = capture.Transport.Calls.Count;
+        Check(!claim.interactable && !capture.Find<Button>("MaterialCraftMinus").interactable
+            && !capture.Find<Button>("MaterialStoneMinus").interactable,
+            "Initial zero allocation must disable claim and both decrement buttons.");
         claim.onClick.Invoke();
-        Check(capture.Transport.Calls.Count == beforeClaim, "Unavailable material choice must not dispatch a request.");
-        capture.Shoot("08-material-choice-unavailable");
+        Check(capture.Transport.Count<ClaimEquipmentMaterialRewardRequest>() == 0,
+            "An incomplete allocation must not dispatch a claim, even when its disabled callback is invoked.");
+        capture.Shoot("08a-material-choice-unallocated");
+
+        capture.Click("MaterialCraftPlus");
+        capture.Click("MaterialCraftMinus");
+        Check(!capture.Find<Button>("MaterialCraftMinus").interactable, "Decrement must return one selected unit to zero.");
+        for (int i = 0; i < 8; i++) capture.Click("MaterialCraftPlus");
+        for (int i = 0; i < 12; i++) capture.Click("MaterialStonePlus");
+        Check(capture.Find<Button>("MaterialChoiceClaim").interactable
+            && !capture.Find<Button>("MaterialCraftPlus").interactable && !capture.Find<Button>("MaterialStonePlus").interactable,
+            "An exact twenty-unit allocation must enable claim and disallow exceeding the batch.");
+        Check(capture.Find<TMP_Text>("MaterialChoiceAllocated").text.Contains("20"),
+            "The live allocation summary must show the allocated batch size.");
+        capture.Shoot("08b-material-choice-eight-twelve");
+        ulong craftingBefore = MaterialCount(capture.Client.CharacterBag, 3001);
+        ulong stoneBefore = MaterialCount(capture.Client.CharacterBag, 3002);
+        capture.Transport.DeferNextMaterialClaim = true;
+        capture.Click("MaterialChoiceClaim");
+        var materialClaim = capture.Transport.Last<ClaimEquipmentMaterialRewardRequest>();
+        Check(capture.Transport.Count<ClaimEquipmentMaterialRewardRequest>() == 1
+            && materialClaim.CraftingMaterialCount == 8 && materialClaim.EnhancementStoneCount == 12
+            && materialClaim.ExpectedRevision == materialOffer.Revision && materialClaim.ClientRequestId != 0,
+            "One material claim must preserve the exact eight/twelve allocation, revision and request identity.");
+        Check(capture.Client.BusyMaterialReward && capture.Client.HasPendingMaterialReward
+            && capture.Client.MaterialRewardRecovery.Load(FixturePlayer).Length != 0,
+            "A material request must remain pending with a durable local intent until its reply arrives.");
+        foreach (string name in new[] { "MaterialCraftMinus", "MaterialCraftPlus", "MaterialStoneMinus", "MaterialStonePlus" })
+        {
+            var button = capture.Window.Root.GetComponentsInChildren<Button>(true)
+                .FirstOrDefault(entry => entry.name == name && entry.gameObject.activeInHierarchy);
+            Check(button == null || !button.interactable, "In-flight material claim must not permit allocation changes: " + name);
+        }
+        Check(!capture.Find<Button>("MaterialChoiceClaim").interactable && !capture.Find<Button>("MaterialChoiceRecover").interactable,
+            "An in-flight material request must disable claim and recovery until its response arrives.");
+        Check(MaterialCount(capture.Client.CharacterBag, 3001) == craftingBefore && MaterialCount(capture.Client.CharacterBag, 3002) == stoneBefore,
+            "Pending material claims must not modify the client's inventory optimistically.");
+        capture.Shoot("08c-material-choice-pending");
+        capture.Transport.CompleteDeferredResponse();
+        Check(!capture.Client.HasPendingMaterialReward && !capture.Client.BusyMaterialReward
+            && capture.Client.MaterialRewardRecovery.Load(FixturePlayer).Length == 0,
+            "Only the durable reply may clear the original material claim intent.");
+        Check(capture.Client.EquipmentMaterialReward.AvailableUnits == 0 && capture.Client.EquipmentMaterialReward.BatchUnits == 0
+            && !capture.Client.EquipmentMaterialReward.CanClaim,
+            "Durable claim must replace the reward balance with its exhausted authoritative snapshot.");
+        Check(MaterialCount(capture.Client.CharacterBag, 3001) == craftingBefore + 8 && MaterialCount(capture.Client.CharacterBag, 3002) == stoneBefore + 12,
+            "Durable claim must replace inventory with exactly eight crafting materials and twelve enhancement stones added.");
+        var materialBack = capture.Window.Root.GetComponentsInChildren<Button>(true)
+            .FirstOrDefault(button => button.name == "MaterialChoiceBack" && button.gameObject.activeInHierarchy);
+        if (materialBack != null) capture.Click("MaterialChoiceBack");
+        capture.Click("EquipmentMaterialEntry");
+        capture.Click("MaterialChoiceRefresh");
+        Check(capture.Client.EquipmentMaterialReward.AvailableUnits == 0 && !capture.Find<Button>("MaterialChoiceClaim").interactable,
+            "Reopening and refreshing must retain the exhausted server balance.");
+        Check(capture.Window.Root.GetComponentsInChildren<TMP_Text>().Any(text =>
+                text.text.Contains(capture.Client.EquipmentMaterialReward.UnavailableReason)),
+            "The empty state must show the server's unavailable reason.");
+        capture.Find<Button>("MaterialChoiceClaim").onClick.Invoke();
+        Check(capture.Transport.Count<ClaimEquipmentMaterialRewardRequest>() == 1,
+            "An exhausted reward must not create a second material claim.");
+        capture.Shoot("08d-material-choice-empty");
         capture.Click("MaterialChoiceBack");
         capture.Click("EquipmentClose");
         Check(!capture.Window.IsVisible, "The close button must hide the live equipment window.");
         Check(capture.Client.EquipmentCraftRecovery.Load(FixturePlayer).Length == 0, "No fixture craft intent may remain pending after durable replies.");
-        report.assertions.Add("Material choice stays unclaimable and sends no request; close hides the window.");
+        report.assertions.Add("Material choice starts at zero, allocates exactly eight/twelve from twenty server units, persists one pending request, and replaces inventory only after a durable reply.");
+        report.assertions.Add("Refreshing the exhausted reward preserves the zero balance and cannot claim twice; close hides the window.");
     }
+
+    private static ulong MaterialCount(BagInfo bag, uint configId) => bag.Items.Where(item => item.ConfigId == configId)
+        .Aggregate(0UL, (sum, item) => checked(sum + item.Count));
 
     private static void CheckOverview(CaptureContext capture, CaptureReport report)
     {
@@ -254,8 +323,10 @@ public static class EquipmentWindowVerification
                 EventSystem.current = events;
                 var root = QdaoUguiFactory.CreateStretch("EquipmentCaptureRoot", _canvasObject.transform, Vector4.zero);
                 Transport = new FixtureTransport(tables);
+                string intentDirectory = Path.Combine(WorkDirectory, "fixture-intents", Guid.NewGuid().ToString("N"));
                 Client = new PlayerFeaturesClient(Transport) { NowMs = () => Clock,
-                    EquipmentCraftRecovery = new DurableRequestFileStore(Path.Combine(WorkDirectory, "fixture-intents", Guid.NewGuid().ToString("N"))) };
+                    EquipmentCraftRecovery = new DurableRequestFileStore(Path.Combine(intentDirectory, "craft")),
+                    MaterialRewardRecovery = new DurableRequestFileStore(Path.Combine(intentDirectory, "materials")) };
                 Window = new EquipmentWindow(root);
                 Window.Bind(Client);
             }
@@ -434,10 +505,15 @@ public static class EquipmentWindowVerification
         public readonly BagInfo Equipment = new() { Layout = new BagLayoutInfo { BagType = 2, Capacity = 11 } };
         private readonly FixtureTables _tables;
         private ulong _revision;
+        private ulong _materialUnits = 20;
+        private ulong _materialRevision = 1;
+        private readonly Dictionary<ulong, ClaimEquipmentMaterialRewardRequest> _materialClaims = new();
+        private readonly Dictionary<ulong, ClaimEquipmentMaterialRewardResponse> _materialReceipts = new();
         private ulong _nextItem = 910300;
         private Action _deferredResponse;
         public bool DeferNextPreview;
         public bool DeferNextCommit;
+        public bool DeferNextMaterialClaim;
         public ulong PlayerId => FixturePlayer;
         public bool IsReady => true;
         public event Action Disconnected { add { } remove { } }
@@ -494,6 +570,14 @@ public static class EquipmentWindowVerification
                     response = new PreviewEquipmentCraftResponse { Preview = Preview(preview.Choice) }; break;
                 case CommitEquipmentCraftRequest commit:
                     response = Commit(commit); break;
+                case GetEquipmentMaterialRewardRequest _:
+                    Check(messageId == SceneBagClientPlayerRpc.GetEquipmentMaterialRewardMessageId,
+                        "Material query must use its generated message ID.");
+                    response = new GetEquipmentMaterialRewardResponse { Snapshot = MaterialSnapshot() }; break;
+                case ClaimEquipmentMaterialRewardRequest materialClaim:
+                    Check(messageId == SceneBagClientPlayerRpc.ClaimEquipmentMaterialRewardMessageId,
+                        "Material claim must use its generated message ID.");
+                    response = ClaimMaterials(materialClaim); break;
                 case EquipItemRequest equip:
                     response = Equip(equip); break;
                 case EnhanceEquipRequest enhance:
@@ -502,15 +586,78 @@ public static class EquipmentWindowVerification
             }
             // 与真实传输一样经过 protobuf 编解码，不把可变夹具对象交给客户端。
             if ((request is PreviewEquipmentCraftRequest && DeferNextPreview) ||
-                (request is CommitEquipmentCraftRequest && DeferNextCommit))
+                (request is CommitEquipmentCraftRequest && DeferNextCommit) ||
+                (request is ClaimEquipmentMaterialRewardRequest && DeferNextMaterialClaim))
             {
                 Check(_deferredResponse == null, "Only one fixture response may be deferred at a time.");
-                DeferNextPreview = false; DeferNextCommit = false;
+                DeferNextPreview = false; DeferNextCommit = false; DeferNextMaterialClaim = false;
                 var bytes = response.ToByteArray();
                 _deferredResponse = () => onResponse(parser.ParseFrom(bytes));
                 return;
             }
             onResponse(parser.ParseFrom(response.ToByteArray()));
+        }
+
+        private EquipmentMaterialRewardSnapshot MaterialSnapshot()
+        {
+            EquipmentCraftMaterial Material(uint config)
+            {
+                var row = _tables.Items[config];
+                ulong owned = MaterialCount(Bag, config);
+                return new EquipmentCraftMaterial { ConfigId = config, Name = row.Name, IconKey = row.IconKey,
+                    Count = 1, Owned = owned, Available = owned };
+            }
+            ulong start = (ulong)new DateTimeOffset(2026, 11, 16, 21, 0, 0, TimeSpan.Zero).ToUnixTimeMilliseconds();
+            return new EquipmentMaterialRewardSnapshot
+            {
+                Available = true, CanClaim = _materialUnits != 0,
+                UnavailableReason = _materialUnits == 0 ? "暂无可领取材料" : string.Empty,
+                DayStartsAtMs = start, NextResetAtMs = start + 86400000, EarnedToday = 20, DailyLimit = 20,
+                AvailableUnits = _materialUnits, BatchUnits = (uint)Math.Min(20UL, _materialUnits), Revision = _materialRevision,
+                CraftingMaterial = Material(3001), EnhancementStone = Material(3002),
+            };
+        }
+
+        private ClaimEquipmentMaterialRewardResponse ClaimMaterials(ClaimEquipmentMaterialRewardRequest request)
+        {
+            if (_materialClaims.TryGetValue(request.ClientRequestId, out var original))
+            {
+                Check(original.Equals(request), "Material recovery must replay the original request without changing its allocation.");
+                var replay = _materialReceipts[request.ClientRequestId].Clone();
+                replay.Replayed = true; replay.CurrentRevision = _materialRevision;
+                replay.Bag = Bag.Clone(); replay.Snapshot = MaterialSnapshot();
+                return replay;
+            }
+            var snapshot = MaterialSnapshot();
+            ulong total = (ulong)request.CraftingMaterialCount + request.EnhancementStoneCount;
+            Check(request.ClientRequestId != 0 && request.ExpectedRevision == snapshot.Revision
+                && snapshot.CanClaim && total == snapshot.BatchUnits,
+                "Fixture material claim must consume the current complete batch with a nonzero request key.");
+            void Add(uint config, uint count)
+            {
+                if (count == 0) return;
+                var item = Bag.Items.SingleOrDefault(entry => entry.ConfigId == config);
+                if (item == null)
+                {
+                    var row = _tables.Items[config];
+                    item = new BagItemInfo { ItemId = ++_nextItem, ConfigId = config, Name = row.Name,
+                        IconKey = row.IconKey, MaxStack = row.MaxStackSize };
+                    Bag.Items.Add(item);
+                }
+                item.Count = checked(item.Count + count);
+            }
+            Add(3001, request.CraftingMaterialCount);
+            Add(3002, request.EnhancementStoneCount);
+            _materialUnits -= total; ++_materialRevision; Relayout();
+            var response = new ClaimEquipmentMaterialRewardResponse
+            {
+                ClientRequestId = request.ClientRequestId, Outcome = ClaimEquipmentMaterialRewardResponse.Types.Outcome.Applied,
+                Durable = true, ResultRevision = _materialRevision, CurrentRevision = _materialRevision,
+                Bag = Bag.Clone(), Snapshot = MaterialSnapshot(),
+            };
+            _materialClaims.Add(request.ClientRequestId, request.Clone());
+            _materialReceipts.Add(request.ClientRequestId, response.Clone());
+            return response;
         }
 
         private EquipmentCraftPreview Preview(EquipmentCraftChoice choice)

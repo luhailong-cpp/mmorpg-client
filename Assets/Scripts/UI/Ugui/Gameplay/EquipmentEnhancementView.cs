@@ -190,13 +190,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private static bool WriteBlocked(PlayerFeaturesClient client, bool blocked)
             => blocked || client == null || client.HasPendingEquipmentCraft || client.BusyEquipmentCraft
-                || client.HasPendingActivityReward || client.BusyActivityReward || client.BusyTemporary;
+                || client.HasPendingActivityReward || client.BusyActivityReward || client.BusyTemporary || client.HasPendingMaterialReward;
 
         private static string WriteBlockReason(PlayerFeaturesClient client, bool blocked)
         {
             if (client == null) return "进入角色后才可强化装备";
             if (client.HasPendingEquipmentCraft) return PlayerFeaturesClient.EquipmentCraftPendingText;
             if (client.BusyEquipmentCraft) return "装备打造正在处理中，请稍候";
+            if (client.HasPendingMaterialReward) return PlayerFeaturesClient.MaterialRewardPendingText;
             if (client.HasPendingActivityReward || client.BusyActivityReward) return "活跃奖励正在确认，请稍候";
             if (client.BusyTemporary) return "临时物品正在取回，请稍候";
             return blocked ? "其他资产操作正在处理中，仍可查看装备与预览" : string.Empty;

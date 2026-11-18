@@ -70,11 +70,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             if (ReferenceEquals(_client, client)) return;
             Hide();
-            if (_client != null) _client.OnChanged -= OnClientChanged;
+            if (_client != null) { _client.OnChanged -= OnClientChanged; _client.OnMaterialRewardClaimed -= OnMaterialRewardClaimed; }
             _client = client; _targetSlot = null; _selectedItem = _candidate = _affixItem = 0;
             _recipeConfig = _artifactConfig = 0; _notice = string.Empty; _scroll.Clear();
             _craft.Bind(client); _forge.Bind(client);
-            if (_client != null) _client.OnChanged += OnClientChanged;
+            _materialSelectionReady = false;
+            if (_client != null) { _client.OnChanged += OnClientChanged; _client.OnMaterialRewardClaimed += OnMaterialRewardClaimed; }
         }
 
         public void Show(EquipmentPage page = EquipmentPage.Overview)
@@ -117,8 +118,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _craft.RefreshRules(); _attributes?.RequestPanel();
         }
         private bool WriteBlocked => _client == null || _craft.Busy || _craft.Pending ||
-            _client.HasPendingActivityReward || _client.BagLoading || _client.EquipmentLoading;
+            _client.HasPendingActivityReward || _client.HasPendingMaterialReward || _client.BusyMaterialReward ||
+            _client.BagLoading || _client.EquipmentLoading;
         private string WriteReason => _craft.Pending ? "正在确认上次装备操作，请恢复结果" :
+            _client?.HasPendingMaterialReward == true ? "请先确认上次材料领取" :
             _client?.HasPendingActivityReward == true ? "请先确认上次奖励领取" :
             _craft.Busy ? "装备操作处理中，请稍候" : "正在同步装备，请稍候";
         private BagItemInfo FindItem(ulong id)
@@ -182,12 +185,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                         case EquipmentPage.Artifacts: RenderArtifacts(); break;
                     }
                     string status = _craft.Pending ? "正在确认结果。关闭页面不会取消操作，请恢复原操作。" :
+                        _client?.HasPendingMaterialReward == true ? "正在确认材料领取。关闭页面不会取消领取，请确认上次结果。" :
                         _craft.Busy ? "正在处理装备…" : _craft.LoadingPreview ? "正在读取成品预览…" :
                         !string.IsNullOrEmpty(_craft.Error) ? _craft.Error :
                         !string.IsNullOrEmpty(_client?.EquipmentError) ? _client.EquipmentError :
                         !string.IsNullOrEmpty(_client?.BagError) ? _client.BagError : _notice;
                     Label(_body, "EquipmentStatus", status, 200, 1490, 2950, 65, 36, color: _craft.Pending ? Jade : Danger);
                     if (_craft.Pending) Button(_body, "EquipmentRecover", "确认上次结果", 3130, 1360, 620, _craft.Recover, true, !_craft.Busy);
+                    else if (_client?.HasPendingMaterialReward == true)
+                        Button(_body, "EquipmentRecover", "确认领取结果", 3130, 1360, 620, () => _client.RetryPendingMaterialReward(), true, !_client.BusyMaterialReward);
                     if (_modal != Modal.None) RenderModal();
                     _surfaceInput.interactable = _modal == Modal.None; _surfaceInput.blocksRaycasts = _modal == Modal.None;
                     _modalLayer.gameObject.SetActive(_modal != Modal.None);

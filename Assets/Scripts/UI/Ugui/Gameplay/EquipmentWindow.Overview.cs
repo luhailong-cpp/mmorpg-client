@@ -104,7 +104,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Label(button.transform, "CandidateName", Name(item) + "\n未佩戴 · " + item.EquipLevel + "级", 150, 15, 335, 130, 36, true);
             }
             if (candidates.Count == 0) Label(_body, "EquipmentCandidatesEmpty", _client?.BagLoading == true ? "读取中…" : "暂无可替换装备", 3210, 600, 490, 180, 43, true, Muted);
-            Button(_body, "EquipmentMaterialEntry", "材料用途", 3130, 1345, 620, () => { _modal = Modal.Materials; Render(); }, enabled: !_craft.Pending);
+            Button(_body, "EquipmentMaterialEntry", "材料自选", 3130, 1345, 620, OpenMaterials);
             // Occupied historic fixture slots must remain accessible through the original bag view.
             if (slots.Any(s => !official.Any(o => o.Slot == s.Slot) && s.Item != null))
                 Label(_body, "EquipmentLegacySlots", "其他旧装备可在背包「已穿戴」中查看和卸下", 230, 1405, 1670, 65, 34, color: Muted);
@@ -179,18 +179,5 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 { _modal = Modal.None; _page = EquipmentPage.Artifacts; _artifactConfig = item.ConfigId; _craft.SelectRecipe(item.ConfigId); Render(); }, true, !WriteBlocked);
         }
 
-        private void RenderMaterials()
-        {
-            Label(_modalLayer, "EquipmentMaterialsTitle", "材料自选", 1100, 210, 1800, 100, 66, color: Jade);
-            // This server has no material-choice offer/claim contract. Never invent an allowance or acknowledge a local allocation as a reward.
-            Label(_modalLayer, "MaterialChoiceUnavailable", "当前奖励尚未提供材料自选。可在活动中查看实际可领取奖励。", 850, 350, 2300, 160, 48, true, Muted);
-            var crafting = new BagItemInfo { ConfigId = 3001, Name = "打造材料", IconKey = "material_crafting" };
-            var enhancement = new BagItemInfo { ConfigId = 3002, Name = "强化石", IconKey = "material_enhancement" };
-            Icon(_modalLayer, crafting, 1050, 580, 340); Icon(_modalLayer, enhancement, 2450, 580, 340);
-            Label(_modalLayer, "CraftMaterialUsage", "打造材料\n用于装备本体、首次词条和法宝兑换", 830, 970, 1000, 200, 46, true);
-            Label(_modalLayer, "EnhanceMaterialUsage", "强化石\n用于四件基础装备的强化", 2230, 970, 1000, 200, 46, true);
-            Button(_modalLayer, "MaterialChoiceBack", "返回", 880, 1290, 700, CloseModal);
-            Button(_modalLayer, "MaterialChoiceClaim", "暂不可领取", 2280, 1290, 850, null, true, false);
-        }
     }
 }

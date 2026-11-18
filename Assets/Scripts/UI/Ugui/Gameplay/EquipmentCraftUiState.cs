@@ -39,7 +39,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         /// <summary>与打造互斥的任一资产写请求在途；未决回执另由 Pending 表示。</summary>
         public bool Busy => _client != null && (_client.BusyEquipmentCraft || _client.BusyEquip
-            || _client.BusySort || _client.BusyTemporary || _client.BusyMissionAction || _client.BusyActivityReward);
+            || _client.BusySort || _client.BusyTemporary || _client.BusyMissionAction || _client.BusyActivityReward || _client.BusyMaterialReward);
 
         /// <summary>只显示当前选择对应的权威预览；返回副本，不允许视图改写业务层缓存。</summary>
         public EquipmentCraftPreview Preview
@@ -55,7 +55,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             get
             {
-                if (_client == null || Busy || Pending || LoadingRules || LoadingPreview || _client.HasPendingActivityReward)
+                if (_client == null || Busy || Pending || LoadingRules || LoadingPreview || _client.HasPendingActivityReward || _client.HasPendingMaterialReward)
                     return false;
                 var preview = Preview;
                 return preview != null && preview.Available && preview.Result != null && preview.Material != null;

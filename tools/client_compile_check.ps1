@@ -57,6 +57,18 @@ if (-not $Csproj) { $Csproj = Join-Path $ProjectPath "MmorpgClient.csproj" }
 
 Set-Location $ProjectPath
 
+# 离线编译会直接收集 .cs，不会经过 Unity 导入器；先拦截会让 Unity 忽略协议源码的元数据错误。
+$generatedProtoDirectory = Join-Path $ProjectPath 'Assets/Scripts/Proto/Generated'
+if (Test-Path -LiteralPath $generatedProtoDirectory) {
+    try {
+        & (Join-Path $PSScriptRoot 'sync_proto_script_meta.ps1') -GeneratedDirectory $generatedProtoDirectory -CheckOnly | Out-Null
+    }
+    catch {
+        Write-Host ("Unity protobuf metadata validation failed: " + $_.Exception.Message)
+        exit 1
+    }
+}
+
 # ── 引用与宏 ──────────────────────────────────────
 $opts = @()
 $refs = @()
