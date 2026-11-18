@@ -346,9 +346,10 @@ namespace MmorpgClient.Game
             TeamMatchRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-match-intents"),gatewayBaseUrl);
             TeamActionRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-action-intents"),gatewayBaseUrl);
             Spectate = SpectateClient.Attach(battleRoute, battleRoute);
-            Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);
-            Pets = PetClient.Attach(new GameClientBattleTransport(this));
-            Skills = SkillBookClient.Attach(new GameClientBattleTransport(this), this, () => GateConnectionIdentity);
+            Func<bool> cultivationWritesBlocked = () => Battle.HasActiveBattle || Spectate.Phase != SpectatePhase.None;
+            Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity, cultivationWritesBlocked);
+            Pets = PetClient.Attach(new GameClientBattleTransport(this), cultivationWritesBlocked);
+            Skills = SkillBookClient.Attach(new GameClientBattleTransport(this), this, () => GateConnectionIdentity, cultivationWritesBlocked);
             var companion = World.Root.GetComponent<QdaoPetCompanion>() ?? World.Root.gameObject.AddComponent<QdaoPetCompanion>();
             companion.Bind(World, Pets);
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);

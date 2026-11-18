@@ -31,6 +31,37 @@ namespace MmorpgClient.Tests.EditMode.Battle
         };
 
         [Test]
+        public void NameRefinement_PreservesClearLettersWhenOnlyWhitespaceOverlaps()
+        {
+            var name = new Rect(100f, 100f, 30f, 10f);
+            var letters = new[] { new Rect(100f, 100f, 10f, 10f), new Rect(120f, 100f, 10f, 10f) };
+            Assert.That(RefineName(name, letters, new[] { new Rect(110f, 100f, 10f, 10f) }), Is.EqualTo(Vector2.zero));
+        }
+
+        [Test]
+        public void NameRefinement_UsesNearestSmallMoveToClearLetterEdge()
+        {
+            var name = new Rect(100f, 100f, 30f, 10f);
+            var letters = new[] { new Rect(100f, 100f, 10f, 10f), new Rect(120f, 100f, 10f, 10f) };
+            Assert.That(RefineName(name, letters, new[] { new Rect(109f, 100f, 3f, 10f) }),
+                Is.EqualTo(new Vector2(-1f, 0f)));
+        }
+
+        [Test]
+        public void NameRefinement_KeepsOtherNamesAndBottomHudClear()
+        {
+            float y = BattleStage.HudBottomBand - 10f;
+            var name = new Rect(100f, y, 30f, 10f);
+            var letters = new[] { new Rect(100f, y, 10f, 10f), new Rect(120f, y, 10f, 10f) };
+            Assert.That(RefineName(name, letters, new[] { new Rect(109f, y, 3f, 10f) },
+                new[] { new Rect(90f, y, 10f, 10f) }), Is.EqualTo(new Vector2(0f, -10f)));
+        }
+
+        private static Vector2 RefineName(Rect name, Rect[] letters, Rect[] obstacles, Rect[] otherNames = null)
+            => (Vector2)typeof(BattleScreen).GetMethod("RefineNameOffset", BindingFlags.NonPublic | BindingFlags.Static)
+                .Invoke(null, new object[] { name, letters, obstacles, otherNames ?? Array.Empty<Rect>() });
+
+        [Test]
         public void Expand_VisibleRect_AlwaysCoversWholeDesignArea()
         {
             foreach (var (w, h) in Resolutions)

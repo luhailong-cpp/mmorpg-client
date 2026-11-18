@@ -234,7 +234,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             skill.Button.onClick.AddListener(Skills.SkillUiRoot.Open);
             _combatNavigation = CharacterAttributeVisuals.SideTab("CombatTab", _root, 674f, "战\n斗", false);
             _combatNavigation.SetVisible(false);
-            _attributeNavigation.Button.onClick.AddListener(() => ShowPage(PanelPage.Overview));
+            _attributeNavigation.Button.onClick.AddListener(() => _owner.OpenPanel(false));
             _allocationNavigation.Button.onClick.AddListener(() => ShowPage(PanelPage.Allocation));
             _combatNavigation.Button.onClick.AddListener(() => ShowPage(PanelPage.Combat));
         }

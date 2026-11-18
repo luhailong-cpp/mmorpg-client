@@ -13,8 +13,7 @@ using UnityEngine.InputSystem;
 namespace MmorpgClient.UI.Ugui.Attribute
 {
     /// <summary>
-    /// 属性加点 UI 层:自有 Canvas(sortingOrder 160,压在选服 100 / 角色流 150 之上、
-    /// 战斗层 200 之下 —— 战斗一开就该盖住属性窗)。
+    /// 属性 UI 层:平时 Canvas 160；战斗查看时 210，写入口锁定。
     ///
     /// 生命周期与绑定方式照 <see cref="BattleUiRoot"/>:`[RuntimeInitializeOnLoadMethod]`
     /// 自举单例 + `DontDestroyOnLoad`,每帧 `EnsureBound` 懒绑 <see cref="AttributeClient"/>
@@ -35,6 +34,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         private UiTextButton _entryButton;
         private AttributePanel _panel;
+        private CharacterSupportWindow _support;
         private TMP_Text _toastText;
         private Coroutine _toastCo;
         private bool _destroyed;
@@ -42,6 +42,13 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         /// <summary>供子面板取 AttributeClient(可能为 null:NET 路尚未初始化)。</summary>
         public AttributeClient Client => _client;
+        internal MmorpgClient.UI.Ugui.Skills.ISkillBookSource SkillSource => _app?.GameClient?.Skills;
+        internal MmorpgClient.Game.PlayerFeatures.PlayerFeaturesClient FeatureSource => _app?.GameClient?.Features;
+        internal string RoleAppearanceId => _app?.GameClient?.InGame == true
+            ? _app.GameClient.ResolveCharacterId(_app.GameClient.PlayerId) : null;
+        public CharacterSupportWindow SupportWindow => _support;
+        internal bool BattleReadOnly => _app?.GameClient?.Battle?.HasActiveBattle == true ||
+            (BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
 
         // Identity is a read-only view of the current server-selected role, never preview data.
         internal string RoleName
@@ -67,7 +74,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
         /// (属性 160 / 宝宝 161),不互斥的话后开的那个会把前一个整个盖住,
         /// 玩家以为自己关掉了、其实它还开着在下面吃点击。
         /// </summary>
-        public void HidePanel() { if (_panel?.Root != null) _panel.Hide(); }
+        public void HidePanel() { HideLegacyPanel(); _support?.Hide(); }
+        internal void HideLegacyPanel() { if (_panel?.Root != null) _panel.Hide(); }
 
         /// <summary>供装备详情跳回人物面板，沿用正式入口的可用状态和窗口互斥。</summary>
         public void OpenPanel()
@@ -76,8 +84,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
             if (!HasView) return;
             RefreshEntryVisibility();
             if (_clientBound && _app?.GameClient != null && _app.GameClient.InGame &&
-                _app.GameClient.IsGateReady && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
-                _panel?.Show();
+                _app.GameClient.IsGateReady)
+            {
+                _support?.ShowOverview();
+                _client.RequestPanel();
+            }
         }
 
         public void OpenPanel(bool allocation)
@@ -85,9 +96,21 @@ namespace MmorpgClient.UI.Ugui.Attribute
             EnsureBound();
             if (!HasView) return;
             RefreshEntryVisibility();
-            if (_clientBound && _app?.GameClient?.InGame == true && _app.GameClient.IsGateReady &&
-                !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
-                _panel?.ShowSection(allocation);
+            if (_clientBound && _app?.GameClient?.InGame == true && _app.GameClient.IsGateReady)
+            {
+                if (allocation && BattleReadOnly) { ShowToast("战斗中仅可查看人物信息", true); return; }
+                if (allocation) { _support?.Hide(); _panel?.ShowSection(true); }
+                else { _support?.ShowOverview(); _client.RequestPanel(); }
+            }
+        }
+
+        public void OpenSkillDetails(uint skillId)
+        {
+            EnsureBound();
+            if (!HasView || !_clientBound || _app?.GameClient?.InGame != true || !_app.GameClient.IsGateReady) return;
+            RefreshEntryVisibility();
+            _support?.ShowSkill(skillId);
+            _client.RequestPanel();
         }
 
         // ── 生命周期 ────────────────────────────────────────
@@ -118,15 +141,16 @@ namespace MmorpgClient.UI.Ugui.Attribute
             EnsureBound();
             if (!HasView) return;
             RefreshEntryVisibility();
-            if (_panel == null || !_panel.IsVisible) return;
-            _panel.RefreshIdentity();
+            if (_panel?.IsVisible != true && _support?.IsVisible != true) return;
+            if (_panel?.IsVisible == true) _panel.RefreshIdentity();
+            _support?.RefreshState();
             var selected = EventSystem.current?.currentSelectedGameObject;
             if (selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
                 selected.GetComponentInParent<InputField>()?.isFocused == true)) return;
 #if ENABLE_INPUT_SYSTEM
-            if (Keyboard.current?.escapeKey.wasPressedThisFrame == true) _panel.Back();
+            if (Keyboard.current?.escapeKey.wasPressedThisFrame == true) { if (_support?.IsVisible == true) _support.Back(); else _panel.Back(); }
 #elif ENABLE_LEGACY_INPUT_MANAGER
-            if (Input.GetKeyDown(KeyCode.Escape)) _panel.Back();
+            if (Input.GetKeyDown(KeyCode.Escape)) { if (_support?.IsVisible == true) _support.Back(); else _panel.Back(); }
 #endif
         }
 
@@ -161,12 +185,14 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 UnbindClient();
                 _client = current;
                 _panel.ResetSession();
+                _support?.ResetSession();
                 _hadPanel = false;
             }
             if (_playerId != playerId || (_hadPanel && _client?.Panel == null))
             {
                 _playerId = playerId;
                 _panel.ResetSession();
+                _support?.ResetSession();
                 _hadPanel = false;
             }
 
@@ -241,6 +267,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             WorldHudNavigation.Register(WorldHudEntry.Role, _entryButton.Rect, _entryButton.Button, _entryButton.Label);
 
             _panel = new AttributePanel(this, windowRoot);
+            _support = new CharacterSupportWindow(this, windowRoot);
 
             _toastText = QdaoUguiFactory.CreateText("Toast", toastRoot, 680f, 210f, 1200f, 56f,
                 string.Empty, 26f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
@@ -273,6 +300,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             if (!_clientBound || !HasView) return;
             _hadPanel = panel != null;
             _panel?.ApplyPanel(panel);
+            _support?.ApplyPanel(panel);
         }
 
         private void HandleAutoSuggestion(uint poolId, IReadOnlyDictionary<uint, uint> suggested)
@@ -284,22 +312,28 @@ namespace MmorpgClient.UI.Ugui.Attribute
         {
             if (!_clientBound || !HasView) return;
             _panel?.SetStatus(message, true);
+            _support?.SetStatus(message);
             ShowToast(message, true);
         }
 
         // ── HUD ─────────────────────────────────────────────
 
-        private void OnEntryClicked() { if (HasView) _panel.Toggle(); }
+        private void OnEntryClicked()
+        {
+            if (!HasView) return;
+            if (_panel?.IsVisible == true || _support?.IsVisible == true) HidePanel(); else OpenPanel();
+        }
 
         private void RefreshEntryVisibility()
         {
             if (!HasView || _entryButton?.Rect == null) return;
             bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame && _app.GameClient.IsGateReady;
-            // 战斗屏/观战屏亮着时不显示入口(战斗中服务端也拒绝改属性)
             bool battleBusy = BattleUiRoot.Instance != null && BattleUiRoot.Instance.IsBattleLayerVisible;
-            bool visible = _clientBound && inGame && !battleBusy;
-            _entryButton.SetVisible(visible);
-            if (!visible && _panel != null && _panel.IsVisible) _panel.Hide();
+            bool available = _clientBound && inGame;
+            _entryButton.SetVisible(available && !battleBusy);
+            _canvasGo.GetComponent<Canvas>().sortingOrder = battleBusy ? 210 : 160;
+            if ((!available || BattleReadOnly) && _panel?.IsVisible == true) _panel.Hide();
+            if (!available && _support?.IsVisible == true) _support.Hide();
         }
 
         public void ShowToast(string message, bool isError = false)

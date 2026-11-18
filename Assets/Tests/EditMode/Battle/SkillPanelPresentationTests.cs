@@ -58,6 +58,23 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void BattleLockPreventsEvenDirectUpgradeButtonCallbacksWithoutErasingRealRank()
+        {
+            _panel.SetBattleLocked(true);
+            Assert.That(Button("UpgradePlate").IsInteractable(), Is.False);
+            Assert.That(Button("UpgradeTenPlate").IsInteractable(), Is.False);
+            Button("UpgradePlate").onClick.Invoke();
+            Assert.That(_source.UpgradeCalls, Is.Zero);
+            Assert.That(_source.State.Snapshot.Find(1101).Rank, Is.EqualTo(3));
+            Assert.That(_source.State.IsReadOnly, Is.False);
+            Click("RefreshPlate");
+            Assert.That(_source.RefreshCalls, Is.EqualTo(1));
+            _panel.SetBattleLocked(false);
+            Click("UpgradePlate");
+            Assert.That(_source.UpgradeCalls, Is.EqualTo(1));
+        }
+
+        [Test]
         public void RefreshUsesTheCurrentlyDisplayedPetContext()
         {
             _source.State.Context = SkillBookContext.Pet(77, "灵宠");

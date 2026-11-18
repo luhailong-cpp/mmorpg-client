@@ -58,6 +58,7 @@ namespace MmorpgClient.Game.Pet
         public string PurchaseBlockedReason(uint petTableId)
         {
             if (!IsReady) return "尚未进入游戏";
+            if (CultivationWritesBlocked) return CultivationLockedMessage;
             if (Busy) return "正在等待服务器确认";
             if (_pendingPurchase != null) return "上次购买结果待确认，请先重试上次购买";
             if (Shop == null || ShopRequestPending) return "请先刷新商店";

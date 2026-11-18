@@ -24,6 +24,9 @@ namespace MmorpgClient.Game.Pet
         public static PetClient Instance { get; private set; }
 
         private readonly IBattleTransport _net;
+        private readonly Func<bool> _cultivationWritesBlocked;
+        public const string CultivationLockedMessage = "战斗中只读查看，无法修改宝宝培养。";
+        public bool CultivationWritesBlocked => _cultivationWritesBlocked?.Invoke() == true;
 
         // ── 契约属性 ────────────────────────────────────────
 
@@ -34,6 +37,7 @@ namespace MmorpgClient.Game.Pet
         public bool ListRequestPending { get; private set; }
         private int _listRequestVersion;
         private int _grantRequestVersion;
+        private int _allocationRequestVersion;
         public bool IsReady => _net.IsReady;
 
         /// <summary>有写请求在途(UI 据此禁用提交按钮)。</summary>
@@ -56,17 +60,18 @@ namespace MmorpgClient.Game.Pet
 
         // ── 构造 / 挂接 ─────────────────────────────────────
 
-        public PetClient(IBattleTransport transport)
+        public PetClient(IBattleTransport transport, Func<bool> cultivationWritesBlocked = null)
         {
             _net = transport ?? throw new ArgumentNullException(nameof(transport));
+            _cultivationWritesBlocked = cultivationWritesBlocked;
             _net.RegisterNotify(MessageIds.NotifyPetListChanged, HandleListChanged);
             _net.Disconnected += HandleDisconnected;
         }
 
         /// <summary>生产入口:创建实例并登记为单例(GameClient 构造时调用)。</summary>
-        public static PetClient Attach(IBattleTransport transport)
+        public static PetClient Attach(IBattleTransport transport, Func<bool> cultivationWritesBlocked = null)
         {
-            var client = new PetClient(transport);
+            var client = new PetClient(transport, cultivationWritesBlocked);
             Instance = client;
             return client;
         }
@@ -180,16 +185,35 @@ namespace MmorpgClient.Game.Pet
         /// 缺省维度服务器视为不变;服务器只接受"只增不减",减点走 <see cref="ResetPoints"/>。
         /// </summary>
         public void Allocate(ulong petId, IReadOnlyDictionary<uint, uint> target)
+            => Allocate(petId, target, null);
+
+        /// <summary>本次写请求的完成结果；列表推送和并发查询不会调用此回调。</summary>
+        public void Allocate(ulong petId, IReadOnlyDictionary<uint, uint> target, Action<bool, PetListInfo> completed)
         {
-            if (!BeginWrite(target != null && target.Count > 0 ? null : "没有需要提交的加点")) return;
+            if (!BeginWrite(target != null && target.Count > 0 ? null : "没有需要提交的加点"))
+            { completed?.Invoke(false, null); return; }
             var req = new AllocatePetPointsRequest { PetId = petId };
             foreach (var kv in target)
             {
                 req.Allocated[kv.Key] = kv.Value;
             }
+            int version = ++_allocationRequestVersion;
             _net.Call(MessageIds.AllocatePetPoints, req, AllocatePetPointsResponse.Parser,
-                resp => CompleteWrite("宝宝加点失败", resp.ErrorMessage, resp.Pets),
-                err => FailWrite(err));
+                resp =>
+                {
+                    if (version != _allocationRequestVersion) return;
+                    ++_allocationRequestVersion;
+                    bool success = !HasTip(resp.ErrorMessage) && resp.Pets != null;
+                    CompleteWrite("宝宝加点失败", resp.ErrorMessage, resp.Pets);
+                    completed?.Invoke(success, success ? resp.Pets : null);
+                },
+                err =>
+                {
+                    if (version != _allocationRequestVersion) return;
+                    ++_allocationRequestVersion;
+                    FailWrite(err);
+                    completed?.Invoke(false, null);
+                });
         }
 
         /// <summary>洗点:清空该宝宝的全部分配,按表扣银两。</summary>
@@ -209,6 +233,7 @@ namespace MmorpgClient.Game.Pet
         /// </summary>
         public void AutoAllocate(ulong petId)
         {
+            if (CultivationWritesBlocked) { OnError?.Invoke(CultivationLockedMessage); return; }
             if (!_net.IsReady)
             {
                 OnError?.Invoke("尚未进入游戏,无法自动加点");
@@ -259,6 +284,11 @@ namespace MmorpgClient.Game.Pet
 
         private bool BeginWrite(string rejectReason)
         {
+            if (CultivationWritesBlocked)
+            {
+                OnError?.Invoke(CultivationLockedMessage);
+                return false;
+            }
             if (!_net.IsReady)
             {
                 OnError?.Invoke("尚未进入游戏");
@@ -329,6 +359,7 @@ namespace MmorpgClient.Game.Pet
             InvalidateShop();
             ++_listRequestVersion;
             ++_grantRequestVersion;
+            ++_allocationRequestVersion;
             ListRequestPending = false;
             Pets = null;
             SetBusy(false);

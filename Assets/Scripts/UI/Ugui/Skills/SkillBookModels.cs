@@ -78,6 +78,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         public string name;
         public string type;
         public string category;
+        public uint actionTags;
         public string originLabel;
         public uint unlockLevel;
         public uint maxRank;
@@ -92,11 +93,14 @@ namespace MmorpgClient.UI.Ugui.Skills
         public string iconResource;
         public uint skillId => id;
         public bool IsPassive => string.Equals(type, "passive", StringComparison.OrdinalIgnoreCase);
-        public string IconResource => string.IsNullOrEmpty(iconResource) ? "UI/Skills/" + id : iconResource;
+        public string IconResource => CharacterPetArt.SkillPath(id) ??
+            (string.IsNullOrEmpty(iconResource) ? "UI/Skills/" + id : iconResource);
         public string KindLabel => !string.IsNullOrEmpty(originLabel) ? originLabel :
             IsPassive ? "被动" : IsObstacle ? "障碍" : IsSupport ? "辅助" : "主动";
-        public bool IsObstacle => category == "障碍" || category == "obstacle" || category == "control";
-        public bool IsSupport => category == "辅助" || category == "support" || category == "治疗";
+        public bool IsObstacle => category == "障碍" || category == "obstacle" || category == "control" ||
+            !IsPassive && (actionTags & 16u) != 0 && (actionTags & 3u) == 0;
+        public bool IsSupport => category == "辅助" || category == "support" || category == "治疗" ||
+            !IsPassive && (actionTags & 12u) != 0;
         public string TargetLabel => IsPassive || targetTeam == "self" ? "自身" :
             targetTeam == "ally" ? "友方" : targetTeam == "enemy" ? "敌方" : "—";
     }

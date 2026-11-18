@@ -25,6 +25,7 @@ namespace MmorpgClient.Game.Attribute
 
         private readonly IBattleTransport _net;
         private readonly Func<object> _connectionIdentity;
+        private readonly Func<bool> _writesBlocked;
         private object _connection;
         private ulong _player;
         private long _epoch, _serial, _panelRevision, _latestRead, _latestAuto, _activeWrite;
@@ -66,10 +67,11 @@ namespace MmorpgClient.Game.Attribute
 
         // ── 构造/挂接 ───────────────────────────────────────
 
-        public AttributeClient(IBattleTransport transport, Func<object> connectionIdentity = null)
+        public AttributeClient(IBattleTransport transport, Func<object> connectionIdentity = null, Func<bool> writesBlocked = null)
         {
             _net = transport ?? throw new ArgumentNullException(nameof(transport));
             _connectionIdentity = connectionIdentity ?? (() => transport);
+            _writesBlocked = writesBlocked;
             _connection = _connectionIdentity();
             _player = _net.PlayerId;
             _net.RegisterNotify(MessageIds.NotifyAttributePanelChanged, HandlePanelChanged);
@@ -77,10 +79,10 @@ namespace MmorpgClient.Game.Attribute
         }
 
         /// <summary>生产入口:创建实例并登记为单例(GameClient 构造时调用)。</summary>
-        public static AttributeClient Attach(IBattleTransport transport, Func<object> connectionIdentity = null)
+        public static AttributeClient Attach(IBattleTransport transport, Func<object> connectionIdentity = null, Func<bool> writesBlocked = null)
         {
             Instance?.Dispose();
-            var client = new AttributeClient(transport, connectionIdentity);
+            var client = new AttributeClient(transport, connectionIdentity, writesBlocked);
             Instance = client;
             return client;
         }
@@ -206,6 +208,7 @@ namespace MmorpgClient.Game.Attribute
         public void AutoAllocate(uint poolId)
         {
             if (!Ready("尚未进入游戏,无法自动加点")) return;
+            if (RejectBlockedWrite()) return;
             if (Busy) { OnError?.Invoke("上一次操作还在处理中,请稍候"); return; }
             var stamp = Capture();
             _latestAuto = stamp.Id;
@@ -328,6 +331,7 @@ namespace MmorpgClient.Game.Attribute
         {
             stamp = default;
             if (!Ready("尚未进入游戏")) return false;
+            if (RejectBlockedWrite()) return false;
             if (rejectReason != null)
             {
                 OnError?.Invoke(rejectReason);
@@ -342,6 +346,13 @@ namespace MmorpgClient.Game.Attribute
             stamp = Capture();
             _activeWrite = stamp.Id;
             SetBusy(true);
+            return true;
+        }
+
+        private bool RejectBlockedWrite()
+        {
+            if (_writesBlocked?.Invoke() != true) return false;
+            OnError?.Invoke("战斗中仅可查看，不能修改人物属性");
             return true;
         }
 

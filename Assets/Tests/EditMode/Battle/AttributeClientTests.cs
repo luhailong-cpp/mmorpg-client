@@ -47,6 +47,30 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void BattleLockAllowsReadingButRejectsEveryAttributeMutationBeforeTransport()
+        {
+            _client.Dispose();
+            bool battle = true;
+            _client = new AttributeClient(_net, () => _connection, () => battle);
+            _client.RequestPanel();
+            _net.CallsOf(MessageIds.GetAttributePanel)[0].Respond(new GetAttributePanelResponse { Panel = MakePanel() });
+            var panel = _client.Panel;
+            _client.Allocate(1, new Dictionary<uint, uint> { { 101, 3 } });
+            _client.ResetPool(1);
+            _client.AutoAllocate(1);
+            _client.CreateScheme("新方案");
+            _client.SwitchScheme(2);
+            _client.RenameScheme(1, "更名");
+            _client.GmSetLevel(20);
+            Assert.That(_net.Calls, Has.Count.EqualTo(1));
+            Assert.That(_client.Panel, Is.SameAs(panel));
+            Assert.That(_client.Busy, Is.False);
+            battle = false;
+            _client.Allocate(1, new Dictionary<uint, uint> { { 101, 3 } });
+            Assert.That(_net.CallsOf(MessageIds.AllocateAttributePoints), Has.Count.EqualTo(1));
+        }
+
+        [Test]
         public void RequestPanelAppliesServerPanel()
         {
             AttributePanelInfo received = null;

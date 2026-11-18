@@ -37,6 +37,7 @@ namespace MmorpgClient.Game.Skills
         private readonly IRpcChannel _rpc;
         private readonly Func<object> _connectionIdentity;
         private readonly Func<uint, Ui.SkillDefinition> _presentation;
+        private readonly Func<bool> _writesBlocked;
         private object _connection;
         private ulong _player;
         private long _epoch, _serial, _activeRead, _activeWrite;
@@ -98,22 +99,24 @@ namespace MmorpgClient.Game.Skills
         /// <param name="connectionIdentity">gate 连接身份(换连接即作废旧回包);缺省用传输对象本身。</param>
         /// <param name="presentation">本地图鉴的展示元数据查询;缺省 <see cref="Ui.SkillCatalog.Find"/>。</param>
         public SkillBookClient(IBattleTransport transport, IRpcChannel rpc, Func<object> connectionIdentity = null,
-            Func<uint, Ui.SkillDefinition> presentation = null)
+            Func<uint, Ui.SkillDefinition> presentation = null, Func<bool> writesBlocked = null)
         {
             _net = transport ?? throw new ArgumentNullException(nameof(transport));
             _rpc = rpc ?? throw new ArgumentNullException(nameof(rpc));
             _connectionIdentity = connectionIdentity ?? (() => transport);
             _presentation = presentation;
+            _writesBlocked = writesBlocked;
             _connection = _connectionIdentity();
             _player = _net.PlayerId;
             _net.Disconnected += HandleDisconnected;
         }
 
         /// <summary>生产入口:创建实例并登记为单例(GameClient 构造时调用)。</summary>
-        public static SkillBookClient Attach(IBattleTransport transport, IRpcChannel rpc, Func<object> connectionIdentity = null)
+        public static SkillBookClient Attach(IBattleTransport transport, IRpcChannel rpc, Func<object> connectionIdentity = null,
+            Func<bool> writesBlocked = null)
         {
             Instance?.Dispose();
-            var client = new SkillBookClient(transport, rpc, connectionIdentity);
+            var client = new SkillBookClient(transport, rpc, connectionIdentity, writesBlocked: writesBlocked);
             Instance = client;
             return client;
         }
@@ -165,6 +168,11 @@ namespace MmorpgClient.Game.Skills
             if (_activeWrite != 0 || _activeRead != 0) return;
             var current = State;
             if (current?.Snapshot == null || !context.Matches(current.Context)) return;  // 先刷新拿到权威技能书
+            if (_writesBlocked?.Invoke() == true)
+            {
+                Publish(Copy(current, message: "战斗中仅可查看，技能修习已锁定。"));
+                return;
+            }
             if (count != 1 && count != 10)
             {
                 Publish(Copy(current, message: InvalidCountMessage));

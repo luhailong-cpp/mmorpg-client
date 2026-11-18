@@ -55,6 +55,25 @@ namespace MmorpgClient.Tests.EditMode.Skills
         }
 
         [Test]
+        public void BattleLockPreservesReadableRanksAndBlocksUpgradeUntilBattleEnds()
+        {
+            _client.Dispose();
+            bool battle = true;
+            _client = new SkillBookClient(_net, _net, () => _connection, _ => null, () => battle);
+            LoadBook(Book(100000, Row(10010, 2, 10, 1000)));
+            var snapshot = _client.State.Snapshot;
+            _client.Upgrade(SkillBookContext.Character(), 10010, 2, 1);
+            Assert.That(_net.Calls, Is.EqualTo(new[] { MessageIds.ListSkills }));
+            Assert.That(_client.State.Snapshot, Is.SameAs(snapshot));
+            Assert.That(_client.State.Snapshot.Find(10010).Rank, Is.EqualTo(2));
+            Assert.That(_client.State.IsBusy, Is.False);
+            Assert.That(_client.State.IsReadOnly, Is.False, "同步的学习状态不能伪装成离线图鉴");
+            battle = false;
+            _client.Upgrade(SkillBookContext.Character(), 10010, 2, 1);
+            Assert.That(_net.Calls[^1], Is.EqualTo(MessageIds.UpgradeSkill));
+        }
+
+        [Test]
         public void StartsDisconnectedUntilRefreshedInGame()
         {
             Assert.That(_client.State.IsConnected, Is.False, "默认断线:没拿到权威技能书之前不能修习");

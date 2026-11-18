@@ -439,6 +439,14 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         // ── 显隐 ────────────────────────────────────────────
 
+        /// <summary>从新版培养页进入原有商店、图鉴等功能时保留正在查看的宝宝实例。</summary>
+        public void ShowForPet(ulong petId)
+        {
+            _selectedPetId = petId;
+            Show();
+            if (_owner.Client?.HasList == true) ApplyList(_owner.Client.Pets);
+        }
+
         public void Show()
         {
             Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();

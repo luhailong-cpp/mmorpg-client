@@ -61,6 +61,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private const int NameOffsetLimit = 48;
         private const int NameOffsetStep = 4;
         private const float NameClearance = 2f;
+        private const int NameRefinementLimit = 12;
 
         /// <summary>
         /// 直连判定连不上时横幅的文案(客户端本地字符串,服务端没有对应消息)。客户端分不清是本机网络的问题还是战斗服故障,
@@ -555,19 +556,20 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void LayoutUnitNames()
         {
-            var names = new List<(BattleUnitView view, Rect rect)>(_views.Count);
+            var names = new List<(BattleUnitView view, Rect rect, List<Rect> characters, Vector2 offset, bool refine)>(_views.Count);
             var obstacles = new List<Rect>(_views.Count * 2);
             foreach (var view in _views)
             {
-                if (!view.TryGetRestingNameplate(obstacles, out var name)) continue;
+                var characters = new List<Rect>();
+                if (!view.TryGetRestingNameplate(obstacles, out var name, characters)) continue;
                 names.Add((view, Rect.MinMaxRect(name.xMin - NameClearance, name.yMin - NameClearance,
-                    name.xMax + NameClearance, name.yMax + NameClearance)));
+                    name.xMax + NameClearance, name.yMax + NameClearance), characters, Vector2.zero, false));
             }
 
             var nearby = new List<Rect>();
             for (int i = 0; i < names.Count; i++)
             {
-                var (view, original) = names[i];
+                var (view, original, characters, _, _) = names[i];
                 var searchArea = Rect.MinMaxRect(original.xMin - NameOffsetLimit, original.yMin - NameOffsetLimit,
                     original.xMax + NameOffsetLimit, original.yMax + NameOffsetLimit);
                 nearby.Clear();
@@ -607,8 +609,79 @@ namespace MmorpgClient.UI.Ugui.Battle
                     }
                 }
                 view.SetNameOffset(bestOffset);
-                names[i] = (view, bestRect);
+                names[i] = (view, bestRect, characters, bestOffset, bestOverlap > 0f);
             }
+
+            // Only refine unresolved labels. Per-character geometry leaves whitespace between
+            // letters available, while clear labels retain their existing placement.
+            var otherNames = new List<Rect>();
+            for (int i = 0; i < names.Count; i++)
+            {
+                var label = names[i];
+                if (!label.refine) continue;
+                var searchArea = label.rect;
+                searchArea.xMin -= NameRefinementLimit;
+                searchArea.xMax += NameRefinementLimit;
+                searchArea.yMin -= NameRefinementLimit;
+                searchArea.yMax += NameRefinementLimit;
+                nearby.Clear();
+                foreach (var obstacle in obstacles)
+                    if (searchArea.Overlaps(obstacle)) nearby.Add(obstacle);
+                otherNames.Clear();
+                for (int j = 0; j < names.Count; j++)
+                    if (i != j) otherNames.Add(names[j].rect);
+                for (int j = 0; j < label.characters.Count; j++)
+                {
+                    var character = label.characters[j];
+                    character.position += label.offset;
+                    label.characters[j] = character;
+                }
+                var refinement = RefineNameOffset(label.rect, label.characters, nearby, otherNames);
+                label.offset += refinement;
+                label.rect.position += refinement;
+                label.view.SetNameOffset(label.offset);
+                names[i] = label;
+            }
+        }
+
+        private static Vector2 RefineNameOffset(Rect name, IReadOnlyList<Rect> characters,
+            IReadOnlyList<Rect> obstacles, IReadOnlyList<Rect> otherNames)
+        {
+            float Overlap(Vector2 offset)
+            {
+                float sum = 0f;
+                foreach (var character in characters)
+                {
+                    var moved = character;
+                    moved.position += offset;
+                    foreach (var obstacle in obstacles) sum += OverlapArea(moved, obstacle);
+                }
+                return sum;
+            }
+
+            var best = Vector2.zero;
+            float bestOverlap = Overlap(best);
+            if (bestOverlap == 0f) return best;
+            for (int y = NameRefinementLimit; y >= -NameRefinementLimit; y--)
+            for (int x = -NameRefinementLimit; x <= NameRefinementLimit; x++)
+            {
+                var offset = new Vector2(x, y);
+                if (offset.sqrMagnitude > NameRefinementLimit * NameRefinementLimit ||
+                    (bestOverlap == 0f && offset.sqrMagnitude >= best.sqrMagnitude)) continue;
+                var candidate = name;
+                candidate.position += offset;
+                if (candidate.xMin < 0f || candidate.xMax > QdaoUguiTheme.DesignWidth ||
+                    candidate.yMin < 0f || candidate.yMax > BattleStage.HudBottomBand) continue;
+                bool blocksName = false;
+                foreach (var other in otherNames)
+                    if (candidate.Overlaps(other)) { blocksName = true; break; }
+                if (blocksName) continue;
+                float overlap = Overlap(offset);
+                if (overlap > bestOverlap || (overlap == bestOverlap && offset.sqrMagnitude >= best.sqrMagnitude)) continue;
+                best = offset;
+                bestOverlap = overlap;
+            }
+            return best;
         }
 
         private static float OverlapArea(Rect a, Rect b)
@@ -1222,7 +1295,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                         string.Empty, 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
                     button.Label.gameObject.SetActive(false);
                     BattleRoundCounter.ApplyNineSlice(button.Plate, "button_9slice");
-                    var iconSprite = definition == null ? null : QdaoUguiTheme.LoadSprite(definition.IconResource);
+                    var iconSprite = CharacterPetArt.Skill(skillId, 64) ??
+                        (definition == null ? null : QdaoUguiTheme.LoadSprite(definition.IconResource));
                     var icon = QdaoUguiFactory.CreateImage("Icon", button.Rect, 10f, 14f, 60f, 60f,
                         iconSprite != null ? iconSprite : QdaoRefreshArt.Load("round_badge_taiji"));
                     icon.preserveAspect = true;

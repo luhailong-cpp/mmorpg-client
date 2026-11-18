@@ -23,13 +23,16 @@ namespace MmorpgClient.UI.Ugui.Skills
         private readonly TMP_Text _title, _classLabel, _classInfo, _empty, _description, _condition,
             _balance, _cost, _status, _selectedName;
         private readonly Image _selectedIcon;
-        private readonly UiTextButton _upgrade, _upgradeTen, _refresh;
+        private readonly UiTextButton _upgrade, _upgradeTen, _refresh, _allocationNavigation;
+        private readonly bool _canNavigate;
         private readonly UiTextButton[] _filters = new UiTextButton[5];
         private readonly UiTextButton[] _classes = new UiTextButton[4];
         private readonly List<Row> _rows = new();
         private readonly List<SkillEntryState> _visible = new();
         private readonly Action _refreshAction;
         private readonly Action<uint, uint, uint> _upgradeAction;
+        private readonly Action<uint> _openSupportDetail;
+        private bool _battleLocked;
         private SkillBookViewState _state;
         private bool _hadContext, _lastIsPet;
         private ulong _lastPetId;
@@ -47,14 +50,21 @@ namespace MmorpgClient.UI.Ugui.Skills
                 owner.HidePanel();
                 if (owner.Context.IsPet) Pet.PetUiRoot.Instance?.OpenPanel(allocation);
                 else AttributeUiRoot.Instance?.OpenPanel(allocation);
+            }, id =>
+            {
+                AttributeUiRoot.EnsureSpawned();
+                AttributeUiRoot.Instance?.OpenSkillDetails(id);
             }) { }
 
         /// <summary>无单例构造供离线预览使用；回调与生产网络完全分离。</summary>
         public SkillPanel(UnityEngine.Transform parent, Action refresh, Action<uint, uint, uint> upgrade,
-            Action<uint> previewClass = null, Action close = null, Action<bool> navigate = null)
+            Action<uint> previewClass = null, Action close = null, Action<bool> navigate = null,
+            Action<uint> openSupportDetail = null)
         {
             _refreshAction = refresh;
             _upgradeAction = upgrade;
+            _openSupportDetail = openSupportDetail;
+            _canNavigate = navigate != null;
             _fidelityCanPreviewClasses = previewClass != null;
             var frame = BattleUiWidgets.CreatePanel("CharacterSkillWindow", parent,
                 CharacterAttributeVisuals.WindowX, CharacterAttributeVisuals.WindowY,
@@ -121,6 +131,14 @@ namespace MmorpgClient.UI.Ugui.Skills
 
             _selectedIcon = QdaoUguiFactory.CreateImage("SelectedIcon", _root, 105f, 687f, 112f, 112f, null);
             _selectedIcon.preserveAspect = true;
+            var supportDetails = _selectedIcon.gameObject.AddComponent<Button>();
+            supportDetails.targetGraphic = _selectedIcon;
+            _selectedIcon.raycastTarget = true;
+            supportDetails.onClick.AddListener(() =>
+            {
+                if (_state?.Context?.IsPet == false && (_selectedId == CharacterSupportModel.HealingSkillId ||
+                    _selectedId == CharacterSupportModel.ShieldSkillId)) _openSupportDetail?.Invoke(_selectedId);
+            });
             _selectedName = Text("SelectedName", _root, 242f, 678f, 442f, 50f, "选择一个技能", 32f);
             _condition = Text("Condition", _root, 242f, 731f, 450f, 76f, string.Empty, 25f);
             _condition.textWrappingMode = TextWrappingModes.Normal;
@@ -153,7 +171,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             var attribute = CharacterAttributeVisuals.SideTab("AttributeTab", _root, 116f, "属\n性", false);
             attribute.Button.onClick.AddListener(() => navigate?.Invoke(false));
             attribute.SetInteractable(navigate != null);
-            var allocation = CharacterAttributeVisuals.SideTab("AllocationTab", _root, 302f, "加\n点", false);
+            var allocation = _allocationNavigation = CharacterAttributeVisuals.SideTab("AllocationTab", _root, 302f, "加\n点", false);
             allocation.Button.onClick.AddListener(() => navigate?.Invoke(true));
             allocation.SetInteractable(navigate != null);
             CharacterAttributeVisuals.SideTab("SkillTab", _root, 488f, "技\n能", true).SetInteractable(false);
@@ -163,6 +181,13 @@ namespace MmorpgClient.UI.Ugui.Skills
 
         public void Show() => _root.gameObject.SetActive(true);
         public void Hide() => _root.gameObject.SetActive(false);
+        public void SetBattleLocked(bool locked)
+        {
+            if (_battleLocked == locked) return;
+            _battleLocked = locked;
+            _allocationNavigation.SetInteractable(!locked && _canNavigate);
+            Rebuild();
+        }
         public void Apply(SkillBookViewState state)
         {
             // 缓存身份值而非旧对象引用，兼容适配器复用展示对象的情况。
@@ -195,6 +220,7 @@ namespace MmorpgClient.UI.Ugui.Skills
 
         private void SubmitUpgrade(uint count)
         {
+            if (_battleLocked) return;
             var entry = _state?.Snapshot?.Find(_selectedId);
             if (CanUpgrade(_state, entry)) _upgradeAction?.Invoke(entry.Id, entry.Rank, count);
         }
@@ -308,7 +334,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             var skill = selected?.Definition;
             string className = !string.IsNullOrEmpty(snapshot?.Title) ? snapshot.Title : pet ?
                 _state.Context.DisplayName : skill?.className ?? "职业技能";
-            _classLabel.text = readOnly ? $"{className} · 技能信息未同步" : $"{className} · 技能修习";
+            _classLabel.text = readOnly ? $"{className} · 技能信息未同步" : $"{className} · {(_battleLocked ? "战斗查看" : "技能修习")}";
             _selectedIcon.sprite = skill == null ? null : LoadIcon(skill);
             _selectedIcon.enabled = _selectedIcon.sprite != null;
             _selectedName.text = skill?.name ?? "选择一个技能";
@@ -322,7 +348,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 "下一级消耗：—" : $"下一级消耗：{selected.NextRankCost:N0}";
             bool maxed = !readOnly && selected != null && skill?.maxRank > 0 && selected.Rank >= skill.maxRank;
             _upgrade.SetText(maxed ? "已满级" : selected?.Rank > 0 ? "升级" : "学习");
-            bool canUpgrade = CanUpgrade(_state, selected) && _upgradeAction != null;
+            bool canUpgrade = !_battleLocked && CanUpgrade(_state, selected) && _upgradeAction != null;
             _upgrade.SetInteractable(canUpgrade);
             _upgradeTen.SetInteractable(canUpgrade);
             _refresh.SetInteractable(_refreshAction != null && _state?.IsLoading != true && _state?.IsBusy != true && !readOnly);
@@ -331,6 +357,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             else if (_state?.IsBusy == true) SetStatus("正在提交修习，请稍候…");
             else if (readOnly) SetStatus(_state?.Message ?? "技能信息未同步 · 仅浏览职业图鉴");
             else if (_state?.IsConnected != true) SetStatus("连接已断开 · 技能修习暂不可用", true);
+            else if (_battleLocked) SetStatus("战斗中仅可查看，技能修习已锁定。");
             else SetStatus(_state?.Message ?? string.Empty);
             ApplyFidelityLayout();
         }

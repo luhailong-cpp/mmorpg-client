@@ -34,6 +34,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// (直连横幅 <see cref="BattleScreen.ChannelBannerRect"/>)必须让开这一带,否则 toast 期间叠字。
         /// </summary>
         public static readonly Rect ToastRect = new Rect(680f, 150f, 1200f, 56f);
+        public static readonly Rect CharacterDetailsRect = new Rect(40f, 994f, 180f, 54f);
+        public static readonly Rect PetDetailsRect = new Rect(236f, 994f, 180f, 54f);
 
         private AppBootstrap _app;
         private BattleClient _client;
@@ -55,6 +57,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         private UiTextButton _entryButton;
         private BattleEntryMode _entryMode = BattleEntryMode.Battle;   // 「战斗」入口当前的用途(见 DecideEntryMode)
         private UiTextButton _spectateEntryButton;
+        private UiTextButton _characterDetailsButton, _petDetailsButton;
         private BattleQueuePanel _queuePanel;
         // 这一次排队是随队伍被带入的(队伍补位匹配)时,记下采纳时写进排队面板状态行的说明;否则为 null。
         // 排队结束时要把那句话换掉,而 BattleClient 在发相位事件之前就清了 QueueAdopted,到那时已经读不到。
@@ -92,8 +95,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>供子面板取 SpectateClient(可能为 null:NET 路尚未初始化)。</summary>
         public SpectateClient Spectate => _spectate;
 
-        /// <summary>战斗层(参战屏或观战屏)正占着屏幕。属性 UI 据此隐藏入口:
-        /// 战斗中服务端本来就拒绝改属性(InBattleComp),入口先行隐藏免得点了必失败。</summary>
+        /// <summary>战斗层(参战屏或观战屏)正在显示；资料窗口据此进入战斗只读状态。</summary>
         public bool IsBattleLayerVisible => _battleOpen || _spectateOpen;
         internal BattleScreen ActiveBattleScreen => _battleOpen ? _battleScreen : null;
 
@@ -407,6 +409,16 @@ namespace MmorpgClient.UI.Ugui.Battle
             _queuePanel = new BattleQueuePanel(this, windowRoot);
             _spectatePanel = new SpectatePanel(this, windowRoot);
             _battleScreen = new BattleScreen(this, _battleRoot);
+            _characterDetailsButton = CreateDetailsButton("BattleCharacterDetails", CharacterDetailsRect, "人物资料", () =>
+            {
+                Attribute.AttributeUiRoot.EnsureSpawned();
+                Attribute.AttributeUiRoot.Instance.OpenPanel();
+            });
+            _petDetailsButton = CreateDetailsButton("BattlePetDetails", PetDetailsRect, "宝宝资料", () =>
+            {
+                Pet.PetUiRoot.EnsureSpawned();
+                Pet.PetUiRoot.Instance.OpenPage(Pet.PetCultivationPage.EntryPoints);
+            });
             _resultPanel = new BattleResultPanel(_modalResultRoot, OnResultConfirmed);
             _challengePopup = new BattleChallengePopup(this, _modalPopupRoot);
 
@@ -416,6 +428,17 @@ namespace MmorpgClient.UI.Ugui.Battle
 
             _battleLayerGo.SetActive(false);
             RefreshModalDim();
+        }
+
+        private UiTextButton CreateDetailsButton(string name, Rect rect, string label, UnityEngine.Events.UnityAction open)
+        {
+            var button = BattleUiWidgets.CreateTextButton(name, _battleRoot, rect.x, rect.y, rect.width, rect.height,
+                label, 24f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            BattleRoundCounter.ApplyNineSlice(button.Plate, "button_9slice");
+            BattleFidelityArt.Button(button.Button);
+            button.Button.onClick.AddListener(open);
+            button.SetVisible(false);
+            return button;
         }
 
         private static RectTransform CreateDesignRoot(string name, UnityEngine.Transform parent)
@@ -969,6 +992,9 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_stopping || !HasLiveCanvas || _entryButton == null) return;
             bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame;
+            bool canViewDetails = inGame && _app.GameClient.IsGateReady && IsBattleLayerVisible && !_resultShowing;
+            _characterDetailsButton?.SetVisible(canViewDetails);
+            _petDetailsButton?.SetVisible(canViewDetails);
             bool spectating = _spectateBound && _spectate != null && _spectate.Phase != SpectatePhase.None;
             bool visible = _clientBound && _client != null && inGame && !_battleOpen && !_spectateOpen && !spectating;
             _entryButton.SetVisible(visible);

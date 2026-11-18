@@ -29,6 +29,8 @@ namespace MmorpgClient.Game.Skills
         /// </summary>
         public static string NormalizeIconKey(string iconKey, uint skillId)
         {
+            var manifestIcon = CharacterPetArt.SkillPath(skillId);
+            if (manifestIcon != null) return manifestIcon;
             if (string.IsNullOrWhiteSpace(iconKey)) return "UI/Skills/" + skillId;
             string key = iconKey.Trim().Replace('\\', '/');
             const string resourcesPrefix = "Assets/Resources/";
@@ -75,6 +77,7 @@ namespace MmorpgClient.Game.Skills
                         type = row.Passive ? "passive" : "active",
                         originLabel = row.AbilityKind == 3 ? "追击" : row.AbilityKind == 4 ? "开场" : null,
                         category = row.Category,
+                        actionTags = row.ActionTags,
                         unlockLevel = row.UnlockLevel,
                         maxRank = row.MaxRank,
                         targetTeam = TargetTeamName(row.TargetTeam),

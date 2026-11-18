@@ -78,6 +78,31 @@ namespace MmorpgClient.Tests.EditMode.Skills
         }
 
         [Test]
+        public void GenericActiveCategoryUsesServerActionTagsForHealingSupportAndObstacleTabs()
+        {
+            foreach (var item in new[] { (10010u, 4u, true, false), (10040u, 8u, true, false),
+                (10020u, 16u, false, true), (10019u, 18u, false, false) })
+            {
+                var book = OneRow(new SkillCatalogEntry { SkillTableId = item.Item1, Category = "主动", ActionTags = item.Item2 });
+                var definition = SkillBookMapper.ToSnapshot(book, _ => null).Find(item.Item1).Definition;
+                Assert.That(definition.IsSupport, Is.EqualTo(item.Item3));
+                Assert.That(definition.IsObstacle, Is.EqualTo(item.Item4));
+            }
+        }
+
+        [Test]
+        public void CompleteSkillManifestAlsoAppliesToDirectDefinitionsWithoutAnOpenedSkillBook()
+        {
+            foreach (var entry in new[] { (10010u, "A10"), (11005u, "B05"), (12019u, "P19"), (13006u, "T06"), (14003u, "O03") })
+            {
+                string expected = "UI/Ugui/CharacterPet/Icons/128/" + entry.Item2;
+                Assert.That(SkillBookMapper.NormalizeIconKey("UI/Skills/obsolete", entry.Item1), Is.EqualTo(expected));
+                Assert.That(new SkillDefinition { id = entry.Item1, iconResource = "UI/Skills/obsolete" }.IconResource, Is.EqualTo(expected));
+            }
+            Assert.That(new SkillDefinition { id = 1101, iconResource = "UI/Skills/legacy" }.IconResource, Is.EqualTo("UI/Skills/legacy"));
+        }
+
+        [Test]
         public void TipTextsUseGeneratedEnumsAndFallBackToNumber()
         {
             Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillGoldNotEnough), Is.EqualTo("银两不足"));

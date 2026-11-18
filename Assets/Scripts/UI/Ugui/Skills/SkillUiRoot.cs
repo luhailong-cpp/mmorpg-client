@@ -12,6 +12,9 @@ namespace MmorpgClient.UI.Ugui.Skills
         public SkillBookContext Context { get; private set; } = SkillBookContext.Character();
         public bool IsVisible => _panel?.IsVisible == true;
         private SkillPanel _panel;
+        private Canvas _canvas;
+        private bool BattleReadOnly => MmorpgClient.Game.Battle.BattleClient.Instance?.HasActiveBattle == true ||
+            Battle.BattleUiRoot.Instance?.IsBattleLayerVisible == true;
         private uint _previewClass = 1;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -50,7 +53,7 @@ namespace MmorpgClient.UI.Ugui.Skills
                 return new SkillDefinition { id = id, name = row.Name, classId = row.ClassId,
                     type = row.BattleModel == 1 ? (row.AbilityKind == 1 ? "active" : "passive") :
                         (string.IsNullOrEmpty(row.PassiveStat) ? "active" : "passive"),
-                    category = row.Category, description = row.Description, maxRank = row.MaxRank,
+                    category = row.Category, actionTags = row.ActionTags, description = row.Description, maxRank = row.MaxRank,
                     targetTeam = MmorpgClient.Game.Skills.SkillBookMapper.TargetTeamName(row.TargetTeam),
                     allowDeadTarget = row.AllowDeadTarget != 0, maxTargets = row.MaxTargets,
                     manaPercent = row.ManaPercent, cooldownRounds = row.CooldownRounds,
@@ -104,6 +107,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         }
         public void RequestUpgrade(uint id, uint expectedRank, uint count)
         {
+            if (BattleReadOnly) return;
             var state = Source?.State;
             if (state == null || !Context.Matches(state.Context) || !state.IsConnected || state.IsReadOnly ||
                 state.IsBusy || state.IsLoading || (count != 1 && count != 10)) return;
@@ -121,6 +125,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         private void ApplySource()
         {
             if (_panel == null) return;
+            RefreshBattleLock();
             if (Source == null)
             {
                 var snapshot = new SkillBookSnapshot { ClassId = _previewClass };
@@ -143,7 +148,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             var canvasObject = new GameObject("[SkillUgui]", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
-            var canvas = canvasObject.GetComponent<Canvas>();
+            var canvas = _canvas = canvasObject.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = 162;
             var scaler = canvasObject.GetComponent<CanvasScaler>();
@@ -159,7 +164,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             if (!IsVisible) return;
             var game = AppBootstrap.Instance?.GameClient;
             if (game != null && (!game.InGame || !game.IsGateReady)) { HidePanel(); return; }
-            if (Battle.BattleUiRoot.Instance?.IsBattleLayerVisible == true) { HidePanel(); return; }
+            RefreshBattleLock();
             var selected = EventSystem.current?.currentSelectedGameObject;
             if (selected?.GetComponentInParent<TMPro.TMP_InputField>()?.isFocused == true) return;
 #if ENABLE_INPUT_SYSTEM
@@ -173,6 +178,13 @@ namespace MmorpgClient.UI.Ugui.Skills
             if (Source != null) Source.Changed -= ApplySource;
             Source = null;
             if (Instance == this) Instance = null;
+        }
+
+        private void RefreshBattleLock()
+        {
+            bool locked = BattleReadOnly;
+            if (_canvas != null) _canvas.sortingOrder = Battle.BattleUiRoot.Instance?.IsBattleLayerVisible == true ? 210 : 162;
+            _panel?.SetBattleLocked(locked);
         }
     }
 }

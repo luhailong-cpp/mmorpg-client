@@ -221,6 +221,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 list.Add(($"角色卡[{i}]", BattlePartyCards.CardRect(i)));
             list.Add(("回合框", new Rect(BattleScreen.RoundCounterX, BattleScreen.RoundCounterY, BattleRoundCounter.Width, BattleRoundCounter.Height)));
             list.Add(("战斗记录键", BattleScreen.LogButtonRect));
+            list.Add(("人物资料", BattleUiRoot.CharacterDetailsRect));
+            list.Add(("宝宝资料", BattleUiRoot.PetDetailsRect));
             list.Add(("计时环", BattleScreen.TimerRect));
             list.Add(("退出观战", BattleScreen.StopWatchRect));
             list.Add(("确认行动", BattleScreen.ConfirmRect));

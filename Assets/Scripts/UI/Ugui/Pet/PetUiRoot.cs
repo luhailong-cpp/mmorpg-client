@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MmorpgClient.Game.Pet;
+using MmorpgClient.Game.Skills;
 using MmorpgClient.UI.Ugui.Battle;
 using TMPro;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private AppBootstrap _app;
         private GameObject _canvasGo;
+        private GameObject _cultivationCanvasGo;
         private RectTransform _hudRoot;
 
         private PetClient _client;
@@ -30,6 +32,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private UiTextButton _entryButton;
         private PetPanel _panel;
+        private PetCultivationPanel _cultivation;
         private TMP_Text _toastText;
         private Coroutine _toastCo;
 
@@ -37,15 +40,29 @@ namespace MmorpgClient.UI.Ugui.Pet
         public PetClient Client => _client;
 
         /// <summary>关掉宝宝窗(属性窗打开时调;理由见 AttributeUiRoot.HidePanel)。</summary>
-        public void HidePanel() => _panel?.Hide();
+        public void HidePanel() { _panel?.Hide(); _cultivation?.Hide(); }
 
         /// <summary>从技能页返回当前选中的宝宝。</summary>
         public void OpenPanel(bool allocation = true)
+            => OpenPage(allocation ? PetCultivationPage.FourStats : PetCultivationPage.Attributes);
+
+        /// <summary>正式宝宝培养导航，包含条目点、四维和当前宝宝的权威技能书。</summary>
+        public void OpenPage(PetCultivationPage page = PetCultivationPage.EntryPoints)
         {
             EnsureBound();
             if (_clientBound && _app?.GameClient?.InGame == true &&
-                _app.GameClient.IsGateReady && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false))
-                _panel?.ShowSection(allocation);
+                _app.GameClient.IsGateReady)
+            {
+                _panel?.Hide();
+                Attribute.AttributeUiRoot.Instance?.HidePanel();
+                Skills.SkillUiRoot.Instance?.HidePanel();
+                Guild.GuildUiRoot.Instance?.HidePanel();
+                Rank.RankUiRoot.Instance?.HidePanel();
+                Gameplay.GameplayUiRoot.Instance?.HidePanel();
+                Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
+                BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
+                _cultivation?.Show(page);
+            }
         }
 
         // ── 生命周期 ────────────────────────────────────────
@@ -75,11 +92,13 @@ namespace MmorpgClient.UI.Ugui.Pet
         {
             EnsureBound();
             RefreshEntryVisibility();
+            _cultivation?.Tick();
         }
 
         private void OnDestroy()
         {
             UnbindClient();
+            _cultivation?.Dispose();
             if (Instance == this) Instance = null;
         }
 
@@ -148,7 +167,23 @@ namespace MmorpgClient.UI.Ugui.Pet
             _hudRoot = CreateDesignRoot("HudRoot", _canvasGo.transform);
             QdaoUguiFactory.ConfigureHudCanvas(_hudRoot);
             var windowRoot = CreateDesignRoot("WindowRoot", _canvasGo.transform);
-            var toastRoot = CreateDesignRoot("ToastRoot", _canvasGo.transform);
+            // The responsive cultivation page stays at native 1080-height pixels. The legacy
+            // 2560-wide HUD canvas scales down at 1920, which would rasterize Text too small
+            // before the page compensates its geometry with an inverse local scale.
+            _cultivationCanvasGo = new GameObject("[PetCultivationUgui]",
+                typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+            _cultivationCanvasGo.transform.SetParent(transform, false);
+            var cultivationCanvas = _cultivationCanvasGo.GetComponent<Canvas>();
+            cultivationCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            cultivationCanvas.sortingOrder = 170;
+            cultivationCanvas.pixelPerfect = true;
+            var cultivationScaler = _cultivationCanvasGo.GetComponent<CanvasScaler>();
+            cultivationScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            cultivationScaler.referenceResolution = new Vector2(1920f, 1080f);
+            cultivationScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+            cultivationScaler.referencePixelsPerUnit = 100f;
+            var cultivationRoot = CreateDesignRoot("CultivationRoot", _cultivationCanvasGo.transform);
+            var toastRoot = CreateDesignRoot("ToastRoot", _cultivationCanvasGo.transform);
 
             _entryButton = BattleUiWidgets.CreateFramedTextButton("PetEntry", _hudRoot,
                 PetUiStyle.EntryX, PetUiStyle.EntryY,
@@ -160,6 +195,9 @@ namespace MmorpgClient.UI.Ugui.Pet
             WorldHudNavigation.Register(WorldHudEntry.Pet, _entryButton.Rect, _entryButton.Button, _entryButton.Label);
 
             _panel = new PetPanel(this, windowRoot);
+            _cultivation = new PetCultivationPanel(cultivationRoot, () => _client, () => SkillBookClient.Instance,
+                () => BattleUiRoot.Instance?.IsBattleLayerVisible == true,
+                () => _panel.ShowForPet(_cultivation.SelectedPetId));
 
             _toastText = QdaoUguiFactory.CreateText("Toast", toastRoot, 680f, 270f, 1200f, 56f,
                 string.Empty, 26f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
@@ -204,17 +242,24 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         // ── HUD ─────────────────────────────────────────────
 
-        private void OnEntryClicked() => _panel?.Toggle();
+        private void OnEntryClicked()
+        {
+            if (_cultivation?.IsVisible == true) _cultivation.RequestClose();
+            else OpenPage();
+        }
 
         private void RefreshEntryVisibility()
         {
             if (_entryButton == null) return;
             bool inGame = _app != null && _app.GameClient != null && _app.GameClient.InGame;
-            // 战斗屏/观战屏亮着时不显示入口(战斗中服务端也拒绝改宝宝)
+            // 主城入口交给世界 HUD；战斗页有正式的只读查看入口。
             bool battleBusy = BattleUiRoot.Instance != null && BattleUiRoot.Instance.IsBattleLayerVisible;
             bool visible = _clientBound && inGame && !battleBusy;
+            if (_canvasGo != null) _canvasGo.GetComponent<Canvas>().sortingOrder = battleBusy ? 210 : 170;
+            if (_cultivationCanvasGo != null) _cultivationCanvasGo.GetComponent<Canvas>().sortingOrder = battleBusy ? 210 : 170;
             _entryButton.SetVisible(visible);
             if (!visible && _panel != null && _panel.IsVisible) _panel.Hide();
+            if ((!_clientBound || !inGame) && _cultivation?.IsVisible == true) _cultivation.Hide();
         }
 
         public void ShowToast(string message, bool isError = false)
