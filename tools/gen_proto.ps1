@@ -54,6 +54,8 @@ $files = @(
     "proto/common/component/player_attribute_comp.proto",
     "proto/common/component/currency_comp.proto",
     "proto/common/component/equipment_effects.proto",
+    "proto/common/component/support_effects.proto",
+    "proto/common/component/pet_cultivation_effects.proto",
     "proto/db/proto_option.proto",
     "proto/login/login.proto",
     # 登录域的 tip 码(含角色名 kRoleNameInvalid / kRoleNameTaken / kRoleNameSensitive 与建角可重试失败)。

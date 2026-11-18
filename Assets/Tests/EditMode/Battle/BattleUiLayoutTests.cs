@@ -31,35 +31,41 @@ namespace MmorpgClient.Tests.EditMode.Battle
         };
 
         [Test]
-        public void NameRefinement_PreservesClearLettersWhenOnlyWhitespaceOverlaps()
+        public void CrowdedName_UsesSpaceAboveItsOwnHealthBars()
         {
-            var name = new Rect(100f, 100f, 30f, 10f);
-            var letters = new[] { new Rect(100f, 100f, 10f, 10f), new Rect(120f, 100f, 10f, 10f) };
-            Assert.That(RefineName(name, letters, new[] { new Rect(110f, 100f, 10f, 10f) }), Is.EqualTo(Vector2.zero));
+            var name = new Rect(100f, 400f, 40f, 20f);
+            Assert.That(NameAboveHead(name, new Vector2(120f, 300f)), Is.EqualTo(new Vector2(0f, -124f)));
         }
 
         [Test]
-        public void NameRefinement_UsesNearestSmallMoveToClearLetterEdge()
+        public void CrowdedName_KeepsOtherUnitsNamesAndHudClear()
         {
-            var name = new Rect(100f, 100f, 30f, 10f);
-            var letters = new[] { new Rect(100f, 100f, 10f, 10f), new Rect(120f, 100f, 10f, 10f) };
-            Assert.That(RefineName(name, letters, new[] { new Rect(109f, 100f, 3f, 10f) }),
-                Is.EqualTo(new Vector2(-1f, 0f)));
+            var name = new Rect(100f, 400f, 40f, 20f);
+            var obstacle = new Rect(95f, 276f, 10f, 20f);
+            var otherName = new Rect(135f, 276f, 10f, 20f);
+            var offset = NameAboveHead(name, new Vector2(120f, 300f), new[] { obstacle }, new[] { otherName });
+            Assert.That(offset, Is.EqualTo(new Vector2(0f, -144f)));
+            name.position += offset;
+            Assert.IsFalse(name.Overlaps(obstacle));
+            Assert.IsFalse(name.Overlaps(otherName));
+
+            var bannerName = new Rect(1100f, 400f, 60f, 20f);
+            bannerName.position += NameAboveHead(bannerName, new Vector2(1130f, 240f));
+            Assert.LessOrEqual(bannerName.yMax, BattleScreen.ChannelBannerRect.yMin);
+            Assert.GreaterOrEqual(bannerName.yMin, 140f);
         }
 
         [Test]
-        public void NameRefinement_KeepsOtherNamesAndBottomHudClear()
+        public void CrowdedName_PreservesItsFirstPlacementWhenNoSpaceExists()
         {
-            float y = BattleStage.HudBottomBand - 10f;
-            var name = new Rect(100f, y, 30f, 10f);
-            var letters = new[] { new Rect(100f, y, 10f, 10f), new Rect(120f, y, 10f, 10f) };
-            Assert.That(RefineName(name, letters, new[] { new Rect(109f, y, 3f, 10f) },
-                new[] { new Rect(90f, y, 10f, 10f) }), Is.EqualTo(new Vector2(0f, -10f)));
+            var name = new Rect(100f, 400f, 40f, 20f);
+            var blocked = new Rect(0f, 140f, QdaoUguiTheme.DesignWidth, BattleStage.HudBottomBand - 140f);
+            Assert.That(NameAboveHead(name, new Vector2(120f, 300f), new[] { blocked }), Is.EqualTo(Vector2.zero));
         }
 
-        private static Vector2 RefineName(Rect name, Rect[] letters, Rect[] obstacles, Rect[] otherNames = null)
-            => (Vector2)typeof(BattleScreen).GetMethod("RefineNameOffset", BindingFlags.NonPublic | BindingFlags.Static)
-                .Invoke(null, new object[] { name, letters, obstacles, otherNames ?? Array.Empty<Rect>() });
+        private static Vector2 NameAboveHead(Rect name, Vector2 head, Rect[] obstacles = null, Rect[] otherNames = null)
+            => (Vector2)typeof(BattleScreen).GetMethod("NameOffsetAboveHead", BindingFlags.NonPublic | BindingFlags.Static)
+                .Invoke(null, new object[] { name, head, obstacles ?? Array.Empty<Rect>(), otherNames ?? Array.Empty<Rect>() });
 
         [Test]
         public void Expand_VisibleRect_AlwaysCoversWholeDesignArea()

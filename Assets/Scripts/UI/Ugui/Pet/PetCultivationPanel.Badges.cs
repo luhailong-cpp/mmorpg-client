@@ -8,8 +8,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         private RectTransform _badgeDialog;
         private int _previewBadge;
 
-        // PetInfo.Quality is a quality value, and PetTable.AcquisitionTier is a separate acquisition
-        // classification. Neither field is the proposed five-tier cultivation rank.
+        // 五阶只使用服务端独立 CultivationTier；Quality 与获取类别不参与映射。
         private void BuildBadges()
         {
             if (_badgeDialog != null) DestroyUi(_badgeDialog.gameObject);
@@ -43,9 +42,9 @@ namespace MmorpgClient.UI.Ugui.Pet
             }
             string quality = Selected == null ? "—" : Selected.Quality.ToString();
             Label("PetBadgeCurrent", _badgeDialog, margin + 50, 898, _width - 2 * margin - 100, 38,
-                "当前阶：—    品质：" + quality + "    当前预览：" + names[_previewBadge], 25, Ink, TextAnchor.MiddleCenter);
+                "当前阶：" + (string.IsNullOrEmpty(Selected?.CultivationTierName) ? "—" : Selected.CultivationTierName) + "    品质：" + quality + "    当前预览：" + names[_previewBadge], 25, Ink, TextAnchor.MiddleCenter);
             Label("PetBadgeExplanation", _badgeDialog, margin + 50, 945, _width - 2 * margin - 100, 38,
-                "五阶名称与样式为候选方案；预览不改变宝宝品质、点数或成长。", 23, Muted, TextAnchor.MiddleCenter);
+                "当前阶由服务器独立身份确定；样式预览不改变宝宝身份、点数或成长。", 23, Muted, TextAnchor.MiddleCenter);
         }
     }
 }

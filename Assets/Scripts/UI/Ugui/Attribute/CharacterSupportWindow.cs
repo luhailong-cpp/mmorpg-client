@@ -23,6 +23,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private AttributePanelInfo _panel;
         private SkillBookViewState _lastBook;
         private BagInfo _lastEquipment;
+        private SupportEffectSummary _lastSupport;
         private string _identity, _appearance;
         private uint _skillId;
         private bool _sourceOpen, _sourceShield;
@@ -63,7 +64,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _shield = EffectRow(true, 386);
             Label("HealingExplanation", _effects, 1067, 568, 1240, 34, "施放治疗加成影响你为目标恢复的气血。", 25, Muted);
             Label("ShieldExplanation", _effects, 1067, 615, 1240, 34, "护盾容量加成影响你为目标施加的护盾容量。", 25, Muted);
-            Label("SourceExplanation", _effects, 1067, 662, 1240, 62, "来源展示已同步的装备分项；总加成、被动与临时状态尚未同步。", 25, Muted);
+            Label("SourceExplanation", _effects, 1067, 662, 1240, 62, "治疗与护盾分别结算；装备来源上限不限制被动与临时效果。未知来源显示—。", 25, Muted);
 
             _details = Rect("SupportSkillDetails", _root, 0, 0, 2560, 1080);
             Picture("SkillListCard", _details, 172, 178, 535, 706, "application_card", true);
@@ -152,7 +153,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         public void Hide() { _sourceOpen = false; _root.gameObject.SetActive(false); }
         public void Back() { if (_sourceOpen) CloseSource(); else Hide(); }
         private void CloseSource() { _sourceOpen = false; RefreshView(); }
-        public void ResetSession() { _panel = null; _lastBook = null; _lastEquipment = null; _identity = _appearance = null; Hide(); }
+        public void ResetSession() { _panel = null; _lastBook = null; _lastEquipment = null; _lastSupport = null; _identity = _appearance = null; Hide(); }
         public void ApplyPanel(AttributePanelInfo panel) { _panel = panel; if (IsVisible) RefreshView(); }
         public void SetStatus(string message) { _status.text = message ?? string.Empty; }
         public void RefreshState()
@@ -161,12 +162,14 @@ namespace MmorpgClient.UI.Ugui.Attribute
             string identity = _owner?.RoleName, appearance = _owner?.RoleAppearanceId;
             var book = _owner?.SkillSource?.State;
             var equipment = _owner?.FeatureSource?.Equipment;
-            if (_battleReadOnly != (_owner?.BattleReadOnly == true) || _identity != identity || _appearance != appearance || !ReferenceEquals(_lastBook, book) || !ReferenceEquals(_lastEquipment, equipment))
+            var support = _owner?.BattleReadOnly == true ? _owner.BattleSupportEffects : _panel?.SupportEffects;
+            if (!ReferenceEquals(_lastSupport, support) || _battleReadOnly != (_owner?.BattleReadOnly == true) || _identity != identity || _appearance != appearance || !ReferenceEquals(_lastBook, book) || !ReferenceEquals(_lastEquipment, equipment))
                 RefreshView();
         }
         private void RefreshView()
         {
             _battleReadOnly = _owner?.BattleReadOnly == true;
+            _lastSupport = _battleReadOnly ? _owner?.BattleSupportEffects : _panel?.SupportEffects;
             _allocation.interactable = _allocationTab.interactable = !_battleReadOnly;
             _lastBook = _owner?.SkillSource?.State;
             var features = _owner?.FeatureSource;
@@ -179,8 +182,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _overviewPortrait.enabled = _detailPortrait.enabled = portrait != null;
             var values = CharacterSupportModel.Attributes(_panel);
             for (int i = 0; i < values.Length; ++i) _values[i].text = values[i];
-            _healing.text = CharacterSupportModel.TotalBonus(_panel, false);
-            _shield.text = CharacterSupportModel.TotalBonus(_panel, true);
+            _healing.text = CharacterSupportModel.TotalBonus(_panel, false, _lastSupport, _battleReadOnly);
+            _shield.text = CharacterSupportModel.TotalBonus(_panel, true, _lastSupport, _battleReadOnly);
             bool detail = _skillId != 0 && !_sourceOpen;
             _title.text = detail ? "人物技能" : "人物属性";
             _overview.gameObject.SetActive(!detail); _effects.gameObject.SetActive(!_sourceOpen);
@@ -199,26 +202,32 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _skillIcon.sprite = CharacterPetArt.Skill(_skillId, 256); _skillIcon.enabled = _skillIcon.sprite != null;
             var labels = shield ? new[] { "主要效果", "作用目标", "护盾容量 / 吸收类型", "持续回合 / 耗蓝 / 冷却" } :
                 new[] { "主要效果", "作用目标", "技能等级", "耗蓝 / 冷却" };
-            var values = CharacterSupportModel.SkillValues(_lastBook, _skillId);
+            var values = CharacterSupportModel.SkillValues(_lastBook, _skillId, _lastSupport, _battleReadOnly);
             for (int i = 0; i < 4; ++i) { _detailLabels[i].text = labels[i]; _detailValues[i].text = values[i]; }
             SelectChoice(_healChoice, !shield); SelectChoice(_shieldChoice, shield);
             _rules.text = shield ? "独立施放，占用本回合普通行动；不依赖治疗或溢出。" : "过量治疗不转为护盾。";
-            _rulesSecond.text = shield ? "每个目标分别拥有独立护盾容量。" : "选定一名主目标，其余从合法友方中随机、不重复选取。";
+            _rulesSecond.text = shield ? "参考容量不含条件法宝；各目标独立，不读取目标缺血或减疗。" :
+                "参考值不含目标增减疗、缺血封顶或条件法宝；副目标由服务器随机选取。";
         }
         private void RefreshSources()
         {
             _sourceTitle.text = _sourceShield ? "护盾容量加成" : "施放治疗加成";
-            _sourceTotal.text = CharacterSupportModel.TotalBonus(_panel, _sourceShield);
+            _sourceTotal.text = CharacterSupportModel.TotalBonus(_panel, _sourceShield, _lastSupport, _battleReadOnly);
             for (int i = _sourceRows.childCount - 1; i >= 0; --i)
             { var child = _sourceRows.GetChild(i); child.gameObject.SetActive(false); UnityEngine.Object.Destroy(child.gameObject); }
-            var sources = CharacterSupportModel.Sources(_panel, _lastEquipment, _sourceShield);
+            var sources = CharacterSupportModel.Sources(_panel, _lastEquipment, _sourceShield, _lastSupport, _battleReadOnly);
+            float y = 0;
             for (int i = 0; i < sources.Count; ++i)
             {
-                Picture("SourceRow" + i, _sourceRows, 0, i * 58, 1153, 55, "mail_row_normal", true);
-                Label("SourceName" + i, _sourceRows, 28, i * 58 + 12, 900, 34, sources[i].Name, 25, Ink);
-                Label("SourceValue" + i, _sourceRows, 920, i * 58 + 11, 209, 34, sources[i].Value, 25, Green, TextAnchor.UpperRight);
+                bool detailed = !string.IsNullOrEmpty(sources[i].Detail);
+                float height = detailed ? 91 : 58;
+                Picture("SourceRow" + i, _sourceRows, 0, y, 1153, height - 3, "mail_row_normal", true);
+                Label("SourceName" + i, _sourceRows, 28, y + 12, 870, 34, sources[i].Name, 25, Ink);
+                Label("SourceValue" + i, _sourceRows, 920, y + 11, 209, 34, sources[i].Value, 25, Green, TextAnchor.UpperRight);
+                if (detailed) Label("SourceReason" + i, _sourceRows, 28, y + 48, 1095, 34, sources[i].Detail, 21, Muted);
+                y += height;
             }
-            _sourceRows.sizeDelta = new Vector2(1153, Mathf.Max(300, sources.Count * 58));
+            _sourceRows.sizeDelta = new Vector2(1153, Mathf.Max(300, y));
         }
         private Text EffectRow(bool shield, float y)
         {

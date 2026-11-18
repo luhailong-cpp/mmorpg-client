@@ -200,6 +200,9 @@ $whitelist = @{
 
     # 宝宝(宠物)系统(proto/scene/player_pet.proto, service ScenePetClientPlayer)
     "ScenePetClientPlayerGetPetList"                         = "GetPetList"
+    "ScenePetClientPlayerGetPetEntries"                      = "GetPetEntries"
+    "ScenePetClientPlayerPreviewPetEntries"                  = "PreviewPetEntries"
+    "ScenePetClientPlayerSavePetEntries"                     = "SavePetEntries"
     "ScenePetClientPlayerSummonPet"                          = "SummonPet"
     "ScenePetClientPlayerRecallPet"                          = "RecallPet"
     "ScenePetClientPlayerAllocatePetPoints"                  = "AllocatePetPoints"

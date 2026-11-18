@@ -356,5 +356,52 @@ namespace MmorpgClient.Tests.EditMode.Battle
             }
             return list;
         }
+
+        private void PublishEntries(uint allocated = 2, ulong version = 1)
+        {
+            var entry = new PetEntriesInfo { PetId = _list.Pets[0].PetId, StateVersion = version, ConfigVersion = 1,
+                TotalPoints = 20, RemainingPoints = 20 - allocated, Effective = true };
+            entry.Entries.Add(new PetEntryInfo { Id = 503, Name = "治疗效果", Category = 3, Channel = 3,
+                Cap = 20, PerPointBps = 50, Allocated = allocated, EffectiveBps = allocated * 50, Icon = "healing" });
+            _list.Pets[0].Entries = entry;
+            _list.Pets[0].CultivationTier = 4; _list.Pets[0].CultivationTierName = "神兽"; _list.Pets[0].CultivationArtKey = "divine";
+            _net.PushNotify(MessageIds.NotifyPetListChanged, new PetListChangedS2C { Pets = _list });
+        }
+
+        [Test]
+        public void EntriesUseSeparateBudgetAllowCommittedDecreaseAndRequireServerPreview()
+        {
+            PublishEntries();
+            Assert.That(Text("EntryPointsBudget").text, Does.Contain("总点数 20"));
+            Assert.That(Button("EntryMinus503").interactable, Is.True);
+            Click("EntryMinus503");
+            Assert.That(Text("EntryValue503").text, Is.EqualTo("1"));
+            Assert.That(Button("EntrySave").interactable, Is.False);
+            var call = _net.CallsOf(MessageIds.PreviewPetEntries).Last();
+            var preview = _list.Pets[0].Entries.Clone(); preview.Entries[0].Allocated = 1; preview.Entries[0].EffectiveBps = 50; preview.RemainingPoints = 19;
+            call.Respond(new PreviewPetEntriesResponse { Entries = preview });
+            Assert.That(Button("EntrySave").interactable, Is.True);
+            Click("EntrySave");
+            var save = _net.CallsOf(MessageIds.SavePetEntries).Last(); var request = (SavePetEntriesRequest)save.Request;
+            Assert.That(request.Target[503], Is.EqualTo(1));
+            Assert.That(_net.CallsOf(MessageIds.AllocatePetPoints), Is.Empty);
+            var authority = preview.Clone(); authority.StateVersion = 2; authority.LastRequestId = request.RequestId;
+            save.Respond(new SavePetEntriesResponse { RequestId = request.RequestId, Entries = authority });
+            Assert.That(_panel.HasDraft, Is.False); Assert.That(Text("EntryCurrent503").text, Is.EqualTo("1"));
+        }
+
+        [Test]
+        public void EntryBattleLockKeepsDraftAndConcurrentRefreshCannotOverwriteIt()
+        {
+            PublishEntries(); Click("EntryPlus503");
+            _inBattle = true; _panel.Tick();
+            Assert.That(_panel.HasDraft, Is.True); Assert.That(Button("EntryMinus503").interactable, Is.False);
+            Assert.That(Button("EntrySave").interactable, Is.False);
+            _inBattle = false; PublishEntries(5, 2); _panel.Tick();
+            Assert.That(_panel.HasDraft, Is.True); Assert.That(Button("EntrySave").interactable, Is.False);
+            Assert.That(Text("EntryValue503").text, Is.EqualTo("3"));
+            Click("EntryRestore");
+            Assert.That(_panel.HasDraft, Is.False); Assert.That(Text("EntryValue503").text, Is.EqualTo("5"));
+        }
     }
 }

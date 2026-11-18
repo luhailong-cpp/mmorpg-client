@@ -13,7 +13,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
     /// <summary>
     /// 50fdfb 美术交接的宝宝培养页。数值只取 PetClient / ISkillBookSource 的权威快照；
-    /// 四维草稿只记录新增分配，未开放的条目点不与四维点池混用。
+    /// 四维草稿只记录新增分配；条目草稿为独立可减目标，目录与收益来自服务器。
     /// </summary>
     public sealed partial class PetCultivationPanel : IDisposable
     {
@@ -58,7 +58,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         public bool IsVisible => _root.gameObject.activeSelf;
         public PetCultivationPage Page => _page;
         public ulong SelectedPetId => _selectedPetId;
-        public bool HasDraft => _draft.Count != 0;
+        public bool HasDraft => _draft.Count != 0 || HasEntryDraft;
         public RectTransform Root => _root;
         private PetInfo Selected => _list?.Pets.FirstOrDefault(p => p.PetId == _selectedPetId);
         private bool BattleLocked => _battleLocked() || _client?.CultivationWritesBlocked == true;
@@ -136,7 +136,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 if (_client != null) { _client.OnList -= ApplyList; _client.OnBusyChanged -= BusyChanged; _client.OnError -= Error; }
                 _client = client;
                 _list = client?.Pets;
-                _draft.Clear(); _baseline.Clear(); _allocationPending = false;
+                _draft.Clear(); _baseline.Clear(); _allocationPending = false; ClearEntryDraft(); _entrySaving = false;
                 ++_allocationAttempt; _deferredList = null;
                 if (_client != null) { _client.OnList += ApplyList; _client.OnBusyChanged += BusyChanged; _client.OnError += Error; }
             }
@@ -153,7 +153,7 @@ namespace MmorpgClient.UI.Ugui.Pet
         {
             if (list == null)
             {
-                ++_allocationAttempt; _allocationPending = false; _deferredList = null;
+                ++_allocationAttempt; _allocationPending = false; _deferredList = null; _entrySaving = false;
             }
             else if (_allocationPending)
             {
@@ -166,6 +166,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             _list = list;
             if (Selected == null)
                 _selectedPetId = list?.Pets.FirstOrDefault(p => p.PetId == list.ActivePetId)?.PetId ?? list?.Pets.FirstOrDefault()?.PetId ?? 0;
+            if (list == null || previous != _selectedPetId) ClearEntryDraft();
             bool changed = Selected == null || previous != _selectedPetId ||
                 (_baseline.Count != 0 && (Selected.Dimensions.Count != _baseline.Count ||
                     Selected.Dimensions.Any(d => !_baseline.TryGetValue(d.DimensionId, out var value) || value != d.Allocated))) ||
@@ -204,7 +205,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 RefreshFields();
                 return;
             }
-            Navigate(() => { _selectedPetId = id; _selectedSkillId = 0; _message = null; RememberBaseline(); Render();
+            Navigate(() => { _selectedPetId = id; ClearEntryDraft(); _selectedSkillId = 0; _message = null; RememberBaseline(); Render();
                 if (_page == PetCultivationPage.Skills) RefreshSkills(); });
         }
 
@@ -226,7 +227,7 @@ namespace MmorpgClient.UI.Ugui.Pet
             ActionButton("KeepDraft", box.rectTransform, 55, 180, 250, 65, "继续分配", true,
                 () => _leaveDialog.gameObject.SetActive(false));
             ActionButton("DiscardAndLeave", box.rectTransform, 350, 180, 275, 65, "放弃并离开", false,
-                () => { _draft.Clear(); _leaveDialog.gameObject.SetActive(false); var next = _afterDiscard; _afterDiscard = null; next?.Invoke(); });
+                () => { _draft.Clear(); ClearEntryDraft(); _leaveDialog.gameObject.SetActive(false); var next = _afterDiscard; _afterDiscard = null; next?.Invoke(); });
         }
 
         private void Render()
@@ -289,9 +290,9 @@ namespace MmorpgClient.UI.Ugui.Pet
                 var parent = (RectTransform)button.transform;
                 var portrait = Art("PetPortrait" + i, parent, 29, 16, 88, 88, "round_badge_taiji");
                 portrait.sprite = Portrait(pet); portrait.preserveAspect = true;
-                Art("PetPortraitRing" + i, parent, 24, 11, 98, 98, "portrait_frame");
+                Art("PetPortraitRing" + i, parent, 24, 11, 98, 98, string.IsNullOrEmpty(pet.CultivationArtKey) ? "portrait_frame" : "ring-" + pet.CultivationArtKey);
                 Label("PetName" + i, parent, 136, 19, width - 180, 48, pet.Name, 34, selected ? Cream : Ink);
-                Label("PetLevel" + i, parent, 136, 73, width - 255, 34, $"{pet.Level}级", 20, selected ? Cream : Muted);
+                Label("PetLevel" + i, parent, 136, 73, width - 255, 34, $"{pet.Level}级 · {(string.IsNullOrEmpty(pet.CultivationTierName) ? "—" : pet.CultivationTierName)}", 20, selected ? Cream : Muted);
                 Label("PetState" + i, parent, width - 138, 73, 90, 34, pet.IsActive ? "出战" : "休息", 20,
                     selected ? Cream : Green, TextAnchor.MiddleRight);
             }
@@ -383,8 +384,8 @@ namespace MmorpgClient.UI.Ugui.Pet
                 row.Minus.interactable = CanWrite && increment > 0;
                 row.Plus.interactable = CanWrite && Remaining > 0 && after < uint.MaxValue && (row.Dimension.Cap == 0 || after < row.Dimension.Cap);
             }
-            if (_save != null) _save.interactable = _page == PetCultivationPage.FourStats && CanWrite && HasDraft;
-            if (_discard != null) _discard.interactable = _page == PetCultivationPage.FourStats && CanWrite && HasDraft;
+            if (_save != null) _save.interactable = _page == PetCultivationPage.FourStats && CanWrite && _draft.Count != 0;
+            if (_discard != null) _discard.interactable = _page == PetCultivationPage.FourStats && CanWrite && _draft.Count != 0;
             if (_more != null) _more.interactable = !BattleLocked;
             var skillEntry = SkillState?.Snapshot?.Find(_selectedSkillId);
             bool canLearn = !BattleLocked && SkillBookViewState.CanUpgrade(SkillState, skillEntry);
@@ -393,10 +394,11 @@ namespace MmorpgClient.UI.Ugui.Pet
             if (_status != null) _status.text = BattleLocked ? (HasDraft ?
                 "战斗中只读；当前宝宝的加点草稿已保留，关闭可返回战斗。" : "战斗中只读查看；不能修改培养，关闭可返回战斗。") :
                 _client?.IsReady != true ? "连接未就绪，无法保存。" : _message ??
-                (_page == PetCultivationPage.EntryPoints ? "条目点暂未开放；当前无可保存的分配。" : "");
+                (_page == PetCultivationPage.EntryPoints && EntryState == null ? "条目点尚未同步，请刷新宝宝列表。" : "");
+            RefreshEntryFields();
         }
 
-        private void BuildEntryPoints(float x, float width)
+        private void BuildUnavailableEntries(float x, float width)
         {
             Label("EntryPointsTitle", _root, x + 30, 197, 120, 45, "条目点", 28, Ink);
             Label("EntryPointsBudget", _root, x + 155, 198, width - 190, 45, "总点数 —       已用 —       剩余 —", 26, Ink);
@@ -427,7 +429,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 Label("EntryValue" + i, row, adjust - 41, 14, 82, 44, "—", 23, Ink, TextAnchor.MiddleCenter);
                 ActionButton("EntryPlus" + i, row, adjust + 53, 10, 52, 51, "", false, null, "step-plus-disabled").interactable = false;
                 ActionButton("EntryDetail" + i, row, detail - 49, 13, 98, 46, "详情", false,
-                    () => { _message = "条目点暂未开放；总点数、收益和上限尚无已同步数据。"; RefreshFields(); }, null, 21);
+                    () => { _message = "条目点尚未同步；请刷新宝宝列表获取服务器总点数、收益和上限。"; RefreshFields(); }, null, 21);
             }
             Label("EntryHelp", _root, x + 24, 839, width - 48, 40, "各方向共用条目点；未投入也可使用已学技能。", 20, Muted);
             _save = ActionButton("EntrySave", _root, x + width - 479, 915, 215, 60, "保存分配", true, null); _save.interactable = false;

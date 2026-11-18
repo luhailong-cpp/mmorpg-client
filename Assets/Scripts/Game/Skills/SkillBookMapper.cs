@@ -86,6 +86,7 @@ namespace MmorpgClient.Game.Skills
                         manaPercent = row.ManaPercent,
                         cooldownRounds = row.CooldownRounds,
                         durationRounds = row.DurationRounds,
+                        supportPreview = row.SupportPreview?.Clone(),
                         description = row.Description,
                         iconPath = local?.iconPath,
                         iconResource = NormalizeIconKey(row.IconKey, row.SkillTableId),

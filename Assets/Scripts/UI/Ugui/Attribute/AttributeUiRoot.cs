@@ -49,6 +49,17 @@ namespace MmorpgClient.UI.Ugui.Attribute
         public CharacterSupportWindow SupportWindow => _support;
         internal bool BattleReadOnly => _app?.GameClient?.Battle?.HasActiveBattle == true ||
             (BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
+        internal SupportEffectSummary BattleSupportEffects
+        {
+            get
+            {
+                var game = _app?.GameClient;
+                if (game?.Battle?.State == null || !game.InGame) return null;
+                foreach (var actor in game.Battle.State.Actors)
+                    if (actor.ActorId == game.PlayerId) return actor.SupportEffects;
+                return null;
+            }
+        }
 
         // Identity is a read-only view of the current server-selected role, never preview data.
         internal string RoleName

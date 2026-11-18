@@ -88,6 +88,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         public double manaPercent;
         public uint cooldownRounds;
         public uint durationRounds;
+        public SupportSkillPreview supportPreview;
         public string description;
         public string iconPath;
         public string iconResource;

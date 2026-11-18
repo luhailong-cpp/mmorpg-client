@@ -66,5 +66,46 @@ namespace MmorpgClient.Tests.EditMode.Battle
             state.IsConnected = true; state.IsReadOnly = true;
             Assert.That(CharacterSupportModel.FindSkill(state, CharacterSupportModel.HealingSkillId), Is.Null);
         }
+        [Test]
+        public void AuthoritativeTotalsAreIndependentAndBattleNeverFallsBackToScene()
+        {
+            var panel = new AttributePanelInfo { SupportEffects = new SupportEffectSummary {
+                Healing = new SupportEffectBreakdown { Complete = true, TotalBonusBps = 4700, EquipmentCapBps = 3200 },
+                Shield = new SupportEffectBreakdown { Complete = true, TotalBonusBps = 800, EquipmentCapBps = 3200 } } };
+            Assert.That(CharacterSupportModel.TotalBonus(panel, false), Is.EqualTo("47%"));
+            Assert.That(CharacterSupportModel.TotalBonus(panel, true), Is.EqualTo("8%"));
+            Assert.That(CharacterSupportModel.TotalBonus(panel, false, null, true), Is.EqualTo("—"));
+            var battle = new SupportEffectSummary { Healing = new SupportEffectBreakdown { Complete = true, TotalBonusBps = 2500 } };
+            Assert.That(CharacterSupportModel.TotalBonus(panel, false, battle, true), Is.EqualTo("25%"));
+            battle.Healing.Complete = false;
+            Assert.That(CharacterSupportModel.TotalBonus(panel, false, battle, true), Is.EqualTo("—"));
+            Assert.That(CharacterSupportModel.Sources(panel, null, false, battle, true).Find(row => row.Label == "装备同类来源上限").Value, Is.EqualTo("—"));
+        }
+        [Test]
+        public void SourcesUseEffectiveContributionsAndKeepConditionalItemsOutOfTotal()
+        {
+            var part = new SupportEffectBreakdown { Complete = true, TotalBonusBps = 3200, EquipmentCapBps = 3200 };
+            part.Sources.Add(new SupportEffectSource { Kind = 1, Name = "实物词缀", RawBonusBps = 800, EffectiveBonusBps = 400, Reason = "装备来源上限" });
+            part.Sources.Add(new SupportEffectSource { Kind = 4, Name = "固元印", RawBonusBps = 1200, Conditional = true, Reason = "仅主目标" });
+            var panel = new AttributePanelInfo { SupportEffects = new SupportEffectSummary { Shield = part } };
+            var rows = CharacterSupportModel.Sources(panel, null, true);
+            Assert.That(rows[0].Value, Is.EqualTo("4%"));
+            Assert.That(rows[0].Detail, Does.Contain("原始 8%"));
+            Assert.That(rows[1].Detail, Is.EqualTo("仅主目标"));
+            Assert.That(CharacterSupportModel.TotalBonus(panel, true), Is.EqualTo("32%"));
+        }
+        [Test]
+        public void LearnedNeutralPreviewUsesServerValuesAndNoClientFormula()
+        {
+            var state = new SkillBookViewState { Context = SkillBookContext.Character(), IsConnected = true, Snapshot = new SkillBookSnapshot() };
+            state.Snapshot.Entries.Add(new SkillEntryState { Id = CharacterSupportModel.HealingSkillId, Rank = 1,
+                Definition = new SkillDefinition { id = CharacterSupportModel.HealingSkillId, targetTeam = "ally", maxTargets = 7,
+                    supportPreview = new SupportSkillPreview { SkillTableId = CharacterSupportModel.HealingSkillId, Complete = true,
+                        Learned = true, BaseValue = 1200, ReferenceValue = 1380, ManaCost = 106 } } });
+            var values = CharacterSupportModel.SkillValues(state, CharacterSupportModel.HealingSkillId);
+            Assert.That(values[0], Does.Contain("1380（基础 1200）"));
+            Assert.That(values[3], Does.StartWith("106 法力"));
+            Assert.That(CharacterSupportModel.SkillValues(state, CharacterSupportModel.HealingSkillId, null, true)[0], Is.EqualTo("恢复目标气血"));
+        }
     }
 }

@@ -333,7 +333,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         // ── 权威状态 ─────────────────────────────────────────
 
         /// <summary>待机时的文字、立绘与血蓝条边界，均为舞台坐标 (y 向下)。</summary>
-        internal bool TryGetRestingNameplate(List<Rect> obstacles, out Rect name, List<Rect> characters = null)
+        internal bool TryGetRestingNameplate(List<Rect> obstacles, out Rect name)
         {
             name = default;
             if (_group.alpha <= 0f || _name.font == null) return false;
@@ -344,18 +344,6 @@ namespace MmorpgClient.UI.Ugui.Battle
             var anchor = FootPosition + new Vector2(NameAnchor.x - RootWidth * 0.5f, -NameAnchor.y - GroundY) * Scale;
             name = Rect.MinMaxRect(anchor.x + glyphs.min.x * Scale, anchor.y - glyphs.max.y * Scale,
                 anchor.x + glyphs.max.x * Scale, anchor.y - glyphs.min.y * Scale);
-            if (characters != null)
-            {
-                var text = _name.textInfo;
-                for (int i = 0; i < text.characterCount; i++)
-                {
-                    var character = text.characterInfo[i];
-                    if (!character.isVisible) continue;
-                    characters.Add(Rect.MinMaxRect(anchor.x + character.bottomLeft.x * Scale,
-                        anchor.y - character.topRight.y * Scale, anchor.x + character.topRight.x * Scale,
-                        anchor.y - character.bottomLeft.y * Scale));
-                }
-            }
 
             var sprite = _idleSprite;
             float width = sprite != null ? _bodyHeight * sprite.rect.width / sprite.rect.height : _bodyHeight * 0.55f;

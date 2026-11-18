@@ -61,7 +61,6 @@ namespace MmorpgClient.UI.Ugui.Battle
         private const int NameOffsetLimit = 48;
         private const int NameOffsetStep = 4;
         private const float NameClearance = 2f;
-        private const int NameRefinementLimit = 12;
 
         /// <summary>
         /// 直连判定连不上时横幅的文案(客户端本地字符串,服务端没有对应消息)。客户端分不清是本机网络的问题还是战斗服故障,
@@ -556,20 +555,19 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void LayoutUnitNames()
         {
-            var names = new List<(BattleUnitView view, Rect rect, List<Rect> characters, Vector2 offset, bool refine)>(_views.Count);
+            var names = new List<(BattleUnitView view, Rect rect, Vector2 offset, bool crowded)>(_views.Count);
             var obstacles = new List<Rect>(_views.Count * 2);
             foreach (var view in _views)
             {
-                var characters = new List<Rect>();
-                if (!view.TryGetRestingNameplate(obstacles, out var name, characters)) continue;
+                if (!view.TryGetRestingNameplate(obstacles, out var name)) continue;
                 names.Add((view, Rect.MinMaxRect(name.xMin - NameClearance, name.yMin - NameClearance,
-                    name.xMax + NameClearance, name.yMax + NameClearance), characters, Vector2.zero, false));
+                    name.xMax + NameClearance, name.yMax + NameClearance), Vector2.zero, false));
             }
 
             var nearby = new List<Rect>();
             for (int i = 0; i < names.Count; i++)
             {
-                var (view, original, characters, _, _) = names[i];
+                var (view, original, _, _) = names[i];
                 var searchArea = Rect.MinMaxRect(original.xMin - NameOffsetLimit, original.yMin - NameOffsetLimit,
                     original.xMax + NameOffsetLimit, original.yMax + NameOffsetLimit);
                 nearby.Clear();
@@ -609,77 +607,54 @@ namespace MmorpgClient.UI.Ugui.Battle
                     }
                 }
                 view.SetNameOffset(bestOffset);
-                names[i] = (view, bestRect, characters, bestOffset, bestOverlap > 0f);
+                names[i] = (view, bestRect, bestOffset, bestOverlap > 0f);
             }
 
-            // Only refine unresolved labels. Per-character geometry leaves whitespace between
-            // letters available, while clear labels retain their existing placement.
+            // Keep crowded names with their own unit by placing them above its health bars.
             var otherNames = new List<Rect>();
             for (int i = 0; i < names.Count; i++)
             {
                 var label = names[i];
-                if (!label.refine) continue;
-                var searchArea = label.rect;
-                searchArea.xMin -= NameRefinementLimit;
-                searchArea.xMax += NameRefinementLimit;
-                searchArea.yMin -= NameRefinementLimit;
-                searchArea.yMax += NameRefinementLimit;
-                nearby.Clear();
-                foreach (var obstacle in obstacles)
-                    if (searchArea.Overlaps(obstacle)) nearby.Add(obstacle);
+                if (!label.crowded) continue;
                 otherNames.Clear();
                 for (int j = 0; j < names.Count; j++)
                     if (i != j) otherNames.Add(names[j].rect);
-                for (int j = 0; j < label.characters.Count; j++)
-                {
-                    var character = label.characters[j];
-                    character.position += label.offset;
-                    label.characters[j] = character;
-                }
-                var refinement = RefineNameOffset(label.rect, label.characters, nearby, otherNames);
-                label.offset += refinement;
-                label.rect.position += refinement;
+                var movement = NameOffsetAboveHead(label.rect, label.view.HeadPosition, obstacles, otherNames);
+                label.offset += movement;
+                label.rect.position += movement;
                 label.view.SetNameOffset(label.offset);
                 names[i] = label;
             }
         }
 
-        private static Vector2 RefineNameOffset(Rect name, IReadOnlyList<Rect> characters,
+        private static Vector2 NameOffsetAboveHead(Rect name, Vector2 headPosition,
             IReadOnlyList<Rect> obstacles, IReadOnlyList<Rect> otherNames)
         {
-            float Overlap(Vector2 offset)
-            {
-                float sum = 0f;
-                foreach (var character in characters)
-                {
-                    var moved = character;
-                    moved.position += offset;
-                    foreach (var obstacle in obstacles) sum += OverlapArea(moved, obstacle);
-                }
-                return sum;
-            }
-
+            var preferred = new Vector2(headPosition.x - name.center.x, headPosition.y - 4f - name.yMax);
+            var blockers = new List<Rect>(obstacles);
+            blockers.AddRange(otherNames);
+            blockers.Add(ChannelBannerRect);
+            blockers.Add(ReconnectRect);
+            foreach (var (_, rect) in BattleUiLayout.InteractiveRects()) blockers.Add(rect);
             var best = Vector2.zero;
-            float bestOverlap = Overlap(best);
-            if (bestOverlap == 0f) return best;
-            for (int y = NameRefinementLimit; y >= -NameRefinementLimit; y--)
-            for (int x = -NameRefinementLimit; x <= NameRefinementLimit; x++)
+            float bestDistance = float.PositiveInfinity;
+            for (int y = 0; y >= -24; y--)
+            for (int x = -NameOffsetLimit; x <= NameOffsetLimit; x++)
             {
-                var offset = new Vector2(x, y);
-                if (offset.sqrMagnitude > NameRefinementLimit * NameRefinementLimit ||
-                    (bestOverlap == 0f && offset.sqrMagnitude >= best.sqrMagnitude)) continue;
+                float distance = x * x + y * y;
+                if (distance >= bestDistance) continue;
+                var offset = preferred + new Vector2(x, y);
                 var candidate = name;
                 candidate.position += offset;
                 if (candidate.xMin < 0f || candidate.xMax > QdaoUguiTheme.DesignWidth ||
-                    candidate.yMin < 0f || candidate.yMax > BattleStage.HudBottomBand) continue;
-                bool blocksName = false;
-                foreach (var other in otherNames)
-                    if (candidate.Overlaps(other)) { blocksName = true; break; }
-                if (blocksName) continue;
-                float overlap = Overlap(offset);
-                if (overlap > bestOverlap || (overlap == bestOverlap && offset.sqrMagnitude >= best.sqrMagnitude)) continue;
+                    candidate.yMin < 140f || candidate.yMax > BattleStage.HudBottomBand) continue;
+                bool blocked = false;
+                foreach (var obstacle in blockers)
+                    if (candidate.Overlaps(obstacle)) { blocked = true; break; }
+                if (blocked) continue;
                 best = offset;
-                bestOverlap = overlap;
+                bestDistance = distance;
+                if (distance == 0f) return best;
             }
             return best;
         }

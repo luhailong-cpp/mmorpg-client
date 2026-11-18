@@ -342,6 +342,12 @@ namespace MmorpgClient.Game.Pet
                 OnError?.Invoke("服务器未返回宝宝列表");
                 return;
             }
+            // 较早发起的全量查询不能回滚本端已确认的条目版本。
+            if (Pets != null) foreach (var incoming in list.Pets)
+                foreach (var current in Pets.Pets)
+                    if (current.PetId == incoming.PetId && current.Entries != null && incoming.Entries != null &&
+                        (current.Entries.StateVersion > incoming.Entries.StateVersion ||
+                         current.Entries.ConfigVersion > incoming.Entries.ConfigVersion)) incoming.Entries = current.Entries.Clone();
             Pets = list;
             ++_listRequestVersion;
             ListRequestPending = false;
@@ -357,6 +363,7 @@ namespace MmorpgClient.Game.Pet
         private void HandleDisconnected()
         {
             InvalidateShop();
+            InvalidateEntries();
             ++_listRequestVersion;
             ++_grantRequestVersion;
             ++_allocationRequestVersion;
