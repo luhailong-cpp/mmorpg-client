@@ -19,7 +19,8 @@ namespace MmorpgClient.Game.Battle
     /// NotifyBattleStart / NotifyBattleReconnect,以及 scene 结算后推的 NotifyBattleEnd(D68);
     /// 其余战斗帧只从直连来。BattleClient / SpectateClient 对消息来自哪条连接不敏感,按 battle_id 幂等。
     ///
-    /// 顺带把三条"本局结束"信号告诉直连链路,让它区分"服务端正常 FIN"与"意外断开":
+    /// 顺带把四条"本局结束"信号告诉直连链路,让它区分"服务端正常 FIN"与"意外断开":
+    /// 已出胜负的 NotifyTurnResult(参战方在直连上的最后一帧;个人终局包由 scene 结算后经大厅推,晚于 FIN)/
     /// NotifyBattleEnd / NotifySpectateEnd / StopWatchBattle 的应答;以及把
     /// NotifyBattleReconnect(大厅重连后 scene 推)转成"补签一张票再建直连"。
     ///
@@ -142,6 +143,17 @@ namespace MmorpgClient.Game.Battle
 
         private Action<MessageContent> Wrap(uint messageId, Action<MessageContent> handler)
         {
+            if (messageId == MessageIds.NotifyTurnResult)
+            {
+                return mc =>
+                {
+                    handler(mc);
+                    // 已出胜负的回合结果是这一局在直连上的最后一帧:battle 随后关直连,个人终局包由 scene 结算后经大厅推。
+                    // 不在这里标记,紧跟着的 FIN 会被当成意外断开:白重连一次、被 battle 拒掉,再去补签。
+                    ulong decided = ParseBattleId(() => DecidedBattleId(TurnResultS2C.Parser.ParseFrom(mc.SerializedMessage)));
+                    if (decided != 0) _link.HandleBattleEnded(decided);
+                };
+            }
             if (messageId == MessageIds.NotifyBattleEnd)
             {
                 return mc =>
@@ -167,6 +179,13 @@ namespace MmorpgClient.Game.Battle
                 };
             }
             return handler;
+        }
+
+        /// <summary>回合结果已出胜负时返回它的 battle_id,否则 0(带不出 battle_id 时也是 0:不知道是哪一局就不标记)。</summary>
+        private static ulong DecidedBattleId(TurnResultS2C result)
+        {
+            if (result.State == null || result.State.Outcome == eBattleOutcome.BattleOutcomeOngoing) return 0;
+            return result.BattleId != 0 ? result.BattleId : result.State.BattleId;
         }
 
         private static ulong ParseBattleId(Func<ulong> parse)

@@ -37,7 +37,8 @@ namespace MmorpgClient.Net
     ///   NotifyBattleAssigned(经大厅)→ <see cref="HandleAssigned"/> → 连 host:port
     ///   → 首包 BattleTokenVerifyRequest → BattleTokenVerifyResponse.success → Verified
     ///   → 四条战斗 RPC 与本人的 S2C 从此走这条连接(分流在 DirectRoutingBattleTransport)
-    ///   → 终局包 / 观战结束 / 退出观战之后服务端 FIN → 正常收尾(不重连)。
+    ///   → 已出胜负的最后一回合帧 / 观战结束 / 退出观战之后服务端 FIN → 正常收尾(不重连);
+    ///     参战方的个人终局包由 scene 结算后经大厅推,晚于这次 FIN。
     ///
     /// 恢复策略(§18.2,收缩后口径见 turn-based §22 D74):
     ///   * 战斗中意外断开:票据未过期则用同一张票重连 1 次(D25 同票可重用);
@@ -516,11 +517,13 @@ namespace MmorpgClient.Net
 
             string host = assignment.Host;
             int port = (int)assignment.Port;
+            // 小游戏连这个 WebSocket 地址(同一台 battle 自报);TCP 连接不读它。
+            string wsUrl = assignment.WsUrl;
             _log($"连接 battle 节点 {host}:{port} battle_id={assignment.BattleId} role={assignment.Role}");
             _connectRunner(() =>
             {
                 Exception error = null;
-                try { conn.Connect(host, port); }
+                try { conn.Connect(host, port, wsUrl); }
                 catch (Exception ex) { error = ex; }
                 _connectResults.Enqueue(new ConnectResult { Job = job, Conn = conn, Error = error });
             });

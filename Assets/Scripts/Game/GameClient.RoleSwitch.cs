@@ -140,6 +140,9 @@ namespace MmorpgClient.Game
                         yield break;
                     case EnterGameStep.Resend:
                         resent = true;
+                        // 首发结果不明时 login 可能已受理、那条链又很快失败推过 3023:不复位的话,重发开出的新链还没走完,
+                        // 等入场就被这条旧失败判成被拒、回选角页(2026-11-19 评审补;LeaveThenEnter 那一支同样复位)。
+                        _enterFailedTipId = 0;
                         Log($"[enter] enter game outcome unknown ({error}); resending the same request once");
                         continue;
                     case EnterGameStep.LeaveThenEnter:
@@ -190,6 +193,7 @@ namespace MmorpgClient.Game
                     // 本连接上不再绑着角色;gate 收到 LeaveGame 时代发 ExitGame 并清会话路由。
                     _enterRequestPlayerId = 0;
                     PlayerId = 0;
+                    OwnerRevision = 0;
                     done(true);
                     yield break;
                 }

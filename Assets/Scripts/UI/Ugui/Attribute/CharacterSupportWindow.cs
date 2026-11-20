@@ -235,7 +235,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 () => ShowSkill(shield ? CharacterSupportModel.ShieldSkillId : CharacterSupportModel.HealingSkillId));
             Label(shield ? "ShieldLabel" : "HealingLabel", _effects, 1071, y + 44, 620, 44,
                 shield ? "护盾容量加成" : "施放治疗加成", 34, Ink);
-            var value = Label(shield ? "ShieldBonus" : "HealingBonus", _effects, 1690, y + 40, 71, 49, "—", 38, Green, TextAnchor.UpperRight);
+            var value = Label(shield ? "ShieldBonus" : "HealingBonus", _effects, 1690, y + 40, 260, 49, "—", 38, Green, TextAnchor.UpperRight);
             Action(shield ? "ShieldSources" : "HealingSources", _effects, 2041, y + 34, 253, 58, "查看来源", "button_primary", () => ShowSource(shield));
             return value;
         }

@@ -20,6 +20,12 @@ namespace MmorpgClient.UI.Ugui
         [SerializeField] private Image[] _serverRecommendations;
         [SerializeField] private TMP_Text _landingAvailability;
         [SerializeField] private Image _landingServerDot;
+        // 账号面板的渠道登录(服务端 docs/design/account-deletion.md §3.3);显隐按平台,见 RefreshVisualState。
+        [SerializeField] private Button _appleSignInButton;
+        [SerializeField] private Button _googleSignInButton;
+
+        private const string CredentialLoginTitle = "账号登录";
+        private const string CredentialLoginSubmit = "登录";
 
         private TMP_Text Label(string name, UnityEngine.Transform parent, float x, float y,
             float w, float h, string value, float size = 30f, bool light = false,
@@ -206,7 +212,7 @@ namespace MmorpgClient.UI.Ugui
             _credentialImage = QdaoCoreFidelityArt.Panel("CredentialArt", _credentialPanel, 690f, 235f, 1180f, 650f, "main_frame");
             _credentialImage.raycastTarget = true;
             _credentialTitleText = Label("CredentialTitle", _credentialPanel, 950f, 283f, 660f, 78f,
-                "账号登录", 50f, false, TextAlignmentOptions.Center);
+                CredentialLoginTitle, 50f, false, TextAlignmentOptions.Center);
             QdaoCoreFidelityArt.ApplyText(_credentialTitleText);
             Label("AccountLabel", _credentialPanel, 835f, 405f, 150f, 78f, "账号", 34f);
             Label("PasswordLabel", _credentialPanel, 835f, 518f, 150f, 78f, "密码", 34f);
@@ -227,12 +233,19 @@ namespace MmorpgClient.UI.Ugui
             _credentialCancelButton = ArtButton("CredentialCancelButton", _credentialPanel, 930f, 660f,
                 310f, 96f, "取消", "clean_tab", out _credentialCancelText);
             _credentialSubmitButton = ArtButton("CredentialSubmitButton", _credentialPanel, 1320f, 660f,
-                310f, 96f, "登录", "clean_primary", out _credentialSubmitText);
+                310f, 96f, CredentialLoginSubmit, "clean_primary", out _credentialSubmitText);
             _credentialCancelText.fontSize = 34f;
             _credentialSubmitText.fontSize = 34f;
             _credentialSubmitText.color = QdaoCoreFidelityArt.Ivory;
             _credentialStatusText = Label("CredentialStatus", _credentialPanel, 790f, 778f, 980f, 56f,
                 "", 30f, false, TextAlignmentOptions.Center);
+            // 渠道登录摆在面板下沿之外的同一位置:一个安装包里最多出现其中一个。
+            _appleSignInButton = ArtButton("AppleSignInButton", _credentialPanel, 980f, 900f, 600f, 90f,
+                "通过 Apple 登录", "clean_tab", out var appleText);
+            _googleSignInButton = ArtButton("GoogleSignInButton", _credentialPanel, 980f, 900f, 600f, 90f,
+                "Google 登录", "clean_tab", out var googleText);
+            appleText.fontSize = 34f;
+            googleText.fontSize = 34f;
             _credentialPanel.gameObject.SetActive(false);
         }
 
@@ -324,6 +337,8 @@ namespace MmorpgClient.UI.Ugui
             _landingServers.onClick.AddListener(OnLandingServers);
             _landingEnter.onClick.AddListener(OnLandingEnter);
             _landingAccount.onClick.AddListener(OnLandingAccount);
+            _appleSignInButton.onClick.AddListener(OnAppleSignInClicked);
+            _googleSignInButton.onClick.AddListener(OnGoogleSignInClicked);
             BindLoginUtilityEvents();
         }
 
@@ -332,6 +347,8 @@ namespace MmorpgClient.UI.Ugui
             _landingServers.onClick.RemoveListener(OnLandingServers);
             _landingEnter.onClick.RemoveListener(OnLandingEnter);
             _landingAccount.onClick.RemoveListener(OnLandingAccount);
+            _appleSignInButton.onClick.RemoveListener(OnAppleSignInClicked);
+            _googleSignInButton.onClick.RemoveListener(OnGoogleSignInClicked);
             UnbindLoginUtilityEvents();
         }
 

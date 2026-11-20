@@ -331,6 +331,82 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
         // ── 结束与迟到消息丢弃 ──────────────────────────────
 
+        /// <summary>分出胜负的最后一回合帧:battle 随后关直连,个人终局包由 scene 结算后经大厅推。</summary>
+        private void PushDecidedTurnResult()
+        {
+            _net.PushNotify(MessageIds.NotifyTurnResult, new TurnResultS2C
+            {
+                BattleId = TheBattleId,
+                RoundIndex = 2,
+                State = MakeState(eBattleOutcome.BattleOutcomeSideAWin),
+            });
+        }
+
+        [Test]
+        public void DecidedTurnResult_AckKeepsResolving_SettlementEndStillDelivered()
+        {
+            PushBattleStart();
+            PushDecidedTurnResult();
+            Assert.That(_client.IsBattleDecided, Is.True);
+
+            _client.AckTurnPlayed(); // 最后一回合播完
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.Resolving), "没有下一个行动窗口,不回 WaitingAction");
+            Assert.That(_client.IsAwaitingSettlement, Is.True);
+            Assert.That(_client.HasActiveBattle, Is.True);
+            _phases.Clear();
+
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+            });
+            Assert.That(_ends, Is.EqualTo(1));
+            Assert.That(_phases, Is.EqualTo(new[] { BattlePhase.Ended, BattlePhase.None }));
+            Assert.That(_client.IsBattleDecided, Is.False, "已收场的对局不再算「已出胜负、等结算」");
+            Assert.That(_client.IsAwaitingSettlement, Is.False);
+
+            _client.Tick(BattleClient.SettlementWaitSeconds + 1);
+            Assert.That(_phases, Is.EqualTo(new[] { BattlePhase.Ended, BattlePhase.None }), "已收场:等待时限不再作数");
+        }
+
+        [Test]
+        public void DecidedTurnResult_SettlementNeverArrives_ConvergesNoneAfterTheWait_LateEndStillDelivered()
+        {
+            _client.Tick(100);
+            PushBattleStart();
+            PushDecidedTurnResult();
+            _client.AckTurnPlayed();
+
+            _client.Tick(100 + BattleClient.SettlementWaitSeconds - 0.1);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.Resolving), "时限内留在战斗屏等结算包");
+
+            _client.Tick(100 + BattleClient.SettlementWaitSeconds);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.None), "到点收屏");
+            Assert.That(_client.HasActiveBattle, Is.False);
+            Assert.That(_errors, Is.Empty, "正常收尾,不报错");
+
+            _net.PushNotify(MessageIds.NotifyBattleEnd, new BattleEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeSideAWin,
+            });
+            Assert.That(_ends, Is.EqualTo(1), "结算包晚到仍交给 UI 出结算面板");
+        }
+
+        [Test]
+        public void SettlementWait_IsVoidedByTheNextBattle()
+        {
+            _client.Tick(100);
+            PushBattleStart();
+            PushDecidedTurnResult();
+            _client.AckTurnPlayed();
+
+            PushBattleStart(); // 上一局的结算包还没到,下一局先开了
+            _client.Tick(100 + BattleClient.SettlementWaitSeconds + 1);
+            Assert.That(_client.Phase, Is.EqualTo(BattlePhase.WaitingAction), "上一局的等待时限不得收掉新的一局");
+            Assert.That(_client.HasActiveBattle, Is.True);
+        }
+
         [Test]
         public void BattleEnd_EndedThenNone_LateTurnResultDiscarded()
         {

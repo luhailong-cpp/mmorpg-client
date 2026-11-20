@@ -462,6 +462,22 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_net.CallsOf(MessageIds.GetAttributePanel), Has.Count.EqualTo(1), "方案可能已经建好:重拉面板给玩家看");
         }
 
+        // 2026-11-19 评审补:首发超时之后重发被 gate 限流拒绝,首发仍可能已经建好、扣过银两;改之前不重拉面板。
+        [Test]
+        public void CreateSchemeResendRejectedAtTheGateStillRefetchesThePanel()
+        {
+            string error = null;
+            _client.OnError += e => error = e;
+            _client.CreateScheme("方案二");
+            _net.CallsOf(MessageIds.CreateAttributeScheme)[0].FailWith("rpc timeout");
+            _net.CallsOf(MessageIds.CreateAttributeScheme)[1].FailWith("server tip=" + (uint)common_error.KRateLimitExceeded);
+
+            Assert.That(_net.CallsOf(MessageIds.CreateAttributeScheme), Has.Count.EqualTo(2), "至多重发一次");
+            Assert.That(_client.Busy, Is.False);
+            Assert.That(error, Is.Not.Null);
+            Assert.That(_net.CallsOf(MessageIds.GetAttributePanel), Has.Count.EqualTo(1), "首发结果仍不明:重拉面板给玩家看");
+        }
+
         [Test]
         public void OtherAttributeWritesAreNotResentOnTimeout()
         {

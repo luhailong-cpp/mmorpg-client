@@ -3,7 +3,8 @@
   "rootNamespace": "MmorpgClient",
   "references": [
     "UnityEngine.UI",
-    "Unity.TextMeshPro"
+    "Unity.TextMeshPro",
+    "Unity.Purchasing"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
@@ -14,6 +15,12 @@
   ],
   "autoReferenced": true,
   "defineConstraints": [],
-  "versionDefines": [],
+  "versionDefines": [
+    {
+      "name": "com.unity.purchasing",
+      "expression": "5.0.0",
+      "define": "MMORPG_UNITY_IAP"
+    }
+  ],
   "noEngineReferences": false
 }

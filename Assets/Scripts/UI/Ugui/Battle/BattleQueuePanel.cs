@@ -226,6 +226,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool ready = !_queueing && entry?.CanStartNow == true;
             _pveButton?.SetInteractable(ready);
             _pvpButton?.SetInteractable(ready);
+            _cancelButton?.SetInteractable(_queueing && (entry?.CanCancelNow ?? true));
             if (_matchHint != null) _matchHint.text = entry == null ? "正在同步战斗与队伍模块，请稍候…"
                 : !entry.CanStartNow ? entry.StartBlockedReason
                 : members < 5 && entry?.PvpSizeAllowed(5) == false ? "4 人队可以打 4v4；5v5 需要 1～3 人或满 5 人。"
@@ -266,9 +267,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             var client = _owner?.Client;
             if (client == null) { SetStatus("战斗模块未就绪"); return; }
+            var entry = _owner?.MatchEntry;
+            if (entry != null)
+            {
+                if (!entry.Cancel()) { SetStatus(entry.Status); return; }
+                SetStatus("已请求取消排队…");
+                return;
+            }
             SetStatus("已请求取消排队…");
-            if (_owner?.MatchEntry != null) _owner.MatchEntry.Cancel();
-            else client.CancelQueue();
+            client.CancelQueue();
         }
 
         private void OnDuelClicked()

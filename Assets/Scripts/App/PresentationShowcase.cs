@@ -321,7 +321,7 @@ namespace MmorpgClient.App
 
         // ── 回合推进 ──────────────────────────────────────
 
-        /// <summary>推一个回合并等 BattleUiRoot 播完(相位 Resolving → WaitingAction)。</summary>
+        /// <summary>推一个回合并等 BattleUiRoot 播完(相位 Resolving → WaitingAction;最后一回合是开始等结算包)。</summary>
         private IEnumerator PlayTurn(string marker, Func<List<BattleEventItem>> build)
         {
             _round++;
@@ -346,10 +346,11 @@ namespace MmorpgClient.App
                       $"outcome={outcome} phase={_client.Phase}");
 
             float deadline = Time.realtimeSinceStartup + _opt.TurnTimeout;
-            // 先等它真的进入 Resolving(同帧就会进),再等播完回到 WaitingAction
-            while (_client.Phase == BattlePhase.Resolving && Time.realtimeSinceStartup < deadline)
+            // 先等它真的进入 Resolving(同帧就会进),再等播完回到 WaitingAction;
+            // 分出胜负的最后一回合播完不回 WaitingAction,留在 Resolving 等结算包(IsAwaitingSettlement)
+            while (_client.Phase == BattlePhase.Resolving && !_client.IsAwaitingSettlement && Time.realtimeSinceStartup < deadline)
                 yield return null;
-            if (_client.Phase == BattlePhase.Resolving)
+            if (_client.Phase == BattlePhase.Resolving && !_client.IsAwaitingSettlement)
                 Debug.LogWarning($"{Tag} round={_round} 播放超时({_opt.TurnTimeout}s),继续推下一回合");
             yield return WaitSeconds(0.6f);   // 落终态后留几帧给截图
         }

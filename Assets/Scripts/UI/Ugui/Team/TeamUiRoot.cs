@@ -127,12 +127,13 @@ namespace MmorpgClient.UI.Ugui.Team
                 {
                     _client = new TeamClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity,
                         handler => game.OnTeamSnapshot += handler, handler => game.OnTeamSnapshot -= handler,
-                        () => Time.realtimeSinceStartup);
+                        () => Time.realtimeSinceStartup, game.RpcGuard);
                     _client.PrepareMatchNetwork = (ready, failed) => game.Battle.RegionProbe.Prepare(_ => ready(), failed);
                     _client.MatchRecovery = game.TeamMatchRecovery;
                     _client.ActionRecovery = game.TeamActionRecovery;
                     MatchEntry = new BattleMatchEntryClient(_client, game.Battle,
-                        BattleUiStyle.PveTeamBattleConfigId, BattleUiStyle.Pvp1V1BattleConfigId);
+                        BattleUiStyle.PveTeamBattleConfigId, BattleUiStyle.Pvp1V1BattleConfigId,
+                        () => Time.realtimeSinceStartup, game.RpcGuard);
                     MatchEntry.Notice += ShowMatchNotice;
                     _client.Changed += SyncState;
                     if (game.LandingSync != null) _landingSync = LandingSyncBindings.BindTeam(game.LandingSync, _client);

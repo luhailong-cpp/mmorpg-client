@@ -1023,6 +1023,159 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             AssertRejected(() => _client.StartMatch(1, 3, Match.MatchMode.PvpTeam), "上一笔队伍开局结果尚未确认，请先恢复原请求。");
         }
 
+        [TestCase(false)]
+        [TestCase(true)]
+        public void PvpQueueReceiptUsesRecoveryWordingOnlyWhenRecovering(bool recovering)
+        {
+            WithTemporaryMatchRecovery("team-queue-receipt-", store =>
+            {
+                Loaded(PvpPairView(1));
+                Assert.That(_client.StartMatch(1, 2, Match.MatchMode.PvpTeam), Is.True);
+                string requestId = LastRequest<StartTeamMatchRequest>().RequestId;
+                if (recovering)
+                {
+                    _net.Fail("rpc timeout");
+                    _net.Identity = new object();
+                    _client.ObserveConnection();
+                    _now += 4;
+                    _client.DrainQueued(false);
+                    Assert.That(LastRequest<GetMyTeamRequest>().MatchRequestId, Is.EqualTo(requestId));
+                }
+                _net.Reply(new TeamResponse
+                {
+                    Team = QueuedPvpPairView(2),
+                    MatchIntent = new TeamMatchIntent { RequestId = requestId, State = 2 },
+                });
+                Assert.That(store.Load(10), Is.Empty);
+                Assert.That(_client.MatchQueued, Is.True);
+                Assert.That(_client.Status, Is.EqualTo(recovering ? "原队伍匹配已确认入队。" : "队伍正在匹配 PVP（2v2），等待真人…"),
+                    "首发请求的回执沿用排队提示，只有恢复查询才改用确认用语");
+            });
+        }
+
+        [Test]
+        public void FirstDirectStartReceiptKeepsTheGatheringText()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(7), Is.True);
+            string requestId = LastRequest<StartTeamMatchRequest>().RequestId;
+            _net.Reply(new TeamResponse { Team = LeaderView(2), MatchIntent = new TeamMatchIntent { RequestId = requestId, BattleId = 700, State = 1 } });
+            Assert.That(_client.Status, Is.EqualTo("已发起队伍战斗，正在集合队员…"));
+            _now += 1;
+            Assert.That(_client.StartMatch(7), Is.True);
+            Assert.That(LastRequest<StartTeamMatchRequest>().RequestId, Is.Not.EqualTo(requestId), "已受理的原意图已经释放");
+        }
+
+        [Test]
+        public void PredecessorReceiptFromRecoveryReleasesTheIntentAndAllowsANewStart()
+        {
+            WithTemporaryMatchRecovery("team-predecessor-receipt-", store =>
+            {
+                Loaded(PvpPairView(1));
+                Assert.That(_client.StartMatch(1, 2, Match.MatchMode.PvpTeam), Is.True);
+                string requestId = LastRequest<StartTeamMatchRequest>().RequestId;
+                _net.Fail("rpc timeout");
+                _net.Identity = new object();
+                _client.ObserveConnection();
+                _now += 4;
+                _client.DrainQueued(false);
+                Assert.That(LastRequest<GetMyTeamRequest>().MatchRequestId, Is.EqualTo(requestId));
+                _net.Reply(new TeamResponse
+                {
+                    Team = PvpPairView(2),
+                    MatchIntent = new TeamMatchIntent { RequestId = requestId, State = TeamClient.PredecessorStartIntentState },
+                });
+                Assert.That(store.Load(10), Is.Empty, "过户前的原件不能再恢复，本机记录要清掉");
+                Assert.That(_client.Status, Is.EqualTo(TeamClient.PredecessorStartIntentMessage));
+                _now += 1;
+                Assert.That(_client.StartMatch(1, 3, Match.MatchMode.PvpTeam), Is.True, "换人数档也能重新发起");
+                Assert.That(LastRequest<StartTeamMatchRequest>().RequestId, Is.Not.EqualTo(requestId));
+            });
+        }
+
+        [Test]
+        public void PredecessorReceiptOnAResentStartReleasesTheIntent()
+        {
+            Loaded();
+            Assert.That(_client.StartMatch(7), Is.True);
+            var original = LastRequest<StartTeamMatchRequest>().Clone();
+            _net.Fail("timeout");
+            _net.Identity = new object();
+            _client.ObserveConnection();
+            _now += 4;
+            _client.DrainQueued(false);
+            _net.Reply(new TeamResponse { Team = LeaderView(2) }); // 查不到原件:保留原意图
+            _now += 1;
+            Assert.That(_client.StartMatch(7), Is.True);
+            Assert.That(LastRequest<StartTeamMatchRequest>(), Is.EqualTo(original), "沿用原请求重发");
+            _net.Reply(new TeamResponse
+            {
+                Team = LeaderView(3),
+                ErrorMessage = new TipInfoMessage { Id = (uint)common_error.KInvalidParameter },
+                MatchIntent = new TeamMatchIntent { RequestId = original.RequestId, State = TeamClient.PredecessorStartIntentState },
+            });
+            Assert.That(_client.Status, Is.EqualTo(TeamClient.PredecessorStartIntentMessage));
+            _now += 1;
+            Assert.That(_client.StartMatch(7), Is.True);
+            Assert.That(LastRequest<StartTeamMatchRequest>().RequestId, Is.Not.EqualTo(original.RequestId));
+        }
+
+        private static TeamView QueuedPvpPairView(ulong version)
+        {
+            var view = PvpPairView(version);
+            view.MatchState = TeamBackfillProtocol.QueuedState;
+            view.MatchMode = Match.MatchMode.PvpTeam;
+            view.MatchTargetSize = 2;
+            view.MatchBattleConfigId = 1;
+            view.MatchQueuedAtMs = 5000;
+            return view;
+        }
+
+        [Test]
+        public void StartIntentLeftByThePreviousOwnerIsNotRestoredOnceTheRoleChangesOwner()
+        {
+            ulong revision = 7;
+            WithTemporaryMatchRecovery("team-owner-revision-", store =>
+            {
+                Loaded();
+                Assert.That(_client.StartMatch(7), Is.True);
+                string requestId = LastRequest<StartTeamMatchRequest>().RequestId;
+                Assert.That(store.Load(10), Is.Not.Empty);
+
+                // 角色过户之后,新主人在同一台设备上登录:新的客户端实例,归属修订号已变。
+                revision = 8;
+                _client.Dispose();
+                _net = new TeamFakeTransport();
+                _client = new TeamClient(_net, () => _net.Identity, h => _push = h, h => { }, () => _now) { MatchRecovery = store };
+                _now += 4;
+                _client.DrainQueued(false);
+                Assert.That(LastRequest<GetMyTeamRequest>().MatchRequestId, Is.Empty, "前主人留下的开局记录不恢复");
+                _net.Reply(new TeamResponse { Team = LeaderView(2) });
+                _now += 1;
+                Assert.That(_client.StartMatch(7, 5), Is.True, "也不拦新主人换参数开战,旧文件不占槽位");
+                Assert.That(LastRequest<StartTeamMatchRequest>().RequestId, Is.Not.EqualTo(requestId));
+            }, () => revision);
+        }
+
+        // 恢复记录写在系统临时目录下的独立子目录,用完删除;删除前核对路径,不碰临时目录以外的文件。
+        private void WithTemporaryMatchRecovery(string prefix, Action<DurableRequestFileStore> body, Func<ulong> ownerRevision = null)
+        {
+            string directory = System.IO.Path.Combine(System.IO.Path.GetTempPath(), prefix + Guid.NewGuid().ToString("N"));
+            try
+            {
+                var store = new DurableRequestFileStore(directory, ownerRevision);
+                _client.MatchRecovery = store;
+                body(store);
+            }
+            finally
+            {
+                string full = System.IO.Path.GetFullPath(directory);
+                Assert.That(System.IO.Path.GetDirectoryName(full), Is.EqualTo(System.IO.Path.GetFullPath(System.IO.Path.GetTempPath()).TrimEnd(System.IO.Path.DirectorySeparatorChar)));
+                Assert.That(System.IO.Path.GetFileName(full).StartsWith(prefix, StringComparison.Ordinal), Is.True);
+                if (System.IO.Directory.Exists(full)) System.IO.Directory.Delete(full, true);
+            }
+        }
+
         private static TeamView PvpPairView(ulong version)
         {
             var view = View(100, 10, 5, version, 10, 11);

@@ -13,9 +13,10 @@ namespace MmorpgClient.Net
     {
         private readonly DurableRequestFileStore _files;
         private readonly Dictionary<ulong, string> _owned = new();
-        public FileMatchJoinRecovery(string directory, string gatewayBaseUrl)
+        /// <param name="ownerRevision">当前角色的归属修订号来源;角色换主人之前留下的记录按不存在处理(见 DurableRequestFileStore)。</param>
+        public FileMatchJoinRecovery(string directory, string gatewayBaseUrl, Func<ulong> ownerRevision = null)
         {
-            _files = DurableRequestFileStore.ForOrigin(directory,gatewayBaseUrl);
+            _files = DurableRequestFileStore.ForOrigin(directory,gatewayBaseUrl,ownerRevision);
         }
         public Match.JoinQueueRequest Read(ulong playerId, out bool cancellationRequested)
         {

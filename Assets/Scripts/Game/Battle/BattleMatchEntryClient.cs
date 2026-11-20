@@ -1,5 +1,7 @@
 using System;
+using System.Diagnostics;
 using MmorpgClient.Game.Team;
+using MmorpgClient.Net;
 
 namespace MmorpgClient.Game.Battle
 {
@@ -10,19 +12,36 @@ namespace MmorpgClient.Game.Battle
         private readonly BattleClient _battle;
         private readonly uint _pveConfigId;
         private readonly uint _pvpConfigId;
+        private readonly Func<float> _clock;
+        // 与 GameClient.RpcGuard 共享同一套按消息号限流与按服务域熔断；单测无宿主时自建。
+        private readonly RpcGuard _guard;
+        private readonly bool _ownsGuard;
 
-        public BattleMatchEntryClient(TeamClient team, BattleClient battle, uint pveConfigId, uint pvpConfigId)
+        public BattleMatchEntryClient(TeamClient team, BattleClient battle, uint pveConfigId, uint pvpConfigId,
+                                      Func<float> clock = null, RpcGuard rpcGuard = null)
         {
             _team = team;
             _battle = battle;
             _pveConfigId = pveConfigId;
             _pvpConfigId = pvpConfigId;
+            if (clock == null)
+            {
+                var stopwatch = Stopwatch.StartNew();
+                _clock = () => (float)stopwatch.Elapsed.TotalSeconds;
+            }
+            else
+            {
+                _clock = clock;
+            }
+            _ownsGuard = rpcGuard == null;
+            _guard = rpcGuard ?? new RpcGuard(_clock);
         }
 
         public uint CurrentSize => _team.HasTeam ? (uint)Math.Max(1, _team.Snapshot.Members.Count) : 1;
         public bool IsMember => _team.HasTeam && !_team.IsLeader;
         public bool Pending => _team.MatchNetworkPreparing || _team.PendingAction == TeamAction.StartMatch;
         public bool CanStartNow => StartBlockedReason.Length == 0;
+        public bool CanCancelNow => _battle.Phase != BattlePhase.Queued || _guard.CanSend(MessageIds.CancelQueue);
         public string StartBlockedReason
         {
             get
@@ -34,6 +53,8 @@ namespace MmorpgClient.Game.Battle
                     return "已有匹配或战斗正在进行。";
                 if (_team.HasTeam && _team.Busy) return "正在同步队伍，请稍候重试。";
                 if (_team.HasTeam && _team.StartMatchCoolingDown) return "操作冷却中，请稍候再试。";
+                if (!_team.HasTeam && _guard.IsCircuitOpen(MessageIds.JoinQueue)) return "匹配服务暂时繁忙，请稍候再试。";
+                if (!_team.HasTeam && _guard.IsRateLimited(MessageIds.JoinQueue)) return "操作冷却中，请稍候再试。";
                 return string.Empty;
             }
         }
@@ -51,6 +72,7 @@ namespace MmorpgClient.Game.Battle
                 return;
             }
 
+            if (!ConsumeLocalQuota(MessageIds.JoinQueue)) return;
             _battle.JoinQueue(Match.MatchMode.PveSolo, _pveConfigId);
             ShowSoloStatus("正在发起单人 PVE…");
         }
@@ -83,11 +105,28 @@ namespace MmorpgClient.Game.Battle
                 return;
             }
 
+            if (!ConsumeLocalQuota(MessageIds.JoinQueue)) return;
             _battle.JoinQueue(Match.MatchMode.PvpTeam, _pvpConfigId, targetSize);
             ShowSoloStatus("正在发起 PVP 匹配…");
         }
 
-        public void Cancel() => _battle.CancelQueue();
+        public bool Cancel()
+        {
+            if (_battle.Phase == BattlePhase.Queued && !ConsumeLocalQuota(MessageIds.CancelQueue))
+                return false;
+            Reset();
+            _battle.CancelQueue();
+            return true;
+        }
+
+        private bool ConsumeLocalQuota(uint messageId)
+        {
+            if (_guard.IsCircuitOpen(messageId)) { ShowStatus("匹配服务暂时繁忙，请稍候再试。"); return false; }
+            if (_guard.IsRateLimited(messageId)) { ShowStatus("操作冷却中，请稍候再试。"); return false; }
+            // 共享 GameClient.RpcGuard 时由 GameClient.CallMethod 统一记账，避免重复计数。
+            if (_ownsGuard && !_guard.TryBeginCall(messageId, out _)) { ShowStatus("操作冷却中，请稍候再试。"); return false; }
+            return true;
+        }
 
         public void Reset() => Status = string.Empty;
 

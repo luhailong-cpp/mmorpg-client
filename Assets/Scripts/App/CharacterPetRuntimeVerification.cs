@@ -197,6 +197,11 @@ namespace MmorpgClient.App
                 _client.Pets.GmGrantPet(_plan.petTableId);
                 yield return WaitFor(() => !_client.Pets.Busy, 20, "GM pet grant timed out");
             }
+            if (_failure == null && _client.Pets.Pets.ActivePetId == 0 && _client.Pets.Pets.Pets.Count > 0)
+            {
+                _client.Pets.Summon(_client.Pets.Pets.Pets[0].PetId);
+                yield return WaitFor(() => !_client.Pets.Busy, 20, "Pet summon timed out");
+            }
             if (_failure != null) yield break;
             bool currencyDone = false;
             SceneCurrencyClientPlayerRpc.GmAddCurrency(_client,
@@ -264,6 +269,7 @@ namespace MmorpgClient.App
                 yield return WaitFor(() => !_client.Skills.State.IsBusy, 20, "Skill upgrade timed out");
                 if ((_client.Skills.State.Snapshot?.Find(id)?.Rank ?? 0) == 0)
                 { _failure = "Live skill learning failed: " + id + " " + _client.Skills.State.Error + " " + _client.Skills.State.Message; yield break; }
+                yield return new WaitForSecondsRealtime(0.85f);
             }
         }
 
@@ -279,6 +285,9 @@ namespace MmorpgClient.App
                 case "click":
                     var button = FindButton(step.target);
                     Click(button);
+                    break;
+                case "click-battle-unit":
+                    Click(FindBattleUnitButton(step.target));
                     break;
                 case "focus": EventSystem.current.SetSelectedGameObject(FindButton(step.target).gameObject); break;
                 case "assert-interactable":
@@ -403,6 +412,19 @@ namespace MmorpgClient.App
             .Concat(FindObjectsByType<Text>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)
                 .Where(text => text.gameObject.activeInHierarchy && text.enabled).Select(text => text.text))
             .Where(text => !string.IsNullOrWhiteSpace(text));
+        private Button FindBattleUnitButton(string role)
+        {
+            var actors = _client?.Battle?.State?.Actors ?? throw new InvalidOperationException("No live battle state");
+            var myActor = actors.FirstOrDefault(a => a.ActorId == _client.PlayerId);
+            var target = role switch
+            {
+                "self" => myActor,
+                "pet" => actors.FirstOrDefault(a => a.ActorType == eBattleActorType.BattleActorTypePet && a.OwnerPlayerId == _client.PlayerId && !a.IsDead && !a.Fled),
+                "enemy" => actors.FirstOrDefault(a => myActor != null && a.TeamIndex != myActor.TeamIndex && !a.IsDead && !a.Fled),
+                _ => throw new InvalidOperationException("Unknown battle unit role: " + role),
+            } ?? throw new InvalidOperationException("No live battle unit found for role: " + role);
+            return FindButton("Unit_" + target.ActorId + "/Hit");
+        }
         private static Button FindButton(string target)
         {
             var matches = Buttons().Where(button => button.name == target || Hierarchy(button.transform).EndsWith("/" + target, StringComparison.Ordinal)).ToArray();

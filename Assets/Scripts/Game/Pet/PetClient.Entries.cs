@@ -29,8 +29,9 @@ namespace MmorpgClient.Game.Pet
         {
             if (!IsReady) { completed?.Invoke(null, "连接未就绪"); return; }
             int generation = _entriesGeneration; ulong owner = MyPlayerId;
+            // shortcut: omits zero entries so target stays <=20 (kProtoFieldCheckerThreshold); raise scene threshold if entry_total_points ever exceeds 20.
             var request = new PreviewPetEntriesRequest { PetId = petId, StateVersion = stateVersion, ConfigVersion = configVersion };
-            foreach (var pair in target) request.Target[pair.Key] = pair.Value;
+            if (target != null) foreach (var pair in target) if (pair.Value > 0) request.Target[pair.Key] = pair.Value;
             _net.Call(MessageIds.PreviewPetEntries, request, PreviewPetEntriesResponse.Parser,
                 response => {
                     if (generation != _entriesGeneration || owner != MyPlayerId) return;
@@ -50,7 +51,7 @@ namespace MmorpgClient.Game.Pet
             {
                 if (target == null || petId == 0 || stateVersion == 0 || configVersion == 0) { completed?.Invoke(false, null, "条目规则尚未同步。"); return; }
                 _pendingEntries = new SavePetEntriesRequest { PetId = petId, StateVersion = stateVersion, ConfigVersion = configVersion, RequestId = Guid.NewGuid().ToString("N") };
-                foreach (var pair in target) _pendingEntries.Target[pair.Key] = pair.Value;
+                foreach (var pair in target) if (pair.Value > 0) _pendingEntries.Target[pair.Key] = pair.Value;
                 _entriesPlayerId = MyPlayerId;
             }
             // 超时只能原样重试；不能把改过的草稿套用旧 request_id。

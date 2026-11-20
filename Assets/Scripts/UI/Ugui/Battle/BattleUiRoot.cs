@@ -505,7 +505,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     _queuePanel?.SetQueueing(false);
                     EndAdoptedQueueHint("队伍匹配已结束。");
                     _channelReadyToast = null; // 本局已收尾:不再补「战斗开始 / 已重新连接」
-                    // 结算面板/回合播放还在时不收屏,等玩家确认。
+                    // 结算面板/回合播放还在时不收屏,等面板收起(倒计时到点自动收,或玩家提前点)。
                     // 直连判定战斗已结束(BattleGone)时也走到这里,scene 结算的 NotifyBattleEnd 可能随后才到:
                     // 结算面板挂在模态层,不依赖战斗屏,屏收了照样能弹(ShowResult)
                     if (!_resultShowing && !_playing && _pendingEnd == null)

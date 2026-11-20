@@ -79,7 +79,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(CharacterSupportModel.TotalBonus(panel, false, battle, true), Is.EqualTo("25%"));
             battle.Healing.Complete = false;
             Assert.That(CharacterSupportModel.TotalBonus(panel, false, battle, true), Is.EqualTo("—"));
-            Assert.That(CharacterSupportModel.Sources(panel, null, false, battle, true).Find(row => row.Label == "装备同类来源上限").Value, Is.EqualTo("—"));
+            Assert.That(CharacterSupportModel.Sources(panel, null, false, battle, true).First(row => row.Name == "装备同类来源上限").Value, Is.EqualTo("—"));
         }
         [Test]
         public void SourcesUseEffectiveContributionsAndKeepConditionalItemsOutOfTotal()

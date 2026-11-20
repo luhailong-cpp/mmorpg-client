@@ -21,6 +21,24 @@ namespace MmorpgClient.Core
         private const string K_Zone     = "mmorpg.zone";
         private const string K_LogLevel = "mmorpg.loglevel";
         private const string K_RecentZones = "mmorpg.recentzones";
+        private const string K_LoginMethod = "mmorpg.loginmethod";
+
+        /// <summary>
+        /// Google 登录(安卓 Credential Manager)的 serverClientId,构建常量:必须等于服务端 AuthProviders.Google.ClientId,
+        /// 即 Web 类型的 OAuth 客户端 ID;填安卓类型的客户端 ID 时令牌的 aud 对不上,登录一律被拒
+        /// (服务端 docs/design/account-deletion.md §3.2)。空串 = 这个安装包不提供 Google 登录,按钮不显示。
+        /// </summary>
+        public const string GoogleServerClientId = "";
+
+        /// <summary>
+        /// 玩家最近一次登录用的方式(拿到凭据、发起 /api/login 时记;LoginAuthTypes 的取值,不含任何凭据)。
+        /// 注销账号时按它重新认证:Apple / Google 重新拉起渠道,其余重输口令。
+        /// </summary>
+        public static string LastLoginMethod
+        {
+            get => PlayerPrefs.GetString(K_LoginMethod, "");
+            set { PlayerPrefs.SetString(K_LoginMethod, value ?? ""); PlayerPrefs.Save(); }
+        }
 
         public static string GatewayBaseUrl
         {

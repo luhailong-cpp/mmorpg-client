@@ -22,6 +22,12 @@ namespace MmorpgClient.Game.Team
         /// <summary>每侧 5 人的 PVP 不收 4 人队(服务端回 KTeamPvpPartySizeNotAllowed);本地先拦时用同一句。</summary>
         public const string PvpFourStackMessage = "5V5 匹配不支持 4 人队伍，请调整到 1～3 人或满 5 人。";
         public const string PvpRatingGapMessage = "队员之间的匹配评分相差过大，不能一起匹配。";
+        /// <summary>
+        /// TeamMatchIntent.state=6:原请求号的原件属于角色此前的归属(过户前留下的),当前角色不能恢复也不能沿它提交,
+        /// 本机原意图直接释放。与服务端 authority.TeamMatchIntentForeign 同值。
+        /// </summary>
+        public const uint PredecessorStartIntentState = 6;
+        public const string PredecessorStartIntentMessage = "上一笔队伍开局记录属于角色此前的归属，已清除，可以重新发起。";
         // 与 robot 的 400ms 一致,只防连点;gate 的限流按 message_id 另算,见 MessageWindowSeconds。
         public const float  MinSendIntervalSeconds      = 0.4f;
         /// <summary>
@@ -39,6 +45,9 @@ namespace MmorpgClient.Game.Team
         public const float  MessageWindowSeconds        = 2.5f;
         /// <summary>后台读失败(限流、服务端读失败、回包不带视图)后,排队的读至少隔这么久再补发。</summary>
         public const float  ReadRetryDelaySeconds       = 3f;
+        /// <summary>后台读连续下游故障达到此阈值后打开客户端熔断，暂停后台重试 <see cref="ReadBreakerOpenSeconds"/> 秒（1008 限流不计入）。</summary>
+        public const int    ReadBreakerFailureThreshold = 3;
+        public const float  ReadBreakerOpenSeconds      = 15f;
         // data/MessageLimiter.xlsx:GetMyTeam / ListMyInvites 每秒 5 次,其余 10 个写操作每秒 3 次。
         private const int ReadQuota = 5;
         private const int WriteQuota = 3;
@@ -82,8 +91,9 @@ namespace MmorpgClient.Game.Team
         private int _queueViewVerifyLeft;
         private float _queueViewVerifyAt = float.PositiveInfinity;
         private bool _startExpectsQueue;   // 在途的 StartMatch 带的目标人数大于当时的人数(补位)
-        // 每个 message_id 最近几次真正发出的时刻。限流按连接算,Reset 不清(同 _lastSendAt)。
-        private readonly Dictionary<uint, Queue<float>> _sentAt = new Dictionary<uint, Queue<float>>();
+        // 统一限流与组队服务域熔断守卫：生产由 GameClient 共享注入，单测无宿主时自建。
+        private readonly RpcGuard _guard;
+        private readonly bool _ownsGuard;
         // ListMyInvites 发出之后收到的邀请推送 / 撤回事件(按 TeamId)。邀请没有排序键,推送走 Kafka、
         // 回包走路由服,两路不保序:更早读的回包整表替换时,据此补回新推送的邀请、剔除已撤回的邀请。
         private readonly HashSet<ulong> _pushedInvites = new HashSet<ulong>();
@@ -174,7 +184,8 @@ namespace MmorpgClient.Game.Team
                           Func<object> connectionIdentity = null,
                           Action<Action<TeamSnapshotS2C>> subscribeSnapshot = null,
                           Action<Action<TeamSnapshotS2C>> unsubscribeSnapshot = null,
-                          Func<float> clock = null)
+                          Func<float> clock = null,
+                          RpcGuard rpcGuard = null)
         {
             _net = net ?? throw new ArgumentNullException(nameof(net));
             _connectionIdentity = connectionIdentity ?? (() => _net);
@@ -188,6 +199,10 @@ namespace MmorpgClient.Game.Team
             {
                 _clock = clock;
             }
+            _ownsGuard = rpcGuard == null;
+            _guard = rpcGuard ?? new RpcGuard(_clock,
+                circuitFailureThreshold: ReadBreakerFailureThreshold,
+                circuitOpenSeconds: ReadBreakerOpenSeconds);
 
             _lastSendAt = _lastRefreshAt = _readRetryAt = float.NegativeInfinity;
             Invites = _invites.AsReadOnly();
@@ -225,8 +240,9 @@ namespace MmorpgClient.Game.Team
             _invites.Clear(); _pushedInvites.Clear(); _revokedInvites.Clear(); HighlightPlayerId = 0;
             RefreshQueued = InvitesQueued = _notifyOnlineQueued = true;
             _regroupQueued = false;
-            // _lastSendAt / _sentAt 不清:限流按连接算。
+            // _lastSendAt / 限流窗口不清:限流按连接算;仅复位组队域熔断。
             _lastRefreshAt = _readRetryAt = float.NegativeInfinity;
+            _guard.RecordServiceSuccess(MessageIds.GetMyTeam);
             Status = RequiresReconnect ? RecoveryMessage : Suspended ? SuspendedMessage : ConnectingMessage;
             Changed?.Invoke();
         }
@@ -241,6 +257,8 @@ namespace MmorpgClient.Game.Team
             Busy = false;
             RequiresReconnect = false;
             Suspended = false;
+            if (_ownsGuard) _guard.Reset();
+            _lastSendAt = float.NegativeInfinity;
             Reset();
         }
 
@@ -251,6 +269,8 @@ namespace MmorpgClient.Game.Team
             Busy = false;
             RequiresReconnect = false;
             Suspended = false;
+            if (_ownsGuard) _guard.Reset();
+            _lastSendAt = float.NegativeInfinity;
             Reset();
         }
 
@@ -284,12 +304,13 @@ namespace MmorpgClient.Game.Team
                     RefreshQueued = true;
                 }
             }
-            // 排队的读在退避期内不补发;面板的 30 秒刷新本来就隔得够久,不受退避影响。
-            bool retryReady = now >= _readRetryAt;
+            // 排队的读在退避期或熔断期内不补发;面板的 30 秒刷新在熔断期内同样跳过。
+            bool breakerAllows = !_guard.IsCircuitOpen(MessageIds.GetMyTeam);
+            bool retryReady = now >= _readRetryAt && breakerAllows;
             if ((RefreshQueued || !HasLoaded) && retryReady) { SendRefresh(silent: true); return; }
             if (HasLoaded && ReplayActionIntent(now)) return;
             if (InvitesQueued && retryReady) { SendInvites(silent: true); return; }
-            if (panelVisible && now >= _lastRefreshAt + PanelRefreshIntervalSeconds) SendRefresh(silent: true);
+            if (panelVisible && breakerAllows && now >= _lastRefreshAt + PanelRefreshIntervalSeconds) SendRefresh(silent: true);
         }
 
         public void Dispose()
@@ -409,11 +430,11 @@ namespace MmorpgClient.Game.Team
             return Send(TeamAction.StartMatch,0,MessageIds.StartTeamMatch,request,TeamResponse.Parser,false,reply=>{
                 FinishWrite(TeamAction.StartMatch,0,reply,"已发起队伍战斗，正在集合队员…");
                 // 统一后的服务器若返回正式恢复意图，始终以它为准，包括目标人数大于当前人数的请求。
-                if (reply.MatchIntent != null) { ObserveStartIntent(reply); return; }
+                if (reply.MatchIntent != null) { ObserveStartIntent(reply, recovery: false); return; }
                 // 远端补位分支尚无 MatchIntent；明确成功回包已确认入队，保留队列原文案。
                 if (backfill && Ok(reply.ErrorMessage)) { ClearStartIntent(); return; }
                 if(!_startHadUncertainAttempt&&reply.ErrorMessage!=null&&reply.ErrorMessage.Id!=0&&!TipFaults.IsFault(reply.ErrorMessage.Id)){ClearStartIntent();return;}
-                ObserveStartIntent(reply);
+                ObserveStartIntent(reply, recovery: false);
             },beforeSend:()=>{
                 // 只有真正越过 Busy/冷却/前置条件后再发原请求，才属于再次尝试；本地拒绝的连点不算。
                 if (_pendingStart != null) _startHadUncertainAttempt = true;
@@ -434,24 +455,28 @@ namespace MmorpgClient.Game.Team
                 _pendingStart=request;_startHadUncertainAttempt=true;RefreshQueued=true;Status="有待确认队伍开局，正在查询原请求。";
             }catch(Exception){_startRecoveryBlocked=true;Status="开局恢复记录损坏或无法读取，保留保护状态。";}
         }
-        private void ObserveStartIntent(TeamResponse response)
+        /// <param name="recovery">恢复查询(GetMyTeam)的回包;false 是开战请求自己的回包。</param>
+        private void ObserveStartIntent(TeamResponse response, bool recovery)
         {
             if(_pendingStart==null)return;
+            // 首发请求的回包已由 FinishWrite 写好提示；只有恢复查询或重发的原请求才改用「原……」确认用语。
+            bool announce = recovery || _startHadUncertainAttempt;
             var view=response.MatchIntent;
             if (view != null && view.RequestId == _pendingStart.RequestId)
             {
                 _backfillIntentRecoverySupported = true;
-                // 同一原请求的排队已受理或无战斗撤销都是确定结果；未知/预留中仍保留原意图。
-                if (view.BattleId == 0 && (view.State == 2 || view.State == 5))
+                // 同一原请求的排队已受理、无战斗撤销、原件属于角色此前的归属，都是确定结果；未知/预留中仍保留原意图。
+                if (view.BattleId == 0 && (view.State == 2 || view.State == 5 || view.State == PredecessorStartIntentState))
                 {
                     try { ClearStartIntent(); }
                     catch (Exception) { Status = "原匹配结果已确认，本机恢复记录尚未清理。"; return; }
-                    if (view.State == 2)
+                    if (view.State == PredecessorStartIntentState) Status = PredecessorStartIntentMessage;
+                    else if (view.State == 2)
                     {
-                        Status = "原队伍匹配已确认入队。";
+                        if (announce) Status = "原队伍匹配已确认入队。";
                         if (!MatchQueued) ExpectQueuedView();
                     }
-                    else Status = "原队伍开局已确认中止。";
+                    else if (announce) Status = "原队伍开局已确认中止。";
                     return;
                 }
             }
@@ -469,7 +494,7 @@ namespace MmorpgClient.Game.Team
             if(view!=null&&view.RequestId==_pendingStart.RequestId&&view.BattleId!=0&&view.State>=1&&view.State<=5){
                 try{ClearStartIntent();}
                 catch(Exception){Status="开局已受理，本机恢复记录尚未清理。";return;}
-                Status=view.State==5?"原队伍开局已确认中止。":"原队伍开局已受理，正在恢复战斗。";
+                if(announce)Status=view.State==5?"原队伍开局已确认中止。":"原队伍开局已受理，正在恢复战斗。";
             }else{RefreshQueued=true;_readRetryAt=_clock()+ReadRetryDelaySeconds;Status="队伍开局结果尚未确认；重试会使用原请求。";}
         }
         private void ClearStartIntent(){if(_pendingStart==null)return;MatchRecovery?.Clear(PlayerId,Convert.ToBase64String(_pendingStart.ToByteArray()));_pendingStart=null;_startHadUncertainAttempt=false;_backfillIntentRecoverySupported=false;}
@@ -554,6 +579,9 @@ namespace MmorpgClient.Game.Team
                 if (request.NotifyOnline) _notifyOnlineQueued = true;
                 if (request.Regroup) _regroupQueued = true;
             }
+            bool readFault = !hasView || (!Ok(reply.ErrorMessage) && TipFaults.IsFault(reply.ErrorMessage.Id));
+            if (readFault) _guard.RecordServiceFault(MessageIds.GetMyTeam);
+            else _guard.RecordServiceSuccess(MessageIds.GetMyTeam);
             if (Ok(reply.ErrorMessage))
             {
                 // 探针是静默发送的,Reset 写下的"正在连接组队服务…"要在这里收掉,否则会一直挂在状态栏上。
@@ -567,7 +595,7 @@ namespace MmorpgClient.Game.Team
             {
                 Status = DescribeTip(reply.ErrorMessage);   // 静默也写
             }
-            ObserveStartIntent(reply);
+            ObserveStartIntent(reply, recovery: true);
         }
 
         /// <summary>
@@ -579,11 +607,15 @@ namespace MmorpgClient.Game.Team
         {
             if (!Ok(reply.ErrorMessage))
             {
+                // 仅下游服务故障计入熔断；正常业务拒绝不触发熔断，但需释放可能占用的 HalfOpen 探测槽。
+                if (TipFaults.IsFault(reply.ErrorMessage.Id)) _guard.RecordServiceFault(MessageIds.ListMyInvites);
+                else _guard.ReleaseServiceProbe(MessageIds.ListMyInvites);
                 Status = DescribeTip(reply.ErrorMessage);
                 InvitesQueued = true;
                 _readRetryAt = _clock() + ReadRetryDelaySeconds;
                 return;
             }
+            _guard.RecordServiceSuccess(MessageIds.ListMyInvites);
             var pushed = new List<TeamInvite>();
             foreach (var invite in _invites)
                 if (_pushedInvites.Contains(invite.TeamId)) pushed.Add(invite);
@@ -671,6 +703,31 @@ namespace MmorpgClient.Game.Team
         private void OnTransportError(string error, TeamAction action, IMessage request, bool probe, bool silent)
         {
             if (!ObserveActionTransportError(action, error)) return;
+            if (error == RpcGuard.CircuitOpenError)
+            {
+                // 统一熔断期本地快速失败：请求未发出，不锁面板、不停用；首次开局记录可安全清理。
+                if (action == TeamAction.StartMatch && _pendingStart != null && !_startHadUncertainAttempt)
+                {
+                    try { ClearStartIntent(); }
+                    catch (Exception)
+                    {
+                        _startRecoveryBlocked = true;
+                        Status = "已拒绝的开局记录无法清理，请修复本机存储后重新登录。";
+                        return;
+                    }
+                }
+                if (action == TeamAction.Refresh) RefreshQueued = true;
+                if (action == TeamAction.ListInvites) InvitesQueued = true;
+                if (request is GetMyTeamRequest refreshReq)
+                {
+                    if (refreshReq.NotifyOnline) _notifyOnlineQueued = true;
+                    if (refreshReq.Regroup) _regroupQueued = true;
+                }
+                if (action == TeamAction.Refresh || action == TeamAction.ListInvites)
+                    _readRetryAt = _clock() + ReadRetryDelaySeconds;
+                if (!silent) Status = "组队服务暂时繁忙，请稍候再试。";
+                return;
+            }
             if (error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal))
             {
                 if (IsRateLimited(error))
@@ -698,16 +755,24 @@ namespace MmorpgClient.Game.Team
                         if (refresh.Regroup) _regroupQueued = true;
                     }
                     if (action == TeamAction.Refresh || action == TeamAction.ListInvites)
+                    {
+                        // 1008 限流不计入下游熔断失败，只退避并释放可能占用的 HalfOpen 探测槽位。
+                        _guard.ReleaseServiceProbe(MessageIds.GetMyTeam);
                         _readRetryAt = _clock() + ReadRetryDelaySeconds;
+                    }
                     if (!silent) Status = TooFastMessage;
                     return;
                 }
+                if (_ownsGuard && (action == TeamAction.Refresh || action == TeamAction.ListInvites))
+                    _guard.RecordServiceFault(MessageIds.GetMyTeam);
                 // 其余外层信封错误(路由服 / gate 拒绝、非法消息):本连接内不再发 team 消息。
                 Suspended = true;
                 HasFreshView = false;
                 Status = SuspendedMessage;
                 return;
             }
+            if (_ownsGuard && (action == TeamAction.Refresh || action == TeamAction.ListInvites))
+                _guard.RecordServiceFault(MessageIds.GetMyTeam);
             if (probe && error == "rpc timeout")
             {
                 // 探针超时:组队服务很可能未上线(灰度),本连接停用,等真实断线后再探。
@@ -1184,19 +1249,13 @@ namespace MmorpgClient.Game.Team
         }
 
         /// <summary>同一 message_id 在 MessageWindowSeconds 内是否还有配额(读 5 次、写 3 次)。</summary>
-        private bool HasQuota(uint messageId, bool read, float now)
-        {
-            if (!_sentAt.TryGetValue(messageId, out var sent)) return true;
-            // 写成"最早一次 + 窗口"而不是减法,理由同 TooSoon。
-            return sent.Count < (read ? ReadQuota : WriteQuota) || now >= sent.Peek() + MessageWindowSeconds;
-        }
+        private bool HasQuota(uint messageId, bool read, float now) =>
+            !_guard.IsRateLimited(messageId);
 
         private void RecordSend(uint messageId, bool read, float now)
         {
-            if (!_sentAt.TryGetValue(messageId, out var sent)) _sentAt[messageId] = sent = new Queue<float>();
-            sent.Enqueue(now);
-            int quota = read ? ReadQuota : WriteQuota;
-            while (sent.Count > quota) sent.Dequeue();
+            // 共享 GameClient.RpcGuard 时由 GameClient.CallMethod 统一记账；单测独立运行时由此处记账，避免重复计数。
+            if (_ownsGuard) _guard.TryBeginCall(messageId, out _);
         }
 
         // 单飞保证:_generation 只在发新请求(上一个回调必定已到)或 Reset / Dispose(会话边界)时变,

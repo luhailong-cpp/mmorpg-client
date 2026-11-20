@@ -77,7 +77,7 @@ namespace MmorpgClient.Game
                 }
                 else if (assigned.code != AssignGateResult.CodeOk)
                 {
-                    retryable = IsTransientAssignGateCode(assigned.code);
+                    retryable = IsTransientAssignGateCode(assigned);
                     error = $"assign gate code={assigned.code}";
                 }
                 else
@@ -93,7 +93,7 @@ namespace MmorpgClient.Game
                             CancelReconnect();
                             Log($"[gate] reconnect complete player_id={PlayerId} attempts={attempt}");
                             if (battleId != 0) BattleLink?.HandleReconnectHint(battleId);
-                        }, e => enterError = e);
+                        }, e => enterError = e, wsUrl: assigned.gate_ws_url);
                     if (gen != _pipelineGen || entered) yield break;
                     // 票据被拒、或新 gate 接受票据之后登录 / 进场被拒（令牌失效、被顶号、角色不能进）都是服务端结论，
                     // 重试只会和它对抗；只有连不上、验票前断线或超时才算暂时故障。
@@ -103,6 +103,9 @@ namespace MmorpgClient.Game
 
                 if (!retryable) { FailReconnect(gen, error); yield break; }
                 double delay = backoff * (0.8 + 0.4 * _reconnectJitter.NextDouble());
+                // 限流的重试提示(100 ratelimit)至少等服务端给的间隔,不在期限内抢着重调同一个区桶。
+                if (assigned != null && assigned.code == AssignGateResult.CodeQueueing)
+                    delay = Math.Max(delay, QueueRetryDelayMs(assigned.retry_after_ms) / 1000.0);
                 if (MonotonicSeconds + delay >= _reconnectDeadline)
                 { FailReconnect(gen, $"{error}; no time left for attempt {attempt + 1}"); yield break; }
                 Log($"[gate] reconnect attempt {attempt} failed, retrying in {delay:F1}s: {error}");
@@ -116,11 +119,13 @@ namespace MmorpgClient.Game
             }
         }
 
-        // 网关的暂时性结论：限流、内部错误、区暂不可用（例如 gate 正在重启）。
-        // 排队、区不存在、排队过期是确定结论：恢复不能替玩家排队，交回选服流程。
-        private static bool IsTransientAssignGateCode(int code) =>
-            code == AssignGateResult.CodeRateLimited || code == AssignGateResult.CodeInternal ||
-            code == AssignGateResult.CodeZoneUnavailable;
+        // 网关的暂时性结论：限流（429，或 100 且 queue_source="ratelimit"：区桶空时的重试提示，没有排位）、内部错误、
+        // 区暂不可用（例如 gate 正在重启）。开服区桶打满时不把限流提示当失败，否则一断线就被踢回选服。
+        // 真排队（100 且 queue_source="login"）、区不存在、排队过期是确定结论：恢复不能替玩家排队，交回选服流程。
+        private static bool IsTransientAssignGateCode(AssignGateResult r) =>
+            r.code == AssignGateResult.CodeRateLimited || r.code == AssignGateResult.CodeInternal ||
+            r.code == AssignGateResult.CodeZoneUnavailable ||
+            (r.code == AssignGateResult.CodeQueueing && r.queue_source == "ratelimit");
 
         private void CheckReconnectDeadline()
         {

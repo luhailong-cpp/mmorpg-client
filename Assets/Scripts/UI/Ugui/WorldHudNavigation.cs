@@ -13,7 +13,8 @@ namespace MmorpgClient.UI.Ugui
     {
         Role, Pet, Bag, Missions, Activities, Battle, Spectate, Rank,
         Team, Guild, Social, Mail, Trade, Map, Channel, Skills, MysteryMerchant, TeamFollow,
-        BattleScript // 追加在末尾:不挪动已有入口的枚举值
+        BattleScript, // 追加在末尾:不挪动已有入口的枚举值
+        AfkPass // 挂机月卡(AfkPassUiRoot);未单独归类,落在「历练」
     }
 
     /// <summary>
@@ -499,6 +500,7 @@ namespace MmorpgClient.UI.Ugui
             WorldHudEntry.Guild => "同门相聚", WorldHudEntry.Social => "道友往来",
             WorldHudEntry.Mail => "尺素传情", WorldHudEntry.Trade => "寄售寻宝",
             WorldHudEntry.BattleScript => "运筹帷幄",
+            WorldHudEntry.AfkPass => "离线托管",
             _ => string.Empty
         };
 

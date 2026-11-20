@@ -231,6 +231,48 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual(1, _conns.Count, "不重连");
         }
 
+        private static TurnResultS2C TurnResult(eBattleOutcome outcome) => new TurnResultS2C
+        {
+            BattleId = TheBattleId,
+            State = new BattleStateS2C { BattleId = TheBattleId, Outcome = outcome },
+        };
+
+        [Test]
+        public void DecidedTurnResult_MarksLinkEnded_ServerFinIsCleanClose()
+        {
+            // battle 在最后一回合帧之后就关直连;参战方的终局包由 scene 结算后经大厅推,晚于这次 FIN。
+            // 2026-11-18 的日志里每场战斗结束都白重连一次、被 battle 以 ticket_not_in_roster 拒掉,再去排补签。
+            var conn = ConnectAndVerify();
+            int turns = 0;
+            _transport.RegisterNotify(MessageIds.NotifyTurnResult, _ => turns++);
+
+            conn.PushInbound(Notify(MessageIds.NotifyTurnResult, TurnResult(eBattleOutcome.BattleOutcomeSideBWin)));
+            conn.PushDisconnect(); // 服务端:最后一回合帧 → FIN
+            Tick();
+
+            Assert.AreEqual(1, turns, "最后一回合帧照常交给处理器");
+            Assert.AreEqual(BattleDirectLink.LinkState.Closed, _link.State, "之后的 FIN 是正常收尾");
+            Tick(BattleDirectLink.ReconnectDelaySeconds + 1);
+            Assert.AreEqual(1, _conns.Count, "不重连");
+            Assert.IsEmpty(_reissueRequests, "不补签");
+        }
+
+        [Test]
+        public void OngoingTurnResult_ThenFin_IsStillAnUnexpectedDisconnect()
+        {
+            // 反例:战斗还在打,断开必须照常恢复,不能被上一条规则吞掉
+            var conn = ConnectAndVerify();
+            _transport.RegisterNotify(MessageIds.NotifyTurnResult, _ => { });
+
+            conn.PushInbound(Notify(MessageIds.NotifyTurnResult, TurnResult(eBattleOutcome.BattleOutcomeOngoing)));
+            conn.PushDisconnect();
+            Tick();
+            Assert.AreNotEqual(BattleDirectLink.LinkState.Closed, _link.State);
+
+            Tick(BattleDirectLink.ReconnectDelaySeconds + 0.1);
+            Assert.AreEqual(2, _conns.Count, "同票重连");
+        }
+
         [Test]
         public void NotifySpectateEnd_ViaLobby_AlsoMarksEnded()
         {

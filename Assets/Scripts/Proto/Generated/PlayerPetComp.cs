@@ -23,26 +23,34 @@ public static partial class PlayerPetCompReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Cixwcm90by9jb21tb24vY29tcG9uZW50L3BsYXllcl9wZXRfY29tcC5wcm90",
-          "byLCAwoLUGV0SW5zdGFuY2USDgoGcGV0X2lkGAEgASgEEhQKDHBldF90YWJs",
+          "byLEBgoLUGV0SW5zdGFuY2USDgoGcGV0X2lkGAEgASgEEhQKDHBldF90YWJs",
           "ZV9pZBgCIAEoDRIMCgRuYW1lGAMgASgJEg0KBWxldmVsGAQgASgNEi4KCWFs",
           "bG9jYXRlZBgFIAMoCzIbLlBldEluc3RhbmNlLkFsbG9jYXRlZEVudHJ5EiwK",
           "CGFwdGl0dWRlGAYgAygLMhouUGV0SW5zdGFuY2UuQXB0aXR1ZGVFbnRyeRIO",
           "CgZoZWFsdGgYByABKAQSDAoEbWFuYRgIIAEoBBISCgpjcmVhdGVkX2F0GAkg",
           "ASgEEhcKD3NraWxsX3RhYmxlX2lkcxgKIAMoDRIxCgtza2lsbF9yYW5rcxgL",
-          "IAMoCzIcLlBldEluc3RhbmNlLlNraWxsUmFua3NFbnRyeRowCg5BbGxvY2F0",
-          "ZWRFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBGi8KDUFw",
-          "dGl0dWRlRW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgNOgI4ARox",
-          "Cg9Ta2lsbFJhbmtzRW50cnkSCwoDa2V5GAEgASgNEg0KBXZhbHVlGAIgASgN",
-          "OgI4ASLGAQoNUGxheWVyUGV0Q29tcBIaCgRwZXRzGAEgAygLMgwuUGV0SW5z",
-          "dGFuY2USFQoNYWN0aXZlX3BldF9pZBgCIAEoBBIeChZsYXN0X3B1cmNoYXNl",
-          "X3NlcXVlbmNlGAMgASgEEiIKGmxhc3RfcHVyY2hhc2VfcGV0X3RhYmxlX2lk",
-          "GAQgASgNEhwKFGxhc3RfcHVyY2hhc2VfcGV0X2lkGAUgASgEEiAKGGxhc3Rf",
-          "cHVyY2hhc2VfcHJpY2VfZ29sZBgGIAEoBEISWhBjb21tb24vY29tcG9uZW50",
-          "YgZwcm90bzM="));
+          "IAMoCzIcLlBldEluc3RhbmNlLlNraWxsUmFua3NFbnRyeRI5Cg9lbnRyeV9h",
+          "bGxvY2F0ZWQYDCADKAsyIC5QZXRJbnN0YW5jZS5FbnRyeUFsbG9jYXRlZEVu",
+          "dHJ5EhsKE2VudHJ5X3N0YXRlX3ZlcnNpb24YDSABKAQSHQoVZW50cnlfbGFz",
+          "dF9yZXF1ZXN0X2lkGA4gASgJEh8KF2VudHJ5X2xhc3RfYmFzZV92ZXJzaW9u",
+          "GA8gASgEEiEKGWVudHJ5X2xhc3RfY29uZmlnX3ZlcnNpb24YECABKA0SPAoR",
+          "ZW50cnlfbGFzdF90YXJnZXQYESADKAsyIS5QZXRJbnN0YW5jZS5FbnRyeUxh",
+          "c3RUYXJnZXRFbnRyeRIYChBjdWx0aXZhdGlvbl90aWVyGBIgASgNGjAKDkFs",
+          "bG9jYXRlZEVudHJ5EgsKA2tleRgBIAEoDRINCgV2YWx1ZRgCIAEoDToCOAEa",
+          "LwoNQXB0aXR1ZGVFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06",
+          "AjgBGjEKD1NraWxsUmFua3NFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUY",
+          "AiABKA06AjgBGjUKE0VudHJ5QWxsb2NhdGVkRW50cnkSCwoDa2V5GAEgASgN",
+          "Eg0KBXZhbHVlGAIgASgNOgI4ARo2ChRFbnRyeUxhc3RUYXJnZXRFbnRyeRIL",
+          "CgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBIsYBCg1QbGF5ZXJQZXRD",
+          "b21wEhoKBHBldHMYASADKAsyDC5QZXRJbnN0YW5jZRIVCg1hY3RpdmVfcGV0",
+          "X2lkGAIgASgEEh4KFmxhc3RfcHVyY2hhc2Vfc2VxdWVuY2UYAyABKAQSIgoa",
+          "bGFzdF9wdXJjaGFzZV9wZXRfdGFibGVfaWQYBCABKA0SHAoUbGFzdF9wdXJj",
+          "aGFzZV9wZXRfaWQYBSABKAQSIAoYbGFzdF9wdXJjaGFzZV9wcmljZV9nb2xk",
+          "GAYgASgEQhJaEGNvbW1vbi9jb21wb25lbnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::PetInstance), global::PetInstance.Parser, new[]{ "PetId", "PetTableId", "Name", "Level", "Allocated", "Aptitude", "Health", "Mana", "CreatedAt", "SkillTableIds", "SkillRanks" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PetInstance), global::PetInstance.Parser, new[]{ "PetId", "PetTableId", "Name", "Level", "Allocated", "Aptitude", "Health", "Mana", "CreatedAt", "SkillTableIds", "SkillRanks", "EntryAllocated", "EntryStateVersion", "EntryLastRequestId", "EntryLastBaseVersion", "EntryLastConfigVersion", "EntryLastTarget", "CultivationTier" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, null, null, }),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerPetComp), global::PlayerPetComp.Parser, new[]{ "Pets", "ActivePetId", "LastPurchaseSequence", "LastPurchasePetTableId", "LastPurchasePetId", "LastPurchasePriceGold" }, null, null, null, null)
         }));
   }
@@ -99,6 +107,13 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     createdAt_ = other.createdAt_;
     skillTableIds_ = other.skillTableIds_.Clone();
     skillRanks_ = other.skillRanks_.Clone();
+    entryAllocated_ = other.entryAllocated_.Clone();
+    entryStateVersion_ = other.entryStateVersion_;
+    entryLastRequestId_ = other.entryLastRequestId_;
+    entryLastBaseVersion_ = other.entryLastBaseVersion_;
+    entryLastConfigVersion_ = other.entryLastConfigVersion_;
+    entryLastTarget_ = other.entryLastTarget_.Clone();
+    cultivationTier_ = other.cultivationTier_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -271,6 +286,94 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     get { return skillRanks_; }
   }
 
+  /// <summary>Field number for the "entry_allocated" field.</summary>
+  public const int EntryAllocatedFieldNumber = 12;
+  private static readonly pbc::MapField<uint, uint>.Codec _map_entryAllocated_codec
+      = new pbc::MapField<uint, uint>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForUInt32(16, 0), 98);
+  private readonly pbc::MapField<uint, uint> entryAllocated_ = new pbc::MapField<uint, uint>();
+  /// <summary>
+  /// 独立条目池；未知键保留并占预算。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::MapField<uint, uint> EntryAllocated {
+    get { return entryAllocated_; }
+  }
+
+  /// <summary>Field number for the "entry_state_version" field.</summary>
+  public const int EntryStateVersionFieldNumber = 13;
+  private ulong entryStateVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong EntryStateVersion {
+    get { return entryStateVersion_; }
+    set {
+      entryStateVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "entry_last_request_id" field.</summary>
+  public const int EntryLastRequestIdFieldNumber = 14;
+  private string entryLastRequestId_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string EntryLastRequestId {
+    get { return entryLastRequestId_; }
+    set {
+      entryLastRequestId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "entry_last_base_version" field.</summary>
+  public const int EntryLastBaseVersionFieldNumber = 15;
+  private ulong entryLastBaseVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong EntryLastBaseVersion {
+    get { return entryLastBaseVersion_; }
+    set {
+      entryLastBaseVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "entry_last_config_version" field.</summary>
+  public const int EntryLastConfigVersionFieldNumber = 16;
+  private uint entryLastConfigVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EntryLastConfigVersion {
+    get { return entryLastConfigVersion_; }
+    set {
+      entryLastConfigVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "entry_last_target" field.</summary>
+  public const int EntryLastTargetFieldNumber = 17;
+  private static readonly pbc::MapField<uint, uint>.Codec _map_entryLastTarget_codec
+      = new pbc::MapField<uint, uint>.Codec(pb::FieldCodec.ForUInt32(8, 0), pb::FieldCodec.ForUInt32(16, 0), 138);
+  private readonly pbc::MapField<uint, uint> entryLastTarget_ = new pbc::MapField<uint, uint>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::MapField<uint, uint> EntryLastTarget {
+    get { return entryLastTarget_; }
+  }
+
+  /// <summary>Field number for the "cultivation_tier" field.</summary>
+  public const int CultivationTierFieldNumber = 18;
+  private uint cultivationTier_;
+  /// <summary>
+  /// 独立五阶身份，非 quality/acquisition_tier。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CultivationTier {
+    get { return cultivationTier_; }
+    set {
+      cultivationTier_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -297,6 +400,13 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     if (CreatedAt != other.CreatedAt) return false;
     if(!skillTableIds_.Equals(other.skillTableIds_)) return false;
     if (!SkillRanks.Equals(other.SkillRanks)) return false;
+    if (!EntryAllocated.Equals(other.EntryAllocated)) return false;
+    if (EntryStateVersion != other.EntryStateVersion) return false;
+    if (EntryLastRequestId != other.EntryLastRequestId) return false;
+    if (EntryLastBaseVersion != other.EntryLastBaseVersion) return false;
+    if (EntryLastConfigVersion != other.EntryLastConfigVersion) return false;
+    if (!EntryLastTarget.Equals(other.EntryLastTarget)) return false;
+    if (CultivationTier != other.CultivationTier) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -315,6 +425,13 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     if (CreatedAt != 0UL) hash ^= CreatedAt.GetHashCode();
     hash ^= skillTableIds_.GetHashCode();
     hash ^= SkillRanks.GetHashCode();
+    hash ^= EntryAllocated.GetHashCode();
+    if (EntryStateVersion != 0UL) hash ^= EntryStateVersion.GetHashCode();
+    if (EntryLastRequestId.Length != 0) hash ^= EntryLastRequestId.GetHashCode();
+    if (EntryLastBaseVersion != 0UL) hash ^= EntryLastBaseVersion.GetHashCode();
+    if (EntryLastConfigVersion != 0) hash ^= EntryLastConfigVersion.GetHashCode();
+    hash ^= EntryLastTarget.GetHashCode();
+    if (CultivationTier != 0) hash ^= CultivationTier.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -365,6 +482,28 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     }
     skillTableIds_.WriteTo(output, _repeated_skillTableIds_codec);
     skillRanks_.WriteTo(output, _map_skillRanks_codec);
+    entryAllocated_.WriteTo(output, _map_entryAllocated_codec);
+    if (EntryStateVersion != 0UL) {
+      output.WriteRawTag(104);
+      output.WriteUInt64(EntryStateVersion);
+    }
+    if (EntryLastRequestId.Length != 0) {
+      output.WriteRawTag(114);
+      output.WriteString(EntryLastRequestId);
+    }
+    if (EntryLastBaseVersion != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(EntryLastBaseVersion);
+    }
+    if (EntryLastConfigVersion != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(EntryLastConfigVersion);
+    }
+    entryLastTarget_.WriteTo(output, _map_entryLastTarget_codec);
+    if (CultivationTier != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(CultivationTier);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -407,6 +546,28 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     }
     skillTableIds_.WriteTo(ref output, _repeated_skillTableIds_codec);
     skillRanks_.WriteTo(ref output, _map_skillRanks_codec);
+    entryAllocated_.WriteTo(ref output, _map_entryAllocated_codec);
+    if (EntryStateVersion != 0UL) {
+      output.WriteRawTag(104);
+      output.WriteUInt64(EntryStateVersion);
+    }
+    if (EntryLastRequestId.Length != 0) {
+      output.WriteRawTag(114);
+      output.WriteString(EntryLastRequestId);
+    }
+    if (EntryLastBaseVersion != 0UL) {
+      output.WriteRawTag(120);
+      output.WriteUInt64(EntryLastBaseVersion);
+    }
+    if (EntryLastConfigVersion != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(EntryLastConfigVersion);
+    }
+    entryLastTarget_.WriteTo(ref output, _map_entryLastTarget_codec);
+    if (CultivationTier != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(CultivationTier);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -442,6 +603,23 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     }
     size += skillTableIds_.CalculateSize(_repeated_skillTableIds_codec);
     size += skillRanks_.CalculateSize(_map_skillRanks_codec);
+    size += entryAllocated_.CalculateSize(_map_entryAllocated_codec);
+    if (EntryStateVersion != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(EntryStateVersion);
+    }
+    if (EntryLastRequestId.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(EntryLastRequestId);
+    }
+    if (EntryLastBaseVersion != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(EntryLastBaseVersion);
+    }
+    if (EntryLastConfigVersion != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(EntryLastConfigVersion);
+    }
+    size += entryLastTarget_.CalculateSize(_map_entryLastTarget_codec);
+    if (CultivationTier != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(CultivationTier);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -479,6 +657,23 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
     }
     skillTableIds_.Add(other.skillTableIds_);
     skillRanks_.MergeFrom(other.skillRanks_);
+    entryAllocated_.MergeFrom(other.entryAllocated_);
+    if (other.EntryStateVersion != 0UL) {
+      EntryStateVersion = other.EntryStateVersion;
+    }
+    if (other.EntryLastRequestId.Length != 0) {
+      EntryLastRequestId = other.EntryLastRequestId;
+    }
+    if (other.EntryLastBaseVersion != 0UL) {
+      EntryLastBaseVersion = other.EntryLastBaseVersion;
+    }
+    if (other.EntryLastConfigVersion != 0) {
+      EntryLastConfigVersion = other.EntryLastConfigVersion;
+    }
+    entryLastTarget_.MergeFrom(other.entryLastTarget_);
+    if (other.CultivationTier != 0) {
+      CultivationTier = other.CultivationTier;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -543,6 +738,34 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
           skillRanks_.AddEntriesFrom(input, _map_skillRanks_codec);
           break;
         }
+        case 98: {
+          entryAllocated_.AddEntriesFrom(input, _map_entryAllocated_codec);
+          break;
+        }
+        case 104: {
+          EntryStateVersion = input.ReadUInt64();
+          break;
+        }
+        case 114: {
+          EntryLastRequestId = input.ReadString();
+          break;
+        }
+        case 120: {
+          EntryLastBaseVersion = input.ReadUInt64();
+          break;
+        }
+        case 128: {
+          EntryLastConfigVersion = input.ReadUInt32();
+          break;
+        }
+        case 138: {
+          entryLastTarget_.AddEntriesFrom(input, _map_entryLastTarget_codec);
+          break;
+        }
+        case 144: {
+          CultivationTier = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -605,6 +828,34 @@ public sealed partial class PetInstance : pb::IMessage<PetInstance>
         }
         case 90: {
           skillRanks_.AddEntriesFrom(ref input, _map_skillRanks_codec);
+          break;
+        }
+        case 98: {
+          entryAllocated_.AddEntriesFrom(ref input, _map_entryAllocated_codec);
+          break;
+        }
+        case 104: {
+          EntryStateVersion = input.ReadUInt64();
+          break;
+        }
+        case 114: {
+          EntryLastRequestId = input.ReadString();
+          break;
+        }
+        case 120: {
+          EntryLastBaseVersion = input.ReadUInt64();
+          break;
+        }
+        case 128: {
+          EntryLastConfigVersion = input.ReadUInt32();
+          break;
+        }
+        case 138: {
+          entryLastTarget_.AddEntriesFrom(ref input, _map_entryLastTarget_codec);
+          break;
+        }
+        case 144: {
+          CultivationTier = input.ReadUInt32();
           break;
         }
       }

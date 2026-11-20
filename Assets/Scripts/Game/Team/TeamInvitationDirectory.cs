@@ -4,6 +4,7 @@ using System.Globalization;
 using Friendpb;
 using Google.Protobuf;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
 using MmorpgClient.World;
 
@@ -260,6 +261,7 @@ namespace MmorpgClient.Game.Team
 
         private static bool DefiniteRejection(string error)
         {
+            if (error == RpcGuard.CircuitOpenError) return true;
             const string prefix = "server tip=";
             if (string.IsNullOrEmpty(error) || !error.StartsWith(prefix, StringComparison.Ordinal) ||
                 !uint.TryParse(error.Substring(prefix.Length), out uint tip)) return false;

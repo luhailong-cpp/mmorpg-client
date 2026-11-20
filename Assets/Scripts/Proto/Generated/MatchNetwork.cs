@@ -30,34 +30,34 @@ namespace Match {
             "aW9uX2JpbmRpbmcYAyABKAkSFwoPcGh5c2ljYWxfcmVnaW9uGAQgASgNEhYK",
             "DnRhcmdldF9ub2RlX2lkGAUgASgNEhoKEnRhcmdldF9pbnN0YW5jZV9pZBgG",
             "IAEoCRIVCg1leHBpcmVzX2F0X21zGAcgASgEIjgKElNpZ25lZE5ldHdvcmtQ",
-            "cm9iZRIPCgdwYXlsb2FkGAEgASgMEhEKCXNpZ25hdHVyZRgCIAEoDCJzChJO",
-            "ZXR3b3JrUHJvYmVUYXJnZXQSFwoPcGh5c2ljYWxfcmVnaW9uGAEgASgNEgwK",
-            "BGhvc3QYAiABKAkSDAoEcG9ydBgDIAEoDRIoCgVncmFudBgEIAEoCzIZLm1h",
-            "dGNoLlNpZ25lZE5ldHdvcmtQcm9iZSIcChpHZXROZXR3b3JrUHJvYmVQbGFu",
-            "UmVxdWVzdCKrAQobR2V0TmV0d29ya1Byb2JlUGxhblJlc3BvbnNlEg8KB3Bs",
-            "YW5faWQYASABKAkSKgoHdGFyZ2V0cxgCIAMoCzIZLm1hdGNoLk5ldHdvcmtQ",
-            "cm9iZVRhcmdldBIVCg1leHBpcmVzX2F0X21zGAMgASgEEiYKDWVycm9yX21l",
-            "c3NhZ2UYBCABKAsyDy5UaXBJbmZvTWVzc2FnZRIQCghyZXF1aXJlZBgFIAEo",
-            "CCKTAQoTTmV0d29ya1Byb2JlUmVjZWlwdBInCgVncmFudBgBIAEoCzIYLm1h",
-            "dGNoLk5ldHdvcmtQcm9iZUdyYW50Eg4KBnJ0dF9tcxgCIAEoDRIUCgxzYW1w",
-            "bGVfY291bnQYAyABKA0SFgoObWVhc3VyZWRfYXRfbXMYBCABKAQSFQoNZXhw",
-            "aXJlc19hdF9tcxgFIAEoBCJZChlDb21taXROZXR3b3JrUHJvYmVSZXF1ZXN0",
-            "Eg8KB3BsYW5faWQYASABKAkSKwoIcmVjZWlwdHMYAiADKAsyGS5tYXRjaC5T",
-            "aWduZWROZXR3b3JrUHJvYmUiWwoaQ29tbWl0TmV0d29ya1Byb2JlUmVzcG9u",
-            "c2USFQoNZXhwaXJlc19hdF9tcxgBIAEoBBImCg1lcnJvcl9tZXNzYWdlGAIg",
-            "ASgLMg8uVGlwSW5mb01lc3NhZ2UiPQoRTmV0d29ya1Byb2JlU3RhcnQSKAoF",
-            "Z3JhbnQYASABKAsyGS5tYXRjaC5TaWduZWROZXR3b3JrUHJvYmUiPAoVTmV0",
-            "d29ya1Byb2JlQ2hhbGxlbmdlEg0KBW5vbmNlGAEgASgMEhQKDHNhbXBsZV9p",
-            "bmRleBgCIAEoDSI3ChBOZXR3b3JrUHJvYmVFY2hvEg0KBW5vbmNlGAEgASgM",
-            "EhQKDHNhbXBsZV9pbmRleBgCIAEoDSJCChROZXR3b3JrUHJvYmVDb21wbGV0",
-            "ZRIqCgdyZWNlaXB0GAEgASgLMhkubWF0Y2guU2lnbmVkTmV0d29ya1Byb2Jl",
-            "Qg1aC21hdGNoL21hdGNoYgZwcm90bzM="));
+            "cm9iZRIPCgdwYXlsb2FkGAEgASgMEhEKCXNpZ25hdHVyZRgCIAEoDCKDAQoS",
+            "TmV0d29ya1Byb2JlVGFyZ2V0EhcKD3BoeXNpY2FsX3JlZ2lvbhgBIAEoDRIM",
+            "CgRob3N0GAIgASgJEgwKBHBvcnQYAyABKA0SKAoFZ3JhbnQYBCABKAsyGS5t",
+            "YXRjaC5TaWduZWROZXR3b3JrUHJvYmUSDgoGd3NfdXJsGAUgASgJIhwKGkdl",
+            "dE5ldHdvcmtQcm9iZVBsYW5SZXF1ZXN0IqsBChtHZXROZXR3b3JrUHJvYmVQ",
+            "bGFuUmVzcG9uc2USDwoHcGxhbl9pZBgBIAEoCRIqCgd0YXJnZXRzGAIgAygL",
+            "MhkubWF0Y2guTmV0d29ya1Byb2JlVGFyZ2V0EhUKDWV4cGlyZXNfYXRfbXMY",
+            "AyABKAQSJgoNZXJyb3JfbWVzc2FnZRgEIAEoCzIPLlRpcEluZm9NZXNzYWdl",
+            "EhAKCHJlcXVpcmVkGAUgASgIIpMBChNOZXR3b3JrUHJvYmVSZWNlaXB0EicK",
+            "BWdyYW50GAEgASgLMhgubWF0Y2guTmV0d29ya1Byb2JlR3JhbnQSDgoGcnR0",
+            "X21zGAIgASgNEhQKDHNhbXBsZV9jb3VudBgDIAEoDRIWCg5tZWFzdXJlZF9h",
+            "dF9tcxgEIAEoBBIVCg1leHBpcmVzX2F0X21zGAUgASgEIlkKGUNvbW1pdE5l",
+            "dHdvcmtQcm9iZVJlcXVlc3QSDwoHcGxhbl9pZBgBIAEoCRIrCghyZWNlaXB0",
+            "cxgCIAMoCzIZLm1hdGNoLlNpZ25lZE5ldHdvcmtQcm9iZSJbChpDb21taXRO",
+            "ZXR3b3JrUHJvYmVSZXNwb25zZRIVCg1leHBpcmVzX2F0X21zGAEgASgEEiYK",
+            "DWVycm9yX21lc3NhZ2UYAiABKAsyDy5UaXBJbmZvTWVzc2FnZSI9ChFOZXR3",
+            "b3JrUHJvYmVTdGFydBIoCgVncmFudBgBIAEoCzIZLm1hdGNoLlNpZ25lZE5l",
+            "dHdvcmtQcm9iZSI8ChVOZXR3b3JrUHJvYmVDaGFsbGVuZ2USDQoFbm9uY2UY",
+            "ASABKAwSFAoMc2FtcGxlX2luZGV4GAIgASgNIjcKEE5ldHdvcmtQcm9iZUVj",
+            "aG8SDQoFbm9uY2UYASABKAwSFAoMc2FtcGxlX2luZGV4GAIgASgNIkIKFE5l",
+            "dHdvcmtQcm9iZUNvbXBsZXRlEioKB3JlY2VpcHQYASABKAsyGS5tYXRjaC5T",
+            "aWduZWROZXR3b3JrUHJvYmVCDVoLbWF0Y2gvbWF0Y2hiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::TipReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.NetworkProbeGrant), global::Match.NetworkProbeGrant.Parser, new[]{ "PlanId", "PlayerId", "SessionBinding", "PhysicalRegion", "TargetNodeId", "TargetInstanceId", "ExpiresAtMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.SignedNetworkProbe), global::Match.SignedNetworkProbe.Parser, new[]{ "Payload", "Signature" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Match.NetworkProbeTarget), global::Match.NetworkProbeTarget.Parser, new[]{ "PhysicalRegion", "Host", "Port", "Grant" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Match.NetworkProbeTarget), global::Match.NetworkProbeTarget.Parser, new[]{ "PhysicalRegion", "Host", "Port", "Grant", "WsUrl" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.GetNetworkProbePlanRequest), global::Match.GetNetworkProbePlanRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.GetNetworkProbePlanResponse), global::Match.GetNetworkProbePlanResponse.Parser, new[]{ "PlanId", "Targets", "ExpiresAtMs", "ErrorMessage", "Required" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Match.NetworkProbeReceipt), global::Match.NetworkProbeReceipt.Parser, new[]{ "Grant", "RttMs", "SampleCount", "MeasuredAtMs", "ExpiresAtMs" }, null, null, null, null),
@@ -770,6 +770,7 @@ namespace Match {
       host_ = other.host_;
       port_ = other.port_;
       grant_ = other.grant_ != null ? other.grant_.Clone() : null;
+      wsUrl_ = other.wsUrl_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -827,6 +828,22 @@ namespace Match {
       }
     }
 
+    /// <summary>Field number for the "ws_url" field.</summary>
+    public const int WsUrlFieldNumber = 5;
+    private string wsUrl_ = "";
+    /// <summary>
+    /// 同一台 battle 给小游戏客户端的 WebSocket 地址(NodeInfo.client_ws_url):小游戏客户端测速连它,原生客户端仍连 host / port;
+    /// 空串 = 这台 battle 不接小游戏(docs/design/minigame-websocket-gate.md W9)。
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string WsUrl {
+      get { return wsUrl_; }
+      set {
+        wsUrl_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -846,6 +863,7 @@ namespace Match {
       if (Host != other.Host) return false;
       if (Port != other.Port) return false;
       if (!object.Equals(Grant, other.Grant)) return false;
+      if (WsUrl != other.WsUrl) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -857,6 +875,7 @@ namespace Match {
       if (Host.Length != 0) hash ^= Host.GetHashCode();
       if (Port != 0) hash ^= Port.GetHashCode();
       if (grant_ != null) hash ^= Grant.GetHashCode();
+      if (WsUrl.Length != 0) hash ^= WsUrl.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -891,6 +910,10 @@ namespace Match {
         output.WriteRawTag(34);
         output.WriteMessage(Grant);
       }
+      if (WsUrl.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(WsUrl);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -917,6 +940,10 @@ namespace Match {
         output.WriteRawTag(34);
         output.WriteMessage(Grant);
       }
+      if (WsUrl.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(WsUrl);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -938,6 +965,9 @@ namespace Match {
       }
       if (grant_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Grant);
+      }
+      if (WsUrl.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(WsUrl);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -965,6 +995,9 @@ namespace Match {
           Grant = new global::Match.SignedNetworkProbe();
         }
         Grant.MergeFrom(other.Grant);
+      }
+      if (other.WsUrl.Length != 0) {
+        WsUrl = other.WsUrl;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1004,6 +1037,10 @@ namespace Match {
             input.ReadMessage(Grant);
             break;
           }
+          case 42: {
+            WsUrl = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1040,6 +1077,10 @@ namespace Match {
               Grant = new global::Match.SignedNetworkProbe();
             }
             input.ReadMessage(Grant);
+            break;
+          }
+          case 42: {
+            WsUrl = input.ReadString();
             break;
           }
         }

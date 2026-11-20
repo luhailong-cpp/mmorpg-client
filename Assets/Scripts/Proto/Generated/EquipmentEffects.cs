@@ -23,32 +23,35 @@ public static partial class EquipmentEffectsReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5wcm90by9jb21tb24vY29tcG9uZW50L2VxdWlwbWVudF9lZmZlY3RzLnBy",
-          "b3RvIrQFChBFcXVpcG1lbnRFZmZlY3RzEhsKE3BoeXNpY2FsX2F0dGFja19i",
-          "cHMYASABKA0SGAoQbWFnaWNfYXR0YWNrX2JwcxgCIAEoDRIWCg5tYXhfaGVh",
-          "bHRoX2JwcxgDIAEoDRIRCglzcGVlZF9icHMYBCABKA0SGQoRb3V0Z29pbmdf",
-          "aGVhbF9icHMYBSABKA0SGwoTc2hpZWxkX2NhcGFjaXR5X2JwcxgGIAEoDRIZ",
-          "ChFwaHlzaWNhbF9jcml0X2JwcxgHIAEoDRIWCg5tYWdpY19jcml0X2JwcxgI",
-          "IAEoDRIbChNwaHlzaWNhbF9yZXNpc3RfYnBzGAkgASgNEhgKEG1hZ2ljX3Jl",
-          "c2lzdF9icHMYCiABKA0SPQoPYWlsbWVudF9oaXRfYnBzGAsgAygLMiQuRXF1",
-          "aXBtZW50RWZmZWN0cy5BaWxtZW50SGl0QnBzRW50cnkSQwoSYWlsbWVudF9y",
-          "ZXNpc3RfYnBzGAwgAygLMicuRXF1aXBtZW50RWZmZWN0cy5BaWxtZW50UmVz",
-          "aXN0QnBzRW50cnkSQwoSbWFuYV9yZWR1Y3Rpb25fYnBzGA0gAygLMicuRXF1",
-          "aXBtZW50RWZmZWN0cy5NYW5hUmVkdWN0aW9uQnBzRW50cnkSKwoJYXJ0aWZh",
-          "Y3RzGA4gAygLMhguRXF1aXBtZW50QXJ0aWZhY3RTb3VyY2UaNAoSQWlsbWVu",
-          "dEhpdEJwc0VudHJ5EgsKA2tleRgBIAEoDRINCgV2YWx1ZRgCIAEoDToCOAEa",
-          "NwoVQWlsbWVudFJlc2lzdEJwc0VudHJ5EgsKA2tleRgBIAEoDRINCgV2YWx1",
-          "ZRgCIAEoDToCOAEaNwoVTWFuYVJlZHVjdGlvbkJwc0VudHJ5EgsKA2tleRgB",
-          "IAEoDRINCgV2YWx1ZRgCIAEoDToCOAEixQEKF0VxdWlwbWVudEFydGlmYWN0",
-          "U291cmNlEg8KB2l0ZW1faWQYASABKAQSEQoJZWZmZWN0X2lkGAIgASgNEhEK",
-          "CWJvbnVzX2JwcxgDIAEoDRIPCgdjYXBfYnBzGAQgASgNEhcKD3Blcl9yb3Vu",
-          "ZF9saW1pdBgFIAEoDRIUCgxiYXR0bGVfbGltaXQYBiABKA0SFQoNYWN0aXZl",
-          "X3JvdW5kcxgHIAEoDRIcChRoZWFsdGhfdGhyZXNob2xkX2JwcxgIIAEoDUIS",
-          "WhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
+          "b3RvGixwcm90by9jb21tb24vY29tcG9uZW50L3N1cHBvcnRfZWZmZWN0cy5w",
+          "cm90byKFBgoQRXF1aXBtZW50RWZmZWN0cxIbChNwaHlzaWNhbF9hdHRhY2tf",
+          "YnBzGAEgASgNEhgKEG1hZ2ljX2F0dGFja19icHMYAiABKA0SFgoObWF4X2hl",
+          "YWx0aF9icHMYAyABKA0SEQoJc3BlZWRfYnBzGAQgASgNEhkKEW91dGdvaW5n",
+          "X2hlYWxfYnBzGAUgASgNEhsKE3NoaWVsZF9jYXBhY2l0eV9icHMYBiABKA0S",
+          "GQoRcGh5c2ljYWxfY3JpdF9icHMYByABKA0SFgoObWFnaWNfY3JpdF9icHMY",
+          "CCABKA0SGwoTcGh5c2ljYWxfcmVzaXN0X2JwcxgJIAEoDRIYChBtYWdpY19y",
+          "ZXNpc3RfYnBzGAogASgNEj0KD2FpbG1lbnRfaGl0X2JwcxgLIAMoCzIkLkVx",
+          "dWlwbWVudEVmZmVjdHMuQWlsbWVudEhpdEJwc0VudHJ5EkMKEmFpbG1lbnRf",
+          "cmVzaXN0X2JwcxgMIAMoCzInLkVxdWlwbWVudEVmZmVjdHMuQWlsbWVudFJl",
+          "c2lzdEJwc0VudHJ5EkMKEm1hbmFfcmVkdWN0aW9uX2JwcxgNIAMoCzInLkVx",
+          "dWlwbWVudEVmZmVjdHMuTWFuYVJlZHVjdGlvbkJwc0VudHJ5EisKCWFydGlm",
+          "YWN0cxgOIAMoCzIYLkVxdWlwbWVudEFydGlmYWN0U291cmNlEi0KD3N1cHBv",
+          "cnRfc291cmNlcxgPIAMoCzIULlN1cHBvcnRFZmZlY3RTb3VyY2USIAoYc3Vw",
+          "cG9ydF9zb3VyY2VzX2NvbXBsZXRlGBAgASgIGjQKEkFpbG1lbnRIaXRCcHNF",
+          "bnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBGjcKFUFpbG1l",
+          "bnRSZXNpc3RCcHNFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06",
+          "AjgBGjcKFU1hbmFSZWR1Y3Rpb25CcHNFbnRyeRILCgNrZXkYASABKA0SDQoF",
+          "dmFsdWUYAiABKA06AjgBItMBChdFcXVpcG1lbnRBcnRpZmFjdFNvdXJjZRIP",
+          "CgdpdGVtX2lkGAEgASgEEhEKCWVmZmVjdF9pZBgCIAEoDRIRCglib251c19i",
+          "cHMYAyABKA0SDwoHY2FwX2JwcxgEIAEoDRIXCg9wZXJfcm91bmRfbGltaXQY",
+          "BSABKA0SFAoMYmF0dGxlX2xpbWl0GAYgASgNEhUKDWFjdGl2ZV9yb3VuZHMY",
+          "ByABKA0SHAoUaGVhbHRoX3RocmVzaG9sZF9icHMYCCABKA0SDAoEbmFtZRgJ",
+          "IAEoCUISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { },
+        new pbr::FileDescriptor[] { global::SupportEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentEffects), global::EquipmentEffects.Parser, new[]{ "PhysicalAttackBps", "MagicAttackBps", "MaxHealthBps", "SpeedBps", "OutgoingHealBps", "ShieldCapacityBps", "PhysicalCritBps", "MagicCritBps", "PhysicalResistBps", "MagicResistBps", "AilmentHitBps", "AilmentResistBps", "ManaReductionBps", "Artifacts" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, }),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentArtifactSource), global::EquipmentArtifactSource.Parser, new[]{ "ItemId", "EffectId", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentEffects), global::EquipmentEffects.Parser, new[]{ "PhysicalAttackBps", "MagicAttackBps", "MaxHealthBps", "SpeedBps", "OutgoingHealBps", "ShieldCapacityBps", "PhysicalCritBps", "MagicCritBps", "PhysicalResistBps", "MagicResistBps", "AilmentHitBps", "AilmentResistBps", "ManaReductionBps", "Artifacts", "SupportSources", "SupportSourcesComplete" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentArtifactSource), global::EquipmentArtifactSource.Parser, new[]{ "ItemId", "EffectId", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps", "Name" }, null, null, null, null)
         }));
   }
   #endregion
@@ -107,6 +110,8 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     ailmentResistBps_ = other.ailmentResistBps_.Clone();
     manaReductionBps_ = other.manaReductionBps_.Clone();
     artifacts_ = other.artifacts_.Clone();
+    supportSources_ = other.supportSources_.Clone();
+    supportSourcesComplete_ = other.supportSourcesComplete_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -289,6 +294,35 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     get { return artifacts_; }
   }
 
+  /// <summary>Field number for the "support_sources" field.</summary>
+  public const int SupportSourcesFieldNumber = 15;
+  private static readonly pb::FieldCodec<global::SupportEffectSource> _repeated_supportSources_codec
+      = pb::FieldCodec.ForMessage(122, global::SupportEffectSource.Parser);
+  private readonly pbc::RepeatedField<global::SupportEffectSource> supportSources_ = new pbc::RepeatedField<global::SupportEffectSource>();
+  /// <summary>
+  /// 与同一轮聚合同时产生，禁止客户端再累计。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::SupportEffectSource> SupportSources {
+    get { return supportSources_; }
+  }
+
+  /// <summary>Field number for the "support_sources_complete" field.</summary>
+  public const int SupportSourcesCompleteFieldNumber = 16;
+  private bool supportSourcesComplete_;
+  /// <summary>
+  /// 旧快照/缺背包输入不能冒充完整来源。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool SupportSourcesComplete {
+    get { return supportSourcesComplete_; }
+    set {
+      supportSourcesComplete_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -318,6 +352,8 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     if (!AilmentResistBps.Equals(other.AilmentResistBps)) return false;
     if (!ManaReductionBps.Equals(other.ManaReductionBps)) return false;
     if(!artifacts_.Equals(other.artifacts_)) return false;
+    if(!supportSources_.Equals(other.supportSources_)) return false;
+    if (SupportSourcesComplete != other.SupportSourcesComplete) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -339,6 +375,8 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     hash ^= AilmentResistBps.GetHashCode();
     hash ^= ManaReductionBps.GetHashCode();
     hash ^= artifacts_.GetHashCode();
+    hash ^= supportSources_.GetHashCode();
+    if (SupportSourcesComplete != false) hash ^= SupportSourcesComplete.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -401,6 +439,11 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     ailmentResistBps_.WriteTo(output, _map_ailmentResistBps_codec);
     manaReductionBps_.WriteTo(output, _map_manaReductionBps_codec);
     artifacts_.WriteTo(output, _repeated_artifacts_codec);
+    supportSources_.WriteTo(output, _repeated_supportSources_codec);
+    if (SupportSourcesComplete != false) {
+      output.WriteRawTag(128, 1);
+      output.WriteBool(SupportSourcesComplete);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -455,6 +498,11 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     ailmentResistBps_.WriteTo(ref output, _map_ailmentResistBps_codec);
     manaReductionBps_.WriteTo(ref output, _map_manaReductionBps_codec);
     artifacts_.WriteTo(ref output, _repeated_artifacts_codec);
+    supportSources_.WriteTo(ref output, _repeated_supportSources_codec);
+    if (SupportSourcesComplete != false) {
+      output.WriteRawTag(128, 1);
+      output.WriteBool(SupportSourcesComplete);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -499,6 +547,10 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     size += ailmentResistBps_.CalculateSize(_map_ailmentResistBps_codec);
     size += manaReductionBps_.CalculateSize(_map_manaReductionBps_codec);
     size += artifacts_.CalculateSize(_repeated_artifacts_codec);
+    size += supportSources_.CalculateSize(_repeated_supportSources_codec);
+    if (SupportSourcesComplete != false) {
+      size += 2 + 1;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -545,6 +597,10 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     ailmentResistBps_.MergeFrom(other.ailmentResistBps_);
     manaReductionBps_.MergeFrom(other.manaReductionBps_);
     artifacts_.Add(other.artifacts_);
+    supportSources_.Add(other.supportSources_);
+    if (other.SupportSourcesComplete != false) {
+      SupportSourcesComplete = other.SupportSourcesComplete;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -618,6 +674,14 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
         }
         case 114: {
           artifacts_.AddEntriesFrom(input, _repeated_artifacts_codec);
+          break;
+        }
+        case 122: {
+          supportSources_.AddEntriesFrom(input, _repeated_supportSources_codec);
+          break;
+        }
+        case 128: {
+          SupportSourcesComplete = input.ReadBool();
           break;
         }
       }
@@ -695,6 +759,14 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
           artifacts_.AddEntriesFrom(ref input, _repeated_artifacts_codec);
           break;
         }
+        case 122: {
+          supportSources_.AddEntriesFrom(ref input, _repeated_supportSources_codec);
+          break;
+        }
+        case 128: {
+          SupportSourcesComplete = input.ReadBool();
+          break;
+        }
       }
     }
   }
@@ -745,6 +817,7 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
     battleLimit_ = other.battleLimit_;
     activeRounds_ = other.activeRounds_;
     healthThresholdBps_ = other.healthThresholdBps_;
+    name_ = other.name_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -862,6 +935,21 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
     }
   }
 
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 9;
+  private string name_ = "";
+  /// <summary>
+  /// 只读来源显示名；效果仍由effect_id及已校验参数裁决。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -885,6 +973,7 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
     if (BattleLimit != other.BattleLimit) return false;
     if (ActiveRounds != other.ActiveRounds) return false;
     if (HealthThresholdBps != other.HealthThresholdBps) return false;
+    if (Name != other.Name) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -900,6 +989,7 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
     if (BattleLimit != 0) hash ^= BattleLimit.GetHashCode();
     if (ActiveRounds != 0) hash ^= ActiveRounds.GetHashCode();
     if (HealthThresholdBps != 0) hash ^= HealthThresholdBps.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -950,6 +1040,10 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
       output.WriteRawTag(64);
       output.WriteUInt32(HealthThresholdBps);
     }
+    if (Name.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(Name);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -992,6 +1086,10 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
       output.WriteRawTag(64);
       output.WriteUInt32(HealthThresholdBps);
     }
+    if (Name.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(Name);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1025,6 +1123,9 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
     }
     if (HealthThresholdBps != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HealthThresholdBps);
+    }
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1061,6 +1162,9 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
     }
     if (other.HealthThresholdBps != 0) {
       HealthThresholdBps = other.HealthThresholdBps;
+    }
+    if (other.Name.Length != 0) {
+      Name = other.Name;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1113,6 +1217,10 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
           HealthThresholdBps = input.ReadUInt32();
           break;
         }
+        case 74: {
+          Name = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -1162,6 +1270,10 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
         }
         case 64: {
           HealthThresholdBps = input.ReadUInt32();
+          break;
+        }
+        case 74: {
+          Name = input.ReadString();
           break;
         }
       }

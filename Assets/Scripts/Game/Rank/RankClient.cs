@@ -59,7 +59,8 @@ namespace MmorpgClient.Game.Rank
         private readonly IBattleTransport _net;
         private readonly Func<object> _connectionIdentity;
         private readonly Func<float> _clock;
-        private readonly Queue<float> _sentAt = new();
+        private readonly RpcGuard _guard;
+        private readonly bool _ownsGuard;
         private readonly Dictionary<uint, BoardSnapshot> _boards = new();
         private object _observedConnection;
         private ulong _observedPlayer;
@@ -87,11 +88,13 @@ namespace MmorpgClient.Game.Rank
 
         private BoardSnapshot Shown => _boards.TryGetValue(_selectedBoardType, out var snapshot) ? snapshot : null;
 
-        public RankClient(IBattleTransport net, Func<object> connectionIdentity, Func<float> clock = null)
+        public RankClient(IBattleTransport net, Func<object> connectionIdentity, Func<float> clock = null, RpcGuard rpcGuard = null)
         {
             _net = net ?? throw new ArgumentNullException(nameof(net));
             _connectionIdentity = connectionIdentity ?? (() => _net);
             _clock = clock ?? (() => UnityEngine.Time.realtimeSinceStartup);
+            _ownsGuard = rpcGuard == null;
+            _guard = rpcGuard ?? new RpcGuard(_clock);
             _observedConnection = _connectionIdentity();
             _observedPlayer = _net.PlayerId;
             _net.Disconnected += HandleDisconnected;
@@ -185,14 +188,15 @@ namespace MmorpgClient.Game.Rank
                 Show(DescribeTip((uint)common_error.KRateLimitExceeded));
                 return;
             }
-            if (!HasSendBudget(now))
+            uint messageId = request.Around ? MessageIds.RankGetRankAround : MessageIds.RankGetRankPage;
+            if (!HasSendBudget(messageId, now))
             {
                 _pending = request;
                 Show(LoadingMessage);
                 return;
             }
             _pending = null;
-            RecordSend(now);
+            RecordSend(messageId, now);
             int generation = ++_generation;
             ulong player = PlayerId;
             object connection = _observedConnection;
@@ -309,7 +313,10 @@ namespace MmorpgClient.Game.Rank
         {
             if (_disposed) return;
             ObserveConnection();
-            if (_pending == null || Busy || _clock() < _rateLimitedUntil || !HasSendBudget(_clock())) return;
+            if (_pending == null || Busy) return;
+            float now = _clock();
+            uint messageId = _pending.Around ? MessageIds.RankGetRankAround : MessageIds.RankGetRankPage;
+            if (now < _rateLimitedUntil || !HasSendBudget(messageId, now)) return;
             FlushPending();
         }
 
@@ -369,19 +376,18 @@ namespace MmorpgClient.Game.Rank
             _boards.Clear();
         }
 
-        private bool HasSendBudget(float now) => now >= _lastSendAt + MinRequestIntervalSeconds
-            && (_sentAt.Count < SendQuota || now >= _sentAt.Peek() + MessageWindowSeconds);
+        private bool HasSendBudget(uint messageId, float now) => now >= _lastSendAt + MinRequestIntervalSeconds
+            && _guard.CanSend(messageId);
 
-        private void RecordSend(float now)
+        private void RecordSend(uint messageId, float now)
         {
             _lastSendAt = now;
-            _sentAt.Enqueue(now);
-            while (_sentAt.Count > SendQuota) _sentAt.Dequeue();
+            if (_ownsGuard) _guard.TryBeginCall(messageId, out _);
         }
 
         private void ClearSendThrottle()
         {
-            _sentAt.Clear();
+            if (_ownsGuard) _guard.Reset();
             _lastSendAt = float.NegativeInfinity;
             _rateLimitedUntil = float.NegativeInfinity;
         }

@@ -33,7 +33,9 @@ namespace MmorpgClient.Net
                 } while (key == 0);
                 return true;
             }
-            catch (CryptographicException)
+            // 不只接 CryptographicException:WebGL / 小游戏宿主上随机源可能抛 PlatformNotSupportedException 之类,
+            // 漏接就会从调用方冒出去,加点面板会停在 Busy 直到断线(2026-11-19 评审补)。拿不到就按「不发包」收尾。
+            catch (Exception)
             {
                 key = 0;
                 return false;

@@ -23,7 +23,7 @@ public static partial class LoginErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbG9naW5fZXJyb3JfdGlwLnBy",
-          "b3RvKuYICgtsb2dpbl9lcnJvchISCg5rTG9naW5fZXJyb3JPSxAAEhoKFWtM",
+          "b3RvKvoLCgtsb2dpbl9lcnJvchISCg5rTG9naW5fZXJyb3JPSxAAEhoKFWtM",
           "b2dpbkFjY291bnROb3RGb3VuZBDQDxIcChdrTG9naW5BY2NvdW50UGxheWVy",
           "RnVsbBDRDxIkCh9rTG9naW5DcmVhdGVQbGF5ZXJVbkxvYWRBY2NvdW50ENIP",
           "Ei4KKWtMb2dpbkNyZWF0ZVBsYXllckNvbm5lY3Rpb25IYXNOb3RBY2NvdW50",
@@ -48,8 +48,17 @@ public static partial class LoginErrorTipReflection {
           "Cg5rUm9sZU5hbWVUYWtlbhDxDxIXChJrUm9sZU5hbWVTZW5zaXRpdmUQ8g8S",
           "Igoda0xvZ2luQXV0aFByb3ZpZGVyVW5hdmFpbGFibGUQ8w8SGwoWa0xvZ2lu",
           "VG9rZW5Jc3N1ZUZhaWxlZBD0DxIfChprTG9naW5ab25lQ3JlYXRlUm9sZUNs",
-          "b3NlZBD1D0IkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxl",
-          "YgZwcm90bzM="));
+          "b3NlZBD1DxIhChxrTG9naW5BY2NvdW50RGVsZXRpb25QZW5kaW5nEPYPEiEK",
+          "HGtMb2dpbkFjY291bnREZWxldGlvbkJsb2NrZWQQ9w8SJAofa0xvZ2luQWNj",
+          "b3VudERlbGV0aW9uSW5Qcm9ncmVzcxD4DxIoCiNrTG9naW5BY2NvdW50RGVs",
+          "ZXRpb25SZWF1dGhSZXF1aXJlZBD5DxIbChZrTG9naW5SZWFsTmFtZVJlcXVp",
+          "cmVkEPoPEhoKFWtMb2dpblJlYWxOYW1lSW52YWxpZBD7DxIaChVrTG9naW5S",
+          "ZWFsTmFtZVBlbmRpbmcQ/A8SIgoda0xvZ2luUmVhbE5hbWVUb29NYW55QXR0",
+          "ZW1wdHMQ/Q8SHwoaa0xvZ2luUmVhbE5hbWVBbHJlYWR5Qm91bmQQ/g8SJQog",
+          "a0xvZ2luUmVhbE5hbWVTZXJ2aWNlVW5hdmFpbGFibGUQ/w8SHQoYa0xvZ2lu",
+          "TWlub3JOb3RJblBsYXlUaW1lEIAQEhwKF2tMb2dpbk1pbm9yUGxheVRpbWVP",
+          "dmVyEIEQQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGVi",
+          "BnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::login_error), }, null, null));
@@ -98,6 +107,18 @@ public enum login_error {
   [pbr::OriginalName("kLoginAuthProviderUnavailable")] KLoginAuthProviderUnavailable = 2035,
   [pbr::OriginalName("kLoginTokenIssueFailed")] KLoginTokenIssueFailed = 2036,
   [pbr::OriginalName("kLoginZoneCreateRoleClosed")] KLoginZoneCreateRoleClosed = 2037,
+  [pbr::OriginalName("kLoginAccountDeletionPending")] KLoginAccountDeletionPending = 2038,
+  [pbr::OriginalName("kLoginAccountDeletionBlocked")] KLoginAccountDeletionBlocked = 2039,
+  [pbr::OriginalName("kLoginAccountDeletionInProgress")] KLoginAccountDeletionInProgress = 2040,
+  [pbr::OriginalName("kLoginAccountDeletionReauthRequired")] KLoginAccountDeletionReauthRequired = 2041,
+  [pbr::OriginalName("kLoginRealNameRequired")] KLoginRealNameRequired = 2042,
+  [pbr::OriginalName("kLoginRealNameInvalid")] KLoginRealNameInvalid = 2043,
+  [pbr::OriginalName("kLoginRealNamePending")] KLoginRealNamePending = 2044,
+  [pbr::OriginalName("kLoginRealNameTooManyAttempts")] KLoginRealNameTooManyAttempts = 2045,
+  [pbr::OriginalName("kLoginRealNameAlreadyBound")] KLoginRealNameAlreadyBound = 2046,
+  [pbr::OriginalName("kLoginRealNameServiceUnavailable")] KLoginRealNameServiceUnavailable = 2047,
+  [pbr::OriginalName("kLoginMinorNotInPlayTime")] KLoginMinorNotInPlayTime = 2048,
+  [pbr::OriginalName("kLoginMinorPlayTimeOver")] KLoginMinorPlayTimeOver = 2049,
 }
 
 #endregion

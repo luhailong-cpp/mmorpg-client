@@ -309,6 +309,20 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void EndedPeriodRejectionClearsIntentAndSaysBagIsAuthoritative()
+        {
+            Load(); Claim(); var original = LastRequest.Clone();
+            var response = Receipt(original, claimed: false, durable: false);
+            response.ErrorMessage = new TipInfoMessage { Id = (uint)reward_error.KRewardPeriodEnded };
+            Assert.That(TipFaults.IsFault(response.ErrorMessage.Id), Is.False, "本期已结束是业务拒绝,不是故障。");
+            Claims[0].Respond(response);
+            Assert.That(_store.Load(Player), Is.Empty);
+            Assert.That(_client.HasPendingActivityReward, Is.False);
+            Assert.That(_claimed, Is.Empty);
+            Assert.That(_client.ActivityRewardError, Is.EqualTo("本期活跃已结束，不能再领取；已领到的奖励以背包为准"));
+        }
+
+        [Test]
         public void FaultTipAndEnvelopeBusinessErrorDoNotProveNoAssetCommit()
         {
             Load(); Claim(); var original = LastRequest.Clone();

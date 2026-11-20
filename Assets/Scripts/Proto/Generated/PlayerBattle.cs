@@ -62,54 +62,54 @@ public static partial class PlayerBattleReflection {
           "KAwSEQoJc2lnbmF0dXJlGAIgASgMIosBChlCYXR0bGVUb2tlblZlcmlmeVJl",
           "c3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSDQoFZXJyb3IYAiABKAkSEQoJYmF0",
           "dGxlX2lkGAMgASgEEh0KFWhlYXJ0YmVhdF9pbnRlcnZhbF9tcxgEIAEoDRIc",
-          "ChRoZWFydGJlYXRfdGltZW91dF9tcxgFIAEoDSKqAQoRQmF0dGxlQXNzaWdu",
+          "ChRoZWFydGJlYXRfdGltZW91dF9tcxgFIAEoDSK6AQoRQmF0dGxlQXNzaWdu",
           "ZWRTMkMSEQoJYmF0dGxlX2lkGAEgASgEEgwKBGhvc3QYAiABKAkSDAoEcG9y",
           "dBgDIAEoDRIVCg10b2tlbl9wYXlsb2FkGAQgASgMEhcKD3Rva2VuX3NpZ25h",
           "dHVyZRgFIAEoDBIUCgxleHBpcmVfYXRfbXMYBiABKAQSIAoEcm9sZRgHIAEo",
-          "DjISLmVCYXR0bGVUaWNrZXRSb2xlIi8KGlJlcXVlc3RCYXR0bGVUaWNrZXRS",
-          "ZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBCJtChtSZXF1ZXN0QmF0dGxlVGlj",
-          "a2V0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
-          "ZXNzYWdlEiYKCmFzc2lnbm1lbnQYAiABKAsyEi5CYXR0bGVBc3NpZ25lZFMy",
-          "QyL9AgoMQmF0dGxlUmVwbGF5EhEKCWJhdHRsZV9pZBgBIAEoBBISCgptYXRj",
-          "aF9tb2RlGAIgASgNEhgKEGJhdHRsZV9jb25maWdfaWQYAyABKA0SFQoNc3Rh",
-          "cnRlZF9hdF9tcxgEIAEoBBIWCg5maW5pc2hlZF9hdF9tcxgFIAEoBBIgCgdv",
-          "dXRjb21lGAYgASgOMg8uZUJhdHRsZU91dGNvbWUSKwoKZW5kX3JlYXNvbhgH",
-          "IAEoDjIXLmVCYXR0bGVSZXBsYXlFbmRSZWFzb24SFAoMdG90YWxfcm91bmRz",
-          "GAggASgNEhkKEXRhYmxlX2ZpbmdlcnByaW50GAkgASgJEiQKC3N0YXJ0X3N0",
-          "YXRlGAogASgLMg8uQmF0dGxlU3RhdGVTMkMSHgoGcm91bmRzGAsgAygLMg4u",
-          "VHVyblJlc3VsdFMyQxIkCgtmaW5hbF9zdGF0ZRgMIAEoCzIPLkJhdHRsZVN0",
-          "YXRlUzJDEhEKCXRydW5jYXRlZBgNIAEoCCJ2ChRCYXR0bGVSZXBsYXlFbnZl",
-          "bG9wZRIWCg5mb3JtYXRfdmVyc2lvbhgBIAEoDRIiCgVjb2RlYxgCIAEoDjIT",
-          "LmVCYXR0bGVSZXBsYXlDb2RlYxIRCglyYXdfYnl0ZXMYAyABKA0SDwoHcGF5",
-          "bG9hZBgEIAEoDCqmAQoSZVNwZWN0YXRlRW5kUmVhc29uEhUKEVNQRUNUQVRF",
-          "X0VORF9OT05FEAASIAocU1BFQ1RBVEVfRU5EX0JBVFRMRV9GSU5JU0hFRBAB",
-          "Eh8KG1NQRUNUQVRFX0VORF9CQVRUTEVfQUJPUlRFRBACEhgKFFNQRUNUQVRF",
-          "X0VORF9SRU1PVkVEEAMSHAoYU1BFQ1RBVEVfRU5EX1NPVVJDRV9MT1NUEAQq",
-          "dQoRZUJhdHRsZVRpY2tldFJvbGUSGwoXQkFUVExFX1RJQ0tFVF9ST0xFX05P",
-          "TkUQABIiCh5CQVRUTEVfVElDS0VUX1JPTEVfUEFSVElDSVBBTlQQARIfChtC",
-          "QVRUTEVfVElDS0VUX1JPTEVfT0JTRVJWRVIQAipQChJlQmF0dGxlUmVwbGF5",
-          "Q29kZWMSHAoYQkFUVExFX1JFUExBWV9DT0RFQ19OT05FEAASHAoYQkFUVExF",
-          "X1JFUExBWV9DT0RFQ19HWklQEAEqgAEKFmVCYXR0bGVSZXBsYXlFbmRSZWFz",
-          "b24SIQodQkFUVExFX1JFUExBWV9FTkRfVU5TUEVDSUZJRUQQABIeChpCQVRU",
-          "TEVfUkVQTEFZX0VORF9GSU5JU0hFRBABEiMKH0JBVFRMRV9SRVBMQVlfRU5E",
-          "X0RFQURMSU5FX0RSQVcQAjLlBQoSQmF0dGxlQ2xpZW50UGxheWVyEk0KElN1",
-          "Ym1pdEJhdHRsZUFjdGlvbhIaLlN1Ym1pdEJhdHRsZUFjdGlvblJlcXVlc3Qa",
-          "Gy5TdWJtaXRCYXR0bGVBY3Rpb25SZXNwb25zZRI5Cg5HZXRCYXR0bGVTdGF0",
-          "ZRIWLkdldEJhdHRsZVN0YXRlUmVxdWVzdBoPLkJhdHRsZVN0YXRlUzJDEjMK",
-          "EU5vdGlmeUJhdHRsZVN0YXJ0Eg8uQmF0dGxlU3RhcnRTMkMaBi5FbXB0eSIF",
-          "iJnIAQISMQoQTm90aWZ5VHVyblJlc3VsdBIOLlR1cm5SZXN1bHRTMkMaBi5F",
-          "bXB0eSIFiJnIAQISLwoPTm90aWZ5QmF0dGxlRW5kEg0uQmF0dGxlRW5kUzJD",
-          "GgYuRW1wdHkiBYiZyAECEjsKFU5vdGlmeUJhdHRsZVJlY29ubmVjdBITLkJh",
-          "dHRsZVJlY29ubmVjdFMyQxoGLkVtcHR5IgWImcgBAhJECg9TdG9wV2F0Y2hC",
-          "YXR0bGUSFy5TdG9wV2F0Y2hCYXR0bGVSZXF1ZXN0GhguU3RvcFdhdGNoQmF0",
-          "dGxlUmVzcG9uc2USPgoNU2V0QXV0b0JhdHRsZRIVLlNldEF1dG9CYXR0bGVS",
-          "ZXF1ZXN0GhYuU2V0QXV0b0JhdHRsZVJlc3BvbnNlEjcKE05vdGlmeVNwZWN0",
-          "YXRlU3RhdGUSES5TcGVjdGF0ZVN0YXRlUzJDGgYuRW1wdHkiBYiZyAECEjkK",
-          "GE5vdGlmeVNwZWN0YXRlVHVyblJlc3VsdBIOLlR1cm5SZXN1bHRTMkMaBi5F",
-          "bXB0eSIFiJnIAQISMwoRTm90aWZ5U3BlY3RhdGVFbmQSDy5TcGVjdGF0ZUVu",
-          "ZFMyQxoGLkVtcHR5IgWImcgBAhI5ChROb3RpZnlCYXR0bGVBc3NpZ25lZBIS",
-          "LkJhdHRsZUFzc2lnbmVkUzJDGgYuRW1wdHkiBYiZyAECGgWIqMMBAUIMWgZi",
-          "YXR0bGWY1GEeYgZwcm90bzM="));
+          "DjISLmVCYXR0bGVUaWNrZXRSb2xlEg4KBndzX3VybBgIIAEoCSIvChpSZXF1",
+          "ZXN0QmF0dGxlVGlja2V0UmVxdWVzdBIRCgliYXR0bGVfaWQYASABKAQibQob",
+          "UmVxdWVzdEJhdHRsZVRpY2tldFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
+          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZRImCgphc3NpZ25tZW50GAIgASgLMhIu",
+          "QmF0dGxlQXNzaWduZWRTMkMi/QIKDEJhdHRsZVJlcGxheRIRCgliYXR0bGVf",
+          "aWQYASABKAQSEgoKbWF0Y2hfbW9kZRgCIAEoDRIYChBiYXR0bGVfY29uZmln",
+          "X2lkGAMgASgNEhUKDXN0YXJ0ZWRfYXRfbXMYBCABKAQSFgoOZmluaXNoZWRf",
+          "YXRfbXMYBSABKAQSIAoHb3V0Y29tZRgGIAEoDjIPLmVCYXR0bGVPdXRjb21l",
+          "EisKCmVuZF9yZWFzb24YByABKA4yFy5lQmF0dGxlUmVwbGF5RW5kUmVhc29u",
+          "EhQKDHRvdGFsX3JvdW5kcxgIIAEoDRIZChF0YWJsZV9maW5nZXJwcmludBgJ",
+          "IAEoCRIkCgtzdGFydF9zdGF0ZRgKIAEoCzIPLkJhdHRsZVN0YXRlUzJDEh4K",
+          "BnJvdW5kcxgLIAMoCzIOLlR1cm5SZXN1bHRTMkMSJAoLZmluYWxfc3RhdGUY",
+          "DCABKAsyDy5CYXR0bGVTdGF0ZVMyQxIRCgl0cnVuY2F0ZWQYDSABKAgidgoU",
+          "QmF0dGxlUmVwbGF5RW52ZWxvcGUSFgoOZm9ybWF0X3ZlcnNpb24YASABKA0S",
+          "IgoFY29kZWMYAiABKA4yEy5lQmF0dGxlUmVwbGF5Q29kZWMSEQoJcmF3X2J5",
+          "dGVzGAMgASgNEg8KB3BheWxvYWQYBCABKAwqpgEKEmVTcGVjdGF0ZUVuZFJl",
+          "YXNvbhIVChFTUEVDVEFURV9FTkRfTk9ORRAAEiAKHFNQRUNUQVRFX0VORF9C",
+          "QVRUTEVfRklOSVNIRUQQARIfChtTUEVDVEFURV9FTkRfQkFUVExFX0FCT1JU",
+          "RUQQAhIYChRTUEVDVEFURV9FTkRfUkVNT1ZFRBADEhwKGFNQRUNUQVRFX0VO",
+          "RF9TT1VSQ0VfTE9TVBAEKnUKEWVCYXR0bGVUaWNrZXRSb2xlEhsKF0JBVFRM",
+          "RV9USUNLRVRfUk9MRV9OT05FEAASIgoeQkFUVExFX1RJQ0tFVF9ST0xFX1BB",
+          "UlRJQ0lQQU5UEAESHwobQkFUVExFX1RJQ0tFVF9ST0xFX09CU0VSVkVSEAIq",
+          "UAoSZUJhdHRsZVJlcGxheUNvZGVjEhwKGEJBVFRMRV9SRVBMQVlfQ09ERUNf",
+          "Tk9ORRAAEhwKGEJBVFRMRV9SRVBMQVlfQ09ERUNfR1pJUBABKoABChZlQmF0",
+          "dGxlUmVwbGF5RW5kUmVhc29uEiEKHUJBVFRMRV9SRVBMQVlfRU5EX1VOU1BF",
+          "Q0lGSUVEEAASHgoaQkFUVExFX1JFUExBWV9FTkRfRklOSVNIRUQQARIjCh9C",
+          "QVRUTEVfUkVQTEFZX0VORF9ERUFETElORV9EUkFXEAIy5QUKEkJhdHRsZUNs",
+          "aWVudFBsYXllchJNChJTdWJtaXRCYXR0bGVBY3Rpb24SGi5TdWJtaXRCYXR0",
+          "bGVBY3Rpb25SZXF1ZXN0GhsuU3VibWl0QmF0dGxlQWN0aW9uUmVzcG9uc2US",
+          "OQoOR2V0QmF0dGxlU3RhdGUSFi5HZXRCYXR0bGVTdGF0ZVJlcXVlc3QaDy5C",
+          "YXR0bGVTdGF0ZVMyQxIzChFOb3RpZnlCYXR0bGVTdGFydBIPLkJhdHRsZVN0",
+          "YXJ0UzJDGgYuRW1wdHkiBYiZyAECEjEKEE5vdGlmeVR1cm5SZXN1bHQSDi5U",
+          "dXJuUmVzdWx0UzJDGgYuRW1wdHkiBYiZyAECEi8KD05vdGlmeUJhdHRsZUVu",
+          "ZBINLkJhdHRsZUVuZFMyQxoGLkVtcHR5IgWImcgBAhI7ChVOb3RpZnlCYXR0",
+          "bGVSZWNvbm5lY3QSEy5CYXR0bGVSZWNvbm5lY3RTMkMaBi5FbXB0eSIFiJnI",
+          "AQISRAoPU3RvcFdhdGNoQmF0dGxlEhcuU3RvcFdhdGNoQmF0dGxlUmVxdWVz",
+          "dBoYLlN0b3BXYXRjaEJhdHRsZVJlc3BvbnNlEj4KDVNldEF1dG9CYXR0bGUS",
+          "FS5TZXRBdXRvQmF0dGxlUmVxdWVzdBoWLlNldEF1dG9CYXR0bGVSZXNwb25z",
+          "ZRI3ChNOb3RpZnlTcGVjdGF0ZVN0YXRlEhEuU3BlY3RhdGVTdGF0ZVMyQxoG",
+          "LkVtcHR5IgWImcgBAhI5ChhOb3RpZnlTcGVjdGF0ZVR1cm5SZXN1bHQSDi5U",
+          "dXJuUmVzdWx0UzJDGgYuRW1wdHkiBYiZyAECEjMKEU5vdGlmeVNwZWN0YXRl",
+          "RW5kEg8uU3BlY3RhdGVFbmRTMkMaBi5FbXB0eSIFiJnIAQISOQoUTm90aWZ5",
+          "QmF0dGxlQXNzaWduZWQSEi5CYXR0bGVBc3NpZ25lZFMyQxoGLkVtcHR5IgWI",
+          "mcgBAhoFiKjDAQFCDFoGYmF0dGxlmNRhHmIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::BattleDataReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eSpectateEndReason), typeof(global::eBattleTicketRole), typeof(global::eBattleReplayCodec), typeof(global::eBattleReplayEndReason), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -130,7 +130,7 @@ public static partial class PlayerBattleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTicketPayload), global::BattleTicketPayload.Parser, new[]{ "BattleId", "PlayerId", "BattleNodeId", "BattleInstanceId", "ExpireAtMs", "Role", "SpectatorOperationId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyRequest), global::BattleTokenVerifyRequest.Parser, new[]{ "Payload", "Signature" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleTokenVerifyResponse), global::BattleTokenVerifyResponse.Parser, new[]{ "Success", "Error", "BattleId", "HeartbeatIntervalMs", "HeartbeatTimeoutMs" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleAssignedS2C), global::BattleAssignedS2C.Parser, new[]{ "BattleId", "Host", "Port", "TokenPayload", "TokenSignature", "ExpireAtMs", "Role" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleAssignedS2C), global::BattleAssignedS2C.Parser, new[]{ "BattleId", "Host", "Port", "TokenPayload", "TokenSignature", "ExpireAtMs", "Role", "WsUrl" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RequestBattleTicketRequest), global::RequestBattleTicketRequest.Parser, new[]{ "BattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RequestBattleTicketResponse), global::RequestBattleTicketResponse.Parser, new[]{ "ErrorMessage", "Assignment" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleReplay), global::BattleReplay.Parser, new[]{ "BattleId", "MatchMode", "BattleConfigId", "StartedAtMs", "FinishedAtMs", "Outcome", "EndReason", "TotalRounds", "TableFingerprint", "StartState", "Rounds", "FinalState", "Truncated" }, null, null, null, null),
@@ -4947,6 +4947,7 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
     tokenSignature_ = other.tokenSignature_;
     expireAtMs_ = other.expireAtMs_;
     role_ = other.role_;
+    wsUrl_ = other.wsUrl_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -5053,6 +5054,22 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
     }
   }
 
+  /// <summary>Field number for the "ws_url" field.</summary>
+  public const int WsUrlFieldNumber = 8;
+  private string wsUrl_ = "";
+  /// <summary>
+  /// 同一台 battle 给小游戏客户端的 WebSocket 地址(NodeInfo.client_ws_url):小游戏客户端连它,原生客户端仍连 host / port;
+  /// 空串 = 这台 battle 不接小游戏(docs/design/minigame-websocket-gate.md W7、W9)。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string WsUrl {
+    get { return wsUrl_; }
+    set {
+      wsUrl_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -5075,6 +5092,7 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
     if (TokenSignature != other.TokenSignature) return false;
     if (ExpireAtMs != other.ExpireAtMs) return false;
     if (Role != other.Role) return false;
+    if (WsUrl != other.WsUrl) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -5089,6 +5107,7 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
     if (TokenSignature.Length != 0) hash ^= TokenSignature.GetHashCode();
     if (ExpireAtMs != 0UL) hash ^= ExpireAtMs.GetHashCode();
     if (Role != global::eBattleTicketRole.BattleTicketRoleNone) hash ^= Role.GetHashCode();
+    if (WsUrl.Length != 0) hash ^= WsUrl.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -5135,6 +5154,10 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
       output.WriteRawTag(56);
       output.WriteEnum((int) Role);
     }
+    if (WsUrl.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(WsUrl);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -5173,6 +5196,10 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
       output.WriteRawTag(56);
       output.WriteEnum((int) Role);
     }
+    if (WsUrl.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(WsUrl);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -5203,6 +5230,9 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
     }
     if (Role != global::eBattleTicketRole.BattleTicketRoleNone) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Role);
+    }
+    if (WsUrl.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(WsUrl);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -5236,6 +5266,9 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
     }
     if (other.Role != global::eBattleTicketRole.BattleTicketRoleNone) {
       Role = other.Role;
+    }
+    if (other.WsUrl.Length != 0) {
+      WsUrl = other.WsUrl;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -5284,6 +5317,10 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
           Role = (global::eBattleTicketRole) input.ReadEnum();
           break;
         }
+        case 66: {
+          WsUrl = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -5329,6 +5366,10 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
         }
         case 56: {
           Role = (global::eBattleTicketRole) input.ReadEnum();
+          break;
+        }
+        case 66: {
+          WsUrl = input.ReadString();
           break;
         }
       }

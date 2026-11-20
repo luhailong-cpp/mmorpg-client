@@ -684,6 +684,21 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(BuyShown(1, 1), Is.True);
         }
 
+        // 2026-11-19 评审补:首发超时(结果不明)之后重发被 gate 限流拒绝,只说明重发没到 scene,首发可能已经成交。
+        // 改之前走 FailBuy(确定没买成),玩家换新键再买一次就是买两份。
+        [Test]
+        public void Buy_ResendRejectedAtTheGateAfterAnUnknownFirstAttempt_IsStillAnUnknownOutcome()
+        {
+            ArriveOnMerchantLine();
+            BuyShown(1, 1);
+            LastCall.Fail("rpc timeout");
+            Assert.That(_client.BuyPending, Is.True, "结果不明:原样重发一次");
+            LastCall.Fail("server tip=" + (uint)common_error.KRateLimitExceeded);
+
+            Assert.That(_client.RequiresReconnect, Is.True, "首发可能已经成交:核实前禁止重复购买");
+            Assert.That(_client.Status, Is.EqualTo(MysteryMerchantClient.RecoveryMessage));
+        }
+
         // ── 购买的幂等键(服务端 docs/design/client-request-idempotency.md §2.1)────────────
 
         private int BuyCallCount()

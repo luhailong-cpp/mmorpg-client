@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Generate C# protobuf classes from the server mmorpg repo's proto tree.
 
@@ -90,6 +90,9 @@ $files = @(
     "proto/scene/player_bag.proto",
     "proto/scene/player_mission.proto",
     "proto/scene/player_activity.proto",
+    # 活跃度领取的拒绝原因(kRewardPeriodEnded / kRewardAlreadyClaimed),PlayerFeaturesClient.Activities.cs 按 reward_error 枚举给文案;
+    # 由服务端导表器从 Tip.xlsx 的 //reward_error 段生成,漏配会缺少 reward_error 枚举(CS0103)。
+    "generated/code/proto/tip/reward_error_tip.proto",
     # 装备穿脱错误码由服务端 Tip.xlsx 导表生成，客户端不手写码值。
     "generated/code/proto/tip/equip_error_tip.proto",
     # 背包域 tip:临时格取回的 kBagTemporaryItemNotFound / RetrieveBagFull / RetrieveBusy
@@ -126,6 +129,7 @@ $files = @(
     "proto/trade/commerce.proto",
     # 支付调用桩 ClientPlayerPaymentRpc 引用 Paymentpb 类型，须与服务端支付协议一起生成。
     "proto/payment/payment.proto",
+    "generated/code/proto/tip/payment_error_tip.proto",
     "proto/mail/mail.proto",
     "proto/rank/rank.proto",
     "proto/common/base/service_call_auth.proto",
@@ -151,7 +155,11 @@ $files = @(
     "generated/code/proto/tip/friend_error_tip.proto",
     # 保留神秘商人已入库客户端；服务端尚未合入时仅跳过这两份协议的重生成。
     "proto/scene/player_mystery_merchant.proto",
-    "generated/code/proto/tip/mystery_merchant_error_tip.proto"
+    "generated/code/proto/tip/mystery_merchant_error_tip.proto",
+    # 挂机月卡(服务端 docs/design/afk-monthly-card.md §6):AfkPassClient 用到 AfkPassInfo 等消息与 afk_pass_error 枚举。
+    # 枚举由服务端导表器从 Tip.xlsx 的 //afk_pass_error 段生成,只能在服务端导表器跑完之后再跑本脚本。
+    "proto/scene/player_afk_pass.proto",
+    "generated/code/proto/tip/afk_pass_error_tip.proto"
 )
 
 $merchantProtoFiles = @(

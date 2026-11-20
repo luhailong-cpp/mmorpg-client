@@ -116,7 +116,8 @@ namespace MmorpgClient.Game.Team
         {
             // 后台读的限流不能清除另一笔尚未确认的写操作。
             if (_pendingActionRequest == null || _pendingAction != action) return true;
-            if (error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal) && IsRateLimited(error))
+            if (error == RpcGuard.CircuitOpenError
+                || (error != null && error.StartsWith(ServerTipPrefix, StringComparison.Ordinal) && IsRateLimited(error)))
             {
                 if (_actionHadUncertainAttempt) return true;
                 return ClearActionIntent("组队请求已被拒绝，本机原请求无法清理，请修复存储后重试。");

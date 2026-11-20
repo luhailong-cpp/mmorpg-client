@@ -23,7 +23,7 @@ public static partial class CommonReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ch5wcm90by9jb21tb24vYmFzZS9jb21tb24ucHJvdG8iKAoMRW5kcG9pbnRD",
-          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0ilwMKCE5vZGVJbmZvEg8K",
+          "b21wEgoKAmlwGAEgASgJEgwKBHBvcnQYAiABKA0irgMKCE5vZGVJbmZvEg8K",
           "B25vZGVfaWQYASABKA0SEQoJbm9kZV90eXBlGAIgASgNEhMKC2xhdW5jaF90",
           "aW1lGAMgASgEEhcKD3NjZW5lX25vZGVfdHlwZRgEIAEoDRIfCghlbmRwb2lu",
           "dBgFIAEoCzINLkVuZHBvaW50Q29tcBIPCgd6b25lX2lkGAYgASgNEhUKDXBy",
@@ -32,16 +32,16 @@ public static partial class CommonReflection {
           "bnRDb21wEiYKD2NsaWVudF9lbmRwb2ludBgLIAEoCzINLkVuZHBvaW50Q29t",
           "cBIXCg9waHlzaWNhbF9yZWdpb24YDCABKA0SFwoPbWF4X2Nvbm5lY3Rpb25z",
           "GA0gASgNEiEKCWFkbWlzc2lvbhgOIAEoDjIOLk5vZGVBZG1pc3Npb24SFQoN",
-          "cmVsZWFzZV90cmFjaxgPIAEoCRINCgVidWlsZBgQIAEoCSIqCg5OZXR3b3Jr",
-          "QWRkcmVzcxIKCgJpcBgBIAEoCRIMCgRwb3J0GAIgASgNKmMKDU5vZGVBZG1p",
-          "c3Npb24SHgoaTk9ERV9BRE1JU1NJT05fVU5TUEVDSUZJRUQQABIXChNOT0RF",
-          "X0FETUlTU0lPTl9PUEVOEAESGQoVTk9ERV9BRE1JU1NJT05fQ0xPU0VEEAJC",
-          "DVoLY29tbW9uL2Jhc2ViBnByb3RvMw=="));
+          "cmVsZWFzZV90cmFjaxgPIAEoCRINCgVidWlsZBgQIAEoCRIVCg1jbGllbnRf",
+          "d3NfdXJsGBEgASgJIioKDk5ldHdvcmtBZGRyZXNzEgoKAmlwGAEgASgJEgwK",
+          "BHBvcnQYAiABKA0qYwoNTm9kZUFkbWlzc2lvbhIeChpOT0RFX0FETUlTU0lP",
+          "Tl9VTlNQRUNJRklFRBAAEhcKE05PREVfQURNSVNTSU9OX09QRU4QARIZChVO",
+          "T0RFX0FETUlTU0lPTl9DTE9TRUQQAkINWgtjb21tb24vYmFzZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::NodeAdmission), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EndpointComp), global::EndpointComp.Parser, new[]{ "Ip", "Port" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint", "PhysicalRegion", "MaxConnections", "Admission", "ReleaseTrack", "Build" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::NodeInfo), global::NodeInfo.Parser, new[]{ "NodeId", "NodeType", "LaunchTime", "SceneNodeType", "Endpoint", "ZoneId", "ProtocolType", "NodeUuid", "PlayerCount", "GrpcEndpoint", "ClientEndpoint", "PhysicalRegion", "MaxConnections", "Admission", "ReleaseTrack", "Build", "ClientWsUrl" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::NetworkAddress), global::NetworkAddress.Parser, new[]{ "Ip", "Port" }, null, null, null, null)
         }));
   }
@@ -357,6 +357,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     admission_ = other.admission_;
     releaseTrack_ = other.releaseTrack_;
     build_ = other.build_;
+    clientWsUrl_ = other.clientWsUrl_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -613,6 +614,24 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
   }
 
+  /// <summary>Field number for the "client_ws_url" field.</summary>
+  public const int ClientWsUrlFieldNumber = 17;
+  private string clientWsUrl_ = "";
+  /// <summary>
+  /// 小游戏客户端（微信 / 抖音）连本节点用的 WebSocket 地址（docs/design/minigame-websocket-gate.md W7），
+  /// 形如 wss://&lt;边缘域名>/ws/&lt;endpoint.ip>/&lt;endpoint.port>。只有 gate / battle 在部署注入 CLIENT_WS_BASE_URL 时自报，
+  /// 端口定下来之后、首次发布之前填好；空串 = 本节点不接小游戏。原生客户端仍用 client_endpoint，两个地址指向同一个进程。
+  /// 字段号 17 上线后不复用；废弃时写 `reserved 17;`（AGENTS.md §4.3）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ClientWsUrl {
+    get { return clientWsUrl_; }
+    set {
+      clientWsUrl_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -644,6 +663,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (Admission != other.Admission) return false;
     if (ReleaseTrack != other.ReleaseTrack) return false;
     if (Build != other.Build) return false;
+    if (ClientWsUrl != other.ClientWsUrl) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -667,6 +687,7 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     if (Admission != global::NodeAdmission.Unspecified) hash ^= Admission.GetHashCode();
     if (ReleaseTrack.Length != 0) hash ^= ReleaseTrack.GetHashCode();
     if (Build.Length != 0) hash ^= Build.GetHashCode();
+    if (ClientWsUrl.Length != 0) hash ^= ClientWsUrl.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -749,6 +770,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(130, 1);
       output.WriteString(Build);
     }
+    if (ClientWsUrl.Length != 0) {
+      output.WriteRawTag(138, 1);
+      output.WriteString(ClientWsUrl);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -823,6 +848,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
       output.WriteRawTag(130, 1);
       output.WriteString(Build);
     }
+    if (ClientWsUrl.Length != 0) {
+      output.WriteRawTag(138, 1);
+      output.WriteString(ClientWsUrl);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -880,6 +909,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
     if (Build.Length != 0) {
       size += 2 + pb::CodedOutputStream.ComputeStringSize(Build);
+    }
+    if (ClientWsUrl.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(ClientWsUrl);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -949,6 +981,9 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
     }
     if (other.Build.Length != 0) {
       Build = other.Build;
+    }
+    if (other.ClientWsUrl.Length != 0) {
+      ClientWsUrl = other.ClientWsUrl;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1042,6 +1077,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
           Build = input.ReadString();
           break;
         }
+        case 138: {
+          ClientWsUrl = input.ReadString();
+          break;
+        }
       }
     }
   #endif
@@ -1132,6 +1171,10 @@ public sealed partial class NodeInfo : pb::IMessage<NodeInfo>
         }
         case 130: {
           Build = input.ReadString();
+          break;
+        }
+        case 138: {
+          ClientWsUrl = input.ReadString();
           break;
         }
       }

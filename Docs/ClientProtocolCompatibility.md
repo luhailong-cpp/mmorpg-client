@@ -167,3 +167,11 @@ pwsh -File tools/build_client.ps1 -Development
 - 服务端 Gate 运行模式与 GM 闸门定向测试 6/6 通过；使用实际 Scene 闸门头文件的独立进程探针 5/5 通过（未设置/prod/未知值拒绝，dev/test 允许）。完整 Scene 测试程序因配置加载失败未执行，不能记为通过。证据在服务端仓 `build/verification/gm-client-gate-audit-20261116/`。
 
 出包最终状态：首轮 `Builds/windows-x64-gm-test-20261116` 在读取 Resources 纹理时发生 native 内存不足崩溃（dump 确认 Mimalloc error 12；日志 `Logs/build-client-20261116-093437-411-7004.log`）。修正构建清单兼容性并限制并发后，`windows-x64-gm-test-20261116-r2` 重试由用户明确取消，构建进程已停止。本轮没有生成新的可运行 Player，也未完成连接真实服务器后的游戏内按钮点击与余额变化验收；不得将原生 UI 夹具通过当作这项验收。以上测试不构成客户端画面与原图一致的验收。
+
+## 客户端统一限流、降级与熔断约定（2026-11-20）
+
+客户端长连接固定落在单台 gate，不照搬分布式后端的 Redis 限流，而是用纯内存简单类挂在统一出口 `IRpcChannel` / `GameClient.CallMethod`（[RpcGuard.cs](../Assets/Scripts/Net/RpcGuard.cs)、[GuardedRpcChannel.cs](../Assets/Scripts/Net/GuardedRpcChannel.cs)）上，统一覆盖全部业务 RPC，并在 `GameClient.AdoptGate` / `DisconnectInternal` 换连接或断线时一处清零：
+
+- **统一限流（`SlidingWindowLimiter` + `RpcGuard`）**：按 `messageId` 自动查表 `MessageLimiterTableManager`（表里 `max_requests == 0` 视为不限；未配置或未加载表时走 gate 缺省 3 次 / 2.5 秒，其中 2.5 秒 = 1 秒窗口 + 1.5 秒覆盖 C++ gate 整秒窗口与上行抖动）。会话生命周期与单向移动控制号（`Login`、`CreatePlayer`、`EnterGame`、`LeaveGame`、`Disconnect`、`RefreshToken`、`EnterScene`、`GetSyncDigest`、`Move*`）豁免。本地超限时同步返回 `RpcStatus.ServerTip(1008)`，不发包、不消耗 gate 非法包计数；对外提供只读 `GameClient.CanSend(messageId)` 与 `RpcGuard.IsRateLimited(messageId)` 给界面置灰按钮。
+- **统一熔断（`SimpleCircuitBreaker` + `RpcGuard`）**：标准三态（`Closed` / `Open` / `HalfOpen`），按**服务域**分桶（`team` / `match` / `rank` / `guild` / `mail` / `jubaozhai` / `attribute` / `pet` / `mystery_merchant` / `afk_pass` / `scene_*`，未归类消息按号隔离，绝不全局一把锁）。`CallMethod` 收口处自动将 `Timeout` 与 `TipFaults.IsFault(tipId)` 计为失败（默认连续 3 次打开 15 秒）；`HalfOpen` 仅放行 1 个在途探测。熔断打开期先于限流拦截并返回 `RpcStatus.NotSent("circuit open")`，不误扣限流配额、不触发幂等重发，也不触发旧业务客户端的 `RequiresReconnect` 锁死（`TeamClient`、`GuildClient`、`TeamInvitationDirectory`、`MysteryMerchantClient` 均已兼容）。**红线**：`1008` 限流与非故障业务拒绝绝不计入熔断，若在 `HalfOpen` 遇 `1008` 仅调 `ReleaseProbe()` 释放槽位；协议体内部故障（如 `TeamResponse.Team == null`）通过 `RpcGuard.RecordServiceFault(messageId)` 衔接计数。
+- **业务层降级与 UI**：`TeamClient`、`BattleMatchEntryClient` 与 `RankClient` 生产均共享注入 `GameClient.RpcGuard`（零重复计数），业务层只保留降级与界面态（如 `MatchNetworkPreparing` 期间停发后台刷新、`BattleQueuePanel` 在冷却期置灰开始与取消按钮并显示原因，绝不将拦截点击排队延后自动开战）。

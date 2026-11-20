@@ -279,7 +279,8 @@ namespace MmorpgClient.Game.Attribute
                             return;
                         }
                         // 重发也不明:方案可能已经建好、银两可能已经扣了,写入结束时重拉面板,让玩家看到真实状态。
-                        if (unknown && CurrentWrite(stamp)) _refreshAfterWrite = true;
+                        // 重发过之后被 gate 层带码拒绝同样要重拉:那只说明重发没执行,首发结果仍不明(2026-11-19 评审补)。
+                        if ((unknown || resent) && CurrentWrite(stamp)) _refreshAfterWrite = true;
                         FailWrite(stamp, err);
                     });
             }

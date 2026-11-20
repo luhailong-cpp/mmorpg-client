@@ -159,5 +159,69 @@ namespace MmorpgClient.Tests.EditMode.Net
             _store.Clear(1, "已更新请求");
             Assert.That(_store.Load(1), Is.Empty);
         }
+
+        // ── 归属修订号:角色换主人之前留下的记录按不存在处理 ──
+
+        [Test]
+        public void RecordWrittenUnderOneOwnerRevisionIsAbsentAfterTheRoleChangesOwner()
+        {
+            ulong revision = 7;
+            var store = new DurableRequestFileStore(_directory, () => revision);
+            store.Save(1, "原请求");
+            Assert.That(File.ReadAllText(PathFor(1), Encoding.UTF8), Is.EqualTo("@owner-revision:7\n原请求"));
+            Assert.That(store.Load(1), Is.EqualTo("原请求"));
+            Assert.That(store.ReadSnapshot(1).Value, Is.EqualTo("原请求"));
+
+            revision = 0; // 这次进场没拿到修订号:未知不作废任何记录
+            Assert.That(store.Load(1), Is.EqualTo("原请求"));
+            Assert.That(_store.Load(1), Is.EqualTo("原请求"), "没有修订号来源的存储同样照读");
+
+            revision = 8; // 角色过户之后
+            Assert.That(store.Load(1), Is.Empty);
+            Assert.That(File.Exists(PathFor(1)), Is.True, "Load 不持锁,不删文件");
+            Assert.That(store.ReadSnapshot(1), Is.Null);
+            Assert.That(File.Exists(PathFor(1)), Is.False, "持锁读到作废记录就地删除");
+        }
+
+        [Test]
+        public void SupersededRecordNeitherBlocksNorAuthorizesTheNewOwner()
+        {
+            ulong revision = 7;
+            var store = new DurableRequestFileStore(_directory, () => revision);
+            store.Save(1, "前主人的请求");
+
+            revision = 8;
+            Assert.Throws<InvalidOperationException>(() => store.Transition(1, "前主人的请求", "换状态"), "作废记录不能当作原记录做状态转换");
+            Assert.DoesNotThrow(() => store.Save(1, "新主人的请求"), "作废记录不占槽位");
+            Assert.That(store.Load(1), Is.EqualTo("新主人的请求"));
+            Assert.That(File.ReadAllText(PathFor(1), Encoding.UTF8), Is.EqualTo("@owner-revision:8\n新主人的请求"));
+
+            revision = 9;
+            Assert.DoesNotThrow(() => store.Clear(1, "对不上的内容"), "作废记录不参与比对,直接删");
+            Assert.That(File.Exists(PathFor(1)), Is.False);
+        }
+
+        [Test]
+        public void RecordWithoutRevisionStaysVisibleAndKeepsItsSlot()
+        {
+            _store.Save(1, "旧格式请求");
+            ulong revision = 8;
+            var store = new DurableRequestFileStore(_directory, () => revision);
+            Assert.That(store.Load(1), Is.EqualTo("旧格式请求"), "写入时修订号未知的记录不能判成前主人的");
+            Assert.Throws<InvalidOperationException>(() => store.Save(1, "另一请求"));
+            Assert.DoesNotThrow(() => store.Save(1, "旧格式请求"));
+            store.Clear(1, "旧格式请求");
+            Assert.That(store.Load(1), Is.Empty);
+        }
+
+        [Test]
+        public void ValueShapedLikeTheRevisionLineIsRejectedAndAMalformedLineIsNotGuessed()
+        {
+            Assert.Throws<InvalidDataException>(() => _store.Save(1, "@owner-revision:7\n伪造"));
+            File.WriteAllText(PathFor(1), "@owner-revision:x\n正文", new UTF8Encoding(false));
+            ulong revision = 8;
+            var store = new DurableRequestFileStore(_directory, () => revision);
+            Assert.That(store.Load(1), Is.EqualTo("@owner-revision:x\n正文"), "首行不合规时整份原样交给调用方按损坏处理");
+        }
     }
 }

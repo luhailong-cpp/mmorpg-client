@@ -22,8 +22,12 @@ namespace MmorpgClient.Game.Jubaozhai
     public sealed class CommerceFileRecoveryStore : ICommerceRecoveryStore
     {
         private readonly DurableRequestFileStore _files;
-        public CommerceFileRecoveryStore(string directory, string origin = null)
-        { _files = origin == null ? new DurableRequestFileStore(directory) : DurableRequestFileStore.ForOrigin(directory, origin); }
+        /// <param name="ownerRevision">当前角色的归属修订号来源;角色换主人之前留下的记录按不存在处理(见 DurableRequestFileStore)。</param>
+        public CommerceFileRecoveryStore(string directory, string origin = null, Func<ulong> ownerRevision = null)
+        {
+            _files = origin == null ? new DurableRequestFileStore(directory, ownerRevision)
+                : DurableRequestFileStore.ForOrigin(directory, origin, ownerRevision);
+        }
         public string Load(ulong player) => _files.Load(player);
         public void Save(ulong player, string value) => _files.Save(player, value);
         public void Clear(ulong player, string expected) => _files.Clear(player, expected);
@@ -131,7 +135,8 @@ namespace MmorpgClient.Game.Jubaozhai
         {
             if (order == null || string.IsNullOrEmpty(order.OrderId)) return false;
             if (order.State != CommerceOrderState.Delivered && order.State != CommerceOrderState.Cancelled
-                && order.State != CommerceOrderState.Refunded && order.State != CommerceOrderState.Settled) return false;
+                && order.State != CommerceOrderState.Refunded && order.State != CommerceOrderState.Settled
+                && order.State != CommerceOrderState.Reversed) return false; // Reversed:付款被渠道撤销,发放已从背包收回
             if (_refreshedTerminalOrders.TryGetValue(order.OrderId, out var before)
                 && before.State == order.State && before.Version >= order.Version) return false;
             _refreshedTerminalOrders[order.OrderId] = order.Clone();

@@ -21,6 +21,9 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private readonly Func<GameClient> _game;
         private readonly List<Button> _writeButtons = new();
         private CommerceClient _client;
+        private PaymentClient _payment;
+        // 正在显示的订单详情;支付方式到了或支付有结局时按它重画。别的页面一画(Clear)就清掉。
+        private CommerceOrderResponse _shownOrder;
         private int _tab;
         private string _cursor = "", _nextCursor = "";
         private ulong _afterSku, _nextSku;
@@ -57,11 +60,13 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _root.gameObject.SetActive(false);
         }
 
-        public void Bind(CommerceClient client)
+        public void Bind(CommerceClient client, PaymentClient payment = null)
         {
             if (_client != null) { _client.Changed -= Changed; _client.Response -= OnResponse; }
-            _client = client;
+            if (_payment != null) { _payment.Changed -= PaymentChanged; _payment.Settled -= PaymentSettled; }
+            _client = client; _payment = payment;
             if (client != null) { client.Changed += Changed; client.Response += OnResponse; }
+            if (payment != null) { payment.Changed += PaymentChanged; payment.Settled += PaymentSettled; }
             _selection = new TradeAssetSelection(); _selectedName = "尚未选择资产";
             Hide();
         }
@@ -77,7 +82,28 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         }
         private void Clear()
         {
-            _confirmed = null; _writeButtons.Clear(); GameplayUiArt.Clear(_body);
+            _confirmed = null; _shownOrder = null; _writeButtons.Clear(); GameplayUiArt.Clear(_body);
+        }
+        private void PaymentChanged()
+        {
+            if (_disposed || _root == null || !IsVisible || _payment == null) return;
+            var shown = _shownOrder;
+            if (shown != null && shown.Order.State == CommerceOrderState.AwaitingPayment) ShowOrder(shown); // 支付方式到了:重画出按钮
+            _status.text = _payment.Status;
+        }
+        // 支付有了结局:重读订单,订单状态才是给玩家看的结论。
+        private void PaymentSettled(string orderId) { if (IsVisible) _client?.GetOrder(orderId); }
+        // 待付款的官方订单:列出当前平台的支付方式。付没付以服务端同步的订单状态为准,这里不改任何资产。
+        private void ShowPayment(CommerceOrderView order)
+        {
+            if (_payment == null || order.Kind != CommerceOrderKind.Official)
+            { Text("等待正式支付渠道确认。付款结果会由服务端同步，请稍后刷新订单。", 24, 490, 1980, 90); return; }
+            if (_payment.Channels.Count == 0) { Action("选择支付方式", 24, 490, 300, _payment.ListChannels); return; }
+            for (int i = 0; i < _payment.Channels.Count && i < 6; i++)
+            {
+                var channel = _payment.Channels[i];
+                Action(PaymentClient.ChannelName(channel), 24 + i * 330, 490, 300, () => _payment.Pay(order.OrderId, channel));
+            }
         }
         private void SelectTab(int tab)
         {
@@ -192,6 +218,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         {
             var order = response.Order;
             Clear();
+            _shownOrder = response;
             Text(Kind(order.Kind) + " · " + State(order.State) + "\n订单 " + order.OrderId + "\n金额 " + Money(order.Amount, order.Currency)
                 + "\n卖方确认：" + (order.SellerConfirmed ? "是" : "否") + "  买方确认：" + (order.BuyerConfirmed ? "是" : "否"), 24, 0, 1950, 190);
             string terms = "卖方交付：" + DescribeTerms(response.SellerAssets, response.SellerItemInstances, response.SellerPet)
@@ -209,7 +236,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 Action("取消订单", 744, 410, 300, () => Confirm("确认取消该订单？已支付订单由服务端确定退款状态。", () => _client.CancelOrder(order.OrderId)), true);
             if (order.Kind == CommerceOrderKind.Consignment && order.SellerPlayerId == _game()?.PlayerId)
                 Action("撤回寄售", 1074, 410, 300, () => Confirm("确认撤回该寄售？资产返回以到账状态为准。", () => _client.CancelConsignment(order.OrderId)), true);
-            if (order.State == CommerceOrderState.AwaitingPayment) Text("等待正式支付渠道确认。付款结果会由服务端同步，请稍后刷新订单。", 24, 490, 1980, 90);
+            if (order.State == CommerceOrderState.AwaitingPayment) ShowPayment(order);
             Action("我的订单", 24, 592, 300, () => SelectTab(4));
         }
 
@@ -409,7 +436,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             CommerceOrderState.WaitingConfirmation => "等待双方确认", CommerceOrderState.AwaitingPayment => "等待付款确认", CommerceOrderState.Escrowing => "资产托管中",
             CommerceOrderState.Delivering => "资产到账中", CommerceOrderState.Delivered => "已到账", CommerceOrderState.CancelPending => "取消处理中",
             CommerceOrderState.Cancelled => "已取消", CommerceOrderState.RefundPending => "退款处理中", CommerceOrderState.Refunded => "已退款",
-            CommerceOrderState.Manual => "等待人工核查", CommerceOrderState.Settled => "已结算", _ => "正在确认" };
+            CommerceOrderState.Manual => "等待人工核查", CommerceOrderState.Settled => "已结算",
+            CommerceOrderState.Reversing => "付款已被渠道撤销，正在核对发放", CommerceOrderState.Reversed => "付款已被渠道撤销，发放已收回", _ => "正在确认" };
         public void Dispose() { if (_disposed) return; _disposed = true; Bind(null); if (_root != null) UnityEngine.Object.Destroy(_root.gameObject); }
     }
 }

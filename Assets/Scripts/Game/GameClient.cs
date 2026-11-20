@@ -35,7 +35,7 @@ namespace MmorpgClient.Game
     {
         private readonly GatewayHttpClient _http;
         private readonly MuduoCodec _codec;
-        private GateTcpClient _gate;
+        private IFramedConnection _gate;
 
         // 大厅连接上的在途请求-响应调用。回包只按 MessageContent.id 认领:服务端每条请求回包都回显
         // ClientRequest.id(路由 / 直连 / scene / gate 拒绝信封,服务端仓 docs/design/client-rpc-callback.md §3),
@@ -70,7 +70,7 @@ namespace MmorpgClient.Game
         // 旧 gate 对 124 之后到达的请求一律回 1003(确定未执行),而它的回包客户端已不再派发;所以从这一刻起
         // 对它的发送当场以 NotSent 失败(可在新连接上重试),不再登记成在途、拖到换连接时变成「结果未知」。
         // 服务端仓 docs/design/client-request-ordering.md O9、§4.6。
-        private GateTcpClient _retiredGate;
+        private IFramedConnection _retiredGate;
         private ulong _redirectPlayerId;       // 重定向前的角色 id(重连后沿用,不重新选角)
         // 本次 EnterGame 请求的角色 id。应答回来之前 PlayerId 仍是 0,而重定向推送(Kafka → gate)
         // 可能先于应答到达、并作废那条等应答的管线 —— 那时只能靠它沿用角色,见 ResolveRedirectPlayerId。
@@ -102,6 +102,12 @@ namespace MmorpgClient.Game
         private int _pipelineGen;
 
         public ulong PlayerId { get; private set; }
+        /// <summary>
+        /// 当前角色的归属修订号(过户一次加一),取自受理的 EnterGame 应答,与 PlayerId 同时置位、同时清零。
+        /// 0 = 未知(旧服务端,或这次进场沿用了上一发仍在途的 EnterGame、没有拿到应答)。
+        /// 本机待确认记录按它判断是不是角色换主人之前留下的(DurableRequestFileStore);未知时不作废任何记录。
+        /// </summary>
+        public ulong OwnerRevision { get; private set; }
         public string AccessToken { get; private set; }
         public string RefreshToken { get; private set; }
         public ActorWorld World { get; }
@@ -137,6 +143,15 @@ namespace MmorpgClient.Game
         /// 读到的一定是"这一次"的原因;有值时 UI 应显示它,而不是用笼统的"连接已断开"盖掉。
         /// </summary>
         public string DisconnectReason { get; private set; }
+
+        /// <summary>
+        /// 统一 RPC 限流与按服务域熔断守卫：挂载在 <see cref="CallMethod{TResp}(uint, IMessage, MessageParser{TResp}, RpcDone{TResp}, float)"/>，
+        /// 覆盖所有经大厅 gate 发出的业务 RPC，换连接与断线时统一清零。
+        /// </summary>
+        public RpcGuard RpcGuard { get; }
+
+        /// <summary>只读检查：当前消息号是否既未被熔断、也还有限流配额（供界面置灰按钮用）。</summary>
+        public bool CanSend(uint messageId) => RpcGuard.CanSend(messageId);
 
         /// <summary>
         /// 回合制战斗网络层(状态机 + battle/match 消息收发)。构造时经
@@ -316,9 +331,12 @@ namespace MmorpgClient.Game
 
             World = new ActorWorld();
             World.AppearanceProvider = ResolveActorCharacterId;
+            RpcGuard = new RpcGuard(() => Time.realtimeSinceStartup);
 
             // 战斗直连链路要先于 WireSceneNotifyHandlers 建好:NotifyBattleAssigned 的处理器指向它
-            BattleLink = new BattleDirectLink(() => new GateTcpClient(_codec), s => Log($"[battle-direct] {s}"),
+            // 连接按平台选传输(原生 TCP、小游戏 WebSocket);小游戏没有线程池,Connect 就地执行(ClientTransport.ConnectRunner)。
+            BattleLink = new BattleDirectLink(() => ClientTransport.Create(_codec), s => Log($"[battle-direct] {s}"),
+                connectRunner: ClientTransport.ConnectRunner,
                 onCallbackException: ex => LogError($"[battle-direct] callback threw: {ex}"));
             BattleLink.TicketReissuer = RequestBattleTicket;
             BattleLink.OnVerified += id =>
@@ -341,10 +359,12 @@ namespace MmorpgClient.Game
             BattleResults = BattleResultRecoveryClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => InGame, () => Time.realtimeSinceStartup, s => Log($"[battle-result] {s}"));
             Battle.OnBattleEndWithoutContext += (end, notified) => BattleResults.HandleEndWithoutContext(end?.BattleId ?? 0, notified);
-            Battle.RegionProbe = new RegionProbeClient(battleRoute, () => new GateTcpClient(_codec));
-            Battle.QueueRecovery = new FileMatchJoinRecovery(System.IO.Path.Combine(Application.persistentDataPath, "match-intents"), gatewayBaseUrl);
-            TeamMatchRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-match-intents"),gatewayBaseUrl);
-            TeamActionRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-action-intents"),gatewayBaseUrl);
+            Battle.RegionProbe = new RegionProbeClient(battleRoute, () => ClientTransport.Create(_codec), ClientTransport.ConnectRunner);
+            // 本机待确认记录一律带上归属修订号来源:角色换主人之前留下的记录不恢复、不重发。
+            Func<ulong> ownerRevision = () => OwnerRevision;
+            Battle.QueueRecovery = new FileMatchJoinRecovery(System.IO.Path.Combine(Application.persistentDataPath, "match-intents"), gatewayBaseUrl, ownerRevision);
+            TeamMatchRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-match-intents"),gatewayBaseUrl,ownerRevision);
+            TeamActionRecovery = DurableRequestFileStore.ForOrigin(System.IO.Path.Combine(Application.persistentDataPath,"team-action-intents"),gatewayBaseUrl,ownerRevision);
             Spectate = SpectateClient.Attach(battleRoute, battleRoute);
             Func<bool> cultivationWritesBlocked = () => Battle.HasActiveBattle || Spectate.Phase != SpectatePhase.None;
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity, cultivationWritesBlocked);
@@ -354,11 +374,11 @@ namespace MmorpgClient.Game
             companion.Bind(World, Pets);
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);
             Features.ActivityRewardRecovery = DurableRequestFileStore.ForOrigin(
-                System.IO.Path.Combine(Application.persistentDataPath, "activity-reward-intents"), gatewayBaseUrl);
+                System.IO.Path.Combine(Application.persistentDataPath, "activity-reward-intents"), gatewayBaseUrl, ownerRevision);
             Features.EquipmentCraftRecovery = DurableRequestFileStore.ForOrigin(
-                System.IO.Path.Combine(Application.persistentDataPath, "equipment-craft-intents"), gatewayBaseUrl);
+                System.IO.Path.Combine(Application.persistentDataPath, "equipment-craft-intents"), gatewayBaseUrl, ownerRevision);
             Features.MaterialRewardRecovery = DurableRequestFileStore.ForOrigin(
-                System.IO.Path.Combine(Application.persistentDataPath, "equipment-material-intents"), gatewayBaseUrl);
+                System.IO.Path.Combine(Application.persistentDataPath, "equipment-material-intents"), gatewayBaseUrl, ownerRevision);
             ZoneTravel = new ZoneTravelClient(this);
             // 落地判定用「在游戏中」+ 传输就绪(IsGateReady)+ (PlayerId, 连接身份);缓存按 (gateway 地址哈希, 玩家) 分键存 PlayerPrefs。
             LandingSync = new LandingSyncClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
@@ -431,6 +451,7 @@ namespace MmorpgClient.Game
             }
             // 落地判定 / 取摘要 / 超时退避 / 通知各域消费者。Call 的等待循环会重入这里,在途标志防重复发送。
             LandingSync?.Tick();
+            TickMinorPlayTimeReminder(); // 未成年人到点前 10 / 5 / 1 分钟提醒(GameClient.AntiAddiction.cs)
             BattleResults?.Tick(); // 近期战斗结果:落地补查、失败退避、补发确认
             if (InGame) Features?.TickEquipmentCraftRecovery();
             if (InGame) Features?.TickMaterialRewardRecovery();
@@ -501,6 +522,15 @@ namespace MmorpgClient.Game
         /// <summary>本区暂停创建新角色时给玩家的文案:服务端建角被拒(tip kLoginZoneCreateRoleClosed)与排队前的预判共用。</summary>
         public const string ZoneCreateRoleClosedMessage = "该区服已暂停创建新角色，请选择其他区服";
 
+        /// <summary>渠道(Apple / Google / 小游戏等)凭证被网关拒绝(code 401)时的文案:要重新向渠道授权,不是口令错。</summary>
+        public const string ChannelCredentialRejectedMessage = "登录授权已失效，请重新登录";
+
+        /// <summary>没挂冷静期界面的调用方(调试自动驾驶等)进区时,账号在注销中给的失败文案。</summary>
+        public const string AccountDeletionPendingMessage = "账号正在注销中，冷静期内可在登录页撤销后再进入";
+
+        /// <summary>冷静期满、注销开始执行时在线设备被踢下线的文案(踢线原因 kLoginAccountDeletionInProgress)。</summary>
+        public const string AccountDeletionExecutingMessage = "账号注销正在执行，已无法撤销";
+
         /// <summary>
         /// 排队之前能不能断定「这个账号在所选区要新建角色、而这个区已暂停创角」。能断定就不必去排队:
         /// 排完队、连上 gate 之后也只会在 CreatePlayer 被拒(服务端 docs/design/zone-full-handling.md §6)。
@@ -541,8 +571,25 @@ namespace MmorpgClient.Game
         /// 用任一种登录方式进区(口令,或小游戏 / Apple / Google 等渠道凭证,见 <see cref="LoginCredential"/>)。
         /// 只有第 1 步按登录方式组请求;之后分配 gate、gate 上绑定会话都只用这一步签发的 access token。
         /// </summary>
+        /// <param name="onAccountDeletionPending">
+        /// 账号在注销冷静期或执行中(/api/login 回 account_deletion_state 非 0,服务端 docs/design/account-deletion.md §4.3):
+        /// 管线到此为止、不分配 gate,签发的令牌留在 <see cref="AccessToken"/> 给撤销用;回调收 (state, execute_after Unix 秒)。
+        /// 不传时按失败回 onError。
+        /// </param>
+        /// <param name="previousAccountDeletedNotice">
+        /// 同一身份以前的账号已注销完成、这次登录建的是新账号(previous_account_deleted_at 非 0,§4.5):管线等这个协程结束
+        /// 再往下走,让玩家先看到提示。只有建新账号的那一次登录会带;不传时只记日志。
+        /// </param>
+        /// <param name="realNameRequired">
+        /// 本次登录的渠道要游戏方实名、账号还没实名(anti_addiction.real_name_required,服务端
+        /// docs/design/real-name-anti-addiction.md §5.2):管线等这个协程结束。协程里由界面收集姓名和身份证号、调
+        /// <see cref="SubmitRealName"/>;提交成功后 <see cref="AntiAddiction"/> 随之更新,管线据此继续或停下。不传时按失败回 onError。
+        /// </param>
         public IEnumerator EnterZone(uint zoneId, LoginCredential credential, string deviceId,
-                                     Action onSuccess, Action<string> onError, bool zoneCreateRoleClosed = false)
+                                     Action onSuccess, Action<string> onError, bool zoneCreateRoleClosed = false,
+                                     Action<uint, long> onAccountDeletionPending = null,
+                                     Func<long, IEnumerator> previousAccountDeletedNotice = null,
+                                     Func<IEnumerator> realNameRequired = null)
         {
             CancelReconnect();
             _deviceId = deviceId;
@@ -551,13 +598,18 @@ namespace MmorpgClient.Game
             // 重定向跳数按"一次登录会话"计:这里是新会话的起点,把熔断计数归零,
             // 否则上一条会话用掉的跳数会把这条会话的正常重定向提前掐死。
             _redirectHops = 0;
+            ApplyAntiAddiction(null); // 上一次进区的防沉迷状态作废,以这次 /api/login 的为准
             Account = credential.IsPassword ? credential.Account : string.Empty;
 
             // ── 1. HTTP login (issues access/refresh tokens + player list) ──
             Status("正在登录账号…");
             GatewayLoginResult loginHttp = null;
+            // 第 1、2 步共用一个排队总预算(服务端 open-server-rate-limit-design.md §11.5 第 7 条)与无票 429 的重试次数。
+            double queueDeadline = MonotonicSeconds + QueueWaitBudgetSeconds;
+            int rateLimitedRetries = 0;
             while (true)
             {
+                if (MonotonicSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
                 GatewayLoginResult r = null;
                 string err = null;
                 yield return _http.Login(BuildHttpLoginRequest(zoneId, credential, deviceId), x => r = x, e => err = e);
@@ -567,13 +619,25 @@ namespace MmorpgClient.Game
                 if (r.code == GatewayLoginResult.CodeQueueing)
                 {
                     Status($"登录排队中… 前方约 {Math.Max(0, r.queue_pos)} 人");
-                    yield return WaitMs(r.retry_after_ms > 0 ? r.retry_after_ms : 2000);
+                    yield return WaitMs(QueueRetryDelayMs(r.retry_after_ms));
+                    if (gen != _pipelineGen) yield break;
+                    continue;
+                }
+                // 429 在网关转发 login 之前就回了,一次性的渠道凭证没被用掉,原样重发安全。
+                if (r.code == GatewayLoginResult.CodeRateLimited && rateLimitedRetries < RateLimitedMaxRetries)
+                {
+                    long waitMs = QueueRetryDelayMs(RateLimitedBackoffMs(++rateLimitedRetries));
+                    Status($"操作过于频繁,{waitMs / 1000} 秒后重试…");
+                    yield return WaitMs(waitMs);
                     if (gen != _pipelineGen) yield break;
                     continue;
                 }
                 if (r.code != GatewayLoginResult.CodeOk)
                 {
-                    onError(DescribeLoginCode(r));
+                    // 渠道凭证被拒不是「账号或密码错误」:渠道令牌一次性,要重新向渠道取,不重发旧的。
+                    onError(!credential.IsPassword && r.code == GatewayLoginResult.CodeAuthRejected
+                        ? ChannelCredentialRejectedMessage
+                        : DescribeLoginCode(r));
                     yield break;
                 }
                 loginHttp = r;
@@ -582,7 +646,8 @@ namespace MmorpgClient.Game
 
             if (!string.IsNullOrEmpty(loginHttp.access_token))
                 SetTokens(loginHttp.access_token, loginHttp.refresh_token, loginHttp.access_token_expire);
-            else if (!credential.IsPassword)
+            // 凭 access token 再登一次(实名之后继续进区)时服务端不签新令牌,沿用现有的。
+            else if (!credential.IsPassword && credential.AuthType != LoginAuthTypes.AccessToken)
             {
                 // 第三方登录没有口令可回退:gate 上只能凭 access token 绑定会话,而渠道凭证已被这一次登录用掉。
                 // 服务端签发失败时回的是故障码(走不到这里),这里只兜住异常的成功回包。
@@ -590,6 +655,48 @@ namespace MmorpgClient.Game
                 yield break;
             }
             Log($"http login ok, players={loginHttp.players?.Length ?? 0}");
+
+            // 账号在注销冷静期 / 执行中:进不了游戏,不去分配 gate;令牌已经留在上面,冷静期内撤销要用它(§4.3、§4.4)。
+            if (loginHttp.account_deletion_state != 0)
+            {
+                Log($"account deletion state={loginHttp.account_deletion_state}; stopping before assign-gate");
+                if (onAccountDeletionPending != null)
+                    onAccountDeletionPending(loginHttp.account_deletion_state, loginHttp.account_deletion_execute_after);
+                else
+                    onError(AccountDeletionPendingMessage);
+                yield break;
+            }
+            if (loginHttp.previous_account_deleted_at != 0)
+            {
+                Log($"previous account deleted at {loginHttp.previous_account_deleted_at}; this login created a new account");
+                if (previousAccountDeletedNotice != null)
+                {
+                    yield return previousAccountDeletedNotice(loginHttp.previous_account_deleted_at);
+                    if (gen != _pipelineGen) yield break;
+                }
+            }
+
+            // 防沉迷(服务端 docs/design/real-name-anti-addiction.md §5.3):要实名就先等界面实名;未成年人不在可玩时段就不去排队。
+            // 真正的拦截在 gate 上的 Login,这里只是不让玩家白排一次队。
+            ApplyAntiAddiction(loginHttp.anti_addiction);
+            if (AntiAddiction.real_name_required)
+            {
+                if (realNameRequired != null)
+                {
+                    yield return realNameRequired();
+                    if (gen != _pipelineGen) yield break;
+                }
+                if (AntiAddiction.real_name_required)
+                {
+                    onError(RealNameRequiredMessage);
+                    yield break;
+                }
+            }
+            if (AntiAddiction.minor && AntiAddiction.play_deadline_ms == 0)
+            {
+                onError(MinorNotInPlayTimeMessage);
+                yield break;
+            }
 
             // 所选区暂停创角、而账号在这个区没有角色:排完队进去也只能在建角时被拒,所以不去排队,直接回选服界面。
             if (MustCreateRoleInClosedZone(zoneCreateRoleClosed, loginHttp.players, zoneId))
@@ -600,11 +707,37 @@ namespace MmorpgClient.Game
             }
 
             // ── 2. Assign gate (queue-aware) ──
+            // 持票轮询按服务端 docs/design/open-server-rate-limit-design.md §11.5,与 robot 的 AssignGateWithQueue 同口径:
+            // 持 queue_token 只查 /api/queue-status;查询本身失败(网络 / HTTP 非 200 / code=500)才带原票立即重调一次
+            // assign-gate 恢复,恢复回 100 / 429 / 500 或自身失败都保票、按退避回到查询;503 zone_* / 404 是终态;410 丢票、不带票重排。
             Status("正在分配服务器…");
             AssignGateResult assigned = null;
             string queueToken = null;
+            // queue-status 连续失败的次数,定持票等待的退避下限:查询的非失败回包清零,恢复重入的回包不清零,丢票时清零。
+            int statusFailures = 0;
+            double nextTokenRefreshAt = 0;
             while (true)
             {
+                // 每个请求发出前确认排队总预算没用完(第 7 条);已发出的请求照常等回包,截止后才到的放行照样进。
+                if (MonotonicSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
+                // 排队可能比 access token(2 小时)还长:快到期就先换一对新令牌,否则恢复重入回 401、放行后进 gate 也认证不过。
+                // 网络失败或 500 隔 60 秒再试(查询不用 access token,照常进行);refresh 令牌被拒就是登录失效。
+                if (AccessTokenExpiresSoon() && MonotonicSeconds >= nextTokenRefreshAt)
+                {
+                    nextTokenRefreshAt = MonotonicSeconds + QueueTokenRefreshRetrySeconds;
+                    GatewayRefreshTokenResult refreshed = null;
+                    string refreshErr = null;
+                    yield return _http.RefreshToken(RefreshToken, x => refreshed = x, e => refreshErr = e);
+                    if (gen != _pipelineGen) yield break;
+                    if (refreshErr == null && refreshed.code == GatewayLoginResult.CodeAuthRejected) { onError(LoginExpiredMessage); yield break; }
+                    if (refreshErr == null && refreshed.code == GatewayLoginResult.CodeOk && !string.IsNullOrEmpty(refreshed.access_token))
+                    {
+                        SetTokens(refreshed.access_token, refreshed.refresh_token, refreshed.access_token_expire);
+                        Log("access_token refreshed while queueing");
+                    }
+                    else
+                        Log($"access_token refresh while queueing failed ({refreshErr ?? "code=" + refreshed.code}); retrying in {QueueTokenRefreshRetrySeconds}s");
+                }
                 AssignGateResult r = null;
                 string err = null;
                 if (string.IsNullOrEmpty(queueToken))
@@ -614,10 +747,35 @@ namespace MmorpgClient.Game
                 else
                 {
                     yield return _http.QueryQueueStatus(queueToken, zoneId, x => r = x, e => err = e);
+                    if (gen != _pipelineGen) yield break;
+                    if (err == null && r.code != AssignGateResult.CodeInternal)
+                    {
+                        statusFailures = 0;
+                    }
+                    else
+                    {
+                        statusFailures++;
+                        Log($"queue-status failed ({err ?? "code=500 error=" + r.error}), consecutive={statusFailures}; re-entering assign-gate with the queue token");
+                        if (MonotonicSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
+                        r = null;
+                        err = null;
+                        yield return _http.AssignGate(BuildAssignGateRequest(zoneId, AccessToken, deviceId, queueToken), x => r = x, e => err = e);
+                    }
                 }
                 if (gen != _pipelineGen) yield break;
-                if (err != null) { onError(err); yield break; }
-
+                bool holdingToken = !string.IsNullOrEmpty(queueToken);
+                // 首次分配或无票重调本身失败:按错误结束、交外层。
+                if (err != null && !holdingToken) { onError(err); yield break; }
+                // 持票时走到这里的失败只来自恢复重入:被 IP 桶挡住(429)、回 500,或自身网络 / HTTP 失败。都保票、按退避
+                // 回到查询,直到总预算用完(第 4、6 条);不套无票 429 的退避,否则会错过放行窗口。
+                if (holdingToken && (err != null || r.code == AssignGateResult.CodeRateLimited || r.code == AssignGateResult.CodeInternal))
+                {
+                    Log($"assign-gate re-entry did not resume ({err ?? "code=" + r.code + " error=" + r.error}); keeping the queue token");
+                    Status("网络波动,排队位置保留中,稍候重试…");
+                    yield return WaitMs(QueueRetryDelayMs(err == null ? r.retry_after_ms : 0, statusFailures));
+                    if (gen != _pipelineGen) yield break;
+                    continue;
+                }
                 if (r.code == AssignGateResult.CodeQueueing)
                 {
                     if (r.queue_source == "login" && !string.IsNullOrEmpty(r.queue_token))
@@ -625,18 +783,29 @@ namespace MmorpgClient.Game
                     OnQueueUpdate?.Invoke(r);
                     Status(r.queue_source == "login"
                         ? $"排队中… {r.queue_rank + 1}/{Math.Max(r.queue_total, r.queue_rank + 1)}"
-                        : "服务器繁忙,稍候重试…");
-                    yield return WaitMs(r.retry_after_ms > 0 ? r.retry_after_ms : 2000);
+                        : holdingToken ? "网络波动,排队位置保留中,稍候重试…" : "服务器繁忙,稍候重试…");
+                    yield return WaitMs(QueueRetryDelayMs(r.retry_after_ms, statusFailures));
                     if (gen != _pipelineGen) yield break;
                     continue;
                 }
-                if (r.code == AssignGateResult.CodeQueueExpired)
+                if (r.code == AssignGateResult.CodeQueueExpired && holdingToken)
                 {
                     // Queue slot lost (e.g. client slept) — restart from assign-gate.
                     queueToken = null;
+                    statusFailures = 0;
                     Status("排队已过期,重新排队…");
                     continue;
                 }
+                // 无票 429(IP 桶或账号冷却):按 30、60、120 秒退避重调,与第 1 步共用次数上限(§11.5「未持有 queue_token」)。
+                if (r.code == AssignGateResult.CodeRateLimited && rateLimitedRetries < RateLimitedMaxRetries)
+                {
+                    long waitMs = QueueRetryDelayMs(RateLimitedBackoffMs(++rateLimitedRetries));
+                    Status($"操作过于频繁,{waitMs / 1000} 秒后重试…");
+                    yield return WaitMs(waitMs);
+                    if (gen != _pipelineGen) yield break;
+                    continue;
+                }
+                // 其余交外层:503 zone_* / 404(终态,不重入)、401,以及无票的 410(免得不等待地反复重调)、500 与重试用完的 429。
                 if (r.code != AssignGateResult.CodeOk)
                 {
                     onError(DescribeAssignCode(r));
@@ -652,7 +821,8 @@ namespace MmorpgClient.Game
             yield return ConnectAndEnter(gen, zoneId,
                 assigned.gate_ip, (int)assigned.gate_port,
                 SafeBase64(assigned.token_payload), SafeBase64(assigned.token_signature),
-                credential.IsPassword ? credential.Password : null, onSuccess, onError);
+                credential.IsPassword ? credential.Password : null, onSuccess, onError,
+                wsUrl: assigned.gate_ws_url);
         }
 
         /// <summary>
@@ -671,17 +841,46 @@ namespace MmorpgClient.Game
             };
 
         /// <summary>
-        /// POST /api/assign-gate 的请求体(首次分配,不带 queue_token)。带 access token:服务端只认它解出的账号
+        /// 申请注销(POST /api/account/delete,服务端 docs/design/account-deletion.md §4.2):注销要求重新认证,凭据与 /api/login 同形;
+        /// Apple 另带这次重新授权拿到的 authorization_code(login 换票后立刻撤销,§8)。结论按 <see cref="ClassifyAccountDeletion"/> 分支。
+        /// </summary>
+        public IEnumerator RequestAccountDeletion(uint zoneId, LoginCredential credential, string authorizationCode,
+                                                  Action<GatewayAccountDeletionResult> onDone, Action<string> onError)
+            => _http.DeleteAccount(BuildAccountDeletionRequest(zoneId, credential, authorizationCode), onDone, onError);
+
+        /// <summary>撤销注销(POST /api/account/delete/cancel,§4.4):凭冷静期内 /api/login 签发、留在 <see cref="AccessToken"/> 的令牌。</summary>
+        public IEnumerator CancelAccountDeletion(uint zoneId, Action<GatewayAccountDeletionResult> onDone, Action<string> onError)
+            => _http.CancelAccountDeletion(zoneId, AccessToken, onDone, onError);
+
+        /// <summary>POST /api/account/delete 的请求体:凭据字段取自 <see cref="BuildHttpLoginRequest"/>,两处按登录方式取字段的规则只有这一份。</summary>
+        public static GatewayAccountDeletionRequest BuildAccountDeletionRequest(uint zoneId, LoginCredential credential, string authorizationCode)
+        {
+            var login = BuildHttpLoginRequest(zoneId, credential, null);
+            return new GatewayAccountDeletionRequest
+            {
+                zone_id = login.zone_id,
+                auth_type = login.auth_type,
+                auth_token = login.auth_token,
+                account = login.account,
+                password = login.password,
+                authorization_code = authorizationCode ?? string.Empty,
+            };
+        }
+
+        /// <summary>
+        /// POST /api/assign-gate 的请求体。带 access token:服务端只认它解出的账号
         /// 做免排队判定与排队身份,不再接受客户端自报的账号名。
+        /// queue_token 只在持票查询失败后的恢复重入时带(服务端 open-server-rate-limit-design.md §11.5 第 3 条),首次分配为空。
         /// 全限定:Loginpb.AssignGateRequest(proto)与 HTTP DTO 同名,两个命名空间都在 using 里,不限定会 CS0104。
         /// </summary>
-        public static MmorpgClient.Net.AssignGateRequest BuildAssignGateRequest(uint zoneId, string accessToken, string deviceId)
+        public static MmorpgClient.Net.AssignGateRequest BuildAssignGateRequest(uint zoneId, string accessToken, string deviceId,
+                                                                               string queueToken = null)
             => new MmorpgClient.Net.AssignGateRequest
             {
                 zone_id = zoneId,
                 access_token = accessToken ?? string.Empty,
                 device_id = deviceId ?? string.Empty,
-                queue_token = string.Empty,
+                queue_token = queueToken ?? string.Empty,
             };
 
         /// <summary>
@@ -696,7 +895,7 @@ namespace MmorpgClient.Game
         private IEnumerator ConnectAndEnter(int gen, uint zoneId, string ip, int port, byte[] payload, byte[] signature,
                                             string passwordFallback,
                                             Action onSuccess, Action<string> onError,
-                                            GateTcpClient preConnected = null)
+                                            IFramedConnection preConnected = null, string wsUrl = null)
         {
             // 世代已经翻篇:预建的连接没人接管了,必须自己关掉,否则泄漏一条 TCP + 两个线程。
             if (gen != _pipelineGen) { preConnected?.Dispose(); yield break; }
@@ -708,7 +907,7 @@ namespace MmorpgClient.Game
             }
             else
             {
-                try { ConnectGate(ip, port); }
+                try { ConnectGate(ip, port, wsUrl); }
                 catch (Exception ex) { FailPipeline(gen, onError, $"connect gate: {ex.Message}"); yield break; }
             }
             // 连上之后才认这个地址:失败时 AssignedGate 还是老 gate,
@@ -782,7 +981,11 @@ namespace MmorpgClient.Game
             if (gen != _pipelineGen) yield break;
             if (loginResp == null) yield break;
             if (loginResp.ErrorMessage != null && loginResp.ErrorMessage.Id != 0)
-            { FailPipeline(gen, onError, $"登录失败(tip={loginResp.ErrorMessage.Id})"); yield break; }
+            {
+                // gate 上的 Login 是防沉迷的拦截点(没实名、未成年人不在可玩时段),这两种给明确文案。
+                FailPipeline(gen, onError, DescribeAntiAddictionTip(loginResp.ErrorMessage.Id) ?? $"登录失败(tip={loginResp.ErrorMessage.Id})");
+                yield break;
+            }
             if (!string.IsNullOrEmpty(loginResp.AccessToken))
                 SetTokens(loginResp.AccessToken, loginResp.RefreshToken, loginResp.AccessTokenExpire);
             Log($"session login ok, players={loginResp.Players.Count}");
@@ -1028,6 +1231,8 @@ namespace MmorpgClient.Game
             if (egResp == null) yield break; // 管线已收口(EnterGameOnConnection 里 FailPipeline 过)
             if (egResp.ErrorMessage != null && egResp.ErrorMessage.Id != 0)
             { FailPipeline(gen, onError, $"进入游戏失败(tip={egResp.ErrorMessage.Id})"); yield break; }
+            // 先于 PlayerId 置位:读本机待确认记录的地方一看到这名角色,拿到的就是它的归属修订号(沿用在途进场时应答是合成的,为 0 = 未知)。
+            OwnerRevision = egResp.OwnerRevision;
             PlayerId = egResp.PlayerId != 0 ? egResp.PlayerId : playerId;
             Log($"enter game accepted, player_id={PlayerId}");
 
@@ -1067,6 +1272,7 @@ namespace MmorpgClient.Game
                     Log("[enter] keeping the connection and returning to role selection");
                     _awaitingSceneEntry = false;
                     PlayerId = 0;
+                    OwnerRevision = 0;
                     onReselect(EnterRejectedReselectHint);
                     yield break;
                 }
@@ -1380,8 +1586,10 @@ namespace MmorpgClient.Game
                 //    老连接此刻还连着(只是上面刚摘掉了事件,不再派发),探不通就在这里失败,
                 //    不会出现"关了旧的又连不上新的"的裸奔窗口。
                 string probeErr = null;
-                yield return ProbeGate(ev.TargetIp, (int)ev.TargetPort, RedirectProbeTimeoutSec,
-                                       e => probeErr = e);
+                // 小游戏(WebSocket)没有原始套接字可探,也不需要:它的 Connect 不阻塞,通不通由第 ④ 步等到打开为止来判。
+                if (!ClientTransport.UseWebSocket)
+                    yield return ProbeGate(ev.TargetIp, (int)ev.TargetPort, RedirectProbeTimeoutSec,
+                                           e => probeErr = e);
                 if (gen != _pipelineGen) yield break;
                 if (probeErr != null)
                 {
@@ -1391,11 +1599,32 @@ namespace MmorpgClient.Game
 
                 // ④ 换连接:**先把新连接建起来**,确认成功之后才关旧的
                 //    (次序对齐 robot SwapConn;理由见 OpenGate 的注释)。
-                GateTcpClient fresh = null;
+                IFramedConnection fresh = null;
                 string connErr = null;
-                try { fresh = OpenGate(ev.TargetIp, (int)ev.TargetPort); }
+                try { fresh = OpenGate(ev.TargetIp, (int)ev.TargetPort, ev.TargetWsUrl); }
                 catch (Exception exc) { connErr = exc.Message; }
                 if (connErr != null) { FailRedirect(target, $"connect gate: {connErr}"); yield break; }
+
+                // WebSocket 的 Connect 立即返回:等它真正打开再往下走(TCP 到这里已经连上,不进循环)。老连接此刻还连着,
+                // 打不开就在这里失败,仍然不会出现"关了旧的又连不上新的"。期限与上面的探测相同,两者只走其一。
+                float openDeadline = Time.realtimeSinceStartup + RedirectProbeTimeoutSec;
+                bool freshLost = false;
+                Action onFreshLost = () => freshLost = true;
+                fresh.OnDisconnected += onFreshLost;
+                while (!fresh.Connected && !freshLost && Time.realtimeSinceStartup < openDeadline)
+                {
+                    fresh.Poll();
+                    yield return null;
+                    // 世代已经翻篇:这条预建的连接没人接管了,自己关掉。
+                    if (gen != _pipelineGen) { fresh.Dispose(); yield break; }
+                }
+                fresh.OnDisconnected -= onFreshLost;
+                if (!fresh.Connected)
+                {
+                    fresh.Dispose();
+                    FailRedirect(target, "target gate unreachable: connection did not open");
+                    yield break;
+                }
 
                 ResetConnectionState();   // 旧连接与旧 zone 的会话状态到这一刻才清掉
                 _enterRejectedByServer = false;   // 管线可能在走到 EnterGame 之前就失败,不能读到上一次的值
@@ -1548,7 +1777,12 @@ namespace MmorpgClient.Game
         /// 未填原因(0)一律不下结论,维持原来的通用文案 —— 宁可笼统,也不要把别的原因说成传送失败。
         /// </summary>
         public static string DescribeKickReason(uint reasonId) =>
-            IsTravelFailureTip(reasonId) ? DescribeTravelTip(reasonId) + "请重新登录。" : null;
+            reasonId == (uint)login_error.KLoginMinorPlayTimeOver ? MinorPlayTimeOverMessage
+            // 账号注销(服务端 docs/design/account-deletion.md §7.2):申请成功后踢掉在线设备带冷静期码,到期执行时带执行中码。
+            // 两种都不自动重连:冷静期内进不了游戏,执行中的账号也撤不回来。
+            : reasonId == (uint)login_error.KLoginAccountDeletionPending ? AccountDeletionPendingMessage
+            : reasonId == (uint)login_error.KLoginAccountDeletionInProgress ? AccountDeletionExecutingMessage
+            : IsTravelFailureTip(reasonId) ? DescribeTravelTip(reasonId) + "请重新登录。" : null;
 
         /// <summary>
         /// 重定向后第二条腿要沿用的角色:已进游戏(PlayerId 非 0)取当前角色;EnterGame 应答还没回来时
@@ -1742,7 +1976,7 @@ namespace MmorpgClient.Game
 
         // ── internals ────────────────────────────────────────────
 
-        private void ConnectGate(string host, int port) => AdoptGate(OpenGate(host, port));
+        private void ConnectGate(string host, int port, string wsUrl) => AdoptGate(OpenGate(host, port, wsUrl));
 
         /// <summary>
         /// 建一条新的 gate 连接但**不接管**:不碰 _gate / _calls / TokenVerified。
@@ -1753,11 +1987,11 @@ namespace MmorpgClient.Game
         /// 反过来先关旧的,一旦新 gate 连不上,玩家就被扔在一条已经关掉的连接上,
         /// 谁也救不回来 —— 老 gate 那边的登录会话早在 EnterGame 成功时就被清掉了。
         /// </summary>
-        private GateTcpClient OpenGate(string host, int port)
+        private IFramedConnection OpenGate(string host, int port, string wsUrl)
         {
-            var fresh = new GateTcpClient(_codec);
+            var fresh = ClientTransport.Create(_codec);
             fresh.OnError += e => Log($"[gate] error: {e}");
-            try { fresh.Connect(host, port); }
+            try { fresh.Connect(host, port, wsUrl); }
             catch { fresh.Dispose(); throw; }
             return fresh;
         }
@@ -1765,7 +1999,7 @@ namespace MmorpgClient.Game
         /// <summary>
         /// 接管一条已经建好的连接。旧连接在这一刻(新连接确定可用之后)才关。
         /// </summary>
-        private void AdoptGate(GateTcpClient fresh)
+        private void AdoptGate(IFramedConnection fresh)
         {
             var stale = _gate;
             _gate = null;
@@ -1774,6 +2008,7 @@ namespace MmorpgClient.Game
             // 旧连接上的在途调用结局未知,以 Disconnected 完成(旧字符串 "disconnected",ZoneTravelClient 据此判传送已交接)。
             // 回调此刻看到的 _gate 为空:回调里重发会以 NotSent 失败,不会抢在新连接验票之前发出(gate 对未验签的请求直接断连)。
             _calls.FailAll(RpcStatus.Disconnected("disconnected"));
+            RpcGuard.Reset();
             TokenVerified = false;
             _tokenRejectedByGate = false; // 每条连接的握手状态,只在这里复位(见字段注释)
             _gate = fresh;
@@ -1794,6 +2029,55 @@ namespace MmorpgClient.Game
             float until = Time.realtimeSinceStartup + ms / 1000f;
             while (Time.realtimeSinceStartup < until) yield return null;
         }
+
+        // 排队 / 限流重试前的等待(服务端 docs/design/open-server-rate-limit-design.md §11.5):
+        // 基础间隔 = max(服务端给的 retry_after_ms, 2 秒),服务端没给(0)时就是 2 秒;再加 [0, 基础间隔的 20%] 的均匀抖动,
+        // 抖动按不超过 30 秒的基础间隔算(波次提示可能是一小时,不让抖动拖出几分钟)。下限挡住旧网关原样下发的
+        // 「区桶补到一个令牌」的 1~2ms,抖动把同一时刻被拒的一批人错开,不让他们同时打回同一个区。
+        // 持票查询连续失败时,2 秒的下限换成 QueueBackoffFloorMs 的退避值(第 2 条);consecutiveFailures 缺省 0,口径不变。
+        private const long QueueRetryFloorMs = 2000;
+        private const long QueueRetryJitterBasisCapMs = 30000;
+        // 退避下限封顶 30 秒:login 放行窗口 AdmitTTL(60 秒)的一半,退避中被放行的人仍能在窗口内再查到一次。
+        private const long QueueBackoffCapMs = 30000;
+        // 排队总预算(第 7 条):与排队令牌的 24 小时绝对寿命一致,再等服务端也只会回 410。
+        // access token 只有 2 小时,排队循环里快到期就换新(AccessTokenExpiresSoon),不靠预算兜。
+        private const double QueueWaitBudgetSeconds = 24 * 60 * 60;
+        private const string QueueBudgetExceededMessage = "排队超时,请重新登录";
+        // 排队中换 access token 失败(网络 / 500)后隔多久再试;与局内 MaybeRefreshToken 的冷却相同。
+        private const double QueueTokenRefreshRetrySeconds = 60;
+        // access token 剩不到这么久就换新(局内 MaybeRefreshToken 与排队循环共用)。
+        private const long AccessTokenRefreshMarginSeconds = 10 * 60;
+        // 无票 429 最多重试几次(30、60、120 秒各一次),之后报错交玩家,不无限重试。
+        private const int RateLimitedMaxRetries = 3;
+        private const string LoginExpiredMessage = "登录已失效,请重新登录";
+
+        private static long QueueRetryDelayMs(long serverRetryAfterMs, int consecutiveFailures = 0)
+        {
+            long baseMs = Math.Max(serverRetryAfterMs, QueueBackoffFloorMs(consecutiveFailures));
+            long jitterLimitMs = Math.Min(baseMs, QueueRetryJitterBasisCapMs) / 5;
+            return baseMs + (long)(UnityEngine.Random.value * jitterLimitMs);
+        }
+
+        /// <summary>
+        /// 持票查询连续失败 n 次时的等待下限:n 为 0、1 时 2 秒,之后逐次翻倍,第 5 次起封顶 30 秒(2、4、8、16、30、30…)。
+        /// 逐次翻倍到封顶为止,n 再大也不溢出。测试程序集没有 InternalsVisibleTo,所以只能是 public。
+        /// </summary>
+        public static long QueueBackoffFloorMs(int consecutiveFailures)
+        {
+            long floor = QueueRetryFloorMs;
+            for (int i = 1; i < consecutiveFailures && floor < QueueBackoffCapMs; i++) floor *= 2;
+            return Math.Min(floor, QueueBackoffCapMs);
+        }
+
+        /// <summary>
+        /// 无票请求第 retry 次(1 起)因 429 重试前的等待基数:30、60、120 秒(服务端 open-server-rate-limit-design.md
+        /// §11.5「未持有 queue_token」),抖动由 QueueRetryDelayMs 加。public 理由同上。
+        /// </summary>
+        public static long RateLimitedBackoffMs(int retry) => retry <= 1 ? 30000 : retry == 2 ? 60000 : 120000;
+
+        private bool AccessTokenExpiresSoon() =>
+            !string.IsNullOrEmpty(RefreshToken) && _accessTokenExpire != 0 &&
+            _accessTokenExpire - DateTimeOffset.UtcNow.ToUnixTimeSeconds() <= AccessTokenRefreshMarginSeconds;
 
         /// <summary>
         /// HTTP 登录失败码 → 给人看的文案(网关 LoginResponse,服务端 docs/design/third-party-login-end-to-end-design.md §三)。
@@ -1816,7 +2100,7 @@ namespace MmorpgClient.Game
 
         public static string DescribeAssignCode(AssignGateResult r) => r.code switch
         {
-            AssignGateResult.CodeAuthRejected    => "登录已失效,请重新登录",
+            AssignGateResult.CodeAuthRejected    => LoginExpiredMessage,
             AssignGateResult.CodeZoneNotFound    => "该区服不存在",
             AssignGateResult.CodeZoneUnavailable => DescribeZoneUnavailable(r.error),
             AssignGateResult.CodeRateLimited     => "操作过于频繁,请稍后重试",
@@ -1830,6 +2114,89 @@ namespace MmorpgClient.Game
             "zone_not_open"    => "该区服尚未开放",
             _ => "该区服暂不可用",
         };
+
+        // ── 账号注销(服务端 docs/design/account-deletion.md §5.2):接口结论 → 界面下一步 ──
+        // 四个注销码(kLoginAccountDeletion*)由导表器从 Tip.xlsx 发号,这里只认生成枚举的名字、不写码值:
+        // 同一批还有防沉迷的 login 段新码,两边落表先后不定,设计稿里的 2038~2041 不一定是最终码值。
+
+        /// <summary>注销 / 撤销注销接口的结论归成的界面下一步(<see cref="ClassifyAccountDeletion"/>)。</summary>
+        public enum AccountDeletionStep
+        {
+            Scheduled,          // 已进入冷静期(申请成功,或本来就在冷静期)
+            Cancelled,          // 撤销成功,账号恢复正常
+            Blocked,            // 预检没过,看 blockers
+            Reauthorize,        // Apple 授权码无效:重新拉起 Apple
+            CredentialRejected, // 凭证无效(口令错、渠道令牌失效、撤销时 access token 失效):渠道重新拉起 SDK,不重发旧令牌
+            AlreadyExecuting,   // 已在执行,无法撤销
+            RateLimited,        // 网关限流
+            Retry,              // 渠道不可用、服务端故障与认不出的结论:稍后重试
+        }
+
+        /// <summary>
+        /// 注销接口的应答 → 界面下一步:按 tip 分支,不解析 message(§5.2)。tip 为 0 时看 state:申请成功是 1,撤销成功是 0。
+        /// </summary>
+        public static AccountDeletionStep ClassifyAccountDeletion(GatewayAccountDeletionResult r)
+        {
+            if (r == null) return AccountDeletionStep.Retry;
+            switch (r.tip)
+            {
+                case (uint)login_error.KLoginAccountDeletionBlocked: return AccountDeletionStep.Blocked;
+                case (uint)login_error.KLoginAccountDeletionReauthRequired: return AccountDeletionStep.Reauthorize;
+                case (uint)login_error.KLoginAccountDeletionInProgress: return AccountDeletionStep.AlreadyExecuting;
+                case (uint)login_error.KLoginAccountDeletionPending:
+                    return r.state == 2 ? AccountDeletionStep.AlreadyExecuting : AccountDeletionStep.Scheduled;
+                case (uint)login_error.KLoginAccountNotFound: return AccountDeletionStep.CredentialRejected;
+            }
+            if (r.code == GatewayLoginResult.CodeAuthRejected) return AccountDeletionStep.CredentialRejected;
+            if (r.code == GatewayLoginResult.CodeRateLimited) return AccountDeletionStep.RateLimited;
+            if (r.code != GatewayLoginResult.CodeOk || r.tip != 0) return AccountDeletionStep.Retry;
+            return r.state switch
+            {
+                1 => AccountDeletionStep.Scheduled,
+                0 => AccountDeletionStep.Cancelled,
+                2 => AccountDeletionStep.AlreadyExecuting,
+                _ => AccountDeletionStep.Retry,
+            };
+        }
+
+        /// <summary>
+        /// 注销预检的挂起原因(低基数枚举串,§5.2)→ 给玩家看的文案。认不出的按「有未完成的游戏内事务」显示,
+        /// 服务端以后加原因时客户端不用同批改。
+        /// </summary>
+        public static string DescribeAccountDeletionBlocker(string reason)
+        {
+            reason ??= string.Empty;
+            if (reason == "guild_leader") return "请先转让帮主或解散帮会";
+            if (reason == "role_listed") return "角色正在寄售";
+            if (reason == "trade_commerce") return "交易行还有未完成的订单或挂单";
+            if (reason.StartsWith("team_", StringComparison.Ordinal)) return "请先退出队伍或处理组队邀请/申请";
+            if (reason.StartsWith("match_", StringComparison.Ordinal)) return "请先结束匹配、观战或切磋";
+            if (reason.EndsWith("_asset_op", StringComparison.Ordinal) || reason == "player_inbox_item" ||
+                reason.StartsWith("guild_trial_", StringComparison.Ordinal))
+                return "有物品或奖励还在处理，请稍后再试";
+            return "有未完成的游戏内事务";
+        }
+
+        /// <summary>挂起清单 → 去重后逐行的文案(多名角色同一原因只列一次);清单为空时给一条兜底。</summary>
+        public static string DescribeAccountDeletionBlockers(GatewayAccountDeletionBlocker[] blockers)
+        {
+            var lines = new List<string>();
+            if (blockers != null)
+                foreach (var blocker in blockers)
+                {
+                    string line = DescribeAccountDeletionBlocker(blocker?.reason);
+                    if (!lines.Contains(line)) lines.Add(line);
+                }
+            if (lines.Count == 0) lines.Add(DescribeAccountDeletionBlocker(null));
+            return "· " + string.Join("\n· ", lines);
+        }
+
+        /// <summary>注销相关的时刻(Unix 秒)→ 本地时间;0 或越界(服务端没给)时说「近期」,不让界面回调抛异常。</summary>
+        public static string FormatAccountDeletionTime(long unixSeconds)
+            => unixSeconds > 0 && unixSeconds < 253402214400L // 9999-12-31,再大 DateTimeOffset 换算会抛
+                ? DateTimeOffset.FromUnixTimeSeconds(unixSeconds).ToLocalTime()
+                    .ToString("yyyy-MM-dd HH:mm", System.Globalization.CultureInfo.InvariantCulture)
+                : "近期";
 
         private void FailPipeline(int gen, Action<string> onError, string message)
         {
@@ -1847,7 +2214,7 @@ namespace MmorpgClient.Game
         /// 不读 GateTcpClient.Connected 的理由见 <see cref="ClassifyPipelineWait"/>。通告心跳之后半开 TCP
         /// 会由网络线程的读超时关闭并产生哨兵；验签前或旧 gate 仍由各段期限兜底。
         /// </summary>
-        private bool IsStillCurrentGate(GateTcpClient gate) => gate != null && ReferenceEquals(_gate, gate);
+        private bool IsStillCurrentGate(IFramedConnection gate) => gate != null && ReferenceEquals(_gate, gate);
 
         /// <summary>
         /// 请求-响应调用,每次调用自带回调(<see cref="IRpcChannel"/> 的契约):发出即返回,done 恰好调用一次。
@@ -1865,20 +2232,30 @@ namespace MmorpgClient.Game
                                       float timeoutSec)
             where TResp : IMessage<TResp>
         {
-            var completion = OutstandingCalls.Typed(parser, done);
             var gate = _gate;
             if (gate == null || !gate.Connected)
             {
-                completion(RpcStatus.NotSent("not connected"), null);
+                OutstandingCalls.Typed(parser, done)(RpcStatus.NotSent("not connected"), null);
                 return;
             }
             if (ReferenceEquals(gate, _retiredGate))
             {
                 // msg 124 之后的旧连接:gate 只会回 1003 且回包已不再派发。确定未执行,换到新连接后再发。
-                completion(RpcStatus.NotSent("gate redirected"), null);
+                OutstandingCalls.Typed(parser, done)(RpcStatus.NotSent("gate redirected"), null);
+                return;
+            }
+            if (!RpcGuard.TryBeginCall(messageId, out var guardRejection))
+            {
+                OutstandingCalls.Typed(parser, done)(guardRejection, null);
                 return;
             }
 
+            RpcDone<TResp> guardedDone = (status, response) =>
+            {
+                RpcGuard.CompleteCall(messageId, status);
+                done?.Invoke(status, response);
+            };
+            var completion = OutstandingCalls.Typed(parser, guardedDone);
             ulong id = _calls.Add(Time.realtimeSinceStartup + timeoutSec, completion);
             try
             {
@@ -2308,10 +2685,7 @@ namespace MmorpgClient.Game
 
         private void MaybeRefreshToken()
         {
-            if (!IsGateReady) return;
-            if (string.IsNullOrEmpty(RefreshToken) || _accessTokenExpire == 0) return;
-            long nowSec = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            if (_accessTokenExpire - nowSec > 10 * 60) return;          // >10min left
+            if (!IsGateReady || !AccessTokenExpiresSoon()) return;
             if (Time.realtimeSinceStartup - _lastRefreshAttempt < 60f) return; // 60s cooldown
             _lastRefreshAttempt = Time.realtimeSinceStartup;
             Log("refreshing access_token");
@@ -2395,6 +2769,7 @@ namespace MmorpgClient.Game
                 CurrentSceneId = 0;
                 CurrentSceneConfigId = 0;
                 PlayerId = 0;
+                OwnerRevision = 0;
                 // 静默重连也要清掉上一角色的属性，并作废旧穿脱之前发出的属性读取。
                 Attributes?.Reset();
                 _enterRequestPlayerId = 0; // RedirectFlow 在 ResetConnectionState 之前已捕获
@@ -2442,6 +2817,7 @@ namespace MmorpgClient.Game
                 // 在途调用最后才失败:连接状态已全部复位、断线通知已发出(与改造前协程下一帧才报 "disconnected" 的先后一致),
                 // 回调里再发请求会以 NotSent 失败,不会落到半拆的连接上。放在 finally:某个断线订阅者抛异常也照样执行。
                 _calls.FailAll(RpcStatus.Disconnected("disconnected"));
+                RpcGuard.Reset();
             }
         }
     }

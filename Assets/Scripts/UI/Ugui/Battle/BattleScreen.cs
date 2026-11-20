@@ -72,6 +72,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         public const string ChannelFailedHintText = "无法连接战斗服务器,战斗若仍在进行,本回合到时由系统代为出手";
         /// <summary>直连握手中 / 断线恢复中超过宽限期时横幅的文案。</summary>
         public const string ChannelConnectingBannerText = "正在连接战斗服务器…";
+        /// <summary>最后一回合已播完、已出胜负,等 scene 结算包期间的相位文案。</summary>
+        public const string BattleSettlingPhaseText = "战斗结算中…";
         /// <summary>直连已判定连不上时左上相位文字(链路不会自己恢复,不能再说「等待」)。</summary>
         public const string ChannelFailedPhaseText = "无法连接战斗服务器";
 
@@ -718,8 +720,12 @@ namespace MmorpgClient.UI.Ugui.Battle
                 }
                 case BattlePhase.Resolving:
                 {
-                    // 已提交 / 已阵亡、等回合结果:连不上时结果到不了,同样不说「结算中」
-                    _phaseText.text = IsChannelFailed() ? ChannelFailedPhaseText : "回合结算中…";
+                    // 已提交 / 已阵亡、等回合结果:连不上时结果到不了,同样不说「结算中」;
+                    // 最后一回合已播完、只等结算包时说在结算战斗
+                    var battle = _owner?.Client;
+                    _phaseText.text = IsChannelFailed() ? ChannelFailedPhaseText
+                        : battle != null && battle.IsBattleDecided ? BattleSettlingPhaseText
+                        : "回合结算中…";
                     long remainMs = (long)_deadlineMs - BattleUiWidgets.NowUnixMs();
                     SetTimer(_deadlineMs != 0 ? System.Math.Max(0, remainMs) : -1, TimerRatio(remainMs));
                     break;
@@ -1098,7 +1104,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (ready) _notReadySince = -1f;
             else if (_notReadySince < 0f) _notReadySince = now;
 
-            bool inBattle = _phase == BattlePhase.WaitingAction || _phase == BattlePhase.Resolving;
+            // 已出胜负:battle 在最后一回合帧之后正常关掉直连,不再需要它,不算「回合内」——不亮连接横幅。
+            bool decided = client != null && client.IsBattleDecided;
+            bool inBattle = !decided && (_phase == BattlePhase.WaitingAction || _phase == BattlePhase.Resolving);
             ApplyChannelBanner(BattleHudLogic.DecideChannelBanner(inBattle, ready, failed,
                 ready ? 0f : now - _notReadySince));
             if (ready != _channelReadyShown || failed != _channelFailedShown) RefreshActionBar();

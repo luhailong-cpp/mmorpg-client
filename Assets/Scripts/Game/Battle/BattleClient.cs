@@ -67,6 +67,12 @@ namespace MmorpgClient.Game.Battle
         public const double PreparingTimeoutSeconds = 15.0;
 
         /// <summary>
+        /// 最后一回合播完、已出胜负之后,等 scene 结算包(NotifyBattleEnd)的时限(秒)。直连在最后一回合帧之后就正常收尾了,
+        /// 这段时间客户端无事可做,战斗屏留着等结算面板;到点还没等到就按已收场处理(收屏),结算包晚到照样弹面板。
+        /// </summary>
+        public const double SettlementWaitSeconds = 10.0;
+
+        /// <summary>
         /// 直连判定连不上(Unreachable)时 <see cref="OnBattleChannelFailed"/> 带出的文案(客户端本地字符串)。
         /// 连不上有两种可能,客户端此刻分不清,文案不能只说其中一种:战斗服还在(本机网络或防火墙的问题),
         /// 回合到时由服务端代为出手;战斗服进程已经不在,服务端会把本局作废并经大厅推
@@ -99,6 +105,7 @@ namespace MmorpgClient.Game.Battle
         private double _now;                 // 宿主注入的时钟(秒)
         private double _nextQueuePollAt;     // 下一次排队轮询时刻
         private double _preparingDeadline;   // Preparing 超时时刻(0 = 未挂)
+        private double _settleDeadline;      // >0 = 已出胜负且最后一回合已播完,等 scene 结算包的截止时刻
 
         private bool _cancelVerifyPending;   // 被带入的排队点了取消、等下一次轮询结果确认是否真的退出
 
@@ -222,6 +229,15 @@ namespace MmorpgClient.Game.Battle
         /// UI 重新绑定时据此恢复「无法连接战斗服务器」横幅。
         /// </summary>
         public bool IsBattleChannelFailed => _channelFailed;
+
+        /// <summary>
+        /// 本局已出胜负(最后一回合帧带着结果到了),只差 scene 的结算包。此后不会再有回合,battle 也已正常关掉直连:
+        /// UI 据此不再提示「正在连接战斗服务器」,改说在结算。
+        /// </summary>
+        public bool IsBattleDecided => _battleId != 0 && State != null && State.Outcome != eBattleOutcome.BattleOutcomeOngoing;
+
+        /// <summary>最后一回合已播完(<see cref="AckTurnPlayed"/>)、已出胜负,正在等 scene 的结算包,至多 <see cref="SettlementWaitSeconds"/>。</summary>
+        public bool IsAwaitingSettlement => _settleDeadline > 0;
 
         /// <summary>
         /// 有进行中的对局(含大厅重连后、直连补签 / 补拉尚未完成的恢复中对局),即持有非 0 的 battle_id。
@@ -354,6 +370,19 @@ namespace MmorpgClient.Game.Battle
             {
                 _nextQueuePollAt = _now + QueuePollIntervalSeconds;
                 PollQueueStatus();
+            }
+
+            if (_settleDeadline > 0 && _now >= _settleDeadline)
+            {
+                _settleDeadline = 0;
+                // 结算包迟迟不到:与补拉到已出胜负同口径收场(收屏),它晚到时仍被接受(HandleBattleEnd)。
+                // 到点再核对一次仍在等这一局的结算:期间换了局或已收场的,这个时限不作数。
+                if (Phase == BattlePhase.Resolving && IsBattleDecided)
+                {
+                    SettleDecidedBattle();
+                    SetPhase(BattlePhase.None);
+                    RefreshMyAutoState();
+                }
             }
 
             if (Phase == BattlePhase.Preparing && _preparingDeadline > 0 && _now >= _preparingDeadline)
@@ -870,10 +899,17 @@ namespace MmorpgClient.Game.Battle
         /// <summary>
         /// UI 播完一回合表现后调用(契约):Resolving → WaitingAction。
         /// Ended/None 之后的迟到 Ack 丢弃。
+        /// 最后一回合(已出胜负)不回 WaitingAction:没有下一个行动窗口,留在 Resolving 等 scene 的结算包,
+        /// 至多等 <see cref="SettlementWaitSeconds"/>(见 <see cref="Tick"/>)。
         /// </summary>
         public void AckTurnPlayed()
         {
             if (Phase != BattlePhase.Resolving) return;
+            if (IsBattleDecided)
+            {
+                if (_settleDeadline == 0) _settleDeadline = _now + SettlementWaitSeconds;
+                return;
+            }
             SetPhase(BattlePhase.WaitingAction);
         }
 
@@ -996,6 +1032,7 @@ namespace MmorpgClient.Game.Battle
             _autoResendPending = false;   // 新的一局:上一局挂起的直连相关标记作废
             _channelFailed = false;
             _endPendingBattleId = 0;
+            _settleDeadline = 0;          // 上一局等结算包的时限随之作废
             ResetStatePullRetry();        // 换局:上一局的自动重拉计划作废
 
             // 排队中收到开战:补发 Preparing 让 UI 收起排队面板(Queued→Preparing→WaitingAction)
@@ -1077,6 +1114,7 @@ namespace MmorpgClient.Game.Battle
             // 就绪事件里补拉(turn-based §22 D74)。
             if (ev.BattleId != _battleId) _autoResendPending = false;
             _endPendingBattleId = 0;
+            _settleDeadline = 0;
             _battleId = ev.BattleId;
             _queueTicket = string.Empty;
             _preparingDeadline = 0;
@@ -1180,13 +1218,8 @@ namespace MmorpgClient.Game.Battle
             State = state;
 
             var phase = DecidePhaseFromState(state, MyPlayerId);
-            if (phase == BattlePhase.None)
-            {
-                // 战斗已结束:结算由 scene 侧另行通知 —— 留着 battle_id,好让那份终局包晚到时仍被接受
-                ulong settledBattleId = _battleId;
-                ClearBattleContext();
-                _endPendingBattleId = settledBattleId;
-            }
+            // 战斗已结束:结算由 scene 侧另行通知
+            if (phase == BattlePhase.None) SettleDecidedBattle();
             SetPhase(phase);
             RefreshMyAutoState();
         }
@@ -1332,7 +1365,19 @@ namespace MmorpgClient.Game.Battle
             _autoResendPending = false;
             _channelFailed = false;
             _statePullBattleId = 0;
+            _settleDeadline = 0;
             ResetStatePullRetry();      // 收尾 / 断线:自动重拉计划随本局作废
+        }
+
+        /// <summary>
+        /// 本局已出胜负而结算包未到:清掉战斗上下文,留着 battle_id 好让 scene 结算后晚到的终局包仍被接受
+        /// (见 <see cref="HandleBattleEnd"/>)。相位由调用方随后收敛。
+        /// </summary>
+        private void SettleDecidedBattle()
+        {
+            ulong settledBattleId = _battleId;
+            ClearBattleContext();
+            _endPendingBattleId = settledBattleId;
         }
 
         private void SetPhase(BattlePhase phase)

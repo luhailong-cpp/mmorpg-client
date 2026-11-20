@@ -289,6 +289,63 @@ namespace MmorpgClient.Tests.EditMode.Battle
             }
         }
 
+        private static readonly MethodInfo TweenTick = typeof(MmorpgClient.UI.Ugui.Tweening.RealtimeTween)
+            .GetMethod("UpdateAll", BindingFlags.Static | BindingFlags.NonPublic);
+
+        private static void AdvanceTweens(float seconds)
+        {
+            for (; seconds > 0f; seconds -= 0.05f)
+            {
+                float step = Mathf.Min(seconds, 0.05f);
+                TweenTick.Invoke(null, new object[] { step, step });
+            }
+        }
+
+        [Test]
+        public void LiveResult_ReturnsToSceneByItself_RecoveredResultWaitsForPlayer()
+        {
+            var fixture = new GameObject("BattleResultAutoReturnTest", typeof(RectTransform), typeof(Canvas));
+            fixture.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+            // 两个面板各挂一个父节点:同一面板第二次展示会 Destroy 上次的奖励行,EditMode 下 Destroy 会报错。
+            var liveParent = new GameObject("Live", typeof(RectTransform)).transform;
+            var recoveredParent = new GameObject("Recovered", typeof(RectTransform)).transform;
+            liveParent.SetParent(fixture.transform, false);
+            recoveredParent.SetParent(fixture.transform, false);
+            BattleResultPanel live = null, recovered = null;
+            try
+            {
+                int liveConfirms = 0, recoveredConfirms = 0;
+                live = new BattleResultPanel(liveParent, () => liveConfirms++);
+                var liveLabel = liveParent.Find("BattleResultPanel/ConfirmPlate").GetComponentInChildren<TMPro.TMP_Text>();
+                live.Show(new BattleEndS2C { Settlement = new BattleSettlementData() }, 0);
+
+                // 奖励飞完、确认键淡入后开始倒数
+                for (float waited = 0f; liveLabel.text == BattleResultPanel.LiveConfirmText && waited < 10f; waited += 0.05f)
+                    AdvanceTweens(0.05f);
+                Assert.AreEqual("返回场景(3)", liveLabel.text);
+                AdvanceTweens(BattleResultPanel.AutoReturnSeconds - 0.3f);
+                Assert.AreEqual(0, liveConfirms, "倒计时没走完不能提前回场景");
+                AdvanceTweens(0.6f);
+                Assert.AreEqual(1, liveConfirms, "倒计时走完自动返回场景,不用玩家点");
+                AdvanceTweens(5f);
+                Assert.AreEqual(1, liveConfirms, "只自动确认一次");
+
+                recovered = new BattleResultPanel(recoveredParent, () => recoveredConfirms++);
+                var recoveredLabel = recoveredParent.Find("BattleResultPanel/ConfirmPlate").GetComponentInChildren<TMPro.TMP_Text>();
+                recovered.ShowRecovered(new PlayerBattleResult { BattleId = 1 });
+                AdvanceTweens(10f);
+                Assert.AreEqual(0, recoveredConfirms, "补弹的结果玩家已经在场景里,等玩家点「知道了」");
+                Assert.AreEqual(BattleResultPanel.RecoveredConfirmText, recoveredLabel.text);
+            }
+            finally
+            {
+                live?.Hide();
+                recovered?.Hide();
+                UnityEngine.Object.DestroyImmediate(fixture);
+                AdvanceTweens(0.05f); // 清掉已作废的补间
+            }
+        }
+
         [Test]
         public void ProductionGroundPixels_AndUnitFeet_StayAlignedAcrossAspectRatios()
         {

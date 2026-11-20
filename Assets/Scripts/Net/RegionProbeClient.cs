@@ -100,7 +100,8 @@ namespace MmorpgClient.Net
             _dispatch(() =>
             {
                 Exception failure = null;
-                try { connection.Connect(target.Host, (int)target.Port); } catch (Exception error) { failure = error; }
+                // 小游戏连 target.WsUrl(同一台 battle 自报的 WebSocket 地址);TCP 连接不读它。
+                try { connection.Connect(target.Host, (int)target.Port, target.WsUrl); } catch (Exception error) { failure = error; }
                 _completed.Enqueue(() =>
                 {
                     if (generationAtConnect != _generation || _connection != connection) { connection.Dispose(); return; }

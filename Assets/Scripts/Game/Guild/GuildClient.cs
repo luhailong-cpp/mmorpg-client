@@ -2034,6 +2034,7 @@ namespace MmorpgClient.Game.Guild
             if (string.IsNullOrEmpty(error)) return false;
             if (!error.StartsWith(ServerTipPrefix, StringComparison.Ordinal))
                 return error == NotConnectedError || error == GateRedirectedError
+                    || error == RpcGuard.CircuitOpenError
                     || error.StartsWith(SendFailedPrefix, StringComparison.Ordinal);
             if (!uint.TryParse(error.Substring(ServerTipPrefix.Length), NumberStyles.None, CultureInfo.InvariantCulture, out uint tip))
                 return false;

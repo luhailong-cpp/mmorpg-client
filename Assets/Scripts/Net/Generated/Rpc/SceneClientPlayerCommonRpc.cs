@@ -56,5 +56,24 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint RenamePlayerMessageId = 428;
+        public static void RenamePlayer(IRpcChannel channel, global::RenamePlayerRequest request,
+            RpcDone<global::RenamePlayerResponse> done)
+            => channel.CallMethod(RenamePlayerMessageId, request, global::RenamePlayerResponse.Parser, done);
+
+        public const uint NotifyPlayerRenamedMessageId = 429;
+        public static void OnNotifyPlayerRenamed(IRpcChannel channel, Action<global::PlayerRenamedNotify> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyPlayerRenamedMessageId, mc =>
+            {
+                global::PlayerRenamedNotify message;
+                try { message = global::PlayerRenamedNotify.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
     }
 }

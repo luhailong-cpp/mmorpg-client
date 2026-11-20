@@ -415,6 +415,8 @@ namespace MmorpgClient.UI.Ugui
                 return;
 
             _credentialPanel.gameObject.SetActive(visible);
+            // 收起即回到登录用途:注销的重新认证只在 BeginDeletionReauth 打开时切过去。
+            if (!visible) SetCredentialForDeletion(false);
             RefreshVisualState();
             if (visible && focusAccount && _accountInput != null)
             {
@@ -629,6 +631,7 @@ namespace MmorpgClient.UI.Ugui
         private void OnCredentialCancelClicked()
         {
             if (_busy) return;
+            if (_credentialForRealName) EndRealName(); // 实名窗(QdaoServerSelectView.RealName.cs)退回账号面板的原样
             ShowCredentialPanel(false);
             SetStatus(string.Empty);
         }
@@ -636,7 +639,9 @@ namespace MmorpgClient.UI.Ugui
         private void OnCredentialSubmitClicked()
         {
             if (_busy) return;
-            OnEnterClicked();
+            if (_credentialForRealName) SubmitRealNameFromPanel();
+            else if (_credentialForDeletion) SubmitPasswordDeletion();
+            else OnEnterClicked();
         }
 
         private void OnAccountSubmitted(string _)
@@ -658,17 +663,28 @@ namespace MmorpgClient.UI.Ugui
             _app?.Run(LoadServerList());
         }
 
+        /// <summary>进区前的区服校验(口令登录与渠道登录共用):进不了时在状态栏说明原因并返回 null。</summary>
+        private ServerListZone ResolveEnterableZone()
+        {
+            if (_busy) { SetStatus("正在进入中,请稍候…"); return null; }
+            if (_serverListLoading) { SetStatus("正在获取区服列表，请稍候…"); return null; }
+            var zone = FindRenderedZone(_selectedZoneId);
+            if (zone == null) { SetStatus("请先选择区服"); return null; }
+            if (zone.status == "MAINTENANCE") { SetStatus(FallbackMsg(zone.maintenance_msg, "该区服正在维护中")); return null; }
+            if (zone.status == "CLOSED") { SetStatus(FallbackMsg(zone.maintenance_msg, "该区服已关闭")); return null; }
+            if (zone.status == "PREVIEW") { SetStatus($"该区服尚未开放{OpenTimeSuffix(zone)}"); return null; }
+            return zone;
+        }
+
         private void OnEnterClicked()
         {
-            if (_busy) { SetStatus("正在进入中,请稍候…"); return; }
-            if (_serverListLoading) { SetStatus("正在获取区服列表，请稍候…"); return; }
-            var zone = FindRenderedZone(_selectedZoneId);
-            if (zone == null) { SetStatus("请先选择区服"); return; }
-            if (zone.status == "MAINTENANCE") { SetStatus(FallbackMsg(zone.maintenance_msg, "该区服正在维护中")); return; }
-            if (zone.status == "CLOSED") { SetStatus(FallbackMsg(zone.maintenance_msg, "该区服已关闭")); return; }
-            if (zone.status == "PREVIEW") { SetStatus($"该区服尚未开放{OpenTimeSuffix(zone)}"); return; }
+            var zone = ResolveEnterableZone();
+            if (zone == null) return;
             var session = _app?.Session;
             if (session == null) return;
+
+            // 小游戏包(微信 / 抖音宿主里)没有账号口令:点「进入」直接向宿主要一次性的登录 code 去换账号。
+            if (MiniGameLogin.AuthType != null) { BeginChannelSignIn(MiniGameLogin.AuthType); return; }
 
             var account = (_accountInput.text ?? string.Empty).Trim();
             var password = _passwordInput.text ?? string.Empty;
@@ -695,19 +711,34 @@ namespace MmorpgClient.UI.Ugui
             session.Account = account;
             session.Password = password;
 
+            // Persist the immutable inputs that actually completed,
+            // not any UI/session value changed by a later callback.
+            RunEnterZone(zone, LoginCredential.ForPassword(account, password), () =>
+            {
+                session.Account = account;
+                session.Password = password;
+            });
+        }
+
+        /// <summary>
+        /// 拿到凭据之后的进区(口令与渠道登录共用)。渠道登录不传 onEntered:账号由服务端从凭证算出,
+        /// 渠道令牌只交给这一次 EnterZone,不进 SessionModel。
+        /// </summary>
+        private void RunEnterZone(ServerListZone zone, LoginCredential credential, Action onEntered)
+        {
+            var session = _app.Session;
+            // 记下玩家用的登录方式(只是方式名,不含凭据),注销时按它重新认证;实名之后凭 access token 续进区的那次不算。
+            if (credential.AuthType != LoginAuthTypes.AccessToken) ClientSettings.LastLoginMethod = credential.AuthType;
             _busy = true;
             int runId = ++_enterRunId;
             RefreshVisualState();
             _app.Run(_app.GameClient.EnterZone(
-                zone.zone_id, account, password, session.DeviceId,
+                zone.zone_id, credential, session.DeviceId,
                 onSuccess: () =>
                 {
                     if (runId != _enterRunId) return;
                     _busy = false;
-                    // Persist the immutable inputs that actually completed,
-                    // not any UI/session value changed by a later callback.
-                    session.Account = account;
-                    session.Password = password;
+                    onEntered?.Invoke();
                     session.SelectedZoneId = zone.zone_id;
                     session.SelectedZoneIndex = session.Zones.FindIndex(
                         candidate => candidate.zone_id == zone.zone_id);
@@ -722,9 +753,139 @@ namespace MmorpgClient.UI.Ugui
                     _busy = false;
                     RefreshVisualState();
                     SetStatus(err);
+                    // 本渠道要游戏方实名、账号还没实名:弹实名窗,提交成功后凭这次的 access token 继续进区(RealName.cs)。
+                    if (_app.GameClient.AntiAddiction.real_name_required) BeginRealName(zone, credential);
                 },
                 // 暂停创角的区:账号在这个区没有角色时不去排队,登录后直接给出原因(GameClient.MustCreateRoleInClosedZone)。
-                zoneCreateRoleClosed: zone.create_role_closed));
+                zoneCreateRoleClosed: zone.create_role_closed,
+                // 账号在注销冷静期:不进游戏,弹「撤销注销 / 退出」(服务端 docs/design/account-deletion.md §4.3)。
+                onAccountDeletionPending: (state, executeAfter) =>
+                {
+                    if (runId != _enterRunId) return;
+                    _busy = false;
+                    SetStatus(string.Empty);
+                    ShowDeletionPending(zone.zone_id, state, executeAfter);
+                },
+                previousAccountDeletedNotice: deletedAt => ShowPreviousDeletionNotice(runId, deletedAt)));
+        }
+
+        /// <summary>冷静期内登录:只给「撤销注销」「退出」;执行中已不能撤销,只能退出。</summary>
+        private void ShowDeletionPending(uint zoneId, uint state, long executeAfter)
+        {
+            if (state == 1)
+                ShowAccountDialog("账号注销中",
+                    $"账号将于{GameClient.FormatAccountDeletionTime(executeAfter)}完成注销，冷静期内可撤销。",
+                    "撤销注销", () => CancelDeletion(zoneId), "退出", ExitDeletionPending);
+            else
+                ShowAccountDialog("账号注销中", "账号注销正在执行，已无法撤销。", "退出", ExitDeletionPending);
+        }
+
+        // 不撤销就退回登录页;冷静期内签发的令牌只用于撤销,不留着。
+        private void ExitDeletionPending()
+        {
+            _app?.GameClient?.SetTokens(null, null, 0);
+            CloseAccountDialog();
+        }
+
+        private void CancelDeletion(uint zoneId)
+        {
+            if (_busy) return;
+            CloseAccountDialog();
+            _busy = true;
+            int runId = ++_enterRunId;
+            RefreshVisualState();
+            SetStatus("正在撤销注销…");
+            _app.Run(_app.GameClient.CancelAccountDeletion(zoneId,
+                r =>
+                {
+                    if (this == null || runId != _enterRunId) return;
+                    _busy = false;
+                    SetStatus(string.Empty);
+                    switch (GameClient.ClassifyAccountDeletion(r))
+                    {
+                        case GameClient.AccountDeletionStep.Cancelled:
+                            ShowAccountMessage("已撤销注销", "账号已恢复正常，请再次点击进入游戏。");
+                            break;
+                        case GameClient.AccountDeletionStep.AlreadyExecuting:
+                            _app.GameClient.SetTokens(null, null, 0);
+                            ShowAccountMessage("无法撤销", "账号注销已在执行，无法撤销。");
+                            break;
+                        case GameClient.AccountDeletionStep.CredentialRejected:
+                            ShowAccountMessage("无法撤销", "登录已失效，请重新登录后再撤销。");
+                            break;
+                        case GameClient.AccountDeletionStep.RateLimited:
+                            ShowAccountMessage("无法撤销", "操作过于频繁，请稍后重试。");
+                            break;
+                        default:
+                            ShowAccountMessage("无法撤销", "服务暂时不可用，请稍后重试。");
+                            break;
+                    }
+                },
+                err =>
+                {
+                    if (this == null || runId != _enterRunId) return;
+                    _busy = false;
+                    SetStatus(string.Empty);
+                    Debug.LogWarning($"[QdaoUgui] cancel account deletion: {err}");
+                    ShowAccountMessage("无法撤销", "服务暂时不可用，请稍后重试。");
+                }));
+        }
+
+        /// <summary>
+        /// 你之前的账号已注销完成、这次登录建的是新账号(§4.5):进区管线停在这里,等玩家点「确定」再往下走。
+        /// 管线还算在进行中(_busy),只有这个弹窗的按钮可点(RefreshLoginUtilityState)。
+        /// </summary>
+        private IEnumerator ShowPreviousDeletionNotice(int runId, long deletedAt)
+        {
+            if (this == null || runId != _enterRunId) yield break;
+            _entryNoticeOpen = true;
+            ShowAccountMessage("提示", $"你之前的账号已于{GameClient.FormatAccountDeletionTime(deletedAt)}注销完成，现在登录的是新账号。");
+            while (this != null && runId == _enterRunId && AccountDialogOpen) yield return null;
+            _entryNoticeOpen = false;
+            if (this == null) yield break;
+            if (AccountDialogOpen) CloseAccountDialog(); // 进区被作废(断线等)时一并收起
+            else RefreshVisualState();
+        }
+
+        // ── channel sign-in (Apple / Google) ─────────────────────
+
+        private void OnAppleSignInClicked() => BeginChannelSignIn(LoginAuthTypes.Apple);
+        private void OnGoogleSignInClicked() => BeginChannelSignIn(LoginAuthTypes.Google);
+
+        /// <summary>
+        /// 渠道登录:每次都向渠道 SDK 取新凭据,令牌只交给这一次 EnterZone(服务端一次性消费,失败后重新拉起,不重发)。
+        /// 账号面板处在注销的重新认证用途时,改为拿凭据去申请注销。
+        /// </summary>
+        private void BeginChannelSignIn(string authType)
+        {
+            if (_busy) return;
+            if (_credentialForDeletion) { RequestChannelDeletion(authType); return; }
+            var zone = ResolveEnterableZone();
+            if (zone == null || _app?.GameClient == null) return;
+            _busy = true;
+            int runId = ++_enterRunId;
+            RefreshVisualState();
+            SetStatus("正在等待授权…");
+            RequestChannel(authType, result =>
+            {
+                if (this == null || runId != _enterRunId) return;
+                if (!result.Ok)
+                {
+                    _busy = false;
+                    RefreshVisualState();
+                    SetStatus(PlatformSignIn.DescribeFailure(result.Error));
+                    return;
+                }
+                ShowCredentialPanel(false);
+                RunEnterZone(zone, LoginCredential.ForThirdParty(authType, result.IdentityToken), null);
+            });
+        }
+
+        private static void RequestChannel(string authType, Action<PlatformSignInResult> onDone)
+        {
+            if (authType == LoginAuthTypes.Apple) PlatformSignIn.RequestApple(onDone);
+            else if (authType == LoginAuthTypes.Google) PlatformSignIn.RequestGoogle(onDone);
+            else MiniGameLogin.Request(onDone); // 微信 / 抖音小游戏:宿主给的一次性登录 code(wx.login / tt.login)
         }
 
         // ── rendering ────────────────────────────────────────────
@@ -802,6 +963,12 @@ namespace MmorpgClient.UI.Ugui
             _enterButton.interactable = canInteract && enterable && !_serverListLoading;
             _credentialCancelButton.interactable = canInteract;
             _credentialSubmitButton.interactable = canInteract;
+            // 渠道登录只在对应平台的安装包里出现(iOS 只有 Apple,安卓只有 Google 且要配了 serverClientId);
+            // 账号面板借给实名窗用时不出现(RealName.cs),免得在填身份证号的界面上另起一次登录。
+            _appleSignInButton.gameObject.SetActive(PlatformSignIn.AppleAvailable && !_credentialForRealName);
+            _googleSignInButton.gameObject.SetActive(PlatformSignIn.GoogleAvailable && !_credentialForRealName);
+            _appleSignInButton.interactable = canInteract;
+            _googleSignInButton.interactable = canInteract;
             _landingServers.interactable = canInteract;
             _landingAccount.interactable = canInteract;
             _landingEnter.interactable = canInteract && !_serverListLoading && (chosen == null || enterable);
@@ -893,6 +1060,10 @@ namespace MmorpgClient.UI.Ugui
         {
             var invalid = _landingAnnouncement == null || _landingSettings == null ||
                           _announcementPanel == null || _settingsPanel == null ||
+                          _appleSignInButton == null || _googleSignInButton == null || _settingsDeleteAccount == null ||
+                          _accountDialog == null || _accountDialogTitle == null || _accountDialogBody == null ||
+                          _accountDialogAcknowledge == null || _accountDialogPrimary == null || _accountDialogPrimaryText == null ||
+                          _accountDialogSecondary == null || _accountDialogSecondaryText == null ||
                           _announcementBody == null || _settingsVolumeValue == null || _announcementScroll == null ||
                           _announcementClose == null || _settingsClose == null ||
                           _settingsVolumeSlider == null || _settingsFullscreen == null ||

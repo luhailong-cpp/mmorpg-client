@@ -27,49 +27,51 @@ public static partial class PlayerSkillReflection {
           "GiZwcm90by9jb21tb24vY29tcG9uZW50L2Jhc2VfY29tcC5wcm90bxodcHJv",
           "dG8vY29tbW9uL2Jhc2UvZW1wdHkucHJvdG8aLnByb3RvL2NvbW1vbi9jb21w",
           "b25lbnQvcGxheWVyX3NraWxsX2NvbXAucHJvdG8aJ3Byb3RvL2NvbW1vbi9j",
-          "b21wb25lbnQvYWN0b3JfY29tcC5wcm90byJ5ChNSZWxlYXNlU2tpbGxSZXF1",
-          "ZXN0EhYKDnNraWxsX3RhYmxlX2lkGAEgASgNEhEKCXRhcmdldF9pZBgCIAEo",
-          "BBIaCghwb3NpdGlvbhgDIAEoCzIILlZlY3RvcjMSGwoIcm90YXRpb24YBCAB",
-          "KAsyCS5Sb3RhdGlvbiI+ChRSZWxlYXNlU2tpbGxSZXNwb25zZRImCg1lcnJv",
-          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UiewoTU2tpbGxJbnRl",
-          "cnJ1cHRlZFMyQxIOCgZlbnRpdHkYASABKAQSFQoNdGFyZ2V0X2VudGl0eRgC",
-          "IAEoBBIWCg5za2lsbF90YWJsZV9pZBgDIAEoDRITCgtyZWFzb25fY29kZRgE",
-          "IAEoDRIQCghza2lsbF9pZBgFIAEoBCJ9CgxTa2lsbFVzZWRTMkMSDgoGZW50",
-          "aXR5GAEgASgEEhUKDXRhcmdldF9lbnRpdHkYAiADKAQSFgoOc2tpbGxfdGFi",
-          "bGVfaWQYAyABKA0SGgoIcG9zaXRpb24YBCABKAsyCC5WZWN0b3IzEhIKCnRp",
-          "bWVfc3RhbXAYBSABKAQiIwoRTGlzdFNraWxsc1JlcXVlc3QSDgoGcGV0X2lk",
-          "GAEgASgEIt0BChJMaXN0U2tpbGxzUmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
-          "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEigKCnNraWxsX2xpc3QYAiABKAsy",
-          "FC5QbGF5ZXJTa2lsbExpc3RDb21wEiMKB2NhdGFsb2cYAyADKAsyEi5Ta2ls",
-          "bENhdGFsb2dFbnRyeRIUCgxwbGF5ZXJfbGV2ZWwYBCABKA0SEAoIY2xhc3Nf",
-          "aWQYBSABKA0SGAoQY3VycmVuY3lfYmFsYW5jZRgGIAEoBBIOCgZwZXRfaWQY",
-          "ByABKAQi4gMKEVNraWxsQ2F0YWxvZ0VudHJ5EhYKDnNraWxsX3RhYmxlX2lk",
-          "GAEgASgNEgwKBG5hbWUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSEAoI",
-          "aWNvbl9rZXkYBCABKAkSEAoIY2xhc3NfaWQYBSABKA0SEAoIY2F0ZWdvcnkY",
-          "BiABKAkSDwoHcGFzc2l2ZRgHIAEoCBITCgt0YXJnZXRfdGVhbRgIIAEoDRIT",
-          "CgttYXhfdGFyZ2V0cxgJIAEoDRIUCgx1bmxvY2tfbGV2ZWwYCiABKA0SEAoI",
-          "bWF4X3JhbmsYCyABKA0SDAoEcmFuaxgMIAEoDRISCgpyYW5rX2xpbWl0GA0g",
-          "ASgNEhQKDG1hbmFfcGVyY2VudBgOIAEoARIXCg9jb29sZG93bl9yb3VuZHMY",
-          "DyABKA0SFgoObmV4dF9yYW5rX2Nvc3QYECABKAQSHAoUdXBncmFkZV9ibG9j",
-          "a190aXBfaWQYESABKA0SFwoPZHVyYXRpb25fcm91bmRzGBIgASgNEhkKEWFs",
-          "bG93X2RlYWRfdGFyZ2V0GBMgASgIEhQKDGFiaWxpdHlfa2luZBgUIAEoDRIT",
-          "CgtjYXN0ZXJfbWFzaxgVIAEoDRITCgthY3Rpb25fdGFncxgWIAEoDSJjChNV",
-          "cGdyYWRlU2tpbGxSZXF1ZXN0EhYKDnNraWxsX3RhYmxlX2lkGAEgASgNEhUK",
-          "DWV4cGVjdGVkX3JhbmsYAiABKA0SDQoFY291bnQYAyABKA0SDgoGcGV0X2lk",
-          "GAQgASgEIo8BChRVcGdyYWRlU2tpbGxSZXNwb25zZRImCg1lcnJvcl9tZXNz",
-          "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIgoFc3RhdGUYAiABKAsyEy5M",
-          "aXN0U2tpbGxzUmVzcG9uc2USFgoOdXBncmFkZWRfY291bnQYAyABKA0SEwoL",
-          "c3RvcF90aXBfaWQYBCABKA0yxQIKFlNjZW5lU2tpbGxDbGllbnRQbGF5ZXIS",
-          "OwoMUmVsZWFzZVNraWxsEhQuUmVsZWFzZVNraWxsUmVxdWVzdBoVLlJlbGVh",
-          "c2VTa2lsbFJlc3BvbnNlEi8KD05vdGlmeVNraWxsVXNlZBINLlNraWxsVXNl",
-          "ZFMyQxoGLkVtcHR5IgWImcgBAhI9ChZOb3RpZnlTa2lsbEludGVycnVwdGVk",
-          "EhQuU2tpbGxJbnRlcnJ1cHRlZFMyQxoGLkVtcHR5IgWImcgBAhI1CgpMaXN0",
-          "U2tpbGxzEhIuTGlzdFNraWxsc1JlcXVlc3QaEy5MaXN0U2tpbGxzUmVzcG9u",
-          "c2USOwoMVXBncmFkZVNraWxsEhQuVXBncmFkZVNraWxsUmVxdWVzdBoVLlVw",
-          "Z3JhZGVTa2lsbFJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRh",
-          "A2IGcHJvdG8z"));
+          "b21wb25lbnQvYWN0b3JfY29tcC5wcm90bxoscHJvdG8vY29tbW9uL2NvbXBv",
+          "bmVudC9zdXBwb3J0X2VmZmVjdHMucHJvdG8ieQoTUmVsZWFzZVNraWxsUmVx",
+          "dWVzdBIWCg5za2lsbF90YWJsZV9pZBgBIAEoDRIRCgl0YXJnZXRfaWQYAiAB",
+          "KAQSGgoIcG9zaXRpb24YAyABKAsyCC5WZWN0b3IzEhsKCHJvdGF0aW9uGAQg",
+          "ASgLMgkuUm90YXRpb24iPgoUUmVsZWFzZVNraWxsUmVzcG9uc2USJgoNZXJy",
+          "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlInsKE1NraWxsSW50",
+          "ZXJydXB0ZWRTMkMSDgoGZW50aXR5GAEgASgEEhUKDXRhcmdldF9lbnRpdHkY",
+          "AiABKAQSFgoOc2tpbGxfdGFibGVfaWQYAyABKA0SEwoLcmVhc29uX2NvZGUY",
+          "BCABKA0SEAoIc2tpbGxfaWQYBSABKAQifQoMU2tpbGxVc2VkUzJDEg4KBmVu",
+          "dGl0eRgBIAEoBBIVCg10YXJnZXRfZW50aXR5GAIgAygEEhYKDnNraWxsX3Rh",
+          "YmxlX2lkGAMgASgNEhoKCHBvc2l0aW9uGAQgASgLMgguVmVjdG9yMxISCgp0",
+          "aW1lX3N0YW1wGAUgASgEIiMKEUxpc3RTa2lsbHNSZXF1ZXN0Eg4KBnBldF9p",
+          "ZBgBIAEoBCLdAQoSTGlzdFNraWxsc1Jlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
+          "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIoCgpza2lsbF9saXN0GAIgASgL",
+          "MhQuUGxheWVyU2tpbGxMaXN0Q29tcBIjCgdjYXRhbG9nGAMgAygLMhIuU2tp",
+          "bGxDYXRhbG9nRW50cnkSFAoMcGxheWVyX2xldmVsGAQgASgNEhAKCGNsYXNz",
+          "X2lkGAUgASgNEhgKEGN1cnJlbmN5X2JhbGFuY2UYBiABKAQSDgoGcGV0X2lk",
+          "GAcgASgEIpEEChFTa2lsbENhdGFsb2dFbnRyeRIWCg5za2lsbF90YWJsZV9p",
+          "ZBgBIAEoDRIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJEhAK",
+          "CGljb25fa2V5GAQgASgJEhAKCGNsYXNzX2lkGAUgASgNEhAKCGNhdGVnb3J5",
+          "GAYgASgJEg8KB3Bhc3NpdmUYByABKAgSEwoLdGFyZ2V0X3RlYW0YCCABKA0S",
+          "EwoLbWF4X3RhcmdldHMYCSABKA0SFAoMdW5sb2NrX2xldmVsGAogASgNEhAK",
+          "CG1heF9yYW5rGAsgASgNEgwKBHJhbmsYDCABKA0SEgoKcmFua19saW1pdBgN",
+          "IAEoDRIUCgxtYW5hX3BlcmNlbnQYDiABKAESFwoPY29vbGRvd25fcm91bmRz",
+          "GA8gASgNEhYKDm5leHRfcmFua19jb3N0GBAgASgEEhwKFHVwZ3JhZGVfYmxv",
+          "Y2tfdGlwX2lkGBEgASgNEhcKD2R1cmF0aW9uX3JvdW5kcxgSIAEoDRIZChFh",
+          "bGxvd19kZWFkX3RhcmdldBgTIAEoCBIUCgxhYmlsaXR5X2tpbmQYFCABKA0S",
+          "EwoLY2FzdGVyX21hc2sYFSABKA0SEwoLYWN0aW9uX3RhZ3MYFiABKA0SLQoP",
+          "c3VwcG9ydF9wcmV2aWV3GBcgASgLMhQuU3VwcG9ydFNraWxsUHJldmlldyJj",
+          "ChNVcGdyYWRlU2tpbGxSZXF1ZXN0EhYKDnNraWxsX3RhYmxlX2lkGAEgASgN",
+          "EhUKDWV4cGVjdGVkX3JhbmsYAiABKA0SDQoFY291bnQYAyABKA0SDgoGcGV0",
+          "X2lkGAQgASgEIo8BChRVcGdyYWRlU2tpbGxSZXNwb25zZRImCg1lcnJvcl9t",
+          "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIgoFc3RhdGUYAiABKAsy",
+          "Ey5MaXN0U2tpbGxzUmVzcG9uc2USFgoOdXBncmFkZWRfY291bnQYAyABKA0S",
+          "EwoLc3RvcF90aXBfaWQYBCABKA0yxQIKFlNjZW5lU2tpbGxDbGllbnRQbGF5",
+          "ZXISOwoMUmVsZWFzZVNraWxsEhQuUmVsZWFzZVNraWxsUmVxdWVzdBoVLlJl",
+          "bGVhc2VTa2lsbFJlc3BvbnNlEi8KD05vdGlmeVNraWxsVXNlZBINLlNraWxs",
+          "VXNlZFMyQxoGLkVtcHR5IgWImcgBAhI9ChZOb3RpZnlTa2lsbEludGVycnVw",
+          "dGVkEhQuU2tpbGxJbnRlcnJ1cHRlZFMyQxoGLkVtcHR5IgWImcgBAhI1CgpM",
+          "aXN0U2tpbGxzEhIuTGlzdFNraWxsc1JlcXVlc3QaEy5MaXN0U2tpbGxzUmVz",
+          "cG9uc2USOwoMVXBncmFkZVNraWxsEhQuVXBncmFkZVNraWxsUmVxdWVzdBoV",
+          "LlVwZ3JhZGVTa2lsbFJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEB",
+          "mNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::BaseCompReflection.Descriptor, global::EmptyReflection.Descriptor, global::PlayerSkillCompReflection.Descriptor, global::ActorCompReflection.Descriptor, },
+        new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::BaseCompReflection.Descriptor, global::EmptyReflection.Descriptor, global::PlayerSkillCompReflection.Descriptor, global::ActorCompReflection.Descriptor, global::SupportEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::ReleaseSkillRequest), global::ReleaseSkillRequest.Parser, new[]{ "SkillTableId", "TargetId", "Position", "Rotation" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ReleaseSkillResponse), global::ReleaseSkillResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
@@ -77,7 +79,7 @@ public static partial class PlayerSkillReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SkillUsedS2C), global::SkillUsedS2C.Parser, new[]{ "Entity", "TargetEntity", "SkillTableId", "Position", "TimeStamp" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsRequest), global::ListSkillsRequest.Parser, new[]{ "PetId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsResponse), global::ListSkillsResponse.Parser, new[]{ "ErrorMessage", "SkillList", "Catalog", "PlayerLevel", "ClassId", "CurrencyBalance", "PetId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SkillCatalogEntry), global::SkillCatalogEntry.Parser, new[]{ "SkillTableId", "Name", "Description", "IconKey", "ClassId", "Category", "Passive", "TargetTeam", "MaxTargets", "UnlockLevel", "MaxRank", "Rank", "RankLimit", "ManaPercent", "CooldownRounds", "NextRankCost", "UpgradeBlockTipId", "DurationRounds", "AllowDeadTarget", "AbilityKind", "CasterMask", "ActionTags" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SkillCatalogEntry), global::SkillCatalogEntry.Parser, new[]{ "SkillTableId", "Name", "Description", "IconKey", "ClassId", "Category", "Passive", "TargetTeam", "MaxTargets", "UnlockLevel", "MaxRank", "Rank", "RankLimit", "ManaPercent", "CooldownRounds", "NextRankCost", "UpgradeBlockTipId", "DurationRounds", "AllowDeadTarget", "AbilityKind", "CasterMask", "ActionTags", "SupportPreview" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillRequest), global::UpgradeSkillRequest.Parser, new[]{ "SkillTableId", "ExpectedRank", "Count", "PetId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillResponse), global::UpgradeSkillResponse.Parser, new[]{ "ErrorMessage", "State", "UpgradedCount", "StopTipId" }, null, null, null, null)
         }));
@@ -2033,6 +2035,7 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     abilityKind_ = other.abilityKind_;
     casterMask_ = other.casterMask_;
     actionTags_ = other.actionTags_;
+    supportPreview_ = other.supportPreview_ != null ? other.supportPreview_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2345,6 +2348,21 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     }
   }
 
+  /// <summary>Field number for the "support_preview" field.</summary>
+  public const int SupportPreviewFieldNumber = 23;
+  private global::SupportSkillPreview supportPreview_;
+  /// <summary>
+  /// 服务端中立参考值，缺省表示没有权威预览。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::SupportSkillPreview SupportPreview {
+    get { return supportPreview_; }
+    set {
+      supportPreview_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2382,6 +2400,7 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     if (AbilityKind != other.AbilityKind) return false;
     if (CasterMask != other.CasterMask) return false;
     if (ActionTags != other.ActionTags) return false;
+    if (!object.Equals(SupportPreview, other.SupportPreview)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2411,6 +2430,7 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     if (AbilityKind != 0) hash ^= AbilityKind.GetHashCode();
     if (CasterMask != 0) hash ^= CasterMask.GetHashCode();
     if (ActionTags != 0) hash ^= ActionTags.GetHashCode();
+    if (supportPreview_ != null) hash ^= SupportPreview.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2517,6 +2537,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
       output.WriteRawTag(176, 1);
       output.WriteUInt32(ActionTags);
     }
+    if (supportPreview_ != null) {
+      output.WriteRawTag(186, 1);
+      output.WriteMessage(SupportPreview);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2615,6 +2639,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
       output.WriteRawTag(176, 1);
       output.WriteUInt32(ActionTags);
     }
+    if (supportPreview_ != null) {
+      output.WriteRawTag(186, 1);
+      output.WriteMessage(SupportPreview);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2690,6 +2718,9 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     }
     if (ActionTags != 0) {
       size += 2 + pb::CodedOutputStream.ComputeUInt32Size(ActionTags);
+    }
+    if (supportPreview_ != null) {
+      size += 2 + pb::CodedOutputStream.ComputeMessageSize(SupportPreview);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2768,6 +2799,12 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     }
     if (other.ActionTags != 0) {
       ActionTags = other.ActionTags;
+    }
+    if (other.supportPreview_ != null) {
+      if (supportPreview_ == null) {
+        SupportPreview = new global::SupportSkillPreview();
+      }
+      SupportPreview.MergeFrom(other.SupportPreview);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2876,6 +2913,13 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
           ActionTags = input.ReadUInt32();
           break;
         }
+        case 186: {
+          if (supportPreview_ == null) {
+            SupportPreview = new global::SupportSkillPreview();
+          }
+          input.ReadMessage(SupportPreview);
+          break;
+        }
       }
     }
   #endif
@@ -2981,6 +3025,13 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
         }
         case 176: {
           ActionTags = input.ReadUInt32();
+          break;
+        }
+        case 186: {
+          if (supportPreview_ == null) {
+            SupportPreview = new global::SupportSkillPreview();
+          }
+          input.ReadMessage(SupportPreview);
           break;
         }
       }

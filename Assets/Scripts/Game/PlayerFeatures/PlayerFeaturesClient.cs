@@ -534,6 +534,9 @@ namespace MmorpgClient.Game.PlayerFeatures
                     SendAttempt();
                     return;
                 }
+                // 重发过就说明首发结果不明:重发被 gate 层确定拒绝(限流、lane 满)只说明重发没执行,首发可能已经扣过。
+                // 一律按结果不明收尾、重拉两份快照,不能当成这次操作确定没做(2026-11-19 评审补)。
+                if (resent) { Reject($"{operation}:{NetworkErrorText}", true); return; }
                 // 信封上的码(gate / 路由层)与响应体里的码走同一套文案、同一个判定;其余是传输层失败
                 // (超时 / 断线 / 解析失败):内部英文串不上屏,而且服务器可能已经执行,要重新同步。
                 // 不带键的操作绝不自动重发:再发一次就是再做一次。

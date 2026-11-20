@@ -401,7 +401,14 @@ namespace MmorpgClient.Game.MysteryMerchant
                         }
                         EndBuy();
                         uint tipId = ParseEnvelopeTip(error);
-                        if (tipId != 0 && tipId != (uint)common_error.KServiceUnavailable)
+                        // 重发过就说明首发结果不明:重发被 gate 层带码拒绝只说明重发没到 scene,首发可能已经成交,
+                        // 照结果不明处理(2026-11-19 评审补)。
+                        if (!resent && error == RpcGuard.CircuitOpenError)
+                        {
+                            // 统一熔断期本地快速失败：请求未发出，结果确定未成交，不锁面板。
+                            SetStatus("神秘商人服务暂时繁忙，请稍后重试。", true);
+                        }
+                        else if (!resent && tipId != 0 && tipId != (uint)common_error.KServiceUnavailable)
                         {
                             // gate / 路由层带码拒绝(限流等):请求没有到达 scene,结果是确定的「没买成」。
                             FailBuy(tipId);

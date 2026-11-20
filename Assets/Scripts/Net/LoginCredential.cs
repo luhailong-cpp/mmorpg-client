@@ -58,5 +58,16 @@ namespace MmorpgClient.Net
                 throw new ArgumentException("third-party login needs the credential issued by the channel", nameof(authToken));
             return new LoginCredential(authType, string.Empty, string.Empty, authToken);
         }
+
+        /// <summary>
+        /// 用这次登录刚签发的 access token 再登一次:实名提交成功后继续进区(服务端 docs/design/real-name-anti-addiction.md §5.7)。
+        /// 渠道凭证一次性、已被第一次登录用掉,不能重发;服务端按令牌记下的原渠道判定。这种登录不签新令牌,沿用现有的。
+        /// </summary>
+        public static LoginCredential ForAccessToken(string accessToken)
+        {
+            if (string.IsNullOrEmpty(accessToken))
+                throw new ArgumentException("access token login needs the token issued by /api/login", nameof(accessToken));
+            return new LoginCredential(LoginAuthTypes.AccessToken, string.Empty, string.Empty, accessToken);
+        }
     }
 }

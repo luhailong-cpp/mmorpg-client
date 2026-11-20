@@ -113,7 +113,7 @@ namespace MmorpgClient.UI.Ugui.Guild
                 _client = game == null ? null : new GuildClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity,
                     economyRecovery: DurableRequestFileStore.ForOrigin(
                         System.IO.Path.Combine(Application.persistentDataPath, "guild-economy-intents-v1"),
-                        AppBootstrap.Instance.Session.GatewayBaseUrl));
+                        AppBootstrap.Instance.Session.GatewayBaseUrl, () => game.OwnerRevision));
                 if (_client != null) {
                     _client.PrepareMatchNetwork=(ready,failed)=>game.Battle.RegionProbe.Prepare(_=>ready(),failed);
                     _client.Changed += Changed; _client.AssetsChanged += OnAssetsChanged;

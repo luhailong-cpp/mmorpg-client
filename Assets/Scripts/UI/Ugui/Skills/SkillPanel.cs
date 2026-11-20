@@ -288,6 +288,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             if (snapshot != null)
                 foreach (var entry in snapshot.Entries)
                     if (entry?.Definition != null && MatchesFilter(entry.Definition)) _visible.Add(entry);
+            uint previousSelectedId = _selectedId;
             if (!_visible.Exists(entry => entry.Id == _selectedId))
                 _selectedId = _visible.Count > 0 ? _visible[0].Id : 0;
             while (_rows.Count < _visible.Count) BuildRow(_rows.Count);
@@ -342,6 +343,11 @@ namespace MmorpgClient.UI.Ugui.Skills
             float descriptionHeight = Mathf.Max(126f, _description.GetPreferredValues(_description.text, 1140f, 0f).y + 4f);
             _description.rectTransform.sizeDelta = new Vector2(1140f, descriptionHeight);
             _descriptionContent.sizeDelta = new Vector2(1150f, descriptionHeight);
+            if (_selectedId != previousSelectedId)
+            {
+                _descriptionContent.anchoredPosition = Vector2.zero;
+                _descriptionScroll.velocity = Vector2.zero;
+            }
             _condition.text = Condition(skill, selected, readOnly);
             _balance.text = readOnly || snapshot == null ? "金币：—" : $"金币：{snapshot.CurrencyBalance:N0}";
             _cost.text = readOnly || selected == null || selected.Rank >= selected.RankLimit ?

@@ -237,6 +237,10 @@ $whitelist = @{
     "SceneMysteryMerchantClientPlayerGetMysteryMerchantInfo"  = "GetMysteryMerchantInfo"
     "SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods" = "BuyMysteryMerchantGoods"
     "SceneMysteryMerchantClientPlayerNotifyMysteryMerchant"   = "NotifyMysteryMerchant"
+    # 挂机月卡(proto/scene/player_afk_pass.proto;服务端 docs/design/afk-monthly-card.md §6)。GmSetAfkPass 只给联调与 robot,客户端不发。
+    # 服务端尚未分配时生成 0,由 AfkPassMessageIds.IsSupported 显示未开放。
+    "SceneAfkPassClientPlayerGetAfkPass"           = "GetAfkPass"
+    "SceneAfkPassClientPlayerBuyAfkPass"           = "BuyAfkPass"
     "ClientPlayerTeamCreateTeam"                   = "CreateTeam"
     "ClientPlayerTeamGetMyTeam"                    = "GetMyTeam"
     "ClientPlayerTeamApplyJoinTeam"                = "ApplyJoinTeam"
@@ -257,7 +261,9 @@ $whitelist = @{
 $optionalUnsupportedMethods = @(
     'SceneMysteryMerchantClientPlayerGetMysteryMerchantInfo',
     'SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods',
-    'SceneMysteryMerchantClientPlayerNotifyMysteryMerchant'
+    'SceneMysteryMerchantClientPlayerNotifyMysteryMerchant',
+    'SceneAfkPassClientPlayerGetAfkPass',
+    'SceneAfkPassClientPlayerBuyAfkPass'
 )
 $idByMethod = @{}
 foreach ($line in Get-Content -LiteralPath $source) {

@@ -31,6 +31,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private JubaozhaiClient _client;
         private JubaozhaiWindow _window;
         private CommerceClient _commerce;
+        private PaymentClient _payment;
         private CommerceWindow _commerceWindow;
         private RectTransform _hud;
         private ulong _player;
@@ -90,14 +91,17 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                     _client = new JubaozhaiClient(new GameClientBattleTransport(game), _window.State,
                         () => game.GateConnectionIdentity);
                     _commerce = new CommerceClient(new GameClientBattleTransport(game), new CommerceFileRecoveryStore(
-                        System.IO.Path.Combine(Application.persistentDataPath, "commerce-recovery-v1"), AppBootstrap.Instance.Session.GatewayBaseUrl),
+                        System.IO.Path.Combine(Application.persistentDataPath, "commerce-recovery-v1"), AppBootstrap.Instance.Session.GatewayBaseUrl,
+                        () => game.OwnerRevision),
                         () => game.GateConnectionIdentity);
                     _commerce.AssetRefreshRequired += RefreshAssets;
-                    _commerceWindow.Bind(_commerce);
+                    _payment = new PaymentClient(new GameClientBattleTransport(game));
+                    _commerceWindow.Bind(_commerce, _payment);
                 }
             }
             _client?.ObserveConnection();
             _commerce?.ObserveConnection();
+            _payment?.Tick(Time.unscaledTimeAsDouble); // 在途支付按间隔查服务端
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             ulong player = inGame ? _game.PlayerId : 0;
             if (_player != player) { ResetSession(); _client?.Reset(); _player = player; }
@@ -161,6 +165,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             if (_commerce != null) _commerce.AssetRefreshRequired -= RefreshAssets;
             _commerceWindow?.Bind(null);
             _commerce?.Dispose(); _commerce = null;
+            _payment?.Dispose(); _payment = null;
         }
         private void ResetSession()
         {

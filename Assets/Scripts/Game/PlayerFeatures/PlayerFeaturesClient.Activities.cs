@@ -158,7 +158,7 @@ namespace MmorpgClient.Game.PlayerFeatures
                         try { ActivityRewardRecovery.Clear(playerId, ActivityRecord(request)); }
                         catch (Exception) { DeferActivityRecovery("领取被拒绝，本机恢复记录尚未清理，请刷新重试"); return; }
                         _pendingActivityReward = null;
-                        ActivityRewardFailure(DescribeTip("无法领取活跃奖励", response.ErrorMessage));
+                        ActivityRewardFailure(DescribeActivityRewardTip("无法领取活跃奖励", response.ErrorMessage));
                         if (!IsCurrent(epoch, playerId)) return;
                         RequestActivities();
                         if (IsCurrent(epoch, playerId)) RefreshActivityAssets(epoch, playerId);
@@ -234,6 +234,18 @@ namespace MmorpgClient.Game.PlayerFeatures
                     if (Current()) ActivityRewardFailure("人物背包暂未同步，请刷新背包");
                 });
         }
+
+        /// <summary>
+        /// 活跃领取的拒绝文案:逐字镜像服务端 data/tip/Tip.xlsx 的 //reward_error 组,表改了要同步这里。
+        /// 码只写生成枚举名、不抄数字;未收录的码退回「操作（错误码 N）」。
+        /// 「本期已结束」也会出现在很久之后重放原请求时(服务端只留最近的领取记录),那时当初领没领到无法判断,文案让玩家以背包为准。
+        /// </summary>
+        private static string DescribeActivityRewardTip(string operation, TipInfoMessage tip) => tip.Id switch
+        {
+            (uint)reward_error.KRewardPeriodEnded => "本期活跃已结束，不能再领取；已领到的奖励以背包为准",
+            (uint)reward_error.KRewardAlreadyClaimed => "该奖励已经领取过了",
+            _ => DescribeTip(operation, tip),
+        };
 
         private void ActivityRewardFailure(string message)
         {

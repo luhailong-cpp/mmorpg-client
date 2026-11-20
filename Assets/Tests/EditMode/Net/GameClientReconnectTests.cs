@@ -248,7 +248,10 @@ namespace MmorpgClient.Tests.EditMode.Net
                         var body = new char[bodyLength];
                         for (int offset = 0; offset < body.Length;)
                         { int n = reader.Read(body, offset, body.Length - offset); if (n == 0) throw new EndOfStreamException(); offset += n; }
-                        Assert.That(new string(body), Does.Contain("heartbeat-test"));
+                        string requestJson = new string(body);
+                        var request = UnityEngine.JsonUtility.FromJson<AssignGateRequest>(requestJson);
+                        Assert.That(request.access_token, Is.EqualTo("test-access"));
+                        Assert.That(requestJson, Does.Not.Contain("\"account\""));
                         string json = "{\"code\":0,\"gate_ip\":\"127.0.0.1\",\"gate_port\":" + port +
                             ",\"token_payload\":\"AQID\",\"token_signature\":\"BAUG\"}";
                         byte[] response = Encoding.ASCII.GetBytes("HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: " +
@@ -283,7 +286,7 @@ namespace MmorpgClient.Tests.EditMode.Net
                     Assert.That(enterCall.MessageId, Is.EqualTo(MessageIds.EnterGame));
                     Assert.That(Loginpb.EnterGameRequest.Parser.ParseFrom(enterCall.Body).PlayerId, Is.EqualTo(42ul));
                     WriteFrame(stream, codec, new MessageContent { Id = enterCall.Id, MessageId = enterCall.MessageId,
-                        SerializedMessage = new Loginpb.EnterGameResponse { PlayerId = 42 }.ToByteString() });
+                        SerializedMessage = new Loginpb.EnterGameResponse { PlayerId = 42, OwnerRevision = 9 }.ToByteString() });
                     WriteFrame(stream, codec, new MessageContent { MessageId = MessageIds.NotifyEnterScene,
                         SerializedMessage = new EnterSceneS2C { SceneInfo = new SceneInfoComp { SceneId = 123, SceneConfigId = 1 } }.ToByteString() });
                     ready.Set();
@@ -302,6 +305,7 @@ namespace MmorpgClient.Tests.EditMode.Net
                 Assert.That(_game.IsReconnecting, Is.False);
                 Assert.That(_game.InGame, Is.True);
                 Assert.That(_game.PlayerId, Is.EqualTo(42ul));
+                Assert.That(_game.OwnerRevision, Is.EqualTo(9ul), "受理应答里的归属修订号与角色编号一起记下,供本机待确认记录判断是否换过主人");
                 Assert.That(_game.CurrentSceneId, Is.EqualTo(123ul));
                 Assert.That(_disconnected, Is.Zero);
             }
@@ -384,7 +388,10 @@ namespace MmorpgClient.Tests.EditMode.Net
             var body = new char[bodyLength];
             for (int offset = 0; offset < body.Length;)
             { int n = reader.Read(body, offset, body.Length - offset); if (n == 0) throw new EndOfStreamException(); offset += n; }
-            Assert.That(new string(body), Does.Contain("heartbeat-test"));
+            string requestJson = new string(body);
+            var request = UnityEngine.JsonUtility.FromJson<AssignGateRequest>(requestJson);
+            Assert.That(request.access_token, Is.EqualTo("test-access"));
+            Assert.That(requestJson, Does.Not.Contain("\"account\""));
             string json = "{\"code\":" + code + ",\"gate_ip\":\"127.0.0.1\",\"gate_port\":" + gatePort +
                 ",\"token_payload\":\"AQID\",\"token_signature\":\"BAUG\"}";
             byte[] response = Encoding.ASCII.GetBytes("HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: " +

@@ -1784,7 +1784,8 @@ namespace Match {
     public const int RequestCancelledFieldNumber = 8;
     private bool requestCancelled_;
     /// <summary>
-    /// 对上述 request_id 的 SQL 撤销墓碑已提交；NOT_QUEUED 单独不构成此证据。
+    /// 上述 request_id 不会再入队：它的 SQL 撤销墓碑已提交，或它的原件属于角色此前的归属（过户前留下，现主人不能沿它入队）。
+    /// NOT_QUEUED 单独不构成此证据。
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -5278,7 +5279,7 @@ namespace Match {
     private global::eSpectateVisibility visibility_ = global::eSpectateVisibility.SpectateVisibilityUnspecified;
     /// <summary>
     /// 与 CreateBattleRequest.spectate_visibility 同值(建房原件冻结)。非 PUBLIC 的记录
-    /// 只用来给丢票补签定位 battle 节点,不进 spectate:battles:active,也不能被 WatchBattle 指定观战。
+    /// 只用来给丢票补签定位 battle 节点,不进观战活跃索引 spectate:battles:active:{sba:&lt;k>},也不能被 WatchBattle 指定观战。
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

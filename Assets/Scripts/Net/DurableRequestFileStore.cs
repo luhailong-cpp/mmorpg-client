@@ -6,18 +6,59 @@ using System.Security.Cryptography;
 
 namespace MmorpgClient.Net
 {
-    /// <summary>单玩家一个待确认槽。独占锁、落盘刷新与同目录原子提交；未知记录不能被另一请求覆盖。</summary>
+    /// <summary>
+    /// 单玩家一个待确认槽。独占锁、落盘刷新与同目录原子提交；未知记录不能被另一请求覆盖。
+    /// <para>
+    /// 槽位属于「角色 + 写入时的归属修订号」。构造时给了修订号来源(ownerRevision,取 GameClient.OwnerRevision)的存储,
+    /// 把写入时的修订号记在文件首行。读到的记录与当前修订号都已知且不同,说明角色换过主人:过户前服务端要求这名角色的
+    /// 在途操作全部了结,所以这条记录已经作废,一律按不存在处理,不恢复也不重发。任一方未知(0、旧格式文件)时照旧保留,
+    /// 不会把本人的记录藏起来。
+    /// </para>
+    /// </summary>
     public sealed class DurableRequestFileStore
     {
+        private const string OwnerPrefix = "@owner-revision:";
         private readonly string _directory;
-        public DurableRequestFileStore(string directory) { _directory = directory ?? throw new ArgumentNullException(nameof(directory)); }
-        public static DurableRequestFileStore ForOrigin(string directory,string gatewayBaseUrl)
+        private readonly Func<ulong> _ownerRevision;
+        public DurableRequestFileStore(string directory, Func<ulong> ownerRevision = null)
+        {
+            _directory = directory ?? throw new ArgumentNullException(nameof(directory));
+            _ownerRevision = ownerRevision;
+        }
+        public static DurableRequestFileStore ForOrigin(string directory,string gatewayBaseUrl,Func<ulong> ownerRevision=null)
         {
             using var hash=SHA256.Create();
             string origin=BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(gatewayBaseUrl.TrimEnd('/')))).Replace("-","");
-            return new DurableRequestFileStore(Path.Combine(directory,origin));
+            return new DurableRequestFileStore(Path.Combine(directory,origin),ownerRevision);
         }
         private string PathFor(ulong player) => Path.Combine(_directory, player.ToString(CultureInfo.InvariantCulture) + ".pending");
+
+        private ulong CurrentRevision => _ownerRevision?.Invoke() ?? 0;
+
+        /// <summary>拆出首行记的修订号,返回正文。没有首行标记(旧格式,或写入时修订号未知)时 recorded 为 0、正文就是全文。</summary>
+        private static string Unwrap(string text, out ulong recorded)
+        {
+            recorded = 0;
+            if (text == null || !text.StartsWith(OwnerPrefix, StringComparison.Ordinal)) return text;
+            int end = text.IndexOf('\n');
+            if (end < 0 || !ulong.TryParse(text.Substring(OwnerPrefix.Length, end - OwnerPrefix.Length), NumberStyles.None,
+                    CultureInfo.InvariantCulture, out recorded) || recorded == 0)
+            {
+                // 首行不合规:不猜,整份原样交给调用方,由它按损坏处理。
+                recorded = 0;
+                return text;
+            }
+            return text.Substring(end + 1);
+        }
+
+        /// <summary>这条记录是角色换主人之前留下的(两边修订号都已知且不同)。</summary>
+        private static bool Superseded(ulong recorded, ulong current) => current != 0 && recorded != 0 && recorded != current;
+
+        private static ulong ReadRecorded(string path, out string value)
+        {
+            value = Unwrap(File.ReadAllText(path, Encoding.UTF8), out ulong recorded);
+            return recorded;
+        }
 
         /// <summary>同一存储实例、角色与原始字节的快照；Value 只供解析，不能作为删除凭证。</summary>
         public sealed class Snapshot
@@ -83,12 +124,15 @@ namespace MmorpgClient.Net
             try { input = new FileStream(target, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, FileOptions.SequentialScan); }
             catch (FileNotFoundException) { return null; }
             catch (DirectoryNotFoundException) { return null; }
+            long length;
+            byte[] digest;
+            string value = "!损坏";
+            ulong recorded = 0;
             using (input)
             using (var hash = SHA256.Create())
             {
-                long length = input.Length;
-                byte[] digest = hash.ComputeHash(input);
-                string value = "!损坏";
+                length = input.Length;
+                digest = hash.ComputeHash(input);
                 if (length > 0 && length <= 65536)
                 {
                     input.Position = 0;
@@ -96,13 +140,15 @@ namespace MmorpgClient.Net
                     {
                         // 只接受 UTF8，兼容其 BOM；禁用其他编码探测，避免不同原始字节被容错解码成同一条记录。
                         using var reader = new StreamReader(input, new UTF8Encoding(true, true), false, 4096, true);
-                        string text = reader.ReadToEnd();
+                        string text = Unwrap(reader.ReadToEnd(), out recorded);
                         if (!string.IsNullOrEmpty(text)) value = text;
                     }
                     catch (DecoderFallbackException) { value = "!损坏"; }
                 }
-                return new Snapshot(this, player, target, length, digest, value);
             }
+            // 换主人之前留下的记录已作废:两个调用方都持着 .lock,就地删掉,按不存在回。读取句柄此时已关闭。
+            if (Superseded(recorded, CurrentRevision)) { File.Delete(target); return null; }
+            return new Snapshot(this, player, target, length, digest, value);
         }
 
         public string Load(ulong player)
@@ -112,7 +158,8 @@ namespace MmorpgClient.Net
                 var path = PathFor(player);
                 if (!File.Exists(path)) return "";
                 if (new FileInfo(path).Length > 65536) return "!损坏";
-                var saved = File.ReadAllText(path, Encoding.UTF8);
+                // 不持锁,只读不删:作废记录留给下一次 Save / Clear / ReadSnapshot 在锁内处理。
+                if (Superseded(ReadRecorded(path, out string saved), CurrentRevision)) return "";
                 return string.IsNullOrEmpty(saved) ? "!损坏" : saved;
             }
             catch (IOException) { return "!无法读取"; }
@@ -126,14 +173,20 @@ namespace MmorpgClient.Net
         }
         private void Commit(ulong player, string value, string expected)
         {
-            if (player == 0 || string.IsNullOrEmpty(value) || Encoding.UTF8.GetByteCount(value) > 65536) throw new InvalidDataException("恢复记录越界");
+            ulong revision = CurrentRevision;
+            // 修订号已知时记在首行;正文不得以首行标记开头,否则读回时会被当成修订号。
+            string content = revision == 0 ? value : OwnerPrefix + revision.ToString(CultureInfo.InvariantCulture) + "\n" + value;
+            if (player == 0 || string.IsNullOrEmpty(value) || value.StartsWith(OwnerPrefix, StringComparison.Ordinal)
+                || Encoding.UTF8.GetByteCount(content) > 65536) throw new InvalidDataException("恢复记录越界");
             Directory.CreateDirectory(_directory);
             var target = PathFor(player); var temporary = target + "." + Guid.NewGuid().ToString("N") + ".tmp";
             using var guard = new FileStream(target + ".lock", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-            bool exists = File.Exists(target);
+            bool onDisk = File.Exists(target);
+            string current = null;
+            // 换主人之前留下的记录已作废:当它不存在,新记录直接顶替。
+            bool exists = onDisk && !Superseded(ReadRecorded(target, out current), revision);
             if (exists)
             {
-                string current = File.ReadAllText(target, Encoding.UTF8);
                 if (current == value) return;
                 if (expected == null || current != expected) throw new InvalidOperationException("已有另一笔待确认请求");
             }
@@ -142,9 +195,9 @@ namespace MmorpgClient.Net
             {
                 using (var output = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None, 4096, FileOptions.WriteThrough))
                 {
-                    var data = Encoding.UTF8.GetBytes(value); output.Write(data, 0, data.Length); output.Flush(true);
+                    var data = Encoding.UTF8.GetBytes(content); output.Write(data, 0, data.Length); output.Flush(true);
                 }
-                if (exists) File.Replace(temporary, target, null); else File.Move(temporary, target);
+                if (onDisk) File.Replace(temporary, target, null); else File.Move(temporary, target);
             }
             finally { if (File.Exists(temporary)) File.Delete(temporary); }
         }
@@ -152,7 +205,9 @@ namespace MmorpgClient.Net
         {
             Directory.CreateDirectory(_directory); var target = PathFor(player);
             using var guard = new FileStream(target + ".lock", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-            if (expected != null && File.Exists(target) && File.ReadAllText(target, Encoding.UTF8) != expected)
+            // 换主人之前留下的记录已作废,不参与比对,直接删。
+            if (expected != null && File.Exists(target)
+                && !Superseded(ReadRecorded(target, out string current), CurrentRevision) && current != expected)
                 throw new InvalidOperationException("待确认记录已被替换");
             File.Delete(target);
         }

@@ -3682,6 +3682,10 @@ namespace Teampb {
 
   }
 
+  /// <summary>
+  /// 同一 request_id 的持久回执(GetMyTeamRequest.match_request_id 查询,StartTeamMatch 回包也带)。
+  /// 不带 match_intent = 未找到,不代表迟到请求永不会提交,客户端保留原意图。
+  /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class TeamMatchIntent : pb::IMessage<TeamMatchIntent>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -3757,7 +3761,9 @@ namespace Teampb {
     public const int StateFieldNumber = 3;
     private uint state_;
     /// <summary>
-    /// 1/2/3仍在恢复，4已建房，5已确认中止；0未找到，不代表迟到请求永不会提交。
+    /// battle_id≠0 时是成局状态:1/2/3 仍在恢复,4 已建房,5 已确认中止。
+    /// battle_id=0 时是整队原件状态:1 待提交(仍在恢复),2 已入队,5 未成局即已关闭(含撤销墓碑)。
+    /// 6:原件属于角色此前的归属(过户前留下),当前角色不能恢复也不能沿它提交,客户端释放本机原意图。
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]

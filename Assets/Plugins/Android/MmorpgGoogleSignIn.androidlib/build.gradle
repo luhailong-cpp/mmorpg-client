@@ -1,0 +1,26 @@
+// Sign in with Google 原生模块(服务端 docs/design/account-deletion.md §3.2)。
+// Unity 把 *.androidlib 当 Gradle 子模块并进导出工程:依赖只写在这里,不改工程的 Gradle 模板。
+// 仓库(google()、mavenCentral())由导出工程的 settings.gradle 统一声明,这里不写,否则会和它的仓库模式冲突。
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'com.mmorpg.signin'
+    // SDK 级别跟着 Unity 导出工程走(Unity 写在 gradle.properties 的 unity.*);
+    // 取不到时按 ProjectSettings 的最低 26,编译用 35(credentials 1.5.0 要求 compileSdk 不低于 35)。
+    compileSdk = (project.findProperty('unity.compileSdkVersion') ?: '35') as int
+    defaultConfig {
+        minSdk = (project.findProperty('unity.minSdkVersion') ?: '26') as int
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.credentials:credentials:1.5.0'
+    // 安卓 13 及以下没有系统自带的 Credential Manager,要 Play 服务的实现
+    implementation 'androidx.credentials:credentials-play-services-auth:1.5.0'
+    implementation 'com.google.android.libraries.identity.googleid:googleid:1.1.1'
+}

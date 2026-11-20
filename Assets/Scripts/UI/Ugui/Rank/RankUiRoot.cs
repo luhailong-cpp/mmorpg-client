@@ -85,7 +85,8 @@ namespace MmorpgClient.UI.Ugui.Rank
                 if (_client != null) { _client.Changed -= Changed; _client.Dispose(); }
                 _game = game;
                 _client = game == null ? null
-                    : new RankClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity, () => Time.realtimeSinceStartup);
+                    : new RankClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity,
+                        () => Time.realtimeSinceStartup, game.RpcGuard);
                 if (_client != null) _client.Changed += Changed;
                 _window.Hide();
             }

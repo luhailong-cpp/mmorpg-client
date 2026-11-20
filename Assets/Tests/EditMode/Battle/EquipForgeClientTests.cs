@@ -1525,6 +1525,25 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_outcomes, Is.Empty);
         }
 
+        // 2026-11-19 评审补:首发结果不明(超时)之后重发被 gate 层确定拒绝(限流),首发仍可能已经执行。
+        // 改之前按限流的规则拒绝收尾、不重拉快照,玩家看着旧快照再点一次就是换新键再扣一次。
+        [Test]
+        public void ResentEnhanceRejectedByTheGateStillResyncsAsUnknown()
+        {
+            LoadBoth();
+            _client.EnhanceEquip(Sword);
+            LastEnhance(Sword).FailWith("rpc timeout");
+            var resent = LastEnhance(Sword);
+            int calls = _net.Calls.Count;
+            resent.FailWith("server tip=" + (uint)common_error.KRateLimitExceeded);
+
+            Assert.That(ForgeCallCount(), Is.EqualTo(2), "每次点击至多重发一次");
+            Assert.That(BagReadsFrom(calls), Is.EqualTo(new uint[] { 0, 2 }), "首发结果仍不明:重拉两份快照");
+            Assert.That(_client.BusyEquip, Is.False);
+            Assert.That(_client.EquipmentError, Is.EqualTo("无法强化:网络异常,请稍后重试"), "不显示成限流的确定拒绝");
+            Assert.That(_outcomes, Is.Empty);
+        }
+
         [TestCase(false, TestName = "EnhanceDisconnected_IsNotResent")]
         [TestCase(true, TestName = "EnhanceRateLimited_IsNotResent")]
         public void DisconnectedOrRateLimitedEnhanceIsNotResent(bool rateLimited)

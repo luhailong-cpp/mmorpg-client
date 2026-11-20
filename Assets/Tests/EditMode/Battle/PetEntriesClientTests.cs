@@ -76,5 +76,17 @@ namespace MmorpgClient.Tests.EditMode.Battle
    Assert.That(accepted,Is.True);Assert.That(client.HasPendingEntries(PetId),Is.False);
    Assert.That(client.Pets.Pets[0].Entries.StateVersion,Is.EqualTo(3));Assert.That(client.Pets.Pets[0].Entries.Entries[0].Allocated,Is.EqualTo(7));
   }
+  [Test] public void ZeroEntriesAreOmittedOnWireAndAllZeroSaveCommitsCleanly(){
+   var full=new Dictionary<uint,uint>();for(uint id=501;id<=521;id++) full[id]=id==503?1u:0u;
+   client.PreviewEntries(PetId,1,1,full,null);
+   var previewReq=(PreviewPetEntriesRequest)net.Calls.Last().Request;
+   Assert.That(previewReq.Target.Count,Is.EqualTo(1));Assert.That(previewReq.Target[503],Is.EqualTo(1));
+   full[503]=0;bool cleared=false;
+   client.SaveEntries(PetId,1,1,full,(ok,p,e)=>cleared=ok);
+   var saveReq=(SavePetEntriesRequest)net.Calls.Last().Request;
+   Assert.That(saveReq.Target.Count,Is.Zero);
+   net.Calls.Last().Respond(new SavePetEntriesResponse{RequestId=saveReq.RequestId,Entries=Info(0,2,saveReq.RequestId)});
+   Assert.That(cleared,Is.True);Assert.That(client.HasPendingEntries(PetId),Is.False);
+  }
  }
 }

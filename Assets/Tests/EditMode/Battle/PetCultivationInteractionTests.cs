@@ -324,7 +324,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
         {
             Click("PetBadgeExplain");
             Assert.That(Text("PetBadgeCurrent").text, Does.Contain("当前阶：—"));
-            Assert.That(Text("PetBadgeExplanation").text, Does.Contain("候选方案"));
+            Assert.That(Text("PetBadgeExplanation").text, Does.Contain("独立身份"));
             for (int i = 0; i < 5; i++) Click("PreviewBadge" + i);
             Assert.That(Text("PetBadgeCurrent").text, Does.Contain("当前预览：圣兽"));
             Assert.That(_client.Pets.Pets[0].Quality, Is.EqualTo(0));

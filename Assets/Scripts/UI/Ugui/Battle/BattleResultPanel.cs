@@ -14,7 +14,8 @@ namespace MmorpgClient.UI.Ugui.Battle
     /// <summary>
     /// 结算屏(turn-battle-presentation.md §4):OnBattleEnd 后
     /// "胜利 / 失败 / 平局"大字弹入(2.4 → 1.0 BackOut)→ 奖励逐条从右飞入 → 确认按钮淡入;
-    /// 点「返回场景」收起(BattleUiRoot 在回调里调 AckBattleEnd,契约不变)。
+    /// 按钮淡入后倒计时 <see cref="AutoReturnSeconds"/> 秒自动收起、回到场景,也可提前点「返回场景」
+    /// (两条路径同一个回调,BattleUiRoot 在回调里调 AckBattleEnd,契约不变)。补弹的结果不倒计时,等玩家点「知道了」。
     /// </summary>
     public sealed class BattleResultPanel
     {
@@ -35,11 +36,13 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly CanvasGroup _confirmGroup;
         private readonly List<GameObject> _rowObjects = new List<GameObject>();
         private readonly object _token = new object();
+        private readonly Action _onConfirm;
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
         public BattleResultPanel(UnityEngine.Transform parent, Action onConfirm)
         {
+            _onConfirm = onConfirm;
             float x = (QdaoUguiTheme.DesignWidth - PanelW) * 0.5f;
             float y = (QdaoUguiTheme.DesignHeight - PanelH) * 0.5f;
             var bg = BattleUiWidgets.CreatePanel("BattleResultPanel", parent, x, y, PanelW, PanelH, BattleUiStyle.PanelBgLight);
@@ -104,7 +107,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             string subtitle = voided ? VoidSubtitle
                 : settlement != null ? $"共 {settlement.TotalRounds} 回合" : string.Empty;
             var lines = voided ? BuildVoidLines() : BuildRewardLines(settlement, end.ItemsMailed);
-            Present(title, titleColor, subtitle, lines, LiveConfirmText);
+            Present(title, titleColor, subtitle, lines, LiveConfirmText, AutoReturnSeconds);
         }
 
         /// <summary>
@@ -117,7 +120,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool voided = BattleResultRecoveryClient.IsVoid(result);
             ResolveTitle((eBattleOutcome)result.Outcome, result.TeamIndex, voided, out string title, out Color titleColor);
             Present(title, titleColor, voided ? VoidSubtitle : BuildRecoveredSubtitle(result), BuildRecoveredLines(result),
-                RecoveredConfirmText);
+                RecoveredConfirmText, autoConfirmSeconds: 0);
         }
 
         // 胜负大字:作废排在最前(落进「失败」分支会显示成输了);胜 = outcome 对照我方 team。
@@ -151,7 +154,9 @@ namespace MmorpgClient.UI.Ugui.Battle
             }
         }
 
-        private void Present(string title, Color titleColor, string subtitle, List<string> lines, string confirmText)
+        // autoConfirmSeconds > 0:确认键淡入后倒计时这么多秒自动确认;0 = 只能手动点。
+        private void Present(string title, Color titleColor, string subtitle, List<string> lines, string confirmText,
+            int autoConfirmSeconds)
         {
             _titleText.text = title;
             _titleText.color = titleColor;
@@ -216,6 +221,28 @@ namespace MmorpgClient.UI.Ugui.Battle
                     _confirmGroup.alpha = 1f;
                     _confirmGroup.interactable = true;
                     _confirmGroup.blocksRaycasts = true;
+                    if (autoConfirmSeconds > 0) StartAutoConfirm(confirmText, autoConfirmSeconds);
+                }));
+        }
+
+        // 倒计时走完按点了确认键处理(同一个回调)。挂在 _token 上:Hide / 再次展示时随 KillTweens 作废,不会迟到确认。
+        private void StartAutoConfirm(string confirmText, int seconds)
+        {
+            int shown = -1;
+            void Render(float left)
+            {
+                int whole = Mathf.CeilToInt(left);
+                if (whole == shown) return; // 只在整秒变化时改字
+                shown = whole;
+                _confirmButton.SetText($"{confirmText}({whole})");
+            }
+            Render(seconds);
+            RealtimeTween.To(seconds, 0f, seconds).SetEase(RealtimeEase.Linear).SetIgnoreEngineTimeScale(true).SetTarget(_token)
+                .OnUpdate((RealtimeTweenCallback1)(t => Render(t.Value.x)))
+                .OnComplete((RealtimeTweenCallback)(() =>
+                {
+                    // 画布已随场景切换销毁时不再回调宿主
+                    if (IsVisible) _onConfirm?.Invoke();
                 }));
         }
 
@@ -239,6 +266,11 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>现场结算面板的确认键:收起之后回到场景。</summary>
         public const string LiveConfirmText = "返回场景";
+        /// <summary>
+        /// 现场结算的确认键淡入后,再停这么多秒自动返回场景(键上显示「返回场景(3)」倒数)。
+        /// 回合制战斗打完全员自动回场景,不要求每人点一下;想早点回可以提前点。
+        /// </summary>
+        public const int AutoReturnSeconds = 3;
         /// <summary>补弹结果的确认键:玩家已经在场景里,只是看完。</summary>
         public const string RecoveredConfirmText = "知道了";
         /// <summary>补弹结果说明行的开头:告诉玩家这是之前没看到的一局。</summary>
