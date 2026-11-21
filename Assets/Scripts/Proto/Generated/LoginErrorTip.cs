@@ -23,7 +23,7 @@ public static partial class LoginErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbG9naW5fZXJyb3JfdGlwLnBy",
-          "b3RvKvoLCgtsb2dpbl9lcnJvchISCg5rTG9naW5fZXJyb3JPSxAAEhoKFWtM",
+          "b3RvKrMNCgtsb2dpbl9lcnJvchISCg5rTG9naW5fZXJyb3JPSxAAEhoKFWtM",
           "b2dpbkFjY291bnROb3RGb3VuZBDQDxIcChdrTG9naW5BY2NvdW50UGxheWVy",
           "RnVsbBDRDxIkCh9rTG9naW5DcmVhdGVQbGF5ZXJVbkxvYWRBY2NvdW50ENIP",
           "Ei4KKWtMb2dpbkNyZWF0ZVBsYXllckNvbm5lY3Rpb25IYXNOb3RBY2NvdW50",
@@ -57,8 +57,12 @@ public static partial class LoginErrorTipReflection {
           "ZW1wdHMQ/Q8SHwoaa0xvZ2luUmVhbE5hbWVBbHJlYWR5Qm91bmQQ/g8SJQog",
           "a0xvZ2luUmVhbE5hbWVTZXJ2aWNlVW5hdmFpbGFibGUQ/w8SHQoYa0xvZ2lu",
           "TWlub3JOb3RJblBsYXlUaW1lEIAQEhwKF2tMb2dpbk1pbm9yUGxheVRpbWVP",
-          "dmVyEIEQQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGVi",
-          "BnByb3RvMw=="));
+          "dmVyEIEQEh4KGWtSb2xlTmFtZUNoZWNrVW5hdmFpbGFibGUQghASGAoTa1Jv",
+          "bGVSZW5hbWVDb29sZG93bhCDEBIWChFrUm9sZVJlbmFtZU5vQ2FyZBCEEBIa",
+          "ChVrUm9sZVJlbmFtZUluUHJvZ3Jlc3MQhRASFgoRa1JvbGVSZW5hbWVGcm96",
+          "ZW4QhhASGAoTa1JvbGVSZW5hbWVTYW1lTmFtZRCHEBIXChJrUm9sZVJlbmFt",
+          "ZUV4cGlyZWQQiBBCJAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90",
+          "YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::login_error), }, null, null));
@@ -119,6 +123,13 @@ public enum login_error {
   [pbr::OriginalName("kLoginRealNameServiceUnavailable")] KLoginRealNameServiceUnavailable = 2047,
   [pbr::OriginalName("kLoginMinorNotInPlayTime")] KLoginMinorNotInPlayTime = 2048,
   [pbr::OriginalName("kLoginMinorPlayTimeOver")] KLoginMinorPlayTimeOver = 2049,
+  [pbr::OriginalName("kRoleNameCheckUnavailable")] KRoleNameCheckUnavailable = 2050,
+  [pbr::OriginalName("kRoleRenameCooldown")] KRoleRenameCooldown = 2051,
+  [pbr::OriginalName("kRoleRenameNoCard")] KRoleRenameNoCard = 2052,
+  [pbr::OriginalName("kRoleRenameInProgress")] KRoleRenameInProgress = 2053,
+  [pbr::OriginalName("kRoleRenameFrozen")] KRoleRenameFrozen = 2054,
+  [pbr::OriginalName("kRoleRenameSameName")] KRoleRenameSameName = 2055,
+  [pbr::OriginalName("kRoleRenameExpired")] KRoleRenameExpired = 2056,
 }
 
 #endregion

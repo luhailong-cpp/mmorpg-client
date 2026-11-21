@@ -23,7 +23,7 @@ public static partial class TradeErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvdHJhZGVfZXJyb3JfdGlwLnBy",
-          "b3RvKvIDCgt0cmFkZV9lcnJvchISCg5rVHJhZGVfZXJyb3JPSxAAEhsKFWtU",
+          "b3RvKrAECgt0cmFkZV9lcnJvchISCg5rVHJhZGVfZXJyb3JPSxAAEhsKFWtU",
           "cmFkZUxpc3RpbmdOb3RGb3VuZBCgnAESGwoVa1RyYWRlSG9tZVpvbmVVbmtu",
           "b3duEKGcARIgChprVHJhZGVGYXZvcml0ZUxpbWl0UmVhY2hlZBCinAESGwoV",
           "a1RyYWRlRmVhdHVyZURpc2FibGVkEKOcARIZChNrVHJhZGVPcmRlck5vdEZv",
@@ -34,8 +34,9 @@ public static partial class TradeErrorTipReflection {
           "dBCqnAESFQoPa1RyYWRlQmlkVG9vTG93EKucARIYChJrVHJhZGVBdWN0aW9u",
           "RW5kZWQQrJwBEiAKGmtUcmFkZUFzc2V0RGVsaXZlcnlQZW5kaW5nEK2cARIY",
           "ChJrVHJhZGVNYW51YWxSZXZpZXcQrpwBEhwKFmtUcmFkZUFzc2V0Tm90VHJh",
-          "ZGFibGUQr5wBQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFi",
-          "bGViBnByb3RvMw=="));
+          "ZGFibGUQr5wBEhoKFGtUcmFkZVRpdGxlU2Vuc2l0aXZlELCcARIgChprVHJh",
+          "ZGVUZXh0Q2hlY2tVbmF2YWlsYWJsZRCxnAFCJAoOY29tLmdhbWUudGFibGVa",
+          "EmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::trade_error), }, null, null));
@@ -62,6 +63,8 @@ public enum trade_error {
   [pbr::OriginalName("kTradeAssetDeliveryPending")] KTradeAssetDeliveryPending = 20013,
   [pbr::OriginalName("kTradeManualReview")] KTradeManualReview = 20014,
   [pbr::OriginalName("kTradeAssetNotTradable")] KTradeAssetNotTradable = 20015,
+  [pbr::OriginalName("kTradeTitleSensitive")] KTradeTitleSensitive = 20016,
+  [pbr::OriginalName("kTradeTextCheckUnavailable")] KTradeTextCheckUnavailable = 20017,
 }
 
 #endregion

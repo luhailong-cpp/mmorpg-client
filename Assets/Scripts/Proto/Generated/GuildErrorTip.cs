@@ -23,7 +23,7 @@ public static partial class GuildErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZ3VpbGRfZXJyb3JfdGlwLnBy",
-          "b3RvKssJCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
+          "b3RvKt4KCgtndWlsZF9lcnJvchISCg5rR3VpbGRfZXJyb3JPSxAAEhkKFGtH",
           "dWlsZEFscmVhZHlJbkd1aWxkELBtEhMKDmtHdWlsZE5vdEZvdW5kELFtEhUK",
           "EGtHdWlsZE5vdEluR3VpbGQQsm0SDwoKa0d1aWxkRnVsbBCzbRIaChVrR3Vp",
           "bGRMZWFkZXJDYW50TGVhdmUQtG0SFAoPa0d1aWxkTm90TGVhZGVyELVtEhcK",
@@ -50,8 +50,11 @@ public static partial class GuildErrorTipReflection {
           "ChhrR3VpbGRUcmlhbEludml0ZUV4cGlyZWQQ1m0SHgoZa0d1aWxkVHJpYWxJ",
           "bnZpdGVEZWNsaW5lZBDXbRIeChlrR3VpbGRUcmlhbEludml0ZUNvb2xkb3du",
           "ENhtEhsKFmtHdWlsZFRyaWFsU2VydmljZUJ1c3kQ2W0SHQoYa0d1aWxkVHJp",
-          "YWxCYXR0bGVBYm9ydGVkENptQiQKDmNvbS5nYW1lLnRhYmxlWhJnZW5lcmF0",
-          "ZWQvcGIvdGFibGViBnByb3RvMw=="));
+          "YWxCYXR0bGVBYm9ydGVkENptEhgKE2tHdWlsZE5hbWVTZW5zaXRpdmUQ220S",
+          "IAoba0d1aWxkQW5ub3VuY2VtZW50U2Vuc2l0aXZlENxtEh8KGmtHdWlsZFRl",
+          "eHRDaGVja1VuYXZhaWxhYmxlEN1tEhkKFGtHdWlsZFJlbmFtZUNvb2xkb3du",
+          "EN5tEhkKFGtHdWlsZFJlbmFtZVNhbWVOYW1lEN9tQiQKDmNvbS5nYW1lLnRh",
+          "YmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::guild_error), }, null, null));
@@ -105,6 +108,11 @@ public enum guild_error {
   [pbr::OriginalName("kGuildTrialInviteCooldown")] KGuildTrialInviteCooldown = 14040,
   [pbr::OriginalName("kGuildTrialServiceBusy")] KGuildTrialServiceBusy = 14041,
   [pbr::OriginalName("kGuildTrialBattleAborted")] KGuildTrialBattleAborted = 14042,
+  [pbr::OriginalName("kGuildNameSensitive")] KGuildNameSensitive = 14043,
+  [pbr::OriginalName("kGuildAnnouncementSensitive")] KGuildAnnouncementSensitive = 14044,
+  [pbr::OriginalName("kGuildTextCheckUnavailable")] KGuildTextCheckUnavailable = 14045,
+  [pbr::OriginalName("kGuildRenameCooldown")] KGuildRenameCooldown = 14046,
+  [pbr::OriginalName("kGuildRenameSameName")] KGuildRenameSameName = 14047,
 }
 
 #endregion

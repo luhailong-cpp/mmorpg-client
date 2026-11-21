@@ -2415,6 +2415,7 @@ namespace MmorpgClient.Game
             RegisterMovementReply(MessageIds.MoveStop, "MoveStop");
             WireTeamFollowHandlers();
             RegisterRoleRenameHandlers();
+            WireSelfActorStateHandlers();
 
             OnNotify(MessageIds.NotifyEnterScene, mc =>
             {
@@ -2427,6 +2428,7 @@ namespace MmorpgClient.Game
                 World.Clear();
                 // 组队跟随:驱动随旧场景作废,仍在跟随的服务器入场后再推;入场计数让跟随声明在新场景再说一次。
                 ResetTeamFollowState();
+                ResetSelfActorStateFlags();
                 SceneEntryEpoch++;
                 _sceneAppearances.Clear();
                 OnSceneEntered?.Invoke(ev.SceneInfo);
@@ -2818,6 +2820,7 @@ namespace MmorpgClient.Game
                 if (hadSessionState) BattleLink?.Close("lobby_disconnected");
                 World.Clear();
                 ResetTeamFollowState();
+                ResetSelfActorStateFlags();
             }
             catch
             {

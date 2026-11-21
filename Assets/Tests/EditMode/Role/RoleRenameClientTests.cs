@@ -38,7 +38,7 @@ namespace MmorpgClient.Tests.EditMode.Role
         [Test]
         public void RequestRoleRenameRejectsWhenNotInGameAndPublishesOutcome()
         {
-            var client = new GameClient(new MmorpgClient.Net.GatewayHttpClient("http://127.0.0.1:1"));
+            var client = new GameClient("http://127.0.0.1:1");
             bool eventCalled = false;
             bool eventSuccess = true;
             string eventMessage = null;

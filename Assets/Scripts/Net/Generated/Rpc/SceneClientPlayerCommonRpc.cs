@@ -75,5 +75,19 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint NotifySelfActorStateFlagsMessageId = 440;
+        public static void OnNotifySelfActorStateFlags(IRpcChannel channel, Action<global::SelfActorStateFlagsS2C> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifySelfActorStateFlagsMessageId, mc =>
+            {
+                global::SelfActorStateFlagsS2C message;
+                try { message = global::SelfActorStateFlagsS2C.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
     }
 }

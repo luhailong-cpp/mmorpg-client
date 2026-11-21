@@ -34,15 +34,19 @@ public static partial class ClientPlayerCommonReflection {
           "FFJlbmFtZVBsYXllclJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsy",
           "Dy5UaXBJbmZvTWVzc2FnZSJlChNQbGF5ZXJSZW5hbWVkTm90aWZ5EiYKDWVy",
           "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIMCgRuYW1lGAIg",
-          "ASgJEhgKEG5leHRfcmVuYW1lX3RpbWUYAyABKAQyvgIKF1NjZW5lQ2xpZW50",
-          "UGxheWVyQ29tbW9uEjEKD1NlbmRUaXBUb0NsaWVudBIPLlRpcEluZm9NZXNz",
-          "YWdlGgYuRW1wdHkiBYiZyAECEjMKCktpY2tQbGF5ZXISFi5HYW1lS2lja1Bs",
-          "YXllclJlcXVlc3QaBi5FbXB0eSIFiJnIAQISNgoOUmVkaXJlY3RUb0dhdGUS",
-          "FS5SZWRpcmVjdFRvR2F0ZU5vdGlmeRoGLkVtcHR5IgWImcgBAhI7CgxSZW5h",
-          "bWVQbGF5ZXISFC5SZW5hbWVQbGF5ZXJSZXF1ZXN0GhUuUmVuYW1lUGxheWVy",
-          "UmVzcG9uc2USOgoTTm90aWZ5UGxheWVyUmVuYW1lZBIULlBsYXllclJlbmFt",
-          "ZWROb3RpZnkaBi5FbXB0eSIFiJnIAQIaCoCowwEBiKjDAQFCDloFc2NlbmWA",
-          "AQGY1GEDYgZwcm90bzM="));
+          "ASgJEhgKEG5leHRfcmVuYW1lX3RpbWUYAyABKAQiYQoWU2VsZkFjdG9yU3Rh",
+          "dGVGbGFnc1MyQxIZChFhY3Rpb25fc3RhdGVfbWFzaxgBIAEoBBIZChFjb21i",
+          "YXRfc3RhdGVfbWFzaxgCIAEoBBIRCglzdGF0ZV9zZXEYAyABKAQygwMKF1Nj",
+          "ZW5lQ2xpZW50UGxheWVyQ29tbW9uEjEKD1NlbmRUaXBUb0NsaWVudBIPLlRp",
+          "cEluZm9NZXNzYWdlGgYuRW1wdHkiBYiZyAECEjMKCktpY2tQbGF5ZXISFi5H",
+          "YW1lS2lja1BsYXllclJlcXVlc3QaBi5FbXB0eSIFiJnIAQISNgoOUmVkaXJl",
+          "Y3RUb0dhdGUSFS5SZWRpcmVjdFRvR2F0ZU5vdGlmeRoGLkVtcHR5IgWImcgB",
+          "AhI7CgxSZW5hbWVQbGF5ZXISFC5SZW5hbWVQbGF5ZXJSZXF1ZXN0GhUuUmVu",
+          "YW1lUGxheWVyUmVzcG9uc2USOgoTTm90aWZ5UGxheWVyUmVuYW1lZBIULlBs",
+          "YXllclJlbmFtZWROb3RpZnkaBi5FbXB0eSIFiJnIAQISQwoZTm90aWZ5U2Vs",
+          "ZkFjdG9yU3RhdGVGbGFncxIXLlNlbGZBY3RvclN0YXRlRmxhZ3NTMkMaBi5F",
+          "bXB0eSIFiJnIAQIaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90",
+          "bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -50,7 +54,8 @@ public static partial class ClientPlayerCommonReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::RedirectToGateNotify), global::RedirectToGateNotify.Parser, new[]{ "TargetIp", "TargetPort", "TokenPayload", "TokenSignature", "TokenDeadline", "TargetWsUrl" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RenamePlayerRequest), global::RenamePlayerRequest.Parser, new[]{ "Name" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RenamePlayerResponse), global::RenamePlayerResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerRenamedNotify), global::PlayerRenamedNotify.Parser, new[]{ "ErrorMessage", "Name", "NextRenameTime" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerRenamedNotify), global::PlayerRenamedNotify.Parser, new[]{ "ErrorMessage", "Name", "NextRenameTime" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SelfActorStateFlagsS2C), global::SelfActorStateFlagsS2C.Parser, new[]{ "ActionStateMask", "CombatStateMask", "StateSeq" }, null, null, null, null)
         }));
   }
   #endregion
@@ -1386,6 +1391,293 @@ public sealed partial class PlayerRenamedNotify : pb::IMessage<PlayerRenamedNoti
         }
         case 24: {
           NextRenameTime = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 主角权威状态互斥标志即时同步(只发给主角本人,不广播旁观者)。
+/// 任何行为状态(ActorActionState: bit0=Combat, bit1=TeamFollow, bit2=Mounted)或
+/// 战斗异常状态(ActorCombatState: bit1=Silence 等)发生实际位变化时立即单播给主角,
+/// 供客户端刷新 UI 禁用与本地角色状态机纠偏;入场 / 重连落地若存在非零态也会补推一次。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SelfActorStateFlagsS2C : pb::IMessage<SelfActorStateFlagsS2C>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SelfActorStateFlagsS2C> _parser = new pb::MessageParser<SelfActorStateFlagsS2C>(() => new SelfActorStateFlagsS2C());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SelfActorStateFlagsS2C> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ClientPlayerCommonReflection.Descriptor.MessageTypes[5]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SelfActorStateFlagsS2C() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SelfActorStateFlagsS2C(SelfActorStateFlagsS2C other) : this() {
+    actionStateMask_ = other.actionStateMask_;
+    combatStateMask_ = other.combatStateMask_;
+    stateSeq_ = other.stateSeq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SelfActorStateFlagsS2C Clone() {
+    return new SelfActorStateFlagsS2C(this);
+  }
+
+  /// <summary>Field number for the "action_state_mask" field.</summary>
+  public const int ActionStateMaskFieldNumber = 1;
+  private ulong actionStateMask_;
+  /// <summary>
+  /// 位 i = eActorState(i)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ActionStateMask {
+    get { return actionStateMask_; }
+    set {
+      actionStateMask_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "combat_state_mask" field.</summary>
+  public const int CombatStateMaskFieldNumber = 2;
+  private ulong combatStateMask_;
+  /// <summary>
+  /// 位 i = eActorCombatState(i)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong CombatStateMask {
+    get { return combatStateMask_; }
+    set {
+      combatStateMask_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "state_seq" field.</summary>
+  public const int StateSeqFieldNumber = 3;
+  private ulong stateSeq_;
+  /// <summary>
+  /// 单次进场内单调递增序号(仅位变化或重推时递增,防乱序覆盖)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong StateSeq {
+    get { return stateSeq_; }
+    set {
+      stateSeq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SelfActorStateFlagsS2C);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SelfActorStateFlagsS2C other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ActionStateMask != other.ActionStateMask) return false;
+    if (CombatStateMask != other.CombatStateMask) return false;
+    if (StateSeq != other.StateSeq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ActionStateMask != 0UL) hash ^= ActionStateMask.GetHashCode();
+    if (CombatStateMask != 0UL) hash ^= CombatStateMask.GetHashCode();
+    if (StateSeq != 0UL) hash ^= StateSeq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ActionStateMask != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ActionStateMask);
+    }
+    if (CombatStateMask != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(CombatStateMask);
+    }
+    if (StateSeq != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(StateSeq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ActionStateMask != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(ActionStateMask);
+    }
+    if (CombatStateMask != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(CombatStateMask);
+    }
+    if (StateSeq != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(StateSeq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ActionStateMask != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ActionStateMask);
+    }
+    if (CombatStateMask != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(CombatStateMask);
+    }
+    if (StateSeq != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(StateSeq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SelfActorStateFlagsS2C other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ActionStateMask != 0UL) {
+      ActionStateMask = other.ActionStateMask;
+    }
+    if (other.CombatStateMask != 0UL) {
+      CombatStateMask = other.CombatStateMask;
+    }
+    if (other.StateSeq != 0UL) {
+      StateSeq = other.StateSeq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ActionStateMask = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          CombatStateMask = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          StateSeq = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ActionStateMask = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          CombatStateMask = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          StateSeq = input.ReadUInt64();
           break;
         }
       }

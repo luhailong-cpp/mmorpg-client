@@ -80,7 +80,7 @@ namespace MmorpgClient.Tests.EditMode.Net
             _gateway.Start();
             int port = ((IPEndPoint)_gateway.LocalEndpoint).Port;
             _game = new GameClient($"http://127.0.0.1:{port}");
-            _game.OnStatus += s => _statuses.Add(s);
+            _game.OnFlowStatus += s => _statuses.Add(s);
             _game.OnLog += msg =>
             {
                 // 放行后 EnterZone 紧接着进 ConnectAndEnter;收到放行日志立刻翻世代停下,不触碰真实 gate TCP。
