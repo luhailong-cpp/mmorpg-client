@@ -1,10 +1,43 @@
 # 客户端协作约定
 
-- `E:/work` 顶层只保留 `mmorpg-client`、`xuanming-server-mmo`、`image`、`proto2mysql` 四个项目目录。
-- 构建、日志、缓存与临时验证产物放在所属项目的 Git 忽略目录（如 `Builds/`、`Logs/`、`.codex-artifacts/`）或系统临时目录，不在 `E:/work` 新建额外目录。
-- 确需工作树时优先使用 Codex 托管工作树，或放在 `E:/work` 之外。代码合并、验证并确认无独有未保存内容后清理工作树。
+- 核心关联 Git 仓库（按 GitHub 地址定位，本地克隆路径因机器而异，不写死盘符路径）：
+  - Unity 客户端（本仓库）：`https://github.com/luhailong-cpp/mmorpg-client`
+  - C++/Go 服务端：`https://github.com/luyuan-cpp/xuanming-server-mmo`
+  - Java 服务端：`https://github.com/luyuan-java/xuanming-server-mmo`
+  - Python 服务端：`https://github.com/luhailong-python/xuanming-server-mmo-python`
+  - 协议转 MySQL 工具库：`https://github.com/luyuan-cpp/proto2mysql`
+- 构建、日志、缓存与临时验证产物放在所属项目的 Git 忽略目录（如 `Builds/`、`Logs/`、`.codex-artifacts/`）或系统临时目录，不在工作区顶层新建额外杂项目录。
+- 确需工作树时优先使用托管工作树，或放在工作区之外。代码合并、验证并确认无独有未保存内容后清理工作树。
 - 保留并提交有效源码、资源和需要长期留存的验证证据；不得因清理目录丢弃未合并的提交或未提交改动。
 - 生成协议与调用桩必须来自当前权威服务端源和正式生成器，不手改生成代码。合并须保留双方已有功能，并运行与变更对应的编译和测试。
+
+## 开发分支与通用工程原则
+
+- **只在 `main` 分支开发**：所有改动直接在 `main` 分支进行，禁止创建临时分支；如确需工作树清理，须先确认无未保存改动。
+- **未上线阶段前提**：游戏尚未上线，玩家数据可完全清空；按最标准方案实现与重构，不堆砌历史兼容包袱。
+- **架构与质量要求**：
+  - 保持客户端与服务端状态/数据一致性，严格遵守**单一职责（SRP）**等开发原则，代码清晰易懂；适合使用经典设计模式解耦的模块主动采用并说明。
+  - 发现已知问题或设计缺陷当场修复，不拖延到“以后再修”。
+- **分工约定**：只负责客户端业务代码时，协议生成、编译检查与冒烟验证可交由 Codex 执行。
+
+## 门禁命令与禁止手改目录
+
+```powershell
+# 1. 协议与消息号生成（来自权威服务端源）
+pwsh tools/gen_proto.ps1
+pwsh tools/gen_messageids.ps1
+
+# 2. 编译检查与客户端构建
+pwsh tools/client_compile_check.ps1
+pwsh tools/build_client.ps1
+
+# 3. 相关自动化测试（按改动模块选择）
+pwsh tools/run_activity_tests.ps1
+pwsh tools/run_quest_tests.ps1
+pwsh tools/run_move_test.ps1
+```
+
+- **禁止手改目录**：自动生成的协议与消息号文件、服务端同步契约产物（需改权威源后通过 `tools/gen_proto.ps1` / `tools/gen_messageids.ps1` 重新生成）。
 
 ## UI 原图还原验收（用户确认于 2026-11-06）
 
