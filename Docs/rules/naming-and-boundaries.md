@@ -36,7 +36,7 @@
 ### 硬禁令
 - ❌ **严禁手改生成目录与文件**：`Assets/Scripts/Proto/Generated/`、`Assets/Scripts/Net/Generated/`（含 `Rpc/*Rpc.cs` 与 `TipFaults.cs`）、`Assets/Scripts/Net/MessageIds.cs`、`Assets/Scripts/Table/Generated/`（含 `*Table.cs`、`*TableManager.cs`、`TableLoader.cs`）。
 - ❌ **严禁遗漏或破坏 Unity `.meta`**：`Assets/` 下增删改移文件必须同步维护 `.meta`，不手造冲突 GUID。
-- ❌ **严禁在小游戏可达路径开启线程或阻塞主线程**：禁止 `new Thread`、`Task.Run`、`Task.Delay`、`ThreadPool`、`HttpClient`、原始 `TcpClient` / `Socket`、异步 `File.*Async` 以及 `.Wait()` / `.Result` / `Thread.Sleep`（详见 [AGENTS.md 小游戏兼容约束](../../AGENTS.md#小游戏webgl兼容约束负责人确认于-2026-11-20)）。
+- ❌ **严禁在小游戏可达路径开启线程或阻塞主线程**：禁止 `new Thread`、`Task.Run`、`Task.Delay`、`ThreadPool`、`HttpClient`、原始 `TcpClient` / `Socket`、异步 `File.*Async` 以及 `.Wait()` / `.Result` / `Thread.Sleep`（详见 [minigame-and-app-platforms.md](minigame-and-app-platforms.md)）。
 - ❌ **严禁绕过质量与视觉门禁**：禁止用 `--no-verify`、跳过/删除失败测试、放宽 UI 像素比对容差、裁切遮罩截图或硬编码假样例文字冒充原图验收通过。
 - ❌ **严禁未授权 Git 远端与破坏性操作**：禁止执行 `git push` / `git tag`；`git commit` 仅在用户明确要求时执行；禁止用 `git reset --hard` / `git checkout --` 销毁工作区既有改动。
 - ❌ **严禁泄露凭据与越权访问**：禁止将密码、Token、签名密钥、License 写入 Git 跟踪文件、`PlayerPrefs`（如 Refresh Token）或日志；禁止擅自登录远端账号或触碰生产环境。

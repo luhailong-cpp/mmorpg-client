@@ -64,12 +64,15 @@
 3. **最后过编译门禁**：执行 `tools/client_compile_check.ps1`；若改动涉及公共签名或测试文件，一并确认受影响的 EditMode/PlayMode 测试程序集编译通过（任一程序集报错都会令 Unity 触发 Safe Mode）。
 
 ```powershell
-# 1. 客户端协议、tip 枚举与消息号生成（前置：服务端已完成 dev.bat proto 或 dev.bat gen）
+# 1. 一键同步客户端协议、tip 枚举、消息号并做编译体检（前置：服务端已完成 dev.bat proto 或 dev.bat gen）
+.\gen_proto.bat
+
+# （等价分步命令）
 pwsh -File tools/gen_proto.ps1
 pwsh -File tools/gen_messageids.ps1
-
-# 2. 编译检查与客户端构建
 pwsh -File tools/client_compile_check.ps1
+
+# 2. 客户端构建
 pwsh -File tools/build_client.ps1
 
 # 3. 相关自动化测试（按改动模块选择）

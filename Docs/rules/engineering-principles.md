@@ -31,7 +31,7 @@
 - **服务端权威原则**：资产、属性、冷却、掉落、物理碰撞与胜负结算一律以服务端回包/推送为准；客户端本地预判或置灰仅作交互体验与防误触（如 `EquipBagModel` 可交易数、`CanSend` 限流置灰），不得拿本地计算或物理结果当作最终裁决。
 - **边界防御与查表判空**：对服务端回包缺省字段、未知枚举值、`*TableManager.Instance.FindById(id) == null`（如旧存档遇删表行或热更时间差）必须显式安全兜底，严禁抛出未捕获 `NullReferenceException` 卡死登录、主界面或结算流。
 - **请求结局三分法与幂等恢复**：严格区分**成功**、**确定未执行**（本地 `NotSent`、`circuit open`、`1008` 限流、转发前拒绝信封）与**结果未知**（超时、`1003`、断线）。只有“结果未知”且带幂等键的操作按规则原样重发或保留待确认记录；“确定未执行”绝不盲目重发，也不得误锁死面板（`RequiresReconnect`）。
-- **单调时钟与 WebGL 单线程纪律**：网络超时、心跳、退避冷却一律按不受 `Time.timeScale` 影响的单调时钟推进，退避必须带上限与抖动；**严禁**在任何小游戏可达路径使用 `Task.Run`、`Task.Delay`、`Thread.Sleep`、`.Wait()`、`.Result`、线程池或异步文件/Socket API（完整清单见 [AGENTS.md 小游戏兼容约束](../../AGENTS.md#小游戏webgl兼容约束负责人确认于-2026-11-20)）。
+- **单调时钟与 WebGL 单线程纪律**：网络超时、心跳、退避冷却一律按不受 `Time.timeScale` 影响的单调时钟推进，退避必须带上限与抖动；**严禁**在任何小游戏可达路径使用 `Task.Run`、`Task.Delay`、`Thread.Sleep`、`.Wait()`、`.Result`、线程池或异步文件/Socket API（完整清单见 [minigame-and-app-platforms.md](minigame-and-app-platforms.md)）。
 - **敏感信息与帧热路径**：Refresh Token、签名密钥等敏感凭据严禁明文写入 `PlayerPrefs`、Git 仓库或日志；`Update` / `LateUpdate` / `Poll` / 高频消息解析热路径避免每帧闭包、LINQ、装箱与字符串拼接带来的 GC 尖峰。
 
 ## 4. 实例与布局分层（数据层 / 显示层，强制）
