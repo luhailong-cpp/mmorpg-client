@@ -192,6 +192,12 @@ namespace MmorpgClient.Game.Battle
                         OnError?.Invoke(decoded.Message);
                         return;
                     }
+                    if (decoded.Replay.BattleId != battleId)
+                    {
+                        _log?.Invoke($"decode failed battle_id={battleId} error=BattleIdMismatch actual={decoded.Replay.BattleId}");
+                        OnError?.Invoke(BattleReplayDecoder.CorruptReplayMessage);
+                        return;
+                    }
 
                     CacheReplay(battleId, decoded.Replay);
                     OnReplayLoaded?.Invoke(decoded.Replay);
@@ -289,6 +295,17 @@ namespace MmorpgClient.Game.Battle
             Match.MatchMode.PveSolo => "PVE 单人",
             Match.MatchMode.PveTeam => "PVE 组队",
             _ => $"模式{(int)mode}",
+        };
+
+        /// <summary>职业展示名(与选角/组队 UI 同口径;0 表示未带职业,大于已知表项回落为「职业#N」)。</summary>
+        public static string ClassName(uint classId) => classId switch
+        {
+            0 => string.Empty,
+            1 => "破军",
+            2 => "玄霄",
+            3 => "丹心",
+            4 => "逐风",
+            _ => $"职业#{classId.ToString(CultureInfo.InvariantCulture)}",
         };
 
         public static string DescribeTip(uint tipId) => tipId switch

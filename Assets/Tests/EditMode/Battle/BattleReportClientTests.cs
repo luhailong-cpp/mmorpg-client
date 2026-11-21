@@ -285,5 +285,34 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.IsFalse(BattleReportClient.CanWatchReplayFromRecovered(zeroId));
             Assert.IsFalse(BattleReportClient.CanWatchReplayFromRecovered(null));
         }
+
+        [Test]
+        public void MismatchedReplayBattleId_IsRejectedWithoutCaching()
+        {
+            Assert.IsTrue(_client.FetchReplay(701));
+            GetCalls[0].Respond(new Match.GetBattleReportResponse { Replay = ValidGzipEnvelope(999) });
+
+            Assert.IsEmpty(_replays, "battle_id 不匹配的回放不得交付播放");
+            Assert.AreEqual(1, _errors.Count);
+            Assert.AreEqual(BattleReplayDecoder.CorruptReplayMessage, _errors[0]);
+            Assert.That(_logs.Count, Is.GreaterThanOrEqualTo(1));
+            StringAssert.Contains("701", _logs[0]);
+            StringAssert.Contains("999", _logs[0]);
+
+            // 未写入缓存:再次拉取必须重新发起 RPC
+            Assert.IsTrue(_client.FetchReplay(701));
+            Assert.AreEqual(2, GetCalls.Count);
+        }
+
+        [Test]
+        public void ClassName_MapsKnownUnknownAndZeroClassIds()
+        {
+            Assert.AreEqual(string.Empty, BattleReportClient.ClassName(0));
+            Assert.AreEqual("破军", BattleReportClient.ClassName(1));
+            Assert.AreEqual("玄霄", BattleReportClient.ClassName(2));
+            Assert.AreEqual("丹心", BattleReportClient.ClassName(3));
+            Assert.AreEqual("逐风", BattleReportClient.ClassName(4));
+            Assert.AreEqual("职业#99", BattleReportClient.ClassName(99));
+        }
     }
 }

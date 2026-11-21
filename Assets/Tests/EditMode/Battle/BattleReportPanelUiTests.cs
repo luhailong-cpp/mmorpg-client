@@ -27,7 +27,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 TotalRounds = 7,
                 HasReplay = hasReplay,
             };
-            summary.Members.Add(new Match.BattleReportMember { PlayerId = 1001, TeamIndex = 0, Name = "甲", Level = 50 });
+            summary.Members.Add(new Match.BattleReportMember { PlayerId = 1001, TeamIndex = 0, Name = "甲", Level = 50, ClassId = 1 });
             summary.Members.Add(new Match.BattleReportMember { PlayerId = 2002, TeamIndex = 1, Name = "乙", Level = 52 });
             return summary;
         }
@@ -73,7 +73,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 Assert.IsTrue(replayBtn.interactable);
                 Assert.AreEqual("看回放", replayLabel.text);
 
-                StringAssert.Contains("甲(Lv.50)", BattleReportPanel.FormatMembers(list[0]));
+                StringAssert.Contains("甲(破军 Lv.50)", BattleReportPanel.FormatMembers(list[0]));
                 StringAssert.Contains("乙(Lv.52)", BattleReportPanel.FormatMembers(list[0]));
             }
             finally

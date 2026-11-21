@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Google.Protobuf;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
+using MmorpgClient.Net.Generated;
 using NUnit.Framework;
 
 namespace MmorpgClient.Tests.EditMode.Battle
@@ -571,6 +573,220 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
             Assert.That(_client.WatchedBattleId, Is.Zero);
             Assert.That(_errors, Is.Empty);
+        }
+
+        // ── LOBBY 档(gate 中继 / 全服广播,§6.1 / CODEX §6) ────
+
+        private static readonly ByteString SampleLobbyTicket = ByteString.CopyFromUtf8("signed-spectate-ticket");
+
+        private void EnterWatchingLobby(ulong battleId = TheBattleId)
+        {
+            _client.Tick(0);
+            _client.WatchBattle(battleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0].Respond(new Match.WatchBattleResponse
+            {
+                BattleId = battleId,
+                Delivery = Match.eSpectateDelivery.SpectateDeliveryLobby,
+                SpectateTicket = SampleLobbyTicket,
+            });
+            _net.CallsOf(GateClientSpectateRpc.SubscribeSpectateMessageId)[0]
+                .Respond(new SubscribeSpectateResponse());
+            PushSpectateState(battleId, observers: 0);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching));
+            Assert.That(_client.Delivery, Is.EqualTo(Match.eSpectateDelivery.SpectateDeliveryLobby));
+        }
+
+        [Test]
+        public void LobbyDelivery_SubscribesReceives161_158_166AndSourceLost()
+        {
+            UseChannel();
+            SpectateEndS2C lastEnd = null;
+            _client.OnSpectateEnd += e => lastEnd = e;
+
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0].Respond(new Match.WatchBattleResponse
+            {
+                BattleId = TheBattleId,
+                Delivery = Match.eSpectateDelivery.SpectateDeliveryLobby,
+                SpectateTicket = SampleLobbyTicket,
+            });
+
+            var subs = _net.CallsOf(GateClientSpectateRpc.SubscribeSpectateMessageId);
+            Assert.That(subs, Has.Count.EqualTo(1));
+            var subReq = (SubscribeSpectateRequest)subs[0].Request;
+            Assert.That(subReq.BattleId, Is.EqualTo(TheBattleId));
+            Assert.That(subReq.SpectateTicket, Is.EqualTo(SampleLobbyTicket));
+
+            subs[0].Respond(new SubscribeSpectateResponse());
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Requesting), "订阅回执后仍等 161 首帧");
+
+            // 161 首帧 → Watching;直连断开不影响 LOBBY 观战
+            PushSpectateState(TheBattleId, observers: 0);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching));
+            _channel.RaiseLost(TheBattleId, BattleLinkCloseKind.Unreachable);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching), "LOBBY 档忽略直连断开事件");
+            Assert.That(_errors, Is.Empty);
+
+            // 158 回合帧 → 166 SOURCE_LOST
+            PushSpectateTurn(TheBattleId);
+            Assert.That(_turns, Is.EqualTo(1));
+            _net.PushNotify(MessageIds.NotifySpectateEnd, new SpectateEndS2C
+            {
+                BattleId = TheBattleId,
+                Outcome = eBattleOutcome.BattleOutcomeOngoing,
+                Reason = eSpectateEndReason.SpectateEndSourceLost,
+            });
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Ended));
+            Assert.That(lastEnd?.Reason, Is.EqualTo(eSpectateEndReason.SpectateEndSourceLost));
+            Assert.That(SpectateClient.DescribeEndReason(lastEnd), Does.Contain("连接中断"));
+            Assert.That(SpectateClient.DescribeEndReason(new SpectateEndS2C
+            {
+                BattleId = TheBattleId,
+                Reason = (eSpectateEndReason)99,
+            }), Does.Contain("已作废"), "未知结束原因按 ABORTED 处理(§6.1)");
+        }
+
+        [Test]
+        public void LobbyDelivery_NewTips16021And16024_SurfaceReadableErrors()
+        {
+            _client.Tick(0);
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[0].Respond(new Match.WatchBattleResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)match_error.KMatchSpectateFull },
+            });
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_errors[0], Does.Contain("观战人数已满"));
+            Assert.That(_errors[0], Does.Contain("16021"));
+
+            _client.WatchBattle(TheBattleId);
+            _net.CallsOf(MessageIds.WatchBattle)[1].Respond(new Match.WatchBattleResponse
+            {
+                BattleId = TheBattleId,
+                Delivery = Match.eSpectateDelivery.SpectateDeliveryLobby,
+                SpectateTicket = SampleLobbyTicket,
+            });
+            _net.CallsOf(GateClientSpectateRpc.SubscribeSpectateMessageId)[0].Respond(new SubscribeSpectateResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)match_error.KMatchSpectateTicketInvalid },
+            });
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_errors[1], Does.Contain("观战凭证无效"));
+            Assert.That(_errors[1], Does.Contain("16024"));
+        }
+
+        [Test]
+        public void LobbyDelivery_StopWatchAndTimeout_SendUnsubscribeNotStopWatchBattle()
+        {
+            UseChannel();
+            EnterWatchingLobby();
+
+            _client.StopWatch();
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_net.CallsOf(MessageIds.StopWatchBattle), Is.Empty);
+            Assert.That(_channel.Abandons, Is.Empty);
+            var unsubs = _net.CallsOf(GateClientSpectateRpc.UnsubscribeSpectateMessageId);
+            Assert.That(unsubs, Has.Count.EqualTo(1));
+            Assert.That(((UnsubscribeSpectateRequest)unsubs[0].Request).BattleId, Is.EqualTo(TheBattleId));
+
+            // 订阅在途期间主动退出:订阅回执成功后立即补发退订
+            _client.WatchBattle(TheBattleId + 1);
+            _net.CallsOf(MessageIds.WatchBattle)[1].Respond(new Match.WatchBattleResponse
+            {
+                BattleId = TheBattleId + 1,
+                Delivery = Match.eSpectateDelivery.SpectateDeliveryLobby,
+                SpectateTicket = SampleLobbyTicket,
+            });
+            _client.StopWatch();
+            Assert.That(_net.CallsOf(GateClientSpectateRpc.UnsubscribeSpectateMessageId), Has.Count.EqualTo(1));
+            _net.CallsOf(GateClientSpectateRpc.SubscribeSpectateMessageId)[1].Respond(new SubscribeSpectateResponse());
+            Assert.That(_net.CallsOf(GateClientSpectateRpc.UnsubscribeSpectateMessageId), Has.Count.EqualTo(2));
+
+            // LOBBY 首帧超时:已订阅时自动退订
+            _client.Tick(10);
+            _client.WatchBattle(TheBattleId + 2);
+            _net.CallsOf(MessageIds.WatchBattle)[2].Respond(new Match.WatchBattleResponse
+            {
+                BattleId = TheBattleId + 2,
+                Delivery = Match.eSpectateDelivery.SpectateDeliveryLobby,
+                SpectateTicket = SampleLobbyTicket,
+            });
+            _net.CallsOf(GateClientSpectateRpc.SubscribeSpectateMessageId)[2].Respond(new SubscribeSpectateResponse());
+            _client.Tick(10 + SpectateClient.FirstFrameTimeoutSeconds);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_net.CallsOf(GateClientSpectateRpc.UnsubscribeSpectateMessageId), Has.Count.EqualTo(3));
+        }
+
+        [Test]
+        public void FrameDedup_158ComparesOnlyWith158_And161DoesNotAdvanceTurnWatermark()
+        {
+            EnterWatchingLobby();
+            // EnterWatchingLobby 已推 STATE(r=1);紧接着 TURN(r=1) 必须照常处理(161 不推进 158 水位)
+            _net.PushNotify(MessageIds.NotifySpectateTurnResult, new TurnResultS2C
+            {
+                BattleId = TheBattleId,
+                RoundIndex = 1,
+                State = new BattleStateS2C { BattleId = TheBattleId, RoundIndex = 2, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+            });
+            Assert.That(_turns, Is.EqualTo(1), "STATE(1) 后紧跟的 TURN(1) 不得被误判重复");
+            Assert.That(_client.State.RoundIndex, Is.EqualTo(2));
+
+            // 重复 TURN(1)(例如 L1→L2 升档重叠)必须丢弃
+            _net.PushNotify(MessageIds.NotifySpectateTurnResult, new TurnResultS2C
+            {
+                BattleId = TheBattleId,
+                RoundIndex = 1,
+                State = new BattleStateS2C { BattleId = TheBattleId, RoundIndex = 2, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+            });
+            Assert.That(_turns, Is.EqualTo(1), "重复 TURN(1) 应被去重丢弃");
+
+            // 迟到的旧 STATE(1) 不得回退状态
+            int statesBefore = _states;
+            PushSpectateState(TheBattleId, observers: 5);
+            Assert.That(_states, Is.EqualTo(statesBefore), "迟到的 STATE(1) 不应覆盖已推进到 r=2 的状态");
+            Assert.That(_client.State.RoundIndex, Is.EqualTo(2));
+
+            // 下一回合心跳 STATE(2) 可刷新但不推进 158 水位,随后的 TURN(2) 照常处理
+            _net.PushNotify(MessageIds.NotifySpectateState, new SpectateStateS2C
+            {
+                State = new BattleStateS2C { BattleId = TheBattleId, RoundIndex = 2, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+                ObserverCount = 0,
+            });
+            Assert.That(_states, Is.EqualTo(statesBefore + 1));
+            _net.PushNotify(MessageIds.NotifySpectateTurnResult, new TurnResultS2C
+            {
+                BattleId = TheBattleId,
+                RoundIndex = 2,
+                State = new BattleStateS2C { BattleId = TheBattleId, RoundIndex = 3, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+            });
+            Assert.That(_turns, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void LobbyReconnect_ReusesOriginalRequestIdToRewatchAndResubscribe()
+        {
+            EnterWatchingLobby();
+            var originalReq = (Match.WatchBattleRequest)_net.CallsOf(MessageIds.WatchBattle)[0].Request;
+
+            Assert.That(_client.TryCaptureLobbyReconnectContext(out ulong battleId, out string requestId), Is.True);
+            Assert.That(battleId, Is.EqualTo(TheBattleId));
+            Assert.That(requestId, Is.EqualTo(originalReq.RequestId));
+
+            // 模拟断线重置后大厅重连恢复
+            _client.Reset();
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+
+            _client.ResumeLobbyWatch(battleId, requestId);
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Requesting));
+            var replayReq = (Match.WatchBattleRequest)_net.CallsOf(MessageIds.WatchBattle)[1].Request;
+            Assert.That(replayReq.BattleId, Is.EqualTo(TheBattleId));
+            Assert.That(replayReq.RequestId, Is.EqualTo(originalReq.RequestId), "重连重发必须复用原 request_id");
+
+            // DIRECT 档不走 LOBBY 重连续订捕获
+            _client.Reset();
+            EnterWatching();
+            Assert.That(_client.TryCaptureLobbyReconnectContext(out _, out _), Is.False);
         }
     }
 }

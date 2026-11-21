@@ -792,26 +792,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectate?.AckEnd(); // 契约:UI 收尾后必须 Ack,Ended → None
         }
 
-        private static string DescribeSpectateEnd(SpectateEndS2C end)
-        {
-            if (end == null) return "观战结束";
-            switch (end.Reason)
-            {
-                case eSpectateEndReason.SpectateEndRemoved:
-                    return "观战结束:你已进入排队/战斗,被移出观战";
-                case eSpectateEndReason.SpectateEndBattleAborted:
-                    return "观战结束:战斗已作废";
-                default:
-                    // 观战屏固定 team 0 在下排(OpenSpectate 契约),按此翻译胜负方
-                    switch (end.Outcome)
-                    {
-                        case eBattleOutcome.BattleOutcomeSideAWin: return "观战结束:下方队伍获胜";
-                        case eBattleOutcome.BattleOutcomeSideBWin: return "观战结束:上方队伍获胜";
-                        case eBattleOutcome.BattleOutcomeDraw: return "观战结束:平局";
-                        default: return "观战结束";
-                    }
-            }
-        }
+        private static string DescribeSpectateEnd(SpectateEndS2C end) => SpectateClient.DescribeEndReason(end);
 
         private void HandleSpectateList(Match.ListWatchableBattlesResponse resp)
         {

@@ -16,11 +16,27 @@
     -ProtoRoot explicitly for any other layout.
 #>
 param(
-    # 独立同级仓布局:本仓 <工作区>/mmorpg-client,服务端仓 <工作区>/mmorpg(不再是 submodule)
-    [string]$ProtoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../mmorpg'))
+    [string]$ProtoRoot = ""
 )
 
 $ErrorActionPreference = "Stop"
+
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$repoRoot  = (Resolve-Path (Join-Path $scriptDir "..")).Path
+if ([string]::IsNullOrWhiteSpace($ProtoRoot)) {
+    foreach ($candidate in @('xuanming-server-mmo-cpp', 'xuanming-server-mmo', 'mmorpg')) {
+        $probe = [System.IO.Path]::GetFullPath((Join-Path $repoRoot "../$candidate"))
+        if ((Test-Path -LiteralPath (Join-Path $probe 'proto/message_id.txt')) -and
+            (Test-Path -LiteralPath (Join-Path $probe 'go/shared/generated/tip/faults.go'))) {
+            $ProtoRoot = $probe
+            break
+        }
+    }
+    if ([string]::IsNullOrWhiteSpace($ProtoRoot)) {
+        throw "未找到同级权威服务端仓（已探测 ../xuanming-server-mmo-cpp、../xuanming-server-mmo、../mmorpg）；请显式传入 -ProtoRoot。"
+    }
+}
+$ProtoRoot = (Resolve-Path -LiteralPath $ProtoRoot).Path
 
 # proto/message_id.txt 是源契约(服务器 CLAUDE.md §4:proto 源在 proto/,
 # proto-gen 会把新分配的 id 写回这里);generated/_unified 只是某次生成的
@@ -287,7 +303,6 @@ foreach ($k in $whitelist.Keys) {
 }
 $emit = $emit | Sort-Object Const
 
-$repoRoot = (Resolve-Path "$PSScriptRoot/..").Path
 $outFile  = Join-Path $repoRoot "Assets/Scripts/Net/MessageIds.cs"
 
 $sb = New-Object System.Text.StringBuilder

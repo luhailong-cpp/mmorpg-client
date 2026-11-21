@@ -132,9 +132,10 @@ namespace MmorpgClient.UI.Ugui.Battle
                 30f, y, PanelW - 60f, EntryH, string.Empty, 20f,
                 BattleUiStyle.PanelBgLight, BattleUiStyle.ButtonText);
 
-            // 条目双行:上行 模式 + 开局相对时间,下行 玩家名单(超长省略号截断)
+            // 条目双行:上行 模式 + 开局相对时间(赛事局置顶标记),下行 玩家名单(超长省略号截断)
+            string featuredTag = summary.Featured ? "[赛事] " : string.Empty;
             QdaoUguiFactory.CreateText("Head", entry.Rect, 16f, 8f, PanelW - 92f, 32f,
-                $"{ModeName(summary.Mode)} · {DescribeElapsed(summary.CreatedAtMs)}",
+                $"{featuredTag}{ModeName(summary.Mode)} · {DescribeElapsed(summary.CreatedAtMs)}",
                 20f, QdaoUguiTheme.Cream);
             QdaoUguiFactory.CreateText("Players", entry.Rect, 16f, 44f, PanelW - 92f, 30f,
                 FormatPlayers(summary), 17f, QdaoUguiTheme.StatusCream);

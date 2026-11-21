@@ -33,17 +33,21 @@ namespace MmorpgClient.Game
                 return false;
             uint zoneId = CurrentZoneId;
             ulong battleId = BattleLink?.BattleId ?? 0;
+            ulong spectateBattleId = 0;
+            string spectateRequestId = null;
+            Spectate?.TryCaptureLobbyReconnectContext(out spectateBattleId, out spectateRequestId);
             _reconnectPlayerId = PlayerId;
             _reconnecting = true;
             _reconnectDeadline = MonotonicSeconds + ReconnectBudgetSeconds;
             int gen = ++_pipelineGen;
             ResetConnectionState();
             Status("连接中断，正在重新连接…");
-            CoroutineRunner(ReconnectFlow(gen, zoneId, battleId));
+            CoroutineRunner(ReconnectFlow(gen, zoneId, battleId, spectateBattleId, spectateRequestId));
             return true;
         }
 
-        private IEnumerator ReconnectFlow(int gen, uint zoneId, ulong battleId)
+        private IEnumerator ReconnectFlow(int gen, uint zoneId, ulong battleId,
+            ulong spectateBattleId = 0, string spectateRequestId = null)
         {
             if (gen != _pipelineGen) yield break;
             // 长时间挂起后令牌可能已到期。只用已有 refresh token，不保存或重放密码。
@@ -93,6 +97,8 @@ namespace MmorpgClient.Game
                             CancelReconnect();
                             Log($"[gate] reconnect complete player_id={PlayerId} attempts={attempt}");
                             if (battleId != 0) BattleLink?.HandleReconnectHint(battleId);
+                            if (spectateBattleId != 0 && !string.IsNullOrEmpty(spectateRequestId))
+                                Spectate?.ResumeLobbyWatch(spectateBattleId, spectateRequestId);
                         }, e => enterError = e, wsUrl: assigned.gate_ws_url);
                     if (gen != _pipelineGen || entered) yield break;
                     // 票据被拒、或新 gate 接受票据之后登录 / 进场被拒（令牌失效、被顶号、角色不能进）都是服务端结论，

@@ -182,7 +182,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 if (member == null) continue;
                 string name = string.IsNullOrWhiteSpace(member.Name) ? $"玩家{member.PlayerId}" : member.Name;
-                string item = member.Level > 0 ? $"{name}(Lv.{member.Level})" : name;
+                string className = BattleReportClient.ClassName(member.ClassId);
+                string item = !string.IsNullOrEmpty(className) && member.Level > 0
+                    ? $"{name}({className} Lv.{member.Level})"
+                    : !string.IsNullOrEmpty(className)
+                        ? $"{name}({className})"
+                        : member.Level > 0
+                            ? $"{name}(Lv.{member.Level})"
+                            : name;
                 if (member.TeamIndex == 0) teamA.Add(item);
                 else teamB.Add(item);
             }

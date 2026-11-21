@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   Creates or repairs Unity script GUIDs for generated protobuf sources.
 .DESCRIPTION
@@ -61,7 +61,12 @@ foreach ($plan in $plans) {
     $temporary = Join-Path $GeneratedDirectory ('.' + [IO.Path]::GetFileName($plan.Path) + '.' + [Guid]::NewGuid().ToString('N') + '.tmp')
     try {
         [IO.File]::WriteAllText($temporary, $text, [Text.UTF8Encoding]::new($false))
-        [IO.File]::Move($temporary, $plan.Path, $true)
+        if ($plan.Exists) {
+            [IO.File]::Replace($temporary, $plan.Path, $null)
+        }
+        else {
+            [IO.File]::Move($temporary, $plan.Path)
+        }
     }
     finally {
         if (Test-Path -LiteralPath $temporary) { Remove-Item -LiteralPath $temporary }

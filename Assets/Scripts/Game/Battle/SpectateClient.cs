@@ -1,5 +1,7 @@
 using System;
+using Google.Protobuf;
 using MmorpgClient.Net;
+using MmorpgClient.Net.Generated;
 
 namespace MmorpgClient.Game.Battle
 {
@@ -55,6 +57,10 @@ namespace MmorpgClient.Game.Battle
         private double _now;                  // 宿主注入的时钟(秒)
         private double _firstFrameDeadline;   // 首帧超时时刻(0 = 未挂)
         private ulong _battleId;              // 当前观战战斗 id;0 = 无(随机模式响应/首帧回填)
+        private Match.eSpectateDelivery _delivery; // 本次观战投递档位(DIRECT / LOBBY)
+        private bool _lobbySubscribed;        // LOBBY 档已完成 SubscribeSpectate
+        private long _lastTurnRound = -1;     // 158 单调去重水位;161 不推进此水位(§6.1)
+        private string _watchRequestId;       // 当前 WatchBattle 的幂等 request_id(大厅重连续观复用)
 
         // 随机观战响应未回(_battleId==0)时用户退出:battle_id 未知发不了有效
         // StopWatchBattle,置此标记等响应/首帧带回 battle_id 后补发退出。
@@ -69,10 +75,13 @@ namespace MmorpgClient.Game.Battle
 
         public SpectatePhase Phase { get; private set; } = SpectatePhase.None;
 
+        /// <summary>当前观战投递模式(NONE / DIRECT / LOBBY)。</summary>
+        public Match.eSpectateDelivery Delivery => _delivery;
+
         /// <summary>最新权威战斗状态(首帧/回合结算更新;断线/退出清空)。</summary>
         public BattleStateS2C State { get; private set; }
 
-        /// <summary>当前观众数(含本人,随 NotifySpectateState 更新)。</summary>
+        /// <summary>当前观众数(含本人,随 NotifySpectateState 更新;LOBBY 档为近似值/0=未知)。</summary>
         public uint ObserverCount { get; private set; }
 
         /// <summary>当前观战的战斗 id(0 = 无/随机模式尚未回填)。</summary>
@@ -123,14 +132,21 @@ namespace MmorpgClient.Game.Battle
             {
                 _firstFrameDeadline = 0;
                 ulong battleId = _battleId;
+                var delivery = _delivery;
+                bool lobbySubscribed = _lobbySubscribed;
                 OnError?.Invoke("观战首帧超时,已退出观战");
                 ClearWatchContext();
                 SetPhase(SpectatePhase.None);
-                // 有直连通道时顺手通知服务端退出(就绪发 StopWatchBattle,未就绪放弃直连),
-                // 否则直连还在后台重连、握手成功后服务端继续对一个已离开的观众推帧;
-                // battle_id 未知(随机观战响应也没回)时挂待补退出,等回填。
-                if (_channel != null)
+                if (delivery == Match.eSpectateDelivery.SpectateDeliveryLobby)
                 {
+                    _watchRequestId = null;
+                    if (lobbySubscribed && battleId != 0) SendUnsubscribeSpectate(battleId);
+                }
+                else if (_channel != null)
+                {
+                    // 有直连通道时顺手通知服务端退出(就绪发 StopWatchBattle,未就绪放弃直连),
+                    // 否则直连还在后台重连、握手成功后服务端继续对一个已离开的观众推帧;
+                    // battle_id 未知(随机观战响应也没回)时挂待补退出,等回填。
                     if (battleId != 0) SendStopWatch(battleId);
                     else _stopPending = true;
                 }
@@ -147,8 +163,39 @@ namespace MmorpgClient.Game.Battle
         /// NotifySpectateState 首帧才算进入观战(设计文档 §10.2);
         /// 服务端会拒绝排队/战斗中的玩家(D11 互斥),错误统一走 OnError。
         /// </summary>
-        private string _watchRequestId;
-        public void WatchBattle(ulong battleId)
+        public void WatchBattle(ulong battleId) => StartWatchBattle(battleId, Guid.NewGuid().ToString("D"));
+
+        /// <summary>
+        /// 大厅断线重连前捕获 LOBBY 档观战上下文(设计文档 §5.3):
+        /// 仅在 LOBBY 档且已确定 battle_id 与 request_id 时返回 true。
+        /// </summary>
+        public bool TryCaptureLobbyReconnectContext(out ulong battleId, out string requestId)
+        {
+            if ((Phase == SpectatePhase.Requesting || Phase == SpectatePhase.Watching)
+                && _delivery == Match.eSpectateDelivery.SpectateDeliveryLobby
+                && _battleId != 0
+                && !string.IsNullOrEmpty(_watchRequestId))
+            {
+                battleId = _battleId;
+                requestId = _watchRequestId;
+                return true;
+            }
+            battleId = 0;
+            requestId = null;
+            return false;
+        }
+
+        /// <summary>
+        /// 大厅重连成功后用原 request_id 幂等重发 WatchBattle(设计文档 §5.3 / CODEX §6),
+        /// 拿新凭证重新向新 gate 发起 SubscribeSpectate。
+        /// </summary>
+        public void ResumeLobbyWatch(ulong battleId, string requestId)
+        {
+            if (Phase != SpectatePhase.None || battleId == 0 || string.IsNullOrEmpty(requestId)) return;
+            StartWatchBattle(battleId, requestId);
+        }
+
+        private void StartWatchBattle(ulong battleId, string requestId)
         {
             if (Phase != SpectatePhase.None)
             {
@@ -159,6 +206,9 @@ namespace MmorpgClient.Game.Battle
             _stopPending = false; // 新观战作废旧的待补退出
             _unsentStopBattleId = 0;
             _battleId = battleId;
+            _delivery = Match.eSpectateDelivery.SpectateDeliveryNone;
+            _lobbySubscribed = false;
+            _lastTurnRound = -1;
             SetPhase(SpectatePhase.Requesting);
             _firstFrameDeadline = _now + FirstFrameTimeoutSeconds; // SetPhase 会清,故在其后挂
 
@@ -166,7 +216,7 @@ namespace MmorpgClient.Game.Battle
             {
                 PlayerId = MyPlayerId,
                 BattleId = battleId,
-                RequestId = Guid.NewGuid().ToString("D"),
+                RequestId = requestId,
             };
             _watchRequestId = req.RequestId;
             _net.Call(MessageIds.WatchBattle, req, Match.WatchBattleResponse.Parser,
@@ -177,7 +227,10 @@ namespace MmorpgClient.Game.Battle
                     if (_stopPending)
                     {
                         _stopPending = false;
-                        if (!HasTip(resp.ErrorMessage) && resp.BattleId != 0)
+                        // LOBBY 档尚未发 SubscribeSpectate,无需退订或 StopWatchBattle
+                        if (!HasTip(resp.ErrorMessage)
+                            && resp.Delivery != Match.eSpectateDelivery.SpectateDeliveryLobby
+                            && resp.BattleId != 0)
                             SendStopWatch(resp.BattleId);
                         return;
                     }
@@ -192,6 +245,19 @@ namespace MmorpgClient.Game.Battle
                     }
                     // 随机模式:响应回填实际战斗 id(若首帧未抢先回填)
                     if (_battleId == 0 && resp.BattleId != 0) _battleId = resp.BattleId;
+                    _delivery = resp.Delivery;
+
+                    if (resp.Delivery == Match.eSpectateDelivery.SpectateDeliveryLobby)
+                    {
+                        if (_battleId == 0 || resp.SpectateTicket == null || resp.SpectateTicket.IsEmpty)
+                        {
+                            OnError?.Invoke("观战请求失败:观战凭证无效");
+                            ClearWatchContext();
+                            SetPhase(SpectatePhase.None);
+                            return;
+                        }
+                        SendSubscribeSpectate(_battleId, resp.SpectateTicket, req.RequestId);
+                    }
                 },
                 err =>
                 {
@@ -205,9 +271,8 @@ namespace MmorpgClient.Game.Battle
 
         /// <summary>
         /// 主动退出观战:本地立即收敛回 None(UI 响应优先),服务端移除是
-        /// 尽力而为:直连已就绪 → 经直连发 StopWatchBattle(失败只报错不改相位);
-        /// 直连未就绪 → 不发请求(gate 不中继战斗),放弃直连(turn-based §22 D74),
-        /// 服务端观众名单等战斗结束时清理,match 的观战标记在下次 WatchBattle 时懒清退。
+        /// 尽力而为:LOBBY 档经大厅发 UnsubscribeSpectate;DIRECT 档直连已就绪 → 经直连发
+        /// StopWatchBattle,直连未就绪 → 放弃直连并挂待补退出(turn-based §22 D74)。
         /// </summary>
         public void StopWatch()
         {
@@ -217,12 +282,25 @@ namespace MmorpgClient.Game.Battle
                 return;
             }
 
-            // Requesting 且 battle_id 未知(随机观战响应未回):此刻发出去只能是
-            // battle_id=0 的无效请求,改挂待补标记,等响应/首帧回填后补发退出。
-            if (Phase == SpectatePhase.Requesting && _battleId == 0)
+            var delivery = _delivery;
+            bool lobbySubscribed = _lobbySubscribed;
+            ulong battleId = _battleId;
+
+            if (delivery == Match.eSpectateDelivery.SpectateDeliveryLobby)
+            {
+                _watchRequestId = null; // 若 SubscribeSpectate 仍在途,回调见不匹配后立即补发退订
+                if (lobbySubscribed && battleId != 0)
+                    SendUnsubscribeSpectate(battleId);
+            }
+            else if (Phase == SpectatePhase.Requesting && battleId == 0)
+            {
+                // Requesting 且 battle_id 未知(随机观战响应未回):改挂待补标记,等响应/首帧回填后补发退出。
                 _stopPending = true;
+            }
             else
-                SendStopWatch(_battleId);
+            {
+                SendStopWatch(battleId);
+            }
 
             ClearWatchContext();
             State = null;
@@ -283,6 +361,11 @@ namespace MmorpgClient.Game.Battle
             if (_battleId != 0 && incoming != 0 && incoming != _battleId) return;
             if (_battleId == 0 && incoming != 0) _battleId = incoming;
 
+            // 契约 §6.1:161 不推进 158 水位(STATE(r) 在第 r 回合结算前,紧接着的 TURN(r) 必须照常处理);
+            // Watching 期间若迟到的旧 STATE(r) 晚于已处理的 TURN(r)(其状态已在 r+1),丢弃以防回退状态。
+            if (Phase == SpectatePhase.Watching && _lastTurnRound >= 0 && (long)ev.State.RoundIndex <= _lastTurnRound)
+                return;
+
             State = ev.State;
             ObserverCount = ev.ObserverCount;
 
@@ -297,6 +380,10 @@ namespace MmorpgClient.Game.Battle
             if (Phase != SpectatePhase.Watching) return;
             if (_battleId != 0 && ev.BattleId != 0 && ev.BattleId != _battleId) return;
 
+            // 契约 §6.1:158 只与 158 比较 round_index,单调去重(L1→L2 升档重叠自愈)
+            if (_lastTurnRound >= 0 && (long)ev.RoundIndex <= _lastTurnRound) return;
+            _lastTurnRound = ev.RoundIndex;
+
             if (ev.State != null) State = ev.State;
             OnSpectateTurn?.Invoke(ev); // 观众无 Resolving 相位:只读流,UI 按自己的节奏播
         }
@@ -304,10 +391,11 @@ namespace MmorpgClient.Game.Battle
         private void HandleSpectateEnd(SpectateEndS2C ev)
         {
             if (ev == null) return;
-            // Requesting 也接受:AddObserver 与战斗收尾可竞速(首帧未到战斗先结束)
+            // Requesting 也接受:AddObserver / SubscribeSpectate 与战斗收尾可竞速(首帧未到战斗先结束)
             if (Phase != SpectatePhase.Requesting && Phase != SpectatePhase.Watching) return;
             if (_battleId != 0 && ev.BattleId != 0 && ev.BattleId != _battleId) return;
 
+            _lobbySubscribed = false;
             SetPhase(SpectatePhase.Ended);
             OnSpectateEnd?.Invoke(ev); // UI 展示结束原因后调 AckEnd() 回 None
         }
@@ -348,13 +436,12 @@ namespace MmorpgClient.Game.Battle
         /// Superseded(直连改服务另一局,典型是观战中进了自己的 gather:match 的 RemoveObserver 尽力而为
         /// 可能丢,SpectateEnd 也可能晚于参战分配包而随旧连接一起丢掉)时观战无从继续 —— 收缩后观战帧
         /// 只走直连,Watching 没有超时,不收敛就永远停在观战里、WatchBattle 也被相位闸挡住。
-        /// 三者都收敛回 None 并报错。Ended(正常收尾 / 已退出)与 HostClosed
-        /// (大厅断线,由 Disconnected 统一作废)不处理。随机观战且 battle_id 尚未回填时对不上号,
-        /// 交给首帧超时收敛。
+        /// LOBBY 档不经直连收帧,忽略直连终结事件。
         /// </summary>
         private void HandleChannelLost(ulong battleId, BattleLinkCloseKind kind, string detail)
         {
             if (Phase != SpectatePhase.Requesting && Phase != SpectatePhase.Watching) return;
+            if (_delivery == Match.eSpectateDelivery.SpectateDeliveryLobby) return;
             if (battleId == 0 || battleId != _battleId) return;
             string text;
             switch (kind)
@@ -379,6 +466,63 @@ namespace MmorpgClient.Game.Battle
         }
 
         // ── 内部工具 ────────────────────────────────────────
+
+        private void SendSubscribeSpectate(ulong battleId, ByteString ticket, string requestId)
+        {
+            var req = new SubscribeSpectateRequest
+            {
+                BattleId = battleId,
+                SpectateTicket = ticket,
+            };
+            _net.Call(GateClientSpectateRpc.SubscribeSpectateMessageId, req, SubscribeSpectateResponse.Parser,
+                resp =>
+                {
+                    if (_watchRequestId != requestId)
+                    {
+                        // 订阅在途期间用户已退出/超时/换场:若 gate 已受理,立即补发退订释放资源
+                        if (!HasTip(resp.ErrorMessage)) SendUnsubscribeSpectate(battleId);
+                        return;
+                    }
+                    if (Phase != SpectatePhase.Requesting && Phase != SpectatePhase.Watching)
+                    {
+                        if (!HasTip(resp.ErrorMessage) && Phase == SpectatePhase.None)
+                            SendUnsubscribeSpectate(battleId);
+                        return;
+                    }
+                    if (HasTip(resp.ErrorMessage))
+                    {
+                        OnError?.Invoke(DescribeTip("观战订阅失败", resp.ErrorMessage));
+                        ClearWatchContext();
+                        State = null;
+                        ObserverCount = 0;
+                        SetPhase(SpectatePhase.None);
+                        return;
+                    }
+                    _lobbySubscribed = true;
+                },
+                err =>
+                {
+                    if (_watchRequestId != requestId) return;
+                    if (Phase != SpectatePhase.Requesting && Phase != SpectatePhase.Watching) return;
+                    OnError?.Invoke($"观战订阅失败:{err}");
+                    ClearWatchContext();
+                    State = null;
+                    ObserverCount = 0;
+                    SetPhase(SpectatePhase.None);
+                });
+        }
+
+        private void SendUnsubscribeSpectate(ulong battleId)
+        {
+            var req = new UnsubscribeSpectateRequest { BattleId = battleId };
+            _net.Call(GateClientSpectateRpc.UnsubscribeSpectateMessageId, req, UnsubscribeSpectateResponse.Parser,
+                resp =>
+                {
+                    if (HasTip(resp.ErrorMessage))
+                        OnError?.Invoke(DescribeTip("退订观战失败", resp.ErrorMessage));
+                },
+                err => OnError?.Invoke($"退订观战失败:{err}"));
+        }
 
         /// <summary>
         /// 通知服务端退出观战(尽力而为:失败只报错不改相位;主动退出、待补退出、首帧超时共用)。
@@ -408,6 +552,9 @@ namespace MmorpgClient.Game.Battle
         {
             _battleId = 0;
             _firstFrameDeadline = 0;
+            _delivery = Match.eSpectateDelivery.SpectateDeliveryNone;
+            _lobbySubscribed = false;
+            _lastTurnRound = -1;
         }
 
         private void SetPhase(SpectatePhase phase)
@@ -421,6 +568,44 @@ namespace MmorpgClient.Game.Battle
         private static bool HasTip(TipInfoMessage tip) => tip != null && tip.Id != 0;
 
         private static string DescribeTip(string what, TipInfoMessage tip)
-            => tip != null && tip.Id != 0 ? $"{what}(tip={tip.Id})" : what;
+        {
+            if (tip == null || tip.Id == 0) return what;
+            switch ((match_error)tip.Id)
+            {
+                case match_error.KMatchSpectateFull:
+                    return $"{what}:观战人数已满(tip={tip.Id})";
+                case match_error.KMatchSpectateTicketInvalid:
+                    return $"{what}:观战凭证无效(tip={tip.Id})";
+                default:
+                    return $"{what}(tip={tip.Id})";
+            }
+        }
+
+        /// <summary>观战结束原因文案(契约 §6.1:处理 SOURCE_LOST,未知枚举值按 ABORTED 处理)。</summary>
+        public static string DescribeEndReason(SpectateEndS2C end)
+        {
+            if (end == null) return "观战结束";
+            switch (end.Reason)
+            {
+                case eSpectateEndReason.SpectateEndRemoved:
+                    return "观战结束:你已进入排队/战斗,被移出观战";
+                case eSpectateEndReason.SpectateEndSourceLost:
+                    return "观战结束:战斗服务器连接中断";
+                case eSpectateEndReason.SpectateEndNone:
+                case eSpectateEndReason.SpectateEndBattleFinished:
+                    // 观战屏固定 team 0 在下排(OpenSpectate 契约),按此翻译胜负方
+                    switch (end.Outcome)
+                    {
+                        case eBattleOutcome.BattleOutcomeSideAWin: return "观战结束:下方队伍获胜";
+                        case eBattleOutcome.BattleOutcomeSideBWin: return "观战结束:上方队伍获胜";
+                        case eBattleOutcome.BattleOutcomeDraw: return "观战结束:平局";
+                        default: return "观战结束";
+                    }
+                case eSpectateEndReason.SpectateEndBattleAborted:
+                default:
+                    // 契约 §6.1:未知枚举值按作废处理
+                    return "观战结束:战斗已作废";
+            }
+        }
     }
 }
