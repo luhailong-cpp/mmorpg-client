@@ -23,6 +23,9 @@ namespace MmorpgClient.Net
             _timestamps = new Queue<float>(maxCount);
         }
 
+        public int MaxCount => _maxCount;
+        public float WindowSeconds => _windowSeconds;
+
         /// <summary>当前时刻是否还有配额；不消耗额度。</summary>
         public bool CanAcquire(float now)
         {

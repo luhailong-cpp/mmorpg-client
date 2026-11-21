@@ -35,6 +35,14 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static readonly Rect LogButtonRect = new Rect(356f, 28f, 170f, 54f);
         public static readonly Rect TimerRect = new Rect((QdaoUguiTheme.DesignWidth - 90f) * 0.5f, 24f, 90f, 90f);
         public static readonly Rect StopWatchRect = new Rect(2300f, 980f, 220f, 64f);
+        // 战报回放控制条(只在 _replay 模式可见,贴在 HudBottomBand 之下,与目标确认条同带且互斥)
+        public static readonly Rect ReplayPrevRect = new Rect(660f, BattleStage.HudBottomBand, 136f, 56f);
+        public static readonly Rect ReplayPauseRect = new Rect(808f, BattleStage.HudBottomBand, 120f, 56f);
+        public static readonly Rect ReplayNextRect = new Rect(940f, BattleStage.HudBottomBand, 136f, 56f);
+        public static readonly Rect ReplaySpeedRect = new Rect(1088f, BattleStage.HudBottomBand, 120f, 56f);
+        public static readonly Rect ReplaySkipRect = new Rect(1220f, BattleStage.HudBottomBand, 136f, 56f);
+        public static readonly Rect ReplayJumpInputRect = new Rect(1380f, BattleStage.HudBottomBand, 110f, 56f);
+        public static readonly Rect ReplayJumpRect = new Rect(1500f, BattleStage.HudBottomBand, 110f, 56f);
         /// <summary>
         /// 目标提示/确认/取消条:贴在 BattleStage.HudBottomBand(992,按视频我方玩家排 slot0 脚底 948.6 + 名字 40 定)之下,
         /// 不压我方后排;高 56 → 底边 1048,再往下 1048..1080 是底部提示文字(HintRect)。
@@ -101,9 +109,17 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly Image _timerRing;
         private readonly TMP_Text _timerText;
 
-        // 观战只读模式
+        // 观战 / 回放只读模式
         private readonly TMP_Text _spectateText;
         private readonly UiTextButton _stopWatchButton;
+        private readonly UiTextButton _replayPrevButton;
+        private readonly UiTextButton _replayPauseButton;
+        private readonly UiTextButton _replayNextButton;
+        private readonly UiTextButton _replaySpeedButton;
+        private readonly UiTextButton _replaySkipButton;
+        private readonly RectTransform _replayJumpInputPlate;
+        private readonly TMP_InputField _replayJumpInput;
+        private readonly UiTextButton _replayJumpButton;
 
         // 目标选择 / 确认
         private readonly TMP_Text _targetHintText;
@@ -155,8 +171,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         private bool _playing;
         private bool _playDone = true;
         private bool _spectate;
+        private bool _replay;
         private uint _observerCount;
         private eBattleOutcome _shownOutcome = eBattleOutcome.BattleOutcomeOngoing;
+
+        private bool IsReadOnly => _spectate || _replay;
 
         public bool IsOpen => _root != null && _root.gameObject.activeSelf;
         public uint MyTeamIndex => _myTeam;
@@ -304,15 +323,34 @@ namespace MmorpgClient.UI.Ugui.Battle
             _hintText = QdaoUguiFactory.CreateText("Hint", _hudRoot, HintRect.x, HintRect.y, HintRect.width, HintRect.height,
                 string.Empty, 22f, QdaoUguiTheme.StatusCream, TextAlignmentOptions.Center);
 
-            // ── 观战头部(仅 spectate 模式可见;左列第三行) ──
+            // ── 观战 / 回放头部与退出键(左列第三行 + 右下退出) ──
             _spectateText = QdaoUguiFactory.CreateText("SpectateInfo", _hudRoot, 40f, 170f, 620f, 40f,
                 string.Empty, 24f, QdaoUguiTheme.Cream);
             _stopWatchButton = BattleUiWidgets.CreateTextButton("StopWatch", _hudRoot, StopWatchRect.x, StopWatchRect.y, StopWatchRect.width, StopWatchRect.height,
                 "退出观战", 24f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             BattleRoundCounter.ApplyNineSlice(_stopWatchButton.Plate, "button_9slice");
-            _stopWatchButton.Button.onClick.AddListener(() => _owner?.RequestStopSpectate());
+            _stopWatchButton.Button.onClick.AddListener(() =>
+            {
+                if (_replay) _owner?.RequestExitReplay();
+                else _owner?.RequestStopSpectate();
+            });
             _spectateText.gameObject.SetActive(false);
             _stopWatchButton.SetVisible(false);
+
+            // ── 战报回放控制条(仅 _replay 模式可见) ──
+            _replayPrevButton = CreateReplayButton("ReplayPrev", ReplayPrevRect, "上一回合", BattleUiStyle.ButtonPlate, () => _owner?.RequestReplayPrevRound());
+            _replayPauseButton = CreateReplayButton("ReplayPause", ReplayPauseRect, "暂停", BattleUiStyle.ButtonPlateAccent, () => _owner?.RequestReplayTogglePause());
+            _replayNextButton = CreateReplayButton("ReplayNext", ReplayNextRect, "下一回合", BattleUiStyle.ButtonPlate, () => _owner?.RequestReplayNextRound());
+            _replaySpeedButton = CreateReplayButton("ReplaySpeed", ReplaySpeedRect, "1x", BattleUiStyle.ButtonPlate, () => _owner?.RequestReplayCycleSpeed());
+            _replaySkipButton = CreateReplayButton("ReplaySkip", ReplaySkipRect, "跳过终态", BattleUiStyle.ButtonPlate, () => _owner?.RequestReplaySkip());
+            var jumpPlate = BattleUiWidgets.CreatePanel("ReplayJumpPlate", _hudRoot,
+                ReplayJumpInputRect.x, ReplayJumpInputRect.y, ReplayJumpInputRect.width, ReplayJumpInputRect.height, BattleUiStyle.PanelBgLight);
+            _replayJumpInputPlate = (RectTransform)jumpPlate.transform;
+            _replayJumpInput = QdaoUguiFactory.CreateInputField("ReplayJumpInput", _replayJumpInputPlate,
+                0f, 0f, ReplayJumpInputRect.width, ReplayJumpInputRect.height, "回合", 4);
+            _replayJumpInput.contentType = TMP_InputField.ContentType.IntegerNumber;
+            _replayJumpButton = CreateReplayButton("ReplayJump", ReplayJumpRect, "跳转", BattleUiStyle.ButtonPlate, OnReplayJumpClicked);
+            SetReplayControlsVisible(false);
 
             // ── 战斗直连提示横幅 + 重新连接(顶部预告条之下;默认隐藏,Tick 按 BattleClient 状态切档) ──
             _channelBanner = BattleUiWidgets.CreatePanel("ChannelBanner", _hudRoot,
@@ -357,7 +395,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         // ── 开关 ─────────────────────────────────────────────
 
         public void Open(BattleStateS2C state, ulong myPlayerId)
-            => OpenInternal(state, myPlayerId, spectate: false, observerCount: 0);
+            => OpenInternal(state, myPlayerId, spectate: false, replay: false, observerCount: 0, viewerTeamIndex: 0);
 
         /// <summary>
         /// 观战只读模式开屏(§10 D8 观众零写权):无本人 actor(myId=0,
@@ -365,16 +403,34 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// 固定显示在下方(我方阵位)。回合播放复用 CoPlayTurn,Ack 与否由 BattleUiRoot 区分。
         /// </summary>
         public void OpenSpectate(BattleStateS2C state, uint observerCount)
-            => OpenInternal(state, 0, spectate: true, observerCount: observerCount);
+            => OpenInternal(state, 0, spectate: true, replay: false, observerCount: observerCount, viewerTeamIndex: 0);
 
-        private void OpenInternal(BattleStateS2C state, ulong myPlayerId, bool spectate, uint observerCount)
+        /// <summary>
+        /// 战报回放只读模式开屏(docs/handoff/battle-report-replay-client.md §5):
+        /// 只播不发,隐藏命令环、计时环与直连横幅;展示底部回放控制条。
+        /// </summary>
+        public void OpenReplay(BattleStateS2C state, ulong myPlayerId, uint viewerTeamIndex, string headerInfo, string noticeText)
+        {
+            OpenInternal(state, myPlayerId, spectate: false, replay: true, observerCount: 0, viewerTeamIndex: viewerTeamIndex);
+            if (_spectateText != null) _spectateText.text = headerInfo ?? "战报回放";
+            if (!string.IsNullOrEmpty(noticeText)) SetHint(noticeText);
+            SetTimer(-1, 0f);
+        }
+
+        private void OpenInternal(BattleStateS2C state, ulong myPlayerId, bool spectate, bool replay, uint observerCount, uint viewerTeamIndex)
         {
             _spectate = spectate;
+            _replay = replay;
             _observerCount = observerCount;
             if (spectate)
             {
                 _phase = BattlePhase.None;
                 _myTeam = 0;
+            }
+            else if (replay)
+            {
+                _phase = BattlePhase.None;
+                _myTeam = viewerTeamIndex;
             }
             _myId = myPlayerId;
             _actingId = myPlayerId;
@@ -397,13 +453,15 @@ namespace MmorpgClient.UI.Ugui.Battle
             _roundCounter.SetRound(state?.RoundIndex ?? 0, false);
             ExitTargetMode();
             RefreshSpectateHeader();
+            SetReplayControlsVisible(replay);
             _presenter.PlayEntrance(_views);
-            _logPanel.Append("战斗开始");
+            _logPanel.Append(replay ? "回放开始" : "战斗开始");
         }
 
         public void Close()
         {
             AbortPlayback();
+            _presenter.SpeedScale = 1f;
             _presenter.ClearTransient();
             foreach (var view in _views) view.Destroy();
             _views.Clear();
@@ -412,11 +470,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             _partyCards.Clear();
             _state = null;
             _spectate = false;
+            _replay = false;
             _observerCount = 0;
             _notReadySince = -1f;
             ApplyChannelBanner(BattleChannelBanner.Hidden);
             RefreshSpectateHeader();
+            SetReplayControlsVisible(false);
             _root.gameObject.SetActive(false);
+            BattleArtCatalog.ReleaseTransientBattleCaches();
         }
 
         /// <summary>Scene teardown may destroy the canvas without the normal CloseBattle path.</summary>
@@ -500,8 +561,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             SelectNextActorIfNeeded();
             EnsureSkillCatalog();
 
-            // 终局:胜方存活单位做胜利姿势(一次)
-            if (state.Outcome != eBattleOutcome.BattleOutcomeOngoing && state.Outcome != _shownOutcome)
+            // 终局:胜方存活单位做胜利姿势(一次);回放往回跳到进行中的回合时重置标记以便再次播到终局仍可触发
+            if (state.Outcome == eBattleOutcome.BattleOutcomeOngoing)
+            {
+                _shownOutcome = eBattleOutcome.BattleOutcomeOngoing;
+            }
+            else if (state.Outcome != _shownOutcome)
             {
                 _shownOutcome = state.Outcome;
                 if (state.Outcome != eBattleOutcome.BattleOutcomeDraw)
@@ -676,6 +741,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             // 直连状态没有「掉线恢复中」事件(IBattleChannel 只报就绪 / 终结),每帧轮询才能及时置灰;
             // 放在播放分支之前:回合播放中直连断开 / 恢复,横幅照样更新
             RefreshChannelState();
+            if (_replay)
+            {
+                // 回放没有实时行动截止与倒计时(handoff §5)
+                SetTimer(-1, 0f);
+                return;
+            }
             if (_playing)
             {
                 // 播放中行动窗口已在倒数(服务端广播前就起算):计时环照常显示,玩家能看到留给自己的时间
@@ -1061,7 +1132,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         // 回合/本人状态失效应丢弃选择；连接暂不可用不改变玩家的本回合选择意图。
         private bool CanChooseAction()
         {
-            if (_spectate) return false;
+            if (IsReadOnly) return false;
             // 自动战斗中禁止手动出招(is_auto 单位不进 pending,提交会被服务端拒)
             var me = FindMyActor();
             return _phase == BattlePhase.WaitingAction && !_playing && !_submitted
@@ -1092,7 +1163,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// </summary>
         private void RefreshChannelState()
         {
-            if (_spectate)
+            if (IsReadOnly)
             {
                 ApplyChannelBanner(BattleChannelBanner.Hidden);
                 return;
@@ -1151,6 +1222,13 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// 窗口内至少留出 2.5s 给玩家手动出招,自动/观战也不再每回合被下一回合抢占。
         /// </summary>
         public IEnumerator CoPlayTurn(TurnResultS2C result)
+            => CoPlayTurnInternal(result, fixedReplaySpeed: null);
+
+        /// <summary>战报回放专用回合播放:不走实时行动截止预算压缩,严格按玩家所选倍速播放。</summary>
+        public IEnumerator CoPlayReplayTurn(TurnResultS2C result, float speedScale)
+            => CoPlayTurnInternal(result, fixedReplaySpeed: speedScale);
+
+        private IEnumerator CoPlayTurnInternal(TurnResultS2C result, float? fixedReplaySpeed)
         {
             if (result == null) yield break;
             // 抢占:上一回合若还在播,先复位
@@ -1160,10 +1238,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             _playDone = false;
             ExitTargetMode();
             RefreshActionBar();
-            _roundCounter.SetRound(result.RoundIndex, true, " · 结算");
+            _roundCounter.SetRound(result.RoundIndex, true, fixedReplaySpeed.HasValue ? " · 回放" : " · 结算");
 
             // 下一回合的截止时间随本回合结果一起到达:计时环从现在起算,而不是等播完 ApplyState 才起算
-            if (result.State != null && result.State.ActionDeadlineMs != _deadlineMs)
+            if (!fixedReplaySpeed.HasValue && result.State != null && result.State.ActionDeadlineMs != _deadlineMs)
             {
                 _deadlineMs = result.State.ActionDeadlineMs;
                 _deadlineStartMs = BattleUiWidgets.NowUnixMs();
@@ -1175,19 +1253,27 @@ namespace MmorpgClient.UI.Ugui.Battle
             _orderBar.SetOrder(order, ResolveTile);
             _logPanel.Append($"—— 第 {result.RoundIndex} 回合 ——");
 
-            bool myAuto = !_spectate && _owner?.Client != null && _owner.Client.IsMyActorAuto;
-            bool ended = result.State != null && result.State.Outcome != eBattleOutcome.BattleOutcomeOngoing;
-            var budget = PlaybackBudget.Decide(plan.TotalSeconds, result.State?.ActionDeadlineMs ?? 0UL,
-                BattleUiWidgets.NowUnixMs(), passive: _spectate || myAuto,
-                baseSpeed: myAuto ? BattlePresenter.AutoBattleSpeed : 1f, unbounded: ended);
-            _presenter.SpeedScale = budget.Speed;
-            if (!budget.Unbounded && budget.Speed > (myAuto ? BattlePresenter.AutoBattleSpeed : 1f) + 0.01f)
-                _logPanel.Append($"(行动窗口剩 {budget.BudgetSeconds:0.0}s,演出 {plan.TotalSeconds:0.0}s → {budget.Speed:0.0}x)");
-            _presenter.Play(plan);
-            if (budget.Skip && _presenter.IsPlaying)
+            if (fixedReplaySpeed.HasValue)
             {
-                _logPanel.Append("(行动窗口不足,跳过本回合演出,直接落终态)");
-                _presenter.Skip();
+                _presenter.SpeedScale = fixedReplaySpeed.Value;
+                _presenter.Play(plan);
+            }
+            else
+            {
+                bool myAuto = !_spectate && _owner?.Client != null && _owner.Client.IsMyActorAuto;
+                bool ended = result.State != null && result.State.Outcome != eBattleOutcome.BattleOutcomeOngoing;
+                var budget = PlaybackBudget.Decide(plan.TotalSeconds, result.State?.ActionDeadlineMs ?? 0UL,
+                    BattleUiWidgets.NowUnixMs(), passive: _spectate || myAuto,
+                    baseSpeed: myAuto ? BattlePresenter.AutoBattleSpeed : 1f, unbounded: ended);
+                _presenter.SpeedScale = budget.Speed;
+                if (!budget.Unbounded && budget.Speed > (myAuto ? BattlePresenter.AutoBattleSpeed : 1f) + 0.01f)
+                    _logPanel.Append($"(行动窗口剩 {budget.BudgetSeconds:0.0}s,演出 {plan.TotalSeconds:0.0}s → {budget.Speed:0.0}x)");
+                _presenter.Play(plan);
+                if (budget.Skip && _presenter.IsPlaying)
+                {
+                    _logPanel.Append("(行动窗口不足,跳过本回合演出,直接落终态)");
+                    _presenter.Skip();
+                }
             }
 
             while (!_playDone) yield return null;
@@ -1197,6 +1283,32 @@ namespace MmorpgClient.UI.Ugui.Battle
             _roundCounter.SetRound(result.State?.RoundIndex ?? result.RoundIndex, false);
             _playing = false;
             RefreshActionBar();
+        }
+
+        /// <summary>回放中即时切换播放倍速。</summary>
+        public void SetReplaySpeed(float speed)
+        {
+            if (!_replay) return;
+            _presenter.SpeedScale = speed;
+            _replaySpeedButton?.SetText($"{speed:0.#}x");
+        }
+
+        /// <summary>同步回放控制条文案与按钮可用态。</summary>
+        public void UpdateReplayHud(string phaseText, string headerInfo, string hintText, float speed,
+            bool paused, int currentRound, int recordedRounds, bool finished)
+        {
+            if (!_replay) return;
+            if (_phaseText != null) _phaseText.text = phaseText ?? string.Empty;
+            if (_spectateText != null && headerInfo != null) _spectateText.text = headerInfo;
+            if (hintText != null) SetHint(hintText);
+            _replayPauseButton?.SetText(paused ? "继续" : "暂停");
+            _replaySpeedButton?.SetText($"{speed:0.#}x");
+            bool hasRounds = recordedRounds > 0;
+            _replayPrevButton?.SetInteractable(hasRounds && (currentRound > 1 || finished));
+            _replayPauseButton?.SetInteractable(hasRounds && !finished);
+            _replayNextButton?.SetInteractable(hasRounds && currentRound < recordedRounds && !finished);
+            _replaySkipButton?.SetInteractable(!finished);
+            _replayJumpButton?.SetInteractable(hasRounds);
         }
 
         // ── 内部刷新 ────────────────────────────────────────
@@ -1314,6 +1426,11 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void RefreshPendingText()
         {
+            if (_replay)
+            {
+                _pendingText.text = string.Empty;
+                return;
+            }
             // 观战没有本地相位,只要权威 pending 列表非空就展示
             bool show = _state != null && _state.PendingActorIds.Count > 0
                         && (_spectate || _phase == BattlePhase.WaitingAction);
@@ -1330,11 +1447,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void RefreshActionBar()
         {
             if (_pending != PendingKind.None) RefreshTargetSelection();
-            // 观战只读:命令环整体隐藏(不是置灰,观众根本没有行动语义)
-            _commandRing.SetVisible(!_spectate);
-            if (_spectate)
+            // 观战 / 回放只读:命令环整体隐藏(不是置灰,没有行动语义)
+            _commandRing.SetVisible(!IsReadOnly);
+            if (IsReadOnly)
             {
-                SetHint(string.Empty);
+                if (_spectate) SetHint(string.Empty);
                 return;
             }
 
@@ -1376,9 +1493,52 @@ namespace MmorpgClient.UI.Ugui.Battle
         private void RefreshSpectateHeader()
         {
             if (_spectateText == null) return;
-            _spectateText.gameObject.SetActive(_spectate);
-            _stopWatchButton.SetVisible(_spectate);
-            if (_spectate) _spectateText.text = $"观战中 · 观众 {_observerCount} 人";
+            bool readOnly = IsReadOnly;
+            _spectateText.gameObject.SetActive(readOnly);
+            _stopWatchButton.SetVisible(readOnly);
+            if (_spectate)
+            {
+                _spectateText.text = $"观战中 · 观众 {_observerCount} 人";
+                _stopWatchButton.SetText("退出观战");
+            }
+            else if (_replay)
+            {
+                _stopWatchButton.SetText("退出回放");
+            }
+        }
+
+        private UiTextButton CreateReplayButton(string name, Rect rect, string label, Color plate, UnityEngine.Events.UnityAction onClick)
+        {
+            var button = BattleUiWidgets.CreateTextButton(name, _hudRoot, rect.x, rect.y, rect.width, rect.height,
+                label, 22f, plate, BattleUiStyle.ButtonText);
+            BattleRoundCounter.ApplyNineSlice(button.Plate, "button_9slice");
+            button.Button.onClick.AddListener(onClick);
+            return button;
+        }
+
+        private void SetReplayControlsVisible(bool visible)
+        {
+            _replayPrevButton?.SetVisible(visible);
+            _replayPauseButton?.SetVisible(visible);
+            _replayNextButton?.SetVisible(visible);
+            _replaySpeedButton?.SetVisible(visible);
+            _replaySkipButton?.SetVisible(visible);
+            if (_replayJumpInputPlate != null) _replayJumpInputPlate.gameObject.SetActive(visible);
+            _replayJumpButton?.SetVisible(visible);
+        }
+
+        private void OnReplayJumpClicked()
+        {
+            if (!_replay) return;
+            string raw = (_replayJumpInput != null ? _replayJumpInput.text : string.Empty)?.Trim();
+            if (int.TryParse(raw, out int round) && round >= 1)
+            {
+                _owner?.RequestReplayJumpRound(round);
+            }
+            else
+            {
+                _owner?.ShowToast("请输入有效回合号(从 1 开始)", true);
+            }
         }
 
         private bool IsPveBattle()
@@ -1446,7 +1606,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void SelectActingActor(ulong id)
         {
-            if (_spectate || _playing || _phase != BattlePhase.WaitingAction || !IsControlled(FindActor(id))) return;
+            if (IsReadOnly || _playing || _phase != BattlePhase.WaitingAction || !IsControlled(FindActor(id))) return;
             _actingId = id;
             ExitTargetMode();
             EnsureSkillCatalog();
@@ -1457,7 +1617,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             var actor = FindMyActor();
             var source = MmorpgClient.Game.Skills.SkillBookClient.Instance;
-            if (_spectate || source == null || !IsControlled(actor)) return;
+            if (IsReadOnly || source == null || !IsControlled(actor)) return;
             ulong actorId = actor.ActorId;
             source.EnsureBattleCatalog(actor.ActorType == eBattleActorType.BattleActorTypePet ? actor.PetId : 0, success =>
             {

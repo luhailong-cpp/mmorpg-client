@@ -547,5 +547,30 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(got.Battles, Has.Count.EqualTo(1));
             Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None), "列表拉取不改相位");
         }
+
+        [Test]
+        public void ResetClearsWatchingStateAndInvalidatesPendingWatchRequest()
+        {
+            UseChannel();
+            EnterWatchingViaChannel();
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.Watching));
+
+            // 静默重连 / 跨区重定向关闭直连(HostClosed)但大厅不发 Disconnected:宿主 Reset 必须清掉 Watching。
+            _client.Reset();
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_client.State, Is.Null);
+            Assert.That(_client.ObserverCount, Is.Zero);
+            Assert.That(_client.WatchedBattleId, Is.Zero);
+
+            // Reset 后的 Requesting 迟到响应与错误回调都必须被忽略。
+            _client.WatchBattle(TheBattleId + 1);
+            var call = _net.CallsOf(MessageIds.WatchBattle)[1];
+            _client.Reset();
+            call.Respond(new Match.WatchBattleResponse { BattleId = TheBattleId + 1 });
+            call.FailWith("disconnected");
+            Assert.That(_client.Phase, Is.EqualTo(SpectatePhase.None));
+            Assert.That(_client.WatchedBattleId, Is.Zero);
+            Assert.That(_errors, Is.Empty);
+        }
     }
 }

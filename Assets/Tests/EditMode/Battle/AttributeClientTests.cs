@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Google.Protobuf;
 using MmorpgClient.Game.Attribute;
+using MmorpgClient.Game.Guild;
 using MmorpgClient.Net;
 using NUnit.Framework;
 
@@ -509,6 +510,19 @@ namespace MmorpgClient.Tests.EditMode.Battle
             });
             Assert.That(_client.Busy, Is.False);
             Assert.That(_net.CallsOf(MessageIds.CreateAttributeScheme), Has.Count.EqualTo(1));
+        }
+
+        [Test]
+        public void DescribeTipMapsSharedAssetChannelReasons()
+        {
+            Assert.That(AttributeClient.DescribeTip("洗点", new TipInfoMessage { Id = GuildAssetReasons.Frozen }),
+                Is.EqualTo("洗点:角色迁移中,稍后自动重试;超过时限可能取消"));
+            Assert.That(AttributeClient.DescribeTip("洗点", new TipInfoMessage { Id = GuildAssetReasons.Blocked }),
+                Is.EqualTo("洗点:该资产当前被禁止获取"));
+            Assert.That(AttributeClient.DescribeTip("洗点", new TipInfoMessage { Id = GuildAssetReasons.AuthFailed }),
+                Is.EqualTo("洗点:资产指令校验失败"));
+            Assert.That(AttributeClient.DescribeTip("洗点", new TipInfoMessage { Id = 27999 }),
+                Is.EqualTo("洗点:tip=27999"));
         }
     }
 }

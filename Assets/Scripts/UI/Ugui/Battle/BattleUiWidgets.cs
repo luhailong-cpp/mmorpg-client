@@ -110,7 +110,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 frame.fillCenter = false;
                 frame.pixelsPerUnitMultiplier = image.pixelsPerUnitMultiplier;
             }
-            else if (name == "DuelInputPlate" || name == "ItemInputPlate")
+            else if (name == "DuelInputPlate" || name == "ItemInputPlate" || name == "ReplayJumpPlate")
             {
                 QdaoRefreshArt.Skin(image, "search_normal");
             }
@@ -123,6 +123,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 case "BattleQueuePanel":
                 case "SpectatePanel":
+                case "BattleReportPanel":
                 case "BattleChallengePopup":
                 case "BattleLogPanel":
                 case "SkillPanel":

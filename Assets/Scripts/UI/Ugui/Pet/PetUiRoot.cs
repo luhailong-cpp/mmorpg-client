@@ -54,13 +54,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 _app.GameClient.IsGateReady)
             {
                 _panel?.Hide();
-                Attribute.AttributeUiRoot.Instance?.HidePanel();
-                Skills.SkillUiRoot.Instance?.HidePanel();
-                Guild.GuildUiRoot.Instance?.HidePanel();
-                Rank.RankUiRoot.Instance?.HidePanel();
-                Gameplay.GameplayUiRoot.Instance?.HidePanel();
-                Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
-                BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
+                CityPanelRegistry.HideOthers(this);
                 _cultivation?.Show(page);
             }
         }
@@ -86,6 +80,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                 return;
             }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
         }
 
         private void Update()
@@ -97,6 +92,7 @@ namespace MmorpgClient.UI.Ugui.Pet
 
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             UnbindClient();
             _cultivation?.Dispose();
             if (Instance == this) Instance = null;

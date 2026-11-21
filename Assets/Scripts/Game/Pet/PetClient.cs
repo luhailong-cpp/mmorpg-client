@@ -35,6 +35,7 @@ namespace MmorpgClient.Game.Pet
 
         public bool HasList => Pets != null;
         public bool ListRequestPending { get; private set; }
+        private int _sessionVersion;
         private int _listRequestVersion;
         private int _grantRequestVersion;
         private int _allocationRequestVersion;
@@ -113,20 +114,7 @@ namespace MmorpgClient.Game.Pet
                 26014 => "没有可用的自动加点方案",
                 26015 => "宝宝属性没有变化",
                 26016 => "宝宝创建失败,请稍后再试",
-                // ── 资产通道(//asset_error base=27000,帮会二期 B4a 起)────────────────
-                // 冻结(27003)、封禁(27005)与 GM 路径会把这一段透传给客户端;宠物 / 加点自己的
-                // 扣币路径在扣之前先 CanAfford,回的是各自的"银两不足",走不到 27000。
-                // 文案逐字镜像 data/tip/Tip.xlsx,表改了要同步这里(与上面各段同一约定)。
-                27000 => "货币不足",
-                27001 => "背包已满,请腾出空间,之后会重试发放;超过时限可能取消",
-                27002 => "战斗中暂不结算,稍后自动重试;超过时限可能取消",
-                27003 => "角色迁移中,稍后自动重试;超过时限可能取消",
-                27004 => "资产指令无效",
-                27005 => "该资产当前被禁止获取",
-                27006 => "角色不在线,上线后重试;超过时限可能取消",
-                27007 => "资产只发放了一部分,已记录,将由客服补偿",
-                27008 => "资产指令校验失败",
-                _ => $"tip={tip.Id}",
+                _ => Attribute.AttributeClient.DescribeAssetTip(tip.Id) ?? $"tip={tip.Id}",
             };
             return $"{what}:{text}";
         }
@@ -166,18 +154,20 @@ namespace MmorpgClient.Game.Pet
         public void Summon(ulong petId)
         {
             if (!BeginWrite(petId == 0 ? "没有选中宝宝" : null)) return;
+            int session = _sessionVersion;
             _net.Call(MessageIds.SummonPet, new SummonPetRequest { PetId = petId }, SummonPetResponse.Parser,
-                resp => CompleteWrite("出战失败", resp.ErrorMessage, resp.Pets),
-                err => FailWrite(err));
+                resp => { if (session == _sessionVersion) CompleteWrite("出战失败", resp.ErrorMessage, resp.Pets); },
+                err => { if (session == _sessionVersion) FailWrite(err); });
         }
 
         /// <summary>收回出战宝宝(战斗中服务端会拒绝)。</summary>
         public void Recall()
         {
             if (!BeginWrite(null)) return;
+            int session = _sessionVersion;
             _net.Call(MessageIds.RecallPet, new RecallPetRequest(), RecallPetResponse.Parser,
-                resp => CompleteWrite("收回失败", resp.ErrorMessage, resp.Pets),
-                err => FailWrite(err));
+                resp => { if (session == _sessionVersion) CompleteWrite("收回失败", resp.ErrorMessage, resp.Pets); },
+                err => { if (session == _sessionVersion) FailWrite(err); });
         }
 
         /// <summary>
@@ -220,10 +210,11 @@ namespace MmorpgClient.Game.Pet
         public void ResetPoints(ulong petId)
         {
             if (!BeginWrite(petId == 0 ? "没有选中宝宝" : null)) return;
+            int session = _sessionVersion;
             _net.Call(MessageIds.ResetPetPoints, new ResetPetPointsRequest { PetId = petId },
                 ResetPetPointsResponse.Parser,
-                resp => CompleteWrite("宝宝洗点失败", resp.ErrorMessage, resp.Pets),
-                err => FailWrite(err));
+                resp => { if (session == _sessionVersion) CompleteWrite("宝宝洗点失败", resp.ErrorMessage, resp.Pets); },
+                err => { if (session == _sessionVersion) FailWrite(err); });
         }
 
         /// <summary>
@@ -239,10 +230,12 @@ namespace MmorpgClient.Game.Pet
                 OnError?.Invoke("尚未进入游戏,无法自动加点");
                 return;
             }
+            int session = _sessionVersion;
             _net.Call(MessageIds.AutoAllocatePetPoints, new AutoAllocatePetPointsRequest { PetId = petId },
                 AutoAllocatePetPointsResponse.Parser,
                 resp =>
                 {
+                    if (session != _sessionVersion) return;
                     if (HasTip(resp.ErrorMessage))
                     {
                         OnError?.Invoke(DescribeTip("自动加点失败", resp.ErrorMessage));
@@ -255,17 +248,18 @@ namespace MmorpgClient.Game.Pet
                     }
                     OnAutoSuggestion?.Invoke(resp.PetId, suggestion);
                 },
-                err => OnError?.Invoke(err));
+                err => { if (session == _sessionVersion) OnError?.Invoke(err); });
         }
 
         /// <summary>改名(按表扣银两)。</summary>
         public void Rename(ulong petId, string name)
         {
             if (!BeginWrite(string.IsNullOrWhiteSpace(name) ? "宝宝名不能为空" : null)) return;
+            int session = _sessionVersion;
             _net.Call(MessageIds.RenamePet, new RenamePetRequest { PetId = petId, Name = name },
                 RenamePetResponse.Parser,
-                resp => CompleteWrite("宝宝改名失败", resp.ErrorMessage, resp.Pets),
-                err => FailWrite(err));
+                resp => { if (session == _sessionVersion) CompleteWrite("宝宝改名失败", resp.ErrorMessage, resp.Pets); },
+                err => { if (session == _sessionVersion) FailWrite(err); });
         }
 
         /// <summary>GM:发一只宝宝(开发调试用;核心线唯一获取入口,上线前经 gate GM 鉴权收口)。</summary>
@@ -360,10 +354,12 @@ namespace MmorpgClient.Game.Pet
             ApplyList(message.Pets);
         }
 
-        private void HandleDisconnected()
+        /// <summary>登出、换角、静默重连或跨区重定向时清空列表、商店序号与在途请求。</summary>
+        public void Reset()
         {
             InvalidateShop();
             InvalidateEntries();
+            ++_sessionVersion;
             ++_listRequestVersion;
             ++_grantRequestVersion;
             ++_allocationRequestVersion;
@@ -371,5 +367,7 @@ namespace MmorpgClient.Game.Pet
             Pets = null;
             SetBusy(false);
         }
+
+        private void HandleDisconnected() => Reset();
     }
 }

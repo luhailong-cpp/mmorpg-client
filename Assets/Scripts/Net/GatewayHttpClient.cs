@@ -387,7 +387,7 @@ namespace MmorpgClient.Net
             // 一律按网络 / HTTP 失败交 onError(服务端 open-server-rate-limit-design.md §11.5 第 3、5 条)。
             if (req.result != UnityWebRequest.Result.Success || req.responseCode != 200)
             {
-                onError($"POST {path} failed: {req.error ?? "HTTP " + req.responseCode}");
+                onError($"POST {path} failed: {(string.IsNullOrEmpty(req.error) ? "HTTP " + req.responseCode : req.error)}");
                 yield break;
             }
 

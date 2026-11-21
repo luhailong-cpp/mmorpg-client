@@ -118,6 +118,16 @@ namespace MmorpgClient.Game.Social
             if (message == null || !Matches(channel, message.Channel)) return;
             if (Merge(channel, new[] { FromProto(message) }) > 0) Changed?.Invoke();
         }
+        /// <summary>收到世界频道撤回推送时按 (sender, sendTimeMs) 从本地缓存移除对应消息。</summary>
+        public bool ApplyRetracted(SocialChannel channel, ulong senderPlayerId, long sendTimeMs)
+        {
+            if (IsPreview || senderPlayerId == 0 || sendTimeMs <= 0) return false;
+            var list = _messages[channel];
+            int removed = list.RemoveAll(m => m.Sender == senderPlayerId && m.TimeMs == sendTimeMs);
+            if (removed <= 0) return false;
+            Changed?.Invoke();
+            return true;
+        }
         // 合进本地列表:按 Id 去重,按发送时刻升序,只留最近 HistoryLimit 条。拉历史以前是整表替换,拉取途中到达的推送会被冲掉;
         // 合并之后两条路径互不覆盖(本地的每一条都来自服务端的历史或推送)。返回留下来的新消息条数,不在看这个频道时计入未读。
         private int Merge(SocialChannel channel, IEnumerable<SocialMessage> incoming)

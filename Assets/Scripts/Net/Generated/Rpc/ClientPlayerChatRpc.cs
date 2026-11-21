@@ -25,6 +25,11 @@ namespace MmorpgClient.Net.Generated
             RpcDone<global::Chatpb.PullChatHistoryResponse> done)
             => channel.CallMethod(PullChatHistoryMessageId, request, global::Chatpb.PullChatHistoryResponse.Parser, done);
 
+        public const uint ReportChatMessageId = 433;
+        public static void ReportChat(IRpcChannel channel, global::Chatpb.ReportChatRequest request,
+            RpcDone<global::Chatpb.ReportChatResponse> done)
+            => channel.CallMethod(ReportChatMessageId, request, global::Chatpb.ReportChatResponse.Parser, done);
+
         public const uint NotifyWorldChatMessageId = 383;
         /// <summary>
         /// 世界频道推送(S2C,docs/design/chat-world-channel-fanout.md §4):世界频道的一条发送首次提交成功后,
@@ -42,6 +47,20 @@ namespace MmorpgClient.Net.Generated
             {
                 global::Chatpb.ChatMessage message;
                 try { message = global::Chatpb.ChatMessage.Parser.ParseFrom(mc.SerializedMessage); }
+                catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
+                handler(message);
+            });
+        }
+
+        public const uint NotifyWorldChatRetractedMessageId = 435;
+        public static void OnNotifyWorldChatRetracted(IRpcChannel channel, Action<global::Chatpb.ChatRetractedNotify> handler,
+            Action<InvalidProtocolBufferException> onMalformed = null)
+        {
+            if (handler == null) throw new ArgumentNullException(nameof(handler));
+            channel.RegisterNotify(NotifyWorldChatRetractedMessageId, mc =>
+            {
+                global::Chatpb.ChatRetractedNotify message;
+                try { message = global::Chatpb.ChatRetractedNotify.Parser.ParseFrom(mc.SerializedMessage); }
                 catch (InvalidProtocolBufferException ex) { onMalformed?.Invoke(ex); return; }
                 handler(message);
             });

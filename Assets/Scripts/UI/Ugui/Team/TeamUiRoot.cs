@@ -62,6 +62,7 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var canvasObject = new GameObject("TeamCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
@@ -198,18 +199,7 @@ namespace MmorpgClient.UI.Ugui.Team
         private void OpenPanel(bool refresh = true)
         {
             if (!HasView || !_available) return;
-            MysteryMerchantUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();
-            CityTravelUiRoot.Instance?.HidePanel();
-            AttributeUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
-            PetUiRoot.Instance?.HidePanel();
-            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
-            Mail.MailUiRoot.Instance?.HidePanel();
-            Social.SocialUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             RenderState();
             _window.Show();
             // Opening the panel asks for GetMyTeam; the client queues it when busy or too soon.
@@ -253,7 +243,7 @@ namespace MmorpgClient.UI.Ugui.Team
         {
             if (!HasView || !_available) return;
             if (!_window.IsVisible) Toggle();
-            Social.SocialUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             _invitations.SetState(State);
             _window.SetCovered(true);
             _invitations.Show(source, query);
@@ -323,17 +313,13 @@ namespace MmorpgClient.UI.Ugui.Team
             _client = null;
         }
 
-        private static bool IsTyping()
-        {
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            return selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
-                                        selected.GetComponentInParent<InputField>()?.isFocused == true);
-        }
+        private static bool IsTyping() => CityPanelRegistry.IsTyping();
 
         private void OnDisable() { _available = false; HidePanel(); if (!HasView) DisposeClient(); }
 
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             DisposeClient();
             if (State != null) State.Changed -= RenderState;
             HidePanel();

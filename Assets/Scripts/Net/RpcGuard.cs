@@ -17,8 +17,10 @@ namespace MmorpgClient.Net
         public const uint RateLimitTipId = (uint)common_error.KRateLimitExceeded;
         public const int DefaultMaxRequests = 3;
         public const float DefaultTimeWindowSeconds = 1f;
-        // C++ gate 按整秒计数且淘汰条件为 now - front > window，1 秒窗口最长跨 2 秒，再留 0.5 秒上行抖动。
-        public const float GateWindowMarginSeconds = 1.5f;
+        // 服务端 C++ MessageLimiter 与 Java MessageRateLimiter 均已统一为精确单调毫秒/纳秒滑动窗口(>=)，
+        // 客户端只需在服务端窗口外留 0.5 秒吸收公网上行抖动（1 秒窗口 → 1.5 秒）。
+        public const float GateWindowMarginSeconds = 0.5f;
+        public const float DefaultMessageWindowSeconds = DefaultTimeWindowSeconds + GateWindowMarginSeconds;
         public const int DefaultCircuitFailureThreshold = 3;
         public const float DefaultCircuitOpenSeconds = 15f;
 
@@ -166,9 +168,19 @@ namespace MmorpgClient.Net
 
         private SlidingWindowLimiter LimiterFor(uint messageId)
         {
-            if (_limiters.TryGetValue(messageId, out var existing)) return existing;
             var spec = _limitResolver(messageId);
-            if (!spec.HasValue || spec.Value.maxRequests <= 0) return null;
+            if (!spec.HasValue || spec.Value.maxRequests <= 0)
+            {
+                _limiters.Remove(messageId);
+                return null;
+            }
+            if (_limiters.TryGetValue(messageId, out var existing)
+                && existing.MaxCount == spec.Value.maxRequests
+                && existing.WindowSeconds == spec.Value.windowSeconds)
+            {
+                return existing;
+            }
+            // 配置表热更导致额度或窗口变化时自动按新参数重建，无需断线重连。
             var created = new SlidingWindowLimiter(spec.Value.maxRequests, spec.Value.windowSeconds);
             _limiters[messageId] = created;
             return created;
@@ -251,6 +263,12 @@ namespace MmorpgClient.Net
                 case MessageIds.CommitNetworkProbe:
                     return "match";
 
+                case MessageIds.SubmitBattleAction:
+                case MessageIds.GetBattleState:
+                case MessageIds.StopWatchBattle:
+                case MessageIds.SetAutoBattle:
+                    return "battle";
+
                 case MessageIds.RankGetRankPage:
                 case MessageIds.RankGetRankAround:
                     return "rank";
@@ -261,6 +279,7 @@ namespace MmorpgClient.Net
                 case MessageIds.LeaveGuild:
                 case MessageIds.DisbandGuild:
                 case MessageIds.SetGuildAnnouncement:
+                case MessageIds.RenameGuild:
                 case MessageIds.SetGuildMemberRole:
                 case MessageIds.DonateToGuild:
                 case MessageIds.GetGuildDonateOptions:
@@ -369,6 +388,20 @@ namespace MmorpgClient.Net
                 case MessageIds.TeleportRequest:
                 case MessageIds.TravelToZone:
                     return "scene_travel";
+
+                case SceneClientPlayerCommonRpc.RenamePlayerMessageId:
+                    return "scene_common";
+
+                case ClientPlayerChatRpc.SendChatMessageId:
+                case ClientPlayerChatRpc.PullChatHistoryMessageId:
+                case ClientPlayerChatRpc.ReportChatMessageId:
+                    return "chat";
+
+                case ClientPlayerPaymentRpc.ListPayChannelsMessageId:
+                case ClientPlayerPaymentRpc.CreatePayIntentMessageId:
+                case ClientPlayerPaymentRpc.GetPayIntentMessageId:
+                case ClientPlayerPaymentRpc.SubmitPurchaseMessageId:
+                    return "payment";
 
                 default:
                     // 未归类的新消息号按号隔离，避免互相连累。

@@ -87,6 +87,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var canvasObject = new GameObject("MysteryMerchantCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
@@ -366,7 +367,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void OpenShop()
         {
             if (!_available || _client == null) return;
-            HideOtherPanels();
+            CityPanelRegistry.HideOthers(this);
             // 打开即问一次:货架与已购数以服务端此刻的为准(数据层自己管最小间隔)。
             _client.RequestInfo();
             // 余额只用于显示,但也该是新的:每次开店重拉一次人物背包(上次的快照可能是很久以前开背包窗时留下的)。
@@ -375,23 +376,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _nextDirectoryRefreshAt = 0f;   // 商人在别的线的话,开店后的第一帧就刷新一次线路目录
             Render();
             _window.Show();
-        }
-
-        private static void HideOtherPanels()
-        {
-            Skills.SkillUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();
-            CityTravelUiRoot.Instance?.HidePanel();
-            SceneChannelUiRoot.Instance?.HidePanel();
-            AttributeUiRoot.Instance?.HidePanel();
-            PetUiRoot.Instance?.HidePanel();
-            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
-            Mail.MailUiRoot.Instance?.HidePanel();
-            Social.SocialUiRoot.Instance?.HidePanel();
         }
 
         /// <summary>
@@ -529,7 +513,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var controller = LocalController();
             if (controller == null || _npc == null) return;
             // 已开的模态面板会暂停世界移动，先释放输入再寻路。
-            HideOtherPanels();
+            CityPanelRegistry.HideOthers(this);
             float standOff = MysteryMerchantNpc.StandOff(_client?.Info?.InteractRange ?? 0, ApproachStandOff);
             var target = MysteryMerchantNpc.ApproachPoint(_npc.FeetPosition, controller.FeetPosition, standOff);
             if (!controller.SetDestination(target))
@@ -586,12 +570,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             (game.Battle != null && game.Battle.Phase != BattlePhase.None) ||
             (game.Spectate != null && game.Spectate.Phase != SpectatePhase.None);
 
-        private static bool IsTyping()
-        {
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            return selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
-                                        selected.GetComponentInParent<InputField>()?.isFocused == true);
-        }
+        private static bool IsTyping() => CityPanelRegistry.IsTyping();
 
         private void OnDisable()
         {
@@ -602,6 +581,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             Unbind();
             if (Instance == this) Instance = null;
         }

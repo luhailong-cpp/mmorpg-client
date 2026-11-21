@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 安卓 App 微信支付与支付宝清单:包名由 build.gradle 的 namespace(com.mmorpg.pay)给出。 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Android 11(API 30)起的包可见性声明:拉起微信与支付宝客户端必需。 -->
+    <queries>
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.eg.android.AlipayGphone" />
+    </queries>
+
+    <application>
+        <!-- 微信回调页写在库自己的包里,不写死宿主应用包名;通过下方 activity-alias 挂到 ${applicationId}.wxapi.WXPayEntryActivity。 -->
+        <activity
+            android:name="com.mmorpg.pay.WechatPayCallbackActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:taskAffinity="${applicationId}"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity-alias
+            android:name="${applicationId}.wxapi.WXPayEntryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity="com.mmorpg.pay.WechatPayCallbackActivity" />
+    </application>
+</manifest>

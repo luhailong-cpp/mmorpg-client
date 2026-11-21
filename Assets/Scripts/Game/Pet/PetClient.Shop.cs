@@ -7,7 +7,7 @@ namespace MmorpgClient.Game.Pet
     {
         public GetPetShopResponse Shop { get; private set; }
         public bool ShopRequestPending { get; private set; }
-        public bool HasPendingPurchase => _pendingPurchase != null;
+        public bool HasPendingPurchase => _pendingPurchase != null && _purchasePlayerId == MyPlayerId;
         public event Action OnShopChanged;
         public event Action<ulong> OnPurchased;
 
@@ -60,7 +60,7 @@ namespace MmorpgClient.Game.Pet
             if (!IsReady) return "尚未进入游戏";
             if (CultivationWritesBlocked) return CultivationLockedMessage;
             if (Busy) return "正在等待服务器确认";
-            if (_pendingPurchase != null) return "上次购买结果待确认，请先重试上次购买";
+            if (HasPendingPurchase) return "上次购买结果待确认，请先重试上次购买";
             if (Shop == null || ShopRequestPending) return "请先刷新商店";
             var offer = FindShopOffer(petTableId);
             if (offer == null || offer.PriceGold == 0) return "请选择在售宝宝";

@@ -36,14 +36,14 @@ namespace MmorpgClient.UI.Ugui.Social
         {if(Instance!=null)return;var go=new GameObject("[SocialUi]");DontDestroyOnLoad(go);go.AddComponent<SocialUiRoot>();}
         private void Awake()
         {
-            if(Instance!=null&&Instance!=this){Destroy(gameObject);return;}Instance=this;State=new SocialState();
+            if(Instance!=null&&Instance!=this){Destroy(gameObject);return;}Instance=this;CityPanelRegistry.Register(this,HidePanel);State=new SocialState();
             var go=new GameObject("SocialCanvas",typeof(RectTransform),typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));go.transform.SetParent(transform,false);
             var canvas=go.GetComponent<Canvas>();canvas.renderMode=RenderMode.ScreenSpaceOverlay;canvas.sortingOrder=190;
             var scaler=go.GetComponent<CanvasScaler>();scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(2560,1080);scaler.screenMatchMode=CanvasScaler.ScreenMatchMode.Expand;
             var design=QdaoUguiFactory.CreateCenteredRect("DesignRoot",go.transform,2560,1080);_hud=QdaoUguiFactory.CreateStretch("HudRoot",design,Vector4.zero);QdaoUguiFactory.ConfigureHudCanvas(_hud);
             var entry=GameplayUiArt.Button(_hud,"仙友会 [C]",EntryX,EntryY,BattleUiStyle.HudEntryWidth,BattleUiStyle.HudEntryHeight,Toggle,true,fontSize:32);entry.name="SocialEntry";
             WorldHudNavigation.Register(WorldHudEntry.Social,(RectTransform)entry.transform,entry,entry.GetComponentInChildren<TMP_Text>());
-            Window=new SocialWindow(design,State);Window.RefreshRequested+=channel=>{if(_available)Client?.Refresh(channel);};Window.SendRequested+=(channel,text)=>{if(_available)Client?.Send(channel,text);};_hud.gameObject.SetActive(false);
+            Window=new SocialWindow(design,State);Window.RefreshRequested+=channel=>{if(_available)Client?.Refresh(channel);};Window.SendRequested+=(channel,text)=>{if(_available)Client?.Send(channel,text);};Window.ReportRequested+=(channel,msg,reason,detail)=>{if(_available&&msg!=null)Client?.Report(channel,msg.Sender,msg.TimeMs,reason,detail);};_hud.gameObject.SetActive(false);
             Window.TeamInviteRequested += id => { if (_available) Team.TeamUiRoot.Instance?.OpenInviteForPlayer(id); };
             FriendRequests = new FriendRequestsWindow(design);
             Window.FriendRequestsRequested += OpenFriendRequests;
@@ -112,30 +112,18 @@ namespace MmorpgClient.UI.Ugui.Social
         private void OpenPanel(SocialPage page,bool refreshHistory=true)
         {
             if(!HasView||!_available)return;
-            MysteryMerchantUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             FriendRequests.Hide();
-            Mail.MailUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();
-            CityTravelUiRoot.Instance?.HidePanel();
-            Attribute.AttributeUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
-            Pet.PetUiRoot.Instance?.HidePanel();
             Window.Show(page,refreshHistory);Opened?.Invoke();
         }
         private void OpenFriendRequests()
         {
             if(!HasView||!_available||Friends==null)return;
-            MysteryMerchantUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             Window.Hide();FriendRequests.Show();Opened?.Invoke();
         }
         public void HidePanel(){if(Window?.Root!=null)Window.Hide();if(FriendRequests?.Root!=null)FriendRequests.Hide();}
-        public static bool IsTyping()
-        {var go=EventSystem.current?.currentSelectedGameObject;return go!=null&&(go.GetComponentInParent<TMP_InputField>()?.isFocused==true||go.GetComponentInParent<InputField>()?.isFocused==true);}
+        public static bool IsTyping()=>CityPanelRegistry.IsTyping();
         private void DisposeClients()
         {
             _available=false;_game=null;_player=0;_connection=null;
@@ -143,6 +131,6 @@ namespace MmorpgClient.UI.Ugui.Social
             Client?.Dispose();Client=null;Friends?.Dispose();Friends=null;
         }
         private void OnDisable(){_available=false;HidePanel();if(!HasView)DisposeClients();}
-        private void OnDestroy(){DisposeClients();FriendRequests?.Dispose();FriendRequests=null;Window?.Dispose();Window=null;if(Instance==this)Instance=null;}
+        private void OnDestroy(){CityPanelRegistry.Unregister(this);DisposeClients();FriendRequests?.Dispose();FriendRequests=null;Window?.Dispose();Window=null;if(Instance==this)Instance=null;}
     }
 }

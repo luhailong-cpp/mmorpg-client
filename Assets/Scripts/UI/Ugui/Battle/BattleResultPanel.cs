@@ -33,16 +33,20 @@ namespace MmorpgClient.UI.Ugui.Battle
         private readonly RectTransform _rows;
         private readonly ScrollRect _rewardScroll;
         private readonly UiTextButton _confirmButton;
+        private readonly UiTextButton _watchReplayButton;
         private readonly CanvasGroup _confirmGroup;
         private readonly List<GameObject> _rowObjects = new List<GameObject>();
         private readonly object _token = new object();
         private readonly Action _onConfirm;
+        private readonly Action<ulong> _onWatchReplay;
+        private ulong _replayBattleId;
 
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
 
-        public BattleResultPanel(UnityEngine.Transform parent, Action onConfirm)
+        public BattleResultPanel(UnityEngine.Transform parent, Action onConfirm, Action<ulong> onWatchReplay = null)
         {
             _onConfirm = onConfirm;
+            _onWatchReplay = onWatchReplay;
             float x = (QdaoUguiTheme.DesignWidth - PanelW) * 0.5f;
             float y = (QdaoUguiTheme.DesignHeight - PanelH) * 0.5f;
             var bg = BattleUiWidgets.CreatePanel("BattleResultPanel", parent, x, y, PanelW, PanelH, BattleUiStyle.PanelBgLight);
@@ -86,7 +90,18 @@ namespace MmorpgClient.UI.Ugui.Battle
                 LiveConfirmText, 26f, BattleUiStyle.ButtonPlateAccent, BattleUiStyle.ButtonText);
             BattleRoundCounter.ApplyNineSlice(_confirmButton.Plate, "button_9slice");
             _confirmGroup = _confirmButton.Rect.gameObject.AddComponent<CanvasGroup>();
-            _confirmButton.Button.onClick.AddListener(() => onConfirm?.Invoke());
+            _confirmButton.Button.onClick.AddListener(() => _onConfirm?.Invoke());
+
+            // 近期 PVP 战果补弹面板的可选「看回放」入口(docs/handoff/battle-report-replay-client.md §1.3)
+            _watchReplayButton = BattleUiWidgets.CreateTextButton("WatchReplay", _root,
+                PanelW * 0.5f - 280f, PanelH - 116f, 240f, 76f,
+                "看回放", 26f, BattleUiStyle.ButtonPlate, BattleUiStyle.ButtonText);
+            BattleRoundCounter.ApplyNineSlice(_watchReplayButton.Plate, "button_9slice");
+            _watchReplayButton.Button.onClick.AddListener(() =>
+            {
+                if (_replayBattleId != 0) _onWatchReplay?.Invoke(_replayBattleId);
+            });
+            _watchReplayButton.SetVisible(false);
 
             BattleFidelityArt.ApplyPanel(_root);
             Hide();
@@ -107,6 +122,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             string subtitle = voided ? VoidSubtitle
                 : settlement != null ? $"共 {settlement.TotalRounds} 回合" : string.Empty;
             var lines = voided ? BuildVoidLines() : BuildRewardLines(settlement, end.ItemsMailed);
+            ConfigureActionButtons(replayBattleId: 0);
             Present(title, titleColor, subtitle, lines, LiveConfirmText, AutoReturnSeconds);
         }
 
@@ -119,8 +135,24 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (result == null || _root == null) return;
             bool voided = BattleResultRecoveryClient.IsVoid(result);
             ResolveTitle((eBattleOutcome)result.Outcome, result.TeamIndex, voided, out string title, out Color titleColor);
+            ulong replayBattleId = _onWatchReplay != null && BattleReportClient.CanWatchReplayFromRecovered(result)
+                ? result.BattleId
+                : 0UL;
+            ConfigureActionButtons(replayBattleId);
             Present(title, titleColor, voided ? VoidSubtitle : BuildRecoveredSubtitle(result), BuildRecoveredLines(result),
                 RecoveredConfirmText, autoConfirmSeconds: 0);
+        }
+
+        private void ConfigureActionButtons(ulong replayBattleId)
+        {
+            _replayBattleId = replayBattleId;
+            bool showReplay = replayBattleId != 0 && _watchReplayButton != null;
+            _watchReplayButton?.SetVisible(showReplay);
+            if (_confirmButton?.Rect != null)
+            {
+                float confirmX = showReplay ? PanelW * 0.5f + 40f : (PanelW - 260f) * 0.5f;
+                _confirmButton.Rect.anchoredPosition = new Vector2(confirmX, -(PanelH - 116f));
+            }
         }
 
         // 胜负大字:作废排在最前(落进「失败」分支会显示成输了);胜 = outcome 对照我方 team。

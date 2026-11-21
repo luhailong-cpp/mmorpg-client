@@ -24,6 +24,7 @@ namespace MmorpgClient.Game.Social
             _identity=connectionIdentity??(()=>net);_observed=_identity();_net.Disconnected+=Disconnected;_state.Reset(net.PlayerId);Publish("请刷新聊天频道。");
             // 同一消息号只保留最后注册的处理器:换角色或重连后新建的 SocialClient 会替换掉旧的;旧实例 Dispose 之后它的处理器直接返回。
             _net.RegisterNotify(ClientPlayerChatRpc.NotifyWorldChatMessageId,WorldChatPushed);
+            _net.RegisterNotify(ClientPlayerChatRpc.NotifyWorldChatRetractedMessageId,WorldChatRetractedPushed);
         }
         // 世界频道推送(docs/design/chat-world-channel-fanout.md §4):只收当前已就绪的角色;解析失败整条丢弃,下次拉历史补上。
         private void WorldChatPushed(MessageContent content)
@@ -33,6 +34,15 @@ namespace MmorpgClient.Game.Social
             try{message=ChatMessage.Parser.ParseFrom(content.SerializedMessage);}
             catch(InvalidProtocolBufferException){return;}
             _state.ApplyPushed(SocialChannel.World,message);
+        }
+        private void WorldChatRetractedPushed(MessageContent content)
+        {
+            if(_disposed||content==null||!_net.IsReady||_net.PlayerId==0)return;
+            ChatRetractedNotify notify;
+            try{notify=ChatRetractedNotify.Parser.ParseFrom(content.SerializedMessage);}
+            catch(InvalidProtocolBufferException){return;}
+            if(_state.ApplyRetracted(SocialChannel.World,notify.SenderPlayerId,notify.SendTimeMs))
+                Publish("一条世界消息已被系统撤回。");
         }
         public void ObserveConnection()
         {
@@ -66,6 +76,27 @@ namespace MmorpgClient.Game.Social
                 Publish("服务器已接受消息，正在更新频道。");Refresh(channel);
             });return true;
         }
+        public bool Report(SocialChannel channel,ulong targetSenderPlayerId,long sendTimeMs,uint reason,string detail="")
+        {
+            ObserveConnection();
+            if(!Supported(channel)||targetSenderPlayerId==0||sendTimeMs<=0||reason==0||reason>4)
+            {Publish("举报参数不完整。");return false;}
+            if(!Ready())return false;
+            var request=new ReportChatRequest
+            {
+                Channel=Proto(channel),
+                TargetSenderPlayerId=targetSenderPlayerId,
+                SendTimeMs=sendTimeMs,
+                Reason=reason,
+                Detail=(detail??"").Trim()
+            };
+            Request(ClientPlayerChatRpc.ReportChatMessageId,request,ReportChatResponse.Parser,response=>
+            {
+                if(!Accept(response.ErrorMessage))return;
+                Publish("举报已提交，感谢你维护仙界环境。");
+            });
+            return true;
+        }
         private static bool Supported(SocialChannel c)=>c==SocialChannel.World;
         private static ChatChannelType Proto(SocialChannel c)=>c==SocialChannel.World?ChatChannelType.World:c==SocialChannel.Team?ChatChannelType.Team:ChatChannelType.System;
         private bool Ready()
@@ -76,8 +107,19 @@ namespace MmorpgClient.Game.Social
         private bool Accept(TipInfoMessage tip)
         {
             if(tip==null||tip.Id==0)return true;
-            // 限流码有两个来源：每秒条数，或世界频道的发言间隔（服务端配置，缺省 5 秒）。两种都没有落库，草稿保留，稍等再发即可。
-            Publish(tip.Id==(uint)common_error.KRateLimitExceeded?"发言太频繁（"+tip.Id+"），请稍等几秒再发。":"聊天服务未完成请求（"+tip.Id+"），请稍后重试。");
+            // 限流/防刷/屏蔽提示均保留草稿,按服务端提示码给出明确引导。
+            Publish(tip.Id switch
+            {
+                (uint)common_error.KRateLimitExceeded=>"发言太频繁（"+tip.Id+"），请稍等几秒再发。",
+                (uint)chat_error.KChatContentRejected=>"发言包含不允许发送的内容，请修改后重试。",
+                (uint)chat_error.KChatContentCheckUnavailable=>"内容安全检测暂时不可用，请稍后重试。",
+                (uint)chat_error.KChatLevelTooLow=>"角色等级不足，暂不能在世界频道发言。",
+                (uint)chat_error.KChatDuplicateSpam=>"请勿在短时间内重复刷屏发言。",
+                (uint)chat_error.KChatPrivateTargetLimit=>"新角色短期内私聊人数已达上限，请稍后再试。",
+                (uint)chat_error.KChatContactRejected=>"请勿在聊天中发布外部联系方式或推广信息。",
+                (uint)chat_error.KChatMessageNotFound=>"该聊天消息不存在或已失效。",
+                _=>"聊天服务未完成请求（"+tip.Id+"），请稍后重试。"
+            });
             return false;
         }
         private void Publish(string message)=>_state.RuntimeStatus(_net.IsReady&&_net.PlayerId!=0,_busy,_reconnect,message);
@@ -100,8 +142,10 @@ namespace MmorpgClient.Game.Social
         {
             const string prefix="server tip=";
             if(string.IsNullOrEmpty(error)||!error.StartsWith(prefix,StringComparison.Ordinal)||!uint.TryParse(error.Substring(prefix.Length),out uint tip))return false;
-            // ServiceUnavailable also represents an upstream timeout: a send may already have been stored.
-            return tip==(uint)common_error.KInvalidParameter||tip==(uint)common_error.KFeatureUnavailable||tip==(uint)common_error.KRateLimitExceeded||tip==(uint)common_error.KMessageSizeExceeded;
+            // ServiceUnavailable 与 ChatContentCheckUnavailable 均按故障处理:发送结果尚未确认。
+            return tip==(uint)common_error.KInvalidParameter||tip==(uint)common_error.KFeatureUnavailable||tip==(uint)common_error.KRateLimitExceeded||tip==(uint)common_error.KMessageSizeExceeded
+                ||tip==(uint)chat_error.KChatContentRejected||tip==(uint)chat_error.KChatLevelTooLow||tip==(uint)chat_error.KChatDuplicateSpam
+                ||tip==(uint)chat_error.KChatPrivateTargetLimit||tip==(uint)chat_error.KChatContactRejected||tip==(uint)chat_error.KChatMessageNotFound;
         }
         private bool Current(int generation,ulong player,object connection)=>!_disposed&&generation==_generation&&_net.IsReady&&_net.PlayerId==player&&ReferenceEquals(connection,_identity());
         public void Dispose(){_disposed=true;++_generation;_busy=false;_queued=null;_net.Disconnected-=Disconnected;}

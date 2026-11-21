@@ -312,10 +312,12 @@ namespace MmorpgClient.Game.Battle
             OnSpectateEnd?.Invoke(ev); // UI 展示结束原因后调 AckEnd() 回 None
         }
 
-        private void HandleDisconnected()
+        /// <summary>断线、静默重连或跨区重定向时作废本地观战态，避免直连因 HostClosed 关闭后相位卡在 Watching/Requesting。</summary>
+        public void Reset()
         {
-            // 断线:观战态整体作废(服务端绑定随 session 失效,重进走 WatchBattle);
+            // 断线/连接重置:观战态整体作废(服务端绑定随 session 失效,重进走 WatchBattle);
             // 待补退出一并作废(session 失效服务端自会清绑定,无需再补发;直连随大厅断线由宿主关闭)
+            _watchRequestId = null;
             _stopPending = false;
             _unsentStopBattleId = 0;
             ClearWatchContext();
@@ -323,6 +325,8 @@ namespace MmorpgClient.Game.Battle
             ObserverCount = 0;
             SetPhase(SpectatePhase.None);
         }
+
+        private void HandleDisconnected() => Reset();
 
         // ── 战斗直连通道(turn-based §22 D74) ─────────────
 

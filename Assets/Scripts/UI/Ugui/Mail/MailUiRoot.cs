@@ -31,6 +31,8 @@ namespace MmorpgClient.UI.Ugui.Mail
         private bool _available;
         private MailClient _client;
         private TMP_Text _entryText;
+        private bool _shownUnseen;
+        private int _shownUnread=-1;
         private bool HasView=>_window!=null&&_window.Root!=null&&_hud!=null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -41,6 +43,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         private void Awake()
         {
             if(Instance!=null&&Instance!=this){Destroy(gameObject);return;}Instance=this;
+            CityPanelRegistry.Register(this,HidePanel);
             var go=new GameObject("MailCanvas",typeof(RectTransform),typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));
             go.transform.SetParent(transform,false);var canvas=go.GetComponent<Canvas>();
             canvas.renderMode=RenderMode.ScreenSpaceOverlay;canvas.sortingOrder=189;
@@ -72,7 +75,12 @@ namespace MmorpgClient.UI.Ugui.Mail
                 if(player!=0){_client=new MailClient(new GameClientBattleTransport(game),()=>game.GateConnectionIdentity,State);_client.AssetRefreshRequired+=RefreshAssets;State.Refresh();}}
             _available=inGame&&!(BattleUiRoot.Instance?.IsBattleLayerVisible??false);
             _hud.gameObject.SetActive(_available);_window.Tick();_client?.Tick(_window.IsVisible);
-            if(_entryText!=null)_entryText.text=_client?.HasUnseenNotice==true?"仙笺 [N] · 新":State.UnreadCount>0?$"仙笺 [N] · {State.UnreadCount}":"仙笺 [N]";
+            if(_entryText!=null)
+            {
+                bool unseen=_client?.HasUnseenNotice==true;int unread=State.UnreadCount;
+                if(unseen!=_shownUnseen||unread!=_shownUnread)
+                {_shownUnseen=unseen;_shownUnread=unread;_entryText.text=unseen?"仙笺 [N] · 新":unread>0?$"仙笺 [N] · {unread}":"仙笺 [N]";}
+            }
             if(!_available){HidePanel();return;}
             if(IsTyping()||(!_window.IsVisible&&GameplayInputGate.IsKeyboardBlocked))return;
 #if ENABLE_INPUT_SYSTEM
@@ -86,12 +94,7 @@ namespace MmorpgClient.UI.Ugui.Mail
         {
             if(!HasView)return;
             if(_window.IsVisible){HidePanel();return;}if(!_available)return;
-            MysteryMerchantUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();Guild.GuildUiRoot.Instance?.HidePanel();Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();Social.SocialUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();CityTravelUiRoot.Instance?.HidePanel();AttributeUiRoot.Instance?.HidePanel();PetUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             _window.Show();
             if(!State.IsBusy)State.Refresh();
         }
@@ -104,14 +107,11 @@ namespace MmorpgClient.UI.Ugui.Mail
         private void DisposeClient(){if(_client==null)return;_client.AssetRefreshRequired-=RefreshAssets;_client.Dispose();_client=null;}
         private void ResetSession(){DisposeClient();_player=0;_gate=null;_available=false;_window?.ResetSession();if(_hud!=null)_hud.gameObject.SetActive(false);}
         private void UnbindGame(){if(_game!=null)_game.OnDisconnected-=ResetSession;_game=null;ResetSession();}
-        public static bool IsTyping()
-        {
-            var go=EventSystem.current?.currentSelectedGameObject;
-            return go!=null&&(go.GetComponentInParent<TMP_InputField>()?.isFocused==true||go.GetComponentInParent<InputField>()?.isFocused==true);
-        }
+        public static bool IsTyping()=>CityPanelRegistry.IsTyping();
         private void OnDisable(){HidePanel();UnbindGame();}
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             UnbindGame();_window?.Dispose();_window=null;if(Instance==this)Instance=null;
         }
     }

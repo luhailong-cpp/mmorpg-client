@@ -50,6 +50,7 @@ namespace MmorpgClient.UI.Ugui.BattleScripts
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var go = new GameObject("BattleScriptCanvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             go.transform.SetParent(transform, false);
             var canvas = go.GetComponent<Canvas>();
@@ -111,27 +112,9 @@ namespace MmorpgClient.UI.Ugui.BattleScripts
             if (!HasView) return;
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available || _client == null) return;
-            HideOtherPanels();
+            CityPanelRegistry.HideOthers(this);
             _window.Show(_client);
             _client.Refresh();
-        }
-
-        /// <summary>主城的几个大面板互斥:打开战斗剧本前收起别的(列表同 RankUiRoot,再加论剑榜)。</summary>
-        private static void HideOtherPanels()
-        {
-            Rank.RankUiRoot.Instance?.HidePanel();
-            MysteryMerchantUiRoot.Instance?.HidePanel();
-            SceneChannelUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
-            Social.SocialUiRoot.Instance?.HidePanel();
-            Mail.MailUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();
-            CityTravelUiRoot.Instance?.HidePanel();
-            AttributeUiRoot.Instance?.HidePanel();
-            PetUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
         }
 
         public void HidePanel() { if (_window?.Root != null) _window.Hide(); }
@@ -142,16 +125,7 @@ namespace MmorpgClient.UI.Ugui.BattleScripts
             if (_window != null && _window.IsVisible) _window.Render();
         }
 
-        private static bool IsTyping()
-        {
-            var current = EventSystem.current;
-            if (current == null) return false;
-            var selected = current.currentSelectedGameObject;
-            // Unity 已销毁对象需用其重载的空值判断,?. 仍会访问失效的原生对象。
-            if (selected == null) return false;
-            return selected?.GetComponentInParent<TMP_InputField>()?.isFocused == true
-                || selected?.GetComponentInParent<InputField>()?.isFocused == true;
-        }
+        private static bool IsTyping() => CityPanelRegistry.IsTyping();
 
         private void UnbindClient()
         {
@@ -163,6 +137,7 @@ namespace MmorpgClient.UI.Ugui.BattleScripts
         private void OnDestroy()
         {
             _destroyed = true;
+            CityPanelRegistry.Unregister(this);
             UnbindClient(); HidePanel(); _window = null;
             if (Instance == this) Instance = null;
         }

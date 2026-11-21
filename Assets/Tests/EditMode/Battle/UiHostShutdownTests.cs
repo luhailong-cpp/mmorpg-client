@@ -53,5 +53,37 @@ namespace MmorpgClient.Tests.EditMode.Battle
             }
             finally { UnityEngine.Object.DestroyImmediate(fixture); }
         }
+
+        [Test]
+        public void CityPanelRegistryHidesOthersAndPrunesDestroyedOwners()
+        {
+            var ownerA = new object();
+            var ownerB = new object();
+            var deadGo = new GameObject("DeadPanelOwner");
+            int aHidden = 0, bHidden = 0, deadHidden = 0;
+            try
+            {
+                CityPanelRegistry.Register(ownerA, () => aHidden++);
+                CityPanelRegistry.Register(ownerB, () => { bHidden++; CityPanelRegistry.Unregister(ownerB); });
+                CityPanelRegistry.Register(deadGo, () => deadHidden++);
+                UnityEngine.Object.DestroyImmediate(deadGo);
+
+                CityPanelRegistry.HideOthers(ownerA);
+
+                Assert.That(aHidden, Is.Zero);
+                Assert.That(bHidden, Is.EqualTo(1));
+                Assert.That(deadHidden, Is.Zero);
+
+                CityPanelRegistry.HideOthers(null);
+                Assert.That(aHidden, Is.EqualTo(1));
+                Assert.That(bHidden, Is.EqualTo(1));
+            }
+            finally
+            {
+                CityPanelRegistry.Unregister(ownerA);
+                CityPanelRegistry.Unregister(ownerB);
+                if (deadGo != null) UnityEngine.Object.DestroyImmediate(deadGo);
+            }
+        }
     }
 }

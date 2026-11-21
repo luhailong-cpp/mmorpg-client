@@ -21,8 +21,8 @@ namespace MmorpgClient.Game.Rank
     public sealed class RankClient : IDisposable
     {
         public const uint PageSize = 5;
-        public const float MinRequestIntervalSeconds = 0.4f;
-        public const float MessageWindowSeconds = 2.5f;
+        public const float MinRequestIntervalSeconds = 0.2f;
+        public const float MessageWindowSeconds = RpcGuard.DefaultMessageWindowSeconds;
         public const int SendQuota = 5;
         public const float RateLimitBackoffSeconds = MessageWindowSeconds;
         /// <summary>

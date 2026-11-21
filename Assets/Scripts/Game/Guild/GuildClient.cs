@@ -98,6 +98,8 @@ namespace MmorpgClient.Game.Guild
         public ulong PlayerId => _net.PlayerId;
         public GuildInfo Info { get; private set; }
         public GetGuildRankResponse Rank { get; private set; }
+        /// <summary>帮会最早可再次改名的时刻 Unix 秒(改名成功或冷却拒收时由服务端填回;0 = 未记录)。</summary>
+        public ulong NextRenameTimeUnixSec { get; private set; }
         public bool HasLoaded { get; private set; }
         public bool Busy { get; private set; }
         public bool RequiresReconnect { get; private set; }
@@ -489,6 +491,7 @@ namespace MmorpgClient.Game.Guild
                 else RefreshQueued = true;
                 if (change.Kind == GuildChangeKind.Disbanded) _pendingNotice = "帮会已被帮主解散。";
                 else if (change.Kind == GuildChangeKind.MemberKicked && aboutMe) _pendingNotice = "你已被请离帮会。";
+                else if (change.Kind == GuildChangeKind.Renamed) _pendingNotice = "帮会名称已更新。";
                 if (_pendingNotice != null) Status = _pendingNotice; // 立即可见;Refresh 回包后再次落定
             }
             else if (Info == null && aboutMe && change.Kind == GuildChangeKind.MemberJoined)
@@ -774,6 +777,24 @@ namespace MmorpgClient.Game.Guild
                 { GuildId = Info.GuildId, Announcement = text },
                 SetAnnouncementResponse.Parser, response =>
                 { if (Accept(response.ErrorMessage)) Apply(response.Guild); });
+        }
+
+        /// <summary>帮会改名(仅帮主;扣帮会资金,旧名保留保护期)。</summary>
+        public void Rename(string name)
+        {
+            name = (name ?? "").Trim();
+            if (Info == null || !IsLeader) { Reject("仅帮主可修改帮会名称。"); return; }
+            if (name.Length == 0 || name.Length > MaxNameLength)
+            { Reject("请填写 1–24 字的新帮名。"); return; }
+            Request(MessageIds.RenameGuild, new RenameGuildRequest
+                { GuildId = Info.GuildId, Name = name },
+                RenameGuildResponse.Parser, response =>
+                {
+                    if (response.NextRenameTime > 0) NextRenameTimeUnixSec = response.NextRenameTime;
+                    if (!Accept(response.ErrorMessage)) return;
+                    Apply(response.Guild);
+                    Status = "帮会已更名。";
+                });
         }
 
         public void Leave()
@@ -1882,6 +1903,11 @@ namespace MmorpgClient.Game.Guild
                 (uint)guild_error.KGuildNameInvalid => "帮会名称需为 1–24 个字，且不能包含换行等特殊字符。",
                 (uint)guild_error.KGuildNameTaken => "该帮会名称已被使用，请换一个。",
                 (uint)guild_error.KGuildAnnouncementTooLong => "公告过长，请精简后再保存。",
+                (uint)guild_error.KGuildNameSensitive => "帮会名称包含不允许使用的词语，请修改。",
+                (uint)guild_error.KGuildAnnouncementSensitive => "帮会公告包含不允许使用的词语，请修改。",
+                (uint)guild_error.KGuildTextCheckUnavailable => "帮会内容安全检测暂时不可用，请稍后重试。",
+                (uint)guild_error.KGuildRenameCooldown => "帮会改名冷却中，请稍后再试。",
+                (uint)guild_error.KGuildRenameSameName => "新帮会名称与当前名称相同。",
                 (uint)guild_error.KGuildHomeZoneUnknown => "角色所属区服尚未确认，暂时无法使用帮会，请联系管理员。",
                 (uint)guild_error.KGuildZoneMerging => "区服合并维护中，帮会操作暂停，请稍后再试。",
                 (uint)guild_error.KGuildTargetNotMember => "对方已不在本帮会，列表即将刷新。",

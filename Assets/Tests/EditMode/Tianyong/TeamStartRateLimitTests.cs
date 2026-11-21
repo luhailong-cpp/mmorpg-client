@@ -126,7 +126,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Team = View(version),
                     ErrorMessage = new TipInfoMessage { Id = (uint)team_error.KTeamRatingGapTooLarge },
                 });
-                _now += 0.5f;
+                _now += 0.4f;
             }
             Assert.That(entry.CanStartNow, Is.False);
             Assert.That(entry.StartBlockedReason, Does.Contain("冷却"));

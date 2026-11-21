@@ -57,18 +57,21 @@ namespace MmorpgClient.UI.Ugui.Battle
         private UiTextButton _entryButton;
         private BattleEntryMode _entryMode = BattleEntryMode.Battle;   // 「战斗」入口当前的用途(见 DecideEntryMode)
         private UiTextButton _spectateEntryButton;
+        private UiTextButton _reportEntryButton;
         private UiTextButton _characterDetailsButton, _petDetailsButton;
         private BattleQueuePanel _queuePanel;
         // 这一次排队是随队伍被带入的(队伍补位匹配)时,记下采纳时写进排队面板状态行的说明;否则为 null。
         // 排队结束时要把那句话换掉,而 BattleClient 在发相位事件之前就清了 QueueAdopted,到那时已经读不到。
         private string _adoptedQueueHint;
         private SpectatePanel _spectatePanel;
+        private BattleReportPanel _reportPanel;
         private BattleChallengePopup _challengePopup;
         private BattleScreen _battleScreen;
         private BattleResultPanel _resultPanel;
         // 近期战斗结果补弹(服务端 docs/design/battle-result-recovery.md §7):补查到的、玩家还没看过的结果在这里排队,
         // 空闲时(没有战斗屏、观战屏,也没有结算面板在显示)逐个弹,确认一局再弹下一局;弹出时告诉补查客户端,由它确认已读。
         private BattleResultRecoveryClient _recovery;
+        private BattleReportClient _reports;
         private readonly Queue<PlayerBattleResult> _recoveredResults = new Queue<PlayerBattleResult>();
         private ulong _recoveredShowingId; // 结算面板上正在显示的补弹局;0 = 没有(面板空着,或显示的是现场结算)
 
@@ -88,6 +91,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         private TurnResultS2C _spectatePlayingResult; // 播放被新回合抢占时用其 State 收尾
         private SpectateEndS2C _pendingSpectateEnd;
 
+        // 战报回放状态(离线只读播放,不依赖战斗直连)
+        private bool _replayOpen;
+        private BattleReplayPlayer _replayPlayer;
+        private Coroutine _replayPlayCo;
+
         /// <summary>供子面板取 BattleClient(可能为 null:NET 路尚未初始化)。</summary>
         public BattleClient Client => _client;
         public BattleMatchEntryClient MatchEntry => Team.TeamUiRoot.Instance?.MatchEntry;
@@ -95,8 +103,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>供子面板取 SpectateClient(可能为 null:NET 路尚未初始化)。</summary>
         public SpectateClient Spectate => _spectate;
 
-        /// <summary>战斗层(参战屏或观战屏)正在显示；资料窗口据此进入战斗只读状态。</summary>
-        public bool IsBattleLayerVisible => _battleOpen || _spectateOpen;
+        /// <summary>供子面板取 BattleReportClient(可能为 null:NET 路尚未初始化)。</summary>
+        public BattleReportClient Reports => _reports;
+
+        /// <summary>战斗层(参战屏、观战屏或战报回放屏)正在显示；资料窗口据此进入战斗只读状态。</summary>
+        public bool IsBattleLayerVisible => _battleOpen || _spectateOpen || _replayOpen;
         internal BattleScreen ActiveBattleScreen => _battleOpen ? _battleScreen : null;
 
         // ── 生命周期 ────────────────────────────────────────
@@ -174,8 +185,10 @@ namespace MmorpgClient.UI.Ugui.Battle
             UnbindSpectate();
             UnbindGameClient();
             StopAllCoroutines();
-            _playCo = _toastCo = _spectatePlayCo = null;
+            _playCo = _toastCo = _spectatePlayCo = _replayPlayCo = null;
             _playing = _spectatePlaying = false;
+            _replayPlayer = null;
+            _replayOpen = false;
         }
 
         private void OnDestroy()
@@ -267,9 +280,16 @@ namespace MmorpgClient.UI.Ugui.Battle
             _client.OnBattleChannelReady += HandleBattleChannelReady;
             _client.OnBattleChannelFailed += HandleBattleChannelFailed;
             _client.OnBattleVoidNotice += HandleBattleVoidNotice;
-            // 补查客户端与 BattleClient 同在 GameClient 构造时挂接,生命周期一致,随它一起绑。
+            // 补查客户端与战报客户端均在 GameClient 构造时挂接,生命周期与 BattleClient 一致,随它一起绑。
             _recovery = BattleResultRecoveryClient.Instance;
             if (_recovery != null) _recovery.OnRecoveredResult += HandleRecoveredResult;
+            _reports = BattleReportClient.Instance;
+            if (_reports != null)
+            {
+                _reports.OnListUpdated += HandleBattleReportList;
+                _reports.OnReplayLoaded += HandleBattleReplayLoaded;
+                _reports.OnError += HandleBattleReportError;
+            }
         }
 
         private void UnbindClient()
@@ -279,6 +299,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             {
                 _recovery.OnRecoveredResult -= HandleRecoveredResult;
                 _recovery = null;
+            }
+            if (_reports != null)
+            {
+                _reports.OnListUpdated -= HandleBattleReportList;
+                _reports.OnReplayLoaded -= HandleBattleReplayLoaded;
+                _reports.OnError -= HandleBattleReportError;
+                _reports = null;
             }
             if (_client == null) return;
             _client.OnPhaseChanged -= HandlePhaseChanged;
@@ -406,8 +433,18 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectateEntryButton.SetVisible(false);
             WorldHudNavigation.Register(WorldHudEntry.Spectate, _spectateEntryButton.Rect, _spectateEntryButton.Button, _spectateEntryButton.Label);
 
+            _reportEntryButton = BattleUiWidgets.CreateFramedTextButton("BattleReportEntry", _hudRoot,
+                BattleUiStyle.HudEntryX, BattleUiStyle.HudEntryY(2),
+                BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, "战报", BattleUiStyle.HudEntryFontSize,
+                BattleUiStyle.HudEntryPlate, BattleUiStyle.HudEntryFrameColor, BattleUiStyle.HudEntryText,
+                BattleUiStyle.HudEntryFrame);
+            _reportEntryButton.Button.onClick.AddListener(OnReportEntryClicked);
+            _reportEntryButton.SetVisible(false);
+            WorldHudNavigation.Register(WorldHudEntry.BattleReport, _reportEntryButton.Rect, _reportEntryButton.Button, _reportEntryButton.Label);
+
             _queuePanel = new BattleQueuePanel(this, windowRoot);
             _spectatePanel = new SpectatePanel(this, windowRoot);
+            _reportPanel = new BattleReportPanel(this, windowRoot);
             _battleScreen = new BattleScreen(this, _battleRoot);
             _characterDetailsButton = CreateDetailsButton("BattleCharacterDetails", CharacterDetailsRect, "人物资料", () =>
             {
@@ -419,7 +456,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 Pet.PetUiRoot.EnsureSpawned();
                 Pet.PetUiRoot.Instance.OpenPage(Pet.PetCultivationPage.EntryPoints);
             });
-            _resultPanel = new BattleResultPanel(_modalResultRoot, OnResultConfirmed);
+            _resultPanel = new BattleResultPanel(_modalResultRoot, OnResultConfirmed, OnRecoveredWatchReplay);
             _challengePopup = new BattleChallengePopup(this, _modalPopupRoot);
 
             _toastText = QdaoUguiFactory.CreateText("Toast", toastRoot,
@@ -799,8 +836,10 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (_spectateOpen || state == null || _battleScreen == null) return;
             if (_battleOpen) return; // 参战屏优先:迟到的观战帧宁可丢弃也不抢屏
+            if (_replayOpen) CloseReplay();
             _spectateOpen = true;
             _spectatePanel?.Hide();
+            _reportPanel?.Hide();
             _queuePanel?.Hide();
             _battleLayerGo.SetActive(true);
             _battleScreen.OpenSpectate(state, observerCount);
@@ -812,8 +851,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (!_spectateOpen) return;
             _spectateOpen = false;
             _battleScreen?.Close();
-            // 战斗层与参战流程共用:仅参战屏也没占用时才熄灯
-            if (_battleLayerGo != null && !_battleOpen) _battleLayerGo.SetActive(false);
+            // 战斗层与参战 / 回放流程共用:仅都没占用时才熄灯
+            if (_battleLayerGo != null && !_battleOpen && !_replayOpen) _battleLayerGo.SetActive(false);
             ShowNextRecoveredResult(); // 观战收屏也是回到空闲
         }
 
@@ -823,6 +862,204 @@ namespace MmorpgClient.UI.Ugui.Battle
             _spectatePlaying = false;
             _spectatePlayingResult = null;
             _pendingSpectateEnd = null;
+        }
+
+        // ── 战报回放(BattleReportClient + BattleReplayPlayer) ──
+
+        private void HandleBattleReportList(IReadOnlyList<Match.BattleReportSummary> reports)
+        {
+            _reportPanel?.ApplyList(reports, _reports?.PlayerId ?? _client?.MyPlayerId ?? 0);
+        }
+
+        private void HandleBattleReplayLoaded(BattleReplay replay)
+        {
+            _reportPanel?.RefreshInteractable();
+            StartReplay(replay);
+        }
+
+        private void HandleBattleReportError(string message)
+        {
+            _reportPanel?.RefreshInteractable();
+            ShowToast(message, true);
+            if (_reportPanel != null && _reportPanel.IsVisible)
+                _reportPanel.SetStatus(message);
+        }
+
+        private void StartReplay(BattleReplay replay)
+        {
+            if (replay?.StartState == null || _battleScreen == null || !HasLiveCanvas) return;
+            if (_battleOpen)
+            {
+                ShowToast("正在战斗中，暂时无法观看回放", true);
+                return;
+            }
+            if (_spectateOpen)
+            {
+                AbortSpectatePlayback();
+                CloseSpectate();
+                _spectate?.StopWatch();
+            }
+            if (_replayOpen)
+            {
+                AbortReplayPlayback();
+                _battleScreen.Close();
+                _replayOpen = false;
+            }
+
+            _reportPanel?.Hide();
+            _spectatePanel?.Hide();
+            _queuePanel?.Hide();
+
+            _replayPlayer = new BattleReplayPlayer(replay);
+            ulong myId = _reports?.PlayerId ?? _client?.MyPlayerId ?? 0;
+            uint viewerTeam = _replayPlayer.ResolveViewerTeam(myId);
+            var startState = _replayPlayer.SeekToRound(1);
+
+            _replayOpen = true;
+            _battleLayerGo.SetActive(true);
+            _battleScreen.OpenReplay(startState, myId, viewerTeam, FormatReplayHeader(_replayPlayer), _replayPlayer.TableVersionWarning);
+            if (!string.IsNullOrEmpty(_replayPlayer.TableVersionWarning))
+                ShowToast(_replayPlayer.TableVersionWarning);
+            SyncReplayHud();
+            _replayPlayCo = StartCoroutine(CoRunReplayLoop());
+        }
+
+        private IEnumerator CoRunReplayLoop()
+        {
+            while (_replayOpen && _replayPlayer != null)
+            {
+                while (_replayOpen && _replayPlayer != null && _replayPlayer.IsPaused)
+                    yield return null;
+
+                if (!_replayOpen || _replayPlayer == null) yield break;
+
+                if (!_replayPlayer.TryNextRound(out var turn))
+                {
+                    FinishReplay();
+                    yield break;
+                }
+
+                SyncReplayHud();
+                yield return _battleScreen.CoPlayReplayTurn(turn, _replayPlayer.SpeedScale);
+            }
+        }
+
+        private void FinishReplay()
+        {
+            _replayPlayCo = null;
+            if (!_replayOpen || _replayPlayer == null || _battleScreen == null) return;
+            var finalState = _replayPlayer.FinalDisplayState();
+            if (finalState != null) _battleScreen.ApplyState(finalState);
+            SyncReplayHud();
+            ulong myId = _reports?.PlayerId ?? _client?.MyPlayerId ?? 0;
+            ShowToast(_replayPlayer.BuildEndingBanner(myId));
+        }
+
+        private void AbortReplayPlayback()
+        {
+            if (_replayPlayCo != null) { StopCoroutine(_replayPlayCo); _replayPlayCo = null; }
+            _battleScreen?.AbortPlayback();
+        }
+
+        private void CloseReplay()
+        {
+            AbortReplayPlayback();
+            _replayPlayer = null;
+            if (!_replayOpen) return;
+            _replayOpen = false;
+            _battleScreen?.Close();
+            if (_battleLayerGo != null && !_battleOpen && !_spectateOpen) _battleLayerGo.SetActive(false);
+            ShowNextRecoveredResult();
+        }
+
+        private void SyncReplayHud()
+        {
+            if (!_replayOpen || _replayPlayer == null || _battleScreen == null) return;
+            ulong myId = _reports?.PlayerId ?? _client?.MyPlayerId ?? 0;
+            int shownRound = _replayPlayer.RecordedRounds == 0 ? 0 : Mathf.Max(1, _replayPlayer.CurrentRoundNumber);
+            string phaseText = _replayPlayer.IsFinished
+                ? _replayPlayer.BuildEndingBanner(myId)
+                : _replayPlayer.IsPaused
+                    ? $"已暂停 · 第 {shownRound} / {_replayPlayer.RecordedRounds} 回合"
+                    : $"回放播放中 · 第 {shownRound} / {_replayPlayer.RecordedRounds} 回合";
+            string hint = !string.IsNullOrEmpty(_replayPlayer.TableVersionWarning)
+                ? _replayPlayer.TableVersionWarning
+                : _replayPlayer.IsFinished
+                    ? "可点「上一回合」或输入回合号重播，或点「退出回放」"
+                    : "只读战报回放 · 支持切回合、暂停、倍速与跳过终态";
+            _battleScreen.UpdateReplayHud(phaseText, FormatReplayHeader(_replayPlayer), hint,
+                _replayPlayer.SpeedScale, _replayPlayer.IsPaused,
+                _replayPlayer.CurrentRoundNumber, _replayPlayer.RecordedRounds, _replayPlayer.IsFinished);
+        }
+
+        private static string FormatReplayHeader(BattleReplayPlayer player)
+        {
+            if (player == null) return "战报回放";
+            string mode = BattleReportClient.ModeName((Match.MatchMode)player.Replay.MatchMode);
+            return $"战报回放 · {mode} · 共 {player.RecordedRounds} 回合";
+        }
+
+        private void SeekReplayTo(int roundNumber)
+        {
+            if (!_replayOpen || _replayPlayer == null || _battleScreen == null) return;
+            AbortReplayPlayback();
+            var snapshot = _replayPlayer.SeekToRound(roundNumber);
+            if (snapshot != null) _battleScreen.ApplyState(snapshot);
+            SyncReplayHud();
+            _replayPlayCo = StartCoroutine(CoRunReplayLoop());
+        }
+
+        public void RequestReplayPrevRound()
+        {
+            if (!_replayOpen || _replayPlayer == null || _replayPlayer.RecordedRounds == 0) return;
+            int target = _replayPlayer.IsFinished
+                ? _replayPlayer.RecordedRounds
+                : Mathf.Max(1, _replayPlayer.CurrentRoundNumber - 1);
+            SeekReplayTo(target);
+        }
+
+        public void RequestReplayNextRound()
+        {
+            if (!_replayOpen || _replayPlayer == null || _replayPlayer.RecordedRounds == 0) return;
+            int target = Mathf.Min(_replayPlayer.RecordedRounds, Mathf.Max(1, _replayPlayer.CurrentRoundNumber) + 1);
+            SeekReplayTo(target);
+        }
+
+        public void RequestReplayJumpRound(int roundNumber)
+        {
+            if (!_replayOpen || _replayPlayer == null || _replayPlayer.RecordedRounds == 0) return;
+            SeekReplayTo(roundNumber);
+        }
+
+        public void RequestReplayTogglePause()
+        {
+            if (!_replayOpen || _replayPlayer == null || _replayPlayer.IsFinished) return;
+            _replayPlayer.TogglePause();
+            SyncReplayHud();
+        }
+
+        public void RequestReplayCycleSpeed()
+        {
+            if (!_replayOpen || _replayPlayer == null || _battleScreen == null) return;
+            float speed = _replayPlayer.CycleSpeed();
+            _battleScreen.SetReplaySpeed(speed);
+            SyncReplayHud();
+        }
+
+        public void RequestReplaySkip()
+        {
+            if (!_replayOpen || _replayPlayer == null || _battleScreen == null) return;
+            AbortReplayPlayback();
+            var finalState = _replayPlayer.SkipToEnd();
+            if (finalState != null) _battleScreen.ApplyState(finalState);
+            SyncReplayHud();
+            ulong myId = _reports?.PlayerId ?? _client?.MyPlayerId ?? 0;
+            ShowToast(_replayPlayer.BuildEndingBanner(myId));
+        }
+
+        public void RequestExitReplay()
+        {
+            CloseReplay();
         }
 
         private void HandleDisconnected()
@@ -837,17 +1074,21 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_playCo != null) { StopCoroutine(_playCo); _playCo = null; }
             _playing = false;
             AbortSpectatePlayback();
+            if (_replayPlayCo != null) { StopCoroutine(_replayPlayCo); _replayPlayCo = null; }
+            _replayPlayer = null;
             // 退出Play时原生画布可能已经销毁；先清托管播放态，不能再调用控件。
             if (_stopping || !HasLiveCanvas)
             {
-                _battleOpen = _spectateOpen = false;
+                _battleOpen = _spectateOpen = _replayOpen = false;
                 return;
             }
             _battleScreen?.AbortPlayback();
             CloseBattle();
-            // 观战态同样作废(SpectateClient 断线自身也会回 None,此处是 UI 侧兜底)
+            // 观战与回放态同样收起(SpectateClient 断线自身也会回 None,此处是 UI 侧兜底)
             CloseSpectate();
+            CloseReplay();
             _spectatePanel?.Hide();
+            _reportPanel?.Hide();
             _resultPanel?.Hide();
             _queuePanel?.SetQueueing(false);
             _queuePanel?.Hide();
@@ -874,23 +1115,25 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             if (state == null || _battleScreen == null) return;
             // 极端时序兜底:参战开局必然晚于观战清退(D11 互斥 + Kafka 同 key 有序),
-            // 观战屏若还开着先收掉,避免两条流程抢同一个 BattleScreen
+            // 观战屏或战报回放若还开着先收掉,避免两条流程抢同一个 BattleScreen
             if (_spectateOpen)
             {
                 AbortSpectatePlayback();
                 CloseSpectate();
             }
+            if (_replayOpen) CloseReplay();
             _battleOpen = true;
             _battleLayerGo.SetActive(true);
             _battleScreen.Open(state, _client?.MyPlayerId ?? 0);
             _battleScreen.OnPhaseChanged(_client?.Phase ?? BattlePhase.None);
             _queuePanel?.Hide();
+            _reportPanel?.Hide();
         }
 
         private void CloseBattle()
         {
-            // 战斗层被观战屏占用时,参战流程无屏可关(误关会拆掉观战画面)
-            if (_spectateOpen && !_battleOpen) return;
+            // 战斗层被观战屏或战报回放占用时,参战流程无屏可关(误关会拆掉画面)
+            if ((_spectateOpen || _replayOpen) && !_battleOpen) return;
             if (!_battleOpen && (_battleLayerGo == null || !_battleLayerGo.activeSelf)) return;
             _battleOpen = false;
             _battleScreen?.Close();
@@ -938,9 +1181,22 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// 空闲时弹下一局补查到的结果。战斗屏、观战屏开着,回合表现还在播,或已经有结算面板(现场的或补弹的)在显示时先不弹:
         /// 相位回到空闲、观战收屏、或玩家确认了面板之后再弹。
         /// </summary>
+        private void OnRecoveredWatchReplay(ulong battleId)
+        {
+            if (battleId == 0 || _reports == null) return;
+            _resultShowing = false;
+            _recoveredShowingId = 0;
+            _resultPanel?.Hide();
+            RefreshModalDim();
+            if (_reports.FetchReplay(battleId))
+            {
+                ShowToast("正在加载战报回放…");
+            }
+        }
+
         private void ShowNextRecoveredResult()
         {
-            if (_resultPanel == null || _resultShowing || _battleOpen || _spectateOpen || _playing || _pendingEnd != null) return;
+            if (_resultPanel == null || _resultShowing || _battleOpen || _spectateOpen || _replayOpen || _playing || _pendingEnd != null) return;
             if (_client != null && _client.Phase != BattlePhase.None) return;
             if (_recoveredResults.Count == 0) return;
             var result = _recoveredResults.Dequeue();
@@ -988,6 +1244,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_spectatePanel.IsVisible) _spectatePanel.RefreshList();
         }
 
+        private void OnReportEntryClicked()
+        {
+            if (_reportPanel == null) return;
+            _reportPanel.Toggle();
+            if (_reportPanel.IsVisible) _reportPanel.RefreshList();
+        }
+
         private void RefreshEntryVisibility()
         {
             if (_stopping || !HasLiveCanvas || _entryButton == null) return;
@@ -996,7 +1259,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _characterDetailsButton?.SetVisible(canViewDetails);
             _petDetailsButton?.SetVisible(canViewDetails);
             bool spectating = _spectateBound && _spectate != null && _spectate.Phase != SpectatePhase.None;
-            bool visible = _clientBound && _client != null && inGame && !_battleOpen && !_spectateOpen && !spectating;
+            bool visible = _clientBound && _client != null && inGame && !_battleOpen && !_spectateOpen && !_replayOpen && !spectating;
             _entryButton.SetVisible(visible);
             var entryMode = CurrentEntryMode();
             if (entryMode != _entryMode)
@@ -1011,10 +1274,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             bool spectateVisible = visible && _spectateBound && _client.Phase == BattlePhase.None
                                    && entryMode == BattleEntryMode.Battle;
             _spectateEntryButton?.SetVisible(spectateVisible);
+            bool reportVisible = visible && _reports != null;
+            _reportEntryButton?.SetVisible(reportVisible);
             if (!visible && !inGame)
             {
                 _queuePanel?.Hide();
                 _spectatePanel?.Hide();
+                _reportPanel?.Hide();
             }
         }
 
@@ -1086,6 +1352,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             _queuePanel?.Hide();
             _spectatePanel?.Hide();
+            _reportPanel?.Hide();
             _challengePopup?.HideSilently();
             RefreshModalDim();
         }

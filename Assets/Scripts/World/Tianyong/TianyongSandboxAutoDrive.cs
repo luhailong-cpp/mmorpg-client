@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -954,3 +955,4 @@ namespace MmorpgClient.World.Tianyong
         private static void Log(string message) => Debug.Log($"{Tag} {message}");
     }
 }
+#endif

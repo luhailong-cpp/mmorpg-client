@@ -1,0 +1,25 @@
+// 安卓 App 微信支付与支付宝原生模块(服务端 docs/design/payment-recharge.md §22.10)。
+// Unity 把 *.androidlib 当 Gradle 子模块并进导出工程:依赖与混淆规则只写在这里,不改工程的 Gradle 模板。
+// 仓库(google()、mavenCentral())由导出工程的 settings.gradle 统一声明,这里不写。
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'com.mmorpg.pay'
+    compileSdk = (project.findProperty('unity.compileSdkVersion') ?: '35') as int
+    defaultConfig {
+        minSdk = (project.findProperty('unity.minSdkVersion') ?: '26') as int
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
+}
+
+dependencies {
+    // 微信 OpenSDK(Maven Central 推荐稳定版)
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.40'
+    // 支付宝 App 支付 SDK(Maven Central 推荐稳定版)
+    implementation 'com.alipay.sdk:alipaysdk-android:15.8.42'
+}

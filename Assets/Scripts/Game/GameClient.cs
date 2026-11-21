@@ -168,6 +168,12 @@ namespace MmorpgClient.Game
         public BattleResultRecoveryClient BattleResults { get; }
 
         /// <summary>
+        /// PVP 战报列表与回放拉取(docs/handoff/battle-report-replay-client.md):两条请求只走大厅连接(gate → match),
+        /// 不建 battle 直连;纯请求-响应,不需要 Tick。
+        /// </summary>
+        public BattleReportClient BattleReports { get; }
+
+        /// <summary>
         /// 观战网络层(与 Battle 平行的只读状态机,消息号不同互不干扰)。
         /// 与 Battle 共用同一个 DirectRoutingBattleTransport(消息号不相交,注册覆盖语义不冲突)
         /// 与同一条战斗直连。
@@ -358,6 +364,9 @@ namespace MmorpgClient.Game
             // 近期战斗结果走大厅管线(scene 的玩家 RPC),不走战斗直连;落地判定与 LandingSync 同一口径(InGame + 就绪 + 连接身份)。
             BattleResults = BattleResultRecoveryClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => InGame, () => Time.realtimeSinceStartup, s => Log($"[battle-result] {s}"));
+            // PVP 战报回放只走大厅连接(gate → match),不碰 BattleLink 直连。
+            BattleReports = BattleReportClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                s => Log($"[battle-report] {s}"));
             Battle.OnBattleEndWithoutContext += (end, notified) => BattleResults.HandleEndWithoutContext(end?.BattleId ?? 0, notified);
             Battle.RegionProbe = new RegionProbeClient(battleRoute, () => ClientTransport.Create(_codec), ClientTransport.ConnectRunner);
             // 本机待确认记录一律带上归属修订号来源:角色换主人之前留下的记录不恢复、不重发。
@@ -605,11 +614,11 @@ namespace MmorpgClient.Game
             Status("正在登录账号…");
             GatewayLoginResult loginHttp = null;
             // 第 1、2 步共用一个排队总预算(服务端 open-server-rate-limit-design.md §11.5 第 7 条)与无票 429 的重试次数。
-            double queueDeadline = MonotonicSeconds + QueueWaitBudgetSeconds;
+            double queueDeadline = QueueNowSeconds + QueueWaitBudgetSeconds;
             int rateLimitedRetries = 0;
             while (true)
             {
-                if (MonotonicSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
+                if (QueueNowSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
                 GatewayLoginResult r = null;
                 string err = null;
                 yield return _http.Login(BuildHttpLoginRequest(zoneId, credential, deviceId), x => r = x, e => err = e);
@@ -619,7 +628,7 @@ namespace MmorpgClient.Game
                 if (r.code == GatewayLoginResult.CodeQueueing)
                 {
                     Status($"登录排队中… 前方约 {Math.Max(0, r.queue_pos)} 人");
-                    yield return WaitMs(QueueRetryDelayMs(r.retry_after_ms));
+                    yield return WaitQueueMs(gen, QueueRetryDelayMs(r.retry_after_ms), queueDeadline);
                     if (gen != _pipelineGen) yield break;
                     continue;
                 }
@@ -628,7 +637,7 @@ namespace MmorpgClient.Game
                 {
                     long waitMs = QueueRetryDelayMs(RateLimitedBackoffMs(++rateLimitedRetries));
                     Status($"操作过于频繁,{waitMs / 1000} 秒后重试…");
-                    yield return WaitMs(waitMs);
+                    yield return WaitQueueMs(gen, waitMs, queueDeadline);
                     if (gen != _pipelineGen) yield break;
                     continue;
                 }
@@ -715,16 +724,16 @@ namespace MmorpgClient.Game
             string queueToken = null;
             // queue-status 连续失败的次数,定持票等待的退避下限:查询的非失败回包清零,恢复重入的回包不清零,丢票时清零。
             int statusFailures = 0;
-            double nextTokenRefreshAt = 0;
+            double nextTokenRefreshAt = double.NegativeInfinity;
             while (true)
             {
                 // 每个请求发出前确认排队总预算没用完(第 7 条);已发出的请求照常等回包,截止后才到的放行照样进。
-                if (MonotonicSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
+                if (QueueNowSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
                 // 排队可能比 access token(2 小时)还长:快到期就先换一对新令牌,否则恢复重入回 401、放行后进 gate 也认证不过。
-                // 网络失败或 500 隔 60 秒再试(查询不用 access token,照常进行);refresh 令牌被拒就是登录失效。
-                if (AccessTokenExpiresSoon() && MonotonicSeconds >= nextTokenRefreshAt)
+                // 网络失败或 429 / 500 隔 60 秒再试(查询不用 access token,照常进行);refresh 令牌被拒就是登录失效。
+                if (AccessTokenExpiresSoon() && QueueNowSeconds >= nextTokenRefreshAt)
                 {
-                    nextTokenRefreshAt = MonotonicSeconds + QueueTokenRefreshRetrySeconds;
+                    nextTokenRefreshAt = QueueNowSeconds + QueueTokenRefreshRetrySeconds;
                     GatewayRefreshTokenResult refreshed = null;
                     string refreshErr = null;
                     yield return _http.RefreshToken(RefreshToken, x => refreshed = x, e => refreshErr = e);
@@ -737,6 +746,8 @@ namespace MmorpgClient.Game
                     }
                     else
                         Log($"access_token refresh while queueing failed ({refreshErr ?? "code=" + refreshed.code}); retrying in {QueueTokenRefreshRetrySeconds}s");
+                    // refresh 请求本身可能耗时跨过总预算:紧接其后的 assign-gate / queue-status 发出前再核一次。
+                    if (QueueNowSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
                 }
                 AssignGateResult r = null;
                 string err = null;
@@ -756,7 +767,7 @@ namespace MmorpgClient.Game
                     {
                         statusFailures++;
                         Log($"queue-status failed ({err ?? "code=500 error=" + r.error}), consecutive={statusFailures}; re-entering assign-gate with the queue token");
-                        if (MonotonicSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
+                        if (QueueNowSeconds >= queueDeadline) { onError(QueueBudgetExceededMessage); yield break; }
                         r = null;
                         err = null;
                         yield return _http.AssignGate(BuildAssignGateRequest(zoneId, AccessToken, deviceId, queueToken), x => r = x, e => err = e);
@@ -772,7 +783,7 @@ namespace MmorpgClient.Game
                 {
                     Log($"assign-gate re-entry did not resume ({err ?? "code=" + r.code + " error=" + r.error}); keeping the queue token");
                     Status("网络波动,排队位置保留中,稍候重试…");
-                    yield return WaitMs(QueueRetryDelayMs(err == null ? r.retry_after_ms : 0, statusFailures));
+                    yield return WaitQueueMs(gen, QueueRetryDelayMs(err == null ? r.retry_after_ms : 0, statusFailures), queueDeadline);
                     if (gen != _pipelineGen) yield break;
                     continue;
                 }
@@ -784,7 +795,7 @@ namespace MmorpgClient.Game
                     Status(r.queue_source == "login"
                         ? $"排队中… {r.queue_rank + 1}/{Math.Max(r.queue_total, r.queue_rank + 1)}"
                         : holdingToken ? "网络波动,排队位置保留中,稍候重试…" : "服务器繁忙,稍候重试…");
-                    yield return WaitMs(QueueRetryDelayMs(r.retry_after_ms, statusFailures));
+                    yield return WaitQueueMs(gen, QueueRetryDelayMs(r.retry_after_ms, statusFailures), queueDeadline);
                     if (gen != _pipelineGen) yield break;
                     continue;
                 }
@@ -801,7 +812,7 @@ namespace MmorpgClient.Game
                 {
                     long waitMs = QueueRetryDelayMs(RateLimitedBackoffMs(++rateLimitedRetries));
                     Status($"操作过于频繁,{waitMs / 1000} 秒后重试…");
-                    yield return WaitMs(waitMs);
+                    yield return WaitQueueMs(gen, waitMs, queueDeadline);
                     if (gen != _pipelineGen) yield break;
                     continue;
                 }
@@ -2024,10 +2035,23 @@ namespace MmorpgClient.Game
             catch { return Array.Empty<byte>(); }
         }
 
-        private static IEnumerator WaitMs(long ms)
+        // 仅供 EditMode 单测替换排队等待与单调时钟(不暴露 public API);null 时走生产单调时钟与逐帧等待。
+        private Func<double> _queueClockOverride;
+        private Func<long, IEnumerator> _queueWaitOverride;
+
+        private double QueueNowSeconds => _queueClockOverride != null ? _queueClockOverride() : MonotonicSeconds;
+
+        // 排队 / 限流重试等待:跟随管线世代(_pipelineGen)与排队截止时刻(deadline)随时可中断,
+        // 避免登出、切服或总预算已到时协程继续干等到 30s / 120s 计时结束。
+        private IEnumerator WaitQueueMs(int gen, long ms, double deadline)
         {
-            float until = Time.realtimeSinceStartup + ms / 1000f;
-            while (Time.realtimeSinceStartup < until) yield return null;
+            if (_queueWaitOverride != null)
+            {
+                yield return _queueWaitOverride(ms);
+                yield break;
+            }
+            double until = Math.Min(QueueNowSeconds + ms / 1000.0, deadline);
+            while (QueueNowSeconds < until && gen == _pipelineGen) yield return null;
         }
 
         // 排队 / 限流重试前的等待(服务端 docs/design/open-server-rate-limit-design.md §11.5):
@@ -2390,6 +2414,7 @@ namespace MmorpgClient.Game
             RegisterMovementReply(MessageIds.MoveSync, "MoveSync");
             RegisterMovementReply(MessageIds.MoveStop, "MoveStop");
             WireTeamFollowHandlers();
+            RegisterRoleRenameHandlers();
 
             OnNotify(MessageIds.NotifyEnterScene, mc =>
             {
@@ -2770,8 +2795,10 @@ namespace MmorpgClient.Game
                 CurrentSceneConfigId = 0;
                 PlayerId = 0;
                 OwnerRevision = 0;
-                // 静默重连也要清掉上一角色的属性，并作废旧穿脱之前发出的属性读取。
+                // 静默重连/跨区重定向也要清掉上一会话的属性、宠物列表/商店与观战相位，并作废旧在途读取。
                 Attributes?.Reset();
+                Pets?.Reset();
+                Spectate?.Reset();
                 _enterRequestPlayerId = 0; // RedirectFlow 在 ResetConnectionState 之前已捕获
                 CurrentZoneId = 0;      // 所在区 = 当前连着的 gate 所属的区;连接没了就没有"所在区"
                 _knownRoles.Clear();
@@ -2784,6 +2811,7 @@ namespace MmorpgClient.Game
                 _travelPending = false; // 连接没了,等不到 msg 124 / tip 了;不清的话重连后第一次传送会被"正在传送中"挡住
                 _isMoving = false;
                 _moveInputSeq = 0;
+                ResetRoleRenameState();
                 gate?.Dispose();
                 // 大厅会话没了,战斗直连的票据与路由也随之作废(§18.2:两连接互不拆台,但
                 // 直连的身份来自大厅会话;重连后 scene 推 NotifyBattleReconnect 再补签重建)

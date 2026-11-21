@@ -159,7 +159,10 @@ $files = @(
     # 挂机月卡(服务端 docs/design/afk-monthly-card.md §6):AfkPassClient 用到 AfkPassInfo 等消息与 afk_pass_error 枚举。
     # 枚举由服务端导表器从 Tip.xlsx 的 //afk_pass_error 段生成,只能在服务端导表器跑完之后再跑本脚本。
     "proto/scene/player_afk_pass.proto",
-    "generated/code/proto/tip/afk_pass_error_tip.proto"
+    "generated/code/proto/tip/afk_pass_error_tip.proto",
+    # 聊天内容安全与反广告错误码(//chat_error 段)及宝宝改名错误码(//pet_error 段),客户端按枚举映射文案。
+    "generated/code/proto/tip/chat_error_tip.proto",
+    "generated/code/proto/tip/pet_error_tip.proto"
 )
 
 $merchantProtoFiles = @(

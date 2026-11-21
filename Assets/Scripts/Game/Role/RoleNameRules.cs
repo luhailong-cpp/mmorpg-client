@@ -155,8 +155,47 @@ namespace MmorpgClient.Game.Role
                     return "该角色名已被使用，请换一个";
                 case (uint)login_error.KRoleNameSensitive:
                     return "角色名包含不允许使用的词语，请修改";
+                case (uint)login_error.KRoleNameCheckUnavailable:
+                    return "角色名安全检测暂时不可用，请稍后重试";
                 default:
                     return null;
+            }
+        }
+
+        /// <summary>
+        /// 角色改名 RPC 与推送的全部服务端提示文案;其它 tip 回退通用失败提示。
+        /// </summary>
+        public static string RenameTipText(uint tipId, IList<string> parameters, ulong nextRenameUnixSec = 0)
+        {
+            string shared = TipText(tipId, parameters);
+            if (shared != null) return shared;
+            switch (tipId)
+            {
+                case (uint)login_error.KRoleRenameCooldown:
+                    if (nextRenameUnixSec > 0)
+                    {
+                        var nextAt = DateTimeOffset.FromUnixTimeSeconds((long)nextRenameUnixSec).LocalDateTime;
+                        return $"角色改名冷却中，最早可于 {nextAt:yyyy-MM-dd HH:mm} 再试";
+                    }
+                    return "角色改名冷却中，请稍后再试";
+                case (uint)login_error.KRoleRenameNoCard:
+                    return "背包中没有可用的改名卡";
+                case (uint)login_error.KRoleRenameInProgress:
+                    return "已有角色改名正在进行中，请稍后再试";
+                case (uint)login_error.KRoleRenameFrozen:
+                    return "当前角色状态暂时不能改名，请稍后再试";
+                case (uint)login_error.KRoleRenameSameName:
+                    return "新角色名与当前名字相同";
+                case (uint)login_error.KRoleRenameExpired:
+                    return "本次改名超时已失效，请重新发起";
+                case (uint)common_error.KRateLimitExceeded:
+                    return "操作太频繁，请稍后再试";
+                case (uint)common_error.KServiceUnavailable:
+                    return "服务繁忙，请稍后重试";
+                case (uint)common_error.KInvalidParameter:
+                    return "角色名格式有误，请重新输入";
+                default:
+                    return $"角色改名失败（tip={tipId}）";
             }
         }
 

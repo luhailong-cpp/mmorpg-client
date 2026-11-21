@@ -70,6 +70,12 @@ namespace MmorpgClient.World
         // MeshRenderer directly would leave those pieces at a stale depth.
         private TMPro.TextMeshPro _tmp;
         private Vector3 _normalScale = Vector3.one;
+        private Camera _mainCamera;
+        private Transform _bodyParent;
+        private int _bodyParentChildren = -1;
+        private SpriteRenderer _body;
+        private int _selfChildren = -1;
+        private SpriteRenderer _backdrop;
 
         public static WorldLabelBillboard Attach(GameObject label, float offsetBelowFeet = DefaultOffsetBelowFeet)
         {
@@ -88,17 +94,47 @@ namespace MmorpgClient.World
         }
 
         private void LateUpdate()
-            => RefreshForCamera(Camera.main);
+            => RefreshForCamera(ResolveMainCamera());
+
+        private Camera ResolveMainCamera()
+        {
+            if (_mainCamera != null && _mainCamera.isActiveAndEnabled && _mainCamera.CompareTag("MainCamera"))
+                return _mainCamera;
+            _mainCamera = Camera.main;
+            return _mainCamera;
+        }
+
+        private SpriteRenderer ResolveBody(Transform parent)
+        {
+            if (_body != null && _bodyParent == parent) return _body;
+            int count = parent.childCount;
+            if (_bodyParent == parent && _bodyParentChildren == count && ReferenceEquals(_body, null)) return null;
+            _bodyParent = parent;
+            _bodyParentChildren = count;
+            _body = parent.Find("sprite")?.GetComponent<SpriteRenderer>();
+            return _body;
+        }
+
+        private SpriteRenderer ResolveBackdrop()
+        {
+            if (_backdrop != null) return _backdrop;
+            int count = transform.childCount;
+            if (_selfChildren == count && ReferenceEquals(_backdrop, null)) return null;
+            _selfChildren = count;
+            _backdrop = transform.Find("NameplateBackdrop")?.GetComponent<SpriteRenderer>();
+            return _backdrop;
+        }
 
         internal void RefreshForCamera(Camera worldCamera)
         {
-            if (worldCamera == null || transform.parent == null) return;
+            var parent = transform.parent;
+            if (worldCamera == null || parent == null) return;
 
             var cameraTransform = worldCamera.transform;
             float weight = 0f;
             float closeScale = 1f;
             float closeOffset = OffsetBelowFeet;
-            var body = transform.parent.Find("sprite")?.GetComponent<SpriteRenderer>();
+            var body = ResolveBody(parent);
             if (body?.sprite != null && worldCamera.orthographic)
             {
                 float frameHeight = body.sprite.bounds.size.y * Mathf.Abs(body.transform.lossyScale.y);
@@ -109,7 +145,7 @@ namespace MmorpgClient.World
                     (Mathf.Max(1, worldCamera.pixelHeight) * WorldNameplate.WorldEmHeight));
                 float halfBox = (WorldNameplate.WorldEmHeight * .5f + WorldNameplate.BackdropPaddingY) * closeScale;
                 float labelBottom = -halfBox, labelTop = halfBox;
-                var backdrop = transform.Find("NameplateBackdrop")?.GetComponent<SpriteRenderer>();
+                var backdrop = ResolveBackdrop();
                 if (backdrop?.sprite != null)
                 {
                     var bounds = backdrop.sprite.bounds;
@@ -121,16 +157,20 @@ namespace MmorpgClient.World
             }
             transform.localScale = _normalScale * Mathf.Lerp(1f, closeScale, weight);
             transform.rotation = cameraTransform.rotation;
-            transform.position = transform.parent.position
+            transform.position = parent.position
                                  - cameraTransform.up * Mathf.Lerp(OffsetBelowFeet, closeOffset, weight)
                                  - cameraTransform.forward * 0.2f; // keep clear of the ground/sprite
 
-            var order = QdaoBoySpriteAnimator.WorldSortingOrder(transform.parent.position, worldCamera)
+            var order = QdaoBoySpriteAnimator.WorldSortingOrder(parent.position, worldCamera)
                         + LabelSortingBoost;
             if (_tmp != null)
-                _tmp.sortingOrder = order; // also propagates to TMP sub-mesh renderers
-            else if (_renderer != null)
+            {
+                if (_tmp.sortingOrder != order) _tmp.sortingOrder = order; // also propagates to TMP sub-mesh renderers
+            }
+            else if (_renderer != null && _renderer.sortingOrder != order)
+            {
                 _renderer.sortingOrder = order; // non-TMP label (legacy TextMesh etc.)
+            }
         }
     }
 }

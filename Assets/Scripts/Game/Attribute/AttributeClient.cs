@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using MmorpgClient.Game.Battle;
+using MmorpgClient.Game.Guild;
 using MmorpgClient.Net;
 
 namespace MmorpgClient.Game.Attribute
@@ -98,6 +99,24 @@ namespace MmorpgClient.Game.Attribute
         private static bool HasTip(TipInfoMessage tip) => tip != null && tip.Id != 0;
 
         /// <summary>
+        /// 资产通道(//asset_error,见 <see cref="GuildAssetReasons"/>)的通用文案,逐字镜像 data/tip/Tip.xlsx,
+        /// 供属性与宝宝等共享同一批透传错误码的模块共用;未命中返回 null。
+        /// </summary>
+        internal static string DescribeAssetTip(uint tipId) => tipId switch
+        {
+            GuildAssetReasons.CurrencyInsufficient => "货币不足",
+            GuildAssetReasons.BagFull => "背包已满,请腾出空间,之后会重试发放;超过时限可能取消",
+            GuildAssetReasons.InBattle => "战斗中暂不结算,稍后自动重试;超过时限可能取消",
+            GuildAssetReasons.Frozen => "角色迁移中,稍后自动重试;超过时限可能取消",
+            GuildAssetReasons.InvalidBundle => "资产指令无效",
+            GuildAssetReasons.Blocked => "该资产当前被禁止获取",
+            GuildAssetReasons.PlayerNotHere => "角色不在线,上线后重试;超过时限可能取消",
+            GuildAssetReasons.PartialApplied => "资产只发放了一部分,已记录,将由客服补偿",
+            GuildAssetReasons.AuthFailed => "资产指令校验失败",
+            _ => null,
+        };
+
+        /// <summary>
         /// tip 文案:镜像 data/tip/Tip.xlsx 的 //attribute_error 组(base=25000)。表改了要同步这里;
         /// 2026-09-09 修正:原来写的是 130-144 那套旧号,tip 码轴改成按段发号后就全部对不上了,
         /// 所有服务端拒绝都退化成裸 "tip=25004"。
@@ -125,20 +144,7 @@ namespace MmorpgClient.Game.Attribute
                 25012 => "银两不足",
                 25013 => "没有可用的自动加点方案",
                 25014 => "属性没有变化",
-                // ── 资产通道(//asset_error base=27000,帮会二期 B4a 起)────────────────
-                // 冻结(27003)、封禁(27005)与 GM 路径会把这一段透传给客户端;宠物 / 加点自己的
-                // 扣币路径在扣之前先 CanAfford,回的是各自的"银两不足",走不到 27000。
-                // 文案逐字镜像 data/tip/Tip.xlsx,表改了要同步这里(与上面各段同一约定)。
-                27000 => "货币不足",
-                27001 => "背包已满,请腾出空间,之后会重试发放;超过时限可能取消",
-                27002 => "战斗中暂不结算,稍后自动重试;超过时限可能取消",
-                27003 => "角色迁移中,稍后自动重试;超过时限可能取消",
-                27004 => "资产指令无效",
-                27005 => "该资产当前被禁止获取",
-                27006 => "角色不在线,上线后重试;超过时限可能取消",
-                27007 => "资产只发放了一部分,已记录,将由客服补偿",
-                27008 => "资产指令校验失败",
-                _ => $"tip={tip.Id}",
+                _ => DescribeAssetTip(tip.Id) ?? $"tip={tip.Id}",
             };
             return $"{what}:{text}";
         }

@@ -51,6 +51,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var canvasObject = new GameObject("JubaozhaiCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
@@ -95,16 +96,18 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                         () => game.OwnerRevision),
                         () => game.GateConnectionIdentity);
                     _commerce.AssetRefreshRequired += RefreshAssets;
-                    _payment = new PaymentClient(new GameClientBattleTransport(game));
+                    _payment = new PaymentClient(new GameClientBattleTransport(game), () => game.GateConnectionIdentity);
+                    _payment.Settled += OnPaymentSettled;
                     _commerceWindow.Bind(_commerce, _payment);
                 }
             }
             _client?.ObserveConnection();
             _commerce?.ObserveConnection();
-            _payment?.Tick(Time.unscaledTimeAsDouble); // 在途支付按间隔查服务端
+            _payment?.ObserveConnection();
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             ulong player = inGame ? _game.PlayerId : 0;
-            if (_player != player) { ResetSession(); _client?.Reset(); _player = player; }
+            if (_player != player) { ResetSession(); _client?.Reset(); _payment?.Reset(); _player = player; }
+            if (inGame && player != 0) _payment?.Tick(Time.unscaledTimeAsDouble); // 仅进场就绪后按间隔查服务端或补交商店凭证
             // 战斗层显示时只清窗口不 Reset client:在途请求被 Reset 会隔离到下次真实断线,
             // 而 State.Reset 已退出服务端模式,迟到回包会按版本丢弃。
             bool available = inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false);
@@ -131,16 +134,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             if (_commerceWindow.IsVisible) { HidePanel(); return; }
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
-            MysteryMerchantUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();
-            CityTravelUiRoot.Instance?.HidePanel();
-            AttributeUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
-            PetUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             _window.Show();
             _client?.Open();
         }
@@ -151,6 +145,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _window.Hide();
             _commerceWindow.Show();
         }
+        private void OnPaymentSettled(string _) => RefreshAssets();
         private void RefreshAssets()
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady) return;
@@ -163,6 +158,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _client?.Dispose();
             _client = null;
             if (_commerce != null) _commerce.AssetRefreshRequired -= RefreshAssets;
+            if (_payment != null) _payment.Settled -= OnPaymentSettled;
             _commerceWindow?.Bind(null);
             _commerce?.Dispose(); _commerce = null;
             _payment?.Dispose(); _payment = null;
@@ -175,12 +171,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _commerceWindow?.Hide();
             if (_hud != null) _hud.gameObject.SetActive(false);
         }
-        public static bool IsTyping()
-        {
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            return selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
-                   selected.GetComponentInParent<InputField>()?.isFocused == true);
-        }
+        public static bool IsTyping() => CityPanelRegistry.IsTyping();
         private void UnbindGame()
         {
             if (_game != null) _game.OnDisconnected -= ResetSession;
@@ -190,6 +181,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         }
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             UnbindGame();
             _window?.Dispose();
             _commerceWindow?.Dispose();

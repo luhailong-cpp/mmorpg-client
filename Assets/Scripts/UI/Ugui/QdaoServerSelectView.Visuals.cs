@@ -239,14 +239,47 @@ namespace MmorpgClient.UI.Ugui
             _credentialSubmitText.color = QdaoCoreFidelityArt.Ivory;
             _credentialStatusText = Label("CredentialStatus", _credentialPanel, 790f, 778f, 980f, 56f,
                 "", 30f, false, TextAlignmentOptions.Center);
-            // 渠道登录摆在面板下沿之外的同一位置:一个安装包里最多出现其中一个。
-            _appleSignInButton = ArtButton("AppleSignInButton", _credentialPanel, 980f, 900f, 600f, 90f,
-                "通过 Apple 登录", "clean_tab", out var appleText);
-            _googleSignInButton = ArtButton("GoogleSignInButton", _credentialPanel, 980f, 900f, 600f, 90f,
-                "Google 登录", "clean_tab", out var googleText);
-            appleText.fontSize = 34f;
-            googleText.fontSize = 34f;
+            // 渠道登录摆在面板下沿之外的同一位置:一个安装包里最多出现其中一个,使用对应平台官方视觉规范控件。
+            _appleSignInButton = BuildChannelSignInButton("AppleSignInButton", _credentialPanel,
+                "通过 Apple 登录", "apple_signin_button", "apple_logo", Color.white,
+                new Color(0.92f, 0.92f, 0.94f));
+            _googleSignInButton = BuildChannelSignInButton("GoogleSignInButton", _credentialPanel,
+                "Google 登录", "google_signin_button", "google_logo", QdaoUguiTheme.Html("#1F1F1F"),
+                new Color(0.95f, 0.96f, 0.98f));
             _credentialPanel.gameObject.SetActive(false);
+        }
+
+        private Button BuildChannelSignInButton(string name, UnityEngine.Transform parent, string label,
+            string surfaceAsset, string logoAsset, Color textColor, Color hoverTint)
+        {
+            var button = ArtButton(name, parent, 980f, 900f, 600f, 90f, label, surfaceAsset, out var text);
+            StyleChannelSignInButton(button, surfaceAsset, textColor, hoverTint);
+
+            var icon = QdaoUguiFactory.CreateImage(name + "Icon", button.transform, 118f, 23f, 44f, 44f,
+                QdaoCoreFidelityArt.Load(logoAsset));
+            icon.preserveAspect = true;
+            icon.raycastTarget = false;
+
+            text.rectTransform.anchoredPosition = new Vector2(182f, 0f);
+            text.rectTransform.sizeDelta = new Vector2(318f, 90f);
+            return button;
+        }
+
+        private static void StyleChannelSignInButton(Button button, string surfaceAsset, Color textColor, Color hoverTint)
+        {
+            if (button == null) return;
+            var image = button.GetComponent<Image>();
+            if (image != null) QdaoCoreFidelityArt.Skin(image, surfaceAsset);
+            var colors = button.colors;
+            colors.highlightedColor = hoverTint;
+            colors.selectedColor = hoverTint;
+            button.colors = colors;
+            var label = button.GetComponentInChildren<TMP_Text>(true);
+            if (label != null)
+            {
+                label.fontSize = 34f;
+                label.color = textColor;
+            }
         }
 
         private static string CompactAvailability(ServerListZone zone)
@@ -316,6 +349,10 @@ namespace MmorpgClient.UI.Ugui
                 var rect=(RectTransform)_enterButton.transform;rect.anchoredPosition=new Vector2(1851,-895);rect.sizeDelta=new Vector2(320,79);
                 _enterText.gameObject.SetActive(_busy); // Real busy caption uses the clean source control.
             }
+            StyleChannelSignInButton(_appleSignInButton, "apple_signin_button", Color.white,
+                new Color(0.92f, 0.92f, 0.94f));
+            StyleChannelSignInButton(_googleSignInButton, "google_signin_button",
+                QdaoUguiTheme.Html("#1F1F1F"), new Color(0.95f, 0.96f, 0.98f));
         }
 
         private static void SetInputInsets(TMP_InputField input, float height)

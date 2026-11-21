@@ -82,6 +82,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var canvasObject = new GameObject("SceneChannelCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
@@ -149,19 +150,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_window.IsVisible) { HidePanel(); return; }
             // 跨区传送在途时不开:地图窗正挡在屏上当遮罩,下面那串收起会把它一起撤掉。
             if (!_available || _client == null || _client.Travelling) return;
-            MysteryMerchantUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();
-            CityTravelUiRoot.Instance?.HidePanel();
-            AttributeUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
-            PetUiRoot.Instance?.HidePanel();
-            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
-            Mail.MailUiRoot.Instance?.HidePanel();
-            Social.SocialUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             _window.SetView(BuildView(_client));
             _window.Show();
             // 打开即刷新一次(数据层自己管最小间隔:太近就排队,到点补发)。
@@ -374,17 +363,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return team != null && team.HasTeam && !team.IsLeader;
         }
 
-        private static bool IsTyping()
-        {
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            return selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
-                                        selected.GetComponentInParent<InputField>()?.isFocused == true);
-        }
+        private static bool IsTyping() => CityPanelRegistry.IsTyping();
 
         private void OnDisable() => HidePanel();
 
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             Unbind();
             if (Instance == this) Instance = null;
         }

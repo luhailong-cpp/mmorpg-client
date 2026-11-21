@@ -225,6 +225,13 @@ namespace MmorpgClient.UI.Ugui.Battle
             list.Add(("宝宝资料", BattleUiRoot.PetDetailsRect));
             list.Add(("计时环", BattleScreen.TimerRect));
             list.Add(("退出观战", BattleScreen.StopWatchRect));
+            list.Add(("回放上一回合", BattleScreen.ReplayPrevRect));
+            list.Add(("回放暂停", BattleScreen.ReplayPauseRect));
+            list.Add(("回放下一回合", BattleScreen.ReplayNextRect));
+            list.Add(("回放倍速", BattleScreen.ReplaySpeedRect));
+            list.Add(("回放跳过", BattleScreen.ReplaySkipRect));
+            list.Add(("回放回合输入", BattleScreen.ReplayJumpInputRect));
+            list.Add(("回放跳转", BattleScreen.ReplayJumpRect));
             list.Add(("确认行动", BattleScreen.ConfirmRect));
             list.Add(("取消", BattleScreen.CancelRect));
             list.Add(("重新连接", BattleScreen.ReconnectRect));

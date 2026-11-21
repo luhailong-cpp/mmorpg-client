@@ -173,6 +173,30 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(_peer.Available, Is.Zero, "旧 gate 不应再收到任何请求");
         }
 
+        [Test]
+        public void BattleTransportCallForwardsDirectlyWithoutCoroutineRunner()
+        {
+            _game.CoroutineRunner = null;
+            var transport = new MmorpgClient.Game.Battle.GameClientBattleTransport(_game);
+            global::Empty okResponse = null;
+            string error = null;
+
+            transport.Call(MessageIds.CancelQueue, new global::Match.CancelQueueRequest(), global::Empty.Parser,
+                resp => okResponse = resp, err => error = err);
+            var req = ReadRequest();
+            PeerSend(new MessageContent { Id = req.Id, MessageId = req.MessageId });
+            PollUntil(() => okResponse != null, "direct transport response");
+            Assert.That(error, Is.Null);
+            Assert.That(_routines, Is.Empty, "不得再启动协程包装 RPC");
+
+            transport.Call(MessageIds.CancelQueue, new global::Match.CancelQueueRequest(), global::Empty.Parser,
+                _ => Assert.Fail("error envelope must not succeed"), err => error = err);
+            var failReq = ReadRequest();
+            PeerSend(Envelope(failReq.Id, failReq.MessageId, ServiceUnavailable));
+            PollUntil(() => error != null, "direct transport error");
+            Assert.That(error, Does.Contain(ServiceUnavailable.ToString()));
+        }
+
         private ClientRequest ReadRequest()
         {
             var stream = _peer.GetStream();

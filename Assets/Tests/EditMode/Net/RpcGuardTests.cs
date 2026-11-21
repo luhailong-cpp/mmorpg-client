@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using MmorpgClient.Net;
+using MmorpgClient.Net.Generated;
 using NUnit.Framework;
 
 namespace MmorpgClient.Tests.EditMode.Net
@@ -158,6 +159,47 @@ namespace MmorpgClient.Tests.EditMode.Net
             guard.Reset();
             Assert.That(guard.GetCircuitState(MessageIds.GetMyTeam), Is.EqualTo(CircuitState.Closed));
             Assert.That(guard.CanSend(MessageIds.GetMyTeam), Is.True);
+        }
+
+        [Test]
+        public void RpcGuard_HotReloadsLimits_AndCoversBattleDomain()
+        {
+            float now = 0f;
+            int configuredMax = 2;
+            var guard = new RpcGuard(() => now,
+                limitResolver: id => configuredMax == 0 ? ((int, float)?)null : (configuredMax, 1.5f));
+
+            Assert.That(guard.TryBeginCall(MessageIds.SubmitBattleAction, out _), Is.True);
+            Assert.That(guard.TryBeginCall(MessageIds.SubmitBattleAction, out _), Is.True);
+            Assert.That(guard.TryBeginCall(MessageIds.SubmitBattleAction, out var limited), Is.False);
+            Assert.That(limited.TipId, Is.EqualTo(RpcGuard.RateLimitTipId));
+
+            // 模拟配置表热更放宽配额：立即按新参数重建限流器，无需断线重连。
+            configuredMax = 5;
+            Assert.That(guard.CanSend(MessageIds.SubmitBattleAction), Is.True);
+            Assert.That(guard.TryBeginCall(MessageIds.SubmitBattleAction, out _), Is.True);
+
+            // 战斗直连域内部共享 "battle" 熔断桶，但与大厅 "team" 域隔离。
+            for (int i = 0; i < 3; i++)
+            {
+                guard.CompleteCall(MessageIds.SubmitBattleAction, RpcStatus.Timeout("rpc timeout"));
+                now += 2f;
+            }
+            Assert.That(guard.IsCircuitOpen(MessageIds.GetBattleState), Is.True);
+            Assert.That(guard.IsCircuitOpen(MessageIds.StartTeamMatch), Is.False);
+
+            // 支付域(396..399)共享独立的 "payment" 熔断桶,与聚宝斋 "jubaozhai" 隔离。
+            Assert.That(RpcGuard.DefaultResolveService(ClientPlayerPaymentRpc.ListPayChannelsMessageId), Is.EqualTo("payment"));
+            Assert.That(RpcGuard.DefaultResolveService(ClientPlayerPaymentRpc.CreatePayIntentMessageId), Is.EqualTo("payment"));
+            Assert.That(RpcGuard.DefaultResolveService(ClientPlayerPaymentRpc.GetPayIntentMessageId), Is.EqualTo("payment"));
+            Assert.That(RpcGuard.DefaultResolveService(ClientPlayerPaymentRpc.SubmitPurchaseMessageId), Is.EqualTo("payment"));
+            for (int i = 0; i < 3; i++)
+            {
+                guard.CompleteCall(ClientPlayerPaymentRpc.CreatePayIntentMessageId, RpcStatus.Timeout("rpc timeout"));
+                now += 2f;
+            }
+            Assert.That(guard.IsCircuitOpen(ClientPlayerPaymentRpc.GetPayIntentMessageId), Is.True);
+            Assert.That(guard.IsCircuitOpen(MessageIds.JubaozhaiListOfficialSkus), Is.False);
         }
     }
 }

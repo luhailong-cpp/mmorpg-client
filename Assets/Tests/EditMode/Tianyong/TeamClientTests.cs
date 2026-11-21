@@ -219,25 +219,28 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             {
                 Assert.That(_client.HandleApplication(20, false), Is.True, "第 " + (i + 1) + " 次");
                 _net.Reply(new TeamResponse { Team = LeaderView((ulong)(2 + i)) });
-                _now += 0.5f;
+                _now += 0.4f;
             }
 
-            // _now == 3.0:距第一次只有 1.5 秒,gate 按整秒计时会把它算进同一窗口,回 1008 并计一次非法包。
+            // _now == 2.7:距第一次只有 1.2 秒,仍在 1.5 秒本地窗口内,本地先拦避免撞 gate 1008。
             int calls = _net.Calls.Count;
             Assert.That(_client.HandleApplication(21, false), Is.False);
             Assert.That(_client.Status, Is.EqualTo("操作太快了，请稍候再试。"));
             Assert.That(_net.Calls.Count, Is.EqualTo(calls));
-
-            // 配额按 message_id 各自计:别的写操作不受影响。
-            Assert.That(_client.Invite(13), Is.True);
-            Assert.That(LastId, Is.EqualTo(MessageIds.InviteToTeam));
-            _net.Reply(new TeamResponse { Team = LeaderView(5) });
+            // 配额按 message_id 各自计:别的写操作此刻不受冷却影响。
+            Assert.That(_client.InvitationCoolingDown, Is.False);
 
             _now = 1.5f + TeamClient.MessageWindowSeconds - 0.1f;
             Assert.That(_client.HandleApplication(21, false), Is.False);
             _now = 1.5f + TeamClient.MessageWindowSeconds;
             Assert.That(_client.HandleApplication(21, false), Is.True);
             Assert.That(LastId, Is.EqualTo(MessageIds.HandleApplication));
+            _net.Reply(new TeamResponse { Team = LeaderView(5) });
+
+            _now += TeamClient.MinSendIntervalSeconds;
+            Assert.That(_client.Invite(13), Is.True);
+            Assert.That(LastId, Is.EqualTo(MessageIds.InviteToTeam));
+            _net.Reply(new TeamResponse { Team = LeaderView(6) });
         }
 
         [Test]
@@ -251,9 +254,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(_client.Invite(13), Is.True);
                 _net.Reply(new TeamResponse { Team = LeaderView((ulong)(2 + i)) });
                 Assert.That(_client.InvitationCoolingDown, Is.True);
-                _now += .5f;
+                _now += .4f;
             }
-            Assert.That(_client.InvitationCoolingDown, Is.True, "Three invites consume the existing 2.5s window.");
+            Assert.That(_client.InvitationCoolingDown, Is.True, "Three invites consume the existing 1.5s window.");
             Assert.That(_client.CreationCoolingDown, Is.False, "Invite quota cannot block CreateTeam.");
             Assert.That(_client.Invite(13), Is.False);
             _now = first + TeamClient.MessageWindowSeconds;
@@ -273,7 +276,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 // Explicit server rejection retains the authoritative no-team view and consumes this send.
                 _net.Reply(Response(new TeamView { MembershipEpoch = 5 }, team_error.KTeamInternal));
                 Assert.That(_client.CreationCoolingDown, Is.True);
-                _now += .5f;
+                _now += .4f;
             }
             Assert.That(_client.CreationCoolingDown, Is.True);
             Assert.That(_client.InvitationCoolingDown, Is.False, "CreateTeam quota is independent of InviteToTeam.");

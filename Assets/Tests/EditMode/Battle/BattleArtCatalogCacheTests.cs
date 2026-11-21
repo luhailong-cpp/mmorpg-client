@@ -69,6 +69,48 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(reloaded, Is.SameAs(portraits[appearance.CacheKey]));
         }
 
+        [Test]
+        public void ReleaseTransientBattleCachesEvictsMonstersAndFxWhilePreservingHud()
+        {
+            CreateTemporarySprite();
+            string hudKey = $"{BattleArtCatalog.UiRoot}/test_hud";
+            string fxKey = $"{BattleArtCatalog.FxRoot}/test_fx_strip";
+            Cache<Sprite>("s_sprites")[hudKey] = _temporarySprite;
+            Cache<Sprite>("s_sprites")[BattleArtCatalog.ArenaBackgroundPath] = _temporarySprite;
+            Cache<Texture2D>("s_textures")[fxKey] = null;
+            var strips = (Dictionary<string, StripAnim>)typeof(BattleArtCatalog)
+                .GetField("s_strips", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            strips[$"{fxKey}|0|0.5,0.5"] = null;
+
+            var ring = BattleArtCatalog.RingSprite;
+            var spawnRing = BattleArtCatalog.LoadSpawnRing(true);
+            var silhouette = BattleArtCatalog.GetMonsterSilhouette(777);
+            var silhouetteTexture = silhouette.texture;
+            Assert.That(spawnRing != null, Is.True);
+            Assert.That(silhouette != null && silhouetteTexture != null, Is.True);
+
+            BattleArtCatalog.ReleaseTransientBattleCaches();
+
+            Assert.That(strips, Is.Empty, "瞬态战斗帧条缓存必须随战斗结束释放");
+            Assert.That(Cache<Texture2D>("s_textures").ContainsKey(fxKey), Is.False, "特效贴图缓存必须移除");
+            Assert.That(Cache<Sprite>("s_sprites").ContainsKey(BattleArtCatalog.SpawnRingFriendlyPath), Is.False, "瞬态光环缓存必须移除");
+            Assert.That(silhouette == null, Is.True, "程序化怪物剪影 Sprite 必须销毁");
+            Assert.That(silhouetteTexture == null, Is.True, "程序化怪物剪影 Texture2D 必须销毁");
+
+            // 常驻 HUD 缓存不得被误清或误毁。
+            Assert.That(Cache<Sprite>("s_sprites")[hudKey], Is.SameAs(_temporarySprite));
+            Assert.That(Cache<Sprite>("s_sprites")[BattleArtCatalog.ArenaBackgroundPath], Is.SameAs(_temporarySprite));
+            Assert.That(BattleArtCatalog.RingSprite, Is.SameAs(ring));
+            Assert.That(_temporarySprite != null && _temporaryTexture != null, Is.True);
+
+            // 下一局战斗按需重新加载应正常工作。
+            var reloadedRing = BattleArtCatalog.LoadSpawnRing(true);
+            var reloadedSilhouette = BattleArtCatalog.GetMonsterSilhouette(777);
+            Assert.That(reloadedRing != null && reloadedRing.texture != null, Is.True);
+            Assert.That(reloadedSilhouette != null && reloadedSilhouette.texture != null, Is.True);
+            BattleArtCatalog.ReleaseTransientBattleCaches();
+        }
+
         private void CreateTemporarySprite()
         {
             _temporaryTexture = new Texture2D(4, 4);

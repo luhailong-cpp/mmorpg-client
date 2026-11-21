@@ -1,5 +1,6 @@
 using System;
 using MmorpgClient.UI.Ugui.Skills;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,20 +14,21 @@ namespace MmorpgClient.UI.Ugui.Attribute
     {
         private static readonly Color Ink = Hex("34483b"), Green = Hex("1e604c"), Muted = Hex("655840"), Cream = Hex("fbf2d7");
         private readonly AttributeUiRoot _owner;
-        private readonly RectTransform _root, _overview, _effects, _details, _popup, _sourceRows;
+        private readonly RectTransform _root, _overview, _effects, _details, _popup, _sourceRows, _renamePopup;
         private readonly Text _title, _overviewName, _overviewLevel, _detailName, _detailLevel, _skillName, _skillCategory;
         private readonly Text[] _values = new Text[6], _detailValues = new Text[4], _detailLabels = new Text[4];
-        private readonly Text _healing, _shield, _rules, _rulesSecond, _status, _sourceTitle, _sourceTotal;
+        private readonly Text _healing, _shield, _rules, _rulesSecond, _status, _sourceTitle, _sourceTotal, _renameStatus;
         private readonly Image _overviewPortrait, _detailPortrait, _skillIcon;
         private readonly Button _healChoice, _shieldChoice;
-        private readonly Button _allocation, _allocationTab;
+        private readonly Button _allocation, _allocationTab, _renameButton, _renameConfirmButton;
+        private readonly TMP_InputField _renameInput;
         private AttributePanelInfo _panel;
         private SkillBookViewState _lastBook;
         private BagInfo _lastEquipment;
         private SupportEffectSummary _lastSupport;
         private string _identity, _appearance;
         private uint _skillId;
-        private bool _sourceOpen, _sourceShield;
+        private bool _sourceOpen, _sourceShield, _renameOpen;
         private bool _battleReadOnly;
         public RectTransform Root => _root;
         public bool IsVisible => _root != null && _root.gameObject.activeSelf;
@@ -46,7 +48,8 @@ namespace MmorpgClient.UI.Ugui.Attribute
             Picture("BaseCard", _overview, 179, 182, 799, 695, "application_card", true);
             Plate(_overview, "基础属性", 168, 160);
             _overviewPortrait = Portrait(_overview, 218, 217, 133);
-            _overviewName = Label("RoleName", _overview, 380, 238, 540, 52, "—", 40, Ink);
+            _overviewName = Label("RoleName", _overview, 380, 238, 390, 52, "—", 40, Ink);
+            _renameButton = Action("RenameRole", _overview, 782, 236, 152, 54, "改 名", "button_secondary", OpenRenamePopup);
             _overviewLevel = Label("RoleLevel", _overview, 382, 294, 500, 34, "等级 —", 25, Muted);
             string[] names = { "气血", "法力", "物理攻击", "法术攻击", "防御", "速度" };
             for (int i = 0; i < names.Length; ++i)
@@ -114,46 +117,95 @@ namespace MmorpgClient.UI.Ugui.Attribute
             Label("TotalLabel", _popup, 1121, 670, 700, 40, "合计", 29, Cream);
             _sourceTotal = Label("SourceTotal", _popup, 1900, 670, 322, 40, "—", 29, Cream, TextAnchor.UpperRight);
             Label("SourceNote", _popup, 1121, 744, 1090, 65, "单件贡献不等于封顶后的生效值；未同步项目不按零计入合计。", 21, Muted);
+
+            _renamePopup = Rect("RoleRenamePopup", _root, 0, 0, 2560, 1080);
+            var renameScrim = _renamePopup.gameObject.AddComponent<Image>();
+            renameScrim.color = new Color(0.02f, 0.04f, 0.03f, 0.56f);
+            Picture("RenameFrame", _renamePopup, 830, 310, 900, 440, "window_frame", true, true, .66f);
+            Picture("RenameTitlePlate", _renamePopup, 1046, 271, 468, 79, "title_plate");
+            Label("RenameHeading", _renamePopup, 1046, 290, 468, 43, "修改角色名", 32, Cream, TextAnchor.UpperCenter);
+            Action("CloseRename", _renamePopup, 1656, 331, 45, 53, "", "close-jade", HideRenamePopup, false);
+            Label("RenameRuleHint", _renamePopup, 900, 376, 760, 62,
+                "需消耗背包中的「改名卡」，每次改名冷却 7 天，旧名保留保护 7 天；角色名仅限汉字、字母与数字。", 23, Muted);
+            _renameInput = QdaoUguiFactory.CreateInputField("RoleRenameInput", _renamePopup, 900, 456, 760, 74,
+                "请输入新的角色名", 32, CharacterPetArt.Get("mail_row_normal"));
+            var renameBg = _renameInput.GetComponent<Image>();
+            if (renameBg != null) { renameBg.type = Image.Type.Sliced; renameBg.pixelsPerUnitMultiplier = 1.15f; }
+            _renameInput.textComponent.fontSize = 30f;
+            _renameStatus = Label("RenameStatus", _renamePopup, 900, 548, 760, 54, string.Empty, 23, Green);
+            _renameConfirmButton = Action("ConfirmRoleRename", _renamePopup, 950, 624, 300, 62, "确认改名", "button_primary", SubmitRoleRename);
+            Action("CancelRoleRename", _renamePopup, 1310, 624, 300, 62, "取 消", "button_secondary", HideRenamePopup);
             Hide();
         }
 
-        public void ShowOverview() { _skillId = 0; _sourceOpen = false; Open(); }
+        public void ShowOverview() { _skillId = 0; _sourceOpen = false; _renameOpen = false; Open(); }
         public void ShowSkill(uint id)
         {
             if (id != CharacterSupportModel.HealingSkillId && id != CharacterSupportModel.ShieldSkillId) return;
-            _skillId = id; _sourceOpen = false; Open();
+            _skillId = id; _sourceOpen = false; _renameOpen = false; Open();
             var source = _owner?.SkillSource;
             if (source != null && !(source.State?.IsBusy ?? false)) source.Refresh(SkillBookContext.Character());
         }
         public void ShowSource(bool shield)
         {
-            _sourceShield = shield; _sourceOpen = true; Open();
+            _sourceShield = shield; _sourceOpen = true; _renameOpen = false; Open();
             _owner?.FeatureSource?.RequestEquipment();
         }
         private void Open()
         {
             _owner?.HideLegacyPanel();
-            SkillUiRoot.Instance?.HidePanel();
-            Pet.PetUiRoot.Instance?.HidePanel();
-            Gameplay.GameplayUiRoot.Instance?.HidePanel();
-            Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
-            Gameplay.CityTravelUiRoot.Instance?.HidePanel();
-            Gameplay.SceneChannelUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            Social.SocialUiRoot.Instance?.HidePanel();
-            Mail.MailUiRoot.Instance?.HidePanel();
-            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(_owner);
             _root.gameObject.SetActive(true);
             RefreshView();
         }
         private void OpenAllocation() { if (_owner?.BattleReadOnly == true) return; Hide(); _owner?.OpenPanel(true); }
-        public void Hide() { _sourceOpen = false; _root.gameObject.SetActive(false); }
-        public void Back() { if (_sourceOpen) CloseSource(); else Hide(); }
+        public void Hide() { _sourceOpen = false; _renameOpen = false; _root.gameObject.SetActive(false); }
+        public void Back() { if (_renameOpen) HideRenamePopup(); else if (_sourceOpen) CloseSource(); else Hide(); }
         private void CloseSource() { _sourceOpen = false; RefreshView(); }
-        public void ResetSession() { _panel = null; _lastBook = null; _lastEquipment = null; _lastSupport = null; _identity = _appearance = null; Hide(); }
+        public void ResetSession() { _panel = null; _lastBook = null; _lastEquipment = null; _lastSupport = null; _identity = _appearance = null; _renameOpen = false; Hide(); }
+        private void OpenRenamePopup()
+        {
+            if (_battleReadOnly || string.IsNullOrEmpty(_identity)) return;
+            _renameOpen = true;
+            _renameInput.SetTextWithoutNotify(_identity);
+            _renameStatus.color = Muted;
+            _renameStatus.text = string.Empty;
+            _renameConfirmButton.interactable = true;
+            RefreshView();
+            _renameInput.ActivateInputField();
+        }
+        private void HideRenamePopup()
+        {
+            _renameOpen = false;
+            RefreshView();
+        }
+        private void SubmitRoleRename()
+        {
+            if (_owner == null) return;
+            _renameConfirmButton.interactable = false;
+            bool sent = _owner.TryRequestRoleRename(_renameInput.text, (ok, msg) =>
+            {
+                _renameStatus.color = ok ? Green : Muted;
+                _renameStatus.text = msg ?? string.Empty;
+                if (!ok) _renameConfirmButton.interactable = true;
+            });
+            if (!sent) _renameConfirmButton.interactable = true;
+        }
+        public void HandleRoleRenameOutcome(bool succeeded, string message)
+        {
+            if (_renameConfirmButton != null) _renameConfirmButton.interactable = !_battleReadOnly;
+            if (_renameStatus != null)
+            {
+                _renameStatus.color = succeeded ? Green : Muted;
+                _renameStatus.text = message ?? string.Empty;
+            }
+            if (succeeded)
+            {
+                _renameOpen = false;
+                RefreshView();
+            }
+            SetStatus(message);
+        }
         public void ApplyPanel(AttributePanelInfo panel) { _panel = panel; if (IsVisible) RefreshView(); }
         public void SetStatus(string message) { _status.text = message ?? string.Empty; }
         public void RefreshState()
@@ -188,6 +240,9 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _title.text = detail ? "人物技能" : "人物属性";
             _overview.gameObject.SetActive(!detail); _effects.gameObject.SetActive(!_sourceOpen);
             _details.gameObject.SetActive(detail); _popup.gameObject.SetActive(_sourceOpen);
+            _renamePopup.gameObject.SetActive(_renameOpen);
+            _renameButton.interactable = !_battleReadOnly && !string.IsNullOrEmpty(_identity);
+            if (_battleReadOnly && _renameOpen) { _renameOpen = false; _renamePopup.gameObject.SetActive(false); }
             if (detail) RefreshSkill();
             if (_sourceOpen) RefreshSources();
             _status.text = _battleReadOnly ? "战斗中仅可查看，人物加点与技能修习已锁定。" : _panel == null ? "正在同步人物属性…" : detail ?

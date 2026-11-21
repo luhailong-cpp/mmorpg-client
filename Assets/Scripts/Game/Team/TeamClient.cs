@@ -38,11 +38,11 @@ namespace MmorpgClient.Game.Team
         public const int    QueueViewVerifyAttempts     = 2;
         public const float  PanelRefreshIntervalSeconds = 30f;
         /// <summary>
-        /// 同一 message_id 的本地发送窗口。gate 的 MessageLimiter 按 message_id 各自计数、时间戳取整秒,
-        /// 淘汰条件是 now - 最早 > 1,所以"每秒 N 次"实际是"跨两个整秒、最长约 2 秒内只放 N 次";
-        /// 再留 0.5 秒给上行抖动。撞上限流(1008)会给本会话计一次非法包,累计 50 次 gate 断开连接。
+        /// 同一 message_id 的本地发送窗口。服务端 C++ MessageLimiter 与 Java MessageRateLimiter 均使用
+        /// 单调毫秒/纳秒精确滑动窗口(elapsed >= window)，客户端外留 0.5 秒吸收上行抖动(1.5 秒)。
+        /// 撞上限流(1008)会给本会话计一次非法包,累计 50 次 gate 断开连接。
         /// </summary>
-        public const float  MessageWindowSeconds        = 2.5f;
+        public const float  MessageWindowSeconds        = RpcGuard.DefaultMessageWindowSeconds;
         /// <summary>后台读失败(限流、服务端读失败、回包不带视图)后,排队的读至少隔这么久再补发。</summary>
         public const float  ReadRetryDelaySeconds       = 3f;
         /// <summary>后台读连续下游故障达到此阈值后打开客户端熔断，暂停后台重试 <see cref="ReadBreakerOpenSeconds"/> 秒（1008 限流不计入）。</summary>

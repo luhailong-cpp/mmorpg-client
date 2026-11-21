@@ -45,6 +45,11 @@ namespace MmorpgClient.Net.Generated
             RpcDone<global::Guildpb.SetAnnouncementResponse> done)
             => channel.CallMethod(SetAnnouncementMessageId, request, global::Guildpb.SetAnnouncementResponse.Parser, done);
 
+        public const uint RenameGuildMessageId = 439;
+        public static void RenameGuild(IRpcChannel channel, global::Guildpb.RenameGuildRequest request,
+            RpcDone<global::Guildpb.RenameGuildResponse> done)
+            => channel.CallMethod(RenameGuildMessageId, request, global::Guildpb.RenameGuildResponse.Parser, done);
+
         public const uint SetGuildMemberRoleMessageId = 19;
         /// <summary>
         /// 成员管理(B2)

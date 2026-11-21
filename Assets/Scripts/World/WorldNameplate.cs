@@ -207,6 +207,11 @@ namespace MmorpgClient.World
         private TextMeshPro _label;
         private MeshRenderer _textRenderer;
         private SpriteRenderer _backdrop;
+        private bool _layoutValid;
+        private string _lastText;
+        private bool _lastTextNonEmpty;
+        private int _lastSortingLayerId = int.MinValue;
+        private int _lastSortingOrder = int.MinValue;
 
         public void Initialize(TextMeshPro label)
         {
@@ -244,22 +249,49 @@ namespace MmorpgClient.World
         private void Refresh()
         {
             if (_label == null || _backdrop == null) return;
+            var text = _label.text;
+            if (!ReferenceEquals(text, _lastText))
+            {
+                _lastText = text;
+                _lastTextNonEmpty = !string.IsNullOrWhiteSpace(text);
+                _layoutValid = false;
+            }
             bool visible = _label.isActiveAndEnabled && _textRenderer != null
-                && _textRenderer.enabled && !string.IsNullOrWhiteSpace(_label.text);
-            _backdrop.enabled = visible;
+                && _textRenderer.enabled && _lastTextNonEmpty;
+            if (_backdrop.enabled != visible) _backdrop.enabled = visible;
             if (!visible) return;
 
             // Names can change after spawn. Force only when TMP is dirty; normal
             // movement updates the transform/order without rebuilding the mesh.
-            if (_label.havePropertiesChanged) _label.ForceMeshUpdate();
-            var bounds = _label.textBounds;
-            _backdrop.transform.localPosition = new Vector3(bounds.center.x, bounds.center.y, 0.01f);
-            _backdrop.transform.localScale = new Vector3(
-                bounds.size.x + WorldNameplate.BackdropPaddingX * 2f,
-                Mathf.Max(bounds.size.y, WorldNameplate.WorldEmHeight) + WorldNameplate.BackdropPaddingY * 2f,
-                1f);
-            _backdrop.sortingLayerID = _textRenderer.sortingLayerID;
-            _backdrop.sortingOrder = _label.sortingOrder - 1;
+            if (_label.havePropertiesChanged)
+            {
+                _label.ForceMeshUpdate();
+                _layoutValid = false;
+            }
+            if (!_layoutValid)
+            {
+                var bounds = _label.textBounds;
+                var pos = new Vector3(bounds.center.x, bounds.center.y, 0.01f);
+                var scale = new Vector3(
+                    bounds.size.x + WorldNameplate.BackdropPaddingX * 2f,
+                    Mathf.Max(bounds.size.y, WorldNameplate.WorldEmHeight) + WorldNameplate.BackdropPaddingY * 2f,
+                    1f);
+                if (_backdrop.transform.localPosition != pos) _backdrop.transform.localPosition = pos;
+                if (_backdrop.transform.localScale != scale) _backdrop.transform.localScale = scale;
+                _layoutValid = true;
+            }
+            int layerId = _textRenderer.sortingLayerID;
+            if (_lastSortingLayerId != layerId)
+            {
+                _lastSortingLayerId = layerId;
+                _backdrop.sortingLayerID = layerId;
+            }
+            int order = _label.sortingOrder - 1;
+            if (_lastSortingOrder != order)
+            {
+                _lastSortingOrder = order;
+                _backdrop.sortingOrder = order;
+            }
         }
 
         private void OnDisable()

@@ -30,6 +30,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
         }
         public static void Open()
         {
@@ -62,19 +63,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         }
         private void ShowContext(SkillBookContext context)
         {
-            Gameplay.MysteryMerchantUiRoot.Instance?.HidePanel();
-            Attribute.AttributeUiRoot.Instance?.HidePanel();
-            Pet.PetUiRoot.Instance?.HidePanel();
-            Gameplay.GameplayUiRoot.Instance?.HidePanel();
-            Gameplay.CityTravelUiRoot.Instance?.HidePanel();
-            Gameplay.SceneChannelUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            Social.SocialUiRoot.Instance?.HidePanel();
-            Mail.MailUiRoot.Instance?.HidePanel();
-            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             Context = context;
             EnsurePanel();
             ApplySource();
@@ -165,8 +154,7 @@ namespace MmorpgClient.UI.Ugui.Skills
             var game = AppBootstrap.Instance?.GameClient;
             if (game != null && (!game.InGame || !game.IsGateReady)) { HidePanel(); return; }
             RefreshBattleLock();
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            if (selected?.GetComponentInParent<TMPro.TMP_InputField>()?.isFocused == true) return;
+            if (CityPanelRegistry.IsTyping()) return;
 #if ENABLE_INPUT_SYSTEM
             if (UnityEngine.InputSystem.Keyboard.current?.escapeKey.wasPressedThisFrame == true) HidePanel();
 #elif ENABLE_LEGACY_INPUT_MANAGER
@@ -175,6 +163,7 @@ namespace MmorpgClient.UI.Ugui.Skills
         }
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             if (Source != null) Source.Changed -= ApplySource;
             Source = null;
             if (Instance == this) Instance = null;

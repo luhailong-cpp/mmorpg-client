@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -51,3 +52,4 @@ namespace MmorpgClient.UI.Ugui.Mail
         private void OnDestroy(){Window?.Dispose();Window=null;}
     }
 }
+#endif

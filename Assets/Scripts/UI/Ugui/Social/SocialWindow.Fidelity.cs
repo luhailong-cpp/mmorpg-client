@@ -136,7 +136,13 @@ namespace MmorpgClient.UI.Ugui.Social
                 FText(row,"Sender",person.Name,bubbleX,0,nameWidth,32,23,Jade);
                 float levelWidth=bubble-85-nameWidth-14;
                 if(person.Level>0&&levelWidth>=65)FText(row,"Level",person.Level+"级"+(levelWidth>=160?" · "+(person.Title??""):""),bubbleX+nameWidth+14,0,levelWidth,32,18,Muted);
-                FText(row,"Time",message.TimeLabel,bubbleX+bubble-75,0,75,32,17,Muted,align:TextAlignmentOptions.MidlineRight);
+                bool canReport=!self&&!message.Local&&!State.IsPreview&&message.TimeMs>0&&State.Page==SocialPage.World;
+                FText(row,"Time",message.TimeLabel,bubbleX+bubble-(canReport?135:75),0,75,32,17,Muted,align:TextAlignmentOptions.MidlineRight);
+                if(canReport)
+                {
+                    var capturedMsg=message;
+                    FHit(row,"SocialReport_"+message.Id,"举报",bubbleX+bubble-54,0,54,32,()=>ShowReportModal(State.Channel,capturedMsg),size:17,color:Muted);
+                }
                 var paper=FImage(row,"message_bubble",bubbleX,34,bubble,textHeight+14+cardHeight);
                 if(self){paper.color=QdaoUguiTheme.Html("#E0EFD5");paper.rectTransform.localScale=new UnityEngine.Vector3(-1,1,1);paper.rectTransform.anchoredPosition+=new Vector2(bubble,0);}
                 FText(row,"MessageText",message.Text,bubbleX+18,39,bubble-36,textHeight+4,24,Ink,true,TextAlignmentOptions.TopLeft);

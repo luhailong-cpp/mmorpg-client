@@ -20,6 +20,7 @@ namespace MmorpgClient.UI.Ugui.Social
         public bool HasModal => _modal != null;
         public event Action<SocialChannel> RefreshRequested;
         public event Action<SocialChannel,string> SendRequested;
+        public event Action<SocialChannel,SocialMessage,uint,string> ReportRequested;
         public event Action<ulong> TeamInviteRequested;
         public event Action FriendRequestsRequested;
         public event Action Closed;
@@ -338,6 +339,40 @@ namespace MmorpgClient.UI.Ugui.Social
             if(!State.IsPreview)return;var panel=Modal("分享给道友",900,397);Text(panel,"选择一张本地分享卡片",84,120,732,65,27,Muted);
             Button(panel,"SocialShareTalisman","太清护身符",84,228,348,80,()=>{CloseModal();_forceBottom=true;State.PreviewSend(State.Channel,"", "talisman");},size:28);
             Button(panel,"SocialShareCoordinates","青岚竹海坐标",466,228,348,80,()=>{CloseModal();_forceBottom=true;State.PreviewSend(State.Channel,"", "bamboo");},size:28);
+        }
+        private void ShowReportModal(SocialChannel channel,SocialMessage message)
+        {
+            if(message==null||message.Sender==0||message.TimeMs<=0||State.IsPreview)return;
+            uint selectedReason=1;
+            var panel=Modal("举报发言",920,620);
+            Text(panel,"将此条发言提交审核（"+State.Person(message.Sender).Name+"）",80,126,760,46,26,Muted);
+            string[] reasons={"广告引流","辱骂骚扰","涉政涉黄","其他违规"};
+            Button[] reasonButtons=new Button[reasons.Length];
+            void RefreshReasons()
+            {
+                for(int i=0;i<reasonButtons.Length;i++)
+                {
+                    if(reasonButtons[i]==null)continue;
+                    bool active=selectedReason==(uint)(i+1);
+                    reasonButtons[i].GetComponent<Image>().sprite=Load(active?"button_primary":"button_secondary");
+                    var lbl=reasonButtons[i].GetComponentInChildren<TMP_Text>();
+                    if(lbl!=null)lbl.color=active?Cream:Ink;
+                }
+            }
+            for(int i=0;i<reasons.Length;i++)
+            {
+                uint code=(uint)(i+1);
+                reasonButtons[i]=Button(panel,"SocialReportReason_"+code,reasons[i],80+(i%2)*390,188+(i/2)*84,370,68,()=>{selectedReason=code;RefreshReasons();},code==selectedReason,size:26);
+            }
+            Text(panel,"补充说明（选填，最多100字）",80,368,760,40,24,Jade);
+            var detail=Input(panel,"SocialReportDetail","简要描述违规情况…","",80,414,760,92,true,100);
+            Button(panel,"SocialReportConfirm","提交举报",550,532,290,62,()=>
+            {
+                string note=(detail!=null?detail.text:"").Trim();
+                CloseModal();
+                ReportRequested?.Invoke(channel,message,selectedReason,note);
+            },true,size:27);
+            Button(panel,"SocialModalCancel","取消",290,532,230,62,()=>CloseModal(),size:27);
         }
         public void Dispose(){State.Changed-=Changed;Hide();_countdowns.Clear();}
     }

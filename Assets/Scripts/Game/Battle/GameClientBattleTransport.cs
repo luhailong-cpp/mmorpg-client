@@ -6,9 +6,9 @@ namespace MmorpgClient.Game.Battle
     /// <summary>
     /// <see cref="IBattleTransport"/> 的生产实现:把 BattleClient 的网络依赖
     /// 原样接到 GameClient 现有管线上 ——
-    /// 请求-响应走 GameClient.Call(协程,经 CoroutineRunner 宿主启动),
+    /// 请求-响应直接走 GameClient.CallMethod(超时与派发由主循环 GameClient.Tick 驱动),
     /// 单向消息走 GameClient.SendOneWay,S2C 推送走 GameClient.OnNotify。
-    /// 不新增任何网络栈/线程,回调全部落在 Unity 主线程(由 GameClient.Tick 驱动)。
+    /// 不新增任何网络栈/线程/协程,回调全部落在 Unity 主线程。
     /// </summary>
     public sealed class GameClientBattleTransport : IBattleTransport
     {
@@ -37,15 +37,12 @@ namespace MmorpgClient.Game.Battle
                                 Action<TResp> onResponse, Action<string> onError)
             where TResp : IMessage<TResp>
         {
-            // GameClient.Call 是协程(内部带 15s 超时 + Tick 驱动),需要宿主启动。
-            // CoroutineRunner 由 AppBootstrap 在 Awake 时接线(与重定向流程共用)。
-            var runner = _game.CoroutineRunner;
-            if (runner == null)
+            // 直接转发 CallMethod,避免协程首帧同步重入 GameClient.Tick() 以及每笔在途 RPC 的每帧冗余 Tick。
+            _game.CallMethod(messageId, request, parser, (status, response) =>
             {
-                onError?.Invoke("协程宿主未就绪(CoroutineRunner 未接线)");
-                return;
-            }
-            runner(_game.Call(messageId, request, parser, onResponse, onError));
+                if (status.IsOk) onResponse?.Invoke(response);
+                else onError?.Invoke(status.ToLegacyError());
+            });
         }
 
         public void SendOneWay(uint messageId, IMessage request)

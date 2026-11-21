@@ -162,6 +162,11 @@ namespace MmorpgClient.Net
         /// <summary>最近一份落点分配(含票据);Close 后为 null。</summary>
         public BattleAssignedS2C Assignment => _assignment;
 
+        /// <summary>战斗直连的统一限流与熔断守卫，与 battle 节点的 MessageLimiter 口径一致。</summary>
+        public RpcGuard RpcGuard { get; }
+
+        public bool CanSend(uint messageId) => IsVerified && RpcGuard.CanSend(messageId);
+
         /// <summary>握手通过(参数 battle_id)。重连成功也会再次触发。</summary>
         public event Action<ulong> OnVerified;
 
@@ -204,6 +209,7 @@ namespace MmorpgClient.Net
             _factory = factory ?? throw new ArgumentNullException(nameof(factory));
             _log = log ?? (_ => { });
             _calls = new OutstandingCalls(onCallbackException ?? (ex => _log($"回调异常: {ex}")));
+            RpcGuard = new RpcGuard(() => (float)_now);
             _unixNowMs = unixNowMs ?? (() => (ulong)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             _connectRunner = connectRunner ?? (a => ThreadPool.QueueUserWorkItem(_ => a()));
             if (random01 == null)
@@ -443,14 +449,24 @@ namespace MmorpgClient.Net
         public void CallMethod<TResp>(uint messageId, IMessage request, MessageParser<TResp> parser, RpcDone<TResp> done)
             where TResp : IMessage<TResp>
         {
-            var completion = OutstandingCalls.Typed(parser, done);
             var conn = _conn;
             if (!IsVerified || conn == null)
             {
-                completion(RpcStatus.NotSent("not ready"), null);
+                OutstandingCalls.Typed(parser, done)(RpcStatus.NotSent("not ready"), null);
+                return;
+            }
+            if (!RpcGuard.TryBeginCall(messageId, out var guardRejection))
+            {
+                OutstandingCalls.Typed(parser, done)(guardRejection, null);
                 return;
             }
 
+            RpcDone<TResp> guardedDone = (status, response) =>
+            {
+                RpcGuard.CompleteCall(messageId, status);
+                done?.Invoke(status, response);
+            };
+            var completion = OutstandingCalls.Typed(parser, guardedDone);
             ulong id = _calls.Add(_now + CallTimeoutSeconds, completion);
             if (!TrySend(conn, new ClientRequest { Id = id, MessageId = messageId, Body = request.ToByteString() }))
             {
@@ -829,7 +845,10 @@ namespace MmorpgClient.Net
         }
 
         private void FailPending(string reason)
-            => _calls.FailAll(RpcStatus.Disconnected(reason));
+        {
+            _calls.FailAll(RpcStatus.Disconnected(reason));
+            RpcGuard.Reset();
+        }
 
         /// <summary>只负责发与记日志;失败后的恢复由调用方决定(避免同一次失败触发两次恢复)。</summary>
         private bool TrySend(IFramedConnection conn, IMessage message)

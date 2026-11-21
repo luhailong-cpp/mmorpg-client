@@ -9,6 +9,7 @@ using System.Threading;
 using System.Text;
 using Google.Protobuf;
 using MmorpgClient.Game;
+using MmorpgClient.Game.Battle;
 using MmorpgClient.Net;
 using NUnit.Framework;
 using UnityEngine.TestTools;
@@ -66,6 +67,36 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(_disconnected, Is.Zero);
             _game.Tick();
             Assert.That(_routines.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void SilentReconnectResetsPetsAndSpectateWithoutDisconnectEvent()
+        {
+            Invoke("DispatchInbound", new MessageContent
+            {
+                MessageId = MessageIds.NotifyPetListChanged,
+                SerializedMessage = new PetListChangedS2C { Pets = new PetListInfo { MaxPets = 5 } }.ToByteString()
+            });
+            _game.Spectate.WatchBattle(7700);
+            Invoke("DispatchInbound", new MessageContent
+            {
+                MessageId = MessageIds.NotifySpectateState,
+                SerializedMessage = new SpectateStateS2C
+                {
+                    State = new BattleStateS2C { BattleId = 7700, RoundIndex = 1, Outcome = eBattleOutcome.BattleOutcomeOngoing },
+                    ObserverCount = 2
+                }.ToByteString()
+            });
+            Assert.That(_game.Pets.HasList, Is.True);
+            Assert.That(_game.Spectate.Phase, Is.EqualTo(SpectatePhase.Watching));
+
+            PeerEof(); _game.Tick();
+
+            Assert.That(_game.IsReconnecting, Is.True);
+            Assert.That(_disconnected, Is.Zero, "静默重连不发 OnDisconnected");
+            Assert.That(_game.Pets.HasList, Is.False, "静默重连必须清掉旧宠物列表以便重连后重新拉取");
+            Assert.That(_game.Spectate.Phase, Is.EqualTo(SpectatePhase.None), "静默重连必须清掉 Watching 避免永久卡死");
+            Assert.That(_game.Spectate.State, Is.Null);
         }
 
         [Test]
@@ -361,7 +392,7 @@ namespace MmorpgClient.Tests.EditMode.Net
             Exception serverFailure = null;
             var server = new Thread(() =>
             {
-                try { ServeAssignGate(1, AssignGateResult.CodeQueueing); }
+                try { ServeAssignGate(1, AssignGateResult.CodeQueueing, queueSource: "login"); }
                 catch (Exception ex) { serverFailure = ex; }
             }) { IsBackground = true };
             server.Start();
@@ -372,11 +403,51 @@ namespace MmorpgClient.Tests.EditMode.Net
             Assert.That(_game.IsReconnecting, Is.False);
             Assert.That(_disconnected, Is.EqualTo(1));
             Assert.That(_game.DisconnectReason, Is.EqualTo("重新连接失败，请重新进入游戏"));
-            Assert.That(_gatewayListener.Pending(), Is.False, "排队是确定结论：恢复流程不能替玩家排队，也不再领第二张票");
+            Assert.That(_gatewayListener.Pending(), Is.False, "真排队(queue_source=login)是确定结论：恢复流程不能替玩家排队，也不再领第二张票");
         }
 
-        /// <summary>假网关:收一次 assign-gate,回指定 gate 端口与结果码。</summary>
-        private void ServeAssignGate(int gatePort, int code = AssignGateResult.CodeOk)
+        [UnityTest]
+        public IEnumerator RecoveryRetriesOnRateLimitQueueHintWithinBudget()
+        {
+            using var ready = new ManualResetEventSlim();
+            using var release = new ManualResetEventSlim();
+            var freshListener = new TcpListener(IPAddress.Loopback, 0); freshListener.Start();
+            int freshPort = ((IPEndPoint)freshListener.LocalEndpoint).Port;
+            Exception serverFailure = null;
+            var logs = new List<string>();
+            _game.OnLog += logs.Add;
+            var server = new Thread(() =>
+            {
+                try
+                {
+                    // 区桶满时的限流提示(100 ratelimit)是暂时故障,恢复流程在预算内按服务端间隔重试,不把玩家踢回选服。
+                    ServeAssignGate(0, AssignGateResult.CodeQueueing, queueSource: "ratelimit", retryAfterMs: 100);
+                    ServeAssignGate(freshPort);
+                    using var fresh = ServeEnteredGate(freshListener);
+                    ready.Set();
+                    release.Wait(5000);
+                }
+                catch (Exception ex) { serverFailure = ex; ready.Set(); }
+            }) { IsBackground = true };
+            server.Start();
+            try
+            {
+                _game.PlayerChooser = (_, __, ___) => throw new InvalidOperationException("恢复时不能重新选角");
+                PeerEof(); _game.Tick();
+                yield return PumpRecovery(_routines[0]);
+                Assert.That(ready.Wait(1000), Is.True, string.Join("\n", logs));
+                Assert.That(serverFailure, Is.Null);
+                Assert.That(_game.IsReconnecting, Is.False);
+                Assert.That(_game.InGame, Is.True);
+                Assert.That(_game.PlayerId, Is.EqualTo(42ul));
+                Assert.That(_disconnected, Is.Zero, "限流提示后重试成功,不能弹断线");
+                Assert.That(logs.Exists(line => line.Contains("reconnect attempt 1 failed")), Is.True, string.Join("\n", logs));
+            }
+            finally { release.Set(); freshListener.Stop(); _gatewayListener.Stop(); Assert.That(server.Join(3000), Is.True); }
+        }
+
+        /// <summary>假网关:收一次 assign-gate,回指定 gate 端口、结果码与可选排队来源。</summary>
+        private void ServeAssignGate(int gatePort, int code = AssignGateResult.CodeOk, string queueSource = null, long retryAfterMs = 0)
         {
             using var http = _gatewayListener.AcceptTcpClient();
             http.GetStream().ReadTimeout = 5000;
@@ -392,8 +463,11 @@ namespace MmorpgClient.Tests.EditMode.Net
             var request = UnityEngine.JsonUtility.FromJson<AssignGateRequest>(requestJson);
             Assert.That(request.access_token, Is.EqualTo("test-access"));
             Assert.That(requestJson, Does.Not.Contain("\"account\""));
+            string extra = queueSource != null
+                ? ",\"queue_source\":\"" + queueSource + "\",\"retry_after_ms\":" + retryAfterMs
+                : "";
             string json = "{\"code\":" + code + ",\"gate_ip\":\"127.0.0.1\",\"gate_port\":" + gatePort +
-                ",\"token_payload\":\"AQID\",\"token_signature\":\"BAUG\"}";
+                ",\"token_payload\":\"AQID\",\"token_signature\":\"BAUG\"" + extra + "}";
             byte[] response = Encoding.ASCII.GetBytes("HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: " +
                 json.Length + "\r\nConnection: close\r\n\r\n" + json);
             http.GetStream().Write(response, 0, response.Length);

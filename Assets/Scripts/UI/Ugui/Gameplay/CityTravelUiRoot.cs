@@ -51,6 +51,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var canvasObject = new GameObject("CityTravelCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
@@ -144,15 +145,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_window == null || _window.Root == null) return;
             if (_window.IsVisible) { HidePanel(); return; }
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow()) return;
-            MysteryMerchantUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();
-            AttributeUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
-            PetUiRoot.Instance?.HidePanel();
+            CityPanelRegistry.HideOthers(this);
             _window.SetZones(BuildZones());
             _window.SetDestinations(CreateDestinations());
             _window.Show(CurrentScene, _app.WorldMap?.Appearance ?? "normal");
@@ -425,15 +418,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _request.IsPending, _status);
         }
 
-        private static bool IsTyping()
-        {
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            return selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
-                                        selected.GetComponentInParent<InputField>()?.isFocused == true);
-        }
+        private static bool IsTyping() => CityPanelRegistry.IsTyping();
 
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             Bind(null);
             if (Instance == this) Instance = null;
         }

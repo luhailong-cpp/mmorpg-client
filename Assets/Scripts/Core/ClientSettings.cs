@@ -19,7 +19,6 @@ namespace MmorpgClient.Core
         private const string K_Gateway  = "mmorpg.gateway";
         private const string K_Account  = "mmorpg.account";
         private const string K_Zone     = "mmorpg.zone";
-        private const string K_LogLevel = "mmorpg.loglevel";
         private const string K_RecentZones = "mmorpg.recentzones";
         private const string K_LoginMethod = "mmorpg.loginmethod";
 
@@ -95,13 +94,6 @@ namespace MmorpgClient.Core
         {
             PlayerPrefs.SetString($"mmorpg.lastplayer.{zoneId}", playerId.ToString());
             PlayerPrefs.Save();
-        }
-
-        public static MmorpgLogger.LogLevel LogLevel
-        {
-            get => (MmorpgLogger.LogLevel)PlayerPrefs.GetInt(K_LogLevel,
-                Debug.isDebugBuild ? (int)MmorpgLogger.LogLevel.Debug : (int)MmorpgLogger.LogLevel.Info);
-            set { PlayerPrefs.SetInt(K_LogLevel, (int)value); PlayerPrefs.Save(); }
         }
     }
 }

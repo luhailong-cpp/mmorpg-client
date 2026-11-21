@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using MmorpgClient.Game.Social;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -44,3 +45,4 @@ namespace MmorpgClient.UI.Ugui.Social
         private void OnDestroy()=>Window?.Dispose();
     }
 }
+#endif

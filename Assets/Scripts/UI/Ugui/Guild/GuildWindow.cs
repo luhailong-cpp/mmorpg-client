@@ -21,7 +21,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         public event Action RefreshRequested;
         public event Action EconomyRecoveryRequested;
         public event Action<uint> RankRequested;
-        public event Action<string> CreateRequested, AnnouncementRequested;
+        public event Action<string> CreateRequested, AnnouncementRequested, RenameRequested;
         // 申请制取代“加入”:排行页只发申请 / 撤回,入帮与否由帮主或长老审批。
         public event Action<ulong> ApplyRequested, CancelApplicationRequested, KickRequested, TransferRequested;
         public event Action<ulong, uint> RoleRequested;
@@ -332,6 +332,8 @@ namespace MmorpgClient.UI.Ugui.Guild
             }
             Art(_rail, "guild_level_plate", 274, 74, 171, 55);
             FidelityLabel(_rail, "GuildLevel", info.Level + " 级帮会", 283, 79, 153, 44, 25, Ink, align: TextAlignmentOptions.Center);
+            if (_client.IsLeader)
+                NamedButton(_rail, "RenameGuild", "改名", 453, 81, 74, 42, ShowRename, enabled: !Busy, fontSize: 21);
             if (_client.IsOfficerOrLeader)
                 NamedButton(_rail, "UpgradeGuild", info.UpgradeCostFunds == 0 ? "已满级" : "升级", 265, 139, 115, 40,
                     ShowUpgrade, enabled: _client.CanUpgrade && !Busy, fontSize: 22);
@@ -1324,6 +1326,19 @@ namespace MmorpgClient.UI.Ugui.Guild
                 true, enabled: false);
             input.onValueChanged.AddListener(value => submit.interactable = value.Trim().Length > 0);
             NamedButton(frame, "CancelCreateGuild", "取消", 66, 460, 300, 82, CloseModal);
+            EventSystem.current?.SetSelectedGameObject(input.gameObject);
+        }
+        private void ShowRename()
+        {
+            if (Busy || _client?.IsLeader != true || _client.Info == null) return;
+            var frame = Modal("帮会改名", "每次改名需消耗帮会资金，冷却 7 天，旧名保留保护 7 天。");
+            Heading(frame, "新帮会名称", 66, 212, 970, 54, 30);
+            var input = Input(frame, "RenameGuildName", 66, 280, 968, 82, "1–24 字新帮会名称", GuildClient.MaxNameLength);
+            var submit = NamedButton(frame, "ConfirmRenameGuild", "确认改名", 692, 460, 340, 82,
+                () => { string name = input.text.Trim(); if (name.Length == 0) return; CloseModal(); RenameRequested?.Invoke(name); },
+                true, enabled: false);
+            input.onValueChanged.AddListener(value => submit.interactable = value.Trim().Length > 0);
+            NamedButton(frame, "CancelRenameGuild", "取消", 66, 460, 300, 82, CloseModal);
             EventSystem.current?.SetSelectedGameObject(input.gameObject);
         }
         private void ShowReadAnnouncement()

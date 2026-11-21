@@ -605,7 +605,7 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         private static bool HasBootstrapOrWorld() => FindAll<AppBootstrap>().Length != 0
-            || FindAll<Bootstrap>().Length != 0 || FindAll<UnityEngine.Transform>().Any(item => item.name == "[ActorWorld]");
+            || FindAll<UnityEngine.Transform>().Any(item => item.name == "[ActorWorld]");
         private static T[] FindAll<T>() where T : UnityEngine.Object => UnityEngine.Object.FindObjectsByType<T>(
             FindObjectsInactive.Include, FindObjectsSortMode.None);
         private static string Argument(string[] args, string option)

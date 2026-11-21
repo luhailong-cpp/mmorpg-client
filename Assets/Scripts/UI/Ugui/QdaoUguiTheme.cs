@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace MmorpgClient.UI.Ugui
 {
@@ -95,6 +98,67 @@ namespace MmorpgClient.UI.Ugui
         public static Color Html(string value)
         {
             return ColorUtility.TryParseHtmlString(value, out var color) ? color : Color.white;
+        }
+    }
+
+    /// <summary>
+    /// 主城互斥全屏面板注册表与统一输入焦点判定。各 *UiRoot 在 Awake 注册、OnDestroy 注销，
+    /// 打开前调 <see cref="HideOthers"/> 统一收起其余面板，避免新增面板时各处手工列表漂移漏关。
+    /// </summary>
+    public static class CityPanelRegistry
+    {
+        private static readonly List<(object Owner, Action Hide)> Panels = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStaticState() => Panels.Clear();
+
+        public static void Register(object owner, Action hide)
+        {
+            if (owner == null || hide == null) return;
+            for (int i = 0; i < Panels.Count; i++)
+            {
+                if (ReferenceEquals(Panels[i].Owner, owner))
+                {
+                    Panels[i] = (owner, hide);
+                    return;
+                }
+            }
+            Panels.Add((owner, hide));
+        }
+
+        public static void Unregister(object owner)
+        {
+            if (owner == null) return;
+            for (int i = Panels.Count - 1; i >= 0; i--)
+                if (ReferenceEquals(Panels[i].Owner, owner)) Panels.RemoveAt(i);
+        }
+
+        public static void HideOthers(object except)
+        {
+            if (Panels.Count == 0) return;
+            var snapshot = Panels.ToArray();
+            for (int i = 0; i < snapshot.Length; i++)
+            {
+                var (owner, hide) = snapshot[i];
+                if (ReferenceEquals(owner, except)) continue;
+                if (owner is UnityEngine.Object unityObject && unityObject == null)
+                {
+                    Unregister(owner);
+                    continue;
+                }
+                hide();
+            }
+        }
+
+        public static bool IsTyping()
+        {
+            var current = EventSystem.current;
+            if (current == null) return false;
+            var selected = current.currentSelectedGameObject;
+            // Unity 已销毁对象需用其重载的空值判断，?. 仍会访问失效的原生对象。
+            if (selected == null) return false;
+            return selected.GetComponentInParent<TMP_InputField>()?.isFocused == true
+                || selected.GetComponentInParent<InputField>()?.isFocused == true;
         }
     }
 }

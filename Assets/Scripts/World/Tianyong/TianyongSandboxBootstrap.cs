@@ -92,9 +92,11 @@ namespace MmorpgClient.World.Tianyong
             TianyongLighting.Apply(initialTheme, directionalLight);
             _map.UpdateVisibleChunks(player.transform.position, config?.VisibleChunkRadius ?? 3);
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             // 离线验收:-sandboxDrive 时自动走位截图(TianyongSandboxAutoDrive);未带参数时无副作用。
             TianyongSandboxHudVerification.TryAttach(this);
             TianyongSandboxAutoDrive.TryAttach(this);
+#endif
         }
 
         private TianyongCameraController CreateCameraController()
@@ -359,12 +361,16 @@ namespace MmorpgClient.World.Tianyong
 
         private void OpenVisualPreview(uint id, string appearance)
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             try { FestivalMapVisualPreview.Open(this, id, appearance); }
             catch (System.Exception error)
             {
                 _deliveryStatus = "视觉预览无法打开：" + error.Message;
                 Debug.LogError("[FestivalVisualPreview] " + _deliveryStatus);
             }
+#else
+            _deliveryStatus = "视觉预览仅在开发版可用。";
+#endif
         }
 
         private void OnDestroy()

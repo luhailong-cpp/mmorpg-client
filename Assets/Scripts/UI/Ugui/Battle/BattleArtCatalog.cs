@@ -154,6 +154,8 @@ namespace MmorpgClient.UI.Ugui.Battle
         private static readonly Dictionary<string, StripAnim> s_strips = new Dictionary<string, StripAnim>();
         private static readonly Dictionary<uint, Sprite> s_silhouettes = new Dictionary<uint, Sprite>();
         private static readonly Dictionary<string, DigitFont> s_digits = new Dictionary<string, DigitFont>();
+        private static readonly HashSet<Sprite> s_runtimeSprites = new HashSet<Sprite>();
+        private static readonly HashSet<UnityEngine.Object> s_loadedAssets = new HashSet<UnityEngine.Object>();
         private static Dictionary<uint, SkillPresentation> s_skillTable;
         private static ArtManifest s_manifest;
         private static bool s_manifestLoaded;
@@ -171,6 +173,8 @@ namespace MmorpgClient.UI.Ugui.Battle
             s_strips.Clear();
             s_silhouettes.Clear();
             s_digits.Clear();
+            s_runtimeSprites.Clear();
+            s_loadedAssets.Clear();
             s_visibleBounds.Clear();
             s_skillTable = null;
             s_manifest = null;
@@ -180,6 +184,110 @@ namespace MmorpgClient.UI.Ugui.Battle
             s_shadow = null;
             s_ring = null;
             s_circle = null;
+        }
+
+        private static bool IsTransientBattlePath(string path)
+        {
+            if (string.IsNullOrEmpty(path)) return false;
+            return path.StartsWith(MonstersRoot + "/", StringComparison.Ordinal) ||
+                path.StartsWith(FxRoot + "/", StringComparison.Ordinal) ||
+                path.StartsWith(CharactersRoot + "/", StringComparison.Ordinal) ||
+                path.StartsWith(BuffRoot + "/", StringComparison.Ordinal) ||
+                path.StartsWith(PortraitsRoot + "/", StringComparison.Ordinal) ||
+                path == EntryLoadingPath ||
+                path == EntryCloudsPath ||
+                path == SpawnRingFriendlyPath ||
+                path == SpawnRingEnemyPath;
+        }
+
+        private static void DestroyRuntimeObject(UnityEngine.Object obj)
+        {
+            if (obj == null) return;
+            if (Application.isPlaying) UnityEngine.Object.Destroy(obj);
+            else UnityEngine.Object.DestroyImmediate(obj);
+        }
+
+        /// <summary>
+        /// 释放单局战斗结束后不再需要的非 HUD 纹理与切帧缓存(怪物、特效、旧角色帧条、开场全屏图、光环、Buff 图标、怪物剪影)，
+        /// 避免 WebGL / 小游戏连续战斗后堆内存只增不减；保留常驻战斗 HUD(UI 九宫、数字字集、竞技场背景、程序化圆环/阴影与配置表)。
+        /// 仅在 BattleScreen.Close() 销毁全部单位与瞬态特效后调用。
+        /// </summary>
+        public static void ReleaseTransientBattleCaches()
+        {
+            var spritesToRelease = new HashSet<Sprite>();
+            var assetTexturesToUnload = new HashSet<Texture2D>();
+            var runtimeTexturesToDestroy = new HashSet<Texture2D>();
+
+            foreach (var strip in s_strips.Values)
+            {
+                if (strip?.Frames == null) continue;
+                foreach (var sprite in strip.Frames)
+                {
+                    if (ReferenceEquals(sprite, null)) continue;
+                    spritesToRelease.Add(sprite);
+                    if (sprite != null && sprite.texture != null) assetTexturesToUnload.Add(sprite.texture);
+                }
+            }
+            s_strips.Clear();
+
+            foreach (var sprite in s_silhouettes.Values)
+            {
+                if (ReferenceEquals(sprite, null)) continue;
+                spritesToRelease.Add(sprite);
+                if (sprite != null && sprite.texture != null) runtimeTexturesToDestroy.Add(sprite.texture);
+            }
+            s_silhouettes.Clear();
+
+            List<string> removeSpriteKeys = null;
+            foreach (var kv in s_sprites)
+            {
+                if (!IsTransientBattlePath(kv.Key)) continue;
+                (removeSpriteKeys ??= new List<string>()).Add(kv.Key);
+                var sprite = kv.Value;
+                if (ReferenceEquals(sprite, null)) continue;
+                spritesToRelease.Add(sprite);
+                if (sprite != null && sprite.texture != null) assetTexturesToUnload.Add(sprite.texture);
+            }
+            if (removeSpriteKeys != null)
+                foreach (var key in removeSpriteKeys) s_sprites.Remove(key);
+
+            List<string> removeTextureKeys = null;
+            foreach (var kv in s_textures)
+            {
+                if (!IsTransientBattlePath(kv.Key)) continue;
+                (removeTextureKeys ??= new List<string>()).Add(kv.Key);
+                if (kv.Value != null) assetTexturesToUnload.Add(kv.Value);
+            }
+            if (removeTextureKeys != null)
+                foreach (var key in removeTextureKeys) s_textures.Remove(key);
+
+            var retainedTextures = new HashSet<Texture2D>();
+            foreach (var tex in s_textures.Values) if (tex != null) retainedTextures.Add(tex);
+            foreach (var sprite in s_sprites.Values) if (sprite != null && sprite.texture != null) retainedTextures.Add(sprite.texture);
+            foreach (var font in s_digits.Values)
+                if (font?.Cells != null)
+                    foreach (var cell in font.Cells)
+                        if (cell != null && cell.texture != null) retainedTextures.Add(cell.texture);
+
+            foreach (var sprite in spritesToRelease)
+            {
+                s_visibleBounds.Remove(sprite);
+                if (s_runtimeSprites.Remove(sprite)) DestroyRuntimeObject(sprite);
+                else if (s_loadedAssets.Remove(sprite) && sprite != null) Resources.UnloadAsset(sprite);
+            }
+
+            List<Sprite> deadBounds = null;
+            foreach (var key in s_visibleBounds.Keys)
+                if (key == null) (deadBounds ??= new List<Sprite>()).Add(key);
+            if (deadBounds != null)
+                foreach (var key in deadBounds) s_visibleBounds.Remove(key);
+
+            foreach (var tex in runtimeTexturesToDestroy)
+                if (tex != null && !retainedTextures.Contains(tex) && !s_loadedAssets.Contains(tex))
+                    DestroyRuntimeObject(tex);
+            foreach (var tex in assetTexturesToUnload)
+                if (tex != null && !retainedTextures.Contains(tex) && s_loadedAssets.Remove(tex))
+                    Resources.UnloadAsset(tex);
         }
 
         static BattleArtCatalog()
@@ -343,7 +451,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                     ? LoadRosterDirectionWithResources(next, direction, walk, load, release, fallback, shared) : null;
             }
             string key = walk ? $"{appearance.CacheKey}/walk/{direction}#individual-frames" : $"{appearance.CacheKey}/idle_{direction}";
-            if (s_strips.TryGetValue(key, out var cached)) return cached;
+            if (TryGetCachedStrip(key, out var cached)) return cached;
             var frames = new Sprite[walk ? appearance.FrameCount : 1];
             for (var frame = 0; frame < frames.Length; frame++)
             {
@@ -358,13 +466,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         private static Sprite LoadAppearanceFrame(QdaoCharacterCatalog.Appearance appearance, string path)
         {
             string key = $"{appearance.CacheKey}/{path}#pose";
-            if (s_strips.TryGetValue(key, out var cached)) return cached?.Frames[0];
+            if (TryGetCachedStrip(key, out var cached)) return cached?.Frames[0];
             var texture = Resources.Load<Texture2D>(path);
             var geometry = appearance.GeometryForResource(path);
             if (texture == null || texture.width != geometry.Width || texture.height != geometry.Height) return null;
+            s_loadedAssets.Add(texture);
             var sprite = Sprite.Create(texture, new Rect(0f, 0f, geometry.Width, geometry.Height), geometry.Pivot,
                 geometry.PixelsPerUnit, 0, SpriteMeshType.FullRect);
             sprite.name = path;
+            s_runtimeSprites.Add(sprite);
             s_strips[key] = new StripAnim { Frames = new[] { sprite }, Fps = appearance.FramesPerSecond, Pivot = FeetPivot };
             return sprite;
         }
@@ -499,6 +609,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),
                     SpritePixelsPerUnit, 0, SpriteMeshType.FullRect, border);
                 sprite.name = $"battle_ui_{name}";
+                s_runtimeSprites.Add(sprite);
             }
             s_sprites[key] = sprite;
             return sprite;
@@ -524,7 +635,12 @@ namespace MmorpgClient.UI.Ugui.Battle
             try
             {
                 sprite = Resources.Load<Sprite>(resourcePath);
-                if (sprite == null)
+                if (sprite != null)
+                {
+                    s_loadedAssets.Add(sprite);
+                    if (sprite.texture != null) s_loadedAssets.Add(sprite.texture);
+                }
+                else
                 {
                     var tex = LoadTexture(resourcePath);
                     if (tex != null)
@@ -532,6 +648,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                         sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f),
                             SpritePixelsPerUnit, 0, SpriteMeshType.FullRect);
                         sprite.name = resourcePath;
+                        s_runtimeSprites.Add(sprite);
                     }
                 }
             }
@@ -584,6 +701,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var rect = new Rect(crop.x * w, h - (crop.y + crop.height) * h, crop.width * w, crop.height * h);
                 sprite = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f), SpritePixelsPerUnit, 0, SpriteMeshType.FullRect);
                 sprite.name = $"portrait_head_{index:00}";
+                s_runtimeSprites.Add(sprite);
             }
             s_sprites[key] = sprite;
             return sprite;
@@ -772,6 +890,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             tex.Apply(false, true);
             var sprite = Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(0.5f, 0.02f), SpritePixelsPerUnit, 0, SpriteMeshType.FullRect);
             sprite.name = tex.name;
+            s_runtimeSprites.Add(sprite);
             s_silhouettes[monsterId] = sprite;
             return sprite;
         }
@@ -903,8 +1022,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             Texture2D tex = null;
             try { tex = Resources.Load<Texture2D>(resourcePath); }
             catch (Exception e) { Debug.LogWarning($"[BattleArtCatalog] 读取 {resourcePath} 失败:{e.Message}"); }
+            if (tex != null) s_loadedAssets.Add(tex);
             s_textures[resourcePath] = tex;
             return tex;
+        }
+
+        private static bool TryGetCachedStrip(string key, out StripAnim strip)
+        {
+            if (!s_strips.TryGetValue(key, out strip)) return false;
+            if (strip == null) return true;
+            if (strip.Frames != null && strip.Frames.Length > 0 && strip.Frames[0] != null && strip.Frames[0].texture != null) return true;
+            s_strips.Remove(key);
+            strip = null;
+            return false;
         }
 
         /// <summary>
@@ -914,7 +1044,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static StripAnim LoadStrip(string resourcePath, int cellSize, Vector2 pivot, float fps)
         {
             string key = $"{resourcePath}|{cellSize}|{pivot.x:0.##},{pivot.y:0.##}";
-            if (s_strips.TryGetValue(key, out var cached)) return cached;
+            if (TryGetCachedStrip(key, out var cached)) return cached;
 
             StripAnim strip = null;
             var tex = LoadTexture(resourcePath);
@@ -940,6 +1070,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var sprite = Sprite.Create(tex, new Rect(i * cellW, 0f, cellW, cellH), pivot,
                     SpritePixelsPerUnit, 0, SpriteMeshType.FullRect);
                 sprite.name = $"{nameHint}_{i:00}";
+                s_runtimeSprites.Add(sprite);
                 frames[i] = sprite;
             }
             return frames;

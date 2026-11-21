@@ -46,6 +46,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var canvasObject = new GameObject("PlayerFeaturesCanvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
             var canvas = canvasObject.GetComponent<Canvas>();
@@ -150,9 +151,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_equipmentWindow.IsVisible) return;
             // 子弹窗独占键盘；Esc 由弹窗自己的输入组件处理，避免同一按键把背包一起关掉。
             if (_window.EquipmentModalOwnsKeyboard) return;
-            bool typing = EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null &&
-                EventSystem.current.currentSelectedGameObject.GetComponentInParent<TMP_InputField>()?.isFocused == true;
-            if (typing) return;
+            if (CityPanelRegistry.IsTyping()) return;
             if (!_window.IsVisible && MmorpgClient.World.Tianyong.GameplayInputGate.IsKeyboardBlocked) return;
 #if ENABLE_INPUT_SYSTEM
             var keys = Keyboard.current;
@@ -200,20 +199,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Changed(); _window.Show(page);
             if (page == GameplayPage.Bag) AttributeClient.Instance?.RequestPanel();
         }
-        private static void PrepareOpen()
-        {
-            MysteryMerchantUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
-            Social.SocialUiRoot.Instance?.HidePanel();
-            Mail.MailUiRoot.Instance?.HidePanel();
-            Jubaozhai.JubaozhaiUiRoot.Instance?.HidePanel();
-            CityTravelUiRoot.Instance?.HidePanel();
-            Guild.GuildUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            AttributeUiRoot.Instance?.HidePanel(); PetUiRoot.Instance?.HidePanel();
-        }
+        private void PrepareOpen() => CityPanelRegistry.HideOthers(this);
         private void Changed()
         {
             if (!HasView) { UnbindClient(); return; }
@@ -257,6 +243,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             UnbindClient();
             _window?.Dispose(); _window = null;
             _equipmentWindow?.Dispose(); _equipmentWindow = null;

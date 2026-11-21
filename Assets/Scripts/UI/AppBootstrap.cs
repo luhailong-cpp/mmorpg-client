@@ -35,7 +35,9 @@ namespace MmorpgClient.UI
             // production client root would cover it with login UI and make
             // scene tests depend on network state.
             if (FindAnyObjectByType<TianyongSandboxBootstrap>() != null) return;
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (FindAnyObjectByType<FestivalMapVisualPreview>()?.IsStandalone == true) return;
+#endif
             if (FindAnyObjectByType<AppBootstrap>() != null) return;
             var go = new GameObject(GameObjectName);
             go.AddComponent<AppBootstrap>();
@@ -69,9 +71,11 @@ namespace MmorpgClient.UI
             if (mapConfig == null) mapConfig = TianyongMapConfig.LoadDefault();
 
             Session    = new SessionModel();  // gateway URL / last account come from ClientSettings (PlayerPrefs)
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             // 自动驾驶(-zone 命令行)激活时 gateway/account/password 以命令行为准,
             // 不读 PlayerPrefs 默认值(双实例同机共用 PlayerPrefs)
             App.DevAutoPilot.ApplyToSession(Session);
+#endif
             Gateway    = new GatewayHttpClient(Session.GatewayBaseUrl);
             GameClient = new GameClient(Session.GatewayBaseUrl);
             GameClient.World.SetRootParent(_actorWorldRoot);
@@ -81,9 +85,11 @@ namespace MmorpgClient.UI
             GameClient.CoroutineRunner = Run; // RedirectToGateNotify 重连流程需要宿主协程
             _gameLogHandler = s => Debug.Log("[GameClient] " + s);
             GameClient.OnLog += _gameLogHandler;
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             // 无人值守流程(选区→登录→排队→自动战斗→退出);未带 -zone 时不挂,零影响。
             // 其 Start 在下一帧跑,晚于下面 RoleFlowUi.Attach,故能把 PlayerChooser 置回 null。
             App.DevAutoPilot.Attach(this);
+#endif
             WorldMap = GetComponent<TianyongMapRuntime>();
             if (WorldMap == null) WorldMap = gameObject.AddComponent<TianyongMapRuntime>();
             WorldMap.Initialize(GameClient, worldCamera, directionalSun, mapConfig);

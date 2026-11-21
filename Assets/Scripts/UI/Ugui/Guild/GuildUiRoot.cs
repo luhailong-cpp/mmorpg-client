@@ -51,6 +51,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var go = new GameObject("GuildCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             go.transform.SetParent(transform, false);
@@ -82,6 +83,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             _window.ReviewRequested += (id, approve) => { if (_available) _client?.Review(id, approve); };
             _window.ApplicationsRequested += () => { if (_available) _client?.LoadApplications(); };
             _window.AnnouncementRequested += text => { if (_available) _client?.SaveAnnouncement(text); };
+            _window.RenameRequested += name => { if (_available) _client?.Rename(name); };
             _window.LeaveRequested += () => { if (_available) _client?.Leave(); };
             _window.DisbandRequested += () => { if (_available) _client?.Disband(); };
             // 经济(B5):捐献页 / 商店页 / 总览升级。
@@ -161,7 +163,7 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (!HasView) return;
             if (_window.IsVisible) { HidePanel(); return; }
             if (!_available) return;
-            HideOtherPanels();
+            CityPanelRegistry.HideOthers(this);
             _window.Show();
             RefreshOrQueue();
         }
@@ -174,19 +176,6 @@ namespace MmorpgClient.UI.Ugui.Guild
             if (_client == null) return;
             if (_client.Busy) _client.QueueRefresh();
             else _client.Refresh();
-        }
-        /// <summary>主城的几个大面板互斥:打开帮会窗口前收起别的。</summary>
-        private static void HideOtherPanels()
-        {
-            MysteryMerchantUiRoot.Instance?.HidePanel();
-            Skills.SkillUiRoot.Instance?.HidePanel();
-            Team.TeamUiRoot.Instance?.HidePanel();
-            GameplayUiRoot.Instance?.HidePanel();
-            CityTravelUiRoot.Instance?.HidePanel();
-            AttributeUiRoot.Instance?.HidePanel();
-            PetUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.Rank.RankUiRoot.Instance?.HidePanel();
-            MmorpgClient.UI.Ugui.BattleScripts.BattleScriptUiRoot.Instance?.HidePanel();
         }
         /// <summary>
         /// 收到同道历练邀请(GuildClient.TrialInvitePending)时把帮会窗口带到活动页,邀请框由窗口在拿到视图后自己弹出。
@@ -204,18 +193,14 @@ namespace MmorpgClient.UI.Ugui.Guild
             bool wasVisible = _window.IsVisible;
             if (wasVisible ? _window.ModalVisible || IsTyping() : GameplayInputGate.IsKeyboardBlocked) return;
             _client.ConsumeTrialInvite();
-            if (!wasVisible) HideOtherPanels();
+            if (!wasVisible) CityPanelRegistry.HideOthers(this);
             if (!_window.ShowingActivities) _window.Show(GuildPage.Activities);
             // 窗口是这一下才打开的:同 Toggle,先拉一次帮会快照(这次登录可能还没拉过,活动视图要等它)。
             // 活动视图只排队:有快照时下一个空闲帧发出;还没有快照时这一下不生效,快照落定后由窗口进页的自动拉取补上。
             if (!wasVisible) RefreshOrQueue();
             _client.QueueActivities();
         }
-        private static bool IsTyping()
-        {
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            return selected != null && selected.GetComponentInParent<TMP_InputField>()?.isFocused == true;
-        }
+        private static bool IsTyping() => CityPanelRegistry.IsTyping();
         public void HidePanel() { if (_window?.Root != null) _window.Hide(); }
         private void Changed() { if (HasView) _window.SetClient(_client); else UnbindClient(); }
         /// <summary>
@@ -237,6 +222,7 @@ namespace MmorpgClient.UI.Ugui.Guild
         private void OnDestroy()
         {
             _destroyed = true;
+            CityPanelRegistry.Unregister(this);
             UnbindClient(); HidePanel(); _window = null;
             if (Instance == this) Instance = null;
         }

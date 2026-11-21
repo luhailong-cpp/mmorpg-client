@@ -160,6 +160,7 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
         [TestCase(CommerceOrderState.Cancelled)]
         [TestCase(CommerceOrderState.Refunded)]
         [TestCase(CommerceOrderState.Settled)]
+        [TestCase(CommerceOrderState.Reversed)]
         public void FirstTerminalOrderAndLaterVersionInvalidateAssets(CommerceOrderState state)
         {
             var net = new JubaozhaiFakeTransport();
@@ -279,6 +280,33 @@ namespace MmorpgClient.Tests.EditMode.Jubaozhai
             Assert.That(client.Busy, Is.True); Assert.That(client.Orders.ContainsKey("old"), Is.False);
             delayedSqlList(new ListCommerceOrdersResponse { Orders = { new CommerceOrderView { OrderId = "current", Version = 3, State = CommerceOrderState.Delivered } } });
             Assert.That(client.Orders["current"].Version, Is.EqualTo(3)); Assert.That(client.Busy, Is.False);
+        }
+
+        [Test]
+        public void OfficialOrderReversalVersionAdvancesMonotonicallyThroughReversedAndRegranted()
+        {
+            var net = new JubaozhaiFakeTransport();
+            using var client = new CommerceClient(net, new MemoryRecovery());
+            int refreshes = 0; client.AssetRefreshRequired += () => refreshes++;
+
+            // 对应服务端 mallAnswer 单调版本号 (PaymentRevision << 4) | stateRank:
+            // rev 0 DELIVERED=5 -> rev 1 REVERSING=19 -> rev 1 REVERSED=21 -> rev 2 REVERSING=35 -> rev 2 DELIVERED=37
+            ulong[] versions = { 5, 19, 21, 35, 37 };
+            CommerceOrderState[] states = {
+                CommerceOrderState.Delivered, CommerceOrderState.Reversing, CommerceOrderState.Reversed,
+                CommerceOrderState.Reversing, CommerceOrderState.Delivered
+            };
+            for (int i = 0; i < versions.Length; i++)
+            {
+                client.ListOrders();
+                net.Reply(new ListCommerceOrdersResponse
+                {
+                    Orders = { new CommerceOrderView { OrderId = "ord-rev", Kind = CommerceOrderKind.Official, Version = versions[i], State = states[i] } }
+                });
+                Assert.That(client.Orders["ord-rev"].State, Is.EqualTo(states[i]));
+                Assert.That(client.Orders["ord-rev"].Version, Is.EqualTo(versions[i]));
+            }
+            Assert.That(refreshes, Is.EqualTo(3), "Delivered(v5)、Reversed(v21)、补发后 Delivered(v37) 三次终态变化均须触发资产刷新");
         }
     }
 

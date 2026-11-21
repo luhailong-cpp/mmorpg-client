@@ -28,6 +28,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private RectTransform _hudRoot;
 
         private AttributeClient _client;
+        private MmorpgClient.Game.GameClient _boundGame;
         private bool _clientBound;
         private ulong _playerId;
         private bool _hadPanel;
@@ -145,6 +146,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 return;
             }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
         }
 
         private void Update()
@@ -155,9 +157,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             if (_panel?.IsVisible != true && _support?.IsVisible != true) return;
             if (_panel?.IsVisible == true) _panel.RefreshIdentity();
             _support?.RefreshState();
-            var selected = EventSystem.current?.currentSelectedGameObject;
-            if (selected != null && (selected.GetComponentInParent<TMP_InputField>()?.isFocused == true ||
-                selected.GetComponentInParent<InputField>()?.isFocused == true)) return;
+            if (CityPanelRegistry.IsTyping()) return;
 #if ENABLE_INPUT_SYSTEM
             if (Keyboard.current?.escapeKey.wasPressedThisFrame == true) { if (_support?.IsVisible == true) _support.Back(); else _panel.Back(); }
 #elif ENABLE_LEGACY_INPUT_MANAGER
@@ -168,6 +168,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
         private void OnDestroy()
         {
             _destroyed = true;
+            CityPanelRegistry.Unregister(this);
             UnbindClient();
             if (Instance == this) Instance = null;
         }
@@ -189,6 +190,12 @@ namespace MmorpgClient.UI.Ugui.Attribute
             if (!HasView) { UnbindClient(); return; }
 
             var game = _app.GameClient;
+            if (game != _boundGame)
+            {
+                if (_boundGame != null) _boundGame.OnRoleRenameOutcome -= HandleRoleRenameOutcome;
+                _boundGame = game;
+                if (_boundGame != null) _boundGame.OnRoleRenameOutcome += HandleRoleRenameOutcome;
+            }
             var current = game?.Attributes;
             ulong playerId = game != null && game.InGame && game.IsGateReady ? game.PlayerId : 0;
             if (_client != current || (_clientBound && _client == null))
@@ -225,6 +232,11 @@ namespace MmorpgClient.UI.Ugui.Attribute
 
         private void UnbindClient()
         {
+            if (_boundGame != null)
+            {
+                _boundGame.OnRoleRenameOutcome -= HandleRoleRenameOutcome;
+                _boundGame = null;
+            }
             if (_client != null)
             {
                 _client.OnPanel -= HandlePanel;
@@ -325,6 +337,24 @@ namespace MmorpgClient.UI.Ugui.Attribute
             _panel?.SetStatus(message, true);
             _support?.SetStatus(message);
             ShowToast(message, true);
+        }
+
+        internal bool TryRequestRoleRename(string rawName, System.Action<bool, string> onImmediateOutcome = null)
+        {
+            var game = _app?.GameClient;
+            if (game == null)
+            {
+                onImmediateOutcome?.Invoke(false, "尚未连接游戏服务器");
+                return false;
+            }
+            return game.RequestRoleRename(rawName, onImmediateOutcome);
+        }
+
+        private void HandleRoleRenameOutcome(bool succeeded, string newName, string message, ulong nextRenameUnixSec)
+        {
+            if (!HasView) return;
+            _support?.HandleRoleRenameOutcome(succeeded, message);
+            ShowToast(message, !succeeded);
         }
 
         // ── HUD ─────────────────────────────────────────────

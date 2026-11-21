@@ -148,6 +148,36 @@ namespace MmorpgClient.Tests.EditMode.Social
             _client.Dispose();_net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,message);
             Assert.That(_state.Messages(SocialChannel.World),Is.Empty);
         }
+        [Test]public void WorldRetractedPushRemovesMessageAndRefreshesState()
+        {
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=44,Content="违规广告",SendTimeMs=1000});
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatMessageId,new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=45,Content="正常发言",SendTimeMs=1001});
+            Assert.That(_state.Messages(SocialChannel.World).Count,Is.EqualTo(2));
+
+            _net.Push(ClientPlayerChatRpc.NotifyWorldChatRetractedMessageId,new ChatRetractedNotify{Channel=ChatChannelType.World,SenderPlayerId=44,SendTimeMs=1000,Reason="platform_async_reject"});
+            Assert.That(_state.Messages(SocialChannel.World).Single().Text,Is.EqualTo("正常发言"));
+            Assert.That(_state.Status,Does.Contain("撤回"));
+        }
+        [Test]public void ReportChatSendsRequestAndHandlesNewModerationTipsWithoutReconnect()
+        {
+            Assert.That(_client.Report(SocialChannel.World,44,1000,1,"推广引流"),Is.True);
+            var req=(ReportChatRequest)_net.Calls[0].Request;
+            Assert.That(_net.Calls[0].Id,Is.EqualTo(ClientPlayerChatRpc.ReportChatMessageId));
+            Assert.That(req.TargetSenderPlayerId,Is.EqualTo(44));
+            Assert.That(req.Reason,Is.EqualTo(1));
+            _net.Calls[0].Success(new ReportChatResponse());
+            Assert.That(_state.Status,Does.Contain("举报已提交"));
+
+            _state.SetDraft(SocialChannel.World,"vx123456");
+            _client.Send(SocialChannel.World,"vx123456");
+            _net.Calls[1].Success(new SendChatResponse{ErrorMessage=new TipInfoMessage{Id=(uint)chat_error.KChatContactRejected}});
+            Assert.That(_client.RequiresReconnect,Is.False);
+            Assert.That(_state.Status,Does.Contain("联系方式"));
+
+            _client.Send(SocialChannel.World,"普通发言");
+            _net.Calls[2].Success(new SendChatResponse{ErrorMessage=new TipInfoMessage{Id=(uint)chat_error.KChatLevelTooLow}});
+            Assert.That(_state.Status,Does.Contain("等级不足"));
+        }
         private static PullChatHistoryResponse History(string text){var response=new PullChatHistoryResponse();response.Messages.Add(new ChatMessage{Channel=ChatChannelType.World,SenderPlayerId=44,Content=text,SendTimeMs=1000});return response;}
     }
     public sealed class SocialUiRootLifecycleTests

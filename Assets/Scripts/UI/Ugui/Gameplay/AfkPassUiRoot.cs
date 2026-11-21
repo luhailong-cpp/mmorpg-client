@@ -66,6 +66,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
+            CityPanelRegistry.Register(this, HidePanel);
             var canvasObject = new GameObject("AfkPassCanvas", typeof(RectTransform), typeof(Canvas),
                 typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObject.transform.SetParent(transform, false);
@@ -132,6 +133,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void OnDestroy()
         {
+            CityPanelRegistry.Unregister(this);
             Unbind();
             if (Instance == this) Instance = null;
         }
@@ -147,6 +149,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public void ShowPanel()
         {
             if (!_available || _window == null) return;
+            CityPanelRegistry.HideOthers(this);
             _armedAt = float.NegativeInfinity;
             _window.gameObject.SetActive(true);
             _client?.RequestInfo();   // 打开时问一次:余额与剩余时长以服务端此刻为准

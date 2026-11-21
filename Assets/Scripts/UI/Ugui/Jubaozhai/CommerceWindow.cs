@@ -20,6 +20,9 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         private readonly TMP_Text _status;
         private readonly Func<GameClient> _game;
         private readonly List<Button> _writeButtons = new();
+        private readonly List<Button> _paymentButtons = new();
+        private Button _cancelOrderButton, _stopWaitButton;
+        private string _paymentLayoutKey = "";
         private CommerceClient _client;
         private PaymentClient _payment;
         // 正在显示的订单详情;支付方式到了或支付有结局时按它重画。别的页面一画(Clear)就清掉。
@@ -77,32 +80,72 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
         {
             if (_disposed || _root == null) return;
             _status.text = _client?.Status ?? "请先进入角色。";
-            bool enabled = _client != null && !_client.Busy && !_client.RequiresReconnect && !_client.HasPendingWrite;
-            foreach (var button in _writeButtons) if (button != null) button.interactable = enabled;
+            RefreshButtonStates();
+        }
+        private void RefreshButtonStates()
+        {
+            bool writeEnabled = _client != null && !_client.Busy && !_client.RequiresReconnect && !_client.HasPendingWrite;
+            bool payLocked = _payment != null && (_payment.Busy || _payment.ChannelsLoading || _payment.PendingOrder.Length != 0);
+            foreach (var button in _writeButtons)
+                if (button != null) button.interactable = writeEnabled && (button != _cancelOrderButton || !payLocked);
+            foreach (var button in _paymentButtons)
+                if (button != null) button.interactable = !payLocked;
+            if (_stopWaitButton != null)
+                _stopWaitButton.interactable = _payment != null && !_payment.Busy && _payment.PendingOrder.Length != 0;
         }
         private void Clear()
         {
-            _confirmed = null; _shownOrder = null; _writeButtons.Clear(); GameplayUiArt.Clear(_body);
+            _confirmed = null; _shownOrder = null; _paymentLayoutKey = "";
+            _cancelOrderButton = null; _stopWaitButton = null;
+            _writeButtons.Clear(); _paymentButtons.Clear(); GameplayUiArt.Clear(_body);
+        }
+        private string PaymentLayoutKey(CommerceOrderView order)
+        {
+            if (_payment == null || order == null || order.Kind != CommerceOrderKind.Official) return "";
+            var sb = new System.Text.StringBuilder();
+            for (int i = 0; i < _payment.Channels.Count && i < 6; i++) sb.Append((int)_payment.Channels[i]).Append(',');
+            sb.Append('|').Append(_payment.PendingOrder == order.OrderId ? '1' : '0');
+            return sb.ToString();
         }
         private void PaymentChanged()
         {
             if (_disposed || _root == null || !IsVisible || _payment == null) return;
             var shown = _shownOrder;
-            if (shown != null && shown.Order.State == CommerceOrderState.AwaitingPayment) ShowOrder(shown); // 支付方式到了:重画出按钮
-            _status.text = _payment.Status;
+            if (shown != null && shown.Order.State == CommerceOrderState.AwaitingPayment)
+            {
+                string key = PaymentLayoutKey(shown.Order);
+                if (key != _paymentLayoutKey) ShowOrder(shown); // 仅渠道列表或等待态变化时重绘,避免每 2s 轮询重建整个界面
+                else RefreshButtonStates();
+            }
+            if (!string.IsNullOrEmpty(_payment.Status)) _status.text = _payment.Status;
         }
-        // 支付有了结局:重读订单,订单状态才是给玩家看的结论。
-        private void PaymentSettled(string orderId) { if (IsVisible) _client?.GetOrder(orderId); }
+        // 支付有了结局:仅当玩家停在对应订单详情或「我的订单」且当前不忙时刷新,避免后台补单劫持其它页签/表单。
+        private void PaymentSettled(string orderId)
+        {
+            if (!IsVisible || _client == null || _client.Busy || string.IsNullOrEmpty(orderId)) return;
+            if (_shownOrder?.Order?.OrderId == orderId || _tab == 4) _client.GetOrder(orderId);
+        }
         // 待付款的官方订单:列出当前平台的支付方式。付没付以服务端同步的订单状态为准,这里不改任何资产。
         private void ShowPayment(CommerceOrderView order)
         {
+            _paymentLayoutKey = PaymentLayoutKey(order);
             if (_payment == null || order.Kind != CommerceOrderKind.Official)
             { Text("等待正式支付渠道确认。付款结果会由服务端同步，请稍后刷新订单。", 24, 490, 1980, 90); return; }
-            if (_payment.Channels.Count == 0) { Action("选择支付方式", 24, 490, 300, _payment.ListChannels); return; }
+            if (_payment.PendingOrder == order.OrderId)
+            {
+                Text("正在等待支付渠道确认，请稍候；如未完成付款可停止等待后重试。", 24, 490, 1460, 56);
+                _stopWaitButton = Action("停止等待", 1520, 490, 260, _payment.CancelWatching);
+                return;
+            }
+            if (_payment.Channels.Count == 0)
+            {
+                _paymentButtons.Add(Action("选择支付方式", 24, 490, 300, _payment.ListChannels));
+                return;
+            }
             for (int i = 0; i < _payment.Channels.Count && i < 6; i++)
             {
                 var channel = _payment.Channels[i];
-                Action(PaymentClient.ChannelName(channel), 24 + i * 330, 490, 300, () => _payment.Pay(order.OrderId, channel));
+                _paymentButtons.Add(Action(PaymentClient.ChannelName(channel), 24 + i * 330, 490, 300, () => _payment.Pay(order.OrderId, channel)));
             }
         }
         private void SelectTab(int tab)
@@ -233,11 +276,15 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 Action("核对并确认交易", 24, 410, 360, () => Confirm(terms + "\n确认以上不可变条款？买方确认会托管买方资产；卖方最终确认后执行交换。", () => _client.ConfirmTrade(order.OrderId)), true);
             Action("刷新订单", 414, 410, 300, () => _client.GetOrder(order.OrderId));
             if (order.State == CommerceOrderState.WaitingConfirmation || order.State == CommerceOrderState.AwaitingPayment)
-                Action("取消订单", 744, 410, 300, () => Confirm("确认取消该订单？已支付订单由服务端确定退款状态。", () => _client.CancelOrder(order.OrderId)), true);
-            if (order.Kind == CommerceOrderKind.Consignment && order.SellerPlayerId == _game()?.PlayerId)
+                _cancelOrderButton = Action("取消订单", 744, 410, 300, () => Confirm("确认取消该订单？已支付订单由服务端确定退款状态。", () => _client.CancelOrder(order.OrderId)), true);
+            bool activeConsignment = order.State != CommerceOrderState.Delivered && order.State != CommerceOrderState.Cancelled
+                && order.State != CommerceOrderState.Refunded && order.State != CommerceOrderState.Settled
+                && order.State != CommerceOrderState.Reversed;
+            if (order.Kind == CommerceOrderKind.Consignment && activeConsignment && order.SellerPlayerId == _game()?.PlayerId)
                 Action("撤回寄售", 1074, 410, 300, () => Confirm("确认撤回该寄售？资产返回以到账状态为准。", () => _client.CancelConsignment(order.OrderId)), true);
             if (order.State == CommerceOrderState.AwaitingPayment) ShowPayment(order);
             Action("我的订单", 24, 592, 300, () => SelectTab(4));
+            RefreshButtonStates();
         }
 
         private static string DescribeTerms(TradeAssetSelection assets, IEnumerable<TradeOfferInstance> instances, TradeOfferInstance pet)
@@ -252,7 +299,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             {
                 foreach (var item in assets.Items) if (!described.Contains(item.Key)) pieces.Add("材料 " + item.Key + " × " + item.Value);
                 foreach (var id in assets.ItemUuids) if (!guids.Contains(id)) pieces.Add("独立道具 " + id + "（待托管核实详情）");
-                if (assets.CurrencyAmount != 0) pieces.Add(assets.CurrencyAmount + (assets.CurrencyType == 0 ? " 金币" : " 货币 " + assets.CurrencyType));
+                if (assets.CurrencyAmount != 0) pieces.Add(assets.CurrencyAmount + " " + CurrencyName(assets.CurrencyType));
                 if (assets.PetId != 0 && (pet == null || pet.InstanceId == 0)) pieces.Add("宠物 " + assets.PetId + "（待托管核实详情）");
             }
             if (pet != null && pet.InstanceId != 0) pieces.Add(pet.Name + " · 等级 " + pet.Level);
@@ -397,7 +444,8 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
                 Action("撤单", 1640, y, 370, () => Confirm("确认撤回尚未成交的部分？", () => _client.CancelMarket(order.MarketOrderId)), true);
             }
             Action("首页", 24, 592, 260, () => _client.ListMarket());
-            Action("下一页", 314, 592, 260, () => _client.ListMarket(_nextCursor));
+            var next = Action("下一页", 314, 592, 260, () => _client.ListMarket(_nextCursor));
+            next.interactable = !string.IsNullOrEmpty(_nextCursor);
         }
         private void ShowDepth(GetMarketDepthResponse response)
         {
@@ -428,10 +476,44 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             if (offer.Assets != null) foreach (var item in offer.Assets.Items) pieces.Add("材料 " + item.Key + " × " + item.Value);
             return string.Join("、", pieces) + " · " + Money(offer.Order.Amount, offer.Order.Currency);
         }
-        private static string Money(ulong amount, string currency) => currency == "CNY"
-            ? (amount / 100).ToString(CultureInfo.InvariantCulture) + "." + (amount % 100).ToString("D2", CultureInfo.InvariantCulture) + " 元"
-            : amount.ToString(CultureInfo.InvariantCulture) + " " + (currency == "0" || currency == "gold" ? "金币" : currency);
-        private static string Kind(CommerceOrderKind kind) => kind switch { CommerceOrderKind.Official => "官方商品", CommerceOrderKind.PlayerTrade => "玩家交易", CommerceOrderKind.Consignment => "寄售", CommerceOrderKind.AuctionLot => "竞拍", _ => "材料成交" };
+        private static string CurrencyName(uint type) => type switch { 0 => "银两", 1 => "灵石", 2 => "绑定灵石", _ => "货币 " + type };
+        private static string Money(ulong amount, string currency)
+        {
+            string code = (currency ?? "").Trim().ToUpperInvariant();
+            switch (code)
+            {
+                case "CNY":
+                    return (amount / 100).ToString(CultureInfo.InvariantCulture) + "." + (amount % 100).ToString("D2", CultureInfo.InvariantCulture) + " 元";
+                case "USD":
+                case "EUR":
+                case "HKD":
+                case "GBP":
+                case "SGD":
+                case "TWD":
+                    return (amount / 100).ToString(CultureInfo.InvariantCulture) + "." + (amount % 100).ToString("D2", CultureInfo.InvariantCulture) + " " + code;
+                case "JPY":
+                case "KRW":
+                    return amount.ToString(CultureInfo.InvariantCulture) + " " + code;
+                case "0":
+                case "GOLD":
+                    return amount.ToString(CultureInfo.InvariantCulture) + " 银两";
+                case "1":
+                    return amount.ToString(CultureInfo.InvariantCulture) + " 灵石";
+                case "2":
+                    return amount.ToString(CultureInfo.InvariantCulture) + " 绑定灵石";
+                default:
+                    return amount.ToString(CultureInfo.InvariantCulture) + (code.Length == 0 ? "" : " " + code);
+            }
+        }
+        private static string Kind(CommerceOrderKind kind) => kind switch
+        {
+            CommerceOrderKind.Official => "官方商品",
+            CommerceOrderKind.PlayerTrade => "玩家交易",
+            CommerceOrderKind.Consignment => "寄售",
+            CommerceOrderKind.AuctionLot => "竞拍",
+            CommerceOrderKind.RmbConsignment => "人民币寄售",
+            _ => "材料成交"
+        };
         private static string State(CommerceOrderState state) => state switch {
             CommerceOrderState.WaitingConfirmation => "等待双方确认", CommerceOrderState.AwaitingPayment => "等待付款确认", CommerceOrderState.Escrowing => "资产托管中",
             CommerceOrderState.Delivering => "资产到账中", CommerceOrderState.Delivered => "已到账", CommerceOrderState.CancelPending => "取消处理中",

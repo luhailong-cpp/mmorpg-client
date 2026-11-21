@@ -56,7 +56,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             var shade = _root.gameObject.AddComponent<Image>(); shade.color = new Color(.025f, .10f, .08f, .65f); shade.raycastTarget = true;
             _root.gameObject.AddComponent<GameplayInputBlocker>();
             _frame = QdaoUguiFactory.CreateCenteredRect("JubaozhaiFrame", _root, 1932, 814);
-            _frame.gameObject.AddComponent<JubaozhaiDesignFit>();
+            _frame.gameObject.AddComponent<Gameplay.GameplayDesignFit>();
             _frameInput = _frame.gameObject.AddComponent<CanvasGroup>();
             NativeArt(_frame, "native-frame", 0, 0, 1932, 814);
             NativeHit(_frame, "JubaoClose", "", 1735, 60, 65, 62, Hide);

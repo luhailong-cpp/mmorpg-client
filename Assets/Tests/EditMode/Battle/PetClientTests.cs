@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using MmorpgClient.Game.Attribute;
+using MmorpgClient.Game.Guild;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Net;
 using NUnit.Framework;
@@ -335,6 +337,58 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             Assert.That(_net.Calls, Is.Empty);
             Assert.That(error, Is.Not.Null);
+        }
+
+        [Test]
+        public void ResetClearsStaleListShopSequenceAndIgnoresPreResetReplies()
+        {
+            string error = null;
+            _client.OnError += e => error = e;
+            OpenShop(sequence: 7);
+            _client.Summon(PetA);
+            var summon = _net.CallsOf(MessageIds.SummonPet).Single();
+            Assert.That(_client.HasList, Is.True);
+            Assert.That(_client.Shop.NextPurchaseSequence, Is.EqualTo(7UL));
+            Assert.That(_client.Busy, Is.True);
+
+            // 静默重连 / 跨区重定向不触发 Disconnected,由宿主直接 Reset。
+            _client.Reset();
+            Assert.That(_client.HasList, Is.False);
+            Assert.That(_client.Shop, Is.Null);
+            Assert.That(_client.ListRequestPending, Is.False);
+            Assert.That(_client.Busy, Is.False);
+
+            // Reset 之前的迟到回包与失败回调不得恢复旧列表或弹错。
+            summon.Respond(new SummonPetResponse { Pets = MakeList(activePetId: PetA) });
+            summon.FailWith("disconnected");
+            Assert.That(_client.HasList, Is.False);
+            Assert.That(error, Is.Null);
+        }
+
+        [Test]
+        public void SharedAssetChannelTipsMatchAttributeClientAndFallbackForUnknown()
+        {
+            uint[] codes =
+            {
+                GuildAssetReasons.CurrencyInsufficient,
+                GuildAssetReasons.BagFull,
+                GuildAssetReasons.InBattle,
+                GuildAssetReasons.Frozen,
+                GuildAssetReasons.InvalidBundle,
+                GuildAssetReasons.Blocked,
+                GuildAssetReasons.PlayerNotHere,
+                GuildAssetReasons.PartialApplied,
+                GuildAssetReasons.AuthFailed,
+            };
+            foreach (uint code in codes)
+            {
+                var tip = new TipInfoMessage { Id = code };
+                string petText = PetClient.DescribeTip("操作", tip);
+                string attrText = AttributeClient.DescribeTip("操作", tip);
+                Assert.That(petText, Is.EqualTo(attrText), $"asset tip {code} 应由共享文案函数返回一致结果");
+                Assert.That(petText, Does.Not.Contain($"tip={code}"));
+            }
+            Assert.That(PetClient.DescribeTip("操作", new TipInfoMessage { Id = 27999 }), Is.EqualTo("操作:tip=27999"));
         }
     }
 }

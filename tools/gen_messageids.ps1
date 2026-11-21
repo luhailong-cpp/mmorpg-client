@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Generate Assets/Scripts/Net/MessageIds.cs from the server repo's
     proto/message_id.txt, so client RPC IDs never drift from the server.
@@ -43,6 +43,7 @@ $whitelist = @{
     "GuildServiceLeaveGuild" = "LeaveGuild"
     "GuildServiceDisbandGuild" = "DisbandGuild"
     "GuildServiceSetAnnouncement" = "SetGuildAnnouncement"
+    "GuildServiceRenameGuild" = "RenameGuild"
     "GuildServiceGetGuildRank" = "GetGuildRank"
     "GuildServiceGetGuildRankByGuild" = "GetGuildRankByGuild"
 

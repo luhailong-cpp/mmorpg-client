@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -1321,3 +1322,4 @@ namespace MmorpgClient.App
         }
     }
 }
+#endif
