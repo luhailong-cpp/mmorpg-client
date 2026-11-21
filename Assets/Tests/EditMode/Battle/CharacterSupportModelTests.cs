@@ -87,11 +87,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var part = new SupportEffectBreakdown { Complete = true, TotalBonusBps = 3200, EquipmentCapBps = 3200 };
             part.Sources.Add(new SupportEffectSource { Kind = 1, Name = "实物词缀", RawBonusBps = 800, EffectiveBonusBps = 400, Reason = "装备来源上限" });
             part.Sources.Add(new SupportEffectSource { Kind = 4, Name = "固元印", RawBonusBps = 1200, Conditional = true, Reason = "仅主目标" });
+            part.Sources.Add(new SupportEffectSource { Kind = 3, Name = "灵露", RawBonusBps = 500, EffectiveBonusBps = 500, RemainRounds = 3 });
             var panel = new AttributePanelInfo { SupportEffects = new SupportEffectSummary { Shield = part } };
             var rows = CharacterSupportModel.Sources(panel, null, true);
             Assert.That(rows[0].Value, Is.EqualTo("4%"));
             Assert.That(rows[0].Detail, Does.Contain("原始 8%"));
             Assert.That(rows[1].Detail, Is.EqualTo("仅主目标"));
+            Assert.That(rows[2].Detail, Is.EqualTo("剩余 3 回合"));
             Assert.That(CharacterSupportModel.TotalBonus(panel, true), Is.EqualTo("32%"));
         }
         [Test]

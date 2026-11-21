@@ -29,14 +29,16 @@ namespace MmorpgClient.Game.Pet
         {
             if (!IsReady) { completed?.Invoke(null, "连接未就绪"); return; }
             int generation = _entriesGeneration; ulong owner = MyPlayerId;
-            // shortcut: omits zero entries so target stays <=20 (kProtoFieldCheckerThreshold); raise scene threshold if entry_total_points ever exceeds 20.
+            // 仅发送非零项保持紧凑载荷，省略的已知方向由服务端 ReplaceKnown 按 0 覆盖。
             var request = new PreviewPetEntriesRequest { PetId = petId, StateVersion = stateVersion, ConfigVersion = configVersion };
             if (target != null) foreach (var pair in target) if (pair.Value > 0) request.Target[pair.Key] = pair.Value;
             _net.Call(MessageIds.PreviewPetEntries, request, PreviewPetEntriesResponse.Parser,
                 response => {
                     if (generation != _entriesGeneration || owner != MyPlayerId) return;
-                    completed?.Invoke(!HasTip(response.ErrorMessage) && response.Entries?.PetId == petId ? response.Entries : null,
-                        HasTip(response.ErrorMessage) ? "条目规则或状态已更新，请刷新后重新分配。" : null);
+                    bool rejected = HasTip(response.ErrorMessage);
+                    if (rejected) PublishEntries(response.Entries, petId);
+                    completed?.Invoke(!rejected && response.Entries?.PetId == petId ? response.Entries : null,
+                        rejected ? "条目规则或状态已更新，请恢复当前分配后重试。 " + DescribeTip("", response.ErrorMessage) : null);
                 }, error => { if (generation == _entriesGeneration && owner == MyPlayerId) completed?.Invoke(null, error); });
         }
 
@@ -49,7 +51,6 @@ namespace MmorpgClient.Game.Pet
             if (!BeginWrite(null)) { completed?.Invoke(false, null, CultivationWritesBlocked ? CultivationLockedMessage : "当前无法保存条目。"); return; }
             if (_pendingEntries == null)
             {
-                if (target == null || petId == 0 || stateVersion == 0 || configVersion == 0) { completed?.Invoke(false, null, "条目规则尚未同步。"); return; }
                 _pendingEntries = new SavePetEntriesRequest { PetId = petId, StateVersion = stateVersion, ConfigVersion = configVersion, RequestId = Guid.NewGuid().ToString("N") };
                 foreach (var pair in target) if (pair.Value > 0) _pendingEntries.Target[pair.Key] = pair.Value;
                 _entriesPlayerId = MyPlayerId;

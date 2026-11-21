@@ -88,5 +88,13 @@ namespace MmorpgClient.Tests.EditMode.Battle
    net.Calls.Last().Respond(new SavePetEntriesResponse{RequestId=saveReq.RequestId,Entries=Info(0,2,saveReq.RequestId)});
    Assert.That(cleared,Is.True);Assert.That(client.HasPendingEntries(PetId),Is.False);
   }
+  [Test] public void RejectedPreviewPublishesNewerAuthorityWithoutCommittingDraft(){
+   PetEntriesInfo preview=null;string err=null;
+   client.PreviewEntries(PetId,1,1,new Dictionary<uint,uint>{{503,3}},(p,e)=>{preview=p;err=e;});
+   net.Calls.Last().Respond(new PreviewPetEntriesResponse{ErrorMessage=new TipInfoMessage{Id=1},Entries=Info(5,2)});
+   Assert.That(preview,Is.Null);Assert.That(err,Is.Not.Null);
+   Assert.That(client.Pets.Pets[0].Entries.StateVersion,Is.EqualTo(2));
+   Assert.That(client.Pets.Pets[0].Entries.Entries[0].Allocated,Is.EqualTo(5));
+  }
  }
 }

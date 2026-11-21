@@ -172,7 +172,7 @@ namespace MmorpgClient.UI.Ugui.Pet
                     Selected.Dimensions.Any(d => !_baseline.TryGetValue(d.DimensionId, out var value) || value != d.Allocated))) ||
                 (Selected != null && (DraftCount > Selected.RemainingPoints || Selected.Dimensions.Any(d =>
                     _draft.TryGetValue(d.DimensionId, out var increment) && d.Cap != 0 && (ulong)d.Allocated + increment > d.Cap)));
-            if (changed && HasDraft) _message = "宝宝属性已更新，本次草稿已撤回，请按最新属性重新分配。";
+            if (changed && _draft.Count != 0) _message = "宝宝属性已更新，本次草稿已撤回，请按最新属性重新分配。";
             if (changed) _draft.Clear();
             RememberBaseline();
             if (list == null) { _draft.Clear(); _message = "连接已断开，宝宝信息未同步。"; }

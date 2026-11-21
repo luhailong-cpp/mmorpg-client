@@ -56,8 +56,15 @@ namespace MmorpgClient.UI.Ugui.Attribute
                     string value = Percent(source.Conditional ? source.RawBonusBps : source.EffectiveBonusBps);
                     string detail = source.Reason;
                     if (!source.Conditional && source.RawBonusBps != source.EffectiveBonusBps)
-                        detail = "原始 " + Percent(source.RawBonusBps) + "；" + detail;
-                    if (source.Kind == 3 && !source.Infinite) detail = "剩余 " + Number(source.RemainRounds) + " 回合；" + detail;
+                    {
+                        string rawText = "原始 " + Percent(source.RawBonusBps);
+                        detail = string.IsNullOrEmpty(detail) ? rawText : rawText + "；" + detail;
+                    }
+                    if (source.Kind == 3 && !source.Infinite)
+                    {
+                        string roundsText = "剩余 " + Number(source.RemainRounds) + " 回合";
+                        detail = string.IsNullOrEmpty(detail) ? roundsText : roundsText + "；" + detail;
+                    }
                     lines.Add(new SourceLine(kind + " · " + source.Name, value, detail));
                 }
                 lines.Add(new SourceLine("装备同类来源上限", part.EquipmentCapBps > 0 ? Percent(part.EquipmentCapBps) : Unknown, "仅限制装备层；条件法宝不计常驻总计。"));
