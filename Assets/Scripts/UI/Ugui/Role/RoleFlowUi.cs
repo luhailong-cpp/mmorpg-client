@@ -598,9 +598,8 @@ namespace MmorpgClient.UI.Ugui.Role
             _appearanceChoice = 0;
             for (int i = 0; i < _appearanceChoices.Count; i++)
                 if (_appearanceChoices[i].Id == selected) _appearanceChoice = i + 1;
-            // Only a fresh creation flow receives the new default. Refreshes retain the chosen identity,
-            // including the explicit profession default; saved account roles never pass through this choice.
-            if (!_hasAppearanceSelection && _appearanceChoices.Count > 0)
+            // 建角只允许在当前可用形象中挑选，不再落回已退役/删除的职业默认形象（避免玄霄等职业在建角预览里隐身不可见）。
+            if (_appearanceChoices.Count > 0 && (_appearanceChoice == 0 || !_hasAppearanceSelection))
             {
                 _appearanceChoice = 1;
                 _pickedAppearanceId = _appearanceChoices[0].Id;
@@ -620,8 +619,11 @@ namespace MmorpgClient.UI.Ugui.Role
 
         private int AdjacentAppearanceChoice(int delta)
         {
-            int count = _appearanceChoices.Count + 1;
-            return (_appearanceChoice + delta + count) % count;
+            int count = _appearanceChoices.Count;
+            if (count <= 0) return 0;
+            int current = _appearanceChoice > 0 && _appearanceChoice <= count ? _appearanceChoice - 1 : 0;
+            int step = ((delta % count) + count) % count;
+            return (current + step) % count + 1;
         }
 
         private void RefreshPreview(uint classId, uint gender, ulong playerId, string appearanceId = null,

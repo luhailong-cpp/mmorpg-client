@@ -27,7 +27,7 @@
 - **禁止动态代码生成**：两个形态均不支持 `System.Reflection.Emit`（禁止引入依赖运行时 IL 生成的序列化、ORM 或动态代理库）。
 - **防 Managed Stripping / 混淆误裁**：通过反射、JNI（`AndroidJavaClass`）、Objective-C `UnitySendMessage` 或 `.jslib` 回调调用的 C# / Java 方法与 DTO（如 `AndroidPayBridges`、`PlatformSignIn`），必须保持显式引用或配套 `[Preserve]`、`link.xml`、Android ProGuard `-keep` 规则，杜绝 Release 包运行期报 `MissingMethodException` / `ClassNotFoundException`。
 - **平台专属代码隔离**：
-  - 小游戏专属 C#：`#if UNITY_WEBGL && !UNITY_EDITOR`，JS 桥放 `Assets/Plugins/WebGL/*.jslib` 直接调宿主 `wx.*` / `tt.*`，回调用显式声明的委托类型加 `[MonoPInvokeCallback]`；
+  - 小游戏专属 C#：`#if UNITY_WEBGL && !UNITY_EDITOR`，JS 桥放 `Assets/Plugins/WebGL/*.jslib` 直接调宿主 `wx.*` / `tt.*`，回调用显式声明的委托类型加 `[MonoPInvokeCallback]`；**检测运行宿主时必须先判 `tt` 再判 `wx`**（抖音小游戏宿主可能同时暴露 `wx` 兼容对象，先判 `wx` 会误识别为微信，见 `MmorpgMiniGame.jslib` / `MinigamePay.jslib`）；
   - iOS 原生插件：`Assets/Plugins/iOS/*.mm`（`#if UNITY_IOS && !UNITY_EDITOR`，`[DllImport("__Internal")]`），Xcode 能力经 `Assets/Editor/*BuildPostProcess.cs` 自动注入；
   - Android 原生插件：`Assets/Plugins/Android/*.androidlib`（`#if UNITY_ANDROID && !UNITY_EDITOR`），各自独立维护 `build.gradle` 与 `AndroidManifest.xml`，**不硬编码最终游戏包名**（用 `${applicationId}` 占位，Android 11+ 拉起外部 App 必须在 `<queries>` 中声明目标包名，如微信 `com.tencent.mm`、支付宝 `com.eg.android.AlipayGphone`）；
   - 本地开发调试 / GM 入口：必须严格包在 `#if UNITY_EDITOR || DEVELOPMENT_BUILD` 内，正式包零残留。
@@ -69,8 +69,8 @@
   - **iOS App**：买钻石等虚拟商品**只允许走 App Store IAP（`StorePayBridge` / StoreKit 2）**。严格遵守 **App Store 审核指南 3.1.1**，iOS 包内**严禁**暴露微信支付、支付宝、第三方网页充值链接或任何切支付引导文案；提审须兼容苹果沙盒交易核验；
   - **Google Play App**：只走 Google Play Billing（一次性消耗品须等服务端核验回 `finish_transaction` 后再确认消耗，避免 3 天自动退款）；
   - **国内 Android App**：走微信 OpenSDK（`WechatAppPayBridge`）与支付宝 SDK（`AlipayAppPayBridge`）；
-  - **微信小游戏**：走虚拟支付道具直购 `wx.requestMidasPaymentGameItem`（`MinigamePay.jslib`）；
-  - **抖音小游戏**：Android 走 `tt.requestGamePayment`，iOS 按抖音规范走 `tt.openAwemeCustomerService` 路径；
+  - **微信小游戏**：下单前先调 `wx.login()` 取一次性 `code` 交服务端现取现弃 `session_key` 算签名，再走虚拟支付道具直购 `wx.requestMidasPaymentGameItem`（`MinigamePay.jslib`）；
+  - **抖音小游戏**：Android 走 `tt.requestGamePayment`（`MinigamePay.jslib` 已接），iOS 侧按抖音规范走 `tt.openAwemeCustomerService` 路径（待真机/转包阶段补齐）；
   - **`devpay`**：仅限本地 `dev` / `test` 模式联调，生产环境严禁展示或启用。
 - **客户端绝不采信本地 SDK 支付结果**：
   - 任何 SDK 回调（含 Android `WXPayEntryActivity`）只做通知收口，**绝不作为发货或界面显示“已到账”的依据**；

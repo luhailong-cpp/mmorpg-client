@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.IO.Compression;
+using System.Runtime.CompilerServices;
 using Google.Protobuf;
 using NUnit.Framework;
 using MmorpgClient.Game.Battle;
@@ -272,6 +273,96 @@ namespace MmorpgClient.Tests.EditMode.Battle
             var res = BattleReplayDecoder.Decode(env);
             Assert.IsFalse(res.Success);
             Assert.AreEqual(BattleReplayDecodeError.InvalidReplay, res.Error);
+        }
+
+        private static byte[] LoadWireFixture(string fileName, [CallerFilePath] string callerFile = "")
+        {
+            string dir = Path.GetDirectoryName(callerFile) ?? string.Empty;
+            string path = Path.Combine(dir, "Fixtures", fileName);
+            Assert.IsTrue(File.Exists(path), $"missing wire fixture: {path}");
+            return File.ReadAllBytes(path);
+        }
+
+        [Test]
+        public void RealRobot1v1WireFixture_DecodesAndPlaysThroughEveryRound()
+        {
+            byte[] wire = LoadWireFixture("robot_1v1_get_battle_report_response.pb.bytes");
+            var response = Match.GetBattleReportResponse.Parser.ParseFrom(wire);
+            Assert.IsTrue(response.ErrorMessage == null || response.ErrorMessage.Id == 0);
+            Assert.NotNull(response.Replay);
+            Assert.AreEqual(BattleReplayDecoder.SupportedFormatVersion, response.Replay.FormatVersion);
+            Assert.AreEqual(eBattleReplayCodec.BattleReplayCodecGzip, response.Replay.Codec);
+
+            var decoded = BattleReplayDecoder.Decode(response.Replay);
+            Assert.IsTrue(decoded.Success, decoded.Message);
+
+            var replay = decoded.Replay;
+            Assert.AreNotEqual(0UL, replay.BattleId);
+            Assert.AreEqual((uint)Match.MatchMode._1V1, replay.MatchMode);
+            Assert.AreEqual(eBattleReplayEndReason.BattleReplayEndFinished, replay.EndReason);
+            Assert.GreaterOrEqual(replay.StartState.Actors.Count, 2);
+            Assert.AreEqual(0UL, replay.StartState.ActionDeadlineMs);
+            Assert.AreEqual(0, replay.StartState.PendingActorIds.Count);
+            Assert.AreEqual(0, replay.StartState.SelfItems.Count);
+            foreach (var actor in replay.StartState.Actors)
+            {
+                Assert.AreEqual(0, actor.SkillCooldownRounds.Count);
+                Assert.IsNull(actor.Combat);
+                Assert.IsNull(actor.SupportEffects);
+            }
+            Assert.GreaterOrEqual(replay.Rounds.Count, 1);
+            if (!replay.Truncated)
+                Assert.AreEqual((int)replay.TotalRounds, replay.Rounds.Count);
+
+            var player = new BattleReplayPlayer(replay);
+            Assert.AreSame(replay.StartState, player.SeekToRound(1));
+            int played = 0;
+            while (player.TryNextRound(out var turn))
+            {
+                played++;
+                Assert.NotNull(turn.State);
+                Assert.AreEqual(0UL, turn.State.ActionDeadlineMs);
+                Assert.AreEqual(0, turn.State.PendingActorIds.Count);
+            }
+            Assert.AreEqual(replay.Rounds.Count, played);
+            Assert.IsTrue(player.IsFinished);
+            Assert.AreSame(replay.Rounds[replay.Rounds.Count - 1].State, player.FinalDisplayState());
+
+            if (replay.Rounds.Count >= 3)
+            {
+                int mid = replay.Rounds.Count / 2 + 1;
+                Assert.AreSame(replay.Rounds[mid - 2].State, player.SeekToRound(mid));
+                Assert.IsTrue(player.TryNextRound(out var resumed));
+                Assert.AreEqual(replay.Rounds[mid - 1].RoundIndex, resumed.RoundIndex);
+            }
+        }
+
+        [Test]
+        public void DeadlineDrawWireFixture_DecodesAndLandsOnFinalState()
+        {
+            byte[] wire = LoadWireFixture("deadline_draw_get_battle_report_response.pb.bytes");
+            var response = Match.GetBattleReportResponse.Parser.ParseFrom(wire);
+            Assert.IsTrue(response.ErrorMessage == null || response.ErrorMessage.Id == 0);
+            Assert.NotNull(response.Replay);
+            Assert.AreEqual(eBattleReplayCodec.BattleReplayCodecGzip, response.Replay.Codec);
+
+            var decoded = BattleReplayDecoder.Decode(response.Replay);
+            Assert.IsTrue(decoded.Success, decoded.Message);
+
+            var replay = decoded.Replay;
+            Assert.AreEqual(eBattleReplayEndReason.BattleReplayEndDeadlineDraw, replay.EndReason);
+            Assert.AreEqual(eBattleOutcome.BattleOutcomeDraw, replay.Outcome);
+            Assert.AreEqual(0, replay.Rounds.Count);
+            Assert.NotNull(replay.FinalState);
+            Assert.AreEqual(0UL, replay.FinalState.ActionDeadlineMs);
+            Assert.AreEqual(0, replay.FinalState.PendingActorIds.Count);
+
+            var player = new BattleReplayPlayer(replay);
+            Assert.AreSame(replay.StartState, player.SeekToRound(1));
+            Assert.IsFalse(player.TryNextRound(out _));
+            Assert.IsTrue(player.IsFinished);
+            Assert.AreSame(replay.FinalState, player.FinalDisplayState());
+            Assert.AreEqual(BattleReplayPlayer.DeadlineDrawLabel, player.BuildEndingBanner());
         }
     }
 }

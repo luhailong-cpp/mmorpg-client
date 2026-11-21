@@ -16,6 +16,7 @@ namespace MmorpgClient.Net
         public const uint BuyGuildShopGoods      =  233; // GuildServiceBuyGuildShopGoods
         public const uint BuyMysteryMerchantGoods =  315; // SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods
         public const uint BuyPet                 =  403; // ScenePetClientPlayerBuyPet
+        public const uint CancelAppearanceTrial  =  445; // SceneAppearanceClientPlayerCancelAppearanceTrial
         public const uint CancelGuildApplication =  219; // GuildServiceCancelGuildApplication
         public const uint CancelQueue            =  148; // MatchServiceCancelQueue
         public const uint ChallengePlayer        =  152; // MatchServiceChallengePlayer
@@ -35,6 +36,7 @@ namespace MmorpgClient.Net
         public const uint EquipItem              =  249; // SceneBagClientPlayerEquipItem
         public const uint GetActivityList        =  190; // SceneActivityClientPlayerGetActivityList
         public const uint GetAfkPass             =  430; // SceneAfkPassClientPlayerGetAfkPass
+        public const uint GetAppearanceInfo      =  442; // SceneAppearanceClientPlayerGetAppearanceInfo
         public const uint GetAttributePanel      =  167; // SceneAttributeClientPlayerGetAttributePanel
         public const uint GetBag                 =  191; // SceneBagClientPlayerGetBag
         public const uint GetBattleState         =  140; // BattleClientPlayerGetBattleState
@@ -106,12 +108,14 @@ namespace MmorpgClient.Net
         public const uint MoveStart              =  134; // SceneMovementClientPlayerMoveStart
         public const uint MoveStop               =  131; // SceneMovementClientPlayerMoveStop
         public const uint MoveSync               =  132; // SceneMovementClientPlayerMoveSync
+        public const uint NotifyActorAppearanceChanged =  446; // SceneAppearanceClientPlayerNotifyActorAppearanceChanged
         public const uint NotifyActorCreate      =   21; // SceneSceneClientPlayerNotifyActorCreate
         public const uint NotifyActorDestroy     =   51; // SceneSceneClientPlayerNotifyActorDestroy
         public const uint NotifyActorListCreate  =   47; // SceneSceneClientPlayerNotifyActorListCreate
         public const uint NotifyActorListDestroy =   64; // SceneSceneClientPlayerNotifyActorListDestroy
         public const uint NotifyActorMove        =  133; // SceneMovementClientPlayerNotifyActorMove
         public const uint NotifyActorMoveList    =  135; // SceneMovementClientPlayerNotifyActorMoveList
+        public const uint NotifyAppearanceState  =  447; // SceneAppearanceClientPlayerNotifyAppearanceState
         public const uint NotifyAttributePanelChanged =  170; // SceneAttributeClientPlayerNotifyAttributePanelChanged
         public const uint NotifyBattleAssigned   =  177; // BattleClientPlayerNotifyBattleAssigned
         public const uint NotifyBattleEnd        =  150; // BattleClientPlayerNotifyBattleEnd
@@ -160,11 +164,13 @@ namespace MmorpgClient.Net
         public const uint SetGuildAnnouncement   =   39; // GuildServiceSetAnnouncement
         public const uint SetGuildMemberRole     =   19; // GuildServiceSetGuildMemberRole
         public const uint SortBag                =  192; // SceneBagClientPlayerSortBag
+        public const uint StartAppearanceTrial   =  444; // SceneAppearanceClientPlayerStartAppearanceTrial
         public const uint StartGuildTrial        =  242; // GuildServiceStartGuildTrial
         public const uint StartTeamMatch         =  211; // ClientPlayerTeamStartTeamMatch
         public const uint StopWatchBattle        =  165; // BattleClientPlayerStopWatchBattle
         public const uint SubmitBattleAction     =  149; // BattleClientPlayerSubmitBattleAction
         public const uint SummonPet              =  183; // ScenePetClientPlayerSummonPet
+        public const uint SwitchAppearance       =  443; // SceneAppearanceClientPlayerSwitchAppearance
         public const uint SwitchAttributeScheme  =  171; // SceneAttributeClientPlayerSwitchAttributeScheme
         public const uint TeleportRequest        =  136; // SceneMovementClientPlayerTeleportRequest
         public const uint TipToClient            =   23; // SceneClientPlayerCommonSendTipToClient

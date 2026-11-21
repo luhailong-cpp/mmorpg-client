@@ -13,7 +13,7 @@ namespace MmorpgClient.UI.Ugui.Battle
     /// PVP 战报列表面板(docs/handoff/battle-report-replay-client.md §3):
     ///   - 打开时拉一次 ListBattleReports(单飞、不轮询);
     ///   - 可滚动展示服务端返回的全部条目(最多 100 条),严格保持服务端顺序(不按 battle_id 重排);
-    ///   - 每条显示胜负、模式、结束时间、回合数、双方成员(名字/等级)与「看回放」按钮;
+    ///   - 每条显示胜负、模式、结束时间、回合数、双方成员(名字/等级/职业与职业图标)与「看回放」按钮;
     ///   - has_replay = false 时置灰为「无回放」;拉取回放期间防连点。
     /// </summary>
     public sealed class BattleReportPanel
@@ -27,8 +27,10 @@ namespace MmorpgClient.UI.Ugui.Battle
         private const float ListBottomMargin = 92f;
         private const float ListWidth = PanelW - 60f;
         private const float ListHeight = PanelH - ListTop - ListBottomMargin;
-        private const float EntryH = 96f;
+        private const float EntryH = 116f;
         private const float EntryGap = 8f;
+        private const float ClassIconSize = 28f;
+        private const float ClassIconGap = 4f;
 
         private static readonly ulong MaxUnixMilliseconds = (ulong)DateTimeOffset.MaxValue.ToUnixTimeMilliseconds();
         private static readonly Color WinColor = QdaoUguiTheme.Html("#205B46");
@@ -198,6 +200,16 @@ namespace MmorpgClient.UI.Ugui.Battle
             return $"{left}  VS  {right}";
         }
 
+        /// <summary>职业图标资源名(与选角 RoleFlowUi.ClassBadges 同口径;未知/未带职业回落太极徽章)。</summary>
+        public static string ClassIconAssetName(uint classId) => classId switch
+        {
+            1 => "round_badge_sword",
+            2 => "round_badge_water",
+            3 => "round_badge_furnace",
+            4 => "round_badge_mountain",
+            _ => "round_badge_taiji",
+        };
+
         public static string VerdictLabel(BattleReportVerdict verdict) => verdict switch
         {
             BattleReportVerdict.Win => "胜",
@@ -224,27 +236,29 @@ namespace MmorpgClient.UI.Ugui.Battle
                 _ => QdaoUguiTheme.MutedBrown,
             };
             var badgeBg = BattleUiWidgets.CreatePanel("VerdictBadge", rowRect,
-                14f, 18f, 60f, 60f, badgeColor, raycastTarget: false);
+                14f, 28f, 60f, 60f, badgeColor, raycastTarget: false);
             var badgeText = QdaoUguiFactory.CreateText("VerdictText", badgeBg.transform,
                 0f, 0f, 60f, 60f, VerdictLabel(verdict), 28f, QdaoUguiTheme.Cream, TextAlignmentOptions.Center);
             badgeText.fontStyle = FontStyles.Bold;
 
             float textX = 88f;
             float textW = ListWidth - textX - 178f;
-            var head = QdaoUguiFactory.CreateText("Head", rowRect, textX, 12f, textW, 34f,
+            var head = QdaoUguiFactory.CreateText("Head", rowRect, textX, 10f, textW, 30f,
                 $"{BattleReportClient.ModeName(summary.Mode)} · {FormatTimestamp(summary.FinishedAtMs)} · 共 {summary.TotalRounds} 回合",
                 20f, QdaoUguiTheme.Cream);
             head.textWrappingMode = TextWrappingModes.NoWrap;
             head.overflowMode = TextOverflowModes.Ellipsis;
 
-            var members = QdaoUguiFactory.CreateText("Members", rowRect, textX, 50f, textW, 34f,
+            var members = QdaoUguiFactory.CreateText("Members", rowRect, textX, 44f, textW, 28f,
                 FormatMembers(summary), 18f, QdaoUguiTheme.StatusCream);
             members.textWrappingMode = TextWrappingModes.NoWrap;
             members.overflowMode = TextOverflowModes.Ellipsis;
 
+            BuildClassIcons(rowRect, summary, textX, 76f, textW);
+
             bool hasReplay = summary.HasReplay;
             var watchButton = BattleUiWidgets.CreateTextButton("WatchReplay", rowRect,
-                ListWidth - 160f, 20f, 144f, 56f,
+                ListWidth - 160f, 30f, 144f, 56f,
                 hasReplay ? "看回放" : "无回放", 20f,
                 hasReplay ? BattleUiStyle.ButtonPlateAccent : BattleUiStyle.ButtonPlate,
                 BattleUiStyle.ButtonText);
@@ -255,6 +269,48 @@ namespace MmorpgClient.UI.Ugui.Battle
                 watchButton.Button.onClick.AddListener(() => OnWatchClicked(battleId));
             }
             _watchButtons.Add((watchButton, hasReplay));
+        }
+
+        private static void BuildClassIcons(RectTransform rowRect, Match.BattleReportSummary summary,
+            float x, float y, float maxWidth)
+        {
+            var container = QdaoUguiFactory.CreateRect("ClassIcons", rowRect, x, y, maxWidth, ClassIconSize + 2f);
+            if (summary == null || summary.Members.Count == 0) return;
+
+            var teamA = new List<uint>();
+            var teamB = new List<uint>();
+            foreach (var member in summary.Members)
+            {
+                if (member == null) continue;
+                if (member.TeamIndex == 0) teamA.Add(member.ClassId);
+                else teamB.Add(member.ClassId);
+            }
+
+            float cursorX = 0f;
+            for (int i = 0; i < teamA.Count && cursorX + ClassIconSize <= maxWidth; i++)
+            {
+                AddClassIcon(container, $"TeamA_ClassIcon_{i}", cursorX, teamA[i]);
+                cursorX += ClassIconSize + ClassIconGap;
+            }
+            if (teamA.Count > 0 && teamB.Count > 0 && cursorX + 28f <= maxWidth)
+            {
+                var vs = QdaoUguiFactory.CreateText("ClassIconsVs", container, cursorX, 0f, 28f, ClassIconSize,
+                    "VS", 15f, QdaoUguiTheme.MutedBrown, TextAlignmentOptions.Center);
+                vs.raycastTarget = false;
+                cursorX += 28f + ClassIconGap;
+            }
+            for (int i = 0; i < teamB.Count && cursorX + ClassIconSize <= maxWidth; i++)
+            {
+                AddClassIcon(container, $"TeamB_ClassIcon_{i}", cursorX, teamB[i]);
+                cursorX += ClassIconSize + ClassIconGap;
+            }
+        }
+
+        private static void AddClassIcon(RectTransform parent, string name, float x, uint classId)
+        {
+            var icon = QdaoUguiFactory.CreateImage(name, parent, x, 0f, ClassIconSize, ClassIconSize,
+                QdaoRefreshArt.Load(ClassIconAssetName(classId)), raycastTarget: false);
+            icon.preserveAspect = true;
         }
 
         private void OnWatchClicked(ulong battleId)

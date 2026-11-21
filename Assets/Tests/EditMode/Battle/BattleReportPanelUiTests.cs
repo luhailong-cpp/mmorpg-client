@@ -75,6 +75,57 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
                 StringAssert.Contains("甲(破军 Lv.50)", BattleReportPanel.FormatMembers(list[0]));
                 StringAssert.Contains("乙(Lv.52)", BattleReportPanel.FormatMembers(list[0]));
+
+                // 每条渲染双方职业图标(已知职业用对应门派徽章,class_id=0 回落太极徽章)
+                var icons = content.GetChild(0).Find("ClassIcons");
+                Assert.NotNull(icons);
+                var teamAIcon = icons.Find("TeamA_ClassIcon_0")?.GetComponent<Image>();
+                var teamBIcon = icons.Find("TeamB_ClassIcon_0")?.GetComponent<Image>();
+                Assert.NotNull(teamAIcon?.sprite);
+                Assert.NotNull(teamBIcon?.sprite);
+                Assert.AreEqual("round_badge_sword", teamAIcon.sprite.name);
+                Assert.AreEqual("round_badge_taiji", teamBIcon.sprite.name);
+
+                // 四职业与未知职业徽章映射 + 多人局全部渲染职业图标
+                Assert.AreEqual("round_badge_sword", BattleReportPanel.ClassIconAssetName(1));
+                Assert.AreEqual("round_badge_water", BattleReportPanel.ClassIconAssetName(2));
+                Assert.AreEqual("round_badge_furnace", BattleReportPanel.ClassIconAssetName(3));
+                Assert.AreEqual("round_badge_mountain", BattleReportPanel.ClassIconAssetName(4));
+                Assert.AreEqual("round_badge_taiji", BattleReportPanel.ClassIconAssetName(0));
+                Assert.AreEqual("round_badge_taiji", BattleReportPanel.ClassIconAssetName(99));
+
+                var multi = new Match.BattleReportSummary
+                {
+                    BattleId = 8888,
+                    Mode = Match.MatchMode._5V5,
+                    FinishedAtMs = 1700000001000UL,
+                    Outcome = eBattleOutcome.BattleOutcomeSideBWin,
+                    TotalRounds = 12,
+                    HasReplay = true,
+                };
+                multi.Members.Add(new Match.BattleReportMember { PlayerId = 1, TeamIndex = 0, Name = "破军甲", Level = 60, ClassId = 1 });
+                multi.Members.Add(new Match.BattleReportMember { PlayerId = 2, TeamIndex = 0, Name = "玄霄乙", Level = 60, ClassId = 2 });
+                multi.Members.Add(new Match.BattleReportMember { PlayerId = 3, TeamIndex = 1, Name = "丹心丙", Level = 61, ClassId = 3 });
+                multi.Members.Add(new Match.BattleReportMember { PlayerId = 4, TeamIndex = 1, Name = "逐风丁", Level = 62, ClassId = 4 });
+                panel.ApplyList(new List<Match.BattleReportSummary> { multi }, 1);
+                var multiIcons = content.GetChild(0).Find("ClassIcons");
+                Assert.AreEqual("round_badge_sword", multiIcons.Find("TeamA_ClassIcon_0").GetComponent<Image>().sprite.name);
+                Assert.AreEqual("round_badge_water", multiIcons.Find("TeamA_ClassIcon_1").GetComponent<Image>().sprite.name);
+                Assert.AreEqual("round_badge_furnace", multiIcons.Find("TeamB_ClassIcon_0").GetComponent<Image>().sprite.name);
+                Assert.AreEqual("round_badge_mountain", multiIcons.Find("TeamB_ClassIcon_1").GetComponent<Image>().sprite.name);
+                Assert.NotNull(multiIcons.Find("ClassIconsVs"));
+
+                // 100 条上限按服务端乱序 battle_id 原样渲染
+                var hundred = new List<Match.BattleReportSummary>(100);
+                for (int i = 0; i < 100; i++)
+                {
+                    ulong id = (ulong)((i * 7919 + 13) % 100000 + 1);
+                    hundred.Add(MakeSummary(id, hasReplay: i % 2 == 0));
+                }
+                panel.ApplyList(hundred, 1001);
+                Assert.AreEqual(100, content.childCount);
+                Assert.AreEqual($"Report_{hundred[0].BattleId}", content.GetChild(0).name);
+                Assert.AreEqual($"Report_{hundred[99].BattleId}", content.GetChild(99).name);
             }
             finally
             {

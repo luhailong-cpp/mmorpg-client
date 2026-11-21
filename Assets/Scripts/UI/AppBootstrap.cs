@@ -67,6 +67,7 @@ namespace MmorpgClient.UI
             _instance = this;
             DontDestroyOnLoad(transform.root.gameObject);
             EnsureSceneRig();
+            MmorpgClient.Table.ClientTableBootstrap.EnsureLoaded(this);
 
             if (mapConfig == null) mapConfig = TianyongMapConfig.LoadDefault();
 

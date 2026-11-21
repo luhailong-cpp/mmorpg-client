@@ -18,12 +18,12 @@
 
 | 领域 | 核心约束摘要 | 完整规范文档 |
 |---|---|---|
-| 必装 Skills | 新电脑 / 新 Agent 必装 `mattpocock/skills`、`ponytail` 等核心工程 Skills | [Docs/rules/required-skills.md](Docs/rules/required-skills.md) |
+| 必装 Skills | 新电脑 / 新 Agent 必装 `mattpocock/skills`、`ponytail` 等 8 个仓库共 618 个 Skills（含一键复原脚本与完整明细） | [Docs/rules/required-skills.md](Docs/rules/required-skills.md) |
 | **抖音/微信小游戏 + App 双形态（强制）** | **WebGL2 单线程禁阻塞 + App IL2CPP 防裁剪、HTTPS/WSS 合法域名（并发 ≤3 条）、前后台恢复、多端登录与官方按钮、支付渠道隔离（iOS 仅 IAP 禁外链）、实名防沉迷 / 7 天账号注销 / 内容安全、首包分包与异形屏/胶囊避让** | [Docs/rules/minigame-and-app-platforms.md](Docs/rules/minigame-and-app-platforms.md) |
 | 协议、配表与跨端不变量 | 生成物边界、3 步同步、`double` 坐标与 `uint64` 位宽、永久 ID 禁排禁拆、Tip 单轴、`*TableManager` 只存 `id` 禁存行引用、查表判空与位图容错、`RpcGuard` 限流熔断与幂等键 | [Docs/rules/proto-and-tables.md](Docs/rules/proto-and-tables.md) |
 | 命名与权限边界 | 见名知意+带单位、分层命名（`*Client` / `*Model` / `*Window`）、中文协作+英文诊断日志、`.meta` 守护与硬禁令 | [Docs/rules/naming-and-boundaries.md](Docs/rules/naming-and-boundaries.md) |
-| 工程设计与生命周期 | SRP 三层解耦（纯 C# `*Model` 脱离 `UnityEngine`）、KISS/YAGNI、**实例与布局分层**、**连接唯一所有权+对称退订+回调先验存活与会话代次** | [Docs/rules/engineering-principles.md](Docs/rules/engineering-principles.md) |
-| AI 协作与模型档位 | Claude 改代码 vs Codex 跑编译/生成/测试、无运行证据禁称已验证、草稿 `git merge-file` 安全写回、强制高低档模型切换 | [Docs/rules/ai-workflow.md](Docs/rules/ai-workflow.md) |
+| 工程设计与生命周期 | SRP 三层解耦（纯 C# `*Model` 脱离 `UnityEngine`）、**系统/模块间 Actor/事件消息通信（不可变消息、禁过度拆内部函数）**、KISS/YAGNI、**实例与布局分层**、**连接唯一所有权+对称退订+回调先验存活与会话代次** | [Docs/rules/engineering-principles.md](Docs/rules/engineering-principles.md) |
+| AI 协作与模型档位 | Claude 改代码 vs Codex 跑编译/生成/测试、无运行证据禁称已验证、草稿 `git merge-file` 安全写回、强制高低档模型切换、设计方案强制落盘 `.md` | [Docs/rules/ai-workflow.md](Docs/rules/ai-workflow.md) |
 
 ---
 
@@ -48,7 +48,9 @@
 - **未上线阶段前提**：游戏尚未上线，玩家数据可完全清空；按最标准方案实现与重构，不堆砌历史兼容包袱。
 - **架构与质量要求**（完整细则见 → [Docs/rules/engineering-principles.md](Docs/rules/engineering-principles.md)）：
   - 优先级：`正确性 / 安全 / 客户端与服务端状态一致性 / 向后兼容 > 简单 / 可读 / 与仓库一致 > 可维护 / 可测试 > 有数据支撑的性能 > 假想扩展`。
-  - 严格遵守**单一职责（SRP）**与高内聚低耦合：通信协调（`*Client`）、纯 C# 推导模型（`*Model`，不依赖 `UnityEngine` 以便单测）、uGUI/场景表现（`MonoBehaviour`）分层清晰；适合使用经典设计模式解耦的模块主动采用并说明，拒绝无意义透传层与深层 `MonoBehaviour` 继承树。
+  - 严格遵守**单一职责（SRP）**与高内聚低耦合：通信协调（`*Client`）、纯 C# 推导模型（`*Model`，不依赖 `UnityEngine` 以便单测）、uGUI/场景表现（`MonoBehaviour`）分层清晰，拒绝无意义透传层与深层 `MonoBehaviour` 继承树。
+  - **系统 / 模块间消息通信（Actor / 事件隔离，强制）**：各业务模块 / UI 系统独占状态，跨系统交互一律通过**不可变消息 / 只读快照 / 事件 / RPC** 在主线程有序通信，禁止传递可变对象引用或借全局单例绕过消息边界；仅限跨模块边界使用，单个模块内部保持正常直接方法调用，严禁把内部普通函数过度拆成消息。
+  - **经典设计模式与开源库选型**：适合用 **GoF 23 种设计模式**解耦或消除巨型分支时主动采用并向程序说明原因；某功能有 **GitHub ≥ 2 万 Star** 成熟开源库/插件可用时（安全与 WebGL2/IL2CPP 兼容优先于 Star 数）交由程序决定是否引入并说明对比与代价，不擅自默默引入新依赖。
   - **实例与布局分层**：「是什么」（`guid` / `config_id` / `equip_kind`）与「摆在哪」（槽位表 `EquipSlot` / 格子位置 / 排序）严格分离，不靠 proto `repeated` 下标承载槽位语义，UI 临时态不混入权威快照。
   - **连接与回调生命周期**：连接所有权只归 `GameClient` / `BattleDirectLink`；UI 订阅事件必须在 `OnDisable` / `OnDestroy` 对称退订；异步回调先判 `UnityEngine.Object` 存活与 `(PlayerId, 连接代次)` 一致再改状态。
   - **命名第一原则**：所有命名清晰准确并标明单位（`Ms` / `Sec` / `Bytes`），拒绝模糊缩写与泛化名（详见 → [Docs/rules/naming-and-boundaries.md](Docs/rules/naming-and-boundaries.md)）。
@@ -59,15 +61,18 @@
 
 服务端改动客户端可见 `.proto`、`Tip.xlsx` 或配置表后，**必须按序完成以下 3 步**才算同步闭环（仅跑服务端 `proto-gen` 会导致 `*Rpc.cs` 与 `Proto/Generated/*.cs` 错位、Unity 进入 Safe Mode）：
 
-1. **先在权威 C++/Go 服务端仓生成**：运行 `dev.bat proto`（若改动了 `Tip.xlsx` 或配置表，运行 `dev.bat gen`），更新服务端绑定、`proto/message_id.txt` 与本仓 `Assets/Scripts/Net/Generated/Rpc/*Rpc.cs`、`TipFaults.cs`、`Assets/Scripts/Table/Generated/`。
-2. **再在本仓同步客户端 protobuf 与消息号**：`tools/gen_proto.ps1` 自动扫描 `Assets/Scripts/Net/Generated/Rpc/*.cs` 源 proto、递归展开 `import`、全量收录 `generated/code/proto/tip/*_tip.proto` 与底层传输信封种子，并同步 `.meta` GUID；`gen_proto.ps1` / `gen_messageids.ps1` 均自动探测同级权威服务端仓与仓库 `protoc`（特殊目录布局再传 `-ProtoRoot` / `-Protoc`）。
+1. **先在权威 C++/Go 服务端仓生成**（或直接在本仓运行 `.\gen.bat` 一键串联步骤 1–3）：运行 `dev.bat proto`（若改动了 `Tip.xlsx` 或配置表，运行 `dev.bat gen`），更新服务端绑定、`proto/message_id.txt`、`generated/tables/*.pb`（服务端全量）、`generated/client_tables/*.pb`（已按 `owner` 剔除 `server` 私有列）与本仓 `Assets/Scripts/Net/Generated/Rpc/*Rpc.cs`、`Assets/Scripts/Table/Generated/`。
+2. **再在本仓同步客户端表数据、protobuf 与消息号**：`tools/sync_tables.ps1` 仅从服务端裁剪产物 `generated/client_tables/*.pb` 同步到 `Assets/StreamingAssets/Tables/*.pb`（缺目录即失败，绝不回落拷贝服务端未裁剪表）并补齐 `Table/Generated`、`Net/Generated/Rpc` 的 `.meta`；`tools/gen_proto.ps1` 自动扫描 `Rpc/*.cs`、递归 `import`、全部 `generated/code/proto/tip/*_tip.proto` 与底层信封种子并同步 `.meta`；三份脚本均自动探测同级权威服务端仓与仓库 `protoc`。
 3. **最后过编译门禁**：执行 `tools/client_compile_check.ps1`；若改动涉及公共签名或测试文件，一并确认受影响的 EditMode/PlayMode 测试程序集编译通过（任一程序集报错都会令 Unity 触发 Safe Mode）。
 
 ```powershell
-# 1. 一键同步客户端协议、tip 枚举、消息号并做编译体检（前置：服务端已完成 dev.bat proto 或 dev.bat gen）
-.\gen_proto.bat
+# 1. 一键完成「表 + 协议」全链路生成与编译体检（默认含服务端导表 + proto-gen + 客户端全同步）
+.\gen.bat           # 全量：服务端导表 & proto-gen → 客户端表数据 / 协议 / 消息号 / 编译体检
+.\gen.bat proto     # 仅改 .proto 时：跳过导表
+.\gen.bat client    # 服务端已跑过 dev.bat gen 时：仅同步客户端侧
 
 # （等价分步命令）
+pwsh -File tools/sync_tables.ps1
 pwsh -File tools/gen_proto.ps1
 pwsh -File tools/gen_messageids.ps1
 pwsh -File tools/client_compile_check.ps1
@@ -81,7 +86,7 @@ pwsh -File tools/run_quest_tests.ps1
 pwsh -File tools/run_move_test.ps1
 ```
 
-- **禁止手改目录**：自动生成的协议、消息号与配表文件（`Assets/Scripts/Proto/Generated/`、`Assets/Scripts/Net/Generated/`、`Assets/Scripts/Net/MessageIds.cs`、`Assets/Scripts/Table/Generated/`）及服务端同步契约产物（需改权威源后按上述步骤重新生成）。
+- **禁止手改目录**：自动生成的协议、消息号与配表文件（`Assets/Scripts/Proto/Generated/`、`Assets/Scripts/Net/Generated/`、`Assets/Scripts/Net/MessageIds.cs`、`Assets/Scripts/Table/Generated/`、`Assets/StreamingAssets/Tables/`）及服务端同步契约产物（需改权威源后按上述步骤重新生成）。
 - **新增客户端 `.proto` 无需手维护 `gen_proto.ps1` 清单**：只需保证服务端 `proto-gen` 已生成对应 `*Rpc.cs` 或导表器已产出 `*_tip.proto`；仅新增不挂在任何 `service` 下的底层传输信封 `.proto` 时，才补进 `gen_proto.ps1` 种子；若业务通过 `MessageIds.*`（而非 `*Rpc.*MessageId`）引用新 RPC，再补进 `tools/gen_messageids.ps1` 的 `$whitelist`。
 - **跨端契约硬约束**（完整细则见 → [Docs/rules/proto-and-tables.md](Docs/rules/proto-and-tables.md)）：
   - 大世界坐标/速度协议为 `double`，64 位 ID / 基础属性 / 货币 / 时间戳必须全程 `ulong`/`long` 严禁窄化；
@@ -138,6 +143,7 @@ pwsh -File tools/run_move_test.ps1
 
 ## AI 协作与模型档位规定（负责人确认于 2026-11-20）
 
-- **修改代码必须使用各软件当时的最高档模型**，不得在低档模型上改代码：Claude Code 用 `Fable 5.2 Max`，Gemini 用 `Gemini 4 Neon Extra`，Codex 用 `GPT 6.2 Astral Ultra`。
-- **编译、协议生成、跑测试与冒烟使用低档模型**：Gemini 用 `Carbon Medium`，Codex 用 `6.1 Sol Ultra`，Claude Code 用 `Opus 5 High`；遇到需要改代码的报错先保留原文停下，切回最高档模型再改。
+- **写/修改代码，以及需求分析、设计分析、思想分析、漏洞分析、步骤分析、执行步骤，必须使用各软件当时的最高档模型**，不得在低档模型上执行：Claude Code 用 `Fable 5.2 Max`，Gemini 用 `Gemini 4 Neon Extra`，Codex 用 `GPT 6.2 Astral Ultra`。
+- **设计方案强制落盘 `.md`（2026-11-21 定）**：以后编写设计方案时，Claude Code（及其他 AI Agent）写好设计后必须将**需求分析、设计分析、思想分析、漏洞分析、步骤分析、执行步骤**及完整方案保存到 `Docs/design/<主题>.md`（或 `Docs/` 下对应模块设计文档），不得只留在对话中。
+- **仅编译、协议生成、跑测试与冒烟使用低档模型**：Gemini 用 `Carbon Medium`，Codex 用 `6.1 Sol Ultra`，Claude Code 用 `Opus 5 High`；遇到需要改代码或需做上述分析/步骤设计的报错先保留原文停下，切回最高档模型再处理。
 - 完整协作分工、草稿副本 `git merge-file` 安全写回与交付门禁见 → [Docs/rules/ai-workflow.md](Docs/rules/ai-workflow.md)。

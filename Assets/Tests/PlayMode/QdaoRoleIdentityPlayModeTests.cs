@@ -140,40 +140,28 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator CreationResources_ExplicitProfessionDefaultWaitsForItsOwnResources()
+        public IEnumerator CreationResources_CyclingNeverLandsOnDeletedProfessionDefault()
         {
             using var fixture = new CreationResourceFixture();
             fixture.Add(First);
+            fixture.Add(Second);
             var choice = new GameClient.PlayerChoice();
             var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), choice);
             Assert.That(choose.MoveNext(), Is.True);
             yield return null;
-            Click(fixture.Host, "PreviousAppearance"); // Explicit profession default.
-            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("职业默认"));
-            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
-
-            fixture.Add("08_alchemy_prodigy_boy");
-            QdaoCharacterCatalog.RefreshAppearances();
-            yield return null;
-            yield return null;
-            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("职业默认"),
-                "A new preferred import must not replace an explicit profession-default choice.");
-            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
-
-            const string professionDefault = "04_mountain_guardian_boy";
-            fixture.Add(professionDefault);
-            QdaoCharacterCatalog.RefreshAppearances();
-            yield return null;
-            yield return null;
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Not.Contain("职业默认"));
+            Click(fixture.Host, "PreviousAppearance");
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Not.Contain("职业默认"),
+                "建角形象轮播不再停留在已退役/删除的职业默认槽位，避免玄霄等职业隐身。");
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").enabled, Is.True);
             Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
-            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[professionDefault]));
             Click(fixture.Host, "ConfirmCreate");
             Assert.That(choose.MoveNext(), Is.False);
-            Assert.That(choice.AppearanceId, Is.Empty);
+            Assert.That(choice.AppearanceId, Is.EqualTo(Second));
         }
 
         [UnityTest]
-        public IEnumerator CreationRejectsUnreleasedProfessionDefaultButPreservesOldIdentity()
+        public IEnumerator CreationKeepsVisibleCreatableAppearanceForClass2AndPreservesLegacyResolve()
         {
             using var fixture = new CreationResourceFixture();
             fixture.Add(First);
@@ -185,12 +173,9 @@ namespace MmorpgClient.Tests.PlayMode
             Click(fixture.Host, "PreviousAppearance");
             Click(fixture.Host, "Class_2");
             Click(fixture.Host, "GenderFemale");
+            // 历史旧角色（空 appearance_id）兼容映射保持不变，但新建角色始终使用当前可用且可见的形象。
             Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, ""), Is.EqualTo("20_star_formation_master_girl"));
-            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
-            Assert.That(ReadText(fixture.Host, "PreviewHint"), Does.Contain("暂不可新建"));
-            fixture.Button("ConfirmCreate").onClick.Invoke();
-            Assert.That(choice.CreateNew, Is.False);
-            Click(fixture.Host, "NextAppearance");
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").enabled, Is.True);
             Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
             Click(fixture.Host, "ConfirmCreate");
             Assert.That(choose.MoveNext(), Is.False);
@@ -198,30 +183,26 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator CreationResources_UnreleasedProfessionDefaultDoesNotRescanRosterPeriodically()
+        public IEnumerator CreationResources_ReadyPageDoesNotRescanRosterPeriodically()
         {
             using var fixture = new CreationResourceFixture();
             fixture.Add(First);
-            fixture.Add("20_star_formation_master_girl");
             var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), new GameClient.PlayerChoice());
             Assert.That(choose.MoveNext(), Is.True);
             yield return null;
-            Click(fixture.Host, "PreviousAppearance");
             Click(fixture.Host, "Class_2");
             Click(fixture.Host, "GenderFemale");
-            Assert.That(ReadText(fixture.Host, "PreviewHint"), Does.Contain("暂不可新建"));
+            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
 
-            // 不可新建由代码决定，等多久都不会变；只有资源版本变化才值得重扫名单。
             int probes = fixture.AppearanceProbeCount;
             yield return new WaitForSecondsRealtime(1.1f);
             yield return null;
             Assert.That(fixture.AppearanceProbeCount, Is.EqualTo(probes),
-                "Waiting cannot make an unreleased profession default creatable, so the roster must not be rescanned.");
+                "就绪建角页无需周期性重扫形象清单。");
 
             QdaoCharacterCatalog.RefreshAppearances();
             yield return null;
-            Assert.That(fixture.AppearanceProbeCount, Is.GreaterThan(probes), "A resource revision still refreshes the page.");
-            Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
+            Assert.That(fixture.AppearanceProbeCount, Is.GreaterThan(probes), "资源版本变化仍会刷新清单。");
         }
 
         [UnityTest]

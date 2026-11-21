@@ -366,6 +366,12 @@ namespace MmorpgClient.Net
                 case MessageIds.BuyAfkPass:
                     return "afk_pass";
 
+                case MessageIds.GetAppearanceInfo:
+                case MessageIds.SwitchAppearance:
+                case MessageIds.StartAppearanceTrial:
+                case MessageIds.CancelAppearanceTrial:
+                    return "appearance";
+
                 case MessageIds.GetBag:
                 case MessageIds.SortBag:
                 case MessageIds.UnequipItem:

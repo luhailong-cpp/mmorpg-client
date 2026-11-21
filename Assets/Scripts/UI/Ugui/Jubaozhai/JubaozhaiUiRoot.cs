@@ -145,12 +145,22 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             _window.Hide();
             _commerceWindow.Show();
         }
+
+        /// <summary>快捷跳转到聚宝斋官方商城页签（供角色形象切换面板购买 10 元角色形象卡使用）。</summary>
+        public void OpenOfficialMall()
+        {
+            if (!HasView || !_available) return;
+            CityPanelRegistry.HideOthers(this);
+            _window.Hide();
+            _commerceWindow.ShowTab(0);
+        }
         private void OnPaymentSettled(string _) => RefreshAssets();
         private void RefreshAssets()
         {
             if (_game == null || !_game.InGame || !_game.IsGateReady) return;
             _game.Features.RequestBag();
             _game.Pets.RequestList();
+            MmorpgClient.UI.Ugui.Gameplay.AppearanceUiRoot.Instance?.Client?.RequestInfo(force: true);
         }
         public void HidePanel() { _window?.Hide(); _commerceWindow?.Hide(); }
         private void DisposeClient()

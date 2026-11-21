@@ -9,10 +9,10 @@
   - `Assets/Scripts/Net/Generated/`（`Rpc/*Rpc.cs` 服务调用桩、`TipFaults.cs` 故障判定表）
   - `Assets/Scripts/Net/MessageIds.cs`（消息号常量表）
   - `Assets/Scripts/Table/Generated/`（`*Table.cs`、`*TableManager.cs`、`*TableForeignKeys.cs`、`TableLoader.cs`）
-- **服务端改动客户端可见 `.proto`、`Tip.xlsx` 或配置表后，必须按序跑完 3 步**：
-  1. 权威服务端仓执行 `dev.bat proto`（改了 `Tip.xlsx` 或配置表则执行 `dev.bat gen`）；
-  2. 客户端仓执行 `pwsh -File tools/gen_proto.ps1` 与 `pwsh -File tools/gen_messageids.ps1`（自动同步 `.meta`）；
-  3. 客户端仓执行 `pwsh -File tools/client_compile_check.ps1` 并确认受影响的测试程序集无编译错误（避免 `*Rpc.cs` 与 `Proto/Generated/*.cs` 错位导致 Unity 进入 Safe Mode）。
+  - `Assets/StreamingAssets/Tables/`（二进制 `*.pb` 配置表数据，由 `tools/sync_tables.ps1` 同步，启动时由 `ClientTableBootstrap` 加载）
+- **服务端改动客户端可见 `.proto`、`Tip.xlsx` 或配置表后，必须按序跑完同步与编译闭环**：
+  1. 直接在客户端仓根目录运行 `.\gen.bat`（一键串联：服务端导表 + `proto-gen` → 客户端 `tools/sync_tables.ps1` / `tools/gen_proto.ps1` / `tools/gen_messageids.ps1` / `tools/client_compile_check.ps1`）；仅改 `.proto` 可跑 `.\gen.bat proto`，服务端已跑过 `dev.bat gen` 可跑 `.\gen.bat client`；
+  2. 若改动涉及公共签名或测试文件，一并确认受影响的 EditMode/PlayMode 测试程序集编译通过（避免 `*Rpc.cs` 与 `Proto/Generated/*.cs` 错位导致 Unity 进入 Safe Mode）。
 - **字段号契约**：上线后 proto 与配置表 schema 字段号永不复用（废弃字段标 `reserved`）；客户端过渡期双分支协议兼容状态以 [ClientProtocolCompatibility.md](../ClientProtocolCompatibility.md) 为准。
 
 ## 2. Proto 字段类型与精度约束（严禁窄化截断）
@@ -34,7 +34,7 @@
 1. **发号器永久 ID 无位布局、不单调、不连续**：`player_id`、`guild_id`、物品 `guid`、`battle_id`、`team_id`、`tx_id`、`snapshot_id` 等均由服务端发号器生成（63 位以内的打散计数器值）。
    - ❌ **严禁**尝试按 SnowFlake 位布局从这些 ID 中解析时间戳、区服号或节点号；
    - ❌ **严禁**靠比较两个永久 ID 的数值大小来判断创建先后或列表排序（列表排序与翻页**必须**使用协议显式下发的时间戳、`result_seq` 或序号字段）；
-   - ❌ **严禁**把 64 位 ID 存进 `double` / `float` 或 JSON Number 走弱类型转换（超过 $2^{53}$ 会静默丢失低位导致点错物品/角色）。
+   - ❌ **严禁**把 64 位 ID 存进 `double` / `float` 或 JSON Number 走弱类型转换（超过 `2^53` 会静默丢失低位导致点错物品/角色）。
 2. **`scene_id` 为服务端 `scene_manager` SnowFlake ID**：客户端同样只将其视为不透明 `ulong` 路由/场景标识原样存取与比对，不自行拆位。
 
 ## 4. Tip 错误码全仓单轴与故障判定

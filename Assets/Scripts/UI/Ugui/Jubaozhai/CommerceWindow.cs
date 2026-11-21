@@ -74,6 +74,7 @@ namespace MmorpgClient.UI.Ugui.Jubaozhai
             Hide();
         }
         public void Show() { _root.gameObject.SetActive(true); SelectTab(_tab); }
+        public void ShowTab(int tab) { _root.gameObject.SetActive(true); SelectTab(tab); }
         public void Hide() { if (_root != null) _root.gameObject.SetActive(false); _confirmed = null; }
         public void Back() { if (_confirmed != null) SelectTab(_tab); else Hide(); }
         private void Changed()

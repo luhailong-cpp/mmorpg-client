@@ -60,6 +60,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
                 _values[i] = Label("AttributeValue" + i, _overview, x + 24, y + 51, 291, 36, "—", 27, Green);
             }
             _allocation = Action("Allocation", _overview, 215, 779, 218, 57, "四维加点", "button_secondary", OpenAllocation);
+            Action("SwitchAppearance", _overview, 455, 779, 218, 57, "易容形象", "button_secondary", OpenAppearancePanel);
             _effects = Rect("SupportEffects", _overview, 0, 0, 2560, 1080);
             Picture("EffectsCard", _effects, 1008, 182, 1369, 695, "application_card", true);
             Plate(_effects, "辅助效果", 997, 160);
@@ -159,6 +160,7 @@ namespace MmorpgClient.UI.Ugui.Attribute
             RefreshView();
         }
         private void OpenAllocation() { if (_owner?.BattleReadOnly == true) return; Hide(); _owner?.OpenPanel(true); }
+        private void OpenAppearancePanel() { Hide(); MmorpgClient.UI.Ugui.Gameplay.AppearanceUiRoot.Instance?.ShowPanel(); }
         public void Hide() { _sourceOpen = false; _renameOpen = false; _root.gameObject.SetActive(false); }
         public void Back() { if (_renameOpen) HideRenamePopup(); else if (_sourceOpen) CloseSource(); else Hide(); }
         private void CloseSource() { _sourceOpen = false; RefreshView(); }

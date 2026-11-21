@@ -258,6 +258,13 @@ $whitelist = @{
     # 服务端尚未分配时生成 0,由 AfkPassMessageIds.IsSupported 显示未开放。
     "SceneAfkPassClientPlayerGetAfkPass"           = "GetAfkPass"
     "SceneAfkPassClientPlayerBuyAfkPass"           = "BuyAfkPass"
+    # 角色形象切换与 1 小时免费试用(proto/scene/player_appearance.proto;docs/design/character-appearance-switch.md)。
+    "SceneAppearanceClientPlayerGetAppearanceInfo"            = "GetAppearanceInfo"
+    "SceneAppearanceClientPlayerSwitchAppearance"             = "SwitchAppearance"
+    "SceneAppearanceClientPlayerStartAppearanceTrial"         = "StartAppearanceTrial"
+    "SceneAppearanceClientPlayerCancelAppearanceTrial"        = "CancelAppearanceTrial"
+    "SceneAppearanceClientPlayerNotifyActorAppearanceChanged" = "NotifyActorAppearanceChanged"
+    "SceneAppearanceClientPlayerNotifyAppearanceState"        = "NotifyAppearanceState"
     "ClientPlayerTeamCreateTeam"                   = "CreateTeam"
     "ClientPlayerTeamGetMyTeam"                    = "GetMyTeam"
     "ClientPlayerTeamApplyJoinTeam"                = "ApplyJoinTeam"
@@ -280,7 +287,13 @@ $optionalUnsupportedMethods = @(
     'SceneMysteryMerchantClientPlayerBuyMysteryMerchantGoods',
     'SceneMysteryMerchantClientPlayerNotifyMysteryMerchant',
     'SceneAfkPassClientPlayerGetAfkPass',
-    'SceneAfkPassClientPlayerBuyAfkPass'
+    'SceneAfkPassClientPlayerBuyAfkPass',
+    'SceneAppearanceClientPlayerGetAppearanceInfo',
+    'SceneAppearanceClientPlayerSwitchAppearance',
+    'SceneAppearanceClientPlayerStartAppearanceTrial',
+    'SceneAppearanceClientPlayerCancelAppearanceTrial',
+    'SceneAppearanceClientPlayerNotifyActorAppearanceChanged',
+    'SceneAppearanceClientPlayerNotifyAppearanceState'
 )
 $idByMethod = @{}
 foreach ($line in Get-Content -LiteralPath $source) {

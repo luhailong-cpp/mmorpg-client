@@ -15,7 +15,8 @@ namespace MmorpgClient.UI.Ugui
         Team, Guild, Social, Mail, Trade, Map, Channel, Skills, MysteryMerchant, TeamFollow,
         BattleScript, // 追加在末尾:不挪动已有入口的枚举值
         AfkPass, // 挂机月卡(AfkPassUiRoot);未单独归类,落在「历练」
-        BattleReport // PVP 战报回放(BattleUiRoot);未单独归类,落在「历练」
+        BattleReport, // PVP 战报回放(BattleUiRoot);未单独归类,落在「历练」
+        Appearance // 角色形象切换与 1 小时免费试用(AppearanceUiRoot);落在「修行」
     }
 
     /// <summary>
@@ -470,7 +471,7 @@ namespace MmorpgClient.UI.Ugui
 
         private static WorldHudCategory Category(WorldHudEntry id) => id switch
         {
-            WorldHudEntry.Role or WorldHudEntry.Pet or WorldHudEntry.Skills => WorldHudCategory.Cultivation,
+            WorldHudEntry.Role or WorldHudEntry.Pet or WorldHudEntry.Skills or WorldHudEntry.Appearance => WorldHudCategory.Cultivation,
             WorldHudEntry.Team or WorldHudEntry.Guild or WorldHudEntry.Social or WorldHudEntry.Mail => WorldHudCategory.Social,
             WorldHudEntry.Trade => WorldHudCategory.Trade,
             _ => WorldHudCategory.Adventure
@@ -503,6 +504,7 @@ namespace MmorpgClient.UI.Ugui
             WorldHudEntry.BattleScript => "运筹帷幄",
             WorldHudEntry.AfkPass => "离线托管",
             WorldHudEntry.BattleReport => "战报复盘",
+            WorldHudEntry.Appearance => "形象切换",
             _ => string.Empty
         };
 

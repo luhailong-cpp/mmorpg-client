@@ -398,16 +398,16 @@ namespace MmorpgClient.Game
 
         public GatewayHttpClient Http => _http;
 
-        /// <summary>Server-owned identity from the account role list or a remote AOI spawn.</summary>
+        /// <summary>Server-owned identity from live scene AOI (including active 1h trial) or account role list.</summary>
         public string ResolveCharacterId(ulong playerId)
         {
             if (playerId == 0) return null;
+            // 场景内实时 AOI 外观（含 1 小时试用与永久切形象后的即时广播）优先于登录期静态角色列表。
+            if (_sceneAppearances.TryGetValue(playerId, out var appearanceId) && !string.IsNullOrEmpty(appearanceId))
+                return appearanceId;
             _knownRoles.TryGetValue(playerId, out var role);
             if (role != null && !string.IsNullOrEmpty(role.AppearanceId))
                 return QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender, role.AppearanceId);
-            // EnterGame can restore a damaged account list from the persisted profile after Login
-            // already returned. Its AOI identity wins over that earlier empty account appearance.
-            if (_sceneAppearances.TryGetValue(playerId, out var appearanceId)) return appearanceId;
             return role != null ? QdaoCharacterCatalog.ResolveRole(role.ClassId, role.Gender) : null;
         }
 
@@ -2415,6 +2415,7 @@ namespace MmorpgClient.Game
             RegisterMovementReply(MessageIds.MoveStop, "MoveStop");
             WireTeamFollowHandlers();
             RegisterRoleRenameHandlers();
+            RegisterAppearanceHandlers();
             WireSelfActorStateHandlers();
 
             OnNotify(MessageIds.NotifyEnterScene, mc =>
