@@ -26,7 +26,7 @@ public static partial class PlayerBattleResultCompReflection {
           "X2NvbXAucHJvdG8iQwoaUGxheWVyQmF0dGxlUmVzdWx0Q3VycmVuY3kSFQoN",
           "Y3VycmVuY3lfdHlwZRgBIAEoDRIOCgZhbW91bnQYAiABKAQiPgoWUGxheWVy",
           "QmF0dGxlUmVzdWx0SXRlbRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNv",
-          "dW50GAIgASgEItIDChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
+          "dW50GAIgASgEIooEChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
           "cRgBIAEoBBIRCgliYXR0bGVfaWQYAiABKAQSDwoHb3V0Y29tZRgDIAEoDRIS",
           "Cgp0ZWFtX2luZGV4GAQgASgNEg8KB2lzX2RlYWQYBSABKAgSDAoEZmxlZBgG",
           "IAEoCBIUCgx0b3RhbF9yb3VuZHMYByABKA0SFgoOZmluaXNoZWRfYXRfbXMY",
@@ -36,16 +36,17 @@ public static partial class PlayerBattleResultCompReflection {
           "b25zdW1lZBgMIAMoCzIXLlBsYXllckJhdHRsZVJlc3VsdEl0ZW0SFwoPbGlu",
           "ZXNfdHJ1bmNhdGVkGA0gASgIEgwKBHNlZW4YDiABKAgSEgoKbWF0Y2hfbW9k",
           "ZRgPIAEoDRIYChBiYXR0bGVfY29uZmlnX2lkGBAgASgNEhQKDGl0ZW1zX21h",
-          "aWxlZBgRIAEoCBIQCghleHBfZ2FpbhgSIAEoBCJXChZQbGF5ZXJCYXR0bGVS",
-          "ZXN1bHRDb21wEhcKD2xhc3RfcmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRyaWVz",
-          "GAIgAygLMhMuUGxheWVyQmF0dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21wb25l",
-          "bnRiBnByb3RvMw=="));
+          "aWxlZBgRIAEoCBIQCghleHBfZ2FpbhgSIAEoBBIjChttYXRlcmlhbF9jcmVk",
+          "aXRfdW5pdHNfYWRkZWQYEyABKA0SEQoJc2Vhc29uX2lkGBQgASgNIlcKFlBs",
+          "YXllckJhdHRsZVJlc3VsdENvbXASFwoPbGFzdF9yZXN1bHRfc2VxGAEgASgE",
+          "EiQKB2VudHJpZXMYAiADKAsyEy5QbGF5ZXJCYXR0bGVSZXN1bHRCEloQY29t",
+          "bW9uL2NvbXBvbmVudGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultCurrency), global::PlayerBattleResultCurrency.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultItem), global::PlayerBattleResultItem.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultComp), global::PlayerBattleResultComp.Parser, new[]{ "LastResultSeq", "Entries" }, null, null, null, null)
         }));
   }
@@ -591,6 +592,8 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     battleConfigId_ = other.battleConfigId_;
     itemsMailed_ = other.itemsMailed_;
     expGain_ = other.expGain_;
+    materialCreditUnitsAdded_ = other.materialCreditUnitsAdded_;
+    seasonId_ = other.seasonId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -865,6 +868,36 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
   }
 
+  /// <summary>Field number for the "material_credit_units_added" field.</summary>
+  public const int MaterialCreditUnitsAddedFieldNumber = 19;
+  private uint materialCreditUnitsAdded_;
+  /// <summary>
+  /// 本局实际新增的装备材料可领额度(0 或 10)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaterialCreditUnitsAdded {
+    get { return materialCreditUnitsAdded_; }
+    set {
+      materialCreditUnitsAdded_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "season_id" field.</summary>
+  public const int SeasonIdFieldNumber = 20;
+  private uint seasonId_;
+  /// <summary>
+  /// 论剑排位赛季编号(非排位为 0)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonId {
+    get { return seasonId_; }
+    set {
+      seasonId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -898,6 +931,8 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (BattleConfigId != other.BattleConfigId) return false;
     if (ItemsMailed != other.ItemsMailed) return false;
     if (ExpGain != other.ExpGain) return false;
+    if (MaterialCreditUnitsAdded != other.MaterialCreditUnitsAdded) return false;
+    if (SeasonId != other.SeasonId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -923,6 +958,8 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (BattleConfigId != 0) hash ^= BattleConfigId.GetHashCode();
     if (ItemsMailed != false) hash ^= ItemsMailed.GetHashCode();
     if (ExpGain != 0UL) hash ^= ExpGain.GetHashCode();
+    if (MaterialCreditUnitsAdded != 0) hash ^= MaterialCreditUnitsAdded.GetHashCode();
+    if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1004,6 +1041,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(144, 1);
       output.WriteUInt64(ExpGain);
     }
+    if (MaterialCreditUnitsAdded != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(MaterialCreditUnitsAdded);
+    }
+    if (SeasonId != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(SeasonId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1077,6 +1122,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(144, 1);
       output.WriteUInt64(ExpGain);
     }
+    if (MaterialCreditUnitsAdded != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(MaterialCreditUnitsAdded);
+    }
+    if (SeasonId != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(SeasonId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1134,6 +1187,12 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (ExpGain != 0UL) {
       size += 2 + pb::CodedOutputStream.ComputeUInt64Size(ExpGain);
+    }
+    if (MaterialCreditUnitsAdded != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(MaterialCreditUnitsAdded);
+    }
+    if (SeasonId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SeasonId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1194,6 +1253,12 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (other.ExpGain != 0UL) {
       ExpGain = other.ExpGain;
+    }
+    if (other.MaterialCreditUnitsAdded != 0) {
+      MaterialCreditUnitsAdded = other.MaterialCreditUnitsAdded;
+    }
+    if (other.SeasonId != 0) {
+      SeasonId = other.SeasonId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1286,6 +1351,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
           ExpGain = input.ReadUInt64();
           break;
         }
+        case 152: {
+          MaterialCreditUnitsAdded = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          SeasonId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -1375,6 +1448,14 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
         }
         case 144: {
           ExpGain = input.ReadUInt64();
+          break;
+        }
+        case 152: {
+          MaterialCreditUnitsAdded = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          SeasonId = input.ReadUInt32();
           break;
         }
       }
