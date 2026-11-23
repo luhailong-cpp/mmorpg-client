@@ -102,11 +102,11 @@ namespace MmorpgClient.Tests.PlayMode
                 Assert.That(sandbox.SelectCharacter("24_crane_hermit"), Is.False);
 
                 // A saved retired appearance uses the same current body and name as production.
-                Assert.That(sandbox.SelectCharacter("24_lu_dongbin"), Is.True);
-                Assert.That(animator.CharacterId, Is.EqualTo("04_mountain_guardian_boy"));
+                Assert.That(sandbox.SelectCharacter("23_lantern_courier"), Is.True);
+                Assert.That(animator.CharacterId, Is.EqualTo("01_ice_sword_girl"));
                 Assert.That(player.GetComponentInChildren<TMPro.TMP_Text>().text,
-                    Is.EqualTo(QdaoCharacterCatalog.Find("04_mountain_guardian_boy").Name));
-                yield return WalkWithRealMotor(sandbox, "04_mountain_guardian_boy", routeOrigin, observations);
+                    Is.EqualTo(QdaoCharacterCatalog.Find("01_ice_sword_girl").Name));
+                yield return WalkWithRealMotor(sandbox, "01_ice_sword_girl", routeOrigin, observations);
                 Assert.That(controller.Motor, Is.SameAs(motor));
                 observations.behaviorAssertionsCompleted = true;
                 WriteObservationsIfRequested(observations);

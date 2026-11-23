@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "mapId": "biyuan-water-palace",
+  "appearance": "mid-autumn",
+  "tile": "r04_c03",
+  "sourceSelectionSha256": "e68d956db605553fa74b888d4ccc4c89419ab87600163c9113026e5bdce68bc0",
+  "native": {
+    "path": "D:/work/image/.codex-artifacts/biyuan-midautumn-succession-20261123-01a206f6313d/resume-keep-list-20261123-v001/midautumn-delivery-v001/source/r04_c03.derived.png",
+    "sha256": "34319fe93eb169549c561b6acf483be4e9e653162f438b04217433355b5f3592",
+    "bytes": 1917035,
+    "pixels": [
+      1264,
+      1264
+    ]
+  },
+  "runtime": {
+    "path": "D:/work/image/.codex-artifacts/biyuan-midautumn-succession-20261123-01a206f6313d/resume-keep-list-20261123-v001/midautumn-delivery-v001/runtime/r04_c03.png",
+    "sha256": "461dd54de720403fc3477c8b6a76cc16cb76589d6ca9845dedafaa46b802b360",
+    "bytes": 1455214,
+    "pixels": [
+      1024,
+      1024
+    ]
+  },
+  "formalArtAccepted": true,
+  "navigationAcceptanceClaimed": false,
+  "originalDocuments": [
+    {
+      "role": "runtimeGenerationRecord",
+      "originalPath": "D:/work/image/.codex-artifacts/biyuan-midautumn-succession-20261123-01a206f6313d/resume-keep-list-20261123-v001/midautumn-delivery-v001/runtime/r04_c03.png.generation.json",
+      "originalSha256": "1331918211485e9d10d654637b2bad424efb059d9e9ff9eb00f1ee1d45ac5836",
+      "originalBytes": 1241,
+      "utf8Text": "{\r\n  \"kind\": \"RUNTIME_DELIVERY_DERIVED_COPY\",\r\n  \"file\": {\r\n    \"path\": \"D:/work/image/.codex-artifacts/biyuan-midautumn-succession-20261123-01a206f6313d/resume-keep-list-20261123-v001/midautumn-delivery-v001/runtime/r04_c03.png\",\r\n    \"sha256\": \"461dd54de720403fc3477c8b6a76cc16cb76589d6ca9845dedafaa46b802b360\",\r\n    \"bytes\": 1455214\r\n  },\r\n  \"derived\": true,\r\n  \"nativeMapTile\": false,\r\n  \"dimensions\": [\r\n    1024,\r\n    1024\r\n  ],\r\n  \"newAICalls\": 0,\r\n  \"derivedFrom\": {\r\n    \"file\": {\r\n      \"path\": \"D:/work/image/.codex-artifacts/biyuan-midautumn-succession-20261123-01a206f6313d/resume-keep-list-20261123-v001/midautumn-delivery-v001/source/r04_c03.derived.png\",\r\n      \"sha256\": \"34319fe93eb169549c561b6acf483be4e9e653162f438b04217433355b5f3592\",\r\n      \"bytes\": 1917035\r\n    },\r\n    \"generation\": {\r\n      \"path\": \"D:/work/image/.codex-artifacts/biyuan-midautumn-succession-20261123-01a206f6313d/resume-keep-list-20261123-v001/midautumn-delivery-v001/source/r04_c03.derived.png.generation.json\",\r\n      \"sha256\": \"b23120823a4d05bebe0492ec742384ca3380fcc1440fb3de8544a9db7cafe610\",\r\n      \"bytes\": 1280\r\n    }\r\n  },\r\n  \"operation\": \"Byte-identical copy of separately downsampled1024 runtime tile\",\r\n  \"runtimeIntegrated\": false\r\n}\r\n"
+    }
+  ],
+  "sourceNative": false,
+  "sourceDerived": true
+}

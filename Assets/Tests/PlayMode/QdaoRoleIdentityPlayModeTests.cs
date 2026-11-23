@@ -28,10 +28,10 @@ namespace MmorpgClient.Tests.PlayMode
         public IEnumerator CreationResources_LoadsCurrentBeforeDeferredNeighbours()
         {
             using var fixture = new CreationResourceFixture();
-            const string preferred = "08_alchemy_prodigy_boy";
-            fixture.Add(First);
-            fixture.Add(Second);
+            const string preferred = WindowPreferred;
             fixture.Add(preferred);
+            fixture.Add(WindowNext);
+            fixture.Add(WindowSecond);
             fixture.Add(WindowDefault);
             var choose = Choose(fixture.Ui, Array.Empty<AccountSimplePlayer>(), new GameClient.PlayerChoice());
             Assert.That(choose.MoveNext(), Is.True);
@@ -39,15 +39,15 @@ namespace MmorpgClient.Tests.PlayMode
                 "The chooser must show the selected portrait before loading either neighbour.");
             Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[preferred]));
             for (int i = 0; i < 3; i++) yield return null;
-            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { preferred, WindowDefault, First }));
+            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { preferred, WindowDefault, WindowNext }));
 
             fixture.PortraitRequests.Clear();
             Click(fixture.Host, "NextAppearance");
-            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { First }));
-            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[First]));
+            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { WindowNext }));
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[WindowNext]));
             Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
             for (int i = 0; i < 3; i++) yield return null;
-            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { preferred, First, Second }));
+            Assert.That(fixture.PortraitRequests.Distinct(), Is.EquivalentTo(new[] { preferred, WindowNext, WindowSecond }));
         }
 
         [UnityTest]
@@ -103,40 +103,41 @@ namespace MmorpgClient.Tests.PlayMode
 
             // The profession default is absent; a first successful import must select
             // the actual available identity instead of leaving the creation page empty.
-            fixture.Add(Second);
+            const string third = "02_fire_talisman_boy";
+            fixture.Add(third);
             QdaoCharacterCatalog.RefreshAppearances();
             yield return null;
             yield return null;
             Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
-            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[Second]));
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[third]));
             Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("1/1"));
 
             fixture.Add(First);
-            fixture.Add("08_alchemy_prodigy_boy"); // Inserts before the existing selection.
+            fixture.Add(Second); // Inserts before the existing selection.
             QdaoCharacterCatalog.RefreshAppearances();
             yield return null;
             yield return null;
-            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[Second]));
+            Assert.That(FindImage(fixture.Host, "CharacterArtwork").sprite, Is.SameAs(fixture.Portraits[third]));
             Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("3/3"));
 
-            fixture.Available.Remove(Second);
+            fixture.Available.Remove(third);
             QdaoCharacterCatalog.RefreshAppearances();
             yield return null;
             yield return null;
             Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.False);
-            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("冰剑少女"));
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("火符少年"));
             Assert.That(ReadText(fixture.Host, "PreviewHint"), Does.Contain("所选人物图片正在准备"));
             fixture.Button("ConfirmCreate").onClick.Invoke();
             Assert.That(choice.CreateNew, Is.False);
 
-            fixture.Available[Second] = QdaoHdResourceLifetimePlayModeTests.Hd(Second);
+            fixture.Available[third] = QdaoHdResourceLifetimePlayModeTests.Hd(third);
             QdaoCharacterCatalog.RefreshAppearances();
             yield return null;
             yield return null;
             Assert.That(fixture.Button("ConfirmCreate").IsInteractable(), Is.True);
             Click(fixture.Host, "ConfirmCreate");
             Assert.That(choose.MoveNext(), Is.False);
-            Assert.That(choice.AppearanceId, Is.EqualTo(Second));
+            Assert.That(choice.AppearanceId, Is.EqualTo(third));
         }
 
         [UnityTest]
@@ -237,15 +238,15 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [Test]
-        public void AllRetainedCharactersHaveElevenV14AndFourV13Appearances()
+        public void AllRetainedCharactersHaveSevenV14AndFourV13Appearances()
         {
             QdaoCharacterCatalog.RefreshAppearances();
             var roster = QdaoCharacterCatalog.RetainedOriginalAll.ToArray();
-            Assert.That(roster.Length, Is.EqualTo(14));
+            Assert.That(roster.Length, Is.EqualTo(11));
             var appearances = roster.Select(entry => entry.ResolveAppearance()).ToArray();
             Assert.That(appearances.All(appearance => appearance != null), Is.True,
                 "全部保留人物都必须具备可用资源，不能由 AvailableAll 过滤掉缺失角色而假通过。");
-            Assert.That(appearances.Count(appearance => appearance.Version == 14), Is.EqualTo(10));
+            Assert.That(appearances.Count(appearance => appearance.Version == 14), Is.EqualTo(7));
             Assert.That(appearances.Count(appearance => appearance.Version == 13), Is.EqualTo(4));
             foreach (var appearance in appearances)
             {
@@ -256,11 +257,11 @@ namespace MmorpgClient.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator NewRoleWithoutCyclingAppearance_CreatesAlchemyBoyAndUsesSameWorldIdentity()
+        public IEnumerator NewRoleWithoutCyclingAppearance_CreatesDefaultHdAndUsesSameWorldIdentity()
         {
-            const string latest = "08_alchemy_prodigy_boy";
+            const string latest = "05_celestial_musician_girl";
             var appearance = QdaoCharacterCatalog.Find(latest).ResolveAppearance();
-            Assert.That(appearance?.Version, Is.EqualTo(14), "Requires the delivered alchemy V14 resources.");
+            Assert.That(appearance?.Version, Is.EqualTo(14), "Requires the delivered V14 resources.");
             var host = new GameObject("DefaultNewRoleAppearanceRegression");
             var ui = host.AddComponent<RoleFlowUi>();
             var world = new ActorWorld("DefaultNewRoleAppearanceWorld");
@@ -318,19 +319,19 @@ namespace MmorpgClient.Tests.PlayMode
                 Assert.That(FindImage(host, "CharacterArtwork").sprite,
                     Is.SameAs(QdaoCharacterCatalog.LoadPortrait("26_osmanthus_healer")), "An existing role keeps its identity.");
                 Click(host, "CreateNewRole");
-                Assert.That(ReadText(host, "PreviewTitle"), Is.EqualTo("炼丹童子"));
+                Assert.That(ReadText(host, "PreviewTitle"), Is.EqualTo("天音少女"));
                 Assert.That(ReadText(host, "AppearanceDetails"), Is.EqualTo("选择喜欢的人物外观"));
-                Capture(host.GetComponentInChildren<Canvas>(), "create-default-alchemy-v14-disconnected-ui");
+                Capture(host.GetComponentInChildren<Canvas>(), "create-default-hd-v14-disconnected-ui");
 
                 var available = QdaoCharacterCatalog.CreationOriginalAll.Where(entry => entry.ResolveAppearance() != null).ToArray();
-                Assert.That(available.Length, Is.EqualTo(11));
+                Assert.That(available.Length, Is.EqualTo(8));
                 var displayedIds = new HashSet<string>();
                 bool sawOlder = false;
                 for (int i = 0; i < available.Length; i++)
                 {
                     var displayed = available.Single(entry => entry.Name == ReadText(host, "PreviewTitle"));
                     Assert.That(displayedIds.Add(displayed.Id), Is.True);
-                    Assert.That(ReadText(host, "AppearanceName"), Does.Contain($"{i + 1}/11"));
+                    Assert.That(ReadText(host, "AppearanceName"), Does.Contain($"{i + 1}/8"));
                     bool hd = displayed.ResolveAppearance().IsHd;
                     Assert.That(sawOlder && hd, Is.False, "All available HD characters precede older characters.");
                     sawOlder |= !hd;
@@ -412,10 +413,6 @@ namespace MmorpgClient.Tests.PlayMode
                 var animator = actor.Go.GetComponent<QdaoBoySpriteAnimator>();
                 var renderer = actor.Go.transform.Find("sprite").GetComponent<SpriteRenderer>();
                 var missingIdentities = new List<string> { "future_unavailable_identity" };
-                // Future legal 04 publication must not turn this missing-resource regression into
-                // a permanent release blocker. Its currently incomplete branch is checked when applicable.
-                if (QdaoCharacterCatalog.Find("04_mountain_guardian_boy").ResolveAppearance() == null)
-                    missingIdentities.Insert(0, "04_mountain_guardian_boy");
                 foreach (var missing in missingIdentities)
                 {
                     selected = First;

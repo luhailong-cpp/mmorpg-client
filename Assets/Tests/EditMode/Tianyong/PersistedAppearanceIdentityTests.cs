@@ -19,7 +19,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 {
     public sealed class PersistedAppearanceIdentityTests
     {
-        private const string First = "04_mountain_guardian_boy";
+        private const string First = "09_bamboo_archer_girl";
         private const string Second = "05_celestial_musician_girl";
         private GameClient _client;
 
@@ -90,7 +90,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void AoiRestoredIdentity_OverridesTheEmptyRoleListReturnedBeforeEnterGameSelfHeal()
         {
             Cache(new AccountSimplePlayer { PlayerId = 101, ClassId = 1, Gender = 1 });
-            Assert.That(_client.ResolveCharacterId(101), Is.EqualTo("04_mountain_guardian_boy"));
+            Assert.That(_client.ResolveCharacterId(101), Is.EqualTo("24_lu_dongbin"));
             Spawn(50, 101, First);
             Assert.That(_client.ResolveCharacterId(101), Is.EqualTo(First));
             Assert.That(_client.World.Actors[50].CharacterId, Is.EqualTo(First));
@@ -160,8 +160,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var visited = new HashSet<string>();
             var result = QdaoCharacterCatalog.SelectAvailableAppearances(entry => { visited.Add(entry.Id); return null; });
             Assert.That(result.Count, Is.Zero, "Incomplete originals and retired artwork cannot appear in selection.");
-            Assert.That(visited.Count, Is.EqualTo(14));
-            Assert.That(QdaoCharacterCatalog.RetainedOriginalAll.Count, Is.EqualTo(14));
+            Assert.That(visited.Count, Is.EqualTo(11));
+            Assert.That(QdaoCharacterCatalog.RetainedOriginalAll.Count, Is.EqualTo(11));
             foreach (var id in visited) Assert.That(QdaoCharacterCatalog.IsRetainedOriginal(id), Is.True);
             Assert.That(visited, Does.Not.Contain("11_jade_fist_flat_top_boy"));
             Assert.That(visited, Does.Contain("20_star_formation_master_girl"));
@@ -173,9 +173,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var ids = new[]
             {
                 "00_reference_topright_boy", "01_ice_sword_girl", "02_fire_talisman_boy",
-                "03_lotus_healer_girl", "04_mountain_guardian_boy", "05_celestial_musician_girl",
-                "08_alchemy_prodigy_boy", "09_bamboo_archer_girl",
-                "10_crimson_spear_girl", "15_water_dragon_scholar_boy", "17_ghost_script_calligrapher_boy"
+                "03_lotus_healer_girl", "05_celestial_musician_girl",
+                "09_bamboo_archer_girl",
+                "10_crimson_spear_girl", "15_water_dragon_scholar_boy"
             };
             Assert.That(QdaoCharacterCatalog.CreationOriginalAll.Select(entry => entry.Id), Is.EqualTo(ids));
             foreach (var id in new[]
@@ -187,8 +187,17 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, id), Is.EqualTo(id));
                 Assert.That(QdaoCharacterCatalog.Find(id), Is.Not.Null);
             }
+            foreach (var removed in new[]
+            {
+                "04_mountain_guardian_boy", "08_alchemy_prodigy_boy", "17_ghost_script_calligrapher_boy"
+            })
+            {
+                Assert.That(QdaoCharacterCatalog.IsCreatableAppearance(removed), Is.False, removed);
+                Assert.That(QdaoCharacterCatalog.IsRetainedOriginal(removed), Is.False, removed);
+                Assert.That(QdaoCharacterCatalog.Find(removed), Is.Null, removed);
+            }
             Assert.That(QdaoCharacterCatalog.IsCreatableAppearance(null), Is.False);
-            Assert.That(QdaoCharacterCatalog.IsCreatableAppearance("04_mountain_guardian"), Is.False);
+            Assert.That(QdaoCharacterCatalog.IsCreatableAppearance("05_celestial_musician"), Is.False);
             Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, ""), Is.EqualTo("20_star_formation_master_girl"));
         }
 
@@ -197,10 +206,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             var method = typeof(GameClient).GetMethod("TryResolveCreationAppearance", BindingFlags.Static | BindingFlags.NonPublic);
             Assert.That(method, Is.Not.Null);
-            object[] args = { 1u, 1u, "", null };
+            object[] args = { 1u, 2u, "", null };
             Assert.That(method.Invoke(null, args), Is.True);
             Assert.That(args[2], Is.EqualTo(""));
-            Assert.That(args[3], Is.EqualTo("04_mountain_guardian_boy"));
+            Assert.That(args[3], Is.EqualTo("01_ice_sword_girl"));
             args = new object[] { 2u, 2u, "", null };
             Assert.That(method.Invoke(null, args), Is.False);
             Assert.That(args[3], Is.Null);

@@ -136,6 +136,7 @@ class BatchConfig:
         self.document = document
         if document is None:
             self.scope, self.evidence, self.revision = dict(SCOPE), EVIDENCE, REVISION
+            self.entries = {map_id: self._default_meta(map_id) for map_id, _ in SCOPE}
             return
         require(document.get("schemaVersion") == 1, "Invalid festival batch config")
         revision = document.get("revision", "")
@@ -146,7 +147,7 @@ class BatchConfig:
         require(not evidence.is_absolute() and evidence.parts[:2] == ("Docs", "VerificationEvidence")
                 and len(evidence.parts) >= 3 and ".." not in evidence.parts,
                 "Batch evidence must stay below Docs/VerificationEvidence")
-        scope = {}
+        scope, meta_by_map = {}, {}
         entries = document.get("scope")
         require(isinstance(entries, list) and entries, "A nonempty explicit batch scope is required")
         scenes = {}
@@ -154,16 +155,42 @@ class BatchConfig:
             require(isinstance(entry, dict), "Invalid batch scope entry")
             map_id, appearance = str(entry.get("mapId", "")), normalized_appearance(entry.get("appearance"))
             columns, rows = entry.get("columns"), entry.get("rows")
-            require(map_id.isascii() and map_id.isdigit() and 0 < int(map_id) <= 0xffffffff
+            is_numeric = map_id.isascii() and map_id.isdigit()
+            require(bool(re.fullmatch(r"[A-Za-z0-9_-]+", map_id))
                     and appearance in ("normal", "spring", "lantern", "mid-autumn"), "Invalid batch identity")
+            scene_id = entry.get("sceneId", int(map_id) if is_numeric else 0)
+            require(type(scene_id) is int and 0 < scene_id <= 0xffffffff, "Invalid batch sceneId")
+            key = entry.get("key") if "key" in entry else (("map" + map_id) if is_numeric else map_id)
+            require(isinstance(key, str) and bool(re.fullmatch(r"[A-Za-z0-9_-]+", key)), "Invalid batch key")
+            name = entry.get("name") if "name" in entry else ("地图 " + map_id)
+            require(isinstance(name, str) and bool(name.strip()), "Invalid batch display name")
+            client_only = entry.get("clientOnly", True)
+            server_registered = entry.get("authoritativeServerRegistered", False)
+            allow_derived = entry.get("allowDerivedSource", False)
+            require(isinstance(client_only, bool) and isinstance(server_registered, bool)
+                    and isinstance(allow_derived, bool) and not (client_only and server_registered),
+                    "Invalid batch registration flags")
             require(type(columns) is int and type(rows) is int and columns > 0 and rows > 0
                     and columns * rows <= 128 and max(columns, rows) * 1024 <= 8192, "Invalid batch grid")
             identity = map_id, appearance
             require(identity not in scope, "Duplicate batch appearance")
-            require(int(map_id) not in scenes or scenes[int(map_id)] == map_id, "Duplicate numeric map identity")
-            scenes[int(map_id)] = map_id
+            require(scene_id not in scenes or scenes[scene_id] == map_id, "Duplicate numeric map identity")
+            scenes[scene_id] = map_id
+            meta = dict(key=key, sceneId=scene_id, name=name, clientOnly=client_only,
+                        authoritativeServerRegistered=server_registered, allowDerivedSource=allow_derived)
+            if map_id in meta_by_map:
+                require(meta_by_map[map_id] == meta, "Inconsistent batch metadata across appearances")
+            meta_by_map[map_id] = meta
             scope[identity] = columns, rows
-        self.scope, self.evidence, self.revision = scope, evidence, revision
+        self.scope, self.evidence, self.revision, self.entries = scope, evidence, revision, meta_by_map
+
+    @staticmethod
+    def _default_meta(map_id):
+        return dict(key="map" + map_id, sceneId=int(map_id), name="地图 " + map_id,
+                    clientOnly=True, authoritativeServerRegistered=False, allowDerivedSource=False)
+
+    def meta(self, map_id):
+        return self.entries[str(map_id)]
 
 
 def resolve_batch(value=None):
@@ -177,13 +204,16 @@ def default_appearance(appearances):
 
 
 def validate_selection(selection, batch=None):
-    scope = resolve_batch(batch).scope
+    batch = resolve_batch(batch)
+    scope = batch.scope
     require(selection.get("schemaVersion") == 1 and isinstance(selection.get("sets"), list), "Invalid frozen selection")
     seen = set()
     for item in selection["sets"]:
-        identity = str(item["mapId"]), normalized_appearance(item["appearance"])
+        map_id = str(item["mapId"])
+        identity = map_id, normalized_appearance(item["appearance"])
         require(identity in scope and identity not in seen, "Unknown or duplicate festival appearance")
         seen.add(identity)
+        meta = batch.meta(map_id)
         columns, rows = scope[identity]
         require((item["grid"]["columns"], item["grid"]["rows"]) == (columns, rows)
                 and item["grid"]["canvasPixels"] == [columns * 1024, rows * 1024], "Frozen grid mismatch")
@@ -198,12 +228,30 @@ def validate_selection(selection, batch=None):
             occupied.add((row, column))
             require(tile["imageRectHalfOpen"] == [(column - 1) * 1024, (row - 1) * 1024, column * 1024, row * 1024],
                     "Frozen tile image rectangle mismatch")
-            require(tile.get("formalArtAccepted") is True and tile["formalAcceptance"].get("formalAccepted") is True,
-                    "Tile has no formal art acceptance")
-            for key, dimensions in (("native", [1254, 1254]), ("runtime", [1024, 1024])):
-                value = tile[key]
-                require(SHA.fullmatch(value["sha256"]) and value["bytes"] > 0 and value["pixels"] == dimensions,
+            require(tile.get("formalArtAccepted") is True, "Tile has no formal art acceptance")
+            if meta["allowDerivedSource"]:
+                require(isinstance(tile.get("sourceNative"), bool) and isinstance(tile.get("sourceDerived"), bool)
+                        and tile["sourceNative"] != tile["sourceDerived"],
+                        "Body tile must truthfully classify native vs derived source")
+                if tile.get("formalAcceptance"):
+                    require(tile["formalAcceptance"].get("formalAccepted") is True, "Tile has no formal art acceptance")
+                else:
+                    require(bool(tile.get("runtimeGenerationRecord")), "Body tile requires runtime generation record")
+                native = tile["native"]
+                pixels = native.get("pixels")
+                require(SHA.fullmatch(native["sha256"]) and native["bytes"] > 0 and isinstance(pixels, list)
+                        and len(pixels) == 2 and all(type(v) is int and v >= 1024 for v in pixels)
+                        and pixels[0] == pixels[1], "Frozen body source PNG provenance invalid")
+                runtime = tile["runtime"]
+                require(SHA.fullmatch(runtime["sha256"]) and runtime["bytes"] > 0 and runtime["pixels"] == [1024, 1024],
                         "Frozen PNG provenance invalid")
+            else:
+                require(tile["formalAcceptance"].get("formalAccepted") is True,
+                        "Tile has no formal art acceptance")
+                for key, dimensions in (("native", [1254, 1254]), ("runtime", [1024, 1024])):
+                    value = tile[key]
+                    require(SHA.fullmatch(value["sha256"]) and value["bytes"] > 0 and value["pixels"] == dimensions,
+                            "Frozen PNG provenance invalid")
     require(seen == set(scope), "Frozen selection must contain exactly the authorized batch appearances")
 
 
@@ -250,7 +298,7 @@ def capture_evidence(item, tile, selection_sha):
     evidence = dict(schemaVersion=1, mapId=str(item["mapId"]), appearance=normalized_appearance(item["appearance"]),
                     tile=tile["tile"], sourceSelectionSha256=selection_sha, native=tile["native"], runtime=tile["runtime"],
                     formalArtAccepted=True, navigationAcceptanceClaimed=False, originalDocuments=documents)
-    for key in ("reuse", "originalToolEvent", "sourceCoordinateMapping", "originalRuntime"):
+    for key in ("sourceNative", "sourceDerived", "reuse", "originalToolEvent", "sourceCoordinateMapping", "originalRuntime"):
         if key in tile:
             evidence[key] = tile[key]
     return evidence
@@ -327,16 +375,18 @@ def import_maps(project, selection_path, navigation_path, batch=None):
     catalog_path = project / DELIVERY / "catalog.json"
     catalog = read_json(catalog_path) if catalog_path.exists() else dict(schemaVersion=2, maps=[])
     require(catalog.get("schemaVersion") == 2 and isinstance(catalog.get("maps"), list), "Existing catalog schema")
-    requested = defaultdict(set)
+    requested, requested_meta = defaultdict(set), {}
     for map_id, appearance in scope:
-        requested["map" + map_id].add(appearance)
+        meta = batch.meta(map_id)
+        requested[meta["key"]].add(appearance)
+        requested_meta[meta["key"]] = meta
     for existing in catalog["maps"]:
         key, scene = existing["key"], existing["sceneId"]
-        for requested_key in requested:
-            require(scene != int(requested_key[3:]) or key == requested_key,
+        for requested_key, meta in requested_meta.items():
+            require(scene != meta["sceneId"] or key == requested_key,
                     "Existing numeric sceneId belongs to a different map key")
         if key in requested:
-            require(scene == int(key[3:]), "Existing map key has another sceneId")
+            require(scene == requested_meta[key]["sceneId"], "Existing map key has another sceneId")
             require({a["id"] for a in existing["appearances"]}.issubset(requested[key]),
                     "Batch scope must cover all existing appearances of a managed map")
     docs = project / evidence_directory
@@ -353,14 +403,16 @@ def import_maps(project, selection_path, navigation_path, batch=None):
     registrations = defaultdict(list)
     for item in selection["sets"]:
         map_id, appearance = str(item["mapId"]), normalized_appearance(item["appearance"])
-        key = "map" + map_id
+        meta = batch.meta(map_id)
+        key, scene_id, display_name = meta["key"], meta["sceneId"], meta["name"]
+        client_only, server_registered = meta["clientOnly"], meta["authoritativeServerRegistered"]
         nav, mask = nav_results[map_id]
         geometry_matches(nav["source"], item)
         columns, rows = scope[map_id, appearance]
         files = []
         for tile in item["tiles"]:
             native_data = checked_bytes(tile["native"])
-            inspect_png(native_data, [1254, 1254], tile["tile"] + " native")
+            inspect_png(native_data, tile["native"]["pixels"], tile["tile"] + " native")
             runtime_data = checked_bytes(tile["runtime"])
             inspect_png(runtime_data, [1024, 1024], tile["tile"] + " runtime")
             files.append((tile["row"], tile["column"], runtime_data))
@@ -382,34 +434,42 @@ def import_maps(project, selection_path, navigation_path, batch=None):
             reference = dict(path=evidence_rel.as_posix(), sha256=digest(evidence_data))
             evidence_refs.append(reference)
             write_asset(folder / "tiles" / (name + ".png"), data, project)
-            records.append(dict(row=tile["row"], column=tile["column"], resourcePath=resource_root + "tiles/" + name,
-                                sha256=digest(data), bytes=len(data), nativeSha256=tile["native"]["sha256"],
-                                nativePixels=1254, evidencePath=reference["path"], evidenceSha256=reference["sha256"]))
-        bundle = dict(schemaVersion=1, key=key, sceneId=int(map_id), revision=revision, appearance=appearance,
+            record = dict(row=tile["row"], column=tile["column"], resourcePath=resource_root + "tiles/" + name,
+                          sha256=digest(data), bytes=len(data), nativeSha256=tile["native"]["sha256"],
+                          nativePixels=tile["native"]["pixels"][0],
+                          evidencePath=reference["path"], evidenceSha256=reference["sha256"])
+            if meta["allowDerivedSource"]:
+                record["sourceNative"] = tile["sourceNative"]
+                record["sourceDerived"] = tile["sourceDerived"]
+            records.append(record)
+        bundle = dict(schemaVersion=1, key=key, sceneId=scene_id, revision=revision, appearance=appearance,
                       layoutSha256=layout_sha, sourceSelectionSha256=selection_sha, navigationPlanSha256=nav_sha,
                       sourceLayoutPreview=item["layoutSource"], selectionAuthority=item["selectionAuthority"],
-                      tileEvidence=evidence_refs, formalArtAccepted=True, authoritativeServerRegistered=False)
+                      tileEvidence=evidence_refs, formalArtAccepted=True,
+                      authoritativeServerRegistered=server_registered)
         bundle_rel = evidence_directory / "source-evidence" / key / appearance / "delivery.json"
         bundle_data = json_bytes(bundle)
         (project / bundle_rel).write_bytes(bundle_data)
-        navigation = dict(schemaVersion=1, key=key, sceneId=int(map_id), revision=revision,
+        navigation = dict(schemaVersion=1, key=key, sceneId=scene_id, revision=revision,
                           navigationPlanPath=(evidence_directory / "navigation-plan.json").as_posix(),
                           navigationPlanSha256=nav_sha, source=nav["source"], stats=nav["stats"],
-                          runtimeEngineAcceptance=False, authoritativeServerRegistered=False)
+                          runtimeEngineAcceptance=False, authoritativeServerRegistered=server_registered)
         nav_data = json_bytes(navigation)
         mask_text = base64.b64encode(mask)
         source = dict(nav["source"])
-        source.update(schemaVersion=2, key=key, sceneId=int(map_id), name="地图 " + map_id,
+        source.update(schemaVersion=2, key=key, sceneId=scene_id, name=display_name,
                       revision=revision, appearance=appearance, resourceRoot=resource_root,
-                      clientOnly=True, authoritativeServerRegistered=False, artStatus="formal_tiles_overview",
+                      clientOnly=client_only, authoritativeServerRegistered=server_registered,
+                      artStatus="formal_tiles_overview",
                       layoutPixels=dict(width=columns * 1024, height=rows * 1024), layoutSha256=layout_sha,
                       sourceSelectionPath=selection_copy.relative_to(project).as_posix(), sourceSelectionSha256=selection_sha,
                       sourceEvidencePath=bundle_rel.as_posix(), sourceEvidenceSha256=digest(bundle_data),
                       navigationPlanPath=(evidence_directory / "navigation-plan.json").as_posix(), navigationPlanSha256=nav_sha,
                       navigationSha256=digest(nav_data), walkmaskSha256=digest(mask_text),
-                      walkmaskPackedSha256=digest(mask), navigationStatus="conservative_visible_ground_client_only",
+                      walkmaskPackedSha256=digest(mask),
+                      navigationStatus="conservative_visible_ground" if not client_only else "conservative_visible_ground_client_only",
                       runtimeEngineAcceptance=False)
-        manifest = dict(schemaVersion=2, deliveryStatus="formal_runtime_tiles", key=key, sceneId=int(map_id),
+        manifest = dict(schemaVersion=2, deliveryStatus="formal_runtime_tiles", key=key, sceneId=scene_id,
                         revision=revision, appearance=appearance, resourceRoot=resource_root, layoutSha256=layout_sha,
                         columns=columns, rows=rows, tilePixels=1024, tiles=records,
                         deliveredTileCount=len(records), deliveredImageBytes=sum(t["bytes"] for t in records),
@@ -425,8 +485,10 @@ def import_maps(project, selection_path, navigation_path, batch=None):
     managed = set(registrations)
     retained = [entry for entry in catalog["maps"] if entry["key"] not in managed]
     for key in sorted(managed):
-        retained.append(dict(key=key, sceneId=int(key[3:]), name="地图 " + key[3:], revision=revision,
-                             clientOnly=True, defaultAppearance=default_appearance({a["id"] for a in registrations[key]}),
+        meta = requested_meta[key]
+        retained.append(dict(key=key, sceneId=meta["sceneId"], name=meta["name"], revision=revision,
+                             clientOnly=meta["clientOnly"],
+                             defaultAppearance=default_appearance({a["id"] for a in registrations[key]}),
                              appearances=registrations[key]))
     catalog["maps"] = retained
     write_asset(catalog_path, json_bytes(catalog), project)
@@ -458,11 +520,13 @@ def verify(project, batch=None):
     results, shared_masks = [], {}
     for item in selection["sets"]:
         map_id, appearance = str(item["mapId"]), normalized_appearance(item["appearance"])
-        key = "map" + map_id
+        meta = batch.meta(map_id)
+        key, scene_id = meta["key"], meta["sceneId"]
+        client_only, server_registered = meta["clientOnly"], meta["authoritativeServerRegistered"]
         registration = next((m for m in catalog["maps"] if m["key"] == key), None)
         expected_apps = {a for mid, a in scope if mid == map_id}
-        require(registration and registration["sceneId"] == int(map_id) and registration["revision"] == revision
-                and registration.get("clientOnly") is True
+        require(registration and registration["sceneId"] == scene_id and registration["revision"] == revision
+                and registration.get("clientOnly") is client_only
                 and registration.get("defaultAppearance") == default_appearance(expected_apps),
                 "Client-only festival registration mismatch")
         require({a["id"] for a in registration["appearances"]} == expected_apps
@@ -475,11 +539,12 @@ def verify(project, batch=None):
         navigation_layout_binding(plan_path, map_id, appearance, layout_sha)
         folder = project / "Assets/Resources" / root
         source, manifest = read_json(folder / "source.json"), read_json(folder / "tiles.json")
-        identity = dict(schemaVersion=2, key=key, sceneId=int(map_id), revision=revision,
+        identity = dict(schemaVersion=2, key=key, sceneId=scene_id, revision=revision,
                         appearance=appearance, resourceRoot=root, layoutSha256=layout_sha)
         require(all(source.get(k) == v and manifest.get(k) == v for k, v in identity.items()), "Source/tiles/catalog identity mismatch")
         require(source["artStatus"] == "formal_tiles_overview" and manifest["deliveryStatus"] == "formal_runtime_tiles"
-                and source.get("clientOnly") is True and source.get("authoritativeServerRegistered") is False,
+                and source.get("clientOnly") is client_only
+                and source.get("authoritativeServerRegistered") is server_registered,
                 "Formal/runtime/server status mismatch")
         nav, mask = nav_results[map_id]
         require(all(source.get(k) == v for k, v in nav["source"].items()), "Navigation geometry/source mismatch")
@@ -521,10 +586,15 @@ def verify(project, batch=None):
             seen.add(coord)
             tile = expected_tiles[coord]
             name = tile["tile"]
-            require(entry["resourcePath"] == root + "tiles/" + name and entry["nativePixels"] == 1254
+            expected_native_px = tile["native"]["pixels"][0]
+            require(entry["resourcePath"] == root + "tiles/" + name and entry["nativePixels"] == expected_native_px
                     and entry["nativeSha256"] == tile["native"]["sha256"]
                     and entry["sha256"] == tile["runtime"]["sha256"] and entry["bytes"] == tile["runtime"]["bytes"],
                     "Runtime/native provenance mismatch")
+            if meta["allowDerivedSource"]:
+                require(entry.get("sourceNative") is tile["sourceNative"]
+                        and entry.get("sourceDerived") is tile["sourceDerived"],
+                        "Truthful derived-source marker mismatch in manifest")
             evidence_rel = evidence_directory / "source-evidence" / key / appearance / (name + ".json")
             require(entry["evidencePath"] == evidence_rel.as_posix(), "Unsafe tile evidence path")
             evidence_data = (project / evidence_rel).read_bytes()
@@ -535,6 +605,10 @@ def verify(project, batch=None):
             require(evidence["native"] == tile["native"] and evidence["runtime"] == tile["runtime"]
                     and evidence["sourceSelectionSha256"] == selection_sha and evidence["formalArtAccepted"] is True,
                     "Formal evidence source binding mismatch")
+            if meta["allowDerivedSource"]:
+                require(evidence.get("sourceNative") is tile["sourceNative"]
+                        and evidence.get("sourceDerived") is tile["sourceDerived"],
+                        "Truthful derived-source marker mismatch in evidence")
             reuse = tile.get("reuse", {})
             if reuse.get("reusedNative"):
                 require(evidence.get("reuse") == reuse and reuse.get("sameGridAndCoordinate") is True
@@ -544,6 +618,7 @@ def verify(project, batch=None):
                 require({"reusePlan", "reuseSourceFormalAcceptance"}.issubset(
                     {d["role"] for d in evidence["originalDocuments"]}), "Portable reuse evidence missing")
             found_formal = False
+            found_runtime_gen = False
             for document in evidence["originalDocuments"]:
                 original = document["utf8Text"].encode("utf-8")
                 require(digest(original) == document["originalSha256"] and len(original) == document["originalBytes"],
@@ -553,6 +628,10 @@ def verify(project, batch=None):
                     acceptance_identity(json.loads(document["utf8Text"].lstrip("\ufeff")), tile["native"]["sha256"],
                                         tile["tile"], appearance)
                     found_formal = True
+                elif document["role"] == "runtimeGenerationRecord":
+                    require(document["originalSha256"] == tile["runtimeGenerationRecord"]["sha256"],
+                            "Runtime generation snapshot changed")
+                    found_runtime_gen = True
                 elif document["role"] == "reuseSourceFormalAcceptance":
                     require(document["originalSha256"] == reuse["sourceFormalAcceptance"]["sha256"],
                             "Reuse source acceptance snapshot changed")
@@ -560,7 +639,7 @@ def verify(project, batch=None):
                                         reuse["sourceCoordinate"], reuse["sourceAppearance"])
                 elif document["role"] == "reusePlan":
                     require(document["originalSha256"] == reuse["evidence"]["sha256"], "Reuse plan snapshot changed")
-            require(found_formal, "Formal acceptance snapshot absent")
+            require(found_formal or (meta["allowDerivedSource"] and found_runtime_gen), "Formal acceptance snapshot absent")
             png = folder / "tiles" / (name + ".png")
             data = png.read_bytes()
             require(digest(data) == entry["sha256"] and len(data) == entry["bytes"], "Runtime PNG SHA mismatch")
@@ -587,9 +666,10 @@ def verify(project, batch=None):
         while parent != (project / DELIVERY).parent:
             verify_meta(parent, project)
             parent = parent.parent
-        results.append(dict(key=key, sceneId=int(map_id), appearance=appearance, tiles=len(seen),
+        results.append(dict(key=key, sceneId=scene_id, appearance=appearance, tiles=len(seen),
                             runtimeImageBytes=total, layoutBytes=len(overview_data), layoutSha256=layout_sha,
-                            walkmaskPackedSha256=digest(mask), navigationStats=nav["stats"], clientOnly=True))
+                            walkmaskPackedSha256=digest(mask), navigationStats=nav["stats"], clientOnly=client_only))
+    all_server_registered = all(batch.meta(m)["authoritativeServerRegistered"] for m, _ in scope)
     return dict(schemaVersion=1, ok=True, appearances=results, maps=len(shared_masks),
                 appearanceCount=len(results), tileCount=sum(r["tiles"] for r in results),
                 runtimeImageBytes=sum(r["runtimeImageBytes"] for r in results),
@@ -597,7 +677,7 @@ def verify(project, batch=None):
                 sourceSelectionSha256=selection_sha, navigationPlanSha256=nav_sha,
                 formalArtSourceBindingsVerified=True, runtimeTilesDecoded=True, layoutPixelsMatchRuntimeTiles=True,
                 artCheckoutRequiredForVerification=False, highestNativePNGsCopied=False,
-                authoritativeServerRegistered=False, unityRenderedAcceptance=False)
+                authoritativeServerRegistered=all_server_registered, unityRenderedAcceptance=False)
 
 
 def main():

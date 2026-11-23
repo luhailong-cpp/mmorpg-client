@@ -87,6 +87,54 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(online.ForAppearance("spring"), Is.Null);
         }
 
+        [Test]
+        public void InstalledBiyuanBodySharesNavigationAcrossFestivalsAndEnablesOnlineTravel()
+        {
+            var spring = CurrentMapCatalog.Find(5u);
+            Assert.That(spring, Is.Not.Null);
+            Assert.That(spring.Key, Is.EqualTo("biyuan-water-palace"));
+            Assert.That(spring.Revision, Is.EqualTo("biyuan-body-20261123"));
+            Assert.That(spring.Appearance, Is.EqualTo("spring"));
+            Assert.That(spring.CanTravelOnline, Is.True);
+            Assert.That(CurrentMapCatalog.FindForOnline(5u), Is.SameAs(spring));
+            Assert.That(CurrentMapCatalog.FindForOnline("biyuan-water-palace"), Is.SameAs(spring));
+
+            var midAutumn = spring.ForAppearance("mid-autumn");
+            Assert.That(midAutumn, Is.Not.Null);
+            Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
+            Assert.That(spring.ForAppearance("normal"), Is.Null);
+            Assert.That(spring.Spawn, Is.EqualTo(new Vector3(222.5f, 0f, 58.5f)));
+            Assert.That(spring.WorldRect, Is.EqualTo(new Rect(0f, 0f, 320f, 256f)));
+            Assert.That(spring.EffectiveWorldRect, Is.EqualTo(new Rect(0f, 8f, 320f, 240f)));
+
+            var navigation = spring.CreateNavigation();
+            var mainHallDoor = new Vector3(116.25f, 0f, 186f);
+            var gongPavilion = new Vector3(261.25f, 0f, 185.375f);
+            var teaPavilion = new Vector3(80f, 0f, 53.5f);
+            Assert.That(navigation.FindPath(spring.Spawn, mainHallDoor).Count, Is.GreaterThanOrEqualTo(2));
+            Assert.That(navigation.FindPath(spring.Spawn, gongPavilion).Count, Is.GreaterThanOrEqualTo(2));
+            Assert.That(navigation.FindPath(spring.Spawn, teaPavilion).Count, Is.GreaterThanOrEqualTo(2));
+            // 上下 128px 衬边、荷花池、东廊边水岸、茶亭屋檐、主殿屋顶均应阻挡。
+            Assert.That(navigation.IsWalkable(new Vector3(160f, 0f, 252f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(160f, 0f, 4f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(200f, 0f, 143.5f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(245.625f, 0f, 144.75f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(80f, 0f, 74.75f)), Is.False);
+            Assert.That(navigation.IsWalkable(new Vector3(112.5f, 0f, 216f)), Is.False);
+
+            foreach (var appearance in new[] { spring, midAutumn })
+            {
+                var layout = appearance.LoadTexture();
+                Assert.That(layout.width, Is.EqualTo(5120));
+                Assert.That(layout.height, Is.EqualTo(4096));
+                Assert.That(layout.mipmapCount, Is.EqualTo(1));
+                var tile = Resources.Load<Texture2D>(appearance.ResourceFolder + "tiles/r04_c05");
+                Assert.That(tile, Is.Not.Null);
+                Assert.That(tile.width, Is.EqualTo(1024));
+                Assert.That(tile.height, Is.EqualTo(1024));
+            }
+        }
+
         [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", true, true)]
         [TestCase("http://[::1]:18286", "[::1]:28200", true, true)]
         [TestCase("http://127.0.0.1:18286", "127.0.0.1:28200", false, false)]

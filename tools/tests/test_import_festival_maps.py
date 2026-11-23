@@ -347,6 +347,64 @@ class FestivalImportTests(unittest.TestCase):
             self.assertEqual(expected_sha, maps.digest((repository / relative).read_bytes()),
                              "Original temporary file changed: " + relative.as_posix())
 
+    def test_body_string_key_and_truthful_derived_sources(self):
+        art_dir = self.case / "body-art"
+        cols, rows = 2, 1
+        w, h = cols * 1024, rows * 1024
+        selection, assemblies = dict(schemaVersion=1, sets=[]), []
+        plan = dict(schemaVersion=1, maps={"biyuan-water-palace": dict(
+            canvasPixels=[w, h], worldRect=dict(x=0.0, y=0.0, width=4.0, height=2.0),
+            imageRect=dict(x=0.0, y=0.0, width=float(w), height=float(h)), referencePixels=[2, 1], cellSize=1.0,
+            spawnPixel=[1024.0, 512.0], walkablePolygons=[[[0, 0], [w, 0], [w, h], [0, h]]],
+            obstaclePolygons=[], expectedConnectedComponents=1)}, visuallyReviewedFormalAssemblies=assemblies)
+        for app, derived_col in (("spring", None), ("mid-autumn", 2)):
+            tiles, overview = [], Image.new("RGB", (w, h))
+            for col in (1, 2):
+                tid = maps.tile_id(1, col)
+                is_derived = col == derived_col
+                src_px = 1264 if is_derived else 1254
+                color = (30 * col, 80 if app == "spring" else 160, 120)
+                src = descriptor(art_dir / app / f"{tid}.src.png", png((src_px, src_px), color), [src_px, src_px])
+                rt = descriptor(art_dir / app / f"{tid}.rt.png", png((1024, 1024), color), [1024, 1024])
+                gen = descriptor(art_dir / app / f"{tid}.gen.json", maps.json_bytes(dict(tile=tid, derived=is_derived)))
+                tiles.append(dict(tile=tid, row=1, column=col,
+                    imageRectHalfOpen=[(col - 1) * 1024, 0, col * 1024, 1024],
+                    native=src, runtime=rt, runtimeGenerationRecord=gen,
+                    sourceNative=not is_derived, sourceDerived=is_derived, formalArtAccepted=True))
+                overview.paste(Image.new("RGB", (1024, 1024), color), ((col - 1) * 1024, 0))
+            buf = io.BytesIO()
+            overview.save(buf, format="PNG")
+            assemblies.append(dict(mapId="biyuan-water-palace", appearance=app, sha256=maps.digest(buf.getvalue())))
+            selection["sets"].append(dict(mapId="biyuan-water-palace", appearance=app, formalArtAccepted=True,
+                grid=dict(columns=cols, rows=rows, canvasPixels=[w, h]),
+                layoutSource=dict(path="mother.png", sha256="a" * 64),
+                selectionAuthority=dict(path="receipt.json", sha256="b" * 64), tiles=tiles))
+        batch = dict(schemaVersion=1, revision="biyuan-body-test",
+                     evidenceDirectory="Docs/VerificationEvidence/biyuan-body-test",
+                     scope=[dict(mapId="biyuan-water-palace", key="biyuan-water-palace", sceneId=5,
+                                 name="碧渊水宫", appearance=app, columns=cols, rows=rows,
+                                 clientOnly=False, authoritativeServerRegistered=True, allowDerivedSource=True)
+                            for app in ("spring", "mid-autumn")])
+        sel_p, plan_p = self.case / "body-sel.json", self.case / "body-plan.json"
+        sel_p.write_bytes(maps.json_bytes(selection))
+        plan_p.write_bytes(maps.json_bytes(plan))
+        result = maps.import_maps(self.case, sel_p, plan_p, batch)
+        self.assertTrue(result["ok"] and result["authoritativeServerRegistered"])
+        catalog = maps.read_json(self.case / maps.DELIVERY / "catalog.json")
+        reg = next(m for m in catalog["maps"] if m["key"] == "biyuan-water-palace")
+        self.assertEqual((5, "碧渊水宫", False, "spring"), (reg["sceneId"], reg["name"], reg["clientOnly"], reg["defaultAppearance"]))
+        autumn_root = next(a["resourceRoot"] for a in reg["appearances"] if a["id"] == "mid-autumn")
+        tiles_doc = maps.read_json(self.case / "Assets/Resources" / autumn_root / "tiles.json")
+        by_col = {t["column"]: t for t in tiles_doc["tiles"]}
+        self.assertEqual((True, False, 1254), (by_col[1]["sourceNative"], by_col[1]["sourceDerived"], by_col[1]["nativePixels"]))
+        self.assertEqual((False, True, 1264), (by_col[2]["sourceNative"], by_col[2]["sourceDerived"], by_col[2]["nativePixels"]))
+        # Tampering derived flag to fake native must fail verify.
+        tiles_doc["tiles"][1]["sourceNative"] = True
+        tiles_doc["tiles"][1]["sourceDerived"] = False
+        (self.case / "Assets/Resources" / autumn_root / "tiles.json").write_bytes(maps.json_bytes(tiles_doc))
+        with self.assertRaisesRegex(ValueError, "derived"):
+            maps.verify(self.case, batch)
+
 
 if __name__ == "__main__":
     unittest.main()

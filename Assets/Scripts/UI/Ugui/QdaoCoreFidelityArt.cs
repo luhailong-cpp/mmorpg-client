@@ -123,7 +123,7 @@ namespace MmorpgClient.UI.Ugui
         {
             // Same-identity standalone portrait only. Unknown ids still remain unknown;
             // this UI path does not approve or activate any animation package.
-            return id == "04_mountain_guardian_boy" ? Resources.Load<Sprite>(Root + "portraits/04_mountain_guardian_boy") : null;
+            return null;
         }
     }
     internal static class RoleFidelityArt

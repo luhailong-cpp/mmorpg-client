@@ -114,6 +114,7 @@ namespace MmorpgClient.Game.Appearance
         private readonly Func<float> _clock;
 
         private object _observedConnection;
+        private ulong _observedPlayerId;
         private bool _disposed;
         private int _generation;
         private float _infoReceivedAt;
@@ -158,6 +159,7 @@ namespace MmorpgClient.Game.Appearance
             _clock = clock ?? throw new ArgumentNullException(nameof(clock));
             _messageIds = messageIds ?? AppearanceMessageIds.Generated;
             _observedConnection = _connectionIdentity();
+            _observedPlayerId = _net.PlayerId;
             _net.Disconnected += HandleDisconnected;
             if (_messageIds.NotifyState != 0)
                 _net.RegisterNotify(_messageIds.NotifyState, HandleAppearanceStateNotify);
@@ -390,6 +392,8 @@ namespace MmorpgClient.Game.Appearance
         {
             if (_disposed || mc == null) return;
             ObserveConnection();
+            // 断线后排队的旧推送不得重新填回已清空的角色快照。
+            if (!Ready) return;
             global::AppearanceStateNotify notify;
             try { notify = global::AppearanceStateNotify.Parser.ParseFrom(mc.SerializedMessage); }
             catch (InvalidProtocolBufferException) { return; }
@@ -455,8 +459,10 @@ namespace MmorpgClient.Game.Appearance
         private void ObserveConnection()
         {
             var current = _connectionIdentity();
-            if (ReferenceEquals(current, _observedConnection)) return;
+            ulong currentPlayerId = _net.PlayerId;
+            if (ReferenceEquals(current, _observedConnection) && currentPlayerId == _observedPlayerId) return;
             _observedConnection = current;
+            _observedPlayerId = currentPlayerId;
             Reset();
         }
 
@@ -471,7 +477,13 @@ namespace MmorpgClient.Game.Appearance
             SetStatus(IsSupported ? "" : UnsupportedMessage, false);
         }
 
-        private bool IsCurrent(int generation) => !_disposed && generation == _generation;
+        private bool IsCurrent(int generation)
+        {
+            if (_disposed) return false;
+            // 回调可能先于下一帧 Tick 抵达；必须在写入状态前核对连接与当前角色。
+            ObserveConnection();
+            return generation == _generation;
+        }
 
         private bool RejectLocally(string message)
         {

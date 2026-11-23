@@ -185,15 +185,14 @@ public static class AppearanceUiVerification
 
             if (captureFullSuite)
             {
-                // 验收 1：四位人物分别打开背景与故事，图文对应
-                var expectedFour = new[]
+                // 验收 1：三位人物分别打开背景与故事，图文对应
+                var expectedThree = new[]
                 {
                     ("00_reference_topright_boy", "金发带Q道童", "陆照禾", "第四只碗", "回来带葱"),
                     ("10_crimson_spear_girl", "赤枪少女", "祝停云", "纸也赢过一回", "今天纸赢了"),
-                    ("17_ghost_script_calligrapher_boy", "灵篆书生", "闻砚生", "借还栏", "名字，你来写"),
                     ("09_bamboo_archer_girl", "竹弓少女", "桑听雨", "没有画的那一页", "替我空一页吧"),
                 };
-                foreach (var (rawId, origName, archiveName, storyTitle, bodySnippet) in expectedFour)
+                foreach (var (rawId, origName, archiveName, storyTitle, bodySnippet) in expectedThree)
                 {
                     Click("AppearanceOption_" + rawId);
                     AssertTrue(uiRoot.BiographySection.activeSelf, $"应显示人物背景：{rawId}");
@@ -210,7 +209,7 @@ public static class AppearanceUiVerification
                     Click("AppearanceStoryBack");
                     AssertTrue(!uiRoot.StoryOverlay.activeSelf, "点击返回应关闭故事阅读层");
                 }
-                summary.Add($"[{width}x{height}] Check 1 PASS: 四位人物背景与故事图文一一对应");
+                summary.Add($"[{width}x{height}] Check 1 PASS: 三位人物背景与故事图文一一对应");
 
                 // 验收 2 & 3：跳过后可再次阅读；返回后仍选中原人物且列表位置不变
                 uiRoot.ListScroll.verticalNormalizedPosition = 0.34f;
@@ -288,9 +287,9 @@ public static class AppearanceUiVerification
                 // 验收 6：快速切人、阅读中断线、关闭重开不串内容
                 Click("AppearanceOption_00_reference_topright_boy");
                 Click("AppearanceOption_10_crimson_spear_girl");
-                Click("AppearanceOption_17_ghost_script_calligrapher_boy");
+                Click("AppearanceOption_09_bamboo_archer_girl");
                 Click("AppearanceReadStory");
-                AssertTrue(uiRoot.StoryOverlay.activeSelf, "快速切人后应打开闻砚生故事");
+                AssertTrue(uiRoot.StoryOverlay.activeSelf, "快速切人后应打开桑听雨故事");
                 transport.EmitDisconnect();
                 AssertTrue(!uiRoot.StoryOverlay.activeSelf, "断线时应立即收起故事阅读层");
                 transport.IsReady = true;
@@ -298,7 +297,7 @@ public static class AppearanceUiVerification
                 client.RequestInfo(force: true);
                 uiRoot.ShowPanel();
                 Click("AppearanceOption_10_crimson_spear_girl");
-                AssertTrue(FindText("BiographyIdentity").text.Contains("祝停云"), "重开切回祝停云不得串成闻砚生");
+                AssertTrue(FindText("BiographyIdentity").text.Contains("祝停云"), "重开切回祝停云不得串成桑听雨");
                 summary.Add($"[{width}x{height}] Check 6 PASS: 快速切人、断线与重开零串内容");
 
                 // 验收 8：全程阅读无资产/试用/换形象请求
@@ -347,8 +346,8 @@ public static class AppearanceUiVerification
     {
         var info = new PlayerAppearanceInfo
         {
-            PermanentAppearanceId = "08_alchemy_prodigy_boy",
-            ActiveAppearanceId = string.IsNullOrEmpty(activeTrialId) ? "08_alchemy_prodigy_boy" : activeTrialId,
+            PermanentAppearanceId = "05_celestial_musician_girl",
+            ActiveAppearanceId = string.IsNullOrEmpty(activeTrialId) ? "05_celestial_musician_girl" : activeTrialId,
             TrialAppearanceId = activeTrialId ?? "",
             TrialExpiresAt = string.IsNullOrEmpty(activeTrialId) ? 0ul : 3700ul,
             ServerNow = 100ul,
@@ -359,28 +358,25 @@ public static class AppearanceUiVerification
             MallSkuId = 3402u,
             MallPriceFen = 1000ul,
         };
-        (uint id, string rawId, string name, bool trialUsed)[] roster =
+        (uint id, string rawId, string name, uint sortOrder, bool trialUsed)[] roster =
         {
-            (1, "08_alchemy_prodigy_boy", "炼丹童子", false),
-            (2, "00_reference_topright_boy", "金发带Q道童", false),
-            (3, "01_ice_sword_girl", "冰剑少女", !string.IsNullOrEmpty(activeTrialId)),
-            (4, "02_fire_talisman_boy", "火符少年", true),
-            (5, "03_lotus_healer_girl", "莲花医者", false),
-            (6, "04_mountain_guardian_boy", "山岳守卫", false),
-            (7, "05_celestial_musician_girl", "天音少女", false),
-            (8, "09_bamboo_archer_girl", "竹弓少女", false),
-            (9, "10_crimson_spear_girl", "赤枪少女", false),
-            (10, "15_water_dragon_scholar_boy", "水龙书生", false),
-            (11, "17_ghost_script_calligrapher_boy", "灵篆书生", false),
+            (2, "00_reference_topright_boy", "金发带Q道童", 1, false),
+            (3, "01_ice_sword_girl", "冰剑少女", 2, !string.IsNullOrEmpty(activeTrialId)),
+            (4, "02_fire_talisman_boy", "火符少年", 3, true),
+            (5, "03_lotus_healer_girl", "莲花医者", 4, false),
+            (7, "05_celestial_musician_girl", "天音少女", 5, false),
+            (8, "09_bamboo_archer_girl", "竹弓少女", 6, false),
+            (9, "10_crimson_spear_girl", "赤枪少女", 7, false),
+            (10, "15_water_dragon_scholar_boy", "水龙书生", 8, false),
         };
-        foreach (var (id, rawId, name, trialUsed) in roster)
+        foreach (var (id, rawId, name, sortOrder, trialUsed) in roster)
         {
             info.Appearances.Add(new CharacterAppearanceEntry
             {
                 ConfigId = id,
                 AppearanceId = rawId,
                 Name = name,
-                SortOrder = id,
+                SortOrder = sortOrder,
                 TrialUsed = trialUsed,
             });
         }

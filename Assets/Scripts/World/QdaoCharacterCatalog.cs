@@ -577,10 +577,8 @@ namespace MmorpgClient.World
             new("01_ice_sword_girl", "冰剑少女", true),
             new("02_fire_talisman_boy", "火符少年", true),
             new("03_lotus_healer_girl", "莲花医者", true),
-            new("04_mountain_guardian_boy", "山岳守卫", true),
             new("05_celestial_musician_girl", "天音少女", true),
             new("07_moon_shadow_assassin_girl", "月影少女", true),
-            new("08_alchemy_prodigy_boy", "炼丹童子", true),
             new("09_bamboo_archer_girl", "竹弓少女", true),
             new("10_crimson_spear_girl", "赤枪少女", true),
             new("11_jade_fist_flat_top_boy", "玉拳少年", true),
@@ -589,7 +587,6 @@ namespace MmorpgClient.World
             new("14_short_hair_snow_summoner_girl", "唤雪少女", true),
             new("15_water_dragon_scholar_boy", "水龙书生", true),
             new("16_golden_bell_dancer_girl", "金铃舞者", true),
-            new("17_ghost_script_calligrapher_boy", "灵篆书生", true),
             new("18_desert_sun_monk_girl", "沙海日轮少女", true),
             new("19_spirit_beast_tamer_boy", "御兽少年", true),
             new("20_star_formation_master_girl", "星阵少女", true),
@@ -606,14 +603,14 @@ namespace MmorpgClient.World
         public static bool IsRetainedOriginal(string id)
             => id == "00_reference_topright_boy" || id == "01_ice_sword_girl" ||
                id == "02_fire_talisman_boy" || id == "03_lotus_healer_girl" ||
-               id == "04_mountain_guardian_boy" || id == "05_celestial_musician_girl" ||
+               id == "05_celestial_musician_girl" ||
                id == "07_moon_shadow_assassin_girl" ||
-               id == "08_alchemy_prodigy_boy" || id == "09_bamboo_archer_girl" ||
+               id == "09_bamboo_archer_girl" ||
                id == "10_crimson_spear_girl" || id == "14_short_hair_snow_summoner_girl" ||
-               id == "15_water_dragon_scholar_boy" || id == "17_ghost_script_calligrapher_boy" ||
+               id == "15_water_dragon_scholar_boy" ||
                id == "20_star_formation_master_girl";
 
-        /// <summary>The eleven identities released for the current creation flow.</summary>
+        /// <summary>The eight identities released for the current creation flow.</summary>
         public static IReadOnlyList<Definition> CreationOriginalAll { get; } = Array.AsReadOnly(
             Array.FindAll(OriginalEntries, entry => IsCreatableAppearance(entry.Id)));
 
@@ -689,18 +686,14 @@ namespace MmorpgClient.World
             switch (id)
             {
                 case LegacyId: return "00_reference_topright_boy";
-                case "11_jade_fist_flat_top_boy": return "04_mountain_guardian_boy";
                 case "12_iron_saber_flat_top_boy": return "00_reference_topright_boy";
                 case "13_short_hair_wind_blade_girl": return "01_ice_sword_girl";
                 case "16_golden_bell_dancer_girl": return "05_celestial_musician_girl";
                 case "18_desert_sun_monk_girl": return "10_crimson_spear_girl";
-                case "21_lidazui_hair_cook_boy": return "08_alchemy_prodigy_boy";
                 case "22_lidazui_hair_waiter_saber_boy": return "00_reference_topright_boy";
                 case "23_lantern_courier": return "01_ice_sword_girl";
-                case "24_lu_dongbin": return "04_mountain_guardian_boy";
                 case "25_lion_drum_guard": return "00_reference_topright_boy";
                 case "26_osmanthus_healer": return "09_bamboo_archer_girl";
-                case "27_ink_kite_ranger": return "08_alchemy_prodigy_boy";
                 case "28_moon_rabbit_artificer": return "20_star_formation_master_girl";
                 case "29_he_xiangu": return "03_lotus_healer_girl";
                 default: return id;

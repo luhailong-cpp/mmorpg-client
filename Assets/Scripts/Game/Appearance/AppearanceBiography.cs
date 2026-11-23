@@ -76,20 +76,6 @@ namespace MmorpgClient.Game.Appearance
                     "“今天纸赢了。你讲。”"),
 
             new AppearanceBiography(
-                rawAppearanceId: "17_ghost_script_calligrapher_boy",
-                archiveName: "闻砚生",
-                nickname: "",
-                originalTitle: "灵篆书生",
-                backgroundSummary:
-                    "归元城印铺子弟，想给一本亲自核实的奇谈集署名。以前碰见怪事，总先回“不可能”。如今册里夹了张窄纸，专记暂未查明的事。",
-                storyTitle: "借还栏",
-                storyBody:
-                    "他曾把“纸人半夜搬书”改印成“鼠患”。\n\n" +
-                    "老人领他去看书架底层：一个纸人正踮脚，把书塞回原处。\n\n" +
-                    "老人说：“我们这儿管这个叫借。”\n\n" +
-                    "砚生取出夹页，写上“借”和“还”，空出一行：“名字，你来写？”"),
-
-            new AppearanceBiography(
                 rawAppearanceId: "09_bamboo_archer_girl",
                 archiveName: "桑听雨",
                 nickname: "",
@@ -135,6 +121,8 @@ namespace MmorpgClient.Game.Appearance
         SwitchConfirm = 1,
         NoCardGuide = 2,
         StoryReader = 3,
+        Biography = 4,
+        PortraitPreview = 5,
     }
 
     public enum AppearanceSwitchIntentOutcome
@@ -164,6 +152,9 @@ namespace MmorpgClient.Game.Appearance
         public string ReadingAppearanceId { get; private set; } = "";
         public float SavedListScrollNormalized { get; private set; } = 1f;
         public int StoryOpenCount { get; private set; }
+        public float SavedStoryScrollNormalized { get; private set; } = 1f;
+        private bool _storyReturnsToBiography;
+        private AppearanceOverlayKind _previewReturnOverlay;
 
         // 保留显式武装态字段，确保任何历史或外部调用点在进入阅读层后都能彻底清零。
         public string ArmedSwitchAppearanceId { get; private set; } = "";
@@ -173,6 +164,9 @@ namespace MmorpgClient.Game.Appearance
         public bool IsStoryOpen => ActiveOverlay == AppearanceOverlayKind.StoryReader;
         public bool IsSwitchConfirmOpen => ActiveOverlay == AppearanceOverlayKind.SwitchConfirm;
         public bool IsNoCardGuideOpen => ActiveOverlay == AppearanceOverlayKind.NoCardGuide;
+        public bool IsBiographyOpen => ActiveOverlay == AppearanceOverlayKind.Biography;
+        public bool IsPortraitPreviewOpen => ActiveOverlay == AppearanceOverlayKind.PortraitPreview;
+        public bool IsReadOnlyOverlay => IsStoryOpen || IsBiographyOpen || IsPortraitPreviewOpen;
         public bool HasPendingSwitchConfirmation =>
             ActiveOverlay == AppearanceOverlayKind.SwitchConfirm || !string.IsNullOrEmpty(ArmedSwitchAppearanceId);
 
@@ -205,11 +199,12 @@ namespace MmorpgClient.Game.Appearance
                     ? fallbackActiveId
                     : validAppearanceIds[0];
                 ClearPendingSwitchConfirmation();
+                SavedStoryScrollNormalized = 1f;
             }
 
             // 若正在阅读的原始条目失效（被移除或无档案），立刻收起阅读层，不残留旧正文。
-            if (IsStoryOpen && (!ContainsId(validAppearanceIds, ReadingAppearanceId) ||
-                !AppearanceBiographyCatalog.TryGetByRawAppearanceId(ReadingAppearanceId, out _)))
+            if (IsReadOnlyOverlay && (!ContainsId(validAppearanceIds, ReadingAppearanceId) ||
+                (!IsPortraitPreviewOpen && !AppearanceBiographyCatalog.TryGetByRawAppearanceId(ReadingAppearanceId, out _))))
             {
                 ReadingAppearanceId = "";
                 ActiveOverlay = AppearanceOverlayKind.None;
@@ -230,10 +225,13 @@ namespace MmorpgClient.Game.Appearance
             bool changed = !string.Equals(SelectedAppearanceId, rawAppearanceId, StringComparison.Ordinal);
             SelectedAppearanceId = rawAppearanceId;
             ClearPendingSwitchConfirmation();
-            if (changed && IsStoryOpen)
+            if (changed)
             {
+                SavedStoryScrollNormalized = 1f;
+                _storyReturnsToBiography = false;
+                _previewReturnOverlay = AppearanceOverlayKind.None;
                 ReadingAppearanceId = "";
-                ActiveOverlay = AppearanceOverlayKind.None;
+                if (IsReadOnlyOverlay) ActiveOverlay = AppearanceOverlayKind.None;
             }
         }
 
@@ -250,7 +248,7 @@ namespace MmorpgClient.Game.Appearance
             ulong ownedCardCount,
             uint requiredCardCount)
         {
-            if (IsStoryOpen) return AppearanceSwitchIntentOutcome.Ignored;
+            if (IsReadOnlyOverlay) return AppearanceSwitchIntentOutcome.Ignored;
             if (string.IsNullOrEmpty(targetAppearanceId) ||
                 string.Equals(targetAppearanceId, permanentAppearanceId, StringComparison.Ordinal))
             {
@@ -289,6 +287,7 @@ namespace MmorpgClient.Game.Appearance
 
         public bool OpenStory(float currentListScrollNormalized)
         {
+            bool fromBiography = IsBiographyOpen;
             // 进入阅读层时，无论是否成功打开，一律清除尚未提交的旧扣卡确认。
             ClearPendingSwitchConfirmation();
             if (!AppearanceBiographyCatalog.TryGetByRawAppearanceId(SelectedAppearanceId, out _))
@@ -297,15 +296,18 @@ namespace MmorpgClient.Game.Appearance
             SavedListScrollNormalized = Clamp01(currentListScrollNormalized);
             ReadingAppearanceId = SelectedAppearanceId;
             ActiveOverlay = AppearanceOverlayKind.StoryReader;
+            _storyReturnsToBiography = fromBiography;
             StoryOpenCount++;
             return true;
         }
 
-        public bool CloseStory(AppearanceStoryCloseReason _)
+        public bool CloseStory(AppearanceStoryCloseReason reason)
         {
             if (!IsStoryOpen) return false;
-            ReadingAppearanceId = "";
-            ActiveOverlay = AppearanceOverlayKind.None;
+            bool returnToBiography = _storyReturnsToBiography &&
+                (reason == AppearanceStoryCloseReason.Back || reason == AppearanceStoryCloseReason.Escape);
+            ReadingAppearanceId = returnToBiography ? SelectedAppearanceId : "";
+            ActiveOverlay = returnToBiography ? AppearanceOverlayKind.Biography : AppearanceOverlayKind.None;
             // 返回后清空所有旧确认态，保证首次点击“切换”必须重新进入确认。
             ClearPendingSwitchConfirmation();
             return true;
@@ -313,6 +315,8 @@ namespace MmorpgClient.Game.Appearance
 
         public bool DismissActiveOverlay()
         {
+            if (IsPortraitPreviewOpen) return ClosePortraitPreview();
+            if (IsBiographyOpen) return CloseBiography();
             if (IsStoryOpen) return CloseStory(AppearanceStoryCloseReason.Escape);
             if (IsSwitchConfirmOpen || IsNoCardGuideOpen)
             {
@@ -337,7 +341,60 @@ namespace MmorpgClient.Game.Appearance
         public void ResetForCloseOrDisconnect()
         {
             CloseAllOverlaysAndClearSwitchConfirmation();
+            SavedStoryScrollNormalized = 1f;
         }
+
+        public void ResetForRoleChange()
+        {
+            ResetForCloseOrDisconnect();
+            SelectedAppearanceId = "";
+            SavedListScrollNormalized = 1f;
+        }
+
+        public bool OpenBiography(float currentListScrollNormalized)
+        {
+            ClearPendingSwitchConfirmation();
+            if (!TryGetSelectedBiography(out _)) return false;
+            SavedListScrollNormalized = Clamp01(currentListScrollNormalized);
+            ReadingAppearanceId = SelectedAppearanceId;
+            ActiveOverlay = AppearanceOverlayKind.Biography;
+            return true;
+        }
+
+        public bool CloseBiography()
+        {
+            if (!IsBiographyOpen) return false;
+            ReadingAppearanceId = "";
+            ActiveOverlay = AppearanceOverlayKind.None;
+            ClearPendingSwitchConfirmation();
+            return true;
+        }
+
+        public bool OpenPortraitPreview(float currentListScrollNormalized)
+        {
+            var returnOverlay = IsReadOnlyOverlay ? ActiveOverlay : AppearanceOverlayKind.None;
+            ClearPendingSwitchConfirmation();
+            if (string.IsNullOrEmpty(SelectedAppearanceId)) return false;
+            if (IsPortraitPreviewOpen) return true;
+            SavedListScrollNormalized = Clamp01(currentListScrollNormalized);
+            _previewReturnOverlay = returnOverlay;
+            ReadingAppearanceId = SelectedAppearanceId;
+            ActiveOverlay = AppearanceOverlayKind.PortraitPreview;
+            return true;
+        }
+
+        public bool ClosePortraitPreview()
+        {
+            if (!IsPortraitPreviewOpen) return false;
+            ActiveOverlay = _previewReturnOverlay;
+            if (ActiveOverlay == AppearanceOverlayKind.None) ReadingAppearanceId = "";
+            _previewReturnOverlay = AppearanceOverlayKind.None;
+            ClearPendingSwitchConfirmation();
+            return true;
+        }
+
+        public void SaveStoryPosition(float normalizedPosition)
+            => SavedStoryScrollNormalized = Clamp01(normalizedPosition);
 
         private void CloseAllOverlaysAndClearSwitchConfirmation()
         {
@@ -346,6 +403,8 @@ namespace MmorpgClient.Game.Appearance
             ArmedSwitchAppearanceId = "";
             ArmedSwitchAtSeconds = float.NegativeInfinity;
             ActiveOverlay = AppearanceOverlayKind.None;
+            _storyReturnsToBiography = false;
+            _previewReturnOverlay = AppearanceOverlayKind.None;
         }
 
         private static bool ContainsId(IReadOnlyList<string> ids, string target)

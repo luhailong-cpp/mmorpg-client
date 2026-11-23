@@ -1,0 +1,840 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "appearances": [
+    {
+      "key": "biyuan-water-palace",
+      "sceneId": 5,
+      "appearance": "spring",
+      "tiles": 20,
+      "runtimeImageBytes": 32363419,
+      "layoutBytes": 32792009,
+      "layoutSha256": "eb739b3889761c5ddffccd647418595b2d47d73b3f7b35fddc12957ca3979dbb",
+      "walkmaskPackedSha256": "3096b2878df33b19cfff1ffc0ad2c1fc323afcd1070c9c93ab2fabb57e7e5774",
+      "navigationStats": {
+        "walkableCells": 9093,
+        "totalCells": 81920,
+        "componentCount": 1,
+        "componentSizes": [
+          9093
+        ],
+        "spawnComponent": 0,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              3560,
+              3160
+            ],
+            "world": {
+              "x": 222.5,
+              "y": 0.0,
+              "z": 58.5
+            },
+            "component": 0
+          },
+          "southBridge": {
+            "pixel": [
+              3840,
+              3480
+            ],
+            "world": {
+              "x": 240.0,
+              "y": 0.0,
+              "z": 38.5
+            },
+            "component": 0
+          },
+          "bridgeJunction": {
+            "pixel": [
+              2980,
+              2220
+            ],
+            "world": {
+              "x": 186.25,
+              "y": 0.0,
+              "z": 117.25
+            },
+            "component": 0
+          },
+          "centralCourt": {
+            "pixel": [
+              2000,
+              1920
+            ],
+            "world": {
+              "x": 125.0,
+              "y": 0.0,
+              "z": 136.0
+            },
+            "component": 0
+          },
+          "mainStairsBottom": {
+            "pixel": [
+              1940,
+              1520
+            ],
+            "world": {
+              "x": 121.25,
+              "y": 0.0,
+              "z": 161.0
+            },
+            "component": 0
+          },
+          "mainHallDoor": {
+            "pixel": [
+              1860,
+              1120
+            ],
+            "world": {
+              "x": 116.25,
+              "y": 0.0,
+              "z": 186.0
+            },
+            "component": 0
+          },
+          "middleGallery": {
+            "pixel": [
+              3100,
+              1385
+            ],
+            "world": {
+              "x": 193.75,
+              "y": 0.0,
+              "z": 169.4375
+            },
+            "component": 0
+          },
+          "northGallery": {
+            "pixel": [
+              3240,
+              1025
+            ],
+            "world": {
+              "x": 202.5,
+              "y": 0.0,
+              "z": 191.9375
+            },
+            "component": 0
+          },
+          "gongStairs": {
+            "pixel": [
+              3860,
+              1340
+            ],
+            "world": {
+              "x": 241.25,
+              "y": 0.0,
+              "z": 172.25
+            },
+            "component": 0
+          },
+          "gongPavilion": {
+            "pixel": [
+              4180,
+              1130
+            ],
+            "world": {
+              "x": 261.25,
+              "y": 0.0,
+              "z": 185.375
+            },
+            "component": 0
+          },
+          "eastArchBridge": {
+            "pixel": [
+              3520,
+              2110
+            ],
+            "world": {
+              "x": 220.0,
+              "y": 0.0,
+              "z": 124.125
+            },
+            "component": 0
+          },
+          "eastGallery": {
+            "pixel": [
+              4085,
+              1780
+            ],
+            "world": {
+              "x": 255.3125,
+              "y": 0.0,
+              "z": 144.75
+            },
+            "component": 0
+          },
+          "seLookout": {
+            "pixel": [
+              4440,
+              2760
+            ],
+            "world": {
+              "x": 277.5,
+              "y": 0.0,
+              "z": 83.5
+            },
+            "component": 0
+          },
+          "westGallery": {
+            "pixel": [
+              1440,
+              2580
+            ],
+            "world": {
+              "x": 90.0,
+              "y": 0.0,
+              "z": 94.75
+            },
+            "component": 0
+          },
+          "southMiddleGallery": {
+            "pixel": [
+              1900,
+              2415
+            ],
+            "world": {
+              "x": 118.75,
+              "y": 0.0,
+              "z": 105.0625
+            },
+            "component": 0
+          },
+          "teaPavilion": {
+            "pixel": [
+              1280,
+              3240
+            ],
+            "world": {
+              "x": 80.0,
+              "y": 0.0,
+              "z": 53.5
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "topPadding",
+          "bottomPadding",
+          "northLotusPond",
+          "southLotusPond",
+          "outerLakeWest",
+          "outerLakeEast",
+          "mainHallRoof",
+          "gongRoof",
+          "westPillar",
+          "eastPillar",
+          "westLanternPillar",
+          "eastLanternPillar",
+          "eastLanternPondCorner",
+          "southPondParapet",
+          "teaPavilionRoof",
+          "springFirecrackers",
+          "midAutumnBush",
+          "springAbacus",
+          "gongDrumWest",
+          "southBridgeDivergentWest",
+          "eastPondEdgeNearGallery",
+          "teaPavilionEastEaves"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "southBridge"
+          ],
+          [
+            "spawn",
+            "bridgeJunction"
+          ],
+          [
+            "bridgeJunction",
+            "centralCourt"
+          ],
+          [
+            "centralCourt",
+            "mainStairsBottom"
+          ],
+          [
+            "mainStairsBottom",
+            "mainHallDoor"
+          ],
+          [
+            "centralCourt",
+            "middleGallery"
+          ],
+          [
+            "middleGallery",
+            "gongStairs"
+          ],
+          [
+            "gongStairs",
+            "gongPavilion"
+          ],
+          [
+            "mainHallDoor",
+            "northGallery"
+          ],
+          [
+            "northGallery",
+            "gongPavilion"
+          ],
+          [
+            "bridgeJunction",
+            "eastArchBridge"
+          ],
+          [
+            "eastArchBridge",
+            "eastGallery"
+          ],
+          [
+            "eastGallery",
+            "gongStairs"
+          ],
+          [
+            "eastArchBridge",
+            "seLookout"
+          ],
+          [
+            "centralCourt",
+            "westGallery"
+          ],
+          [
+            "westGallery",
+            "southMiddleGallery"
+          ],
+          [
+            "westGallery",
+            "teaPavilion"
+          ],
+          [
+            "southBridge",
+            "teaPavilion"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "southBridge",
+            "gridDistanceWorldUnits": 27.45584412271572
+          },
+          {
+            "from": "spawn",
+            "to": "bridgeJunction",
+            "gridDistanceWorldUnits": 73.91168824543136
+          },
+          {
+            "from": "bridgeJunction",
+            "to": "centralCourt",
+            "gridDistanceWorldUnits": 68.87005768508875
+          },
+          {
+            "from": "centralCourt",
+            "to": "mainStairsBottom",
+            "gridDistanceWorldUnits": 26.65685424949238
+          },
+          {
+            "from": "mainStairsBottom",
+            "to": "mainHallDoor",
+            "gridDistanceWorldUnits": 27.071067811865476
+          },
+          {
+            "from": "centralCourt",
+            "to": "middleGallery",
+            "gridDistanceWorldUnits": 82.84062043356589
+          },
+          {
+            "from": "middleGallery",
+            "to": "gongStairs",
+            "gridDistanceWorldUnits": 50.89949493661165
+          },
+          {
+            "from": "gongStairs",
+            "to": "gongPavilion",
+            "gridDistanceWorldUnits": 27.142135623730955
+          },
+          {
+            "from": "mainHallDoor",
+            "to": "northGallery",
+            "gridDistanceWorldUnits": 209.36753236814712
+          },
+          {
+            "from": "northGallery",
+            "to": "gongPavilion",
+            "gridDistanceWorldUnits": 62.31370849898476
+          },
+          {
+            "from": "bridgeJunction",
+            "to": "eastArchBridge",
+            "gridDistanceWorldUnits": 36.89949493661166
+          },
+          {
+            "from": "eastArchBridge",
+            "to": "eastGallery",
+            "gridDistanceWorldUnits": 55.72792206135783
+          },
+          {
+            "from": "eastGallery",
+            "to": "gongStairs",
+            "gridDistanceWorldUnits": 33.798989873223334
+          },
+          {
+            "from": "eastArchBridge",
+            "to": "seLookout",
+            "gridDistanceWorldUnits": 76.91168824543134
+          },
+          {
+            "from": "centralCourt",
+            "to": "westGallery",
+            "gridDistanceWorldUnits": 118.35533905932736
+          },
+          {
+            "from": "westGallery",
+            "to": "southMiddleGallery",
+            "gridDistanceWorldUnits": 36.656854249492376
+          },
+          {
+            "from": "westGallery",
+            "to": "teaPavilion",
+            "gridDistanceWorldUnits": 45.14213562373092
+          },
+          {
+            "from": "southBridge",
+            "to": "teaPavilion",
+            "gridDistanceWorldUnits": 252.0365799264593
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 14.002032218136627,
+        "separatedRoutes": [],
+        "maskSha256": "3096b2878df33b19cfff1ffc0ad2c1fc323afcd1070c9c93ab2fabb57e7e5774",
+        "maskBytes": 10240,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "clientOnly": false
+    },
+    {
+      "key": "biyuan-water-palace",
+      "sceneId": 5,
+      "appearance": "mid-autumn",
+      "tiles": 20,
+      "runtimeImageBytes": 38086545,
+      "layoutBytes": 38692971,
+      "layoutSha256": "2a582105780545811bf5a7e24539f492255402b42fccf6ff008eeb061463b910",
+      "walkmaskPackedSha256": "3096b2878df33b19cfff1ffc0ad2c1fc323afcd1070c9c93ab2fabb57e7e5774",
+      "navigationStats": {
+        "walkableCells": 9093,
+        "totalCells": 81920,
+        "componentCount": 1,
+        "componentSizes": [
+          9093
+        ],
+        "spawnComponent": 0,
+        "landmarks": {
+          "spawn": {
+            "pixel": [
+              3560,
+              3160
+            ],
+            "world": {
+              "x": 222.5,
+              "y": 0.0,
+              "z": 58.5
+            },
+            "component": 0
+          },
+          "southBridge": {
+            "pixel": [
+              3840,
+              3480
+            ],
+            "world": {
+              "x": 240.0,
+              "y": 0.0,
+              "z": 38.5
+            },
+            "component": 0
+          },
+          "bridgeJunction": {
+            "pixel": [
+              2980,
+              2220
+            ],
+            "world": {
+              "x": 186.25,
+              "y": 0.0,
+              "z": 117.25
+            },
+            "component": 0
+          },
+          "centralCourt": {
+            "pixel": [
+              2000,
+              1920
+            ],
+            "world": {
+              "x": 125.0,
+              "y": 0.0,
+              "z": 136.0
+            },
+            "component": 0
+          },
+          "mainStairsBottom": {
+            "pixel": [
+              1940,
+              1520
+            ],
+            "world": {
+              "x": 121.25,
+              "y": 0.0,
+              "z": 161.0
+            },
+            "component": 0
+          },
+          "mainHallDoor": {
+            "pixel": [
+              1860,
+              1120
+            ],
+            "world": {
+              "x": 116.25,
+              "y": 0.0,
+              "z": 186.0
+            },
+            "component": 0
+          },
+          "middleGallery": {
+            "pixel": [
+              3100,
+              1385
+            ],
+            "world": {
+              "x": 193.75,
+              "y": 0.0,
+              "z": 169.4375
+            },
+            "component": 0
+          },
+          "northGallery": {
+            "pixel": [
+              3240,
+              1025
+            ],
+            "world": {
+              "x": 202.5,
+              "y": 0.0,
+              "z": 191.9375
+            },
+            "component": 0
+          },
+          "gongStairs": {
+            "pixel": [
+              3860,
+              1340
+            ],
+            "world": {
+              "x": 241.25,
+              "y": 0.0,
+              "z": 172.25
+            },
+            "component": 0
+          },
+          "gongPavilion": {
+            "pixel": [
+              4180,
+              1130
+            ],
+            "world": {
+              "x": 261.25,
+              "y": 0.0,
+              "z": 185.375
+            },
+            "component": 0
+          },
+          "eastArchBridge": {
+            "pixel": [
+              3520,
+              2110
+            ],
+            "world": {
+              "x": 220.0,
+              "y": 0.0,
+              "z": 124.125
+            },
+            "component": 0
+          },
+          "eastGallery": {
+            "pixel": [
+              4085,
+              1780
+            ],
+            "world": {
+              "x": 255.3125,
+              "y": 0.0,
+              "z": 144.75
+            },
+            "component": 0
+          },
+          "seLookout": {
+            "pixel": [
+              4440,
+              2760
+            ],
+            "world": {
+              "x": 277.5,
+              "y": 0.0,
+              "z": 83.5
+            },
+            "component": 0
+          },
+          "westGallery": {
+            "pixel": [
+              1440,
+              2580
+            ],
+            "world": {
+              "x": 90.0,
+              "y": 0.0,
+              "z": 94.75
+            },
+            "component": 0
+          },
+          "southMiddleGallery": {
+            "pixel": [
+              1900,
+              2415
+            ],
+            "world": {
+              "x": 118.75,
+              "y": 0.0,
+              "z": 105.0625
+            },
+            "component": 0
+          },
+          "teaPavilion": {
+            "pixel": [
+              1280,
+              3240
+            ],
+            "world": {
+              "x": 80.0,
+              "y": 0.0,
+              "z": 53.5
+            },
+            "component": 0
+          }
+        },
+        "blockedLandmarks": [
+          "topPadding",
+          "bottomPadding",
+          "northLotusPond",
+          "southLotusPond",
+          "outerLakeWest",
+          "outerLakeEast",
+          "mainHallRoof",
+          "gongRoof",
+          "westPillar",
+          "eastPillar",
+          "westLanternPillar",
+          "eastLanternPillar",
+          "eastLanternPondCorner",
+          "southPondParapet",
+          "teaPavilionRoof",
+          "springFirecrackers",
+          "midAutumnBush",
+          "springAbacus",
+          "gongDrumWest",
+          "southBridgeDivergentWest",
+          "eastPondEdgeNearGallery",
+          "teaPavilionEastEaves"
+        ],
+        "connectedRoutes": [
+          [
+            "spawn",
+            "southBridge"
+          ],
+          [
+            "spawn",
+            "bridgeJunction"
+          ],
+          [
+            "bridgeJunction",
+            "centralCourt"
+          ],
+          [
+            "centralCourt",
+            "mainStairsBottom"
+          ],
+          [
+            "mainStairsBottom",
+            "mainHallDoor"
+          ],
+          [
+            "centralCourt",
+            "middleGallery"
+          ],
+          [
+            "middleGallery",
+            "gongStairs"
+          ],
+          [
+            "gongStairs",
+            "gongPavilion"
+          ],
+          [
+            "mainHallDoor",
+            "northGallery"
+          ],
+          [
+            "northGallery",
+            "gongPavilion"
+          ],
+          [
+            "bridgeJunction",
+            "eastArchBridge"
+          ],
+          [
+            "eastArchBridge",
+            "eastGallery"
+          ],
+          [
+            "eastGallery",
+            "gongStairs"
+          ],
+          [
+            "eastArchBridge",
+            "seLookout"
+          ],
+          [
+            "centralCourt",
+            "westGallery"
+          ],
+          [
+            "westGallery",
+            "southMiddleGallery"
+          ],
+          [
+            "westGallery",
+            "teaPavilion"
+          ],
+          [
+            "southBridge",
+            "teaPavilion"
+          ]
+        ],
+        "routeMeasurements": [
+          {
+            "from": "spawn",
+            "to": "southBridge",
+            "gridDistanceWorldUnits": 27.45584412271572
+          },
+          {
+            "from": "spawn",
+            "to": "bridgeJunction",
+            "gridDistanceWorldUnits": 73.91168824543136
+          },
+          {
+            "from": "bridgeJunction",
+            "to": "centralCourt",
+            "gridDistanceWorldUnits": 68.87005768508875
+          },
+          {
+            "from": "centralCourt",
+            "to": "mainStairsBottom",
+            "gridDistanceWorldUnits": 26.65685424949238
+          },
+          {
+            "from": "mainStairsBottom",
+            "to": "mainHallDoor",
+            "gridDistanceWorldUnits": 27.071067811865476
+          },
+          {
+            "from": "centralCourt",
+            "to": "middleGallery",
+            "gridDistanceWorldUnits": 82.84062043356589
+          },
+          {
+            "from": "middleGallery",
+            "to": "gongStairs",
+            "gridDistanceWorldUnits": 50.89949493661165
+          },
+          {
+            "from": "gongStairs",
+            "to": "gongPavilion",
+            "gridDistanceWorldUnits": 27.142135623730955
+          },
+          {
+            "from": "mainHallDoor",
+            "to": "northGallery",
+            "gridDistanceWorldUnits": 209.36753236814712
+          },
+          {
+            "from": "northGallery",
+            "to": "gongPavilion",
+            "gridDistanceWorldUnits": 62.31370849898476
+          },
+          {
+            "from": "bridgeJunction",
+            "to": "eastArchBridge",
+            "gridDistanceWorldUnits": 36.89949493661166
+          },
+          {
+            "from": "eastArchBridge",
+            "to": "eastGallery",
+            "gridDistanceWorldUnits": 55.72792206135783
+          },
+          {
+            "from": "eastGallery",
+            "to": "gongStairs",
+            "gridDistanceWorldUnits": 33.798989873223334
+          },
+          {
+            "from": "eastArchBridge",
+            "to": "seLookout",
+            "gridDistanceWorldUnits": 76.91168824543134
+          },
+          {
+            "from": "centralCourt",
+            "to": "westGallery",
+            "gridDistanceWorldUnits": 118.35533905932736
+          },
+          {
+            "from": "westGallery",
+            "to": "southMiddleGallery",
+            "gridDistanceWorldUnits": 36.656854249492376
+          },
+          {
+            "from": "westGallery",
+            "to": "teaPavilion",
+            "gridDistanceWorldUnits": 45.14213562373092
+          },
+          {
+            "from": "southBridge",
+            "to": "teaPavilion",
+            "gridDistanceWorldUnits": 252.0365799264593
+          }
+        ],
+        "maximumListedRouteSecondsAt18": 14.002032218136627,
+        "separatedRoutes": [],
+        "maskSha256": "3096b2878df33b19cfff1ffc0ad2c1fc323afcd1070c9c93ab2fabb57e7e5774",
+        "maskBytes": 10240,
+        "engineAccepted": false,
+        "serverNavigationPublished": false
+      },
+      "clientOnly": false
+    }
+  ],
+  "maps": 1,
+  "appearanceCount": 2,
+  "tileCount": 40,
+  "runtimeImageBytes": 70449964,
+  "assembledLayoutBytes": 71484980,
+  "sourceSelectionSha256": "e68d956db605553fa74b888d4ccc4c89419ab87600163c9113026e5bdce68bc0",
+  "navigationPlanSha256": "2ddd109f37c3a36fd2b1287e047bad264b8d3c3aeded411e37a6253caadccc6f",
+  "formalArtSourceBindingsVerified": true,
+  "runtimeTilesDecoded": true,
+  "layoutPixelsMatchRuntimeTiles": true,
+  "artCheckoutRequiredForVerification": false,
+  "highestNativePNGsCopied": false,
+  "authoritativeServerRegistered": true,
+  "unityRenderedAcceptance": false
+}

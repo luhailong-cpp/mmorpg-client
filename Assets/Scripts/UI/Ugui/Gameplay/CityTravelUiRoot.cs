@@ -439,6 +439,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     Description = map.SceneConfigId == 1 ? "太极广场连着长街，沿着浅灰石路游历道观与庭院。" :
                         map.SceneConfigId == 2 ? "八座仙居环绕中央庭园，沿石路探访海岛风光。" :
                         map.SceneConfigId == 3 ? "码头停舟，渔舍临海，村中广场与街巷相连。" :
+                        map.SceneConfigId == 5 ? "碧水环抱重檐水宫，石桥连廊通往太极中庭、主殿与钟鼓亭。" :
                         map.CanTravelOnline ? "选择景色，沿石路自在游历。" : "景色已收录，此地图尚未开放传送。",
                     DayResourcePath = map.ForAppearance("normal")?.TexturePath,
                     FestivalResourcePath = map.ForAppearance("spring")?.TexturePath,

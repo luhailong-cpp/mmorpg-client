@@ -282,8 +282,10 @@ class ImportRunVariantsTests(unittest.TestCase):
 
     def test_cancelled_and_unknown_characters_are_rejected(self):
         manifest, _ = self.delivery()
-        for cid in ['07_moon_shadow_assassin_girl', '14_short_hair_snow_summoner_girl',
-                    '20_star_formation_master_girl', '01_ice_sword_girl/../../other']:
+        for cid in ['04_mountain_guardian_boy', '08_alchemy_prodigy_boy',
+                    '17_ghost_script_calligrapher_boy', '07_moon_shadow_assassin_girl',
+                    '14_short_hair_snow_summoner_girl', '20_star_formation_master_girl',
+                    '01_ice_sword_girl/../../other']:
             with self.subTest(cid=cid), self.assertRaisesRegex(ValueError, 'allowlist'):
                 M.run(manifest, cid, 'current', self.client, execute=True)
 

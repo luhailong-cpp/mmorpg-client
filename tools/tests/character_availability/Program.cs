@@ -15,7 +15,7 @@ internal static class Program
 {
     private static readonly List<string> Checks = new();
     private static readonly string[] Directions = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
-    private static readonly string[] ExpectedIds = { "04", "05", "07", "08", "09", "10", "14", "15", "17", "20" };
+    private static readonly string[] ExpectedIds = { "05", "07", "09", "10", "14", "15", "20" };
     private const string Roster = "World/Characters/QdaoOriginalRosterV14";
 
     private static int Main(string[] args)
@@ -119,7 +119,7 @@ internal static class Program
         var resources = Path.Combine(project, "Assets", "Resources");
         var roster = Path.Combine(resources, Roster.Replace('/', Path.DirectorySeparatorChar));
         var indexes = Directory.GetFiles(roster, "runtime-index.asset", SearchOption.AllDirectories).OrderBy(path => path, StringComparer.Ordinal).ToArray();
-        Require(indexes.Length == ExpectedIds.Length, $"Expected 10 HD runtime indexes, found {indexes.Length}.");
+        Require(indexes.Length == ExpectedIds.Length, $"Expected {ExpectedIds.Length} HD runtime indexes, found {indexes.Length}.");
         var ids = new HashSet<string>(StringComparer.Ordinal);
         var guids = new HashSet<string>(StringComparer.Ordinal);
         var required = RequiredPaths();
@@ -165,8 +165,8 @@ internal static class Program
             Console.WriteLine($"Verified {name}: {entries.Count} source PNGs; {differingTimes} legacy timestamp differences accepted.");
         }
         Require(ids.SetEquals(ExpectedIds), "HD runtime index character roster changed unexpectedly.");
-        Require(totalEntries == 1370, "Expected 10 x 137 production PNG identities.");
-        Checks.Add("all 10 runtime indexes and 1370 real PNG identities verified with the production helper");
+        Require(totalEntries == ExpectedIds.Length * 137, $"Expected {ExpectedIds.Length} x 137 production PNG identities.");
+        Checks.Add($"all {ExpectedIds.Length} runtime indexes and {ExpectedIds.Length * 137} real PNG identities verified with the production helper");
         return new { indexCount = indexes.Length, verifiedPngCount = totalEntries, verifiedImageBytes = totalBytes, legacyTimestampDifferences = timestampDifferences, characters = results };
     }
 

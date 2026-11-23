@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "mapId": "biyuan-water-palace",
+  "appearance": "spring",
+  "tile": "r02_c02",
+  "sourceSelectionSha256": "e68d956db605553fa74b888d4ccc4c89419ab87600163c9113026e5bdce68bc0",
+  "native": {
+    "path": "D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/formal/spring/r02_c02/attempt-001/native.png",
+    "sha256": "158855251a65f675b407717f3c2521543dea55a77b8524fda0641db48ea5de61",
+    "bytes": 3068388,
+    "pixels": [
+      1254,
+      1254
+    ]
+  },
+  "runtime": {
+    "path": "D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r02_c02.png",
+    "sha256": "07f5d01d646b91389ceb1f73f0542808db5479073ece66d744114b3d00ce390c",
+    "bytes": 1966633,
+    "pixels": [
+      1024,
+      1024
+    ]
+  },
+  "formalArtAccepted": true,
+  "navigationAcceptanceClaimed": false,
+  "originalDocuments": [
+    {
+      "role": "runtimeGenerationRecord",
+      "originalPath": "D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r02_c02.png.generation.json",
+      "originalSha256": "3f146c9264f8bda82b820907791119457124f78837c553e0665aec2756079401",
+      "originalBytes": 3149,
+      "utf8Text": "{\n  \"schemaVersion\": 1,\n  \"file\": \"D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/runtime/spring/formal-20261114-r19/r02_c02.png\",\n  \"sha256\": \"07f5d01d646b91389ceb1f73f0542808db5479073ece66d744114b3d00ce390c\",\n  \"width\": 1024,\n  \"height\": 1024,\n  \"format\": \"PNG\",\n  \"derivedFrom\": {\n    \"file\": \"D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/formal/spring/r02_c02/attempt-001/native.png\",\n    \"sha256\": \"158855251a65f675b407717f3c2521543dea55a77b8524fda0641db48ea5de61\",\n    \"generationRecord\": \"D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/formal/spring/r02_c02/attempt-001/native.png.generation.json\",\n    \"pixels\": [\n      1254,\n      1254\n    ],\n    \"originalToolEvent\": \"exec-05f62e9c-7c9f-49b2-b78b-ad9345c46ccb\"\n  },\n  \"sourceNativeBinding\": {\n    \"path\": \"D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/formal/spring/r02_c02/attempt-001/native.png\",\n    \"sha256\": \"158855251a65f675b407717f3c2521543dea55a77b8524fda0641db48ea5de61\",\n    \"bytes\": 3068388\n  },\n  \"sourceGenerationBinding\": {\n    \"path\": \"D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/formal/spring/r02_c02/attempt-001/native.png.generation.json\",\n    \"sha256\": \"15d3a75946eb1672c977f4749e7f83dac1c2bcc51cf0c3eeac4ce03596d79f17\",\n    \"bytes\": 5677\n  },\n  \"operation\": \"downsample1254 to1024 using Lanczos; no model call\",\n  \"role\": \"RUNTIME_DERIVED_EXPORT_NOT_NEW_NATIVE\",\n  \"formalSourceReceipt\": \"D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/formal/spring/r02_c02/attempt-001/formal-pass-r19-20261114.json\",\n  \"formalSourceReceiptBinding\": {\n    \"path\": \"D:/work/image/.work/production-staging/20261103/biyuan-water-palace/designs/world-expansion-20261027/hd36-production-20261027/biyuan-water-palace/compact-world-v008/palace-courtyards-v006-4x3/formal/spring/r02_c02/attempt-001/formal-pass-r19-20261114.json\",\n    \"sha256\": \"5c00be86e32d9d66a1992a61924e343bc8c48476abf4db69d439389a02207919\",\n    \"bytes\": 19503\n  },\n  \"runtimeIntegrated\": false,\n  \"actualModelInherited\": null,\n  \"actualQualityInherited\": null,\n  \"newImageCalls\": 0,\n  \"formalIncrement\": 0,\n  \"exportRunId\": \"BIYUAN_BODY_THREE_RUNTIME_EXPORT_20261114_01a1da2b_V001\",\n  \"exportedAtUtc\": \"2026-11-14T14:46:21.024327+00:00\",\n  \"implementation\": {\n    \"Pillow\": \"13.0.0\",\n    \"resampling\": \"LANCZOS\",\n    \"pngCompressLevel\": 6\n  }\n}\n"
+    }
+  ],
+  "sourceNative": true,
+  "sourceDerived": false
+}

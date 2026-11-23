@@ -141,9 +141,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void ResolveCharacterId()
         {
-            Assert.That(TeamViewMapper.ResolveCharacterId(4, 2, "24_lu_dongbin"), Is.EqualTo("04_mountain_guardian_boy"));
+            Assert.That(TeamViewMapper.ResolveCharacterId(4, 2, "23_lantern_courier"), Is.EqualTo("01_ice_sword_girl"));
             Assert.That(TeamViewMapper.ResolveCharacterId(1, 1, "QdaoHeadbandBoy"), Is.EqualTo("00_reference_topright_boy"));
-            Assert.That(TeamViewMapper.ResolveCharacterId(1, 1, "11_jade_fist_flat_top_boy"), Is.EqualTo("04_mountain_guardian_boy"));
+            Assert.That(TeamViewMapper.ResolveCharacterId(1, 1, "16_golden_bell_dancer_girl"), Is.EqualTo("05_celestial_musician_girl"));
             Assert.That(TeamViewMapper.ResolveCharacterId(4, 2, "07_moon_shadow_assassin_girl"), Is.EqualTo("07_moon_shadow_assassin_girl"));
             Assert.That(TeamViewMapper.ResolveCharacterId(1, 1, "not_a_known_id"), Is.EqualTo("not_a_known_id"));
             Assert.That(TeamViewMapper.ResolveCharacterId(0, 0, "persisted"), Is.EqualTo("persisted"));

@@ -14,9 +14,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     }
 
     /// <summary>
-    /// 易容界面美术资源与控件装配辅助。
-    /// 严格遵循 designs/appearance-ui-v1/ui/CONTROL-USAGE.md：
-    /// 立绘展示台与形象卡槽按 fixed_size_only 等比显示；6 张横条/徽章按 horizontal_only_verified 横向三段拉伸。
+    /// 易容与人物志共用的组队原稿同源皮肤。装饰 Sprite 与真实 TMP 文本分层；
+    /// 人物、立绘台与道具卡槽保持原比例，读取与资产操作不属于本类。
     /// </summary>
     public static class AppearanceUiArt
     {
@@ -25,21 +24,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const float MainBodyTopOffset = 54f;
         public const float MainBodyHeight = 940f;
 
-        public const string AppearanceRoot = "UI/Ugui/AppearanceV1/";
-        public const string CardIconPath = "UI/Icons/item_appearance_card";
-        public const string MailRoot = "UI/Ugui/MailV1/";
+        public const string StyleRoot = "UI/Ugui/AppearanceChronicleV2/";
 
-        public static readonly Color JadeInk = QdaoUguiTheme.Html("#294F41");
-        public static readonly Color DeepJade = QdaoUguiTheme.Html("#1F5946");
-        public static readonly Color MutedInk = QdaoUguiTheme.Html("#6D5E47");
-        public static readonly Color WarmCream = QdaoUguiTheme.Html("#FFF4D8");
+        public static readonly Color JadeInk = QdaoUguiTheme.Html("#304736");
+        public static readonly Color DeepJade = QdaoUguiTheme.Html("#205B46");
+        public static readonly Color MutedInk = QdaoUguiTheme.Html("#70634E");
+        public static readonly Color WarmCream = QdaoUguiTheme.Html("#FFF3D6");
         public static readonly Color CrimsonInk = QdaoUguiTheme.Html("#A13A2A");
         public static readonly Color TrialGreen = QdaoUguiTheme.Html("#2A6C4F");
         public static readonly Color ParchmentCard = QdaoUguiTheme.Html("#F7F0E1");
         public static readonly Color ParchmentBorder = QdaoUguiTheme.Html("#C9AB70");
         public static readonly Color ParchmentInner = QdaoUguiTheme.Html("#FBF6EA");
         public static readonly Color PortraitPlaceholderBg = QdaoUguiTheme.Html("#EBE1CB");
-        public static readonly Color OverlayShade = new Color(0.025f, 0.095f, 0.075f, 0.72f);
+        // Modal hit surfaces still intercept input; outside the actual window there is no painted scenery.
+        public static readonly Color OverlayShade = new Color(0.025f, 0.095f, 0.075f, 0.30f);
 
         public static Sprite LoadSprite(string resourcePath)
         {
@@ -48,20 +46,47 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return Resources.Load<Sprite>(resourcePath);
         }
 
-        public static Sprite LoadAppearance(string key) => LoadSprite(AppearanceRoot + key);
-        public static Sprite LoadMail(string key) => LoadSprite(MailRoot + key);
-        public static Sprite LoadGameplay(string key) => LoadSprite(GameplayUiArt.Root + key);
-        public static Sprite LoadCardIcon() => LoadSprite(CardIconPath) ?? LoadGameplay("icon_scroll");
+        public static Sprite LoadAppearance(string key)
+        {
+            switch (key)
+            {
+                case "appearance_preview_pedestal": return LoadTeam("portrait_pedestal");
+                case "appearance_card_slot": return LoadTeam("appearance_card_slot");
+                case "appearance_trial_banner": return LoadTeam("section_plate");
+                case "appearance_btn_mall_gold": return LoadTeam("button_secondary");
+                case "appearance_badge_current": case "appearance_badge_trialing": return LoadTeam("badge_self");
+                case "appearance_badge_trial_free": case "appearance_badge_trial_used": return LoadTeam("badge_leader");
+                default: return null;
+            }
+        }
+        public static Sprite LoadTeam(string key) => LoadSprite(StyleRoot + key);
+
+        /// <summary>Compatibility for the existing window builder; every panel key maps to this skin.</summary>
+        public static Sprite LoadGameplay(string key)
+        {
+            switch (key)
+            {
+                case "main_frame": case "title_plate": case "button_primary": case "button_secondary":
+                case "portrait_frame": case "close":
+                    return LoadTeam(key);
+                case "section_header": return LoadTeam("section_plate");
+                case "button_disabled": return LoadTeam("button_secondary");
+                case "pet_card_normal": case "pet_card_selected": return LoadTeam("member_row");
+                default: return LoadSprite(GameplayUiArt.Root + key);
+            }
+        }
+        public static Sprite LoadCardIcon() => LoadTeam("item_appearance_card");
 
         public static Image Frame(UnityEngine.Transform parent, string name, float x, float y, float w, float h,
             string gameplayKey = "main_frame", Color? fallback = null)
         {
-            var sprite = LoadGameplay(gameplayKey);
+            var sprite = LoadTeam("main_frame");
             var img = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, sprite);
             if (sprite != null)
             {
                 img.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
-                img.pixelsPerUnitMultiplier = 1f;
+                // Scale corner ornaments uniformly with the frame width; stretch only the paper/edge runs.
+                img.pixelsPerUnitMultiplier = Mathf.Max(.01f, sprite.rect.width / Mathf.Max(1f, w));
                 img.color = Color.white;
             }
             else
@@ -69,6 +94,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 img.color = fallback ?? ParchmentCard;
             }
             return img;
+        }
+
+        public static Image TitlePlate(UnityEngine.Transform parent, string name,
+            float x, float y, float w, float h)
+        {
+            // Use the whole cloud silhouette, at its actual aspect ratio. No baked title text.
+            return FixedArt(parent, name, LoadTeam("title_plate"), x, y, w, h, Color.clear, true);
+        }
+
+        public static Image SectionHeader(UnityEngine.Transform parent, string name,
+            float x, float y, float w, float h)
+        {
+            var image = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, LoadTeam("section_plate"));
+            ApplyHorizontalSlice(image, image.sprite, h, DeepJade);
+            return image;
         }
 
         public static Image FixedArt(UnityEngine.Transform parent, string name, Sprite sprite,
@@ -120,11 +160,33 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public static Image BorderedParchmentCard(UnityEngine.Transform parent, string name,
             float x, float y, float w, float h, Color? fill = null, Color? border = null)
         {
-            var outer = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, null);
-            outer.color = border ?? ParchmentBorder;
-            var inner = QdaoUguiFactory.CreateImage("InnerPaper", outer.transform, 2f, 2f, w - 4f, h - 4f, null);
-            inner.color = fill ?? ParchmentCard;
-            return outer;
+            var image = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, LoadTeam("application_card"));
+            if (image.sprite != null)
+            {
+                image.type = Image.Type.Sliced;
+                image.pixelsPerUnitMultiplier = 1f;
+                image.color = Color.white;
+            }
+            else image.color = fill ?? ParchmentCard;
+            return image;
+        }
+
+        public static void ApplyRowSelection(Image image, bool selected)
+        {
+            if (image == null) return;
+            image.sprite = LoadTeam("member_row");
+            image.type = image.sprite != null ? Image.Type.Sliced : Image.Type.Simple;
+            image.pixelsPerUnitMultiplier = 1f;
+            image.color = selected ? QdaoUguiTheme.Html("#D4E8CF") : Color.white;
+            var outline = image.GetComponent<Outline>();
+            if (outline == null && selected) outline = image.gameObject.AddComponent<Outline>();
+            if (outline != null)
+            {
+                outline.effectColor = QdaoUguiTheme.Html("#3B8266");
+                outline.effectDistance = new Vector2(2f, -2f);
+                outline.useGraphicAlpha = true;
+                outline.enabled = selected;
+            }
         }
 
         public static Button ActionButton(UnityEngine.Transform parent, string name, string label,
@@ -148,6 +210,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var text = QdaoUguiFactory.CreateText("Label", btn.transform, 16f, 0f, w - 32f, h,
                 label, fontSize, primary ? WarmCream : JadeInk, TextAlignmentOptions.Center);
             text.richText = false;
+            text.font = QdaoUguiTheme.ResolveFont();
             text.fontStyle = primary ? FontStyles.Bold : FontStyles.Normal;
             text.enableAutoSizing = true;
             text.fontSizeMin = Mathf.Max(16f, fontSize - 8f);
@@ -175,7 +238,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public static Button CloseButton(UnityEngine.Transform parent, string name, float x, float y, float size, Action onClick)
         {
-            var sprite = LoadMail("close_button") ?? LoadGameplay("close");
+            var sprite = LoadTeam("close");
             var btn = QdaoUguiFactory.CreateArtButton(name, parent, x, y, size, size, sprite, out var img);
             img.preserveAspect = true;
             if (sprite == null)
@@ -193,38 +256,36 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public static void ApplyBadge(Image bg, TMP_Text label, AppearanceBadgeKind kind, float targetHeight)
         {
             if (bg == null || label == null) return;
-            string key;
             string text;
             Color fallbackBg;
             Color ink;
             switch (kind)
             {
                 case AppearanceBadgeKind.CurrentPermanent:
-                    key = "appearance_badge_current";
-                    text = "当前形象";
+                    text = "永久形象";
                     fallbackBg = DeepJade;
                     ink = WarmCream;
                     break;
                 case AppearanceBadgeKind.Trialing:
-                    key = "appearance_badge_trialing";
                     text = "试用中";
                     fallbackBg = CrimsonInk;
                     ink = WarmCream;
                     break;
                 case AppearanceBadgeKind.TrialFree:
-                    key = "appearance_badge_trial_free";
                     text = "可试用1小时";
                     fallbackBg = QdaoUguiTheme.Html("#C8D8B9");
                     ink = JadeInk;
                     break;
                 default:
-                    key = "appearance_badge_trial_used";
                     text = "已试用";
                     fallbackBg = QdaoUguiTheme.Html("#DDD2BE");
                     ink = MutedInk;
                     break;
             }
-            ApplyHorizontalSlice(bg, LoadAppearance(key), targetHeight, fallbackBg);
+            // Team-derived jade/paper badges carry only live text; reading never changes this status.
+            var sprite = LoadTeam(kind == AppearanceBadgeKind.CurrentPermanent || kind == AppearanceBadgeKind.Trialing
+                ? "badge_self" : "badge_leader");
+            ApplyHorizontalSlice(bg, sprite, targetHeight, fallbackBg);
             label.text = text;
             label.color = ink;
         }

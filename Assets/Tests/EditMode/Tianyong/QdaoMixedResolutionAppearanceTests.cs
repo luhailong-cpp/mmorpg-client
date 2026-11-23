@@ -11,7 +11,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 {
     public sealed class QdaoMixedResolutionAppearanceTests
     {
-        private const string Id = "04_mountain_guardian_boy";
+        private const string Id = "05_celestial_musician_girl";
         private static readonly string Sha = new string('a', 64);
         private static string Hash(string value)
         {

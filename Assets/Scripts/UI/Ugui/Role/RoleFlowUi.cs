@@ -591,7 +591,6 @@ namespace MmorpgClient.UI.Ugui.Role
                 var appearance = _appearanceResolver(entry);
                 if (appearance == null) continue;
                 if (!appearance.IsHd) older.Add(entry);
-                else if (entry.Id == "08_alchemy_prodigy_boy") _appearanceChoices.Insert(0, entry);
                 else _appearanceChoices.Add(entry);
             }
             _appearanceChoices.AddRange(older);

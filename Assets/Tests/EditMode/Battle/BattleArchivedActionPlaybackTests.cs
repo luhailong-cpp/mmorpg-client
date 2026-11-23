@@ -20,10 +20,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private static readonly string[] RetainedCharacters =
         {
             "00_reference_topright_boy", "01_ice_sword_girl", "02_fire_talisman_boy",
-            "03_lotus_healer_girl", "04_mountain_guardian_boy", "05_celestial_musician_girl",
-            "07_moon_shadow_assassin_girl", "08_alchemy_prodigy_boy",
+            "03_lotus_healer_girl", "05_celestial_musician_girl",
+            "07_moon_shadow_assassin_girl",
             "09_bamboo_archer_girl", "10_crimson_spear_girl", "14_short_hair_snow_summoner_girl",
-            "15_water_dragon_scholar_boy", "17_ghost_script_calligrapher_boy", "20_star_formation_master_girl"
+            "15_water_dragon_scholar_boy", "20_star_formation_master_girl"
         };
         private static readonly MethodInfo Tick = typeof(RealtimeTween).GetMethod("UpdateAll", BindingFlags.Static | BindingFlags.NonPublic);
         private GameObject _layer;

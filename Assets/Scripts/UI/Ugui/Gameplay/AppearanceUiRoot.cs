@@ -22,7 +22,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     /// 角色形象切换（商城 10 元角色形象卡）、1 小时免费试用（bit 存储）与人物背景故事阅读窗口。
     /// 网络与资产状态唯一真相在 <see cref="AppearanceClient"/>；候选人物档案与交互状态机在 <see cref="AppearanceBiographyCatalog"/> / <see cref="AppearancePanelState"/>。
     /// </summary>
-    public sealed class AppearanceUiRoot : MonoBehaviour
+    [DefaultExecutionOrder(-1000)]
+    public sealed partial class AppearanceUiRoot : MonoBehaviour
     {
         public static AppearanceUiRoot Instance { get; private set; }
         public AppearanceClient Client => _client;
@@ -145,6 +146,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private bool _lastCountdownActive;
         private int _lastEscapeHandledFrame = -1;
         private float _lastStoryBodyFontSize;
+        private float _lastStoryViewportWidth = -1f, _lastStoryViewportHeight = -1f;
+        private string _lastStoryRecap, _lastStoryBody;
 
 #if UNITY_EDITOR
         // 供 Editor 离线可视化验收与单测直接核验真实控件树，不伪造业务状态，正式包零编译残留。
@@ -202,7 +205,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
             _hud = QdaoUguiFactory.CreateStretch("HudRoot", hudDesign, Vector4.zero);
             QdaoUguiFactory.ConfigureHudCanvas(_hud);
-            _entry = GameplayUiArt.Button(_hud, EntryText, BattleUiStyle.HudEntryX, BattleUiStyle.HudEntryY(9),
+            _entry = AppearanceUiArt.ActionButton(_hud, EntryName, EntryText, BattleUiStyle.HudEntryX, BattleUiStyle.HudEntryY(9),
                 BattleUiStyle.HudEntryWidth, BattleUiStyle.HudEntryHeight, TogglePanel, true, fontSize: 32);
             _entry.name = EntryName;
             WorldHudNavigation.Register(WorldHudEntry.Appearance, (RectTransform)_entry.transform, _entry,
@@ -249,7 +252,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             _window = QdaoUguiFactory.CreateStretch("AppearanceWindow", canvasRoot, Vector4.zero);
             var shade = _window.gameObject.AddComponent<Image>();
-            shade.color = new Color(0.025f, 0.10f, 0.08f, 0.62f);
+            shade.color = Color.clear;
             shade.raycastTarget = true;
             _window.gameObject.AddComponent<GameplayInputBlocker>();
 
@@ -262,6 +265,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             BuildConfirmOverlay(_fittedRoot);
             BuildNoCardOverlay(_fittedRoot);
             BuildStoryOverlay(_fittedRoot);
+            BuildReadingOverlays(_fittedRoot);
 
             _window.gameObject.SetActive(false);
         }
@@ -276,19 +280,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 AppearanceUiArt.FrameWidth, AppearanceUiArt.MainBodyHeight);
 
             // 顶部标题牌 + 太极徽记 + 关闭按钮 + 规则说明
-            var titlePlate = AppearanceUiArt.FixedArt(mainRoot, "AppearanceTitlePlate",
-                AppearanceUiArt.LoadGameplay("title_plate") ?? AppearanceUiArt.LoadMail("title_plate"),
-                750f, -26f, 660f, 110f, AppearanceUiArt.DeepJade, preserveAspect: false);
+            var titlePlate = AppearanceUiArt.TitlePlate(mainRoot, "AppearanceTitlePlate",
+                722f, -60f, 716f, 145f);
             var mainTitle = QdaoUguiFactory.CreateText("TitleMain", titlePlate.transform,
-                40f, 14f, 580f, 50f, "易 容", 42f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
+                68f, 26f, 580f, 50f, "易 容", 42f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             mainTitle.richText = false;
             mainTitle.fontStyle = FontStyles.Bold;
             var subTitle = QdaoUguiFactory.CreateText("TitleSub", titlePlate.transform,
-                40f, 64f, 580f, 28f, "形象切换", 20f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
+                68f, 82f, 580f, 28f, "形象与人物志", 20f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             subTitle.richText = false;
-
-            AppearanceUiArt.FixedArt(mainRoot, "TitleTaiji",
-                AppearanceUiArt.LoadMail("round_badge_taiji"), 1052f, -52f, 56f, 56f, Color.clear);
 
             var close = AppearanceUiArt.CloseButton(mainRoot, "AppearanceClose",
                 AppearanceUiArt.FrameWidth - 96f, 18f, 76f, HidePanel);
@@ -303,9 +303,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             // 左栏：可选形象滚动列表
             AppearanceUiArt.BorderedParchmentCard(mainRoot, "AppearanceListPanel", 56f, 140f, 638f, 742f,
                 AppearanceUiArt.ParchmentInner, AppearanceUiArt.ParchmentBorder);
-            var listHeader = AppearanceUiArt.FixedArt(mainRoot, "AppearanceListHeader",
-                AppearanceUiArt.LoadGameplay("section_header"), 68f, 148f, 340f, 52f,
-                AppearanceUiArt.DeepJade, preserveAspect: false);
+            var listHeader = AppearanceUiArt.SectionHeader(mainRoot, "AppearanceListHeader",
+                68f, 148f, 340f, 52f);
             _listCountLabel = QdaoUguiFactory.CreateText("AppearanceListCount", listHeader.transform,
                 20f, 0f, 300f, 52f, "可选形象", 24f, AppearanceUiArt.DeepJade, TextAlignmentOptions.Center);
             _listCountLabel.richText = false;
@@ -366,6 +365,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 1340f, 144f, 444f, 54f, "请选择角色形象", 40f, AppearanceUiArt.DeepJade, TextAlignmentOptions.MidlineLeft);
             _previewName.richText = false;
             _previewName.fontStyle = FontStyles.Bold;
+            _previewName.textWrappingMode = TextWrappingModes.Normal;
+            _previewName.enableAutoSizing = true;
+            _previewName.fontSizeMin = 22f;
+            _previewName.fontSizeMax = 40f;
 
             _previewArchiveTag = QdaoUguiFactory.CreateText("AppearanceArchiveTag", mainRoot,
                 1788f, 156f, 304f, 38f, "", 23f, AppearanceUiArt.MutedInk, TextAlignmentOptions.MidlineRight);
@@ -476,9 +479,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 20f, 16f, 380f, 50f, "确认易容", 34f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             title.richText = false;
             title.fontStyle = FontStyles.Bold;
-            AppearanceUiArt.FixedArt(box, "ConfirmTaiji",
-                AppearanceUiArt.LoadMail("round_badge_taiji"), (w - 48f) * 0.5f, -48f, 48f, 48f, Color.clear);
-
             _confirmCloseBtn = AppearanceUiArt.CloseButton(box, "AppearanceConfirmClose", w - 80f, 14f, 64f, HandleDismissOverlay);
 
             // 左右双头像对比
@@ -666,6 +666,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!_externalVerificationClient)
             {
                 Bind(AppBootstrap.Instance?.GameClient);
+                ObserveReadingSession();
                 bool battleLayer = BattleUiRoot.Instance?.IsBattleLayerVisible ?? false;
                 _available = _game != null && _game.InGame && _game.IsGateReady && !battleLayer && (_client?.IsSupported ?? false);
                 _client?.Tick();
@@ -685,15 +686,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 RefreshStoryScrollLayout();
             }
             HandleOverlayInputAndFocus();
+            ApplyReadingLayout();
+            ConfigureModalNavigation();
         }
 
         private void OnDisable()
         {
-            if (!_externalVerificationClient && _state.HasOverlay)
-            {
-                _state.ResetForCloseOrDisconnect();
-                SyncOverlayVisibility();
-            }
+            Unbind();
+            _state.ResetForRoleChange();
         }
 
         private void OnDestroy()
@@ -722,14 +722,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         public void HidePanel()
         {
+            bool wasVisible = IsPanelVisible;
+            SaveReadingPosition();
+            if (wasVisible && !_state.HasOverlay && _listScroll != null && _listScroll.gameObject.activeInHierarchy)
+                _state.SelectAppearance(_state.SelectedAppearanceId, _listScroll.verticalNormalizedPosition);
             _state.ResetForCloseOrDisconnect();
             SyncOverlayVisibility();
             if (_window != null) _window.gameObject.SetActive(false);
+            ReleaseReadingPortraits();
+            if (wasVisible) EventSystem.current?.SetSelectedGameObject(null);
         }
 
         private void HandleOpenMallClicked()
         {
-            if (_state.IsStoryOpen) return;
+            if (_state.IsReadOnlyOverlay || _client?.Info == null || !_client.Ready ||
+                _client.Info.MallSkuId == 0 || _client.Info.MallPriceFen == 0) return;
             HidePanel();
             JubaozhaiUiRoot.Instance?.OpenOfficialMall();
         }
@@ -754,6 +761,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_state.HasOverlay || _client == null || _client.Info == null) return;
             var info = _client.Info;
+            _state.SelectAppearance(_state.SelectedAppearanceId, CurrentListPosition());
             var outcome = _state.RequestSwitch(
                 _state.SelectedAppearanceId,
                 info.PermanentAppearanceId,
@@ -773,23 +781,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void HandleReadStoryClicked()
         {
-            if (_state.IsStoryOpen) return;
-            float scrollPos = _listScroll != null ? _listScroll.verticalNormalizedPosition : 1f;
-            if (!_state.OpenStory(scrollPos)) return;
+            if (_state.IsBiographyOpen) return;
+            SaveReadingPosition();
+            float scrollPos = _state.HasOverlay ? _state.SavedListScrollNormalized : CurrentListPosition();
+            bool opened = _state.OpenBiography(scrollPos);
             Render();
-            if (_storyScroll != null)
-            {
-                _storyScroll.velocity = Vector2.zero;
-                _storyScroll.verticalNormalizedPosition = 1f;
-            }
+            if (!opened) return;
             FocusFirstControlOfActiveOverlay();
         }
 
         private void HandleCloseStory(AppearanceStoryCloseReason reason)
         {
+            SaveReadingPosition();
             if (!_state.CloseStory(reason)) return;
             Render();
             RestoreListScrollPosition();
+            if (_state.HasOverlay) { FocusFirstControlOfActiveOverlay(); return; }
             if (_readStoryBtn != null && _readStoryBtn.gameObject.activeInHierarchy && _readStoryBtn.interactable &&
                 EventSystem.current != null)
             {
@@ -804,8 +811,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void HandleDismissOverlay()
         {
             bool wasStory = _state.IsStoryOpen;
+            SaveReadingPosition();
             if (!_state.DismissActiveOverlay()) return;
             Render();
+            if (_state.IsStoryOpen && _storyScroll != null)
+                _storyScroll.verticalNormalizedPosition = _state.SavedStoryScrollNormalized;
+            if (_state.HasOverlay) { FocusFirstControlOfActiveOverlay(); return; }
             if (wasStory) RestoreListScrollPosition();
             if (EventSystem.current != null)
             {
@@ -836,6 +847,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 _lastEscapeHandledFrame = Time.frameCount;
                 if (_state.HasOverlay) HandleDismissOverlay();
+                else if (_compactLayout && _compactDetail)
+                {
+                    _compactDetail = false;
+                    ApplyReadingLayout();
+                    Canvas.ForceUpdateCanvases();
+                    RestoreListScrollPosition();
+                }
                 else HidePanel();
                 return;
             }
@@ -873,6 +891,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             AppearanceOverlayKind.StoryReader => _storyControls,
             AppearanceOverlayKind.SwitchConfirm => _confirmControls,
             AppearanceOverlayKind.NoCardGuide => _noCardControls,
+            AppearanceOverlayKind.Biography => _biographyControls,
+            AppearanceOverlayKind.PortraitPreview => _portraitControls,
             _ => null,
         };
 
@@ -893,7 +913,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void Render()
         {
-            if (_window == null) return;
+            if (_window == null || !IsPanelVisible) return;
             var info = _client?.Info;
 
             _validIdsBuffer.Clear();
@@ -909,7 +929,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (info == null)
             {
                 _listCountLabel.text = "可选形象";
-                _previewName.text = _client?.InfoPending == true ? "正在加载形象清单…" : "暂未获取形象信息";
+                _previewName.text = _client?.InfoPending == true ? "正在读取形象" : "读取形象失败";
                 _previewArchiveTag.text = "";
                 _previewDesc.text = "";
                 _previewStatus.text = "";
@@ -921,17 +941,25 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _cardInfoLine2.text = "每次永久切换消耗 1 张（覆盖原形象）";
                 _trialBtn.interactable = false;
                 _switchBtn.interactable = false;
+                _buyMallBtn.interactable = false;
+                _previewButton.interactable = false;
+                _readOnlyRetryButton.gameObject.SetActive(_client?.InfoPending != true);
+                _readOnlyRetryButton.interactable = _client?.Ready == true;
                 UpdateStatusText();
                 SyncOverlayVisibility();
                 return;
             }
 
             _listCountLabel.text = $"可选形象 {info.Appearances.Count} 种";
+            _readOnlyRetryButton.gameObject.SetActive(info.Appearances.Count == 0);
+            _readOnlyRetryButton.interactable = _client.Ready && !_client.InfoPending;
             CharacterAppearanceEntry selected = FindEntry(info, _state.SelectedAppearanceId);
+            _previewButton.interactable = selected != null;
 
             if (selected != null)
             {
-                _previewName.text = selected.Name;
+                _previewName.text = AppearanceBiographyCatalog.TryGetByRawAppearanceId(selected.AppearanceId, out var archive)
+                    ? archive.DisplayArchiveName : selected.Name;
                 string tableDesc = LookupTableDescription(selected.ConfigId);
                 _previewDesc.text = tableDesc;
                 UpdatePreviewPortrait(selected.AppearanceId);
@@ -963,7 +991,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 // 按原始稳定 appearance_id 精确匹配人物背景（绝不借用视觉替代 ID）
                 if (_state.TryGetSelectedBiography(out var bio))
                 {
-                    _previewArchiveTag.text = $"档案 · {bio.DisplayArchiveName}";
+                    _previewArchiveTag.text = selected.Name;
                     _biographyIdentity.text = $"{bio.DisplayArchiveName} · {bio.OriginalTitle}";
                     _biographyBody.text = bio.BackgroundSummary;
                     _biographySection.SetActive(true);
@@ -972,11 +1000,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 else
                 {
                     HideBiographySection();
+                    _previewArchiveTag.text = "暂无人物志";
                 }
             }
             else
             {
-                _previewName.text = "暂无可选形象";
+                _previewName.text = "暂无可展示形象";
                 _previewDesc.text = "";
                 _previewStatus.text = "";
                 ClearPreviewPortrait();
@@ -985,10 +1014,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
 
             uint requiredCards = info.CardItemCount > 0 ? info.CardItemCount : 1u;
-            string priceText = AppearanceModels.FormatPriceYuan(info.MallPriceFen > 0 ? info.MallPriceFen : 1000ul);
+            string priceText = info.MallPriceFen > 0 ? AppearanceModels.FormatPriceYuan(info.MallPriceFen) : "价格待同步";
             _cardInfoLine1.text = $"角色形象卡  背包持有：{info.OwnedCardCount} 张";
             _cardInfoLine2.text = $"每次永久切换消耗 {requiredCards} 张（覆盖原形象）";
-            _buyMallLabel.text = $"商城购买 ¥{(info.MallPriceFen > 0 ? info.MallPriceFen / 100 : 10ul)}";
+            _buyMallLabel.text = $"商城购买 {priceText}";
+            _buyMallBtn.interactable = _client.Ready && !_client.RequiresReconnect &&
+                info.MallSkuId != 0 && info.MallPriceFen > 0;
 
             _cancelTrialBtn.interactable = _client.Ready && !_client.ActionPending && !_state.HasOverlay;
             _lastCountdownSeconds = ulong.MaxValue;
@@ -1046,6 +1077,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 _noCardPriceBadgeLabel.text = $"官方商城 · {priceText} / 张";
                 _noCardOwnedLabel.text = $"背包当前持有：{info.OwnedCardCount} 张";
+                _noCardMallBtn.interactable = _client.Ready && !_client.RequiresReconnect &&
+                    info.MallSkuId != 0 && info.MallPriceFen > 0;
             }
 
             if (_state.TryGetReadingBiography(out var bio))
@@ -1068,9 +1101,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void RefreshStoryScrollLayout()
         {
             if (_storyContent == null || _storyRecapLabel == null || _storyBodyText == null) return;
+            float viewportWidth = _storyScroll != null ? _storyScroll.viewport.rect.width : StoryViewportWidth;
+            float viewportHeight = _storyScroll != null ? _storyScroll.viewport.rect.height : StoryViewportHeight;
+            if (Mathf.Approximately(viewportWidth, _lastStoryViewportWidth) &&
+                Mathf.Approximately(viewportHeight, _lastStoryViewportHeight) &&
+                Mathf.Approximately(_storyBodyText.fontSize, _lastStoryBodyFontSize) &&
+                _lastStoryRecap == _storyRecapLabel.text && _lastStoryBody == _storyBodyText.text) return;
+            _lastStoryViewportWidth = viewportWidth; _lastStoryViewportHeight = viewportHeight;
             _lastStoryBodyFontSize = _storyBodyText.fontSize;
-
-            float textWidth = StoryViewportWidth - 72f;
+            _lastStoryRecap = _storyRecapLabel.text; _lastStoryBody = _storyBodyText.text;
+            float textWidth = viewportWidth - 72f;
             _storyRecapLabel.ForceMeshUpdate(true, true);
             float recapH = Mathf.Ceil(_storyRecapLabel.GetPreferredValues(_storyRecapLabel.text, textWidth, 0f).y);
             recapH = Mathf.Max(40f, recapH);
@@ -1086,8 +1126,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             PlaceTopLeft(_storyBodyText.rectTransform, 36f, bodyY, textWidth, bodyH);
 
             // 即使短文一屏放得下，也保留可滚动余量与末行底部留白，支持字体放大后继续滚动。
-            float contentHeight = Mathf.Max(StoryViewportHeight + 24f, bodyY + bodyH + 76f);
-            _storyContent.sizeDelta = new Vector2(StoryViewportWidth, contentHeight);
+            float contentHeight = Mathf.Max(viewportHeight + 24f, bodyY + bodyH + 76f);
+            _storyContent.sizeDelta = new Vector2(viewportWidth, contentHeight);
         }
 
         private void SyncOverlayVisibility()
@@ -1095,12 +1135,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_confirmOverlay != null) _confirmOverlay.SetActive(_state.IsSwitchConfirmOpen);
             if (_noCardOverlay != null) _noCardOverlay.SetActive(_state.IsNoCardGuideOpen);
             if (_storyOverlay != null) _storyOverlay.SetActive(_state.IsStoryOpen);
+            RenderReadingOverlays();
             if (_mainPanelGroup != null)
             {
                 bool blocked = _state.HasOverlay;
                 _mainPanelGroup.interactable = !blocked;
                 _mainPanelGroup.blocksRaycasts = !blocked;
             }
+            ApplyReadingLayout();
         }
 
         private void SyncListRows(PlayerAppearanceInfo info)
@@ -1115,7 +1157,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             string signature = BuildListSignature(info);
             if (signature != _listSignature)
             {
-                float savedScroll = _listScroll != null ? _listScroll.verticalNormalizedPosition : 1f;
+                float savedScroll = _listScroll != null && _listScroll.gameObject.activeInHierarchy
+                    ? _listScroll.verticalNormalizedPosition : _state.SavedListScrollNormalized;
                 RebuildRowObjects(info);
                 _listSignature = signature;
                 if (_listScroll != null)
@@ -1124,9 +1167,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     _listScroll.verticalNormalizedPosition = Mathf.Clamp01(savedScroll);
                 }
             }
-
-            var normalCard = AppearanceUiArt.LoadGameplay("pet_card_normal");
-            var selectedCard = AppearanceUiArt.LoadGameplay("pet_card_selected");
 
             for (int i = 0; i < _rows.Count && i < info.Appearances.Count; i++)
             {
@@ -1138,25 +1178,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
                 if (row.CardBackground != null)
                 {
-                    var cardSprite = selected ? selectedCard : normalCard;
-                    row.CardBackground.sprite = cardSprite;
-                    row.CardBackground.color = cardSprite != null
-                        ? Color.white
-                        : selected ? QdaoUguiTheme.Html("#D7E9DA") : AppearanceUiArt.ParchmentCard;
+                    AppearanceUiArt.ApplyRowSelection(row.CardBackground, selected);
                 }
 
                 row.NameText.text = entry.Name;
-                row.NameText.color = selected ? AppearanceUiArt.WarmCream : AppearanceUiArt.JadeInk;
+                row.NameText.color = AppearanceUiArt.JadeInk;
 
                 if (AppearanceBiographyCatalog.TryGetByRawAppearanceId(entry.AppearanceId, out var bio))
                 {
                     row.SubText.text = $"人物背景 · {bio.ArchiveName}";
-                    row.SubText.color = selected ? QdaoUguiTheme.Html("#DCEBD5") : AppearanceUiArt.TrialGreen;
+                    row.SubText.color = AppearanceUiArt.TrialGreen;
                 }
                 else
                 {
-                    row.SubText.text = LookupTableDescription(entry.ConfigId);
-                    row.SubText.color = selected ? QdaoUguiTheme.Html("#DCEBD5") : AppearanceUiArt.MutedInk;
+                    row.SubText.text = "暂无人物志";
+                    row.SubText.color = AppearanceUiArt.MutedInk;
                 }
 
                 if (row.LoadedAvatarId != entry.AppearanceId)
@@ -1167,7 +1203,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     row.AvatarImage.enabled = sprite != null;
                     row.AvatarMissingText.gameObject.SetActive(sprite == null);
                 }
-                row.AvatarMissingText.color = selected ? AppearanceUiArt.WarmCream : AppearanceUiArt.MutedInk;
+                row.AvatarMissingText.color = AppearanceUiArt.MutedInk;
 
                 AppearanceBadgeKind badgeKind = isTrial ? AppearanceBadgeKind.Trialing
                     : isPermanent ? AppearanceBadgeKind.CurrentPermanent
@@ -1206,6 +1242,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     if (_state.HasOverlay) return;
                     float scrollPos = _listScroll != null ? _listScroll.verticalNormalizedPosition : 1f;
                     _state.SelectAppearance(id, scrollPos);
+                    _compactDetail = true;
                     Render();
                 });
 
@@ -1291,6 +1328,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _previewPortrait.sprite = _loadedPreviewPortraitSprite;
             _previewPortrait.enabled = _loadedPreviewPortraitSprite != null;
             _previewMissingBox.SetActive(_loadedPreviewPortraitSprite == null);
+            if (_loadedPreviewPortraitSprite == null)
+            {
+                var label = _previewMissingBox.GetComponentInChildren<TMP_Text>(true);
+                if (label != null) label.text = _previewName.text + "\n形象资源暂不可用";
+            }
         }
 
         private void ClearPreviewPortrait()
@@ -1315,11 +1357,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private Sprite LoadExactAppearancePortrait(string rawAppearanceId)
         {
             if (string.IsNullOrEmpty(rawAppearanceId)) return null;
-            if (_portraitLoaderOverride != null) return _portraitLoaderOverride(rawAppearanceId);
-            // 仅按精确原始 appearance_id 加载，不借用历史视觉别名或其它人物立绘。
-            if (!string.Equals(QdaoCharacterCatalog.ResolveVisualId(rawAppearanceId), rawAppearanceId, StringComparison.Ordinal))
-                return null;
-            return QdaoCharacterCatalog.LoadPortrait(rawAppearanceId);
+            if (_portraitLeases.TryGetValue(rawAppearanceId, out var cached)) return cached?.Sprite;
+            if (_portraitLoaderOverride != null)
+            {
+                var borrowed = QdaoCharacterCatalog.CreationPortraitLease.Borrow(_portraitLoaderOverride(rawAppearanceId));
+                _portraitLeases[rawAppearanceId] = borrowed;
+                return borrowed?.Sprite;
+            }
+            if (QdaoCharacterCatalog.Find(rawAppearanceId) == null) return null;
+            // 仅图像允许使用正式资源替代；档案与选中身份始终保留原始 ID。
+            string visualId = QdaoCharacterCatalog.ResolveVisualId(rawAppearanceId);
+            var lease = QdaoCharacterCatalog.AcquireCreationPortrait(visualId);
+            _portraitLeases[rawAppearanceId] = lease;
+            return lease?.Sprite;
         }
 
         private void UpdateTrialCountdownText()
@@ -1386,6 +1436,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             _client?.HandleDisconnected();
             HidePanel();
+            _state.ResetForRoleChange();
         }
 
         private static void HandleNotice(string text) => BattleUiRoot.Instance?.ShowToast(text);

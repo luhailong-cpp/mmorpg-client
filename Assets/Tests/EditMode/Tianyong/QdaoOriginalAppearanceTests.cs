@@ -40,23 +40,22 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         public void OriginalRegistryKeepsTwentyThreeIndependentIdsAndDoesNotRewriteExistingRosterOrLegacy()
         {
             Assert.That(QdaoCharacterCatalog.All.Count, Is.EqualTo(8));
-            Assert.That(QdaoCharacterCatalog.OriginalAll.Count, Is.EqualTo(23));
+            Assert.That(QdaoCharacterCatalog.OriginalAll.Count, Is.EqualTo(19));
             var ids = new HashSet<string>();
             for (var index = 0; index < QdaoCharacterCatalog.OriginalAll.Count; index++)
             {
                 var entry = QdaoCharacterCatalog.OriginalAll[index];
-                Assert.That(entry.Id, Does.StartWith(index.ToString("00") + "_"));
                 Assert.That(ids.Add(entry.Id), Is.True);
                 Assert.That(entry.IsOriginalRoster, Is.True);
                 Assert.That(entry.BaselineAppearance, Is.Null, "Original IDs cannot inherit a different character's V11 body.");
                 Assert.That(QdaoCharacterCatalog.Find(entry.Id), Is.SameAs(entry));
             }
             Assert.That(QdaoCharacterCatalog.OriginalAll[0].Id, Is.EqualTo("00_reference_topright_boy"));
-            Assert.That(QdaoCharacterCatalog.OriginalAll[22].Id, Is.EqualTo("22_lidazui_hair_waiter_saber_boy"));
+            Assert.That(QdaoCharacterCatalog.OriginalAll[QdaoCharacterCatalog.OriginalAll.Count - 1].Id, Is.EqualTo("22_lidazui_hair_waiter_saber_boy"));
             Assert.That(QdaoCharacterCatalog.Find("q_daoist_topright_character_full_uncropped"), Is.Null);
             Assert.That(QdaoCharacterCatalog.DefaultId, Is.EqualTo("00_reference_topright_boy"));
             Assert.That(QdaoCharacterCatalog.LegacyId, Is.EqualTo("QdaoHeadbandBoy"));
-            Assert.That(QdaoCharacterCatalog.ResolveRole(1, 1), Is.EqualTo("04_mountain_guardian_boy"));
+            Assert.That(QdaoCharacterCatalog.ResolveRole(1, 2), Is.EqualTo("01_ice_sword_girl"));
             Assert.That(QdaoBoySpriteAnimator.FramesPerDirection, Is.EqualTo(8));
         }
 

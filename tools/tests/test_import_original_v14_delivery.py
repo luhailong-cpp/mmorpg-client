@@ -144,7 +144,7 @@ class OriginalV14DeliveryTests(unittest.TestCase):
 
     def test_wrong_identity_portrait_inventory_fails_closed(self):
         inventory = json.loads(self.inventory.read_text())
-        inventory["characters"][0]["character_id"] = "08_alchemy_prodigy_boy"
+        inventory["characters"][0]["character_id"] = "10_crimson_spear_girl"
         self.inventory.write_bytes(importer.json_bytes(inventory))
         self.delivery["portrait_inventory_sha256"] = importer.file_sha256(self.inventory)
         self.save_delivery()
@@ -166,9 +166,9 @@ class OriginalV14DeliveryTests(unittest.TestCase):
 
     def test_only_seven_independently_approved_full_hd_ids_are_allowed(self):
         self.assertEqual(set(importer.APPROVED_DELIVERIES), {
-            "08_alchemy_prodigy_boy", "09_bamboo_archer_girl",
+            "09_bamboo_archer_girl",
             "10_crimson_spear_girl", "14_short_hair_snow_summoner_girl",
-            "17_ghost_script_calligrapher_boy", "20_star_formation_master_girl",
+            "20_star_formation_master_girl",
         })
         for character_id in ("07_moon_shadow_assassin_girl", "15_water_dragon_scholar_boy"):
             with self.subTest(character_id=character_id):

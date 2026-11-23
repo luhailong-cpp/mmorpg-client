@@ -7,10 +7,10 @@ namespace MmorpgClient.World
         // 与 current8 逐方向跑步校准对齐的静止显示倍率：不改 V13/V14 原图与 SHA 契约，由脚底锚点等比放大站立表现。
         public const float IdleDisplayScale = 1.15f;
 
-        /// <summary>返回角色静止时的显示倍率；现役 11 名角色对齐当前跑步尺寸，其余角色保持 1。</summary>
+        /// <summary>返回角色静止时的显示倍率；现役 8 名角色对齐当前跑步尺寸，其余角色保持 1。</summary>
         public static float ResolveIdleDisplayScale(string id) => AllowsCharacter(id) ? IdleDisplayScale : 1f;
 
-        /// <summary>只允许道童和本次保留的十名角色，历史别名须由现有角色目录解析。</summary>
+        /// <summary>只允许道童和本次保留的七名角色，历史别名须由现有角色目录解析。</summary>
         public static bool AllowsCharacter(string id)
         {
             switch (id)
@@ -19,13 +19,10 @@ namespace MmorpgClient.World
                 case "01_ice_sword_girl":
                 case "02_fire_talisman_boy":
                 case "03_lotus_healer_girl":
-                case "04_mountain_guardian_boy":
                 case "05_celestial_musician_girl":
-                case "08_alchemy_prodigy_boy":
                 case "09_bamboo_archer_girl":
                 case "10_crimson_spear_girl":
                 case "15_water_dragon_scholar_boy":
-                case "17_ghost_script_calligrapher_boy":
                     return true;
                 default:
                     return false;

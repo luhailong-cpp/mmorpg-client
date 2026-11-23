@@ -20,8 +20,8 @@ class ArchivedDeliveryTests(unittest.TestCase):
     def setUpClass(cls):
         cls.delivery = json.loads(IMPORTER.DELIVERY.read_text(encoding='utf-8'))
 
-    def test_all_fifteen_deliveries_keep_authored_timing_and_anchors(self):
-        self.assertEqual({'00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '14', '15', '17', '20'},
+    def test_all_eleven_deliveries_keep_authored_timing_and_anchors(self):
+        self.assertEqual({'00', '01', '02', '03', '05', '07', '09', '10', '14', '15', '20'},
                          {c['characterId'][:2] for c in self.delivery['characters']})
         for character in self.delivery['characters']:
             manifest = IMPORTER.runtime_manifest(character)
@@ -45,14 +45,6 @@ class ArchivedDeliveryTests(unittest.TestCase):
                              [clip['pivotX'], clip['pivotY']])
         east = next(c for c in manifest['clips'] if c['action'] == 'run' and c['direction'] == 'E')
         self.assertAlmostEqual(800 / 1254, east['pivotX'])
-
-    def test_zero_based_thunder_sources_keep_order_and_events(self):
-        character = next(c for c in self.delivery['characters'] if c['characterId'].startswith('06_'))
-        for frame in character['frames']:
-            self.assertEqual(frame['frame'] - 1, int(Path(frame['source']).stem))
-        manifest = IMPORTER.runtime_manifest(character)
-        self.assertTrue(all(c['eventFrame'] == 6 for c in manifest['clips'] if c['action'] == 'attack'))
-        self.assertTrue(all(c['eventFrame'] == 9 for c in manifest['clips'] if c['action'] == 'cast'))
 
     def test_invalid_clip_pivot_is_rejected(self):
         character = copy.deepcopy(self.delivery['characters'][0])

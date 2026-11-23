@@ -9,8 +9,7 @@ namespace MmorpgClient.World
     public static class QdaoMixedResolutionContract
     {
         public const string Mode = "mixed-preserved-v1";
-        public static bool AllowedIdentity(string id) => id == "04_mountain_guardian_boy" ||
-            id == "05_celestial_musician_girl";
+        public static bool AllowedIdentity(string id) => id == "05_celestial_musician_girl";
 
         public readonly struct Geometry
         {

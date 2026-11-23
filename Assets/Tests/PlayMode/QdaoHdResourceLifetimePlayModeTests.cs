@@ -427,7 +427,7 @@ namespace MmorpgClient.Tests.PlayMode
         [UnityTest]
         public IEnumerator MixedAllDirectionsAnimateBothSizesWithEqualBoundsThirtyMsAndIndependentIdle()
         {
-            var appearance = Hd("04_mountain_guardian_boy", true);
+            var appearance = Hd("05_celestial_musician_girl", true);
             using var resources = new ResourcesFixture { GeometryAppearance = appearance };
             var camera = CameraObject(); var actor = new GameObject("MixedCadenceActor");
             var oldCapture = Time.captureFramerate; Time.captureFramerate = 60;
@@ -490,7 +490,7 @@ namespace MmorpgClient.Tests.PlayMode
         [TestCase("idle/E", true)]
         public void MixedMissingOrSwappedResolutionReleasesWholeDirectionAndCannotBorrowFrames(string relative, bool wrongSize)
         {
-            var appearance = Hd("04_mountain_guardian_boy", true);
+            var appearance = Hd("05_celestial_musician_girl", true);
             using var resources = new ResourcesFixture { GeometryAppearance = appearance };
             var baseline = QdaoHdResources.ResidentDirectionCount;
             (wrongSize ? resources.WrongSize : resources.Missing).Add(appearance.ResourceFolder + "/" + relative);
@@ -503,10 +503,10 @@ namespace MmorpgClient.Tests.PlayMode
         [Test]
         public void MixedRevisionsShareBothTextureSizesUntilLastLeaseEnds()
         {
-            var appearance = Hd("04_mountain_guardian_boy", true);
+            var appearance = Hd("05_celestial_musician_girl", true);
             using var resources = new ResourcesFixture { GeometryAppearance = appearance };
             using var prior = resources.Lease(appearance, 2);
-            using var next = resources.Lease(Hd("04_mountain_guardian_boy", true), 2);
+            using var next = resources.Lease(Hd("05_celestial_musician_girl", true), 2);
             Assert.That(prior.IsValid && next.IsValid, Is.True);
             Assert.That(resources.Live, Is.EqualTo(17));
             prior.Dispose();
@@ -518,7 +518,7 @@ namespace MmorpgClient.Tests.PlayMode
         [UnityTest]
         public IEnumerator MixedBattleAndGhostRetainDisplayedLegacyAndHdSpritesAcrossReplacement()
         {
-            var appearance = Hd("04_mountain_guardian_boy", true);
+            var appearance = Hd("05_celestial_musician_girl", true);
             using var resources = new ResourcesFixture { GeometryAppearance = appearance };
             var layerObject = new GameObject("MixedBattleCanvas", typeof(RectTransform), typeof(Canvas));
             var layer = layerObject.GetComponent<RectTransform>();

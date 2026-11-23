@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "revision": "biyuan-body-20261123",
+  "evidenceDirectory": "Docs/VerificationEvidence/biyuan-body-20261123",
+  "scope": [
+    {
+      "mapId": "biyuan-water-palace",
+      "key": "biyuan-water-palace",
+      "sceneId": 5,
+      "name": "碧渊水宫",
+      "appearance": "spring",
+      "columns": 5,
+      "rows": 4,
+      "clientOnly": false,
+      "authoritativeServerRegistered": true,
+      "allowDerivedSource": true
+    },
+    {
+      "mapId": "biyuan-water-palace",
+      "key": "biyuan-water-palace",
+      "sceneId": 5,
+      "name": "碧渊水宫",
+      "appearance": "mid-autumn",
+      "columns": 5,
+      "rows": 4,
+      "clientOnly": false,
+      "authoritativeServerRegistered": true,
+      "allowDerivedSource": true
+    }
+  ]
+}

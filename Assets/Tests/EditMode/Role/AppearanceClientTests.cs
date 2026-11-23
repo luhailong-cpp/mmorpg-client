@@ -54,6 +54,43 @@ namespace MmorpgClient.Tests.EditMode.Role
 
         private static readonly AppearanceMessageIds Ids = new AppearanceMessageIds(442, 443, 444, 445, 447);
 
+        [TestCase(true)]
+        [TestCase(false)]
+        public void Client_RejectsOldRoleResponseBeforeTheNextTick(bool changeConnection)
+        {
+            var net = new FakeTransport();
+            object connection = new object();
+            net.Responder = (_, _) => (new GetAppearanceInfoResponse
+            {
+                Info = new PlayerAppearanceInfo { PermanentAppearanceId = "old-role", ActiveAppearanceId = "old-role" }
+            }, null);
+            using var client = new AppearanceClient(net, () => connection, () => 10f, Ids);
+            client.RequestInfo(force: true);
+
+            // 刻意不调用 Tick：收包回调本身必须先检查连接和角色代次。
+            if (changeConnection) connection = new object();
+            else net.PlayerId = ulong.MaxValue - 5;
+            net.Flush();
+
+            Assert.That(client.Info, Is.Null, "旧角色回包不得重新填入当前快照");
+            Assert.That(client.InfoPending, Is.False);
+        }
+
+        [Test]
+        public void Client_RejectsQueuedStateNotifyAfterDisconnect()
+        {
+            var net = new FakeTransport();
+            using var client = new AppearanceClient(net, () => net, () => 10f, Ids);
+            net.TriggerDisconnect();
+            net.EmitNotify(Ids.NotifyState, new AppearanceStateNotify
+            {
+                Info = new PlayerAppearanceInfo { PermanentAppearanceId = "old-role", ActiveAppearanceId = "old-role" }
+            });
+
+            Assert.That(client.Info, Is.Null, "断线后迟到推送不得恢复旧角色快照");
+            Assert.That(client.Ready, Is.False);
+        }
+
         [Test]
         public void Models_BitStoragePriceCountdownAndTipsMatchServerContract()
         {
@@ -135,8 +172,8 @@ namespace MmorpgClient.Tests.EditMode.Role
                         Info = new PlayerAppearanceInfo
                         {
                             PermanentAppearanceId = "00_reference_topright_boy",
-                            ActiveAppearanceId = "08_alchemy_prodigy_boy",
-                            TrialAppearanceId = "08_alchemy_prodigy_boy",
+                            ActiveAppearanceId = "02_fire_talisman_boy",
+                            TrialAppearanceId = "02_fire_talisman_boy",
                             TrialExpiresAt = 4600,
                             ServerNow = 1000,
                             TrialUsedBits = ByteString.CopyFrom(new byte[] { 0x01 }),
@@ -150,7 +187,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             using var client = new AppearanceClient(net, () => conn, () => now, Ids);
             client.Notice += msg => notice = msg;
 
-            Assert.That(client.StartTrial("08_alchemy_prodigy_boy"), Is.True);
+            Assert.That(client.StartTrial("02_fire_talisman_boy"), Is.True);
             net.Flush();
             Assert.That(client.HasActiveTrial, Is.True);
             Assert.That(client.TrialRemainingSeconds, Is.EqualTo(3600ul));
@@ -173,9 +210,9 @@ namespace MmorpgClient.Tests.EditMode.Role
         }
 
         [Test]
-        public void BiographyCatalog_MatchesExactFourRawIdsAndRejectsVisualAliasesAndOthers()
+        public void BiographyCatalog_MatchesExactThreeRawIdsAndRejectsVisualAliasesAndOthers()
         {
-            Assert.That(AppearanceBiographyCatalog.All.Count, Is.EqualTo(4));
+            Assert.That(AppearanceBiographyCatalog.All.Count, Is.EqualTo(3));
 
             Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("00_reference_topright_boy", out var ahe), Is.True);
             Assert.That(ahe.ArchiveName, Is.EqualTo("陆照禾"));
@@ -191,27 +228,21 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(tingyun.BackgroundSummary, Does.Contain("败局册"));
             Assert.That(tingyun.StoryBody, Does.Contain("今天纸赢了"));
 
-            Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("17_ghost_script_calligrapher_boy", out var yansheng), Is.True);
-            Assert.That(yansheng.ArchiveName, Is.EqualTo("闻砚生"));
-            Assert.That(yansheng.StoryTitle, Is.EqualTo("借还栏"));
-            Assert.That(yansheng.BackgroundSummary, Does.Contain("奇谈集"));
-            Assert.That(yansheng.StoryBody, Does.Contain("名字，你来写"));
-
             Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId("09_bamboo_archer_girl", out var tingyu), Is.True);
             Assert.That(tingyu.ArchiveName, Is.EqualTo("桑听雨"));
             Assert.That(tingyu.StoryTitle, Is.EqualTo("没有画的那一页"));
             Assert.That(tingyu.BackgroundSummary, Does.Contain("潮汐鸟谱"));
             Assert.That(tingyu.StoryBody, Does.Contain("替我空一页吧"));
 
-            // 其余 7 个现行形象不得命中四人传记
-            string[] otherActiveIds =
+            // 其余现行与已删除形象不得命中三人传记
+            string[] otherIds =
             {
-                "08_alchemy_prodigy_boy", "01_ice_sword_girl", "02_fire_talisman_boy",
-                "03_lotus_healer_girl", "04_mountain_guardian_boy", "05_celestial_musician_girl",
-                "15_water_dragon_scholar_boy"
+                "01_ice_sword_girl", "02_fire_talisman_boy", "03_lotus_healer_girl",
+                "05_celestial_musician_girl", "15_water_dragon_scholar_boy",
+                "04_mountain_guardian_boy", "08_alchemy_prodigy_boy", "17_ghost_script_calligrapher_boy"
             };
-            foreach (string id in otherActiveIds)
-                Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId(id, out _), Is.False, $"无档案形象不应命中：{id}");
+            foreach (string id in otherIds)
+                Assert.That(AppearanceBiographyCatalog.TryGetByRawAppearanceId(id, out _), Is.False, $"无档案或已删除形象不应命中：{id}");
 
             // 历史视觉替代 ID 严禁获得这四人的传记
             string[] retiredVisualAliases =
@@ -229,10 +260,10 @@ namespace MmorpgClient.Tests.EditMode.Role
             var state = new AppearancePanelState();
             string[] ids =
             {
-                "08_alchemy_prodigy_boy", "00_reference_topright_boy", "01_ice_sword_girl",
-                "09_bamboo_archer_girl", "10_crimson_spear_girl", "17_ghost_script_calligrapher_boy"
+                "05_celestial_musician_girl", "00_reference_topright_boy", "01_ice_sword_girl",
+                "09_bamboo_archer_girl", "10_crimson_spear_girl", "15_water_dragon_scholar_boy"
             };
-            state.SyncAvailableAppearances(ids, "08_alchemy_prodigy_boy", "08_alchemy_prodigy_boy");
+            state.SyncAvailableAppearances(ids, "05_celestial_musician_girl", "05_celestial_musician_girl");
             state.SelectAppearance("10_crimson_spear_girl", 0.37f);
 
             Assert.That(state.OpenStory(0.37f), Is.True);
@@ -264,13 +295,13 @@ namespace MmorpgClient.Tests.EditMode.Role
             using var client = new AppearanceClient(net, () => conn, () => now, Ids);
 
             var state = new AppearancePanelState();
-            string[] ids = { "08_alchemy_prodigy_boy", "00_reference_topright_boy" };
-            state.SyncAvailableAppearances(ids, "08_alchemy_prodigy_boy", "08_alchemy_prodigy_boy");
+            string[] ids = { "05_celestial_musician_girl", "00_reference_topright_boy" };
+            state.SyncAvailableAppearances(ids, "05_celestial_musician_girl", "05_celestial_musician_girl");
             state.SelectAppearance("00_reference_topright_boy", 0.72f);
 
             // 1. 先点旧“切换”一次（同时检验弹窗确认态与遗留武装态）
             state.ArmLegacySwitchConfirmation("00_reference_topright_boy", 10f);
-            var firstIntent = state.RequestSwitch("00_reference_topright_boy", "08_alchemy_prodigy_boy", 2, 1);
+            var firstIntent = state.RequestSwitch("00_reference_topright_boy", "05_celestial_musician_girl", 2, 1);
             Assert.That(firstIntent, Is.EqualTo(AppearanceSwitchIntentOutcome.OpenedSwitchConfirm));
             Assert.That(state.HasPendingSwitchConfirmation, Is.True);
             Assert.That(net.Calls.Count, Is.EqualTo(0), "首次点击切换绝不能直接扣卡发包");
@@ -281,7 +312,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(state.HasPendingSwitchConfirmation, Is.False);
             Assert.That(state.TryConsumePendingSwitchConfirm(out _), Is.False);
             // 阅读中尝试触发切换必须被隔离忽略
-            Assert.That(state.RequestSwitch("00_reference_topright_boy", "08_alchemy_prodigy_boy", 2, 1),
+            Assert.That(state.RequestSwitch("00_reference_topright_boy", "05_celestial_musician_girl", 2, 1),
                 Is.EqualTo(AppearanceSwitchIntentOutcome.Ignored));
 
             // 3. 返回详情后，首次再点“切换”必须重新进入确认，绝不直接扣卡
@@ -290,7 +321,7 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(state.SelectedAppearanceId, Is.EqualTo("00_reference_topright_boy"));
             Assert.That(state.SavedListScrollNormalized, Is.EqualTo(0.72f).Within(0.0001f));
 
-            var secondIntent = state.RequestSwitch("00_reference_topright_boy", "08_alchemy_prodigy_boy", 2, 1);
+            var secondIntent = state.RequestSwitch("00_reference_topright_boy", "05_celestial_musician_girl", 2, 1);
             Assert.That(secondIntent, Is.EqualTo(AppearanceSwitchIntentOutcome.OpenedSwitchConfirm));
             Assert.That(net.Calls.Count, Is.EqualTo(0), "阅读与返回后再次点切换只重进确认，零资产/试用/换形象请求");
         }
@@ -299,8 +330,8 @@ namespace MmorpgClient.Tests.EditMode.Role
         public void PanelState_NoBiographyLeavesNoResidualAndInvalidatedEntryOrDisconnectClosesStory()
         {
             var state = new AppearancePanelState();
-            string[] ids = { "08_alchemy_prodigy_boy", "09_bamboo_archer_girl", "01_ice_sword_girl" };
-            state.SyncAvailableAppearances(ids, "08_alchemy_prodigy_boy", "08_alchemy_prodigy_boy");
+            string[] ids = { "05_celestial_musician_girl", "09_bamboo_archer_girl", "01_ice_sword_girl" };
+            state.SyncAvailableAppearances(ids, "05_celestial_musician_girl", "05_celestial_musician_girl");
 
             // 先选有档案的桑听雨，再切到无档案的冰剑少女：不得残留旧正文
             state.SelectAppearance("09_bamboo_archer_girl", 0.5f);
@@ -315,13 +346,13 @@ namespace MmorpgClient.Tests.EditMode.Role
             // 打开桑听雨故事后若条目从列表失效，立刻关闭阅读层
             state.SelectAppearance("09_bamboo_archer_girl", 0.5f);
             Assert.That(state.OpenStory(0.5f), Is.True);
-            state.SyncAvailableAppearances(new[] { "08_alchemy_prodigy_boy", "01_ice_sword_girl" },
-                "08_alchemy_prodigy_boy", "08_alchemy_prodigy_boy");
+            state.SyncAvailableAppearances(new[] { "05_celestial_musician_girl", "01_ice_sword_girl" },
+                "05_celestial_musician_girl", "05_celestial_musician_girl");
             Assert.That(state.IsStoryOpen, Is.False);
             Assert.That(state.TryGetReadingBiography(out _), Is.False);
 
             // 背包 0 张卡点击切换 -> 仅弹缺卡商城引导，不触发确认提交
-            var noCardOutcome = state.RequestSwitch("01_ice_sword_girl", "08_alchemy_prodigy_boy", 0, 1);
+            var noCardOutcome = state.RequestSwitch("01_ice_sword_girl", "05_celestial_musician_girl", 0, 1);
             Assert.That(noCardOutcome, Is.EqualTo(AppearanceSwitchIntentOutcome.OpenedNoCardGuide));
             Assert.That(state.IsNoCardGuideOpen, Is.True);
             Assert.That(state.TryConsumePendingSwitchConfirm(out _), Is.False);

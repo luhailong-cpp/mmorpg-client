@@ -14,9 +14,11 @@ namespace MmorpgClient.Tests.PlayMode
 {
     public sealed partial class QdaoRoleIdentityPlayModeTests
     {
-        private const string WindowPreferred = "08_alchemy_prodigy_boy";
-        private const string WindowDefault = "04_mountain_guardian_boy";
+        private const string WindowPreferred = "00_reference_topright_boy";
+        private const string WindowNext = "01_ice_sword_girl";
+        private const string WindowSecond = "02_fire_talisman_boy";
         private const string WindowThird = "03_lotus_healer_girl";
+        private const string WindowDefault = "05_celestial_musician_girl";
 
         [UnityTest]
         public IEnumerator CreationWindow_ShowsCurrentImmediatelyAndPrefetchesNeighboursAfterTheClickFrame()
@@ -30,21 +32,21 @@ namespace MmorpgClient.Tests.PlayMode
                 "The current portrait must be visible before either neighbour is loaded.");
             Assert.That(fixture.Prefetches, Is.Empty, "The click frame must not start reading a neighbour.");
             for (int i = 0; i < 4; i++) yield return null;
-            fixture.AssertResident(WindowPreferred, WindowDefault, First);
+            fixture.AssertResident(WindowPreferred, WindowDefault, WindowNext);
             // 邻居纹理走异步读取：开页后的第一帧按“先上后下”发出两个读取，读完才收进窗口。
-            Assert.That(fixture.Prefetches, Is.EqualTo(new[] { (WindowDefault, openingFrame + 1), (First, openingFrame + 1) }));
-            Assert.That(fixture.Loads.Skip(1).Select(row => row.Id), Is.EqualTo(new[] { WindowDefault, First }));
+            Assert.That(fixture.Prefetches, Is.EqualTo(new[] { (WindowDefault, openingFrame + 1), (WindowNext, openingFrame + 1) }));
+            Assert.That(fixture.Loads.Skip(1).Select(row => row.Id), Is.EqualTo(new[] { WindowDefault, WindowNext }));
             Assert.That(fixture.Loads.Skip(1).All(row => row.Frame > openingFrame), Is.True);
 
-            var cachedNext = fixture.Window.GetOrLoad(First);
+            var cachedNext = fixture.Window.GetOrLoad(WindowNext);
             int priorLoads = fixture.Loads.Count;
             Click(fixture.Host, "NextAppearance");
             Assert.That(fixture.Hero.sprite, Is.SameAs(cachedNext));
             Assert.That(fixture.Loads.Count, Is.EqualTo(priorLoads), "Switching to a warm neighbour must reuse its lease immediately.");
             for (int i = 0; i < 3; i++) yield return null;
-            fixture.AssertResident(WindowPreferred, First, Second);
+            fixture.AssertResident(WindowPreferred, WindowNext, WindowSecond);
             Assert.That(fixture.Released, Does.Contain(WindowDefault));
-            Assert.That(fixture.Loads.Skip(priorLoads).Select(row => row.Id), Is.EqualTo(new[] { Second }));
+            Assert.That(fixture.Loads.Skip(priorLoads).Select(row => row.Id), Is.EqualTo(new[] { WindowSecond }));
         }
 
         [UnityTest]
@@ -53,18 +55,18 @@ namespace MmorpgClient.Tests.PlayMode
             using var fixture = new CreationWindowFixture { DeferPrefetch = true };
             fixture.Open();
             for (int i = 0; i < 3; i++) yield return null;
-            Assert.That(fixture.Prefetches.Select(row => row.Id), Is.EqualTo(new[] { WindowDefault, First }));
+            Assert.That(fixture.Prefetches.Select(row => row.Id), Is.EqualTo(new[] { WindowDefault, WindowNext }));
             Assert.That(fixture.Window.Count, Is.EqualTo(1), "A neighbour joins the window only after its read completes.");
 
             // 读取还没完成就往后翻：当前人物同步取，缺的下一位再发一个读取，已离开窗口的那位读完也不收。
             Click(fixture.Host, "NextAppearance");
             for (int i = 0; i < 3; i++) yield return null;
-            Assert.That(fixture.Prefetches.Select(row => row.Id), Is.EqualTo(new[] { WindowDefault, First, Second }),
+            Assert.That(fixture.Prefetches.Select(row => row.Id), Is.EqualTo(new[] { WindowDefault, WindowNext, WindowSecond }),
                 "A portrait already being read is not requested twice.");
             fixture.CompletePrefetches();
             yield return null;
-            fixture.AssertResident(First, WindowPreferred, Second);
-            Assert.That(fixture.Loads.Select(row => row.Id), Is.EqualTo(new[] { WindowPreferred, First, Second }),
+            fixture.AssertResident(WindowNext, WindowPreferred, WindowSecond);
+            Assert.That(fixture.Loads.Select(row => row.Id), Is.EqualTo(new[] { WindowPreferred, WindowNext, WindowSecond }),
                 "A read for a portrait that left the window must not be adopted.");
         }
 
@@ -74,9 +76,9 @@ namespace MmorpgClient.Tests.PlayMode
             using var fixture = new CreationWindowFixture();
             fixture.Open();
             for (int i = 0; i < 3; i++) yield return null;
-            string[] ring = { WindowDefault, WindowPreferred, First, Second, WindowThird, WindowDefault };
-            int slot = 1;
-            foreach (int direction in new[] { 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1 })
+            string[] ring = { WindowPreferred, WindowNext, WindowSecond, WindowThird, WindowDefault };
+            int slot = 0;
+            foreach (int direction in new[] { 1, 1, 1, 1, 1, -1, -1, -1, -1, -1 })
             {
                 Click(fixture.Host, direction > 0 ? "NextAppearance" : "PreviousAppearance");
                 slot = (slot + direction + ring.Length) % ring.Length;
@@ -85,17 +87,6 @@ namespace MmorpgClient.Tests.PlayMode
                 fixture.AssertResident(ring[slot], ring[(slot + ring.Length - 1) % ring.Length], ring[(slot + 1) % ring.Length]);
             }
             Assert.That(fixture.MaxResident, Is.LessThanOrEqualTo(3), "Eviction must happen before loading a fourth identity.");
-            Click(fixture.Host, "PreviousAppearance"); // Slot zero: explicit profession default, same identity as the final slot.
-            for (int i = 0; i < 3; i++) yield return null;
-            fixture.AssertResident(WindowDefault, WindowPreferred);
-            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("职业默认"));
-            var defaultSprite = fixture.Hero.sprite;
-            int loads = fixture.Loads.Count;
-            Click(fixture.Host, "PreviousAppearance"); // Wrap to the explicit appearance with the same ID.
-            Assert.That(fixture.Hero.sprite, Is.SameAs(defaultSprite));
-            Assert.That(fixture.Loads.Count, Is.EqualTo(loads));
-            for (int i = 0; i < 3; i++) yield return null;
-            fixture.AssertResident(WindowDefault, WindowThird);
         }
 
         [UnityTest]
@@ -106,9 +97,9 @@ namespace MmorpgClient.Tests.PlayMode
             Click(fixture.Host, "NextAppearance");
             Click(fixture.Host, "NextAppearance");
             int afterClicks = fixture.Loads.Count;
-            Assert.That(fixture.VisibleId, Is.EqualTo(Second));
+            Assert.That(fixture.VisibleId, Is.EqualTo(WindowSecond));
             for (int i = 0; i < 4; i++) yield return null;
-            fixture.AssertResident(First, Second, WindowThird);
+            fixture.AssertResident(WindowNext, WindowSecond, WindowThird);
             Assert.That(fixture.Loads.Skip(afterClicks).Select(row => row.Id), Is.EqualTo(new[] { WindowThird }),
                 "Only the latest selection's missing neighbour may preload after rapid clicks.");
             Assert.That(fixture.Loads.Any(row => row.Id == WindowDefault), Is.False,
@@ -121,15 +112,15 @@ namespace MmorpgClient.Tests.PlayMode
             using var fixture = new CreationWindowFixture();
             fixture.Open();
             for (int i = 0; i < 3; i++) yield return null;
-            fixture.AssertResident(WindowPreferred, WindowDefault, First);
+            fixture.AssertResident(WindowPreferred, WindowDefault, WindowNext);
 
             // 往后翻：上一位就是刚才的当前人物，早已在窗口里，不能让它白占一帧。
             int clickFrame = Time.frameCount;
             int loads = fixture.Loads.Count;
             Click(fixture.Host, "NextAppearance");
             for (int i = 0; i < 3; i++) yield return null;
-            fixture.AssertResident(First, WindowPreferred, Second);
-            Assert.That(fixture.Loads.Skip(loads), Is.EqualTo(new[] { (Second, clickFrame + 1) }),
+            fixture.AssertResident(WindowNext, WindowPreferred, WindowSecond);
+            Assert.That(fixture.Loads.Skip(loads), Is.EqualTo(new[] { (WindowSecond, clickFrame + 1) }),
                 "Forward travel must load the missing next portrait on the first frame after the click.");
 
             // 往前翻：缺的上一位同样在点击后的第一帧补上。
@@ -137,7 +128,7 @@ namespace MmorpgClient.Tests.PlayMode
             loads = fixture.Loads.Count;
             Click(fixture.Host, "PreviousAppearance");
             for (int i = 0; i < 3; i++) yield return null;
-            fixture.AssertResident(WindowPreferred, WindowDefault, First);
+            fixture.AssertResident(WindowPreferred, WindowDefault, WindowNext);
             Assert.That(fixture.Loads.Skip(loads), Is.EqualTo(new[] { (WindowDefault, clickFrame + 1) }),
                 "Backward travel must load the missing previous portrait on the first frame after the click.");
         }
@@ -183,7 +174,7 @@ namespace MmorpgClient.Tests.PlayMode
             for (int i = 0; i < 3; i++) yield return null;
             Assert.That(oldTextures.All(texture => !fixture.Live.ContainsKey(texture)), Is.True);
             Assert.That(input.text, Is.EqualTo("云行客"));
-            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("炼丹童子"));
+            Assert.That(ReadText(fixture.Host, "AppearanceName"), Does.Contain("金发带Q道童"));
             Assert.That(fixture.Hero.enabled, Is.False);
             fixture.Button("ConfirmCreate").onClick.Invoke();
             Assert.That(fixture.Choice.CreateNew, Is.False);
@@ -219,7 +210,7 @@ namespace MmorpgClient.Tests.PlayMode
 
             public CreationWindowFixture()
             {
-                foreach (string id in new[] { WindowPreferred, First, Second, WindowThird, WindowDefault })
+                foreach (string id in new[] { WindowPreferred, WindowNext, WindowSecond, WindowThird, WindowDefault })
                     Available[id] = QdaoHdResourceLifetimePlayModeTests.Hd(id);
                 Ui = Host.AddComponent<RoleFlowUi>();
                 QdaoCharacterCatalog.Appearance Resolve(QdaoCharacterCatalog.Definition definition)

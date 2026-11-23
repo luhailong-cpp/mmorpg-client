@@ -140,7 +140,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [TestCase("00_reference_topright_boy", true)]
-        [TestCase("17_ghost_script_calligrapher_boy", true)]
+        [TestCase("15_water_dragon_scholar_boy", true)]
+        [TestCase("04_mountain_guardian_boy", false)]
+        [TestCase("08_alchemy_prodigy_boy", false)]
+        [TestCase("17_ghost_script_calligrapher_boy", false)]
         [TestCase("07_moon_shadow_assassin_girl", false)]
         [TestCase("14_short_hair_snow_summoner_girl", false)]
         [TestCase("20_star_formation_master_girl", false)]

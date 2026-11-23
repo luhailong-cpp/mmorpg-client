@@ -30,10 +30,6 @@ DIRECTIONS = ("N", "NE", "E", "SE", "S", "SW", "W", "NW")
 # These pins come from the seven independently reviewed full-HD art deliveries.
 # A delivery profile is an input inventory, not an authority to approve itself.
 APPROVED_DELIVERIES = {
-    "08_alchemy_prodigy_boy": (
-        "d605cb139692c6d0e9b4fe0354829d41ed64b7e3b64bb73f7cf32e3b6d5c5107",
-        "9853b7475f6b8dc7850d3c020692fbe7b3dc759a38687d6dd14ed099593eec65",
-        "fcbf04089dbc229887d9c18b2b21e9dfb7997c5ec28c086e45db2d78e9bef82e"),
     "09_bamboo_archer_girl": (
         "589d77a4d100c409c16055f33bce238d6964d0d0a3a53841864533f6bc583ae3",
         "13e971458e04952d3d2292e9de655f3a58b727841ad160b4eea4f8ee9614e3c1",
@@ -46,10 +42,6 @@ APPROVED_DELIVERIES = {
         "0e0686ac4e0cdf94189d0a2e1e3290807a33f4a5bf12bf3d7798636b8b29facf",
         "d5e7b0d60bb554072b1d95fc5252fad08c34d03fb2a5ad6601670c5e13f6c5d6",
         "834fbe56bc3de4aa8a241d7e12a9725095cfcf486b98066876a8e70fa343c2a8"),
-    "17_ghost_script_calligrapher_boy": (
-        "fecd8028b6facb779ee6f8f86d28243937912bca790cf61997368ecc1ceeea8d",
-        "fc8e3e1337264c5498a2e89d4733304cd4615753b8511d35a167920add08f575",
-        "34d13fe2558dee7ab8403180a7cd4c26e95b0b9795181053057b5759c69a5614"),
     "20_star_formation_master_girl": (
         "780e2efe3a620dc60ba231c1d69458db021ab1b56cfcaf31e9a7d74076317638",
         "f523981c0581f51783c8ac093d85c40cfe5fabcc40ce8250206ae8f4256090e9",
@@ -203,29 +195,11 @@ def document_slot_hashes(rows: object, path_field: str, prefix: str, label: str)
 
 def check_art_evidence(character_id: str, source: dict, approval: dict,
                        source_hash: str, approval_hash: str) -> dict[str, str]:
-    """Bind profile slots to the reviewed art document, across its seven formats."""
-    identity_key = "character_id" if character_id[:2] in ("08", "17") else "character"
+    """Bind profile slots to the reviewed art document, across its retained formats."""
+    identity_key = "character"
     require(source.get(identity_key) == character_id and approval.get(identity_key) == character_id,
             "Source and approval documents must identify the selected character")
-    if character_id.startswith(("06_", "17_")):
-        slots = document_slot_hashes(source.get("files"), "path", "", "source document")
-        require(approval.get("manifest_sha256") == source_hash,
-                "Approval does not bind the source document")
-        if character_id.startswith("06_"):
-            require(source.get("status") == "complete_passed_offline" and
-                    approval.get("status") == "passed_offline", "06 offline approval is absent")
-        else:
-            require(approval.get("offline_visual_approval") is True and
-                    approval.get("materials_complete") is True, "17 offline approval is absent")
-    elif character_id.startswith("08_"):
-        slots = document_slot_hashes(source.get("files"), "path", "runtime/", "source document")
-        require(source.get("status") == "offline_accepted" and source.get("visual_approval") is True and
-                source.get("visual_acceptance_sha256") == approval_hash and
-                approval.get("visual_approval") is True and
-                approval.get("unresolved_visual_blockers") == [], "08 offline approval is absent")
-        require(document_slot_hashes(approval.get("files"), "slot", "", "approval document") == slots,
-                "08 approval slots differ from source document")
-    elif character_id.startswith("09_"):
+    if character_id.startswith("09_"):
         slots = document_slot_hashes(source.get("files"), "key", "", "source document")
         offline = source.get("offlineAcceptance")
         require(source.get("visualReview") == "passed" and isinstance(offline, dict) and
