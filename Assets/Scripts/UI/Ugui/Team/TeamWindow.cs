@@ -88,11 +88,17 @@ namespace MmorpgClient.UI.Ugui.Team
             var frame=QdaoUguiFactory.CreateCenteredRect("TeamFrame",_root,1931,814);
             frame.localScale=UnityEngine.Vector3.one*(2560f/1931f);
             _frameControls=frame.gameObject.AddComponent<CanvasGroup>();
-            ExactArt(frame,"team-skin",0,0,1931,814);
+            // 使用透明去底正式底板 TeamV2/Fidelity20261016/team_skin，摘要与空余席位由原生文字渲染。
+            var skin = Art(frame, "team_skin", 0, 0, 1931, 814);
+            skin.name = "TeamSkin";
+            skin.type = Image.Type.Simple;
+            skin.raycastTarget = false;
             _close=QdaoUguiFactory.CreateHitButton("CloseTeamWindow",frame,1747,32,86,86);
             _close.navigation=new Navigation{mode=Navigation.Mode.Automatic};_close.onClick.AddListener(Hide);
             _summaryFallbackPlate=ExactArt(frame,"summary-fallback",1206,111,338,43);
+            _summaryFallbackPlate.gameObject.SetActive(false);
             _summary=Label(frame,"队伍信息尚未同步",1207,112,332,36,20,BodyInk);
+            _summary.enableAutoSizing=true;_summary.fontSizeMin=14;_summary.fontSizeMax=20;
             _teamCountValue=Label(frame,"",1288,114,51,36,20,BodyInk,TextAlignmentOptions.Center);
             _teamIdValue=Label(frame,"",1462,114,68,36,20,BodyInk,TextAlignmentOptions.Center);
             _teamNumber = QdaoUguiFactory.CreateHitButton("ShowTeamNumbers", frame, 1344, 111, 198, 43);
@@ -101,7 +107,7 @@ namespace MmorpgClient.UI.Ugui.Team
             Art(frame,"badge_self",1545,110,159,44);
             _leaderState=Label(frame,"待同步",1553,110,143,44,24,Cream,TextAlignmentOptions.Center);
             _exactLeaderState=ExactArt(frame,"leader-state",1543,108,161,47);
-            _memberCount=Label(frame,"",913,162,134,34,25,Color.clear,TextAlignmentOptions.MidlineRight);
+            _memberCount=Label(frame,"",913,162,134,34,25,BodyMuted,TextAlignmentOptions.MidlineRight);
             _memberVacancyValue=Label(frame,"",973,162,30,34,25,BodyMuted,TextAlignmentOptions.Center);
             _memberVacancyValue.enableAutoSizing=true;_memberVacancyValue.fontSizeMin=16;_memberVacancyValue.fontSizeMax=25;
             ExactArt(frame,"application-title-empty",1180,164,177,56);
@@ -242,10 +248,10 @@ namespace MmorpgClient.UI.Ugui.Team
             int applicationTotal = hasTeam && !leader ? (int)(_state.Snapshot?.ApplicationCount ?? 0) : applications;
             _summary.text=hasTeam ? $"队伍人数 {members}/{capacity}   队伍编号 {data.TeamId}"
                 : noTeam ? $"尚未入队 · 玩家编号 {data.LocalPlayerId}" : "队伍信息尚未同步";
-            _summaryFallbackPlate.gameObject.SetActive(!hasTeam);
-            _summary.color=hasTeam?Color.clear:BodyInk;
-            _teamCountValue.text=hasTeam?$"{members}/{capacity}":"";
-            _teamIdValue.text=hasTeam?data.TeamId.ToString():"";
+            _summaryFallbackPlate.gameObject.SetActive(false);
+            _summary.color=BodyInk;
+            _teamCountValue.text="";
+            _teamIdValue.text="";
             _teamNumber.gameObject.SetActive(hasTeam);
             _leaderState.text=hasTeam?(leader?"你是队长":"你是队员"):"尚未入队";
             _exactLeaderState.gameObject.SetActive(hasTeam&&leader);
@@ -254,7 +260,7 @@ namespace MmorpgClient.UI.Ugui.Team
             _exactFooterSync.gameObject.SetActive(_state?.HasLoaded==true);
             _footerSync.color=_state?.HasLoaded==true?Color.clear:BodyMuted;
             _memberCount.text=$"空余 {Math.Max(0,capacity-members)} 席";
-            _memberVacancyValue.text=Math.Max(0,capacity-members).ToString();
+            _memberVacancyValue.text="";
             _applicationTitle.text = noTeam ? "收到的邀请" : "申请列表";
             _exactApplicationTitle.gameObject.SetActive(!noTeam);
             _applicationTitle.color = noTeam ? Cream : Color.clear;

@@ -268,6 +268,24 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void FooterCancelAndConfirm_UseTransparentButtonSpritesAndNativeLabels()
+        {
+            _window.SetView(View(SevenLines()));
+            _window.Show();
+
+            var skin = _root.GetComponentsInChildren<Image>(true).Single(image => image.name == "scene_skin");
+            Assert.That(skin.sprite, Is.SameAs(QdaoUguiTheme.RequireSprite("UI/Ugui/SceneSelectV1/Fidelity20261016/scene_skin")));
+
+            var close = FindButton(SceneChannelWindow.CloseButtonName);
+            Assert.That(((Image)close.targetGraphic).sprite, Is.SameAs(QdaoUguiTheme.RequireSprite("UI/Ugui/SceneSelectV1/Fidelity20261016/button_secondary")));
+            Assert.That(Texts(close), Is.EqualTo(new[] { "取消" }));
+
+            var confirm = FindButton(SceneChannelWindow.ConfirmButtonName);
+            Assert.That(((Image)confirm.targetGraphic).sprite, Is.SameAs(QdaoUguiTheme.RequireSprite("UI/Ugui/SceneSelectV1/Fidelity20261016/button_primary")));
+            Assert.That(Texts(confirm), Is.EqualTo(new[] { "确认" }));
+        }
+
+        [Test]
         public void SetView_WhileHidden_OnlyRemembersIt_RowsAreBuiltOnShow()
         {
             _window.SetView(View(SevenLines()));

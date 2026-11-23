@@ -107,7 +107,11 @@ namespace MmorpgClient.UI.Ugui.Guild
             float scale = Mathf.Min(2560f / 1932f, 1080f / 814f);
             _frame.localScale = new UnityEngine.Vector3(scale, scale, 1);
             _frameInput = _frame.gameObject.AddComponent<CanvasGroup>();
-            ExactArt(_frame,"guild-skin",0,0,1932,814);
+            // 使用透明去底正式底板 GuildFidelity20261016/guild_empty_shell，避免旧不透明外底遮挡场景。
+            var shell = Art(_frame, "guild_empty_shell", 0, 0, 1932, 814);
+            shell.name = "GuildShell";
+            shell.type = Image.Type.Simple;
+            shell.raycastTarget = false;
             FidelityLabel(_frame, "GuildTitle", "帮  会", 836, 28, 260, 55, 39, Color.clear, align: TextAlignmentOptions.Center);
             ExactArt(_frame,"title",879,31,183,55);
             string[] titles = { "帮会总览", "帮会成员", "帮会排行", "帮会捐献", "帮会活动", "帮会商店" };
@@ -320,7 +324,10 @@ namespace MmorpgClient.UI.Ugui.Guild
         }
         private void RenderIdentity()
         {
-            ExactArt(_rail,"crest",29,2,205,186).name="GuildCrest";
+            var crest = Art(_rail, "guild_crest", 28, 1, 207, 188);
+            crest.name = "GuildCrest";
+            crest.type = Image.Type.Simple;
+            crest.raycastTarget = false;
             var info = _client?.Info;
             var name = FidelityLabel(_rail, "GuildName", info?.Name ?? "静候同道", 268, 12, 258, 78, 37, Ink, true);
             name.enableAutoSizing = true; name.fontSizeMin = 20; name.fontSizeMax = 37;

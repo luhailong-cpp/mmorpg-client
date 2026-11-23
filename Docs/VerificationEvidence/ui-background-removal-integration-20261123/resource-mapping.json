@@ -1,0 +1,4574 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-11-23T15:29:03.825360+00:00",
+  "artRepositoryBaselineClaimed": "0a8e0593c9c9de10811257db71eb543531b5300f",
+  "artDeliveryVerification": {
+    "manifest": "designs/background-removal-20261123/current-manifest.json",
+    "status": "passed",
+    "targets": 118,
+    "accepted": 118,
+    "pending": 0
+  },
+  "counts": {
+    "manifestTotal": 118,
+    "adoptedRuntimePngs": 80,
+    "adoptedRuntimeFrames": 11,
+    "adoptedRuntimeComponents": 69,
+    "manifestNonRuntimeReferenceOrMasterOrSuperseded": 38,
+    "appearanceAndEquipmentRuntimeVerified": 50,
+    "appearanceAndEquipmentReusedTransparentPreviews": 15,
+    "allMetaFilesPreserved": true,
+    "allBytesIdenticalToArt": true
+  },
+  "adoptedRuntimeAssets": [
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/visual-fixes-20261017/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activities-frame.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activities-frame.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activities-frame",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "beforeSha256": "66fe6cdc2b64c67df291a931cdee534c320d9141ad50c12435b657ffdc104b8c",
+      "afterSha256": "55ca231cc8ee7c663592b5af9c819eebf1b161d8d6bd15cd6943bec9da38c73f",
+      "artManifestSha256": "55ca231cc8ee7c663592b5af9c819eebf1b161d8d6bd15cd6943bec9da38c73f",
+      "byteIdenticalToArt": true,
+      "metaGuid": "0ad86f03d89455fba8a19552dc7cfbc1",
+      "metaSha256": "c6778b4c238459a624e21de2964bda8c984669263dbb6e8b8864336dba379095",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 309166,
+        "partialPixels": 0,
+        "opaquePixels": 1263482,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-badge-blue.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-badge-blue.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activity-badge-blue",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        115,
+        45
+      ],
+      "beforeSha256": "0f544a5cd5486cb52ae56f375bb7ac1102288c9f1c1db0a1ffd2b1d51521604f",
+      "afterSha256": "2fa401aeba9d80951b67b0525daad641e9d76e11a8d8c1520d543013906b61a3",
+      "artManifestSha256": "2fa401aeba9d80951b67b0525daad641e9d76e11a8d8c1520d543013906b61a3",
+      "byteIdenticalToArt": true,
+      "metaGuid": "9026b35e1a6d590abc2618c79a0e1cdb",
+      "metaSha256": "8d710af8f1a7faf5d988cbf9ed8a4ac9ebf705bc1077c765c6bee7657627f7af",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1140,
+        "partialPixels": 502,
+        "opaquePixels": 3533,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-badge-green.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-badge-green.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activity-badge-green",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        113,
+        45
+      ],
+      "beforeSha256": "e5803bbdc67e26d7897f361752b1445e94c1fefbf7919b1636f9d0a39c0d0b36",
+      "afterSha256": "469b6c5c85de9a28dbc00c86f0d09bdde44f6ecbfddcf3c0be644370045d7274",
+      "artManifestSha256": "469b6c5c85de9a28dbc00c86f0d09bdde44f6ecbfddcf3c0be644370045d7274",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8bce17367f325f62baf5189cf5da74a9",
+      "metaSha256": "495d5a1b46fbbb30326a64e10d91997ad8820f1a6e23ab9511cbb40af44f8c5f",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1176,
+        "partialPixels": 488,
+        "opaquePixels": 3421,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-badge-pink.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-badge-pink.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activity-badge-pink",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        112,
+        45
+      ],
+      "beforeSha256": "37b601e87b56ca71275e3fdee62a0127377a244409a810b8075914b7fec7b8f0",
+      "afterSha256": "60a79591f2286412ef30890187451cb2372ccdda823ebf3ab0c4eee375bc42e3",
+      "artManifestSha256": "60a79591f2286412ef30890187451cb2372ccdda823ebf3ab0c4eee375bc42e3",
+      "byteIdenticalToArt": true,
+      "metaGuid": "fcfb2ac5e2c55759a305e38e1d0fb114",
+      "metaSha256": "e4cf46970bc58e89f6b6670468a4fa6c6343f20a7cf354e7695526966cbccd29",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 795,
+        "partialPixels": 502,
+        "opaquePixels": 3743,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-button.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-button.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activity-button",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        327,
+        66
+      ],
+      "beforeSha256": "e15ed774c65a5b0067c44b656c4136fb72a558d5e05d156ece6926947c7b0cc9",
+      "afterSha256": "9b3996170fe1c9002cfd04cf9966c3fab117250afba513fab37d8e8c0e786157",
+      "artManifestSha256": "9b3996170fe1c9002cfd04cf9966c3fab117250afba513fab37d8e8c0e786157",
+      "byteIdenticalToArt": true,
+      "metaGuid": "ddc041afe06553f8a3e12517b5286dd9",
+      "metaSha256": "ecae2030d8650a128bf3024f6a30df9ada516908205058e6763fe826744a42c3",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 2121,
+        "partialPixels": 919,
+        "opaquePixels": 18542,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/visual-fixes-20261017/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-card.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-card.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activity-card",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        410,
+        495
+      ],
+      "beforeSha256": "65fa2ecc7c6dfd167be54c2ab5c4a6f5a5bafc428c71f340c3da684f8c129f40",
+      "afterSha256": "a41f3f27cd9f85d52bd3739c3c58d02db1c10cd217f30c57a548560c631e76ee",
+      "artManifestSha256": "a41f3f27cd9f85d52bd3739c3c58d02db1c10cd217f30c57a548560c631e76ee",
+      "byteIdenticalToArt": true,
+      "metaGuid": "10231109403a5d00aea30b236849b047",
+      "metaSha256": "f4a89f3ebe4d6f716049e98f87f5d348174778d848cb8d02c4dd951f6477848a",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 8,
+        "partialPixels": 68,
+        "opaquePixels": 202874,
+        "cornerAlpha": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-icon-frame.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-icon-frame.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activity-icon-frame",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        170,
+        177
+      ],
+      "beforeSha256": "35bc07842eede8299c2935077dfafc24b3ad4495d227f15bbcb0016560459cd3",
+      "afterSha256": "135c1ce5dd1b55a37e9e4302f54026b6b40e971514fd751aa8c2ee2a76b6a016",
+      "artManifestSha256": "135c1ce5dd1b55a37e9e4302f54026b6b40e971514fd751aa8c2ee2a76b6a016",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8e84e5e4b63b56668dfad94f659cd717",
+      "metaSha256": "1e80a5f92063c54496d2fc9955d9beded2af62ad5ae6e4c027c41c603d3a7f7d",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 2115,
+        "partialPixels": 1260,
+        "opaquePixels": 26715,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-nav-selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-nav-selected.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activity-nav-selected",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        319,
+        106
+      ],
+      "beforeSha256": "c7e830a272da206835d404999531f24915d3a33bcc705cc640dabfbcca7abd6b",
+      "afterSha256": "bd0d6812d91f1db870bd012f4a3315e302efdd0d2e3eb40ccd6cb495dc0eb403",
+      "artManifestSha256": "bd0d6812d91f1db870bd012f4a3315e302efdd0d2e3eb40ccd6cb495dc0eb403",
+      "byteIdenticalToArt": true,
+      "metaGuid": "c4401606683750508ea62a1bb7441334",
+      "metaSha256": "7dde9b99ddc016ad1a669f75b086ee7ec7ee97f9c1de7a8fc223cd36971b48f5",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1574,
+        "partialPixels": 701,
+        "opaquePixels": 31539,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-nav.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-nav.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/activity-nav",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        319,
+        102
+      ],
+      "beforeSha256": "b8924e412f22648e258f6ce2be6f9cda916c8a062a364f2a776c74c38b5d2962",
+      "afterSha256": "eeacb8129de946ad89bbcbfce7e07b20de3efc099a710b1f975eba8f9390906e",
+      "artManifestSha256": "eeacb8129de946ad89bbcbfce7e07b20de3efc099a710b1f975eba8f9390906e",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8ba1eb0569fa5663995e45cd93ca3784",
+      "metaSha256": "17e859465c9489d17ebf4011dc9c54032a881b7569ef3db7c4319579da3d407b",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 44,
+        "partialPixels": 164,
+        "opaquePixels": 32330,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-button-normal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-button-normal.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/bag-button-normal",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        210,
+        68
+      ],
+      "beforeSha256": "78ca90551d0c8cbe25e1a6e30c5bad60cf11c9d53058a99e44998cb355a618be",
+      "afterSha256": "61f0f10ee420e26321cbf70c7baba2406b906b3f031c091b0fde8a1484a6df83",
+      "artManifestSha256": "61f0f10ee420e26321cbf70c7baba2406b906b3f031c091b0fde8a1484a6df83",
+      "byteIdenticalToArt": true,
+      "metaGuid": "4baadb2f7c9053df9757f6b62b57f29d",
+      "metaSha256": "7b19c21bcb962e33abfc92394104fbae255a2110120ea3f94afa7fba0b8aab16",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 389,
+        "partialPixels": 295,
+        "opaquePixels": 13596,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-button-primary.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-button-primary.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/bag-button-primary",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        308,
+        81
+      ],
+      "beforeSha256": "1e9caf5ee8cfd0e8c9182e214039d1fe11f18ec98164d6b81e81ec79dbf698d7",
+      "afterSha256": "551e48030c8bdfa70fd4ba7fe864d19dfd9d78fd354bef31450fe271a7f82e21",
+      "artManifestSha256": "551e48030c8bdfa70fd4ba7fe864d19dfd9d78fd354bef31450fe271a7f82e21",
+      "byteIdenticalToArt": true,
+      "metaGuid": "91a9830e96515223a20de000ddffab44",
+      "metaSha256": "cb1eff47b6d4c8e3a35656a5fdc9ea5f0d9af20f8902e3cd6f708fb5cb265bd3",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 2222,
+        "partialPixels": 764,
+        "opaquePixels": 21962,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/visual-fixes-20261017/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-item-badge.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-item-badge.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/bag-item-badge",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        159,
+        40
+      ],
+      "beforeSha256": "a723ffc81ecfa4a27f11df9a5711cd38e53e8d6d2763f290ea7bf8be5662cbe8",
+      "afterSha256": "6abed85b17e57b350b1b9ae7c12323beb89880ae2651901769382a4671ddfd84",
+      "artManifestSha256": "6abed85b17e57b350b1b9ae7c12323beb89880ae2651901769382a4671ddfd84",
+      "byteIdenticalToArt": true,
+      "metaGuid": "c4c13e4ba44d5377b4c8a569dd400080",
+      "metaSha256": "63595980b5ddb5fc3d55dfee158398c8d87b1834ecab162a6a75006e87db76cd",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 359,
+        "partialPixels": 165,
+        "opaquePixels": 5836,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-slot-selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-slot-selected.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/bag-slot-selected",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        192,
+        147
+      ],
+      "beforeSha256": "a6c6b8782d24842b38154fb7386e4e7143bbbbcbd1a8ae944ed70fee70aa9a97",
+      "afterSha256": "bf2a84e74503b295b32d02dbce809c9f32fdcba1fab8ee11b8656d8937ff488b",
+      "artManifestSha256": "bf2a84e74503b295b32d02dbce809c9f32fdcba1fab8ee11b8656d8937ff488b",
+      "byteIdenticalToArt": true,
+      "metaGuid": "afce2fc7b48155bc8641fc0ec37e24cd",
+      "metaSha256": "655518261b2edc3d2c3dadad634830f30e6bc4a4a7897cb1a743adcc53d727a0",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 859,
+        "partialPixels": 887,
+        "opaquePixels": 26478,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-slot.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-slot.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/bag-slot",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        187,
+        138
+      ],
+      "beforeSha256": "2951f6a4bf13c0ccfe11150835379a2eb4e151a331146ebf869363911745b37e",
+      "afterSha256": "a834e3d6e259f1e49591c872080fc57c9d30d43fbf63249ab6b58639af19e48e",
+      "artManifestSha256": "a834e3d6e259f1e49591c872080fc57c9d30d43fbf63249ab6b58639af19e48e",
+      "byteIdenticalToArt": true,
+      "metaGuid": "9635ac23ce5754ff9b46ef016b4155b4",
+      "metaSha256": "d194362cfd4e899b555aebbc5b42e979a3980517172b3698930da267df70307b",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 302,
+        "partialPixels": 654,
+        "opaquePixels": 24850,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-sort.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-sort.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/bag-sort",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        158,
+        54
+      ],
+      "beforeSha256": "baec826d67ac51f4fdd7a4d937f20c6365244475b79b3260cc206bcb07d3ad87",
+      "afterSha256": "fd5b9aa7c2d939900c6a3b483e29c320578d93269dacaa7cabd786e49db3badf",
+      "artManifestSha256": "fd5b9aa7c2d939900c6a3b483e29c320578d93269dacaa7cabd786e49db3badf",
+      "byteIdenticalToArt": true,
+      "metaGuid": "efc7f16e21cf51529e2f4cfb9af13119",
+      "metaSha256": "233366e74912ab300535946cca96bd6d46647d655739ec5f70a56b0c806a8cc7",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 268,
+        "partialPixels": 232,
+        "opaquePixels": 8032,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-tab-normal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-tab-normal.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/bag-tab-normal",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        236,
+        68
+      ],
+      "beforeSha256": "6a9fb035d7a1c4b301d1578ef91b0563818637bcdbfa75d39392619664925351",
+      "afterSha256": "aa8eb54f8aba36f66bc713a4a7b849c1c4c5bf03cf50c574b9a31aff9d5b24ec",
+      "artManifestSha256": "aa8eb54f8aba36f66bc713a4a7b849c1c4c5bf03cf50c574b9a31aff9d5b24ec",
+      "byteIdenticalToArt": true,
+      "metaGuid": "c10d4d577edc5aab98351f77efb2d8e2",
+      "metaSha256": "561b9d99cbf4bbab288c3ea221985ec0acf2b12139d74da53174b5d820a674b7",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 275,
+        "partialPixels": 542,
+        "opaquePixels": 15231,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-tab-selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/bag-tab-selected.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/bag-tab-selected",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        254,
+        68
+      ],
+      "beforeSha256": "072e7dfa8e464a5585ce3222e17f779ac7e421d62b5c2b17438e23b2ec0f9b44",
+      "afterSha256": "1a7dead1d30f6148eeea11cdcde9844f19fcc2b74e1d1b9400ae189caaab6e4e",
+      "artManifestSha256": "1a7dead1d30f6148eeea11cdcde9844f19fcc2b74e1d1b9400ae189caaab6e4e",
+      "byteIdenticalToArt": true,
+      "metaGuid": "5af0f415d13855c8b4421ec6e48712b4",
+      "metaSha256": "816e7e17f54837dfa44ec8127dc0ace4606764cf770b5c744835d8c04117a73a",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 297,
+        "partialPixels": 194,
+        "opaquePixels": 16781,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/final-polish-20261017/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/inventory-frame.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/inventory-frame.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/inventory-frame",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "beforeSha256": "e1d158558ea2ec79ca87729b3dec6e422cf170cda60588404700019fa9a98a1c",
+      "afterSha256": "4e074affb3f15b4771234f6cb782027419e97bbb2d872cd9d082ad5051c83af0",
+      "artManifestSha256": "4e074affb3f15b4771234f6cb782027419e97bbb2d872cd9d082ad5051c83af0",
+      "byteIdenticalToArt": true,
+      "metaGuid": "17743d7f967b57f8b0f75c00c159a421",
+      "metaSha256": "690c5fb08731219f2f4b8c08386c97d329b7aa130f084990bf70322ad1cb2550",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 314197,
+        "partialPixels": 0,
+        "opaquePixels": 1258451,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-badge.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-badge.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/mission-badge",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        126,
+        52
+      ],
+      "beforeSha256": "8ba12a1e1f240f615a74e5486509ba39934e7730e87fa986bd40be086b59afce",
+      "afterSha256": "5aa28a0c8490d752ee7ea14bf85480e9b416559aaeb00ad2e4c9fa3360a4a65b",
+      "artManifestSha256": "5aa28a0c8490d752ee7ea14bf85480e9b416559aaeb00ad2e4c9fa3360a4a65b",
+      "byteIdenticalToArt": true,
+      "metaGuid": "0aed2fbb1ce8576f8e4d9759a8fecc90",
+      "metaSha256": "11f4e874c08049cdcaf33ad934fb003aa3914292e86b6e92fb39af737f3a07ea",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1519,
+        "partialPixels": 540,
+        "opaquePixels": 4493,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-button-normal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-button-normal.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/mission-button-normal",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        264,
+        71
+      ],
+      "beforeSha256": "486da06df1ef5b4013413b29d30a1a1ce5b21cd9fdedfe0385c26acc528ea351",
+      "afterSha256": "701d2318dc3648c5ce37b81d9fd90cb965a6f08b2e411d4439beda86f4b04a2d",
+      "artManifestSha256": "701d2318dc3648c5ce37b81d9fd90cb965a6f08b2e411d4439beda86f4b04a2d",
+      "byteIdenticalToArt": true,
+      "metaGuid": "7105ed3f31c75640adf79842a41de42b",
+      "metaSha256": "15c97b9d7ed28ca48b49ae6849d94c516cb2f68754e50a9e3dae8fd04d1c9f5b",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 707,
+        "partialPixels": 1247,
+        "opaquePixels": 16790,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-button-primary.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-button-primary.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/mission-button-primary",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        316,
+        82
+      ],
+      "beforeSha256": "20bb4eb52c6df2bcdce2ab3d1d094e9cae8998b30601504e79cd066bed492c7f",
+      "afterSha256": "ae841f35d39868efa973c09228e99eddab6e54a93c028b9c71061f04467f748f",
+      "artManifestSha256": "ae841f35d39868efa973c09228e99eddab6e54a93c028b9c71061f04467f748f",
+      "byteIdenticalToArt": true,
+      "metaGuid": "fabcdf8ca31c52f1bdd13e7f17a7b34f",
+      "metaSha256": "534d5249017857e94dac30759039cd327abfb2583df7431fe86bd5fdac50470c",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 3212,
+        "partialPixels": 415,
+        "opaquePixels": 22285,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-row-selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-row-selected.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/mission-row-selected",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        603,
+        96
+      ],
+      "beforeSha256": "1dc98a063d4947de5bdf714843806f2395d00559bae6adfad63d2f0b945c7725",
+      "afterSha256": "8eeed70a708c6a649b2787d78ec63608b8f0b34c116f2ee0584706a1f2988306",
+      "artManifestSha256": "8eeed70a708c6a649b2787d78ec63608b8f0b34c116f2ee0584706a1f2988306",
+      "byteIdenticalToArt": true,
+      "metaGuid": "d0bf810629045ff493e844580ab7e4ed",
+      "metaSha256": "a79acaa71eda8da80b2369c695dd8ae7258dad454cfba27552fc492da257156e",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 2250,
+        "partialPixels": 2637,
+        "opaquePixels": 53001,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-row.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-row.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/mission-row",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        603,
+        95
+      ],
+      "beforeSha256": "d6ce3e723fef8ddce82f21c1595e5ef15ad5a72c805b28feda0dd7b50264bf8f",
+      "afterSha256": "5bbe573745020257623ee4a62fd09d1555ac7c34f73c3b47f20ba18103e6080b",
+      "artManifestSha256": "5bbe573745020257623ee4a62fd09d1555ac7c34f73c3b47f20ba18103e6080b",
+      "byteIdenticalToArt": true,
+      "metaGuid": "c3ad07cb21725547b39c3454c4dd99dd",
+      "metaSha256": "94b8822f2640c70233d5a986287ae736666ee5d9cc5210a22744ac875b49f8b3",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 3751,
+        "partialPixels": 2666,
+        "opaquePixels": 50868,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-tab-selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-tab-selected.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/mission-tab-selected",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        267,
+        69
+      ],
+      "beforeSha256": "719068e11ad2dabef7857fd8ebb672a79141f13b279b7f49c518c90493841977",
+      "afterSha256": "726fdb505d780d4a08f6bb6659d9161a4f93ca208562afeb78667d8743249b96",
+      "artManifestSha256": "726fdb505d780d4a08f6bb6659d9161a4f93ca208562afeb78667d8743249b96",
+      "byteIdenticalToArt": true,
+      "metaGuid": "933f568e31e35eeab2b57ebd4766c16e",
+      "metaSha256": "81774f107f2b8821528e765dbf4952c6c6a193d2a3aaac1a703c4d1f9f4bf987",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 166,
+        "partialPixels": 267,
+        "opaquePixels": 17990,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-tab.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/mission-tab.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/mission-tab",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        264,
+        70
+      ],
+      "beforeSha256": "035b8c753f990ada0dd5002725296140170574d60d8fb3f48b86c96eb3c2f4c9",
+      "afterSha256": "d07e5c2ab8a4bb9c185a72a23c1b8923211cf73356d539b56ccf88133dd6367f",
+      "artManifestSha256": "d07e5c2ab8a4bb9c185a72a23c1b8923211cf73356d539b56ccf88133dd6367f",
+      "byteIdenticalToArt": true,
+      "metaGuid": "1623da3ee8645b92979098f07187ee6b",
+      "metaSha256": "4bac43debd85ad0c91c3226226f2b50fa2ecd5f7b1d108342d0bcf5e32109b65",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 247,
+        "partialPixels": 1129,
+        "opaquePixels": 17104,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/final-polish-20261017/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/quests-frame.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GameplayFidelity20261016/quests-frame.png",
+      "resourcesKey": "UI/Ugui/GameplayFidelity20261016/quests-frame",
+      "usageWindow": "GameplayWindow (任务/背包/活动)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "beforeSha256": "ef79315ec0b46dd12c28c85adfc585cd06b10057137fbbf012b1e17a1a7c8a13",
+      "afterSha256": "8fb133338f4080d71fe47bc868d925d56949feb694b9e3d4aa0a31160bc6aba8",
+      "artManifestSha256": "8fb133338f4080d71fe47bc868d925d56949feb694b9e3d4aa0a31160bc6aba8",
+      "byteIdenticalToArt": true,
+      "metaGuid": "ffd33a86dacf5d4aab6a372a6268ba26",
+      "metaSha256": "d8eb2bf1605592073ba9a0c3b3880da209269fe0f879b361b9d62c36e10e83fe",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 316525,
+        "partialPixels": 0,
+        "opaquePixels": 1256123,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_button_primary.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_button_primary.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_button_primary",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        414,
+        80
+      ],
+      "beforeSha256": "b6169152be86cf564ed7e851734de1e0545f86fe2c4401d0cb13a7fbc0f88a5d",
+      "afterSha256": "8e8e685b75502e20ef737b92c5f5796223271fd9b99778f1ed4e3fdbdae71339",
+      "artManifestSha256": "8e8e685b75502e20ef737b92c5f5796223271fd9b99778f1ed4e3fdbdae71339",
+      "byteIdenticalToArt": true,
+      "metaGuid": "e1e8e6f09ee588c44776ad27d5aaccbf",
+      "metaSha256": "d11c0710118e2470b618f827130c02adb5691ca8cebc5559b87d62e5c71d9d81",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        39.0,
+        22.0,
+        39.0,
+        22.0
+      ],
+      "alpha": {
+        "transparentPixels": 3165,
+        "partialPixels": 850,
+        "opaquePixels": 29105,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_button_secondary.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_button_secondary.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_button_secondary",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        229,
+        58
+      ],
+      "beforeSha256": "1c06f1cfadaed60dfb66524cc5b0ce0c3be460c22b69642ec995fd60b0db4f3a",
+      "afterSha256": "047b7a751931003a12a3ba6c208e710a80e2f4dcd3910ddd13d1125279ac7f82",
+      "artManifestSha256": "047b7a751931003a12a3ba6c208e710a80e2f4dcd3910ddd13d1125279ac7f82",
+      "byteIdenticalToArt": true,
+      "metaGuid": "cf56359bcf5ad214675f43acd83a9438",
+      "metaSha256": "8ab80d11323eb5cc662636d93e0391de985c80ed0aa7f237c844aeeacde3aabd",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        21.0,
+        17.0,
+        21.0,
+        17.0
+      ],
+      "alpha": {
+        "transparentPixels": 119,
+        "partialPixels": 127,
+        "opaquePixels": 13036,
+        "cornerAlpha": [
+          0,
+          0,
+          37,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_close.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_close.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_close",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        83,
+        78
+      ],
+      "beforeSha256": "96a1aa7e212462dffcdf3cc1b172bde08ef5acd4b4cc2a3c2196dc110dafabd1",
+      "afterSha256": "46d60cda145c6a0adad6facecebdeb63e878e3fb8bb02444803f3c8d6b20f97a",
+      "artManifestSha256": "46d60cda145c6a0adad6facecebdeb63e878e3fb8bb02444803f3c8d6b20f97a",
+      "byteIdenticalToArt": true,
+      "metaGuid": "21372508518b87cce641c67aa1b18487",
+      "metaSha256": "756631bb314e2283c78925bed1832b6f3bdbec95e7e8272b76adf30445cd7e0e",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1319,
+        "partialPixels": 236,
+        "opaquePixels": 4919,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_crest.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_crest.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_crest",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        207,
+        188
+      ],
+      "beforeSha256": "b4b7a874679b92edd7ac20d32b53f763f4830ace66dc63745bf8aa49c5f69f58",
+      "afterSha256": "4700c42f692684ec15869d99d6165595580a5ee15efec40ec3b79e2d0f5ecb96",
+      "artManifestSha256": "4700c42f692684ec15869d99d6165595580a5ee15efec40ec3b79e2d0f5ecb96",
+      "byteIdenticalToArt": true,
+      "metaGuid": "a72be81a27c58eadac4751757c3a8850",
+      "metaSha256": "425e5b469e7c134b57f4fef24fdd183643c010e7cc8ce3b264ebc3323947574d",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 9643,
+        "partialPixels": 1006,
+        "opaquePixels": 28267,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_empty_shell.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_empty_shell.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_empty_shell",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "beforeSha256": "c9a83a1e7a05f9c2eac28a3daad30c7520db33d2ab1ecc8bd84963a7cc0f1a2a",
+      "afterSha256": "457fcd99a8c1514899228e3d9b06685786996a19ec30e06955b5e88ee273f77c",
+      "artManifestSha256": "457fcd99a8c1514899228e3d9b06685786996a19ec30e06955b5e88ee273f77c",
+      "byteIdenticalToArt": true,
+      "metaGuid": "43d65b9d78fb306b6d69fbcb40d1012e",
+      "metaSha256": "b7bc9d6dd743ac64f693ea65605b43643954a227bbfaad0240a1d830b70cab89",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 278945,
+        "partialPixels": 0,
+        "opaquePixels": 1293703,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_level_plate.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_level_plate.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_level_plate",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        171,
+        55
+      ],
+      "beforeSha256": "41fbfc94aed50e8464a44a0ec6ac5e12c3586512f35b7f553ee86c09ad2a164a",
+      "afterSha256": "7ea084b71217f530b9b30fe9a9e0ccb80425621cae97fb632dde279b332c888a",
+      "artManifestSha256": "7ea084b71217f530b9b30fe9a9e0ccb80425621cae97fb632dde279b332c888a",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8e7f56e326311bf1713d48ec510f225a",
+      "metaSha256": "d8794d04fca03552b3ddd1a9925dee58744932a84a10a221fc86798c3787aadc",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        21.0,
+        15.0,
+        21.0,
+        15.0
+      ],
+      "alpha": {
+        "transparentPixels": 1324,
+        "partialPixels": 760,
+        "opaquePixels": 7321,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_progress_track.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_progress_track.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_progress_track",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        392,
+        37
+      ],
+      "beforeSha256": "55e8bd9afa245a04fa49a027225ad8dcfdabbdfb8394fd731e53fe5c194a353e",
+      "afterSha256": "2f2b7b759e0b44dcf6a64372a202d8277ee23b4d2f04366ff3df96bf06efb286",
+      "artManifestSha256": "2f2b7b759e0b44dcf6a64372a202d8277ee23b4d2f04366ff3df96bf06efb286",
+      "byteIdenticalToArt": true,
+      "metaGuid": "5889d664e2e15fb8e19aed90ecfde003",
+      "metaSha256": "1654bdc7289436b5003d29e2d21088e4c83fa0518128b0dbb2d243814b118a8f",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        13.0,
+        12.0,
+        13.0,
+        12.0
+      ],
+      "alpha": {
+        "transparentPixels": 208,
+        "partialPixels": 604,
+        "opaquePixels": 13692,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_tab_normal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_tab_normal.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_tab_normal",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        273,
+        62
+      ],
+      "beforeSha256": "4dae246d6959d970c15f5a486e02b171f9e8c6c0dbb8dc8d6bc8887db97a9b7e",
+      "afterSha256": "9ecbdaed30a843442867e2d3a6c8279f44a017b2e8086d23b3f6af6e2464fd07",
+      "artManifestSha256": "9ecbdaed30a843442867e2d3a6c8279f44a017b2e8086d23b3f6af6e2464fd07",
+      "byteIdenticalToArt": true,
+      "metaGuid": "bca6943edd312899bb55e86f68fc0fc1",
+      "metaSha256": "166f7b204f00271ec4d4a58e3d701605c7f7c3fe40342763e69efb11362dfb56",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        18.0,
+        16.0,
+        18.0,
+        16.0
+      ],
+      "alpha": {
+        "transparentPixels": 113,
+        "partialPixels": 225,
+        "opaquePixels": 16588,
+        "cornerAlpha": [
+          0,
+          19,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/client/Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_tab_selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/GuildFidelity20261016/guild_tab_selected.png",
+      "resourcesKey": "UI/Ugui/GuildFidelity20261016/guild_tab_selected",
+      "usageWindow": "GuildWindow (帮会)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        316,
+        65
+      ],
+      "beforeSha256": "9a07128377b67a01c19de7fc1a43a02e4527a40265ea1aa5a0f47c6e8adac5ea",
+      "afterSha256": "26e213487c0690aae7e2c63a35a0f1e4540607873346b92ae73ea2a2f446c24b",
+      "artManifestSha256": "26e213487c0690aae7e2c63a35a0f1e4540607873346b92ae73ea2a2f446c24b",
+      "byteIdenticalToArt": true,
+      "metaGuid": "498898df875785ae0ec766a9b9b7a0a1",
+      "metaSha256": "c88220cb4b43e18b18e90a95b300dd7e9c5c90fe10d356c431d85af37f636d46",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        18.0,
+        16.0,
+        18.0,
+        16.0
+      ],
+      "alpha": {
+        "transparentPixels": 59,
+        "partialPixels": 70,
+        "opaquePixels": 20411,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/category-favorite.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/category-favorite.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/category-favorite",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        42,
+        43
+      ],
+      "beforeSha256": "93f0fee92b871b7e6c29079554cebb0c1b4dbb14661e661c14dcd2dc94113123",
+      "afterSha256": "9c23598572ce2e6d714ed9db38b4b2e14d99b7b736131984d8e78ab46c0d69fb",
+      "artManifestSha256": "9c23598572ce2e6d714ed9db38b4b2e14d99b7b736131984d8e78ab46c0d69fb",
+      "byteIdenticalToArt": true,
+      "metaGuid": "f0e83b3d45aa5f35bc5c531bb053fe98",
+      "metaSha256": "0dc2fdd5cef9015d26bd54370aea5ea45b1150b991cc43b6261f26ee1028b6bd",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1198,
+        "partialPixels": 184,
+        "opaquePixels": 424,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/empty-bubble.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/empty-bubble.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/empty-bubble",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        451,
+        150
+      ],
+      "beforeSha256": "b0fcee50ee179b8ef30c43445b26ea9521d1bb5683e422366bec5a0e36b6f04a",
+      "afterSha256": "820a7da5f1713a975f2da53b1aec26106aa35353c0dea2cdcb2878ef7c2f0e41",
+      "artManifestSha256": "820a7da5f1713a975f2da53b1aec26106aa35353c0dea2cdcb2878ef7c2f0e41",
+      "byteIdenticalToArt": true,
+      "metaGuid": "5616986042265fa2a16bff3c31dc8c53",
+      "metaSha256": "0699dd7b8ebaad1041db983c85854344be89b75eed590c29e30430c916bff949",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 12731,
+        "partialPixels": 1936,
+        "opaquePixels": 52983,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/native-frame.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/native-frame.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/native-frame",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "beforeSha256": "13042a5860f6189c28419b2140e347bdbbc3ca206756e20f4048130060c985df",
+      "afterSha256": "9bc845df074bd0176ecb843a2ddd1fa14f2885510905cfe862ab8e404645be65",
+      "artManifestSha256": "9bc845df074bd0176ecb843a2ddd1fa14f2885510905cfe862ab8e404645be65",
+      "byteIdenticalToArt": true,
+      "metaGuid": "0c397ae13d8159b19865ef06063d7768",
+      "metaSha256": "2cc249c3d65769605c6ca0ca2e65605124043948612e2991b2b4db040850e3c6",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 356090,
+        "partialPixels": 12726,
+        "opaquePixels": 1203832,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/page-next.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/page-next.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/page-next",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "fidelity_runtime_entry",
+      "dimensions": [
+        47,
+        48
+      ],
+      "beforeSha256": "eb30272382b2ec69ecc3a5023274d24d3fc3c74b98a6971cbdf7b38da2ce8755",
+      "afterSha256": "744dc382327975319ed10072944135ba81fb8f48f53272f87eed90c22ff63860",
+      "artManifestSha256": "744dc382327975319ed10072944135ba81fb8f48f53272f87eed90c22ff63860",
+      "byteIdenticalToArt": true,
+      "metaGuid": "7fb53d8c4d265a20baaab62ba8e467ff",
+      "metaSha256": "75ff2f9dec2ddaca9a5cc2ac08587f0e450e8cb4bd1bb64ad3dd105c88827c62",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 753,
+        "partialPixels": 236,
+        "opaquePixels": 1267,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/page-previous.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/page-previous.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/page-previous",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "fidelity_runtime_entry",
+      "dimensions": [
+        46,
+        48
+      ],
+      "beforeSha256": "d0242118e88e7cf7fb4928a45568f277a47d1547a22cbe99a87a33d8f8a7d86b",
+      "afterSha256": "3f9fa4e69c386efa9bfbc0003116b7bb8294f4a5ab57579cf9b5ec3eb68c8acf",
+      "artManifestSha256": "3f9fa4e69c386efa9bfbc0003116b7bb8294f4a5ab57579cf9b5ec3eb68c8acf",
+      "byteIdenticalToArt": true,
+      "metaGuid": "06b9ac2a962e566290e66c1ccd3d1f65",
+      "metaSha256": "30fd00f93af91e6e198c565b9d27e8cddb5d91c929a424771e17e9e15c59ae9f",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 712,
+        "partialPixels": 236,
+        "opaquePixels": 1260,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/search-button.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/search-button.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/search-button",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        78,
+        63
+      ],
+      "beforeSha256": "65be550380bbcca27284361298fce1610cb111e7284b6023d58317323e562e9a",
+      "afterSha256": "20011fe9886646e8ef7eebbc9bc34930a5136b4aa22c56d1e98a6e93cbc5abe2",
+      "artManifestSha256": "20011fe9886646e8ef7eebbc9bc34930a5136b4aa22c56d1e98a6e93cbc5abe2",
+      "byteIdenticalToArt": true,
+      "metaGuid": "dd1ca110d4a1566d8ed0809bb4fd51ce",
+      "metaSha256": "855f233716da82eba15dc457b67cf9cb56fc9ed41d379350bfa5c0b3b76221a6",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1169,
+        "partialPixels": 220,
+        "opaquePixels": 3525,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/section-normal-short.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/section-normal-short.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/section-normal-short",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        93,
+        147
+      ],
+      "beforeSha256": "038b5713513e8433a298892a9afb842c072892f21ed3c666b2ecc40b5600dfb0",
+      "afterSha256": "5a9e5b01dec548710acb8305af4dd56dddab4a903bee840eb3afcddc9849da51",
+      "artManifestSha256": "5a9e5b01dec548710acb8305af4dd56dddab4a903bee840eb3afcddc9849da51",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b37fa5e168b95b4393a994e5ebbda6b1",
+      "metaSha256": "8adfa4cc1a87e4879ff77461c26c801a0ccbe26dbd4a2dd9de676638212c3d20",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 2376,
+        "partialPixels": 551,
+        "opaquePixels": 10744,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/section-normal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/section-normal.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/section-normal",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        93,
+        160
+      ],
+      "beforeSha256": "233a6e9feba582fc51bad7567e9801bcc5b35a14b18267849fd2eb7b292c99ce",
+      "afterSha256": "90e57daa865d9871b2c837d649a01ee28fc9f8cca9366bbcaef80d1490ce9d57",
+      "artManifestSha256": "90e57daa865d9871b2c837d649a01ee28fc9f8cca9366bbcaef80d1490ce9d57",
+      "byteIdenticalToArt": true,
+      "metaGuid": "192387ff78d15b739157b3974ed4effd",
+      "metaSha256": "3ed65d7418d03dff33789c7f7b2a44d872e6de9ad85852e23d04f773f19171a0",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 2566,
+        "partialPixels": 636,
+        "opaquePixels": 11678,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/section-selected-short.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/section-selected-short.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/section-selected-short",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        93,
+        147
+      ],
+      "beforeSha256": "db42aa718c6ee39f6573a04195e9cef4882809d291f327a9be2b65d477138896",
+      "afterSha256": "67237c5d2e1e28a29528f6854a518547609726ad2e44f2f50f95c783223d98e1",
+      "artManifestSha256": "67237c5d2e1e28a29528f6854a518547609726ad2e44f2f50f95c783223d98e1",
+      "byteIdenticalToArt": true,
+      "metaGuid": "efd13ace3d275f00aaa537d8690f04ce",
+      "metaSha256": "2e6989fa172a746d0c36909ca845589c6db0daf1c5464794e786a72e8d574eb1",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1342,
+        "partialPixels": 384,
+        "opaquePixels": 11945,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/section-selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/JubaozhaiFidelity20261016/section-selected.png",
+      "resourcesKey": "UI/Ugui/JubaozhaiFidelity20261016/section-selected",
+      "usageWindow": "JubaozhaiWindow (聚宝斋)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        93,
+        159
+      ],
+      "beforeSha256": "33098f2b45f93bbd268a86ba925567df8d3be52dbe4312800e2caff0efac3382",
+      "afterSha256": "89714ecb0583fefc0f279a5f6aa2438765a5b80285b64da4381421ee9b424c15",
+      "artManifestSha256": "89714ecb0583fefc0f279a5f6aa2438765a5b80285b64da4381421ee9b424c15",
+      "byteIdenticalToArt": true,
+      "metaGuid": "3b323a9301ed5724969d8c18c682663e",
+      "metaSha256": "5b254c78397fbbbd385f5b4fd8e074797d7812ba6b45e08c53f2653caf6ed988",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1410,
+        "partialPixels": 408,
+        "opaquePixels": 12969,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_all.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_all.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_button_all",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        298,
+        70
+      ],
+      "beforeSha256": "9a13813af92f013a9bb61e5a07f20f23860d7248c1e27da715ca50e164347b88",
+      "afterSha256": "7678b5860166b1fc110a8efa7e49cf69c63cc56c0c3a4369ea0e7ee54c318ed3",
+      "artManifestSha256": "7678b5860166b1fc110a8efa7e49cf69c63cc56c0c3a4369ea0e7ee54c318ed3",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b5401e29b5d84daf4f2f0438d63aad51",
+      "metaSha256": "384abd72f9c4bfd3fb807865279040dbf86b9dbd597d861de3bbdfb158b3b470",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        42.0,
+        22.0,
+        42.0,
+        22.0
+      ],
+      "alpha": {
+        "transparentPixels": 1703,
+        "partialPixels": 403,
+        "opaquePixels": 18754,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_claim.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_claim.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_button_claim",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        234,
+        66
+      ],
+      "beforeSha256": "130eeb6bcec3a439c0e848042a70f7ca2b02cd848c4ce80c1e61c2972c236b56",
+      "afterSha256": "665c786ec424ceb07a2e6487fd4cdea9f708a3f0aaaecc685612e91df1ab3781",
+      "artManifestSha256": "665c786ec424ceb07a2e6487fd4cdea9f708a3f0aaaecc685612e91df1ab3781",
+      "byteIdenticalToArt": true,
+      "metaGuid": "e70e8cf5d0ad036c3a2b552d0488c3d5",
+      "metaSha256": "80195a02792d18008f135ff84f89aa0752c8cdc2e5fde72f60a508b24e923298",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        32.0,
+        20.0,
+        32.0,
+        20.0
+      ],
+      "alpha": {
+        "transparentPixels": 1844,
+        "partialPixels": 339,
+        "opaquePixels": 13261,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_clean.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_clean.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_button_clean",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        191,
+        66
+      ],
+      "beforeSha256": "40140fc077e7b18aa583879b611fbf6b170c73b00d5d4e40200e6498855b02db",
+      "afterSha256": "8937dbdaddd6b108b28198086d3cc14c4b54547a52bb550de21f8e0553744360",
+      "artManifestSha256": "8937dbdaddd6b108b28198086d3cc14c4b54547a52bb550de21f8e0553744360",
+      "byteIdenticalToArt": true,
+      "metaGuid": "7f2fd8a7823e0e8fd767178fa0dedd67",
+      "metaSha256": "c1d701868f2cb7d917d786a9ed63c497846c4ed50ca2294855fa9b5db7d99562",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        28.0,
+        18.0,
+        28.0,
+        18.0
+      ],
+      "alpha": {
+        "transparentPixels": 1766,
+        "partialPixels": 445,
+        "opaquePixels": 10395,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_delete.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_delete.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_button_delete",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        154,
+        56
+      ],
+      "beforeSha256": "f20fee898afb81ebf4735481eef8b104b913b7c86e081c1f55d4ffc61e2a85a9",
+      "afterSha256": "8d7e647409a19e80ee454b90d0c4d5aca71d73545ffd2c5fecde546478ef5487",
+      "artManifestSha256": "8d7e647409a19e80ee454b90d0c4d5aca71d73545ffd2c5fecde546478ef5487",
+      "byteIdenticalToArt": true,
+      "metaGuid": "bcd7ca760fff9b4e604db218cf3618bf",
+      "metaSha256": "ce97245cfd923bede13871e727652872f940f33c1e9596c2d63397b79ebc3694",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        25.0,
+        16.0,
+        25.0,
+        16.0
+      ],
+      "alpha": {
+        "transparentPixels": 719,
+        "partialPixels": 479,
+        "opaquePixels": 7426,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_event.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_button_event.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_button_event",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        168,
+        56
+      ],
+      "beforeSha256": "9b1515d37dad4f4de37aad0d16add1b8b078e9f410dd6de28231fef0c6a6c3e4",
+      "afterSha256": "60dbee17a5127fa1ea6dfb1622c42006385020b47f913c9ac16fce0a5b575b3e",
+      "artManifestSha256": "60dbee17a5127fa1ea6dfb1622c42006385020b47f913c9ac16fce0a5b575b3e",
+      "byteIdenticalToArt": true,
+      "metaGuid": "3b3271ea65315f068f5eef1374db159e",
+      "metaSha256": "36cb59beda14ac75291a83815fb80c2311ff323eb9895a1d54885b1ed5aca843",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        20.0,
+        16.0,
+        20.0,
+        16.0
+      ],
+      "alpha": {
+        "transparentPixels": 994,
+        "partialPixels": 252,
+        "opaquePixels": 8162,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_category_all.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_category_all.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_category_all",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        37,
+        37
+      ],
+      "beforeSha256": "f6e9241d96770bade7b1d6ee7cfbefbaf586cf1b32aabde04057db94ae7364b3",
+      "afterSha256": "e8b20a7e74a0ec8c0c9be9d734fc389a0d4c98e3b5b6da2dd3d463e1d19bbb08",
+      "artManifestSha256": "e8b20a7e74a0ec8c0c9be9d734fc389a0d4c98e3b5b6da2dd3d463e1d19bbb08",
+      "byteIdenticalToArt": true,
+      "metaGuid": "e4f5c87f1b6547880c69ec3083d983e5",
+      "metaSha256": "0438a2050f16d317bbe47a5937485c4a3ec064b96ef3bb172c0cb4e7cd7a3bc9",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 700,
+        "partialPixels": 81,
+        "opaquePixels": 588,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_close.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_close.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_close",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        80,
+        69
+      ],
+      "beforeSha256": "07da63702f4eb60cad50b6931d8dad8694b7c1bf77579f251c50266132ffc5ea",
+      "afterSha256": "cdc66ce59414f393966c35c45870121e1845b6d8152a7ef795a0602ff98d6e3d",
+      "artManifestSha256": "cdc66ce59414f393966c35c45870121e1845b6d8152a7ef795a0602ff98d6e3d",
+      "byteIdenticalToArt": true,
+      "metaGuid": "7f9f5fb292c8df17d00c7bb1d4a8b7ac",
+      "metaSha256": "acb79a434de16155537c0f0e77b2fd5f302cadba0b77d1508bdfdd67742423bd",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1605,
+        "partialPixels": 638,
+        "opaquePixels": 3277,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_empty_frame.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_empty_frame.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_empty_frame",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "fidelity_runtime_entry",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "beforeSha256": "7aedd0a9caf1086848bdda8501d0a88a2285deb4eb2272f5751fa168fa9219d1",
+      "afterSha256": "926053c82f46f6921ddc75520fdf2eae889f4313e74573dcc30d74a67d745767",
+      "artManifestSha256": "926053c82f46f6921ddc75520fdf2eae889f4313e74573dcc30d74a67d745767",
+      "byteIdenticalToArt": true,
+      "metaGuid": "2acecfb537be0d337365e194f6e3df9f",
+      "metaSha256": "76f004dd91be12b585ff2cc3525c92097e4726cd7e1886084483488bae591e1b",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 376773,
+        "partialPixels": 15232,
+        "opaquePixels": 1180643,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_coin.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_coin.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_reward_coin",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        116,
+        98
+      ],
+      "beforeSha256": "a01e72ecfb786f61d116f2960fd97d7386a083a9d97335ca9140598522f8c4d1",
+      "afterSha256": "aa08125ae89dd586bb65b392c28dc8a9739f71fe44b6c2051594dc74348f1b38",
+      "artManifestSha256": "aa08125ae89dd586bb65b392c28dc8a9739f71fe44b6c2051594dc74348f1b38",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b98831b43055f839bda642b29aed3217",
+      "metaSha256": "4655e252afccaa389754d9da7c11cec45aeb12791f9510975bd3d0e0f2ca99c8",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 770,
+        "partialPixels": 387,
+        "opaquePixels": 10211,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_crystal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_crystal.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_reward_crystal",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        116,
+        98
+      ],
+      "beforeSha256": "0cdd4ef4c8838409317d55a4217b3ffb286673920886cc979aa3395cc8d35d55",
+      "afterSha256": "5966204e242762d7937441da29f712341ae11de8ca3af8ee759bdaef825ed60b",
+      "artManifestSha256": "5966204e242762d7937441da29f712341ae11de8ca3af8ee759bdaef825ed60b",
+      "byteIdenticalToArt": true,
+      "metaGuid": "a6763906a24d12bcfe2e0893c6d89dfe",
+      "metaSha256": "85296ba8f88a9218964fc9eac4fdbfe0aa8a2b605ced1018a4cffbfa49e8f901",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1054,
+        "partialPixels": 380,
+        "opaquePixels": 9934,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_gourd.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_gourd.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_reward_gourd",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        116,
+        98
+      ],
+      "beforeSha256": "0b2c964de6c69f505f7186939f3045060b5395cf5a8aefee3607858be28fd6b5",
+      "afterSha256": "8a1d0cb35ef1c85fc12b843a95fcf25b7506429e36a3c6f4ee27c61182eaaf96",
+      "artManifestSha256": "8a1d0cb35ef1c85fc12b843a95fcf25b7506429e36a3c6f4ee27c61182eaaf96",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8de465a9e44b696889f26495f3384852",
+      "metaSha256": "dbbc420f3099db1fe3fb55a67b75e49b6b88373addc25ceedfaf27378c50ab16",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1075,
+        "partialPixels": 380,
+        "opaquePixels": 9913,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_mooncake.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_mooncake.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_reward_mooncake",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        116,
+        98
+      ],
+      "beforeSha256": "4c4de1f818220aa09c31bda174d0ff78678ee397367022794c43859ebdd45f51",
+      "afterSha256": "10406cf5eb8a8066a3a7b73b7e4cc8237b9a25ce5489d291dd4168ddc74720f2",
+      "artManifestSha256": "10406cf5eb8a8066a3a7b73b7e4cc8237b9a25ce5489d291dd4168ddc74720f2",
+      "byteIdenticalToArt": true,
+      "metaGuid": "a27de550b6b7e9b1bd923730583019a7",
+      "metaSha256": "96f2d3171153455ce902a9684725824b8b3a90a37807649ff44f8d474503b684",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 979,
+        "partialPixels": 315,
+        "opaquePixels": 10074,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_slot.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_reward_slot.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_reward_slot",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        116,
+        98
+      ],
+      "beforeSha256": "e169239dce633412d6bfddfb91fd7a337d67f2efb27d9b9ade6ae1e496c306e0",
+      "afterSha256": "01cc3f6e63f789cf4685b5d005b4e74a75bb07e7c34451aae525a730727376a2",
+      "artManifestSha256": "01cc3f6e63f789cf4685b5d005b4e74a75bb07e7c34451aae525a730727376a2",
+      "byteIdenticalToArt": true,
+      "metaGuid": "499f7e5d720b8ce66e302d6c4b487b94",
+      "metaSha256": "8aac7c7a2fe1a4d237dc4983c14b49c6f6f7f41dcb25db4727f63b4677564c09",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "alpha": {
+        "transparentPixels": 742,
+        "partialPixels": 311,
+        "opaquePixels": 10315,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_row_selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_row_selected.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_row_selected",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        538,
+        81
+      ],
+      "beforeSha256": "2b05ac39dbb8bbd5f1c9d0c0de933321d1835e462085b483517695510c326a2e",
+      "afterSha256": "b1f30ed1e8c0c3d04592f5722e88dd9b23c58544bd8581beacd33e337228cd1b",
+      "artManifestSha256": "b1f30ed1e8c0c3d04592f5722e88dd9b23c58544bd8581beacd33e337228cd1b",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b685f31302c2f3615fa106d2f58a58f5",
+      "metaSha256": "7528db63c41aac17d5bbbee43eeeafcb6ee09fdfa7b049c889b88e061d2175c9",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        24.0,
+        12.0,
+        16.0,
+        12.0
+      ],
+      "alpha": {
+        "transparentPixels": 906,
+        "partialPixels": 768,
+        "opaquePixels": 41904,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_tab_normal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_tab_normal.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_tab_normal",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        148,
+        58
+      ],
+      "beforeSha256": "1af158caf2e7baa652dcc0c8cc15cacb35d8afc920f877f6c9e312932c794a51",
+      "afterSha256": "432c65e8a95f9b2595896bdca6116d036794ec79ce9a08990663e4e2978f18ea",
+      "artManifestSha256": "432c65e8a95f9b2595896bdca6116d036794ec79ce9a08990663e4e2978f18ea",
+      "byteIdenticalToArt": true,
+      "metaGuid": "4b7ede7d2af78da7c4b8b28fcc8b6fcf",
+      "metaSha256": "d5721e8ec5beb21e353b1225e24f7b0ecae69974657fb915338fd1dc6974d480",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        18.0,
+        14.0,
+        18.0,
+        14.0
+      ],
+      "alpha": {
+        "transparentPixels": 934,
+        "partialPixels": 290,
+        "opaquePixels": 7360,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          255
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/client/Assets/Resources/UI/Ugui/MailV1Fidelity/mail_tab_selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/MailV1Fidelity/mail_tab_selected.png",
+      "resourcesKey": "UI/Ugui/MailV1Fidelity/mail_tab_selected",
+      "usageWindow": "MailWindow (仙笺邮件)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        148,
+        58
+      ],
+      "beforeSha256": "442cc5835849f7f842cb98b6a6dfab6e652e158d4cd92ab0c1c4e09df51f4c72",
+      "afterSha256": "650486dd5712a5cb649e8f584cea0f790fd0d5c0f45ac8cb68b2b7128379cdf3",
+      "artManifestSha256": "650486dd5712a5cb649e8f584cea0f790fd0d5c0f45ac8cb68b2b7128379cdf3",
+      "byteIdenticalToArt": true,
+      "metaGuid": "4fdd749173f181bd4f5be4cf17157e61",
+      "metaSha256": "409120b3120bf5292b32fb723062136b7b2d8d9973f6662fb7ca6935ff49de14",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        18.0,
+        14.0,
+        18.0,
+        14.0
+      ],
+      "alpha": {
+        "transparentPixels": 461,
+        "partialPixels": 211,
+        "opaquePixels": 7912,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/scene-select-ui-v1/fidelity-20261016/runtime-assets/button_primary.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SceneSelectV1/Fidelity20261016/button_primary.png",
+      "resourcesKey": "UI/Ugui/SceneSelectV1/Fidelity20261016/button_primary",
+      "usageWindow": "SceneChannelWindow (选线/选择场景)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        270,
+        69
+      ],
+      "beforeSha256": "6ca5fa08841834f3f60a64396e48041f3472fe496108723aa3dd69547b70564b",
+      "afterSha256": "45d860990b460ef0863b5b3dd45201fe54324704491a8c5e72a1ce1f77e90c0c",
+      "artManifestSha256": "45d860990b460ef0863b5b3dd45201fe54324704491a8c5e72a1ce1f77e90c0c",
+      "byteIdenticalToArt": true,
+      "metaGuid": "763f6e81a073eb69685f4ecda2439aab",
+      "metaSha256": "f208fa266c4c128aea76cc9e590c9cfb94dfc26c67387ed72b0488f0ca966ec8",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1126,
+        "partialPixels": 144,
+        "opaquePixels": 17360,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/scene-select-ui-v1/fidelity-20261016/runtime-assets/button_secondary.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SceneSelectV1/Fidelity20261016/button_secondary.png",
+      "resourcesKey": "UI/Ugui/SceneSelectV1/Fidelity20261016/button_secondary",
+      "usageWindow": "SceneChannelWindow (选线/选择场景)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        263,
+        69
+      ],
+      "beforeSha256": "fa6b25c8a6ebb51f90c2d22742426c377bb5620340ee87d3255161c365d901ac",
+      "afterSha256": "120a463fc14ed4ae150f90684cb5a8d800c99d26d35fb49fd4d7059028a1c0b0",
+      "artManifestSha256": "120a463fc14ed4ae150f90684cb5a8d800c99d26d35fb49fd4d7059028a1c0b0",
+      "byteIdenticalToArt": true,
+      "metaGuid": "18430a69b164f357a311168c8141710a",
+      "metaSha256": "d299628ce111be0805bf66932594b7ed0f01978f1d20646406a6461307f185b1",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1097,
+        "partialPixels": 141,
+        "opaquePixels": 16909,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/scene-select-ui-v1/fidelity-20261016/runtime-assets/row_normal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SceneSelectV1/Fidelity20261016/row_normal.png",
+      "resourcesKey": "UI/Ugui/SceneSelectV1/Fidelity20261016/row_normal",
+      "usageWindow": "SceneChannelWindow (选线/选择场景)",
+      "category": "ui_component",
+      "matchMode": "fidelity_runtime_entry",
+      "dimensions": [
+        393,
+        60
+      ],
+      "beforeSha256": "b30ea689a3584507a175731e6d2ce64bec5f9e71efd47cecd66fbc63c9bf27e6",
+      "afterSha256": "530ded33cde3396a7569713cbd3009cf94ef8c934de85e99967ca1bf8162ab9d",
+      "artManifestSha256": "530ded33cde3396a7569713cbd3009cf94ef8c934de85e99967ca1bf8162ab9d",
+      "byteIdenticalToArt": true,
+      "metaGuid": "65a484a351f0df399b1eab4598a13d0a",
+      "metaSha256": "67008e41a939b9f0db5ae9256104783a15bea40c07c63dde6df7b82285f12964",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 102,
+        "partialPixels": 999,
+        "opaquePixels": 22479,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/scene-select-ui-v1/fidelity-20261016/runtime-assets/row_selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SceneSelectV1/Fidelity20261016/row_selected.png",
+      "resourcesKey": "UI/Ugui/SceneSelectV1/Fidelity20261016/row_selected",
+      "usageWindow": "SceneChannelWindow (选线/选择场景)",
+      "category": "ui_component",
+      "matchMode": "fidelity_runtime_entry",
+      "dimensions": [
+        394,
+        63
+      ],
+      "beforeSha256": "34671835320886125c04354ab3e7a743ae298e3d1c894e424fbe97f1979ce8c8",
+      "afterSha256": "c589cfd846f62ca0873d8e97d3c9565b7fd449985fc6212b7e6c37cf35f73e0a",
+      "artManifestSha256": "c589cfd846f62ca0873d8e97d3c9565b7fd449985fc6212b7e6c37cf35f73e0a",
+      "byteIdenticalToArt": true,
+      "metaGuid": "ab7713639a9c7a8b9fad0872ddf11c2f",
+      "metaSha256": "6dfd11a76543b57ab4ce0961cc043b11f877b130a3a4098703a46dabedb2d62f",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 518,
+        "partialPixels": 89,
+        "opaquePixels": 24215,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/scene-select-ui-v1/fidelity-20261016/runtime-assets/scene_skin.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SceneSelectV1/Fidelity20261016/scene_skin.png",
+      "resourcesKey": "UI/Ugui/SceneSelectV1/Fidelity20261016/scene_skin",
+      "usageWindow": "SceneChannelWindow (选线/选择场景)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "fidelity_runtime_entry",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "beforeSha256": "354546cc8b9a311347017f891d91b8f60b687926d0478440aedc78107fa0b854",
+      "afterSha256": "58d4058aca39bb7d24962a6539972db3f9af9a75cc6831f110bbcd2960f7f906",
+      "artManifestSha256": "58d4058aca39bb7d24962a6539972db3f9af9a75cc6831f110bbcd2960f7f906",
+      "byteIdenticalToArt": true,
+      "metaGuid": "76b0882a720609b1db9975ad1a014688",
+      "metaSha256": "50a81d61ca208da67b04ec393d63c4d7f5e1d5ae28ea41e183ca7644ea2a1923",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 598426,
+        "partialPixels": 9284,
+        "opaquePixels": 964124,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/button_normal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/button_normal.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/button_normal",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        181,
+        48
+      ],
+      "beforeSha256": "baa50b41308fb93c5f5ec98c948cb7dd1931aa89c867a9e346774c66cea9d37d",
+      "afterSha256": "fb99763dc8000da28aa9b128081251b2d12be5c84311da0c5936d3cdd872fce5",
+      "artManifestSha256": "fb99763dc8000da28aa9b128081251b2d12be5c84311da0c5936d3cdd872fce5",
+      "byteIdenticalToArt": true,
+      "metaGuid": "53226017efbca0343b638b6e0979047b",
+      "metaSha256": "272f0ed1321c21f591a9d5e333626d3ef0ab6e57189b2e95f337c230d7c284c3",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        20.0,
+        10.0,
+        20.0,
+        10.0
+      ],
+      "alpha": {
+        "transparentPixels": 489,
+        "partialPixels": 240,
+        "opaquePixels": 7959,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/button_selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/button_selected.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/button_selected",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        149,
+        48
+      ],
+      "beforeSha256": "4cd829aa3fe0f67d8450de41d950f4eef964be66b07e99f0cfe073ce53db2ccb",
+      "afterSha256": "381eef077890e046f6c71141e42f88739ea1d58315f0be990c36c2d5eb57b7d9",
+      "artManifestSha256": "381eef077890e046f6c71141e42f88739ea1d58315f0be990c36c2d5eb57b7d9",
+      "byteIdenticalToArt": true,
+      "metaGuid": "541421c3d264f334989a21df728715a4",
+      "metaSha256": "155a31386ecbf696b81f08f110d4a703adffb4003c184ea1ea7a5989e1d18c51",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        20.0,
+        10.0,
+        20.0,
+        10.0
+      ],
+      "alpha": {
+        "transparentPixels": 93,
+        "partialPixels": 23,
+        "opaquePixels": 7036,
+        "cornerAlpha": [
+          0,
+          255,
+          0,
+          255
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/groups_skin.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/groups_skin.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/groups_skin",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "beforeSha256": "a85bb2c74ba7dcc3adb08c54c47d362c78e318f9f6c620241ac98870669ed407",
+      "afterSha256": "f9eaf3c519e4b8afed2a6cb13c00b904d315a46f6acfb721661f4ca738766429",
+      "artManifestSha256": "f9eaf3c519e4b8afed2a6cb13c00b904d315a46f6acfb721661f4ca738766429",
+      "byteIdenticalToArt": true,
+      "metaGuid": "fed96ca7857096645943bf8d4b3a3a4c",
+      "metaSha256": "518146d15623c4cba52a3e0aaf75df6270f36b71fa553a18db156d099ccc1053",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 332384,
+        "partialPixels": 13669,
+        "opaquePixels": 1225781,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/input_field.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/input_field.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/input_field",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        854,
+        62
+      ],
+      "beforeSha256": "3db3263f3f34cc9e0d7e4bc4a0a836581014fb2603148b9d32c2c7a5189f6b7f",
+      "afterSha256": "be75a63f8c7041d825a600fe4b5cd620c8f2dba17ccb731b50f49fde01b0a9d4",
+      "artManifestSha256": "be75a63f8c7041d825a600fe4b5cd620c8f2dba17ccb731b50f49fde01b0a9d4",
+      "byteIdenticalToArt": true,
+      "metaGuid": "22dbb72fb4d1ee84a8290380a0e496bb",
+      "metaSha256": "86c408620bed0593238bf8eaec4966b9b8f319dd4c5a1cac2137bff6961520b6",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        32.0,
+        20.0,
+        32.0,
+        20.0
+      ],
+      "alpha": {
+        "transparentPixels": 649,
+        "partialPixels": 2096,
+        "opaquePixels": 50203,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/message_bubble.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/message_bubble.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/message_bubble",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        420,
+        50
+      ],
+      "beforeSha256": "0f32dd90383ffa7b42a3780487568bc40901ec8a5507334702012029db533b3d",
+      "afterSha256": "35721c24dc10caf18940be57c74cc85620c77fa5b581fd784eaa2b0181664901",
+      "artManifestSha256": "35721c24dc10caf18940be57c74cc85620c77fa5b581fd784eaa2b0181664901",
+      "byteIdenticalToArt": true,
+      "metaGuid": "461cd1ab755893d44a95d603217126a0",
+      "metaSha256": "445fd7a557182733a7d2b01aef370a97aae094a7e6f31f976e81a88c6790097a",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        17.0,
+        9.0,
+        17.0,
+        9.0
+      ],
+      "alpha": {
+        "transparentPixels": 444,
+        "partialPixels": 1135,
+        "opaquePixels": 19421,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/rumor_beast.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/rumor_beast.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/rumor_beast",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        151,
+        124
+      ],
+      "beforeSha256": "9463faecdfb5a78e40c076d044c01a0ad9234492b39731c3ef79b2f44939c223",
+      "afterSha256": "3b630ae9943d3d86335cecabcc5bb93c92a6002a1cbfedcb69be91c0a207851e",
+      "artManifestSha256": "3b630ae9943d3d86335cecabcc5bb93c92a6002a1cbfedcb69be91c0a207851e",
+      "byteIdenticalToArt": true,
+      "metaGuid": "bc3b01f1d2a05f84da8aedd9144c4195",
+      "metaSha256": "54019d50bb477634a6ff2e310e28a9312b06ca5c975e4559a71a96201770ac8e",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 5224,
+        "partialPixels": 388,
+        "opaquePixels": 13112,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/rumor_ended.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/rumor_ended.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/rumor_ended",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        151,
+        78
+      ],
+      "beforeSha256": "5d09a094333be37682b7ae799f4ca3c0b676f9c6b6032a17b4eb542c69eda825",
+      "afterSha256": "0539cf34a2a4b301f584234f783edf7df7b0a7a502a9ea956056534a51258124",
+      "artManifestSha256": "0539cf34a2a4b301f584234f783edf7df7b0a7a502a9ea956056534a51258124",
+      "byteIdenticalToArt": true,
+      "metaGuid": "06cb4d846f5cbd84e92de58d820dc26f",
+      "metaSha256": "c30c1549bbe97b35df51e07cf91c93d4210470954103050e1e3dae7142bba349",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 2686,
+        "partialPixels": 485,
+        "opaquePixels": 8607,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/rumor_skin.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/rumor_skin.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/rumor_skin",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "beforeSha256": "2d3c376aeb519fb88015e470dd45fe69f61e0734928f0abdd665b8a43391b5d5",
+      "afterSha256": "162b50a93e4c1f21c895fd672d51d426f930af7b4209fe6b0fd9439c6559d0ad",
+      "artManifestSha256": "162b50a93e4c1f21c895fd672d51d426f930af7b4209fe6b0fd9439c6559d0ad",
+      "byteIdenticalToArt": true,
+      "metaGuid": "5114771e74054f64786245f43e1b1642",
+      "metaSha256": "d8d5a8767e4506f3470ab49e550daca86f6c1fa1b6c01bc9e09961e6366da45b",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 332434,
+        "partialPixels": 14405,
+        "opaquePixels": 1224995,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/rumor_treasure.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/rumor_treasure.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/rumor_treasure",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        153,
+        120
+      ],
+      "beforeSha256": "32c6f5e7a35d05cee79fc21fc79350b4ab977646e8058954d0b4d735bbe4cf56",
+      "afterSha256": "f9a35f926277ed95a95ac7b61984fc72de51bf6ab62f931ebb4b2d18aaa4c96f",
+      "artManifestSha256": "f9a35f926277ed95a95ac7b61984fc72de51bf6ab62f931ebb4b2d18aaa4c96f",
+      "byteIdenticalToArt": true,
+      "metaGuid": "d988513087d320848a979239cfd85548",
+      "metaSha256": "aec050a996633c510509852d922681ad38f21732be76504998693e0f5b510619",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 4823,
+        "partialPixels": 397,
+        "opaquePixels": 13140,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/rumor_victory.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/rumor_victory.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/rumor_victory",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        213,
+        117
+      ],
+      "beforeSha256": "5bf97b6712d954e30310f2cb41ac64488b5c7633a218a68cdbd5f7f5c1ad9e84",
+      "afterSha256": "28129caf62618dfb1c36f7bda6102678066e0cc3c72124502eac1bcefac59615",
+      "artManifestSha256": "28129caf62618dfb1c36f7bda6102678066e0cc3c72124502eac1bcefac59615",
+      "byteIdenticalToArt": true,
+      "metaGuid": "e575a4da4c9d32a4e939dfec19dd7ef8",
+      "metaSha256": "abdbaeb326643ae42e3e58b81c60e608b556fe6bc5efabf79d627fcb53ab9250",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 5729,
+        "partialPixels": 488,
+        "opaquePixels": 18704,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/send_button.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/send_button.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/send_button",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        220,
+        70
+      ],
+      "beforeSha256": "63e1a88a4d949361271e3195e87897d028c6ee3ea735bff575e75b2ab366924e",
+      "afterSha256": "339e79bf439a063f074a21bac739ba0bdfec6790f347f02942fffd493fa4f72f",
+      "artManifestSha256": "339e79bf439a063f074a21bac739ba0bdfec6790f347f02942fffd493fa4f72f",
+      "byteIdenticalToArt": true,
+      "metaGuid": "bf155c7bd04532d42b1558ac7d617def",
+      "metaSha256": "c261e1a6ac743818d36016791d9f0d3436603731744fe335b6ab26f948535a74",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        30.0,
+        20.0,
+        30.0,
+        20.0
+      ],
+      "alpha": {
+        "transparentPixels": 994,
+        "partialPixels": 304,
+        "opaquePixels": 14102,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/runtime-assets/world_skin.png",
+      "clientPath": "Assets/Resources/UI/Ugui/SocialV1/Fidelity20261016/world_skin.png",
+      "resourcesKey": "UI/Ugui/SocialV1/Fidelity20261016/world_skin",
+      "usageWindow": "SocialWindow (社交分组/世界聊天/传闻)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "beforeSha256": "13d47f2c1ecd85bf16d1c9496af222ddf4b4cc9aa6c5eb29aa3ed46018ecfbcd",
+      "afterSha256": "b7c02b769482e5f13049ca0440616a80e6cc5b92baccb3180f7de02a8b2683ab",
+      "artManifestSha256": "b7c02b769482e5f13049ca0440616a80e6cc5b92baccb3180f7de02a8b2683ab",
+      "byteIdenticalToArt": true,
+      "metaGuid": "e7b5610a8b7253e41b8bee64ecc82fbf",
+      "metaSha256": "ce435152461d2abf17478a8c524a52fa7676dbe33d618a8f740c23f5603d3aba",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 332135,
+        "partialPixels": 14195,
+        "opaquePixels": 1225504,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/team-ui-v2/fidelity-20261016/runtime-assets/team_skin.png",
+      "clientPath": "Assets/Resources/UI/Ugui/TeamV2/Fidelity20261016/team_skin.png",
+      "resourcesKey": "UI/Ugui/TeamV2/Fidelity20261016/team_skin",
+      "usageWindow": "TeamWindow (结伴同游/组队)",
+      "category": "ui_screen_or_runtime_frame",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "beforeSha256": "dae60479b759c89e2f1d06f20c3e4ce88fb996c0f333d7b266c2df37d75fcf66",
+      "afterSha256": "0d9bbfa09420cca9606b4207675025fb77370b293396438891adc430e1589303",
+      "artManifestSha256": "0d9bbfa09420cca9606b4207675025fb77370b293396438891adc430e1589303",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b646d0d2b7ed3ab02f4ed261d3f2d001",
+      "metaSha256": "2886b50c37bc13a685b445930f75de5bc64ecfd0108345cc8f7b2e8358442a4c",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 348274,
+        "partialPixels": 12123,
+        "opaquePixels": 1211437,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    },
+    {
+      "artSource": "designs/world-map-original-20260925/fidelity-20261016/runtime-assets/destination_plate.png",
+      "clientPath": "Assets/Resources/UI/Ugui/WorldMapOriginal/Fidelity20261016/destination_plate.png",
+      "resourcesKey": "UI/Ugui/WorldMapOriginal/Fidelity20261016/destination_plate",
+      "usageWindow": "CityTravelWindow (大地图游历)",
+      "category": "ui_component",
+      "matchMode": "exact_source_sha256",
+      "dimensions": [
+        418,
+        64
+      ],
+      "beforeSha256": "770d75af4825960651a6f14f918d19df0a7c37be3aa4434a14466dcae50fd3c2",
+      "afterSha256": "5ff55badad747ba37447da37a749fbe61cfdeb28aa7ed540812b41c23c5312a2",
+      "artManifestSha256": "5ff55badad747ba37447da37a749fbe61cfdeb28aa7ed540812b41c23c5312a2",
+      "byteIdenticalToArt": true,
+      "metaGuid": "2ad420ab55ebb351492dd4ef4e0220a2",
+      "metaSha256": "1709af2c322804767782aec0cafe50d61bc4912a0de1fe3fea8eeb08d55287d2",
+      "metaPreserved": true,
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alpha": {
+        "transparentPixels": 1135,
+        "partialPixels": 1237,
+        "opaquePixels": 24380,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "hiddenRgbZero": true
+      }
+    }
+  ],
+  "nonRuntimeManifestEntries": [
+    {
+      "artSource": "designs/attribute-panels/v2-painted/01-character-ui-no-affinity.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "4e962a6959b8a1be76fb7c40c7f52e8b4bc85cd94ec78747b3938cdbc2581ece",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/attribute-panels/v2-painted/02-pet-ui.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "7d7a6b8f0b6537af839c44713dc005d46e49097e6921a509b55a13008c42c199",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/gameplay-ui/01-quests.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "238d8fe8c0a66832bb851fc671a994e29c048920527393d44fc04f935bd38337",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/gameplay-ui/02-inventory.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "fc862adfa76d24f92a1505fcd2448352f3c170a1ce4889f06591a80ed8947121",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/gameplay-ui/03-activities.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "7d88c44c59838995b4c2c22adda47212ef79911e7d655e4a55686ac484b223ec",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/gameplay-ui/04-guild.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "5514ad093e2a7227ed4a597a55d28dffd49a0933fa91aa4282e4848c3047b9b1",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/assets/activities-clean-skin.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "738d5a518b1a39dedb03ed78183a263221bb8a37ce76f6883cebe4280aa84b1d",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/assets/inventory-clean-skin.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "0939f9acd1cbe1b2e57db6722cb181f99c2bede87eac48fc46a89e86a9fbb938",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/assets/quests-clean-skin.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "db50da35d3379c999453c51482650a0a251639d40f6a75ef9873147cf8e093e6",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activities-frame.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "d0d88e6f806f61c822d26a721fac728dab06777a8e08b79be5e47e58d25c4680",
+      "disposition": "superseded_earlier_staged_gameplay_copy"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/inventory-frame.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "ac017d1a27f4f927d653649a8d9e2ce591a8363913445c3c2faaddcc2e38285e",
+      "disposition": "superseded_earlier_staged_gameplay_copy"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/quests-frame.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "6feb852a05ba34000b57dffa7368a96be93f8264c8918512c6476c1add4cfef4",
+      "disposition": "superseded_earlier_staged_gameplay_copy"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/visual-fixes-20261017/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/inventory-frame.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "4961cfce07e5e24be5ea4c12544d243a5d865e329b1336456502c3314052180e",
+      "disposition": "superseded_earlier_staged_gameplay_copy"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/visual-fixes-20261017/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/quests-frame.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "82b49021d8278c7bea35f1e901ec6daf7d41289a0d5b6ee886f4ef5778bef864",
+      "disposition": "superseded_earlier_staged_gameplay_copy"
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/art/guild-controls-clean.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "f5b1fe2beed79017d2e8871de9a7030ffdbe69c35f4f132100fb489dccd978b0",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/art/guild-empty-shell.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1933,
+        814
+      ],
+      "artManifestSha256": "d6148d4aa9a9eeebc062de355d878572781dcf94f9bc979f74af4396dfc64515",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/guild-ui-v2/fidelity-20261016/art/guild-progress-empty.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "25e983210e13ccda0850d889a305e1bf6f687b0d00f82319cd53fb1db3ef0e89",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/01-empty.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "a347836534491478dbc465825481a4f838939483092e80ab3e3b07eb09a9898c",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/02-characters.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "f4220e2ae627aaa9b25bba33e94ccdca02f3fefb5eb37e335d7fda97f3e61e35",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/03-pets.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "7929771b080f6d630451160ac37aaad328b6d2b70859dfbab17aa0b57ac43bb9",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/04-weapons.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "b046937ed8dabdeb8b87e887b5183ecb46b6185f7fd26dd23a48e62d589c721e",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/05-armor.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "fd57d92115a1663e32f575692e3c4029b48a64488e7d9b9ab1c4d5a1564f0a04",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/06-summoning.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1933,
+        814
+      ],
+      "artManifestSha256": "1eafe87cb7df4a8a3917026ee2bd1d7d59420862056542136430eabc03ce65f0",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/jubaozhai-ui/07-sets.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "eafd95ff55fe42db5ededfb21f963786e7c68a59b523e06f5ecedd57fc338b6d",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/mail-ui-v1/01-mail-event.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "f1c1cb5cac9cab31aea470a01de0e8c5f5a353840f1c61d4b5dc14d41bd53413",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/mail-ui-v1/02-mail-system.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "736b4ca29c3b2ec0a4c2a45da937d1af4ac9d5b8551f692936e6142d281abf4d",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/art/mail-clean-skin.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "7db1143eb1e0e1eb705c5f777f017fa19d90d348556d889b187c1469586dd7d0",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/art/mail-controls-clean.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "25e1c714e2279b360e8b02f610b05c9b220261c36e8afd89d71378368f851102",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/mail-ui-v1/fidelity-20261016/art/mail-empty-frame.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "926053c82f46f6921ddc75520fdf2eae889f4313e74573dcc30d74a67d745767",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/scene-select-ui-v1/scene-select.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "8b93efaa16ce9607e57fdc05bd6b5aca4fd9ad1c48b65799efd47f6a578de994",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/social-ui-v1/01-groups.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "78dbb8444d4855674277d46495328712b6c17d114cc0b56cbddfb67b6f303304",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/social-ui-v1/02-world.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "566c1f2f3bdac6107bbede7ceaa6d89ca19254307307843b3b237801b0e26bd0",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/social-ui-v1/03-rumor.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "2bdb636e9f6bf5e245c6b7cb088d336f8b7897b09b7de44661bda5ae92da32f9",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/assets/groups-clean-skin.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "fecc22c5ca635f525b10c363302c42028ed0cb6d1876e3d81d45c4dc5b55b912",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/assets/rumor-clean-skin.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "9f04b49b5e4ec3fc0d099dc886e317c269fe5f0580628f9c496b900268d3f863",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/social-ui-v1/fidelity-20261016/assets/world-clean-skin.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "artManifestSha256": "c335078f0cb24b77808e5e28a2f51ef65f8921419c8154548d87ba10f4c490b3",
+      "disposition": "art_master_skin_not_runtime_resource"
+    },
+    {
+      "artSource": "designs/team-ui-v2/team-ui-v2.png",
+      "category": "ui_screen_or_runtime_frame",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "artManifestSha256": "bc2451d031e4c5bb30bdd80856587dcbbc12564f3bfda8706faa042958859e94",
+      "disposition": "full_screen_reference_mockup_not_overlaid_at_runtime"
+    },
+    {
+      "artSource": "designs/gameplay-ui/fidelity-20261016/staged/Assets/Resources/UI/Ugui/GameplayFidelity20261016/activity-card.png",
+      "category": "ui_component",
+      "dimensions": [
+        410,
+        495
+      ],
+      "artManifestSha256": "41b097d6349de23b54fa7e847343259002dc7a6738de017b683f1b051b8313f6",
+      "disposition": "superseded_earlier_staged_gameplay_copy"
+    }
+  ],
+  "appearanceAndEquipmentRuntimeAssets": [
+    {
+      "role": "易容图标",
+      "artSource": "designs/appearance-ui-v1/icons/hud_icon_appearance.png",
+      "clientPath": "Assets/Resources/UI/Ugui/WorldHud20261022/appearance.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/WorldHud20261022/appearance.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "612948ce224d5c99dd7db9bdbc1f92453a0b3707ddbfc3578d5669c3d350b25a",
+      "byteIdenticalToArt": true,
+      "metaGuid": "a46b69575763753289448ac828d17f85",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容图标",
+      "artSource": "designs/appearance-ui-v1/icons/item_appearance_card.png",
+      "clientPath": "Assets/Resources/UI/Icons/item_appearance_card.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Icons/item_appearance_card.png",
+        "Assets/Resources/UI/Ugui/AppearanceChronicleV2/item_appearance_card.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "f6b9775277a9bd7226939377c46fc5de9e1fb40f98bb472ca71335c3ae6c3b03",
+      "byteIdenticalToArt": true,
+      "metaGuid": "9b559fd29f8bf991d03523eab9ef10f3",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容控件",
+      "artSource": "designs/appearance-ui-v1/ui/appearance_badge_current.png",
+      "clientPath": "Assets/Resources/UI/Ugui/AppearanceV1/appearance_badge_current.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/AppearanceV1/appearance_badge_current.png"
+      ],
+      "dimensions": [
+        220,
+        64
+      ],
+      "sha256": "93ccbf2d4751059c5486ddebf0e49e8c21ea6d06e2ed00f17de634b269d043f8",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8290aa028828b2e7ce2e1a50784e7a89",
+      "spriteBorderLBTR": [
+        52.0,
+        0.0,
+        52.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容控件",
+      "artSource": "designs/appearance-ui-v1/ui/appearance_badge_trial_free.png",
+      "clientPath": "Assets/Resources/UI/Ugui/AppearanceV1/appearance_badge_trial_free.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/AppearanceV1/appearance_badge_trial_free.png"
+      ],
+      "dimensions": [
+        256,
+        64
+      ],
+      "sha256": "f87f50b391ea6cf05fee89c249649256c243d479d38a053171578c3c2ca83d5c",
+      "byteIdenticalToArt": true,
+      "metaGuid": "6a26eaf54310991fc4abf7632240d917",
+      "spriteBorderLBTR": [
+        60.0,
+        0.0,
+        60.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容控件",
+      "artSource": "designs/appearance-ui-v1/ui/appearance_badge_trial_used.png",
+      "clientPath": "Assets/Resources/UI/Ugui/AppearanceV1/appearance_badge_trial_used.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/AppearanceV1/appearance_badge_trial_used.png"
+      ],
+      "dimensions": [
+        220,
+        64
+      ],
+      "sha256": "f94fdd8c8e892a2b1aa7781588bc4c01609bff4557740bf1ee2cfb834c4e3f15",
+      "byteIdenticalToArt": true,
+      "metaGuid": "f985b60074f04d580b293a44bcf65a7f",
+      "spriteBorderLBTR": [
+        52.0,
+        0.0,
+        52.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容控件",
+      "artSource": "designs/appearance-ui-v1/ui/appearance_badge_trialing.png",
+      "clientPath": "Assets/Resources/UI/Ugui/AppearanceV1/appearance_badge_trialing.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/AppearanceV1/appearance_badge_trialing.png"
+      ],
+      "dimensions": [
+        220,
+        64
+      ],
+      "sha256": "7cab3b9ebf7d5dff6b9e25f0689ab704b25872c9d09dad1e40e0463ccb99f630",
+      "byteIdenticalToArt": true,
+      "metaGuid": "d88ab8ca516ccb135dd809d679b850ca",
+      "spriteBorderLBTR": [
+        52.0,
+        0.0,
+        52.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容控件",
+      "artSource": "designs/appearance-ui-v1/ui/appearance_btn_mall_gold.png",
+      "clientPath": "Assets/Resources/UI/Ugui/AppearanceV1/appearance_btn_mall_gold.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/AppearanceV1/appearance_btn_mall_gold.png"
+      ],
+      "dimensions": [
+        320,
+        84
+      ],
+      "sha256": "d728472e56c4e8a190ab2f640e824f1ce087c78f494c4e5dbd09c35b7953e288",
+      "byteIdenticalToArt": true,
+      "metaGuid": "34e285b11b4e2ca52a47806ecdf1aec1",
+      "spriteBorderLBTR": [
+        90.0,
+        0.0,
+        90.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容控件",
+      "artSource": "designs/appearance-ui-v1/ui/appearance_card_slot.png",
+      "clientPath": "Assets/Resources/UI/Ugui/AppearanceV1/appearance_card_slot.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/AppearanceChronicleV2/appearance_card_slot.png",
+        "Assets/Resources/UI/Ugui/AppearanceV1/appearance_card_slot.png"
+      ],
+      "dimensions": [
+        760,
+        136
+      ],
+      "sha256": "1166ef6bdee2d4e9cd689946602cc3b0ffeb7e79bb21ded8d2402394ec67a266",
+      "byteIdenticalToArt": true,
+      "metaGuid": "d1890ffe42fdb1b363e9000ae932e759",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容控件",
+      "artSource": "designs/appearance-ui-v1/ui/appearance_preview_pedestal.png",
+      "clientPath": "Assets/Resources/UI/Ugui/AppearanceV1/appearance_preview_pedestal.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/AppearanceChronicleV2/portrait_pedestal.png",
+        "Assets/Resources/UI/Ugui/AppearanceV1/appearance_preview_pedestal.png"
+      ],
+      "dimensions": [
+        640,
+        720
+      ],
+      "sha256": "0019dbccbcb9d3c36567bd85a8ef9a803f2e435372fb30bafcf486463d68f5da",
+      "byteIdenticalToArt": true,
+      "metaGuid": "fe222f27f6fe64fcd58fbf5008772d77",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "易容控件",
+      "artSource": "designs/appearance-ui-v1/ui/appearance_trial_banner.png",
+      "clientPath": "Assets/Resources/UI/Ugui/AppearanceV1/appearance_trial_banner.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/AppearanceV1/appearance_trial_banner.png"
+      ],
+      "dimensions": [
+        760,
+        96
+      ],
+      "sha256": "94ae65e6cc667cfbabb68ae529ad571e8539beb1bdbfed7560dad9a952fcb680",
+      "byteIdenticalToArt": true,
+      "metaGuid": "39fae131be59eebd6d06c9c8741f1190",
+      "spriteBorderLBTR": [
+        140.0,
+        0.0,
+        140.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/artifact_guiyuan.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_guiyuan.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_guiyuan.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "6abdbd02fb5b6aed4e1c1c90ddba4e64c711fad730e44109740f36c0544d8467",
+      "byteIdenticalToArt": true,
+      "metaGuid": "19a075226d524e279f28846f15714a0d",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/artifact_guyuan.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_guyuan.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_guyuan.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "4826ff6cc0768bcf77a6a7e0040a05081d3cb0ab63700277460748cc2d5e986c",
+      "byteIdenticalToArt": true,
+      "metaGuid": "5e52d8bd64194749afc0a8165cfbdead",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/artifact_huixiang.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_huixiang.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_huixiang.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "4a5411596d200fb6ca2721b48c16d1d688f54ad7e831b005ca90082a0454fbca",
+      "byteIdenticalToArt": true,
+      "metaGuid": "71275da998404d1c8e5c17e11e13e051",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/artifact_huxin.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_huxin.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_huxin.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "28fcdb17132c1a3711646f498a2a76f59a0bfd925b534f45924e403f05a032e3",
+      "byteIdenticalToArt": true,
+      "metaGuid": "65c7a7fe0a8943af86139a35467df9dc",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/artifact_jisheng.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_jisheng.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_jisheng.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "bb7b27660e6b2352d53ae5eb2b7aaf8d46958f44b0115db178d809757565a23a",
+      "byteIdenticalToArt": true,
+      "metaGuid": "7a3e2f8f1dda4c9ba73c621bcd8c68a5",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/artifact_pozhen.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_pozhen.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_pozhen.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "e53bac5680cc83cab4f097e6578e9dacacee66285e534a82c1527b41fcd4e7ed",
+      "byteIdenticalToArt": true,
+      "metaGuid": "591c4a8114a844fd921fd689f94cb351",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/artifact_qingxin.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_qingxin.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_qingxin.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "c81fd488f1a84e2021a174b58837327e713d71fdeec0d92e1ae97ef8b0e30863",
+      "byteIdenticalToArt": true,
+      "metaGuid": "80b62c403cdd46e59df1e566f73bd37e",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/artifact_zhaoying.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_zhaoying.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/artifact_zhaoying.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "345577d78540a5e76f3ad2009c507ede923797840b96e71f28a38281ed249aec",
+      "byteIdenticalToArt": true,
+      "metaGuid": "ae29b570906c4d07b18976aa3a15eee8",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/equip_boots.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_boots.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_boots.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "26189606608847ab4f9e14b810f00e334f597c04dac9e7e0c10c154912e22ae6",
+      "byteIdenticalToArt": true,
+      "metaGuid": "839ce48258bf499ea0afe9731466c471",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/equip_hat.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_hat.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_hat.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "aad769ee767176b5ff12b78451bddd8dfcc9fc6f0f89b09b6f733c9447638c3e",
+      "byteIdenticalToArt": true,
+      "metaGuid": "0fb9735f59744082bcf92ed8aacd573f",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/equip_robe.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_robe.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_robe.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "8de120eda94e6594252c26919f3310e1b9cbce4d0c55ccccbcfab924e4bcca5a",
+      "byteIdenticalToArt": true,
+      "metaGuid": "bb338f0e917645148cf159824ea87d34",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/equip_weapon.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_weapon.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/equip_weapon.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "64418e2879d0d2ba561f08d4ff613c426be7486857d8efd268e9b5febbd16e92",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b8e5e628037b457ebb9c8a7ac46a3995",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/jewelry_jade_knot.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/jewelry_jade_knot.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/jewelry_jade_knot.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "edb700e064aa6030b038fe4f217eb0fe23dd34c4f18722b8b01423ffca9f8c79",
+      "byteIdenticalToArt": true,
+      "metaGuid": "799068620ed141a6989d55092a44d913",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/jewelry_jade_pendant.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/jewelry_jade_pendant.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/jewelry_jade_pendant.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "8f9112b8efd287a8077b9f65cdc08d08d7bd298852f47465bb6f35f50fea5652",
+      "byteIdenticalToArt": true,
+      "metaGuid": "f5294e073ba542888a95a35c26a7df45",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/material_crafting.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/material_crafting.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/material_crafting.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "464aaa549331a8515dbac85eabe16d928c5bc1b6d15d82844926600a3d0fc107",
+      "byteIdenticalToArt": true,
+      "metaGuid": "f309bd0d0f184859b2b94b28de4e66ad",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/material_enhancement.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/material_enhancement.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/material_enhancement.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "5dfb0d19122153b1142e5424beeac6647b18f8dfb7a9cd1124f4fd7a2a7918be",
+      "byteIdenticalToArt": true,
+      "metaGuid": "42c5ec79fcae444f89537349bdf5f0cd",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备图标",
+      "artSource": "designs/equipment-ui-20261117/icons/reward_choice.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Icons/reward_choice.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Icons/reward_choice.png"
+      ],
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "cff3c7089f67fdde03fc546b9eeba74b765601173079038998cde9886c495584",
+      "byteIdenticalToArt": true,
+      "metaGuid": "5cf373ed646b4557a023e5027a781a44",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/checkmark.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/checkmark.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/checkmark.png"
+      ],
+      "dimensions": [
+        220,
+        190
+      ],
+      "sha256": "2bdebfdab9fe5a154580351258977cdcd5734af96cc3e3a109e1108af06cb8f9",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8012ef859dc64e2bac5cfad89ba24e21",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/close-button.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/close-button.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/close-button.png"
+      ],
+      "dimensions": [
+        255,
+        300
+      ],
+      "sha256": "22853bcee545cba9f5fa1dfa3a5e4ab763029b49cf18e9de03a4b9184aa86a83",
+      "byteIdenticalToArt": true,
+      "metaGuid": "ebc28666eec14f958957ab2011c34eb2",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/comparison-card.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/comparison-card.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/comparison-card.png"
+      ],
+      "dimensions": [
+        375,
+        305
+      ],
+      "sha256": "ab589dbb69e9228be0d14210e1c9b4fcb0000797f749d65ff2b309e23d645a9f",
+      "byteIdenticalToArt": true,
+      "metaGuid": "3016632f7b1244259351aa5598cf9dc4",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/detail-card-nine.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/detail-card-nine.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/detail-card-nine.png"
+      ],
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "50d76c6777dca013956617522464f7a465e067ee77e06172e7c2631e73e6ba2f",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b70b598073cb4ebfbd4df72bc17548e2",
+      "spriteBorderLBTR": [
+        190.0,
+        165.0,
+        190.0,
+        150.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/detail-card.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/detail-card.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/detail-card.png"
+      ],
+      "dimensions": [
+        335,
+        305
+      ],
+      "sha256": "49aa4f61a5bc295e2d48f4a2311320ca1814bffbe2fde76433ea9cde35861eb9",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8d716a53ed0440cb81ca1bdc41960c4b",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/empty-slot.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/empty-slot.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/empty-slot.png"
+      ],
+      "dimensions": [
+        320,
+        300
+      ],
+      "sha256": "242088326a77f1390a2561160d2a627e1b117415e82f6d3533ebccb240a89118",
+      "byteIdenticalToArt": true,
+      "metaGuid": "eb00bb7a11ec4d09986a1b7e7fd378a8",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/equipment-slot.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/equipment-slot.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/equipment-slot.png"
+      ],
+      "dimensions": [
+        315,
+        300
+      ],
+      "sha256": "57bd2126a06e614012a8633fe0299a0cd7497967270615869fbde9d3da348be0",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b5d451801ad84289a38685c3f698a26b",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/main-panel-nine.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/main-panel-nine.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/main-panel-nine.png"
+      ],
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "c33ce50d3ba7435856be347d9f10df69fe6ba53e945ce130deae33eb26ba0fd9",
+      "byteIdenticalToArt": true,
+      "metaGuid": "f847229313dd446db36330f8d626f2d0",
+      "spriteBorderLBTR": [
+        190.0,
+        165.0,
+        190.0,
+        150.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/main-panel.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/main-panel.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/main-panel.png"
+      ],
+      "dimensions": [
+        345,
+        315
+      ],
+      "sha256": "347924a00c57e262a8b04507ea485d51f9511456e3fbfa55f9969e5ccafbc645",
+      "byteIdenticalToArt": true,
+      "metaGuid": "6d0aa6caf45b42428834bae097cd6944",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/material-bar.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/material-bar.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/material-bar.png"
+      ],
+      "dimensions": [
+        535,
+        210
+      ],
+      "sha256": "207cb0b61e2a4c8f530cd347dac7b182f3e9ad49d9df50c7adfe44dafd7654dd",
+      "byteIdenticalToArt": true,
+      "metaGuid": "beb24375f068466b973532e7bda28068",
+      "spriteBorderLBTR": [
+        200.0,
+        0.0,
+        200.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/primary-button.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/primary-button.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/primary-button.png"
+      ],
+      "dimensions": [
+        355,
+        140
+      ],
+      "sha256": "193bc07a34e7e4e3ad9fcfdb5aaaf3b7f5f984f66df13d9ac2b4bb239fbdc05f",
+      "byteIdenticalToArt": true,
+      "metaGuid": "e91923a01b6344c195362692c0a99ef2",
+      "spriteBorderLBTR": [
+        120.0,
+        0.0,
+        120.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/quantity-minus.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/quantity-minus.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/quantity-minus.png"
+      ],
+      "dimensions": [
+        290,
+        190
+      ],
+      "sha256": "c3a8c17b2c0bdfec3179fcdfaf8b28f5f7cb1aba03d824e7237a92bd67b7f634",
+      "byteIdenticalToArt": true,
+      "metaGuid": "663b6514de86444ab8f20076d4f7fa7d",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/quantity-plus.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/quantity-plus.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/quantity-plus.png"
+      ],
+      "dimensions": [
+        290,
+        190
+      ],
+      "sha256": "7bbe0b8f86f0e54b844f83f8ff3a76ab35e80398d94a5b9483a743748296e833",
+      "byteIdenticalToArt": true,
+      "metaGuid": "17313b9b25184fc0a679a5bc79c55299",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/radio-empty.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/radio-empty.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/radio-empty.png"
+      ],
+      "dimensions": [
+        210,
+        200
+      ],
+      "sha256": "de33fea241c6fbe5fdf97d19036b9e03ecadb7f2ee05a5b186d351cf1990e323",
+      "byteIdenticalToArt": true,
+      "metaGuid": "09f5e847a0d842a998aedb26a2ac7fa6",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/radio-selected.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/radio-selected.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/radio-selected.png"
+      ],
+      "dimensions": [
+        190,
+        200
+      ],
+      "sha256": "04a73abe82f26da23060c8386ff569324ab60603fa58fed9efd239813910a726",
+      "byteIdenticalToArt": true,
+      "metaGuid": "b2468dc2dfa542cdbf9bca787a319bfb",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/scrollbar.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/scrollbar.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/scrollbar.png"
+      ],
+      "dimensions": [
+        120,
+        440
+      ],
+      "sha256": "83b1673cfdfc8490ccb7e949c659d4d7d803bcf3dcd8fa6e409653001de66dcd",
+      "byteIdenticalToArt": true,
+      "metaGuid": "8b2f2288fbb54837b0ad0e478c0210a2",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/secondary-button.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/secondary-button.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/secondary-button.png"
+      ],
+      "dimensions": [
+        350,
+        140
+      ],
+      "sha256": "8028820ca0c0da081c9d08c0a60aa5e779a0a20e262ff9c60581fbdfc3930f79",
+      "byteIdenticalToArt": true,
+      "metaGuid": "7c4d7146aa2d4895922fd4fad41fea85",
+      "spriteBorderLBTR": [
+        120.0,
+        0.0,
+        120.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/selected-frame.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/selected-frame.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/selected-frame.png"
+      ],
+      "dimensions": [
+        330,
+        300
+      ],
+      "sha256": "37e692230beb4921dd95176e9fc98286bddccba997132a1543fb29af4be7020e",
+      "byteIdenticalToArt": true,
+      "metaGuid": "a6aad36074764f3e9a719b760dba1d2a",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/selection-dialog.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/selection-dialog.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/selection-dialog.png"
+      ],
+      "dimensions": [
+        345,
+        300
+      ],
+      "sha256": "42e103b34ce44aa756156dd4db12c18f538c065fc59f8f502ad35fdd84fe2bd3",
+      "byteIdenticalToArt": true,
+      "metaGuid": "e6291c5c2b59475d84d268d7ce93fca0",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/status-tag.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/status-tag.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/status-tag.png"
+      ],
+      "dimensions": [
+        460,
+        180
+      ],
+      "sha256": "034b3e73ffca89ee3c0c12ff62ce709b64f51e7830596e7812e3998e469f1511",
+      "byteIdenticalToArt": true,
+      "metaGuid": "d72d12b98675411fa3d3c306ce484d6b",
+      "spriteBorderLBTR": [
+        150.0,
+        0.0,
+        150.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/tab.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/tab.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/tab.png"
+      ],
+      "dimensions": [
+        330,
+        130
+      ],
+      "sha256": "1dd544cae9c9477945ac5f90e2bff97d8223a70a176bb2720da1d04e194ac74d",
+      "byteIdenticalToArt": true,
+      "metaGuid": "14cb5fd432e54c579f14d64f814805b4",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/title-plaque.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/title-plaque.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/title-plaque.png"
+      ],
+      "dimensions": [
+        365,
+        170
+      ],
+      "sha256": "b0c835f68821f4f1def79c722cc4ce88e5ecee59217098f3048e2dc9d7dac414",
+      "byteIdenticalToArt": true,
+      "metaGuid": "241d48243e8041198203c92fa8a01eaa",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "role": "装备控件",
+      "artSource": "designs/equipment-ui-20261117/ui/tooltip-bubble.png",
+      "clientPath": "Assets/Resources/UI/Ugui/Equipment20261117/Controls/tooltip-bubble.png",
+      "allMatchingClientPaths": [
+        "Assets/Resources/UI/Ugui/Equipment20261117/Controls/tooltip-bubble.png"
+      ],
+      "dimensions": [
+        515,
+        265
+      ],
+      "sha256": "d8fc9c1d92e6f2de63a8db0d2575a4713196876d1d377f5659d270bdbfcd504e",
+      "byteIdenticalToArt": true,
+      "metaGuid": "84fa1fd0912844ccbb369273a63cb173",
+      "spriteBorderLBTR": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "appearanceAndEquipmentPreviews": [
+    {
+      "role": "易容预览",
+      "artSource": "designs/appearance-ui-v1/screens/01-appearance-main-transparent.png",
+      "dimensions": [
+        1933,
+        813
+      ],
+      "sha256": "6b4af26f38f00be8ea67b3c1900f80d93620fe11a3198785268b658d01edaa8e",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "易容预览",
+      "artSource": "designs/appearance-ui-v1/screens/02-appearance-trial-active-transparent.png",
+      "dimensions": [
+        1933,
+        813
+      ],
+      "sha256": "4b0d8cab96c910eca6b081491fe5e268d2168e470b300888ac911910ab541ca1",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "易容预览",
+      "artSource": "designs/appearance-ui-v1/screens/03-appearance-confirm-dialog-transparent.png",
+      "dimensions": [
+        1933,
+        814
+      ],
+      "sha256": "4286756ee50d3d432ac10ae14194f14bf5eccef69f77e2542d50153eb2c044a4",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "易容预览",
+      "artSource": "designs/appearance-ui-v1/screens/04-appearance-no-card-guide-transparent.png",
+      "dimensions": [
+        1933,
+        813
+      ],
+      "sha256": "ed2c18b375344d05ee8387561891d5edc46b88b029c472a98e5be88d17e0c278",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/01-equipment-overview-transparent.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "sha256": "dbb0d379bff6de09b988f5f049056cfe7e131ce30cdcf85e82371793a40d031e",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/02-equipment-compare-transparent.png",
+      "dimensions": [
+        1983,
+        793
+      ],
+      "sha256": "da7b1aef9babe4a7efe9e32cc685d8542e1544201e4fffffe0d8b780217f071d",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/03-crafting-transparent.png",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "sha256": "0f32808296e35efe7e25c1b43d84c437ac006f57cbf09d726f7d77c0749231d2",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/04a-direction-affixes-transparent.png",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "sha256": "644de5c2fd583fc6c83b9ac8bd03eadf0872266f786f829c3c5d8dc6f90df71f",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/04b-efficiency-affixes-transparent.png",
+      "dimensions": [
+        1933,
+        814
+      ],
+      "sha256": "9c619f6cfebe0337cffb3ca47696389f587dddff1628d132c7895c1766bbe11e",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/04c-jewelry-affixes-transparent.png",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "sha256": "4a4fb9237c554970405384f9ed338bda874bec613df7ac7525cb83e7b6dc5f5c",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/05-enhancement-transparent.png",
+      "dimensions": [
+        1931,
+        814
+      ],
+      "sha256": "2ae4d91e961d0d39b9567f0d52b42a20965f73a2be6ae31118436e7c4ea4bc3f",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/06-artifact-catalog-transparent.png",
+      "dimensions": [
+        1933,
+        814
+      ],
+      "sha256": "076939e70fdc54208b9536c4fd556c92e5ed115b143667b1729d43fd565006c6",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/07-artifact-detail-transparent.png",
+      "dimensions": [
+        1933,
+        813
+      ],
+      "sha256": "18154fa61f9869b084e88933bb7cea6cf3393c819b56fac267a169271dd13621",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/08-material-choice-transparent.png",
+      "dimensions": [
+        1932,
+        814
+      ],
+      "sha256": "5224952ea21d0c84b02871a6dc1c35cef0257a41eadfaf6f7c380e5fc4f00e51",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    },
+    {
+      "role": "装备预览",
+      "artSource": "designs/equipment-ui-20261117/transparent-previews/09-ui-states-transparent.png",
+      "dimensions": [
+        1933,
+        813
+      ],
+      "sha256": "6c9d47638138328644ba64d997a6fd3aa1c1c32af87e718e93d9dafea4b559ea",
+      "disposition": "reused_transparent_reference_preview_not_overlaid_at_runtime"
+    }
+  ]
+}

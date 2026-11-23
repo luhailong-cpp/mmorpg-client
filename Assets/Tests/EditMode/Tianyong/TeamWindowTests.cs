@@ -985,6 +985,22 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(refreshes, Is.EqualTo(1));
         }
 
+        [Test]
+        public void TransparentTeamSkin_RendersNativeSummaryAndVacancy()
+        {
+            _window.Show();
+            var skin = _root.GetComponentsInChildren<Image>(true).Single(image => image.name == "TeamSkin");
+            Assert.That(skin.sprite, Is.SameAs(Resources.Load<Sprite>("UI/Ugui/TeamV2/Fidelity20261016/team_skin")));
+            Assert.That(skin.type, Is.EqualTo(Image.Type.Simple));
+            Assert.That(skin.raycastTarget, Is.False);
+            var fallback = _root.GetComponentsInChildren<Image>(true).Single(image => image.name == "Exact_summary-fallback");
+            Assert.That(fallback.gameObject.activeSelf, Is.False);
+            string text = ActiveText();
+            Assert.That(text, Does.Contain("队伍人数 1/5"));
+            Assert.That(text, Does.Contain("队伍编号 1001"));
+            Assert.That(text, Does.Contain("空余 4 席"));
+        }
+
         private void Apply()
         {
             _state.SetSnapshot(_snapshot);

@@ -48,8 +48,9 @@ namespace MmorpgClient.UI.Ugui.Mail
             Frame.localScale=new UnityEngine.Vector3(scale,scale,1);
             _frameGroup=Frame.gameObject.AddComponent<CanvasGroup>();
             Art(Frame,"mail_empty_frame",0,0,1932,814);
-            Label(Frame,"MailTitle","",837,37,250,50,32,Cream,title:true,align:TextAlignmentOptions.Center); // Fixed title is preserved in the approved source crop.
-            Label(Frame,"MailSubtitle","",875,84,174,27,19,Cream,title:true,align:TextAlignmentOptions.Center);
+            // 透明去底后的 mail_empty_frame 标题牌为空底，由原生文字渲染标题与副标题。
+            Label(Frame,"MailTitle","仙  笺",837,37,250,50,32,Cream,title:true,align:TextAlignmentOptions.Center);
+            Label(Frame,"MailSubtitle","邮件",875,84,174,27,19,Cream,title:true,align:TextAlignmentOptions.Center);
             _close=Button(Frame,"CloseMail","",1691,48,78,69,Hide,key:"mail_close");
             string[] names={"全部","系统","活动","奖励"};
             float[] tabX={226,374,499,625};

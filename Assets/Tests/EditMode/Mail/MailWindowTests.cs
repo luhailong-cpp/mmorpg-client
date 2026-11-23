@@ -131,5 +131,14 @@ namespace MmorpgClient.Tests.EditMode.Mail
             Assert.That(_window.IsVisible,Is.False);Assert.That(_window.DialogIsOpen,Is.False);
             Assert.That(_state.IsDemo,Is.False);Assert.That(_state.Messages,Is.Empty);
         }
+        [Test] public void TransparentFrameRendersNativeTitleAndSubtitle()
+        {
+            _window.Show();
+            var frameImage=_window.Frame.GetComponentsInChildren<Image>(true)
+                .Single(image=>image.name=="mail_empty_frame");
+            Assert.That(frameImage.sprite,Is.SameAs(Resources.Load<Sprite>("UI/Ugui/MailV1Fidelity/mail_empty_frame")));
+            Assert.That(Text("MailTitle").text,Is.EqualTo("仙  笺"));
+            Assert.That(Text("MailSubtitle").text,Is.EqualTo("邮件"));
+        }
     }
 }
