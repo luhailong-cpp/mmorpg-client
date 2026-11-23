@@ -119,5 +119,13 @@ namespace MmorpgClient.Net.Generated
                 handler(message);
             });
         }
+
+        public const uint ConfirmRankedPresetMessageId = 452;
+        /// <summary>
+        /// 队员确认本人在本队排位中的人物与宝宝预设(仅追加在末尾,不改变既有方法号)。
+        /// </summary>
+        public static void ConfirmRankedPreset(IRpcChannel channel, global::Teampb.ConfirmRankedPresetRequest request,
+            RpcDone<global::Teampb.TeamResponse> done)
+            => channel.CallMethod(ConfirmRankedPresetMessageId, request, global::Teampb.TeamResponse.Parser, done);
     }
 }

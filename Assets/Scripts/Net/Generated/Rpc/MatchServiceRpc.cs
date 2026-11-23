@@ -169,5 +169,28 @@ namespace MmorpgClient.Net.Generated
         public static void SetBattleScriptLoadout(IRpcChannel channel, global::Match.SetBattleScriptLoadoutRequest request,
             RpcDone<global::Match.SetBattleScriptLoadoutResponse> done)
             => channel.CallMethod(SetBattleScriptLoadoutMessageId, request, global::Match.SetBattleScriptLoadoutResponse.Parser, done);
+
+        public const uint GetRankedProfileMessageId = 448;
+        /// <summary>
+        /// ---- 论剑排位首发 V1(docs/design/ranked-play-season-ui-candidate.md):请求只认会话本人 ----
+        /// </summary>
+        public static void GetRankedProfile(IRpcChannel channel, global::Match.GetRankedProfileRequest request,
+            RpcDone<global::Match.GetRankedProfileResponse> done)
+            => channel.CallMethod(GetRankedProfileMessageId, request, global::Match.GetRankedProfileResponse.Parser, done);
+
+        public const uint SaveRankedPresetMessageId = 449;
+        public static void SaveRankedPreset(IRpcChannel channel, global::Match.SaveRankedPresetRequest request,
+            RpcDone<global::Match.SaveRankedPresetResponse> done)
+            => channel.CallMethod(SaveRankedPresetMessageId, request, global::Match.SaveRankedPresetResponse.Parser, done);
+
+        public const uint UpdateRankedCosmeticMessageId = 450;
+        public static void UpdateRankedCosmetic(IRpcChannel channel, global::Match.UpdateRankedCosmeticRequest request,
+            RpcDone<global::Match.UpdateRankedCosmeticResponse> done)
+            => channel.CallMethod(UpdateRankedCosmeticMessageId, request, global::Match.UpdateRankedCosmeticResponse.Parser, done);
+
+        public const uint GetRankedBattleResultMessageId = 451;
+        public static void GetRankedBattleResult(IRpcChannel channel, global::Match.GetRankedBattleResultRequest request,
+            RpcDone<global::Match.GetRankedBattleResultResponse> done)
+            => channel.CallMethod(GetRankedBattleResultMessageId, request, global::Match.GetRankedBattleResultResponse.Parser, done);
     }
 }
