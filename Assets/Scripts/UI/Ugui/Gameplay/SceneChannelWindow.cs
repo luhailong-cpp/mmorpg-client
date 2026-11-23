@@ -123,10 +123,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _previous=FidelityButton(frame,"上一页",375,FooterY,90,45,()=>MovePage(-1),false,17);_previous.name=PreviousPageButtonName;
             _pageLabel=Text(frame,"",468,FooterY,100,45,23,Muted,alignment:TextAlignmentOptions.Center);_pageLabel.name="SceneChannelPage";
             _next=FidelityButton(frame,"下一页",570,FooterY,90,45,()=>MovePage(1),false,17);_next.name=NextPageButtonName;
-            var close=QdaoUguiFactory.CreateHitButton(CloseButtonName,frame,673,686,263,69);close.onClick.AddListener(Hide);
-            
-            _confirm=QdaoUguiFactory.CreateHitButton(ConfirmButtonName,frame,989,686,270,69);
-            _confirm.onClick.AddListener(ConfirmSelection);
+            // 透明去底后的 scene_skin 底栏按钮为空底，使用透明控件切片与原生中文文案。
+            var close=FidelityButton(frame,"取消",673,686,263,69,Hide,false,32);close.name=CloseButtonName;
+            _confirm=FidelityButton(frame,"确认",989,686,270,69,ConfirmSelection,true,32);_confirm.name=ConfirmButtonName;
+            var confirmColors=_confirm.colors;confirmColors.disabledColor=new Color(.72f,.72f,.68f,.82f);_confirm.colors=confirmColors;
             _refresh=FidelityButton(frame,"",1350,695,154,45,null,false,21);_refresh.name=RefreshButtonName;
             var unusedLabel=_refresh.GetComponentInChildren<TMP_Text>();if(unusedLabel!=null)unusedLabel.enabled=false;
             _refresh.onClick.AddListener(()=>{if(CanRefresh)RefreshRequested?.Invoke();});
