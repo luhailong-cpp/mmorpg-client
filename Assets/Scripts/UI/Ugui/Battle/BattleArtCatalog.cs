@@ -897,7 +897,7 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         // ── 可见范围测量(名牌贴头顶用) ──────────────────────
 
-        private static readonly Dictionary<Sprite, (Rect bounds, Rect[] bands)> s_visibleBounds = new();
+        private static readonly Dictionary<Sprite, Rect> s_visibleBounds = new();
 
         /// <summary>
         /// 立绘可见顶点到脚底(sprite pivot)的高度,换算到 bodyHeight(sprite 整格显示高)下的设计像素。
@@ -917,20 +917,15 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>
         /// sprite 内不透明像素的包围盒(归一化到 sprite rect,y 从下往上,0..1);测不到返回空 Rect。
         /// </summary>
-        public static Rect MeasureVisibleBounds(Sprite sprite) => MeasureVisibleFootprint(sprite).bounds;
-
-        // 名牌只占一小段高度。保留水平条带里的独立轮廓，给立绘之间的空隙留出空间。
-        internal static IReadOnlyList<Rect> MeasureVisibleBands(Sprite sprite) => MeasureVisibleFootprint(sprite).bands;
-
-        private static (Rect bounds, Rect[] bands) MeasureVisibleFootprint(Sprite sprite)
+        public static Rect MeasureVisibleBounds(Sprite sprite)
         {
-            if (sprite == null || sprite.texture == null) return (default, Array.Empty<Rect>());
+            if (sprite == null || sprite.texture == null) return default;
             var tex = sprite.texture;
             var r = sprite.rect;
             // 目录里的 Sprite 都是一次创建后长期缓存的,按 Sprite 引用缓存即可(同一帧条的不同帧各测各的)
             if (s_visibleBounds.TryGetValue(sprite, out var cached)) return cached;
 
-            var result = (bounds: default(Rect), bands: Array.Empty<Rect>());
+            var result = default(Rect);
             RenderTexture rt = null;
             Texture2D read = null;
             var prevActive = RenderTexture.active;
@@ -948,49 +943,23 @@ namespace MmorpgClient.UI.Ugui.Battle
                 read.ReadPixels(new Rect(0, 0, w, h), 0, 0, false);
                 read.Apply(false);
                 var px = read.GetPixels32();
-                const int Bands = 32;
-                int rowsPerBand = Mathf.CeilToInt(h / (float)Bands);
-                var bands = new List<Rect>(Bands);
-                var coveredColumns = new bool[w];
                 int minX = w, minY = h, maxX = -1, maxY = -1;
-                for (int startY = 0; startY < h; startY += rowsPerBand)
+                for (int y = 0; y < h; y++)
                 {
-                    Array.Clear(coveredColumns, 0, coveredColumns.Length);
-                    int bandMinX = w, bandMinY = h, bandMaxX = -1, bandMaxY = -1;
-                    int endY = Mathf.Min(startY + rowsPerBand, h);
-                    for (int y = startY; y < endY; y++)
+                    int row = y * w;
                     for (int x = 0; x < w; x++)
                     {
-                        if (px[y * w + x].a < 24) continue;
-                        coveredColumns[x] = true;
-                        if (x < bandMinX) bandMinX = x;
-                        if (x > bandMaxX) bandMaxX = x;
-                        if (y < bandMinY) bandMinY = y;
-                        if (y > bandMaxY) bandMaxY = y;
+                        if (px[row + x].a < 24) continue;
+                        if (x < minX) minX = x;
+                        if (x > maxX) maxX = x;
+                        if (y < minY) minY = y;
+                        if (y > maxY) maxY = y;
                     }
-                    if (bandMaxX < 0) continue;
-                    int column = bandMinX;
-                    while (column <= bandMaxX)
-                    {
-                        if (!coveredColumns[column])
-                        {
-                            column++;
-                            continue;
-                        }
-                        int start = column++;
-                        while (column <= bandMaxX && coveredColumns[column]) column++;
-                        bands.Add(Rect.MinMaxRect(start / (float)w, bandMinY / (float)h,
-                            column / (float)w, (bandMaxY + 1) / (float)h));
-                    }
-                    minX = Mathf.Min(minX, bandMinX);
-                    minY = Mathf.Min(minY, bandMinY);
-                    maxX = Mathf.Max(maxX, bandMaxX);
-                    maxY = Mathf.Max(maxY, bandMaxY);
                 }
                 if (maxX >= minX && maxY >= minY)
                 {
-                    result = (Rect.MinMaxRect(minX / (float)w, minY / (float)h,
-                        (maxX + 1) / (float)w, (maxY + 1) / (float)h), bands.ToArray());
+                    result = Rect.MinMaxRect(minX / (float)w, minY / (float)h,
+                        (maxX + 1) / (float)w, (maxY + 1) / (float)h);
                 }
             }
             catch (Exception e)

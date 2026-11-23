@@ -23,7 +23,7 @@ public static partial class TeamErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci1nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvdGVhbV9lcnJvcl90aXAucHJv",
-          "dG8q4gYKCnRlYW1fZXJyb3ISEQoNa1RlYW1fZXJyb3JPSxAAEhkKFGtUZWFt",
+          "dG8qpAcKCnRlYW1fZXJyb3ISEQoNa1RlYW1fZXJyb3JPSxAAEhkKFGtUZWFt",
           "Tm90SW5BcHBsaWNhbnRzEKAfEhIKDWtUZWFtUGxheWVySWQQoR8SFQoQa1Rl",
           "YW1NZW1iZXJzRnVsbBCiHxIWChFrVGVhbU1lbWJlckluVGVhbRCjHxIZChRr",
           "VGVhbU1lbWJlck5vdEluVGVhbRCkHxISCg1rVGVhbUtpY2tTZWxmEKUfEhcK",
@@ -42,8 +42,9 @@ public static partial class TeamErrorTipReflection {
           "ZWFtRHVuZ2Vvbk5vdE9wZW4Qux8SFgoRa1RlYW1TaXplRXhjZWVkZWQQvB8S",
           "FgoRa1RlYW1TdGF0ZUNoYW5nZWQQvR8SEgoNa1RlYW1JbnRlcm5hbBC+HxIg",
           "ChtrVGVhbVB2cFBhcnR5U2l6ZU5vdEFsbG93ZWQQvx8SGwoWa1RlYW1SYXRp",
-          "bmdHYXBUb29MYXJnZRDAH0IkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVk",
-          "L3BiL3RhYmxlYgZwcm90bzM="));
+          "bmdHYXBUb29MYXJnZRDAHxIhChxrVGVhbVJhbmtlZFByZXNldFVuY29uZmly",
+          "bWVkEMEfEh0KGGtUZWFtUmFua2VkUHJlc2V0SW52YWxpZBDCH0IkCg5jb20u",
+          "Z2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::team_error), }, null, null));
@@ -87,6 +88,8 @@ public enum team_error {
   [pbr::OriginalName("kTeamInternal")] KTeamInternal = 4030,
   [pbr::OriginalName("kTeamPvpPartySizeNotAllowed")] KTeamPvpPartySizeNotAllowed = 4031,
   [pbr::OriginalName("kTeamRatingGapTooLarge")] KTeamRatingGapTooLarge = 4032,
+  [pbr::OriginalName("kTeamRankedPresetUnconfirmed")] KTeamRankedPresetUnconfirmed = 4033,
+  [pbr::OriginalName("kTeamRankedPresetInvalid")] KTeamRankedPresetInvalid = 4034,
 }
 
 #endregion

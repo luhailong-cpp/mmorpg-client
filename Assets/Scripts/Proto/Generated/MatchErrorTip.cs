@@ -23,7 +23,7 @@ public static partial class MatchErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbWF0Y2hfZXJyb3JfdGlwLnBy",
-          "b3RvKq0ICgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
+          "b3RvKpQJCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
           "YXRjaEluQmF0dGxlEIB9EhgKE2tNYXRjaEFscmVhZHlRdWV1ZWQQgX0SFgoR",
           "a01hdGNoTW9kZU5vdE9wZW4Qgn0SIAoba01hdGNoVGVhbVNpemVOb3RDb25m",
           "aWd1cmVkEIN9EhMKDmtNYXRjaEludGVybmFsEIR9EhkKFGtNYXRjaFRpY2tl",
@@ -46,8 +46,11 @@ public static partial class MatchErrorTipReflection {
           "QmF0dGxlU2NyaXB0UmV2aXNpb25Db25mbGljdBCdfRIiCh1rTWF0Y2hCYXR0",
           "bGVTY3JpcHROb3RBcHByb3ZlZBCefRIfChprTWF0Y2hCYXR0bGVTY3JpcHRU",
           "b29MYXJnZRCffRIlCiBrTWF0Y2hCYXR0bGVTY3JpcHRMb2Fkb3V0SW52YWxp",
-          "ZBCgfRIiCh1rTWF0Y2hCYXR0bGVTY3JpcHRMb2Fkb3V0RnVsbBChfUIkCg5j",
-          "b20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZwcm90bzM="));
+          "ZBCgfRIiCh1rTWF0Y2hCYXR0bGVTY3JpcHRMb2Fkb3V0RnVsbBChfRIfChpr",
+          "TWF0Y2hSYW5rZWRTZWFzb25TZXR0bGluZxCifRIeChlrTWF0Y2hSYW5rZWRQ",
+          "cmVzZXRJbnZhbGlkEKN9EiQKH2tNYXRjaFJhbmtlZFJ1bGVWZXJzaW9uTWlz",
+          "bWF0Y2gQpH1CJAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJs",
+          "ZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::match_error), }, null, null));
@@ -92,6 +95,9 @@ public enum match_error {
   [pbr::OriginalName("kMatchBattleScriptTooLarge")] KMatchBattleScriptTooLarge = 16031,
   [pbr::OriginalName("kMatchBattleScriptLoadoutInvalid")] KMatchBattleScriptLoadoutInvalid = 16032,
   [pbr::OriginalName("kMatchBattleScriptLoadoutFull")] KMatchBattleScriptLoadoutFull = 16033,
+  [pbr::OriginalName("kMatchRankedSeasonSettling")] KMatchRankedSeasonSettling = 16034,
+  [pbr::OriginalName("kMatchRankedPresetInvalid")] KMatchRankedPresetInvalid = 16035,
+  [pbr::OriginalName("kMatchRankedRuleVersionMismatch")] KMatchRankedRuleVersionMismatch = 16036,
 }
 
 #endregion
