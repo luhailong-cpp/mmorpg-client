@@ -642,11 +642,261 @@
       "sourceSha256": "770a39c44380fd33986a8d2a103575dd8047e135715c24a987a416c14b97432d"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 40.37
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 40.37
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "98c53c936b5c11022a8c2bbf26d5f2183e62fdb6b1fab603b9ab88a43d4f2b75",
+        "89d43d4e1ae2c0cbb0fe5f5ae83e282bfa800464a84d94f48436f0bcbbf56f61",
+        "cccbf06f705f5e71079dfb47c0a38df5cebbd4692ea96835ccfdc5421b4eabb9",
+        "fa9e6ff4793070cabb01a2666b1190a5bc3d627b026c678b8f42dcba89ee786d",
+        "61cdba4f6ba0b51c8aba13ef2007edd42d18a5b20dd7f2bba4042a796a2b8945",
+        "6cad08bb7ff5e515595517a8f4541419c85bcab6ae81236cc2cfbffe64a6d315",
+        "1f1ab86cf0e66b154babab3a95ac40618377fc12093dd1043f49838daba38583",
+        "6347b43bfe151df07313e1a569a8b6d89c21eb91db35609753efcbefe5d412bb"
+      ],
+      "ruleId": "current88-09-bamboo-archer-girl-n-20261123",
+      "ruleSha256": "d586577d6d744a82827b6094c7ea9105c27dd69c9a5fa1792532ce3dfb2aec55",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 39.32
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 39.32
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "a950e6db6f5b7524199135dabf84c8851a5b5246e100ce94b81621addbc4d5c7",
+        "7be31b83d34916aab9b289b6bba7b68db66114912f57383ac54ea644fb83e3f3",
+        "62d7878c2f8118028db0eaa2f4003c995b87656365c7d5aeb2ee7960c1472d4d",
+        "a85eb9212bdc2c7630e797f172848004efc9b4dd95d92393f0332eb9611d3eaa",
+        "e508d46fce3b25d6cc95e652ab28ad1558b0a282dfb9fa6f5cbbec869b98b6bc",
+        "8a9e8f2681c556ad9e6c77422428f090a6297ce4f0c26f917283478ea30c243c",
+        "ecb5fc67f7ac28dcbb1d1e64e6e994ea81ca2358cedc8550aa924e9b2861dc99",
+        "dcdd7d31a19ab533579f93ddb8e66b2a0a672371894b483b6b8802a76f058bfc"
+      ],
+      "ruleId": "current88-09-bamboo-archer-girl-ne-20261123",
+      "ruleSha256": "a5e774ad50f513f3c984deb227cb80a2a3bf0bf34497a980bdc9a934d77a3c44",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 41.81
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 41.81
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "b0185fe5000ebf8f0c77626e69afc122798e4d8b038c2c8100ba9b7880d89edd",
+        "2432094e4082da5d4524a17a29a03500b73ce2742008cd63332af83fbd3d505e",
+        "04300588fbddcdbbc80cd4733eef4c77b756ed8c5534455a1358a55edd93b527",
+        "5bb3cd87ad64744c447bfbb1db8ba5a292eb687bd9c9e8a9a2a3a9b9f8ffc5c3",
+        "bdf4d4f7e762b9427a7b0344f51a8f8cc4e431b90e8b7b43e9fffd928a25d6e1",
+        "800f6dd37e7f273402e5aa71141907c0bb92893f228e145129b55ca123b53c8b",
+        "240f4cb2925a00d25c819cebcc9a41b73c5edcfc79dd620d4602e69c106d0ff4",
+        "53f8e6118884b6c8be2adfb7b118e65bb8e3d17cb000fb062043ecc6f82d4548"
+      ],
+      "ruleId": "current88-09-bamboo-archer-girl-e-20261123",
+      "ruleSha256": "f02e55b35de493428fe2befdb1646e933407b5338a66d34fc5928ac5568e209f",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0104,
+        "pixelsPerUnit": 38.74
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0104,
+        "pixelsPerUnit": 38.74
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "55ed4bf7736d77626dcb396bd03522f2e708f9e69c9492905808d49bfee28879",
+        "3399887354e18a87b57c76d5da850d966cb084faa570336dfbd8b0848615b310",
+        "1c352582fea984d89f2dd2b1da583da1178aa900f037186e6a393929660c1231",
+        "d4500a059e0802705d76f2d89ece0406f288d987122fc7efbedd88c2998eca97",
+        "38c7c6c55694b36323bcacf8c3ce1e7e2430ab43db9b61530a9a2333d34e65e3",
+        "942f0e2a8e454500560e33e9f3f794eab3cdb4038c11221b8b4d777e92c8ea2a",
+        "7bae5011368271d8d3f1f3abc25c95c7fb80b6a29fb5f4d2c107ab5dc19d1847",
+        "a05cf2be3434f2de35386579f332cc2916053c6d21f5daba967aedf8fbdf6878"
+      ],
+      "ruleId": "current88-09-bamboo-archer-girl-se-20261123",
+      "ruleSha256": "1a49f1d79cb180615aef462de7a0066bdfc25099a61872c7377f2d16a9a285e7",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.013,
+        "pixelsPerUnit": 40.44
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.013,
+        "pixelsPerUnit": 40.44
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "c64c626a353452b9a7f3327c46399a0e31c7f94b1ede7ac9064d2225ab2f3c5c",
+        "5dbc13c1093bdd1d95bffe20697d19a541f7043442c03c6a08d0f15fd24fe0fd",
+        "35f96c1f3c7522cb1f0d0bfd5e6e31fbfb41285cfdb999c18ad488d8b6013b61",
+        "3c96226a159d87024839e082eb6b4c7ad1e41fd54a8b024ad635b9f94cf0e4ec",
+        "c3e755db38562e6161a46bf195c6a75b07a24c7d691d5d6930882aec6fd5325a",
+        "fcf1819597bcdfb3b4b3ead3b1c977fa1aeff101c689915948e9ed8e1a0f790f",
+        "824544afc0adc7f8e13587e51ec578729fa7decc1dd5217586361e215dcb6978",
+        "70b5c042379a4b8f4c23892f2eabb9930615f6017bd36de1b2d70fa19f4d0e30"
+      ],
+      "ruleId": "current88-09-bamboo-archer-girl-s-20261123",
+      "ruleSha256": "c9692801ee95ed9f8837f30ac7c84f84f4802957aa99c0f88caaf33cd14e83b7",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.53
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.53
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "76d5ec7eb6554c7614c15d9155227777e09d815ef0f81ab8d72ef8bfd2e5a267",
+        "e2d0ad010f6b7b17594163bf37e2022c054642f98900b97690d2f3ac964461cf",
+        "c58d02d46068656cf2678b9fc5d2390379a730aabfe05262c24c38dd9256c983",
+        "0cb766fe09ab3b2cacff25a7d83a6b49eba61d7160b0352f5644c51438f9e7e0",
+        "62df3f1b01580e5ab4c24f0c7ac6056b68ed43ba6d6d1e97d6d93390498f7992",
+        "701f4a0fde5d453f3462c6ded4bc4665cc97bf6277c70ec53a3c06553e00a054",
+        "61b642d958941473f76990ba37978fbf526e64c6063a15de082ea0059f7d1bcd",
+        "f7b0041655f03f262596aa898fcdf551815644d30f21ba47e843a9f0440eef28"
+      ],
+      "ruleId": "current88-09-bamboo-archer-girl-sw-20261123",
+      "ruleSha256": "3a7c9c4baa79c5e12f270b1319e281c470e97ff07a4317d18fee4e4cd7aa752f",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 38.78
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 38.78
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "08158e3f6ad762290be5d55744c92a2938ffff802c0b8f29dc0386052c97f5f4",
+        "a9bffc1566775832eee966d4dab110f83dffeb8d0281c88fa6c24f6bf29326b4",
+        "5e02e37b2e228ec7c25b72cd7e24689d33d002a9b78c914a81d9ed2824364242",
+        "ee474bda6780dd89ff296dfbaefd6d1217759175ff7415823f2121d4768f9bd1",
+        "29a6fa87ca54607c7f4ca339fa528b7978cd4f4372af09d2667fb4e3aa497425",
+        "a92bb508b8b749e5f137d282a785fbb86a2ed046de40550e9ae8b0517b4fd90b",
+        "4412597195771689e22443eaec8cd2c5272d56357270017ea7c72442270c543b",
+        "74bdefbf975831a8f722806a0e43d3fe3d72d40bd577ba7bbdae01a58a145440"
+      ],
+      "ruleId": "current88-09-bamboo-archer-girl-w-20261123",
+      "ruleSha256": "2b42950251e9e7f712a251eaa0fe3e6ab3d0d17718e39c0d22215a56a0a3aa2a",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0339,
+        "pixelsPerUnit": 41.28
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0339,
+        "pixelsPerUnit": 41.28
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "a99acb087a552dca2a65f6581b45c585474ee6ac7f95a25f8e0e8925fb807490",
+        "b9dd3c75485e7623826117fd7f1ea250e1adc605ceeb9d2bdd830b96bb6b53b7",
+        "293fa080e056d6d7a636ce902e8440e06c7710d225d276ffb785542d7d62d418",
+        "9ef7e893f423b306bcbca4030b9447be95d785fef2785f5a8568773e98d994e0",
+        "6d347a53062a6c19afa2abf7561598478ee1c0d04510d0d24b4de0358c90149f",
+        "b026fbb6bc80f9fef526dd040533582dd1059115ef50370f7a2821f84dbe6b8f",
+        "b4b8f40f266f9f87341022811d15f3b7a971a27b9d13118dfe9702816ac6d87c",
+        "770a39c44380fd33986a8d2a103575dd8047e135715c24a987a416c14b97432d"
+      ],
+      "ruleId": "current88-09-bamboo-archer-girl-nw-20261123",
+      "ruleSha256": "1eb3a71ce0a7bd0834d6d89ec0219c1b59ccb70b363715a5b5da1e0b40676ecc",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "7e4c610e326ec1afa380f1be61c95608683599dc3d9ca769f158e98e468dd15b",
+  "inputFingerprint": "cbb7d28a73f6656476bb95e5f7320ceb020e599edfeb3759fdc0ad0b1cfc3bc8",
   "nativeCanvas": [
     1254,
     1254

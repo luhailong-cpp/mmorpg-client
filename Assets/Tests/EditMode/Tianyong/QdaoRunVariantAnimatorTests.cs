@@ -191,6 +191,35 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
+        public void StandingIdleAppliesCalibratedDisplayScaleOnlyForCurrentRunRoster()
+        {
+            var billboard = _actor.transform.Find("sprite");
+            Assert.That(billboard, Is.Not.Null);
+            Assert.That(QdaoRunVariants.ResolveIdleDisplayScale(Id), Is.EqualTo(QdaoRunVariants.IdleDisplayScale));
+            Assert.That(QdaoRunVariants.ResolveIdleDisplayScale("07_moon_shadow_assassin_girl"), Is.EqualTo(1f));
+            Assert.That(QdaoRunVariants.ResolveIdleDisplayScale(null), Is.EqualTo(1f));
+
+            // 现役角色应用外观后处于 Idle，直接按脚底锚点应用静止放大倍率。
+            var currentFrames = FramesForIdentity(Id);
+            Set("_frames", null);
+            Assert.That(ApplyFramesForTest(currentFrames), Is.True);
+            Assert.That(billboard.localScale, Is.EqualTo(UnityEngine.Vector3.one * QdaoRunVariants.IdleDisplayScale));
+
+            // 切入跑步时恢复为 1（跑步自身通过每方向 PPU 与 pivotY 校准），停步回 Idle 恢复静止倍率。
+            Set("<State>k__BackingField", QdaoBoySpriteAnimator.LocomotionState.Run);
+            typeof(QdaoBoySpriteAnimator).GetMethod("ApplyBillboardScale", InstancePrivate).Invoke(_animator, null);
+            Assert.That(billboard.localScale, Is.EqualTo(UnityEngine.Vector3.one));
+
+            Set("<State>k__BackingField", QdaoBoySpriteAnimator.LocomotionState.Idle);
+            typeof(QdaoBoySpriteAnimator).GetMethod("ApplyBillboardScale", InstancePrivate).Invoke(_animator, null);
+            Assert.That(billboard.localScale, Is.EqualTo(UnityEngine.Vector3.one * QdaoRunVariants.IdleDisplayScale));
+
+            // 历史归档角色不走 current8，静止与跑步均保持 1。
+            Assert.That(ApplyFramesForTest(FramesForIdentity("07_moon_shadow_assassin_girl")), Is.True);
+            Assert.That(billboard.localScale, Is.EqualTo(UnityEngine.Vector3.one));
+        }
+
+        [Test]
         public void RealAttachmentsDriveAndLoadEveryDirectionForTheApprovedRoster()
         {
             // 此固定清单对应已批准的11人；未来批准扩展角色时须同步更新。

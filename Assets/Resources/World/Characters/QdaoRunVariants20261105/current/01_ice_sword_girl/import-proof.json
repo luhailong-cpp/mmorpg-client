@@ -642,11 +642,261 @@
       "sourceSha256": "6088838945c632aadcb91277e9e07f908c69f4e3a8b445183163f149cf32a64a"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "01_ice_sword_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.55
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.55
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "3fcf25ae6204a50eb57c3325c1d5cb1ba0a297fcdf957d49c1d80cead17ffb05",
+        "ea606b31abd23ffdf7bc09bf9dd3b164d8ae94046af3e54654b9e2418ec6e8be",
+        "196a50904b90d5edf485f22d1862e1c6988bbeda2adc471318925db3fb75be74",
+        "b2e05ce2f71064dfba02095378bef99e3e8df3a63bc3e99b4f6bb724dc5b3e5a",
+        "d7ab1b99b6e7e166aa8fed4f9c5764c5e695aaebf0cd11057db6c40dc49c6b92",
+        "c2696e229df6d980c1d7d54b1cd187a2e596ea38bfa388eae2d6e67bfce3385b",
+        "01fad2fed9f8ee8730ebef321111d67e03046d0cc845901efc28363de61730cd",
+        "325f56d1c2161ddfc43d1b8214ed81f0e608a0f745eb0061997b6c0f2874d9a2"
+      ],
+      "ruleId": "current88-01-ice-sword-girl-n-20261123",
+      "ruleSha256": "b0041558b627a2e09834099dcb5b2acca95091e5bdad4d408fdf4a5e86584259",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.93
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.93
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "63933465d6dbcfa4d0f67aaa48b68c12bc9d31862d001608717a978eebd80a09",
+        "1ba6e2cdd95a975461252e54e8373ef4fd696b4e641f27b1dbf35842280fb15c",
+        "bc42edebac4456f73c4dd8d1987fdfedf0bcf3892b6eeb2d1a1d1635d52f2906",
+        "d5de0c16baedf13099387e59e5fe6e3158a92da10633cf4dde2970d4b5a8e985",
+        "016fd94797a7c7aae3bc1a6f2dbb8fa6c026efec78ee60770f175b8ee593e6b5",
+        "d997a949fb00e40d6106d861b2fc775e433fe27e42709e058942dd32ea4b3c5d",
+        "16781d016951e8a994f3495f94528d59313d1d8308689cc800d16a2d0318c262",
+        "523c04c8158efa129b7cc32985e3bd72925602be432fd8aab318d0d6fa500a3d"
+      ],
+      "ruleId": "current88-01-ice-sword-girl-ne-20261123",
+      "ruleSha256": "545abfb5b68a4770b9e87ab0bf4af680894cb4bb790cd39e37c2c6c2fb8c4ba9",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.07
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.07
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "8eb58742f0508f9e779bd14b790cef538a9ecbc7999da91ba2af040317dc9c45",
+        "397fa15fa626c467270c1d57e2a017b7d4b5fdc61c7249b3b412084d97b9c8cc",
+        "13ec99c12eb38377a73248455fa222036999950fc7f5bfa683bd22fe469194d8",
+        "79bb4ddcfa6331244166881134f2ece7bb2229e3127c2a1ab3f885112d8d3754",
+        "06691cfd0228c7bcbc2e1a181c269e205ebfe7c078fdc6c1a19e7627ad4f77ea",
+        "9936ffc8907e2e771d1ca0bb57b16ce5a81a041c8622074c2bae53079fcc06b8",
+        "c6223481d5b3ffb329e94a9916c1f71dc0065cd8b990db36107ea436d94ccd1d",
+        "eef4f30c5c7dbdd5154994766d4883f2baeb2725f1986963fd9c9baab16cc9b7"
+      ],
+      "ruleId": "current88-01-ice-sword-girl-e-20261123",
+      "ruleSha256": "ce0ea7e22d1a8fb2fd26451fbc9274ce3372e8f5503e65b7da46d998905264c5",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 36.34
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 36.34
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "754c8de24dc3ea6a7eee9ca41a8dfc48caf9de8656cefb67487986abb64ba80b",
+        "8c50caa565f14c6d83c54f943c4fcc785591befb5918c933f8ded489646a7aa0",
+        "0410b2433d41332eaed758cf6208e9a1ca471a246e2f09bc582681b3821157ac",
+        "a52ba9cee41b50716e549fa4844a0968facac3ecee66be7df8e934f8923d53b8",
+        "89a72357b7f99ffc9403fdbdd35183b8c5b2cbf5b7cf2b7427d26f0b71ab5146",
+        "3d706bcaa96df5a22eaa67bbb4f121ef73d5fea401c9af31f2ef81d5bd1f7b18",
+        "3ab59c17193904f6bf4fe70ebfcf2acdf0f40c5e82f41347dbeb58c631e31c01",
+        "62dd0d1028012fc21b36503e329566656b2fb501ddc4f0d93f2b4f1faaa4bc48"
+      ],
+      "ruleId": "current88-01-ice-sword-girl-se-20261123",
+      "ruleSha256": "4c5f37a9a352aa61740f9b51e230186491bb3307a92bb4bfd5c4bb4be3f2c227",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0729,
+        "pixelsPerUnit": 37.57
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0729,
+        "pixelsPerUnit": 37.57
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "19cdd660de94dc73f6b593fde503e6bba9953649bece43be2f212314466343ab",
+        "c6bb5c66696a691b8a8ed964be5b865ec7d13f22da398065c5b9b05a80bc12c4",
+        "d16c38cbd93447abff284e137122cc620f74c5dc78d74c9f6586382ff87f5be5",
+        "3d83de3d99c1bf72ed814d240ea26e9d81cbee669345744277744d215edf6011",
+        "f5c368c25d1b306a044834e6c3292bedd59a270306378b3d2fac8a38e2e5436f",
+        "80504d10447ec96cf77a1e5fa67734128f4962f04d7c2bc63dbc6add5f6ac296",
+        "f7ed88c1ae8171262903a60d46ca450a4ec162d735e37d26d306748ad9ea11b6",
+        "8c1c65cda8554adbb9b49192401d6f05f06a5adaa67b363a87ddd04e75607be3"
+      ],
+      "ruleId": "current88-01-ice-sword-girl-s-20261123",
+      "ruleSha256": "110dec93e2858e8abe829aa13214e6b39349ad24b0a447a956227ff5d276e278",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0599,
+        "pixelsPerUnit": 37.74
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0599,
+        "pixelsPerUnit": 37.74
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "86b42d46eb231503b73f673ccc0bf846732326dd836ff235a244e3bdd97e4d36",
+        "8b8b8b3ef7353d604fb895257618273726c5a657193ea3fe257c05d4dc869c9f",
+        "88cfd8ced4c13ff3cd4bf6f81bf66007e5d0142d317630d6d4124a1b32a7f00c",
+        "7404c9ec2725b3d64c643b84f40eec3c7613227d5e9de2152aa1f4afcfcda0ac",
+        "bcf595e7c0d809f40f192e1e66074a8c0e4cb7f81e09ce6f10976b5137c8433a",
+        "55fde17ab0af47b43f66571631a5e84d4ad2bc171c44561c09906b0c4534f971",
+        "c788ff74f8e25e013517b3148116c85dc0026b0922b108562e88abc029577335",
+        "bbad21481c61279f80510650b225cd87556de4b07a37a3050f2da1ad93f6c22b"
+      ],
+      "ruleId": "current88-01-ice-sword-girl-sw-20261123",
+      "ruleSha256": "f4d70f800caa1175053ff29ce9018e42017a8ab1948555cb98bea79239219164",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 38.83
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 38.83
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "aa579273e66a69713f567ffc036b18fa1c84d03148581d21c53615e3cec683b4",
+        "a79e7be3ef38cc42ba7b3c527541fa5164238743f5e47aa964cdf552f894e6a1",
+        "94b5b001d076778accf66773bf5c9aca5b1d4e623e7fd798ca4b44968fbaf361",
+        "8b14b2f91134f206c35d982ef9eb115b5ba84ff565fec3542d49cf93ef2b4ee9",
+        "e395072af780b6057e3f9d143f99181713e30c23f2aca9ee903c07b8b3743ac9",
+        "7fdc70ae9b1a2cc27555a48cdbf5b51cff012961c78e83ef88c4aeb4242e079b",
+        "e2ccbfc55d0f0530ac70ab7e9594181b82d529a9d325cc0f81b5f3983e6fb0dd",
+        "9776a4aeaf3f609b8b352292fbf9e7e38e3c3ff16cd6114bf81e74812c7c0dad"
+      ],
+      "ruleId": "current88-01-ice-sword-girl-w-20261123",
+      "ruleSha256": "3dd9f2e0d21fe39a52b8c5d29b13351770f03cc5e4cd2ce7820c2a9ed0723c4e",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 39.68
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 39.68
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "a3ef8f787db704f53ba69bafc49e274263bc594b2aeb68d7dedb867b9c6f4867",
+        "ea423d2f9f5bdceff80f72ee6f39b2fc47819f6edc7e6e60725e73dedaa2c943",
+        "85ac6297a4098b65214d95221f5a488a54467d729630a6dd466a6f4602b87d73",
+        "d4e25bb483c6fdcd415e36254f52c9854256f331b3f4878c20215d709c4b8cb2",
+        "270521779d0a3bebf462b321e6441369bd0190a59bf36c0f1940c7a5be0fe55d",
+        "8aac3a1ae2ae3ba2847a384dc8e67ea6d467930de17b8652d2fdd0e279712962",
+        "f839b27962df9714c092105756e5fe629ac7495980ecc5ef437fcbe3bba79c8a",
+        "6088838945c632aadcb91277e9e07f908c69f4e3a8b445183163f149cf32a64a"
+      ],
+      "ruleId": "current88-01-ice-sword-girl-nw-20261123",
+      "ruleSha256": "9e883cf3baeb496c7c745b8fae4d0243d79cf1566ee61e20dcb96945909bafdf",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "4fe51dda1088bcb18170d317788f43c417ad4dbbdcf63a144b532f0810e4c176",
+  "inputFingerprint": "fa0b636ea69b04f96f790e7529f44f3d6838975f6816356cf1341901d62de6ea",
   "nativeCanvas": [
     1254,
     1254

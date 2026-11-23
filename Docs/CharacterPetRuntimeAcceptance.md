@@ -33,12 +33,10 @@ one-point saves. `-ReadOnly` validates runs that omit allocation writes. Request
 also check actual live battle phases and disabled control metadata at both resolutions.
 Full native screenshot visual review remains separate.
 
-The prepared plan covers six pages at 2560×1080 and 1920×1080, source overlays, pet
-four-stat draft/save and disabled controls. The save operation must also be checked against
-the `before-save-*` / `after-save-*` authoritative snapshots. Battle read-only lock needs a
-real battle and an approved production read-only entry and is tracked separately until run.
-Pet entry-point allocation currently has no server contract; its displayed unknown values
-and disabled save must not be presented as working allocation.
+基础计划覆盖 2560×1080 与 1920×1080 的六个页面、来源弹窗及宝宝四维加点。四维保存须核对
+`before-save-*` 与 `after-save-*` 权威快照。战斗只读状态从真实 PVE 的「人物资料」「宝宝资料」入口检查。
+宝宝条目点已接入服务端预览、保存与列表刷新。验收时要分别对照投入前、保存后和撤点后的同一宝宝快照，
+核对条目 ID、投入值、剩余点数和状态版本。下文 11 月 17、18 日的缺失数据记录对应当时的旧测试服。
 
 The launcher records build and source provenance, but a green run means functional capture,
 not pixel identity. Review full screenshots at native size against the approved art and
@@ -111,3 +109,24 @@ This increment confirms the final patch preserves the deployed legacy page. It d
 certify modern live skill data. The separately labeled table-driven passive-page supplement
 and native EditMode results cover the modern conditional fourth category. The original
 49-frame/102-check live evidence set remains unchanged.
+
+## 2026-11-22 本机新测试服联网验收
+
+Windows 11、RTX 3070 Ti、D3D11、Unity 6000.6.0f1 Editor Play。独立项目副本打开正式
+`Assets/Scenes/Bootstrap.unity`，专用新角色通过本机网关登录。场景与战斗节点运行同一镜像
+`sha256:609330be46f03…`，完整摘要见 `server-environment.json`。执行了 207 项计划动作，
+保存 63 张原生 PNG，2560×1080 共 34 张，1920×1080 共 29 张。仓库标准检查 116/116，
+专项检查 91/91，Unity 记录的错误及异常为 0。
+
+| 验收项 | 两种分辨率的结果 |
+| --- | --- |
+| 人物治疗与护盾 | 服务端标记两项来源完整。被动「悬壶济世」贡献 15%，治疗显示 1380（基础 1200）。当前护盾加成为 0%，容量显示 960（基础 960），持续两回合。两项装备同类来源上限均显示 32%。 |
+| 宝宝条目和四维 | 物理伤害条目 501 投入 1 点，显示 +0.5%。每次保存后重新请求宝宝列表，剩余点数先从 20 变为 19，撤点后回到 20，状态版本递增。四维两次各保存 1 点，剩余 300 → 299 → 298。 |
+| 五阶归属 | 服务端归属为「普通」。五个预览依次切换至普通、变异、灵兽、神兽、圣兽，界面持续显示当前阶「普通」。 |
+| 实战 | 人物施放 A40，宝宝施放 B05「如意灵环」。首回合结算的 HUD 新增对应 Buff 100400 和 110050。战斗中人物可查看来源，宝宝四维和条目保存控件锁定。两回合获胜，点击正式战果面板返回场景。 |
+
+证据保留在客户端仓库 `.codex-artifacts/character-pet-ui-50fdfb/live-isolated-1122-r3/`。
+`integrated-review.json` 列出逐张截图的 SHA-256、原生尺寸校验及保存前后的服务端快照。
+`functional-review.json` 记录标准检查。可对照 `04-healing-sources-2560x1080.png`、
+`01-pet-entry-saved-1920x1080.png` 和 `08-character-battle-read-only-1920x1080.png` 查看对应窗口。
+本次结果覆盖 Windows 编辑器联网运行。新专用角色未写入退役技能，旧存档由服务端专项回归覆盖。

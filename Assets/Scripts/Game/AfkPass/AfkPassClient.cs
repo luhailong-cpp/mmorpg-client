@@ -73,10 +73,15 @@ namespace MmorpgClient.Game.AfkPass
             $"挂机月卡{FormatRemainingPhrase(remainingSeconds)}，到期后断线将不再离线托管。";
 
         /// <summary>开通被拒的原因。服务端 tip 码在 data/tip/Tip.xlsx 的 //afk_pass_error 段。</summary>
-        public static string DescribeTip(uint tipId) => tipId switch
+        public static string DescribeTip(uint tipId) => DescribeTip(tipId, 1);
+
+        /// <summary>按实际售价币种描述开通被拒原因:灵石保留充值引导,其它币种不误报「灵石不足」。</summary>
+        public static string DescribeTip(uint tipId, uint currencyType) => tipId switch
         {
             (uint)afk_pass_error.KAfkPassPriceChanged => "挂机月卡价格已变化，请刷新后再试。",
-            (uint)afk_pass_error.KAfkPassCurrencyNotEnough => "灵石不足，无法开通挂机月卡。可在聚宝斋充值灵石。",
+            (uint)afk_pass_error.KAfkPassCurrencyNotEnough => currencyType == 1
+                ? "灵石不足，无法开通挂机月卡。可在聚宝斋充值灵石。"
+                : $"{CurrencyName(currencyType)}不足，无法开通挂机月卡。",
             (uint)afk_pass_error.KAfkPassStackLimit => "挂机月卡剩余时长已达上限，暂不能续费。",
             (uint)afk_pass_error.KAfkPassFrozen => "角色当前状态不能开通挂机月卡，请稍后再试。",
             (uint)afk_pass_error.KAfkPassUnavailable => "挂机月卡暂时无法开通。",
@@ -203,12 +208,17 @@ namespace MmorpgClient.Game.AfkPass
         {
             if (_disposed) return;
             if (!IsSupported) { SetStatus(UnsupportedMessage, false); return; }
-            ObserveConnection();
-            if (!Ready || InfoPending) return;
+            bool reset = ObserveConnection();
+            if (!Ready || InfoPending)
+            {
+                if (reset) Changed?.Invoke();
+                return;
+            }
             float now = _clock();
             if (now < _nextInfoAt)
             {
                 _infoQueued = true;
+                if (reset) Changed?.Invoke();
                 return;
             }
             SendInfo(now);
@@ -298,7 +308,7 @@ namespace MmorpgClient.Game.AfkPass
                         {
                             if (tipId == (uint)common_error.KInvalidParameter) ClientRequestKeys.ReportKeyReused("BuyAfkPass");
                             if (tipId == (uint)common_error.KRateLimitExceeded) _nextBuyAt = _clock() + MinInfoIntervalSeconds;
-                            SetStatus(AfkPassModels.DescribeTip(tipId), true);
+                            SetStatus(AfkPassModels.DescribeTip(tipId, request.ExpectedCurrencyType), true);
                             if (AfkPassModels.TipMeansStale(tipId)) RequestInfo();
                             Changed?.Invoke();
                             return;
@@ -325,7 +335,7 @@ namespace MmorpgClient.Game.AfkPass
                         {
                             // gate / 路由层带码拒绝(限流等):请求没有到达 scene,结果是确定的「没开通」。
                             if (tipId == (uint)common_error.KRateLimitExceeded) _nextBuyAt = _clock() + MinInfoIntervalSeconds;
-                            SetStatus(AfkPassModels.DescribeTip(tipId), true);
+                            SetStatus(AfkPassModels.DescribeTip(tipId, request.ExpectedCurrencyType), true);
                         }
                         else
                         {
@@ -345,8 +355,15 @@ namespace MmorpgClient.Game.AfkPass
         public void HandleSceneEntered()
         {
             if (_disposed) return;
-            ObserveConnection();
-            if (Info == null && !InfoPending) RequestInfo();
+            bool reset = ObserveConnection();
+            if (Info == null && !InfoPending)
+            {
+                RequestInfo();
+                // RequestInfo 命中限频排队或尚未 Ready 时不会触发 Changed,连接复位仍要通知界面清旧状态。
+                if (reset && !InfoPending) Changed?.Invoke();
+                return;
+            }
+            if (reset) Changed?.Invoke();
         }
 
         /// <summary>断线:整体复位。重连进场后由 <see cref="HandleSceneEntered"/> 重新问。</summary>
@@ -361,7 +378,7 @@ namespace MmorpgClient.Game.AfkPass
         public void Tick()
         {
             if (_disposed || !IsSupported) return;
-            ObserveConnection();
+            if (ObserveConnection()) Changed?.Invoke();
             float now = _clock();
             if (_infoQueued && Ready && !InfoPending && now >= _nextInfoAt) SendInfo(now);
             CheckReminders();
@@ -401,12 +418,13 @@ namespace MmorpgClient.Game.AfkPass
             }
         }
 
-        private void ObserveConnection()
+        private bool ObserveConnection()
         {
             var current = _connectionIdentity();
-            if (ReferenceEquals(current, _observedConnection)) return;
+            if (ReferenceEquals(current, _observedConnection)) return false;
             _observedConnection = current;
             Reset();
+            return true;
         }
 
         private void Reset()

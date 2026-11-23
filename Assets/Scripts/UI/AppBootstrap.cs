@@ -258,6 +258,7 @@ namespace MmorpgClient.UI
                 GameClient.Disconnect();
                 GameClient.Features?.Dispose();
                 GameClient.LandingSync?.Dispose();
+                GameClient.PetFlip?.Dispose();
             }
 
             _gameLogHandler = null;

@@ -642,11 +642,261 @@
       "sourceSha256": "079193dd79d94c752167bb77be45e00b72407a87e2d9969e8d25b0b3bb413ec7"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "10_crimson_spear_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 42.42
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 42.42
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "279e054857594053eaca1b3daea128b4976bb13843408a3902c670357085dece",
+        "e14cc4cc0c91f3034acc3b0e78bc474277e8df75639de29caa78f884a78e4108",
+        "b9f084605dc8516e68194dffcde17d607f21dfcd789a923a9d37056277154bb9",
+        "b4402f8c00bf55d1218ac019d985741a2a8994091fe16c991aff051fcd352cba",
+        "79eda36d2e7a841d1683e5e6e2d54419b619894d76ae654721813e608f5ae0da",
+        "f30183f42510cb88baaeeb9feb07a9827e0c40f76aac3c3ef5bd3ee8ec368fdd",
+        "0fcc166a39a06f759bff81efbe17cb47510706f520d752aa4d26faa7d9d56e7a",
+        "497d8d3a03819181dd9caafa28a4205182da4270fe176251b3fe7dc4a9c9e4f8"
+      ],
+      "ruleId": "current88-10-crimson-spear-girl-n-20261123",
+      "ruleSha256": "66e97ef72307603dba5323c393e63702d63594d84781db85dd56d3e0c62034c7",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 41.63
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 41.63
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "0f465e2f6cdc896ca02c69ddc7edaff5132a1f2ceb97e99c7785467a52fe7c2a",
+        "fd2f4e442eddfdd534da044f2779fcee1fbfbd283dd904b3fcad31e4bc9544c3",
+        "41ad5bd573fbf344bfcfbd4f9d5a695c87cf074a498e719812c49ceff6c7479f",
+        "d2e25faebdb354a2457ccf3aab3e1e3275c4a8d548ec4d49b79384e36a555cbe",
+        "a22c8df16dabd3f0b786c52fafe1b758b1144f9f7ab3037c951788b465e3afb3",
+        "10d692dbd93837127278cac9f8435480165101948b00b36b7238baba46cd8715",
+        "75e9214384a28138cd7dd4326ac7f83cc67982088747552e877ddc5ec74b0542",
+        "8d19b93a81c6fed4075444e3b40b978aefc2285549fe96e3c418c40cfc23b8ac"
+      ],
+      "ruleId": "current88-10-crimson-spear-girl-ne-20261123",
+      "ruleSha256": "a3b3dc2ef7e6824c728dbd11fe1893ca65caa2302ea4cb34b4d4d00696f758e5",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0573,
+        "pixelsPerUnit": 39.36
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0573,
+        "pixelsPerUnit": 39.36
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "732a312c1bc933fb977931480468bf9cb45475b5ccfec643ae6eebb6d8463ef0",
+        "0984e3b5447d62fbe73f387c5be979541ddee35a2d4538cbb07908d474eed240",
+        "228d9727b18da8902bf79d437955d73a433ace8a6e103024f0ec5beed444cdad",
+        "81a7115d8b7479a9e4b91f8161ea7f7d4ca2bf295cfe20d53b3cb61851749f42",
+        "8e0e5eadb0c5deb8251aaacd73856a8c6c45ffffd4585a3d7216d56bef266e39",
+        "e7adbd1e7d3efc6b1b48717ef16ed2b5b481a5bc6440fdc1403de888dd361ea8",
+        "e86d7e33e677a5375d78ca59ece1c005958bc85ef4c234c3e17b357f02002ca7",
+        "e9240063ea2d05c02049c951ac14fac551b60940afc0312b18c07ef080e56306"
+      ],
+      "ruleId": "current88-10-crimson-spear-girl-e-20261123",
+      "ruleSha256": "69116e954ab47c414dae7687365104fdcb8be39a3f3ca13efc1c179f27ad12da",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 43.33
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 43.33
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "b1f10e00155e1161ff296d3f7fe335c96936854a567dc96e26fc89696672f037",
+        "292c087cdde84ebc57842f4d74c936807636134429dfe2432a1bded18a1a7c7a",
+        "3e120b9ce0fd190e09dc96c88adedf3b4f25b4599c94a0c0f842afb16c54ed37",
+        "088a0b73c8a63bc268c0c301f2c0ad910ed8fead731bce9e5fd68944faddda0d",
+        "ae28d7be917b5f8363082b7c0228b0e3e338ad29468b4b1d6c6199026cd4f6af",
+        "2735b52aa673d677a70ce460462f28675abafbe62b913e3f59cab420e9e272dd",
+        "29bb36ce3535dc89e558686ba7af5838699db9e9cb15e7cfd54e802efd8be5fc",
+        "e8919eaf7e1a2da7970d3769704fa32cf3c1ae8e22b6860743cda940611a053e"
+      ],
+      "ruleId": "current88-10-crimson-spear-girl-se-20261123",
+      "ruleSha256": "bbca25907b985ab92458826670350f102d36c316eb008e6010e9a396ba6b54a7",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 42.27
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 42.27
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "ffdfa9a193082db021cb90f09258479f0849970ff21713a301f49477dee7b7ca",
+        "bf2381d23697c0872f54e7adcfe0827852243621b79ce5de60182ab18248be6e",
+        "f6ef671ffc6659bd82190b1d11148d823c501666c9644b205a77891c43fccf68",
+        "44ad91c70388b4761527e8bd25f6a7b2b76a98bd0ce89c5310958340f827b623",
+        "fab1536e0277cc26a1fa70034c1efc2e53e11d719ec52f344b699a1723f0ab1c",
+        "fe2275b563c37bfd0d1f7a0fe0b3421497a517e5db09d5e290b7add0cec4b76f",
+        "e6ffe5c5f3587e4eeca48b92c2e797c0d028ef114e22f094dfa66cacba0e4a2b",
+        "5583ca0b15905d2f1f44d2274194c6f60618289d36df2ffb60b0a3b8e9467360"
+      ],
+      "ruleId": "current88-10-crimson-spear-girl-s-20261123",
+      "ruleSha256": "43dc8a8729ec57c51e160a5ed35e16a4211a588cab3572b88d08e2759e583b34",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0703,
+        "pixelsPerUnit": 39.73
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0703,
+        "pixelsPerUnit": 39.73
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "56c3d0190dfbc8208bf14a637b58afbdbde9b5acdce7d68ce36791fc8cc09396",
+        "84246df805a3b84cf0523323fccf2967c560a49ca1fd493218059ecf5e9ab98d",
+        "ea9e44da0febc1f429bb2650c499d4ded3252fafc8e640ec837de0332416f728",
+        "cdf18168dc481f7b22cade0db2e1f579c4f8764e6de385bac191d07875c62c1b",
+        "a101187608948702ee57276affb8fccfae212510138aa4671c4c9d719546d3b2",
+        "82d6da5486d389755596a0dd5df6a4028ea95a774b49490c04b17b99237f2025",
+        "6dacb0cae527cb174ff6d32a1e3d9af700028a787f54dd90d59076102bc2c4aa",
+        "00a04ca46588c083fffbcd9474d46ffe280e53fb708b5eca9de49ca2c980d5c2"
+      ],
+      "ruleId": "current88-10-crimson-spear-girl-sw-20261123",
+      "ruleSha256": "5c7754a679a8fed87881cdbf92bc10172fd60071f23354c1e5bf3d4ba05e6e3f",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 40.93
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 40.93
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "7dc615b6150cec390b8eed81386bfb8c7fb99edfb7125380fabcd71f93eade14",
+        "e46818c1c94a15d776194fbedf83ae1b4fe9615d570b983909e37e39e18a0083",
+        "8e9254e062c5bd1af1b6a7d03ef6e004cc62d175899c7bdd496173a406a84adc",
+        "5551963e537a668cfc38ca01de65fa3674173efcdf3638c378f19ca2b0e300df",
+        "0686a30362b31c6217bd568ed09ccc559c98b6b7dd67a86222ae409e4bbc8a76",
+        "e03ec3a625be175b5713e227270fbe77465242b479990dee1caa268ea23ccf4f",
+        "a64ccaaeed27a349e192336e546f623b36eb6747c389e4043e814fec160895bf",
+        "8c264294d125144388f8064f1335c12507daa32eb409f4337c60239e78933712"
+      ],
+      "ruleId": "current88-10-crimson-spear-girl-w-20261123",
+      "ruleSha256": "fb30b89300daa202eeaf28f77298ccc71d076da90f5866fec5829afcf4e4f0cf",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0599,
+        "pixelsPerUnit": 40.34
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0599,
+        "pixelsPerUnit": 40.34
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "4261b2adf5550a73a9a854ca3d9e0db2bb1941e44945f92387740334e901e3d1",
+        "29f892520aecf1fd6059fe41db34e96ba216be08fade2f0fc5ae14e57199db47",
+        "fdf4445536e07ac7a3150cf3dc8999142ca224647eb69f1f1aba196330561ed4",
+        "68bb5ab071ace9f5907044d73577eee8f9fb4e6d95ea9659c06da048dc83ed01",
+        "534e498df5068dd744f9854e77b9117e0b5bfaab95740e24dba934a3e07cdd4b",
+        "13483b44057bc5eff71ce24e9ef4de3da628c4772a61153282f735ca6afa70ac",
+        "a6ab8abd9526185b41b694aef2922e2b89944d6836f5bc5671cf449894eb5e4d",
+        "079193dd79d94c752167bb77be45e00b72407a87e2d9969e8d25b0b3bb413ec7"
+      ],
+      "ruleId": "current88-10-crimson-spear-girl-nw-20261123",
+      "ruleSha256": "973d7aa159905f0289322dc273033bd4cfd2aa8e52a7f448aea42b552a4e56b9",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "b6048f2944d5ab8e53e3044f77cef85eb949cd0ed5868b4d845285f4e9cc7540",
+  "inputFingerprint": "fe62a3fd673c009817fa321dab7ffd430e34b95f2e340be61598c2d47ac90175",
   "nativeCanvas": [
     1254,
     1254

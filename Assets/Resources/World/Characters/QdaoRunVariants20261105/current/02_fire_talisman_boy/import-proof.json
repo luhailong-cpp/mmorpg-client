@@ -648,15 +648,170 @@
       "configuredRuntimeClip": {
         "overridePivot": true,
         "pivotX": 0.5,
-        "pivotY": 0.22,
-        "pixelsPerUnit": 30
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 42.19
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 42.19
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "03f0f0a5b92152d2a48b2f4499897ed9e82774e34a2cee9c6bdf1de4aa9a127c",
+        "fe331736fd6e5b1721a1d38113faef0db67fd20102c4ce4f654ed79ee707adc3",
+        "9410c7d01c30d505e3bbe274ded49ce94b03945f0d8550c585e741747c1d341b",
+        "d2a6a991e278b18950441eaba9d09b7f47b8a9a64141401e92112d18ae955af7",
+        "b586e3b5380abcb3ed54a4e304fa570f2294f1b56a052e799e904cfa64f9ff48",
+        "880b310df47fe4189292c359e681a53af86adc291eac2cfd0cf3ba5bdebb5409",
+        "97f057cb964462c6f314e9f0b0c7d9ec676e86a8385ff158221b07f4117f0b6f",
+        "0819f25b4623230e13b7823687d1a4932a0e9007d8c4021691fa8c18b7f599d8"
+      ],
+      "ruleId": "current88-02-fire-talisman-boy-n-20261123",
+      "ruleSha256": "d86559ce615444963b1b13b773933b4a8fd0bf944e44661592b08d79718352c4",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.4
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.4
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "71c901eafa82b3d8960ad0a6ee86b19d442be1bd932d6c439726bbe127d6dbc6",
+        "37991d120ce3410b41037dc07db923d511b7dc3f85c58a516b8091200dae8a4e",
+        "1a137bafdcc4453a3003f51bc9985108ae0f6999173344fbc426cb8db1c5c0d8",
+        "2a3d83df8902901f771ec376ae5edfef2e9c9def796421d11a6fb332ae2fac15",
+        "3aa4be2b1ac64be9f6ecbd00a4ef12f3f89b4caef488bca1d320acb0dc4caa5e",
+        "4971494043e67ce979bf24d4b894719b90fdc8865acc0048be3d0ac873361b95",
+        "279b2aa645ffc635881d2409b59b623b3b0e7d5eeb4fc7cca980ce3d8d6e8ddd",
+        "125342b54b3263ea40898d5feb845db8da10f0fdc94ca82cf1925f20f258dfbe"
+      ],
+      "ruleId": "current88-02-fire-talisman-boy-ne-20261123",
+      "ruleSha256": "13db9eb2c6b31564a4bdafacbe2477d9d5fc974aa8f801cfd025cb03febc767a",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 42.9
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 42.9
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "c355d4e24b0e13b4eb4f007f398c4c41af6a39aab7cd74df5af8ab71f46207d5",
+        "5a179cc0e40c088835bd32d4bf11745034671de4d000605fd2fc8d397c30625d",
+        "5c430fc89cb734c39db68e219b008cd44d77acaf6ff966b4fcfbb660ecdad7dd",
+        "13dd249664d8154d1e00791443e47b9e92d5dd7a92a207243e1de55daeb43705",
+        "ffecca5727be86a5d048656e017aea4d69bf99a003ede79144544f829f3b9559",
+        "7a33cbd5dbb65039f75e4a8039d6f2ac74c676bc331470223ce494c8ad212f46",
+        "6708d5c47a1799113ca75d1daa58b16d7e27917a0837bc2c5a8c08db285844be",
+        "b6e44a768c901f4e0224860681beed96ca39bd22b53652441b7b6580cd6f0e43"
+      ],
+      "ruleId": "current88-02-fire-talisman-boy-e-20261123",
+      "ruleSha256": "24209fb27fd4b9ab68107f90c6efcf2dec20fdc72a906d66c65a9a378d39fff3",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0104,
+        "pixelsPerUnit": 43.17
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0104,
+        "pixelsPerUnit": 43.17
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "afefdc767af8faf2a68ae303be8ee47c5d7902c50cf1b583155c930f3e10c0ad",
+        "571c58395b3492303d16b849a33c2a8f9ccc738cc3c26b3da4e04807572cd629",
+        "b1d1462ab15514fd5590f1792af6e0634a977770548f5396c3acea711b984e76",
+        "0a9ac5a220ed5e69944e1061cc1b89a814ed4505b70f18406a37e6fc198d46d8",
+        "bfbd8872771c4149f1cc08ad37808b1d6ba30036c4e3ba10c1207053699955d0",
+        "c091a1d438ac33d0abfc7bfcfd623e0786193898fafeef3c9fd7fa72772c7cbc",
+        "52437640c78193eb47632787ecf962d49a17ee01e2045932037775799d565960",
+        "fe4f301dc8df8bd2eda9662ae1a841ee08b2b8c4a5fbdd4d26b1b01140a68b29"
+      ],
+      "ruleId": "current88-02-fire-talisman-boy-se-20261123",
+      "ruleSha256": "4623ae5523917a6cd3830fd4391c61fa43dd369d2fe9751cf8869e8555b72431",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 40.85
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 40.85
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "4f8256a4502db34e33e736bcf6ff9862b0a6fcfce43a4459fa8ca79c81b137c9",
+        "ab654780b30f387a9fb2fa2c2f586a6f469dea7fd234f55cc58db8749e6b3f43",
+        "1a95f111286315e937b0a87b819b1c5c323e13cad06257a4037c76abfe4ed512",
+        "f00b7931750ad9560fdd83b1a7e39fc30bcb41c30fb19d2ce20c6d3a790cfbe3",
+        "8716ac92393caefb32819863b29388dfebdf65c58d8391e0b8b93886f128f633",
+        "cbd457808a20ab3daa532b4dd80b07b85122cf0f396a8dd6dd0617dbac98403a",
+        "d72383a667e74eabe6985c01236e6816b10355bddd8643fa3be1dc2be5ebdc65",
+        "a37a1b0c1c20f01b006629c4e390f6f070a3f4d97a2d1450478aa9d7c06b6a71"
+      ],
+      "ruleId": "current88-02-fire-talisman-boy-s-20261123",
+      "ruleSha256": "de2fc710c49b044825168900db24a989e389b309578fe379c99792d43f075ce0",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.1849,
+        "pixelsPerUnit": 32.09
       },
       "direction": "SW",
       "emittedRuntimeClip": {
         "overridePivot": true,
         "pivotX": 0.5,
-        "pivotY": 0.22,
-        "pixelsPerUnit": 30
+        "pivotY": 0.1849,
+        "pixelsPerUnit": 32.09
       },
       "gameAcceptance": "pending_independent_runtime_closure",
       "orderedSourceHashes": [
@@ -669,8 +824,70 @@
         "11b9ee0e91a6cef37df83232d2c770cf24dd6584df17d8e851a30c7439264cf3",
         "11f29c2fce1ec35f5807fe91d6b0784d8899592a0155c883707b21c44a74a3a7"
       ],
-      "ruleId": "current72-02-fire-talisman-boy-sw-20261106",
-      "ruleSha256": "b0046928a73bebee8a5f059a7b88dff4d74673aefa8d200b159467f51fc3927d",
+      "ruleId": "current88-02-fire-talisman-boy-sw-20261123",
+      "ruleSha256": "89f496e573e069f0bc66b55bf21210b40a78d0e7b5c17e1a3efa67156cddf740",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0521,
+        "pixelsPerUnit": 40.36
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0521,
+        "pixelsPerUnit": 40.36
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "3c4c15dd55503a86d6fbdd75bd76eda26d87e23ce5708a6580918629d63c6b61",
+        "c2866702316778a562ccccc26cc375744a9923516e480be4cd173c176508e00a",
+        "963b5c3b6bce09fc36398dc7d969c874602e1c622828e7fa283bbc899a582d0a",
+        "595b9042b711795713c6c1c09c73315a676ac90b44a1396148b65cca2f5a6fa2",
+        "9efe3bd68a13795577b723e6a867d578e1f7f098a8f6603acf1bbce6af4abc24",
+        "ec350d201fa9223f99a014b91923fc4da37f3d201690efaa6806227597e7cb03",
+        "2f435828b82a9dd7a7cd3f8e69e43078641868312dee0d084c8e5f31a7aec84b",
+        "60d6e882326ead17507d64a584823703e8dbc2482a3d51d19a12656039ca8500"
+      ],
+      "ruleId": "current88-02-fire-talisman-boy-w-20261123",
+      "ruleSha256": "64d75df2d5c5da71d92aa51f6ce13bcabf672a0f0ebccee012b48a1133c7999f",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 41.48
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 41.48
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "3ff8287b8c519c7a64b8e8f60591dacd771e857925f8e993ba31621d08056899",
+        "b5b7dfe4047223f11da50fcac402db6b1ba6c5099687c1d41e2dca39917e4ef5",
+        "a509c4faa1ceb9138c7bcd6e8dfd0c861f9c4c49cf07dd5c6cd68a8a3424d393",
+        "3098190470bf85562b4181d44e7c8cd1e1b3600715f8ae91a7987267483c4d96",
+        "1bb79bca63ea7661bca37310eec663d3ef41ab9e6ab20a64f1f29abe45150c36",
+        "b3fb02073722d9cbe99ae6a9eb55397f42910e6b5715fa7d324fd65c16b3c639",
+        "eaa173fd12137da871a6a5654e2319cf700efe8997f5a64e15d70614fd49dfdf",
+        "d1bf8896b1603f51a42da0c0d464dbeebda436e63e0d50e3eaa0325ba70de627"
+      ],
+      "ruleId": "current88-02-fire-talisman-boy-nw-20261123",
+      "ruleSha256": "2fd1bf3e6ca02b3c90cd32c6ba7532626465cdd8ed6c8cb11b2e0c801750c6d2",
       "ruleSource": "tools/run-variant-game-calibrations.json",
       "variant": "current"
     }
@@ -679,7 +896,7 @@
     384,
     384
   ],
-  "inputFingerprint": "ace0c0f8170801a3a32649651f1e995ffef369c1e3f828f4d234d16762599538",
+  "inputFingerprint": "931500cf744d58065bdb84d79430501365f2c6ad5354efc9fe926fc673ab8ea1",
   "nativeCanvas": [
     1254,
     1254

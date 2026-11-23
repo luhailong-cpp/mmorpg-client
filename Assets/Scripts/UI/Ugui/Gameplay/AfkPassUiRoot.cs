@@ -215,9 +215,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _armedAt = float.NegativeInfinity;
             _buy.interactable = canBuy;
             _confirmShown = canBuy && info != null && Time.unscaledTime - _armedAt <= ConfirmWindowSeconds;
-            _buyLabel.text = pending ? "开通中…"
-                : _confirmShown ? $"确认开通（{info.Price} {AfkPassModels.CurrencyName(info.PriceCurrencyType)}）"
-                : _client != null && _client.Active ? "续费" : "开通";
+            string action = _client != null && _client.Active ? "续费" : "开通";
+            _buyLabel.text = pending ? $"{action}中…"
+                : _confirmShown ? $"确认{action}（{info.Price} {AfkPassModels.CurrencyName(info.PriceCurrencyType)}）"
+                : action;
         }
 
         // 只写状态行的文字(倒计时),不碰别的控件。

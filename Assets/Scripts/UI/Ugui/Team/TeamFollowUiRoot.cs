@@ -100,7 +100,9 @@ namespace MmorpgClient.UI.Ugui.Team
             _hud.gameObject.SetActive(_available);
 
             bool trusted = client != null && client.HasView;
-            _follow.Tick(game, trusted ? client.Snapshot : null, _available && trusted, Time.realtimeSinceStartup);
+            // allowed 只看「是否已进游戏且不在战斗」,不与 trusted 绑在一起:托管重连接回时服务器先推 driven=true,
+            // 队伍快照尚未拉回也能立刻显示「正在跟随」并允许点「暂离」撤回。
+            _follow.Tick(game, trusted ? client.Snapshot : null, _available, Time.realtimeSinceStartup);
 
             var status = _follow.Status;
             _toggle.interactable = CanToggleAway;

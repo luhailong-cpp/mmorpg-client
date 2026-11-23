@@ -642,11 +642,261 @@
       "sourceSha256": "1bf1d6b46ed9f32541c8b9a053669df439071956ab6264b957f639eab24d3082"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "05_celestial_musician_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 39.85
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 39.85
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "e7330a4ea6e749c3c898fe9c89a46b0fe964e3c9b031b1913efc863bd4b1cc25",
+        "249eee2e055a8b6523e48f8eaabf175f602c0be132b4c1e4507920fdfd6e16cb",
+        "00ee225fa3a5afada588c7134668979bacf5a232a4bba9997985553754abe6b7",
+        "1b638f987b44c1acad592aa6960d89f45b31fa11220723dafe38ce7f34b8e840",
+        "aa8f69f805bdc780256a4f2e022c8b9c532bc87289b34dafecb0152809d71c9e",
+        "cac41bfec3f769a84e9023643a99b6fea2d1d9e2f4704ddda1cfd677a1e6605c",
+        "b916aa5d90d461e6b97e4d6fc7214ecf9c2d6004c882b2904688720b43cc461a",
+        "8ef99de424ea5d9ce29dd23860f9aad6c763bb3d746fd9b11e3362b919507ab3"
+      ],
+      "ruleId": "current88-05-celestial-musician-girl-n-20261123",
+      "ruleSha256": "5a564de6e5b4e70731dd6ac8d86141316721c64919eec8917354085b93f5122a",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.33
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.33
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "645c67ad2491e0fee2cd5da1ba504efd7d57f49555d495faf5734df4be26ca53",
+        "dd40073f54cee870211c234d3205c8760beefcd90cd75af301a70e0f57d7cf6b",
+        "dedcafe5e4d738570f31aad046de92b684742da863f0229c00443033a0d103d3",
+        "8782788ada5803417762b50f3c2d8eaaa67f9735bd5918ff2c64f540397d602c",
+        "fbe694c9cb9063f2c1c5bfdd8e7dd776d58c014bb3268f48ce61b49054d08cbf",
+        "387108e2d51e1a99869fb40f3523260f3df7ab99c0e99e8a8887571232e08442",
+        "801865c921803c23bc209b60e9126dc6ee310a7d0a6f4c7cc01729eaeb05b1e8",
+        "2b76010cd6c9336990ad39f197531f302fdb6578dcc01ed7393fd4dcfcf1ece6"
+      ],
+      "ruleId": "current88-05-celestial-musician-girl-ne-20261123",
+      "ruleSha256": "465ce96b3f3f7d8f531ed9731735e54ae4780eab746c4fa849b87e775d7e0603",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.83
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.83
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "cb8ab0adb9deea5b264cbd1550853f25100a01daa020fc4585a1068d6089314d",
+        "f2838eeab320e4eab1669bd4e619968c38a0233758eb1b120cafc9888bc336f0",
+        "0fe7086d3c2238ff9ba720d6722556fd7c03a5be6838d204e4b6a9517e5db456",
+        "fe55ea78ff1458325fdbaa8c5b69f685b4c92ecbbfb6faa6414ea63b5bb37a24",
+        "2545b0b2b27b8af7594dad3418a6bc92c4e3b2340c33342a5dbdefa9007ec7cf",
+        "233891a39222d3ac7b76be4de126f5b58d2ca479d0e12f4e62dbd8d0244ef61b",
+        "ae93e4404210276fb025179a59e34fe4ab6439c6161ce62ca38d4613405b6ae0",
+        "1c5349e1559439c936b149ed67b302e8529322df7001b0c4f23e2188065f29ad"
+      ],
+      "ruleId": "current88-05-celestial-musician-girl-e-20261123",
+      "ruleSha256": "df43aa4afe88b7f5a1ff5e01e28561d70a8ac6ffbf3560066d2951f247a00947",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.6
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.6
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "858e900a23b8d3196fb51b5208c13ae7f970e65ebc14b868369be67fa127838c",
+        "c963e993910b2daf787b1b182b6719f7887407c02cf3ee33ee35132766a386c6",
+        "7267a7115e83770822bcdd198358ffd108d5947bca2c3ac4b86c36e1a9a869f0",
+        "1993829e819ec6144a87c6b3a10aafda69edfe2b7c611e8a237bb734215252d2",
+        "7e0c0e47846fc9e247a5673e48ec34db9466cfca7f581a0800bbc84fb827a854",
+        "870789045e9aec249901c49fac2b254db9ad757ba0dde36afca0fe961a9c230b",
+        "7e5b95dd01d358e5b43e38675ef64691c6e7e45d73055858469353573abb734d",
+        "cd5989648982e2e848007469c5fe27d53c29937283a102f11f6ab3863b3a08b0"
+      ],
+      "ruleId": "current88-05-celestial-musician-girl-se-20261123",
+      "ruleSha256": "c8992d2f6e044e5aa355954033259853e34033b8a38b2bc142fc7f9e66221923",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 40.27
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 40.27
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "cb5da46dcc673fac97c6364b97bd47e576e4e9c867d31e7fafc19a11476d8c97",
+        "e644ac77afee5a68c04e92997d0c1405225db49bd88f02e903523822c5f77260",
+        "dabe361a5bdb2383e9002ac4c285b6ae21e4195203bd6e4d8c00dfab812579dd",
+        "1e6c19932273f86d83621fe0cd175f435f43d08c41eae868d43d9ec204990c4d",
+        "3ce61e5ba0e4d401cd1b0e7bff19b74d960b970db8f79363393e799833f60c97",
+        "ebd419ac6d7c80e017368fd675a80300dc012ecd127afffe702aa897730ef2f0",
+        "3364361f871e6d205eed94c7cac67582beda589be9e84cc256f64c7492774db4",
+        "0c2147f475ee8bc2490c046737dbb0cd3c2cf1185734bf1cd956deea001891b5"
+      ],
+      "ruleId": "current88-05-celestial-musician-girl-s-20261123",
+      "ruleSha256": "35b118848d308e7e91c54ac655e1ee3e89afed14337918098c94e1cdf7360c9a",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 40.54
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 40.54
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "50897dc425c75b21a75c326cb13591076dc23bd208a09db0df80b367fd7a472a",
+        "60b905b776ee66fb90faa85cf68a12166f9ed644d4f77653b44ef48502cdfedc",
+        "816387b074025c9a95c6d72e9ade315b5b6c4e945c2e2df516a27d6f803f9e36",
+        "f04903445c0dc86166be69d8fa6255ffd4a2ee8ad619c670d31a6c64cbffd5c6",
+        "cb6451132798e6490183a5cfb10812ae44f044a884d045a82e7908ba018b51eb",
+        "c5421f6f586ba891a8a22ed25d84d2717a27829c1a2bc3bec8ba7cc60e861dc9",
+        "e27b84beb374ebe70e51983715d904e8fb3aec7d7f1cac784b619eca49c55b0e",
+        "a0a25942d5b034f9d2a56cf2ce87060a6b62705a06f9a12b1a5ca6261b27fa40"
+      ],
+      "ruleId": "current88-05-celestial-musician-girl-sw-20261123",
+      "ruleSha256": "e94bb6713771236845101595cd66a8a5fd88aecdea5b93ea8dcf6c3b5f1b42f3",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.13
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.13
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "3cce54d86c5b59ba30f17a84724b6ff9789d6378183b3969e761182194c636e1",
+        "96f993d27df02abcb8f06ac0f6c49816d6b10d96c29a25da7522f968e9d65bcc",
+        "98fbfec43cc84190269e5728bf75c2e60eda37afa29044451d22264ed9480176",
+        "f1aa8760b7217e088c86c537d31c01f3c4a2a2bd487d1148903bd9715ab08efc",
+        "563beac711c0ff8bc86a7495c466caf891ac1395c0edb0a34b640982f714615c",
+        "8bfd9e57789a4bd463cc041bd32eaeca56c96da772897a9fbe2c1c329e8c3007",
+        "a87ad2edd73702bfbbbdb1c2d50e184aa10d3ef863d28e35b32168adb1089aa8",
+        "40153cb88db79b1a7ebdb4b50a8d67742da726f59251e107b96272d5ea52bc74"
+      ],
+      "ruleId": "current88-05-celestial-musician-girl-w-20261123",
+      "ruleSha256": "5ea13158d135cee246c6339fe2b254d071bb43d1caeec5c2e241d511c002a41e",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0833,
+        "pixelsPerUnit": 36.21
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0833,
+        "pixelsPerUnit": 36.21
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "cadd261b6a32c190cc0350a5ca6e9b8d3337c2eaf0cd220869e68b468bc1c770",
+        "cd3e21010e3a03f6f3e072bc28e793b74fa365f20dcc3e06c55b288d2f7f5bdb",
+        "e7f0a28a346ca4eddcc894678e275ff078a3f47fbc3b86e830d7c8545d596f36",
+        "902d9dd61f2f29d9647bd0a16a8386463efccbe2c7b557cbaa06721db03bfcfb",
+        "6293ba5f8dcf87c62f06f4b599ebeee70ff30aae5e5a3ec81bbd17e0eccc7ed5",
+        "efa6cb6bfa5acdeaa82819819a18f21d3ab52423210f37fa1aa8bcd616ae99eb",
+        "c60faee7387bfce6f4a660f73d426113f1848f3ad05cd83825f4a9676f1eb6b5",
+        "1bf1d6b46ed9f32541c8b9a053669df439071956ab6264b957f639eab24d3082"
+      ],
+      "ruleId": "current88-05-celestial-musician-girl-nw-20261123",
+      "ruleSha256": "7f936c833c0195b82beecc36301435c1c11aa23dffc7ee092d07cc230d5c810d",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "26992666de952c2079e18f2d01486ce443f35c176f49469d11dfd0a8efdb8a90",
+  "inputFingerprint": "675002980c09a03210b4050a2cb41ac2244d66afe3958810719a1b25cd6c48c1",
   "nativeCanvas": [
     1254,
     1254

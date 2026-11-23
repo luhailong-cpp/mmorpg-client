@@ -642,11 +642,261 @@
       "sourceSha256": "d3408ad9113f5044168c3b1a7d10f299dc6fc057f98fab3ecc95841ff27b80cd"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 39.4
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 39.4
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "2245caf211acf41d766342104e4f22e8fb951f81d93e95fd4372ed7b6c774e6e",
+        "4de965c7e910593f9bf86eadb6abdb94e9419927d05c1142db436f3f5eb429c8",
+        "8119a839788f7f9044c211a52c1a5e904ff07a3e7388650ad9c3d251378af21b",
+        "d9034af72029ef45818b50e359ea5f7b8ac99d8e5955fa1ba1e21c8dcc09323f",
+        "57f71c00c9c00860fa0c70196f984cfa69ede6b197a4e249325b8f92822bb61a",
+        "decca3222b84726496fa614d363f60383ebdcdc08d9972c2df7f2c33d2fb1216",
+        "eb6d99f60090f819c8ee9cdda5e0000332b82118aef8dc2b2db29890e688ab4f",
+        "0340b5ecdf8385503ef155f95b22964bce38f36292bcb9b5585264966cf63c0d"
+      ],
+      "ruleId": "current88-15-water-dragon-scholar-boy-n-20261123",
+      "ruleSha256": "0bd2008b6a41c2989fbfa49bcaa74b9142ce414825b05a2df3eb5f9b7d634f34",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 38.68
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 38.68
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "faadc39c0a02742559b73ab0bcfe92b1c1b892a312619121f9ccaeee43d71c01",
+        "63f3487f5e27532b9e10c4af76cab405c6849b09372307ef981e656042c772e3",
+        "5e82c3accbb7f6a5710c17dc28d544bd0eeb3343ae69fa694bb0cdd2f2b3adbb",
+        "66cd9d7682996de2d65cdd5be008e712cc755f77ac7d0ffa6e54528f265724ae",
+        "41a8e4f5c2c66d85331ac17ea86bd0e59758ec8ebd1e1125cb77be52a4c48f48",
+        "4f442a414fe4a113a1ad62bf7429c19ed0217e165f478bc18dd1c170c797bdb3",
+        "7369e38e83c7efd0b472d7067e8d919870a46d7569f12d0823c8f31a743ada00",
+        "517d2f021132c842cf6b3fef1c05e8f45d4bc0f38a3de5d9b64c750298651b68"
+      ],
+      "ruleId": "current88-15-water-dragon-scholar-boy-ne-20261123",
+      "ruleSha256": "9010e458977bfef148822eaf5ffc193d291f48173c824dbef01927960f261bd5",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 39.73
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 39.73
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "457558badf2e2613d44d26d96b842877c14198692af01163220d5a5965f3f8b3",
+        "b96f0cc010e8e447810f62d26cf8596df23848afbe11bb0d834bc02483149b9d",
+        "c9ec05e65f12f536e49083824d0cec112599abbe1c035c3afff11675041ebd69",
+        "bff80c7ecfc5dcf1940ea589f8b271fba4a0fcbf0ea39eed8f4fdc06f5fe7a10",
+        "d17fe3930e686ec158b1edbd44089bfe9227916cb7cbdd89b73dd59bc3c0c252",
+        "777ffbf380fe9421d69b585dc702296e8d9a0f14f29c597b2a77038b2db25581",
+        "d7f1b64e3e6b249e5d974abba3a4a5bb9ea2653bfa20880018c034ef1048e847",
+        "4d00863427ba6536caa261b301384d16ca70bfd41620a8952cdca600217b1723"
+      ],
+      "ruleId": "current88-15-water-dragon-scholar-boy-e-20261123",
+      "ruleSha256": "ff8aae208731963b309e8fa7ac18eaee4bfc14c4e6da2577f01ce231e028af26",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 37.75
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 37.75
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "89d355f921b41b6c0e2a1ef302e0601ac1ba536afb060c61b72c5a02ac3b7c8d",
+        "05d097e19026f9c57163ce63091d3f1f13185d22f983d91b1e55f2224b4d4e0d",
+        "4c09a45da5b106359dc4fd02689ebc19edf7e44d276f30e8935bfac9b8ba9cf7",
+        "5aaf98a6bbc477c1211bd29a3387a018391f66704b95044d7abc397d27ca4e33",
+        "1557fd405a1a5b21bc49a1ced5d075478a74a62289f946bab21b50dc7d9c360b",
+        "36887059ce3ff021cf552cafab4efe4b385fce99a53f95d1ce7b6f675f18a0a0",
+        "a1222f01ba45729f7a3f0554f75326f1cee9bf8910629da871462200597cb718",
+        "b9c01ed7e0fd3faa1fd70d8c99a288e4defc9ebdbdfdef81c226baa32cb4d6d1"
+      ],
+      "ruleId": "current88-15-water-dragon-scholar-boy-se-20261123",
+      "ruleSha256": "98d74385b6a426e6f02224880bdd39caf9c6b4d0e6a2aa2fbbc9391ef98923dd",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.33
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.33
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "4e662fdc11d22c345c2333d360e931671fe568b8c8e9c26e196c5755fa468c41",
+        "c43e2038f5fbd1aaba836fb1a5bef98658a1d731f01dd725c371b97ae499a6df",
+        "58e564746bfd3c6b3a50526fc40815498e65efb7e4e563a9f36cc7f9893b84a7",
+        "12cb3bcbdfa168aa6f8c76676b24b3ab82bd209b8dc59227e1840f3c54a045f1",
+        "97b1650a6040ec98a94cd5960a8fbd5f4912654ca3652aa6387b32a77858a3ee",
+        "6db669b3112bc63fe2cf36d97cf644ef7e6b9af01aa9e66227e5a6bd52182824",
+        "57923c2277a02b93ecc3c04d48c99d89d46e566f9d4f31a5568dc648efcfe1b6",
+        "4c825dd7de515c366046c07f2aec724a4d982559dfb6ab459c744875c7782189"
+      ],
+      "ruleId": "current88-15-water-dragon-scholar-boy-s-20261123",
+      "ruleSha256": "a0dafe13bdbe2274a46a32753f28d73740c6e053593cf3680cfc1551f5ade8f6",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.14
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.14
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "8a12a16c88e5c886e5a27036e2943f221519090b8c4d936ca0f78d2580a1a236",
+        "51812904f20d8e6c5973bafb971d3ce6117970b901a900055950db19d5b92bb4",
+        "2139f19c0b30b4e07c5ca945b858a91b9a747dcbb9ca254593f2a473447d75f5",
+        "525dab05fbe91d80791332524b98e831c5bcbda46c857d4713503ff63cf15aab",
+        "e8d2b96edefc5213edaab7702b86b235462930e11a9ee434a8f5a7a0a4c27b39",
+        "50063e23bac6c2a6943dace1169d4fd0341d2c476ba9e15eb45b8ad50eaf53b3",
+        "9be3f7d501e7ce8d442d2945d15ba2591aaf1f48884e89d3fc19dea73d00216f",
+        "8fbfc8c23aaea4b34f94bc2854642d85a06d9aceede6aeddda033557b966e42d"
+      ],
+      "ruleId": "current88-15-water-dragon-scholar-boy-sw-20261123",
+      "ruleSha256": "54d8437201897d47bd3bc15f0674369b351248552787f17dd3aaa34fa2b15854",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.96
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.96
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "1699ec5f41dbe66465e374930c9e7c5bc4319a405b910216d8f07dbe25858289",
+        "1803eb666f7b51421dfe52b92e5ec0c035719929d34b2c27eb20602748fbfe74",
+        "d0b6c506613fe6e1671003c485eb8f4fe154aab865170f7acb78d08d471c1172",
+        "be7b852781e3c56209b28334b641b87651636e2995e1c5e0a6bcffa0a0b4a362",
+        "7ab0bfe5c1f4257ad922f18dddf03a8abe8069ed43a1723a0ca1400aeb15f7e1",
+        "1cdc98efc28c90cae84930fe91175f13870141aafb5fb97f4da44c330dae3218",
+        "58893d6525bb42861aed968b88d4eb9abd0f42c18cc534aa7845968c2c17c63c",
+        "e1e7f50fb1782f7cc44de3283d55e8b29e4ca723e4fac23bc35be3c79edac31a"
+      ],
+      "ruleId": "current88-15-water-dragon-scholar-boy-w-20261123",
+      "ruleSha256": "20f85cf41738d2c3df3fef8a77acec23ee185b4967f8d69a0b26544305b54b3d",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 40.88
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 40.88
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "345ecadb4bd741a8dc12d0b084e2d4f6ee8fd55c718a136c6f53e62926c13c96",
+        "67f12dc1b1506a495185f33a630679b80caae567cc16a79f464ae6942667236b",
+        "48477e5fed17deafa2776f5176a13ce836710da120aee4ebbb9b7eeb296cb392",
+        "71a29570852ea070ceb477d2942a7349fbeb9232f4e1406e153762dfc994d5f7",
+        "c23fad51ec3ae5d061ca567092f6a3a63784a6334bac8bdfa874235ea83b12c3",
+        "a08b20380c877f6c3b3850b69d3a2cda50c6f4c1e6414298f353d5a79b9efc9e",
+        "f9906386f0e226d2824d3693a0fd63c7ceec671d5c0731ba2d49a11ed4456f7f",
+        "d3408ad9113f5044168c3b1a7d10f299dc6fc057f98fab3ecc95841ff27b80cd"
+      ],
+      "ruleId": "current88-15-water-dragon-scholar-boy-nw-20261123",
+      "ruleSha256": "eeb6ea4e983b376a6bd69567dbfc6c0944ece031d1c4f24efd7f1bab4cab7801",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "952b7a9b31e9cd11b60dd0cc9195a07ce543a0b7d448cadb89feba8f94fd0b29",
+  "inputFingerprint": "47364ad0c1a7d8ef93cc2599e6cab9fc11c4d8d7aefbcbd42ac242b26300b844",
   "nativeCanvas": [
     1254,
     1254

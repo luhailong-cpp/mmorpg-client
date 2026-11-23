@@ -642,11 +642,261 @@
       "sourceSha256": "5d44055417d57aa8c4d3187a3a1bec8d6ee243a2dfe159a8693f15f5205c7b6e"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 38.92
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 38.92
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "8f53bd769de86818a8e36cf80370d6ac70362f25156a3ba4ba2018e7eeef369b",
+        "36e1c00739d7efb807ca546c0ccde67016be1f4a84a7c4f9f93dda6f932062a2",
+        "e98f0a6611911d748fd352b7e745c7cabd03ac6247d063be46c84f6d9a29f799",
+        "a3a714061067a96f3e7820726eabff4df6d7a7eb2d573f348eef512436d0c5b7",
+        "e0cd0bdca9f52d4e5f0f7751563aac3e760e0d6d230f126bd3838e74ef7d8bbb",
+        "0bc863c4c59a78354c5897cab699eb44725de629cfd276eb12512745d65f9439",
+        "e407ccbf4d056abef0820dd4da24a471869b1bf5e5b17abe929f0f0f1d5b23b4",
+        "aea837b66d436de3e72721acaf20bf3bf0559d8656a048ee93027f4094f2f01f"
+      ],
+      "ruleId": "current88-17-ghost-script-calligrapher-boy-n-20261123",
+      "ruleSha256": "c93bedcbbdc3d0fa43891841310300205bff1b1ef6ba026ac16e5b8454133f80",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.75
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.75
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "9246b19a00c8d4c87eb22aa43fb0bf7fae9927b5b7e4058ec48008529ffabff3",
+        "454db74f780ec87125f3a23d31c6ca8a0056686887bedf927d730837b21805f7",
+        "f7901cb8d5663ab8543c45bb1f6deac041f75aa01f8a440689d7ceffd964b2bf",
+        "eefa4743d8a7293946af2a534166af924ddac88e32e8c5629530f38a6dec4495",
+        "930eec9a0450c2098195e42af411e5b83ca3f8fcb74d3f9c6e9ee65a440a7da9",
+        "6e3ec9e2ace46e1f5251b592c5dfa6ebe6430472263db4d47991731379163ec7",
+        "504afd6c21dd1f5048ec0f1fa6d02315e41096844e34c459577196ab0a5dfe21",
+        "e48a94b8651b1b60af5d53a8b32f379d02d10003380bed08762121dd50e531a8"
+      ],
+      "ruleId": "current88-17-ghost-script-calligrapher-boy-ne-20261123",
+      "ruleSha256": "65caeb3147e4b5e8e34cac438499dd111d9441a012a020e82da5fa6b974564d4",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0156,
+        "pixelsPerUnit": 40.13
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0156,
+        "pixelsPerUnit": 40.13
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "a5211fd76b3662c31d6a98bba26836ff0bc556e6a3ddeea683cdb2c1a4e8fcfd",
+        "66444b594ac3f94bc07e3418e1dcdcd51431af4f72e4881ff04caacf97bb5a1a",
+        "a54c0f7f1ece3ab6e04c389ffb91c46430a17d43ac79c0e94b7f4bead003305c",
+        "2d88e4edf1c9378f6c9b77fc902cda91b70102f3fdd19d3eb30c0d6f999cd3f0",
+        "76bee5f202df9a8c8004aa9e4d5647f13b320366a994fac8819e0278d773d806",
+        "8145b72a5e59122d58ad93853b3e80e2d85f14db7f03922227b95fb57b45e737",
+        "3c6a8aa641a0457e0770bbeda2df9296a13d903760eb7c61fcf63a054ab8ae35",
+        "7935c848a3f5dd6f9c006755a1e52acacbfdf47e90e7042a02e57b9a2e1f1f40"
+      ],
+      "ruleId": "current88-17-ghost-script-calligrapher-boy-e-20261123",
+      "ruleSha256": "29be9caeb943e865a8f7574c2513e7afee13239d8897142a668c6228603e62ed",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 41.49
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 41.49
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "69d24b2cc33922918bbf2bdf67fc841c4d491fe6349c396612b9f7c782633f48",
+        "7139a864e028af5dcbce99022445b314e3c3139a2e1f0d66835891c58a493424",
+        "6116f804b403f38e445737fd2ecfb8da698d8c4808d6e65434446769b0304629",
+        "aad309185a52dc912d90b869b3eec69c8a7a1aeff9adcc3f3e85f3c74ec65361",
+        "1c7843f023b784f92f81ccccf9c32ac6e946859f934cebd4cac583e2c7a45e24",
+        "8e3889eb349cbafe9e0b8e6329fd5bea078e7f6a578d83aad5f121b9ca713b85",
+        "02c9995d73138b28c5950b0282664e55aae46d40289f514bb0bee76ff015fa8a",
+        "6398797d1f276a27fe6db35534f253de84fb96b190b1e1441dea6a090010ae32"
+      ],
+      "ruleId": "current88-17-ghost-script-calligrapher-boy-se-20261123",
+      "ruleSha256": "0ea4f9e485aee10bdd010f06b22be1cc0ecc68b8ed5cc372cbe5249e8c9aeea9",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 40.99
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 40.99
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "eeb1c18a3a95495850cdef423c6d83565b64b3f7c32a75d0da15a1424300b1ba",
+        "64cd2e580be97e37c57f1b67e578cedba4f5d8f000d13b4f184e289e18e92d9d",
+        "72e7b586085f7edd2c4b356e7107e7d0d6a7bf230195f25a1bbaf5adffde3e12",
+        "89ad0dc378236dfae567e8a2aaa33839a78dea9e3cf9517a2374522cc5878208",
+        "e2cb20ad83e8010c756503e466975f56a5b798e8e5b52a482081cb219ae1d5f4",
+        "ec3d03ef920729755c0cb9aa92e5f0b6fceaa1151ac59553200e69ad4b5147b7",
+        "f26925eac02adeb62694ff8a2da02cbf38020b4547cb4acefaa508016bb89c27",
+        "dc00476ebfe1e76ea42de0d03667ada13ed448403205b82a32ef6d843095fd0c"
+      ],
+      "ruleId": "current88-17-ghost-script-calligrapher-boy-s-20261123",
+      "ruleSha256": "9f4d08b813cee2c111e27e906c80d04a874dc926ec6f0d398e11a875b7104b39",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.64
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.64
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "d9b40e00743be363ea76ca1154a6f3504b3fd14324eeb479dd05067b1a0f9263",
+        "970ed8c6619eb23cf02970c4e3a56d71f84295b4448bfd8251c01b579a19cba5",
+        "89335a4134cb2515c77b995b748f1c6ccbfdf32b2bb875e92e4db585ecac1ac6",
+        "c995e6a6d9ddce6c0b2896063fa90ba44d8225e6d08344370e896bd1b6df3135",
+        "06aa55a84a23fe3a022050bec7d3ac8a05a63dd2f58aa1cfeb2613b49aef2e6e",
+        "54e234b27e8bd1682e48a75e770524dda2d43f1b62d1e0237177b5cd2b7f0e97",
+        "9e82612cdebed78454a1a2178566c41cb8e52373fb833547dca4215a438e076d",
+        "d23b83bef5e242ffb437eb04943617d8302ae251f45e0e2ac1972facb20e9050"
+      ],
+      "ruleId": "current88-17-ghost-script-calligrapher-boy-sw-20261123",
+      "ruleSha256": "a4b9784b70bdeaf813120c9ed0547943b8410c9c4f565c9f4afaf78b46651bce",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.82
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.82
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "74c3c0b8026f6f3df601f5e00faa2e76fea6241b5d5e1d7449676aab260ee2ff",
+        "b96409dec51431f573afaf20b2ef4053996fc14e1e61cba62e5289392c3972b2",
+        "1aadeb56a4dad3972478febcef86968487fee86a5d73dd110fdb7780bd2f1772",
+        "db09137ef4754385420c99668d369c73992a796a5ec86035fd7158b8898840b4",
+        "7b879e4b91b4f5347eee5713fab5c7cf8303f974521c319dfef4e509e8989357",
+        "554974c866df2e821f627165f4db3d0c4a410723d4ea41665ac3656acc03ffa2",
+        "3e70c92c43d25a18ed7fe15cbde6e151414e8507dbf4e720e8b4d817132ff50d",
+        "20eff986808c86ce5af0587af9d9c42a241f7c63a439025eba6ebe15c0ed3131"
+      ],
+      "ruleId": "current88-17-ghost-script-calligrapher-boy-w-20261123",
+      "ruleSha256": "03250652f6bb82a2824c445772b93c2a643b6c5a86891df7370d103e3983ead4",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 40.69
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 40.69
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "643ff7ba2033bfe60ec20da805611155007ccb05386bc3f40750d9b65804d80c",
+        "9b59267de33a0dd0e3299e5cd81a540dbb3360401f5d9f85c56fba2210ee3aa2",
+        "ba66a4c45fe7b2256059ac04fc74308afbee1f435d764287392dcfb48003d0ea",
+        "f518a0e5bf0f74bfaa42e3f6545727032d8380912b906859612a1de8e8a54ba0",
+        "9ba022c3194e502da528a0a7cfbdba3187779ae7462708a0781a622fa2a390df",
+        "c20d9ba43c766bd2c31fa6e174c1a9b10de3ebae40d4218db0a0b9b900fa6b0a",
+        "090110e559f00b2cc1727c264e7db9f7888ff942d261486444bbcb928e102a3a",
+        "5d44055417d57aa8c4d3187a3a1bec8d6ee243a2dfe159a8693f15f5205c7b6e"
+      ],
+      "ruleId": "current88-17-ghost-script-calligrapher-boy-nw-20261123",
+      "ruleSha256": "706d4733989d4eba76c9bc679f76ba33462d85e67e07af4d3e0247449bd550b3",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "634d68a7f658615d501bd460b54a573e53758d4378326872c1ac717c5457762d",
+  "inputFingerprint": "a23cf0b9b367fa64964521336917d12ba902f1c504305d127080ccf1faa6a4a7",
   "nativeCanvas": [
     1254,
     1254

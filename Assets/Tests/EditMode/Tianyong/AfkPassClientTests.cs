@@ -244,5 +244,35 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.That(_client.Status, Is.EqualTo(AfkPassModels.NotForSaleText));
             Assert.That(_net.Calls.Count, Is.EqualTo(sent));
         }
+
+        [Test]
+        public void SilentConnectionSwap_ResetsStateAndNotifiesChanged()
+        {
+            object identity = new object();
+            using var client = new AfkPassClient(_net, () => identity, () => _now, TestMessageIds);
+            int changedCount = 0;
+            client.Changed += () => changedCount++;
+
+            client.HandleSceneEntered();
+            ReplyInfo(Info(Now + 10 * Day));
+            Assert.That(client.Info, Is.Not.Null);
+
+            // 模拟底层连接被静默替换(未发 Disconnected 事件):下一帧 Tick 复位状态并通知 UI 重绘。
+            int beforeSwap = changedCount;
+            identity = new object();
+            client.Tick();
+            Assert.That(client.Info, Is.Null);
+            Assert.That(client.RequiresReconnect, Is.False);
+            Assert.That(changedCount, Is.EqualTo(beforeSwap + 1), "连接静默切换后必须通知界面清空旧状态");
+        }
+
+        [Test]
+        public void DescribeTip_UsesConfiguredCurrencyNameForNonDiamond()
+        {
+            uint insufficient = (uint)afk_pass_error.KAfkPassCurrencyNotEnough;
+            Assert.That(AfkPassModels.DescribeTip(insufficient), Does.Contain("灵石").And.Contain("聚宝斋"));
+            Assert.That(AfkPassModels.DescribeTip(insufficient, 0), Does.Contain("银两").And.Not.Contain("灵石"));
+            Assert.That(AfkPassModels.DescribeTip(insufficient, 2), Does.Contain("绑定灵石").And.Not.Contain("聚宝斋"));
+        }
     }
 }

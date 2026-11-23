@@ -4,6 +4,12 @@ namespace MmorpgClient.World
     {
         public const string CurrentRoot = "World/Characters/QdaoRunVariants20261105/current";
 
+        // 与 current8 逐方向跑步校准对齐的静止显示倍率：不改 V13/V14 原图与 SHA 契约，由脚底锚点等比放大站立表现。
+        public const float IdleDisplayScale = 1.15f;
+
+        /// <summary>返回角色静止时的显示倍率；现役 11 名角色对齐当前跑步尺寸，其余角色保持 1。</summary>
+        public static float ResolveIdleDisplayScale(string id) => AllowsCharacter(id) ? IdleDisplayScale : 1f;
+
         /// <summary>只允许道童和本次保留的十名角色，历史别名须由现有角色目录解析。</summary>
         public static bool AllowsCharacter(string id)
         {

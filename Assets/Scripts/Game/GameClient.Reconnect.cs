@@ -159,6 +159,7 @@ namespace MmorpgClient.Game
         /// <summary>由 Unity 两个宿主的 OnApplicationPause 转发；恢复时不沿用可能已被 gate 判死的连接。</summary>
         public void OnApplicationPause(bool paused)
         {
+            PetFlip?.NotifyApplicationPause(paused);
             bool resumed = _applicationPaused && !paused;
             _applicationPaused = paused;
             if (!resumed) return;

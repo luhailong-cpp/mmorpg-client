@@ -194,6 +194,7 @@ namespace MmorpgClient.Game
                     _enterRequestPlayerId = 0;
                     PlayerId = 0;
                     OwnerRevision = 0;
+                    PetFlip?.NotifyLoggedOut();
                     done(true);
                     yield break;
                 }

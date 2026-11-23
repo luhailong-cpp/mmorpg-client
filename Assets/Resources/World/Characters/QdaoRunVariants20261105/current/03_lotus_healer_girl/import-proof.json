@@ -642,11 +642,261 @@
       "sourceSha256": "aa797dcfa2fa784ce2476c8ec3fdf656f36a33df44c159113fece3a5dd6e1fe7"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "03_lotus_healer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 38.14
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 38.14
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "8225b6d0047722d816f031ed3836c1d8a70e29b20a887a964548db42cc887f80",
+        "b445813a13c63198e0424c10fa7eff386d808b259998f46a4115edaf3a8605be",
+        "3d4025b3194bae0e9d0a3cbcee8c3c8c81931b084b9f1bff9da0eb752d888a1c",
+        "cca32fbc2479a3c7eb9336665074e211f3d699d33502645a47894994ba32f01c",
+        "042f99f4c617d8c6fb19fdd65a9b97109072b9e1a1c6a8b5f675a3a4ae05097c",
+        "8e46e69b75990e3d489e299a8661a270f2027a8ec0b499cde32300d42f4991b1",
+        "ef8aaa6f91aff01b9ab90e2cb966edba24f8f63362b225019fc50b717368180b",
+        "d64bd101f05f03c84fbf30337654c226bbe8308551a8507529e0e727c1b72a1a"
+      ],
+      "ruleId": "current88-03-lotus-healer-girl-n-20261123",
+      "ruleSha256": "f1e1230bfc06aecb27464604aa89ad954ee6a43eac3683474e35f45a441317ec",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 37.36
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 37.36
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "0c1b4cbdd4bf47652ac97d5f83b12103cb0a1a5b2d1fe458483741cf36a49f8d",
+        "c841f610942ca437ccd4e566b08d81ea15e056f534b1045a33f286676722acd6",
+        "032490079e43f6260a4a75aebd571fe20e9190d8212c4453889960dc3582887c",
+        "da8498defbd8a9f6a1bbf3a156e721217a92d07c0cfab8175ed543af421cd596",
+        "ccc3dfa1b342e57635a907e502d56474f18e060821ac0dfdfa99dae630cd4b16",
+        "94f6f123279bd724c8b3e4450ef1e86b1e08318a01cbd3577b92e3d5becf1f73",
+        "0665e2acb564bae753592a165ca3bb8f7948ba878208a57eca8fd6469d7119c4",
+        "dc78024ece410f3b8e1614005ba9abce23738c36aac81028b55c125d0fb5b054"
+      ],
+      "ruleId": "current88-03-lotus-healer-girl-ne-20261123",
+      "ruleSha256": "71f9497909ed2a68e90788ec3a09504bd624d33a4ca1bc656cbe3f052b44bdde",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.73
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.73
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "1c03607dbceaafe232975a25738ac6df0f484c651bf486d1ff5f71618092c948",
+        "d7f2df2f12b3935cfaffb79dc6adbd599e524e2c08efc5a290fc8e77943930d8",
+        "3551b7e62e832529d0aa1fa496886d1113e5adfc194c6e99f4bbe53c001bc1ba",
+        "309d68841304ab07261183a3512a13db2c9f25756f22ce4f7f6f79fc5ba6eecc",
+        "161f28c58d01458de371df5c5ea070959f93208dd8fa9182734fbdaed71f9890",
+        "24e066083b50be37a44c9b9a5aab9f8b40fb696bde24e2772bcb67cbd28bbcfd",
+        "5e0a1c974eb58ebf8fae610c37b83166b82e463b46b049b81b8dfb47e637f837",
+        "2ccd38428c01294903a98d8402c51fe19349be30fd81bf43c0858006bffb7863"
+      ],
+      "ruleId": "current88-03-lotus-healer-girl-e-20261123",
+      "ruleSha256": "f999e90ba0cd6e9e7306c50c53adb467d8087f7b781c076d0ef1d1ebf30ab526",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 38.76
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 38.76
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "fef41c2e851f124317d31097f0deb28f9fee01a146714ba96a75b0422baa0932",
+        "257039a74485ef200a71ecd376c8d06f6b6fb15d9df9adb697c6d8ea0afe4a99",
+        "88734e4553dd7442df0eb5ebbdce16b772e30e3ea26b3a54643408995affa947",
+        "8606bbbe731959480871f7eeae604cbf64bbb6dd4c02478dd78318ea876eacf3",
+        "56d97abb55de325f3e6930daf3d70bb01f6bb49036617a5df00337e285b737db",
+        "78254cdc217a2991c857a011e9454ea63550d0ecb1dd6a9c0757f0da7910a7ca",
+        "7b42b3932b25dd86f317af7fbc9202696b59677e2348e394cc64e972f88190cb",
+        "7e4d613f9d985d9daf33fc0d754411d09913ee70acfd79e5778a01d6a8d6b1a7"
+      ],
+      "ruleId": "current88-03-lotus-healer-girl-se-20261123",
+      "ruleSha256": "424a9bc4a60b197df5493b9ba319bb1d2899d64e46f6e45ba81630659c1fd4a1",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 38.61
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 38.61
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "27ecced8805b429ac76f32c1e9a7402a32177f8af5d8c0b4929d40d231a4d18b",
+        "5bde3b35873a625ff7d41de858cd73648be5236fead8f3e5a0314166e1c3921f",
+        "b359d56031656e4482eac37d5f1803a4e5764c5e963c82afaf31d185cb3b47c7",
+        "73145a791327cac1046b248faf8ddbcf990f910486348ab421874ff4b31642ac",
+        "b5e86bbcaebd34ba3dba3eb82d1ba968e966e3f027e73ec259a148e2dd11d175",
+        "8ae7ca0284b9eede8d06a79e0244f4d8b643f88539b82a42947100815d311b74",
+        "960e369ab9f7e0e198d2408c69315631cb8c81b5fd2a4c93e3540700448431e0",
+        "2553b2b2538949d60969d7050428ef85402bcc9bfed1e5527314e4e3f61cd2d3"
+      ],
+      "ruleId": "current88-03-lotus-healer-girl-s-20261123",
+      "ruleSha256": "0c8a656724026b24482abeca8d7dd03b276b45bf9660addea0ffe380e88c183a",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 36.37
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 36.37
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "c9285b84ee80e3e4b728d1b0ca14e644dff376fd916494eb18eeb9246ceae32a",
+        "da33384b8e6d2c7f2d23fa81abf34352d1a031fd047257b52de3ba6ffb68c3e6",
+        "cc56f8874f7d5f49fa61328fff5f49d37967a2440ec1f6d284db5622a9931018",
+        "57a35e5e161133a3491387995497a438c9e5f3f5eddf6245c20d390610836d0e",
+        "a90c90ca8df5919882a38306e7e96d652572fbac87dd73f1da28b5c16bbf9f94",
+        "65a11aade44a8e3f5a9662944f742231a0926c84cc05d750b5a90688c2c1240a",
+        "8cc30cd1c215927d56e2ca5f2faf1cd9fc8be76de1ce0550b0ccd7a743806dce",
+        "6f516d181e0cf29835ef363a214ed4c439cbe387aa0f39875930ed3b498ef897"
+      ],
+      "ruleId": "current88-03-lotus-healer-girl-sw-20261123",
+      "ruleSha256": "3564fb10a547934681b208117d6fed8acf98d1551af7344f1ea26fd91fcb6b90",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 35.6
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 35.6
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "52d2253a64861653611e2104ae9a695b759a5345a50a2bb4c8ccb8d74ce92f53",
+        "5de46bf1adff7f2299eeb6ba525adb8df0d4183e6eb86ab54a45aac827f85969",
+        "d266e36bb8f22f64c4319eb30a53c2f710f948a35a03ef46b04ec6501f56be2d",
+        "619a5a4f3ff33a5e18e158f1b3539dbabc84bc3af1aaf939246312862ef8665c",
+        "f39da3b5934bd034acf51415704c9cc4de5d01dee1f5c3223efe25f805dadb93",
+        "b8d06f10d30222df3bdd1c743127150cde97c2c1b7c102ee8394ae2f06be58a2",
+        "b3a19cad0f9d07727ecc35f48bb76e5b6696e3ae7c6b2bd05e29452397d27d95",
+        "942e642675fc9e062098839ca027b224872261b3a20875f152bd0db4c9431f67"
+      ],
+      "ruleId": "current88-03-lotus-healer-girl-w-20261123",
+      "ruleSha256": "921b968395473fcd0437503d1f2ec29506f0c33e521a4951812e1d7b2671eb89",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0755,
+        "pixelsPerUnit": 35.58
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0755,
+        "pixelsPerUnit": 35.58
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "06a0babb8c933423d833f17f1284f36dc70d31b21912da004836c9a0d0276955",
+        "bf2f1a341a7f663978ee4bcd2ddba64e136274f949946a7eaeee532c45272a7f",
+        "83604a9563ebb831bd4eaf4a27282b71b662275d41ca2f90a005527da488a842",
+        "e0a3464fc5f6755d296a3d98b4a6d462aa76a5ea9047789e5904de500fda3670",
+        "6993e46d163bac2eb459a63ffc7165ed496c6c9b78701489366c7a80bc4a9c1a",
+        "bdc3c6c35ab0cfe54af980b447db31441769ddfb89dde4f1ead764ab5f76ed91",
+        "c0bdb82c3e7449d2f33d1143b018f9e9ce1f8b1d51266e53fe47e2d9b0601fc3",
+        "aa797dcfa2fa784ce2476c8ec3fdf656f36a33df44c159113fece3a5dd6e1fe7"
+      ],
+      "ruleId": "current88-03-lotus-healer-girl-nw-20261123",
+      "ruleSha256": "442a2459db38a6bc4579f3d70c587a14c49eceb6e63a4789160e2237fba2ccd4",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "63bfac3c597dd155d94fd02668e276c5c995f8a96679f9958db877e8df135639",
+  "inputFingerprint": "6ade397481d289b02ca05b40cdd7b96a092adc39d53db2074b81aa9cd0d54cbd",
   "nativeCanvas": [
     1254,
     1254

@@ -34,6 +34,7 @@ namespace MmorpgClient.Game.Team
     {
         private readonly TeamFollowDeclaration _declaration = new TeamFollowDeclaration();
         private TianyongPlayerController _controller;
+        private ulong _playerId;
         private ulong _teamId;
 
         public TeamFollowStatus Status { get; private set; }
@@ -62,28 +63,72 @@ namespace MmorpgClient.Game.Team
         /// <param name="game">当前会话;null 等同于不允许跟随。</param>
         /// <param name="snapshot">
         /// 已经应用过权威视图的队伍快照;还没有权威视图(刚连上、重连中)时传 null,表示"不知道":
-        /// 不发声明,也不把它当成离队(暂离选择保留)。
+        /// 不发跟随声明,也不把它当成离队(暂离选择保留);但若服务器已推送 driven=true(如重连接回托管实体),
+        /// 仍立即显示「跟随中」并允许点「暂离」撤回。
         /// </param>
         /// <param name="allowed">此刻是否允许跟随(已进游戏、不在战斗画面)。false 时不发声明,保留暂离选择。</param>
         /// <param name="now">单调时钟秒数(Time.realtimeSinceStartup)。</param>
         public void Tick(GameClient game, TeamSnapshot snapshot, bool allowed, float now)
         {
             BindInputHint(game?.World);
-            if (snapshot == null || game == null)
+            if (game == null)
             {
                 Status = TeamFollowStatus.None;
-                TraceState(now, "no trusted team view", false);
+                TraceState(now, "no game client", false);
                 return;
             }
-            if (snapshot.TeamId != _teamId)
+            if (game.PlayerId != 0 && game.PlayerId != _playerId)
             {
-                // 确认换队 / 离队:暂离与声明记账都不带过去。服务器在成员关系变了时自己停止驱动。
-                _teamId = snapshot.TeamId;
+                // 切换角色 / 换号登录:不把上一名角色的暂离与队伍记账带给新角色。
+                _playerId = game.PlayerId;
+                _teamId = 0;
                 Away = false;
                 _declaration.Reset();
             }
 
             bool driven = game.TeamFollowDriven;
+            if (snapshot == null)
+            {
+                // 队伍权威视图尚未拉回(刚重连接回离线托管角色、或 match 短暂降级),但服务器已推送 driven=true:
+                //   - 立刻显示「正在跟随队长」并放开「暂离」按钮,玩家可随时点暂离恢复自控;
+                //   - 玩家点暂离后立即发送 TeamFollowC2S{follow=false}(受 RetractRetrySeconds 节流);
+                //   - 绝不发 follow=true,也不把 null 快照当成离队。
+                if (!allowed)
+                {
+                    Status = TeamFollowStatus.None;
+                    TraceState(now, "no trusted team view (disallowed)", driven);
+                    return;
+                }
+                if (Away)
+                {
+                    var retract = _declaration.Decide(TeamFollowWish.Away, driven, false, game.SceneEntryEpoch, now);
+                    if (retract.HasValue && game.SendTeamFollow(retract.Value))
+                    {
+                        _declaration.Sent(retract.Value, game.SceneEntryEpoch, now);
+                        if (Trace != null)
+                            Trace(string.Format(CultureInfo.InvariantCulture, "t={0:F2} declared follow={1} entry={2} driven={3}",
+                                now, retract.Value, game.SceneEntryEpoch, driven));
+                    }
+                    Status = driven ? TeamFollowStatus.Away : TeamFollowStatus.None;
+                    TraceState(now, "no trusted team view (away)", driven);
+                    return;
+                }
+                Status = driven ? TeamFollowStatus.Following : TeamFollowStatus.None;
+                TraceState(now, "no trusted team view", driven);
+                return;
+            }
+            if (snapshot.TeamId != _teamId)
+            {
+                bool firstTeamSnapshot = _teamId == 0 && snapshot.TeamId != 0;
+                _teamId = snapshot.TeamId;
+                // 确认离队或换到另一支队伍时清空暂离与声明记账;首次拿到当前队伍快照时保留玩家此前在「无快照但被驱动」窗口里点下的暂离。
+                if (!firstTeamSnapshot)
+                {
+                    Away = false;
+                    _declaration.Reset();
+                }
+            }
+
             var wish = !allowed || !TeamFollowDeclaration.IsFollower(snapshot, game.PlayerId) ? TeamFollowWish.None
                 : Away ? TeamFollowWish.Away
                 : TeamFollowWish.Follow;

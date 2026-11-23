@@ -262,8 +262,19 @@ namespace MmorpgClient.World
             _actionFacesEast = direction == "E";
             ActiveAction = action;
             _renderer.sprite = next.FrameAt(0f, false);
+            ApplyBillboardScale();
             previous?.Dispose();
             return true;
+        }
+
+        private Vector3 ResolveBillboardScale()
+            => _useCurrentRun && State == LocomotionState.Idle && _action == null
+                ? Vector3.one * QdaoRunVariants.IdleDisplayScale
+                : Vector3.one;
+
+        private void ApplyBillboardScale()
+        {
+            if (_billboard != null) _billboard.localScale = ResolveBillboardScale();
         }
 
         private void ReleaseArchivedActions()
@@ -282,6 +293,8 @@ namespace MmorpgClient.World
         {
             if (_renderer != null) _renderer.sprite = _frames?.Idle?[_lastDirection];
             ReleaseArchivedActions();
+            if (_billboard != null)
+                _billboard.localScale = _useCurrentRun ? Vector3.one * QdaoRunVariants.IdleDisplayScale : Vector3.one;
         }
 
         private void OnEnable()
@@ -292,6 +305,7 @@ namespace MmorpgClient.World
             State = LocomotionState.Idle;
             _settleBudget = 0f;
             _animationClock = _frames.ContactFrame(_lastDirection);
+            ApplyBillboardScale();
         }
 
         // ActorWorld owns authoritative identity changes. A failed standalone SetAppearance still
@@ -307,8 +321,10 @@ namespace MmorpgClient.World
             _hdActive?.Dispose();
             _hdActive = null;
             _frames = null;
+            _useCurrentRun = false;
             _unavailableCharacterId = characterId;
             _explicitOriginalRequest = true;
+            ApplyBillboardScale();
             enabled = false;
         }
 
@@ -345,6 +361,7 @@ namespace MmorpgClient.World
             ReleaseArchivedActions();
             _missingArchivedRun.Clear();
             _useCurrentRun = QdaoRunVariants.AllowsCharacter(frames.Id);
+            ApplyBillboardScale();
             ClearHdRows(previous);
             oldObservation?.Dispose();
             oldActive?.Dispose();
@@ -770,7 +787,7 @@ namespace MmorpgClient.World
             // visual association) from bobbing, leaning or breathing.
             _billboard.rotation = cameraRotation;
             _billboard.position = position + new Vector3(0f, SpriteLift, 0f);
-            _billboard.localScale = Vector3.one;
+            ApplyBillboardScale();
             var order = WorldSortingOrder(position, worldCamera);
             _renderer.sortingOrder = order;
 

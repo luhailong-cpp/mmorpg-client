@@ -584,18 +584,19 @@ namespace MmorpgClient.Tests.PlayMode
             observed.v13SixteenFrameContractObserved = animator.ArtworkVersion == 13 && animator.FrameCount == 16 &&
                 appearance != null && appearance.Version == 13 && appearance.FrameCount == 16 &&
                 appearance.FrameDurationMs == 30 && observed.activationPresent;
+            var expectedIdleScale = QdaoRunVariants.ResolveIdleDisplayScale(animator.CharacterId);
             observed.v14HdContractObserved = observed.actualIsHd && animator.FrameCount == 16 &&
                 appearance.FrameDurationMs == 30 && observed.activationPresent && observed.textureWidth == 1024 &&
                 observed.textureHeight == 1024 && observed.actualFrameWidth == 1024 && observed.actualFrameHeight == 1024 &&
                 observed.actualPixelsPerUnit == 104f && activationFields.frameWidth == 1024 && activationFields.frameHeight == 1024 &&
                 activationFields.pixelsPerUnit == 104f && Mathf.Abs(observed.actualNormalizedPivot.x - .5f) < .0001f &&
                 Mathf.Abs(observed.actualNormalizedPivot.y - .08f) < .0001f &&
-                Mathf.Abs(observed.actualFrameWorldHeight - 512f / 52f) < .0001f;
+                Mathf.Abs(observed.actualFrameWorldHeight - 512f / 52f * expectedIdleScale) < .0001f;
             observed.v14MixedContractObserved = observed.actualIsMixedResolution && animator.FrameCount == 16 &&
                 appearance.FrameDurationMs == 30 && observed.activationPresent && observed.actualFrameGeometry.Count == 136 &&
                 observed.actualFramesMatchResources && observed.actualIdleMatchResources &&
                 Mathf.Abs(observed.actualNormalizedPivot.x - .5f) < .0001f && Mathf.Abs(observed.actualNormalizedPivot.y - .08f) < .0001f &&
-                Mathf.Abs(observed.actualFrameWorldHeight - 512f / 52f) < .0001f;
+                Mathf.Abs(observed.actualFrameWorldHeight - 512f / 52f * expectedIdleScale) < .0001f;
             observed.realMotorEnabled = player.GetComponent<TianyongPlayerController>().Motor.enabled;
             return observed;
         }

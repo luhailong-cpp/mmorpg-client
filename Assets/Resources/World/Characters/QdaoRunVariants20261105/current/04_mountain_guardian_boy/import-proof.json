@@ -642,11 +642,261 @@
       "sourceSha256": "9dca83436a8e7e15e327989f8d23f557edbe6f695cdf8e8d69a73f1381b0619b"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 41.73
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 41.73
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "52746c74a8c716b59f29d0392a4f82346dd617f4f4e5537369968ffddc386378",
+        "c5c3c03571cfd4338f0d31cb9a617c35f790be42e47a4cc8c7d0b8bbd2e19f64",
+        "a7a2e08f4e370ce7d29e874c28addd3324b2afe028550beee90cefce1e3ba707",
+        "111beafed5987210fbf011e8852ed24a1a01a478cbbe1b6bf32fd987fe385c15",
+        "d8981d95babcb33ba5c4c6e646cb2b088cf1ba60ed366aad371c5bc1f8c18513",
+        "c39c5d5e17f58eaa2052d3e79b1ec3f424c1695b141000dee15e7f18bfe01d16",
+        "311b150828f9166b8d8f492b54c895a566fb2be70db0b8b5f554aa5c31c7a082",
+        "acf7a92fe201f828baddfe0aca5dfda903649147137c97449d86119ea93616d5"
+      ],
+      "ruleId": "current88-04-mountain-guardian-boy-n-20261123",
+      "ruleSha256": "5a1e36a82b0c75a3a83370dfe22ed0e249d393705d01d097723f06ccd84d0a58",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 39.11
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 39.11
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "9e3fa1ab66599a4d3f04d1dac98c0d859724aa8d0b2688eca005d8585a0b86fd",
+        "f71edf95a2cfc64c3e2ef65bbf6c63f436909e463f182d6291f5e117c420894e",
+        "aef376aaebda8e88764bec4aee9240b33517aa2113ab0a0b8e682e577abb22a6",
+        "82d25ef23c8a216ecc539a789b232a3662775655c794531d388ce144c5e4a4ea",
+        "8f3425d8253770ce08bfab938a6c918ce58c6c6bb6f3439bde550cce46fcb23a",
+        "8fe59831f9ea4fa93bed0c12aedc49cc5c76d3df94b30fa4dfab3ace12637e3f",
+        "7843f3d07c965fd380595cba97354f4a0bccd06a6d8dc122bc147c44d43317b0",
+        "fc5bfd50d03dc53d0b65a0aeed1c4119e5a296220f95a06d02da89298eff57a7"
+      ],
+      "ruleId": "current88-04-mountain-guardian-boy-ne-20261123",
+      "ruleSha256": "51a2e53f927bae87598989f0c71d47497b39bb547cae8b4b9d8ddc7869800d2a",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.92
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.92
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "1b68e39f45f10946ef73429077685b5109fa7c893e452450f75611f20f274078",
+        "f2b4d1d09041a98ae85730bd9a71e9801e61c774afb354b7c2e4dc618ff29b18",
+        "63b86f38ea20bc57a7173b1144be41cc482ff03bef4b19db38481eec07737b53",
+        "66afc6fe55fd846f4efe339eadf2a887903b63d794b3a97e472a24a3d924bcec",
+        "ea748733dc936489a457f218cd0d88868454e63e44ed3457d25c499170c968e0",
+        "873b7598374fa94046b9ddba43241015d40ef77138d3e5068abe8ad3d5af31f0",
+        "cac9a39fa98ff9c5c0cee541d7b525cef0a2c9dee5e463d09ae1796cbc61a339",
+        "35c88ff9580ffba4f78a18360c4b9ce1da3b0b08ee85b9c98e068e7c38ac3f42"
+      ],
+      "ruleId": "current88-04-mountain-guardian-boy-e-20261123",
+      "ruleSha256": "4aac1c378f9660932119d353c7bd10443fb6fd0cbbdb8ba29f60223dec6806f6",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 40.5
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 40.5
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "9b0e7ffc841020c91b6148096784ef875050b89baed156f439703056c05862e0",
+        "2118522cff8d5ed2cbf23e750a164b8bf66dedc3ec3e3d7271cfb1b2cf2c0326",
+        "c4217874af43263ba8168b4c766bed719c95e3155c16d13dfe09a982b9cb27f1",
+        "626e3db557425e447d8fbd203778634d321e803d98e71c6df1715da50bc4ff08",
+        "1adc88a5bc73369325d51dd6869f2231222ddda4ca668a4b9abdf9f4b828035f",
+        "11d96b0136cb82259483bd90b0ffbc880cb6b971830ec5d0169c7c1a2674628e",
+        "7863e7c56f70707085371f5f33fc318fb37ab6131fca2bd1435c91691888687e",
+        "2413a25b67b50d2872229e1f16a40e997a3febe13903ffde675c7305697f7063"
+      ],
+      "ruleId": "current88-04-mountain-guardian-boy-se-20261123",
+      "ruleSha256": "c814a0fdf6141553f28b19e11c1a38456a4d40f9f4a8fe7129ec60d8dd9d0f27",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 40.21
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 40.21
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "16d0f148383fd6d5cedee610d9c13ec97079357fba311317dfc9c35ad40b76d9",
+        "b1178a6d7869302deb845de85952c97a7f5fc924197f78e52fd581e33a9199f2",
+        "11fcbce4d96d9e043ea06312864a555dbb9d3cc903f438f3994e38a5548c2ed2",
+        "b9832625795c3b382355845627887dd0c6d97af2e5f3ef7520b7011bdcfd9915",
+        "3d2a502c84b3078c839c358da0504f58381d928e47ce8538cb1056e12526d812",
+        "79b878c35cbd3323ac5d839bf425c84c2a9d7581c3dae9379c0be713c8efb269",
+        "29e2130625f06a1c9973afd17143d8a01b507376c174f7f00a31123c491a6592",
+        "5deb9afa371de786162690d4f0818decc99cdffcb3994521289d13f0f66027a6"
+      ],
+      "ruleId": "current88-04-mountain-guardian-boy-s-20261123",
+      "ruleSha256": "603e87d2f5476a1596df098e1b0081e0747b69831ea7f2a370ced25e6c2e4190",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 39.97
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 39.97
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "f8d29f03a7a5e352f101c82c4b3839cd0ff9c4f7be85d31367b67c4ea4d2ef7d",
+        "96588997cac74ca94dc2ca537a5e602af38da49878cabc747b02886d2e6486d2",
+        "83c60e2b1b07a1b9df8a0d7eea341e55025c431b684d5583d167d2d51fd23353",
+        "b6c8bbbc93359168336edef6896c0d1bd21a5851a9de75bb48035edb0052aa9d",
+        "31cc0c2283be9c343f099af563dfda83cb7c7f25101bbb39c7c21db577542965",
+        "74baf5bb5774f014ebe3801239007c6bcc39a6c632b9e0bfe1cfeeb9f36b4855",
+        "1e1a3c01eedae4c827fb4f8286c457b1c050d24534775292c5b96f743d8d5327",
+        "376688c606a0c512cfa95574bfe4670471a98e7001a30bee6e879e8d84d26594"
+      ],
+      "ruleId": "current88-04-mountain-guardian-boy-sw-20261123",
+      "ruleSha256": "56df63a7a10f5d2065e493279900d6153df6292fac02736eda78f1a791550f72",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.77
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.77
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "265a31186b231c3678c1edcbc8472e6d0dc8dddbb1391a148b1f3997afad58ac",
+        "24be5225a55a2e4389f1055ceec9bae159ab564e67c5df7ffb97f7a01dfbc830",
+        "841ecfdac829b57a8e93aa3e153ebda99cda4e3d7076cc5ff5ceb949bbbbd93d",
+        "b7a319fa10da2c78130496727f216db4b5fbbdcdac870f5edff27e650ab09f64",
+        "3ad934ac4db0d1a788a13ce3377da2dbd6d4c01c792e4cbfdda47d13421439b9",
+        "8efa48c7bc0d4c116d99d150d51ae873b75b46984918eb1b0617d6ca71355c64",
+        "8b9bf85af0c343c2e56cde7f7ead988d9b1be57900db802721a65f93b32200c5",
+        "2d95c125c967a0978a52d3f8449abec1c56e6b6ae6d97c184c5c53ea725a7134"
+      ],
+      "ruleId": "current88-04-mountain-guardian-boy-w-20261123",
+      "ruleSha256": "51275a407a5c26ac88a7bb5cc046c05564e6c3bacd73b7eef47ce1373111bf4e",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.45
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.45
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "6e05ef330a09989d67c712e9c4cedbb9534df1c1a8b076c19769d356372ab773",
+        "fcf146fe27617f4eda01c81d6e365bd9af1a5c86c6380e7538fc688bba024b13",
+        "ec029fe1f7168fc41b123c4f3d6ea5001c7a6ae457fc2d3c64b562055b6951d0",
+        "c7c419b435b0301c186a3aeaa655d28fb7d4d3a6d036ea270618eba90508115e",
+        "a4c85056bfc5e833aff7856795c7e13299804cfd8a153fbad149467b6eeb8d71",
+        "ba6496131ee08b70801645897dfb3c72df000627924f2eaf109f0717b3e2538d",
+        "e8d675dd66d3c516a928ffba90a5ef667a6ead3963ad4586eb999dc3d92fd2e5",
+        "9dca83436a8e7e15e327989f8d23f557edbe6f695cdf8e8d69a73f1381b0619b"
+      ],
+      "ruleId": "current88-04-mountain-guardian-boy-nw-20261123",
+      "ruleSha256": "d2e4a2d447879894d67708052ae1775ee03fcdb60ec25ca03c78d7179cb837ae",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "80828608b3437b0b97f0207bbb8be6660aad376a918bcefd9e38e1b02028dc7b",
+  "inputFingerprint": "abff1164d3f91fbe7517373eaebd2a5a4ad39465e41af44748ad5ded0321b310",
   "nativeCanvas": [
     1254,
     1254

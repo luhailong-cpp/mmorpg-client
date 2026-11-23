@@ -17,7 +17,11 @@
         133.33333333333334,
         133.33333333333334,
         133.33333333333334
-      ]
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.0234,
+      "pixelsPerUnit": 38.14
     },
     {
       "action": "run",
@@ -34,7 +38,11 @@
         133.33333333333334,
         133.33333333333334,
         133.33333333333334
-      ]
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.0286,
+      "pixelsPerUnit": 37.36
     },
     {
       "action": "run",
@@ -51,7 +59,11 @@
         133.33333333333334,
         133.33333333333334,
         133.33333333333334
-      ]
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.0286,
+      "pixelsPerUnit": 38.73
     },
     {
       "action": "run",
@@ -68,7 +80,11 @@
         133.33333333333334,
         133.33333333333334,
         133.33333333333334
-      ]
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.0234,
+      "pixelsPerUnit": 38.76
     },
     {
       "action": "run",
@@ -85,7 +101,11 @@
         133.33333333333334,
         133.33333333333334,
         133.33333333333334
-      ]
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.026,
+      "pixelsPerUnit": 38.61
     },
     {
       "action": "run",
@@ -102,7 +122,11 @@
         133.33333333333334,
         133.33333333333334,
         133.33333333333334
-      ]
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.0443,
+      "pixelsPerUnit": 36.37
     },
     {
       "action": "run",
@@ -119,7 +143,11 @@
         133.33333333333334,
         133.33333333333334,
         133.33333333333334
-      ]
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.0417,
+      "pixelsPerUnit": 35.6
     },
     {
       "action": "run",
@@ -136,13 +164,17 @@
         133.33333333333334,
         133.33333333333334,
         133.33333333333334
-      ]
+      ],
+      "overridePivot": true,
+      "pivotX": 0.5,
+      "pivotY": 0.0755,
+      "pixelsPerUnit": 35.58
     }
   ],
   "crossVariantFallback": false,
   "frameHeight": 384,
   "frameWidth": 384,
-  "inputFingerprint": "63bfac3c597dd155d94fd02668e276c5c995f8a96679f9958db877e8df135639",
+  "inputFingerprint": "6ade397481d289b02ca05b40cdd7b96a092adc39d53db2074b81aa9cd0d54cbd",
   "pivotX": 0.5,
   "pivotY": 0.08,
   "pixelsPerUnit": 39,

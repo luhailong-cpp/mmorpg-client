@@ -642,11 +642,261 @@
       "sourceSha256": "88110b67e5557a3c38c21bc5c036083c0a05ec85674132ee22dbea9804571e78"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "00_reference_topright_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.88
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.88
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "46eef590f7bfc4a85c86f881994cbfd1109e7e34eb037ead32a480e8f1f7f5ac",
+        "66b9aca087ee1efa34ec0e7fd9bb1ca6841715d913c10bcdb69cfe2be5163e88",
+        "6db6b372d6ea9f21da525f52fcf2e33995f23139977233436e315bbc5c2e7492",
+        "c96cb9fed38a3106ebc2aabd7ba75b93061a6c822c60f9c7154aa92a84516aa9",
+        "96b2962a55a108373d8c63aa7ddc8b51038a8e3f750f9b003fbb9391896b8d0b",
+        "c0984683521c3a676d89995ca0f10a26da36b6773e6daf0b155bf9a254ec9b5b",
+        "db538023d6c7cd50b6d99bcf84436eb46a758cf5fa0ca9b9ee3ca763f4f40da2",
+        "83734850bce17636c2645c6cd20b05a1c90110aabfd89fd587e6883f1450648e"
+      ],
+      "ruleId": "current88-00-reference-topright-boy-n-20261123",
+      "ruleSha256": "07b3058c02b3469af60c3c90c18310c74868dc2a2da8e69b0b1084020b8a53fd",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 39.84
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 39.84
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "d64ec1b465816a710a74bbae2a50a21a3a8cfcd5ac58fec2d72e778c4bdf5021",
+        "1c405fd023ca9aafc01a4128fb9501e6152b0fcac95f88591b06f9c82e051d6a",
+        "fe9251cc5533e7c2302d8f9c5182c02104fd074d8837acaa6c805454e43faf33",
+        "730b8e2dcfd46f8b147413a9b34840ca7131180742ba7bbb63e67d9238651c95",
+        "54831964da775bba19345eb8993d67c315ad3be3d9219aa56b4e3cd8d85f0dd0",
+        "b299bbc49612c115f12c7f611c8acdb9f2cb5d76f96617462e849a4502efe58a",
+        "f7665d5fdee569cdab3ad12dc2a505bba631ca3b4cfea0d5b72824fd4d48d598",
+        "80b9c1f7fb7c665e2bdeafd3dfd36f356cec4a2ca68a481689f8871ef151dc46"
+      ],
+      "ruleId": "current88-00-reference-topright-boy-ne-20261123",
+      "ruleSha256": "a23d45b4b0ad90fc704c6080a028e0951cb8a39ed357e0c0beab01811d865e68",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 40.68
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 40.68
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "48ba2e8ff5b814d3937cef4e3d205f9fe6179c0333475d775fc74b886a8a6103",
+        "12353099345b4d412641b18be36c518e2aa9d30c82b1f6e3572da34a4e7d3cf7",
+        "ababdc6cef75945ec521c1af4ec043cfbee7b1f9dfd542eed47438d26002fba7",
+        "aee55700f99ef78d950ce925cbf3d53ad5a3368de7cd1a271ca64634d62b8cc1",
+        "f2551d731d867a00c0df13c689c9fa98f31458666fe859da4982a013118ba230",
+        "bcda591254249272259b02b6aec7beb9bf79fb7b124b65ce42052cb90b95e836",
+        "8aa905996ac17ca9cd75c6704817f30b99e9cfe20d84a240b673557a07d06255",
+        "fad7dcb9bd619ac4c80fdf7783db6b6dd45f6fe9e24a72a5e60ff74b4ce41c0b"
+      ],
+      "ruleId": "current88-00-reference-topright-boy-e-20261123",
+      "ruleSha256": "3a047871464bed931bea6cfc220cb0571e5602c14e24580a08a6b577b2048d4c",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 39.66
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 39.66
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "568397f2b6d09da43ef2e24ffd9bfd6f1f7c5b9d3701651fb3102adca2cb563a",
+        "e5a9e0535e70e607158861bd7b928be24876963567b64e8e75df146e0a210dcd",
+        "4c89a9071e613202653575e6ca310fc5be38a7f6df97318c4f6a617ca336c81e",
+        "bd544c348aa9ec85958347a07faa04da79deb71e6f38a3696a849f39e80af497",
+        "2d45cbae8db9e2fca835dbe85fdf4830b2e2319fd5608dcd546f83668824f95f",
+        "9fcfabcdecd9deec5cd3e8a105d3d13e9045cf745cf88617969d7db9c2199742",
+        "d5ebbed86b14044977fbc08cd486471d8a15694fc2a4d106d08422f9dc06b106",
+        "b15d8b74d3940ed1570d35f8af271cb9ff1270c25f0c30f08f45b0f79620ade2"
+      ],
+      "ruleId": "current88-00-reference-topright-boy-se-20261123",
+      "ruleSha256": "7e21be0ddc211fcc579ed7521b5945134ca0d5260532380ea13d429474347f8e",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 41.94
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 41.94
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "6378df8a13f2bf5d090b9517dee8d441855458cfb494e4359bfc4ca3a224b816",
+        "11c00c6f39b14ee156c0aa9daba14968df54d11c17b79f0d5c6150e30be3ceb5",
+        "2b36e8f0558a900c36555f86ae9bd5c81ac8af483fe6e8ce2b6d5f1dc7555387",
+        "790dcb9654b1f3852031fe4d36edcac9429c3256bac176a6479d33f5ee54eddd",
+        "adad98b5bcac60b5cb3a721a79a243cf66f593c76dc0b5060fd27613310b48a2",
+        "8f206ca8c396431a68c30ec41cba59453655f490bfe619f91fb699ac74cfae6a",
+        "e9fa1028d3edb4861eb7decaeb294ad513c34c47443e9cd524fabf7a389e3cfd",
+        "a886a412df118aa986a726e61ed772110d249decb758aa09c82bff2c4943e854"
+      ],
+      "ruleId": "current88-00-reference-topright-boy-s-20261123",
+      "ruleSha256": "5528dc246675a9e732dd8e70ab86b6256aed6264e7acc8af1f148be7184e4265",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0651,
+        "pixelsPerUnit": 39.98
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0651,
+        "pixelsPerUnit": 39.98
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "096ebe274ffb4122a0847719263a8a19d8e64e2241989aa235ad459ce6ee35a0",
+        "961888942f85f6b6cd4b47c8d69334339d0c73c01905a56d2d1cbf945b3134ef",
+        "0beef21c7121677e97a8d2cb4190fe9f91d98c59169d8ff94d3fadcee851a7a0",
+        "9e0299761f64dd2bc5fd9e8ea7d7d07f6d6fa263b361fa96ed7e64529d115aff",
+        "a2dbe0abac6ad16adcfeda95c0068d9d0beeacafcd9a21edf05c781ce3a52f5f",
+        "b76fffa3ce3fe22a01d9b0c7500232586550023c816dbe2f8f0e725a804310ab",
+        "0142b91337b44fc326d8cdb4269e8562a0a7a680aa886d3518d6455011216e29",
+        "5ad3c72967a582d06cb0462d1d0158876dc1c795fe76eb4f3d2c60476c439e36"
+      ],
+      "ruleId": "current88-00-reference-topright-boy-sw-20261123",
+      "ruleSha256": "d353deaea84ea9eaaa9705eabcbc10b9b1fcf6be7ef99eb4a9331064c5f532c5",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 39.53
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 39.53
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "5699a5976fd3705f1cda8a67783bfe691f1c2c416b4f66ff08d57dac8b119ee6",
+        "0e4bb161ce6073e2e74932c451994c99a40cf55f72ba4c57d6a0426fe1cc5b2c",
+        "b385fae62a3e43e64e363c81197aa131c3d55c8249870cf0da0142d9ec37d17d",
+        "ac959691cbd12a8e68ccd3df00976d74639d5699944b15b5a4aa302a488aacf0",
+        "2e2f7ae96f857f59cd5644a84eeccfbb29e8944e58efa9f25edb65eef0e45f9b",
+        "aa2079abd4310423c2953dc7e98bf6757842bf2156452f4ee069c4b11b960053",
+        "a398ec28780d1aff73999689d198aa9846b32c2788dca355b5a6ccf7a67ba065",
+        "6efcbf899f8593ae16ceea0d69579ee1d9414b9c0fea460943da7ac82bea7ace"
+      ],
+      "ruleId": "current88-00-reference-topright-boy-w-20261123",
+      "ruleSha256": "63f598593be4f09f6033cdbeba86472f49544c5519c302fd3818b4bd80876ca2",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0573,
+        "pixelsPerUnit": 39.46
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0573,
+        "pixelsPerUnit": 39.46
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "67586756230f206689baa14b20a4b699d41897f1c55a8eff557b02e63d6e4b0c",
+        "6e7b5f252995c3e5aa49f307d1a72b3e511c208108ea22339840ca4e41bb1839",
+        "d423c335074333dd205ce8c44653ed979e7ecebac221f829ad9e614da01d3090",
+        "23eecc25f54a32ee2dad9209c72253b2a07ed313a0cbbb45b4d0e182472ba1f4",
+        "fbd863ccebe6ac82f382d66e361e9ee0ea0b0c5cd21f54eb036b3a2dab41ae30",
+        "bd6ff21bd74ac25784b6ee4867cb8361b0ab3bb9ba4dc4d155a7c8a210b23504",
+        "a5098fafaed2bd454e04ce198cfe334b8105519ae1d7b436d2efde1f6796b6e2",
+        "88110b67e5557a3c38c21bc5c036083c0a05ec85674132ee22dbea9804571e78"
+      ],
+      "ruleId": "current88-00-reference-topright-boy-nw-20261123",
+      "ruleSha256": "e56cdab342827cb96696388742a9b5e6f6dfe93121aea8437c7d8a80e9ce98ab",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "ddae8356007bfdebbf49200910e6457478e0ded822e31ab6e3088f498f98b310",
+  "inputFingerprint": "f4021e4accde0a357c5b6542cf4d41e42e04170e03f61aedf1ceae12cb290c3d",
   "nativeCanvas": [
     1254,
     1254

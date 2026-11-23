@@ -1,13 +1,473 @@
 {
-  "schema": "qdao.run-variant-game-calibrations/v1",
+  "description": "Source-locked clip display calibration for all 11 retained current8 characters across 8 directions, aligned with IdleDisplayScale=1.15 standing stature and planted-stance ground anchor. Does not alter PNGs or timing.",
   "gameAcceptance": "pending_independent_runtime_closure",
-  "description": "Source-locked clip display calibration. Runtime acceptance remains in the separate game closure; this file does not approve artwork or alter PNGs, timing, animation or other clips.",
   "rules": [
     {
-      "id": "current72-02-fire-talisman-boy-sw-20261106",
-      "characterId": "02_fire_talisman_boy",
-      "variant": "current",
+      "characterId": "00_reference_topright_boy",
+      "direction": "N",
+      "id": "current88-00-reference-topright-boy-n-20261123",
+      "orderedSourceHashes": [
+        "46eef590f7bfc4a85c86f881994cbfd1109e7e34eb037ead32a480e8f1f7f5ac",
+        "66b9aca087ee1efa34ec0e7fd9bb1ca6841715d913c10bcdb69cfe2be5163e88",
+        "6db6b372d6ea9f21da525f52fcf2e33995f23139977233436e315bbc5c2e7492",
+        "c96cb9fed38a3106ebc2aabd7ba75b93061a6c822c60f9c7154aa92a84516aa9",
+        "96b2962a55a108373d8c63aa7ddc8b51038a8e3f750f9b003fbb9391896b8d0b",
+        "c0984683521c3a676d89995ca0f10a26da36b6773e6daf0b155bf9a254ec9b5b",
+        "db538023d6c7cd50b6d99bcf84436eb46a758cf5fa0ca9b9ee3ca763f4f40da2",
+        "83734850bce17636c2645c6cd20b05a1c90110aabfd89fd587e6883f1450648e"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.88
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "direction": "NE",
+      "id": "current88-00-reference-topright-boy-ne-20261123",
+      "orderedSourceHashes": [
+        "d64ec1b465816a710a74bbae2a50a21a3a8cfcd5ac58fec2d72e778c4bdf5021",
+        "1c405fd023ca9aafc01a4128fb9501e6152b0fcac95f88591b06f9c82e051d6a",
+        "fe9251cc5533e7c2302d8f9c5182c02104fd074d8837acaa6c805454e43faf33",
+        "730b8e2dcfd46f8b147413a9b34840ca7131180742ba7bbb63e67d9238651c95",
+        "54831964da775bba19345eb8993d67c315ad3be3d9219aa56b4e3cd8d85f0dd0",
+        "b299bbc49612c115f12c7f611c8acdb9f2cb5d76f96617462e849a4502efe58a",
+        "f7665d5fdee569cdab3ad12dc2a505bba631ca3b4cfea0d5b72824fd4d48d598",
+        "80b9c1f7fb7c665e2bdeafd3dfd36f356cec4a2ca68a481689f8871ef151dc46"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 39.84
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "direction": "E",
+      "id": "current88-00-reference-topright-boy-e-20261123",
+      "orderedSourceHashes": [
+        "48ba2e8ff5b814d3937cef4e3d205f9fe6179c0333475d775fc74b886a8a6103",
+        "12353099345b4d412641b18be36c518e2aa9d30c82b1f6e3572da34a4e7d3cf7",
+        "ababdc6cef75945ec521c1af4ec043cfbee7b1f9dfd542eed47438d26002fba7",
+        "aee55700f99ef78d950ce925cbf3d53ad5a3368de7cd1a271ca64634d62b8cc1",
+        "f2551d731d867a00c0df13c689c9fa98f31458666fe859da4982a013118ba230",
+        "bcda591254249272259b02b6aec7beb9bf79fb7b124b65ce42052cb90b95e836",
+        "8aa905996ac17ca9cd75c6704817f30b99e9cfe20d84a240b673557a07d06255",
+        "fad7dcb9bd619ac4c80fdf7783db6b6dd45f6fe9e24a72a5e60ff74b4ce41c0b"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 40.68
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "direction": "SE",
+      "id": "current88-00-reference-topright-boy-se-20261123",
+      "orderedSourceHashes": [
+        "568397f2b6d09da43ef2e24ffd9bfd6f1f7c5b9d3701651fb3102adca2cb563a",
+        "e5a9e0535e70e607158861bd7b928be24876963567b64e8e75df146e0a210dcd",
+        "4c89a9071e613202653575e6ca310fc5be38a7f6df97318c4f6a617ca336c81e",
+        "bd544c348aa9ec85958347a07faa04da79deb71e6f38a3696a849f39e80af497",
+        "2d45cbae8db9e2fca835dbe85fdf4830b2e2319fd5608dcd546f83668824f95f",
+        "9fcfabcdecd9deec5cd3e8a105d3d13e9045cf745cf88617969d7db9c2199742",
+        "d5ebbed86b14044977fbc08cd486471d8a15694fc2a4d106d08422f9dc06b106",
+        "b15d8b74d3940ed1570d35f8af271cb9ff1270c25f0c30f08f45b0f79620ade2"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 39.66
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "direction": "S",
+      "id": "current88-00-reference-topright-boy-s-20261123",
+      "orderedSourceHashes": [
+        "6378df8a13f2bf5d090b9517dee8d441855458cfb494e4359bfc4ca3a224b816",
+        "11c00c6f39b14ee156c0aa9daba14968df54d11c17b79f0d5c6150e30be3ceb5",
+        "2b36e8f0558a900c36555f86ae9bd5c81ac8af483fe6e8ce2b6d5f1dc7555387",
+        "790dcb9654b1f3852031fe4d36edcac9429c3256bac176a6479d33f5ee54eddd",
+        "adad98b5bcac60b5cb3a721a79a243cf66f593c76dc0b5060fd27613310b48a2",
+        "8f206ca8c396431a68c30ec41cba59453655f490bfe619f91fb699ac74cfae6a",
+        "e9fa1028d3edb4861eb7decaeb294ad513c34c47443e9cd524fabf7a389e3cfd",
+        "a886a412df118aa986a726e61ed772110d249decb758aa09c82bff2c4943e854"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 41.94
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
       "direction": "SW",
+      "id": "current88-00-reference-topright-boy-sw-20261123",
+      "orderedSourceHashes": [
+        "096ebe274ffb4122a0847719263a8a19d8e64e2241989aa235ad459ce6ee35a0",
+        "961888942f85f6b6cd4b47c8d69334339d0c73c01905a56d2d1cbf945b3134ef",
+        "0beef21c7121677e97a8d2cb4190fe9f91d98c59169d8ff94d3fadcee851a7a0",
+        "9e0299761f64dd2bc5fd9e8ea7d7d07f6d6fa263b361fa96ed7e64529d115aff",
+        "a2dbe0abac6ad16adcfeda95c0068d9d0beeacafcd9a21edf05c781ce3a52f5f",
+        "b76fffa3ce3fe22a01d9b0c7500232586550023c816dbe2f8f0e725a804310ab",
+        "0142b91337b44fc326d8cdb4269e8562a0a7a680aa886d3518d6455011216e29",
+        "5ad3c72967a582d06cb0462d1d0158876dc1c795fe76eb4f3d2c60476c439e36"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0651,
+        "pixelsPerUnit": 39.98
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "direction": "W",
+      "id": "current88-00-reference-topright-boy-w-20261123",
+      "orderedSourceHashes": [
+        "5699a5976fd3705f1cda8a67783bfe691f1c2c416b4f66ff08d57dac8b119ee6",
+        "0e4bb161ce6073e2e74932c451994c99a40cf55f72ba4c57d6a0426fe1cc5b2c",
+        "b385fae62a3e43e64e363c81197aa131c3d55c8249870cf0da0142d9ec37d17d",
+        "ac959691cbd12a8e68ccd3df00976d74639d5699944b15b5a4aa302a488aacf0",
+        "2e2f7ae96f857f59cd5644a84eeccfbb29e8944e58efa9f25edb65eef0e45f9b",
+        "aa2079abd4310423c2953dc7e98bf6757842bf2156452f4ee069c4b11b960053",
+        "a398ec28780d1aff73999689d198aa9846b32c2788dca355b5a6ccf7a67ba065",
+        "6efcbf899f8593ae16ceea0d69579ee1d9414b9c0fea460943da7ac82bea7ace"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 39.53
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "00_reference_topright_boy",
+      "direction": "NW",
+      "id": "current88-00-reference-topright-boy-nw-20261123",
+      "orderedSourceHashes": [
+        "67586756230f206689baa14b20a4b699d41897f1c55a8eff557b02e63d6e4b0c",
+        "6e7b5f252995c3e5aa49f307d1a72b3e511c208108ea22339840ca4e41bb1839",
+        "d423c335074333dd205ce8c44653ed979e7ecebac221f829ad9e614da01d3090",
+        "23eecc25f54a32ee2dad9209c72253b2a07ed313a0cbbb45b4d0e182472ba1f4",
+        "fbd863ccebe6ac82f382d66e361e9ee0ea0b0c5cd21f54eb036b3a2dab41ae30",
+        "bd6ff21bd74ac25784b6ee4867cb8361b0ab3bb9ba4dc4d155a7c8a210b23504",
+        "a5098fafaed2bd454e04ce198cfe334b8105519ae1d7b436d2efde1f6796b6e2",
+        "88110b67e5557a3c38c21bc5c036083c0a05ec85674132ee22dbea9804571e78"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0573,
+        "pixelsPerUnit": 39.46
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "direction": "N",
+      "id": "current88-01-ice-sword-girl-n-20261123",
+      "orderedSourceHashes": [
+        "3fcf25ae6204a50eb57c3325c1d5cb1ba0a297fcdf957d49c1d80cead17ffb05",
+        "ea606b31abd23ffdf7bc09bf9dd3b164d8ae94046af3e54654b9e2418ec6e8be",
+        "196a50904b90d5edf485f22d1862e1c6988bbeda2adc471318925db3fb75be74",
+        "b2e05ce2f71064dfba02095378bef99e3e8df3a63bc3e99b4f6bb724dc5b3e5a",
+        "d7ab1b99b6e7e166aa8fed4f9c5764c5e695aaebf0cd11057db6c40dc49c6b92",
+        "c2696e229df6d980c1d7d54b1cd187a2e596ea38bfa388eae2d6e67bfce3385b",
+        "01fad2fed9f8ee8730ebef321111d67e03046d0cc845901efc28363de61730cd",
+        "325f56d1c2161ddfc43d1b8214ed81f0e608a0f745eb0061997b6c0f2874d9a2"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.55
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "direction": "NE",
+      "id": "current88-01-ice-sword-girl-ne-20261123",
+      "orderedSourceHashes": [
+        "63933465d6dbcfa4d0f67aaa48b68c12bc9d31862d001608717a978eebd80a09",
+        "1ba6e2cdd95a975461252e54e8373ef4fd696b4e641f27b1dbf35842280fb15c",
+        "bc42edebac4456f73c4dd8d1987fdfedf0bcf3892b6eeb2d1a1d1635d52f2906",
+        "d5de0c16baedf13099387e59e5fe6e3158a92da10633cf4dde2970d4b5a8e985",
+        "016fd94797a7c7aae3bc1a6f2dbb8fa6c026efec78ee60770f175b8ee593e6b5",
+        "d997a949fb00e40d6106d861b2fc775e433fe27e42709e058942dd32ea4b3c5d",
+        "16781d016951e8a994f3495f94528d59313d1d8308689cc800d16a2d0318c262",
+        "523c04c8158efa129b7cc32985e3bd72925602be432fd8aab318d0d6fa500a3d"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.93
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "direction": "E",
+      "id": "current88-01-ice-sword-girl-e-20261123",
+      "orderedSourceHashes": [
+        "8eb58742f0508f9e779bd14b790cef538a9ecbc7999da91ba2af040317dc9c45",
+        "397fa15fa626c467270c1d57e2a017b7d4b5fdc61c7249b3b412084d97b9c8cc",
+        "13ec99c12eb38377a73248455fa222036999950fc7f5bfa683bd22fe469194d8",
+        "79bb4ddcfa6331244166881134f2ece7bb2229e3127c2a1ab3f885112d8d3754",
+        "06691cfd0228c7bcbc2e1a181c269e205ebfe7c078fdc6c1a19e7627ad4f77ea",
+        "9936ffc8907e2e771d1ca0bb57b16ce5a81a041c8622074c2bae53079fcc06b8",
+        "c6223481d5b3ffb329e94a9916c1f71dc0065cd8b990db36107ea436d94ccd1d",
+        "eef4f30c5c7dbdd5154994766d4883f2baeb2725f1986963fd9c9baab16cc9b7"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.07
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "direction": "SE",
+      "id": "current88-01-ice-sword-girl-se-20261123",
+      "orderedSourceHashes": [
+        "754c8de24dc3ea6a7eee9ca41a8dfc48caf9de8656cefb67487986abb64ba80b",
+        "8c50caa565f14c6d83c54f943c4fcc785591befb5918c933f8ded489646a7aa0",
+        "0410b2433d41332eaed758cf6208e9a1ca471a246e2f09bc582681b3821157ac",
+        "a52ba9cee41b50716e549fa4844a0968facac3ecee66be7df8e934f8923d53b8",
+        "89a72357b7f99ffc9403fdbdd35183b8c5b2cbf5b7cf2b7427d26f0b71ab5146",
+        "3d706bcaa96df5a22eaa67bbb4f121ef73d5fea401c9af31f2ef81d5bd1f7b18",
+        "3ab59c17193904f6bf4fe70ebfcf2acdf0f40c5e82f41347dbeb58c631e31c01",
+        "62dd0d1028012fc21b36503e329566656b2fb501ddc4f0d93f2b4f1faaa4bc48"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 36.34
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "direction": "S",
+      "id": "current88-01-ice-sword-girl-s-20261123",
+      "orderedSourceHashes": [
+        "19cdd660de94dc73f6b593fde503e6bba9953649bece43be2f212314466343ab",
+        "c6bb5c66696a691b8a8ed964be5b865ec7d13f22da398065c5b9b05a80bc12c4",
+        "d16c38cbd93447abff284e137122cc620f74c5dc78d74c9f6586382ff87f5be5",
+        "3d83de3d99c1bf72ed814d240ea26e9d81cbee669345744277744d215edf6011",
+        "f5c368c25d1b306a044834e6c3292bedd59a270306378b3d2fac8a38e2e5436f",
+        "80504d10447ec96cf77a1e5fa67734128f4962f04d7c2bc63dbc6add5f6ac296",
+        "f7ed88c1ae8171262903a60d46ca450a4ec162d735e37d26d306748ad9ea11b6",
+        "8c1c65cda8554adbb9b49192401d6f05f06a5adaa67b363a87ddd04e75607be3"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0729,
+        "pixelsPerUnit": 37.57
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "direction": "SW",
+      "id": "current88-01-ice-sword-girl-sw-20261123",
+      "orderedSourceHashes": [
+        "86b42d46eb231503b73f673ccc0bf846732326dd836ff235a244e3bdd97e4d36",
+        "8b8b8b3ef7353d604fb895257618273726c5a657193ea3fe257c05d4dc869c9f",
+        "88cfd8ced4c13ff3cd4bf6f81bf66007e5d0142d317630d6d4124a1b32a7f00c",
+        "7404c9ec2725b3d64c643b84f40eec3c7613227d5e9de2152aa1f4afcfcda0ac",
+        "bcf595e7c0d809f40f192e1e66074a8c0e4cb7f81e09ce6f10976b5137c8433a",
+        "55fde17ab0af47b43f66571631a5e84d4ad2bc171c44561c09906b0c4534f971",
+        "c788ff74f8e25e013517b3148116c85dc0026b0922b108562e88abc029577335",
+        "bbad21481c61279f80510650b225cd87556de4b07a37a3050f2da1ad93f6c22b"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0599,
+        "pixelsPerUnit": 37.74
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "direction": "W",
+      "id": "current88-01-ice-sword-girl-w-20261123",
+      "orderedSourceHashes": [
+        "aa579273e66a69713f567ffc036b18fa1c84d03148581d21c53615e3cec683b4",
+        "a79e7be3ef38cc42ba7b3c527541fa5164238743f5e47aa964cdf552f894e6a1",
+        "94b5b001d076778accf66773bf5c9aca5b1d4e623e7fd798ca4b44968fbaf361",
+        "8b14b2f91134f206c35d982ef9eb115b5ba84ff565fec3542d49cf93ef2b4ee9",
+        "e395072af780b6057e3f9d143f99181713e30c23f2aca9ee903c07b8b3743ac9",
+        "7fdc70ae9b1a2cc27555a48cdbf5b51cff012961c78e83ef88c4aeb4242e079b",
+        "e2ccbfc55d0f0530ac70ab7e9594181b82d529a9d325cc0f81b5f3983e6fb0dd",
+        "9776a4aeaf3f609b8b352292fbf9e7e38e3c3ff16cd6114bf81e74812c7c0dad"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 38.83
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "01_ice_sword_girl",
+      "direction": "NW",
+      "id": "current88-01-ice-sword-girl-nw-20261123",
+      "orderedSourceHashes": [
+        "a3ef8f787db704f53ba69bafc49e274263bc594b2aeb68d7dedb867b9c6f4867",
+        "ea423d2f9f5bdceff80f72ee6f39b2fc47819f6edc7e6e60725e73dedaa2c943",
+        "85ac6297a4098b65214d95221f5a488a54467d729630a6dd466a6f4602b87d73",
+        "d4e25bb483c6fdcd415e36254f52c9854256f331b3f4878c20215d709c4b8cb2",
+        "270521779d0a3bebf462b321e6441369bd0190a59bf36c0f1940c7a5be0fe55d",
+        "8aac3a1ae2ae3ba2847a384dc8e67ea6d467930de17b8652d2fdd0e279712962",
+        "f839b27962df9714c092105756e5fe629ac7495980ecc5ef437fcbe3bba79c8a",
+        "6088838945c632aadcb91277e9e07f908c69f4e3a8b445183163f149cf32a64a"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 39.68
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "direction": "N",
+      "id": "current88-02-fire-talisman-boy-n-20261123",
+      "orderedSourceHashes": [
+        "03f0f0a5b92152d2a48b2f4499897ed9e82774e34a2cee9c6bdf1de4aa9a127c",
+        "fe331736fd6e5b1721a1d38113faef0db67fd20102c4ce4f654ed79ee707adc3",
+        "9410c7d01c30d505e3bbe274ded49ce94b03945f0d8550c585e741747c1d341b",
+        "d2a6a991e278b18950441eaba9d09b7f47b8a9a64141401e92112d18ae955af7",
+        "b586e3b5380abcb3ed54a4e304fa570f2294f1b56a052e799e904cfa64f9ff48",
+        "880b310df47fe4189292c359e681a53af86adc291eac2cfd0cf3ba5bdebb5409",
+        "97f057cb964462c6f314e9f0b0c7d9ec676e86a8385ff158221b07f4117f0b6f",
+        "0819f25b4623230e13b7823687d1a4932a0e9007d8c4021691fa8c18b7f599d8"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 42.19
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "direction": "NE",
+      "id": "current88-02-fire-talisman-boy-ne-20261123",
+      "orderedSourceHashes": [
+        "71c901eafa82b3d8960ad0a6ee86b19d442be1bd932d6c439726bbe127d6dbc6",
+        "37991d120ce3410b41037dc07db923d511b7dc3f85c58a516b8091200dae8a4e",
+        "1a137bafdcc4453a3003f51bc9985108ae0f6999173344fbc426cb8db1c5c0d8",
+        "2a3d83df8902901f771ec376ae5edfef2e9c9def796421d11a6fb332ae2fac15",
+        "3aa4be2b1ac64be9f6ecbd00a4ef12f3f89b4caef488bca1d320acb0dc4caa5e",
+        "4971494043e67ce979bf24d4b894719b90fdc8865acc0048be3d0ac873361b95",
+        "279b2aa645ffc635881d2409b59b623b3b0e7d5eeb4fc7cca980ce3d8d6e8ddd",
+        "125342b54b3263ea40898d5feb845db8da10f0fdc94ca82cf1925f20f258dfbe"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.4
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "direction": "E",
+      "id": "current88-02-fire-talisman-boy-e-20261123",
+      "orderedSourceHashes": [
+        "c355d4e24b0e13b4eb4f007f398c4c41af6a39aab7cd74df5af8ab71f46207d5",
+        "5a179cc0e40c088835bd32d4bf11745034671de4d000605fd2fc8d397c30625d",
+        "5c430fc89cb734c39db68e219b008cd44d77acaf6ff966b4fcfbb660ecdad7dd",
+        "13dd249664d8154d1e00791443e47b9e92d5dd7a92a207243e1de55daeb43705",
+        "ffecca5727be86a5d048656e017aea4d69bf99a003ede79144544f829f3b9559",
+        "7a33cbd5dbb65039f75e4a8039d6f2ac74c676bc331470223ce494c8ad212f46",
+        "6708d5c47a1799113ca75d1daa58b16d7e27917a0837bc2c5a8c08db285844be",
+        "b6e44a768c901f4e0224860681beed96ca39bd22b53652441b7b6580cd6f0e43"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 42.9
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "direction": "SE",
+      "id": "current88-02-fire-talisman-boy-se-20261123",
+      "orderedSourceHashes": [
+        "afefdc767af8faf2a68ae303be8ee47c5d7902c50cf1b583155c930f3e10c0ad",
+        "571c58395b3492303d16b849a33c2a8f9ccc738cc3c26b3da4e04807572cd629",
+        "b1d1462ab15514fd5590f1792af6e0634a977770548f5396c3acea711b984e76",
+        "0a9ac5a220ed5e69944e1061cc1b89a814ed4505b70f18406a37e6fc198d46d8",
+        "bfbd8872771c4149f1cc08ad37808b1d6ba30036c4e3ba10c1207053699955d0",
+        "c091a1d438ac33d0abfc7bfcfd623e0786193898fafeef3c9fd7fa72772c7cbc",
+        "52437640c78193eb47632787ecf962d49a17ee01e2045932037775799d565960",
+        "fe4f301dc8df8bd2eda9662ae1a841ee08b2b8c4a5fbdd4d26b1b01140a68b29"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0104,
+        "pixelsPerUnit": 43.17
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "direction": "S",
+      "id": "current88-02-fire-talisman-boy-s-20261123",
+      "orderedSourceHashes": [
+        "4f8256a4502db34e33e736bcf6ff9862b0a6fcfce43a4459fa8ca79c81b137c9",
+        "ab654780b30f387a9fb2fa2c2f586a6f469dea7fd234f55cc58db8749e6b3f43",
+        "1a95f111286315e937b0a87b819b1c5c323e13cad06257a4037c76abfe4ed512",
+        "f00b7931750ad9560fdd83b1a7e39fc30bcb41c30fb19d2ce20c6d3a790cfbe3",
+        "8716ac92393caefb32819863b29388dfebdf65c58d8391e0b8b93886f128f633",
+        "cbd457808a20ab3daa532b4dd80b07b85122cf0f396a8dd6dd0617dbac98403a",
+        "d72383a667e74eabe6985c01236e6816b10355bddd8643fa3be1dc2be5ebdc65",
+        "a37a1b0c1c20f01b006629c4e390f6f070a3f4d97a2d1450478aa9d7c06b6a71"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 40.85
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "direction": "SW",
+      "id": "current88-02-fire-talisman-boy-sw-20261123",
       "orderedSourceHashes": [
         "f6c11b64a44c62146562b89e31fef06c7f09791a32e87d9ebb4fdf214c3d57e7",
         "d4b6a0e45c0fd3adbe61858d0b1b76c98255385dab8143f524c816f8f4e4bf32",
@@ -19,11 +479,1465 @@
         "11f29c2fce1ec35f5807fe91d6b0784d8899592a0155c883707b21c44a74a3a7"
       ],
       "runtimeClip": {
-        "pixelsPerUnit": 30,
         "overridePivot": true,
         "pivotX": 0.5,
-        "pivotY": 0.22
-      }
+        "pivotY": 0.1849,
+        "pixelsPerUnit": 32.09
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "direction": "W",
+      "id": "current88-02-fire-talisman-boy-w-20261123",
+      "orderedSourceHashes": [
+        "3c4c15dd55503a86d6fbdd75bd76eda26d87e23ce5708a6580918629d63c6b61",
+        "c2866702316778a562ccccc26cc375744a9923516e480be4cd173c176508e00a",
+        "963b5c3b6bce09fc36398dc7d969c874602e1c622828e7fa283bbc899a582d0a",
+        "595b9042b711795713c6c1c09c73315a676ac90b44a1396148b65cca2f5a6fa2",
+        "9efe3bd68a13795577b723e6a867d578e1f7f098a8f6603acf1bbce6af4abc24",
+        "ec350d201fa9223f99a014b91923fc4da37f3d201690efaa6806227597e7cb03",
+        "2f435828b82a9dd7a7cd3f8e69e43078641868312dee0d084c8e5f31a7aec84b",
+        "60d6e882326ead17507d64a584823703e8dbc2482a3d51d19a12656039ca8500"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0521,
+        "pixelsPerUnit": 40.36
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "02_fire_talisman_boy",
+      "direction": "NW",
+      "id": "current88-02-fire-talisman-boy-nw-20261123",
+      "orderedSourceHashes": [
+        "3ff8287b8c519c7a64b8e8f60591dacd771e857925f8e993ba31621d08056899",
+        "b5b7dfe4047223f11da50fcac402db6b1ba6c5099687c1d41e2dca39917e4ef5",
+        "a509c4faa1ceb9138c7bcd6e8dfd0c861f9c4c49cf07dd5c6cd68a8a3424d393",
+        "3098190470bf85562b4181d44e7c8cd1e1b3600715f8ae91a7987267483c4d96",
+        "1bb79bca63ea7661bca37310eec663d3ef41ab9e6ab20a64f1f29abe45150c36",
+        "b3fb02073722d9cbe99ae6a9eb55397f42910e6b5715fa7d324fd65c16b3c639",
+        "eaa173fd12137da871a6a5654e2319cf700efe8997f5a64e15d70614fd49dfdf",
+        "d1bf8896b1603f51a42da0c0d464dbeebda436e63e0d50e3eaa0325ba70de627"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 41.48
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "direction": "N",
+      "id": "current88-03-lotus-healer-girl-n-20261123",
+      "orderedSourceHashes": [
+        "8225b6d0047722d816f031ed3836c1d8a70e29b20a887a964548db42cc887f80",
+        "b445813a13c63198e0424c10fa7eff386d808b259998f46a4115edaf3a8605be",
+        "3d4025b3194bae0e9d0a3cbcee8c3c8c81931b084b9f1bff9da0eb752d888a1c",
+        "cca32fbc2479a3c7eb9336665074e211f3d699d33502645a47894994ba32f01c",
+        "042f99f4c617d8c6fb19fdd65a9b97109072b9e1a1c6a8b5f675a3a4ae05097c",
+        "8e46e69b75990e3d489e299a8661a270f2027a8ec0b499cde32300d42f4991b1",
+        "ef8aaa6f91aff01b9ab90e2cb966edba24f8f63362b225019fc50b717368180b",
+        "d64bd101f05f03c84fbf30337654c226bbe8308551a8507529e0e727c1b72a1a"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 38.14
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "direction": "NE",
+      "id": "current88-03-lotus-healer-girl-ne-20261123",
+      "orderedSourceHashes": [
+        "0c1b4cbdd4bf47652ac97d5f83b12103cb0a1a5b2d1fe458483741cf36a49f8d",
+        "c841f610942ca437ccd4e566b08d81ea15e056f534b1045a33f286676722acd6",
+        "032490079e43f6260a4a75aebd571fe20e9190d8212c4453889960dc3582887c",
+        "da8498defbd8a9f6a1bbf3a156e721217a92d07c0cfab8175ed543af421cd596",
+        "ccc3dfa1b342e57635a907e502d56474f18e060821ac0dfdfa99dae630cd4b16",
+        "94f6f123279bd724c8b3e4450ef1e86b1e08318a01cbd3577b92e3d5becf1f73",
+        "0665e2acb564bae753592a165ca3bb8f7948ba878208a57eca8fd6469d7119c4",
+        "dc78024ece410f3b8e1614005ba9abce23738c36aac81028b55c125d0fb5b054"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 37.36
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "direction": "E",
+      "id": "current88-03-lotus-healer-girl-e-20261123",
+      "orderedSourceHashes": [
+        "1c03607dbceaafe232975a25738ac6df0f484c651bf486d1ff5f71618092c948",
+        "d7f2df2f12b3935cfaffb79dc6adbd599e524e2c08efc5a290fc8e77943930d8",
+        "3551b7e62e832529d0aa1fa496886d1113e5adfc194c6e99f4bbe53c001bc1ba",
+        "309d68841304ab07261183a3512a13db2c9f25756f22ce4f7f6f79fc5ba6eecc",
+        "161f28c58d01458de371df5c5ea070959f93208dd8fa9182734fbdaed71f9890",
+        "24e066083b50be37a44c9b9a5aab9f8b40fb696bde24e2772bcb67cbd28bbcfd",
+        "5e0a1c974eb58ebf8fae610c37b83166b82e463b46b049b81b8dfb47e637f837",
+        "2ccd38428c01294903a98d8402c51fe19349be30fd81bf43c0858006bffb7863"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.73
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "direction": "SE",
+      "id": "current88-03-lotus-healer-girl-se-20261123",
+      "orderedSourceHashes": [
+        "fef41c2e851f124317d31097f0deb28f9fee01a146714ba96a75b0422baa0932",
+        "257039a74485ef200a71ecd376c8d06f6b6fb15d9df9adb697c6d8ea0afe4a99",
+        "88734e4553dd7442df0eb5ebbdce16b772e30e3ea26b3a54643408995affa947",
+        "8606bbbe731959480871f7eeae604cbf64bbb6dd4c02478dd78318ea876eacf3",
+        "56d97abb55de325f3e6930daf3d70bb01f6bb49036617a5df00337e285b737db",
+        "78254cdc217a2991c857a011e9454ea63550d0ecb1dd6a9c0757f0da7910a7ca",
+        "7b42b3932b25dd86f317af7fbc9202696b59677e2348e394cc64e972f88190cb",
+        "7e4d613f9d985d9daf33fc0d754411d09913ee70acfd79e5778a01d6a8d6b1a7"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 38.76
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "direction": "S",
+      "id": "current88-03-lotus-healer-girl-s-20261123",
+      "orderedSourceHashes": [
+        "27ecced8805b429ac76f32c1e9a7402a32177f8af5d8c0b4929d40d231a4d18b",
+        "5bde3b35873a625ff7d41de858cd73648be5236fead8f3e5a0314166e1c3921f",
+        "b359d56031656e4482eac37d5f1803a4e5764c5e963c82afaf31d185cb3b47c7",
+        "73145a791327cac1046b248faf8ddbcf990f910486348ab421874ff4b31642ac",
+        "b5e86bbcaebd34ba3dba3eb82d1ba968e966e3f027e73ec259a148e2dd11d175",
+        "8ae7ca0284b9eede8d06a79e0244f4d8b643f88539b82a42947100815d311b74",
+        "960e369ab9f7e0e198d2408c69315631cb8c81b5fd2a4c93e3540700448431e0",
+        "2553b2b2538949d60969d7050428ef85402bcc9bfed1e5527314e4e3f61cd2d3"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 38.61
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "direction": "SW",
+      "id": "current88-03-lotus-healer-girl-sw-20261123",
+      "orderedSourceHashes": [
+        "c9285b84ee80e3e4b728d1b0ca14e644dff376fd916494eb18eeb9246ceae32a",
+        "da33384b8e6d2c7f2d23fa81abf34352d1a031fd047257b52de3ba6ffb68c3e6",
+        "cc56f8874f7d5f49fa61328fff5f49d37967a2440ec1f6d284db5622a9931018",
+        "57a35e5e161133a3491387995497a438c9e5f3f5eddf6245c20d390610836d0e",
+        "a90c90ca8df5919882a38306e7e96d652572fbac87dd73f1da28b5c16bbf9f94",
+        "65a11aade44a8e3f5a9662944f742231a0926c84cc05d750b5a90688c2c1240a",
+        "8cc30cd1c215927d56e2ca5f2faf1cd9fc8be76de1ce0550b0ccd7a743806dce",
+        "6f516d181e0cf29835ef363a214ed4c439cbe387aa0f39875930ed3b498ef897"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 36.37
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "direction": "W",
+      "id": "current88-03-lotus-healer-girl-w-20261123",
+      "orderedSourceHashes": [
+        "52d2253a64861653611e2104ae9a695b759a5345a50a2bb4c8ccb8d74ce92f53",
+        "5de46bf1adff7f2299eeb6ba525adb8df0d4183e6eb86ab54a45aac827f85969",
+        "d266e36bb8f22f64c4319eb30a53c2f710f948a35a03ef46b04ec6501f56be2d",
+        "619a5a4f3ff33a5e18e158f1b3539dbabc84bc3af1aaf939246312862ef8665c",
+        "f39da3b5934bd034acf51415704c9cc4de5d01dee1f5c3223efe25f805dadb93",
+        "b8d06f10d30222df3bdd1c743127150cde97c2c1b7c102ee8394ae2f06be58a2",
+        "b3a19cad0f9d07727ecc35f48bb76e5b6696e3ae7c6b2bd05e29452397d27d95",
+        "942e642675fc9e062098839ca027b224872261b3a20875f152bd0db4c9431f67"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 35.6
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "03_lotus_healer_girl",
+      "direction": "NW",
+      "id": "current88-03-lotus-healer-girl-nw-20261123",
+      "orderedSourceHashes": [
+        "06a0babb8c933423d833f17f1284f36dc70d31b21912da004836c9a0d0276955",
+        "bf2f1a341a7f663978ee4bcd2ddba64e136274f949946a7eaeee532c45272a7f",
+        "83604a9563ebb831bd4eaf4a27282b71b662275d41ca2f90a005527da488a842",
+        "e0a3464fc5f6755d296a3d98b4a6d462aa76a5ea9047789e5904de500fda3670",
+        "6993e46d163bac2eb459a63ffc7165ed496c6c9b78701489366c7a80bc4a9c1a",
+        "bdc3c6c35ab0cfe54af980b447db31441769ddfb89dde4f1ead764ab5f76ed91",
+        "c0bdb82c3e7449d2f33d1143b018f9e9ce1f8b1d51266e53fe47e2d9b0601fc3",
+        "aa797dcfa2fa784ce2476c8ec3fdf656f36a33df44c159113fece3a5dd6e1fe7"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0755,
+        "pixelsPerUnit": 35.58
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "direction": "N",
+      "id": "current88-04-mountain-guardian-boy-n-20261123",
+      "orderedSourceHashes": [
+        "52746c74a8c716b59f29d0392a4f82346dd617f4f4e5537369968ffddc386378",
+        "c5c3c03571cfd4338f0d31cb9a617c35f790be42e47a4cc8c7d0b8bbd2e19f64",
+        "a7a2e08f4e370ce7d29e874c28addd3324b2afe028550beee90cefce1e3ba707",
+        "111beafed5987210fbf011e8852ed24a1a01a478cbbe1b6bf32fd987fe385c15",
+        "d8981d95babcb33ba5c4c6e646cb2b088cf1ba60ed366aad371c5bc1f8c18513",
+        "c39c5d5e17f58eaa2052d3e79b1ec3f424c1695b141000dee15e7f18bfe01d16",
+        "311b150828f9166b8d8f492b54c895a566fb2be70db0b8b5f554aa5c31c7a082",
+        "acf7a92fe201f828baddfe0aca5dfda903649147137c97449d86119ea93616d5"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 41.73
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "direction": "NE",
+      "id": "current88-04-mountain-guardian-boy-ne-20261123",
+      "orderedSourceHashes": [
+        "9e3fa1ab66599a4d3f04d1dac98c0d859724aa8d0b2688eca005d8585a0b86fd",
+        "f71edf95a2cfc64c3e2ef65bbf6c63f436909e463f182d6291f5e117c420894e",
+        "aef376aaebda8e88764bec4aee9240b33517aa2113ab0a0b8e682e577abb22a6",
+        "82d25ef23c8a216ecc539a789b232a3662775655c794531d388ce144c5e4a4ea",
+        "8f3425d8253770ce08bfab938a6c918ce58c6c6bb6f3439bde550cce46fcb23a",
+        "8fe59831f9ea4fa93bed0c12aedc49cc5c76d3df94b30fa4dfab3ace12637e3f",
+        "7843f3d07c965fd380595cba97354f4a0bccd06a6d8dc122bc147c44d43317b0",
+        "fc5bfd50d03dc53d0b65a0aeed1c4119e5a296220f95a06d02da89298eff57a7"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 39.11
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "direction": "E",
+      "id": "current88-04-mountain-guardian-boy-e-20261123",
+      "orderedSourceHashes": [
+        "1b68e39f45f10946ef73429077685b5109fa7c893e452450f75611f20f274078",
+        "f2b4d1d09041a98ae85730bd9a71e9801e61c774afb354b7c2e4dc618ff29b18",
+        "63b86f38ea20bc57a7173b1144be41cc482ff03bef4b19db38481eec07737b53",
+        "66afc6fe55fd846f4efe339eadf2a887903b63d794b3a97e472a24a3d924bcec",
+        "ea748733dc936489a457f218cd0d88868454e63e44ed3457d25c499170c968e0",
+        "873b7598374fa94046b9ddba43241015d40ef77138d3e5068abe8ad3d5af31f0",
+        "cac9a39fa98ff9c5c0cee541d7b525cef0a2c9dee5e463d09ae1796cbc61a339",
+        "35c88ff9580ffba4f78a18360c4b9ce1da3b0b08ee85b9c98e068e7c38ac3f42"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.92
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "direction": "SE",
+      "id": "current88-04-mountain-guardian-boy-se-20261123",
+      "orderedSourceHashes": [
+        "9b0e7ffc841020c91b6148096784ef875050b89baed156f439703056c05862e0",
+        "2118522cff8d5ed2cbf23e750a164b8bf66dedc3ec3e3d7271cfb1b2cf2c0326",
+        "c4217874af43263ba8168b4c766bed719c95e3155c16d13dfe09a982b9cb27f1",
+        "626e3db557425e447d8fbd203778634d321e803d98e71c6df1715da50bc4ff08",
+        "1adc88a5bc73369325d51dd6869f2231222ddda4ca668a4b9abdf9f4b828035f",
+        "11d96b0136cb82259483bd90b0ffbc880cb6b971830ec5d0169c7c1a2674628e",
+        "7863e7c56f70707085371f5f33fc318fb37ab6131fca2bd1435c91691888687e",
+        "2413a25b67b50d2872229e1f16a40e997a3febe13903ffde675c7305697f7063"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 40.5
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "direction": "S",
+      "id": "current88-04-mountain-guardian-boy-s-20261123",
+      "orderedSourceHashes": [
+        "16d0f148383fd6d5cedee610d9c13ec97079357fba311317dfc9c35ad40b76d9",
+        "b1178a6d7869302deb845de85952c97a7f5fc924197f78e52fd581e33a9199f2",
+        "11fcbce4d96d9e043ea06312864a555dbb9d3cc903f438f3994e38a5548c2ed2",
+        "b9832625795c3b382355845627887dd0c6d97af2e5f3ef7520b7011bdcfd9915",
+        "3d2a502c84b3078c839c358da0504f58381d928e47ce8538cb1056e12526d812",
+        "79b878c35cbd3323ac5d839bf425c84c2a9d7581c3dae9379c0be713c8efb269",
+        "29e2130625f06a1c9973afd17143d8a01b507376c174f7f00a31123c491a6592",
+        "5deb9afa371de786162690d4f0818decc99cdffcb3994521289d13f0f66027a6"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 40.21
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "direction": "SW",
+      "id": "current88-04-mountain-guardian-boy-sw-20261123",
+      "orderedSourceHashes": [
+        "f8d29f03a7a5e352f101c82c4b3839cd0ff9c4f7be85d31367b67c4ea4d2ef7d",
+        "96588997cac74ca94dc2ca537a5e602af38da49878cabc747b02886d2e6486d2",
+        "83c60e2b1b07a1b9df8a0d7eea341e55025c431b684d5583d167d2d51fd23353",
+        "b6c8bbbc93359168336edef6896c0d1bd21a5851a9de75bb48035edb0052aa9d",
+        "31cc0c2283be9c343f099af563dfda83cb7c7f25101bbb39c7c21db577542965",
+        "74baf5bb5774f014ebe3801239007c6bcc39a6c632b9e0bfe1cfeeb9f36b4855",
+        "1e1a3c01eedae4c827fb4f8286c457b1c050d24534775292c5b96f743d8d5327",
+        "376688c606a0c512cfa95574bfe4670471a98e7001a30bee6e879e8d84d26594"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 39.97
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "direction": "W",
+      "id": "current88-04-mountain-guardian-boy-w-20261123",
+      "orderedSourceHashes": [
+        "265a31186b231c3678c1edcbc8472e6d0dc8dddbb1391a148b1f3997afad58ac",
+        "24be5225a55a2e4389f1055ceec9bae159ab564e67c5df7ffb97f7a01dfbc830",
+        "841ecfdac829b57a8e93aa3e153ebda99cda4e3d7076cc5ff5ceb949bbbbd93d",
+        "b7a319fa10da2c78130496727f216db4b5fbbdcdac870f5edff27e650ab09f64",
+        "3ad934ac4db0d1a788a13ce3377da2dbd6d4c01c792e4cbfdda47d13421439b9",
+        "8efa48c7bc0d4c116d99d150d51ae873b75b46984918eb1b0617d6ca71355c64",
+        "8b9bf85af0c343c2e56cde7f7ead988d9b1be57900db802721a65f93b32200c5",
+        "2d95c125c967a0978a52d3f8449abec1c56e6b6ae6d97c184c5c53ea725a7134"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.77
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "04_mountain_guardian_boy",
+      "direction": "NW",
+      "id": "current88-04-mountain-guardian-boy-nw-20261123",
+      "orderedSourceHashes": [
+        "6e05ef330a09989d67c712e9c4cedbb9534df1c1a8b076c19769d356372ab773",
+        "fcf146fe27617f4eda01c81d6e365bd9af1a5c86c6380e7538fc688bba024b13",
+        "ec029fe1f7168fc41b123c4f3d6ea5001c7a6ae457fc2d3c64b562055b6951d0",
+        "c7c419b435b0301c186a3aeaa655d28fb7d4d3a6d036ea270618eba90508115e",
+        "a4c85056bfc5e833aff7856795c7e13299804cfd8a153fbad149467b6eeb8d71",
+        "ba6496131ee08b70801645897dfb3c72df000627924f2eaf109f0717b3e2538d",
+        "e8d675dd66d3c516a928ffba90a5ef667a6ead3963ad4586eb999dc3d92fd2e5",
+        "9dca83436a8e7e15e327989f8d23f557edbe6f695cdf8e8d69a73f1381b0619b"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.45
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "direction": "N",
+      "id": "current88-05-celestial-musician-girl-n-20261123",
+      "orderedSourceHashes": [
+        "e7330a4ea6e749c3c898fe9c89a46b0fe964e3c9b031b1913efc863bd4b1cc25",
+        "249eee2e055a8b6523e48f8eaabf175f602c0be132b4c1e4507920fdfd6e16cb",
+        "00ee225fa3a5afada588c7134668979bacf5a232a4bba9997985553754abe6b7",
+        "1b638f987b44c1acad592aa6960d89f45b31fa11220723dafe38ce7f34b8e840",
+        "aa8f69f805bdc780256a4f2e022c8b9c532bc87289b34dafecb0152809d71c9e",
+        "cac41bfec3f769a84e9023643a99b6fea2d1d9e2f4704ddda1cfd677a1e6605c",
+        "b916aa5d90d461e6b97e4d6fc7214ecf9c2d6004c882b2904688720b43cc461a",
+        "8ef99de424ea5d9ce29dd23860f9aad6c763bb3d746fd9b11e3362b919507ab3"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.026,
+        "pixelsPerUnit": 39.85
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "direction": "NE",
+      "id": "current88-05-celestial-musician-girl-ne-20261123",
+      "orderedSourceHashes": [
+        "645c67ad2491e0fee2cd5da1ba504efd7d57f49555d495faf5734df4be26ca53",
+        "dd40073f54cee870211c234d3205c8760beefcd90cd75af301a70e0f57d7cf6b",
+        "dedcafe5e4d738570f31aad046de92b684742da863f0229c00443033a0d103d3",
+        "8782788ada5803417762b50f3c2d8eaaa67f9735bd5918ff2c64f540397d602c",
+        "fbe694c9cb9063f2c1c5bfdd8e7dd776d58c014bb3268f48ce61b49054d08cbf",
+        "387108e2d51e1a99869fb40f3523260f3df7ab99c0e99e8a8887571232e08442",
+        "801865c921803c23bc209b60e9126dc6ee310a7d0a6f4c7cc01729eaeb05b1e8",
+        "2b76010cd6c9336990ad39f197531f302fdb6578dcc01ed7393fd4dcfcf1ece6"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.33
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "direction": "E",
+      "id": "current88-05-celestial-musician-girl-e-20261123",
+      "orderedSourceHashes": [
+        "cb8ab0adb9deea5b264cbd1550853f25100a01daa020fc4585a1068d6089314d",
+        "f2838eeab320e4eab1669bd4e619968c38a0233758eb1b120cafc9888bc336f0",
+        "0fe7086d3c2238ff9ba720d6722556fd7c03a5be6838d204e4b6a9517e5db456",
+        "fe55ea78ff1458325fdbaa8c5b69f685b4c92ecbbfb6faa6414ea63b5bb37a24",
+        "2545b0b2b27b8af7594dad3418a6bc92c4e3b2340c33342a5dbdefa9007ec7cf",
+        "233891a39222d3ac7b76be4de126f5b58d2ca479d0e12f4e62dbd8d0244ef61b",
+        "ae93e4404210276fb025179a59e34fe4ab6439c6161ce62ca38d4613405b6ae0",
+        "1c5349e1559439c936b149ed67b302e8529322df7001b0c4f23e2188065f29ad"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.83
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "direction": "SE",
+      "id": "current88-05-celestial-musician-girl-se-20261123",
+      "orderedSourceHashes": [
+        "858e900a23b8d3196fb51b5208c13ae7f970e65ebc14b868369be67fa127838c",
+        "c963e993910b2daf787b1b182b6719f7887407c02cf3ee33ee35132766a386c6",
+        "7267a7115e83770822bcdd198358ffd108d5947bca2c3ac4b86c36e1a9a869f0",
+        "1993829e819ec6144a87c6b3a10aafda69edfe2b7c611e8a237bb734215252d2",
+        "7e0c0e47846fc9e247a5673e48ec34db9466cfca7f581a0800bbc84fb827a854",
+        "870789045e9aec249901c49fac2b254db9ad757ba0dde36afca0fe961a9c230b",
+        "7e5b95dd01d358e5b43e38675ef64691c6e7e45d73055858469353573abb734d",
+        "cd5989648982e2e848007469c5fe27d53c29937283a102f11f6ab3863b3a08b0"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.6
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "direction": "S",
+      "id": "current88-05-celestial-musician-girl-s-20261123",
+      "orderedSourceHashes": [
+        "cb5da46dcc673fac97c6364b97bd47e576e4e9c867d31e7fafc19a11476d8c97",
+        "e644ac77afee5a68c04e92997d0c1405225db49bd88f02e903523822c5f77260",
+        "dabe361a5bdb2383e9002ac4c285b6ae21e4195203bd6e4d8c00dfab812579dd",
+        "1e6c19932273f86d83621fe0cd175f435f43d08c41eae868d43d9ec204990c4d",
+        "3ce61e5ba0e4d401cd1b0e7bff19b74d960b970db8f79363393e799833f60c97",
+        "ebd419ac6d7c80e017368fd675a80300dc012ecd127afffe702aa897730ef2f0",
+        "3364361f871e6d205eed94c7cac67582beda589be9e84cc256f64c7492774db4",
+        "0c2147f475ee8bc2490c046737dbb0cd3c2cf1185734bf1cd956deea001891b5"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 40.27
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "direction": "SW",
+      "id": "current88-05-celestial-musician-girl-sw-20261123",
+      "orderedSourceHashes": [
+        "50897dc425c75b21a75c326cb13591076dc23bd208a09db0df80b367fd7a472a",
+        "60b905b776ee66fb90faa85cf68a12166f9ed644d4f77653b44ef48502cdfedc",
+        "816387b074025c9a95c6d72e9ade315b5b6c4e945c2e2df516a27d6f803f9e36",
+        "f04903445c0dc86166be69d8fa6255ffd4a2ee8ad619c670d31a6c64cbffd5c6",
+        "cb6451132798e6490183a5cfb10812ae44f044a884d045a82e7908ba018b51eb",
+        "c5421f6f586ba891a8a22ed25d84d2717a27829c1a2bc3bec8ba7cc60e861dc9",
+        "e27b84beb374ebe70e51983715d904e8fb3aec7d7f1cac784b619eca49c55b0e",
+        "a0a25942d5b034f9d2a56cf2ce87060a6b62705a06f9a12b1a5ca6261b27fa40"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 40.54
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "direction": "W",
+      "id": "current88-05-celestial-musician-girl-w-20261123",
+      "orderedSourceHashes": [
+        "3cce54d86c5b59ba30f17a84724b6ff9789d6378183b3969e761182194c636e1",
+        "96f993d27df02abcb8f06ac0f6c49816d6b10d96c29a25da7522f968e9d65bcc",
+        "98fbfec43cc84190269e5728bf75c2e60eda37afa29044451d22264ed9480176",
+        "f1aa8760b7217e088c86c537d31c01f3c4a2a2bd487d1148903bd9715ab08efc",
+        "563beac711c0ff8bc86a7495c466caf891ac1395c0edb0a34b640982f714615c",
+        "8bfd9e57789a4bd463cc041bd32eaeca56c96da772897a9fbe2c1c329e8c3007",
+        "a87ad2edd73702bfbbbdb1c2d50e184aa10d3ef863d28e35b32168adb1089aa8",
+        "40153cb88db79b1a7ebdb4b50a8d67742da726f59251e107b96272d5ea52bc74"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 39.13
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "05_celestial_musician_girl",
+      "direction": "NW",
+      "id": "current88-05-celestial-musician-girl-nw-20261123",
+      "orderedSourceHashes": [
+        "cadd261b6a32c190cc0350a5ca6e9b8d3337c2eaf0cd220869e68b468bc1c770",
+        "cd3e21010e3a03f6f3e072bc28e793b74fa365f20dcc3e06c55b288d2f7f5bdb",
+        "e7f0a28a346ca4eddcc894678e275ff078a3f47fbc3b86e830d7c8545d596f36",
+        "902d9dd61f2f29d9647bd0a16a8386463efccbe2c7b557cbaa06721db03bfcfb",
+        "6293ba5f8dcf87c62f06f4b599ebeee70ff30aae5e5a3ec81bbd17e0eccc7ed5",
+        "efa6cb6bfa5acdeaa82819819a18f21d3ab52423210f37fa1aa8bcd616ae99eb",
+        "c60faee7387bfce6f4a660f73d426113f1848f3ad05cd83825f4a9676f1eb6b5",
+        "1bf1d6b46ed9f32541c8b9a053669df439071956ab6264b957f639eab24d3082"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0833,
+        "pixelsPerUnit": 36.21
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "direction": "N",
+      "id": "current88-08-alchemy-prodigy-boy-n-20261123",
+      "orderedSourceHashes": [
+        "a88dab448f7f12d60856d02e4d84d91aaef07fe9e6e23dfe1bea7fc70de04fe2",
+        "a7fa125523585d14b4096a0936cee3ad3ee48aea642a2e256639e51ff51290b3",
+        "00332510babc356ce91cdd423c57a291605221058724ecbe136eba5cdddc8cce",
+        "26a5e7f5d34350cb54c5458d8b3cca6ae4b905faac5c9d7b1d7d6cdeb39ce0d0",
+        "925464cb20e51931a2cd724d76f23d21543ded442420b38d500be4c92bbcb43c",
+        "f80b8c3adcc0e87ca5ca9d13eef82defd3b04128c655a10f710892dcebdb0447",
+        "b4610b04d7036a5de44fe6f08380e745fe1182262ce839b389bb7bcac57c6ebc",
+        "45bad6fd32717fa81551e53f4993dfecf58da9150d69904f9f52b33e037dac88"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0339,
+        "pixelsPerUnit": 39.81
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "direction": "NE",
+      "id": "current88-08-alchemy-prodigy-boy-ne-20261123",
+      "orderedSourceHashes": [
+        "d891847e6fc4258cc59cf96e974e6adb06815d93ca5c3d8e1c571211b4c64c04",
+        "132604a97c390b4057a26f953703b06d2fdd29244d4852a10c3f1c4f5feeb5c3",
+        "ca07ee11c96a377d4f426e0d617ec6c3e295cd5f6d75bf1a90c02c4d701ff40c",
+        "bf253e8fe30b1d5a2c18f51eeea16b53db443f8167e890ca0ae466b7f6066e83",
+        "9a5388b3620a509ab3f2e1b8f2823c897770fd54a49a941fcea7be5502a4a3cb",
+        "28c03c66ad0df26252e0fc028bf082e28e849a1bd6c04e30ffc41dd50935c45d",
+        "40cb57fba80708bc14a3a30411139803110dfdb63c49fe90b5653ef3ff533e4a",
+        "c50eaff41988fb0b70cbffaf21aafdaed8da96cc105cd5446c6a6bb52a62b106"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.35
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "direction": "E",
+      "id": "current88-08-alchemy-prodigy-boy-e-20261123",
+      "orderedSourceHashes": [
+        "ebbf9763ae545fc39b9c647238f2c6e7d7cb95475934b96f667c192503ba8289",
+        "6451acd62e1d3987af369d8ad363d5bfc736395f538317287168f4898d8ad519",
+        "c55b0308cf8cab29394304af93723614476e30eebc7f0c5fe2cafc6b7658198b",
+        "b91d19454c04a0e5f835d0563faead0eb66c197282d9224c92ee861ffd910190",
+        "78a572b5c25f85a432bb6658dbb58df3bd7cc37fc2aa41a9234c9ebf9db707b2",
+        "7508ada8e2b91f10066b2ee336826aadede77f92d2779e5641849d1bc367ae75",
+        "dd608b65360f711b2b97391189276967cc8c240205ca5ac90a1f417eac1aba57",
+        "f6e05c0285c1a4c4d5b957e540ab6c62e461ff30b0b6ea4fa5432928f8a8cf27"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.26
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "direction": "SE",
+      "id": "current88-08-alchemy-prodigy-boy-se-20261123",
+      "orderedSourceHashes": [
+        "afa8566a88be280381c6ce8b0b108fee0971081a14aeb1840969b5d607b9383c",
+        "1c248618038a14215d366850197a81ec5a68ace4072173dfff91a7f532531e82",
+        "847d4917c1fc693a1885e4fc1c4ef239348f7dc04b85af4397f1bd5c255d4413",
+        "1a0c88ee1fad0c750c2635057969705cf4a79154ed4e15119a2a11ea664b4a62",
+        "165288f0a6eccffc3b6b4ede8a29fb0cbe9d9fb02c0f035be964a52b7b32a7bc",
+        "c6226074b0282fbff4eb9809fb7da8bbc0d7967bb6f85e4c0dc79fe90a2bdbcf",
+        "65dd5ae06622a4a9b2036b6f526b40cd89b58b8a48d67d6c03a9da91cde90274",
+        "ce0f10dde0c8be71154afd690b29f90810c7b489d31cc935fac96d7a68c4b337"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 39.04
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "direction": "S",
+      "id": "current88-08-alchemy-prodigy-boy-s-20261123",
+      "orderedSourceHashes": [
+        "a6326a66ae7fcb24a9fc586f38d5e2fae882847c449c05ef155d9ff28b28fe13",
+        "f36715ba76cfa4da4fe7e3ee2497f85c6f289c49cdf06b0d14fdc5df5f6d4a3d",
+        "abd86550ae973c8af1a8611a1c0b49c625085cc8ff3408a3bf363d90dd518dcf",
+        "3c2dea6c20ef7d943db889008c4e900291b639a058fb73c2b0b5bbd3c11bbf28",
+        "b9d15b2db1b8b6f370a84169d39727090915c473bc876e3197cf87d541f72575",
+        "ec818ee2eee3d1ecc1ed356099b35b610bf0713a1b8b357b4ad02af39141abda",
+        "c9af7210f88eb880156c6b392901a8f4603807c3c5eb9e21b35097a742ccede7",
+        "7e5f3e31b3eb2b43b3ef6dcb1772b7c06661cb441ad58039a1574d5bab2c21b0"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 38.08
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "direction": "SW",
+      "id": "current88-08-alchemy-prodigy-boy-sw-20261123",
+      "orderedSourceHashes": [
+        "1c305f1236595ba75de0f0965b64274459d72c459cb4a705b8955388d1c09149",
+        "16f5590858e8f5f324b4bf2eca8d23694d209b0c05eb4de127892fa9deaef825",
+        "d79f6932bf345804a2fc7f42545416ef81688365ffe0d2d6227a69c0d1ecc85f",
+        "a6dd42cb6f3dc7b64c266df4f017c4dd944c389baa9f08a0fe6d97bbaa6a5958",
+        "283fea29b6f3640df7cff731872d8e7b28a6e29e71e6e97ffc9cd6581e964f1b",
+        "484e4bd2d584a454a33ff2c30aa22bfc565ef986cf90b43e81a3e95576a5bb87",
+        "1782e6b8e57e7abf9eb669d136b7915e909376a10e00bd62c6aaa900f57d4847",
+        "2d2e086944cafb3bba4eedbd7b3ab61cf6441109ebc62dab03efa3d11e381ed2"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 38.56
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "direction": "W",
+      "id": "current88-08-alchemy-prodigy-boy-w-20261123",
+      "orderedSourceHashes": [
+        "911a13a31a1cfadfdf1cdb8cc55c355ed7016c22ec7029d343e7712897ac3b9d",
+        "4b07d66bfe031d69bc3c607eec60b317c76813115aab5a5545585555e280ce92",
+        "e238b95cdfbf4466f525f9ae472d724090a1b18631b08d2c01d3b85e42b261b3",
+        "01d4c311964feae9d117cb35d312af85cef295aee746b3a2df10a2e40d85d4ca",
+        "f68e0400b15a0cbb1263e70c861f5d63b1c64f971d596da378400a472703f1ee",
+        "a43952f1cb263f0c9c012bcf0818127401ff67d103d28e24454fff616bcfe6c2",
+        "0bb4681e080c54fb0458aaaebcb146cdcd9d4eb2e86363e931646f4e8090b9ff",
+        "b05b189cd936c579c1b88008a8aee25468129b95e58f5768ddecdfe99984e251"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 38.37
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "direction": "NW",
+      "id": "current88-08-alchemy-prodigy-boy-nw-20261123",
+      "orderedSourceHashes": [
+        "267b2a94e2a82af3a9b8672910343c9012d0352362feee1f9bbb7a9db61ec123",
+        "c68556bdf443cc06724a9390a9872e445df3d785432cc66d6889c99fa40553ea",
+        "b8fd8042b528598974945e95eec1d366a9f58b5efbd4d97ca16de2ee3a8a1213",
+        "76a7d4c71c1b93dfa01779853f6ea73b411f8491a493b1c87408240d98599c32",
+        "14bf3557750bbf74ad7898d7d2c7cbd4a2142025a70767f3741fecaafe105741",
+        "1994140c2f03261672cdc3ab3f9fbd7ccd407279bc0ee596c0eb84cd6025bc95",
+        "bad56e2c3ba6601bf6f25c73e65ded7a85bf09d6e44ebb37572d536f42aa140a",
+        "15d1d93a37aeeea83730e4306a1d2fce507a95cf25787407a69070d8334e9946"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0885,
+        "pixelsPerUnit": 36.48
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "direction": "N",
+      "id": "current88-09-bamboo-archer-girl-n-20261123",
+      "orderedSourceHashes": [
+        "98c53c936b5c11022a8c2bbf26d5f2183e62fdb6b1fab603b9ab88a43d4f2b75",
+        "89d43d4e1ae2c0cbb0fe5f5ae83e282bfa800464a84d94f48436f0bcbbf56f61",
+        "cccbf06f705f5e71079dfb47c0a38df5cebbd4692ea96835ccfdc5421b4eabb9",
+        "fa9e6ff4793070cabb01a2666b1190a5bc3d627b026c678b8f42dcba89ee786d",
+        "61cdba4f6ba0b51c8aba13ef2007edd42d18a5b20dd7f2bba4042a796a2b8945",
+        "6cad08bb7ff5e515595517a8f4541419c85bcab6ae81236cc2cfbffe64a6d315",
+        "1f1ab86cf0e66b154babab3a95ac40618377fc12093dd1043f49838daba38583",
+        "6347b43bfe151df07313e1a569a8b6d89c21eb91db35609753efcbefe5d412bb"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 40.37
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "direction": "NE",
+      "id": "current88-09-bamboo-archer-girl-ne-20261123",
+      "orderedSourceHashes": [
+        "a950e6db6f5b7524199135dabf84c8851a5b5246e100ce94b81621addbc4d5c7",
+        "7be31b83d34916aab9b289b6bba7b68db66114912f57383ac54ea644fb83e3f3",
+        "62d7878c2f8118028db0eaa2f4003c995b87656365c7d5aeb2ee7960c1472d4d",
+        "a85eb9212bdc2c7630e797f172848004efc9b4dd95d92393f0332eb9611d3eaa",
+        "e508d46fce3b25d6cc95e652ab28ad1558b0a282dfb9fa6f5cbbec869b98b6bc",
+        "8a9e8f2681c556ad9e6c77422428f090a6297ce4f0c26f917283478ea30c243c",
+        "ecb5fc67f7ac28dcbb1d1e64e6e994ea81ca2358cedc8550aa924e9b2861dc99",
+        "dcdd7d31a19ab533579f93ddb8e66b2a0a672371894b483b6b8802a76f058bfc"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 39.32
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "direction": "E",
+      "id": "current88-09-bamboo-archer-girl-e-20261123",
+      "orderedSourceHashes": [
+        "b0185fe5000ebf8f0c77626e69afc122798e4d8b038c2c8100ba9b7880d89edd",
+        "2432094e4082da5d4524a17a29a03500b73ce2742008cd63332af83fbd3d505e",
+        "04300588fbddcdbbc80cd4733eef4c77b756ed8c5534455a1358a55edd93b527",
+        "5bb3cd87ad64744c447bfbb1db8ba5a292eb687bd9c9e8a9a2a3a9b9f8ffc5c3",
+        "bdf4d4f7e762b9427a7b0344f51a8f8cc4e431b90e8b7b43e9fffd928a25d6e1",
+        "800f6dd37e7f273402e5aa71141907c0bb92893f228e145129b55ca123b53c8b",
+        "240f4cb2925a00d25c819cebcc9a41b73c5edcfc79dd620d4602e69c106d0ff4",
+        "53f8e6118884b6c8be2adfb7b118e65bb8e3d17cb000fb062043ecc6f82d4548"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0182,
+        "pixelsPerUnit": 41.81
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "direction": "SE",
+      "id": "current88-09-bamboo-archer-girl-se-20261123",
+      "orderedSourceHashes": [
+        "55ed4bf7736d77626dcb396bd03522f2e708f9e69c9492905808d49bfee28879",
+        "3399887354e18a87b57c76d5da850d966cb084faa570336dfbd8b0848615b310",
+        "1c352582fea984d89f2dd2b1da583da1178aa900f037186e6a393929660c1231",
+        "d4500a059e0802705d76f2d89ece0406f288d987122fc7efbedd88c2998eca97",
+        "38c7c6c55694b36323bcacf8c3ce1e7e2430ab43db9b61530a9a2333d34e65e3",
+        "942f0e2a8e454500560e33e9f3f794eab3cdb4038c11221b8b4d777e92c8ea2a",
+        "7bae5011368271d8d3f1f3abc25c95c7fb80b6a29fb5f4d2c107ab5dc19d1847",
+        "a05cf2be3434f2de35386579f332cc2916053c6d21f5daba967aedf8fbdf6878"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0104,
+        "pixelsPerUnit": 38.74
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "direction": "S",
+      "id": "current88-09-bamboo-archer-girl-s-20261123",
+      "orderedSourceHashes": [
+        "c64c626a353452b9a7f3327c46399a0e31c7f94b1ede7ac9064d2225ab2f3c5c",
+        "5dbc13c1093bdd1d95bffe20697d19a541f7043442c03c6a08d0f15fd24fe0fd",
+        "35f96c1f3c7522cb1f0d0bfd5e6e31fbfb41285cfdb999c18ad488d8b6013b61",
+        "3c96226a159d87024839e082eb6b4c7ad1e41fd54a8b024ad635b9f94cf0e4ec",
+        "c3e755db38562e6161a46bf195c6a75b07a24c7d691d5d6930882aec6fd5325a",
+        "fcf1819597bcdfb3b4b3ead3b1c977fa1aeff101c689915948e9ed8e1a0f790f",
+        "824544afc0adc7f8e13587e51ec578729fa7decc1dd5217586361e215dcb6978",
+        "70b5c042379a4b8f4c23892f2eabb9930615f6017bd36de1b2d70fa19f4d0e30"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.013,
+        "pixelsPerUnit": 40.44
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "direction": "SW",
+      "id": "current88-09-bamboo-archer-girl-sw-20261123",
+      "orderedSourceHashes": [
+        "76d5ec7eb6554c7614c15d9155227777e09d815ef0f81ab8d72ef8bfd2e5a267",
+        "e2d0ad010f6b7b17594163bf37e2022c054642f98900b97690d2f3ac964461cf",
+        "c58d02d46068656cf2678b9fc5d2390379a730aabfe05262c24c38dd9256c983",
+        "0cb766fe09ab3b2cacff25a7d83a6b49eba61d7160b0352f5644c51438f9e7e0",
+        "62df3f1b01580e5ab4c24f0c7ac6056b68ed43ba6d6d1e97d6d93390498f7992",
+        "701f4a0fde5d453f3462c6ded4bc4665cc97bf6277c70ec53a3c06553e00a054",
+        "61b642d958941473f76990ba37978fbf526e64c6063a15de082ea0059f7d1bcd",
+        "f7b0041655f03f262596aa898fcdf551815644d30f21ba47e843a9f0440eef28"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 37.53
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "direction": "W",
+      "id": "current88-09-bamboo-archer-girl-w-20261123",
+      "orderedSourceHashes": [
+        "08158e3f6ad762290be5d55744c92a2938ffff802c0b8f29dc0386052c97f5f4",
+        "a9bffc1566775832eee966d4dab110f83dffeb8d0281c88fa6c24f6bf29326b4",
+        "5e02e37b2e228ec7c25b72cd7e24689d33d002a9b78c914a81d9ed2824364242",
+        "ee474bda6780dd89ff296dfbaefd6d1217759175ff7415823f2121d4768f9bd1",
+        "29a6fa87ca54607c7f4ca339fa528b7978cd4f4372af09d2667fb4e3aa497425",
+        "a92bb508b8b749e5f137d282a785fbb86a2ed046de40550e9ae8b0517b4fd90b",
+        "4412597195771689e22443eaec8cd2c5272d56357270017ea7c72442270c543b",
+        "74bdefbf975831a8f722806a0e43d3fe3d72d40bd577ba7bbdae01a58a145440"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 38.78
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "09_bamboo_archer_girl",
+      "direction": "NW",
+      "id": "current88-09-bamboo-archer-girl-nw-20261123",
+      "orderedSourceHashes": [
+        "a99acb087a552dca2a65f6581b45c585474ee6ac7f95a25f8e0e8925fb807490",
+        "b9dd3c75485e7623826117fd7f1ea250e1adc605ceeb9d2bdd830b96bb6b53b7",
+        "293fa080e056d6d7a636ce902e8440e06c7710d225d276ffb785542d7d62d418",
+        "9ef7e893f423b306bcbca4030b9447be95d785fef2785f5a8568773e98d994e0",
+        "6d347a53062a6c19afa2abf7561598478ee1c0d04510d0d24b4de0358c90149f",
+        "b026fbb6bc80f9fef526dd040533582dd1059115ef50370f7a2821f84dbe6b8f",
+        "b4b8f40f266f9f87341022811d15f3b7a971a27b9d13118dfe9702816ac6d87c",
+        "770a39c44380fd33986a8d2a103575dd8047e135715c24a987a416c14b97432d"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0339,
+        "pixelsPerUnit": 41.28
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "direction": "N",
+      "id": "current88-10-crimson-spear-girl-n-20261123",
+      "orderedSourceHashes": [
+        "279e054857594053eaca1b3daea128b4976bb13843408a3902c670357085dece",
+        "e14cc4cc0c91f3034acc3b0e78bc474277e8df75639de29caa78f884a78e4108",
+        "b9f084605dc8516e68194dffcde17d607f21dfcd789a923a9d37056277154bb9",
+        "b4402f8c00bf55d1218ac019d985741a2a8994091fe16c991aff051fcd352cba",
+        "79eda36d2e7a841d1683e5e6e2d54419b619894d76ae654721813e608f5ae0da",
+        "f30183f42510cb88baaeeb9feb07a9827e0c40f76aac3c3ef5bd3ee8ec368fdd",
+        "0fcc166a39a06f759bff81efbe17cb47510706f520d752aa4d26faa7d9d56e7a",
+        "497d8d3a03819181dd9caafa28a4205182da4270fe176251b3fe7dc4a9c9e4f8"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 42.42
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "direction": "NE",
+      "id": "current88-10-crimson-spear-girl-ne-20261123",
+      "orderedSourceHashes": [
+        "0f465e2f6cdc896ca02c69ddc7edaff5132a1f2ceb97e99c7785467a52fe7c2a",
+        "fd2f4e442eddfdd534da044f2779fcee1fbfbd283dd904b3fcad31e4bc9544c3",
+        "41ad5bd573fbf344bfcfbd4f9d5a695c87cf074a498e719812c49ceff6c7479f",
+        "d2e25faebdb354a2457ccf3aab3e1e3275c4a8d548ec4d49b79384e36a555cbe",
+        "a22c8df16dabd3f0b786c52fafe1b758b1144f9f7ab3037c951788b465e3afb3",
+        "10d692dbd93837127278cac9f8435480165101948b00b36b7238baba46cd8715",
+        "75e9214384a28138cd7dd4326ac7f83cc67982088747552e877ddc5ec74b0542",
+        "8d19b93a81c6fed4075444e3b40b978aefc2285549fe96e3c418c40cfc23b8ac"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 41.63
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "direction": "E",
+      "id": "current88-10-crimson-spear-girl-e-20261123",
+      "orderedSourceHashes": [
+        "732a312c1bc933fb977931480468bf9cb45475b5ccfec643ae6eebb6d8463ef0",
+        "0984e3b5447d62fbe73f387c5be979541ddee35a2d4538cbb07908d474eed240",
+        "228d9727b18da8902bf79d437955d73a433ace8a6e103024f0ec5beed444cdad",
+        "81a7115d8b7479a9e4b91f8161ea7f7d4ca2bf295cfe20d53b3cb61851749f42",
+        "8e0e5eadb0c5deb8251aaacd73856a8c6c45ffffd4585a3d7216d56bef266e39",
+        "e7adbd1e7d3efc6b1b48717ef16ed2b5b481a5bc6440fdc1403de888dd361ea8",
+        "e86d7e33e677a5375d78ca59ece1c005958bc85ef4c234c3e17b357f02002ca7",
+        "e9240063ea2d05c02049c951ac14fac551b60940afc0312b18c07ef080e56306"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0573,
+        "pixelsPerUnit": 39.36
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "direction": "SE",
+      "id": "current88-10-crimson-spear-girl-se-20261123",
+      "orderedSourceHashes": [
+        "b1f10e00155e1161ff296d3f7fe335c96936854a567dc96e26fc89696672f037",
+        "292c087cdde84ebc57842f4d74c936807636134429dfe2432a1bded18a1a7c7a",
+        "3e120b9ce0fd190e09dc96c88adedf3b4f25b4599c94a0c0f842afb16c54ed37",
+        "088a0b73c8a63bc268c0c301f2c0ad910ed8fead731bce9e5fd68944faddda0d",
+        "ae28d7be917b5f8363082b7c0228b0e3e338ad29468b4b1d6c6199026cd4f6af",
+        "2735b52aa673d677a70ce460462f28675abafbe62b913e3f59cab420e9e272dd",
+        "29bb36ce3535dc89e558686ba7af5838699db9e9cb15e7cfd54e802efd8be5fc",
+        "e8919eaf7e1a2da7970d3769704fa32cf3c1ae8e22b6860743cda940611a053e"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0208,
+        "pixelsPerUnit": 43.33
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "direction": "S",
+      "id": "current88-10-crimson-spear-girl-s-20261123",
+      "orderedSourceHashes": [
+        "ffdfa9a193082db021cb90f09258479f0849970ff21713a301f49477dee7b7ca",
+        "bf2381d23697c0872f54e7adcfe0827852243621b79ce5de60182ab18248be6e",
+        "f6ef671ffc6659bd82190b1d11148d823c501666c9644b205a77891c43fccf68",
+        "44ad91c70388b4761527e8bd25f6a7b2b76a98bd0ce89c5310958340f827b623",
+        "fab1536e0277cc26a1fa70034c1efc2e53e11d719ec52f344b699a1723f0ab1c",
+        "fe2275b563c37bfd0d1f7a0fe0b3421497a517e5db09d5e290b7add0cec4b76f",
+        "e6ffe5c5f3587e4eeca48b92c2e797c0d028ef114e22f094dfa66cacba0e4a2b",
+        "5583ca0b15905d2f1f44d2274194c6f60618289d36df2ffb60b0a3b8e9467360"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 42.27
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "direction": "SW",
+      "id": "current88-10-crimson-spear-girl-sw-20261123",
+      "orderedSourceHashes": [
+        "56c3d0190dfbc8208bf14a637b58afbdbde9b5acdce7d68ce36791fc8cc09396",
+        "84246df805a3b84cf0523323fccf2967c560a49ca1fd493218059ecf5e9ab98d",
+        "ea9e44da0febc1f429bb2650c499d4ded3252fafc8e640ec837de0332416f728",
+        "cdf18168dc481f7b22cade0db2e1f579c4f8764e6de385bac191d07875c62c1b",
+        "a101187608948702ee57276affb8fccfae212510138aa4671c4c9d719546d3b2",
+        "82d6da5486d389755596a0dd5df6a4028ea95a774b49490c04b17b99237f2025",
+        "6dacb0cae527cb174ff6d32a1e3d9af700028a787f54dd90d59076102bc2c4aa",
+        "00a04ca46588c083fffbcd9474d46ffe280e53fb708b5eca9de49ca2c980d5c2"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0703,
+        "pixelsPerUnit": 39.73
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "direction": "W",
+      "id": "current88-10-crimson-spear-girl-w-20261123",
+      "orderedSourceHashes": [
+        "7dc615b6150cec390b8eed81386bfb8c7fb99edfb7125380fabcd71f93eade14",
+        "e46818c1c94a15d776194fbedf83ae1b4fe9615d570b983909e37e39e18a0083",
+        "8e9254e062c5bd1af1b6a7d03ef6e004cc62d175899c7bdd496173a406a84adc",
+        "5551963e537a668cfc38ca01de65fa3674173efcdf3638c378f19ca2b0e300df",
+        "0686a30362b31c6217bd568ed09ccc559c98b6b7dd67a86222ae409e4bbc8a76",
+        "e03ec3a625be175b5713e227270fbe77465242b479990dee1caa268ea23ccf4f",
+        "a64ccaaeed27a349e192336e546f623b36eb6747c389e4043e814fec160895bf",
+        "8c264294d125144388f8064f1335c12507daa32eb409f4337c60239e78933712"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 40.93
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "10_crimson_spear_girl",
+      "direction": "NW",
+      "id": "current88-10-crimson-spear-girl-nw-20261123",
+      "orderedSourceHashes": [
+        "4261b2adf5550a73a9a854ca3d9e0db2bb1941e44945f92387740334e901e3d1",
+        "29f892520aecf1fd6059fe41db34e96ba216be08fade2f0fc5ae14e57199db47",
+        "fdf4445536e07ac7a3150cf3dc8999142ca224647eb69f1f1aba196330561ed4",
+        "68bb5ab071ace9f5907044d73577eee8f9fb4e6d95ea9659c06da048dc83ed01",
+        "534e498df5068dd744f9854e77b9117e0b5bfaab95740e24dba934a3e07cdd4b",
+        "13483b44057bc5eff71ce24e9ef4de3da628c4772a61153282f735ca6afa70ac",
+        "a6ab8abd9526185b41b694aef2922e2b89944d6836f5bc5671cf449894eb5e4d",
+        "079193dd79d94c752167bb77be45e00b72407a87e2d9969e8d25b0b3bb413ec7"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0599,
+        "pixelsPerUnit": 40.34
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "direction": "N",
+      "id": "current88-15-water-dragon-scholar-boy-n-20261123",
+      "orderedSourceHashes": [
+        "2245caf211acf41d766342104e4f22e8fb951f81d93e95fd4372ed7b6c774e6e",
+        "4de965c7e910593f9bf86eadb6abdb94e9419927d05c1142db436f3f5eb429c8",
+        "8119a839788f7f9044c211a52c1a5e904ff07a3e7388650ad9c3d251378af21b",
+        "d9034af72029ef45818b50e359ea5f7b8ac99d8e5955fa1ba1e21c8dcc09323f",
+        "57f71c00c9c00860fa0c70196f984cfa69ede6b197a4e249325b8f92822bb61a",
+        "decca3222b84726496fa614d363f60383ebdcdc08d9972c2df7f2c33d2fb1216",
+        "eb6d99f60090f819c8ee9cdda5e0000332b82118aef8dc2b2db29890e688ab4f",
+        "0340b5ecdf8385503ef155f95b22964bce38f36292bcb9b5585264966cf63c0d"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 39.4
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "direction": "NE",
+      "id": "current88-15-water-dragon-scholar-boy-ne-20261123",
+      "orderedSourceHashes": [
+        "faadc39c0a02742559b73ab0bcfe92b1c1b892a312619121f9ccaeee43d71c01",
+        "63f3487f5e27532b9e10c4af76cab405c6849b09372307ef981e656042c772e3",
+        "5e82c3accbb7f6a5710c17dc28d544bd0eeb3343ae69fa694bb0cdd2f2b3adbb",
+        "66cd9d7682996de2d65cdd5be008e712cc755f77ac7d0ffa6e54528f265724ae",
+        "41a8e4f5c2c66d85331ac17ea86bd0e59758ec8ebd1e1125cb77be52a4c48f48",
+        "4f442a414fe4a113a1ad62bf7429c19ed0217e165f478bc18dd1c170c797bdb3",
+        "7369e38e83c7efd0b472d7067e8d919870a46d7569f12d0823c8f31a743ada00",
+        "517d2f021132c842cf6b3fef1c05e8f45d4bc0f38a3de5d9b64c750298651b68"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0443,
+        "pixelsPerUnit": 38.68
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "direction": "E",
+      "id": "current88-15-water-dragon-scholar-boy-e-20261123",
+      "orderedSourceHashes": [
+        "457558badf2e2613d44d26d96b842877c14198692af01163220d5a5965f3f8b3",
+        "b96f0cc010e8e447810f62d26cf8596df23848afbe11bb0d834bc02483149b9d",
+        "c9ec05e65f12f536e49083824d0cec112599abbe1c035c3afff11675041ebd69",
+        "bff80c7ecfc5dcf1940ea589f8b271fba4a0fcbf0ea39eed8f4fdc06f5fe7a10",
+        "d17fe3930e686ec158b1edbd44089bfe9227916cb7cbdd89b73dd59bc3c0c252",
+        "777ffbf380fe9421d69b585dc702296e8d9a0f14f29c597b2a77038b2db25581",
+        "d7f1b64e3e6b249e5d974abba3a4a5bb9ea2653bfa20880018c034ef1048e847",
+        "4d00863427ba6536caa261b301384d16ca70bfd41620a8952cdca600217b1723"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 39.73
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "direction": "SE",
+      "id": "current88-15-water-dragon-scholar-boy-se-20261123",
+      "orderedSourceHashes": [
+        "89d355f921b41b6c0e2a1ef302e0601ac1ba536afb060c61b72c5a02ac3b7c8d",
+        "05d097e19026f9c57163ce63091d3f1f13185d22f983d91b1e55f2224b4d4e0d",
+        "4c09a45da5b106359dc4fd02689ebc19edf7e44d276f30e8935bfac9b8ba9cf7",
+        "5aaf98a6bbc477c1211bd29a3387a018391f66704b95044d7abc397d27ca4e33",
+        "1557fd405a1a5b21bc49a1ced5d075478a74a62289f946bab21b50dc7d9c360b",
+        "36887059ce3ff021cf552cafab4efe4b385fce99a53f95d1ce7b6f675f18a0a0",
+        "a1222f01ba45729f7a3f0554f75326f1cee9bf8910629da871462200597cb718",
+        "b9c01ed7e0fd3faa1fd70d8c99a288e4defc9ebdbdfdef81c226baa32cb4d6d1"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0547,
+        "pixelsPerUnit": 37.75
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "direction": "S",
+      "id": "current88-15-water-dragon-scholar-boy-s-20261123",
+      "orderedSourceHashes": [
+        "4e662fdc11d22c345c2333d360e931671fe568b8c8e9c26e196c5755fa468c41",
+        "c43e2038f5fbd1aaba836fb1a5bef98658a1d731f01dd725c371b97ae499a6df",
+        "58e564746bfd3c6b3a50526fc40815498e65efb7e4e563a9f36cc7f9893b84a7",
+        "12cb3bcbdfa168aa6f8c76676b24b3ab82bd209b8dc59227e1840f3c54a045f1",
+        "97b1650a6040ec98a94cd5960a8fbd5f4912654ca3652aa6387b32a77858a3ee",
+        "6db669b3112bc63fe2cf36d97cf644ef7e6b9af01aa9e66227e5a6bd52182824",
+        "57923c2277a02b93ecc3c04d48c99d89d46e566f9d4f31a5568dc648efcfe1b6",
+        "4c825dd7de515c366046c07f2aec724a4d982559dfb6ab459c744875c7782189"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.33
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "direction": "SW",
+      "id": "current88-15-water-dragon-scholar-boy-sw-20261123",
+      "orderedSourceHashes": [
+        "8a12a16c88e5c886e5a27036e2943f221519090b8c4d936ca0f78d2580a1a236",
+        "51812904f20d8e6c5973bafb971d3ce6117970b901a900055950db19d5b92bb4",
+        "2139f19c0b30b4e07c5ca945b858a91b9a747dcbb9ca254593f2a473447d75f5",
+        "525dab05fbe91d80791332524b98e831c5bcbda46c857d4713503ff63cf15aab",
+        "e8d2b96edefc5213edaab7702b86b235462930e11a9ee434a8f5a7a0a4c27b39",
+        "50063e23bac6c2a6943dace1169d4fd0341d2c476ba9e15eb45b8ad50eaf53b3",
+        "9be3f7d501e7ce8d442d2945d15ba2591aaf1f48884e89d3fc19dea73d00216f",
+        "8fbfc8c23aaea4b34f94bc2854642d85a06d9aceede6aeddda033557b966e42d"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 40.14
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "direction": "W",
+      "id": "current88-15-water-dragon-scholar-boy-w-20261123",
+      "orderedSourceHashes": [
+        "1699ec5f41dbe66465e374930c9e7c5bc4319a405b910216d8f07dbe25858289",
+        "1803eb666f7b51421dfe52b92e5ec0c035719929d34b2c27eb20602748fbfe74",
+        "d0b6c506613fe6e1671003c485eb8f4fe154aab865170f7acb78d08d471c1172",
+        "be7b852781e3c56209b28334b641b87651636e2995e1c5e0a6bcffa0a0b4a362",
+        "7ab0bfe5c1f4257ad922f18dddf03a8abe8069ed43a1723a0ca1400aeb15f7e1",
+        "1cdc98efc28c90cae84930fe91175f13870141aafb5fb97f4da44c330dae3218",
+        "58893d6525bb42861aed968b88d4eb9abd0f42c18cc534aa7845968c2c17c63c",
+        "e1e7f50fb1782f7cc44de3283d55e8b29e4ca723e4fac23bc35be3c79edac31a"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.96
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "15_water_dragon_scholar_boy",
+      "direction": "NW",
+      "id": "current88-15-water-dragon-scholar-boy-nw-20261123",
+      "orderedSourceHashes": [
+        "345ecadb4bd741a8dc12d0b084e2d4f6ee8fd55c718a136c6f53e62926c13c96",
+        "67f12dc1b1506a495185f33a630679b80caae567cc16a79f464ae6942667236b",
+        "48477e5fed17deafa2776f5176a13ce836710da120aee4ebbb9b7eeb296cb392",
+        "71a29570852ea070ceb477d2942a7349fbeb9232f4e1406e153762dfc994d5f7",
+        "c23fad51ec3ae5d061ca567092f6a3a63784a6334bac8bdfa874235ea83b12c3",
+        "a08b20380c877f6c3b3850b69d3a2cda50c6f4c1e6414298f353d5a79b9efc9e",
+        "f9906386f0e226d2824d3693a0fd63c7ceec671d5c0731ba2d49a11ed4456f7f",
+        "d3408ad9113f5044168c3b1a7d10f299dc6fc057f98fab3ecc95841ff27b80cd"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 40.88
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "direction": "N",
+      "id": "current88-17-ghost-script-calligrapher-boy-n-20261123",
+      "orderedSourceHashes": [
+        "8f53bd769de86818a8e36cf80370d6ac70362f25156a3ba4ba2018e7eeef369b",
+        "36e1c00739d7efb807ca546c0ccde67016be1f4a84a7c4f9f93dda6f932062a2",
+        "e98f0a6611911d748fd352b7e745c7cabd03ac6247d063be46c84f6d9a29f799",
+        "a3a714061067a96f3e7820726eabff4df6d7a7eb2d573f348eef512436d0c5b7",
+        "e0cd0bdca9f52d4e5f0f7751563aac3e760e0d6d230f126bd3838e74ef7d8bbb",
+        "0bc863c4c59a78354c5897cab699eb44725de629cfd276eb12512745d65f9439",
+        "e407ccbf4d056abef0820dd4da24a471869b1bf5e5b17abe929f0f0f1d5b23b4",
+        "aea837b66d436de3e72721acaf20bf3bf0559d8656a048ee93027f4094f2f01f"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0495,
+        "pixelsPerUnit": 38.92
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "direction": "NE",
+      "id": "current88-17-ghost-script-calligrapher-boy-ne-20261123",
+      "orderedSourceHashes": [
+        "9246b19a00c8d4c87eb22aa43fb0bf7fae9927b5b7e4058ec48008529ffabff3",
+        "454db74f780ec87125f3a23d31c6ca8a0056686887bedf927d730837b21805f7",
+        "f7901cb8d5663ab8543c45bb1f6deac041f75aa01f8a440689d7ceffd964b2bf",
+        "eefa4743d8a7293946af2a534166af924ddac88e32e8c5629530f38a6dec4495",
+        "930eec9a0450c2098195e42af411e5b83ca3f8fcb74d3f9c6e9ee65a440a7da9",
+        "6e3ec9e2ace46e1f5251b592c5dfa6ebe6430472263db4d47991731379163ec7",
+        "504afd6c21dd1f5048ec0f1fa6d02315e41096844e34c459577196ab0a5dfe21",
+        "e48a94b8651b1b60af5d53a8b32f379d02d10003380bed08762121dd50e531a8"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0391,
+        "pixelsPerUnit": 38.75
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "direction": "E",
+      "id": "current88-17-ghost-script-calligrapher-boy-e-20261123",
+      "orderedSourceHashes": [
+        "a5211fd76b3662c31d6a98bba26836ff0bc556e6a3ddeea683cdb2c1a4e8fcfd",
+        "66444b594ac3f94bc07e3418e1dcdcd51431af4f72e4881ff04caacf97bb5a1a",
+        "a54c0f7f1ece3ab6e04c389ffb91c46430a17d43ac79c0e94b7f4bead003305c",
+        "2d88e4edf1c9378f6c9b77fc902cda91b70102f3fdd19d3eb30c0d6f999cd3f0",
+        "76bee5f202df9a8c8004aa9e4d5647f13b320366a994fac8819e0278d773d806",
+        "8145b72a5e59122d58ad93853b3e80e2d85f14db7f03922227b95fb57b45e737",
+        "3c6a8aa641a0457e0770bbeda2df9296a13d903760eb7c61fcf63a054ab8ae35",
+        "7935c848a3f5dd6f9c006755a1e52acacbfdf47e90e7042a02e57b9a2e1f1f40"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0156,
+        "pixelsPerUnit": 40.13
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "direction": "SE",
+      "id": "current88-17-ghost-script-calligrapher-boy-se-20261123",
+      "orderedSourceHashes": [
+        "69d24b2cc33922918bbf2bdf67fc841c4d491fe6349c396612b9f7c782633f48",
+        "7139a864e028af5dcbce99022445b314e3c3139a2e1f0d66835891c58a493424",
+        "6116f804b403f38e445737fd2ecfb8da698d8c4808d6e65434446769b0304629",
+        "aad309185a52dc912d90b869b3eec69c8a7a1aeff9adcc3f3e85f3c74ec65361",
+        "1c7843f023b784f92f81ccccf9c32ac6e946859f934cebd4cac583e2c7a45e24",
+        "8e3889eb349cbafe9e0b8e6329fd5bea078e7f6a578d83aad5f121b9ca713b85",
+        "02c9995d73138b28c5950b0282664e55aae46d40289f514bb0bee76ff015fa8a",
+        "6398797d1f276a27fe6db35534f253de84fb96b190b1e1441dea6a090010ae32"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 41.49
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "direction": "S",
+      "id": "current88-17-ghost-script-calligrapher-boy-s-20261123",
+      "orderedSourceHashes": [
+        "eeb1c18a3a95495850cdef423c6d83565b64b3f7c32a75d0da15a1424300b1ba",
+        "64cd2e580be97e37c57f1b67e578cedba4f5d8f000d13b4f184e289e18e92d9d",
+        "72e7b586085f7edd2c4b356e7107e7d0d6a7bf230195f25a1bbaf5adffde3e12",
+        "89ad0dc378236dfae567e8a2aaa33839a78dea9e3cf9517a2374522cc5878208",
+        "e2cb20ad83e8010c756503e466975f56a5b798e8e5b52a482081cb219ae1d5f4",
+        "ec3d03ef920729755c0cb9aa92e5f0b6fceaa1151ac59553200e69ad4b5147b7",
+        "f26925eac02adeb62694ff8a2da02cbf38020b4547cb4acefaa508016bb89c27",
+        "dc00476ebfe1e76ea42de0d03667ada13ed448403205b82a32ef6d843095fd0c"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0312,
+        "pixelsPerUnit": 40.99
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "direction": "SW",
+      "id": "current88-17-ghost-script-calligrapher-boy-sw-20261123",
+      "orderedSourceHashes": [
+        "d9b40e00743be363ea76ca1154a6f3504b3fd14324eeb479dd05067b1a0f9263",
+        "970ed8c6619eb23cf02970c4e3a56d71f84295b4448bfd8251c01b579a19cba5",
+        "89335a4134cb2515c77b995b748f1c6ccbfdf32b2bb875e92e4db585ecac1ac6",
+        "c995e6a6d9ddce6c0b2896063fa90ba44d8225e6d08344370e896bd1b6df3135",
+        "06aa55a84a23fe3a022050bec7d3ac8a05a63dd2f58aa1cfeb2613b49aef2e6e",
+        "54e234b27e8bd1682e48a75e770524dda2d43f1b62d1e0237177b5cd2b7f0e97",
+        "9e82612cdebed78454a1a2178566c41cb8e52373fb833547dca4215a438e076d",
+        "d23b83bef5e242ffb437eb04943617d8302ae251f45e0e2ac1972facb20e9050"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0234,
+        "pixelsPerUnit": 39.64
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "direction": "W",
+      "id": "current88-17-ghost-script-calligrapher-boy-w-20261123",
+      "orderedSourceHashes": [
+        "74c3c0b8026f6f3df601f5e00faa2e76fea6241b5d5e1d7449676aab260ee2ff",
+        "b96409dec51431f573afaf20b2ef4053996fc14e1e61cba62e5289392c3972b2",
+        "1aadeb56a4dad3972478febcef86968487fee86a5d73dd110fdb7780bd2f1772",
+        "db09137ef4754385420c99668d369c73992a796a5ec86035fd7158b8898840b4",
+        "7b879e4b91b4f5347eee5713fab5c7cf8303f974521c319dfef4e509e8989357",
+        "554974c866df2e821f627165f4db3d0c4a410723d4ea41665ac3656acc03ffa2",
+        "3e70c92c43d25a18ed7fe15cbde6e151414e8507dbf4e720e8b4d817132ff50d",
+        "20eff986808c86ce5af0587af9d9c42a241f7c63a439025eba6ebe15c0ed3131"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 38.82
+      },
+      "variant": "current"
+    },
+    {
+      "characterId": "17_ghost_script_calligrapher_boy",
+      "direction": "NW",
+      "id": "current88-17-ghost-script-calligrapher-boy-nw-20261123",
+      "orderedSourceHashes": [
+        "643ff7ba2033bfe60ec20da805611155007ccb05386bc3f40750d9b65804d80c",
+        "9b59267de33a0dd0e3299e5cd81a540dbb3360401f5d9f85c56fba2210ee3aa2",
+        "ba66a4c45fe7b2256059ac04fc74308afbee1f435d764287392dcfb48003d0ea",
+        "f518a0e5bf0f74bfaa42e3f6545727032d8380912b906859612a1de8e8a54ba0",
+        "9ba022c3194e502da528a0a7cfbdba3187779ae7462708a0781a622fa2a390df",
+        "c20d9ba43c766bd2c31fa6e174c1a9b10de3ebae40d4218db0a0b9b900fa6b0a",
+        "090110e559f00b2cc1727c264e7db9f7888ff942d261486444bbcb928e102a3a",
+        "5d44055417d57aa8c4d3187a3a1bec8d6ee243a2dfe159a8693f15f5205c7b6e"
+      ],
+      "runtimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0286,
+        "pixelsPerUnit": 40.69
+      },
+      "variant": "current"
     }
-  ]
+  ],
+  "schema": "qdao.run-variant-game-calibrations/v1"
 }

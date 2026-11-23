@@ -5,6 +5,7 @@ using Google.Protobuf;
 using MmorpgClient.Game.Attribute;
 using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Pet;
+using MmorpgClient.Game.PetFlip;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Game.Role;
 using MmorpgClient.Game.Skills;
@@ -204,6 +205,12 @@ namespace MmorpgClient.Game
         public PetClient Pets { get; }
 
         /// <summary>
+        /// 灵宠翻牌本地休闲小游戏控制器（纯本地逻辑，不新增服务端业务接口；设计见 Docs/design/pet-flip-minigame.md）。
+        /// 随 GameClient 存活于当前进程：暂关面板/切后台/临时断线同角色保留盘面，登出/换角/切服/进程销毁丢弃未完成盘。
+        /// </summary>
+        public PetFlipClient PetFlip { get; }
+
+        /// <summary>
         /// 角色技能书(服务端 docs/design/class-skills.md §4):ListSkills / UpgradeSkill 的业务适配器,
         /// 实现技能 UI 的 ISkillBookSource,由 AppBootstrap 绑到 SkillUiRoot。与 Attributes 平行,纯请求-响应,不需要 Tick。
         /// </summary>
@@ -394,6 +401,7 @@ namespace MmorpgClient.Game
                 () => InGame, () => Time.realtimeSinceStartup,
                 new PlayerPrefsSyncDigestStore(PlayerPrefsSyncDigestStore.NamespaceForGateway(gatewayBaseUrl)),
                 s => Log($"[sync] {s}"));
+            PetFlip = PetFlipClient.Attach(new PlayerPrefsPetFlipBestRecordStore());
         }
 
         public GatewayHttpClient Http => _http;
@@ -476,6 +484,22 @@ namespace MmorpgClient.Game
                 _travelPending = false;
                 Status("传送超时,请稍后重试");
             }
+            SyncPetFlipHostState();
+        }
+
+        private void SyncPetFlipHostState()
+        {
+            if (PetFlip == null || PetFlip.IsDisposed) return;
+            bool isInGameConnected = InGame && IsGateReady && PlayerId != 0 && CurrentZoneId != 0;
+            bool isInBattle = Battle != null && (Battle.HasActiveBattle
+                || Battle.Phase == BattlePhase.Preparing
+                || Battle.Phase == BattlePhase.WaitingAction
+                || Battle.Phase == BattlePhase.Resolving
+                || Battle.Phase == BattlePhase.Ended);
+            bool isSpectating = Spectate != null && Spectate.Phase != SpectatePhase.None;
+            bool isLoading = _redirecting || _travelPending || _awaitingSceneEntry;
+            PetFlip.SyncHostState(PlayerId, CurrentZoneId, isInGameConnected, _reconnecting,
+                isInBattle, isSpectating, isLoading);
         }
 
         /// <summary>
@@ -1284,6 +1308,7 @@ namespace MmorpgClient.Game
                     _awaitingSceneEntry = false;
                     PlayerId = 0;
                     OwnerRevision = 0;
+                    PetFlip?.NotifyLoggedOut();
                     onReselect(EnterRejectedReselectHint);
                     yield break;
                 }
@@ -1308,6 +1333,7 @@ namespace MmorpgClient.Game
 
             _awaitingSceneEntry = false;
             InGame = true;
+            SyncPetFlipHostState();
             Status("进入游戏成功");
             onSuccess();
         }
@@ -2822,6 +2848,10 @@ namespace MmorpgClient.Game
                 World.Clear();
                 ResetTeamFollowState();
                 ResetSelfActorStateFlags();
+                if (notify || (!_reconnecting && !_redirecting))
+                    PetFlip?.NotifyLoggedOut();
+                else
+                    SyncPetFlipHostState();
             }
             catch
             {

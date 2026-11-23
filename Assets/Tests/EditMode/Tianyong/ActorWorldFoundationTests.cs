@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using Google.Protobuf;
 using MmorpgClient.Game;
+using MmorpgClient.Game.Team;
 using MmorpgClient.Net;
 using MmorpgClient.Net.Generated;
+using MmorpgClient.UI.Ugui.Team;
 using MmorpgClient.World;
 using MmorpgClient.World.Tianyong;
 using NUnit.Framework;
@@ -550,6 +552,57 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             }
             finally
             {
+                client.Disconnect();
+                if (client.World.Root != null)
+                    UnityEngine.Object.DestroyImmediate(client.World.Root.gameObject);
+            }
+        }
+
+        [Test]
+        public void FollowDriver_ShowsFollowingBeforeTeamSnapshotArrives_AndPreservesPreSnapshotAway()
+        {
+            var client = new GameClient("http://127.0.0.1:1");
+            var driver = new TeamFollowDriver();
+            try
+            {
+                var dispatch = typeof(GameClient).GetMethod(
+                    "DispatchInbound",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
+                Assert.That(dispatch, Is.Not.Null);
+                void Push(uint messageId, ByteString body) => dispatch.Invoke(client, new object[]
+                {
+                    new MessageContent { Id = 0, MessageId = messageId, SerializedMessage = body },
+                });
+
+                // 托管角色重登接回:服务器入场即补推 driven=true,此时 TeamClient 的 GetMyTeam 尚未回来(snapshot == null)。
+                Push(SceneMovementClientPlayerRpc.NotifyTeamFollowStateMessageId,
+                    new TeamFollowStateS2C { Driven = true, LeaderEntity = 7, Slot = 1 }.ToByteString());
+                driver.Tick(client, null, allowed: true, now: 1f);
+                Assert.That(driver.Status, Is.EqualTo(TeamFollowStatus.Following), "重登接回后立刻显示正在跟随");
+                Assert.That(TeamHudPanel.CanToggleFollow(driver.Status, fresh: false, serviceAvailable: false), Is.True,
+                    "视图尚未拉回也可立即点暂离");
+
+                // 玩家在拿到队伍快照之前点「暂离」:首次队伍快照到达时必须保留这次暂离选择,不能被重置成跟随。
+                driver.SetAway(true);
+                driver.Tick(client, null, allowed: true, now: 1.1f);
+                Assert.That(driver.Status, Is.EqualTo(TeamFollowStatus.Away));
+
+                var firstTeam = new TeamSnapshot { TeamId = 77, LeaderId = 100 };
+                firstTeam.Members.Add(new TeamRole { PlayerId = 100, JoinSeq = 1, IsLeader = true, IsOnline = true });
+                firstTeam.Members.Add(new TeamRole { PlayerId = 200, JoinSeq = 2, IsLeader = false, IsOnline = true });
+                driver.Tick(client, firstTeam, allowed: true, now: 1.2f);
+                Assert.That(driver.Away, Is.True, "首次队伍快照到达不能抹掉用户在无快照窗口里点下的暂离");
+
+                // 换到另一支队伍时照常复位暂离选择。
+                var secondTeam = new TeamSnapshot { TeamId = 88, LeaderId = 100 };
+                secondTeam.Members.Add(new TeamRole { PlayerId = 100, JoinSeq = 1, IsLeader = true, IsOnline = true });
+                secondTeam.Members.Add(new TeamRole { PlayerId = 200, JoinSeq = 2, IsLeader = false, IsOnline = true });
+                driver.Tick(client, secondTeam, allowed: true, now: 1.3f);
+                Assert.That(driver.Away, Is.False, "切换到新队伍时复位暂离");
+            }
+            finally
+            {
+                driver.Release();
                 client.Disconnect();
                 if (client.World.Root != null)
                     UnityEngine.Object.DestroyImmediate(client.World.Root.gameObject);

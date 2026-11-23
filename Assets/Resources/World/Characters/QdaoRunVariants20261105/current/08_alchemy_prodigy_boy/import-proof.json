@@ -642,11 +642,261 @@
       "sourceSha256": "15d1d93a37aeeea83730e4306a1d2fce507a95cf25787407a69070d8334e9946"
     }
   ],
+  "gameCalibrations": [
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0339,
+        "pixelsPerUnit": 39.81
+      },
+      "direction": "N",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0339,
+        "pixelsPerUnit": 39.81
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "a88dab448f7f12d60856d02e4d84d91aaef07fe9e6e23dfe1bea7fc70de04fe2",
+        "a7fa125523585d14b4096a0936cee3ad3ee48aea642a2e256639e51ff51290b3",
+        "00332510babc356ce91cdd423c57a291605221058724ecbe136eba5cdddc8cce",
+        "26a5e7f5d34350cb54c5458d8b3cca6ae4b905faac5c9d7b1d7d6cdeb39ce0d0",
+        "925464cb20e51931a2cd724d76f23d21543ded442420b38d500be4c92bbcb43c",
+        "f80b8c3adcc0e87ca5ca9d13eef82defd3b04128c655a10f710892dcebdb0447",
+        "b4610b04d7036a5de44fe6f08380e745fe1182262ce839b389bb7bcac57c6ebc",
+        "45bad6fd32717fa81551e53f4993dfecf58da9150d69904f9f52b33e037dac88"
+      ],
+      "ruleId": "current88-08-alchemy-prodigy-boy-n-20261123",
+      "ruleSha256": "3c71610e3196d0eb9cb9de6be1dad874b781feb1fcb3c3e3c0623f9ab9747bf1",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.35
+      },
+      "direction": "NE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.35
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "d891847e6fc4258cc59cf96e974e6adb06815d93ca5c3d8e1c571211b4c64c04",
+        "132604a97c390b4057a26f953703b06d2fdd29244d4852a10c3f1c4f5feeb5c3",
+        "ca07ee11c96a377d4f426e0d617ec6c3e295cd5f6d75bf1a90c02c4d701ff40c",
+        "bf253e8fe30b1d5a2c18f51eeea16b53db443f8167e890ca0ae466b7f6066e83",
+        "9a5388b3620a509ab3f2e1b8f2823c897770fd54a49a941fcea7be5502a4a3cb",
+        "28c03c66ad0df26252e0fc028bf082e28e849a1bd6c04e30ffc41dd50935c45d",
+        "40cb57fba80708bc14a3a30411139803110dfdb63c49fe90b5653ef3ff533e4a",
+        "c50eaff41988fb0b70cbffaf21aafdaed8da96cc105cd5446c6a6bb52a62b106"
+      ],
+      "ruleId": "current88-08-alchemy-prodigy-boy-ne-20261123",
+      "ruleSha256": "f64ca272c08141d1f4314ab09a6f424f08058aca7a3c5833c2b9439d94961334",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.26
+      },
+      "direction": "E",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0469,
+        "pixelsPerUnit": 37.26
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "ebbf9763ae545fc39b9c647238f2c6e7d7cb95475934b96f667c192503ba8289",
+        "6451acd62e1d3987af369d8ad363d5bfc736395f538317287168f4898d8ad519",
+        "c55b0308cf8cab29394304af93723614476e30eebc7f0c5fe2cafc6b7658198b",
+        "b91d19454c04a0e5f835d0563faead0eb66c197282d9224c92ee861ffd910190",
+        "78a572b5c25f85a432bb6658dbb58df3bd7cc37fc2aa41a9234c9ebf9db707b2",
+        "7508ada8e2b91f10066b2ee336826aadede77f92d2779e5641849d1bc367ae75",
+        "dd608b65360f711b2b97391189276967cc8c240205ca5ac90a1f417eac1aba57",
+        "f6e05c0285c1a4c4d5b957e540ab6c62e461ff30b0b6ea4fa5432928f8a8cf27"
+      ],
+      "ruleId": "current88-08-alchemy-prodigy-boy-e-20261123",
+      "ruleSha256": "16c97cc96a2b94c23f10f65f673668b6fd092fbc977997925960419952499de9",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 39.04
+      },
+      "direction": "SE",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 39.04
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "afa8566a88be280381c6ce8b0b108fee0971081a14aeb1840969b5d607b9383c",
+        "1c248618038a14215d366850197a81ec5a68ace4072173dfff91a7f532531e82",
+        "847d4917c1fc693a1885e4fc1c4ef239348f7dc04b85af4397f1bd5c255d4413",
+        "1a0c88ee1fad0c750c2635057969705cf4a79154ed4e15119a2a11ea664b4a62",
+        "165288f0a6eccffc3b6b4ede8a29fb0cbe9d9fb02c0f035be964a52b7b32a7bc",
+        "c6226074b0282fbff4eb9809fb7da8bbc0d7967bb6f85e4c0dc79fe90a2bdbcf",
+        "65dd5ae06622a4a9b2036b6f526b40cd89b58b8a48d67d6c03a9da91cde90274",
+        "ce0f10dde0c8be71154afd690b29f90810c7b489d31cc935fac96d7a68c4b337"
+      ],
+      "ruleId": "current88-08-alchemy-prodigy-boy-se-20261123",
+      "ruleSha256": "0663e818ed626041fe8c1c7b1480b95f565f2cb945fb8323138ec081d5113d50",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 38.08
+      },
+      "direction": "S",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0365,
+        "pixelsPerUnit": 38.08
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "a6326a66ae7fcb24a9fc586f38d5e2fae882847c449c05ef155d9ff28b28fe13",
+        "f36715ba76cfa4da4fe7e3ee2497f85c6f289c49cdf06b0d14fdc5df5f6d4a3d",
+        "abd86550ae973c8af1a8611a1c0b49c625085cc8ff3408a3bf363d90dd518dcf",
+        "3c2dea6c20ef7d943db889008c4e900291b639a058fb73c2b0b5bbd3c11bbf28",
+        "b9d15b2db1b8b6f370a84169d39727090915c473bc876e3197cf87d541f72575",
+        "ec818ee2eee3d1ecc1ed356099b35b610bf0713a1b8b357b4ad02af39141abda",
+        "c9af7210f88eb880156c6b392901a8f4603807c3c5eb9e21b35097a742ccede7",
+        "7e5f3e31b3eb2b43b3ef6dcb1772b7c06661cb441ad58039a1574d5bab2c21b0"
+      ],
+      "ruleId": "current88-08-alchemy-prodigy-boy-s-20261123",
+      "ruleSha256": "2322c61da2774ff079add0f61d7134b6aa979b1867fab13ef788edef53df2f96",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 38.56
+      },
+      "direction": "SW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 38.56
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "1c305f1236595ba75de0f0965b64274459d72c459cb4a705b8955388d1c09149",
+        "16f5590858e8f5f324b4bf2eca8d23694d209b0c05eb4de127892fa9deaef825",
+        "d79f6932bf345804a2fc7f42545416ef81688365ffe0d2d6227a69c0d1ecc85f",
+        "a6dd42cb6f3dc7b64c266df4f017c4dd944c389baa9f08a0fe6d97bbaa6a5958",
+        "283fea29b6f3640df7cff731872d8e7b28a6e29e71e6e97ffc9cd6581e964f1b",
+        "484e4bd2d584a454a33ff2c30aa22bfc565ef986cf90b43e81a3e95576a5bb87",
+        "1782e6b8e57e7abf9eb669d136b7915e909376a10e00bd62c6aaa900f57d4847",
+        "2d2e086944cafb3bba4eedbd7b3ab61cf6441109ebc62dab03efa3d11e381ed2"
+      ],
+      "ruleId": "current88-08-alchemy-prodigy-boy-sw-20261123",
+      "ruleSha256": "67779b87949d3eb3109c63838d5b129c6077798d5caf10631d500498df743008",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 38.37
+      },
+      "direction": "W",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0417,
+        "pixelsPerUnit": 38.37
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "911a13a31a1cfadfdf1cdb8cc55c355ed7016c22ec7029d343e7712897ac3b9d",
+        "4b07d66bfe031d69bc3c607eec60b317c76813115aab5a5545585555e280ce92",
+        "e238b95cdfbf4466f525f9ae472d724090a1b18631b08d2c01d3b85e42b261b3",
+        "01d4c311964feae9d117cb35d312af85cef295aee746b3a2df10a2e40d85d4ca",
+        "f68e0400b15a0cbb1263e70c861f5d63b1c64f971d596da378400a472703f1ee",
+        "a43952f1cb263f0c9c012bcf0818127401ff67d103d28e24454fff616bcfe6c2",
+        "0bb4681e080c54fb0458aaaebcb146cdcd9d4eb2e86363e931646f4e8090b9ff",
+        "b05b189cd936c579c1b88008a8aee25468129b95e58f5768ddecdfe99984e251"
+      ],
+      "ruleId": "current88-08-alchemy-prodigy-boy-w-20261123",
+      "ruleSha256": "fd1c0f5ce43198f4595fa09f132f339620cdb26fe161bb03ec38094beb1ce3a7",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    },
+    {
+      "characterId": "08_alchemy_prodigy_boy",
+      "configuredRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0885,
+        "pixelsPerUnit": 36.48
+      },
+      "direction": "NW",
+      "emittedRuntimeClip": {
+        "overridePivot": true,
+        "pivotX": 0.5,
+        "pivotY": 0.0885,
+        "pixelsPerUnit": 36.48
+      },
+      "gameAcceptance": "pending_independent_runtime_closure",
+      "orderedSourceHashes": [
+        "267b2a94e2a82af3a9b8672910343c9012d0352362feee1f9bbb7a9db61ec123",
+        "c68556bdf443cc06724a9390a9872e445df3d785432cc66d6889c99fa40553ea",
+        "b8fd8042b528598974945e95eec1d366a9f58b5efbd4d97ca16de2ee3a8a1213",
+        "76a7d4c71c1b93dfa01779853f6ea73b411f8491a493b1c87408240d98599c32",
+        "14bf3557750bbf74ad7898d7d2c7cbd4a2142025a70767f3741fecaafe105741",
+        "1994140c2f03261672cdc3ab3f9fbd7ccd407279bc0ee596c0eb84cd6025bc95",
+        "bad56e2c3ba6601bf6f25c73e65ded7a85bf09d6e44ebb37572d536f42aa140a",
+        "15d1d93a37aeeea83730e4306a1d2fce507a95cf25787407a69070d8334e9946"
+      ],
+      "ruleId": "current88-08-alchemy-prodigy-boy-nw-20261123",
+      "ruleSha256": "e15e1792183a0ab934873247f193e0a8a5659b5a6c74f988c037ef59ebcbc60d",
+      "ruleSource": "tools/run-variant-game-calibrations.json",
+      "variant": "current"
+    }
+  ],
   "gameCanvas": [
     384,
     384
   ],
-  "inputFingerprint": "50e62a6b0ebfb5166595633ea025fd3a812c9890736d2c5da28d85230d534433",
+  "inputFingerprint": "b1667877acc3f06754bda6e8f835f375a2d62c83ebf6389e39f277b17f259cfb",
   "nativeCanvas": [
     1254,
     1254

@@ -203,17 +203,17 @@ class ImportRunVariantsTests(unittest.TestCase):
         self.assertEqual(binding['configuredRuntimeClip']['pixelsPerUnit'], 31)
         self.assertEqual(binding['emittedRuntimeClip']['pixelsPerUnit'], 31)
 
-    def test_checked_in_calibration_is_exact_fixed72_fire_sw_source_lock(self):
-        document = M.read_json(Path(__file__).parents[1] / 'run-variant-game-calibrations.json')
+    def test_checked_in_calibration_locks_all_eleven_characters_eight_directions(self):
+        repo_root = Path(__file__).parents[2]
+        document = M.read_json(repo_root / M.GAME_CALIBRATIONS)
         self.assertEqual(document['schema'], 'qdao.run-variant-game-calibrations/v1')
         self.assertEqual(document['gameAcceptance'], 'pending_independent_runtime_closure')
-        self.assertEqual(len(document['rules']), 1)
-        rule = document['rules'][0]
-        self.assertEqual((rule['characterId'], rule['variant'], rule['direction']),
-                         (FIRE_BOY, 'current', 'SW'))
-        self.assertEqual(rule['runtimeClip'],
-                         dict(pixelsPerUnit=30, overridePivot=True, pivotX=.5, pivotY=.22))
-        self.assertEqual(rule['orderedSourceHashes'], [
+        parsed = M.game_calibrations(repo_root)
+        expected_keys = {(cid, 'current', direction) for cid in M.CHARACTERS for direction in M.DIRECTIONS}
+        self.assertEqual(set(parsed), expected_keys)
+        self.assertEqual(len(document['rules']), len(expected_keys))
+        fire_sw = parsed[(FIRE_BOY, 'current', 'SW')]
+        self.assertEqual(fire_sw['orderedSourceHashes'], [
             'f6c11b64a44c62146562b89e31fef06c7f09791a32e87d9ebb4fdf214c3d57e7',
             'd4b6a0e45c0fd3adbe61858d0b1b76c98255385dab8143f524c816f8f4e4bf32',
             'd11657daafc88b57300a4bd4f999aac0e52b17df8b73132cc312c7d8e4d82778',
@@ -222,6 +222,17 @@ class ImportRunVariantsTests(unittest.TestCase):
             '70aa0d1ca482ad4c4d2b7347bcb26eac946c8722899a17eefe848fb83004c3d1',
             '11b9ee0e91a6cef37df83232d2c770cf24dd6584df17d8e851a30c7439264cf3',
             '11f29c2fce1ec35f5807fe91d6b0784d8899592a0155c883707b21c44a74a3a7'])
+        for cid in M.CHARACTERS:
+            cdir = repo_root / M.FAMILY / 'current' / cid
+            manifest = M.read_json(cdir / 'manifest.json')
+            proof = M.read_json(cdir / 'import-proof.json')
+            self.assertEqual(manifest['inputFingerprint'], proof['inputFingerprint'])
+            self.assertEqual(len(proof.get('gameCalibrations', [])), 8)
+            by_dir = {clip['direction']: clip for clip in manifest['clips']}
+            for direction in M.DIRECTIONS:
+                rule = parsed[(cid, 'current', direction)]
+                for key, value in rule['runtimeClip'].items():
+                    self.assertEqual(by_dir[direction].get(key), value)
 
     def test_default_preflight_is_read_only_and_single_direction_is_explicit(self):
         manifest, _ = self.delivery()
