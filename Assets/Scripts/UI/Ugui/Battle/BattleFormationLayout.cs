@@ -11,14 +11,23 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         [SerializeField] private Vector2[] enemy = CreateDefaults(false);
         [SerializeField] private Vector2[] ally = CreateDefaults(true);
+        [Tooltip("敌方整队纵向平移（设计像素，向下为正），保留各槽位原有的深度缩放。")]
+        [SerializeField] private float enemyVerticalOffsetPixels;
 
-        public Vector2 GetPosition(bool teamIsMine, int slot)
+        public Vector2 GetPosition(bool teamIsMine, int slot) => GetPlacement(teamIsMine, slot).position;
+
+        internal (Vector2 position, float depthYPixels) GetPlacement(bool teamIsMine, int slot)
         {
             ValidateSlot(slot);
             var positions = teamIsMine ? ally : enemy;
-            if (positions != null && slot < positions.Length && IsInsideCanvas(positions[slot]))
-                return positions[slot];
-            return GetDefaultPosition(teamIsMine, slot);
+            var offset = teamIsMine ? Vector2.zero : new Vector2(0f, enemyVerticalOffsetPixels);
+            if (positions != null && slot < positions.Length)
+            {
+                var position = positions[slot] + offset;
+                if (IsInsideCanvas(position)) return (position, positions[slot].y);
+            }
+            var fallback = GetDefaultPosition(teamIsMine, slot);
+            return (IsInsideCanvas(fallback + offset) ? fallback + offset : fallback, fallback.y);
         }
 
         public void SetPosition(bool teamIsMine, int slot, Vector2 position)
@@ -28,17 +37,19 @@ namespace MmorpgClient.UI.Ugui.Battle
                 throw new ArgumentOutOfRangeException(nameof(position), "站位必须位于战斗设计画布内。");
 
             ref Vector2[] positions = ref (teamIsMine ? ref ally : ref enemy);
+            var offset = teamIsMine ? Vector2.zero : new Vector2(0f, enemyVerticalOffsetPixels);
             if (positions == null || positions.Length != BattleStage.SlotsPerTeam)
             {
                 var repaired = new Vector2[BattleStage.SlotsPerTeam];
-                for (int i = 0; i < repaired.Length; i++) repaired[i] = GetPosition(teamIsMine, i);
+                for (int i = 0; i < repaired.Length; i++) repaired[i] = GetPosition(teamIsMine, i) - offset;
                 positions = repaired;
             }
-            positions[slot] = position;
+            positions[slot] = position - offset;
         }
 
         public void ResetToDefaults()
         {
+            enemyVerticalOffsetPixels = 0f;
             enemy = CreateDefaults(false);
             ally = CreateDefaults(true);
         }

@@ -50,9 +50,20 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.IsFalse(name.Overlaps(otherName));
 
             var bannerName = new Rect(1100f, 400f, 60f, 20f);
-            bannerName.position += NameAboveHead(bannerName, new Vector2(1130f, 240f));
+            bannerName.position += NameAboveHead(bannerName, new Vector2(1130f, 240f),
+                new[] { BattleScreen.ChannelBannerRect });
             Assert.LessOrEqual(bannerName.yMax, BattleScreen.ChannelBannerRect.yMin);
             Assert.GreaterOrEqual(bannerName.yMin, 140f);
+        }
+
+        [Test]
+        public void CrowdedName_StaysBetweenTopHudAndOwnBarWhenPreferredGapDoesNotFit()
+        {
+            var name = new Rect(100f, 400f, 40f, 20f);
+            var head = new Vector2(120f, BattleStage.HudTopBand + name.height + 2f);
+            name.position += NameAboveHead(name, head);
+            Assert.AreEqual(BattleStage.HudTopBand, name.yMin);
+            Assert.AreEqual(2f, head.y - name.yMax);
         }
 
         [Test]
@@ -66,6 +77,43 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private static Vector2 NameAboveHead(Rect name, Vector2 head, Rect[] obstacles = null, Rect[] otherNames = null)
             => (Vector2)typeof(BattleScreen).GetMethod("NameOffsetAboveHead", BindingFlags.NonPublic | BindingFlags.Static)
                 .Invoke(null, new object[] { name, head, obstacles ?? Array.Empty<Rect>(), otherNames ?? Array.Empty<Rect>() });
+
+        [Test]
+        public void SideNameKeepsTheHorizontalPathToItsUnitClear()
+        {
+            var body = new Rect(900f, 150f, 80f, 65f);
+            var hud = new Rect(600f, 214f, 700f, 56f);
+            var neighbor = new Rect(985f, 135f, 150f, 65f);
+            var otherName = new Rect(840f, 140f, 12f, 18f);
+            var obstacles = new List<Rect> { hud, body, neighbor };
+            var name = new Rect(850f, 270f, 180f, 26f);
+            var method = typeof(BattleScreen).GetMethod("NamePlacementBesideUnit", BindingFlags.Static | BindingFlags.NonPublic);
+            var (offset, clearPath) = ((Vector2, Rect))method.Invoke(null,
+                new object[] { name, new Vector2(940f, 215f), obstacles, 1, 1, new List<Rect> { otherName } });
+            name.position += offset;
+            Assert.Greater(clearPath.width, 0f);
+            Assert.AreEqual(body.xMin, clearPath.xMax);
+            Assert.AreEqual(name.xMax, clearPath.xMin);
+            foreach (var occupied in new[] { body, hud, neighbor, otherName })
+            {
+                Assert.IsFalse(name.Overlaps(occupied));
+                Assert.IsFalse(clearPath.Overlaps(occupied));
+            }
+        }
+
+        [Test]
+        public void SideNameKeepsItsPreviousPositionWhenBothSidesAreOccupied()
+        {
+            var body = new Rect(900f, 150f, 80f, 65f);
+            var obstacles = new List<Rect> { body, new Rect(0f, 140f, 2560f, 100f) };
+            var method = typeof(BattleScreen).GetMethod("NamePlacementBesideUnit", BindingFlags.Static | BindingFlags.NonPublic);
+            var (offset, clearPath) = ((Vector2, Rect))method.Invoke(null, new object[]
+            {
+                new Rect(850f, 270f, 180f, 26f), new Vector2(940f, 215f), obstacles, 0, 1, new List<Rect>(),
+            });
+            Assert.AreEqual(Vector2.zero, offset);
+            Assert.AreEqual(0f, clearPath.width);
+        }
 
         [Test]
         public void Expand_VisibleRect_AlwaysCoversWholeDesignArea()

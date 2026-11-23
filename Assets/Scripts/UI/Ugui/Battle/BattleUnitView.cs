@@ -372,7 +372,7 @@ namespace MmorpgClient.UI.Ugui.Battle
             _name.rectTransform.anchoredPosition = NameAnchor + offset;
         }
 
-        /// <summary>按权威状态全量刷新(名字/等级/HP/MP/buff/徽标/外观)。</summary>
+        /// <summary>按权威状态全量刷新名字、血蓝条、状态图标、徽标和外观。</summary>
         public void Apply(BattleActorState state)
         {
             if (state == null || _root == null) return;
@@ -404,7 +404,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 : state.Name;
             if (IsMonster && state.CapturePetTableId != 0)
                 name = MmorpgClient.World.QdaoPetCatalog.Resolve(state.CapturePetTableId)?.displayName ?? name;
-            _name.text = $"{(IsSelf ? "★" : string.Empty)}Lv{state.Level} {name}";
+            _name.text = IsSelf ? $"★{name}" : name;
             _name.color = NameColor(IsMonster);
 
             SetBarsImmediate();

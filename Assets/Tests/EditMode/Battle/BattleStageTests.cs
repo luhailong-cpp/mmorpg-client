@@ -21,16 +21,16 @@ namespace MmorpgClient.Tests.EditMode.Battle
         private const float NameplateHalfWidth = 120f;
         private const float NameplateBelowFeet = 40f;
 
-        // 独立描绘当前圆台背景的石面外缘。设计坐标 2560×1080，y 向下。
-        // 来源：image 3cf49b6df89 的 battle-round-platform-runtime-2560x1080.png。
+        // 按当前 2560×1080 背景的可见石面取内侧多边形，避开边沿花木和装饰。
+        // 来源：cloud_terrace 运行图，SHA-256 前缀 B685；设计坐标 y 向下。
         private static readonly Vector2[] StonePlatform =
         {
-            new Vector2(1240f, 240f),
-            new Vector2(890f, 251f),
-            new Vector2(595f, 305f),
-            new Vector2(353f, 365f),
-            new Vector2(181f, 447f),
-            new Vector2(88f, 524f),
+            new Vector2(1240f, 170f),
+            new Vector2(890f, 191f),
+            new Vector2(595f, 243f),
+            new Vector2(353f, 320f),
+            new Vector2(181f, 416f),
+            new Vector2(88f, 497f),
             new Vector2(72f, 591f),
             new Vector2(125f, 680f),
             new Vector2(253f, 782f),
@@ -48,8 +48,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
             new Vector2(2375f, 474f),
             new Vector2(2200f, 384f),
             new Vector2(1980f, 312f),
-            new Vector2(1680f, 260f),
-            new Vector2(1440f, 245f),
+            new Vector2(1680f, 225f),
+            new Vector2(1440f, 185f),
         };
 
         private static int SlotOf(bool back, int col) => back ? col + BattleStage.FrontRowCount : col;
@@ -128,6 +128,23 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual(movedPet, BattleStage.PetSlotPosition(mine, back));
             Assert.AreEqual(oppositeRole, BattleStage.SlotPosition(!mine, back));
             Assert.AreEqual(oppositePet, BattleStage.PetSlotPosition(!mine, back));
+        }
+
+        [Test]
+        public void SavedEnemyFormationMovesUpFortyPixelsAndKeepsEverySlotScale()
+        {
+            var saved = Resources.Load<BattleFormationLayout>(BattleFormationLayout.ResourcePath);
+            JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(saved), _layout);
+            JsonUtility.FromJsonOverwrite("{\"enemyVerticalOffsetPixels\":0}", _layout);
+            RuntimeLayoutField.SetValue(null, saved);
+            foreach (var (mine, slot) in AllSlots())
+            {
+                var original = _layout.GetPosition(mine, slot);
+                var expected = original + (mine ? Vector2.zero : new Vector2(0f, -40f));
+                Assert.AreEqual(expected, BattleStage.SlotPosition(mine, slot), Tag(mine, slot));
+                Assert.AreEqual(BattleStage.DepthScale(original.y), BattleStage.SlotScale(mine, slot));
+                Assert.AreEqual(BattleStage.SlotScale(mine, slot), BattleStage.PetSlotScale(mine, slot));
+            }
         }
 
         [Test]
@@ -576,6 +593,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             var display = BattleStage.AssignAll(actors, myTeam);
             var feet = new HashSet<Vector2>();
+            int[] expectedColumns = { 2, 1, 3, 0, 4 };
             Assert.AreEqual(20, display.Count);
             foreach (var (player, pet) in pairs)
             {
@@ -583,15 +601,60 @@ namespace MmorpgClient.Tests.EditMode.Battle
                 int front = (int)player.FormationSlot;
                 int back = front + BattleStage.FrontRowCount;
                 Assert.AreEqual(front, (mine ? teamOne : teamZero)[player.ActorId]);
-                Assert.AreEqual((mine, back), display[player.ActorId]);
-                Assert.AreEqual((mine, back), display[pet.ActorId]);
+                int physicalFront = expectedColumns[front];
+                int physicalBack = physicalFront + BattleStage.FrontRowCount;
+                Assert.AreEqual((mine, physicalBack, back), display[player.ActorId]);
+                Assert.AreEqual(display[player.ActorId], display[pet.ActorId]);
                 Assert.IsTrue(BattleStage.IsPetPlacement(pet, display));
 
                 var roleFoot = BattleStage.SlotPosition(mine, display[player.ActorId].slot);
                 var petFoot = BattleStage.PetSlotPosition(mine, display[pet.ActorId].slot);
-                Assert.AreEqual(BattleStage.SlotPosition(mine, front), petFoot);
+                Assert.AreEqual(BattleStage.SlotPosition(mine, physicalFront), petFoot);
                 Assert.IsTrue(feet.Add(roleFoot), "角色脚点应独占一个槽位");
                 Assert.IsTrue(feet.Add(petFoot), "宠物脚点应独占一个槽位");
+            }
+        }
+
+        [Test]
+        public void PlayerPartiesFillFromCenterOnBothSidesAsMembersJoinOrReconnect()
+        {
+            int[] expectedBackSlots = { 7, 6, 8, 5, 9 };
+            var actors = new List<BattleActorState>();
+            for (uint column = 0; column < BattleStage.FrontRowCount; column++)
+            {
+                for (uint team = 0; team < 2; team++)
+                    actors.Add(new BattleActorState
+                    {
+                        ActorId = 1000UL - column - team * 20UL,
+                        ActorType = eBattleActorType.BattleActorTypePlayer,
+                        TeamIndex = team, FormationSlot = column,
+                    });
+                var joined = BattleStage.AssignAll(actors, myTeam: 0);
+                var reordered = new List<BattleActorState>(actors);
+                reordered.Reverse();
+                var reconnected = BattleStage.AssignAll(reordered, myTeam: 0);
+                foreach (var actor in actors)
+                {
+                    int logical = (int)actor.FormationSlot;
+                    Assert.AreEqual((actor.TeamIndex == 0, expectedBackSlots[logical], 5 + logical), joined[actor.ActorId]);
+                    Assert.AreEqual(joined[actor.ActorId], reconnected[actor.ActorId]);
+                }
+            }
+        }
+
+        [Test]
+        public void FullTenSlotFormationKeepsItsTwoProtocolRows()
+        {
+            var actors = new List<BattleActorState>();
+            for (uint slot = 0; slot < BattleStage.SlotsPerTeam; slot++)
+                actors.Add(new BattleActorState { ActorId = slot + 1, FormationSlot = slot,
+                    ActorType = eBattleActorType.BattleActorTypePlayer });
+            int[] expectedSlots = { 2, 1, 3, 0, 4, 7, 6, 8, 5, 9 };
+            var placements = BattleStage.AssignAll(actors, myTeam: 0);
+            foreach (var actor in actors)
+            {
+                int slot = (int)actor.FormationSlot;
+                Assert.AreEqual((true, expectedSlots[slot], slot), placements[actor.ActorId]);
             }
         }
 
@@ -607,24 +670,26 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             var display = BattleStage.AssignAll(actors, myTeam: 0);
 
-            Assert.AreEqual((true, 5), display[2]);
-            Assert.AreEqual((true, 6), display[3]);
-            Assert.AreEqual((true, 7), display[1]);
+            Assert.AreEqual((true, 7, 5), display[2]);
+            Assert.AreEqual((true, 6, 6), display[3]);
+            Assert.AreEqual((true, 8, 7), display[1]);
         }
 
         [Test]
-        public void AssignAll_KeepsProtocolSlotsForMixedPlayerAndMonsterTeams()
+        public void AssignAll_CentersMixedPlayerAndMonsterTeamsWithinTheirProtocolRow()
         {
             var actors = new[]
             {
                 new BattleActorState { ActorId = 1, ActorType = eBattleActorType.BattleActorTypePlayer, FormationSlot = 0 },
                 new BattleActorState { ActorId = 2, ActorType = eBattleActorType.BattleActorTypeMonster, FormationSlot = 1 },
+                new BattleActorState { ActorId = 3, ActorType = eBattleActorType.BattleActorTypeMonster, TeamIndex = 1, FormationSlot = 0 },
             };
 
             var display = BattleStage.AssignAll(actors, myTeam: 0);
 
-            Assert.AreEqual((true, 0), display[1]);
-            Assert.AreEqual((true, 1), display[2]);
+            Assert.AreEqual((true, 2, 0), display[1]);
+            Assert.AreEqual((true, 1, 1), display[2]);
+            Assert.AreEqual((false, 2, 0), display[3]);
         }
 
         [Test]
@@ -641,11 +706,11 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             var all = BattleStage.AssignAll(actors, myTeam: 0);
             Assert.AreEqual(5, all.Count);
-            Assert.AreEqual((true, 0), all[1]);
-            Assert.AreEqual((true, 1), all[3]);
-            Assert.AreEqual((true, 2), all[5]);
-            Assert.AreEqual((false, 0), all[2]);
-            Assert.AreEqual((false, 1), all[4]);
+            Assert.AreEqual((true, 2, 0), all[1]);
+            Assert.AreEqual((true, 1, 1), all[3]);
+            Assert.AreEqual((true, 3, 2), all[5]);
+            Assert.AreEqual((false, 2, 0), all[2]);
+            Assert.AreEqual((false, 1, 1), all[4]);
         }
 
         [Test]
@@ -672,8 +737,8 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             // 我方 5 号在敌队里按 formation_slot 落位
             var all = BattleStage.AssignAll(actors, myTeam: 0);
-            Assert.AreEqual((false, 7), all[5]);
-            Assert.AreEqual((true, 7), all[1]);
+            Assert.AreEqual((false, 8, 7), all[5]);
+            Assert.AreEqual((true, 8, 7), all[1]);
         }
 
         [Test]
@@ -717,10 +782,10 @@ namespace MmorpgClient.Tests.EditMode.Battle
 
             var all = BattleStage.AssignAll(actors, myTeam: 0);
             Assert.AreEqual(6, all.Count);
-            Assert.AreEqual((true, 5), all[21]);
-            Assert.AreEqual((true, 6), all[22]);
-            Assert.AreEqual((true, 0), all[23]);
-            Assert.AreEqual((false, 0), all[3]);
+            Assert.AreEqual((true, 7, 5), all[21]);
+            Assert.AreEqual((true, 6, 6), all[22]);
+            Assert.AreEqual((true, 2, 0), all[23]);
+            Assert.AreEqual((false, 2, 0), all[3]);
             Assert.IsTrue(BattleStage.IsPetPlacement(actors[1], all));
             Assert.IsFalse(BattleStage.IsPetPlacement(actors[4], all), "孤儿宝宝按普通单位摆");
             Assert.IsFalse(BattleStage.IsPetPlacement(actors[0], all));
@@ -728,7 +793,7 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.AreEqual(1UL, BattleStage.PetOwnerOf(actors[1]));
 
             // 宝宝落在主人的宝宝位 = 视频里的宝宝排(我方前排实测位)
-            Assert.AreEqual(BattleStage.SlotPosition(true, 0), BattleStage.PetSlotPosition(true, all[21].slot));
+            Assert.AreEqual(BattleStage.SlotPosition(true, 2), BattleStage.PetSlotPosition(true, all[21].slot));
             Assert.AreEqual(BattleStage.SlotPosition(true, 1), BattleStage.PetSlotPosition(true, all[22].slot));
         }
 

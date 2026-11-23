@@ -586,18 +586,19 @@ namespace MmorpgClient.UI.Ugui.Battle
             _views.Clear();
             _viewById.Clear();
 
-            // 槽位分配:宝宝(BattleStage.PetOwnerResolver 判定,主人在场)不占槽,条目沿用主人的 (teamIsMine, slot),
-            // 摆到主人的宝宝位 (PetSlotPosition)，显示缩放与主人一致。
+            // 宝宝跟随主人的物理列和原槽位深度，换列时保留每个单位的显示尺寸。
             var placement = BattleStage.AssignAll(state.Actors, _myTeam);
             foreach (var actor in state.Actors)
             {
                 if (actor == null) continue;
                 bool mine = actor.TeamIndex == _myTeam;
                 int slot = 0;
+                int depthSlot = 0;
                 if (placement.TryGetValue(actor.ActorId, out var p))
                 {
                     mine = p.teamIsMine;
                     slot = p.slot;
+                    depthSlot = p.depthSlot;
                 }
                 bool pet = BattleStage.IsPetPlacement(actor, placement);
                 var view = new BattleUnitView(_owner, _stageRoot, actor.ActorId, actor.ActorId == _myId && _myId != 0, mine, slot, OnUnitClicked, _plateLayer)
@@ -607,9 +608,9 @@ namespace MmorpgClient.UI.Ugui.Battle
                     Ghosts = _presenter.Ghosts,
                 };
                 if (pet)
-                    view.SetPlacement(BattleStage.PetSlotPosition(mine, slot), BattleStage.PetSlotScale(mine, slot), slot);
+                    view.SetPlacement(BattleStage.PetSlotPosition(mine, slot), BattleStage.PetSlotScale(mine, depthSlot), slot);
                 else
-                    view.SetPlacement(BattleStage.SlotPosition(mine, slot), BattleStage.SlotScale(mine, slot), slot);
+                    view.SetPlacement(BattleStage.SlotPosition(mine, slot), BattleStage.SlotScale(mine, depthSlot), slot);
                 view.Apply(actor);
                 _views.Add(view);
                 _viewById[actor.ActorId] = view;
@@ -622,19 +623,24 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void LayoutUnitNames()
         {
-            var names = new List<(BattleUnitView view, Rect rect, Vector2 offset, bool crowded)>(_views.Count);
+            var names = new List<(BattleUnitView view, Rect rect, Vector2 offset, bool crowded, int firstBand, int bandCount)>(_views.Count);
             var obstacles = new List<Rect>(_views.Count * 2);
+            obstacles.Add(new Rect(0f, 0f, QdaoUguiTheme.DesignWidth, BattleStage.HudTopBand));
+            obstacles.Add(ChannelBannerRect);
+            foreach (var (_, rect) in BattleUiLayout.InteractiveRects()) obstacles.Add(rect);
             foreach (var view in _views)
             {
+                int firstBand = obstacles.Count;
                 if (!view.TryGetRestingNameplate(obstacles, out var name)) continue;
                 names.Add((view, Rect.MinMaxRect(name.xMin - NameClearance, name.yMin - NameClearance,
-                    name.xMax + NameClearance, name.yMax + NameClearance), Vector2.zero, false));
+                    name.xMax + NameClearance, name.yMax + NameClearance), Vector2.zero, false, firstBand, obstacles.Count - firstBand));
             }
 
             var nearby = new List<Rect>();
             for (int i = 0; i < names.Count; i++)
             {
-                var (view, original, _, _) = names[i];
+                var label = names[i];
+                var original = label.rect;
                 var searchArea = Rect.MinMaxRect(original.xMin - NameOffsetLimit, original.yMin - NameOffsetLimit,
                     original.xMax + NameOffsetLimit, original.yMax + NameOffsetLimit);
                 nearby.Clear();
@@ -654,7 +660,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 float bestOverlap = Overlap(original);
                 if (bestOverlap > 0f)
                 {
-                    // Keep one fixed offset during playback so the label follows its unit without jumping.
+                    // 使用固定偏移，动画播放时名字跟随本单位。
                     for (int y = NameOffsetLimit; y >= -NameOffsetLimit; y -= NameOffsetStep)
                     for (int x = -NameOffsetLimit; x <= NameOffsetLimit; x += NameOffsetStep)
                     {
@@ -673,11 +679,14 @@ namespace MmorpgClient.UI.Ugui.Battle
                         bestOverlap = overlap;
                     }
                 }
-                view.SetNameOffset(bestOffset);
-                names[i] = (view, bestRect, bestOffset, bestOverlap > 0f);
+                label.view.SetNameOffset(bestOffset);
+                label.rect = bestRect;
+                label.offset = bestOffset;
+                label.crowded = bestOverlap > 0f;
+                names[i] = label;
             }
 
-            // Keep crowded names with their own unit by placing them above its health bars.
+            // 脚下放不下的整行名牌改放到本单位血条上方。
             var otherNames = new List<Rect>();
             for (int i = 0; i < names.Count; i++)
             {
@@ -687,6 +696,13 @@ namespace MmorpgClient.UI.Ugui.Battle
                 for (int j = 0; j < names.Count; j++)
                     if (i != j) otherNames.Add(names[j].rect);
                 var movement = NameOffsetAboveHead(label.rect, label.view.HeadPosition, obstacles, otherNames);
+                Rect clearPath = default;
+                if (movement == Vector2.zero)
+                {
+                    (movement, clearPath) = NamePlacementBesideUnit(label.rect, label.view.FootPosition, obstacles,
+                        label.firstBand, label.bandCount, otherNames);
+                    if (clearPath.width > 0f) obstacles.Add(clearPath);
+                }
                 label.offset += movement;
                 label.rect.position += movement;
                 label.view.SetNameOffset(label.offset);
@@ -697,12 +713,11 @@ namespace MmorpgClient.UI.Ugui.Battle
         private static Vector2 NameOffsetAboveHead(Rect name, Vector2 headPosition,
             IReadOnlyList<Rect> obstacles, IReadOnlyList<Rect> otherNames)
         {
-            var preferred = new Vector2(headPosition.x - name.center.x, headPosition.y - 4f - name.yMax);
+            // 血条紧贴顶部 HUD 时可略收紧 4 像素留白，候选仍须与血条完全分离。
+            var preferred = new Vector2(headPosition.x - name.center.x,
+                Mathf.Max(headPosition.y - 4f - name.yMax, BattleStage.HudTopBand - name.yMin));
             var blockers = new List<Rect>(obstacles);
             blockers.AddRange(otherNames);
-            blockers.Add(ChannelBannerRect);
-            blockers.Add(ReconnectRect);
-            foreach (var (_, rect) in BattleUiLayout.InteractiveRects()) blockers.Add(rect);
             var best = Vector2.zero;
             float bestDistance = float.PositiveInfinity;
             for (int y = 0; y >= -24; y--)
@@ -714,7 +729,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 var candidate = name;
                 candidate.position += offset;
                 if (candidate.xMin < 0f || candidate.xMax > QdaoUguiTheme.DesignWidth ||
-                    candidate.yMin < 140f || candidate.yMax > BattleStage.HudBottomBand) continue;
+                    candidate.yMin < BattleStage.HudTopBand || candidate.yMax >= headPosition.y ||
+                    candidate.yMax > BattleStage.HudBottomBand) continue;
                 bool blocked = false;
                 foreach (var obstacle in blockers)
                     if (candidate.Overlaps(obstacle)) { blocked = true; break; }
@@ -724,6 +740,69 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (distance == 0f) return best;
             }
             return best;
+        }
+
+        // 血条和脚下同时被占用时，沿本人轮廓横向放置整行名字。
+        // 名字与本人轮廓之间保留无遮挡的水平通路，便于判断名字的归属。
+        private static (Vector2 offset, Rect clearPath) NamePlacementBesideUnit(Rect name, Vector2 foot,
+            List<Rect> obstacles, int firstBand, int bandCount, List<Rect> otherNames)
+        {
+            const float pathHeightPixels = 1.5f;
+            float halfPath = pathHeightPixels * 0.5f;
+            float halfName = name.height * 0.5f;
+            var blockers = new List<Rect>(obstacles);
+            blockers.AddRange(otherNames);
+            var rowBlockers = new List<Rect>();
+            Vector2 bestOffset = Vector2.zero;
+            Rect bestPath = default;
+            float bestScore = float.PositiveInfinity;
+            float top = foot.y;
+            for (int i = firstBand; i < firstBand + bandCount; i++) top = Mathf.Min(top, obstacles[i].yMin);
+            int firstY = Mathf.CeilToInt(Mathf.Max(top, BattleStage.HudTopBand + halfName));
+            int lastY = Mathf.FloorToInt(Mathf.Min(foot.y, BattleStage.HudBottomBand - halfName));
+
+            for (int y = firstY; y <= lastY; y++)
+            {
+                float left = float.PositiveInfinity, right = float.NegativeInfinity;
+                for (int i = firstBand; i < firstBand + bandCount; i++)
+                {
+                    Rect band = obstacles[i];
+                    if (band.yMax <= y - halfPath || band.yMin >= y + halfPath) continue;
+                    left = Mathf.Min(left, band.xMin);
+                    right = Mathf.Max(right, band.xMax);
+                }
+                if (left >= right) continue;
+                rowBlockers.Clear();
+                foreach (var blocker in blockers)
+                    if (blocker.yMax > y - halfName && blocker.yMin < y + halfName) rowBlockers.Add(blocker);
+                ConsiderSide(left, false, y);
+                ConsiderSide(right, true, y);
+            }
+            return (bestOffset, bestPath);
+
+            void ConsiderSide(float edge, bool onRight, int y)
+            {
+                float gap = NameClearance;
+                float heightCost = 0.05f * (foot.y - y) * (foot.y - y);
+                while (gap <= name.width + 120f && gap * gap + heightCost < bestScore)
+                {
+                    var candidate = new Rect(onRight ? edge + gap : edge - gap - name.width,
+                        y - halfName, name.width, name.height);
+                    if (candidate.xMin < 0f || candidate.xMax > QdaoUguiTheme.DesignWidth) return;
+                    float nextGap = gap;
+                    foreach (var blocker in rowBlockers)
+                        if (candidate.Overlaps(blocker))
+                            nextGap = Mathf.Max(nextGap, (onRight ? blocker.xMax - edge : edge - blocker.xMin) + 1f);
+                    if (nextGap > gap) { gap = nextGap; continue; }
+                    var clearPath = new Rect(onRight ? edge : edge - gap, y - halfPath, gap, pathHeightPixels);
+                    foreach (var blocker in rowBlockers)
+                        if (clearPath.Overlaps(blocker)) return;
+                    bestOffset = candidate.position - name.position;
+                    bestPath = clearPath;
+                    bestScore = gap * gap + heightCost;
+                    return;
+                }
+            }
         }
 
         private static float OverlapArea(Rect a, Rect b)

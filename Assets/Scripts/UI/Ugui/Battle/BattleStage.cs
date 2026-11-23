@@ -16,6 +16,8 @@ namespace MmorpgClient.UI.Ugui.Battle
     {
         public const int SlotsPerTeam = 10;
         public const int FrontRowCount = 5;
+        // 阵位按同队入战顺序给出；双方阵型资源的列均从屏幕左侧起算。
+        private static readonly int[] DisplayColumns = { 2, 1, 3, 0, 4 };
 
         /// <summary>Top action-order strip including its margin.</summary>
         public const float HudTopBand = 140f;
@@ -55,16 +57,20 @@ namespace MmorpgClient.UI.Ugui.Battle
         public static int Column(int slot) => NormalizeSlot(slot) % FrontRowCount;
 
         /// <summary>读取配置中的脚底点，坐标以画布左上为原点。</summary>
-        public static Vector2 SlotPosition(bool teamIsMine, int slot)
+        public static Vector2 SlotPosition(bool teamIsMine, int slot) => GetPlacement(teamIsMine, slot).position;
+
+        private static (Vector2 position, float depthYPixels) GetPlacement(bool teamIsMine, int slot)
         {
             slot = NormalizeSlot(slot);
             if (s_layout == null)
                 s_layout = Resources.Load<BattleFormationLayout>(BattleFormationLayout.ResourcePath);
-            return s_layout != null ? s_layout.GetPosition(teamIsMine, slot) : BattleFormationLayout.GetDefaultPosition(teamIsMine, slot);
+            if (s_layout != null) return s_layout.GetPlacement(teamIsMine, slot);
+            var fallback = BattleFormationLayout.GetDefaultPosition(teamIsMine, slot);
+            return (fallback, fallback.y);
         }
 
-        /// <summary>槽位缩放:极弱线性深度模型，脚底越低越大。</summary>
-        public static float SlotScale(bool teamIsMine, int slot) => DepthScale(SlotPosition(teamIsMine, slot).y);
+        /// <summary>按整队平移前的槽位深度缩放，保留角色与宠物的显示尺寸。</summary>
+        public static float SlotScale(bool teamIsMine, int slot) => DepthScale(GetPlacement(teamIsMine, slot).depthYPixels);
 
         /// <summary>按脚底 y 算深度缩放:基准 <see cref="DepthScaleReferenceY"/> 为 1.0,每往上 1px 缩 <see cref="DepthScalePerPixel"/>。</summary>
         public static float DepthScale(float footY) => 1f - (DepthScaleReferenceY - footY) * DepthScalePerPixel;
@@ -158,18 +164,27 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         /// <summary>
         /// 一次算出全部 actors 的显示槽位。至多五人的玩家队在后排布阵，宝宝在同列前排。
-        /// 队伍归属按 myTeam 判定;返回 actorId → (teamIsMine, slot)。
-        /// 宝宝的条目是 (主人的 teamIsMine, 主人的 slot):调用方用 <see cref="PetOwnerOf"/> 区分后改用
+        /// 队伍归属按 myTeam 判定。slot 选取画布位置，depthSlot 保留换列前的显示深度。
+        /// 宝宝沿用主人的三个字段；调用方用 <see cref="PetOwnerOf"/> 区分后改用
         /// <see cref="PetSlotPosition"/>/<see cref="PetSlotScale"/> 摆放。
         /// </summary>
-        public static Dictionary<ulong, (bool teamIsMine, int slot)> AssignAll(IEnumerable<BattleActorState> actors, uint myTeam)
+        public static Dictionary<ulong, (bool teamIsMine, int slot, int depthSlot)> AssignAll(IEnumerable<BattleActorState> actors, uint myTeam)
         {
-            var result = new Dictionary<ulong, (bool, int)>();
+            var result = new Dictionary<ulong, (bool, int, int)>();
             if (actors == null) return result;
             var list = new List<BattleActorState>(actors);
 
-            var mine = AssignDisplaySlots(list, myTeam);
-            foreach (var kv in mine) result[kv.Key] = (true, kv.Value);
+            void AssignTeam(uint team)
+            {
+                var slots = AssignDisplaySlots(list, team);
+                foreach (var pair in slots)
+                {
+                    int depthSlot = pair.Value;
+                    int displaySlot = (IsBackRow(depthSlot) ? FrontRowCount : 0) + DisplayColumns[Column(depthSlot)];
+                    result[pair.Key] = (team == myTeam, displaySlot, depthSlot);
+                }
+            }
+            AssignTeam(myTeam);
 
             // 敌方可能不止一个 team_index(多方混战预留):按出现顺序各自分配,同槽位重叠
             var enemyTeams = new List<uint>();
@@ -178,10 +193,7 @@ namespace MmorpgClient.UI.Ugui.Battle
                 if (actor == null || actor.TeamIndex == myTeam) continue;
                 if (!enemyTeams.Contains(actor.TeamIndex)) enemyTeams.Add(actor.TeamIndex);
             }
-            foreach (uint team in enemyTeams)
-            {
-                foreach (var kv in AssignDisplaySlots(list, team)) result[kv.Key] = (false, kv.Value);
-            }
+            foreach (uint team in enemyTeams) AssignTeam(team);
 
             // 宝宝跟主人:沿用主人的 (teamIsMine, slot)
             foreach (var actor in list)
@@ -238,7 +250,7 @@ namespace MmorpgClient.UI.Ugui.Battle
         /// <summary>
         /// 该单位是否按"宝宝"摆放:主人已在 placement 里(即主人占了槽位)。孤儿宝宝返回 false(按普通单位处理)。
         /// </summary>
-        public static bool IsPetPlacement(BattleActorState actor, IReadOnlyDictionary<ulong, (bool teamIsMine, int slot)> placement)
+        public static bool IsPetPlacement(BattleActorState actor, IReadOnlyDictionary<ulong, (bool teamIsMine, int slot, int depthSlot)> placement)
         {
             if (actor == null || placement == null) return false;
             ulong owner = PetOwnerOf(actor);
