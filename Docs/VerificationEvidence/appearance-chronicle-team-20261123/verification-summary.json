@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-23T15:17:56.5260780Z",
+  "runtimeCompile": {
+    "sourceCount": 584,
+    "errorCount": 0,
+    "exitCode": 0,
+    "result": "runtime/run-18556-bbd96fe4d9d44b0bb0b78124b804ab39/result.json",
+    "notes": "One stale SharedInternals reference in fallback snapshot skipped; actual installed Unity UI/TMP/AI DLLs used"
+  },
+  "productionModelChecks": {
+    "passed": 66,
+    "exitCode": 0,
+    "log": "model-tests.log",
+    "transport": "in-memory recording fake; no network or server started"
+  },
+  "roleAssemblyCompile": {
+    "sources": 5,
+    "exitCode": 0,
+    "log": "role/role-tests.log",
+    "warning": "CS1701 netstandard reference unification",
+    "executedNUnitTests": false
+  },
+  "browser": {
+    "passed": 31,
+    "screenshots": 23,
+    "unityScreenshot": false,
+    "assetRequests": 0,
+    "remoteRequests": 0,
+    "record": "image/designs/appearance-chronicle-v2/qa/browser-layout-validation.json"
+  },
+  "tableSync": {
+    "count": 58,
+    "source": "current server generated/client_tables",
+    "allSourceHashesMatch": true,
+    "serverModified": false
+  },
+  "unityExecutedOnThisMachine": false,
+  "targetUnityAcceptance": "Explicitly assigned by user to another computer",
+  "sourceHashes": [
+    {
+      "path": "Assets/Scripts/Game/Appearance/AppearanceBiography.cs",
+      "sha256": "9fda3533304c307ee733c43ba030b90eef3e9dbcec24c05562082f02c62a5e82"
+    },
+    {
+      "path": "Assets/Scripts/Game/Appearance/AppearanceClient.cs",
+      "sha256": "02c8053a25c8b69d1f27ed84efba75d5a7341a17a3c3b12b3c17a632ecbeef88"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/AppearanceUiArt.cs",
+      "sha256": "4ba002c9bb2e4831cd034e98447abf2300f6cc4049e839a1b5294e1fe8c4c5a4"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/AppearanceUiRoot.cs",
+      "sha256": "e72b59405500f5ec39e20f1eb8c2910383c613eb12a6f0b3adab5272594ee182"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/AppearanceUiRoot.Reading.cs",
+      "sha256": "13fc5b926c4fb671872c01c6206420a97b6e5841a1e9fc370769512882e4abdb"
+    },
+    {
+      "path": "Assets/Scripts/UI/Ugui/Gameplay/AppearanceUiRoot.Layout.cs",
+      "sha256": "6629d86a46b5f06029ff6d72f90cb62ec01a84ab27624933a798d8b65f200789"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Role/AppearanceClientTests.cs",
+      "sha256": "7c6c265e7f6169b5d260cd5a5cea8a78dd28c31dc84417a63932a3fe65b46c19"
+    },
+    {
+      "path": "tools/tests/appearance_chronicle/Program.cs",
+      "sha256": "bf0b49ceb06d360d4db34206397b3beab32252dd0c60ceff0f31ea4cc581acba"
+    }
+  ]
+}

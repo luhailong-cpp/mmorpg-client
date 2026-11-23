@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "projectPath": "D:\\work\\mmorpg-client",
+  "compiler": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\Roslyn\\bincore\\csc.dll",
+  "unityRoot": "D:\\Unity\\Hub\\Editor\\6000.6.0f1",
+  "sourceCount": 584,
+  "referenceSource": "fallback rsp (270 refs)",
+  "missingReferences": [
+    "C:\\Program Files\\Unity\\Hub\\Editor\\6000.5.8f1\\Editor\\Data\\Managed\\UnityEngine\\UnityEngine.SharedInternalsModule.dll"
+  ],
+  "exitCode": 0,
+  "errorCount": 0,
+  "responseFile": "D:\\work\\mmorpg-client\\Docs\\VerificationEvidence\\appearance-chronicle-team-20261123\\runtime\\run-18556-bbd96fe4d9d44b0bb0b78124b804ab39\\poll.rsp",
+  "assembly": "D:\\work\\mmorpg-client\\Docs\\VerificationEvidence\\appearance-chronicle-team-20261123\\runtime\\run-18556-bbd96fe4d9d44b0bb0b78124b804ab39\\check.dll",
+  "startedUtc": "2026-11-23T15:15:25.1129687+00:00",
+  "finishedUtc": "2026-11-23T15:15:39.0740177+00:00"
+}
