@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_UNAVAILABLE",
+  "requestedMapIds": [
+    "05000",
+    "01007",
+    "16001",
+    "29000",
+    "02000",
+    "17100",
+    "29005",
+    "03000",
+    "18000",
+    "30000",
+    "04000",
+    "19002",
+    "33009",
+    "07000",
+    "19003",
+    "34000",
+    "07001",
+    "20000",
+    "36000",
+    "08000",
+    "21002",
+    "38000",
+    "08001",
+    "22001",
+    "39001",
+    "09000",
+    "23000",
+    "39006",
+    "11005",
+    "23007",
+    "40140",
+    "12000",
+    "27001",
+    "41049",
+    "13000",
+    "28002",
+    "41081",
+    "15000",
+    "50024",
+    "70001"
+  ],
+  "maps": [
+    {
+      "mapId": "29005",
+      "reason": {
+        "code": "NO_STATIC_BACKGROUND_BRANCH",
+        "infoHeaderCount": 1,
+        "variants": []
+      }
+    },
+    {
+      "mapId": "11005",
+      "reason": {
+        "code": "NO_AUDITED_COMPLETE_STATIC_BACKGROUND",
+        "infoHeaderCount": 2,
+        "variants": [
+          {
+            "branch": "gbits",
+            "expectedCoordinates": 272,
+            "qualifiedCoordinates": 16,
+            "missingCoordinates": 256,
+            "irregularTiles": 0,
+            "decodeErrors": 0
+          }
+        ]
+      }
+    },
+    {
+      "mapId": "41049",
+      "reason": {
+        "code": "NO_STATIC_BACKGROUND_BRANCH",
+        "infoHeaderCount": 1,
+        "variants": []
+      }
+    },
+    {
+      "mapId": "50024",
+      "reason": {
+        "code": "NO_INFO_MAP_VIEWPORT_PROOF",
+        "candidate": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/50024/source-evidence.json"
+      }
+    }
+  ]
+}

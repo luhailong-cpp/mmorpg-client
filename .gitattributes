@@ -22,3 +22,8 @@ Assets/Resources/World/CurrentMaps20261009/**/walkmask.txt -text
 /Docs/ServerFestivalMapsHandoff20261107.md -text whitespace=cr-at-eol
 # Nested patch context lines retain their required leading space.
 /Docs/VerificationEvidence/festival-maps-20261107/server-existing-map-changes.patch -text whitespace=-blank-at-eol,cr-at-eol
+# PC original static background preview catalogs, manifests and receipts use exact SHA-256 bindings.
+/Assets/Resources/World/PcOriginalPreview20261123/**/*.json -text
+/Assets/Resources/World/PcOriginalPreview20261123/**/*.meta -text
+/Assets/Resources/World/PcOriginalPreview20261123.meta -text
+/Docs/VerificationEvidence/pc-original-static-backgrounds-20261123/**/*.json -text

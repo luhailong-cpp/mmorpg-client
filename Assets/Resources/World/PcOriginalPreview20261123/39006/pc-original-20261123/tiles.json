@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "mapId": "39006",
+  "numericMapId": 39006,
+  "revision": "pc-original-20261123",
+  "artStage": "pc_original_static_back",
+  "nativeWidth": 2400,
+  "nativeHeight": 1800,
+  "tileSize": 1024,
+  "columns": 3,
+  "rows": 2,
+  "hasAlpha": false,
+  "tileFormat": "jpg_q90_native_1024_grid",
+  "resampled": false,
+  "resourceRoot": "World/PcOriginalPreview20261123/39006/pc-original-20261123/",
+  "sourceNativeSha256": "5e2bef829124bad6e6ef05f0eb3be8097ae98179e46013531eb6c20faaa4b689",
+  "tiles": [
+    {
+      "row": 1,
+      "column": 1,
+      "x": 0,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/39006/pc-original-20261123/tiles/r01_c01",
+      "fileExtension": ".jpg",
+      "bytes": 203980,
+      "sha256": "7a8548a67f756a47cde75c107c3741ea62c53d250369cfdbd66051fb04731981"
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "x": 1024,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/39006/pc-original-20261123/tiles/r01_c02",
+      "fileExtension": ".jpg",
+      "bytes": 217309,
+      "sha256": "552f63bc2f7d40873343e471cbf02177f91702726b9c24ebf8a46977d5eee8da"
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "x": 2048,
+      "y": 0,
+      "width": 352,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/39006/pc-original-20261123/tiles/r01_c03",
+      "fileExtension": ".jpg",
+      "bytes": 43914,
+      "sha256": "7b5ae76f6e40f04b7995c7b42e6ce50a8308dfb40adf11013264b54c0d4721b2"
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "x": 0,
+      "y": 1024,
+      "width": 1024,
+      "height": 776,
+      "resourcePath": "World/PcOriginalPreview20261123/39006/pc-original-20261123/tiles/r02_c01",
+      "fileExtension": ".jpg",
+      "bytes": 155329,
+      "sha256": "d5394a127e69c81ba1d001355a8d04517b3c45f1ee54e7e29bffc9b20efec7f1"
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "x": 1024,
+      "y": 1024,
+      "width": 1024,
+      "height": 776,
+      "resourcePath": "World/PcOriginalPreview20261123/39006/pc-original-20261123/tiles/r02_c02",
+      "fileExtension": ".jpg",
+      "bytes": 163707,
+      "sha256": "42bfa27cd63db39f6128dc39e250d0bae9fda703d96656d3d4a1c05d4bafcc7e"
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "x": 2048,
+      "y": 1024,
+      "width": 352,
+      "height": 776,
+      "resourcePath": "World/PcOriginalPreview20261123/39006/pc-original-20261123/tiles/r02_c03",
+      "fileExtension": ".jpg",
+      "bytes": 40520,
+      "sha256": "391a54b8e1ed0df8602235d809fdb2260d2ed72b40f74564714e64660fed6199"
+    }
+  ]
+}

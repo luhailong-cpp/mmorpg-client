@@ -341,6 +341,7 @@ namespace MmorpgClient.World.Tianyong
             DrawDeliveredAppearanceButtons(116);
             GUI.Label(new Rect(30, 154, 532, 24), "视觉预览（仅看图，未接入导航或联机传送）");
             if (GUI.Button(new Rect(30, 180, 170, 32), "打开美术预览")) OpenVisualPreview(26000, "mid-autumn");
+            if (GUI.Button(new Rect(208, 180, 190, 32), "端游原图预览 (36图)")) OpenPcOriginalPreview("05000");
             GUI.Label(new Rect(30, 245, 532, 50), _deliveryStatus);
         }
 
@@ -370,6 +371,20 @@ namespace MmorpgClient.World.Tianyong
             }
 #else
             _deliveryStatus = "视觉预览仅在开发版可用。";
+#endif
+        }
+
+        private void OpenPcOriginalPreview(string mapId)
+        {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            try { PcOriginalMapPreviewViewer.Open(this, mapId); }
+            catch (System.Exception error)
+            {
+                _deliveryStatus = "端游原图预览无法打开：" + error.Message;
+                Debug.LogError("[PcOriginalMapPreview] " + _deliveryStatus);
+            }
+#else
+            _deliveryStatus = "端游原图预览仅在开发版可用。";
 #endif
         }
 

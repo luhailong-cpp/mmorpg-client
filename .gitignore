@@ -58,6 +58,7 @@ ExportedObj/
 !tools/tests/map_delivery_contract/MapDeliveryContract.csproj
 !tools/tests/map_runtime_transition/MapRuntimeTransition.csproj
 !tools/tests/festival_map_delivery/FestivalMapDelivery.csproj
+!tools/tests/pc_original_map_preview/PcOriginalMapPreviewTests.csproj
 *.unityproj
 *.sln
 *.slnx

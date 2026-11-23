@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "kind": "PC_ORIGINAL_STATIC_BACK_VERIFIED_SPECIAL_BRANCH",
+  "mapId": "15000",
+  "branch": "gbits",
+  "sourceStatus": "ready_static_back",
+  "native": {
+    "path": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/15000/15000-gbits-static-background-native.png",
+    "sha256": "b768e518d2e340f6d44e007fe346eab42c16935ab57c5363674c974745d6fa81",
+    "bytes": 9801376,
+    "pixels": [
+      1920,
+      2298
+    ]
+  },
+  "sourceContainer": {
+    "path": "C:/Users/luyua/Downloads/asktao_full_1.821.261010_gy/asktao/client.dbfs",
+    "bytes": 4626188288,
+    "mtimeNS": 1791632104217232900,
+    "sha256": "724b3f9b1018951ac21d502a798d54b1b86d0a04250f01e1524add33525dc07f"
+  },
+  "inventory": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/ALL-CLIENT-MAPS.json",
+    "sha256": "aea68ee584925b52a3c58a50eeef8f36b60d774bd05d8ebedc63b5389fe8d7db"
+  },
+  "originManifest": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/client-full-reference-on-demand/15000/gbits-alpha-bottom-origin-v002/15000-gbits-static-background-manifest.json",
+    "sha256": "441f0cc640a286d6f1f3db49f5cc47b3f4640e5a3a86e3d2cabbee425e7af1c4"
+  },
+  "finalNativeByteVerification": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/client-full-reference-on-demand/15000/audit-lzss-v001/final-native-byte-verification.json",
+    "sha256": "4cf294bf3fc14b3649ca53708f987cb8fe00d16c2633935631b4841a7ad0d9ab"
+  },
+  "visualReview": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/client-full-reference-on-demand/15000/gbits-alpha-bottom-origin-v002/15000-gbits-static-background-visual-review-v001.json",
+    "sha256": "db64e8f8fc7d9a01fb42892f66cb02b5888487b7f237253acecd416ad55ea676",
+    "accepted": true
+  },
+  "sourceArtifact": null,
+  "defaultBranchConfirmed": false,
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "resampled": false
+}

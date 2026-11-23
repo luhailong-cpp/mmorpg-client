@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "PC_ORIGINAL_STATIC_BACK_LOCAL_PREVIEW_SOURCE",
+  "mapId": "08000",
+  "name": "轩辕庙",
+  "branch": "gbits",
+  "method": "verified_existing_native_png_copied",
+  "native": {
+    "path": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/08000/08000-gbits-static-background-native.png",
+    "sha256": "eaa9880647743c4675794b3bf7ebc09dd579de4b89532ecd849f2e1786227c35",
+    "bytes": 83635266,
+    "pixels": [
+      8000,
+      6000
+    ]
+  },
+  "sourceContainer": {
+    "path": "C:/Users/luyua/Downloads/asktao_full_1.821.261010_gy/asktao/client.dbfs",
+    "bytes": 4626188288,
+    "mtimeNS": 1791632104217232900,
+    "sha256": "724b3f9b1018951ac21d502a798d54b1b86d0a04250f01e1524add33525dc07f"
+  },
+  "inventory": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/ALL-CLIENT-MAPS.json",
+    "sha256": "aea68ee584925b52a3c58a50eeef8f36b60d774bd05d8ebedc63b5389fe8d7db"
+  },
+  "recordIndex": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/all-client-resource-records.json",
+    "sha256": "e2435691b20092b4c57d81d96f35b53339018e4e88eacd52a92ad46e055d6291"
+  },
+  "originManifest": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/client-full-reference/08000-arid-cliff-terraces-manifest.json",
+    "sha256": "93e9b7906ecfe7caa640c68355748bcc2f6105c68ae92ba00ae32ea50fe0b882"
+  },
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "runtimeBranchSelectionProved": false,
+  "resampled": false
+}

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_NONDEFAULT_CANDIDATES",
+  "requestedMapIds": [
+    "05000",
+    "01007",
+    "16001",
+    "29000",
+    "02000",
+    "17100",
+    "29005",
+    "03000",
+    "18000",
+    "30000",
+    "04000",
+    "19002",
+    "33009",
+    "07000",
+    "19003",
+    "34000",
+    "07001",
+    "20000",
+    "36000",
+    "08000",
+    "21002",
+    "38000",
+    "08001",
+    "22001",
+    "39001",
+    "09000",
+    "23000",
+    "39006",
+    "11005",
+    "23007",
+    "40140",
+    "12000",
+    "27001",
+    "41049",
+    "13000",
+    "28002",
+    "41081",
+    "15000",
+    "50024",
+    "70001"
+  ],
+  "maps": [
+    {
+      "mapId": "15000",
+      "branch": "gbits_jdhj",
+      "sourceStatus": "source_valid_visual_hold",
+      "defaultBranchUnconfirmed": true,
+      "native": {
+        "path": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/15000/15000-gbits_jdhj-static-background-native.png",
+        "sha256": "85ef8dc7c225828984204c2a460bf3e7b10da1dcffde520b4958dacbc7c1700a",
+        "bytes": 96796200,
+        "pixels": [
+          8000,
+          8000
+        ]
+      },
+      "sourceManifest": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/15000/highres-hold-source-evidence.json"
+    },
+    {
+      "mapId": "50024",
+      "branch": "gbits",
+      "sourceStatus": "viewport_unconfirmed",
+      "native": {
+        "path": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/50024/50024-gbits-static-background-native-rgba.png",
+        "sha256": "51993d2f608708f20aad23f7cfbbedb3fa16d141c141eeb6deaec33d3096ded9",
+        "bytes": 19695257,
+        "pixels": [
+          4000,
+          3000
+        ]
+      },
+      "sourceManifest": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/50024/source-evidence.json",
+      "observedBackExtent": [
+        4000,
+        3000
+      ],
+      "gameMAPViewportConfirmed": false
+    }
+  ]
+}

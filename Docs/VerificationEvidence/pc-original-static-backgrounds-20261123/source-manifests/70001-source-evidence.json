@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "PC_ORIGINAL_STATIC_BACK_LOCAL_PREVIEW_SOURCE",
+  "mapId": "70001",
+  "name": "地图 70001",
+  "branch": "gbits",
+  "method": "verified_existing_native_png_copied",
+  "native": {
+    "path": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/70001/70001-gbits-static-background-native-rgba.png",
+    "sha256": "448eb72b099c080cc4054703d14cd6ee53df664601c7a1774624ab2af73fe78f",
+    "bytes": 3996568,
+    "pixels": [
+      1920,
+      1286
+    ]
+  },
+  "sourceContainer": {
+    "path": "C:/Users/luyua/Downloads/asktao_full_1.821.261010_gy/asktao/client.dbfs",
+    "bytes": 4626188288,
+    "mtimeNS": 1791632104217232900,
+    "sha256": "724b3f9b1018951ac21d502a798d54b1b86d0a04250f01e1524add33525dc07f"
+  },
+  "inventory": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/ALL-CLIENT-MAPS.json",
+    "sha256": "aea68ee584925b52a3c58a50eeef8f36b60d774bd05d8ebedc63b5389fe8d7db"
+  },
+  "recordIndex": {
+    "path": "D:/work/image/docs/MAP_UNIFIED_COORDINATION_20261028/human-client-map-original-proportion-8x8-1024-20261102/all-client-resource-records.json",
+    "sha256": "e2435691b20092b4c57d81d96f35b53339018e4e88eacd52a92ad46e055d6291"
+  },
+  "originManifest": {
+    "path": "D:/work/image/.codex-artifacts/pc-original-static-backgrounds-20261123/70001/70001-gbits-static-background-manifest.json",
+    "sha256": "312c8122b88ca2a2e970c1bd95dd1164a08fb8d4f76a4a52a3d3149ebeb31873"
+  },
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "runtimeBranchSelectionProved": false,
+  "resampled": false
+}
