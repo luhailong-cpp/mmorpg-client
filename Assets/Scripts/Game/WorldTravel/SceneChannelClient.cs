@@ -151,6 +151,10 @@ namespace MmorpgClient.Game.WorldTravel
         /// <summary>最近一次收到的本区大世界地图热度与灵潮总览；未请求或断线后为 null。</summary>
         public WorldMapOverviewSnapshot Overview { get; private set; }
         public bool HasOverview => Overview != null;
+        /// <summary>最近一次收到总览时的本地单调时钟秒数；未收到或断线后为 0。</summary>
+        public float OverviewReceivedAt { get; private set; }
+        /// <summary>距离最近一次收到世界地图总览已过去多少秒（与内部时钟同源，供灵潮倒计时估算用）。</summary>
+        public float OverviewAgeSeconds => HasOverview ? Math.Max(0f, _clock() - OverviewReceivedAt) : 0f;
         /// <summary>
         /// 当前场景有没有「分线」这回事。false = 副本 / 镜像(入场通知或 31 里的场景信息带着镜像 / 副本配置号):
         /// 服务端对这类场景永远不带目录,所以不列线(<see cref="RequestList"/> 直接返回 false、进场也不拉),
@@ -652,6 +656,7 @@ namespace MmorpgClient.Game.WorldTravel
             if (message.WorldMapOverview != null)
             {
                 Overview = WorldMapOverviewModels.FromProto(message.WorldMapOverview);
+                OverviewReceivedAt = _clock();
             }
             // 列线有了答复(带不带目录都算):之前的「获取不到」与本地拒绝提示不再成立,没有目录时界面按
             // HasDirectory == false 自己说明;留着的切线失败文案按它的寿命复核。
@@ -702,6 +707,7 @@ namespace MmorpgClient.Game.WorldTravel
             ++_generation;
             ClearDirectory();
             Overview = null;
+            OverviewReceivedAt = 0f;
             _overviewRequested = false;
             // 新会话在哪个场景还不知道,等入场通知。
             DirectoryApplicable = true;

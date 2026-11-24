@@ -137,7 +137,7 @@ public static partial class BattleDataReflection {
           "LkJhdHRsZUN1cnJlbmN5R2FpbhISCgppdGVtX2RyYXdzGAUgASgNEi0KDHJh",
           "bmRvbV9pdGVtcxgGIAMoCzIXLkJhdHRsZVJhbmRvbUl0ZW1SZXdhcmQiPAoS",
           "QmF0dGxlUmV3YXJkQ29uZmlnEiYKCHByb2ZpbGVzGAEgAygLMhQuQmF0dGxl",
-          "UmV3YXJkUHJvZmlsZSKRBQoUQmF0dGxlU2V0dGxlbWVudERhdGESEQoJYmF0",
+          "UmV3YXJkUHJvZmlsZSLABQoUQmF0dGxlU2V0dGxlbWVudERhdGESEQoJYmF0",
           "dGxlX2lkGAEgASgEEhEKCXBsYXllcl9pZBgCIAEoBBIgCgdvdXRjb21lGAMg",
           "ASgOMg8uZUJhdHRsZU91dGNvbWUSGQoRcGxheWVyX3RlYW1faW5kZXgYBCAB",
           "KA0SDgoGaGVhbHRoGAUgASgEEgwKBG1hbmEYBiABKAQSEAoIZXhwX2dhaW4Y",
@@ -151,61 +151,81 @@ public static partial class BattleDataReflection {
           "KAQSEgoKbWF0Y2hfbW9kZRgSIAEoDRIYChBiYXR0bGVfY29uZmlnX2lkGBMg",
           "ASgNEh4KFmNhcHR1cmVkX3BldF90YWJsZV9pZHMYFCADKA0SGgoSY29tcGV0",
           "aXRpdmVfcmFua2VkGBUgASgIEhEKCXNlYXNvbl9pZBgWIAEoDRIbChNyYW5r",
-          "ZWRfcnVsZV92ZXJzaW9uGBcgASgNEhQKDHBhcnRpY2lwYXRlZBgYIAEoCCJY",
-          "ChdCYXR0bGVQZXRTZXR0bGVtZW50RGF0YRIOCgZwZXRfaWQYASABKAQSDgoG",
-          "aGVhbHRoGAIgASgEEgwKBG1hbmEYAyABKAQSDwoHaXNfZGVhZBgEIAEoCCLI",
-          "AQoVQmF0dGxlQWN0aXZpdHlDb250ZXh0EiIKBGtpbmQYASABKA4yFC5lQmF0",
-          "dGxlQWN0aXZpdHlLaW5kEhAKCGd1aWxkX2lkGAIgASgEEhMKC2FjdGl2aXR5",
-          "X2lkGAMgASgNEhIKCnBlcmlvZF9rZXkYBCABKA0SGwoTaW5pdGlhdG9yX3Bs",
-          "YXllcl9pZBgFIAEoBBIYChBndWlsZF9wZXJpb2Rfa2V5GAYgASgNEhkKEWxh",
-          "dW5jaF9yZXF1ZXN0X2lkGAcgASgEIksKFVJhbmtlZFByZXNldFNlbGVjdGlv",
-          "bhIbChNjaGFyYWN0ZXJfcHJlc2V0X2lkGAEgASgNEhUKDXBldF9wcmVzZXRf",
-          "aWQYAiABKA0iUQoTUmFua2VkTWVtYmVyTG9hZG91dBIRCglwbGF5ZXJfaWQY",
-          "ASABKAQSJwoHcHJlc2V0cxgCIAEoCzIWLlJhbmtlZFByZXNldFNlbGVjdGlv",
-          "biLAAQoSUmFua2VkTWF0Y2hDb250ZXh0EhEKCXNlYXNvbl9pZBgBIAEoDRIS",
-          "CgpzZWFzb25fa2V5GAIgASgJEhcKD3JhbmtfZ2VuZXJhdGlvbhgDIAEoBBIU",
-          "CgxydWxlX3ZlcnNpb24YBCABKA0SEQoJdGVhbV9zaXplGAUgASgNEhoKEmNv",
-          "bmZpZ19maW5nZXJwcmludBgGIAEoCRIlCgdtZW1iZXJzGAcgAygLMhQuUmFu",
-          "a2VkTWVtYmVyTG9hZG91dCKgAQoXQmF0dGxlUGFydGljaXBhdGlvbkZhY3QS",
-          "EQoJcGxheWVyX2lkGAEgASgEEhQKDGVudGVyZWRfcm9vbRgCIAEoCBIeChZt",
-          "YW51YWxfYWN0aW9uX2FjY2VwdGVkGAMgASgIEh0KFWV4cGxpY2l0X2F1dG9f",
-          "ZW5hYmxlZBgEIAEoCBIdChVub19hY3Rpb25fb3Bwb3J0dW5pdHkYBSABKAgq",
-          "hgEKEGVCYXR0bGVBY3RvclR5cGUSGgoWQkFUVExFX0FDVE9SX1RZUEVfTk9O",
-          "RRAAEhwKGEJBVFRMRV9BQ1RPUl9UWVBFX1BMQVlFUhABEh0KGUJBVFRMRV9B",
-          "Q1RPUl9UWVBFX01PTlNURVIQAhIZChVCQVRUTEVfQUNUT1JfVFlQRV9QRVQQ",
-          "AyrhAQoRZUJhdHRsZUFjdGlvblR5cGUSFgoSQkFUVExFX0FDVElPTl9OT05F",
-          "EAASGAoUQkFUVExFX0FDVElPTl9BVFRBQ0sQARIXChNCQVRUTEVfQUNUSU9O",
-          "X1NLSUxMEAISGAoUQkFUVExFX0FDVElPTl9ERUZFTkQQAxIWChJCQVRUTEVf",
-          "QUNUSU9OX0lURU0QBBIWChJCQVRUTEVfQUNUSU9OX0ZMRUUQBRIZChVCQVRU",
-          "TEVfQUNUSU9OX0NBUFRVUkUQBhIcChhCQVRUTEVfQUNUSU9OX1JFQ0FMTF9Q",
-          "RVQQByq/BAoQZUJhdHRsZUV2ZW50VHlwZRIVChFCQVRUTEVfRVZFTlRfTk9O",
-          "RRAAEhcKE0JBVFRMRV9FVkVOVF9BVFRBQ0sQARIWChJCQVRUTEVfRVZFTlRf",
-          "U0tJTEwQAhIXChNCQVRUTEVfRVZFTlRfREFNQUdFEAMSFQoRQkFUVExFX0VW",
-          "RU5UX0hFQUwQBBIZChVCQVRUTEVfRVZFTlRfQlVGRl9BREQQBRIcChhCQVRU",
-          "TEVfRVZFTlRfQlVGRl9SRU1PVkUQBhIaChZCQVRUTEVfRVZFTlRfQlVGRl9U",
-          "SUNLEAcSFgoSQkFUVExFX0VWRU5UX0RFQVRIEAgSFwoTQkFUVExFX0VWRU5U",
-          "X0RFRkVORBAJEhUKEUJBVFRMRV9FVkVOVF9JVEVNEAoSFQoRQkFUVExFX0VW",
-          "RU5UX0ZMRUUQCxIVChFCQVRUTEVfRVZFTlRfTUlTUxAMEhYKEkJBVFRMRV9F",
-          "VkVOVF9CTE9DSxANEhUKEUJBVFRMRV9FVkVOVF9NQU5BEA4SFwoTQkFUVExF",
-          "X0VWRU5UX1JFU0lTVBAPEhgKFEJBVFRMRV9FVkVOVF9DQVBUVVJFEBASFwoT",
-          "QkFUVExFX0VWRU5UX1JFVklWRRAREhsKF0JBVFRMRV9FVkVOVF9NQVhfSEVB",
-          "TFRIEBISHAoYQkFUVExFX0VWRU5UX1BFVF9SRVRSRUFUEBMSFwoTQkFUVExF",
-          "X0VWRU5UX1NISUVMRBAUEhkKFUJBVFRMRV9FVkVOVF9BUlRJRkFDVBAVKpwB",
-          "Cg5lQmF0dGxlSGl0S2luZBIVChFCQVRUTEVfSElUX05PUk1BTBAAEhQKEEJB",
-          "VFRMRV9ISVRfQ09NQk8QARIWChJCQVRUTEVfSElUX0NPVU5URVIQAhIWChJC",
-          "QVRUTEVfSElUX1JFRkxFQ1QQAxIWChJCQVRUTEVfSElUX1BVUlNVSVQQBBIV",
-          "ChFCQVRUTEVfSElUX01JUlJPUhAFKpwBCg5lQmF0dGxlT3V0Y29tZRIaChZC",
-          "QVRUTEVfT1VUQ09NRV9PTkdPSU5HEAASHQoZQkFUVExFX09VVENPTUVfU0lE",
-          "RV9BX1dJThABEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQl9XSU4QAhIXChNC",
-          "QVRUTEVfT1VUQ09NRV9EUkFXEAMSFwoTQkFUVExFX09VVENPTUVfVk9JRBAE",
-          "KloKE2VCYXR0bGVBY3Rpdml0eUtpbmQSHQoZQkFUVExFX0FDVElWSVRZX0tJ",
-          "TkRfTk9ORRAAEiQKIEJBVFRMRV9BQ1RJVklUWV9LSU5EX0dVSUxEX1RSSUFM",
-          "EAEqewoTZVNwZWN0YXRlVmlzaWJpbGl0eRIjCh9TUEVDVEFURV9WSVNJQklM",
-          "SVRZX1VOU1BFQ0lGSUVEEAASHwobU1BFQ1RBVEVfVklTSUJJTElUWV9QUklW",
-          "QVRFEAESHgoaU1BFQ1RBVEVfVklTSUJJTElUWV9QVUJMSUMQAipfCg1lU3Bl",
-          "Y3RhdGVUaWVyEhgKFFNQRUNUQVRFX1RJRVJfRElSRUNUEAASFwoTU1BFQ1RB",
-          "VEVfVElFUl9SRUxBWRABEhsKF1NQRUNUQVRFX1RJRVJfQlJPQURDQVNUEAJC",
-          "CFoGYmF0dGxlYgZwcm90bzM="));
+          "ZWRfcnVsZV92ZXJzaW9uGBcgASgNEhQKDHBhcnRpY2lwYXRlZBgYIAEoCBIt",
+          "Cgt0cmlhbF9mYWN0cxgZIAEoCzIYLkJhdHRsZVRyaWFsSm91cm5hbEZhY3Rz",
+          "IlgKF0JhdHRsZVBldFNldHRsZW1lbnREYXRhEg4KBnBldF9pZBgBIAEoBBIO",
+          "CgZoZWFsdGgYAiABKAQSDAoEbWFuYRgDIAEoBBIPCgdpc19kZWFkGAQgASgI",
+          "IsgBChVCYXR0bGVBY3Rpdml0eUNvbnRleHQSIgoEa2luZBgBIAEoDjIULmVC",
+          "YXR0bGVBY3Rpdml0eUtpbmQSEAoIZ3VpbGRfaWQYAiABKAQSEwoLYWN0aXZp",
+          "dHlfaWQYAyABKA0SEgoKcGVyaW9kX2tleRgEIAEoDRIbChNpbml0aWF0b3Jf",
+          "cGxheWVyX2lkGAUgASgEEhgKEGd1aWxkX3BlcmlvZF9rZXkYBiABKA0SGQoR",
+          "bGF1bmNoX3JlcXVlc3RfaWQYByABKAQiSwoVUmFua2VkUHJlc2V0U2VsZWN0",
+          "aW9uEhsKE2NoYXJhY3Rlcl9wcmVzZXRfaWQYASABKA0SFQoNcGV0X3ByZXNl",
+          "dF9pZBgCIAEoDSJRChNSYW5rZWRNZW1iZXJMb2Fkb3V0EhEKCXBsYXllcl9p",
+          "ZBgBIAEoBBInCgdwcmVzZXRzGAIgASgLMhYuUmFua2VkUHJlc2V0U2VsZWN0",
+          "aW9uIsABChJSYW5rZWRNYXRjaENvbnRleHQSEQoJc2Vhc29uX2lkGAEgASgN",
+          "EhIKCnNlYXNvbl9rZXkYAiABKAkSFwoPcmFua19nZW5lcmF0aW9uGAMgASgE",
+          "EhQKDHJ1bGVfdmVyc2lvbhgEIAEoDRIRCgl0ZWFtX3NpemUYBSABKA0SGgoS",
+          "Y29uZmlnX2ZpbmdlcnByaW50GAYgASgJEiUKB21lbWJlcnMYByADKAsyFC5S",
+          "YW5rZWRNZW1iZXJMb2Fkb3V0IqABChdCYXR0bGVQYXJ0aWNpcGF0aW9uRmFj",
+          "dBIRCglwbGF5ZXJfaWQYASABKAQSFAoMZW50ZXJlZF9yb29tGAIgASgIEh4K",
+          "Fm1hbnVhbF9hY3Rpb25fYWNjZXB0ZWQYAyABKAgSHQoVZXhwbGljaXRfYXV0",
+          "b19lbmFibGVkGAQgASgIEh0KFW5vX2FjdGlvbl9vcHBvcnR1bml0eRgFIAEo",
+          "CCKbAQoSVHJpYWxCYXR0bGVDb250ZXh0EhgKEGpvdXJuYWxfZW50cnlfaWQY",
+          "ASABKA0SGgoSdHJpYWxfcnVsZV92ZXJzaW9uGAIgASgNEhEKCXNlYXNvbl9p",
+          "ZBgDIAEoDRIeChZndWFyZF9tb25zdGVyX3RhYmxlX2lkGAQgASgNEhwKFGd1",
+          "YXJkX3N0YW5jZV9idWZmX2lkGAUgASgNIqkFChdCYXR0bGVUcmlhbEpvdXJu",
+          "YWxGYWN0cxIYChBqb3VybmFsX2VudHJ5X2lkGAEgASgNEhoKEnRyaWFsX3J1",
+          "bGVfdmVyc2lvbhgCIAEoDRIbChNpbml0aWFsX2h1bWFuX2NvdW50GAMgASgN",
+          "EhEKCXNlYXNvbl9pZBgEIAEoDRIdChVzZWxmX29yX3BldF9ldmVyX2RpZWQY",
+          "BSABKAgSHQoVYm9zc19ndWFyZF9oZWFsX3RvdGFsGAYgASgEEh4KFmd1YXJk",
+          "X3N0YW5jZV9kaXNwZWxsZWQYByABKAgSKQohdGVhbV9kZWFsdF9waHlzaWNh",
+          "bF9kaXJlY3RfZGFtYWdlGAggASgIEiYKHnRlYW1fZGVhbHRfbWFnaWNfZGly",
+          "ZWN0X2RhbWFnZRgJIAEoCBIWCg5ndWFyZF9zdXJ2aXZlZBgKIAEoCBIjChtz",
+          "ZWxmX3RyaWdnZXJlZF9zaGllbGRfYnJlYWsYCyABKAgSMworc2VsZl90cmln",
+          "Z2VyZWRfYW50aV9jb250cm9sX29yX3NlYXNvbl9za2lsbBgMIAEoCBIZChF1",
+          "c2VkX3BldF90YWJsZV9pZBgNIAEoDRIgChh1c2VkX2FydGlmYWN0X2VmZmVj",
+          "dF9pZHMYDiADKA0SGwoTdXNlZF9zZWFzb25fc2VhbF9pZBgPIAEoDRIWCg50",
+          "ZWFtbWF0ZV9uYW1lcxgQIAMoCRInCh9ib3NzX3dpbmRfaGl0X3VucHJvdGVj",
+          "dGVkX2RlYXRoGBEgASgIEicKH2RlYWx0X3lhbmdfYmVsbF9waHlzaWNhbF9k",
+          "YW1hZ2UYEiABKAgSIwobZGVhbHRfeWluX2RydW1fbWFnaWNfZGFtYWdlGBMg",
+          "ASgIEhwKFGZpbmlzaGVkX2luX2ViYl90aWRlGBQgASgIKoYBChBlQmF0dGxl",
+          "QWN0b3JUeXBlEhoKFkJBVFRMRV9BQ1RPUl9UWVBFX05PTkUQABIcChhCQVRU",
+          "TEVfQUNUT1JfVFlQRV9QTEFZRVIQARIdChlCQVRUTEVfQUNUT1JfVFlQRV9N",
+          "T05TVEVSEAISGQoVQkFUVExFX0FDVE9SX1RZUEVfUEVUEAMq4QEKEWVCYXR0",
+          "bGVBY3Rpb25UeXBlEhYKEkJBVFRMRV9BQ1RJT05fTk9ORRAAEhgKFEJBVFRM",
+          "RV9BQ1RJT05fQVRUQUNLEAESFwoTQkFUVExFX0FDVElPTl9TS0lMTBACEhgK",
+          "FEJBVFRMRV9BQ1RJT05fREVGRU5EEAMSFgoSQkFUVExFX0FDVElPTl9JVEVN",
+          "EAQSFgoSQkFUVExFX0FDVElPTl9GTEVFEAUSGQoVQkFUVExFX0FDVElPTl9D",
+          "QVBUVVJFEAYSHAoYQkFUVExFX0FDVElPTl9SRUNBTExfUEVUEAcqvwQKEGVC",
+          "YXR0bGVFdmVudFR5cGUSFQoRQkFUVExFX0VWRU5UX05PTkUQABIXChNCQVRU",
+          "TEVfRVZFTlRfQVRUQUNLEAESFgoSQkFUVExFX0VWRU5UX1NLSUxMEAISFwoT",
+          "QkFUVExFX0VWRU5UX0RBTUFHRRADEhUKEUJBVFRMRV9FVkVOVF9IRUFMEAQS",
+          "GQoVQkFUVExFX0VWRU5UX0JVRkZfQUREEAUSHAoYQkFUVExFX0VWRU5UX0JV",
+          "RkZfUkVNT1ZFEAYSGgoWQkFUVExFX0VWRU5UX0JVRkZfVElDSxAHEhYKEkJB",
+          "VFRMRV9FVkVOVF9ERUFUSBAIEhcKE0JBVFRMRV9FVkVOVF9ERUZFTkQQCRIV",
+          "ChFCQVRUTEVfRVZFTlRfSVRFTRAKEhUKEUJBVFRMRV9FVkVOVF9GTEVFEAsS",
+          "FQoRQkFUVExFX0VWRU5UX01JU1MQDBIWChJCQVRUTEVfRVZFTlRfQkxPQ0sQ",
+          "DRIVChFCQVRUTEVfRVZFTlRfTUFOQRAOEhcKE0JBVFRMRV9FVkVOVF9SRVNJ",
+          "U1QQDxIYChRCQVRUTEVfRVZFTlRfQ0FQVFVSRRAQEhcKE0JBVFRMRV9FVkVO",
+          "VF9SRVZJVkUQERIbChdCQVRUTEVfRVZFTlRfTUFYX0hFQUxUSBASEhwKGEJB",
+          "VFRMRV9FVkVOVF9QRVRfUkVUUkVBVBATEhcKE0JBVFRMRV9FVkVOVF9TSElF",
+          "TEQQFBIZChVCQVRUTEVfRVZFTlRfQVJUSUZBQ1QQFSqcAQoOZUJhdHRsZUhp",
+          "dEtpbmQSFQoRQkFUVExFX0hJVF9OT1JNQUwQABIUChBCQVRUTEVfSElUX0NP",
+          "TUJPEAESFgoSQkFUVExFX0hJVF9DT1VOVEVSEAISFgoSQkFUVExFX0hJVF9S",
+          "RUZMRUNUEAMSFgoSQkFUVExFX0hJVF9QVVJTVUlUEAQSFQoRQkFUVExFX0hJ",
+          "VF9NSVJST1IQBSqcAQoOZUJhdHRsZU91dGNvbWUSGgoWQkFUVExFX09VVENP",
+          "TUVfT05HT0lORxAAEh0KGUJBVFRMRV9PVVRDT01FX1NJREVfQV9XSU4QARId",
+          "ChlCQVRUTEVfT1VUQ09NRV9TSURFX0JfV0lOEAISFwoTQkFUVExFX09VVENP",
+          "TUVfRFJBVxADEhcKE0JBVFRMRV9PVVRDT01FX1ZPSUQQBCpaChNlQmF0dGxl",
+          "QWN0aXZpdHlLaW5kEh0KGUJBVFRMRV9BQ1RJVklUWV9LSU5EX05PTkUQABIk",
+          "CiBCQVRUTEVfQUNUSVZJVFlfS0lORF9HVUlMRF9UUklBTBABKnsKE2VTcGVj",
+          "dGF0ZVZpc2liaWxpdHkSIwofU1BFQ1RBVEVfVklTSUJJTElUWV9VTlNQRUNJ",
+          "RklFRBAAEh8KG1NQRUNUQVRFX1ZJU0lCSUxJVFlfUFJJVkFURRABEh4KGlNQ",
+          "RUNUQVRFX1ZJU0lCSUxJVFlfUFVCTElDEAIqXwoNZVNwZWN0YXRlVGllchIY",
+          "ChRTUEVDVEFURV9USUVSX0RJUkVDVBAAEhcKE1NQRUNUQVRFX1RJRVJfUkVM",
+          "QVkQARIbChdTUEVDVEFURV9USUVSX0JST0FEQ0FTVBACQghaBmJhdHRsZWIG",
+          "cHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ActorCompReflection.Descriptor, global::ActorAttributeStateCompReflection.Descriptor, global::EquipmentEffectsReflection.Descriptor, global::SupportEffectsReflection.Descriptor, global::PetCultivationEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eBattleActorType), typeof(global::eBattleActionType), typeof(global::eBattleEventType), typeof(global::eBattleHitKind), typeof(global::eBattleOutcome), typeof(global::eBattleActivityKind), typeof(global::eSpectateVisibility), typeof(global::eSpectateTier), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -223,13 +243,15 @@ public static partial class BattleDataReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRandomItemReward), global::BattleRandomItemReward.Parser, new[]{ "ItemTableId", "Count", "Weight" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRewardProfile), global::BattleRewardProfile.Parser, new[]{ "BattleConfigId", "StrategyKey", "ExpGain", "Currencies", "ItemDraws", "RandomItems" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleRewardConfig), global::BattleRewardConfig.Parser, new[]{ "Profiles" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters", "CurrencyGains", "FinishedAtMs", "MatchMode", "BattleConfigId", "CapturedPetTableIds", "CompetitiveRanked", "SeasonId", "RankedRuleVersion", "Participated" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleSettlementData), global::BattleSettlementData.Parser, new[]{ "BattleId", "PlayerId", "Outcome", "PlayerTeamIndex", "Health", "Mana", "ExpGain", "GoldGain", "ItemsConsumed", "ItemsGained", "IsDead", "Fled", "TotalRounds", "Pets", "DefeatedMonsters", "CurrencyGains", "FinishedAtMs", "MatchMode", "BattleConfigId", "CapturedPetTableIds", "CompetitiveRanked", "SeasonId", "RankedRuleVersion", "Participated", "TrialFacts" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattlePetSettlementData), global::BattlePetSettlementData.Parser, new[]{ "PetId", "Health", "Mana", "IsDead" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleActivityContext), global::BattleActivityContext.Parser, new[]{ "Kind", "GuildId", "ActivityId", "PeriodKey", "InitiatorPlayerId", "GuildPeriodKey", "LaunchRequestId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RankedPresetSelection), global::RankedPresetSelection.Parser, new[]{ "CharacterPresetId", "PetPresetId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RankedMemberLoadout), global::RankedMemberLoadout.Parser, new[]{ "PlayerId", "Presets" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RankedMatchContext), global::RankedMatchContext.Parser, new[]{ "SeasonId", "SeasonKey", "RankGeneration", "RuleVersion", "TeamSize", "ConfigFingerprint", "Members" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleParticipationFact), global::BattleParticipationFact.Parser, new[]{ "PlayerId", "EnteredRoom", "ManualActionAccepted", "ExplicitAutoEnabled", "NoActionOpportunity" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleParticipationFact), global::BattleParticipationFact.Parser, new[]{ "PlayerId", "EnteredRoom", "ManualActionAccepted", "ExplicitAutoEnabled", "NoActionOpportunity" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TrialBattleContext), global::TrialBattleContext.Parser, new[]{ "JournalEntryId", "TrialRuleVersion", "SeasonId", "GuardMonsterTableId", "GuardStanceBuffId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleTrialJournalFacts), global::BattleTrialJournalFacts.Parser, new[]{ "JournalEntryId", "TrialRuleVersion", "InitialHumanCount", "SeasonId", "SelfOrPetEverDied", "BossGuardHealTotal", "GuardStanceDispelled", "TeamDealtPhysicalDirectDamage", "TeamDealtMagicDirectDamage", "GuardSurvived", "SelfTriggeredShieldBreak", "SelfTriggeredAntiControlOrSeasonSkill", "UsedPetTableId", "UsedArtifactEffectIds", "UsedSeasonSealId", "TeammateNames", "BossWindHitUnprotectedDeath", "DealtYangBellPhysicalDamage", "DealtYinDrumMagicDamage", "FinishedInEbbTide" }, null, null, null, null)
         }));
   }
   #endregion
@@ -8900,6 +8922,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     seasonId_ = other.seasonId_;
     rankedRuleVersion_ = other.rankedRuleVersion_;
     participated_ = other.participated_;
+    trialFacts_ = other.trialFacts_ != null ? other.trialFacts_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -9234,6 +9257,21 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
   }
 
+  /// <summary>Field number for the "trial_facts" field.</summary>
+  public const int TrialFactsFieldNumber = 25;
+  private global::BattleTrialJournalFacts trialFacts_;
+  /// <summary>
+  /// 五行试炼志 V2 权威战法事实与轻量阵容快照(由 battle 引擎在终局前按真实事件冻结,非试炼志关联局留空)。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::BattleTrialJournalFacts TrialFacts {
+    get { return trialFacts_; }
+    set {
+      trialFacts_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -9273,6 +9311,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (SeasonId != other.SeasonId) return false;
     if (RankedRuleVersion != other.RankedRuleVersion) return false;
     if (Participated != other.Participated) return false;
+    if (!object.Equals(TrialFacts, other.TrialFacts)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -9304,6 +9343,7 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
     if (RankedRuleVersion != 0) hash ^= RankedRuleVersion.GetHashCode();
     if (Participated != false) hash ^= Participated.GetHashCode();
+    if (trialFacts_ != null) hash ^= TrialFacts.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -9400,6 +9440,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
       output.WriteRawTag(192, 1);
       output.WriteBool(Participated);
     }
+    if (trialFacts_ != null) {
+      output.WriteRawTag(202, 1);
+      output.WriteMessage(TrialFacts);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -9488,6 +9532,10 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
       output.WriteRawTag(192, 1);
       output.WriteBool(Participated);
     }
+    if (trialFacts_ != null) {
+      output.WriteRawTag(202, 1);
+      output.WriteMessage(TrialFacts);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -9557,6 +9605,9 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
     if (Participated != false) {
       size += 2 + 1;
+    }
+    if (trialFacts_ != null) {
+      size += 2 + pb::CodedOutputStream.ComputeMessageSize(TrialFacts);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -9629,6 +9680,12 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
     }
     if (other.Participated != false) {
       Participated = other.Participated;
+    }
+    if (other.trialFacts_ != null) {
+      if (trialFacts_ == null) {
+        TrialFacts = new global::BattleTrialJournalFacts();
+      }
+      TrialFacts.MergeFrom(other.TrialFacts);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -9746,6 +9803,13 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
           Participated = input.ReadBool();
           break;
         }
+        case 202: {
+          if (trialFacts_ == null) {
+            TrialFacts = new global::BattleTrialJournalFacts();
+          }
+          input.ReadMessage(TrialFacts);
+          break;
+        }
       }
     }
   #endif
@@ -9860,6 +9924,13 @@ public sealed partial class BattleSettlementData : pb::IMessage<BattleSettlement
         }
         case 192: {
           Participated = input.ReadBool();
+          break;
+        }
+        case 202: {
+          if (trialFacts_ == null) {
+            TrialFacts = new global::BattleTrialJournalFacts();
+          }
+          input.ReadMessage(TrialFacts);
           break;
         }
       }
@@ -11896,6 +11967,1299 @@ public sealed partial class BattleParticipationFact : pb::IMessage<BattlePartici
         }
         case 40: {
           NoActionOpportunity = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// ---- 五行试炼志 V2 开局冻结上下文与终局权威事实(docs/design/long-term-progression-v2.md) ----
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class TrialBattleContext : pb::IMessage<TrialBattleContext>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<TrialBattleContext> _parser = new pb::MessageParser<TrialBattleContext>(() => new TrialBattleContext());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<TrialBattleContext> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[21]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TrialBattleContext() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TrialBattleContext(TrialBattleContext other) : this() {
+    journalEntryId_ = other.journalEntryId_;
+    trialRuleVersion_ = other.trialRuleVersion_;
+    seasonId_ = other.seasonId_;
+    guardMonsterTableId_ = other.guardMonsterTableId_;
+    guardStanceBuffId_ = other.guardStanceBuffId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public TrialBattleContext Clone() {
+    return new TrialBattleContext(this);
+  }
+
+  /// <summary>Field number for the "journal_entry_id" field.</summary>
+  public const int JournalEntryIdFieldNumber = 1;
+  private uint journalEntryId_;
+  /// <summary>
+  /// TrialJournalEntry.id（0 = 非试炼志格）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint JournalEntryId {
+    get { return journalEntryId_; }
+    set {
+      journalEntryId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "trial_rule_version" field.</summary>
+  public const int TrialRuleVersionFieldNumber = 2;
+  private uint trialRuleVersion_;
+  /// <summary>
+  /// 开局冻结的可比规则版本
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TrialRuleVersion {
+    get { return trialRuleVersion_; }
+    set {
+      trialRuleVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "season_id" field.</summary>
+  public const int SeasonIdFieldNumber = 3;
+  private uint seasonId_;
+  /// <summary>
+  /// 赛季卷对应赛季号（永久卷为 0）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonId {
+    get { return seasonId_; }
+    set {
+      seasonId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "guard_monster_table_id" field.</summary>
+  public const int GuardMonsterTableIdFieldNumber = 4;
+  private uint guardMonsterTableId_;
+  /// <summary>
+  /// 可选：回春/护势等特殊护卫怪物表 ID（0 = 任意非首领怪物）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint GuardMonsterTableId {
+    get { return guardMonsterTableId_; }
+    set {
+      guardMonsterTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "guard_stance_buff_id" field.</summary>
+  public const int GuardStanceBuffIdFieldNumber = 5;
+  private uint guardStanceBuffId_;
+  /// <summary>
+  /// 可选：护势护卫状态 Buff 表 ID（0 = 任意敌方增益驱散均视为有效驱散）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint GuardStanceBuffId {
+    get { return guardStanceBuffId_; }
+    set {
+      guardStanceBuffId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as TrialBattleContext);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(TrialBattleContext other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (JournalEntryId != other.JournalEntryId) return false;
+    if (TrialRuleVersion != other.TrialRuleVersion) return false;
+    if (SeasonId != other.SeasonId) return false;
+    if (GuardMonsterTableId != other.GuardMonsterTableId) return false;
+    if (GuardStanceBuffId != other.GuardStanceBuffId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (JournalEntryId != 0) hash ^= JournalEntryId.GetHashCode();
+    if (TrialRuleVersion != 0) hash ^= TrialRuleVersion.GetHashCode();
+    if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
+    if (GuardMonsterTableId != 0) hash ^= GuardMonsterTableId.GetHashCode();
+    if (GuardStanceBuffId != 0) hash ^= GuardStanceBuffId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (JournalEntryId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(JournalEntryId);
+    }
+    if (TrialRuleVersion != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TrialRuleVersion);
+    }
+    if (SeasonId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(SeasonId);
+    }
+    if (GuardMonsterTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(GuardMonsterTableId);
+    }
+    if (GuardStanceBuffId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(GuardStanceBuffId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (JournalEntryId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(JournalEntryId);
+    }
+    if (TrialRuleVersion != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TrialRuleVersion);
+    }
+    if (SeasonId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(SeasonId);
+    }
+    if (GuardMonsterTableId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(GuardMonsterTableId);
+    }
+    if (GuardStanceBuffId != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(GuardStanceBuffId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (JournalEntryId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(JournalEntryId);
+    }
+    if (TrialRuleVersion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TrialRuleVersion);
+    }
+    if (SeasonId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SeasonId);
+    }
+    if (GuardMonsterTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GuardMonsterTableId);
+    }
+    if (GuardStanceBuffId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GuardStanceBuffId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(TrialBattleContext other) {
+    if (other == null) {
+      return;
+    }
+    if (other.JournalEntryId != 0) {
+      JournalEntryId = other.JournalEntryId;
+    }
+    if (other.TrialRuleVersion != 0) {
+      TrialRuleVersion = other.TrialRuleVersion;
+    }
+    if (other.SeasonId != 0) {
+      SeasonId = other.SeasonId;
+    }
+    if (other.GuardMonsterTableId != 0) {
+      GuardMonsterTableId = other.GuardMonsterTableId;
+    }
+    if (other.GuardStanceBuffId != 0) {
+      GuardStanceBuffId = other.GuardStanceBuffId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          JournalEntryId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TrialRuleVersion = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          SeasonId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          GuardMonsterTableId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          GuardStanceBuffId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          JournalEntryId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TrialRuleVersion = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          SeasonId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          GuardMonsterTableId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          GuardStanceBuffId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class BattleTrialJournalFacts : pb::IMessage<BattleTrialJournalFacts>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<BattleTrialJournalFacts> _parser = new pb::MessageParser<BattleTrialJournalFacts>(() => new BattleTrialJournalFacts());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<BattleTrialJournalFacts> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::BattleDataReflection.Descriptor.MessageTypes[22]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattleTrialJournalFacts() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattleTrialJournalFacts(BattleTrialJournalFacts other) : this() {
+    journalEntryId_ = other.journalEntryId_;
+    trialRuleVersion_ = other.trialRuleVersion_;
+    initialHumanCount_ = other.initialHumanCount_;
+    seasonId_ = other.seasonId_;
+    selfOrPetEverDied_ = other.selfOrPetEverDied_;
+    bossGuardHealTotal_ = other.bossGuardHealTotal_;
+    guardStanceDispelled_ = other.guardStanceDispelled_;
+    teamDealtPhysicalDirectDamage_ = other.teamDealtPhysicalDirectDamage_;
+    teamDealtMagicDirectDamage_ = other.teamDealtMagicDirectDamage_;
+    guardSurvived_ = other.guardSurvived_;
+    selfTriggeredShieldBreak_ = other.selfTriggeredShieldBreak_;
+    selfTriggeredAntiControlOrSeasonSkill_ = other.selfTriggeredAntiControlOrSeasonSkill_;
+    usedPetTableId_ = other.usedPetTableId_;
+    usedArtifactEffectIds_ = other.usedArtifactEffectIds_.Clone();
+    usedSeasonSealId_ = other.usedSeasonSealId_;
+    teammateNames_ = other.teammateNames_.Clone();
+    bossWindHitUnprotectedDeath_ = other.bossWindHitUnprotectedDeath_;
+    dealtYangBellPhysicalDamage_ = other.dealtYangBellPhysicalDamage_;
+    dealtYinDrumMagicDamage_ = other.dealtYinDrumMagicDamage_;
+    finishedInEbbTide_ = other.finishedInEbbTide_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattleTrialJournalFacts Clone() {
+    return new BattleTrialJournalFacts(this);
+  }
+
+  /// <summary>Field number for the "journal_entry_id" field.</summary>
+  public const int JournalEntryIdFieldNumber = 1;
+  private uint journalEntryId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint JournalEntryId {
+    get { return journalEntryId_; }
+    set {
+      journalEntryId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "trial_rule_version" field.</summary>
+  public const int TrialRuleVersionFieldNumber = 2;
+  private uint trialRuleVersion_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TrialRuleVersion {
+    get { return trialRuleVersion_; }
+    set {
+      trialRuleVersion_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "initial_human_count" field.</summary>
+  public const int InitialHumanCountFieldNumber = 3;
+  private uint initialHumanCount_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint InitialHumanCount {
+    get { return initialHumanCount_; }
+    set {
+      initialHumanCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "season_id" field.</summary>
+  public const int SeasonIdFieldNumber = 4;
+  private uint seasonId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonId {
+    get { return seasonId_; }
+    set {
+      seasonId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "self_or_pet_ever_died" field.</summary>
+  public const int SelfOrPetEverDiedFieldNumber = 5;
+  private bool selfOrPetEverDied_;
+  /// <summary>
+  /// 本人或本人出战宝宝本场任一时刻触发过死亡（复活不清除）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool SelfOrPetEverDied {
+    get { return selfOrPetEverDied_; }
+    set {
+      selfOrPetEverDied_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "boss_guard_heal_total" field.</summary>
+  public const int BossGuardHealTotalFieldNumber = 6;
+  private ulong bossGuardHealTotal_;
+  /// <summary>
+  /// 敌方护卫对首领实际造成的有效气血恢复总量
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong BossGuardHealTotal {
+    get { return bossGuardHealTotal_; }
+    set {
+      bossGuardHealTotal_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "guard_stance_dispelled" field.</summary>
+  public const int GuardStanceDispelledFieldNumber = 7;
+  private bool guardStanceDispelled_;
+  /// <summary>
+  /// 己方本场成功驱散过敌方护势状态
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool GuardStanceDispelled {
+    get { return guardStanceDispelled_; }
+    set {
+      guardStanceDispelled_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "team_dealt_physical_direct_damage" field.</summary>
+  public const int TeamDealtPhysicalDirectDamageFieldNumber = 8;
+  private bool teamDealtPhysicalDirectDamage_;
+  /// <summary>
+  /// 己方本场对敌方造成过 >0 物理直接伤害
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool TeamDealtPhysicalDirectDamage {
+    get { return teamDealtPhysicalDirectDamage_; }
+    set {
+      teamDealtPhysicalDirectDamage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "team_dealt_magic_direct_damage" field.</summary>
+  public const int TeamDealtMagicDirectDamageFieldNumber = 9;
+  private bool teamDealtMagicDirectDamage_;
+  /// <summary>
+  /// 己方本场对敌方造成过 >0 法术直接伤害
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool TeamDealtMagicDirectDamage {
+    get { return teamDealtMagicDirectDamage_; }
+    set {
+      teamDealtMagicDirectDamage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "guard_survived" field.</summary>
+  public const int GuardSurvivedFieldNumber = 10;
+  private bool guardSurvived_;
+  /// <summary>
+  /// 终局时敌方护卫仍存活（供护卫救援卷三判定）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool GuardSurvived {
+    get { return guardSurvived_; }
+    set {
+      guardSurvived_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "self_triggered_shield_break" field.</summary>
+  public const int SelfTriggeredShieldBreakFieldNumber = 11;
+  private bool selfTriggeredShieldBreak_;
+  /// <summary>
+  /// 本人触发破盾法宝/赛季印产生 >0 实际削盾
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool SelfTriggeredShieldBreak {
+    get { return selfTriggeredShieldBreak_; }
+    set {
+      selfTriggeredShieldBreak_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "self_triggered_anti_control_or_season_skill" field.</summary>
+  public const int SelfTriggeredAntiControlOrSeasonSkillFieldNumber = 12;
+  private bool selfTriggeredAntiControlOrSeasonSkill_;
+  /// <summary>
+  /// 本人触发清心符、成功净化或施放当季免费赛季技能
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool SelfTriggeredAntiControlOrSeasonSkill {
+    get { return selfTriggeredAntiControlOrSeasonSkill_; }
+    set {
+      selfTriggeredAntiControlOrSeasonSkill_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "used_pet_table_id" field.</summary>
+  public const int UsedPetTableIdFieldNumber = 13;
+  private uint usedPetTableId_;
+  /// <summary>
+  /// 本人开局出战宝宝种类（0=无宠）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UsedPetTableId {
+    get { return usedPetTableId_; }
+    set {
+      usedPetTableId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "used_artifact_effect_ids" field.</summary>
+  public const int UsedArtifactEffectIdsFieldNumber = 14;
+  private static readonly pb::FieldCodec<uint> _repeated_usedArtifactEffectIds_codec
+      = pb::FieldCodec.ForUInt32(114);
+  private readonly pbc::RepeatedField<uint> usedArtifactEffectIds_ = new pbc::RepeatedField<uint>();
+  /// <summary>
+  /// 本人开局佩戴的法宝效果 ID（至多 2 个，升序）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<uint> UsedArtifactEffectIds {
+    get { return usedArtifactEffectIds_; }
+  }
+
+  /// <summary>Field number for the "used_season_seal_id" field.</summary>
+  public const int UsedSeasonSealIdFieldNumber = 15;
+  private uint usedSeasonSealId_;
+  /// <summary>
+  /// 本人开局生效的赛季印 ID（0=无）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint UsedSeasonSealId {
+    get { return usedSeasonSealId_; }
+    set {
+      usedSeasonSealId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "teammate_names" field.</summary>
+  public const int TeammateNamesFieldNumber = 16;
+  private static readonly pb::FieldCodec<string> _repeated_teammateNames_codec
+      = pb::FieldCodec.ForString(130);
+  private readonly pbc::RepeatedField<string> teammateNames_ = new pbc::RepeatedField<string>();
+  /// <summary>
+  /// 入场冻结的同队其他真人展示名（至多 4 名）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<string> TeammateNames {
+    get { return teammateNames_; }
+  }
+
+  /// <summary>Field number for the "boss_wind_hit_unprotected_death" field.</summary>
+  public const int BossWindHitUnprotectedDeathFieldNumber = 17;
+  private bool bossWindHitUnprotectedDeath_;
+  /// <summary>
+  /// 卷二八仙岛风击倒地标记
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool BossWindHitUnprotectedDeath {
+    get { return bossWindHitUnprotectedDeath_; }
+    set {
+      bossWindHitUnprotectedDeath_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "dealt_yang_bell_physical_damage" field.</summary>
+  public const int DealtYangBellPhysicalDamageFieldNumber = 18;
+  private bool dealtYangBellPhysicalDamage_;
+  /// <summary>
+  /// 卷二碧渊水宫阳钟阶段物理击伤标记
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool DealtYangBellPhysicalDamage {
+    get { return dealtYangBellPhysicalDamage_; }
+    set {
+      dealtYangBellPhysicalDamage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "dealt_yin_drum_magic_damage" field.</summary>
+  public const int DealtYinDrumMagicDamageFieldNumber = 19;
+  private bool dealtYinDrumMagicDamage_;
+  /// <summary>
+  /// 卷二碧渊水宫阴鼓阶段法术击伤标记
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool DealtYinDrumMagicDamage {
+    get { return dealtYinDrumMagicDamage_; }
+    set {
+      dealtYinDrumMagicDamage_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "finished_in_ebb_tide" field.</summary>
+  public const int FinishedInEbbTideFieldNumber = 20;
+  private bool finishedInEbbTide_;
+  /// <summary>
+  /// 卷二月汐湾退潮窗口终结标记
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool FinishedInEbbTide {
+    get { return finishedInEbbTide_; }
+    set {
+      finishedInEbbTide_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as BattleTrialJournalFacts);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(BattleTrialJournalFacts other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (JournalEntryId != other.JournalEntryId) return false;
+    if (TrialRuleVersion != other.TrialRuleVersion) return false;
+    if (InitialHumanCount != other.InitialHumanCount) return false;
+    if (SeasonId != other.SeasonId) return false;
+    if (SelfOrPetEverDied != other.SelfOrPetEverDied) return false;
+    if (BossGuardHealTotal != other.BossGuardHealTotal) return false;
+    if (GuardStanceDispelled != other.GuardStanceDispelled) return false;
+    if (TeamDealtPhysicalDirectDamage != other.TeamDealtPhysicalDirectDamage) return false;
+    if (TeamDealtMagicDirectDamage != other.TeamDealtMagicDirectDamage) return false;
+    if (GuardSurvived != other.GuardSurvived) return false;
+    if (SelfTriggeredShieldBreak != other.SelfTriggeredShieldBreak) return false;
+    if (SelfTriggeredAntiControlOrSeasonSkill != other.SelfTriggeredAntiControlOrSeasonSkill) return false;
+    if (UsedPetTableId != other.UsedPetTableId) return false;
+    if(!usedArtifactEffectIds_.Equals(other.usedArtifactEffectIds_)) return false;
+    if (UsedSeasonSealId != other.UsedSeasonSealId) return false;
+    if(!teammateNames_.Equals(other.teammateNames_)) return false;
+    if (BossWindHitUnprotectedDeath != other.BossWindHitUnprotectedDeath) return false;
+    if (DealtYangBellPhysicalDamage != other.DealtYangBellPhysicalDamage) return false;
+    if (DealtYinDrumMagicDamage != other.DealtYinDrumMagicDamage) return false;
+    if (FinishedInEbbTide != other.FinishedInEbbTide) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (JournalEntryId != 0) hash ^= JournalEntryId.GetHashCode();
+    if (TrialRuleVersion != 0) hash ^= TrialRuleVersion.GetHashCode();
+    if (InitialHumanCount != 0) hash ^= InitialHumanCount.GetHashCode();
+    if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
+    if (SelfOrPetEverDied != false) hash ^= SelfOrPetEverDied.GetHashCode();
+    if (BossGuardHealTotal != 0UL) hash ^= BossGuardHealTotal.GetHashCode();
+    if (GuardStanceDispelled != false) hash ^= GuardStanceDispelled.GetHashCode();
+    if (TeamDealtPhysicalDirectDamage != false) hash ^= TeamDealtPhysicalDirectDamage.GetHashCode();
+    if (TeamDealtMagicDirectDamage != false) hash ^= TeamDealtMagicDirectDamage.GetHashCode();
+    if (GuardSurvived != false) hash ^= GuardSurvived.GetHashCode();
+    if (SelfTriggeredShieldBreak != false) hash ^= SelfTriggeredShieldBreak.GetHashCode();
+    if (SelfTriggeredAntiControlOrSeasonSkill != false) hash ^= SelfTriggeredAntiControlOrSeasonSkill.GetHashCode();
+    if (UsedPetTableId != 0) hash ^= UsedPetTableId.GetHashCode();
+    hash ^= usedArtifactEffectIds_.GetHashCode();
+    if (UsedSeasonSealId != 0) hash ^= UsedSeasonSealId.GetHashCode();
+    hash ^= teammateNames_.GetHashCode();
+    if (BossWindHitUnprotectedDeath != false) hash ^= BossWindHitUnprotectedDeath.GetHashCode();
+    if (DealtYangBellPhysicalDamage != false) hash ^= DealtYangBellPhysicalDamage.GetHashCode();
+    if (DealtYinDrumMagicDamage != false) hash ^= DealtYinDrumMagicDamage.GetHashCode();
+    if (FinishedInEbbTide != false) hash ^= FinishedInEbbTide.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (JournalEntryId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(JournalEntryId);
+    }
+    if (TrialRuleVersion != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TrialRuleVersion);
+    }
+    if (InitialHumanCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(InitialHumanCount);
+    }
+    if (SeasonId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(SeasonId);
+    }
+    if (SelfOrPetEverDied != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(SelfOrPetEverDied);
+    }
+    if (BossGuardHealTotal != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(BossGuardHealTotal);
+    }
+    if (GuardStanceDispelled != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(GuardStanceDispelled);
+    }
+    if (TeamDealtPhysicalDirectDamage != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(TeamDealtPhysicalDirectDamage);
+    }
+    if (TeamDealtMagicDirectDamage != false) {
+      output.WriteRawTag(72);
+      output.WriteBool(TeamDealtMagicDirectDamage);
+    }
+    if (GuardSurvived != false) {
+      output.WriteRawTag(80);
+      output.WriteBool(GuardSurvived);
+    }
+    if (SelfTriggeredShieldBreak != false) {
+      output.WriteRawTag(88);
+      output.WriteBool(SelfTriggeredShieldBreak);
+    }
+    if (SelfTriggeredAntiControlOrSeasonSkill != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(SelfTriggeredAntiControlOrSeasonSkill);
+    }
+    if (UsedPetTableId != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(UsedPetTableId);
+    }
+    usedArtifactEffectIds_.WriteTo(output, _repeated_usedArtifactEffectIds_codec);
+    if (UsedSeasonSealId != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(UsedSeasonSealId);
+    }
+    teammateNames_.WriteTo(output, _repeated_teammateNames_codec);
+    if (BossWindHitUnprotectedDeath != false) {
+      output.WriteRawTag(136, 1);
+      output.WriteBool(BossWindHitUnprotectedDeath);
+    }
+    if (DealtYangBellPhysicalDamage != false) {
+      output.WriteRawTag(144, 1);
+      output.WriteBool(DealtYangBellPhysicalDamage);
+    }
+    if (DealtYinDrumMagicDamage != false) {
+      output.WriteRawTag(152, 1);
+      output.WriteBool(DealtYinDrumMagicDamage);
+    }
+    if (FinishedInEbbTide != false) {
+      output.WriteRawTag(160, 1);
+      output.WriteBool(FinishedInEbbTide);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (JournalEntryId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(JournalEntryId);
+    }
+    if (TrialRuleVersion != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TrialRuleVersion);
+    }
+    if (InitialHumanCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(InitialHumanCount);
+    }
+    if (SeasonId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(SeasonId);
+    }
+    if (SelfOrPetEverDied != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(SelfOrPetEverDied);
+    }
+    if (BossGuardHealTotal != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(BossGuardHealTotal);
+    }
+    if (GuardStanceDispelled != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(GuardStanceDispelled);
+    }
+    if (TeamDealtPhysicalDirectDamage != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(TeamDealtPhysicalDirectDamage);
+    }
+    if (TeamDealtMagicDirectDamage != false) {
+      output.WriteRawTag(72);
+      output.WriteBool(TeamDealtMagicDirectDamage);
+    }
+    if (GuardSurvived != false) {
+      output.WriteRawTag(80);
+      output.WriteBool(GuardSurvived);
+    }
+    if (SelfTriggeredShieldBreak != false) {
+      output.WriteRawTag(88);
+      output.WriteBool(SelfTriggeredShieldBreak);
+    }
+    if (SelfTriggeredAntiControlOrSeasonSkill != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(SelfTriggeredAntiControlOrSeasonSkill);
+    }
+    if (UsedPetTableId != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(UsedPetTableId);
+    }
+    usedArtifactEffectIds_.WriteTo(ref output, _repeated_usedArtifactEffectIds_codec);
+    if (UsedSeasonSealId != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(UsedSeasonSealId);
+    }
+    teammateNames_.WriteTo(ref output, _repeated_teammateNames_codec);
+    if (BossWindHitUnprotectedDeath != false) {
+      output.WriteRawTag(136, 1);
+      output.WriteBool(BossWindHitUnprotectedDeath);
+    }
+    if (DealtYangBellPhysicalDamage != false) {
+      output.WriteRawTag(144, 1);
+      output.WriteBool(DealtYangBellPhysicalDamage);
+    }
+    if (DealtYinDrumMagicDamage != false) {
+      output.WriteRawTag(152, 1);
+      output.WriteBool(DealtYinDrumMagicDamage);
+    }
+    if (FinishedInEbbTide != false) {
+      output.WriteRawTag(160, 1);
+      output.WriteBool(FinishedInEbbTide);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (JournalEntryId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(JournalEntryId);
+    }
+    if (TrialRuleVersion != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TrialRuleVersion);
+    }
+    if (InitialHumanCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(InitialHumanCount);
+    }
+    if (SeasonId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SeasonId);
+    }
+    if (SelfOrPetEverDied != false) {
+      size += 1 + 1;
+    }
+    if (BossGuardHealTotal != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(BossGuardHealTotal);
+    }
+    if (GuardStanceDispelled != false) {
+      size += 1 + 1;
+    }
+    if (TeamDealtPhysicalDirectDamage != false) {
+      size += 1 + 1;
+    }
+    if (TeamDealtMagicDirectDamage != false) {
+      size += 1 + 1;
+    }
+    if (GuardSurvived != false) {
+      size += 1 + 1;
+    }
+    if (SelfTriggeredShieldBreak != false) {
+      size += 1 + 1;
+    }
+    if (SelfTriggeredAntiControlOrSeasonSkill != false) {
+      size += 1 + 1;
+    }
+    if (UsedPetTableId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UsedPetTableId);
+    }
+    size += usedArtifactEffectIds_.CalculateSize(_repeated_usedArtifactEffectIds_codec);
+    if (UsedSeasonSealId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UsedSeasonSealId);
+    }
+    size += teammateNames_.CalculateSize(_repeated_teammateNames_codec);
+    if (BossWindHitUnprotectedDeath != false) {
+      size += 2 + 1;
+    }
+    if (DealtYangBellPhysicalDamage != false) {
+      size += 2 + 1;
+    }
+    if (DealtYinDrumMagicDamage != false) {
+      size += 2 + 1;
+    }
+    if (FinishedInEbbTide != false) {
+      size += 2 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(BattleTrialJournalFacts other) {
+    if (other == null) {
+      return;
+    }
+    if (other.JournalEntryId != 0) {
+      JournalEntryId = other.JournalEntryId;
+    }
+    if (other.TrialRuleVersion != 0) {
+      TrialRuleVersion = other.TrialRuleVersion;
+    }
+    if (other.InitialHumanCount != 0) {
+      InitialHumanCount = other.InitialHumanCount;
+    }
+    if (other.SeasonId != 0) {
+      SeasonId = other.SeasonId;
+    }
+    if (other.SelfOrPetEverDied != false) {
+      SelfOrPetEverDied = other.SelfOrPetEverDied;
+    }
+    if (other.BossGuardHealTotal != 0UL) {
+      BossGuardHealTotal = other.BossGuardHealTotal;
+    }
+    if (other.GuardStanceDispelled != false) {
+      GuardStanceDispelled = other.GuardStanceDispelled;
+    }
+    if (other.TeamDealtPhysicalDirectDamage != false) {
+      TeamDealtPhysicalDirectDamage = other.TeamDealtPhysicalDirectDamage;
+    }
+    if (other.TeamDealtMagicDirectDamage != false) {
+      TeamDealtMagicDirectDamage = other.TeamDealtMagicDirectDamage;
+    }
+    if (other.GuardSurvived != false) {
+      GuardSurvived = other.GuardSurvived;
+    }
+    if (other.SelfTriggeredShieldBreak != false) {
+      SelfTriggeredShieldBreak = other.SelfTriggeredShieldBreak;
+    }
+    if (other.SelfTriggeredAntiControlOrSeasonSkill != false) {
+      SelfTriggeredAntiControlOrSeasonSkill = other.SelfTriggeredAntiControlOrSeasonSkill;
+    }
+    if (other.UsedPetTableId != 0) {
+      UsedPetTableId = other.UsedPetTableId;
+    }
+    usedArtifactEffectIds_.Add(other.usedArtifactEffectIds_);
+    if (other.UsedSeasonSealId != 0) {
+      UsedSeasonSealId = other.UsedSeasonSealId;
+    }
+    teammateNames_.Add(other.teammateNames_);
+    if (other.BossWindHitUnprotectedDeath != false) {
+      BossWindHitUnprotectedDeath = other.BossWindHitUnprotectedDeath;
+    }
+    if (other.DealtYangBellPhysicalDamage != false) {
+      DealtYangBellPhysicalDamage = other.DealtYangBellPhysicalDamage;
+    }
+    if (other.DealtYinDrumMagicDamage != false) {
+      DealtYinDrumMagicDamage = other.DealtYinDrumMagicDamage;
+    }
+    if (other.FinishedInEbbTide != false) {
+      FinishedInEbbTide = other.FinishedInEbbTide;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          JournalEntryId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TrialRuleVersion = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          InitialHumanCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          SeasonId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          SelfOrPetEverDied = input.ReadBool();
+          break;
+        }
+        case 48: {
+          BossGuardHealTotal = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          GuardStanceDispelled = input.ReadBool();
+          break;
+        }
+        case 64: {
+          TeamDealtPhysicalDirectDamage = input.ReadBool();
+          break;
+        }
+        case 72: {
+          TeamDealtMagicDirectDamage = input.ReadBool();
+          break;
+        }
+        case 80: {
+          GuardSurvived = input.ReadBool();
+          break;
+        }
+        case 88: {
+          SelfTriggeredShieldBreak = input.ReadBool();
+          break;
+        }
+        case 96: {
+          SelfTriggeredAntiControlOrSeasonSkill = input.ReadBool();
+          break;
+        }
+        case 104: {
+          UsedPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 114:
+        case 112: {
+          usedArtifactEffectIds_.AddEntriesFrom(input, _repeated_usedArtifactEffectIds_codec);
+          break;
+        }
+        case 120: {
+          UsedSeasonSealId = input.ReadUInt32();
+          break;
+        }
+        case 130: {
+          teammateNames_.AddEntriesFrom(input, _repeated_teammateNames_codec);
+          break;
+        }
+        case 136: {
+          BossWindHitUnprotectedDeath = input.ReadBool();
+          break;
+        }
+        case 144: {
+          DealtYangBellPhysicalDamage = input.ReadBool();
+          break;
+        }
+        case 152: {
+          DealtYinDrumMagicDamage = input.ReadBool();
+          break;
+        }
+        case 160: {
+          FinishedInEbbTide = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          JournalEntryId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TrialRuleVersion = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          InitialHumanCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          SeasonId = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          SelfOrPetEverDied = input.ReadBool();
+          break;
+        }
+        case 48: {
+          BossGuardHealTotal = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          GuardStanceDispelled = input.ReadBool();
+          break;
+        }
+        case 64: {
+          TeamDealtPhysicalDirectDamage = input.ReadBool();
+          break;
+        }
+        case 72: {
+          TeamDealtMagicDirectDamage = input.ReadBool();
+          break;
+        }
+        case 80: {
+          GuardSurvived = input.ReadBool();
+          break;
+        }
+        case 88: {
+          SelfTriggeredShieldBreak = input.ReadBool();
+          break;
+        }
+        case 96: {
+          SelfTriggeredAntiControlOrSeasonSkill = input.ReadBool();
+          break;
+        }
+        case 104: {
+          UsedPetTableId = input.ReadUInt32();
+          break;
+        }
+        case 114:
+        case 112: {
+          usedArtifactEffectIds_.AddEntriesFrom(ref input, _repeated_usedArtifactEffectIds_codec);
+          break;
+        }
+        case 120: {
+          UsedSeasonSealId = input.ReadUInt32();
+          break;
+        }
+        case 130: {
+          teammateNames_.AddEntriesFrom(ref input, _repeated_teammateNames_codec);
+          break;
+        }
+        case 136: {
+          BossWindHitUnprotectedDeath = input.ReadBool();
+          break;
+        }
+        case 144: {
+          DealtYangBellPhysicalDamage = input.ReadBool();
+          break;
+        }
+        case 152: {
+          DealtYinDrumMagicDamage = input.ReadBool();
+          break;
+        }
+        case 160: {
+          FinishedInEbbTide = input.ReadBool();
           break;
         }
       }

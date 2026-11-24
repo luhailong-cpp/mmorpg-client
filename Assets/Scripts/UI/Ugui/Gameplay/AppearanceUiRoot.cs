@@ -307,9 +307,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var listHeader = AppearanceUiArt.SectionHeader(mainRoot, "AppearanceListHeader",
                 68f, 148f, 340f, 52f);
             _listCountLabel = QdaoUguiFactory.CreateText("AppearanceListCount", listHeader.transform,
-                20f, 0f, 300f, 52f, "可选形象", 24f, AppearanceUiArt.DeepJade, TextAlignmentOptions.Center);
+                38f, 0f, 264f, 52f, "可选形象", 22f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             _listCountLabel.richText = false;
             _listCountLabel.fontStyle = FontStyles.Bold;
+            _listCountLabel.enableAutoSizing = true;
+            _listCountLabel.fontSizeMin = 15f;
+            _listCountLabel.fontSizeMax = 22f;
 
             var listViewport = QdaoUguiFactory.CreateRect("AppearanceListViewport", mainRoot, 68f, 210f, 594f, 660f);
             var listHit = listViewport.gameObject.AddComponent<Image>();
@@ -427,8 +430,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _cardInfoLine1.fontStyle = FontStyles.Bold;
 
             _cardInfoLine2 = QdaoUguiFactory.CreateText("CardRuleLine", cardSlot.transform,
-                136f, 72f, 386f, 36f, "消耗 1 张永久解锁新形象（保留原形象，已拥有免费切换）", 20f, AppearanceUiArt.MutedInk, TextAlignmentOptions.MidlineLeft);
+                136f, 68f, 388f, 46f, "消耗 1 张永久解锁新形象（保留原形象，已拥有免费切换）", 19f, AppearanceUiArt.MutedInk, TextAlignmentOptions.MidlineLeft);
             _cardInfoLine2.richText = false;
+            _cardInfoLine2.textWrappingMode = TextWrappingModes.Normal;
+            _cardInfoLine2.enableAutoSizing = true;
+            _cardInfoLine2.fontSizeMin = 14f;
+            _cardInfoLine2.fontSizeMax = 19f;
 
             _buyMallBtn = AppearanceUiArt.GoldMallButton(cardSlot.transform, "AppearanceOpenMall",
                 "商城购买 ¥10", 534f, 34f, 202f, 68f, HandleOpenMallClicked, fontSize: 23f);
@@ -828,7 +835,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void HandleDismissOverlay()
         {
-            bool wasStory = _state.IsStoryOpen;
+            bool wasReading = _state.IsStoryOpen || _state.IsBiographyOpen || _state.IsPortraitPreviewOpen;
             bool wasSeriesEpilogue = _state.IsSeriesEpilogueOpen;
             SaveReadingPosition();
             if (!_state.DismissActiveOverlay()) return;
@@ -836,10 +843,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_state.IsStoryOpen && _storyScroll != null)
                 _storyScroll.verticalNormalizedPosition = _state.SavedStoryScrollNormalized;
             if (_state.HasOverlay) { FocusFirstControlOfActiveOverlay(); return; }
-            if (wasStory || wasSeriesEpilogue) RestoreListScrollPosition();
+            if (wasReading || wasSeriesEpilogue) RestoreListScrollPosition();
             if (EventSystem.current != null)
             {
-                if (wasStory && _readStoryBtn != null && _readStoryBtn.gameObject.activeInHierarchy && _readStoryBtn.interactable)
+                if (wasReading && _readStoryBtn != null && _readStoryBtn.gameObject.activeInHierarchy && _readStoryBtn.interactable)
                     EventSystem.current.SetSelectedGameObject(_readStoryBtn.gameObject);
                 else if (wasSeriesEpilogue && _seriesEpilogueBtn != null && _seriesEpilogueBtn.gameObject.activeInHierarchy && _seriesEpilogueBtn.interactable)
                     EventSystem.current.SetSelectedGameObject(_seriesEpilogueBtn.gameObject);

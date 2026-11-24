@@ -233,6 +233,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (onClick != null) btn.onClick.AddListener(() => onClick());
             var text = QdaoUguiFactory.CreateText("Label", btn.transform, 16f, 0f, w - 32f, h,
                 label, fontSize, primary ? WarmCream : JadeInk, TextAlignmentOptions.Center);
+            StretchButtonLabel(text.rectTransform, 16f);
             text.richText = false;
             text.font = QdaoUguiTheme.ResolveFont();
             text.fontStyle = primary ? FontStyles.Bold : FontStyles.Normal;
@@ -252,12 +253,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (onClick != null) btn.onClick.AddListener(() => onClick());
             var text = QdaoUguiFactory.CreateText("Label", btn.transform, 14f, 0f, w - 28f, h,
                 label, fontSize, DeepJade, TextAlignmentOptions.Center);
+            StretchButtonLabel(text.rectTransform, 14f);
             text.richText = false;
             text.fontStyle = FontStyles.Bold;
             text.enableAutoSizing = true;
             text.fontSizeMin = 16f;
             text.fontSizeMax = fontSize;
             return btn;
+        }
+
+        private static void StretchButtonLabel(RectTransform rect, float horizontalPadding)
+        {
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.offsetMin = new Vector2(horizontalPadding, 0f);
+            rect.offsetMax = new Vector2(-horizontalPadding, 0f);
         }
 
         public static Button CloseButton(UnityEngine.Transform parent, string name, float x, float y, float size, Action onClick)

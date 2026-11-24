@@ -102,10 +102,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             net.Push(MessageIds.NotifySceneInfo, push);
 
             Assert.That(client.HasOverview, Is.True);
+            Assert.That(client.OverviewReceivedAt, Is.EqualTo(0f));
             Assert.That(client.Overview.FindMap(2)?.HeatLevel, Is.EqualTo(global::WorldMapHeatLevel.Quiet));
 
             // 后续普通仅目录请求不携带 WithWorldMapOverview，且不抹除已有总览缓存。
             now += SceneChannelClient.MinListIntervalSeconds + 0.1f;
+            Assert.That(client.OverviewAgeSeconds, Is.EqualTo(now).Within(0.001f));
             Assert.That(client.RequestList(), Is.True);
             var listReq = (SceneInfoRequest)net.OneWays[1].Request;
             Assert.That(listReq.WithWorldMapOverview, Is.False);
@@ -115,6 +117,85 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             // 断线复位清掉旧会话总览。
             net.Disconnect();
             Assert.That(client.HasOverview, Is.False);
+            Assert.That(client.OverviewReceivedAt, Is.EqualTo(0f));
+            Assert.That(client.OverviewAgeSeconds, Is.EqualTo(0f));
+        }
+
+        [Test]
+        public void TideBannerPinViewAndHudBadge_CoverActiveRestingDismissalAndCountdown()
+        {
+            var snapshot = new WorldMapOverviewSnapshot(
+                1,
+                3_900_000UL,
+                3_900_000UL,
+                new[]
+                {
+                    new WorldMapOverviewItem(1, 12, 1, global::WorldMapHeatLevel.Crowded, 10001, 1, false, false),
+                    new WorldMapOverviewItem(5, 3, 1, global::WorldMapHeatLevel.Active, 50001, 1, true, true),
+                },
+                new WorldTideSnapshotModel(true, 3600UL, 5u, 50001UL, 1u, 3_600_000UL, 6_000_000UL, 7_200_000UL),
+                5u);
+
+            ulong nowMs = WorldMapOverviewModels.EstimateServerNowMs(snapshot, 10.5f);
+            Assert.That(nowMs, Is.EqualTo(3_910_500UL));
+
+            var banner = WorldMapOverviewModels.BuildTideBanner(snapshot, 1u, id => id == 5u ? "碧渊水宫" : "", nowMs, true);
+            Assert.That(banner.Visible, Is.True);
+            Assert.That(banner.Active, Is.True);
+            Assert.That(banner.Headline, Is.EqualTo("灵潮涌动 · 碧渊水宫"));
+            Assert.That(banner.CountdownText, Is.EqualTo("剩余 34:50"));
+            Assert.That(banner.CanQuickTravel, Is.True);
+            Assert.That(banner.ActionLabel, Is.EqualTo("立即前往"));
+
+            var onTargetBanner = WorldMapOverviewModels.BuildTideBanner(snapshot, 5u, id => "碧渊水宫", nowMs, true);
+            Assert.That(onTargetBanner.IsOnTargetMap, Is.True);
+            Assert.That(onTargetBanner.CanQuickTravel, Is.False);
+            Assert.That(onTargetBanner.ActionLabel, Is.EqualTo("已在此地"));
+
+            var resting = new WorldMapOverviewSnapshot(
+                1, 6_100_000UL, 6_100_000UL, snapshot.Maps,
+                new WorldTideSnapshotModel(false, 3600UL, 5u, 0UL, 0u, 3_600_000UL, 6_000_000UL, 7_200_000UL), 5u);
+            var restingBanner = WorldMapOverviewModels.BuildTideBanner(resting, 1u, id => "碧渊水宫", 6_100_000UL, true);
+            Assert.That(restingBanner.Visible, Is.True);
+            Assert.That(restingBanner.Active, Is.False);
+            Assert.That(restingBanner.Headline, Is.EqualTo("灵潮休歇"));
+            Assert.That(restingBanner.CountdownText, Is.EqualTo("下轮倒计时 18:20"));
+            Assert.That(restingBanner.CanQuickTravel, Is.False);
+
+            var hiddenBanner = WorldMapOverviewModels.BuildTideBanner(null, 1u, null, 0UL, true);
+            Assert.That(hiddenBanner.Visible, Is.False);
+
+            var pin = WorldMapOverviewModels.BuildPinView(snapshot, 5u, 1u, true);
+            Assert.That(pin.HasOverviewEntry, Is.True);
+            Assert.That(pin.HeatLevel, Is.EqualTo(global::WorldMapHeatLevel.Active));
+            Assert.That(pin.HeatLabel, Is.EqualTo("有人"));
+            Assert.That(pin.IsTideMap, Is.True);
+            Assert.That(pin.IsDailyHotspot, Is.True);
+            Assert.That(pin.HasMysteryMerchant, Is.True);
+            Assert.That(pin.IsCurrentScene, Is.False);
+            Assert.That(pin.RecommendedSceneId, Is.EqualTo(50001UL));
+
+            // HUD 入口角标：在非灵潮图显示，本轮看过后消失，身处灵潮图不显示，换轮重亮。
+            Assert.That(WorldMapOverviewModels.ShouldShowMapEntryTideBadge(snapshot, 1u, 0UL), Is.True);
+            Assert.That(WorldMapOverviewModels.ShouldShowMapEntryTideBadge(snapshot, 1u, 3600UL), Is.False);
+            Assert.That(WorldMapOverviewModels.ShouldShowMapEntryTideBadge(snapshot, 5u, 0UL), Is.False);
+            Assert.That(WorldMapOverviewModels.ShouldShowMapEntryTideBadge(resting, 1u, 0UL), Is.False);
+
+            // 游历 / 览景目的地分栏过滤不丢失正式图也不把 clientOnly 混入联机列表。
+            CurrentMapCatalog.ReloadDeliveries();
+            try
+            {
+                var all = CityTravelUiRoot.CreateDestinations();
+                var online = CityTravelUiRoot.FilterOnlineDestinations(all);
+                var gallery = CityTravelUiRoot.FilterGalleryDestinations(all);
+                Assert.That(online.Length, Is.GreaterThanOrEqualTo(3));
+                foreach (var d in online) Assert.That(d.OnlineAvailable && d.Available, Is.True);
+                foreach (var d in gallery) Assert.That(!d.OnlineAvailable && d.Available, Is.True);
+            }
+            finally
+            {
+                CurrentMapCatalog.ReloadDeliveries();
+            }
         }
 
         [Test]
@@ -147,14 +228,22 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(selectedName, Does.Contain("神秘商人"));
 
                 var merchantWindow = new MysteryMerchantWindow(design);
-                merchantWindow.SetView(new MysteryMerchantShopView
+                var crossMapView = new MysteryMerchantShopView
                 {
                     Presence = MysteryMerchantPresence.Elsewhere,
                     ChannelNo = 2,
                     TargetMapName = "碧渊水宫",
+                    RemainingMs = 754_000,
                     CanTravel = true,
                     Ready = true,
-                });
+                };
+                merchantWindow.SetView(crossMapView);
+                Assert.That(MysteryMerchantWindow.DescribeHeadline(crossMapView), Is.EqualTo("正在 碧渊水宫 · 2线 · 12:34 后离开"));
+                Assert.That(MysteryMerchantWindow.DescribeEmpty(crossMapView), Does.Contain("碧渊水宫 · 2线"));
+                var sameMapView = crossMapView;
+                sameMapView.TargetMapName = "";
+                Assert.That(MysteryMerchantWindow.DescribeHeadline(sameMapView), Is.EqualTo("正在 2线 · 12:34 后离开"));
+                Assert.That(MysteryMerchantWindow.DescribeEmpty(sameMapView), Is.EqualTo("神秘商人正在 2线，到那条线才能看到货架。"));
                 string travelText = "";
                 foreach (var t in merchantWindow.Root.GetComponentsInChildren<TMP_Text>(true))
                 {

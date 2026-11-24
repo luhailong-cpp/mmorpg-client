@@ -125,7 +125,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 MoveReadingElement(main, "AppearanceListHeader", 56, 124, 460, 64);
                 MoveReadingElement(main, "AppearanceListViewport", 56, 202, 1036, 366);
                 MoveReadingElement(main, "AppearanceListScrollbar", 1104, 202, 12, 366);
-                _listCountLabel.rectTransform.sizeDelta = new Vector2(420, 64);
+                PlaceTopLeft(_listCountLabel.rectTransform, 44, 0, 372, 64);
                 MoveReadingElement(main, "AppearancePreviewPortrait", 40, 168, 330, 294);
                 MoveReadingElement(main, "AppearancePortraitMissing", 40, 260, 330, 130);
                 MoveReadingElement(main, "AppearanceViewPortrait", 40, 468, activeTrial ? 156 : 330, 76);
@@ -142,8 +142,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 MoveReadingElement(main, "AppearanceCardSlot", 410, 386, 720, 92);
                 var card = main.Find("AppearanceCardSlot");
                 MoveReadingElement(card, "AppearanceCardIcon", 16, 12, 68, 68);
-                MoveReadingElement(card, "CardOwnedLine", 104, 10, 370, 34);
-                MoveReadingElement(card, "CardRuleLine", 104, 48, 370, 32);
+                MoveReadingElement(card, "CardOwnedLine", 104, 8, 374, 34);
+                MoveReadingElement(card, "CardRuleLine", 104, 44, 374, 40);
                 MoveReadingElement(card, "AppearanceOpenMall", 490, 8, 208, 76);
                 MoveReadingElement(main, "AppearanceStartTrial", 410, 488, 300, 76);
                 MoveReadingElement(main, "AppearanceConfirmSwitch", 728, 488, 402, 76);
@@ -204,36 +204,43 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 MoveReadingElement(story, "StoryViewport", compact ? 84 : 98, 168, compact ? 954 : StoryViewportWidth, compact ? 292 : StoryViewportHeight);
                 MoveReadingElement(story, "StoryScrollbar", compact ? 1050 : 1250, 168, 14, compact ? 292 : StoryViewportHeight);
                 MoveReadingElement(story, "AppearanceStoryFinish", compact ? 410 : 520, compact ? 506 : 706, 320, compact ? 76 : 68);
-                MoveReadingElement(story, "StoryCloseWindow", compact ? 1048 : 1268, compact ? 506 : 706, 76, 76);
+                MoveReadingElement(story, "StoryCloseWindow", compact ? 1026 : 1246, compact ? 498 : 698, 76, 76);
                 RefreshStoryScrollLayout();
             }
             if (bio != null)
             {
-                bio.sizeDelta = compact ? new Vector2(1140, 620) : new Vector2(1360, 880);
-                MoveReadingElement(bio, "BiographyFrameBg", 0, 0, compact ? 1140 : 1360, compact ? 620 : 880);
-                MoveReadingElement(bio, "BiographyTitlePlate", compact ? 300 : 400, -20, 560, 114);
-                MoveReadingElement(bio, "BiographyName", compact ? 300 : 400, 20, 560, 70);
-                MoveReadingElement(bio, "BiographyBack", compact ? 34 : 70, compact ? 28 : 42, 170, compact ? 76 : 66);
+                bio.sizeDelta = compact ? new Vector2(1140, 620) : new Vector2(1360, 800);
+                bio.anchoredPosition = compact ? Vector2.zero : new Vector2(0f, -48f);
+                MoveReadingElement(bio, "BiographyFrameBg", 0, 0, compact ? 1140 : 1360, compact ? 620 : 800);
+                MoveReadingElement(bio, "BiographyTitlePlate", compact ? 290 : 400, -24, 560, 114);
+                MoveReadingElement(bio, "BiographyName", compact ? 330 : 440, -6, 480, 62);
+                MoveReadingElement(bio, "BiographyBack", compact ? 34 : 70, compact ? 28 : 40, 170, compact ? 76 : 66);
                 MoveReadingElement(bio, "BiographyClose", compact ? 1030 : 1250, 28, 76, 76);
-                MoveReadingElement(bio, "BiographyHeading", compact ? 70 : 110, compact ? 126 : 150, 1000, 56);
-                MoveReadingElement(bio, "BiographyScroll", compact ? 70 : 110, compact ? 188 : 228, compact ? 1000 : 1138, compact ? 204 : 314);
-                MoveReadingElement(bio, "BiographyStoryHeading", compact ? 70 : 110, compact ? 410 : 584, 1000, 54);
-                MoveReadingElement(bio, "BiographyReadStory", compact ? 70 : 110, compact ? 478 : 662, compact ? 650 : 780, compact ? 76 : 88);
-                MoveReadingElement(bio, "BiographyViewPortrait", compact ? 750 : 926, compact ? 478 : 662, 320, compact ? 76 : 88);
-                MoveReadingElement(bio, "BiographyCandidateNote", compact ? 70 : 110, compact ? 570 : 786, compact ? 1000 : 1138, 36);
+                MoveReadingElement(bio, "BiographyHeading", compact ? 70 : 110, compact ? 118 : 134, 1000, 52);
+                float bioScrollW = compact ? 1000 : 1138;
+                float bioScrollH = compact ? 204 : 290;
+                MoveReadingElement(bio, "BiographyScroll", compact ? 70 : 110, compact ? 178 : 202, bioScrollW, bioScrollH);
+                var bioScrollRoot = bio.Find("BiographyScroll");
+                MoveReadingElement(bioScrollRoot, "Viewport", 0, 0, bioScrollW - 18, bioScrollH);
+                MoveReadingElement(bioScrollRoot, "Scrollbar", bioScrollW - 12, 0, 9, bioScrollH);
+                MoveReadingElement(bio, "BiographyStoryHeading", compact ? 70 : 110, compact ? 398 : 526, 1000, 50);
+                MoveReadingElement(bio, "BiographyReadStory", compact ? 70 : 110, compact ? 460 : 598, compact ? 650 : 780, compact ? 76 : 86);
+                MoveReadingElement(bio, "BiographyViewPortrait", compact ? 750 : 926, compact ? 460 : 598, 320, compact ? 76 : 86);
+                MoveReadingElement(bio, "BiographyCandidateNote", compact ? 130 : 130, compact ? 550 : 712, compact ? 880 : 1100, 38);
                 LayoutBiographyBody();
             }
             if (portrait != null)
             {
-                portrait.sizeDelta = compact ? new Vector2(1140, 620) : new Vector2(1360, 900);
-                MoveReadingElement(portrait, "PortraitFrameBg", 0, 0, compact ? 1140 : 1360, compact ? 620 : 900);
-                MoveReadingElement(portrait, "PortraitTitlePlate", compact ? 300 : 400, -20, 560, 114);
-                MoveReadingElement(portrait, "PortraitName", compact ? 300 : 400, 20, 560, 70);
-                MoveReadingElement(portrait, "PortraitBack", compact ? 34 : 70, compact ? 28 : 40, 170, 76);
+                portrait.sizeDelta = compact ? new Vector2(1140, 620) : new Vector2(1360, 800);
+                portrait.anchoredPosition = compact ? Vector2.zero : new Vector2(0f, -48f);
+                MoveReadingElement(portrait, "PortraitFrameBg", 0, 0, compact ? 1140 : 1360, compact ? 620 : 800);
+                MoveReadingElement(portrait, "PortraitTitlePlate", compact ? 290 : 400, -24, 560, 114);
+                MoveReadingElement(portrait, "PortraitName", compact ? 330 : 440, -6, 480, 62);
+                MoveReadingElement(portrait, "PortraitBack", compact ? 34 : 70, compact ? 28 : 40, 170, compact ? 76 : 66);
                 MoveReadingElement(portrait, "PortraitClose", compact ? 1030 : 1250, 28, 76, 76);
-                MoveReadingElement(portrait, "FullPortrait", compact ? 360 : 300, compact ? 120 : 132, compact ? 420 : 760, compact ? 380 : 650);
-                MoveReadingElement(portrait, "PortraitMissing", compact ? 140 : 200, compact ? 260 : 360, compact ? 860 : 960, 150);
-                MoveReadingElement(portrait, "PortraitReturn", compact ? 380 : 470, compact ? 526 : 800, compact ? 380 : 420, 76);
+                MoveReadingElement(portrait, "FullPortrait", compact ? 360 : 300, compact ? 114 : 118, compact ? 420 : 760, compact ? 386 : 564);
+                MoveReadingElement(portrait, "PortraitMissing", compact ? 140 : 200, compact ? 240 : 320, compact ? 860 : 960, 150);
+                MoveReadingElement(portrait, "PortraitReturn", compact ? 380 : 470, compact ? 516 : 698, compact ? 380 : 420, compact ? 76 : 70);
             }
             ApplySeriesModalLayout(compact);
         }
@@ -243,7 +250,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_storyRecapLabel != null) _storyRecapLabel.fontSize = compact ? 24 : 23;
             if (_seriesEpilogueDescLabel != null) _seriesEpilogueDescLabel.fontSize = compact ? 24 : 23;
             if (_biographyPageBody != null) _biographyPageBody.fontSize = compact ? 30 : 34;
-            if (_listCountLabel != null) _listCountLabel.fontSize = compact ? 30 : 24;
+            if (_listCountLabel != null) _listCountLabel.fontSizeMax = compact ? 26 : 22;
             foreach (var button in new[] { _trialBtn, _switchBtn })
             {
                 var label = button != null ? button.GetComponentInChildren<TMP_Text>(true) : null;

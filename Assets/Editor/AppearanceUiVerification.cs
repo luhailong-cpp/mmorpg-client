@@ -77,12 +77,16 @@ public static class AppearanceUiVerification
         if (EditorApplication.isPlayingOrWillChangePlaymode)
             throw new InvalidOperationException("易容原生验证必须在 Edit Mode 执行");
 
+        var failedInventories = MmorpgClient.Editor.Tianyong.QdaoOriginalHdResourceIndexBuilder.RebuildAll();
+        AssertTrue(failedInventories.Count == 0, "角色资产索引校验失败：" + string.Join(", ", failedInventories));
+
         LoadCharacterAppearanceTableIfPresent();
         Directory.CreateDirectory(OutputDirectory);
 
         var summary = new List<string>();
         RunVerificationPass(2560, 1080, captureFullSuite: true, extraInsets: Vector4.zero, summary);
-        RunVerificationPass(1280, 720, captureFullSuite: false, extraInsets: new Vector4(44f, 24f, 44f, 68f), summary);
+        RunVerificationPass(1920, 1080, captureFullSuite: false, extraInsets: Vector4.zero, summary);
+        RunVerificationPass(896, 414, captureFullSuite: false, extraInsets: new Vector4(36f, 18f, 36f, 24f), summary);
 
         File.WriteAllText(Path.Combine(OutputDirectory, "verification-report.txt"),
             string.Join(Environment.NewLine, summary));
@@ -183,9 +187,19 @@ public static class AppearanceUiVerification
                 return label;
             }
 
+            GameObject FindObject(string name)
+            {
+                var tr = uiRoot.WindowRoot.GetComponentsInChildren<UnityEngine.Transform>(true).FirstOrDefault(t => t.name == name);
+                if (tr == null) throw new InvalidOperationException("未找到节点：" + name);
+                return tr.gameObject;
+            }
+
+            var biographyOverlay = FindObject("AppearanceBiographyOverlay");
+            var portraitOverlay = FindObject("AppearancePortraitOverlay");
+
             if (captureFullSuite)
             {
-                // 验收 1：三位人物分别打开背景与故事，图文对应
+                // 验收 1：三位人物分别打开小传、大图预览与故事，核对图文对应及逐层返回
                 var expectedThree = new[]
                 {
                     ("00_reference_topright_boy", "金发带Q道童", "陆照禾", "第四只碗", "回来带葱"),
@@ -195,36 +209,55 @@ public static class AppearanceUiVerification
                 foreach (var (rawId, origName, archiveName, storyTitle, bodySnippet) in expectedThree)
                 {
                     Click("AppearanceOption_" + rawId);
+                    AssertTrue(!FindObject("AppearancePortraitMissing").activeSelf, $"正式角色立绘应通过 AcquireCreationPortrait 正常加载：{rawId}");
                     AssertTrue(uiRoot.BiographySection.activeSelf, $"应显示人物背景：{rawId}");
-                    AssertTrue(FindText("AppearancePreviewName").text == origName, $"应保留原形象称呼：{origName}");
+                    AssertTrue(FindText("AppearancePreviewName").text.Contains(archiveName), $"人物主标题应包含档案名：{archiveName}");
+                    AssertTrue(FindText("AppearanceArchiveTag").text == origName, $"副标应保留原形象称呼：{origName}");
                     AssertTrue(FindText("BiographyIdentity").text.Contains(archiveName), $"人物档案应包含：{archiveName}");
                     if (rawId == "00_reference_topright_boy") Shoot("01-biography-summary-ahe");
 
                     Click("AppearanceReadStory");
-                    AssertTrue(uiRoot.StoryOverlay.activeSelf, $"应打开故事阅读层：{rawId}");
+                    AssertTrue(biographyOverlay.activeSelf, $"点击读人物志应打开人物小传层：{rawId}");
+                    AssertTrue(FindText("BiographyName").text.Contains(archiveName), $"小传标题应包含：{archiveName}");
+                    if (rawId == "00_reference_topright_boy")
+                    {
+                        Shoot("02a-biography-overlay-ahe");
+                        Click("BiographyViewPortrait");
+                        AssertTrue(portraitOverlay.activeSelf, "从小传点击查看形象应打开独立大图层");
+                        Shoot("02b-portrait-preview-ahe");
+                        Click("PortraitReturn");
+                        AssertTrue(!portraitOverlay.activeSelf && biographyOverlay.activeSelf, "独立大图返回应回到人物小传层");
+                    }
+
+                    Click("BiographyReadStory");
+                    AssertTrue(uiRoot.StoryOverlay.activeSelf, $"从小传进入应打开故事阅读层：{rawId}");
                     AssertTrue(FindText("StoryTitle").text == storyTitle, $"故事篇名不匹配：{storyTitle}");
                     AssertTrue(uiRoot.StoryBodyText.text.Contains(bodySnippet), $"故事正文不匹配：{bodySnippet}");
-                    if (rawId == "00_reference_topright_boy") Shoot("02-story-reader-ahe");
+                    if (rawId == "00_reference_topright_boy") Shoot("02c-story-reader-ahe");
 
                     Click("AppearanceStoryBack");
-                    AssertTrue(!uiRoot.StoryOverlay.activeSelf, "点击返回应关闭故事阅读层");
+                    AssertTrue(!uiRoot.StoryOverlay.activeSelf && biographyOverlay.activeSelf, "故事普通返回应逐层回到人物小传");
+                    Click("BiographyBack");
+                    AssertTrue(!biographyOverlay.activeSelf, "小传返回应回到主详情");
                 }
-                summary.Add($"[{width}x{height}] Check 1 PASS: 三位人物背景与故事图文一一对应");
+                summary.Add($"[{width}x{height}] Check 1 PASS: 三位人物小传→大图→往事图文一一对应且逐层返回正确");
 
-                // 验收 2 & 3：跳过后可再次阅读；返回后仍选中原人物且列表位置不变
+                // 验收 2 & 3：跳过直接回详情且可重读；读完返回仍选中原人物且列表位置不变
                 uiRoot.ListScroll.verticalNormalizedPosition = 0.34f;
                 Click("AppearanceOption_10_crimson_spear_girl");
                 Click("AppearanceReadStory");
+                Click("BiographyReadStory");
                 Click("AppearanceStorySkip");
-                AssertTrue(!uiRoot.StoryOverlay.activeSelf, "跳过应关闭阅读层");
+                AssertTrue(!uiRoot.StoryOverlay.activeSelf && !biographyOverlay.activeSelf, "跳过应直接回详情并关闭全部阅读层");
                 AssertTrue(uiRoot.PanelState.SelectedAppearanceId == "10_crimson_spear_girl", "跳过后仍应选中祝停云");
                 AssertTrue(Mathf.Abs(uiRoot.ListScroll.verticalNormalizedPosition - 0.34f) < 0.02f, "跳过后列表滚动位置应不变");
 
                 Click("AppearanceReadStory");
+                Click("BiographyReadStory");
                 AssertTrue(uiRoot.StoryOverlay.activeSelf, "跳过后应可再次阅读");
-                AssertTrue(Mathf.Abs(uiRoot.StoryScroll.verticalNormalizedPosition - 1f) < 0.02f, "再次阅读应回到顶部");
+                AssertTrue(Mathf.Abs(uiRoot.StoryScroll.verticalNormalizedPosition - 1f) < 0.02f, "未滚动重开仍在顶部");
                 Click("AppearanceStoryFinish");
-                AssertTrue(!uiRoot.StoryOverlay.activeSelf, "读完返回应关闭阅读层");
+                AssertTrue(!uiRoot.StoryOverlay.activeSelf && !biographyOverlay.activeSelf, "读完返回应直接回详情");
                 AssertTrue(uiRoot.PanelState.SelectedAppearanceId == "10_crimson_spear_girl", "读完返回仍应选中祝停云");
                 AssertTrue(Mathf.Abs(uiRoot.ListScroll.verticalNormalizedPosition - 0.34f) < 0.02f, "读完返回列表位置应不变");
                 Shoot("03-returned-same-character-tingyun");
@@ -241,23 +274,23 @@ public static class AppearanceUiVerification
                 Shoot("04-no-biography-and-trial-active");
                 summary.Add($"[{width}x{height}] Check 4 PASS: 无档案人物收起背景区且零残留");
 
-                // 验收 7：先点切换一次 → 打开故事 → 返回 → 再点切换 不会误扣卡
+                // 验收 7：先点切换打开扣卡确认 → 点击「先读人物志」→ 返回 → 再点切换 不会误扣卡
                 transport.Snapshot = BuildFixtureInfo(ownedCards: 2, activeTrialId: "");
                 client.RequestInfo(force: true);
                 Click("AppearanceOption_00_reference_topright_boy");
                 Click("AppearanceConfirmSwitch");
                 AssertTrue(uiRoot.ConfirmOverlay.activeSelf, "首次点切换应弹出二次确认弹窗");
                 Shoot("05-switch-confirm-dialog");
-                Click("AppearanceConfirmCancel");
                 uiRoot.PanelState.ArmLegacySwitchConfirmation("00_reference_topright_boy", clock);
-                Click("AppearanceReadStory");
+                Click("ReadBeforeSwitch");
+                AssertTrue(biographyOverlay.activeSelf && !uiRoot.ConfirmOverlay.activeSelf, "点击先读人物志应进入小传并关闭确认窗");
                 AssertTrue(!uiRoot.PanelState.HasPendingSwitchConfirmation, "打开阅读层必须清除旧扣卡确认");
-                Click("AppearanceStoryBack");
+                Click("BiographyBack");
                 Click("AppearanceConfirmSwitch");
                 AssertTrue(uiRoot.ConfirmOverlay.activeSelf, "返回后首次点切换必须重进确认弹窗");
                 AssertTrue(transport.SwitchCalls == 0, "不得直接扣卡发包");
                 Click("AppearanceConfirmCancel");
-                summary.Add($"[{width}x{height}] Check 7 PASS: 先点切换→读故事→返回→再点切换仅重进确认，SwitchCalls=0");
+                summary.Add($"[{width}x{height}] Check 7 PASS: 扣卡确认→先读人物志→返回→再点切换仅重进确认，SwitchCalls=0");
 
                 // 额外视觉核验：背包 0 张卡弹出官方商城引导窗（04）
                 transport.Snapshot = BuildFixtureInfo(ownedCards: 0, activeTrialId: "");
@@ -268,30 +301,31 @@ public static class AppearanceUiVerification
                 Shoot("06-no-card-mall-guide");
                 Click("AppearanceNoCardCancel");
 
-                // 验收 5：缺立绘仍可读人物背景与故事，显示缺图占位不借用他人立绘
+                // 验收 5：缺立绘仍可读人物小传与故事，显示缺图占位不借用他人立绘
                 transport.Snapshot = BuildFixtureInfo(ownedCards: 2, activeTrialId: "");
                 uiRoot.AttachVerificationClient(client, rawId => rawId == "09_bamboo_archer_girl" ? null : QdaoCharacterCatalog.LoadPortrait(rawId));
                 client.RequestInfo(force: true);
                 uiRoot.ShowPanel();
                 Click("AppearanceOption_09_bamboo_archer_girl");
-                var missingBox = uiRoot.WindowRoot.GetComponentsInChildren<UnityEngine.Transform>(true)
-                    .First(t => t.name == "AppearancePortraitMissing").gameObject;
+                var missingBox = FindObject("AppearancePortraitMissing");
                 AssertTrue(missingBox.activeSelf, "缺立绘时应显示缺图占位");
                 AssertTrue(uiRoot.BiographySection.activeSelf, "缺立绘时仍应显示人物背景");
                 Shoot("07-missing-portrait-readable");
                 Click("AppearanceReadStory");
+                Click("BiographyReadStory");
                 AssertTrue(uiRoot.StoryOverlay.activeSelf && FindText("StoryTitle").text == "没有画的那一页", "缺立绘时仍可打开阅读故事");
-                Click("AppearanceStoryBack");
-                summary.Add($"[{width}x{height}] Check 5 PASS: 缺立绘显示占位且背景/故事正常可读");
+                Click("AppearanceStorySkip");
+                summary.Add($"[{width}x{height}] Check 5 PASS: 缺立绘显示占位且小传/故事正常可读");
 
                 // 验收 6：快速切人、阅读中断线、关闭重开不串内容
                 Click("AppearanceOption_00_reference_topright_boy");
                 Click("AppearanceOption_10_crimson_spear_girl");
                 Click("AppearanceOption_09_bamboo_archer_girl");
                 Click("AppearanceReadStory");
+                Click("BiographyReadStory");
                 AssertTrue(uiRoot.StoryOverlay.activeSelf, "快速切人后应打开桑听雨故事");
                 transport.EmitDisconnect();
-                AssertTrue(!uiRoot.StoryOverlay.activeSelf, "断线时应立即收起故事阅读层");
+                AssertTrue(!uiRoot.StoryOverlay.activeSelf && !biographyOverlay.activeSelf, "断线时应立即收起故事与小传层");
                 transport.IsReady = true;
                 conn = new object();
                 client.RequestInfo(force: true);
@@ -329,12 +363,18 @@ public static class AppearanceUiVerification
                     "系列筛选与合篇阅读全程不得产生写请求");
                 summary.Add($"[{width}x{height}] Check 9 PASS: 人物收藏系列筛选、未集齐灰态、集齐读合篇与零写请求验收通过");
             }
-            else
+            else if (width < 1200 || height < 600)
             {
-                // 窄横屏 1280×720 + 模拟刘海/底部手势/小游戏胶囊安全区 + 放大字号滚动至末行留白
+                // 窄横屏 896×414 + 模拟安全区：核查列表→详情分步布局、小传与放大字号故事滚动
+                Shoot("10-compact-list");
                 Click("AppearanceOption_10_crimson_spear_girl");
-                Shoot("08-narrow-safearea-biography");
+                AssertTrue(FindObject("AppearanceBackToList").activeSelf, "窄横屏选中条目后应切换至详情并显示返回列表按钮");
+                Shoot("11-compact-detail-tingyun");
                 Click("AppearanceReadStory");
+                AssertTrue(biographyOverlay.activeSelf, "窄横屏应能打开人物小传");
+                Shoot("12-compact-biography-tingyun");
+                Click("BiographyReadStory");
+                AssertTrue(uiRoot.StoryOverlay.activeSelf, "窄横屏应能从小传进入往事");
                 uiRoot.StoryBodyText.fontSize = 44f;
                 uiRoot.RefreshStoryLayoutForVerification();
                 Canvas.ForceUpdateCanvases();
@@ -342,8 +382,18 @@ public static class AppearanceUiVerification
                     "窄横屏放大字号后故事正文必须提供真实纵向滚动");
                 uiRoot.StoryScroll.verticalNormalizedPosition = 0f;
                 Canvas.ForceUpdateCanvases();
-                Shoot("09-narrow-story-enlarged-scroll-end");
-                summary.Add($"[{width}x{height}] Narrow+SafeArea+EnlargedFontScroll PASS: contentH={uiRoot.StoryScroll.content.rect.height:F0} > viewportH={uiRoot.StoryScroll.viewport.rect.height:F0}");
+                Shoot("13-compact-story-scroll-end");
+                Click("AppearanceStorySkip");
+                Click("AppearanceBackToList");
+                AssertTrue(!FindObject("AppearanceBackToList").activeSelf, "返回列表后应隐藏返回列表按钮");
+                summary.Add($"[{width}x{height}] Compact+SafeArea+EnlargedFontScroll PASS: contentH={uiRoot.StoryScroll.content.rect.height:F0} > viewportH={uiRoot.StoryScroll.viewport.rect.height:F0}");
+            }
+            else
+            {
+                // 1920×1080 常规横屏复核
+                Click("AppearanceOption_10_crimson_spear_girl");
+                Shoot("14-standard-1920-detail-tingyun");
+                summary.Add($"[{width}x{height}] Standard 1920x1080 layout capture PASS");
             }
         }
         finally

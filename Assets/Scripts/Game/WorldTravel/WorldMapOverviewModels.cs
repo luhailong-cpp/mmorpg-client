@@ -89,6 +89,81 @@ namespace MmorpgClient.Game.WorldTravel
         }
     }
 
+    /// <summary>大地图顶部灵潮横幅的纯渲染视图（无 Unity 依赖，供高保真 UI 直接绑定）。</summary>
+    public readonly struct WorldMapTideBannerView
+    {
+        public bool Visible { get; }
+        public bool Active { get; }
+        public ulong RoundId { get; }
+        public uint TargetSceneConfigId { get; }
+        public ulong RecommendedSceneId { get; }
+        public uint RecommendedChannelNo { get; }
+        public string TargetMapName { get; }
+        public long RemainingSeconds { get; }
+        public string Headline { get; }
+        public string CountdownText { get; }
+        public bool IsOnTargetMap { get; }
+        public bool CanQuickTravel { get; }
+        public string ActionLabel { get; }
+
+        public WorldMapTideBannerView(bool visible, bool active, ulong roundId, uint targetSceneConfigId,
+            ulong recommendedSceneId, uint recommendedChannelNo, string targetMapName, long remainingSeconds,
+            string headline, string countdownText, bool isOnTargetMap, bool canQuickTravel, string actionLabel)
+        {
+            Visible = visible;
+            Active = active;
+            RoundId = roundId;
+            TargetSceneConfigId = targetSceneConfigId;
+            RecommendedSceneId = recommendedSceneId;
+            RecommendedChannelNo = recommendedChannelNo;
+            TargetMapName = targetMapName ?? "";
+            RemainingSeconds = remainingSeconds;
+            Headline = headline ?? "";
+            CountdownText = countdownText ?? "";
+            IsOnTargetMap = isOnTargetMap;
+            CanQuickTravel = canQuickTravel;
+            ActionLabel = actionLabel ?? "";
+        }
+    }
+
+    /// <summary>单张地图锚点的纯状态视图（热度/灵潮/今日旺地/神秘商人/推荐聚人线，供底图锚点直接绑定）。</summary>
+    public readonly struct WorldMapPinView
+    {
+        public uint SceneConfigId { get; }
+        public bool OnlineAvailable { get; }
+        public bool HasOverviewEntry { get; }
+        public global::WorldMapHeatLevel HeatLevel { get; }
+        public string HeatLabel { get; }
+        public uint TotalPlayerCount { get; }
+        public uint ChannelCount { get; }
+        public ulong RecommendedSceneId { get; }
+        public uint RecommendedChannelNo { get; }
+        public bool IsCurrentScene { get; }
+        public bool IsTideMap { get; }
+        public bool IsDailyHotspot { get; }
+        public bool HasMysteryMerchant { get; }
+
+        public WorldMapPinView(uint sceneConfigId, bool onlineAvailable, bool hasOverviewEntry,
+            global::WorldMapHeatLevel heatLevel, string heatLabel, uint totalPlayerCount, uint channelCount,
+            ulong recommendedSceneId, uint recommendedChannelNo, bool isCurrentScene, bool isTideMap,
+            bool isDailyHotspot, bool hasMysteryMerchant)
+        {
+            SceneConfigId = sceneConfigId;
+            OnlineAvailable = onlineAvailable;
+            HasOverviewEntry = hasOverviewEntry;
+            HeatLevel = heatLevel;
+            HeatLabel = heatLabel ?? "";
+            TotalPlayerCount = totalPlayerCount;
+            ChannelCount = channelCount;
+            RecommendedSceneId = recommendedSceneId;
+            RecommendedChannelNo = recommendedChannelNo;
+            IsCurrentScene = isCurrentScene;
+            IsTideMap = isTideMap;
+            IsDailyHotspot = isDailyHotspot;
+            HasMysteryMerchant = hasMysteryMerchant;
+        }
+    }
+
     /// <summary>世界地图总览的纯转换与文案规则（EditMode 测试直接调用）。</summary>
     public static class WorldMapOverviewModels
     {
@@ -183,6 +258,91 @@ namespace MmorpgClient.Game.WorldTravel
                 sb.Append("神秘商人正在此图现身");
             }
             return sb.ToString();
+        }
+
+        /// <summary>根据快照服务端时间戳与本地经过秒数估算当前服务端毫秒时间，供每秒倒计时刷新（无需额外发包）。</summary>
+        public static ulong EstimateServerNowMs(WorldMapOverviewSnapshot overview, float elapsedSinceSnapshotSeconds)
+        {
+            if (overview == null) return 0UL;
+            ulong baseMs = overview.ServerTimeMs > 0UL ? overview.ServerTimeMs : overview.UpdatedAtMs;
+            if (baseMs == 0UL || !(elapsedSinceSnapshotSeconds > 0f)) return baseMs;
+            double delta = Math.Floor((double)elapsedSinceSnapshotSeconds * 1000.0);
+            if (delta <= 0.0 || double.IsNaN(delta) || double.IsInfinity(delta)) return baseMs;
+            ulong deltaMs = delta >= (double)(ulong.MaxValue - baseMs) ? ulong.MaxValue - baseMs : (ulong)delta;
+            return baseMs + deltaMs;
+        }
+
+        public static string FormatMinutesSeconds(long totalSeconds)
+        {
+            long clamped = totalSeconds > 0 ? totalSeconds : 0;
+            long minutes = clamped / 60;
+            long seconds = clamped % 60;
+            return minutes.ToString("00") + ":" + seconds.ToString("00");
+        }
+
+        /// <summary>生成大地图顶部灵潮横幅视图；无总览或无灵潮数据时 Visible=false，UI 整条隐藏。</summary>
+        public static WorldMapTideBannerView BuildTideBanner(WorldMapOverviewSnapshot overview,
+            uint currentSceneConfigId, Func<uint, string> mapNameResolver, ulong serverNowMs,
+            bool canTravelToTideMap, bool busy = false)
+        {
+            var tide = overview?.Tide;
+            if (tide == null) return default;
+
+            ulong nowMs = serverNowMs > 0UL ? serverNowMs : (overview.ServerTimeMs > 0UL ? overview.ServerTimeMs : overview.UpdatedAtMs);
+            string mapName = tide.SceneConfigId != 0 && mapNameResolver != null ? (mapNameResolver(tide.SceneConfigId) ?? "") : "";
+            if (tide.Active)
+            {
+                long remainSec = RemainingSecondsCeil(tide.EndsAtMs, nowMs);
+                bool onTarget = tide.SceneConfigId != 0 && tide.SceneConfigId == currentSceneConfigId;
+                bool canQuick = tide.SceneConfigId != 0 && !onTarget && canTravelToTideMap && !busy;
+                string headline = string.IsNullOrEmpty(mapName) ? "灵潮涌动" : "灵潮涌动 · " + mapName;
+                string countdown = remainSec > 0 ? "剩余 " + FormatMinutesSeconds(remainSec) : "即将结束";
+                string action = onTarget ? "已在此地" : busy ? "正在传送…" : canTravelToTideMap ? "立即前往" : "";
+                return new WorldMapTideBannerView(true, true, tide.RoundId, tide.SceneConfigId,
+                    tide.RecommendedSceneId, tide.RecommendedChannelNo, mapName, remainSec,
+                    headline, countdown, onTarget, canQuick, action);
+            }
+
+            long nextSec = RemainingSecondsCeil(tide.NextStartsAtMs, nowMs);
+            string restCountdown = nextSec > 0 ? "下轮倒计时 " + FormatMinutesSeconds(nextSec) : "即将开启";
+            return new WorldMapTideBannerView(true, false, tide.RoundId, tide.SceneConfigId,
+                tide.RecommendedSceneId, tide.RecommendedChannelNo, mapName, nextSec,
+                "灵潮休歇", restCountdown, false, false, "");
+        }
+
+        /// <summary>生成单张地图锚点的聚合热度与标记视图；无总览数据时 HasOverviewEntry=false。</summary>
+        public static WorldMapPinView BuildPinView(WorldMapOverviewSnapshot overview, uint sceneConfigId,
+            uint currentSceneConfigId, bool onlineAvailable)
+        {
+            var item = overview?.FindMap(sceneConfigId);
+            bool isCurrent = sceneConfigId != 0 && sceneConfigId == currentSceneConfigId;
+            bool isHotspot = overview != null && sceneConfigId != 0 && overview.DailyHotspotSceneConfigId == sceneConfigId;
+            if (item == null)
+            {
+                return new WorldMapPinView(sceneConfigId, onlineAvailable, false,
+                    global::WorldMapHeatLevel.Unknown, "", 0u, 0u, 0UL, 0u, isCurrent, false, isHotspot, false);
+            }
+            return new WorldMapPinView(sceneConfigId, onlineAvailable, true,
+                item.HeatLevel, HeatLabel(item.HeatLevel), item.TotalPlayerCount, item.ChannelCount,
+                item.RecommendedSceneId, item.RecommendedChannelNo, isCurrent,
+                item.IsTideMap, isHotspot, item.HasMysteryMerchant);
+        }
+
+        /// <summary>主界面「地图」入口是否展示灵潮提示角标：本轮灵潮进行中、玩家未在灵潮图、且本轮未打开过地图。</summary>
+        public static bool ShouldShowMapEntryTideBadge(WorldMapOverviewSnapshot overview,
+            uint currentSceneConfigId, ulong dismissedTideRoundId)
+        {
+            var tide = overview?.Tide;
+            if (tide == null || !tide.Active || tide.RoundId == 0UL || tide.SceneConfigId == 0u) return false;
+            if (tide.RoundId == dismissedTideRoundId) return false;
+            return tide.SceneConfigId != currentSceneConfigId;
+        }
+
+        private static long RemainingSecondsCeil(ulong targetMs, ulong nowMs)
+        {
+            if (targetMs <= nowMs) return 0L;
+            ulong diff = targetMs - nowMs;
+            return (long)((diff + 999UL) / 1000UL);
         }
 
         private static void AppendTag(StringBuilder sb, string tag)

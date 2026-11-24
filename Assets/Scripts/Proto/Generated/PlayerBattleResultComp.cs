@@ -26,7 +26,7 @@ public static partial class PlayerBattleResultCompReflection {
           "X2NvbXAucHJvdG8iQwoaUGxheWVyQmF0dGxlUmVzdWx0Q3VycmVuY3kSFQoN",
           "Y3VycmVuY3lfdHlwZRgBIAEoDRIOCgZhbW91bnQYAiABKAQiPgoWUGxheWVy",
           "QmF0dGxlUmVzdWx0SXRlbRIVCg1pdGVtX3RhYmxlX2lkGAEgASgNEg0KBWNv",
-          "dW50GAIgASgEIooEChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
+          "dW50GAIgASgEIoYFChJQbGF5ZXJCYXR0bGVSZXN1bHQSEgoKcmVzdWx0X3Nl",
           "cRgBIAEoBBIRCgliYXR0bGVfaWQYAiABKAQSDwoHb3V0Y29tZRgDIAEoDRIS",
           "Cgp0ZWFtX2luZGV4GAQgASgNEg8KB2lzX2RlYWQYBSABKAgSDAoEZmxlZBgG",
           "IAEoCBIUCgx0b3RhbF9yb3VuZHMYByABKA0SFgoOZmluaXNoZWRfYXRfbXMY",
@@ -37,16 +37,19 @@ public static partial class PlayerBattleResultCompReflection {
           "ZXNfdHJ1bmNhdGVkGA0gASgIEgwKBHNlZW4YDiABKAgSEgoKbWF0Y2hfbW9k",
           "ZRgPIAEoDRIYChBiYXR0bGVfY29uZmlnX2lkGBAgASgNEhQKDGl0ZW1zX21h",
           "aWxlZBgRIAEoCBIQCghleHBfZ2FpbhgSIAEoBBIjChttYXRlcmlhbF9jcmVk",
-          "aXRfdW5pdHNfYWRkZWQYEyABKA0SEQoJc2Vhc29uX2lkGBQgASgNIlcKFlBs",
-          "YXllckJhdHRsZVJlc3VsdENvbXASFwoPbGFzdF9yZXN1bHRfc2VxGAEgASgE",
-          "EiQKB2VudHJpZXMYAiADKAsyEy5QbGF5ZXJCYXR0bGVSZXN1bHRCEloQY29t",
-          "bW9uL2NvbXBvbmVudGIGcHJvdG8z"));
+          "aXRfdW5pdHNfYWRkZWQYEyABKA0SEQoJc2Vhc29uX2lkGBQgASgNEh4KFnRy",
+          "aWFsX2pvdXJuYWxfZW50cnlfaWQYFSABKA0SIAoYdHJpYWxfbmV3bHlfbGl0",
+          "X3NlYWxfaWRzGBYgAygNEhsKE3RyaWFsX25ld19zb2xvX2Jlc3QYFyABKAgS",
+          "GwoTdHJpYWxfbmV3X2Nvb3BfYmVzdBgYIAEoCCJXChZQbGF5ZXJCYXR0bGVS",
+          "ZXN1bHRDb21wEhcKD2xhc3RfcmVzdWx0X3NlcRgBIAEoBBIkCgdlbnRyaWVz",
+          "GAIgAygLMhMuUGxheWVyQmF0dGxlUmVzdWx0QhJaEGNvbW1vbi9jb21wb25l",
+          "bnRiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultCurrency), global::PlayerBattleResultCurrency.Parser, new[]{ "CurrencyType", "Amount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultItem), global::PlayerBattleResultItem.Parser, new[]{ "ItemTableId", "Count" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResult), global::PlayerBattleResult.Parser, new[]{ "ResultSeq", "BattleId", "Outcome", "TeamIndex", "IsDead", "Fled", "TotalRounds", "FinishedAtMs", "SettledAtMs", "Currencies", "ItemsGained", "ItemsConsumed", "LinesTruncated", "Seen", "MatchMode", "BattleConfigId", "ItemsMailed", "ExpGain", "MaterialCreditUnitsAdded", "SeasonId", "TrialJournalEntryId", "TrialNewlyLitSealIds", "TrialNewSoloBest", "TrialNewCoopBest" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlayerBattleResultComp), global::PlayerBattleResultComp.Parser, new[]{ "LastResultSeq", "Entries" }, null, null, null, null)
         }));
   }
@@ -594,6 +597,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     expGain_ = other.expGain_;
     materialCreditUnitsAdded_ = other.materialCreditUnitsAdded_;
     seasonId_ = other.seasonId_;
+    trialJournalEntryId_ = other.trialJournalEntryId_;
+    trialNewlyLitSealIds_ = other.trialNewlyLitSealIds_.Clone();
+    trialNewSoloBest_ = other.trialNewSoloBest_;
+    trialNewCoopBest_ = other.trialNewCoopBest_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -898,6 +905,65 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
   }
 
+  /// <summary>Field number for the "trial_journal_entry_id" field.</summary>
+  public const int TrialJournalEntryIdFieldNumber = 21;
+  private uint trialJournalEntryId_;
+  /// <summary>
+  /// 五行试炼志关联关卡格 ID(0 = 非试炼志对局，结算页据此决定是否显示「看试炼志」)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TrialJournalEntryId {
+    get { return trialJournalEntryId_; }
+    set {
+      trialJournalEntryId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "trial_newly_lit_seal_ids" field.</summary>
+  public const int TrialNewlyLitSealIdsFieldNumber = 22;
+  private static readonly pb::FieldCodec<uint> _repeated_trialNewlyLitSealIds_codec
+      = pb::FieldCodec.ForUInt32(178);
+  private readonly pbc::RepeatedField<uint> trialNewlyLitSealIds_ = new pbc::RepeatedField<uint>();
+  /// <summary>
+  /// 本局首次点亮的战法印 ID 列表
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<uint> TrialNewlyLitSealIds {
+    get { return trialNewlyLitSealIds_; }
+  }
+
+  /// <summary>Field number for the "trial_new_solo_best" field.</summary>
+  public const int TrialNewSoloBestFieldNumber = 23;
+  private bool trialNewSoloBest_;
+  /// <summary>
+  /// 本局是否刷新单人最少回合纪录
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool TrialNewSoloBest {
+    get { return trialNewSoloBest_; }
+    set {
+      trialNewSoloBest_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "trial_new_coop_best" field.</summary>
+  public const int TrialNewCoopBestFieldNumber = 24;
+  private bool trialNewCoopBest_;
+  /// <summary>
+  /// 本局是否刷新好友合战最快回合纪录
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool TrialNewCoopBest {
+    get { return trialNewCoopBest_; }
+    set {
+      trialNewCoopBest_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -933,6 +999,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (ExpGain != other.ExpGain) return false;
     if (MaterialCreditUnitsAdded != other.MaterialCreditUnitsAdded) return false;
     if (SeasonId != other.SeasonId) return false;
+    if (TrialJournalEntryId != other.TrialJournalEntryId) return false;
+    if(!trialNewlyLitSealIds_.Equals(other.trialNewlyLitSealIds_)) return false;
+    if (TrialNewSoloBest != other.TrialNewSoloBest) return false;
+    if (TrialNewCoopBest != other.TrialNewCoopBest) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -960,6 +1030,10 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     if (ExpGain != 0UL) hash ^= ExpGain.GetHashCode();
     if (MaterialCreditUnitsAdded != 0) hash ^= MaterialCreditUnitsAdded.GetHashCode();
     if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
+    if (TrialJournalEntryId != 0) hash ^= TrialJournalEntryId.GetHashCode();
+    hash ^= trialNewlyLitSealIds_.GetHashCode();
+    if (TrialNewSoloBest != false) hash ^= TrialNewSoloBest.GetHashCode();
+    if (TrialNewCoopBest != false) hash ^= TrialNewCoopBest.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1049,6 +1123,19 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(160, 1);
       output.WriteUInt32(SeasonId);
     }
+    if (TrialJournalEntryId != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(TrialJournalEntryId);
+    }
+    trialNewlyLitSealIds_.WriteTo(output, _repeated_trialNewlyLitSealIds_codec);
+    if (TrialNewSoloBest != false) {
+      output.WriteRawTag(184, 1);
+      output.WriteBool(TrialNewSoloBest);
+    }
+    if (TrialNewCoopBest != false) {
+      output.WriteRawTag(192, 1);
+      output.WriteBool(TrialNewCoopBest);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1130,6 +1217,19 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
       output.WriteRawTag(160, 1);
       output.WriteUInt32(SeasonId);
     }
+    if (TrialJournalEntryId != 0) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt32(TrialJournalEntryId);
+    }
+    trialNewlyLitSealIds_.WriteTo(ref output, _repeated_trialNewlyLitSealIds_codec);
+    if (TrialNewSoloBest != false) {
+      output.WriteRawTag(184, 1);
+      output.WriteBool(TrialNewSoloBest);
+    }
+    if (TrialNewCoopBest != false) {
+      output.WriteRawTag(192, 1);
+      output.WriteBool(TrialNewCoopBest);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1193,6 +1293,16 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (SeasonId != 0) {
       size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SeasonId);
+    }
+    if (TrialJournalEntryId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(TrialJournalEntryId);
+    }
+    size += trialNewlyLitSealIds_.CalculateSize(_repeated_trialNewlyLitSealIds_codec);
+    if (TrialNewSoloBest != false) {
+      size += 2 + 1;
+    }
+    if (TrialNewCoopBest != false) {
+      size += 2 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1259,6 +1369,16 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
     }
     if (other.SeasonId != 0) {
       SeasonId = other.SeasonId;
+    }
+    if (other.TrialJournalEntryId != 0) {
+      TrialJournalEntryId = other.TrialJournalEntryId;
+    }
+    trialNewlyLitSealIds_.Add(other.trialNewlyLitSealIds_);
+    if (other.TrialNewSoloBest != false) {
+      TrialNewSoloBest = other.TrialNewSoloBest;
+    }
+    if (other.TrialNewCoopBest != false) {
+      TrialNewCoopBest = other.TrialNewCoopBest;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1359,6 +1479,23 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
           SeasonId = input.ReadUInt32();
           break;
         }
+        case 168: {
+          TrialJournalEntryId = input.ReadUInt32();
+          break;
+        }
+        case 178:
+        case 176: {
+          trialNewlyLitSealIds_.AddEntriesFrom(input, _repeated_trialNewlyLitSealIds_codec);
+          break;
+        }
+        case 184: {
+          TrialNewSoloBest = input.ReadBool();
+          break;
+        }
+        case 192: {
+          TrialNewCoopBest = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -1456,6 +1593,23 @@ public sealed partial class PlayerBattleResult : pb::IMessage<PlayerBattleResult
         }
         case 160: {
           SeasonId = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          TrialJournalEntryId = input.ReadUInt32();
+          break;
+        }
+        case 178:
+        case 176: {
+          trialNewlyLitSealIds_.AddEntriesFrom(ref input, _repeated_trialNewlyLitSealIds_codec);
+          break;
+        }
+        case 184: {
+          TrialNewSoloBest = input.ReadBool();
+          break;
+        }
+        case 192: {
+          TrialNewCoopBest = input.ReadBool();
           break;
         }
       }

@@ -41,47 +41,51 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _readStoryBtn.GetComponentInChildren<TMP_Text>(true).text = "读人物志";
 
             var root = CreateOverlayBackdrop(parent, "AppearanceBiographyOverlay");
-            var box = QdaoUguiFactory.CreateCenteredRect("BiographyFrame", root, 1360, 880);
-            AppearanceUiArt.Frame(box, "BiographyFrameBg", 0, 0, 1360, 880);
-            AppearanceUiArt.TitlePlate(box, "BiographyTitlePlate", 400, -20, 560, 114);
-            var back = AppearanceUiArt.ActionButton(box, "BiographyBack", "返回", 70, 42, 170, 66,
+            var box = QdaoUguiFactory.CreateCenteredRect("BiographyFrame", root, 1360, 800);
+            box.anchoredPosition = new Vector2(0f, -48f);
+            AppearanceUiArt.Frame(box, "BiographyFrameBg", 0, 0, 1360, 800);
+            AppearanceUiArt.TitlePlate(box, "BiographyTitlePlate", 400, -24, 560, 114);
+            var back = AppearanceUiArt.ActionButton(box, "BiographyBack", "返回", 70, 40, 170, 66,
                 HandleDismissOverlay, fontSize: 27);
             var close = AppearanceUiArt.CloseButton(box, "BiographyClose", 1250, 30, 68, HidePanel);
-            _biographyPageName = ReadingLabel(box, "BiographyName", "", 400, 20, 560, 70, 42, true);
+            _biographyPageName = ReadingLabel(box, "BiographyName", "", 440, -6, 480, 62, 38, true);
             _biographyPageName.color = AppearanceUiArt.WarmCream;
-            ReadingLabel(box, "BiographyHeading", "人物小传", 110, 150, 1000, 56, 34);
-            _biographyPageScroll = MailUiArt.Scroll(box, "BiographyScroll", 110, 228, 1138, 314, out var content);
-            _biographyPageBody = ReadingLabel(content, "BiographyBody", "", 0, 0, 1080, 314, 34);
-            ReadingLabel(box, "BiographyStoryHeading", "一段往事", 110, 584, 1000, 54, 34);
-            var story = AppearanceUiArt.ActionButton(box, "BiographyReadStory", "", 110, 662, 780, 88,
+            _biographyPageName.fontStyle = FontStyles.Bold;
+            ReadingLabel(box, "BiographyHeading", "人物小传", 110, 134, 1000, 52, 34);
+            _biographyPageScroll = MailUiArt.Scroll(box, "BiographyScroll", 110, 202, 1138, 290, out var content);
+            _biographyPageBody = ReadingLabel(content, "BiographyBody", "", 0, 0, 1080, 290, 34);
+            ReadingLabel(box, "BiographyStoryHeading", "一段往事", 110, 526, 1000, 50, 34);
+            var story = AppearanceUiArt.ActionButton(box, "BiographyReadStory", "", 110, 598, 780, 86,
                 OpenStoryFromBiography, true, 32);
             _biographyStoryTitle = story.GetComponentInChildren<TMP_Text>(true);
-            var preview = AppearanceUiArt.ActionButton(box, "BiographyViewPortrait", "查看形象", 926, 662, 320, 88,
+            var preview = AppearanceUiArt.ActionButton(box, "BiographyViewPortrait", "查看形象", 926, 598, 320, 86,
                 HandleViewPortraitClicked, fontSize: 28);
-            ReadingLabel(box, "BiographyCandidateNote", "候选人物设定 · 小传与故事公开阅读", 110, 786, 1138, 44, 25);
+            ReadingLabel(box, "BiographyCandidateNote", "候选人物设定 · 小传与故事公开阅读", 130, 712, 1100, 40, 25);
             _biographyControls = new Selectable[] { back, story, preview, close };
             _biographyOverlay = root.gameObject;
             _biographyOverlay.SetActive(false);
 
             root = CreateOverlayBackdrop(parent, "AppearancePortraitOverlay");
-            box = QdaoUguiFactory.CreateCenteredRect("PortraitFrame", root, 1360, 900);
-            AppearanceUiArt.Frame(box, "PortraitFrameBg", 0, 0, 1360, 900);
-            AppearanceUiArt.TitlePlate(box, "PortraitTitlePlate", 400, -20, 560, 114);
+            box = QdaoUguiFactory.CreateCenteredRect("PortraitFrame", root, 1360, 800);
+            box.anchoredPosition = new Vector2(0f, -48f);
+            AppearanceUiArt.Frame(box, "PortraitFrameBg", 0, 0, 1360, 800);
+            AppearanceUiArt.TitlePlate(box, "PortraitTitlePlate", 400, -24, 560, 114);
             back = AppearanceUiArt.ActionButton(box, "PortraitBack", "返回", 70, 40, 170, 66,
                 HandleDismissOverlay, fontSize: 27);
             close = AppearanceUiArt.CloseButton(box, "PortraitClose", 1250, 30, 68, HidePanel);
-            _portraitPageName = ReadingLabel(box, "PortraitName", "", 400, 20, 560, 70, 42, true);
+            _portraitPageName = ReadingLabel(box, "PortraitName", "", 440, -6, 480, 62, 38, true);
             _portraitPageName.color = AppearanceUiArt.WarmCream;
-            _portraitPageImage = QdaoUguiFactory.CreateImage("FullPortrait", box, 300, 132, 760, 650, null);
+            _portraitPageName.fontStyle = FontStyles.Bold;
+            _portraitPageImage = QdaoUguiFactory.CreateImage("FullPortrait", box, 300, 118, 760, 564, null);
             _portraitPageImage.preserveAspect = true;
-            _portraitPageMissing = ReadingLabel(box, "PortraitMissing", "", 200, 360, 960, 150, 36, true);
-            var finish = AppearanceUiArt.ActionButton(box, "PortraitReturn", "返回刚才的位置", 470, 800, 420, 70,
+            _portraitPageMissing = ReadingLabel(box, "PortraitMissing", "", 200, 320, 960, 150, 36, true);
+            var finish = AppearanceUiArt.ActionButton(box, "PortraitReturn", "返回刚才的位置", 470, 698, 420, 70,
                 HandleDismissOverlay, true, 29);
             _portraitControls = new Selectable[] { back, finish, close };
             _portraitOverlay = root.gameObject;
             _portraitOverlay.SetActive(false);
             var storyFrame = _storyOverlay.transform.Find("StoryReaderFrame");
-            _storyCloseButton = AppearanceUiArt.CloseButton(storyFrame, "StoryCloseWindow", 1268, 706, 76, HidePanel);
+            _storyCloseButton = AppearanceUiArt.CloseButton(storyFrame, "StoryCloseWindow", 1246, 698, 76, HidePanel);
             _storyControls = new Selectable[] { _storyBackBtn, _storyFinishBtn, _storySkipBtn, _storyCloseButton };
             var confirmFrame = _confirmOverlay.transform.Find("ConfirmDialogFrame");
             _readBeforeConfirm = AppearanceUiArt.ActionButton(confirmFrame, "ReadBeforeSwitch", "先读人物志",
@@ -149,11 +153,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void LayoutBiographyBody()
         {
             if (_biographyPageBody == null || _biographyPageScroll == null) return;
-            float width = Mathf.Max(100, _biographyPageScroll.viewport.rect.width - 40);
-            float height = Mathf.Max(_biographyPageScroll.viewport.rect.height,
+            var scrollRect = (RectTransform)_biographyPageScroll.transform;
+            float scrollW = scrollRect.sizeDelta.x > 1f ? scrollRect.sizeDelta.x : _biographyPageScroll.viewport.rect.width + 18f;
+            float scrollH = scrollRect.sizeDelta.y > 1f ? scrollRect.sizeDelta.y : _biographyPageScroll.viewport.rect.height;
+            float viewW = Mathf.Max(100f, scrollW - 18f);
+            float width = Mathf.Max(100f, viewW - 24f);
+            float height = Mathf.Max(scrollH,
                 _biographyPageBody.GetPreferredValues(_biographyPageBody.text, width, 100000).y + 28);
             _biographyPageBody.rectTransform.sizeDelta = new Vector2(width, height);
-            _biographyPageScroll.content.sizeDelta = new Vector2(width, height);
+            _biographyPageScroll.content.sizeDelta = new Vector2(viewW, height);
         }
 
         private void ConfigureModalNavigation()

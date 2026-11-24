@@ -218,7 +218,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 case MysteryMerchantPresence.Here:
                     return "就在本线 · " + MysteryMerchantModels.FormatCountdown(view.RemainingMs) + " 后离开";
                 case MysteryMerchantPresence.Elsewhere:
-                    return "正在 " + MysteryMerchantModels.LineName(view.ChannelNo) + " · "
+                    return "正在 " + LocationText(view) + " · "
                            + MysteryMerchantModels.FormatCountdown(view.RemainingMs) + " 后离开";
                 case MysteryMerchantPresence.Away:
                     if (view.UntilNextMs < 0) return MysteryMerchantModels.AwayText;
@@ -239,7 +239,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 case MysteryMerchantPresence.Here:
                     return view.Loading ? LoadingText : EmptyShelfText;
                 case MysteryMerchantPresence.Elsewhere:
-                    return "神秘商人正在 " + MysteryMerchantModels.LineName(view.ChannelNo) + "，到那条线才能看到货架。";
+                    return string.IsNullOrEmpty(view.TargetMapName)
+                        ? "神秘商人正在 " + MysteryMerchantModels.LineName(view.ChannelNo) + "，到那条线才能看到货架。"
+                        : "神秘商人正在 " + LocationText(view) + "，前往该地图与线路才能看到货架。";
                 case MysteryMerchantPresence.Away:
                     return view.UntilNextMs >= 0
                         ? "神秘商人已经离开，下次出现时会有公告。"
@@ -247,6 +249,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 default:
                     return view.Loading ? LoadingText : MysteryMerchantModels.UnknownNextText;
             }
+        }
+
+        private static string LocationText(MysteryMerchantShopView view)
+        {
+            string line = MysteryMerchantModels.LineName(view.ChannelNo);
+            return string.IsNullOrEmpty(view.TargetMapName) ? line : view.TargetMapName + " · " + line;
         }
 
         /// <summary>
@@ -330,10 +338,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (elsewhere)
             {
                 _travel.interactable = _view.CanTravel;
-                string line = MysteryMerchantModels.LineName(_view.ChannelNo);
-                _travelLabel.text = string.IsNullOrEmpty(_view.TargetMapName)
-                    ? "前往 " + line
-                    : "前往 " + _view.TargetMapName + " · " + line;
+                _travelLabel.text = "前往 " + LocationText(_view);
             }
             bool paged = !elsewhere && PageCount > 1;
             _previous.gameObject.SetActive(paged);

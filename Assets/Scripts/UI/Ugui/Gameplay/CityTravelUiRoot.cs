@@ -22,6 +22,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     {
         public static CityTravelUiRoot Instance { get; private set; }
         public CityTravelWindow Window => _window;
+        /// <summary>最近一次缓存的世界地图总览快照（无数据时为 null）。</summary>
+        public WorldMapOverviewSnapshot CurrentOverview => _channelClient?.Overview;
+        /// <summary>当前总览快照已历经的本地单调秒数（供灵潮倒计时估算，免额外发包）。</summary>
+        public float OverviewAgeSeconds => _channelClient?.OverviewAgeSeconds ?? 0f;
+        /// <summary>主界面「地图」入口是否应显示灵潮提示角标（每轮打开地图后自动消标，下轮自动重亮）。</summary>
+        public bool ShouldShowTideHudBadge =>
+            WorldMapOverviewModels.ShouldShowMapEntryTideBadge(_channelClient?.Overview, CurrentScene, _dismissedTideRoundId);
         private readonly CityTravelRequest _request = new();
         private AppBootstrap _app;
         private GameClient _game;
@@ -31,6 +38,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private CityTravelWindow _window;
         private string _status = "";
         private bool _wasAvailable;
+        private ulong _dismissedTideRoundId;
         // 跨区传送：在途的目标区服，以及发起时的连接标识（底层不再等待时据此判断连接是否还是原来那条）。
         // “此刻人在哪个区”不在这里记：那是连接层的事实，读 GameClient.CurrentZoneId（见下面的 CurrentZoneId）。
         // 以前这里自记过一份，只在“请求在途且入场通知来自新连接”时更新；窗口先收场、换服通知后到的时序下
@@ -149,12 +157,44 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow()) return;
             CityPanelRegistry.HideOthers(this);
             BindChannelClient(SceneChannelUiRoot.Instance?.Client);
+            MarkCurrentTideSeen();
             _channelClient?.RequestOverview();
             _window.SetZones(BuildZones());
             _window.SetDestinations(CreateDestinations());
             _window.SetOverview(_channelClient?.Overview);
             _window.Show(CurrentScene, _app.WorldMap?.Appearance ?? "normal");
             Refresh();
+        }
+
+        /// <summary>主动向服务端按需刷新一次世界地图总览（复用 SceneChannelClient 最小间隔节流）。</summary>
+        public bool RequestRefreshOverview()
+        {
+            BindChannelClient(SceneChannelUiRoot.Instance?.Client);
+            return _channelClient != null && _channelClient.RequestOverview();
+        }
+
+        /// <summary>将当前这一轮灵潮标记为已查看，消除 HUD 地图入口提示角标直至下一轮。</summary>
+        public void MarkCurrentTideSeen()
+        {
+            var tide = _channelClient?.Overview?.Tide;
+            if (tide != null && tide.Active && tide.RoundId != 0UL) _dismissedTideRoundId = tide.RoundId;
+        }
+
+        /// <summary>一键直达当前进行中的灵潮地图推荐聚人线（复用正式换图状态机）。</summary>
+        public bool RequestQuickTravelToTide(out string error)
+        {
+            var tide = _channelClient?.Overview?.Tide;
+            if (tide == null || !tide.Active || tide.SceneConfigId == 0u)
+            {
+                error = "当前暂无进行中的灵潮。";
+                return false;
+            }
+            if (tide.SceneConfigId == CurrentScene)
+            {
+                error = "你已身处灵潮地图。";
+                return false;
+            }
+            return RequestTravelToScene(tide.SceneConfigId, tide.RecommendedSceneId, out error);
         }
 
         /// <summary>外部入口（如神秘商人跨图一键前往）预检能否通过地图传送状态机发车。</summary>
@@ -371,6 +411,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _request.Reset();
             _pendingZoneId = 0;
             _gateAtRequest = null;
+            _dismissedTideRoundId = 0UL;
             _status = "";
             HidePanel();
             _game = game;
@@ -450,6 +491,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _request.Reset();
             _pendingZoneId = 0;
             _gateAtRequest = null;
+            _dismissedTideRoundId = 0UL;
             _status = "";
             HidePanel();
             Refresh();
@@ -516,6 +558,34 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     Available = false, OnlineAvailable = false
                 });
             return destinations.ToArray();
+        }
+
+        /// <summary>筛选正式开放可联机传送的目的地（供「游历」页签或底图可交互锚点绑定）。</summary>
+        public static CityTravelDestination[] FilterOnlineDestinations(IReadOnlyList<CityTravelDestination> all)
+        {
+            var result = new List<CityTravelDestination>();
+            if (all != null)
+            {
+                for (int i = 0; i < all.Count; ++i)
+                {
+                    if (all[i] != null && all[i].Available && all[i].OnlineAvailable) result.Add(all[i]);
+                }
+            }
+            return result.ToArray();
+        }
+
+        /// <summary>筛选仅收录预览/节庆景色、尚未开放联机传送的目的地（供「览景」页签绑定）。</summary>
+        public static CityTravelDestination[] FilterGalleryDestinations(IReadOnlyList<CityTravelDestination> all)
+        {
+            var result = new List<CityTravelDestination>();
+            if (all != null)
+            {
+                for (int i = 0; i < all.Count; ++i)
+                {
+                    if (all[i] != null && all[i].Available && !all[i].OnlineAvailable) result.Add(all[i]);
+                }
+            }
+            return result.ToArray();
         }
     }
 }
