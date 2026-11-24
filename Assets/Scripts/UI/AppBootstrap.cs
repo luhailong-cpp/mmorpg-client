@@ -37,6 +37,7 @@ namespace MmorpgClient.UI
             if (FindAnyObjectByType<TianyongSandboxBootstrap>() != null) return;
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (FindAnyObjectByType<FestivalMapVisualPreview>()?.IsStandalone == true) return;
+            if (FindAnyObjectByType<PcOriginalMapPreviewViewer>()?.IsStandalone == true) return;
 #endif
             if (FindAnyObjectByType<AppBootstrap>() != null) return;
             var go = new GameObject(GameObjectName);

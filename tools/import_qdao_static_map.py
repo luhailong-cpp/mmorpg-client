@@ -96,6 +96,39 @@ def verify_recomposition_exact_rgba(
     }
 
 
+def verify_recomposition_exact_rgb(
+    source_image: Image.Image,
+    tile_entries: list[dict],
+    tiles_dir: Path,
+) -> dict:
+    """Reload every written opaque PNG runtime tile from disk and prove exact RGB byte equality."""
+    source_rgb = source_image if source_image.mode == "RGB" else source_image.convert("RGB")
+    width, height = source_rgb.size
+    canvas = Image.new("RGB", (width, height), (0, 0, 0))
+    covered = 0
+    for tile in tile_entries:
+        tile_path = tiles_dir / f"r{tile['row']:02d}_c{tile['column']:02d}{tile['fileExtension']}"
+        with Image.open(tile_path) as part:
+            part.load()
+            pc_imp.require(part.format == "PNG", f"Runtime tile must be PNG: {tile_path}")
+            pc_imp.require(part.mode == "RGB", f"Opaque lossless tile must use RGB mode: {tile_path}")
+            pc_imp.require(
+                part.size == (tile["width"], tile["height"]),
+                f"Runtime tile size mismatch {part.size} != {(tile['width'], tile['height'])}",
+            )
+            canvas.paste(part, (tile["x"], tile["y"]))
+            covered += tile["width"] * tile["height"]
+    pc_imp.require(covered == width * height, f"Tile coverage {covered} != {width * height}")
+    exact_equal = canvas.tobytes() == source_rgb.tobytes()
+    pc_imp.require(exact_equal, "Recomposed runtime tiles RGB bytes differ from source whole PNG")
+    return {
+        "recomposedPixels": [width, height],
+        "coveredPixels": covered,
+        "tileCount": len(tile_entries),
+        "rgbByteEqualToWholeSource": exact_equal,
+    }
+
+
 def derive_single_appearance(
     *,
     map_id: str,
@@ -612,6 +645,7 @@ def derive_appearance_flexible(
     project_root: Path,
     world_grid: dict | None = None,
     precut_tiles: list[dict] | None = None,
+    lossless_png: bool = False,
     tile_size: int = pc_imp.TILE_SIZE,
 ) -> tuple[dict, dict]:
     """Derive runtime tiles + overview + manifests + .meta for one Q-Dao appearance (1x or HD worldGrid, RGB or RGBA)."""
@@ -651,18 +685,21 @@ def derive_appearance_flexible(
             )
 
         has_alpha = pc_imp.image_has_non_opaque_alpha(image)
+        use_png = has_alpha or lossless_png
         alpha_stats = compute_alpha_stats(image) if has_alpha else None
         tile_entries: list[dict] = []
         total_tile_bytes = 0
 
         if precut_tiles is not None:
-            pc_imp.require(world_grid is not None and has_alpha, f"{map_id}/{appearance_id}: precut_tiles requires world_grid + RGBA")
+            pc_imp.require(world_grid is not None, f"{map_id}/{appearance_id}: precut_tiles requires world_grid")
             gw, gh = int(world_grid["widthPixels"]), int(world_grid["heightPixels"])
             gtw, gth = int(world_grid["tileWidthPixels"]), int(world_grid["tileHeightPixels"])
             columns = math.ceil(gw / gtw)
             rows = math.ceil(gh / gth)
             pc_imp.require(len(precut_tiles) == columns * rows, f"{map_id}/{appearance_id}: precut tile count mismatch")
-            tile_format = f"png_rgba_hd_worldgrid_{native_w // columns}x{native_h // rows}"
+            nom_tw = (min(gtw, gw) * native_w + gw // 2) // gw
+            nom_th = (min(gth, gh) * native_h + gh // 2) // gh
+            tile_format = f"png_{'rgba' if has_alpha else 'rgb'}_hd_worldgrid_{nom_tw}x{nom_th}"
             # Map delivered (pixelOrigin) tiles into deterministic r{row:02d}_c{col:02d}.png without re-encoding.
             by_origin = {(int(t["pixelOrigin"][0]), int(t["pixelOrigin"][1])): t for t in precut_tiles}
             for row in range(1, rows + 1):
@@ -683,7 +720,7 @@ def derive_appearance_flexible(
                     tile_stem = f"r{row:02d}_c{col:02d}"
                     tile_file = tiles_dir / f"{tile_stem}.png"
                     pc_imp.write_asset_file(
-                        tile_file, raw_tile, project_root, delivery_root, has_alpha=True, is_overview=False
+                        tile_file, raw_tile, project_root, delivery_root, has_alpha=has_alpha, is_overview=False
                     )
                     total_tile_bytes += len(raw_tile)
                     tile_entries.append({
@@ -698,11 +735,62 @@ def derive_appearance_flexible(
                         "bytes": len(raw_tile),
                         "sha256": actual_t_sha,
                     })
+        elif world_grid is not None:
+            gw, gh = int(world_grid["widthPixels"]), int(world_grid["heightPixels"])
+            gtw, gth = int(world_grid["tileWidthPixels"]), int(world_grid["tileHeightPixels"])
+            columns = math.ceil(gw / gtw)
+            rows = math.ceil(gh / gth)
+            nom_tw = (min(gtw, gw) * native_w + gw // 2) // gw
+            nom_th = (min(gth, gh) * native_h + gh // 2) // gh
+            tile_format = (
+                f"png_{'rgba' if has_alpha else 'rgb'}_hd_worldgrid_{nom_tw}x{nom_th}"
+                if use_png
+                else f"jpg_q{pc_imp.JPEG_TILE_QUALITY}_hd_worldgrid_{nom_tw}x{nom_th}"
+            )
+            for row in range(1, rows + 1):
+                y0 = (min((row - 1) * gth, gh) * native_h + gh // 2) // gh
+                y1 = (min(row * gth, gh) * native_h + gh // 2) // gh
+                tile_h = y1 - y0
+                for col in range(1, columns + 1):
+                    x0 = (min((col - 1) * gtw, gw) * native_w + gw // 2) // gw
+                    x1 = (min(col * gtw, gw) * native_w + gw // 2) // gw
+                    tile_w = x1 - x0
+                    pc_imp.require(tile_w <= tile_size and tile_h <= tile_size, f"{map_id}: tile exceeds {tile_size}")
+                    crop = image.crop((x0, y0, x1, y1))
+                    pc_imp.require(crop.size == (tile_w, tile_h), "Tile crop mismatch")
+                    if use_png and not has_alpha:
+                        buf = io.BytesIO()
+                        (crop if crop.mode == "RGB" else crop.convert("RGB")).save(buf, format="PNG", optimize=False)
+                        tile_data, ext = buf.getvalue(), ".png"
+                    else:
+                        tile_data, ext = pc_imp.encode_image(crop, has_alpha=has_alpha, jpeg_quality=pc_imp.JPEG_TILE_QUALITY)
+                    tile_stem = f"r{row:02d}_c{col:02d}"
+                    tile_file = tiles_dir / f"{tile_stem}{ext}"
+                    pc_imp.write_asset_file(
+                        tile_file, tile_data, project_root, delivery_root, has_alpha=has_alpha, is_overview=False
+                    )
+                    tile_sha = pc_imp.sha256_bytes(tile_data)
+                    tile_len = len(tile_data)
+                    total_tile_bytes += tile_len
+                    tile_entries.append({
+                        "row": row,
+                        "column": col,
+                        "x": x0,
+                        "y": y0,
+                        "width": tile_w,
+                        "height": tile_h,
+                        "resourcePath": f"{map_resource_root}tiles/{tile_stem}",
+                        "fileExtension": ext,
+                        "bytes": tile_len,
+                        "sha256": tile_sha,
+                    })
         else:
             columns = math.ceil(native_w / tile_size)
             rows = math.ceil(native_h / tile_size)
             tile_format = (
-                "png_rgba_native_1024_grid" if has_alpha else f"jpg_q{pc_imp.JPEG_TILE_QUALITY}_native_1024_grid"
+                f"png_{'rgba' if has_alpha else 'rgb'}_native_1024_grid"
+                if use_png
+                else f"jpg_q{pc_imp.JPEG_TILE_QUALITY}_native_1024_grid"
             )
             for row in range(1, rows + 1):
                 y0 = (row - 1) * tile_size
@@ -714,7 +802,12 @@ def derive_appearance_flexible(
                     tile_w = x1 - x0
                     crop = image.crop((x0, y0, x1, y1))
                     pc_imp.require(crop.size == (tile_w, tile_h), "Tile crop mismatch")
-                    tile_data, ext = pc_imp.encode_image(crop, has_alpha=has_alpha, jpeg_quality=pc_imp.JPEG_TILE_QUALITY)
+                    if use_png and not has_alpha:
+                        buf = io.BytesIO()
+                        (crop if crop.mode == "RGB" else crop.convert("RGB")).save(buf, format="PNG", optimize=False)
+                        tile_data, ext = buf.getvalue(), ".png"
+                    else:
+                        tile_data, ext = pc_imp.encode_image(crop, has_alpha=has_alpha, jpeg_quality=pc_imp.JPEG_TILE_QUALITY)
                     tile_stem = f"r{row:02d}_c{col:02d}"
                     tile_file = tiles_dir / f"{tile_stem}{ext}"
                     pc_imp.write_asset_file(
@@ -736,7 +829,12 @@ def derive_appearance_flexible(
                         "sha256": tile_sha,
                     })
 
-        recomp_proof = verify_recomposition_exact_rgba(image, tile_entries, tiles_dir) if has_alpha else None
+        if has_alpha:
+            recomp_proof = verify_recomposition_exact_rgba(image, tile_entries, tiles_dir)
+        elif use_png:
+            recomp_proof = verify_recomposition_exact_rgb(image, tile_entries, tiles_dir)
+        else:
+            recomp_proof = None
 
         ov_w, ov_h = pc_imp.compute_overview_size(native_w, native_h, pc_imp.OVERVIEW_MAX_EDGE)
         overview_img = image if (ov_w, ov_h) == (native_w, native_h) else image.resize(
@@ -951,6 +1049,7 @@ def adopt_map_appearances(
             project_root=project_root,
             world_grid=spec.get("worldGrid"),
             precut_tiles=spec.get("precutTiles"),
+            lossless_png=bool(spec.get("losslessPng", False)),
         )
         appearances_catalog.append(a_cat)
         appearances_receipt.append(a_rec)
@@ -1272,21 +1371,60 @@ def adopt_completed_batch(designs_root: Path, project_root: Path) -> list[dict]:
     return receipts
 
 
+DEFAULT_16001_BASELINE_DELIVERY = Path(
+    "D:/work/image/.codex-artifacts/client-resume-20261123-bajing/"
+    "retained16001-resume-20261123/zero-ai-festival-delivery-v001"
+)
+
+
+def adopt_16001_baseline(delivery_dir: Path, project_root: Path) -> dict:
+    """Adopt formally accepted 1920x1286 Q-Dao dual-festival baseline for 16001 while preserving pc-original-20261123."""
+    index_path = delivery_dir / "DELIVERY_INDEX.json"
+    idx = pc_imp.read_json(index_path)
+    pc_imp.require(idx.get("mapId") == "16001", f"Unexpected mapId in {index_path}")
+    by_app = {v["appearance"]: v for v in idx.get("variants") or []}
+    specs = []
+    for app_id in ("spring", "midautumn"):
+        pc_imp.require(app_id in by_app, f"16001 baseline missing appearance '{app_id}'")
+        whole = by_app[app_id]["whole"]
+        specs.append({
+            "id": app_id,
+            "revision": f"qdao-{app_id}-v001",
+            "wholePng": Path(whole["path"]),
+            "expectedSha": whole["sha256"],
+            "evidencePath": index_path,
+        })
+    return adopt_map_appearances(
+        map_id="16001",
+        project_root=project_root,
+        qdao_specs=specs,
+        default_appearance="spring",
+        include_preserved_original=True,
+    )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Adopt Q-Dao static map(s) into PcOriginalPreview20261123.")
     parser.add_argument("--map-id", default="28002")
     parser.add_argument("--delivery-dir", type=Path, default=DEFAULT_28002_DELIVERY)
     parser.add_argument("--designs-root", type=Path, default=Path("D:/work/image/designs"))
+    parser.add_argument("--delivery-16001", type=Path, default=DEFAULT_16001_BASELINE_DELIVERY)
     parser.add_argument("--project-root", type=Path, default=PROJECT)
     parser.add_argument("--spring-revision", default="qdao-spring-v002")
     parser.add_argument("--midautumn-revision", default="qdao-midautumn-v002")
     parser.add_argument("--default-appearance", default="spring")
     parser.add_argument("--adopt-completed-batch", action="store_true", help="Adopt 08001 4x HD candidate + all completed Q-Dao maps.")
+    parser.add_argument("--adopt-16001-baseline", action="store_true", help="Adopt accepted 1920x1286 16001 Q-Dao dual-festival baseline.")
     parser.add_argument("--verify", action="store_true", help="Run full offline catalog + multi-appearance verification.")
     args = parser.parse_args(argv)
 
     project_root = args.project_root.resolve()
     if args.verify:
+        pc_imp.verify_committed(project_root)
+        return 0
+
+    if args.adopt_16001_baseline:
+        adopt_16001_baseline(args.delivery_16001.resolve(), project_root)
         pc_imp.verify_committed(project_root)
         return 0
 

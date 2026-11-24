@@ -34,7 +34,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | `05000` | 天墉城 | 10000×6774 | 10×7 (70) | RGB JPG | `World/PcOriginalPreview20261123/05000/pc-original-20261123/` | `pc-original-20261123` |
 | `01007` | 地图 01007 | 10000×6163 | 10×7 (70) | RGB JPG | `World/PcOriginalPreview20261123/01007/pc-original-20261123/` | `pc-original-20261123` |
-| `16001` | 地图 16001 | 1920×1286 | 2×2 (4) | RGB JPG | `World/PcOriginalPreview20261123/16001/pc-original-20261123/` | `pc-original-20261123` |
+| `16001` | 地图 16001（道家Q版双节 1920×1286 基线：春节/中秋；4x 高清待双节成图验收后另接对照） | 1920×1286 | 2×2 (4×2节) | RGB JPG | `World/PcOriginalPreview20261123/16001/qdao-spring-v001/` & `qdao-midautumn-v001/`（保留原图 `pc-original-20261123/` 对照） | `qdao-spring-v001` / `qdao-midautumn-v001` |
 | `29000` | 地图 29000 | 4800×3600 | 5×4 (20) | RGB JPG | `World/PcOriginalPreview20261123/29000/pc-original-20261123/` | `pc-original-20261123` |
 | `02000` | 揽仙镇外 | 3634×4000 | 4×4 (16) | RGB JPG | `World/PcOriginalPreview20261123/02000/pc-original-20261123/` | `pc-original-20261123` |
 | `17100` | 地图 17100 | 6957×4800 | 7×5 (35) | RGB JPG | `World/PcOriginalPreview20261123/17100/pc-original-20261123/` | `pc-original-20261123` |

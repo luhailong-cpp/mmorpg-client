@@ -17,10 +17,14 @@ namespace MmorpgClient.World.CurrentMaps
         public const int DefaultMaxResidentTiles = 24;
         public const int DefaultMaxConcurrentLoads = 4;
         public const string DefaultCatalogResourcePath = "World/PcOriginalPreview20261123/catalog";
+        public const string OriginalPreviewRoot = "World/OriginalMapPreview20261124/";
+        public const string OriginalPreviewCatalogResourcePath = OriginalPreviewRoot + "catalog";
         public const string VariantReviewRoot = "World/PcMapVariantReview/";
         public const string ExpectedCatalogKind = "CLIENT_PC_ORIGINAL_STATIC_BACK_PREVIEW_CATALOG";
+        public const string ExpectedOriginalCatalogKind = "CLIENT_ORIGINAL_MAP_PREVIEW_CATALOG";
         public const string ArtStagePcOriginal = "pc_original_static_back";
         public const string ArtStageQdaoRedrawn = "qdao_redrawn_static_back";
+        public const string ArtStageDeliveryCandidate = "delivery_candidate_not_formal";
         public const string ArtStageFormalDelivery = "formal_art_delivery";
 
         public static bool IsValidMapId(string value)
@@ -30,6 +34,26 @@ namespace MmorpgClient.World.CurrentMaps
                 if (value[i] < '0' || value[i] > '9') return false;
             return true;
         }
+
+        public static bool IsValidOriginalMapId(string value)
+        {
+            if (string.IsNullOrEmpty(value) || value.Length > 64) return false;
+            int start = value.StartsWith("original:", StringComparison.Ordinal) ? "original:".Length : 0;
+            if (start >= value.Length) return false;
+            char first = value[start];
+            bool firstOk = (first >= 'a' && first <= 'z') || (first >= '0' && first <= '9');
+            if (!firstOk) return false;
+            for (int i = start + 1; i < value.Length; i++)
+            {
+                char c = value[i];
+                bool ok = (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '-' || c == '_';
+                if (!ok) return false;
+            }
+            return true;
+        }
+
+        public static bool IsValidCatalogMapId(string value, bool allowOriginalId)
+            => IsValidMapId(value) || (allowOriginalId && IsValidOriginalMapId(value));
 
         public static bool IsValidSha256(string value)
         {
@@ -44,7 +68,8 @@ namespace MmorpgClient.World.CurrentMaps
         }
 
         public static bool IsValidArtStage(string value)
-            => value == ArtStagePcOriginal || value == ArtStageQdaoRedrawn || value == ArtStageFormalDelivery;
+            => value == ArtStagePcOriginal || value == ArtStageQdaoRedrawn ||
+               value == ArtStageDeliveryCandidate || value == ArtStageFormalDelivery;
 
         public static bool IsValidAppearanceId(string value)
             => value == "normal" || value == "spring" || value == "lantern" ||
@@ -83,6 +108,7 @@ namespace MmorpgClient.World.CurrentMaps
         public static string ArtStageDisplayLabel(string artStage)
             => artStage == ArtStagePcOriginal ? "端游原图(临时可替换)" :
                artStage == ArtStageQdaoRedrawn ? "道家Q版改绘(静态底图)" :
+               artStage == ArtStageDeliveryCandidate ? "原创交付候选(未验收)" :
                artStage == ArtStageFormalDelivery ? "正式美术交付" :
                string.IsNullOrEmpty(artStage) ? "未知阶段" : artStage;
     }
@@ -168,8 +194,9 @@ namespace MmorpgClient.World.CurrentMaps
                 throw new InvalidOperationException($"{mapId}: unsupported appearance id '{id}'.");
             if (!PcOriginalMapContract.IsValidArtStage(artStage))
                 throw new InvalidOperationException($"{label}: unsupported artStage '{artStage}'.");
-            if (artStage == PcOriginalMapContract.ArtStageQdaoRedrawn && isTemporaryOriginal)
-                throw new InvalidOperationException($"{label}: qdao_redrawn_static_back must have isTemporaryOriginal=false.");
+            if ((artStage == PcOriginalMapContract.ArtStageQdaoRedrawn ||
+                 artStage == PcOriginalMapContract.ArtStageDeliveryCandidate) && isTemporaryOriginal)
+                throw new InvalidOperationException($"{label}: {artStage} must have isTemporaryOriginal=false.");
             if (string.IsNullOrWhiteSpace(revision))
                 throw new InvalidOperationException($"{label}: missing revision.");
             if (resampled)
@@ -381,16 +408,17 @@ namespace MmorpgClient.World.CurrentMaps
             };
         }
 
-        public void Validate()
+        public void Validate(bool allowOriginalId = false)
         {
-            if (!PcOriginalMapContract.IsValidMapId(mapId))
-                throw new InvalidOperationException($"Invalid 5-digit mapId: '{mapId}'.");
-            if (numericMapId != uint.Parse(mapId))
+            if (!PcOriginalMapContract.IsValidCatalogMapId(mapId, allowOriginalId))
+                throw new InvalidOperationException($"Invalid mapId: '{mapId}'.");
+            if (PcOriginalMapContract.IsValidMapId(mapId) && numericMapId != uint.Parse(mapId))
                 throw new InvalidOperationException($"{mapId}: numericMapId ({numericMapId}) does not match mapId.");
             if (!PcOriginalMapContract.IsValidArtStage(artStage))
                 throw new InvalidOperationException($"{mapId}: unsupported artStage '{artStage}'.");
-            if (artStage == PcOriginalMapContract.ArtStageQdaoRedrawn && isTemporaryOriginal)
-                throw new InvalidOperationException($"{mapId}: qdao_redrawn_static_back must have isTemporaryOriginal=false.");
+            if ((artStage == PcOriginalMapContract.ArtStageQdaoRedrawn ||
+                 artStage == PcOriginalMapContract.ArtStageDeliveryCandidate) && isTemporaryOriginal)
+                throw new InvalidOperationException($"{mapId}: {artStage} must have isTemporaryOriginal=false.");
             if (string.IsNullOrWhiteSpace(revision))
                 throw new InvalidOperationException($"{mapId}: missing revision.");
             if (nativeWidth <= 0 || nativeHeight <= 0)
@@ -572,22 +600,28 @@ namespace MmorpgClient.World.CurrentMaps
             return null;
         }
 
+        public bool IsOriginalCatalog
+            => string.Equals(kind, PcOriginalMapContract.ExpectedOriginalCatalogKind, StringComparison.Ordinal);
+
         public void Validate()
         {
             if (schemaVersion != PcOriginalMapContract.SchemaVersion)
                 throw new InvalidOperationException($"Unsupported catalog schemaVersion {schemaVersion}.");
-            if (!string.Equals(kind, PcOriginalMapContract.ExpectedCatalogKind, StringComparison.Ordinal))
+            bool isOriginal = IsOriginalCatalog;
+            if (!isOriginal && !string.Equals(kind, PcOriginalMapContract.ExpectedCatalogKind, StringComparison.Ordinal))
                 throw new InvalidOperationException($"Unexpected catalog kind '{kind}'.");
             if (!staticBackOnly || completeGameplaySceneClaimed || productionTravelEnabled)
-                throw new InvalidOperationException("PC original static-back catalog cannot claim gameplay scenes or online travel.");
-            if (sourceContainer == null || !PcOriginalMapContract.IsValidSha256(sourceContainer.sha256))
+                throw new InvalidOperationException("Static-back preview catalog cannot claim gameplay scenes or online travel.");
+            if (!isOriginal && (sourceContainer == null || !PcOriginalMapContract.IsValidSha256(sourceContainer.sha256)))
                 throw new InvalidOperationException("Missing or invalid sourceContainer SHA-256.");
             if (maps == null || maps.Length == 0)
                 throw new InvalidOperationException("Catalog maps[] is empty.");
-            if (unavailableMaps == null || specialHoldCandidates == null || requestedMapIds == null)
+            var unavail = unavailableMaps ?? (isOriginal ? Array.Empty<PcOriginalGapEntry>() : null);
+            var holds = specialHoldCandidates ?? (isOriginal ? Array.Empty<PcOriginalSpecialCandidateEntry>() : null);
+            if (unavail == null || holds == null || requestedMapIds == null)
                 throw new InvalidOperationException("Catalog must record requestedMapIds, unavailableMaps, and specialHoldCandidates.");
-            if (readyCount != maps.Length || unavailableCount != unavailableMaps.Length ||
-                specialHoldCount != specialHoldCandidates.Length)
+            if (readyCount != maps.Length || unavailableCount != unavail.Length ||
+                specialHoldCount != holds.Length)
                 throw new InvalidOperationException("Catalog summary counts do not match array lengths.");
 
             var readyIds = new HashSet<string>(StringComparer.Ordinal);
@@ -595,26 +629,28 @@ namespace MmorpgClient.World.CurrentMaps
             for (int i = 0; i < maps.Length; i++)
             {
                 if (maps[i] == null) throw new InvalidOperationException($"Null map entry at index {i}.");
-                maps[i].Validate();
-                if (!readyIds.Add(maps[i].mapId) || !readyNumeric.Add(maps[i].numericMapId))
+                maps[i].Validate(isOriginal);
+                if (!readyIds.Add(maps[i].mapId))
                     throw new InvalidOperationException($"Duplicate ready mapId '{maps[i].mapId}'.");
+                if ((!isOriginal || maps[i].numericMapId != 0) && !readyNumeric.Add(maps[i].numericMapId))
+                    throw new InvalidOperationException($"Duplicate ready numericMapId '{maps[i].numericMapId}'.");
             }
 
             var unavailableIds = new HashSet<string>(StringComparer.Ordinal);
-            for (int i = 0; i < unavailableMaps.Length; i++)
+            for (int i = 0; i < unavail.Length; i++)
             {
-                if (unavailableMaps[i] == null) throw new InvalidOperationException($"Null unavailable entry at index {i}.");
-                unavailableMaps[i].Validate();
-                if (!unavailableIds.Add(unavailableMaps[i].mapId))
-                    throw new InvalidOperationException($"Duplicate unavailable mapId '{unavailableMaps[i].mapId}'.");
-                if (readyIds.Contains(unavailableMaps[i].mapId))
-                    throw new InvalidOperationException($"Unavailable mapId '{unavailableMaps[i].mapId}' cannot appear in maps[].");
+                if (unavail[i] == null) throw new InvalidOperationException($"Null unavailable entry at index {i}.");
+                unavail[i].Validate();
+                if (!unavailableIds.Add(unavail[i].mapId))
+                    throw new InvalidOperationException($"Duplicate unavailable mapId '{unavail[i].mapId}'.");
+                if (readyIds.Contains(unavail[i].mapId))
+                    throw new InvalidOperationException($"Unavailable mapId '{unavail[i].mapId}' cannot appear in maps[].");
             }
 
-            for (int i = 0; i < specialHoldCandidates.Length; i++)
+            for (int i = 0; i < holds.Length; i++)
             {
-                if (specialHoldCandidates[i] == null) throw new InvalidOperationException($"Null special candidate at index {i}.");
-                specialHoldCandidates[i].Validate();
+                if (holds[i] == null) throw new InvalidOperationException($"Null special candidate at index {i}.");
+                holds[i].Validate();
             }
 
             var requestedSet = new HashSet<string>(StringComparer.Ordinal);
@@ -665,12 +701,16 @@ namespace MmorpgClient.World.CurrentMaps
         public string sourceNativeSha256;
         public PcOriginalTileEntry[] tiles;
 
-        public void Validate(PcOriginalMapEntry expectedEntry = null)
+        public void Validate(PcOriginalMapEntry expectedEntry = null, bool allowOriginalId = false)
         {
             bool explicitGrid = worldGrid?.HasValues == true;
             if (schemaVersion != (explicitGrid ? 2 : PcOriginalMapContract.SchemaVersion))
                 throw new InvalidOperationException($"Unsupported tile manifest schemaVersion {schemaVersion}.");
-            if (!PcOriginalMapContract.IsValidMapId(mapId) || numericMapId != uint.Parse(mapId))
+            bool allowOriginal = allowOriginalId ||
+                (expectedEntry != null && !PcOriginalMapContract.IsValidMapId(expectedEntry.mapId) &&
+                 PcOriginalMapContract.IsValidOriginalMapId(expectedEntry.mapId));
+            if (!PcOriginalMapContract.IsValidCatalogMapId(mapId, allowOriginal) ||
+                (PcOriginalMapContract.IsValidMapId(mapId) && numericMapId != uint.Parse(mapId)))
                 throw new InvalidOperationException($"Invalid tile manifest mapId '{mapId}'.");
             if (nativeWidth <= 0 || nativeHeight <= 0 || tileSize <= 0 || tileSize > 2048 || resampled)
                 throw new InvalidOperationException($"{mapId}: invalid tile manifest dimensions or resampled flag.");

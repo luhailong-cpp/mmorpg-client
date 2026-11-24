@@ -133,8 +133,14 @@ namespace MmorpgClient.World.Tianyong
         }
 
         public static PcOriginalMapPreviewViewer Open(TianyongSandboxBootstrap sandbox, string mapId = "05000")
+            => Open(sandbox, mapId, PcOriginalMapContract.DefaultCatalogResourcePath);
+
+        public static PcOriginalMapPreviewViewer Open(TianyongSandboxBootstrap sandbox, string mapId, string catalogPath)
         {
             if (sandbox == null) throw new ArgumentNullException(nameof(sandbox));
+            string resolvedCatalog = string.IsNullOrWhiteSpace(catalogPath)
+                ? PcOriginalMapContract.DefaultCatalogResourcePath
+                : catalogPath;
             var existing = sandbox.GetComponent<PcOriginalMapPreviewViewer>();
             bool created = existing == null;
             if (created)
@@ -142,16 +148,37 @@ namespace MmorpgClient.World.Tianyong
                 existing = sandbox.gameObject.AddComponent<PcOriginalMapPreviewViewer>();
                 existing.standalone = false;
             }
+            string previousCatalog = existing.catalogResourcePath;
             try
             {
+                existing.catalogResourcePath = resolvedCatalog;
+                if (existing._camera != null && !string.Equals(previousCatalog, resolvedCatalog, StringComparison.Ordinal))
+                {
+                    var nextCatalog = LoadCatalog(resolvedCatalog);
+                    var nextEntry = nextCatalog.FindByMapId(mapId) ?? nextCatalog.maps[0];
+                    var oldCatalog = existing._catalog;
+                    existing._catalog = nextCatalog;
+                    if (!existing.Select(nextEntry, null))
+                    {
+                        existing._catalog = oldCatalog;
+                        throw new InvalidOperationException(existing._status);
+                    }
+                    return existing;
+                }
                 existing.Activate(sandbox, mapId);
                 return existing;
             }
             catch
             {
+                existing.catalogResourcePath = previousCatalog;
                 if (created && existing != null) Destroy(existing);
                 throw;
             }
+        }
+
+        public void InitializeFromConfiguredCatalog(string appearanceId = null)
+        {
+            Activate(null, initialMapId, null, appearanceId);
         }
 
         private void Start()
@@ -362,7 +389,8 @@ namespace MmorpgClient.World.Tianyong
             var candidateMeshes = new List<Mesh>();
             try
             {
-                selected.Validate();
+                bool allowOriginalId = _catalog != null && _catalog.IsOriginalCatalog;
+                selected.Validate(allowOriginalId);
                 var tilesAsset = Resources.Load<TextAsset>(selected.tilesManifestResourcePath);
                 if (tilesAsset == null)
                     throw new InvalidOperationException("分片清单缺失：" + selected.tilesManifestResourcePath);
@@ -370,7 +398,7 @@ namespace MmorpgClient.World.Tianyong
                 var manifest = JsonUtility.FromJson<PcOriginalTileManifest>(tilesAsset.text);
                 if (manifest == null)
                     throw new InvalidOperationException("分片清单解析失败：" + selected.tilesManifestResourcePath);
-                manifest.Validate(selected);
+                manifest.Validate(selected, allowOriginalId);
 
                 candidateOverview = Resources.Load<Texture2D>(selected.overviewResourcePath);
                 if (candidateOverview == null)
@@ -803,19 +831,25 @@ namespace MmorpgClient.World.Tianyong
         {
             if (!_showControls || _catalog == null) return;
 
+            bool isOriginalCatalog = _catalog.IsOriginalCatalog;
+            bool singleMapCompact = isOriginalCatalog && _catalog.maps != null && _catalog.maps.Length == 1;
+
             if (!_sidebarVisible)
             {
                 _sidebarGuiRect = new Rect(12f, 12f, 220f, 36f);
-                if (GUI.Button(_sidebarGuiRect, "展开端游原图面板 (Tab)"))
+                if (GUI.Button(_sidebarGuiRect, isOriginalCatalog ? "展开地图预览面板 (Tab)" : "展开端游原图面板 (Tab)"))
                     _sidebarVisible = true;
                 return;
             }
 
-            float panelWidth = Mathf.Min(360f, Screen.width - 24f);
-            float panelHeight = Mathf.Max(320f, Screen.height - 24f);
+            float panelWidth = Mathf.Min(singleMapCompact ? 420f : 360f, Screen.width - 24f);
+            float panelHeight = singleMapCompact ? 268f : Mathf.Max(320f, Screen.height - 24f);
             _sidebarGuiRect = new Rect(12f, 12f, panelWidth, panelHeight);
 
-            GUI.Box(_sidebarGuiRect, $"端游原图本地预览 ({_catalog.readyCount} 张就绪 / {_catalog.unavailableCount} 缺口)");
+            string panelTitle = isOriginalCatalog
+                ? "原创地图双节预览（交付候选 · 未验收）"
+                : $"端游原图本地预览 ({_catalog.readyCount} 张就绪 / {_catalog.unavailableCount} 缺口)";
+            GUI.Box(_sidebarGuiRect, panelTitle);
 
             float x = 22f;
             float w = panelWidth - 20f;
@@ -830,14 +864,21 @@ namespace MmorpgClient.World.Tianyong
                                    _currentMap.nativeHeight != _currentMap.worldGrid.heightPixels)
                     ? $"{_currentMap.nativeWidth}×{_currentMap.nativeHeight} / 原范围{_currentMap.worldGrid.widthPixels}×{_currentMap.worldGrid.heightPixels}"
                     : $"{_currentMap.nativeWidth}×{_currentMap.nativeHeight}";
+                string gridSummary = _currentMap.nativeHeight % _currentMap.tileSize != 0
+                    ? $"{_currentMap.columns}×{_currentMap.rows}={_currentMap.tileCount}片 末行{_currentMap.nativeHeight % _currentMap.tileSize}px"
+                    : $"{_currentMap.columns}×{_currentMap.rows}={_currentMap.tileCount}片";
                 GUI.Label(new Rect(x, y, w, 22f),
-                    $"当前：{_currentMap.mapId} {_currentMap.DisplayName}{appTitle}（{sizeInfo}）");
+                    isOriginalCatalog
+                        ? $"当前：{_currentMap.DisplayName}{appTitle}（{sizeInfo} · {gridSummary}）"
+                        : $"当前：{_currentMap.mapId} {_currentMap.DisplayName}{appTitle}（{sizeInfo}）");
                 y += 22f;
                 GUI.Label(new Rect(x, y, w, 20f),
                     $"阶段：{PcOriginalMapContract.ArtStageDisplayLabel(_currentMap.artStage)} | 分片：{LoadedNativeTileCount}/{_lastOverlappingTiles} | 兜底：{ActiveOverviewFallbackCount}");
                 y += 20f;
                 GUI.Label(new Rect(x, y, w, 20f),
-                    $"服务端：未登记（仅本地静态back，无碰撞/导航）");
+                    isOriginalCatalog
+                        ? "仅本地静态预览（未登记服务端 / 无世界坐标、碰撞与导航）"
+                        : "服务端：未登记（仅本地静态back，无碰撞/导航）");
                 y += 22f;
 
                 if (_currentMap.HasMultipleAppearances)
@@ -861,6 +902,33 @@ namespace MmorpgClient.World.Tianyong
             {
                 GUI.Label(new Rect(x, y, w, 24f), _status);
                 y += 26f;
+            }
+
+            if (singleMapCompact)
+            {
+                float halfW = (w - 6f) * 0.5f;
+                if (GUI.Button(new Rect(x, y, halfW, 28f), "适配全图 (F/Home)")) FitFullMap();
+                if (GUI.Button(new Rect(x + halfW + 6f, y, halfW, 28f), "1:1 原像素 (1)")) SetNativeOneToOneZoom();
+                y += 34f;
+                if (GUI.Button(new Rect(x, y, halfW, 26f), $"底色:{BackdropLabels[_backdropMode]}"))
+                    SetBackdropMode(_backdropMode + 1);
+                if (standalone)
+                {
+                    if (GUI.Button(new Rect(x + halfW + 6f, y, halfW, 26f), "收起面板 (Tab)"))
+                        _sidebarVisible = false;
+                }
+                else
+                {
+                    if (GUI.Button(new Rect(x + halfW + 6f, y, halfW, 26f), "返回离线预览"))
+                    {
+                        Close();
+                        return;
+                    }
+                }
+                y += 32f;
+                GUI.Label(new Rect(x, y, w, 40f),
+                    "左/中键拖拽或WASD平移 · 滚轮缩放 · 1键1:1像素\n点击上方「春节 / 中秋」保持当前机位与缩放原地切换");
+                return;
             }
 
             // Action row 1: Prev / Next / Fit / 1:1

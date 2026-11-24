@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "kind": "CLIENT_PC_ORIGINAL_STATIC_BACK_IMPORT_RECEIPT",
   "catalogPath": "Assets/Resources/World/PcOriginalPreview20261123/catalog.json",
-  "catalogSha256": "6726959ef23a0ec55a8f148e4288d4c0ebfd625c2b0d7a0f46c096b959e81141",
+  "catalogSha256": "c57948dd48860cd17e1771a53df2a862e7ecd72e9eeb27729dee6906cd035d68",
   "catalogRevision": "pc-original-20261123",
   "artStage": "pc_original_static_back",
   "staticBackOnly": true,
@@ -13,9 +13,9 @@
   "unavailableMapCount": 4,
   "specialHoldCandidateCount": 2,
   "totalTileCount": 1025,
-  "totalTileBytes": 390439787,
-  "totalOverviewBytes": 60784865,
-  "totalAssetBytes": 451224652,
+  "totalTileBytes": 390293397,
+  "totalOverviewBytes": 60646916,
+  "totalAssetBytes": 450940313,
   "maps": [
     {
       "mapId": "05000",
@@ -79,24 +79,82 @@
         1920,
         1286
       ],
-      "sourceNativeSha256": "54fab612014768068a71ea05ba3d1f77b5a31a06b9b12ab3471cceb1d3a06ecc",
-      "sourceNativeBytes": 4053698,
+      "sourceNativeSha256": "3eefecb95acf3e4f027ef36a48af94844586e18f7c3478207a450b440c81e2b3",
+      "sourceNativeBytes": 4485609,
+      "pcOriginalSourceNativeSha256": "54fab612014768068a71ea05ba3d1f77b5a31a06b9b12ab3471cceb1d3a06ecc",
       "sourceBranch": "gbits",
-      "resourceRoot": "World/PcOriginalPreview20261123/16001/pc-original-20261123/",
-      "revision": "pc-original-20261123",
-      "artStage": "pc_original_static_back",
+      "resourceRoot": "World/PcOriginalPreview20261123/16001/qdao-spring-v001/",
+      "revision": "qdao-spring-v001",
+      "artStage": "qdao_redrawn_static_back",
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "artStage": "qdao_redrawn_static_back",
+          "revision": "qdao-spring-v001",
+          "nativePixels": [
+            1920,
+            1286
+          ],
+          "worldPixels": [
+            1920,
+            1286
+          ],
+          "resourceRoot": "World/PcOriginalPreview20261123/16001/qdao-spring-v001/",
+          "sourceNativeSha256": "3eefecb95acf3e4f027ef36a48af94844586e18f7c3478207a450b440c81e2b3",
+          "tilesManifestSha256": "b391165b56336fd6e64f23521d97d387c662f2c154e96155e6ba79c5cddc185e",
+          "totalTileBytes": 651256,
+          "overviewBytes": 584214
+        },
+        {
+          "id": "midautumn",
+          "artStage": "qdao_redrawn_static_back",
+          "revision": "qdao-midautumn-v001",
+          "nativePixels": [
+            1920,
+            1286
+          ],
+          "worldPixels": [
+            1920,
+            1286
+          ],
+          "resourceRoot": "World/PcOriginalPreview20261123/16001/qdao-midautumn-v001/",
+          "sourceNativeSha256": "641b2f22570f2668ca760796228a96678c6d6b0b6b0d8f82629fc61ba48d2ef6",
+          "tilesManifestSha256": "3c97a696728cdae9b68f152dbb6ee9f10f9678046d63785444ee4a5b20761c27",
+          "totalTileBytes": 652007,
+          "overviewBytes": 584782
+        },
+        {
+          "id": "normal",
+          "artStage": "pc_original_static_back",
+          "revision": "pc-original-20261123",
+          "nativePixels": [
+            1920,
+            1286
+          ],
+          "worldPixels": [
+            1920,
+            1286
+          ],
+          "resourceRoot": "World/PcOriginalPreview20261123/16001/pc-original-20261123/",
+          "sourceNativeSha256": "54fab612014768068a71ea05ba3d1f77b5a31a06b9b12ab3471cceb1d3a06ecc",
+          "tilesManifestSha256": "caaee1eeb3afc5e16bb1817f48402e3d6e8ad66dabcff296a9b34fa36e6e78dc",
+          "totalTileBytes": 797646,
+          "overviewBytes": 722163
+        }
+      ],
       "hasAlpha": false,
       "tileFormat": "jpg_q90_native_1024_grid",
       "columns": 2,
       "rows": 2,
       "tileCount": 4,
-      "totalTileBytes": 797646,
+      "totalTileBytes": 651256,
       "overviewPixels": [
         1920,
         1286
       ],
-      "overviewBytes": 722163,
-      "tilesManifestSha256": "caaee1eeb3afc5e16bb1817f48402e3d6e8ad66dabcff296a9b34fa36e6e78dc"
+      "overviewBytes": 584214,
+      "tilesManifestSha256": "b391165b56336fd6e64f23521d97d387c662f2c154e96155e6ba79c5cddc185e"
     },
     {
       "mapId": "29000",

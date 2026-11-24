@@ -114,8 +114,8 @@ internal static class Program
                         totalVariants++;
                     }
                 }
-                Require(totalVariants == 52, $"Expected 52 total appearance variants across 36 maps, got {totalVariants}.");
-                Require(totalTiles == 1387, $"Expected 1387 total tiles across all variants, got {totalTiles}.");
+                Require(totalVariants == 54, $"Expected 54 total appearance variants across 36 maps, got {totalVariants}.");
+                Require(totalTiles == 1395, $"Expected 1395 total tiles across all variants, got {totalTiles}.");
             });
 
             Check("Map 08001 keeps original 3200x2400 default while exposing 6400x4800 4x HD dual-festival candidates on identical world bounds", () =>
@@ -167,6 +167,7 @@ internal static class Program
                 {
                     ("03000", 4400, 4400, false),
                     ("07001", 6000, 4970, false),
+                    ("16001", 1920, 1286, false),
                     ("19003", 1920, 1080, false),
                     ("23000", 4000, 5000, false),
                     ("33009", 4800, 3600, true),
@@ -186,6 +187,63 @@ internal static class Program
                         m15000.defaultAppearance == "spring" && m15000.FindAppearance("spring") != null &&
                         m15000.FindAppearance("normal") != null && m15000.FindAppearance("midautumn") == null,
                     "15000 must expose completed spring + preserved normal without unfinished midautumn.");
+            });
+
+            Check("Map 16001 3840x2572 25-tile HD worldGrid preserves 1.875x1.255859375 world bounds without changing global 1024 PPU", () =>
+            {
+                var m16001 = catalog.FindByMapId("16001");
+                Require(m16001 != null, "16001 missing.");
+                Require(m16001.ResolveAppearance("spring")?.sourceNativeSha256 == "3eefecb95acf3e4f027ef36a48af94844586e18f7c3478207a450b440c81e2b3",
+                    "16001 1920x1286 spring baseline SHA mismatch.");
+                Require(m16001.ResolveAppearance("midautumn")?.sourceNativeSha256 == "641b2f22570f2668ca760796228a96678c6d6b0b6b0d8f82629fc61ba48d2ef6",
+                    "16001 1920x1286 midautumn baseline SHA mismatch.");
+                Require(Math.Abs(m16001.WorldWidth - 1.875f) < 1e-6f && Math.Abs(m16001.WorldHeight - 1.255859375f) < 1e-6f,
+                    "16001 world bounds mismatch.");
+
+                var hdGrid = new PcOriginalWorldGrid { widthPixels = 1920, heightPixels = 1286, tileWidthPixels = 400, tileHeightPixels = 300 };
+                var hdManifest = new PcOriginalTileManifest
+                {
+                    schemaVersion = 2,
+                    mapId = "16001",
+                    numericMapId = 16001,
+                    revision = "qdao-spring-4x-proposed",
+                    artStage = PcOriginalMapContract.ArtStageQdaoRedrawn,
+                    nativeWidth = 3840,
+                    nativeHeight = 2572,
+                    worldGrid = hdGrid,
+                    tileSize = 1024,
+                    columns = 5,
+                    rows = 5,
+                    hasAlpha = false,
+                    resourceRoot = "World/PcMapVariantReview/16001/hd-proposed/",
+                    sourceNativeSha256 = new string('c', 64),
+                    tiles = new PcOriginalTileEntry[25]
+                };
+                for (int r = 0; r < 5; r++)
+                for (int c = 0; c < 5; c++)
+                {
+                    int x0 = hdGrid.PixelX(c, 3840), x1 = hdGrid.PixelX(c + 1, 3840);
+                    int y0 = hdGrid.PixelY(r, 2572), y1 = hdGrid.PixelY(r + 1, 2572);
+                    var tile = new PcOriginalTileEntry
+                    {
+                        row = r + 1, column = c + 1, x = x0, y = y0, width = x1 - x0, height = y1 - y0,
+                        resourcePath = hdManifest.resourceRoot + $"tiles/r{r + 1:00}_c{c + 1:00}",
+                        fileExtension = ".png", bytes = 1, sha256 = new string('d', 64)
+                    };
+                    Require(tile.width == (c == 4 ? 640 : 800) && tile.height == (r == 4 ? 172 : 600),
+                        $"16001 HD tile ({r + 1},{c + 1}) size {tile.width}x{tile.height} mismatch.");
+                    hdManifest.tiles[r * 5 + c] = tile;
+                    var rect = PcOriginalViewportPlanner.TileWorldRect(hdManifest, tile);
+                    Require(Math.Abs(rect.Width * PcOriginalMapContract.PixelsPerUnit / tile.width - 0.5f) < 1e-6f &&
+                            Math.Abs(rect.Height * PcOriginalMapContract.PixelsPerUnit / tile.height - 0.5f) < 1e-6f,
+                        "16001 HD tile must render at exact 0.5x scale (effective 2048 PPU).");
+                }
+                hdManifest.Validate();
+                var topLeft = PcOriginalViewportPlanner.TileWorldRect(hdManifest, hdManifest.tiles[0]);
+                var botRight = PcOriginalViewportPlanner.TileWorldRect(hdManifest, hdManifest.tiles[24]);
+                Require(Math.Abs(topLeft.XMin) < 1e-6f && Math.Abs(topLeft.YMax - m16001.WorldHeight) < 1e-6f &&
+                        Math.Abs(botRight.XMax - m16001.WorldWidth) < 1e-6f && Math.Abs(botRight.YMin) < 1e-6f,
+                    "16001 HD 25-tile coverage must match original 1.875x1.255859375 world bounds.");
             });
 
             Check("Map 28002 adopts Q-Dao spring/midautumn RGBA appearances under unique mapId while preserving PC original provenance", () =>

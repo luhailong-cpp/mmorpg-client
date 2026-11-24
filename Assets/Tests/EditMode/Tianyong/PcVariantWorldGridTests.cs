@@ -66,5 +66,71 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             Assert.AreEqual(928, rect.Width * 1024);
             Assert.AreEqual(552, rect.Height * 1024);
         }
+
+        [Test]
+        public void Map16001Hd3840x2572TwentyFiveTileWorldGridPreservesOriginalExtentAndHalfScale()
+        {
+            Assert.AreEqual(1024f, PcOriginalMapContract.PixelsPerUnit);
+            var grid = new PcOriginalWorldGrid { widthPixels = 1920, heightPixels = 1286, tileWidthPixels = 400, tileHeightPixels = 300 };
+            var manifest = new PcOriginalTileManifest
+            {
+                schemaVersion = 2,
+                mapId = "16001",
+                numericMapId = 16001,
+                nativeWidth = 3840,
+                nativeHeight = 2572,
+                tileSize = 1024,
+                columns = 5,
+                rows = 5,
+                hasAlpha = false,
+                worldGrid = grid,
+                resourceRoot = "World/PcMapVariantReview/16001/",
+                tiles = new PcOriginalTileEntry[25]
+            };
+            for (int row = 0; row < 5; row++)
+            for (int col = 0; col < 5; col++)
+            {
+                int x0 = grid.PixelX(col, 3840), x1 = grid.PixelX(col + 1, 3840);
+                int y0 = grid.PixelY(row, 2572), y1 = grid.PixelY(row + 1, 2572);
+                int w = x1 - x0, h = y1 - y0;
+                Assert.AreEqual(col == 4 ? 640 : 800, w);
+                Assert.AreEqual(row == 4 ? 172 : 600, h);
+                var tile = new PcOriginalTileEntry
+                {
+                    row = row + 1, column = col + 1, x = x0, y = y0, width = w, height = h,
+                    resourcePath = manifest.resourceRoot + $"tiles/r{row + 1:00}_c{col + 1:00}",
+                    fileExtension = ".png", sha256 = new string('b', 64), bytes = 1
+                };
+                manifest.tiles[row * 5 + col] = tile;
+                var rect = PcOriginalViewportPlanner.TileWorldRect(manifest, tile);
+                Assert.AreEqual(0.5f, rect.Width * PcOriginalMapContract.PixelsPerUnit / tile.width, 1e-6f);
+                Assert.AreEqual(0.5f, rect.Height * PcOriginalMapContract.PixelsPerUnit / tile.height, 1e-6f);
+            }
+            manifest.Validate();
+            var first = PcOriginalViewportPlanner.TileWorldRect(manifest, manifest.tiles[0]);
+            var last = PcOriginalViewportPlanner.TileWorldRect(manifest, manifest.tiles[24]);
+            Assert.AreEqual(0f, first.XMin, 1e-6f);
+            Assert.AreEqual(1286f / 1024f, first.YMax, 1e-6f);
+            Assert.AreEqual(1920f / 1024f, last.XMax, 1e-6f);
+            Assert.AreEqual(0f, last.YMin, 1e-6f);
+
+            var map = new PcOriginalMapEntry
+            {
+                nativeWidth = 1920, nativeHeight = 1286, tileSize = 1024, defaultAppearance = "normal",
+                appearances = new[]
+                {
+                    new PcOriginalMapAppearanceEntry { id = "normal" },
+                    new PcOriginalMapAppearanceEntry { id = "spring", nativeWidth = 3840, nativeHeight = 2572, worldGrid = grid }
+                }
+            };
+            var orig = map.ResolveAppearance("normal");
+            var hd = map.ResolveAppearance("spring");
+            Assert.AreEqual(4, orig.tileCount);
+            Assert.AreEqual(25, hd.tileCount);
+            Assert.AreEqual(1.875f, orig.WorldWidth, 1e-6f);
+            Assert.AreEqual(1.255859375f, orig.WorldHeight, 1e-6f);
+            Assert.AreEqual(orig.WorldWidth, hd.WorldWidth, 1e-6f);
+            Assert.AreEqual(orig.WorldHeight, hd.WorldHeight, 1e-6f);
+        }
     }
 }

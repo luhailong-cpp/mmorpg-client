@@ -342,6 +342,8 @@ namespace MmorpgClient.World.Tianyong
             GUI.Label(new Rect(30, 154, 532, 24), "视觉预览（仅看图，未接入导航或联机传送）");
             if (GUI.Button(new Rect(30, 180, 170, 32), "打开美术预览")) OpenVisualPreview(26000, "mid-autumn");
             if (GUI.Button(new Rect(208, 180, 190, 32), "端游原图预览 (36图)")) OpenPcOriginalPreview("05000");
+            if (GUI.Button(new Rect(406, 180, 156, 32), "桂灯集双节预览"))
+                OpenPcOriginalPreview("original:guideng-market", PcOriginalMapContract.OriginalPreviewCatalogResourcePath);
             GUI.Label(new Rect(30, 245, 532, 50), _deliveryStatus);
         }
 
@@ -374,17 +376,21 @@ namespace MmorpgClient.World.Tianyong
 #endif
         }
 
-        private void OpenPcOriginalPreview(string mapId)
+        private void OpenPcOriginalPreview(string mapId, string catalogPath = null)
         {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
-            try { PcOriginalMapPreviewViewer.Open(this, mapId); }
+            try
+            {
+                if (string.IsNullOrEmpty(catalogPath)) PcOriginalMapPreviewViewer.Open(this, mapId);
+                else PcOriginalMapPreviewViewer.Open(this, mapId, catalogPath);
+            }
             catch (System.Exception error)
             {
-                _deliveryStatus = "端游原图预览无法打开：" + error.Message;
+                _deliveryStatus = "静态地图预览无法打开：" + error.Message;
                 Debug.LogError("[PcOriginalMapPreview] " + _deliveryStatus);
             }
 #else
-            _deliveryStatus = "端游原图预览仅在开发版可用。";
+            _deliveryStatus = "静态地图预览仅在开发版可用。";
 #endif
         }
 

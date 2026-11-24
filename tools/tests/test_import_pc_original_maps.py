@@ -429,6 +429,103 @@ class ImportPcOriginalMapsTests(unittest.TestCase):
             self.assertEqual((spring_app["nativeWidth"], spring_app["nativeHeight"]), (1600, 1200))
             self.assertEqual(spring_app["tileCount"], 4)
 
+    def test_opaque_lossless_png_worldgrid_slicing_16001_shape(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            handoff = root / "handoff"
+            project = root / "client"
+            hd_dir = root / "hd_16001"
+            handoff.mkdir()
+            hd_dir.mkdir()
+            (project / "Assets/Resources/World").mkdir(parents=True)
+
+            ready_ids = ["16001"] + [f"{10000 + i:05d}" for i in range(35)]
+            unavail_ids = ["29005", "11005", "41049", "50024"]
+            requested = ready_ids + unavail_ids
+            maps_sel = []
+            for idx, map_id in enumerate(ready_ids):
+                mdir = handoff / map_id
+                mdir.mkdir()
+                w, h = (1920, 1286) if map_id == "16001" else (400, 300)
+                im = Image.new("RGB", (w, h), (40 + idx, 70, 110))
+                png_path = mdir / f"{map_id}-native.png"
+                im.save(png_path, format="PNG")
+                raw = png_path.read_bytes()
+                sha = sha256_bytes(raw)
+                ev_path = mdir / "source-evidence.json"
+                ev_path.write_text(
+                    json.dumps({
+                        "schemaVersion": 1, "mapId": map_id, "branch": "gbits",
+                        "native": {"path": png_path.as_posix(), "sha256": sha, "bytes": len(raw), "pixels": [w, h]},
+                        "sourceContainer": {"sha256": importer.EXPECTED_CONTAINER_SHA256},
+                    }),
+                    encoding="utf-8",
+                )
+                maps_sel.append({
+                    "mapId": map_id, "name": f"地图 {map_id}",
+                    "native": {"path": png_path.as_posix(), "sha256": sha, "bytes": len(raw), "pixels": [w, h]},
+                    "sourceContainer": "client.dbfs", "sourceManifest": ev_path.as_posix(),
+                })
+            (handoff / "selection.json").write_text(json.dumps({
+                "schemaVersion": 1, "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_SELECTION",
+                "sourceContainerEvidence": {"path": "client.dbfs", "bytes": 4626188288, "sha256": importer.EXPECTED_CONTAINER_SHA256},
+                "requestedMapIds": requested, "maps": maps_sel,
+            }), encoding="utf-8")
+            (handoff / "unavailable.json").write_text(json.dumps({
+                "schemaVersion": 1, "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_UNAVAILABLE", "requestedMapIds": requested,
+                "maps": [{"mapId": gid, "reason": {"code": "NO_STATIC_BACKGROUND_BRANCH", "infoHeaderCount": 1, "variants": []}} for gid in unavail_ids],
+            }), encoding="utf-8")
+            (handoff / "special-candidates.json").write_text(json.dumps({
+                "schemaVersion": 1, "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_NONDEFAULT_CANDIDATES", "requestedMapIds": requested,
+                "maps": [
+                    {"mapId": "15000", "branch": "gbits_jdhj", "sourceStatus": "source_valid_visual_hold", "native": {"path": "x", "sha256": "a" * 64, "bytes": 100, "pixels": [8000, 8000]}},
+                    {"mapId": "50024", "branch": "gbits", "sourceStatus": "viewport_unconfirmed", "native": {"path": "y", "sha256": "b" * 64, "bytes": 200, "pixels": [4000, 3000]}},
+                ],
+            }), encoding="utf-8")
+            importer.import_all(handoff, project)
+
+            # Synthetic 3840x2572 opaque RGB PNG sliced directly onto 16001 400x300 worldGrid (5x5=25 lossless RGB PNG tiles)
+            hd_img = Image.new("RGB", (3840, 2572), (120, 140, 160))
+            hd_img.putpixel((3839, 2571), (250, 10, 20))
+            whole = hd_dir / "16001-spring-3840x2572.png"
+            hd_img.save(whole, format="PNG")
+            ev = hd_dir / "delivery.json"
+            ev.write_text(json.dumps({"mapId": "16001", "season": "spring"}), encoding="utf-8")
+
+            rec = qdao_importer.adopt_map_appearances(
+                map_id="16001",
+                project_root=project,
+                qdao_specs=[{
+                    "id": "spring",
+                    "displayName": "春节高清",
+                    "revision": "qdao-spring-4x-v001",
+                    "wholePng": whole,
+                    "expectedSha": sha256_bytes(whole.read_bytes()),
+                    "evidencePath": ev,
+                    "worldGrid": {"widthPixels": 1920, "heightPixels": 1286, "tileWidthPixels": 400, "tileHeightPixels": 300},
+                    "losslessPng": True,
+                }],
+                default_appearance="normal",
+                include_preserved_original=True,
+                original_first=True,
+            )
+            spring_rec = next(a for a in rec["appearances"] if a["id"] == "spring")
+            self.assertFalse(spring_rec["hasAlpha"])
+            self.assertEqual(spring_rec["tileFormat"], "png_rgb_hd_worldgrid_800x600")
+            self.assertEqual(spring_rec["tileCount"], 25)
+            self.assertTrue(spring_rec["recompositionVerification"]["rgbByteEqualToWholeSource"])
+
+            tm = importer.read_json(project / importer.DELIVERY_REL / "16001/qdao-spring-4x-v001/tiles.json")
+            self.assertEqual(tm["schemaVersion"], 2)
+            self.assertEqual((tm["tiles"][0]["width"], tm["tiles"][0]["height"]), (800, 600))
+            self.assertEqual((tm["tiles"][4]["width"], tm["tiles"][4]["height"]), (640, 600))
+            self.assertEqual((tm["tiles"][20]["width"], tm["tiles"][20]["height"]), (800, 172))
+            self.assertEqual((tm["tiles"][24]["width"], tm["tiles"][24]["height"]), (640, 172))
+            meta_txt = (project / importer.DELIVERY_REL / "16001/qdao-spring-4x-v001/tiles/r05_c05.png.meta").read_text(encoding="utf-8")
+            self.assertIn("textureFormat: 3", meta_txt)
+            self.assertIn("alphaSource: 0", meta_txt)
+            self.assertEqual(importer.verify_committed(project)["result"], "PASS")
+
 
 if __name__ == "__main__":
     unittest.main()
