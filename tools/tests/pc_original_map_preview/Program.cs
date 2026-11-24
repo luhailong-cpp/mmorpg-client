@@ -114,8 +114,78 @@ internal static class Program
                         totalVariants++;
                     }
                 }
-                Require(totalVariants == 37, $"Expected 37 total appearance variants across 36 maps (28002 spring+midautumn), got {totalVariants}.");
-                Require(totalTiles == 1031, $"Expected 1031 total tiles across all variants, got {totalTiles}.");
+                Require(totalVariants == 52, $"Expected 52 total appearance variants across 36 maps, got {totalVariants}.");
+                Require(totalTiles == 1387, $"Expected 1387 total tiles across all variants, got {totalTiles}.");
+            });
+
+            Check("Map 08001 keeps original 3200x2400 default while exposing 6400x4800 4x HD dual-festival candidates on identical world bounds", () =>
+            {
+                var m08001 = catalog.FindByMapId("08001");
+                Require(m08001 != null && m08001.numericMapId == 8001, "08001 missing.");
+                Require(m08001.defaultAppearance == "normal", "08001 defaultAppearance must remain 'normal' (original) before acceptance.");
+                Require(m08001.artStage == PcOriginalMapContract.ArtStagePcOriginal && m08001.isTemporaryOriginal,
+                    "08001 top-level active stage must remain pc_original_static_back.");
+                Require(m08001.resourceRoot == "World/PcOriginalPreview20261123/08001/pc-original-20261123/",
+                    "08001 default must point to untouched pc-original-20261123.");
+
+                var orig = m08001.ResolveAppearance("normal");
+                var springHd = m08001.ResolveAppearance("spring");
+                var midHd = m08001.ResolveAppearance("midautumn");
+                Require(orig != null && springHd != null && midHd != null, "08001 normal/spring/midautumn resolution failed.");
+                Require(Math.Abs(orig.WorldWidth - 3200f / 1024f) < 1e-6f && Math.Abs(orig.WorldHeight - 2400f / 1024f) < 1e-6f,
+                    "08001 original world bounds mismatch.");
+                Require(Math.Abs(springHd.WorldWidth - orig.WorldWidth) < 1e-6f && Math.Abs(springHd.WorldHeight - orig.WorldHeight) < 1e-6f,
+                    "08001 HD spring must keep identical world bounds to original.");
+                Require(Math.Abs(midHd.WorldWidth - orig.WorldWidth) < 1e-6f && Math.Abs(midHd.WorldHeight - orig.WorldHeight) < 1e-6f,
+                    "08001 HD midautumn must keep identical world bounds to original.");
+                Require(springHd.nativeWidth == 6400 && springHd.nativeHeight == 4800 && springHd.hasAlpha && springHd.tileCount == 64,
+                    "08001 HD spring metadata mismatch.");
+                Require(midHd.nativeWidth == 6400 && midHd.nativeHeight == 4800 && midHd.hasAlpha && midHd.tileCount == 64,
+                    "08001 HD midautumn metadata mismatch.");
+
+                foreach (var hd in new[] { springHd, midHd })
+                {
+                    string tPath = Path.Combine(repoRoot, "Assets", "Resources",
+                        hd.tilesManifestResourcePath.Replace('/', Path.DirectorySeparatorChar) + ".json");
+                    var tm = JsonSerializer.Deserialize<PcOriginalTileManifest>(File.ReadAllText(tPath), JsonOptions);
+                    tm.Validate(hd);
+                    Require(tm.schemaVersion == 2 && tm.tiles.Length == 64, "08001 HD tiles.json must be schema 2 with 64 tiles.");
+                    var first = PcOriginalViewportPlanner.TileWorldRect(tm, tm.tiles[0]);
+                    var last = PcOriginalViewportPlanner.TileWorldRect(tm, tm.tiles[tm.tiles.Length - 1]);
+                    Require(Math.Abs(first.XMin) < 1e-6f && Math.Abs(first.YMax - orig.WorldHeight) < 1e-5f,
+                        "08001 HD top-left tile world alignment mismatch.");
+                    Require(Math.Abs(last.XMax - orig.WorldWidth) < 1e-5f && Math.Abs(last.YMin) < 1e-6f,
+                        "08001 HD bottom-right tile world alignment mismatch.");
+                    Require(Math.Abs(first.Width - 400f / 1024f) < 1e-6f && Math.Abs(first.Height - 300f / 1024f) < 1e-6f,
+                        "08001 HD 800x600 tile must span exact 400x300 original world pixels.");
+                }
+            });
+
+            Check("All newly adopted completed Q-Dao maps preserve original provenance and valid appearances", () =>
+            {
+                var expectedDual = new (string id, int w, int h, bool alpha)[]
+                {
+                    ("03000", 4400, 4400, false),
+                    ("07001", 6000, 4970, false),
+                    ("19003", 1920, 1080, false),
+                    ("23000", 4000, 5000, false),
+                    ("33009", 4800, 3600, true),
+                    ("41081", 4000, 2600, false),
+                };
+                foreach (var (id, w, h, alpha) in expectedDual)
+                {
+                    var m = catalog.FindByMapId(id);
+                    Require(m != null && m.artStage == PcOriginalMapContract.ArtStageQdaoRedrawn && !m.isTemporaryOriginal, $"{id}: expected qdao stage.");
+                    Require(m.nativeWidth == w && m.nativeHeight == h && m.hasAlpha == alpha, $"{id}: dimension/alpha mismatch.");
+                    Require(m.defaultAppearance == "spring" && m.FindAppearance("spring") != null &&
+                            m.FindAppearance("midautumn") != null && m.FindAppearance("normal") != null,
+                        $"{id}: expected spring/midautumn/normal appearances.");
+                }
+                var m15000 = catalog.FindByMapId("15000");
+                Require(m15000 != null && m15000.artStage == PcOriginalMapContract.ArtStageQdaoRedrawn &&
+                        m15000.defaultAppearance == "spring" && m15000.FindAppearance("spring") != null &&
+                        m15000.FindAppearance("normal") != null && m15000.FindAppearance("midautumn") == null,
+                    "15000 must expose completed spring + preserved normal without unfinished midautumn.");
             });
 
             Check("Map 28002 adopts Q-Dao spring/midautumn RGBA appearances under unique mapId while preserving PC original provenance", () =>
@@ -266,6 +336,11 @@ internal static class Program
                 var drift = JsonSerializer.Deserialize<PcOriginalMapCatalog>(File.ReadAllText(catalogPath), JsonOptions);
                 drift.FindByMapId("28002").revision = "qdao-midautumn-v002";
                 Reject(() => drift.Validate(), "top-level revision drift from defaultAppearance");
+
+                // 6. HD appearance changing map world bounds (08001 must stay 3200x2400 world extent)
+                var badExtent = JsonSerializer.Deserialize<PcOriginalMapCatalog>(File.ReadAllText(catalogPath), JsonOptions);
+                badExtent.FindByMapId("08001").appearances[1].worldGrid.widthPixels = 6400;
+                Reject(() => badExtent.Validate(), "HD appearance altering map world bounds");
             });
 
             Console.WriteLine($"PcOriginalMapPreviewTests PASS: {Passed.Count}/{Passed.Count} checks succeeded.");

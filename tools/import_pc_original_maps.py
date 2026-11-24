@@ -641,11 +641,42 @@ def verify_committed(project_root: Path, *, check_image_pixels: bool = True) -> 
     for cand in special:
         require(cand.get("integrated") is False, f"HOLD candidate {cand.get('mapId')} must not be marked integrated")
 
-    def verify_variant(map_id: str, label: str, variant: dict, native_w: int, native_h: int, tile_size: int, cols: int, rows: int, tile_count: int) -> tuple[int, int]:
+    def _validate_world_grid(label: str, wg: dict, cols: int, rows: int) -> tuple[int, int, int, int]:
+        gw, gh = int(wg["widthPixels"]), int(wg["heightPixels"])
+        tw, th = int(wg["tileWidthPixels"]), int(wg["tileHeightPixels"])
+        require(gw > 0 and gh > 0 and tw > 0 and th > 0, f"{label}: invalid worldGrid values")
+        require(cols == math.ceil(gw / tw) and rows == math.ceil(gh / th), f"{label}: worldGrid disagrees with columns/rows")
+        return gw, gh, tw, th
+
+    def _wg_pixel(edge: int, tile_step: int, world_extent: int, native_extent: int) -> int:
+        world_coord = min(edge * tile_step, world_extent)
+        return (world_coord * native_extent + world_extent // 2) // world_extent
+
+    def verify_variant(
+        map_id: str,
+        label: str,
+        variant: dict,
+        world_w: int,
+        world_h: int,
+        native_w: int,
+        native_h: int,
+        world_grid: dict | None,
+        tile_size: int,
+        cols: int,
+        rows: int,
+        tile_count: int,
+    ) -> tuple[int, int]:
         require(variant.get("artStage") in ("pc_original_static_back", "qdao_redrawn_static_back", "formal_art_delivery"), f"{label}: invalid artStage")
         if variant.get("artStage") == "qdao_redrawn_static_back":
             require(variant.get("isTemporaryOriginal") is False, f"{label}: qdao_redrawn_static_back must have isTemporaryOriginal=false")
         require(variant.get("resampled") is False, f"{label}: tiles must not be resampled")
+        explicit_grid = bool(world_grid and any(int(world_grid.get(k, 0)) != 0 for k in ("widthPixels", "heightPixels", "tileWidthPixels", "tileHeightPixels")))
+        if explicit_grid:
+            gw, gh, gtw, gth = _validate_world_grid(label, world_grid, cols, rows)
+            require((gw, gh) == (world_w, world_h), f"{label}: worldGrid {gw}x{gh} != map world {world_w}x{world_h}")
+        else:
+            require((native_w, native_h) == (world_w, world_h), f"{label}: non-grid variant native {native_w}x{native_h} != map world {world_w}x{world_h}")
+        require(native_w >= world_w and native_h >= world_h and native_w * world_h == native_h * world_w, f"{label}: native size {native_w}x{native_h} invalid for world {world_w}x{world_h}")
         require(bool(SHA256_RE.match(variant.get("sourceNativeSha256", ""))), f"{label}: invalid sourceNativeSha256")
         require(int(variant.get("sourceNativeBytes", 0)) > 0, f"{label}: invalid sourceNativeBytes")
 
@@ -661,11 +692,17 @@ def verify_committed(project_root: Path, *, check_image_pixels: bool = True) -> 
         require(sha256_bytes(tiles_raw) == variant["tilesManifestSha256"], f"{label}: tilesManifestSha256 mismatch")
         tm = json.loads(tiles_raw.decode("utf-8"))
 
+        expected_schema = 2 if explicit_grid else 1
+        require(int(tm.get("schemaVersion", 0)) == expected_schema, f"{label}: tiles.json schemaVersion {tm.get('schemaVersion')} != {expected_schema}")
         require(tm["mapId"] == map_id and tm["nativeWidth"] == native_w and tm["nativeHeight"] == native_h, f"{label}: tiles.json header mismatch")
+        if explicit_grid:
+            require(tm.get("worldGrid") == world_grid, f"{label}: tiles.json worldGrid mismatch")
+        else:
+            require(not tm.get("worldGrid"), f"{label}: unexpected worldGrid in schema 1 tiles.json")
+            require(cols == math.ceil(native_w / tile_size) and rows == math.ceil(native_h / tile_size), f"{label}: grid dimension mismatch")
         require(tm["revision"] == variant["revision"] and tm["artStage"] == variant["artStage"], f"{label}: tiles.json revision/artStage mismatch")
         require(bool(tm["hasAlpha"]) == bool(variant["hasAlpha"]), f"{label}: tiles.json hasAlpha mismatch")
         require(tm["resourceRoot"] == res_root and tm["sourceNativeSha256"] == variant["sourceNativeSha256"], f"{label}: tiles.json root/source mismatch")
-        require(cols == math.ceil(native_w / tile_size) and rows == math.ceil(native_h / tile_size), f"{label}: grid dimension mismatch")
         require(len(tm["tiles"]) == cols * rows == tile_count, f"{label}: tile count mismatch")
 
         source_json_path = map_dir / "source.json"
@@ -695,15 +732,21 @@ def verify_committed(project_root: Path, *, check_image_pixels: bool = True) -> 
             r, c = int(tile["row"]), int(tile["column"])
             require(1 <= r <= rows and 1 <= c <= cols and (r, c) not in seen_coords, f"{label}: invalid/duplicate tile ({r},{c})")
             seen_coords.add((r, c))
-            exp_x = (c - 1) * tile_size
-            exp_y = (r - 1) * tile_size
-            exp_w = min(tile_size, native_w - exp_x)
-            exp_h = min(tile_size, native_h - exp_y)
+            if explicit_grid:
+                exp_x = _wg_pixel(c - 1, gtw, gw, native_w)
+                exp_y = _wg_pixel(r - 1, gth, gh, native_h)
+                exp_w = _wg_pixel(c, gtw, gw, native_w) - exp_x
+                exp_h = _wg_pixel(r, gth, gh, native_h) - exp_y
+            else:
+                exp_x = (c - 1) * tile_size
+                exp_y = (r - 1) * tile_size
+                exp_w = min(tile_size, native_w - exp_x)
+                exp_h = min(tile_size, native_h - exp_y)
             require(
                 (int(tile["x"]), int(tile["y"]), int(tile["width"]), int(tile["height"])) == (exp_x, exp_y, exp_w, exp_h),
                 f"{label}: tile ({r},{c}) rect mismatch",
             )
-            require(exp_w <= tile_size and exp_h <= tile_size, f"{label}: tile exceeds {tile_size}")
+            require(0 < exp_w <= tile_size and 0 < exp_h <= tile_size, f"{label}: tile exceeds {tile_size}")
             covered_area += exp_w * exp_h
 
             ext = tile["fileExtension"]
@@ -731,6 +774,9 @@ def verify_committed(project_root: Path, *, check_image_pixels: bool = True) -> 
         require(bool(MAP_ID_RE.match(map_id)), f"Invalid mapId: {map_id}")
         require(entry["numericMapId"] == int(map_id), f"{map_id}: numericMapId mismatch")
         native_w, native_h = int(entry["nativeWidth"]), int(entry["nativeHeight"])
+        entry_wg = entry.get("worldGrid")
+        world_w = int(entry_wg["widthPixels"]) if entry_wg else native_w
+        world_h = int(entry_wg["heightPixels"]) if entry_wg else native_h
         tile_size = int(entry["tileSize"])
         cols, rows = int(entry["columns"]), int(entry["rows"])
         tile_count = int(entry["tileCount"])
@@ -760,7 +806,21 @@ def verify_committed(project_root: Path, *, check_image_pixels: bool = True) -> 
                     default_obj = app
                 if pc_orig_sha is not None and app.get("artStage") == "qdao_redrawn_static_back":
                     require(app["sourceNativeSha256"] != pc_orig_sha, f"{map_id}/{app_id}: Q-Dao SHA must not reuse PC original SHA")
-                t_cnt, ov_cnt = verify_variant(map_id, f"{map_id}/{app_id}", app, native_w, native_h, tile_size, cols, rows, tile_count)
+                app_wg = app.get("worldGrid") if app.get("worldGrid") is not None else entry_wg
+                app_native_w = int(app.get("nativeWidth") or native_w)
+                app_native_h = int(app.get("nativeHeight") or native_h)
+                app_tile_size = int(app.get("tileSize") or tile_size)
+                if app_wg:
+                    app_cols = int(app.get("columns") or math.ceil(int(app_wg["widthPixels"]) / int(app_wg["tileWidthPixels"])))
+                    app_rows = int(app.get("rows") or math.ceil(int(app_wg["heightPixels"]) / int(app_wg["tileHeightPixels"])))
+                else:
+                    app_cols = int(app.get("columns") or math.ceil(app_native_w / app_tile_size))
+                    app_rows = int(app.get("rows") or math.ceil(app_native_h / app_tile_size))
+                app_tile_count = int(app.get("tileCount") or (app_cols * app_rows))
+                t_cnt, ov_cnt = verify_variant(
+                    map_id, f"{map_id}/{app_id}", app, world_w, world_h,
+                    app_native_w, app_native_h, app_wg, app_tile_size, app_cols, app_rows, app_tile_count,
+                )
                 checked_tiles += t_cnt
                 checked_overviews += ov_cnt
             require(default_obj is not None, f"{map_id}: defaultAppearance '{default_app}' missing from appearances[]")
@@ -770,8 +830,20 @@ def verify_committed(project_root: Path, *, check_image_pixels: bool = True) -> 
                 "tilesManifestResourcePath", "tilesManifestSha256", "sourceNativeSha256", "sourceNativeBytes",
             ):
                 require(entry.get(field) == default_obj.get(field), f"{map_id}: top-level {field} disagrees with defaultAppearance")
+            def_wg = default_obj.get("worldGrid") if default_obj.get("worldGrid") is not None else entry_wg
+            def_native_w = int(default_obj.get("nativeWidth") or native_w)
+            def_native_h = int(default_obj.get("nativeHeight") or native_h)
+            def_tile_size = int(default_obj.get("tileSize") or tile_size)
+            def_cols = int(default_obj.get("columns") or (math.ceil(int(def_wg["widthPixels"]) / int(def_wg["tileWidthPixels"])) if def_wg else math.ceil(def_native_w / def_tile_size)))
+            def_rows = int(default_obj.get("rows") or (math.ceil(int(def_wg["heightPixels"]) / int(def_wg["tileHeightPixels"])) if def_wg else math.ceil(def_native_h / def_tile_size)))
+            def_count = int(default_obj.get("tileCount") or (def_cols * def_rows))
+            require(
+                (native_w, native_h, entry_wg, tile_size, cols, rows, tile_count)
+                == (def_native_w, def_native_h, def_wg, def_tile_size, def_cols, def_rows, def_count),
+                f"{map_id}: top-level native/grid metadata disagrees with defaultAppearance",
+            )
         else:
-            t_cnt, ov_cnt = verify_variant(map_id, map_id, entry, native_w, native_h, tile_size, cols, rows, tile_count)
+            t_cnt, ov_cnt = verify_variant(map_id, map_id, entry, world_w, world_h, native_w, native_h, entry_wg, tile_size, cols, rows, tile_count)
             checked_tiles += t_cnt
             checked_overviews += ov_cnt
 

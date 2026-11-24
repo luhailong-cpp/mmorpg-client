@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "kind": "CLIENT_QDAO_REDRAWN_STATIC_BACK_SOURCE",
+  "mapId": "33009",
+  "numericMapId": 33009,
+  "name": "地图 33009",
+  "appearance": "midautumn",
+  "appearanceDisplayName": "中秋",
+  "revision": "qdao-midautumn-v001",
+  "artStage": "qdao_redrawn_static_back",
+  "isTemporaryOriginal": false,
+  "replaceableByQdaoArt": true,
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "productionTravelEnabled": false,
+  "sourceBranch": "gbits",
+  "sourceStatus": "ready_qdao_static_back",
+  "sourceEvidencePath": "D:/work/image/designs/pc-33009-dual-festival-20261123-v001/DELIVERY.json",
+  "sourceEvidenceSha256": "4444057e865753991a681780ef15fd459e684859192fe8e5032ae347db4bfb2f",
+  "sourceNativeSha256": "257579a90445fad7b2b08b833552a38a86f22461fd4e24f6ba7a6ab1a0057354",
+  "sourceNativeBytes": 27613246,
+  "pcOriginalResourceRoot": "World/PcOriginalPreview20261123/33009/pc-original-20261123/",
+  "pcOriginalSourceNativeSha256": "8e75006bfc9c0c127f773fe0309a30977adb3516679a94a8e2efcf6e9f442643",
+  "pcOriginalSourceNativeBytes": 17592483,
+  "pcOriginalSourceEvidenceSha256": "f785c6659023efa10d39a22fd0c27febd91a27a81d4b25146becec1c77f5c840",
+  "pcOriginalSourceContainerSha256": "724b3f9b1018951ac21d502a798d54b1b86d0a04250f01e1524add33525dc07f",
+  "nativeWidth": 4800,
+  "nativeHeight": 3600,
+  "worldWidthPixels": 4800,
+  "worldHeightPixels": 3600,
+  "tileSize": 1024,
+  "columns": 5,
+  "rows": 4,
+  "tileCount": 20,
+  "hasAlpha": true,
+  "tileFormat": "png_rgba_native_1024_grid",
+  "resampled": false,
+  "overviewDerived": true,
+  "overviewIsResizedPreviewOnly": true,
+  "overviewWidth": 2048,
+  "overviewHeight": 1536,
+  "overviewExtension": ".png",
+  "overviewBytes": 5773318,
+  "overviewSha256": "4292549578e5f37e985d25ef12887dbf859b3dcbb99a2fb99dbd28fb39f053b0",
+  "tilesManifestSha256": "ecccf6a31fc4d3401a3942f3dad827805c3a296eea8c60727962a37830d6f800",
+  "serverRegistrationStatus": "unregistered_local_preview_only",
+  "alphaStats": {
+    "minMax": [
+      0,
+      255
+    ],
+    "fullyTransparent": 2663904,
+    "fullyOpaque": 14457287,
+    "partialAlpha": 158809,
+    "totalPixels": 17280000
+  },
+  "recompositionVerification": {
+    "recomposedPixels": [
+      4800,
+      3600
+    ],
+    "coveredPixels": 17280000,
+    "tileCount": 20,
+    "rgbaByteEqualToWholeSource": true,
+    "alphaStats": {
+      "minMax": [
+        0,
+        255
+      ],
+      "fullyTransparent": 2663904,
+      "fullyOpaque": 14457287,
+      "partialAlpha": 158809,
+      "totalPixels": 17280000
+    }
+  }
+}

@@ -327,6 +327,108 @@ class ImportPcOriginalMapsTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 importer.verify_committed(project)
 
+    def test_hd_worldgrid_candidate_preserves_original_default_and_world_extent(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            handoff = root / "handoff"
+            project = root / "client"
+            hd_dir = root / "hd_08001"
+            handoff.mkdir()
+            hd_dir.mkdir()
+            (project / "Assets/Resources/World").mkdir(parents=True)
+
+            ready_ids = ["08001"] + [f"{10000 + i:05d}" for i in range(35)]
+            unavail_ids = ["29005", "11005", "41049", "50024"]
+            requested = ready_ids + unavail_ids
+            maps_sel = []
+            for idx, map_id in enumerate(ready_ids):
+                mdir = handoff / map_id
+                mdir.mkdir()
+                w, h = (800, 600) if map_id == "08001" else (400, 300)
+                im = Image.new("RGB", (w, h), (30 + idx, 70, 110))
+                png_path = mdir / f"{map_id}-native.png"
+                im.save(png_path, format="PNG")
+                raw = png_path.read_bytes()
+                sha = sha256_bytes(raw)
+                ev_path = mdir / "source-evidence.json"
+                ev_path.write_text(
+                    json.dumps({
+                        "schemaVersion": 1,
+                        "mapId": map_id,
+                        "branch": "gbits",
+                        "native": {"path": png_path.as_posix(), "sha256": sha, "bytes": len(raw), "pixels": [w, h]},
+                        "sourceContainer": {"sha256": importer.EXPECTED_CONTAINER_SHA256},
+                    }),
+                    encoding="utf-8",
+                )
+                maps_sel.append({
+                    "mapId": map_id,
+                    "name": f"地图 {map_id}",
+                    "native": {"path": png_path.as_posix(), "sha256": sha, "bytes": len(raw), "pixels": [w, h]},
+                    "sourceContainer": "client.dbfs",
+                    "sourceManifest": ev_path.as_posix(),
+                })
+            (handoff / "selection.json").write_text(json.dumps({
+                "schemaVersion": 1, "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_SELECTION",
+                "sourceContainerEvidence": {"path": "client.dbfs", "bytes": 4626188288, "sha256": importer.EXPECTED_CONTAINER_SHA256},
+                "requestedMapIds": requested, "maps": maps_sel,
+            }), encoding="utf-8")
+            (handoff / "unavailable.json").write_text(json.dumps({
+                "schemaVersion": 1, "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_UNAVAILABLE", "requestedMapIds": requested,
+                "maps": [{"mapId": gid, "reason": {"code": "NO_STATIC_BACKGROUND_BRANCH", "infoHeaderCount": 1, "variants": []}} for gid in unavail_ids],
+            }), encoding="utf-8")
+            (handoff / "special-candidates.json").write_text(json.dumps({
+                "schemaVersion": 1, "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_NONDEFAULT_CANDIDATES", "requestedMapIds": requested,
+                "maps": [
+                    {"mapId": "15000", "branch": "gbits_jdhj", "sourceStatus": "source_valid_visual_hold", "native": {"path": "x", "sha256": "a" * 64, "bytes": 100, "pixels": [8000, 8000]}},
+                    {"mapId": "50024", "branch": "gbits", "sourceStatus": "viewport_unconfirmed", "native": {"path": "y", "sha256": "b" * 64, "bytes": 200, "pixels": [4000, 3000]}},
+                ],
+            }), encoding="utf-8")
+            importer.import_all(handoff, project)
+
+            # Build 2x HD (1600x1200) RGBA spring with 2x2 precut 800x600 tiles mapped to 800x600 worldGrid
+            hd_img = Image.new("RGBA", (1600, 1200), (180, 60, 50, 254))
+            hd_img.putpixel((0, 0), (0, 0, 0, 0))
+            whole = hd_dir / "08001-spring-1600x1200.png"
+            hd_img.save(whole, format="PNG")
+            ev = hd_dir / "delivery.json"
+            ev.write_text(json.dumps({"season": "spring"}), encoding="utf-8")
+            precut = []
+            for r in range(2):
+                for c in range(2):
+                    x0, y0 = c * 800, r * 600
+                    tp = hd_dir / f"{x0}_{y0}.png"
+                    hd_img.crop((x0, y0, x0 + 800, y0 + 600)).save(tp, format="PNG")
+                    precut.append({"path": tp, "pixelOrigin": [x0, y0], "sha256": sha256_bytes(tp.read_bytes())})
+
+            rec = qdao_importer.adopt_map_appearances(
+                map_id="08001",
+                project_root=project,
+                qdao_specs=[{
+                    "id": "spring",
+                    "displayName": "春节高清",
+                    "revision": "qdao-spring-4x-v001",
+                    "wholePng": whole,
+                    "expectedSha": sha256_bytes(whole.read_bytes()),
+                    "evidencePath": ev,
+                    "worldGrid": {"widthPixels": 800, "heightPixels": 600, "tileWidthPixels": 400, "tileHeightPixels": 300},
+                    "precutTiles": precut,
+                }],
+                default_appearance="normal",
+                include_preserved_original=True,
+                original_first=True,
+            )
+            self.assertEqual(rec["defaultAppearance"], "normal")
+            summary = importer.verify_committed(project)
+            self.assertEqual(summary["result"], "PASS")
+            cat = importer.read_json(project / importer.DELIVERY_REL / "catalog.json")
+            m08001 = next(m for m in cat["maps"] if m["mapId"] == "08001")
+            self.assertEqual(m08001["artStage"], "pc_original_static_back")
+            self.assertEqual(m08001["defaultAppearance"], "normal")
+            spring_app = next(a for a in m08001["appearances"] if a["id"] == "spring")
+            self.assertEqual((spring_app["nativeWidth"], spring_app["nativeHeight"]), (1600, 1200))
+            self.assertEqual(spring_app["tileCount"], 4)
+
 
 if __name__ == "__main__":
     unittest.main()

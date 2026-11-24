@@ -17,6 +17,7 @@ namespace MmorpgClient.World.CurrentMaps
         public const int DefaultMaxResidentTiles = 24;
         public const int DefaultMaxConcurrentLoads = 4;
         public const string DefaultCatalogResourcePath = "World/PcOriginalPreview20261123/catalog";
+        public const string VariantReviewRoot = "World/PcMapVariantReview/";
         public const string ExpectedCatalogKind = "CLIENT_PC_ORIGINAL_STATIC_BACK_PREVIEW_CATALOG";
         public const string ArtStagePcOriginal = "pc_original_static_back";
         public const string ArtStageQdaoRedrawn = "qdao_redrawn_static_back";
@@ -105,6 +106,13 @@ namespace MmorpgClient.World.CurrentMaps
         public bool hasAlpha;
         public string tileFormat;
         public bool resampled;
+        public int nativeWidth;
+        public int nativeHeight;
+        public PcOriginalWorldGrid worldGrid;
+        public int tileSize;
+        public int columns;
+        public int rows;
+        public int tileCount;
         public string resourceRoot;
         public string overviewResourcePath;
         public string overviewExtension;
@@ -120,8 +128,40 @@ namespace MmorpgClient.World.CurrentMaps
         public string sourceEvidenceSha256;
 
         public string DisplayLabel => PcOriginalMapContract.AppearanceDisplayLabel(id, displayName);
+        public bool HasWorldGrid => worldGrid?.HasValues == true;
 
-        public void Validate(string mapId, string pcOriginalSourceNativeSha256)
+        public int ResolveNativeWidth(int mapNativeWidth) => nativeWidth > 0 ? nativeWidth : mapNativeWidth;
+        public int ResolveNativeHeight(int mapNativeHeight) => nativeHeight > 0 ? nativeHeight : mapNativeHeight;
+        public PcOriginalWorldGrid ResolveWorldGrid(PcOriginalWorldGrid mapWorldGrid) => HasWorldGrid ? worldGrid : mapWorldGrid;
+        public int ResolveTileSize(int mapTileSize) => tileSize > 0 ? tileSize : mapTileSize;
+        public int ResolveColumns(int mapNativeWidth, int mapTileSize, PcOriginalWorldGrid mapWorldGrid)
+        {
+            if (columns > 0) return columns;
+            var grid = ResolveWorldGrid(mapWorldGrid);
+            if (grid?.HasValues == true) return 1 + (grid.widthPixels - 1) / grid.tileWidthPixels;
+            int ts = ResolveTileSize(mapTileSize);
+            return 1 + (ResolveNativeWidth(mapNativeWidth) - 1) / ts;
+        }
+        public int ResolveRows(int mapNativeHeight, int mapTileSize, PcOriginalWorldGrid mapWorldGrid)
+        {
+            if (rows > 0) return rows;
+            var grid = ResolveWorldGrid(mapWorldGrid);
+            if (grid?.HasValues == true) return 1 + (grid.heightPixels - 1) / grid.tileHeightPixels;
+            int ts = ResolveTileSize(mapTileSize);
+            return 1 + (ResolveNativeHeight(mapNativeHeight) - 1) / ts;
+        }
+        public int ResolveTileCount(int mapNativeWidth, int mapNativeHeight, int mapTileSize, PcOriginalWorldGrid mapWorldGrid)
+            => tileCount > 0 ? tileCount : ResolveColumns(mapNativeWidth, mapTileSize, mapWorldGrid) * ResolveRows(mapNativeHeight, mapTileSize, mapWorldGrid);
+
+        public void Validate(
+            string mapId,
+            string pcOriginalSourceNativeSha256,
+            int mapWorldWidthPixels,
+            int mapWorldHeightPixels,
+            int mapNativeWidth,
+            int mapNativeHeight,
+            int mapTileSize,
+            PcOriginalWorldGrid mapWorldGrid)
         {
             string label = $"{mapId}/{id}";
             if (!PcOriginalMapContract.IsValidAppearanceId(id))
@@ -134,6 +174,27 @@ namespace MmorpgClient.World.CurrentMaps
                 throw new InvalidOperationException($"{label}: missing revision.");
             if (resampled)
                 throw new InvalidOperationException($"{label}: native preview tiles must not be resampled.");
+            int appW = ResolveNativeWidth(mapNativeWidth);
+            int appH = ResolveNativeHeight(mapNativeHeight);
+            int ts = ResolveTileSize(mapTileSize);
+            var grid = ResolveWorldGrid(mapWorldGrid);
+            bool hasGrid = grid?.HasValues == true;
+            int appWorldW = hasGrid ? grid.widthPixels : appW;
+            int appWorldH = hasGrid ? grid.heightPixels : appH;
+            if (appWorldW != mapWorldWidthPixels || appWorldH != mapWorldHeightPixels)
+                throw new InvalidOperationException($"{label}: appearance world extent {appWorldW}x{appWorldH} disagrees with map {mapWorldWidthPixels}x{mapWorldHeightPixels}.");
+            // 等比改绘只在最终轴长取整。以较长世界轴为基准，短轴允许最多半个原生纹素的舍入。
+            long crossError = Math.Abs((long)appW * appWorldH - (long)appH * appWorldW);
+            if (appW < appWorldW || appH < appWorldH || crossError > Math.Max(appWorldW, appWorldH) / 2)
+                throw new InvalidOperationException($"{label}: appearance native size {appW}x{appH} invalid for world extent {appWorldW}x{appWorldH}.");
+            if (ts <= 0 || ts > 2048)
+                throw new InvalidOperationException($"{label}: invalid tileSize {ts}.");
+            int expCols = hasGrid ? 1 + (grid.widthPixels - 1) / grid.tileWidthPixels : 1 + (appW - 1) / ts;
+            int expRows = hasGrid ? 1 + (grid.heightPixels - 1) / grid.tileHeightPixels : 1 + (appH - 1) / ts;
+            if (hasGrid) grid.Validate(expCols, expRows);
+            if ((columns > 0 && columns != expCols) || (rows > 0 && rows != expRows) ||
+                (tileCount > 0 && tileCount != expCols * expRows))
+                throw new InvalidOperationException($"{label}: appearance grid {columns}x{rows} (count {tileCount}) disagrees with {expCols}x{expRows}.");
             if (!PcOriginalMapContract.IsSafeResourcePath(resourceRoot, expectTrailingSlash: true))
                 throw new InvalidOperationException($"{label}: invalid resourceRoot '{resourceRoot}'.");
             if (!PcOriginalMapContract.IsSafeResourcePath(overviewResourcePath) ||
@@ -160,6 +221,31 @@ namespace MmorpgClient.World.CurrentMaps
         }
     }
 
+    // 世界网格沿原图左上角排布。相邻切片只对同一条公共边取整一次。
+    [Serializable]
+    public sealed class PcOriginalWorldGrid
+    {
+        public int widthPixels, heightPixels, tileWidthPixels, tileHeightPixels;
+
+        public bool HasValues => widthPixels != 0 || heightPixels != 0 || tileWidthPixels != 0 || tileHeightPixels != 0;
+
+        public void Validate(int columns, int rows)
+        {
+            if (widthPixels <= 0 || heightPixels <= 0 || tileWidthPixels <= 0 || tileHeightPixels <= 0 ||
+                columns != 1 + (widthPixels - 1) / tileWidthPixels || rows != 1 + (heightPixels - 1) / tileHeightPixels)
+                throw new InvalidOperationException("World grid dimensions disagree with its rows or columns.");
+        }
+
+        public int WorldX(int edge) => (int)Math.Min((long)edge * tileWidthPixels, widthPixels);
+        public int WorldY(int edge) => (int)Math.Min((long)edge * tileHeightPixels, heightPixels);
+        public int PixelX(int edge, int nativeWidth) => (int)(((long)WorldX(edge) * nativeWidth + widthPixels / 2) / widthPixels);
+        public int PixelY(int edge, int nativeHeight) => (int)(((long)WorldY(edge) * nativeHeight + heightPixels / 2) / heightPixels);
+
+        public bool Matches(PcOriginalWorldGrid other)
+            => other != null && widthPixels == other.widthPixels && heightPixels == other.heightPixels &&
+               tileWidthPixels == other.tileWidthPixels && tileHeightPixels == other.tileHeightPixels;
+    }
+
     [Serializable]
     public sealed class PcOriginalMapEntry
     {
@@ -174,6 +260,7 @@ namespace MmorpgClient.World.CurrentMaps
         public string sourceStatus;
         public int nativeWidth;
         public int nativeHeight;
+        public PcOriginalWorldGrid worldGrid;
         public double aspectRatio;
         public int tileSize;
         public int columns;
@@ -200,9 +287,12 @@ namespace MmorpgClient.World.CurrentMaps
         public string defaultAppearance;
         public PcOriginalMapAppearanceEntry[] appearances;
         public string serverRegistrationStatus;
+        // 外观缺省字段始终继承目录原项。解析后的高清外观不能成为其它外观的几何基准。
+        [NonSerialized] private PcOriginalMapEntry catalogEntry;
 
-        public float WorldWidth => nativeWidth / PcOriginalMapContract.PixelsPerUnit;
-        public float WorldHeight => nativeHeight / PcOriginalMapContract.PixelsPerUnit;
+        public bool HasWorldGrid => worldGrid?.HasValues == true;
+        public float WorldWidth => (HasWorldGrid ? worldGrid.widthPixels : nativeWidth) / PcOriginalMapContract.PixelsPerUnit;
+        public float WorldHeight => (HasWorldGrid ? worldGrid.heightPixels : nativeHeight) / PcOriginalMapContract.PixelsPerUnit;
 
         public string DisplayName => string.IsNullOrWhiteSpace(name) ? "地图 " + mapId : name;
 
@@ -231,14 +321,25 @@ namespace MmorpgClient.World.CurrentMaps
 
         public PcOriginalMapEntry ResolveAppearance(string appearanceId = null)
         {
+            if (catalogEntry != null)
+                return catalogEntry.ResolveAppearance(string.IsNullOrWhiteSpace(appearanceId) ? EffectiveDefaultAppearance : appearanceId);
             if (!HasAppearances)
                 return string.IsNullOrWhiteSpace(appearanceId) ? this : null;
 
             var app = FindAppearance(appearanceId);
             if (app == null) return null;
 
+            int resolvedNativeW = app.ResolveNativeWidth(nativeWidth);
+            int resolvedNativeH = app.ResolveNativeHeight(nativeHeight);
+            var resolvedGrid = app.ResolveWorldGrid(worldGrid);
+            int resolvedTileSize = app.ResolveTileSize(tileSize);
+            int resolvedCols = app.ResolveColumns(nativeWidth, tileSize, worldGrid);
+            int resolvedRows = app.ResolveRows(nativeHeight, tileSize, worldGrid);
+            int resolvedCount = app.ResolveTileCount(nativeWidth, nativeHeight, tileSize, worldGrid);
+
             return new PcOriginalMapEntry
             {
+                catalogEntry = this,
                 mapId = mapId,
                 numericMapId = numericMapId,
                 name = name,
@@ -248,13 +349,14 @@ namespace MmorpgClient.World.CurrentMaps
                 revision = app.revision,
                 sourceBranch = sourceBranch,
                 sourceStatus = sourceStatus,
-                nativeWidth = nativeWidth,
-                nativeHeight = nativeHeight,
-                aspectRatio = aspectRatio,
-                tileSize = tileSize,
-                columns = columns,
-                rows = rows,
-                tileCount = tileCount,
+                nativeWidth = resolvedNativeW,
+                nativeHeight = resolvedNativeH,
+                worldGrid = resolvedGrid,
+                aspectRatio = resolvedNativeW / (double)resolvedNativeH,
+                tileSize = resolvedTileSize,
+                columns = resolvedCols,
+                rows = resolvedRows,
+                tileCount = resolvedCount,
                 hasAlpha = app.hasAlpha,
                 tileFormat = app.tileFormat,
                 resampled = app.resampled,
@@ -295,11 +397,12 @@ namespace MmorpgClient.World.CurrentMaps
                 throw new InvalidOperationException($"{mapId}: invalid native pixel dimensions {nativeWidth}x{nativeHeight}.");
             if (tileSize <= 0 || tileSize > 2048)
                 throw new InvalidOperationException($"{mapId}: invalid tileSize {tileSize}.");
-            int expectedColumns = (nativeWidth + tileSize - 1) / tileSize;
-            int expectedRows = (nativeHeight + tileSize - 1) / tileSize;
-            if (columns != expectedColumns || rows != expectedRows || tileCount != columns * rows)
-                throw new InvalidOperationException(
-                    $"{mapId}: grid {columns}x{rows} (count {tileCount}) does not match {expectedColumns}x{expectedRows}.");
+            if (HasWorldGrid)
+                worldGrid.Validate(columns, rows);
+            else if (columns != 1 + (nativeWidth - 1) / tileSize || rows != 1 + (nativeHeight - 1) / tileSize)
+                throw new InvalidOperationException($"{mapId}: invalid native tile grid.");
+            if (tileCount != (long)columns * rows)
+                throw new InvalidOperationException($"{mapId}: tile count disagrees with grid.");
             double expectedRatio = nativeWidth / (double)nativeHeight;
             if (Math.Abs(aspectRatio - expectedRatio) > 1e-5)
                 throw new InvalidOperationException($"{mapId}: aspectRatio {aspectRatio} deviates from {expectedRatio}.");
@@ -337,6 +440,9 @@ namespace MmorpgClient.World.CurrentMaps
             {
                 if (string.IsNullOrWhiteSpace(defaultAppearance))
                     throw new InvalidOperationException($"{mapId}: appearances[] requires defaultAppearance.");
+                int mapWorldW = HasWorldGrid ? worldGrid.widthPixels : nativeWidth;
+                int mapWorldH = HasWorldGrid ? worldGrid.heightPixels : nativeHeight;
+                var basis = catalogEntry ?? this;
                 var ids = new HashSet<string>(StringComparer.Ordinal);
                 var roots = new HashSet<string>(StringComparer.Ordinal);
                 PcOriginalMapAppearanceEntry defaultObj = null;
@@ -344,7 +450,8 @@ namespace MmorpgClient.World.CurrentMaps
                 {
                     var app = appearances[i];
                     if (app == null) throw new InvalidOperationException($"{mapId}: null appearance at index {i}.");
-                    app.Validate(mapId, pcOriginalSourceNativeSha256);
+                    app.Validate(mapId, pcOriginalSourceNativeSha256, mapWorldW, mapWorldH,
+                        basis.nativeWidth, basis.nativeHeight, basis.tileSize, basis.worldGrid);
                     string normId = PcOriginalMapContract.NormalizeAppearanceId(app.id);
                     if (!ids.Add(normId))
                         throw new InvalidOperationException($"{mapId}: duplicate appearance id '{app.id}'.");
@@ -355,9 +462,18 @@ namespace MmorpgClient.World.CurrentMaps
                 }
                 if (defaultObj == null)
                     throw new InvalidOperationException($"{mapId}: defaultAppearance '{defaultAppearance}' not found in appearances[].");
+                var defGrid = defaultObj.ResolveWorldGrid(basis.worldGrid);
+                bool defHasGrid = defGrid?.HasValues == true;
                 if (artStage != defaultObj.artStage || isTemporaryOriginal != defaultObj.isTemporaryOriginal ||
                     revision != defaultObj.revision || hasAlpha != defaultObj.hasAlpha ||
                     tileFormat != defaultObj.tileFormat || resourceRoot != defaultObj.resourceRoot ||
+                    nativeWidth != defaultObj.ResolveNativeWidth(basis.nativeWidth) ||
+                    nativeHeight != defaultObj.ResolveNativeHeight(basis.nativeHeight) ||
+                    tileSize != defaultObj.ResolveTileSize(basis.tileSize) ||
+                    columns != defaultObj.ResolveColumns(basis.nativeWidth, basis.tileSize, basis.worldGrid) ||
+                    rows != defaultObj.ResolveRows(basis.nativeHeight, basis.tileSize, basis.worldGrid) ||
+                    tileCount != defaultObj.ResolveTileCount(basis.nativeWidth, basis.nativeHeight, basis.tileSize, basis.worldGrid) ||
+                    HasWorldGrid != defHasGrid || (HasWorldGrid && !worldGrid.Matches(defGrid)) ||
                     overviewResourcePath != defaultObj.overviewResourcePath ||
                     !string.Equals(overviewSha256, defaultObj.overviewSha256, StringComparison.OrdinalIgnoreCase) ||
                     overviewBytes != defaultObj.overviewBytes ||
@@ -538,6 +654,7 @@ namespace MmorpgClient.World.CurrentMaps
         public string appearance;
         public int nativeWidth;
         public int nativeHeight;
+        public PcOriginalWorldGrid worldGrid;
         public int tileSize;
         public int columns;
         public int rows;
@@ -550,15 +667,18 @@ namespace MmorpgClient.World.CurrentMaps
 
         public void Validate(PcOriginalMapEntry expectedEntry = null)
         {
-            if (schemaVersion != PcOriginalMapContract.SchemaVersion)
+            bool explicitGrid = worldGrid?.HasValues == true;
+            if (schemaVersion != (explicitGrid ? 2 : PcOriginalMapContract.SchemaVersion))
                 throw new InvalidOperationException($"Unsupported tile manifest schemaVersion {schemaVersion}.");
             if (!PcOriginalMapContract.IsValidMapId(mapId) || numericMapId != uint.Parse(mapId))
                 throw new InvalidOperationException($"Invalid tile manifest mapId '{mapId}'.");
             if (nativeWidth <= 0 || nativeHeight <= 0 || tileSize <= 0 || tileSize > 2048 || resampled)
                 throw new InvalidOperationException($"{mapId}: invalid tile manifest dimensions or resampled flag.");
-            int expectedColumns = (nativeWidth + tileSize - 1) / tileSize;
-            int expectedRows = (nativeHeight + tileSize - 1) / tileSize;
-            if (columns != expectedColumns || rows != expectedRows || tiles == null || tiles.Length != columns * rows)
+            if (explicitGrid)
+                worldGrid.Validate(columns, rows);
+            else if (columns != 1 + (nativeWidth - 1) / tileSize || rows != 1 + (nativeHeight - 1) / tileSize)
+                throw new InvalidOperationException($"{mapId}: invalid native tile grid.");
+            if (tiles == null || tiles.Length != (long)columns * rows)
                 throw new InvalidOperationException($"{mapId}: tile manifest count mismatch.");
             if (!PcOriginalMapContract.IsSafeResourcePath(resourceRoot, expectTrailingSlash: true))
                 throw new InvalidOperationException($"{mapId}: invalid tile manifest resourceRoot.");
@@ -568,6 +688,7 @@ namespace MmorpgClient.World.CurrentMaps
                     expectedEntry.artStage != artStage || expectedEntry.hasAlpha != hasAlpha ||
                     expectedEntry.nativeWidth != nativeWidth || expectedEntry.nativeHeight != nativeHeight ||
                     expectedEntry.tileSize != tileSize || expectedEntry.columns != columns ||
+                    expectedEntry.HasWorldGrid != explicitGrid || (explicitGrid && !worldGrid.Matches(expectedEntry.worldGrid)) ||
                     expectedEntry.rows != rows || expectedEntry.resourceRoot != resourceRoot ||
                     !string.Equals(expectedEntry.sourceNativeSha256, sourceNativeSha256, StringComparison.OrdinalIgnoreCase))
                     throw new InvalidOperationException($"{mapId}: tile manifest does not match catalog entry.");
@@ -584,12 +705,12 @@ namespace MmorpgClient.World.CurrentMaps
                 if (!occupied.Add(key))
                     throw new InvalidOperationException($"{mapId}: duplicate tile ({tile.row},{tile.column}).");
 
-                int expX = (tile.column - 1) * tileSize;
-                int expY = (tile.row - 1) * tileSize;
-                int expW = Math.Min(tileSize, nativeWidth - expX);
-                int expH = Math.Min(tileSize, nativeHeight - expY);
+                int expX = explicitGrid ? worldGrid.PixelX(tile.column - 1, nativeWidth) : (tile.column - 1) * tileSize;
+                int expY = explicitGrid ? worldGrid.PixelY(tile.row - 1, nativeHeight) : (tile.row - 1) * tileSize;
+                int expW = explicitGrid ? worldGrid.PixelX(tile.column, nativeWidth) - expX : Math.Min(tileSize, nativeWidth - expX);
+                int expH = explicitGrid ? worldGrid.PixelY(tile.row, nativeHeight) - expY : Math.Min(tileSize, nativeHeight - expY);
                 if (tile.x != expX || tile.y != expY || tile.width != expW || tile.height != expH ||
-                    tile.width > tileSize || tile.height > tileSize)
+                    tile.width <= 0 || tile.height <= 0 || tile.width > tileSize || tile.height > tileSize)
                     throw new InvalidOperationException($"{mapId}: tile ({tile.row},{tile.column}) pixel rect mismatch.");
                 if (!PcOriginalMapContract.IsSafeResourcePath(tile.resourcePath) ||
                     !tile.resourcePath.StartsWith(resourceRoot + "tiles/", StringComparison.Ordinal))
@@ -648,6 +769,16 @@ namespace MmorpgClient.World.CurrentMaps
             return new PcOriginalWorldRect(xMin, yMin, tile.width / ppu, tile.height / ppu);
         }
 
+        public static PcOriginalWorldRect TileWorldRect(PcOriginalTileManifest manifest, PcOriginalTileEntry tile)
+        {
+            var grid = manifest.worldGrid;
+            if (grid?.HasValues != true) return TileWorldRect(manifest.nativeHeight, tile);
+            int left = grid.WorldX(tile.column - 1), right = grid.WorldX(tile.column);
+            int top = grid.WorldY(tile.row - 1), bottom = grid.WorldY(tile.row);
+            const float ppu = PcOriginalMapContract.PixelsPerUnit;
+            return new PcOriginalWorldRect(left / ppu, (grid.heightPixels - bottom) / ppu, (right - left) / ppu, (bottom - top) / ppu);
+        }
+
         /// <summary>
         /// Selects up to <paramref name="maxResidentTiles"/> visible tile indices overlapping
         /// <paramref name="viewRect"/>, ranked closest to viewport center first.
@@ -671,7 +802,7 @@ namespace MmorpgClient.World.CurrentMaps
 
             for (int i = 0; i < manifest.tiles.Length; i++)
             {
-                var rect = TileWorldRect(manifest.nativeHeight, manifest.tiles[i]);
+                var rect = TileWorldRect(manifest, manifest.tiles[i]);
                 if (!rect.Overlaps(viewRect)) continue;
                 totalOverlappingCount++;
                 float dx = rect.CenterX - cx;

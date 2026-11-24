@@ -13,10 +13,12 @@ namespace MmorpgClient.Editor.CurrentMaps
     public sealed class PcOriginalMapPreviewImporter : AssetPostprocessor
     {
         public const string PreviewAssetRoot = "Assets/Resources/World/PcOriginalPreview20261123/";
+        public const string VariantReviewAssetRoot = "Assets/Resources/" + PcOriginalMapContract.VariantReviewRoot;
 
         public static bool IsPreviewTexturePath(string path)
         {
-            if (string.IsNullOrEmpty(path) || !path.StartsWith(PreviewAssetRoot, StringComparison.Ordinal))
+            if (string.IsNullOrEmpty(path) || (!path.StartsWith(PreviewAssetRoot, StringComparison.Ordinal) &&
+                                               !path.StartsWith(VariantReviewAssetRoot, StringComparison.Ordinal)))
                 return false;
             return path.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
                    path.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
@@ -30,7 +32,8 @@ namespace MmorpgClient.Editor.CurrentMaps
                               assetPath.EndsWith("/overview.jpeg", StringComparison.OrdinalIgnoreCase) ||
                               assetPath.EndsWith("/overview.png", StringComparison.OrdinalIgnoreCase);
             bool hasAlpha = assetPath.EndsWith(".png", StringComparison.OrdinalIgnoreCase);
-            int maxSize = isOverview ? PcOriginalMapContract.DefaultOverviewMaxEdge : PcOriginalMapContract.DefaultTilePixels;
+            bool review = assetPath.StartsWith(VariantReviewAssetRoot, StringComparison.Ordinal);
+            int maxSize = isOverview || review ? PcOriginalMapContract.DefaultOverviewMaxEdge : PcOriginalMapContract.DefaultTilePixels;
 
             var importer = (TextureImporter)assetImporter;
             importer.textureType = TextureImporterType.Default;
@@ -50,6 +53,7 @@ namespace MmorpgClient.Editor.CurrentMaps
             var defaults = importer.GetDefaultPlatformTextureSettings();
             defaults.maxTextureSize = maxSize;
             defaults.format = hasAlpha ? TextureImporterFormat.RGBA32 : TextureImporterFormat.RGB24;
+            if (review) defaults.format = TextureImporterFormat.Automatic;
             defaults.textureCompression = TextureImporterCompression.Uncompressed;
             importer.SetPlatformTextureSettings(defaults);
 

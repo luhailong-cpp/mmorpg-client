@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "kind": "CLIENT_QDAO_STATIC_MAP_ADOPTION_RECEIPT",
+  "mapId": "23000",
+  "numericMapId": 23000,
+  "name": "地图 23000",
+  "defaultAppearance": "spring",
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "productionTravelEnabled": false,
+  "serverRegistrationStatus": "unregistered_local_preview_only",
+  "pcOriginalProvenance": {
+    "resourceRoot": "World/PcOriginalPreview20261123/23000/pc-original-20261123/",
+    "sourceBranch": "gbits",
+    "sourceNativeSha256": "790b1a0acab8cabb657090ad5ce28e50bc794af025b508cf6e10723deb9a5cb5",
+    "sourceNativeBytes": 40566522,
+    "sourceEvidenceSha256": "587dbce82e5bfa3d73dc30a3e3ecaf5f39a827d3cf08d261cb4d9e5cd21318b8",
+    "nativeWidth": 4000,
+    "nativeHeight": 5000
+  },
+  "catalogPath": "Assets/Resources/World/PcOriginalPreview20261123/catalog.json",
+  "catalogSha256": "e6bae196f6dadbbf8ea1bc124ed43a85086ac89748489b2c2fe36b647d216b80",
+  "appearances": [
+    {
+      "id": "spring",
+      "displayName": "春节",
+      "artStage": "qdao_redrawn_static_back",
+      "revision": "qdao-spring-v001",
+      "resourceRoot": "World/PcOriginalPreview20261123/23000/qdao-spring-v001/",
+      "assetDirectory": "Assets/Resources/World/PcOriginalPreview20261123/23000/qdao-spring-v001",
+      "sourceWholePngPath": "D:/work/image/designs/pc-23000-festivals-20261123-v001/23000-spring-4000x5000.png",
+      "sourceNativeSha256": "0a6071cdb431a5fe1649ed03ddc85eee1c7b1fb949b3f59685e0028e92d8b8c0",
+      "sourceNativeBytes": 45526149,
+      "sourceEvidencePath": "D:/work/image/designs/pc-23000-festivals-20261123-v001/delivery.json",
+      "sourceEvidenceSha256": "5998534bc0d7e93fd2e17e6fc9b0a967e646ed2b7b090c457d28b7583ee462c9",
+      "nativePixels": [
+        4000,
+        5000
+      ],
+      "worldPixels": [
+        4000,
+        5000
+      ],
+      "hasAlpha": false,
+      "tileFormat": "jpg_q90_native_1024_grid",
+      "columns": 4,
+      "rows": 5,
+      "tileCount": 20,
+      "totalTileBytes": 7796207,
+      "tilesManifestSha256": "e82dd54db171e58b60b11ad97807c3282a0a22c8b1183151fe1e40b59c53787b",
+      "overviewPixels": [
+        1638,
+        2048
+      ],
+      "overviewBytes": 1504961,
+      "overviewSha256": "370dfa6890f4799820ab95b1de2215a5309c5503141080fbc482c1dbf2a30410"
+    },
+    {
+      "id": "midautumn",
+      "displayName": "中秋",
+      "artStage": "qdao_redrawn_static_back",
+      "revision": "qdao-midautumn-v001",
+      "resourceRoot": "World/PcOriginalPreview20261123/23000/qdao-midautumn-v001/",
+      "assetDirectory": "Assets/Resources/World/PcOriginalPreview20261123/23000/qdao-midautumn-v001",
+      "sourceWholePngPath": "D:/work/image/designs/pc-23000-festivals-20261123-v001/23000-midautumn-4000x5000.png",
+      "sourceNativeSha256": "2cbd142f6f954b057900875e9ad3edbc69b3c1f53e477ba530f71d64ac8c0aaa",
+      "sourceNativeBytes": 45536877,
+      "sourceEvidencePath": "D:/work/image/designs/pc-23000-festivals-20261123-v001/delivery.json",
+      "sourceEvidenceSha256": "5998534bc0d7e93fd2e17e6fc9b0a967e646ed2b7b090c457d28b7583ee462c9",
+      "nativePixels": [
+        4000,
+        5000
+      ],
+      "worldPixels": [
+        4000,
+        5000
+      ],
+      "hasAlpha": false,
+      "tileFormat": "jpg_q90_native_1024_grid",
+      "columns": 4,
+      "rows": 5,
+      "tileCount": 20,
+      "totalTileBytes": 7815908,
+      "tilesManifestSha256": "50989561ebc213f755ea1df96deeeb54c453fd200ce19944d9937e96420fada4",
+      "overviewPixels": [
+        1638,
+        2048
+      ],
+      "overviewBytes": 1504819,
+      "overviewSha256": "91b19002d70388e1723db1e0c230722e809a67e5d33ef163c183942dd48a4a93"
+    },
+    {
+      "id": "normal",
+      "displayName": "原版",
+      "artStage": "pc_original_static_back",
+      "revision": "pc-original-20261123",
+      "resourceRoot": "World/PcOriginalPreview20261123/23000/pc-original-20261123/",
+      "assetDirectory": "Assets/Resources/World/PcOriginalPreview20261123/23000/pc-original-20261123",
+      "sourceNativeSha256": "790b1a0acab8cabb657090ad5ce28e50bc794af025b508cf6e10723deb9a5cb5",
+      "sourceNativeBytes": 40566522,
+      "nativePixels": [
+        4000,
+        5000
+      ],
+      "worldPixels": [
+        4000,
+        5000
+      ],
+      "columns": 4,
+      "rows": 5,
+      "tileCount": 20,
+      "totalTileBytes": 7630514,
+      "tilesManifestSha256": "4d8a670181f9afa33be8579ec2718d54496198b16b3c4a62372862de9a81cc27",
+      "overviewPixels": [
+        1638,
+        2048
+      ],
+      "overviewBytes": 1344629,
+      "overviewSha256": "ed5d99788e15a8e212a6b8a5a20059e6554408c69867d9ccd1a9988a87e22510",
+      "preservedUntouched": true
+    }
+  ]
+}

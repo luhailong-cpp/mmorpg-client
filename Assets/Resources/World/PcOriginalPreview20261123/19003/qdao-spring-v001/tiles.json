@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "mapId": "19003",
+  "numericMapId": 19003,
+  "revision": "qdao-spring-v001",
+  "artStage": "qdao_redrawn_static_back",
+  "appearance": "spring",
+  "nativeWidth": 1920,
+  "nativeHeight": 1080,
+  "tileSize": 1024,
+  "columns": 2,
+  "rows": 2,
+  "hasAlpha": false,
+  "tileFormat": "jpg_q90_native_1024_grid",
+  "resampled": false,
+  "resourceRoot": "World/PcOriginalPreview20261123/19003/qdao-spring-v001/",
+  "sourceNativeSha256": "9459b6c48bf3e8f505331231f5410332530286cd8772c8635ab7bf77e172992f",
+  "tiles": [
+    {
+      "row": 1,
+      "column": 1,
+      "x": 0,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/19003/qdao-spring-v001/tiles/r01_c01",
+      "fileExtension": ".jpg",
+      "bytes": 321129,
+      "sha256": "4e7a1e70181b7ef4197417db3c25fa66a6c177471a3435401fd6989461618b08"
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "x": 1024,
+      "y": 0,
+      "width": 896,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/19003/qdao-spring-v001/tiles/r01_c02",
+      "fileExtension": ".jpg",
+      "bytes": 266811,
+      "sha256": "d1ba3f090ec00cf2bccf0aa53941b34554a807c8192f96511cd1e1c5f5c9baf1"
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "x": 0,
+      "y": 1024,
+      "width": 1024,
+      "height": 56,
+      "resourcePath": "World/PcOriginalPreview20261123/19003/qdao-spring-v001/tiles/r02_c01",
+      "fileExtension": ".jpg",
+      "bytes": 10180,
+      "sha256": "606597fa4fcabf9577c8baf6820f73cb1c42444096a58c3170a8f45fb960d916"
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "x": 1024,
+      "y": 1024,
+      "width": 896,
+      "height": 56,
+      "resourcePath": "World/PcOriginalPreview20261123/19003/qdao-spring-v001/tiles/r02_c02",
+      "fileExtension": ".jpg",
+      "bytes": 8550,
+      "sha256": "9d188472fed4d4b80044e4b8cde9db570ae56242b2d6df13ae96178ef143573a"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "mapId": "15000",
+  "numericMapId": 15000,
+  "revision": "qdao-spring-v001",
+  "artStage": "qdao_redrawn_static_back",
+  "appearance": "spring",
+  "nativeWidth": 1920,
+  "nativeHeight": 2298,
+  "tileSize": 1024,
+  "columns": 2,
+  "rows": 3,
+  "hasAlpha": true,
+  "tileFormat": "png_rgba_native_1024_grid",
+  "resampled": false,
+  "resourceRoot": "World/PcOriginalPreview20261123/15000/qdao-spring-v001/",
+  "sourceNativeSha256": "d1f30e6d8704a59263e4899755256cb6ec48e518192bc29f49f2ea2137f54512",
+  "tiles": [
+    {
+      "row": 1,
+      "column": 1,
+      "x": 0,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/15000/qdao-spring-v001/tiles/r01_c01",
+      "fileExtension": ".png",
+      "bytes": 1875321,
+      "sha256": "6f1b6ca201814b304e519621d58d07c1a6ad9056c5feaee6ffd6d94021158fd3"
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "x": 1024,
+      "y": 0,
+      "width": 896,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/15000/qdao-spring-v001/tiles/r01_c02",
+      "fileExtension": ".png",
+      "bytes": 1827888,
+      "sha256": "5a2a6d0865fb29972c0a5784d93b658cfabead25b2e9b14dfcfbbc112db041f7"
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "x": 0,
+      "y": 1024,
+      "width": 1024,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/15000/qdao-spring-v001/tiles/r02_c01",
+      "fileExtension": ".png",
+      "bytes": 2003725,
+      "sha256": "2338c6fdd01749f55157a0924fc558457d62022e1ab6c887f5a5e3d2e1fc8779"
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "x": 1024,
+      "y": 1024,
+      "width": 896,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/15000/qdao-spring-v001/tiles/r02_c02",
+      "fileExtension": ".png",
+      "bytes": 1922201,
+      "sha256": "b6f7e651d75e65b837e7ef67ac3603c9fcf9ae72b5194ad70916a9fbc56228dc"
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "x": 0,
+      "y": 2048,
+      "width": 1024,
+      "height": 250,
+      "resourcePath": "World/PcOriginalPreview20261123/15000/qdao-spring-v001/tiles/r03_c01",
+      "fileExtension": ".png",
+      "bytes": 533086,
+      "sha256": "826d9b4c4ead44a2365de536d6f6626277b4740f975097a39553fe061d14fe32"
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "x": 1024,
+      "y": 2048,
+      "width": 896,
+      "height": 250,
+      "resourcePath": "World/PcOriginalPreview20261123/15000/qdao-spring-v001/tiles/r03_c02",
+      "fileExtension": ".png",
+      "bytes": 489692,
+      "sha256": "ac525f81d92d041f9467d5f3861308cd39d96ea24b21497f2d4110fd40d753a3"
+    }
+  ]
+}

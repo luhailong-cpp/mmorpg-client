@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "kind": "CLIENT_QDAO_REDRAWN_STATIC_BACK_SOURCE",
+  "mapId": "08001",
+  "numericMapId": 8001,
+  "name": "地图 08001",
+  "appearance": "spring",
+  "appearanceDisplayName": "春节高清",
+  "revision": "qdao-spring-4x-v001",
+  "artStage": "qdao_redrawn_static_back",
+  "isTemporaryOriginal": false,
+  "replaceableByQdaoArt": true,
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "productionTravelEnabled": false,
+  "sourceBranch": "gbits",
+  "sourceStatus": "ready_qdao_static_back",
+  "sourceEvidencePath": "D:/work/image/designs/pc-map-08001-4x-20261124-v001/08001-spring-delivery.json",
+  "sourceEvidenceSha256": "31d0d467f44e661849bf098e99eb6ebaafc3fd94cb095a5ebb53d45207c4b635",
+  "sourceNativeSha256": "a2991e42b90edaa6a9a3d1d25d63b8fc5d7e62ad8f2ba3d753bf18cbbf849b9b",
+  "sourceNativeBytes": 38500613,
+  "pcOriginalResourceRoot": "World/PcOriginalPreview20261123/08001/pc-original-20261123/",
+  "pcOriginalSourceNativeSha256": "d1e38976e00fae27fb7413f63d3fc526c60aedb74c027bcd8eb93ac321d3ef92",
+  "pcOriginalSourceNativeBytes": 7478816,
+  "pcOriginalSourceEvidenceSha256": "02cbef52c1b40e42eeb05c6f2a192e5d6b86bd25376d617b4dabbf63c6a5b632",
+  "pcOriginalSourceContainerSha256": "724b3f9b1018951ac21d502a798d54b1b86d0a04250f01e1524add33525dc07f",
+  "nativeWidth": 6400,
+  "nativeHeight": 4800,
+  "worldWidthPixels": 3200,
+  "worldHeightPixels": 2400,
+  "tileSize": 1024,
+  "columns": 8,
+  "rows": 8,
+  "tileCount": 64,
+  "hasAlpha": true,
+  "tileFormat": "png_rgba_hd_worldgrid_800x600",
+  "resampled": false,
+  "overviewDerived": true,
+  "overviewIsResizedPreviewOnly": true,
+  "overviewWidth": 2048,
+  "overviewHeight": 1536,
+  "overviewExtension": ".png",
+  "overviewBytes": 3806432,
+  "overviewSha256": "c604af6daa385fbdfd7f034c5c1482bdff11586a16befc8b44171af639acaa40",
+  "tilesManifestSha256": "6efa9c98796318571ef946908980498ee13c159360276c14186877e0b7c66665",
+  "serverRegistrationStatus": "unregistered_local_preview_only",
+  "worldGrid": {
+    "widthPixels": 3200,
+    "heightPixels": 2400,
+    "tileWidthPixels": 400,
+    "tileHeightPixels": 300
+  },
+  "alphaStats": {
+    "minMax": [
+      0,
+      254
+    ],
+    "fullyTransparent": 14031798,
+    "fullyOpaque": 0,
+    "partialAlpha": 16688202,
+    "totalPixels": 30720000
+  },
+  "recompositionVerification": {
+    "recomposedPixels": [
+      6400,
+      4800
+    ],
+    "coveredPixels": 30720000,
+    "tileCount": 64,
+    "rgbaByteEqualToWholeSource": true,
+    "alphaStats": {
+      "minMax": [
+        0,
+        254
+      ],
+      "fullyTransparent": 14031798,
+      "fullyOpaque": 0,
+      "partialAlpha": 16688202,
+      "totalPixels": 30720000
+    }
+  }
+}

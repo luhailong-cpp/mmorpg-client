@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "kind": "CLIENT_QDAO_STATIC_MAP_ADOPTION_RECEIPT",
+  "mapId": "08001",
+  "numericMapId": 8001,
+  "name": "地图 08001",
+  "defaultAppearance": "normal",
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "productionTravelEnabled": false,
+  "serverRegistrationStatus": "unregistered_local_preview_only",
+  "pcOriginalProvenance": {
+    "resourceRoot": "World/PcOriginalPreview20261123/08001/pc-original-20261123/",
+    "sourceBranch": "gbits",
+    "sourceNativeSha256": "d1e38976e00fae27fb7413f63d3fc526c60aedb74c027bcd8eb93ac321d3ef92",
+    "sourceNativeBytes": 7478816,
+    "sourceEvidenceSha256": "02cbef52c1b40e42eeb05c6f2a192e5d6b86bd25376d617b4dabbf63c6a5b632",
+    "nativeWidth": 3200,
+    "nativeHeight": 2400
+  },
+  "catalogPath": "Assets/Resources/World/PcOriginalPreview20261123/catalog.json",
+  "catalogSha256": "c840a701f7146b9a23f515ca64c20436601cb5f4471fda7673b5891966fd816e",
+  "appearances": [
+    {
+      "id": "normal",
+      "displayName": "原版",
+      "artStage": "pc_original_static_back",
+      "revision": "pc-original-20261123",
+      "resourceRoot": "World/PcOriginalPreview20261123/08001/pc-original-20261123/",
+      "assetDirectory": "Assets/Resources/World/PcOriginalPreview20261123/08001/pc-original-20261123",
+      "sourceNativeSha256": "d1e38976e00fae27fb7413f63d3fc526c60aedb74c027bcd8eb93ac321d3ef92",
+      "sourceNativeBytes": 7478816,
+      "nativePixels": [
+        3200,
+        2400
+      ],
+      "worldPixels": [
+        3200,
+        2400
+      ],
+      "columns": 4,
+      "rows": 3,
+      "tileCount": 12,
+      "totalTileBytes": 1409753,
+      "tilesManifestSha256": "1912fee7d067a8b3c1a2938bfdd48cf23e604aafbed725bd02736645042ad9fa",
+      "overviewPixels": [
+        2048,
+        1536
+      ],
+      "overviewBytes": 619747,
+      "overviewSha256": "b3e3f90a3f9f9ff9c9cdaf11dc2c071da681787f942c8ea063c42ee16765f78f",
+      "preservedUntouched": true
+    },
+    {
+      "id": "spring",
+      "displayName": "春节高清",
+      "artStage": "qdao_redrawn_static_back",
+      "revision": "qdao-spring-4x-v001",
+      "resourceRoot": "World/PcOriginalPreview20261123/08001/qdao-spring-4x-v001/",
+      "assetDirectory": "Assets/Resources/World/PcOriginalPreview20261123/08001/qdao-spring-4x-v001",
+      "sourceWholePngPath": "D:/work/image/designs/pc-map-08001-4x-20261124-v001/08001-spring-6400x4800.png",
+      "sourceNativeSha256": "a2991e42b90edaa6a9a3d1d25d63b8fc5d7e62ad8f2ba3d753bf18cbbf849b9b",
+      "sourceNativeBytes": 38500613,
+      "sourceEvidencePath": "D:/work/image/designs/pc-map-08001-4x-20261124-v001/08001-spring-delivery.json",
+      "sourceEvidenceSha256": "31d0d467f44e661849bf098e99eb6ebaafc3fd94cb095a5ebb53d45207c4b635",
+      "nativePixels": [
+        6400,
+        4800
+      ],
+      "worldPixels": [
+        3200,
+        2400
+      ],
+      "hasAlpha": true,
+      "tileFormat": "png_rgba_hd_worldgrid_800x600",
+      "columns": 8,
+      "rows": 8,
+      "tileCount": 64,
+      "totalTileBytes": 36598914,
+      "tilesManifestSha256": "6efa9c98796318571ef946908980498ee13c159360276c14186877e0b7c66665",
+      "overviewPixels": [
+        2048,
+        1536
+      ],
+      "overviewBytes": 3806432,
+      "overviewSha256": "c604af6daa385fbdfd7f034c5c1482bdff11586a16befc8b44171af639acaa40",
+      "worldGrid": {
+        "widthPixels": 3200,
+        "heightPixels": 2400,
+        "tileWidthPixels": 400,
+        "tileHeightPixels": 300
+      },
+      "alphaStats": {
+        "minMax": [
+          0,
+          254
+        ],
+        "fullyTransparent": 14031798,
+        "fullyOpaque": 0,
+        "partialAlpha": 16688202,
+        "totalPixels": 30720000
+      },
+      "recompositionVerification": {
+        "recomposedPixels": [
+          6400,
+          4800
+        ],
+        "coveredPixels": 30720000,
+        "tileCount": 64,
+        "rgbaByteEqualToWholeSource": true,
+        "alphaStats": {
+          "minMax": [
+            0,
+            254
+          ],
+          "fullyTransparent": 14031798,
+          "fullyOpaque": 0,
+          "partialAlpha": 16688202,
+          "totalPixels": 30720000
+        }
+      }
+    },
+    {
+      "id": "midautumn",
+      "displayName": "中秋高清",
+      "artStage": "qdao_redrawn_static_back",
+      "revision": "qdao-midautumn-4x-v001",
+      "resourceRoot": "World/PcOriginalPreview20261123/08001/qdao-midautumn-4x-v001/",
+      "assetDirectory": "Assets/Resources/World/PcOriginalPreview20261123/08001/qdao-midautumn-4x-v001",
+      "sourceWholePngPath": "D:/work/image/designs/pc-map-08001-4x-20261124-v001/08001-midautumn-6400x4800.png",
+      "sourceNativeSha256": "87c16b1b33abe4a74ea8c94036d5e714333c98d0810a64214f3ace785aae69fc",
+      "sourceNativeBytes": 38432288,
+      "sourceEvidencePath": "D:/work/image/designs/pc-map-08001-4x-20261124-v001/08001-midautumn-delivery.json",
+      "sourceEvidenceSha256": "4496d2ea5cfc3098e13bca8455d964e936405d270417b01717b457bfc5019575",
+      "nativePixels": [
+        6400,
+        4800
+      ],
+      "worldPixels": [
+        3200,
+        2400
+      ],
+      "hasAlpha": true,
+      "tileFormat": "png_rgba_hd_worldgrid_800x600",
+      "columns": 8,
+      "rows": 8,
+      "tileCount": 64,
+      "totalTileBytes": 36532722,
+      "tilesManifestSha256": "81d7528a4cae7ad49ad9cc22654df425a9481e6fd3a0039b6052b5b279ca6c3b",
+      "overviewPixels": [
+        2048,
+        1536
+      ],
+      "overviewBytes": 3795120,
+      "overviewSha256": "133aef61f31b3d368f0978f7475f638ef773a265092aa77209adda8839bddf79",
+      "worldGrid": {
+        "widthPixels": 3200,
+        "heightPixels": 2400,
+        "tileWidthPixels": 400,
+        "tileHeightPixels": 300
+      },
+      "alphaStats": {
+        "minMax": [
+          0,
+          254
+        ],
+        "fullyTransparent": 14031798,
+        "fullyOpaque": 0,
+        "partialAlpha": 16688202,
+        "totalPixels": 30720000
+      },
+      "recompositionVerification": {
+        "recomposedPixels": [
+          6400,
+          4800
+        ],
+        "coveredPixels": 30720000,
+        "tileCount": 64,
+        "rgbaByteEqualToWholeSource": true,
+        "alphaStats": {
+          "minMax": [
+            0,
+            254
+          ],
+          "fullyTransparent": 14031798,
+          "fullyOpaque": 0,
+          "partialAlpha": 16688202,
+          "totalPixels": 30720000
+        }
+      }
+    }
+  ]
+}

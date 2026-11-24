@@ -524,19 +524,774 @@ def import_qdao_dual_festival_map(
     return qdao_receipt
 
 
+def build_preserved_original_appearance(
+    *,
+    map_id: str,
+    project_root: Path,
+    display_name: str = "原版",
+) -> tuple[dict, dict]:
+    """Build a catalog appearance entry pointing directly to the untouched pc-original-20261123/ directory."""
+    orig_dir = project_root / DELIVERY_REL / map_id / pc_imp.REVISION
+    src = pc_imp.read_json(orig_dir / "source.json")
+    tiles_raw = (orig_dir / "tiles.json").read_bytes()
+    tiles_sha = pc_imp.sha256_bytes(tiles_raw)
+    tm = json.loads(tiles_raw.decode("utf-8"))
+    ov_ext = src["overviewExtension"]
+    ov_bytes_raw = (orig_dir / f"overview{ov_ext}").read_bytes()
+    ov_sha = pc_imp.sha256_bytes(ov_bytes_raw)
+    pc_imp.require(ov_sha == src["overviewSha256"], f"{map_id}: preserved pc-original overview SHA mismatch")
+    pc_imp.require(tiles_sha == src["tilesManifestSha256"], f"{map_id}: preserved pc-original tiles.json SHA mismatch")
+    res_root = f"{RESOURCE_ROOT}{map_id}/{pc_imp.REVISION}/"
+    total_tile_bytes = sum(int(t["bytes"]) for t in tm["tiles"])
+    native_w, native_h = int(src["nativeWidth"]), int(src["nativeHeight"])
+    entry = {
+        "id": "normal",
+        "displayName": display_name,
+        "artStage": pc_imp.ART_STAGE,
+        "isTemporaryOriginal": True,
+        "revision": pc_imp.REVISION,
+        "hasAlpha": bool(src["hasAlpha"]),
+        "tileFormat": src["tileFormat"],
+        "resampled": False,
+        "nativeWidth": native_w,
+        "nativeHeight": native_h,
+        "tileSize": int(src["tileSize"]),
+        "columns": int(src["columns"]),
+        "rows": int(src["rows"]),
+        "tileCount": int(src["tileCount"]),
+        "resourceRoot": res_root,
+        "overviewResourcePath": f"{res_root}overview",
+        "overviewExtension": ov_ext,
+        "overviewWidth": int(src["overviewWidth"]),
+        "overviewHeight": int(src["overviewHeight"]),
+        "overviewSha256": ov_sha,
+        "overviewBytes": len(ov_bytes_raw),
+        "tilesManifestResourcePath": f"{res_root}tiles",
+        "tilesManifestSha256": tiles_sha,
+        "sourceManifestResourcePath": f"{res_root}source",
+        "sourceNativeSha256": src["sourceNativeSha256"],
+        "sourceNativeBytes": int(src["sourceNativeBytes"]),
+        "sourceEvidenceSha256": src["sourceEvidenceSha256"],
+    }
+    receipt = {
+        "id": "normal",
+        "displayName": display_name,
+        "artStage": pc_imp.ART_STAGE,
+        "revision": pc_imp.REVISION,
+        "resourceRoot": res_root,
+        "assetDirectory": (DELIVERY_REL / map_id / pc_imp.REVISION).as_posix(),
+        "sourceNativeSha256": src["sourceNativeSha256"],
+        "sourceNativeBytes": int(src["sourceNativeBytes"]),
+        "nativePixels": [native_w, native_h],
+        "worldPixels": [native_w, native_h],
+        "columns": int(src["columns"]),
+        "rows": int(src["rows"]),
+        "tileCount": int(src["tileCount"]),
+        "totalTileBytes": total_tile_bytes,
+        "tilesManifestSha256": tiles_sha,
+        "overviewPixels": [int(src["overviewWidth"]), int(src["overviewHeight"])],
+        "overviewBytes": len(ov_bytes_raw),
+        "overviewSha256": ov_sha,
+        "preservedUntouched": True,
+    }
+    return entry, receipt
+
+
+def derive_appearance_flexible(
+    *,
+    map_id: str,
+    numeric_id: int,
+    map_name: str,
+    appearance_id: str,
+    display_name: str,
+    revision: str,
+    whole_png_path: Path,
+    expected_whole_sha: str,
+    source_evidence_path: Path,
+    pc_original_ref: dict,
+    project_root: Path,
+    world_grid: dict | None = None,
+    precut_tiles: list[dict] | None = None,
+    tile_size: int = pc_imp.TILE_SIZE,
+) -> tuple[dict, dict]:
+    """Derive runtime tiles + overview + manifests + .meta for one Q-Dao appearance (1x or HD worldGrid, RGB or RGBA)."""
+    pc_imp.require(whole_png_path.is_file(), f"Missing whole PNG: {whole_png_path}")
+    actual_whole_sha = pc_imp.sha256_file(whole_png_path)
+    pc_imp.require(
+        actual_whole_sha == expected_whole_sha,
+        f"{map_id}/{appearance_id}: whole PNG SHA mismatch ({actual_whole_sha} != {expected_whole_sha})",
+    )
+    whole_bytes = whole_png_path.stat().st_size
+    pc_imp.require(source_evidence_path.is_file(), f"Missing source evidence: {source_evidence_path}")
+    evidence_sha = pc_imp.sha256_file(source_evidence_path)
+
+    delivery_root = project_root / DELIVERY_REL
+    map_resource_root = f"{RESOURCE_ROOT}{map_id}/{revision}/"
+    app_dir = delivery_root / map_id / revision
+    tiles_dir = app_dir / "tiles"
+
+    orig_w, orig_h = pc_original_ref["nativeWidth"], pc_original_ref["nativeHeight"]
+    with Image.open(whole_png_path) as image:
+        pc_imp.require(image.format == "PNG", f"{map_id}/{appearance_id}: expected PNG source")
+        image.load()
+        native_w, native_h = image.size
+        if world_grid is not None:
+            pc_imp.require(
+                (int(world_grid["widthPixels"]), int(world_grid["heightPixels"])) == (orig_w, orig_h),
+                f"{map_id}/{appearance_id}: worldGrid extent must equal PC original {orig_w}x{orig_h}",
+            )
+            pc_imp.require(
+                native_w >= orig_w and native_h >= orig_h and native_w * orig_h == native_h * orig_w,
+                f"{map_id}/{appearance_id}: HD size {native_w}x{native_h} invalid for world {orig_w}x{orig_h}",
+            )
+        else:
+            pc_imp.require(
+                (native_w, native_h) == (orig_w, orig_h),
+                f"{map_id}/{appearance_id}: pixel size {(native_w, native_h)} != PC original {(orig_w, orig_h)}",
+            )
+
+        has_alpha = pc_imp.image_has_non_opaque_alpha(image)
+        alpha_stats = compute_alpha_stats(image) if has_alpha else None
+        tile_entries: list[dict] = []
+        total_tile_bytes = 0
+
+        if precut_tiles is not None:
+            pc_imp.require(world_grid is not None and has_alpha, f"{map_id}/{appearance_id}: precut_tiles requires world_grid + RGBA")
+            gw, gh = int(world_grid["widthPixels"]), int(world_grid["heightPixels"])
+            gtw, gth = int(world_grid["tileWidthPixels"]), int(world_grid["tileHeightPixels"])
+            columns = math.ceil(gw / gtw)
+            rows = math.ceil(gh / gth)
+            pc_imp.require(len(precut_tiles) == columns * rows, f"{map_id}/{appearance_id}: precut tile count mismatch")
+            tile_format = f"png_rgba_hd_worldgrid_{native_w // columns}x{native_h // rows}"
+            # Map delivered (pixelOrigin) tiles into deterministic r{row:02d}_c{col:02d}.png without re-encoding.
+            by_origin = {(int(t["pixelOrigin"][0]), int(t["pixelOrigin"][1])): t for t in precut_tiles}
+            for row in range(1, rows + 1):
+                y0 = (min((row - 1) * gth, gh) * native_h + gh // 2) // gh
+                y1 = (min(row * gth, gh) * native_h + gh // 2) // gh
+                tile_h = y1 - y0
+                for col in range(1, columns + 1):
+                    x0 = (min((col - 1) * gtw, gw) * native_w + gw // 2) // gw
+                    x1 = (min(col * gtw, gw) * native_w + gw // 2) // gw
+                    tile_w = x1 - x0
+                    pc_imp.require(tile_w <= tile_size and tile_h <= tile_size, f"{map_id}: tile exceeds {tile_size}")
+                    src_tile = by_origin.get((x0, y0))
+                    pc_imp.require(src_tile is not None, f"{map_id}/{appearance_id}: missing precut tile at {(x0, y0)}")
+                    src_tile_path = Path(src_tile["path"])
+                    raw_tile = src_tile_path.read_bytes()
+                    actual_t_sha = pc_imp.sha256_bytes(raw_tile)
+                    pc_imp.require(actual_t_sha == src_tile["sha256"], f"{map_id}: precut tile SHA mismatch {src_tile_path}")
+                    tile_stem = f"r{row:02d}_c{col:02d}"
+                    tile_file = tiles_dir / f"{tile_stem}.png"
+                    pc_imp.write_asset_file(
+                        tile_file, raw_tile, project_root, delivery_root, has_alpha=True, is_overview=False
+                    )
+                    total_tile_bytes += len(raw_tile)
+                    tile_entries.append({
+                        "row": row,
+                        "column": col,
+                        "x": x0,
+                        "y": y0,
+                        "width": tile_w,
+                        "height": tile_h,
+                        "resourcePath": f"{map_resource_root}tiles/{tile_stem}",
+                        "fileExtension": ".png",
+                        "bytes": len(raw_tile),
+                        "sha256": actual_t_sha,
+                    })
+        else:
+            columns = math.ceil(native_w / tile_size)
+            rows = math.ceil(native_h / tile_size)
+            tile_format = (
+                "png_rgba_native_1024_grid" if has_alpha else f"jpg_q{pc_imp.JPEG_TILE_QUALITY}_native_1024_grid"
+            )
+            for row in range(1, rows + 1):
+                y0 = (row - 1) * tile_size
+                y1 = min(native_h, row * tile_size)
+                tile_h = y1 - y0
+                for col in range(1, columns + 1):
+                    x0 = (col - 1) * tile_size
+                    x1 = min(native_w, col * tile_size)
+                    tile_w = x1 - x0
+                    crop = image.crop((x0, y0, x1, y1))
+                    pc_imp.require(crop.size == (tile_w, tile_h), "Tile crop mismatch")
+                    tile_data, ext = pc_imp.encode_image(crop, has_alpha=has_alpha, jpeg_quality=pc_imp.JPEG_TILE_QUALITY)
+                    tile_stem = f"r{row:02d}_c{col:02d}"
+                    tile_file = tiles_dir / f"{tile_stem}{ext}"
+                    pc_imp.write_asset_file(
+                        tile_file, tile_data, project_root, delivery_root, has_alpha=has_alpha, is_overview=False
+                    )
+                    tile_sha = pc_imp.sha256_bytes(tile_data)
+                    tile_len = len(tile_data)
+                    total_tile_bytes += tile_len
+                    tile_entries.append({
+                        "row": row,
+                        "column": col,
+                        "x": x0,
+                        "y": y0,
+                        "width": tile_w,
+                        "height": tile_h,
+                        "resourcePath": f"{map_resource_root}tiles/{tile_stem}",
+                        "fileExtension": ext,
+                        "bytes": tile_len,
+                        "sha256": tile_sha,
+                    })
+
+        recomp_proof = verify_recomposition_exact_rgba(image, tile_entries, tiles_dir) if has_alpha else None
+
+        ov_w, ov_h = pc_imp.compute_overview_size(native_w, native_h, pc_imp.OVERVIEW_MAX_EDGE)
+        overview_img = image if (ov_w, ov_h) == (native_w, native_h) else image.resize(
+            (ov_w, ov_h), Image.Resampling.LANCZOS
+        )
+        ov_data, ov_ext = pc_imp.encode_image(overview_img, has_alpha=has_alpha, jpeg_quality=pc_imp.JPEG_OVERVIEW_QUALITY)
+        ov_file = app_dir / f"overview{ov_ext}"
+        pc_imp.write_asset_file(ov_file, ov_data, project_root, delivery_root, has_alpha=has_alpha, is_overview=True)
+        ov_sha = pc_imp.sha256_bytes(ov_data)
+        ov_bytes = len(ov_data)
+
+    tiles_manifest: dict = {
+        "schemaVersion": 2 if world_grid is not None else 1,
+        "mapId": map_id,
+        "numericMapId": numeric_id,
+        "revision": revision,
+        "artStage": QDAO_ART_STAGE,
+        "appearance": appearance_id,
+        "nativeWidth": native_w,
+        "nativeHeight": native_h,
+    }
+    if world_grid is not None:
+        tiles_manifest["worldGrid"] = world_grid
+    tiles_manifest.update({
+        "tileSize": tile_size,
+        "columns": columns,
+        "rows": rows,
+        "hasAlpha": has_alpha,
+        "tileFormat": tile_format,
+        "resampled": False,
+        "resourceRoot": map_resource_root,
+        "sourceNativeSha256": actual_whole_sha,
+        "tiles": tile_entries,
+    })
+    tiles_manifest_raw = pc_imp.json_bytes(tiles_manifest)
+    tiles_manifest_sha = pc_imp.sha256_bytes(tiles_manifest_raw)
+    pc_imp.write_asset_file(app_dir / "tiles.json", tiles_manifest_raw, project_root, delivery_root)
+
+    per_appearance_source: dict = {
+        "schemaVersion": 1,
+        "kind": "CLIENT_QDAO_REDRAWN_STATIC_BACK_SOURCE",
+        "mapId": map_id,
+        "numericMapId": numeric_id,
+        "name": map_name,
+        "appearance": appearance_id,
+        "appearanceDisplayName": display_name,
+        "revision": revision,
+        "artStage": QDAO_ART_STAGE,
+        "isTemporaryOriginal": False,
+        "replaceableByQdaoArt": True,
+        "staticBackOnly": True,
+        "completeGameplaySceneClaimed": False,
+        "productionTravelEnabled": False,
+        "sourceBranch": pc_original_ref["sourceBranch"],
+        "sourceStatus": "ready_qdao_static_back",
+        "sourceEvidencePath": source_evidence_path.as_posix(),
+        "sourceEvidenceSha256": evidence_sha,
+        "sourceNativeSha256": actual_whole_sha,
+        "sourceNativeBytes": whole_bytes,
+        "pcOriginalResourceRoot": pc_original_ref["resourceRoot"],
+        "pcOriginalSourceNativeSha256": pc_original_ref["sourceNativeSha256"],
+        "pcOriginalSourceNativeBytes": pc_original_ref["sourceNativeBytes"],
+        "pcOriginalSourceEvidenceSha256": pc_original_ref["sourceEvidenceSha256"],
+        "pcOriginalSourceContainerSha256": pc_imp.EXPECTED_CONTAINER_SHA256,
+        "nativeWidth": native_w,
+        "nativeHeight": native_h,
+        "worldWidthPixels": orig_w,
+        "worldHeightPixels": orig_h,
+        "tileSize": tile_size,
+        "columns": columns,
+        "rows": rows,
+        "tileCount": len(tile_entries),
+        "hasAlpha": has_alpha,
+        "tileFormat": tile_format,
+        "resampled": False,
+        "overviewDerived": True,
+        "overviewIsResizedPreviewOnly": True,
+        "overviewWidth": ov_w,
+        "overviewHeight": ov_h,
+        "overviewExtension": ov_ext,
+        "overviewBytes": ov_bytes,
+        "overviewSha256": ov_sha,
+        "tilesManifestSha256": tiles_manifest_sha,
+        "serverRegistrationStatus": "unregistered_local_preview_only",
+    }
+    if world_grid is not None:
+        per_appearance_source["worldGrid"] = world_grid
+    if alpha_stats is not None:
+        per_appearance_source["alphaStats"] = alpha_stats
+    if recomp_proof is not None:
+        per_appearance_source["recompositionVerification"] = recomp_proof
+    pc_imp.write_asset_file(app_dir / "source.json", pc_imp.json_bytes(per_appearance_source), project_root, delivery_root)
+
+    appearance_catalog_entry: dict = {
+        "id": appearance_id,
+        "displayName": display_name,
+        "artStage": QDAO_ART_STAGE,
+        "isTemporaryOriginal": False,
+        "revision": revision,
+        "hasAlpha": has_alpha,
+        "tileFormat": tile_format,
+        "resampled": False,
+        "nativeWidth": native_w,
+        "nativeHeight": native_h,
+        "tileSize": tile_size,
+        "columns": columns,
+        "rows": rows,
+        "tileCount": len(tile_entries),
+        "resourceRoot": map_resource_root,
+        "overviewResourcePath": f"{map_resource_root}overview",
+        "overviewExtension": ov_ext,
+        "overviewWidth": ov_w,
+        "overviewHeight": ov_h,
+        "overviewSha256": ov_sha,
+        "overviewBytes": ov_bytes,
+        "tilesManifestResourcePath": f"{map_resource_root}tiles",
+        "tilesManifestSha256": tiles_manifest_sha,
+        "sourceManifestResourcePath": f"{map_resource_root}source",
+        "sourceNativeSha256": actual_whole_sha,
+        "sourceNativeBytes": whole_bytes,
+        "sourceEvidenceSha256": evidence_sha,
+    }
+    if world_grid is not None:
+        appearance_catalog_entry["worldGrid"] = world_grid
+
+    appearance_receipt: dict = {
+        "id": appearance_id,
+        "displayName": display_name,
+        "artStage": QDAO_ART_STAGE,
+        "revision": revision,
+        "resourceRoot": map_resource_root,
+        "assetDirectory": (DELIVERY_REL / map_id / revision).as_posix(),
+        "sourceWholePngPath": whole_png_path.as_posix(),
+        "sourceNativeSha256": actual_whole_sha,
+        "sourceNativeBytes": whole_bytes,
+        "sourceEvidencePath": source_evidence_path.as_posix(),
+        "sourceEvidenceSha256": evidence_sha,
+        "nativePixels": [native_w, native_h],
+        "worldPixels": [orig_w, orig_h],
+        "hasAlpha": has_alpha,
+        "tileFormat": tile_format,
+        "columns": columns,
+        "rows": rows,
+        "tileCount": len(tile_entries),
+        "totalTileBytes": total_tile_bytes,
+        "tilesManifestSha256": tiles_manifest_sha,
+        "overviewPixels": [ov_w, ov_h],
+        "overviewBytes": ov_bytes,
+        "overviewSha256": ov_sha,
+    }
+    if world_grid is not None:
+        appearance_receipt["worldGrid"] = world_grid
+    if alpha_stats is not None:
+        appearance_receipt["alphaStats"] = alpha_stats
+    if recomp_proof is not None:
+        appearance_receipt["recompositionVerification"] = recomp_proof
+    return appearance_catalog_entry, appearance_receipt
+
+
+def adopt_map_appearances(
+    *,
+    map_id: str,
+    project_root: Path,
+    qdao_specs: list[dict],
+    default_appearance: str,
+    include_preserved_original: bool = True,
+    original_first: bool = False,
+    receipt_filename: str | None = None,
+) -> dict:
+    """Update a single mapId entry in catalog.json + import-receipt.json with one or more Q-Dao appearances."""
+    catalog_path = project_root / DELIVERY_REL / "catalog.json"
+    receipt_path = project_root / EVIDENCE_REL / "import-receipt.json"
+    catalog = pc_imp.read_json(catalog_path)
+    receipt = pc_imp.read_json(receipt_path)
+
+    target_index = next((i for i, m in enumerate(catalog["maps"]) if m["mapId"] == map_id), None)
+    pc_imp.require(target_index is not None, f"Map {map_id} not found in catalog.json")
+    existing = catalog["maps"][target_index]
+
+    pc_orig_source_path = project_root / DELIVERY_REL / map_id / pc_imp.REVISION / "source.json"
+    pc_orig_src = pc_imp.read_json(pc_orig_source_path)
+    pc_original_ref = {
+        "resourceRoot": f"{RESOURCE_ROOT}{map_id}/{pc_imp.REVISION}/",
+        "sourceBranch": pc_orig_src["sourceBranch"],
+        "sourceNativeSha256": pc_orig_src["sourceNativeSha256"],
+        "sourceNativeBytes": int(pc_orig_src["sourceNativeBytes"]),
+        "sourceEvidenceSha256": pc_orig_src["sourceEvidenceSha256"],
+        "nativeWidth": int(pc_orig_src["nativeWidth"]),
+        "nativeHeight": int(pc_orig_src["nativeHeight"]),
+    }
+
+    appearances_catalog: list[dict] = []
+    appearances_receipt: list[dict] = []
+
+    if include_preserved_original and original_first:
+        o_cat, o_rec = build_preserved_original_appearance(map_id=map_id, project_root=project_root)
+        appearances_catalog.append(o_cat)
+        appearances_receipt.append(o_rec)
+
+    for spec in qdao_specs:
+        a_cat, a_rec = derive_appearance_flexible(
+            map_id=map_id,
+            numeric_id=int(map_id),
+            map_name=existing["name"],
+            appearance_id=spec["id"],
+            display_name=spec.get("displayName", APPEARANCE_DISPLAY_NAMES.get(spec["id"], spec["id"])),
+            revision=spec["revision"],
+            whole_png_path=Path(spec["wholePng"]),
+            expected_whole_sha=spec["expectedSha"],
+            source_evidence_path=Path(spec["evidencePath"]),
+            pc_original_ref=pc_original_ref,
+            project_root=project_root,
+            world_grid=spec.get("worldGrid"),
+            precut_tiles=spec.get("precutTiles"),
+        )
+        appearances_catalog.append(a_cat)
+        appearances_receipt.append(a_rec)
+        print(
+            f"[QDAO {map_id}/{spec['id']}] {a_rec['nativePixels'][0]}x{a_rec['nativePixels'][1]} "
+            f"(world {a_rec['worldPixels'][0]}x{a_rec['worldPixels'][1]}) "
+            f"{a_rec['columns']}x{a_rec['rows']}={a_rec['tileCount']} "
+            f"{'RGBA-PNG' if a_rec['hasAlpha'] else 'RGB-JPG'} "
+            f"({a_rec['totalTileBytes']/1048576:.2f}MB) ov={a_rec['overviewBytes']/1048576:.2f}MB"
+        )
+
+    if include_preserved_original and not original_first:
+        o_cat, o_rec = build_preserved_original_appearance(map_id=map_id, project_root=project_root)
+        appearances_catalog.append(o_cat)
+        appearances_receipt.append(o_rec)
+
+    default_entry = next((a for a in appearances_catalog if a["id"] == default_appearance), None)
+    pc_imp.require(default_entry is not None, f"{map_id}: defaultAppearance '{default_appearance}' not found")
+    default_receipt = next(a for a in appearances_receipt if a["id"] == default_appearance)
+
+    updated_entry = dict(existing)
+    updated_entry.pop("worldGrid", None)
+    updated_entry.update({
+        "artStage": default_entry["artStage"],
+        "isTemporaryOriginal": default_entry["isTemporaryOriginal"],
+        "replaceableByQdaoArt": True,
+        "revision": default_entry["revision"],
+        "sourceStatus": "ready_static_back" if default_entry["artStage"] == pc_imp.ART_STAGE else "ready_qdao_static_back",
+        "nativeWidth": int(default_entry["nativeWidth"]),
+        "nativeHeight": int(default_entry["nativeHeight"]),
+        "aspectRatio": int(default_entry["nativeWidth"]) / float(int(default_entry["nativeHeight"])),
+        "tileSize": int(default_entry["tileSize"]),
+        "columns": int(default_entry["columns"]),
+        "rows": int(default_entry["rows"]),
+        "tileCount": int(default_entry["tileCount"]),
+        "hasAlpha": bool(default_entry["hasAlpha"]),
+        "tileFormat": default_entry["tileFormat"],
+        "resampled": False,
+        "resourceRoot": default_entry["resourceRoot"],
+        "overviewResourcePath": default_entry["overviewResourcePath"],
+        "overviewExtension": default_entry["overviewExtension"],
+        "overviewWidth": int(default_entry["overviewWidth"]),
+        "overviewHeight": int(default_entry["overviewHeight"]),
+        "overviewSha256": default_entry["overviewSha256"],
+        "overviewBytes": int(default_entry["overviewBytes"]),
+        "tilesManifestResourcePath": default_entry["tilesManifestResourcePath"],
+        "tilesManifestSha256": default_entry["tilesManifestSha256"],
+        "sourceManifestResourcePath": default_entry["sourceManifestResourcePath"],
+        "sourceNativeSha256": default_entry["sourceNativeSha256"],
+        "sourceNativeBytes": int(default_entry["sourceNativeBytes"]),
+        "sourceEvidenceSha256": default_entry["sourceEvidenceSha256"],
+        "pcOriginalSourceNativeSha256": pc_original_ref["sourceNativeSha256"],
+        "pcOriginalSourceNativeBytes": pc_original_ref["sourceNativeBytes"],
+        "defaultAppearance": default_appearance,
+        "appearances": appearances_catalog,
+        "serverRegistrationStatus": "unregistered_local_preview_only",
+    })
+    if default_entry.get("worldGrid"):
+        updated_entry["worldGrid"] = default_entry["worldGrid"]
+    catalog["maps"][target_index] = updated_entry
+
+    catalog_raw = pc_imp.json_bytes(catalog)
+    catalog_sha = pc_imp.sha256_bytes(catalog_raw)
+    pc_imp.write_asset_file(catalog_path, catalog_raw, project_root, project_root / DELIVERY_REL)
+
+    rec_index = next((i for i, m in enumerate(receipt["maps"]) if m["mapId"] == map_id), None)
+    pc_imp.require(rec_index is not None, f"Map {map_id} not found in import-receipt.json")
+    old_rec = receipt["maps"][rec_index]
+    receipt["maps"][rec_index] = {
+        "mapId": map_id,
+        "numericMapId": int(map_id),
+        "name": existing["name"],
+        "nativePixels": default_receipt["nativePixels"],
+        "sourceNativeSha256": default_entry["sourceNativeSha256"],
+        "sourceNativeBytes": int(default_entry["sourceNativeBytes"]),
+        "pcOriginalSourceNativeSha256": pc_original_ref["sourceNativeSha256"],
+        "sourceBranch": pc_original_ref["sourceBranch"],
+        "resourceRoot": default_entry["resourceRoot"],
+        "revision": default_entry["revision"],
+        "artStage": default_entry["artStage"],
+        "defaultAppearance": default_appearance,
+        "appearances": [
+            {
+                "id": a["id"],
+                "artStage": a["artStage"],
+                "revision": a["revision"],
+                "nativePixels": a["nativePixels"],
+                "worldPixels": a["worldPixels"],
+                "resourceRoot": a["resourceRoot"],
+                "sourceNativeSha256": a["sourceNativeSha256"],
+                "tilesManifestSha256": a["tilesManifestSha256"],
+                "totalTileBytes": a["totalTileBytes"],
+                "overviewBytes": a["overviewBytes"],
+            }
+            for a in appearances_receipt
+        ],
+        "hasAlpha": bool(default_entry["hasAlpha"]),
+        "tileFormat": default_entry["tileFormat"],
+        "columns": default_receipt["columns"],
+        "rows": default_receipt["rows"],
+        "tileCount": default_receipt["tileCount"],
+        "totalTileBytes": default_receipt["totalTileBytes"],
+        "overviewPixels": default_receipt["overviewPixels"],
+        "overviewBytes": default_receipt["overviewBytes"],
+        "tilesManifestSha256": default_entry["tilesManifestSha256"],
+    }
+    receipt["catalogSha256"] = catalog_sha
+    receipt["totalTileBytes"] = int(receipt["totalTileBytes"]) - int(old_rec["totalTileBytes"]) + int(default_receipt["totalTileBytes"])
+    receipt["totalOverviewBytes"] = int(receipt["totalOverviewBytes"]) - int(old_rec["overviewBytes"]) + int(default_receipt["overviewBytes"])
+    receipt["totalAssetBytes"] = int(receipt["totalTileBytes"]) + int(receipt["totalOverviewBytes"])
+    receipt_path.write_bytes(pc_imp.json_bytes(receipt))
+
+    map_receipt = {
+        "schemaVersion": 1,
+        "kind": "CLIENT_QDAO_STATIC_MAP_ADOPTION_RECEIPT",
+        "mapId": map_id,
+        "numericMapId": int(map_id),
+        "name": existing["name"],
+        "defaultAppearance": default_appearance,
+        "staticBackOnly": True,
+        "completeGameplaySceneClaimed": False,
+        "productionTravelEnabled": False,
+        "serverRegistrationStatus": "unregistered_local_preview_only",
+        "pcOriginalProvenance": pc_original_ref,
+        "catalogPath": (DELIVERY_REL / "catalog.json").as_posix(),
+        "catalogSha256": catalog_sha,
+        "appearances": appearances_receipt,
+    }
+    out_name = receipt_filename or f"{map_id}-qdao-adoption-receipt.json"
+    out_path = project_root / EVIDENCE_REL / out_name
+    out_path.write_bytes(pc_imp.json_bytes(map_receipt))
+    print(f"WROTE {out_path} (default={default_appearance}, catalogSha256={catalog_sha[:16]}...)")
+    return map_receipt
+
+
+def adopt_completed_batch(designs_root: Path, project_root: Path) -> list[dict]:
+    """Adopt 08001 4x HD candidate (original kept default) + all completed Q-Dao maps in designs_root."""
+    receipts: list[dict] = []
+
+    # 1. 08001 4x HD candidate (6400x4800 RGBA on unchanged 3200x2400 worldGrid; original stays default!)
+    d08001 = designs_root / "pc-map-08001-4x-20261124-v001"
+    specs_08001 = []
+    for season, label, rev in [
+        ("spring", "春节高清", "qdao-spring-4x-v001"),
+        ("midautumn", "中秋高清", "qdao-midautumn-4x-v001"),
+    ]:
+        dm_path = d08001 / f"08001-{season}-delivery.json"
+        dm = pc_imp.read_json(dm_path)
+        ts800 = next(t for t in dm["tileSets"] if t["tilePixels"] == [800, 600])
+        specs_08001.append({
+            "id": season,
+            "displayName": label,
+            "revision": rev,
+            "wholePng": d08001 / dm["highResolution"]["file"],
+            "expectedSha": dm["highResolution"]["sha256"],
+            "evidencePath": dm_path,
+            "worldGrid": {"widthPixels": 3200, "heightPixels": 2400, "tileWidthPixels": 400, "tileHeightPixels": 300},
+            "precutTiles": [
+                {"path": d08001 / t["file"], "pixelOrigin": t["pixelOrigin"], "sha256": t["sha256"]}
+                for t in ts800["tiles"]
+            ],
+        })
+    receipts.append(adopt_map_appearances(
+        map_id="08001",
+        project_root=project_root,
+        qdao_specs=specs_08001,
+        default_appearance="normal",
+        include_preserved_original=True,
+        original_first=True,
+        receipt_filename="08001-hd-4x-candidate-receipt.json",
+    ))
+
+    # 2. 03000 (4400x4400 dual-festival RGB)
+    d03000 = designs_root / "pc-original-03000-festivals-20261123-v001"
+    m03000 = pc_imp.read_json(d03000 / "delivery-manifest.json")
+    deliv_03000 = {item["appearance"]: item for item in m03000["deliveries"]}
+    receipts.append(adopt_map_appearances(
+        map_id="03000",
+        project_root=project_root,
+        qdao_specs=[
+            {
+                "id": app_id,
+                "revision": f"qdao-{app_id}-v001",
+                "wholePng": d03000 / deliv_03000[app_id]["whole"],
+                "expectedSha": deliv_03000[app_id]["sha256"],
+                "evidencePath": d03000 / "delivery-manifest.json",
+            }
+            for app_id in ("spring", "midautumn")
+        ],
+        default_appearance="spring",
+        include_preserved_original=True,
+    ))
+
+    # 3. 07001 (6000x4970 dual-festival RGB)
+    d07001 = designs_root / "client07001-continuous-20261123-v001"
+    m07001 = pc_imp.read_json(d07001 / "delivery-manifest.json")
+    apps_07001 = {item["appearance"]: item for item in m07001["appearances"]}
+    receipts.append(adopt_map_appearances(
+        map_id="07001",
+        project_root=project_root,
+        qdao_specs=[
+            {
+                "id": "spring",
+                "revision": "qdao-spring-v002",
+                "wholePng": Path(apps_07001["spring"]["master"]["file"]),
+                "expectedSha": apps_07001["spring"]["master"]["sha256"],
+                "evidencePath": d07001 / "delivery-manifest.json",
+            },
+            {
+                "id": "midautumn",
+                "revision": "qdao-midautumn-v001",
+                "wholePng": Path(apps_07001["midautumn"]["master"]["file"]),
+                "expectedSha": apps_07001["midautumn"]["master"]["sha256"],
+                "evidencePath": d07001 / "delivery-manifest.json",
+            },
+        ],
+        default_appearance="spring",
+        include_preserved_original=True,
+    ))
+
+    # 4. 15000 (1920x2298 spring RGBA complete; midautumn still UNKNOWN/blocked)
+    d15000 = designs_root / "client-15000-festivals-20261123-v001"
+    m15000 = pc_imp.read_json(d15000 / "spring/tiles/manifest.json")
+    receipts.append(adopt_map_appearances(
+        map_id="15000",
+        project_root=project_root,
+        qdao_specs=[{
+            "id": "spring",
+            "revision": "qdao-spring-v001",
+            "wholePng": Path(m15000["source"]),
+            "expectedSha": m15000["sourceSHA256"],
+            "evidencePath": d15000 / "validation.json",
+        }],
+        default_appearance="spring",
+        include_preserved_original=True,
+    ))
+
+    # 5. 19003 (1920x1080 dual-festival opaque RGBA -> RGB JPG)
+    d19003 = designs_root / "client-19003-festivals-20261123-v001"
+    specs_19003 = []
+    for app_id in ("spring", "midautumn"):
+        der_path = d19003 / f"{app_id}.png.derived.json"
+        der = pc_imp.read_json(der_path)
+        specs_19003.append({
+            "id": app_id,
+            "revision": f"qdao-{app_id}-v001",
+            "wholePng": d19003 / der["file"]["path"],
+            "expectedSha": der["file"]["sha256"],
+            "evidencePath": der_path,
+        })
+    receipts.append(adopt_map_appearances(
+        map_id="19003",
+        project_root=project_root,
+        qdao_specs=specs_19003,
+        default_appearance="spring",
+        include_preserved_original=True,
+    ))
+
+    # 6. 23000 (4000x5000 dual-festival opaque RGBA -> RGB JPG)
+    d23000 = designs_root / "pc-23000-festivals-20261123-v001"
+    m23000 = pc_imp.read_json(d23000 / "delivery.json")
+    receipts.append(adopt_map_appearances(
+        map_id="23000",
+        project_root=project_root,
+        qdao_specs=[
+            {
+                "id": app_id,
+                "revision": f"qdao-{app_id}-v001",
+                "wholePng": Path(m23000["appearances"][app_id]["full"]["file"]),
+                "expectedSha": m23000["appearances"][app_id]["full"]["sha256"],
+                "evidencePath": d23000 / "delivery.json",
+            }
+            for app_id in ("spring", "midautumn")
+        ],
+        default_appearance="spring",
+        include_preserved_original=True,
+    ))
+
+    # 7. 33009 (4800x3600 dual-festival RGBA with real alpha)
+    d33009 = designs_root / "pc-33009-dual-festival-20261123-v001"
+    m33009 = pc_imp.read_json(d33009 / "DELIVERY.json")
+    receipts.append(adopt_map_appearances(
+        map_id="33009",
+        project_root=project_root,
+        qdao_specs=[
+            {
+                "id": app_id,
+                "revision": f"qdao-{app_id}-v001",
+                "wholePng": Path(m33009["variants"][app_id]["file"]),
+                "expectedSha": m33009["variants"][app_id]["sha256"],
+                "evidencePath": d33009 / "DELIVERY.json",
+            }
+            for app_id in ("spring", "midautumn")
+        ],
+        default_appearance="spring",
+        include_preserved_original=True,
+    ))
+
+    # 8. 41081 (4000x2600 dual-festival RGB)
+    d41081 = designs_root / "client-map-41081-festivals-20261123-v001"
+    m41081 = pc_imp.read_json(d41081 / "manifest.json")
+    receipts.append(adopt_map_appearances(
+        map_id="41081",
+        project_root=project_root,
+        qdao_specs=[
+            {
+                "id": app_id,
+                "revision": f"qdao-{app_id}-v001",
+                "wholePng": d41081 / m41081["appearances"][app_id]["wholeImage"],
+                "expectedSha": m41081["appearances"][app_id]["sha256"],
+                "evidencePath": d41081 / "manifest.json",
+            }
+            for app_id in ("spring", "midautumn")
+        ],
+        default_appearance="spring",
+        include_preserved_original=True,
+    ))
+
+    return receipts
+
+
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Adopt a Q-Dao dual-festival static map into PcOriginalPreview20261123.")
+    parser = argparse.ArgumentParser(description="Adopt Q-Dao static map(s) into PcOriginalPreview20261123.")
     parser.add_argument("--map-id", default="28002")
     parser.add_argument("--delivery-dir", type=Path, default=DEFAULT_28002_DELIVERY)
+    parser.add_argument("--designs-root", type=Path, default=Path("D:/work/image/designs"))
     parser.add_argument("--project-root", type=Path, default=PROJECT)
     parser.add_argument("--spring-revision", default="qdao-spring-v002")
     parser.add_argument("--midautumn-revision", default="qdao-midautumn-v002")
     parser.add_argument("--default-appearance", default="spring")
+    parser.add_argument("--adopt-completed-batch", action="store_true", help="Adopt 08001 4x HD candidate + all completed Q-Dao maps.")
     parser.add_argument("--verify", action="store_true", help="Run full offline catalog + multi-appearance verification.")
     args = parser.parse_args(argv)
 
     project_root = args.project_root.resolve()
     if args.verify:
+        pc_imp.verify_committed(project_root)
+        return 0
+
+    if args.adopt_completed_batch:
+        adopt_completed_batch(args.designs_root.resolve(), project_root)
         pc_imp.verify_committed(project_root)
         return 0
 

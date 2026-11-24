@@ -156,7 +156,7 @@ namespace MmorpgClient.World.Tianyong
 
         private void Start()
         {
-            if (!standalone) return;
+            if (!standalone || _camera != null) return;
             try { Activate(null, initialMapId); }
             catch (Exception error)
             {
@@ -165,7 +165,38 @@ namespace MmorpgClient.World.Tianyong
             }
         }
 
-        private void Activate(TianyongSandboxBootstrap sandbox, string mapId)
+        private static PcOriginalMapCatalog LoadCatalog(string path)
+        {
+            var asset = Resources.Load<TextAsset>(path);
+            if (asset == null) throw new InvalidOperationException("端游原图目录清单缺失：" + path);
+            var catalog = JsonUtility.FromJson<PcOriginalMapCatalog>(asset.text);
+            if (catalog == null) throw new InvalidOperationException("端游原图目录清单解析失败：" + path);
+            catalog.Validate();
+            return catalog;
+        }
+
+        // 显式比较操作只切换当前查看器实例的目录。世界占地不同的版本不能同机位比较。
+        public void SelectReviewCatalog(string path, string mapId, string appearanceId = null)
+        {
+            if (!PcOriginalMapContract.IsSafeResourcePath(path) ||
+                !path.StartsWith(PcOriginalMapContract.VariantReviewRoot, StringComparison.Ordinal))
+                throw new ArgumentException("Invalid variant review resource path.", nameof(path));
+            var catalog = LoadCatalog(path);
+            var entry = catalog.FindByMapId(mapId);
+            if (entry == null || entry.ResolveAppearance(appearanceId) == null)
+                throw new InvalidOperationException($"Missing review entry {mapId}/{appearanceId}.");
+            if (_currentMap?.mapId == mapId &&
+                (entry.WorldWidth != _currentMap.WorldWidth || entry.WorldHeight != _currentMap.WorldHeight))
+                throw new InvalidOperationException("Review variant changes the map's world bounds.");
+            if (_camera == null)
+                Activate(null, mapId, catalog, appearanceId);
+            else if (Select(entry, appearanceId))
+                _catalog = catalog;
+            else
+                throw new InvalidOperationException(_status);
+        }
+
+        private void Activate(TianyongSandboxBootstrap sandbox, string mapId, PcOriginalMapCatalog catalog = null, string appearanceId = null)
         {
             if (_camera != null)
             {
@@ -176,15 +207,7 @@ namespace MmorpgClient.World.Tianyong
             string path = string.IsNullOrWhiteSpace(catalogResourcePath)
                 ? PcOriginalMapContract.DefaultCatalogResourcePath
                 : catalogResourcePath;
-            var catalogAsset = Resources.Load<TextAsset>(path);
-            if (catalogAsset == null)
-                throw new InvalidOperationException("端游原图目录清单缺失：" + path);
-
-            var parsed = JsonUtility.FromJson<PcOriginalMapCatalog>(catalogAsset.text);
-            if (parsed == null)
-                throw new InvalidOperationException("端游原图目录清单解析失败：" + path);
-            parsed.Validate();
-            _catalog = parsed;
+            _catalog = catalog ?? LoadCatalog(path);
 
             _sandbox = sandbox;
             _sandboxWasEnabled = sandbox != null && sandbox.enabled;
@@ -219,7 +242,7 @@ namespace MmorpgClient.World.Tianyong
 
                 string targetId = !string.IsNullOrEmpty(mapId) ? mapId : _catalog.maps[0].mapId;
                 if (_catalog.FindByMapId(targetId) == null) targetId = _catalog.maps[0].mapId;
-                if (!SelectByMapId(targetId))
+                if (!SelectByMapId(targetId, appearanceId))
                     throw new InvalidOperationException(_status);
             }
             catch
@@ -306,7 +329,7 @@ namespace MmorpgClient.World.Tianyong
         {
             if (_camera == null || _currentMap == null) return;
             float pixelHeight = Mathf.Max(1f, _camera.pixelHeight > 0 ? _camera.pixelHeight : Screen.height);
-            _zoom = pixelHeight / (2f * PcOriginalMapContract.PixelsPerUnit);
+            _zoom = pixelHeight * _currentMap.WorldHeight / (2f * _currentMap.nativeHeight);
             ApplyCamera();
         }
 
@@ -325,6 +348,7 @@ namespace MmorpgClient.World.Tianyong
             }
             string targetAppearance = selected.EffectiveDefaultAppearance;
             if (_currentMap != null && _currentMap.mapId == selected.mapId &&
+                _currentMap.resourceRoot == selected.resourceRoot && _currentMap.tilesManifestSha256 == selected.tilesManifestSha256 &&
                 string.Equals(_currentAppearanceId, targetAppearance, StringComparison.Ordinal))
                 return true;
 
@@ -381,7 +405,7 @@ namespace MmorpgClient.World.Tianyong
                 for (int i = 0; i < manifest.tiles.Length; i++)
                 {
                     var tileEntry = manifest.tiles[i];
-                    var worldRect = PcOriginalViewportPlanner.TileWorldRect(manifest.nativeHeight, tileEntry);
+                    var worldRect = PcOriginalViewportPlanner.TileWorldRect(manifest, tileEntry);
                     var fallbackMesh = BuildOverviewFallbackQuadMesh(manifest.nativeWidth, manifest.nativeHeight, tileEntry, worldRect);
                     candidateMeshes.Add(fallbackMesh);
 
@@ -700,6 +724,8 @@ namespace MmorpgClient.World.Tianyong
             go.layer = PreviewLayer;
             go.transform.SetParent(_visualRoot.transform, false);
             go.transform.localPosition = new UnityEngine.Vector3(tile.WorldRect.CenterX, tile.WorldRect.CenterY, 0f);
+            go.transform.localScale = new UnityEngine.Vector3(tile.WorldRect.Width * PcOriginalMapContract.PixelsPerUnit / tex.width,
+                tile.WorldRect.Height * PcOriginalMapContract.PixelsPerUnit / tex.height, 1f);
             var renderer = go.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
             renderer.sortingOrder = 1;
@@ -799,8 +825,13 @@ namespace MmorpgClient.World.Tianyong
             if (_currentMap != null)
             {
                 string appTitle = _currentMap.HasAppearances ? $" · {CurrentAppearanceDisplayName}" : "";
+                string sizeInfo = _currentMap.HasWorldGrid &&
+                                  (_currentMap.nativeWidth != _currentMap.worldGrid.widthPixels ||
+                                   _currentMap.nativeHeight != _currentMap.worldGrid.heightPixels)
+                    ? $"{_currentMap.nativeWidth}×{_currentMap.nativeHeight} / 原范围{_currentMap.worldGrid.widthPixels}×{_currentMap.worldGrid.heightPixels}"
+                    : $"{_currentMap.nativeWidth}×{_currentMap.nativeHeight}";
                 GUI.Label(new Rect(x, y, w, 22f),
-                    $"当前：{_currentMap.mapId} {_currentMap.DisplayName}{appTitle}（{_currentMap.nativeWidth}×{_currentMap.nativeHeight}）");
+                    $"当前：{_currentMap.mapId} {_currentMap.DisplayName}{appTitle}（{sizeInfo}）");
                 y += 22f;
                 GUI.Label(new Rect(x, y, w, 20f),
                     $"阶段：{PcOriginalMapContract.ArtStageDisplayLabel(_currentMap.artStage)} | 分片：{LoadedNativeTileCount}/{_lastOverlappingTiles} | 兜底：{ActiveOverviewFallbackCount}");
@@ -897,7 +928,20 @@ namespace MmorpgClient.World.Tianyong
                 var m = filtered[i];
                 bool isCurrent = _currentMap != null && m.mapId == _currentMap.mapId;
                 string tag = m.artStage == PcOriginalMapContract.ArtStagePcOriginal ? "原图" : "Q版";
-                string multiTag = m.HasMultipleAppearances ? " 双节" : "";
+                bool hasSpring = m.FindAppearance("spring") != null;
+                bool hasMidautumn = m.FindAppearance("midautumn") != null;
+                bool hasHdCandidate = false;
+                if (m.HasAppearances)
+                {
+                    int baseWorldW = m.HasWorldGrid ? m.worldGrid.widthPixels : m.nativeWidth;
+                    for (int ai = 0; ai < m.appearances.Length; ai++)
+                        if (m.appearances[ai] != null && m.appearances[ai].ResolveNativeWidth(m.nativeWidth) > baseWorldW)
+                            hasHdCandidate = true;
+                }
+                string multiTag = hasHdCandidate ? " 4x候选" :
+                                  (hasSpring && hasMidautumn ? " 双节" :
+                                  (hasSpring ? " 含春节" :
+                                  (m.HasMultipleAppearances ? " 多外观" : "")));
                 string alphaTag = m.hasAlpha ? " RGBA" : "";
                 string prefix = isCurrent ? "▶ " : "";
                 string label = $"{prefix}{m.mapId} {m.DisplayName}  [{m.nativeWidth}×{m.nativeHeight} {tag}{multiTag}{alphaTag}]";

@@ -27,6 +27,8 @@ namespace MmorpgClient.Editor.CurrentMaps
             public string name;
             public int nativeWidth;
             public int nativeHeight;
+            public int worldWidthPixels;
+            public int worldHeightPixels;
             public int overviewWidth;
             public int overviewHeight;
             public int tileCount;
@@ -181,6 +183,10 @@ namespace MmorpgClient.Editor.CurrentMaps
                                     $"{label}: tile {tile.resourcePath} size {tex.width}x{tex.height} != {tile.width}x{tile.height}");
                             if (tex.mipmapCount != 1)
                                 throw new InvalidOperationException($"{label}: tile {tile.resourcePath} mipmapCount={tex.mipmapCount}, expected 1.");
+                            if (tex.wrapMode != TextureWrapMode.Clamp || tex.filterMode != FilterMode.Bilinear)
+                                throw new InvalidOperationException($"{label}: tile {tile.resourcePath} wrap={tex.wrapMode} filter={tex.filterMode}, expected Clamp/Bilinear.");
+                            if (tex.isReadable)
+                                throw new InvalidOperationException($"{label}: tile {tile.resourcePath} must not be readable.");
                             if (map.hasAlpha && tex.format != TextureFormat.RGBA32)
                                 throw new InvalidOperationException($"{label}: RGBA tile {tile.resourcePath} format={tex.format}, expected RGBA32.");
                             if (!map.hasAlpha && tex.format != TextureFormat.RGB24)
@@ -198,6 +204,8 @@ namespace MmorpgClient.Editor.CurrentMaps
                             name = map.DisplayName,
                             nativeWidth = map.nativeWidth,
                             nativeHeight = map.nativeHeight,
+                            worldWidthPixels = map.HasWorldGrid ? map.worldGrid.widthPixels : map.nativeWidth,
+                            worldHeightPixels = map.HasWorldGrid ? map.worldGrid.heightPixels : map.nativeHeight,
                             overviewWidth = map.overviewWidth,
                             overviewHeight = map.overviewHeight,
                             tileCount = map.tileCount,

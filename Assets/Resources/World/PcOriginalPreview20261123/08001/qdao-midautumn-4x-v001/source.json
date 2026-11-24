@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "kind": "CLIENT_QDAO_REDRAWN_STATIC_BACK_SOURCE",
+  "mapId": "08001",
+  "numericMapId": 8001,
+  "name": "地图 08001",
+  "appearance": "midautumn",
+  "appearanceDisplayName": "中秋高清",
+  "revision": "qdao-midautumn-4x-v001",
+  "artStage": "qdao_redrawn_static_back",
+  "isTemporaryOriginal": false,
+  "replaceableByQdaoArt": true,
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "productionTravelEnabled": false,
+  "sourceBranch": "gbits",
+  "sourceStatus": "ready_qdao_static_back",
+  "sourceEvidencePath": "D:/work/image/designs/pc-map-08001-4x-20261124-v001/08001-midautumn-delivery.json",
+  "sourceEvidenceSha256": "4496d2ea5cfc3098e13bca8455d964e936405d270417b01717b457bfc5019575",
+  "sourceNativeSha256": "87c16b1b33abe4a74ea8c94036d5e714333c98d0810a64214f3ace785aae69fc",
+  "sourceNativeBytes": 38432288,
+  "pcOriginalResourceRoot": "World/PcOriginalPreview20261123/08001/pc-original-20261123/",
+  "pcOriginalSourceNativeSha256": "d1e38976e00fae27fb7413f63d3fc526c60aedb74c027bcd8eb93ac321d3ef92",
+  "pcOriginalSourceNativeBytes": 7478816,
+  "pcOriginalSourceEvidenceSha256": "02cbef52c1b40e42eeb05c6f2a192e5d6b86bd25376d617b4dabbf63c6a5b632",
+  "pcOriginalSourceContainerSha256": "724b3f9b1018951ac21d502a798d54b1b86d0a04250f01e1524add33525dc07f",
+  "nativeWidth": 6400,
+  "nativeHeight": 4800,
+  "worldWidthPixels": 3200,
+  "worldHeightPixels": 2400,
+  "tileSize": 1024,
+  "columns": 8,
+  "rows": 8,
+  "tileCount": 64,
+  "hasAlpha": true,
+  "tileFormat": "png_rgba_hd_worldgrid_800x600",
+  "resampled": false,
+  "overviewDerived": true,
+  "overviewIsResizedPreviewOnly": true,
+  "overviewWidth": 2048,
+  "overviewHeight": 1536,
+  "overviewExtension": ".png",
+  "overviewBytes": 3795120,
+  "overviewSha256": "133aef61f31b3d368f0978f7475f638ef773a265092aa77209adda8839bddf79",
+  "tilesManifestSha256": "81d7528a4cae7ad49ad9cc22654df425a9481e6fd3a0039b6052b5b279ca6c3b",
+  "serverRegistrationStatus": "unregistered_local_preview_only",
+  "worldGrid": {
+    "widthPixels": 3200,
+    "heightPixels": 2400,
+    "tileWidthPixels": 400,
+    "tileHeightPixels": 300
+  },
+  "alphaStats": {
+    "minMax": [
+      0,
+      254
+    ],
+    "fullyTransparent": 14031798,
+    "fullyOpaque": 0,
+    "partialAlpha": 16688202,
+    "totalPixels": 30720000
+  },
+  "recompositionVerification": {
+    "recomposedPixels": [
+      6400,
+      4800
+    ],
+    "coveredPixels": 30720000,
+    "tileCount": 64,
+    "rgbaByteEqualToWholeSource": true,
+    "alphaStats": {
+      "minMax": [
+        0,
+        254
+      ],
+      "fullyTransparent": 14031798,
+      "fullyOpaque": 0,
+      "partialAlpha": 16688202,
+      "totalPixels": 30720000
+    }
+  }
+}

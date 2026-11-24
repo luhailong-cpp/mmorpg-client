@@ -1,0 +1,37 @@
+{
+  "kind": "CLIENT_RUNTIME_TILES_OFFLINE_VISUAL_AND_SEAM_CHECK",
+  "note": "Rendered directly from committed Assets/Resources/World/PcOriginalPreview20261123/08001/ runtime tiles. Not a live Unity player capture.",
+  "doubleDrawAvoidedSampled": {
+    "dark": {
+      "sampledChanged": 1045812,
+      "sampledMaxRgbDelta": 71
+    },
+    "black": {
+      "sampledChanged": 1049076,
+      "sampledMaxRgbDelta": 83
+    },
+    "white": {
+      "sampledChanged": 958824,
+      "sampledMaxRgbDelta": 94
+    }
+  },
+  "seamContinuitySpring": {
+    "verticalMeanRgbL1": 16.85,
+    "verticalRef1pxMeanRgbL1": 15.86,
+    "horizontalMeanRgbL1": 16.55,
+    "horizontalRef1pxMeanRgbL1": 17.5
+  },
+  "seamContinuityMidautumn": {
+    "verticalMeanRgbL1": 16.26,
+    "verticalRef1pxMeanRgbL1": 16.07,
+    "horizontalMeanRgbL1": 16.35,
+    "horizontalRef1pxMeanRgbL1": 17.54
+  },
+  "outputs": [
+    "08001-closest-altar-lanterns-compare.png",
+    "08001-closest-pool-bridge-seam-compare.png",
+    "08001-closest-entrance-wall-compare.png",
+    "08001-hd-alpha-backdrops-3way.png",
+    "batch-adopted-maps-contact-sheet.png"
+  ]
+}
