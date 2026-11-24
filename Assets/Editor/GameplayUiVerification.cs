@@ -43,6 +43,8 @@ public static class GameplayUiVerification
             "The three festival names are unscheduled visual examples, not published operating events.\n" +
             "No GameplayUiRoot, AppBootstrap, session, game client or network transport is instantiated.\n");
         var previousScene = SceneManager.GetActiveScene();
+        if (Application.isBatchMode && string.IsNullOrEmpty(previousScene.path))
+        { EditorSceneManager.OpenScene("Assets/Scenes/Bootstrap.unity", OpenSceneMode.Single); previousScene = SceneManager.GetActiveScene(); }
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
         var previousTarget = RenderTexture.active;
         RenderTexture target = null;

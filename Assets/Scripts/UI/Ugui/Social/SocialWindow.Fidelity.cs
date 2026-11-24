@@ -33,7 +33,8 @@ namespace MmorpgClient.UI.Ugui.Social
             Clear(_fidelityContent); _fidelityTabs.Clear();
             _fidelitySkin.sprite = QdaoUguiTheme.RequireSprite(FidelityResources +
                 (State.Page == SocialPage.Groups ? "groups_skin" : State.Page == SocialPage.Rumor ? "rumor_skin" : "world_skin"));
-            FImage(_fidelityContent,"exact_title",774,0,400,88); // Original fixed title artwork.
+            // 去底后的三套皮肤已含透明太极标题牌，改用原生中文标题避免旧 exact_title 顶部的蓝天矩形露底。
+            FText(_fidelityContent, "SocialTitle", "仙  友", 816, 34, 290, 50, 38, Cream, align: TextAlignmentOptions.Center);
             float[] tx = { 677, 873, 1074 };
             int n = 0;
             foreach (SocialPage page in Enum.GetValues(typeof(SocialPage)))

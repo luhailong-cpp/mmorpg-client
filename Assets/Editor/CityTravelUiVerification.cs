@@ -31,6 +31,8 @@ public static class CityTravelUiVerification
             throw new InvalidOperationException("地图窗口截图需要编辑模式。");
         Directory.CreateDirectory(OutputDirectory);
         var previousScene = SceneManager.GetActiveScene();
+        if (Application.isBatchMode && string.IsNullOrEmpty(previousScene.path))
+        { EditorSceneManager.OpenScene("Assets/Scenes/Bootstrap.unity", OpenSceneMode.Single); previousScene = SceneManager.GetActiveScene(); }
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
         var previousTarget = RenderTexture.active;
         RenderTexture target = null;

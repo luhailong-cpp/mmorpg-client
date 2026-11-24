@@ -69,17 +69,31 @@
      - EditMode Tests（`Assets/Tests/EditMode`）：`177` 文件，`0` 错误。
    - Unity batchmode 授权探针（`2026-11-23T15:38:56Z`）：确认 `Found 0 entitlement groups and 0 free entitlements`，退出码 `1`，实机构建与截屏验收阻塞。
 
-## 6. 在已授权 Unity 机器上的后续构建与验收命令
+## 6. 2026-11-24 Unity 实跑、出包与视觉复核补充
 
-在已激活 Unity `6000.6.0f1` 授权且安装 PowerShell 7（`pwsh`）的 Windows 机器上拉取最新 `main` 后依次执行：
+本机 Unity `6000.6.0f1` Personal 授权激活后，已补齐稀疏检出剩余运行期 UI 目录并完成以下真实引擎验收：
+
+1. **实机渲染发现并修复 1 处残余不透明贴片缺陷**：
+   - 渲染 `SocialWindow` 时发现顶部仍由 `SocialWindow.Fidelity.cs` 叠加旧不透明蓝天裁切图 `SocialV1/Fidelity20261016/exact_title.png`（400×88），导致“仙友”标题牌外框露出蓝天矩形。
+   - 已改为直接在透明皮肤自带的太极标题牌上渲染原生中文 `SocialTitle="仙  友"`，并同步更新 [SocialFidelityVerification.cs](../../Assets/Editor/Social/SocialFidelityVerification.cs) 与 [SocialTests.cs](../../Assets/Tests/EditMode/Social/SocialTests.cs) 回归断言；重截世界/群组/谣言三页确认蓝天矩形完全消除。
+   - 同时为 [GameplayUiVerification.cs](../../Assets/Editor/GameplayUiVerification.cs)、[JubaozhaiUiVerification.cs](../../Assets/Editor/Jubaozhai/JubaozhaiUiVerification.cs)、[CityTravelUiVerification.cs](../../Assets/Editor/CityTravelUiVerification.cs) 补齐批处理打开 `Bootstrap.unity` 保护，避免无标题场景叠加报错。
+2. **Unity EditMode 实跑结果**：
+   - 全量 UI 过滤套件：`233` 项运行、`222` 项通过（`MailWindowTests`、`MailUiStateTests`、`GuildUiTests`、`SceneChannelWindowTests`、`GameplayWindowTests`、`JubaozhaiFidelityWindowTests`、`SocialTests`、`CityTravelWindowTests`、`AttributePanelDisplayTests`、`PetPanelInteractionTests`、`EquipmentScreenModelTests`、`AppearanceClientTests` 及 `TeamWindowTests.TransparentTeamSkin_RendersNativeSummaryAndVacancy` 全绿）；`SocialTests` 修复后单独复跑 `85/85` 全绿。
+   - 仅存 `11` 项 `TeamWindowTests` 头像断言失败，经溯源为既有提交 `37c0b9d2` 删除退场角色资产时移除了 `24_lu_dongbin` / `27_ink_kite_ranger` 在 `QdaoCharacterCatalog.ResolveVisualId` 中的映射所致，与本次 UI 资源接入无关。
+3. **正式 Windows x64 播放器构建与启动冒烟**（基线提交 `43692363`，早于上述 `SocialWindow.Fidelity.cs` 一行标题修复）：
+   - 按 `tools/build_client.ps1` 等价参数调用 `MmorpgClient.Editor.ClientPlayerBuild.Build` 构建正式包（场景 `Assets/Scenes/Bootstrap.unity`、`Assets/Scenes/World/TianyongSandbox.unity`），退出码 `0`、`errors: 0`、`result: Succeeded`，产物 `Builds/windows-x64-release-20261124-040653-659-29480/mmorpg.exe`（SHA-256 `a4c71b1bfc3e42d02f2f129fe04adef3ebf2343a662884e4b99598e9dfc90e7d`），日志 `Logs/build-client-20261124-040653-659-29480.log`。
+   - 启动 `mmorpg.exe`（1280×720 窗口化，Direct3D 11），`AppBootstrap` 原生 uGUI 正常初始化并持续存活，零 C# 异常（仅预期的本地登录服 `127.0.0.1:8081` 未启动连接失败及稀疏检出未含 `StreamingAssets/Tables` 提示）。
+4. **全界面 Unity 截图目视验收与严格零差异逐像素比对**：
+   - 已在 Unity 中完成邮件（`1931×814`）、组队（`1931×814`）、社交（群组/世界/谣言修复后）、帮会（26 屏 `missingGlyphLabels: 0`）、选线、背包、任务、活动、聚宝斋（20 屏交互校验通过）、主城传送全部 10 类界面截图并逐屏目视检查，透明外框、圆角装饰、中文文案与按钮状态均清晰无露底。
+   - 严格原尺寸整屏逐像素比对（无缩放、无对齐、无裁剪、无容差）：
+     - `designs/mail-ui-v1/01-mail-event.png` vs `01-activity-mail_1931x814.png`：`zero_diff_parity=false`（整帧差异像素 `99.71%`，不透明前景均值差 `22.16`）
+     - `designs/mail-ui-v1/02-mail-system.png` vs `02-plain-pending_1931x814.png`：`zero_diff_parity=false`（整帧差异像素 `98.07%`，不透明前景均值差 `20.08`）
+     - `designs/team-ui-v2/team-ui-v2.png` vs `01-approved-preview_1931x814.png`：`zero_diff_parity=false`（整帧差异像素 `86.72%`，不透明前景均值差 `9.32`）
+   - 差异原因属实记录：运行界面在透明底板外渲染真实游戏底图与离线预览角标、使用运行期 TMP 字体而非手绘效果图字形、包含正式业务新增交互按钮（如组队底栏“开始 PVE / 邀请道友 / 解散队伍 / 离开队伍”）、且邮件底板与参考图存在既有 `1932×814` vs `1931×814` 宽差，因此不声明零像素一致。
+
+## 7. 后续构建与复核命令
 
 ```powershell
-# 1. 打开工程或无头刷新资源导入，确保 80 张透明 PNG 重新导入
-# 2. 运行 EditMode 测试（Mail / Guild / Team / SceneChannel / Gameplay / Jubaozhai / Social）
-Unity.exe -batchmode -projectPath D:\work\mmorpg-client -runTests -testPlatform EditMode -testFilter "MailWindowTests|GuildUiTests|TeamWindowTests|SceneChannelWindowTests" -testResults Logs\ui-integration-editmode.xml -logFile Logs\ui-integration-editmode.log
-
-# 3. 按官方入口构建正式 Windows 客户端（启动场景 Assets/Scenes/Bootstrap.unity）
+# 如需在包含 SocialWindow 标题修复的最新提交上重新出 Windows 正式包（需安装 PowerShell 7 或直接调用 Unity -executeMethod）：
 pwsh -File tools/build_client.ps1 -UnityExe "D:\Unity\Hub\Editor\6000.6.0f1\Editor\Unity.exe"
-
-# 4. 运行产物 Builds/windows-x64-*/mmorpg.exe，锁定同状态同数据对各界面执行原尺寸整屏逐像素比对
 ```

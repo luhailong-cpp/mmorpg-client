@@ -35,6 +35,8 @@ public static class JubaozhaiUiVerification
     {
         if(EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Edit Mode required.");
         var previous=SceneManager.GetActiveScene();
+        if (Application.isBatchMode && string.IsNullOrEmpty(previous.path))
+        { EditorSceneManager.OpenScene("Assets/Scenes/Bootstrap.unity", OpenSceneMode.Single); previous = SceneManager.GetActiveScene(); }
         var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Additive);
         var active=RenderTexture.active;
         RenderTexture target=null; Texture2D pixels=null; JubaozhaiWindow window=null;
@@ -141,6 +143,8 @@ public static class JubaozhaiUiVerification
     {
         if(EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Edit Mode required.");
         var previous=SceneManager.GetActiveScene();
+        if (Application.isBatchMode && string.IsNullOrEmpty(previous.path))
+        { EditorSceneManager.OpenScene("Assets/Scenes/Bootstrap.unity", OpenSceneMode.Single); previous = SceneManager.GetActiveScene(); }
         var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Additive);
         try
         {

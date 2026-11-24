@@ -225,6 +225,32 @@ namespace MmorpgClient.Tests.EditMode.Social
                 if (current != null && current != navigation) UnityEngine.Object.DestroyImmediate(current.gameObject);
             }
         }
+
+        [Test]
+        public void FidelityPagesRenderNativeTitleWithoutOpaqueExactTitleOverlay()
+        {
+            var host = new UnityEngine.GameObject("SocialFidelityTitleTest", typeof(UnityEngine.RectTransform));
+            var design = MmorpgClient.UI.Ugui.QdaoUguiFactory.CreateCenteredRect("Design", host.transform, 2560, 1080);
+            var state = new SocialState(true);
+            var window = new MmorpgClient.UI.Ugui.Social.SocialWindow(design, state);
+            try
+            {
+                foreach (var page in new[] { SocialPage.Groups, SocialPage.World, SocialPage.Rumor })
+                {
+                    window.Show(page);
+                    var title = host.GetComponentsInChildren<TMPro.TMP_Text>(false)
+                        .Single(label => label.name == "SocialTitle");
+                    Assert.That(title.text, Is.EqualTo("仙  友"), page.ToString());
+                    Assert.That(host.GetComponentsInChildren<UnityEngine.UI.Image>(false)
+                        .Any(image => image.name == "exact_title"), Is.False, page.ToString());
+                }
+            }
+            finally
+            {
+                window.Dispose();
+                UnityEngine.Object.DestroyImmediate(host);
+            }
+        }
     }
 
     internal sealed class SocialFakeTransport:IBattleTransport
