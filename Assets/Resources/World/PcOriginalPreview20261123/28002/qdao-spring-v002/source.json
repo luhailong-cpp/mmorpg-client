@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "kind": "CLIENT_QDAO_REDRAWN_STATIC_BACK_SOURCE",
+  "mapId": "28002",
+  "numericMapId": 28002,
+  "name": "地图 28002",
+  "appearance": "spring",
+  "appearanceDisplayName": "春节",
+  "revision": "qdao-spring-v002",
+  "artStage": "qdao_redrawn_static_back",
+  "isTemporaryOriginal": false,
+  "replaceableByQdaoArt": true,
+  "staticBackOnly": true,
+  "completeGameplaySceneClaimed": false,
+  "productionTravelEnabled": false,
+  "sourceBranch": "gbits",
+  "sourceStatus": "ready_qdao_static_back",
+  "sourceDeliveryJsonSha256": "ff1049a4c8b68985bbcfe1ed6b29548ad7fb6bddc6a64ab3a0392b3b55bad2c3",
+  "sourceNativeSha256": "367aee7302e076f2e68870d5a126fce8d8402380a50c46a7f30d4ebc499e570e",
+  "sourceNativeBytes": 10852105,
+  "sourceEvidenceSha256": "d2061a5117e4d95619e6535f340d0957a1ff526300f2c68b3db1ac1113f22b82",
+  "sourceSliceIndexSha256": "825424c92559e65e5528133ad0860bbcd20d845d9adfbcff25a61434f027a5c8",
+  "sourcePackageZipSha256": "16ba371d1296f4ce4d23ea7f64230077562cdd68cfa3be20cd0441fa3f463559",
+  "pcOriginalResourceRoot": "World/PcOriginalPreview20261123/28002/pc-original-20261123/",
+  "pcOriginalSourceNativeSha256": "d4f9e5d5556fb8bccc0ef27f112e956b253e35daa4965641a87a47f32a81748f",
+  "pcOriginalSourceNativeBytes": 7843148,
+  "pcOriginalSourceEvidenceSha256": "af42b42bb7fc146231769074722cdd432e52a93f49700937b51dffd472600f5f",
+  "pcOriginalSourceContainerSha256": "724b3f9b1018951ac21d502a798d54b1b86d0a04250f01e1524add33525dc07f",
+  "nativeWidth": 3000,
+  "nativeHeight": 1800,
+  "alphaStats": {
+    "minMax": [
+      0,
+      254
+    ],
+    "fullyTransparent": 789978,
+    "fullyOpaque": 0,
+    "partialAlpha": 4610022,
+    "totalPixels": 5400000
+  },
+  "tileSize": 1024,
+  "columns": 3,
+  "rows": 2,
+  "tileCount": 6,
+  "hasAlpha": true,
+  "tileFormat": "png_rgba_native_1024_grid",
+  "resampled": false,
+  "overviewDerived": true,
+  "overviewIsResizedPreviewOnly": true,
+  "overviewWidth": 2048,
+  "overviewHeight": 1229,
+  "overviewExtension": ".png",
+  "overviewBytes": 5075487,
+  "overviewSha256": "e374972b7ebe6efd4c555e9e4c26e0dba51e0c796114623e46d39d7c5d0a6ed8",
+  "tilesManifestSha256": "add00adca016301ec4b99a18d97205a048960be038213891b5fb8bcf6d3458b6",
+  "recompositionVerification": {
+    "recomposedPixels": [
+      3000,
+      1800
+    ],
+    "coveredPixels": 5400000,
+    "tileCount": 6,
+    "rgbaByteEqualToWholeSource": true,
+    "alphaStats": {
+      "minMax": [
+        0,
+        254
+      ],
+      "fullyTransparent": 789978,
+      "fullyOpaque": 0,
+      "partialAlpha": 4610022,
+      "totalPixels": 5400000
+    }
+  },
+  "serverRegistrationStatus": "unregistered_local_preview_only"
+}

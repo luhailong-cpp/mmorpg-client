@@ -16,6 +16,7 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 import import_pc_original_maps as importer
+import import_qdao_static_map as qdao_importer
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -169,6 +170,160 @@ class ImportPcOriginalMapsTests(unittest.TestCase):
             # Tamper a tile byte -> verify must fail
             tampered = project / importer.DELIVERY_REL / ready_ids[1] / importer.REVISION / "tiles/r01_c01.jpg"
             tampered.write_bytes(tampered.read_bytes() + b"\x00")
+            with self.assertRaises(ValueError):
+                importer.verify_committed(project)
+
+    def test_qdao_dual_festival_adoption_recomposition_and_tamper_rejection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            handoff = root / "handoff"
+            project = root / "client"
+            delivery = root / "delivery_28002"
+            handoff.mkdir()
+            delivery.mkdir()
+            (project / "Assets/Resources/World").mkdir(parents=True)
+
+            # Seed 36 synthetic PC original maps including 28002 (3000x1800 RGB -> upgraded to RGBA dual-festival)
+            ready_ids = ["28002"] + [f"{10000 + i:05d}" for i in range(35)]
+            unavail_ids = ["29005", "11005", "41049", "50024"]
+            requested = ready_ids + unavail_ids
+
+            maps_sel = []
+            for idx, map_id in enumerate(ready_ids):
+                mdir = handoff / map_id
+                mdir.mkdir()
+                w, h = (3000, 1800) if map_id == "28002" else (600, 400)
+                im = Image.new("RGB", (w, h), (30 + idx, 80, 120))
+                png_path = mdir / f"{map_id}-native.png"
+                im.save(png_path, format="PNG")
+                raw = png_path.read_bytes()
+                sha = sha256_bytes(raw)
+                ev_path = mdir / "source-evidence.json"
+                ev_path.write_text(
+                    json.dumps({
+                        "schemaVersion": 1,
+                        "mapId": map_id,
+                        "branch": "gbits",
+                        "native": {"path": png_path.as_posix(), "sha256": sha, "bytes": len(raw), "pixels": [w, h]},
+                        "sourceContainer": {"sha256": importer.EXPECTED_CONTAINER_SHA256},
+                    }),
+                    encoding="utf-8",
+                )
+                maps_sel.append({
+                    "mapId": map_id,
+                    "name": f"地图 {map_id}",
+                    "native": {"path": png_path.as_posix(), "sha256": sha, "bytes": len(raw), "pixels": [w, h]},
+                    "sourceContainer": "client.dbfs",
+                    "sourceManifest": ev_path.as_posix(),
+                })
+
+            (handoff / "selection.json").write_text(
+                json.dumps({
+                    "schemaVersion": 1,
+                    "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_SELECTION",
+                    "sourceContainerEvidence": {
+                        "path": "client.dbfs",
+                        "bytes": 4626188288,
+                        "sha256": importer.EXPECTED_CONTAINER_SHA256,
+                    },
+                    "requestedMapIds": requested,
+                    "maps": maps_sel,
+                }),
+                encoding="utf-8",
+            )
+            (handoff / "unavailable.json").write_text(
+                json.dumps({
+                    "schemaVersion": 1,
+                    "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_UNAVAILABLE",
+                    "requestedMapIds": requested,
+                    "maps": [
+                        {"mapId": gid, "reason": {"code": "NO_STATIC_BACKGROUND_BRANCH", "infoHeaderCount": 1, "variants": []}}
+                        for gid in unavail_ids
+                    ],
+                }),
+                encoding="utf-8",
+            )
+            (handoff / "special-candidates.json").write_text(
+                json.dumps({
+                    "schemaVersion": 1,
+                    "kind": "LOCAL_PC_ORIGINAL_STATIC_BACK_NONDEFAULT_CANDIDATES",
+                    "requestedMapIds": requested,
+                    "maps": [
+                        {
+                            "mapId": "15000",
+                            "branch": "gbits_jdhj",
+                            "sourceStatus": "source_valid_visual_hold",
+                            "native": {"path": "x", "sha256": "a" * 64, "bytes": 100, "pixels": [8000, 8000]},
+                        },
+                        {
+                            "mapId": "50024",
+                            "branch": "gbits",
+                            "sourceStatus": "viewport_unconfirmed",
+                            "native": {"path": "y", "sha256": "b" * 64, "bytes": 200, "pixels": [4000, 3000]},
+                        },
+                    ],
+                }),
+                encoding="utf-8",
+            )
+            importer.import_all(handoff, project)
+
+            # Build synthetic Q-Dao spring + midautumn RGBA PNGs with partial alpha [0, 254]
+            appearances_doc = {}
+            for app_id, color in [("spring", (200, 40, 40, 254)), ("midautumn", (230, 190, 60, 254))]:
+                adir = delivery / f"{app_id}-v002"
+                adir.mkdir()
+                im = Image.new("RGBA", (3000, 1800), color)
+                # Transparent corner (alpha=0) and partial edge (alpha=128)
+                for y in range(20):
+                    for x in range(20):
+                        im.putpixel((x, y), (0, 0, 0, 0))
+                im.putpixel((25, 25), (100, 120, 140, 128))
+                whole = adir / "28002-continuous.png"
+                im.save(whole, format="PNG")
+                prov = adir / "provenance.json"
+                prov.write_text(json.dumps({"appearance": app_id}), encoding="utf-8")
+                sidx = adir / "28002-slice-index.json"
+                sidx.write_text(json.dumps({"slices": 48}), encoding="utf-8")
+                pkg = adir / "28002-continuous-and-slices.zip"
+                pkg.write_bytes(f"zip-{app_id}".encode("utf-8"))
+                appearances_doc[app_id] = {
+                    "whole": {"path": whole.as_posix(), "sha256": sha256_bytes(whole.read_bytes())},
+                    "provenance": {"path": prov.as_posix(), "sha256": sha256_bytes(prov.read_bytes())},
+                    "sliceIndex": {"path": sidx.as_posix(), "sha256": sha256_bytes(sidx.read_bytes())},
+                    "package": {"path": pkg.as_posix(), "sha256": sha256_bytes(pkg.read_bytes())},
+                }
+
+            (delivery / "delivery.json").write_text(
+                json.dumps({
+                    "schemaVersion": 1,
+                    "mapId": "28002",
+                    "staticBackgroundOnly": True,
+                    "appearances": appearances_doc,
+                }),
+                encoding="utf-8",
+            )
+
+            qdao_receipt = qdao_importer.import_qdao_dual_festival_map(
+                map_id="28002",
+                delivery_dir=delivery,
+                project_root=project,
+                appearance_revisions=[("spring", "qdao-spring-v002"), ("midautumn", "qdao-midautumn-v002")],
+            )
+            self.assertEqual(len(qdao_receipt["appearances"]), 2)
+            for app in qdao_receipt["appearances"]:
+                self.assertTrue(app["recompositionVerification"]["rgbaByteEqualToWholeSource"])
+                self.assertEqual(app["alphaStats"]["minMax"], [0, 254])
+                self.assertEqual(app["alphaStats"]["fullyOpaque"], 0)
+                self.assertEqual(app["tileCount"], 6)
+
+            summary = importer.verify_committed(project)
+            self.assertEqual(summary["result"], "PASS")
+            self.assertEqual(summary["readyMaps"], 36)
+            self.assertEqual(summary["checkedOverviews"], 37)
+
+            # Tamper midautumn tile -> verify_committed must reject it
+            tampered_mid = project / importer.DELIVERY_REL / "28002/qdao-midautumn-v002/tiles/r02_c03.png"
+            tampered_mid.write_bytes(tampered_mid.read_bytes() + b"\x00")
             with self.assertRaises(ValueError):
                 importer.verify_committed(project)
 

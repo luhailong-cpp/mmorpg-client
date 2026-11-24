@@ -45,6 +45,24 @@ namespace MmorpgClient.World.CurrentMaps
         public static bool IsValidArtStage(string value)
             => value == ArtStagePcOriginal || value == ArtStageQdaoRedrawn || value == ArtStageFormalDelivery;
 
+        public static bool IsValidAppearanceId(string value)
+            => value == "normal" || value == "spring" || value == "lantern" ||
+               value == "midautumn" || value == "mid-autumn";
+
+        public static string NormalizeAppearanceId(string value)
+            => value == "mid-autumn" ? "midautumn" : value;
+
+        public static string AppearanceDisplayLabel(string appearanceId, string explicitLabel = null)
+        {
+            if (!string.IsNullOrWhiteSpace(explicitLabel)) return explicitLabel;
+            string norm = NormalizeAppearanceId(appearanceId);
+            return norm == "spring" ? "春节" :
+                   norm == "midautumn" ? "中秋" :
+                   norm == "lantern" ? "元宵" :
+                   norm == "normal" ? "日常" :
+                   string.IsNullOrEmpty(appearanceId) ? "默认" : appearanceId;
+        }
+
         public static bool IsSafeResourcePath(string value, bool expectTrailingSlash = false)
         {
             if (string.IsNullOrWhiteSpace(value)) return false;
@@ -74,6 +92,72 @@ namespace MmorpgClient.World.CurrentMaps
         public string path;
         public long bytes;
         public string sha256;
+    }
+
+    [Serializable]
+    public sealed class PcOriginalMapAppearanceEntry
+    {
+        public string id;
+        public string displayName;
+        public string artStage;
+        public bool isTemporaryOriginal;
+        public string revision;
+        public bool hasAlpha;
+        public string tileFormat;
+        public bool resampled;
+        public string resourceRoot;
+        public string overviewResourcePath;
+        public string overviewExtension;
+        public int overviewWidth;
+        public int overviewHeight;
+        public string overviewSha256;
+        public long overviewBytes;
+        public string tilesManifestResourcePath;
+        public string tilesManifestSha256;
+        public string sourceManifestResourcePath;
+        public string sourceNativeSha256;
+        public long sourceNativeBytes;
+        public string sourceEvidenceSha256;
+
+        public string DisplayLabel => PcOriginalMapContract.AppearanceDisplayLabel(id, displayName);
+
+        public void Validate(string mapId, string pcOriginalSourceNativeSha256)
+        {
+            string label = $"{mapId}/{id}";
+            if (!PcOriginalMapContract.IsValidAppearanceId(id))
+                throw new InvalidOperationException($"{mapId}: unsupported appearance id '{id}'.");
+            if (!PcOriginalMapContract.IsValidArtStage(artStage))
+                throw new InvalidOperationException($"{label}: unsupported artStage '{artStage}'.");
+            if (artStage == PcOriginalMapContract.ArtStageQdaoRedrawn && isTemporaryOriginal)
+                throw new InvalidOperationException($"{label}: qdao_redrawn_static_back must have isTemporaryOriginal=false.");
+            if (string.IsNullOrWhiteSpace(revision))
+                throw new InvalidOperationException($"{label}: missing revision.");
+            if (resampled)
+                throw new InvalidOperationException($"{label}: native preview tiles must not be resampled.");
+            if (!PcOriginalMapContract.IsSafeResourcePath(resourceRoot, expectTrailingSlash: true))
+                throw new InvalidOperationException($"{label}: invalid resourceRoot '{resourceRoot}'.");
+            if (!PcOriginalMapContract.IsSafeResourcePath(overviewResourcePath) ||
+                !overviewResourcePath.StartsWith(resourceRoot, StringComparison.Ordinal))
+                throw new InvalidOperationException($"{label}: invalid overviewResourcePath '{overviewResourcePath}'.");
+            if (hasAlpha && !string.Equals(overviewExtension, ".png", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException($"{label}: RGBA appearance must use .png overview.");
+            if (!PcOriginalMapContract.IsSafeResourcePath(tilesManifestResourcePath) ||
+                !tilesManifestResourcePath.StartsWith(resourceRoot, StringComparison.Ordinal))
+                throw new InvalidOperationException($"{label}: invalid tilesManifestResourcePath '{tilesManifestResourcePath}'.");
+            if (overviewWidth <= 0 || overviewHeight <= 0 ||
+                overviewWidth > PcOriginalMapContract.DefaultOverviewMaxEdge ||
+                overviewHeight > PcOriginalMapContract.DefaultOverviewMaxEdge)
+                throw new InvalidOperationException($"{label}: invalid overview size {overviewWidth}x{overviewHeight}.");
+            if (!PcOriginalMapContract.IsValidSha256(sourceNativeSha256) || sourceNativeBytes <= 0)
+                throw new InvalidOperationException($"{label}: invalid sourceNativeSha256 or byte size.");
+            if (artStage == PcOriginalMapContract.ArtStageQdaoRedrawn &&
+                !string.IsNullOrEmpty(pcOriginalSourceNativeSha256) &&
+                string.Equals(sourceNativeSha256, pcOriginalSourceNativeSha256, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException($"{label}: Q-Dao appearance cannot reuse old PC original sourceNativeSha256.");
+            if (!PcOriginalMapContract.IsValidSha256(tilesManifestSha256) ||
+                !PcOriginalMapContract.IsValidSha256(overviewSha256) || overviewBytes <= 0)
+                throw new InvalidOperationException($"{label}: invalid derived manifest/overview SHA.");
+        }
     }
 
     [Serializable]
@@ -111,12 +195,89 @@ namespace MmorpgClient.World.CurrentMaps
         public string sourceNativeSha256;
         public long sourceNativeBytes;
         public string sourceEvidenceSha256;
+        public string pcOriginalSourceNativeSha256;
+        public long pcOriginalSourceNativeBytes;
+        public string defaultAppearance;
+        public PcOriginalMapAppearanceEntry[] appearances;
         public string serverRegistrationStatus;
 
         public float WorldWidth => nativeWidth / PcOriginalMapContract.PixelsPerUnit;
         public float WorldHeight => nativeHeight / PcOriginalMapContract.PixelsPerUnit;
 
         public string DisplayName => string.IsNullOrWhiteSpace(name) ? "地图 " + mapId : name;
+
+        public bool HasAppearances => appearances != null && appearances.Length > 0;
+        public bool HasMultipleAppearances => appearances != null && appearances.Length > 1;
+        public string EffectiveDefaultAppearance
+            => !string.IsNullOrWhiteSpace(defaultAppearance)
+                ? defaultAppearance
+                : (HasAppearances ? appearances[0].id : "");
+
+        public PcOriginalMapAppearanceEntry FindAppearance(string appearanceId)
+        {
+            if (!HasAppearances) return null;
+            string query = string.IsNullOrWhiteSpace(appearanceId) ? EffectiveDefaultAppearance : appearanceId;
+            if (string.IsNullOrWhiteSpace(query)) return null;
+            for (int i = 0; i < appearances.Length; i++)
+                if (appearances[i] != null && string.Equals(appearances[i].id, query, StringComparison.Ordinal))
+                    return appearances[i];
+            string normalizedQuery = PcOriginalMapContract.NormalizeAppearanceId(query);
+            for (int i = 0; i < appearances.Length; i++)
+                if (appearances[i] != null &&
+                    string.Equals(PcOriginalMapContract.NormalizeAppearanceId(appearances[i].id), normalizedQuery, StringComparison.Ordinal))
+                    return appearances[i];
+            return null;
+        }
+
+        public PcOriginalMapEntry ResolveAppearance(string appearanceId = null)
+        {
+            if (!HasAppearances)
+                return string.IsNullOrWhiteSpace(appearanceId) ? this : null;
+
+            var app = FindAppearance(appearanceId);
+            if (app == null) return null;
+
+            return new PcOriginalMapEntry
+            {
+                mapId = mapId,
+                numericMapId = numericMapId,
+                name = name,
+                artStage = app.artStage,
+                isTemporaryOriginal = app.isTemporaryOriginal,
+                replaceableByQdaoArt = replaceableByQdaoArt,
+                revision = app.revision,
+                sourceBranch = sourceBranch,
+                sourceStatus = sourceStatus,
+                nativeWidth = nativeWidth,
+                nativeHeight = nativeHeight,
+                aspectRatio = aspectRatio,
+                tileSize = tileSize,
+                columns = columns,
+                rows = rows,
+                tileCount = tileCount,
+                hasAlpha = app.hasAlpha,
+                tileFormat = app.tileFormat,
+                resampled = app.resampled,
+                resourceRoot = app.resourceRoot,
+                overviewResourcePath = app.overviewResourcePath,
+                overviewExtension = app.overviewExtension,
+                overviewWidth = app.overviewWidth,
+                overviewHeight = app.overviewHeight,
+                overviewSha256 = app.overviewSha256,
+                overviewBytes = app.overviewBytes,
+                tilesManifestResourcePath = app.tilesManifestResourcePath,
+                tilesManifestSha256 = app.tilesManifestSha256,
+                sourceManifestResourcePath = app.sourceManifestResourcePath,
+                sourceNativeSha256 = app.sourceNativeSha256,
+                sourceNativeBytes = app.sourceNativeBytes,
+                sourceEvidenceSha256 = app.sourceEvidenceSha256,
+                pcOriginalSourceNativeSha256 = pcOriginalSourceNativeSha256,
+                pcOriginalSourceNativeBytes = pcOriginalSourceNativeBytes,
+                defaultAppearance = app.id,
+                appearances = appearances,
+                serverRegistrationStatus = serverRegistrationStatus
+            };
+        }
 
         public void Validate()
         {
@@ -126,6 +287,8 @@ namespace MmorpgClient.World.CurrentMaps
                 throw new InvalidOperationException($"{mapId}: numericMapId ({numericMapId}) does not match mapId.");
             if (!PcOriginalMapContract.IsValidArtStage(artStage))
                 throw new InvalidOperationException($"{mapId}: unsupported artStage '{artStage}'.");
+            if (artStage == PcOriginalMapContract.ArtStageQdaoRedrawn && isTemporaryOriginal)
+                throw new InvalidOperationException($"{mapId}: qdao_redrawn_static_back must have isTemporaryOriginal=false.");
             if (string.IsNullOrWhiteSpace(revision))
                 throw new InvalidOperationException($"{mapId}: missing revision.");
             if (nativeWidth <= 0 || nativeHeight <= 0)
@@ -147,6 +310,8 @@ namespace MmorpgClient.World.CurrentMaps
             if (!PcOriginalMapContract.IsSafeResourcePath(overviewResourcePath) ||
                 !overviewResourcePath.StartsWith(resourceRoot, StringComparison.Ordinal))
                 throw new InvalidOperationException($"{mapId}: invalid overviewResourcePath '{overviewResourcePath}'.");
+            if (hasAlpha && !string.Equals(overviewExtension, ".png", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException($"{mapId}: RGBA map must use .png overview.");
             if (!PcOriginalMapContract.IsSafeResourcePath(tilesManifestResourcePath) ||
                 !tilesManifestResourcePath.StartsWith(resourceRoot, StringComparison.Ordinal))
                 throw new InvalidOperationException($"{mapId}: invalid tilesManifestResourcePath '{tilesManifestResourcePath}'.");
@@ -156,9 +321,52 @@ namespace MmorpgClient.World.CurrentMaps
                 throw new InvalidOperationException($"{mapId}: invalid overview size {overviewWidth}x{overviewHeight}.");
             if (!PcOriginalMapContract.IsValidSha256(sourceNativeSha256) || sourceNativeBytes <= 0)
                 throw new InvalidOperationException($"{mapId}: invalid sourceNativeSha256 or byte size.");
+            if (!string.IsNullOrEmpty(pcOriginalSourceNativeSha256))
+            {
+                if (!PcOriginalMapContract.IsValidSha256(pcOriginalSourceNativeSha256) || pcOriginalSourceNativeBytes <= 0)
+                    throw new InvalidOperationException($"{mapId}: invalid pcOriginalSourceNativeSha256 or byte size.");
+                if (artStage == PcOriginalMapContract.ArtStageQdaoRedrawn &&
+                    string.Equals(sourceNativeSha256, pcOriginalSourceNativeSha256, StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidOperationException($"{mapId}: Q-Dao map cannot reuse old PC original sourceNativeSha256.");
+            }
             if (!PcOriginalMapContract.IsValidSha256(tilesManifestSha256) ||
                 !PcOriginalMapContract.IsValidSha256(overviewSha256) || overviewBytes <= 0)
                 throw new InvalidOperationException($"{mapId}: invalid derived manifest/overview SHA.");
+
+            if (HasAppearances)
+            {
+                if (string.IsNullOrWhiteSpace(defaultAppearance))
+                    throw new InvalidOperationException($"{mapId}: appearances[] requires defaultAppearance.");
+                var ids = new HashSet<string>(StringComparer.Ordinal);
+                var roots = new HashSet<string>(StringComparer.Ordinal);
+                PcOriginalMapAppearanceEntry defaultObj = null;
+                for (int i = 0; i < appearances.Length; i++)
+                {
+                    var app = appearances[i];
+                    if (app == null) throw new InvalidOperationException($"{mapId}: null appearance at index {i}.");
+                    app.Validate(mapId, pcOriginalSourceNativeSha256);
+                    string normId = PcOriginalMapContract.NormalizeAppearanceId(app.id);
+                    if (!ids.Add(normId))
+                        throw new InvalidOperationException($"{mapId}: duplicate appearance id '{app.id}'.");
+                    if (!roots.Add(app.resourceRoot))
+                        throw new InvalidOperationException($"{mapId}: duplicate appearance resourceRoot '{app.resourceRoot}'.");
+                    if (string.Equals(app.id, defaultAppearance, StringComparison.Ordinal))
+                        defaultObj = app;
+                }
+                if (defaultObj == null)
+                    throw new InvalidOperationException($"{mapId}: defaultAppearance '{defaultAppearance}' not found in appearances[].");
+                if (artStage != defaultObj.artStage || isTemporaryOriginal != defaultObj.isTemporaryOriginal ||
+                    revision != defaultObj.revision || hasAlpha != defaultObj.hasAlpha ||
+                    tileFormat != defaultObj.tileFormat || resourceRoot != defaultObj.resourceRoot ||
+                    overviewResourcePath != defaultObj.overviewResourcePath ||
+                    !string.Equals(overviewSha256, defaultObj.overviewSha256, StringComparison.OrdinalIgnoreCase) ||
+                    overviewBytes != defaultObj.overviewBytes ||
+                    tilesManifestResourcePath != defaultObj.tilesManifestResourcePath ||
+                    !string.Equals(tilesManifestSha256, defaultObj.tilesManifestSha256, StringComparison.OrdinalIgnoreCase) ||
+                    !string.Equals(sourceNativeSha256, defaultObj.sourceNativeSha256, StringComparison.OrdinalIgnoreCase) ||
+                    sourceNativeBytes != defaultObj.sourceNativeBytes)
+                    throw new InvalidOperationException($"{mapId}: top-level metadata disagrees with defaultAppearance '{defaultAppearance}'.");
+            }
         }
     }
 
@@ -327,6 +535,7 @@ namespace MmorpgClient.World.CurrentMaps
         public uint numericMapId;
         public string revision;
         public string artStage;
+        public string appearance;
         public int nativeWidth;
         public int nativeHeight;
         public int tileSize;
@@ -356,6 +565,7 @@ namespace MmorpgClient.World.CurrentMaps
             if (expectedEntry != null)
             {
                 if (expectedEntry.mapId != mapId || expectedEntry.revision != revision ||
+                    expectedEntry.artStage != artStage || expectedEntry.hasAlpha != hasAlpha ||
                     expectedEntry.nativeWidth != nativeWidth || expectedEntry.nativeHeight != nativeHeight ||
                     expectedEntry.tileSize != tileSize || expectedEntry.columns != columns ||
                     expectedEntry.rows != rows || expectedEntry.resourceRoot != resourceRoot ||
@@ -384,6 +594,8 @@ namespace MmorpgClient.World.CurrentMaps
                 if (!PcOriginalMapContract.IsSafeResourcePath(tile.resourcePath) ||
                     !tile.resourcePath.StartsWith(resourceRoot + "tiles/", StringComparison.Ordinal))
                     throw new InvalidOperationException($"{mapId}: invalid tile resourcePath '{tile.resourcePath}'.");
+                if (hasAlpha && !string.Equals(tile.fileExtension, ".png", StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidOperationException($"{mapId}: RGBA tile ({tile.row},{tile.column}) must use .png.");
                 if (!PcOriginalMapContract.IsValidSha256(tile.sha256) || tile.bytes <= 0)
                     throw new InvalidOperationException($"{mapId}: invalid tile SHA or bytes at ({tile.row},{tile.column}).");
                 area += (long)tile.width * tile.height;

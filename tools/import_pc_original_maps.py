@@ -641,62 +641,59 @@ def verify_committed(project_root: Path, *, check_image_pixels: bool = True) -> 
     for cand in special:
         require(cand.get("integrated") is False, f"HOLD candidate {cand.get('mapId')} must not be marked integrated")
 
-    checked_tiles = 0
-    checked_overviews = 0
-    for entry in maps:
-        map_id = entry["mapId"]
-        require(bool(MAP_ID_RE.match(map_id)), f"Invalid mapId: {map_id}")
-        require(entry["numericMapId"] == int(map_id), f"{map_id}: numericMapId mismatch")
-        require(entry.get("artStage") in ("pc_original_static_back", "qdao_redrawn_static_back", "formal_art_delivery"), f"{map_id}: invalid artStage")
-        require(entry.get("resampled") is False, f"{map_id}: tiles must not be resampled")
-        require(bool(SHA256_RE.match(entry.get("sourceNativeSha256", ""))), f"{map_id}: invalid sourceNativeSha256")
+    def verify_variant(map_id: str, label: str, variant: dict, native_w: int, native_h: int, tile_size: int, cols: int, rows: int, tile_count: int) -> tuple[int, int]:
+        require(variant.get("artStage") in ("pc_original_static_back", "qdao_redrawn_static_back", "formal_art_delivery"), f"{label}: invalid artStage")
+        if variant.get("artStage") == "qdao_redrawn_static_back":
+            require(variant.get("isTemporaryOriginal") is False, f"{label}: qdao_redrawn_static_back must have isTemporaryOriginal=false")
+        require(variant.get("resampled") is False, f"{label}: tiles must not be resampled")
+        require(bool(SHA256_RE.match(variant.get("sourceNativeSha256", ""))), f"{label}: invalid sourceNativeSha256")
+        require(int(variant.get("sourceNativeBytes", 0)) > 0, f"{label}: invalid sourceNativeBytes")
 
-        res_root = entry["resourceRoot"]
-        require(res_root.startswith(RESOURCE_ROOT) and res_root.endswith("/"), f"{map_id}: invalid resourceRoot")
+        res_root = variant["resourceRoot"]
+        require(res_root.startswith(RESOURCE_ROOT) and res_root.endswith("/"), f"{label}: invalid resourceRoot")
         map_dir = project_root / "Assets/Resources" / res_root.rstrip("/")
-        require(map_dir.is_dir(), f"{map_id}: missing directory {map_dir}")
-        require(Path(str(map_dir) + ".meta").is_file(), f"{map_id}: missing dir meta")
+        require(map_dir.is_dir(), f"{label}: missing directory {map_dir}")
+        require(Path(str(map_dir) + ".meta").is_file(), f"{label}: missing dir meta")
 
-        # Verify tiles.json
         tiles_json_path = map_dir / "tiles.json"
-        require(tiles_json_path.is_file() and Path(str(tiles_json_path) + ".meta").is_file(), f"{map_id}: missing tiles.json or meta")
+        require(tiles_json_path.is_file() and Path(str(tiles_json_path) + ".meta").is_file(), f"{label}: missing tiles.json or meta")
         tiles_raw = tiles_json_path.read_bytes()
-        require(sha256_bytes(tiles_raw) == entry["tilesManifestSha256"], f"{map_id}: tilesManifestSha256 mismatch")
+        require(sha256_bytes(tiles_raw) == variant["tilesManifestSha256"], f"{label}: tilesManifestSha256 mismatch")
         tm = json.loads(tiles_raw.decode("utf-8"))
 
-        native_w, native_h = int(entry["nativeWidth"]), int(entry["nativeHeight"])
-        tile_size = int(entry["tileSize"])
-        cols, rows = int(entry["columns"]), int(entry["rows"])
-        require(tm["mapId"] == map_id and tm["nativeWidth"] == native_w and tm["nativeHeight"] == native_h, f"{map_id}: tiles.json header mismatch")
-        require(cols == math.ceil(native_w / tile_size) and rows == math.ceil(native_h / tile_size), f"{map_id}: grid dimension mismatch")
-        require(len(tm["tiles"]) == cols * rows == int(entry["tileCount"]), f"{map_id}: tile count mismatch")
-        require(abs(entry["aspectRatio"] - native_w / float(native_h)) < 1e-9, f"{map_id}: aspect ratio mismatch")
+        require(tm["mapId"] == map_id and tm["nativeWidth"] == native_w and tm["nativeHeight"] == native_h, f"{label}: tiles.json header mismatch")
+        require(tm["revision"] == variant["revision"] and tm["artStage"] == variant["artStage"], f"{label}: tiles.json revision/artStage mismatch")
+        require(bool(tm["hasAlpha"]) == bool(variant["hasAlpha"]), f"{label}: tiles.json hasAlpha mismatch")
+        require(tm["resourceRoot"] == res_root and tm["sourceNativeSha256"] == variant["sourceNativeSha256"], f"{label}: tiles.json root/source mismatch")
+        require(cols == math.ceil(native_w / tile_size) and rows == math.ceil(native_h / tile_size), f"{label}: grid dimension mismatch")
+        require(len(tm["tiles"]) == cols * rows == tile_count, f"{label}: tile count mismatch")
 
-        # Verify source.json
         source_json_path = map_dir / "source.json"
-        require(source_json_path.is_file() and Path(str(source_json_path) + ".meta").is_file(), f"{map_id}: missing source.json or meta")
+        require(source_json_path.is_file() and Path(str(source_json_path) + ".meta").is_file(), f"{label}: missing source.json or meta")
         src = read_json(source_json_path)
-        require(src["mapId"] == map_id and src["sourceNativeSha256"] == entry["sourceNativeSha256"], f"{map_id}: source.json mismatch")
+        require(src["mapId"] == map_id and src["sourceNativeSha256"] == variant["sourceNativeSha256"], f"{label}: source.json mismatch")
 
-        # Verify overview
-        ov_ext = entry["overviewExtension"]
+        ov_ext = variant["overviewExtension"]
+        if variant["hasAlpha"]:
+            require(ov_ext == ".png", f"{label}: RGBA map must use .png overview")
         ov_path = map_dir / f"overview{ov_ext}"
-        require(ov_path.is_file() and Path(str(ov_path) + ".meta").is_file(), f"{map_id}: missing overview or meta")
+        require(ov_path.is_file() and Path(str(ov_path) + ".meta").is_file(), f"{label}: missing overview or meta")
         ov_bytes = ov_path.read_bytes()
-        require(len(ov_bytes) == int(entry["overviewBytes"]), f"{map_id}: overview bytes mismatch")
-        require(sha256_bytes(ov_bytes) == entry["overviewSha256"], f"{map_id}: overview sha256 mismatch")
+        require(len(ov_bytes) == int(variant["overviewBytes"]), f"{label}: overview bytes mismatch")
+        require(sha256_bytes(ov_bytes) == variant["overviewSha256"], f"{label}: overview sha256 mismatch")
         if check_image_pixels:
             with Image.open(io.BytesIO(ov_bytes)) as ov_im:
-                require(ov_im.size == (int(entry["overviewWidth"]), int(entry["overviewHeight"])), f"{map_id}: overview pixel size mismatch")
-                require(max(ov_im.size) <= OVERVIEW_MAX_EDGE, f"{map_id}: overview exceeds {OVERVIEW_MAX_EDGE}")
-        checked_overviews += 1
+                require(ov_im.size == (int(variant["overviewWidth"]), int(variant["overviewHeight"])), f"{label}: overview pixel size mismatch")
+                require(max(ov_im.size) <= OVERVIEW_MAX_EDGE, f"{label}: overview exceeds {OVERVIEW_MAX_EDGE}")
+                if variant["hasAlpha"]:
+                    require(ov_im.mode == "RGBA", f"{label}: RGBA overview must keep RGBA mode")
 
-        # Verify exact tile coverage & per-tile hashes/dimensions
         seen_coords = set()
         covered_area = 0
+        variant_tiles = 0
         for tile in tm["tiles"]:
             r, c = int(tile["row"]), int(tile["column"])
-            require(1 <= r <= rows and 1 <= c <= cols and (r, c) not in seen_coords, f"{map_id}: invalid/duplicate tile ({r},{c})")
+            require(1 <= r <= rows and 1 <= c <= cols and (r, c) not in seen_coords, f"{label}: invalid/duplicate tile ({r},{c})")
             seen_coords.add((r, c))
             exp_x = (c - 1) * tile_size
             exp_y = (r - 1) * tile_size
@@ -704,27 +701,79 @@ def verify_committed(project_root: Path, *, check_image_pixels: bool = True) -> 
             exp_h = min(tile_size, native_h - exp_y)
             require(
                 (int(tile["x"]), int(tile["y"]), int(tile["width"]), int(tile["height"])) == (exp_x, exp_y, exp_w, exp_h),
-                f"{map_id}: tile ({r},{c}) rect mismatch",
+                f"{label}: tile ({r},{c}) rect mismatch",
             )
-            require(exp_w <= tile_size and exp_h <= tile_size, f"{map_id}: tile exceeds {tile_size}")
+            require(exp_w <= tile_size and exp_h <= tile_size, f"{label}: tile exceeds {tile_size}")
             covered_area += exp_w * exp_h
 
             ext = tile["fileExtension"]
-            if entry["hasAlpha"]:
-                require(ext == ".png", f"{map_id}: RGBA map must use .png tiles")
+            if variant["hasAlpha"]:
+                require(ext == ".png", f"{label}: RGBA map must use .png tiles")
             tile_file = map_dir / "tiles" / f"r{r:02d}_c{c:02d}{ext}"
-            require(tile_file.is_file() and Path(str(tile_file) + ".meta").is_file(), f"{map_id}: missing tile or meta: {tile_file}")
+            require(tile_file.is_file() and Path(str(tile_file) + ".meta").is_file(), f"{label}: missing tile or meta: {tile_file}")
             t_bytes = tile_file.read_bytes()
-            require(len(t_bytes) == int(tile["bytes"]), f"{map_id}: tile ({r},{c}) byte count mismatch")
-            require(sha256_bytes(t_bytes) == tile["sha256"], f"{map_id}: tile ({r},{c}) SHA mismatch")
+            require(len(t_bytes) == int(tile["bytes"]), f"{label}: tile ({r},{c}) byte count mismatch")
+            require(sha256_bytes(t_bytes) == tile["sha256"], f"{label}: tile ({r},{c}) SHA mismatch")
             if check_image_pixels:
                 with Image.open(io.BytesIO(t_bytes)) as t_im:
-                    require(t_im.size == (exp_w, exp_h), f"{map_id}: tile ({r},{c}) image dimensions {t_im.size} != {(exp_w, exp_h)}")
-                    if entry["hasAlpha"]:
-                        require(t_im.mode == "RGBA", f"{map_id}: RGBA tile must keep RGBA mode")
-            checked_tiles += 1
+                    require(t_im.size == (exp_w, exp_h), f"{label}: tile ({r},{c}) image dimensions {t_im.size} != {(exp_w, exp_h)}")
+                    if variant["hasAlpha"]:
+                        require(t_im.mode == "RGBA", f"{label}: RGBA tile must keep RGBA mode")
+            variant_tiles += 1
 
-        require(covered_area == native_w * native_h, f"{map_id}: tile coverage area mismatch")
+        require(covered_area == native_w * native_h, f"{label}: tile coverage area mismatch")
+        return variant_tiles, 1
+
+    checked_tiles = 0
+    checked_overviews = 0
+    for entry in maps:
+        map_id = entry["mapId"]
+        require(bool(MAP_ID_RE.match(map_id)), f"Invalid mapId: {map_id}")
+        require(entry["numericMapId"] == int(map_id), f"{map_id}: numericMapId mismatch")
+        native_w, native_h = int(entry["nativeWidth"]), int(entry["nativeHeight"])
+        tile_size = int(entry["tileSize"])
+        cols, rows = int(entry["columns"]), int(entry["rows"])
+        tile_count = int(entry["tileCount"])
+        require(abs(entry["aspectRatio"] - native_w / float(native_h)) < 1e-9, f"{map_id}: aspect ratio mismatch")
+
+        pc_orig_sha = entry.get("pcOriginalSourceNativeSha256")
+        if pc_orig_sha is not None:
+            require(bool(SHA256_RE.match(pc_orig_sha)), f"{map_id}: invalid pcOriginalSourceNativeSha256")
+            if entry.get("artStage") == "qdao_redrawn_static_back":
+                require(entry["sourceNativeSha256"] != pc_orig_sha, f"{map_id}: Q-Dao sourceNativeSha256 must not reuse old PC original SHA")
+
+        appearances = entry.get("appearances")
+        if appearances:
+            default_app = entry.get("defaultAppearance")
+            require(bool(default_app), f"{map_id}: multi-appearance entry requires defaultAppearance")
+            seen_ids = set()
+            seen_roots = set()
+            default_obj = None
+            for app in appearances:
+                app_id = app.get("id", "")
+                require(app_id and app_id not in seen_ids, f"{map_id}: invalid or duplicate appearance '{app_id}'")
+                seen_ids.add(app_id)
+                app_root = app.get("resourceRoot", "")
+                require(app_root not in seen_roots, f"{map_id}: duplicate appearance resourceRoot '{app_root}'")
+                seen_roots.add(app_root)
+                if app_id == default_app:
+                    default_obj = app
+                if pc_orig_sha is not None and app.get("artStage") == "qdao_redrawn_static_back":
+                    require(app["sourceNativeSha256"] != pc_orig_sha, f"{map_id}/{app_id}: Q-Dao SHA must not reuse PC original SHA")
+                t_cnt, ov_cnt = verify_variant(map_id, f"{map_id}/{app_id}", app, native_w, native_h, tile_size, cols, rows, tile_count)
+                checked_tiles += t_cnt
+                checked_overviews += ov_cnt
+            require(default_obj is not None, f"{map_id}: defaultAppearance '{default_app}' missing from appearances[]")
+            for field in (
+                "artStage", "isTemporaryOriginal", "revision", "hasAlpha", "tileFormat",
+                "resourceRoot", "overviewResourcePath", "overviewSha256", "overviewBytes",
+                "tilesManifestResourcePath", "tilesManifestSha256", "sourceNativeSha256", "sourceNativeBytes",
+            ):
+                require(entry.get(field) == default_obj.get(field), f"{map_id}: top-level {field} disagrees with defaultAppearance")
+        else:
+            t_cnt, ov_cnt = verify_variant(map_id, map_id, entry, native_w, native_h, tile_size, cols, rows, tile_count)
+            checked_tiles += t_cnt
+            checked_overviews += ov_cnt
 
     summary = {
         "result": "PASS",

@@ -6,9 +6,9 @@ using UnityEngine;
 namespace MmorpgClient.Editor.CurrentMaps
 {
     /// <summary>
-    /// Enforces exact native-pixel import settings for PC original static background preview assets
+    /// Enforces exact native-pixel import settings for PC original and Q-Dao static background preview assets
     /// under Assets/Resources/World/PcOriginalPreview20261123/.
-    /// Preserves RGBA alpha on .png maps (15000, 27001, 70001) and keeps opaque RGB24 on .jpg maps.
+    /// Preserves RGBA32 alpha on .png maps (e.g. 15000, 27001, 70001, 28002 spring/midautumn) and keeps RGB24 on .jpg maps.
     /// </summary>
     public sealed class PcOriginalMapPreviewImporter : AssetPostprocessor
     {

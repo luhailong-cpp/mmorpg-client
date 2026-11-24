@@ -64,7 +64,7 @@
 | `12000` | 地图 12000 | 8000×8945 | 8×9 (72) | RGB JPG | `World/PcOriginalPreview20261123/12000/pc-original-20261123/` | `pc-original-20261123` |
 | `27001` | 地图 27001 | 4600×2652 | 5×3 (15) | **RGBA PNG** | `World/PcOriginalPreview20261123/27001/pc-original-20261123/` | `pc-original-20261123` |
 | `13000` | 地图 13000 | 8800×5852 | 9×6 (54) | RGB JPG | `World/PcOriginalPreview20261123/13000/pc-original-20261123/` | `pc-original-20261123` |
-| `28002` | 地图 28002 | 3000×1800 | 3×2 (6) | RGB JPG | `World/PcOriginalPreview20261123/28002/pc-original-20261123/` | `pc-original-20261123` |
+| `28002` | 地图 28002（道家Q版双节：春节/中秋） | 3000×1800 | 3×2 (6×2节) | **RGBA PNG** | `World/PcOriginalPreview20261123/28002/qdao-spring-v002/` & `qdao-midautumn-v002/`（保留原图 `pc-original-20261123/` 对照） | `qdao-spring-v002` / `qdao-midautumn-v002` |
 | `41081` | 地图 41081 | 4000×2600 | 4×3 (12) | RGB JPG | `World/PcOriginalPreview20261123/41081/pc-original-20261123/` | `pc-original-20261123` |
 | `15000` | 地图 15000（普通 `gbits` 版） | 1920×2298 | 2×3 (6) | **RGBA PNG** | `World/PcOriginalPreview20261123/15000/pc-original-20261123/` | `pc-original-20261123` |
 | `70001` | 地图 70001 | 1920×1286 | 2×2 (4) | **RGBA PNG** | `World/PcOriginalPreview20261123/70001/pc-original-20261123/` | `pc-original-20261123` |

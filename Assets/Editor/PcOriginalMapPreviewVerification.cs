@@ -22,6 +22,8 @@ namespace MmorpgClient.Editor.CurrentMaps
         private sealed class MapVerificationItem
         {
             public string mapId;
+            public string appearance;
+            public string artStage;
             public string name;
             public int nativeWidth;
             public int nativeHeight;
@@ -105,67 +107,105 @@ namespace MmorpgClient.Editor.CurrentMaps
                     throw new InvalidOperationException(
                         $"Expected 36 ready / 4 unavailable / 2 special HOLD, got {catalog.readyCount}/{catalog.unavailableCount}/{catalog.specialHoldCount}.");
 
-                // 3. Verify all 36 maps: manifest, overview texture, and representative native tiles (first + last edge tile).
+                // 3. Verify all 36 maps and every appearance variant: manifest, overview texture, and native tiles.
                 var items = new List<MapVerificationItem>(catalog.maps.Length);
                 int totalSampled = 0;
 
                 for (int i = 0; i < catalog.maps.Length; i++)
                 {
-                    var map = catalog.maps[i];
-                    var tilesAsset = Resources.Load<TextAsset>(map.tilesManifestResourcePath);
-                    if (tilesAsset == null)
-                        throw new InvalidOperationException($"{map.mapId}: missing tiles manifest {map.tilesManifestResourcePath}");
-                    var manifest = JsonUtility.FromJson<PcOriginalTileManifest>(tilesAsset.text);
-                    if (manifest == null)
-                        throw new InvalidOperationException($"{map.mapId}: failed to parse tiles manifest.");
-                    manifest.Validate(map);
-
-                    var overview = Resources.Load<Texture2D>(map.overviewResourcePath);
-                    if (overview == null)
-                        throw new InvalidOperationException($"{map.mapId}: failed to load overview texture {map.overviewResourcePath}");
-                    if (overview.width != map.overviewWidth || overview.height != map.overviewHeight)
-                        throw new InvalidOperationException(
-                            $"{map.mapId}: overview size mismatch {overview.width}x{overview.height} != {map.overviewWidth}x{map.overviewHeight}");
-                    if (overview.mipmapCount != 1)
-                        throw new InvalidOperationException($"{map.mapId}: overview mipmapCount={overview.mipmapCount}, expected 1.");
-                    Resources.UnloadAsset(overview);
-
-                    // Sample top-left tile, bottom-right remainder tile, and center tile to verify exact dimensions & alpha format.
-                    var sampleIndices = new HashSet<int> { 0, manifest.tiles.Length - 1, manifest.tiles.Length / 2 };
-                    int sampledForMap = 0;
-                    foreach (int tileIndex in sampleIndices)
+                    var baseMap = catalog.maps[i];
+                    var variants = new List<PcOriginalMapEntry>();
+                    if (baseMap.HasAppearances)
                     {
-                        var tile = manifest.tiles[tileIndex];
-                        var tex = Resources.Load<Texture2D>(tile.resourcePath);
-                        if (tex == null)
-                            throw new InvalidOperationException($"{map.mapId}: failed to load tile {tile.resourcePath}");
-                        if (tex.width != tile.width || tex.height != tile.height)
-                            throw new InvalidOperationException(
-                                $"{map.mapId}: tile {tile.resourcePath} size {tex.width}x{tex.height} != {tile.width}x{tile.height}");
-                        if (tex.mipmapCount != 1)
-                            throw new InvalidOperationException($"{map.mapId}: tile {tile.resourcePath} mipmapCount={tex.mipmapCount}, expected 1.");
-                        if (map.hasAlpha && tex.format != TextureFormat.RGBA32)
-                            throw new InvalidOperationException($"{map.mapId}: RGBA tile {tile.resourcePath} format={tex.format}, expected RGBA32.");
-                        if (!map.hasAlpha && tex.format != TextureFormat.RGB24)
-                            throw new InvalidOperationException($"{map.mapId}: RGB tile {tile.resourcePath} format={tex.format}, expected RGB24.");
-                        Resources.UnloadAsset(tex);
-                        sampledForMap++;
-                        totalSampled++;
+                        for (int a = 0; a < baseMap.appearances.Length; a++)
+                        {
+                            var resolved = baseMap.ResolveAppearance(baseMap.appearances[a].id);
+                            if (resolved == null)
+                                throw new InvalidOperationException($"{baseMap.mapId}: failed to resolve appearance {baseMap.appearances[a].id}");
+                            variants.Add(resolved);
+                        }
+                    }
+                    else
+                    {
+                        variants.Add(baseMap);
                     }
 
-                    items.Add(new MapVerificationItem
+                    for (int v = 0; v < variants.Count; v++)
                     {
-                        mapId = map.mapId,
-                        name = map.DisplayName,
-                        nativeWidth = map.nativeWidth,
-                        nativeHeight = map.nativeHeight,
-                        overviewWidth = map.overviewWidth,
-                        overviewHeight = map.overviewHeight,
-                        tileCount = map.tileCount,
-                        hasAlpha = map.hasAlpha,
-                        sampledTilesVerified = sampledForMap,
-                        resourceRoot = map.resourceRoot
-                    });
+                        var map = variants[v];
+                        string appId = map.EffectiveDefaultAppearance;
+                        string label = string.IsNullOrEmpty(appId) ? map.mapId : $"{map.mapId}/{appId}";
+
+                        var tilesAsset = Resources.Load<TextAsset>(map.tilesManifestResourcePath);
+                        if (tilesAsset == null)
+                            throw new InvalidOperationException($"{label}: missing tiles manifest {map.tilesManifestResourcePath}");
+                        var manifest = JsonUtility.FromJson<PcOriginalTileManifest>(tilesAsset.text);
+                        if (manifest == null)
+                            throw new InvalidOperationException($"{label}: failed to parse tiles manifest.");
+                        manifest.Validate(map);
+
+                        var overview = Resources.Load<Texture2D>(map.overviewResourcePath);
+                        if (overview == null)
+                            throw new InvalidOperationException($"{label}: failed to load overview texture {map.overviewResourcePath}");
+                        if (overview.width != map.overviewWidth || overview.height != map.overviewHeight)
+                            throw new InvalidOperationException(
+                                $"{label}: overview size mismatch {overview.width}x{overview.height} != {map.overviewWidth}x{map.overviewHeight}");
+                        if (overview.mipmapCount != 1)
+                            throw new InvalidOperationException($"{label}: overview mipmapCount={overview.mipmapCount}, expected 1.");
+                        if (map.hasAlpha && overview.format != TextureFormat.RGBA32)
+                            throw new InvalidOperationException($"{label}: RGBA overview format={overview.format}, expected RGBA32.");
+                        Resources.UnloadAsset(overview);
+
+                        // Verify every tile on Q-Dao / multi-appearance maps; sample corners + center on large PC originals.
+                        var sampleIndices = new HashSet<int>();
+                        if (map.HasAppearances || map.artStage == PcOriginalMapContract.ArtStageQdaoRedrawn)
+                        {
+                            for (int t = 0; t < manifest.tiles.Length; t++) sampleIndices.Add(t);
+                        }
+                        else
+                        {
+                            sampleIndices.Add(0);
+                            sampleIndices.Add(manifest.tiles.Length - 1);
+                            sampleIndices.Add(manifest.tiles.Length / 2);
+                        }
+
+                        int sampledForMap = 0;
+                        foreach (int tileIndex in sampleIndices)
+                        {
+                            var tile = manifest.tiles[tileIndex];
+                            var tex = Resources.Load<Texture2D>(tile.resourcePath);
+                            if (tex == null)
+                                throw new InvalidOperationException($"{label}: failed to load tile {tile.resourcePath}");
+                            if (tex.width != tile.width || tex.height != tile.height)
+                                throw new InvalidOperationException(
+                                    $"{label}: tile {tile.resourcePath} size {tex.width}x{tex.height} != {tile.width}x{tile.height}");
+                            if (tex.mipmapCount != 1)
+                                throw new InvalidOperationException($"{label}: tile {tile.resourcePath} mipmapCount={tex.mipmapCount}, expected 1.");
+                            if (map.hasAlpha && tex.format != TextureFormat.RGBA32)
+                                throw new InvalidOperationException($"{label}: RGBA tile {tile.resourcePath} format={tex.format}, expected RGBA32.");
+                            if (!map.hasAlpha && tex.format != TextureFormat.RGB24)
+                                throw new InvalidOperationException($"{label}: RGB tile {tile.resourcePath} format={tex.format}, expected RGB24.");
+                            Resources.UnloadAsset(tex);
+                            sampledForMap++;
+                            totalSampled++;
+                        }
+
+                        items.Add(new MapVerificationItem
+                        {
+                            mapId = map.mapId,
+                            appearance = appId,
+                            artStage = map.artStage,
+                            name = map.DisplayName,
+                            nativeWidth = map.nativeWidth,
+                            nativeHeight = map.nativeHeight,
+                            overviewWidth = map.overviewWidth,
+                            overviewHeight = map.overviewHeight,
+                            tileCount = map.tileCount,
+                            hasAlpha = map.hasAlpha,
+                            sampledTilesVerified = sampledForMap,
+                            resourceRoot = map.resourceRoot
+                        });
+                    }
                 }
 
                 report.readyCount = catalog.readyCount;

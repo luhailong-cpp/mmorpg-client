@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "mapId": "28002",
+  "numericMapId": 28002,
+  "revision": "qdao-midautumn-v002",
+  "artStage": "qdao_redrawn_static_back",
+  "appearance": "midautumn",
+  "nativeWidth": 3000,
+  "nativeHeight": 1800,
+  "tileSize": 1024,
+  "columns": 3,
+  "rows": 2,
+  "hasAlpha": true,
+  "tileFormat": "png_rgba_native_1024_grid",
+  "resampled": false,
+  "resourceRoot": "World/PcOriginalPreview20261123/28002/qdao-midautumn-v002/",
+  "sourceNativeSha256": "c7e15bcd00a22a1f185bd8952a513d67abb43f146865da25f7cce9a3aa5209f8",
+  "tiles": [
+    {
+      "row": 1,
+      "column": 1,
+      "x": 0,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/28002/qdao-midautumn-v002/tiles/r01_c01",
+      "fileExtension": ".png",
+      "bytes": 1706631,
+      "sha256": "6c1b2df4485f350cf027da2f1d20a58a7a47df5d6451077356dbd8683df1b51f"
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "x": 1024,
+      "y": 0,
+      "width": 1024,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/28002/qdao-midautumn-v002/tiles/r01_c02",
+      "fileExtension": ".png",
+      "bytes": 2262909,
+      "sha256": "43b965998caff2163c8ec631e1277a5b49abb41354b5688ab6416fcdf79db6e3"
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "x": 2048,
+      "y": 0,
+      "width": 952,
+      "height": 1024,
+      "resourcePath": "World/PcOriginalPreview20261123/28002/qdao-midautumn-v002/tiles/r01_c03",
+      "fileExtension": ".png",
+      "bytes": 2289901,
+      "sha256": "68dea362f9458e295092b4e8bc59c4bf2a4d6f56d2a9502b59f4e98e893026d2"
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "x": 0,
+      "y": 1024,
+      "width": 1024,
+      "height": 776,
+      "resourcePath": "World/PcOriginalPreview20261123/28002/qdao-midautumn-v002/tiles/r02_c01",
+      "fileExtension": ".png",
+      "bytes": 1249453,
+      "sha256": "95f6d70ca0c092dde2d76b9dc4b1661de28a1194e2a030cb25300e695c31760d"
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "x": 1024,
+      "y": 1024,
+      "width": 1024,
+      "height": 776,
+      "resourcePath": "World/PcOriginalPreview20261123/28002/qdao-midautumn-v002/tiles/r02_c02",
+      "fileExtension": ".png",
+      "bytes": 1469035,
+      "sha256": "979a663bac29a148f58ecd146b1dcdf68de63891e2fd8d1dfd53bfc037fa21e6"
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "x": 2048,
+      "y": 1024,
+      "width": 952,
+      "height": 776,
+      "resourcePath": "World/PcOriginalPreview20261123/28002/qdao-midautumn-v002/tiles/r02_c03",
+      "fileExtension": ".png",
+      "bytes": 1666115,
+      "sha256": "61faf2190b961ece0f23c3776be545ec32b6eae1d2cff4cb5c2a8b491e61d70e"
+    }
+  ]
+}

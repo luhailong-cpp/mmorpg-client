@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "kind": "CLIENT_PC_ORIGINAL_STATIC_BACK_IMPORT_RECEIPT",
   "catalogPath": "Assets/Resources/World/PcOriginalPreview20261123/catalog.json",
-  "catalogSha256": "4f14fa40756c74b7ca8fdc6a9827aae6530c6bae519415be0745ed460ef9a93c",
+  "catalogSha256": "f53a373e0b381d00f90101489ab7f263e5c6d5078c9114a9b99fbefb62e40a72",
   "catalogRevision": "pc-original-20261123",
   "artStage": "pc_original_static_back",
   "staticBackOnly": true,
@@ -13,9 +13,9 @@
   "unavailableMapCount": 4,
   "specialHoldCandidateCount": 2,
   "totalTileCount": 1025,
-  "totalTileBytes": 358549687,
-  "totalOverviewBytes": 51564417,
-  "totalAssetBytes": 410114104,
+  "totalTileBytes": 367812498,
+  "totalOverviewBytes": 55941325,
+  "totalAssetBytes": 423753823,
   "maps": [
     {
       "mapId": "05000",
@@ -889,24 +889,46 @@
         3000,
         1800
       ],
-      "sourceNativeSha256": "d4f9e5d5556fb8bccc0ef27f112e956b253e35daa4965641a87a47f32a81748f",
-      "sourceNativeBytes": 7843148,
+      "sourceNativeSha256": "367aee7302e076f2e68870d5a126fce8d8402380a50c46a7f30d4ebc499e570e",
+      "sourceNativeBytes": 10852105,
+      "pcOriginalSourceNativeSha256": "d4f9e5d5556fb8bccc0ef27f112e956b253e35daa4965641a87a47f32a81748f",
       "sourceBranch": "gbits",
-      "resourceRoot": "World/PcOriginalPreview20261123/28002/pc-original-20261123/",
-      "revision": "pc-original-20261123",
-      "artStage": "pc_original_static_back",
-      "hasAlpha": false,
-      "tileFormat": "jpg_q90_native_1024_grid",
+      "resourceRoot": "World/PcOriginalPreview20261123/28002/qdao-spring-v002/",
+      "revision": "qdao-spring-v002",
+      "artStage": "qdao_redrawn_static_back",
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "revision": "qdao-spring-v002",
+          "resourceRoot": "World/PcOriginalPreview20261123/28002/qdao-spring-v002/",
+          "sourceNativeSha256": "367aee7302e076f2e68870d5a126fce8d8402380a50c46a7f30d4ebc499e570e",
+          "tilesManifestSha256": "add00adca016301ec4b99a18d97205a048960be038213891b5fb8bcf6d3458b6",
+          "totalTileBytes": 10619186,
+          "overviewBytes": 5075487
+        },
+        {
+          "id": "midautumn",
+          "revision": "qdao-midautumn-v002",
+          "resourceRoot": "World/PcOriginalPreview20261123/28002/qdao-midautumn-v002/",
+          "sourceNativeSha256": "c7e15bcd00a22a1f185bd8952a513d67abb43f146865da25f7cce9a3aa5209f8",
+          "tilesManifestSha256": "ec652d9e3366c33f4df64b9366ba46a06facbb5865d0f0b8d21e3b8fde97f0e7",
+          "totalTileBytes": 10644044,
+          "overviewBytes": 5085479
+        }
+      ],
+      "hasAlpha": true,
+      "tileFormat": "png_rgba_native_1024_grid",
       "columns": 3,
       "rows": 2,
       "tileCount": 6,
-      "totalTileBytes": 1356375,
+      "totalTileBytes": 10619186,
       "overviewPixels": [
         2048,
         1229
       ],
-      "overviewBytes": 698579,
-      "tilesManifestSha256": "e10b2fe067e68f846b6680463d548ce5207ee9b19c6611bd9c5294afa3b36b5b"
+      "overviewBytes": 5075487,
+      "tilesManifestSha256": "add00adca016301ec4b99a18d97205a048960be038213891b5fb8bcf6d3458b6"
     },
     {
       "mapId": "41081",

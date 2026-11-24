@@ -1,0 +1,29 @@
+{
+  "kind": "CLIENT_RUNTIME_TILES_OFFLINE_VISUAL_AND_ALPHA_CHECK",
+  "note": "Rendered directly from committed Assets/Resources/World/PcOriginalPreview20261123/28002/qdao-{spring,midautumn}-v002/tiles/r*_c*.png. Not a Unity live player frame capture.",
+  "doubleDrawImpactAvoidedByPerTileFallback": {
+    "normal_dark": {
+      "changedPixels": 4550199,
+      "zeroAlphaOverviewLeakPixels": 3326,
+      "maxRgbDelta": 51
+    },
+    "black": {
+      "changedPixels": 4608500,
+      "zeroAlphaOverviewLeakPixels": 3330,
+      "maxRgbDelta": 59
+    },
+    "white": {
+      "changedPixels": 4503817,
+      "zeroAlphaOverviewLeakPixels": 5032,
+      "maxRgbDelta": 79
+    }
+  },
+  "outputs": [
+    "28002-bridge-pavilion-seam-1to1.png",
+    "28002-courtyard-east-1to1.png",
+    "28002-midautumn-panoramic-normal-bg.png",
+    "28002-spring-alpha-backdrops-normal-black-white.png",
+    "28002-spring-panoramic-normal-bg.png",
+    "28002-stairs-west-seam-1to1.png"
+  ]
+}

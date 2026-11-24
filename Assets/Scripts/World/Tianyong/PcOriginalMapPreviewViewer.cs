@@ -3,22 +3,31 @@ using System;
 using System.Collections.Generic;
 using MmorpgClient.World.CurrentMaps;
 using UnityEngine;
+using UnityEngine.Rendering;
 // BaseComp.cs 的 proto 生成物在全局命名空间声明了 Vector3 消息类，会遮蔽 UnityEngine.Vector3；
 // 本文件统一使用全限定名 UnityEngine.Vector3。
 
 namespace MmorpgClient.World.Tianyong
 {
     /// <summary>
-    /// Local viewer and switcher for the 36 audited PC original static `back` backgrounds.
-    /// Streams native <=1024px tiles asynchronously over an aspect-preserving overview texture
-    /// within a strict VRAM budget. Strictly local/offline viewing only; does not alter formal
-    /// online travel or hardcode temporary original paths into gameplay systems.
+    /// Local viewer and switcher for the 36 audited PC original / Q-Dao redrawn static `back` backgrounds.
+    /// Streams native <=1024px tiles asynchronously within a strict VRAM budget, using per-tile overview
+    /// fallback quads that hide immediately once each native tile is ready (preventing double alpha blending).
+    /// Strictly local/offline viewing only; does not alter formal online travel or gameplay systems.
     /// </summary>
     public sealed class PcOriginalMapPreviewViewer : MonoBehaviour
     {
         private const int PreviewLayer = 30;
         private const float TileReleaseDelaySec = 1.5f;
         private const float TileRetryDelaySec = 8.0f;
+
+        private static readonly Color[] BackdropColors =
+        {
+            new Color(0.11f, 0.12f, 0.13f, 1f),
+            new Color(0f, 0f, 0f, 1f),
+            new Color(1f, 1f, 1f, 1f)
+        };
+        private static readonly string[] BackdropLabels = { "深灰", "纯黑", "纯白" };
 
         [SerializeField] private bool standalone = true;
         [SerializeField] private string catalogResourcePath = PcOriginalMapContract.DefaultCatalogResourcePath;
@@ -30,6 +39,8 @@ namespace MmorpgClient.World.Tianyong
         {
             public PcOriginalTileEntry Entry;
             public PcOriginalWorldRect WorldRect;
+            public GameObject FallbackObject;
+            public Mesh FallbackMesh;
             public ResourceRequest PendingRequest;
             public Texture2D Texture;
             public Sprite Sprite;
@@ -47,6 +58,7 @@ namespace MmorpgClient.World.Tianyong
 
         private PcOriginalMapCatalog _catalog;
         private PcOriginalMapEntry _currentMap;
+        private string _currentAppearanceId = "";
         private PcOriginalTileManifest _currentManifest;
         private TileRuntime[] _tiles = Array.Empty<TileRuntime>();
         private readonly List<int> _visibleSelected = new List<int>();
@@ -55,12 +67,13 @@ namespace MmorpgClient.World.Tianyong
         private Camera _camera;
         private GameObject _visualRoot;
         private Texture2D _overviewTexture;
-        private Sprite _overviewSprite;
+        private Material _overviewMaterial;
         private GameObject _overviewObject;
 
         private Rect _bounds;
         private Vector2 _focus;
         private float _zoom = 2f;
+        private int _backdropMode;
         private bool _isDragging;
         private Vector2 _lastPointer;
         private int _mapGeneration;
@@ -79,12 +92,18 @@ namespace MmorpgClient.World.Tianyong
         public bool IsStandalone => standalone;
         public PcOriginalMapCatalog Catalog => _catalog;
         public PcOriginalMapEntry CurrentMap => _currentMap;
+        public string CurrentAppearanceId => _currentAppearanceId;
+        public string CurrentAppearanceDisplayName
+            => _currentMap != null && _currentMap.HasAppearances
+                ? (_currentMap.FindAppearance(_currentAppearanceId)?.DisplayLabel ?? PcOriginalMapContract.AppearanceDisplayLabel(_currentAppearanceId))
+                : "";
         public PcOriginalTileManifest CurrentTileManifest => _currentManifest;
         public Camera PreviewCamera => _camera;
         public GameObject VisualRoot => _visualRoot;
         public Rect VisualBounds => _bounds;
         public Vector2 Focus => _focus;
         public float Zoom => _zoom;
+        public int BackdropMode => _backdropMode;
         public string LastStatus => _status;
         public bool OverviewLoaded => _overviewTexture != null;
         public int TotalTileCount => _tiles.Length;
@@ -98,6 +117,17 @@ namespace MmorpgClient.World.Tianyong
                 int count = 0;
                 for (int i = 0; i < _tiles.Length; i++)
                     if (_tiles[i].TileObject != null && _tiles[i].Texture != null) count++;
+                return count;
+            }
+        }
+
+        public int ActiveOverviewFallbackCount
+        {
+            get
+            {
+                int count = 0;
+                for (int i = 0; i < _tiles.Length; i++)
+                    if (_tiles[i].FallbackObject != null && _tiles[i].FallbackObject.activeSelf) count++;
                 return count;
             }
         }
@@ -182,7 +212,7 @@ namespace MmorpgClient.World.Tianyong
                 _camera.cullingMask = 1 << PreviewLayer;
                 _camera.orthographic = true;
                 _camera.clearFlags = CameraClearFlags.SolidColor;
-                _camera.backgroundColor = new Color(0.11f, 0.12f, 0.13f, 1f);
+                _camera.backgroundColor = BackdropColors[_backdropMode % BackdropColors.Length];
                 _camera.nearClipPlane = 0.1f;
                 _camera.farClipPlane = 50f;
                 _camera.transform.SetPositionAndRotation(new UnityEngine.Vector3(0f, 0f, -10f), Quaternion.identity);
@@ -199,7 +229,9 @@ namespace MmorpgClient.World.Tianyong
             }
         }
 
-        public bool SelectByMapId(string mapId)
+        public bool SelectByMapId(string mapId) => SelectByMapId(mapId, null);
+
+        public bool SelectByMapId(string mapId, string appearanceId)
         {
             if (_catalog == null)
             {
@@ -212,14 +244,31 @@ namespace MmorpgClient.World.Tianyong
                 _status = $"未找到已就绪地图 {mapId}（缺口或 HOLD 项不可直接切换）";
                 return false;
             }
-            return Select(entry);
+            return Select(entry, appearanceId);
+        }
+
+        public bool SelectAppearance(string appearanceId)
+        {
+            if (_catalog == null || _currentMap == null)
+            {
+                _status = "尚未选中地图";
+                return false;
+            }
+            var entry = _catalog.FindByMapId(_currentMap.mapId);
+            return entry != null && Select(entry, appearanceId);
+        }
+
+        public void SetBackdropMode(int mode)
+        {
+            _backdropMode = ((mode % BackdropColors.Length) + BackdropColors.Length) % BackdropColors.Length;
+            if (_camera != null) _camera.backgroundColor = BackdropColors[_backdropMode];
         }
 
         public bool SelectByIndex(int index)
         {
             if (_catalog == null || _catalog.maps == null || index < 0 || index >= _catalog.maps.Length)
                 return false;
-            return Select(_catalog.maps[index]);
+            return Select(_catalog.maps[index], null);
         }
 
         public bool SelectRelative(int delta)
@@ -233,7 +282,7 @@ namespace MmorpgClient.World.Tianyong
             }
             int next = (current + delta) % _catalog.maps.Length;
             if (next < 0) next += _catalog.maps.Length;
-            return Select(_catalog.maps[next]);
+            return Select(_catalog.maps[next], null);
         }
 
         public void SetView(Vector2 focus, float zoom)
@@ -263,13 +312,30 @@ namespace MmorpgClient.World.Tianyong
 
         public void SetControlsVisible(bool visible) => _showControls = visible;
 
-        private bool Select(PcOriginalMapEntry selected)
+        private bool Select(PcOriginalMapEntry mapEntry, string appearanceId = null)
         {
-            if (_camera == null || selected == null) return false;
+            if (_camera == null || mapEntry == null) return false;
+
+            var selected = mapEntry.ResolveAppearance(appearanceId);
+            if (selected == null)
+            {
+                _status = $"地图 {mapEntry.mapId} 不存在外观 '{appearanceId}'，保留当前显示";
+                Debug.LogWarning("[PcOriginalMapPreview] " + _status);
+                return false;
+            }
+            string targetAppearance = selected.EffectiveDefaultAppearance;
+            if (_currentMap != null && _currentMap.mapId == selected.mapId &&
+                string.Equals(_currentAppearanceId, targetAppearance, StringComparison.Ordinal))
+                return true;
+
+            bool sameMapSwitch = _currentMap != null && _currentMap.mapId == selected.mapId;
+            Vector2 preservedFocus = _focus;
+            float preservedZoom = _zoom;
 
             GameObject candidateRoot = null;
             Texture2D candidateOverview = null;
-            Sprite candidateOverviewSprite = null;
+            Material candidateOverviewMaterial = null;
+            var candidateMeshes = new List<Mesh>();
             try
             {
                 selected.Validate();
@@ -285,40 +351,57 @@ namespace MmorpgClient.World.Tianyong
                 candidateOverview = Resources.Load<Texture2D>(selected.overviewResourcePath);
                 if (candidateOverview == null)
                     throw new InvalidOperationException("总览底图缺失：" + selected.overviewResourcePath);
+                if (candidateOverview.width != selected.overviewWidth || candidateOverview.height != selected.overviewHeight)
+                    throw new InvalidOperationException(
+                        $"总览底图尺寸不符：{candidateOverview.width}x{candidateOverview.height} != {selected.overviewWidth}x{selected.overviewHeight}");
 
-                candidateRoot = new GameObject($"[PcOriginalMap:{selected.mapId}]");
+                var shader = Shader.Find("Sprites/Default") ?? Shader.Find("UI/Default");
+                if (shader == null)
+                    throw new InvalidOperationException("缺少透明背景着色器 Sprites/Default。");
+                candidateOverviewMaterial = new Material(shader)
+                {
+                    name = $"OverviewMat_{selected.mapId}_{targetAppearance}",
+                    mainTexture = candidateOverview,
+                    color = Color.white
+                };
+
+                string rootSuffix = string.IsNullOrEmpty(targetAppearance) ? "" : ":" + targetAppearance;
+                candidateRoot = new GameObject($"[PcOriginalMap:{selected.mapId}{rootSuffix}]");
                 candidateRoot.transform.SetParent(transform, false);
+
+                // Per-tile overview fallback quads replace a monolithic background sprite so each tile region
+                // renders only one layer (fallback while loading, native tile once ready) with zero alpha double-blending.
+                var ovContainer = new GameObject("OverviewBase");
+                ovContainer.layer = PreviewLayer;
+                ovContainer.transform.SetParent(candidateRoot.transform, false);
 
                 float worldW = selected.WorldWidth;
                 float worldH = selected.WorldHeight;
-                float ovPpuX = candidateOverview.width / worldW;
-                candidateOverviewSprite = Sprite.Create(
-                    candidateOverview,
-                    new Rect(0f, 0f, candidateOverview.width, candidateOverview.height),
-                    new Vector2(0.5f, 0.5f),
-                    ovPpuX,
-                    0u,
-                    SpriteMeshType.FullRect);
-
-                var ovGo = new GameObject("OverviewBase");
-                ovGo.layer = PreviewLayer;
-                ovGo.transform.SetParent(candidateRoot.transform, false);
-                ovGo.transform.localPosition = new UnityEngine.Vector3(worldW * 0.5f, worldH * 0.5f, 0.1f);
-                // Keep exact native aspect ratio even when overview rounding differs by 0.5px.
-                float spriteH = candidateOverview.height / ovPpuX;
-                float scaleY = spriteH > 0.0001f ? worldH / spriteH : 1f;
-                ovGo.transform.localScale = new UnityEngine.Vector3(1f, scaleY, 1f);
-                var ovRenderer = ovGo.AddComponent<SpriteRenderer>();
-                ovRenderer.sprite = candidateOverviewSprite;
-                ovRenderer.sortingOrder = 0;
-
                 var tileRuntimes = new TileRuntime[manifest.tiles.Length];
                 for (int i = 0; i < manifest.tiles.Length; i++)
                 {
+                    var tileEntry = manifest.tiles[i];
+                    var worldRect = PcOriginalViewportPlanner.TileWorldRect(manifest.nativeHeight, tileEntry);
+                    var fallbackMesh = BuildOverviewFallbackQuadMesh(manifest.nativeWidth, manifest.nativeHeight, tileEntry, worldRect);
+                    candidateMeshes.Add(fallbackMesh);
+
+                    var fallbackGo = new GameObject($"Fallback_r{tileEntry.row:00}_c{tileEntry.column:00}");
+                    fallbackGo.layer = PreviewLayer;
+                    fallbackGo.transform.SetParent(ovContainer.transform, false);
+                    fallbackGo.transform.localPosition = new UnityEngine.Vector3(0f, 0f, 0.1f);
+                    fallbackGo.AddComponent<MeshFilter>().sharedMesh = fallbackMesh;
+                    var mr = fallbackGo.AddComponent<MeshRenderer>();
+                    mr.sharedMaterial = candidateOverviewMaterial;
+                    mr.sortingOrder = 0;
+                    mr.shadowCastingMode = ShadowCastingMode.Off;
+                    mr.receiveShadows = false;
+
                     tileRuntimes[i] = new TileRuntime
                     {
-                        Entry = manifest.tiles[i],
-                        WorldRect = PcOriginalViewportPlanner.TileWorldRect(manifest.nativeHeight, manifest.tiles[i])
+                        Entry = tileEntry,
+                        WorldRect = worldRect,
+                        FallbackObject = fallbackGo,
+                        FallbackMesh = fallbackMesh
                     };
                 }
 
@@ -326,33 +409,86 @@ namespace MmorpgClient.World.Tianyong
                 ReleaseCurrentMap();
                 _mapGeneration++;
                 _currentMap = selected;
+                _currentAppearanceId = targetAppearance;
                 _currentManifest = manifest;
                 _visualRoot = candidateRoot;
                 _overviewTexture = candidateOverview;
-                _overviewSprite = candidateOverviewSprite;
-                _overviewObject = ovGo;
+                _overviewMaterial = candidateOverviewMaterial;
+                _overviewObject = ovContainer;
                 _tiles = tileRuntimes;
                 _bounds = new Rect(0f, 0f, worldW, worldH);
-                _focus = _bounds.center;
-                FitFullMap();
+                if (sameMapSwitch)
+                {
+                    _focus = preservedFocus;
+                    _zoom = preservedZoom;
+                    ApplyCamera();
+                }
+                else
+                {
+                    _focus = _bounds.center;
+                    FitFullMap();
+                }
                 UpdateTileStreaming(Time.unscaledTime);
 
-                _status = $"{selected.mapId} {selected.DisplayName} · {selected.nativeWidth}×{selected.nativeHeight} " +
+                string appLabel = selected.HasAppearances ? $" · {CurrentAppearanceDisplayName}" : "";
+                _status = $"{selected.mapId} {selected.DisplayName}{appLabel} · {selected.nativeWidth}×{selected.nativeHeight} " +
                           $"({selected.aspectRatio:F3}:1) · {selected.columns}×{selected.rows}={selected.tileCount} 块 · " +
                           $"{PcOriginalMapContract.ArtStageDisplayLabel(selected.artStage)}";
-                Debug.Log($"[PcOriginalMapPreview] selected={selected.mapId} pixels={selected.nativeWidth}x{selected.nativeHeight} " +
-                          $"grid={selected.columns}x{selected.rows} stage={selected.artStage} root={selected.resourceRoot}");
+                Debug.Log($"[PcOriginalMapPreview] selected={selected.mapId} appearance={targetAppearance} " +
+                          $"pixels={selected.nativeWidth}x{selected.nativeHeight} grid={selected.columns}x{selected.rows} " +
+                          $"stage={selected.artStage} alpha={selected.hasAlpha} root={selected.resourceRoot}");
                 return true;
             }
             catch (Exception error)
             {
+                for (int i = 0; i < candidateMeshes.Count; i++) DestroyOwned(candidateMeshes[i]);
                 if (candidateRoot != null) DestroyOwned(candidateRoot);
-                if (candidateOverviewSprite != null) DestroyOwned(candidateOverviewSprite);
-                if (candidateOverview != null) Resources.UnloadAsset(candidateOverview);
-                _status = "切图失败：" + error.Message;
+                if (candidateOverviewMaterial != null) DestroyOwned(candidateOverviewMaterial);
+                if (candidateOverview != null && candidateOverview != _overviewTexture) Resources.UnloadAsset(candidateOverview);
+                _status = "切图失败（已保留当前显示）：" + error.Message;
                 Debug.LogError("[PcOriginalMapPreview] " + _status);
                 return false;
             }
+        }
+
+        private static Mesh BuildOverviewFallbackQuadMesh(
+            int nativeWidth,
+            int nativeHeight,
+            PcOriginalTileEntry tile,
+            PcOriginalWorldRect worldRect)
+        {
+            float u0 = Mathf.Clamp01(tile.x / (float)nativeWidth);
+            float u1 = Mathf.Clamp01((tile.x + tile.width) / (float)nativeWidth);
+            float v0 = Mathf.Clamp01((nativeHeight - (tile.y + tile.height)) / (float)nativeHeight);
+            float v1 = Mathf.Clamp01((nativeHeight - tile.y) / (float)nativeHeight);
+
+            var white = new Color32(255, 255, 255, 255);
+            var mesh = new Mesh { name = $"OverviewQuad_r{tile.row:00}_c{tile.column:00}" };
+            mesh.vertices = new[]
+            {
+                new UnityEngine.Vector3(worldRect.XMin, worldRect.YMin, 0f),
+                new UnityEngine.Vector3(worldRect.XMin, worldRect.YMax, 0f),
+                new UnityEngine.Vector3(worldRect.XMax, worldRect.YMax, 0f),
+                new UnityEngine.Vector3(worldRect.XMax, worldRect.YMin, 0f)
+            };
+            mesh.uv = new[]
+            {
+                new Vector2(u0, v0),
+                new Vector2(u0, v1),
+                new Vector2(u1, v1),
+                new Vector2(u1, v0)
+            };
+            mesh.colors32 = new[] { white, white, white, white };
+            mesh.normals = new[]
+            {
+                UnityEngine.Vector3.back,
+                UnityEngine.Vector3.back,
+                UnityEngine.Vector3.back,
+                UnityEngine.Vector3.back
+            };
+            mesh.triangles = new[] { 0, 1, 2, 0, 2, 3 };
+            mesh.RecalculateBounds();
+            return mesh;
         }
 
         private void ApplyCamera()
@@ -510,6 +646,20 @@ namespace MmorpgClient.World.Tianyong
             return count;
         }
 
+        private bool IsResourcePathActive(string resourcePath)
+        {
+            if (string.IsNullOrEmpty(resourcePath)) return false;
+            if (_currentMap != null && string.Equals(_currentMap.overviewResourcePath, resourcePath, StringComparison.Ordinal))
+                return true;
+            for (int i = 0; i < _tiles.Length; i++)
+            {
+                if (string.Equals(_tiles[i].Entry.resourcePath, resourcePath, StringComparison.Ordinal) &&
+                    (_tiles[i].Texture != null || _tiles[i].PendingRequest != null))
+                    return true;
+            }
+            return false;
+        }
+
         private void HandleTileLoadCompleted(int generation, TileRuntime tile, ResourceRequest req)
         {
             var tex = req.asset as Texture2D;
@@ -519,10 +669,12 @@ namespace MmorpgClient.World.Tianyong
             if (generation == _mapGeneration && _activePendingLoads > 0)
                 _activePendingLoads--;
 
-            // Map was switched, viewer was destroyed, or tile scrolled out of view while loading.
+            // Map/appearance was switched, viewer was destroyed, or tile scrolled out of view while loading.
+            // Guard against unloading a shared Texture2D already claimed by a rapid A->B->A switch back.
             if (this == null || generation != _mapGeneration || _visualRoot == null || !tile.Wanted)
             {
-                if (tex != null) Resources.UnloadAsset(tex);
+                if (tex != null && (this == null || !IsResourcePathActive(tile.Entry.resourcePath)))
+                    Resources.UnloadAsset(tex);
                 return;
             }
 
@@ -531,7 +683,7 @@ namespace MmorpgClient.World.Tianyong
                 Debug.LogError(
                     $"[PcOriginalMapPreview] tile load mismatch: {tile.Entry.resourcePath} " +
                     $"expected={tile.Entry.width}x{tile.Entry.height} actual={(tex != null ? $"{tex.width}x{tex.height}" : "null")}");
-                if (tex != null) Resources.UnloadAsset(tex);
+                if (tex != null && !IsResourcePathActive(tile.Entry.resourcePath)) Resources.UnloadAsset(tex);
                 tile.RetryAfterTime = Time.unscaledTime + TileRetryDelaySec;
                 return;
             }
@@ -555,6 +707,8 @@ namespace MmorpgClient.World.Tianyong
             tile.Texture = tex;
             tile.Sprite = sprite;
             tile.TileObject = go;
+            if (tile.FallbackObject != null)
+                tile.FallbackObject.SetActive(false);
         }
 
         private static void ReleaseTileVisual(TileRuntime tile)
@@ -575,6 +729,8 @@ namespace MmorpgClient.World.Tianyong
                 Resources.UnloadAsset(tile.Texture);
                 tile.Texture = null;
             }
+            if (tile.FallbackObject != null)
+                tile.FallbackObject.SetActive(true);
         }
 
         private void ReleaseCurrentMap()
@@ -582,7 +738,13 @@ namespace MmorpgClient.World.Tianyong
             for (int i = 0; i < _tiles.Length; i++)
             {
                 _tiles[i].Wanted = false;
+                _tiles[i].FallbackObject = null;
                 ReleaseTileVisual(_tiles[i]);
+                if (_tiles[i].FallbackMesh != null)
+                {
+                    DestroyOwned(_tiles[i].FallbackMesh);
+                    _tiles[i].FallbackMesh = null;
+                }
                 _tiles[i].PendingRequest = null;
             }
             _tiles = Array.Empty<TileRuntime>();
@@ -596,10 +758,10 @@ namespace MmorpgClient.World.Tianyong
                 _visualRoot = null;
             }
             _overviewObject = null;
-            if (_overviewSprite != null)
+            if (_overviewMaterial != null)
             {
-                DestroyOwned(_overviewSprite);
-                _overviewSprite = null;
+                DestroyOwned(_overviewMaterial);
+                _overviewMaterial = null;
             }
             if (_overviewTexture != null)
             {
@@ -607,6 +769,7 @@ namespace MmorpgClient.World.Tianyong
                 _overviewTexture = null;
             }
             _currentMap = null;
+            _currentAppearanceId = "";
             _currentManifest = null;
         }
 
@@ -635,15 +798,33 @@ namespace MmorpgClient.World.Tianyong
             // Current map header
             if (_currentMap != null)
             {
+                string appTitle = _currentMap.HasAppearances ? $" · {CurrentAppearanceDisplayName}" : "";
                 GUI.Label(new Rect(x, y, w, 22f),
-                    $"当前：{_currentMap.mapId} {_currentMap.DisplayName}（{_currentMap.nativeWidth}×{_currentMap.nativeHeight}）");
+                    $"当前：{_currentMap.mapId} {_currentMap.DisplayName}{appTitle}（{_currentMap.nativeWidth}×{_currentMap.nativeHeight}）");
                 y += 22f;
                 GUI.Label(new Rect(x, y, w, 20f),
-                    $"阶段：{PcOriginalMapContract.ArtStageDisplayLabel(_currentMap.artStage)} | 分片：{LoadedNativeTileCount}/{_lastOverlappingTiles}（上限{maxResidentTiles}）");
+                    $"阶段：{PcOriginalMapContract.ArtStageDisplayLabel(_currentMap.artStage)} | 分片：{LoadedNativeTileCount}/{_lastOverlappingTiles} | 兜底：{ActiveOverviewFallbackCount}");
                 y += 20f;
                 GUI.Label(new Rect(x, y, w, 20f),
                     $"服务端：未登记（仅本地静态back，无碰撞/导航）");
                 y += 22f;
+
+                if (_currentMap.HasMultipleAppearances)
+                {
+                    int appCount = _currentMap.appearances.Length;
+                    float labelW = 44f;
+                    float appBtnW = (w - labelW - (appCount - 1) * 6f) / appCount;
+                    GUI.Label(new Rect(x, y + 3f, labelW, 22f), "外观：");
+                    for (int i = 0; i < appCount; i++)
+                    {
+                        var app = _currentMap.appearances[i];
+                        bool active = string.Equals(_currentAppearanceId, app.id, StringComparison.Ordinal);
+                        string appBtnLabel = (active ? "▶ " : "") + app.DisplayLabel;
+                        if (GUI.Button(new Rect(x + labelW + i * (appBtnW + 6f), y, appBtnW, 26f), appBtnLabel))
+                            SelectAppearance(app.id);
+                    }
+                    y += 30f;
+                }
             }
             else
             {
@@ -659,19 +840,21 @@ namespace MmorpgClient.World.Tianyong
             if (GUI.Button(new Rect(x + (btnW + 6f) * 3f, y, btnW, 28f), "1:1 像素")) SetNativeOneToOneZoom();
             y += 34f;
 
-            // Action row 2: Gaps/HOLD info, Collapse, Close
-            float halfW = (w - 6f) * 0.5f;
-            if (GUI.Button(new Rect(x, y, halfW, 26f),
-                _showGapsModal ? "隐藏缺口/HOLD" : $"缺口/HOLD ({_catalog.unavailableCount}+{_catalog.specialHoldCount})"))
+            // Action row 2: Gaps/HOLD info, Backdrop toggle (for RGBA edges), Collapse/Close
+            float thirdW = (w - 12f) / 3f;
+            if (GUI.Button(new Rect(x, y, thirdW, 26f),
+                _showGapsModal ? "隐藏缺口" : $"缺口({_catalog.unavailableCount}+{_catalog.specialHoldCount})"))
                 _showGapsModal = !_showGapsModal;
+            if (GUI.Button(new Rect(x + thirdW + 6f, y, thirdW, 26f), $"底色:{BackdropLabels[_backdropMode]}"))
+                SetBackdropMode(_backdropMode + 1);
             if (standalone)
             {
-                if (GUI.Button(new Rect(x + halfW + 6f, y, halfW, 26f), "收起面板 (Tab)"))
+                if (GUI.Button(new Rect(x + (thirdW + 6f) * 2f, y, thirdW, 26f), "收起(Tab)"))
                     _sidebarVisible = false;
             }
             else
             {
-                if (GUI.Button(new Rect(x + halfW + 6f, y, halfW, 26f), "返回节庆预览"))
+                if (GUI.Button(new Rect(x + (thirdW + 6f) * 2f, y, thirdW, 26f), "返回预览"))
                 {
                     Close();
                     return;
@@ -714,13 +897,14 @@ namespace MmorpgClient.World.Tianyong
                 var m = filtered[i];
                 bool isCurrent = _currentMap != null && m.mapId == _currentMap.mapId;
                 string tag = m.artStage == PcOriginalMapContract.ArtStagePcOriginal ? "原图" : "Q版";
+                string multiTag = m.HasMultipleAppearances ? " 双节" : "";
                 string alphaTag = m.hasAlpha ? " RGBA" : "";
                 string prefix = isCurrent ? "▶ " : "";
-                string label = $"{prefix}{m.mapId} {m.DisplayName}  [{m.nativeWidth}×{m.nativeHeight} {tag}{alphaTag}]";
+                string label = $"{prefix}{m.mapId} {m.DisplayName}  [{m.nativeWidth}×{m.nativeHeight} {tag}{multiTag}{alphaTag}]";
                 if (GUI.Button(new Rect(0f, i * (itemHeight + 4f), contentRect.width, itemHeight), label))
                 {
                     GUI.FocusControl(null);
-                    Select(m);
+                    Select(m, null);
                 }
             }
             GUI.EndScrollView();
