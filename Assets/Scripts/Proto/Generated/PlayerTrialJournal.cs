@@ -36,9 +36,9 @@ public static partial class PlayerTrialJournalReflection {
           "bmFtZRgIIAEoCRISCgpzb3J0X29yZGVyGAkgASgNEhQKDGRpc3BsYXlfbmFt",
           "ZRgKIAEoCRIQCghpY29uX2tleRgLIAEoCRIMCgRkZXNjGAwgASgJEiQKBXNl",
           "YWxzGA0gAygLMhUuVHJpYWxKb3VybmFsU2VhbFZpZXcSFgoObGl0X3NlYWxf",
-          "Y291bnQYDiABKA0SGAoQdG90YWxfc2VhbF9jb3VudBgPIAEoDRIVCg1oYXNf",
-          "c29sb19iZXN0GBAgASgIEioKCXNvbG9fYmVzdBgRIAEoCzIXLlRyaWFsSm91",
-          "cm5hbFNvbG9SZWNvcmQSFQoNaGFzX2Nvb3BfYmVzdBgSIAEoCBIqCgljb29w",
+          "Y291bnQYDiABKA0SGAoQdG90YWxfc2VhbF9jb3VudBgPIAEoDRIVCg1zb2xv",
+          "X3JlY29yZGVkGBAgASgIEioKCXNvbG9fYmVzdBgRIAEoCzIXLlRyaWFsSm91",
+          "cm5hbFNvbG9SZWNvcmQSFQoNY29vcF9yZWNvcmRlZBgSIAEoCBIqCgljb29w",
           "X2Jlc3QYEyABKAsyFy5UcmlhbEpvdXJuYWxDb29wUmVjb3JkEh4KFmhhc19s",
           "ZWdhY3lfcmVjb3JkX29ubHkYFCABKAgSEQoJY2FuX2VudGVyGBUgASgIEhwK",
           "FGVudGVyX2Jsb2NrZWRfcmVhc29uGBYgASgJEhMKC2p1bXBfdGFyZ2V0GBcg",
@@ -99,7 +99,7 @@ public static partial class PlayerTrialJournalReflection {
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerTrialJournalCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalSealView), global::TrialJournalSealView.Parser, new[]{ "SealId", "SealSlotKind", "ConditionType", "ConditionParam", "Title", "Desc", "Lit" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalEntryView), global::TrialJournalEntryView.Parser, new[]{ "EntryId", "ChapterId", "SeasonId", "SourceKind", "Difficulty", "VariantKey", "RuleVersion", "RuleVersionName", "SortOrder", "DisplayName", "IconKey", "Desc", "Seals", "LitSealCount", "TotalSealCount", "HasSoloBest", "SoloBest", "HasCoopBest", "CoopBest", "HasLegacyRecordOnly", "CanEnter", "EnterBlockedReason", "JumpTarget" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalEntryView), global::TrialJournalEntryView.Parser, new[]{ "EntryId", "ChapterId", "SeasonId", "SourceKind", "Difficulty", "VariantKey", "RuleVersion", "RuleVersionName", "SortOrder", "DisplayName", "IconKey", "Desc", "Seals", "LitSealCount", "TotalSealCount", "SoloRecorded", "SoloBest", "CoopRecorded", "CoopBest", "HasLegacyRecordOnly", "CanEnter", "EnterBlockedReason", "JumpTarget" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalChapterView), global::TrialJournalChapterView.Parser, new[]{ "ChapterId", "SeasonId", "ChapterName", "LitSealCount", "TotalSealCount", "Entries" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalMilestoneView), global::TrialJournalMilestoneView.Parser, new[]{ "MilestoneId", "ScopeChapterId", "SeasonId", "RequiredSeals", "CurrentSeals", "Title", "Desc", "BoundSandCount", "BoundArtifactVoucherCount", "BadgeKey", "BadgeName", "CommentaryKey", "CommentaryTitle", "CommentaryBody", "GrantAppearanceId", "GrantAppearanceName", "Reached", "Claimed", "Claimable" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialRedeemableArtifactOption), global::TrialRedeemableArtifactOption.Parser, new[]{ "ItemConfigId", "ArtifactEffectId", "Name", "Description", "IconKey", "OwnedCount" }, null, null, null, null),
@@ -589,9 +589,9 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     seals_ = other.seals_.Clone();
     litSealCount_ = other.litSealCount_;
     totalSealCount_ = other.totalSealCount_;
-    hasSoloBest_ = other.hasSoloBest_;
+    soloRecorded_ = other.soloRecorded_;
     soloBest_ = other.soloBest_ != null ? other.soloBest_.Clone() : null;
-    hasCoopBest_ = other.hasCoopBest_;
+    coopRecorded_ = other.coopRecorded_;
     coopBest_ = other.coopBest_ != null ? other.coopBest_.Clone() : null;
     hasLegacyRecordOnly_ = other.hasLegacyRecordOnly_;
     canEnter_ = other.canEnter_;
@@ -785,15 +785,15 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     }
   }
 
-  /// <summary>Field number for the "has_solo_best" field.</summary>
-  public const int HasSoloBestFieldNumber = 16;
-  private bool hasSoloBest_;
+  /// <summary>Field number for the "solo_recorded" field.</summary>
+  public const int SoloRecordedFieldNumber = 16;
+  private bool soloRecorded_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool HasSoloBest {
-    get { return hasSoloBest_; }
+  public bool SoloRecorded {
+    get { return soloRecorded_; }
     set {
-      hasSoloBest_ = value;
+      soloRecorded_ = value;
     }
   }
 
@@ -809,15 +809,15 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     }
   }
 
-  /// <summary>Field number for the "has_coop_best" field.</summary>
-  public const int HasCoopBestFieldNumber = 18;
-  private bool hasCoopBest_;
+  /// <summary>Field number for the "coop_recorded" field.</summary>
+  public const int CoopRecordedFieldNumber = 18;
+  private bool coopRecorded_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool HasCoopBest {
-    get { return hasCoopBest_; }
+  public bool CoopRecorded {
+    get { return coopRecorded_; }
     set {
-      hasCoopBest_ = value;
+      coopRecorded_ = value;
     }
   }
 
@@ -914,9 +914,9 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     if(!seals_.Equals(other.seals_)) return false;
     if (LitSealCount != other.LitSealCount) return false;
     if (TotalSealCount != other.TotalSealCount) return false;
-    if (HasSoloBest != other.HasSoloBest) return false;
+    if (SoloRecorded != other.SoloRecorded) return false;
     if (!object.Equals(SoloBest, other.SoloBest)) return false;
-    if (HasCoopBest != other.HasCoopBest) return false;
+    if (CoopRecorded != other.CoopRecorded) return false;
     if (!object.Equals(CoopBest, other.CoopBest)) return false;
     if (HasLegacyRecordOnly != other.HasLegacyRecordOnly) return false;
     if (CanEnter != other.CanEnter) return false;
@@ -944,9 +944,9 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     hash ^= seals_.GetHashCode();
     if (LitSealCount != 0) hash ^= LitSealCount.GetHashCode();
     if (TotalSealCount != 0) hash ^= TotalSealCount.GetHashCode();
-    if (HasSoloBest != false) hash ^= HasSoloBest.GetHashCode();
+    if (SoloRecorded != false) hash ^= SoloRecorded.GetHashCode();
     if (soloBest_ != null) hash ^= SoloBest.GetHashCode();
-    if (HasCoopBest != false) hash ^= HasCoopBest.GetHashCode();
+    if (CoopRecorded != false) hash ^= CoopRecorded.GetHashCode();
     if (coopBest_ != null) hash ^= CoopBest.GetHashCode();
     if (HasLegacyRecordOnly != false) hash ^= HasLegacyRecordOnly.GetHashCode();
     if (CanEnter != false) hash ^= CanEnter.GetHashCode();
@@ -1027,17 +1027,17 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
       output.WriteRawTag(120);
       output.WriteUInt32(TotalSealCount);
     }
-    if (HasSoloBest != false) {
+    if (SoloRecorded != false) {
       output.WriteRawTag(128, 1);
-      output.WriteBool(HasSoloBest);
+      output.WriteBool(SoloRecorded);
     }
     if (soloBest_ != null) {
       output.WriteRawTag(138, 1);
       output.WriteMessage(SoloBest);
     }
-    if (HasCoopBest != false) {
+    if (CoopRecorded != false) {
       output.WriteRawTag(144, 1);
-      output.WriteBool(HasCoopBest);
+      output.WriteBool(CoopRecorded);
     }
     if (coopBest_ != null) {
       output.WriteRawTag(154, 1);
@@ -1126,17 +1126,17 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
       output.WriteRawTag(120);
       output.WriteUInt32(TotalSealCount);
     }
-    if (HasSoloBest != false) {
+    if (SoloRecorded != false) {
       output.WriteRawTag(128, 1);
-      output.WriteBool(HasSoloBest);
+      output.WriteBool(SoloRecorded);
     }
     if (soloBest_ != null) {
       output.WriteRawTag(138, 1);
       output.WriteMessage(SoloBest);
     }
-    if (HasCoopBest != false) {
+    if (CoopRecorded != false) {
       output.WriteRawTag(144, 1);
-      output.WriteBool(HasCoopBest);
+      output.WriteBool(CoopRecorded);
     }
     if (coopBest_ != null) {
       output.WriteRawTag(154, 1);
@@ -1211,13 +1211,13 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     if (TotalSealCount != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalSealCount);
     }
-    if (HasSoloBest != false) {
+    if (SoloRecorded != false) {
       size += 2 + 1;
     }
     if (soloBest_ != null) {
       size += 2 + pb::CodedOutputStream.ComputeMessageSize(SoloBest);
     }
-    if (HasCoopBest != false) {
+    if (CoopRecorded != false) {
       size += 2 + 1;
     }
     if (coopBest_ != null) {
@@ -1290,8 +1290,8 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
     if (other.TotalSealCount != 0) {
       TotalSealCount = other.TotalSealCount;
     }
-    if (other.HasSoloBest != false) {
-      HasSoloBest = other.HasSoloBest;
+    if (other.SoloRecorded != false) {
+      SoloRecorded = other.SoloRecorded;
     }
     if (other.soloBest_ != null) {
       if (soloBest_ == null) {
@@ -1299,8 +1299,8 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
       }
       SoloBest.MergeFrom(other.SoloBest);
     }
-    if (other.HasCoopBest != false) {
-      HasCoopBest = other.HasCoopBest;
+    if (other.CoopRecorded != false) {
+      CoopRecorded = other.CoopRecorded;
     }
     if (other.coopBest_ != null) {
       if (coopBest_ == null) {
@@ -1400,7 +1400,7 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
           break;
         }
         case 128: {
-          HasSoloBest = input.ReadBool();
+          SoloRecorded = input.ReadBool();
           break;
         }
         case 138: {
@@ -1411,7 +1411,7 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
           break;
         }
         case 144: {
-          HasCoopBest = input.ReadBool();
+          CoopRecorded = input.ReadBool();
           break;
         }
         case 154: {
@@ -1517,7 +1517,7 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
           break;
         }
         case 128: {
-          HasSoloBest = input.ReadBool();
+          SoloRecorded = input.ReadBool();
           break;
         }
         case 138: {
@@ -1528,7 +1528,7 @@ public sealed partial class TrialJournalEntryView : pb::IMessage<TrialJournalEnt
           break;
         }
         case 144: {
-          HasCoopBest = input.ReadBool();
+          CoopRecorded = input.ReadBool();
           break;
         }
         case 154: {
