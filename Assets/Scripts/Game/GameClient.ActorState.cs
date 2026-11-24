@@ -82,6 +82,7 @@ namespace MmorpgClient.Game
             {
                 OnSelfActorStateChanged?.Invoke(prev, default);
             }
+            Presentation?.Reset();
         }
     }
 }

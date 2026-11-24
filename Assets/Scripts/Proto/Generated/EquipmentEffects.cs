@@ -24,7 +24,7 @@ public static partial class EquipmentEffectsReflection {
         string.Concat(
           "Ci5wcm90by9jb21tb24vY29tcG9uZW50L2VxdWlwbWVudF9lZmZlY3RzLnBy",
           "b3RvGixwcm90by9jb21tb24vY29tcG9uZW50L3N1cHBvcnRfZWZmZWN0cy5w",
-          "cm90byKFBgoQRXF1aXBtZW50RWZmZWN0cxIbChNwaHlzaWNhbF9hdHRhY2tf",
+          "cm90byLoBgoQRXF1aXBtZW50RWZmZWN0cxIbChNwaHlzaWNhbF9hdHRhY2tf",
           "YnBzGAEgASgNEhgKEG1hZ2ljX2F0dGFja19icHMYAiABKA0SFgoObWF4X2hl",
           "YWx0aF9icHMYAyABKA0SEQoJc3BlZWRfYnBzGAQgASgNEhkKEW91dGdvaW5n",
           "X2hlYWxfYnBzGAUgASgNEhsKE3NoaWVsZF9jYXBhY2l0eV9icHMYBiABKA0S",
@@ -37,20 +37,28 @@ public static partial class EquipmentEffectsReflection {
           "dWlwbWVudEVmZmVjdHMuTWFuYVJlZHVjdGlvbkJwc0VudHJ5EisKCWFydGlm",
           "YWN0cxgOIAMoCzIYLkVxdWlwbWVudEFydGlmYWN0U291cmNlEi0KD3N1cHBv",
           "cnRfc291cmNlcxgPIAMoCzIULlN1cHBvcnRFZmZlY3RTb3VyY2USIAoYc3Vw",
-          "cG9ydF9zb3VyY2VzX2NvbXBsZXRlGBAgASgIGjQKEkFpbG1lbnRIaXRCcHNF",
-          "bnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgBGjcKFUFpbG1l",
-          "bnRSZXNpc3RCcHNFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06",
-          "AjgBGjcKFU1hbmFSZWR1Y3Rpb25CcHNFbnRyeRILCgNrZXkYASABKA0SDQoF",
-          "dmFsdWUYAiABKA06AjgBItMBChdFcXVpcG1lbnRBcnRpZmFjdFNvdXJjZRIP",
-          "CgdpdGVtX2lkGAEgASgEEhEKCWVmZmVjdF9pZBgCIAEoDRIRCglib251c19i",
-          "cHMYAyABKA0SDwoHY2FwX2JwcxgEIAEoDRIXCg9wZXJfcm91bmRfbGltaXQY",
-          "BSABKA0SFAoMYmF0dGxlX2xpbWl0GAYgASgNEhUKDWFjdGl2ZV9yb3VuZHMY",
-          "ByABKA0SHAoUaGVhbHRoX3RocmVzaG9sZF9icHMYCCABKA0SDAoEbmFtZRgJ",
-          "IAEoCUISWhBjb21tb24vY29tcG9uZW50YgZwcm90bzM="));
+          "cG9ydF9zb3VyY2VzX2NvbXBsZXRlGBAgASgIEiYKC3NlYXNvbl9zZWFsGBEg",
+          "ASgLMhEuU2Vhc29uU2VhbEVmZmVjdBIdChVzZWFzb25fbWF4X2hlYWx0aF9i",
+          "cHMYEiABKA0SGgoSc2Vhc29uX2RlZmVuc2VfYnBzGBMgASgNGjQKEkFpbG1l",
+          "bnRIaXRCcHNFbnRyeRILCgNrZXkYASABKA0SDQoFdmFsdWUYAiABKA06AjgB",
+          "GjcKFUFpbG1lbnRSZXNpc3RCcHNFbnRyeRILCgNrZXkYASABKA0SDQoFdmFs",
+          "dWUYAiABKA06AjgBGjcKFU1hbmFSZWR1Y3Rpb25CcHNFbnRyeRILCgNrZXkY",
+          "ASABKA0SDQoFdmFsdWUYAiABKA06AjgBIt8BChBTZWFzb25TZWFsRWZmZWN0",
+          "EhEKCXNlYXNvbl9pZBgBIAEoDRIPCgdzZWFsX2lkGAIgASgNEhEKCWVmZmVj",
+          "dF9pZBgDIAEoDRIRCglib251c19icHMYBCABKA0SDwoHY2FwX2JwcxgFIAEo",
+          "DRIXCg9wZXJfcm91bmRfbGltaXQYBiABKA0SFAoMYmF0dGxlX2xpbWl0GAcg",
+          "ASgNEhUKDWFjdGl2ZV9yb3VuZHMYCCABKA0SHAoUaGVhbHRoX3RocmVzaG9s",
+          "ZF9icHMYCSABKA0SDAoEbmFtZRgKIAEoCSLTAQoXRXF1aXBtZW50QXJ0aWZh",
+          "Y3RTb3VyY2USDwoHaXRlbV9pZBgBIAEoBBIRCgllZmZlY3RfaWQYAiABKA0S",
+          "EQoJYm9udXNfYnBzGAMgASgNEg8KB2NhcF9icHMYBCABKA0SFwoPcGVyX3Jv",
+          "dW5kX2xpbWl0GAUgASgNEhQKDGJhdHRsZV9saW1pdBgGIAEoDRIVCg1hY3Rp",
+          "dmVfcm91bmRzGAcgASgNEhwKFGhlYWx0aF90aHJlc2hvbGRfYnBzGAggASgN",
+          "EgwKBG5hbWUYCSABKAlCEloQY29tbW9uL2NvbXBvbmVudGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::SupportEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentEffects), global::EquipmentEffects.Parser, new[]{ "PhysicalAttackBps", "MagicAttackBps", "MaxHealthBps", "SpeedBps", "OutgoingHealBps", "ShieldCapacityBps", "PhysicalCritBps", "MagicCritBps", "PhysicalResistBps", "MagicResistBps", "AilmentHitBps", "AilmentResistBps", "ManaReductionBps", "Artifacts", "SupportSources", "SupportSourcesComplete" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentEffects), global::EquipmentEffects.Parser, new[]{ "PhysicalAttackBps", "MagicAttackBps", "MaxHealthBps", "SpeedBps", "OutgoingHealBps", "ShieldCapacityBps", "PhysicalCritBps", "MagicCritBps", "PhysicalResistBps", "MagicResistBps", "AilmentHitBps", "AilmentResistBps", "ManaReductionBps", "Artifacts", "SupportSources", "SupportSourcesComplete", "SeasonSeal", "SeasonMaxHealthBps", "SeasonDefenseBps" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SeasonSealEffect), global::SeasonSealEffect.Parser, new[]{ "SeasonId", "SealId", "EffectId", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps", "Name" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentArtifactSource), global::EquipmentArtifactSource.Parser, new[]{ "ItemId", "EffectId", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps", "Name" }, null, null, null, null)
         }));
   }
@@ -112,6 +120,9 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     artifacts_ = other.artifacts_.Clone();
     supportSources_ = other.supportSources_.Clone();
     supportSourcesComplete_ = other.supportSourcesComplete_;
+    seasonSeal_ = other.seasonSeal_ != null ? other.seasonSeal_.Clone() : null;
+    seasonMaxHealthBps_ = other.seasonMaxHealthBps_;
+    seasonDefenseBps_ = other.seasonDefenseBps_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -323,6 +334,51 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     }
   }
 
+  /// <summary>Field number for the "season_seal" field.</summary>
+  public const int SeasonSealFieldNumber = 17;
+  private global::SeasonSealEffect seasonSeal_;
+  /// <summary>
+  /// 单槽赛季装备栏（「赛季印」，方案 A）：与永久 8 部位装备、2 永久法宝严格隔离，不占用物品永久 GUID。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::SeasonSealEffect SeasonSeal {
+    get { return seasonSeal_; }
+    set {
+      seasonSeal_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "season_max_health_bps" field.</summary>
+  public const int SeasonMaxHealthBpsFieldNumber = 18;
+  private uint seasonMaxHealthBps_;
+  /// <summary>
+  /// 本季赛季印轻度气血万分比（&lt;= 500，首测上限 300）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonMaxHealthBps {
+    get { return seasonMaxHealthBps_; }
+    set {
+      seasonMaxHealthBps_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "season_defense_bps" field.</summary>
+  public const int SeasonDefenseBpsFieldNumber = 19;
+  private uint seasonDefenseBps_;
+  /// <summary>
+  /// 本季赛季印轻度防御万分比（&lt;= 500，首测上限 300；严禁速度/控命/抵抗）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonDefenseBps {
+    get { return seasonDefenseBps_; }
+    set {
+      seasonDefenseBps_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -354,6 +410,9 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     if(!artifacts_.Equals(other.artifacts_)) return false;
     if(!supportSources_.Equals(other.supportSources_)) return false;
     if (SupportSourcesComplete != other.SupportSourcesComplete) return false;
+    if (!object.Equals(SeasonSeal, other.SeasonSeal)) return false;
+    if (SeasonMaxHealthBps != other.SeasonMaxHealthBps) return false;
+    if (SeasonDefenseBps != other.SeasonDefenseBps) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -377,6 +436,9 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     hash ^= artifacts_.GetHashCode();
     hash ^= supportSources_.GetHashCode();
     if (SupportSourcesComplete != false) hash ^= SupportSourcesComplete.GetHashCode();
+    if (seasonSeal_ != null) hash ^= SeasonSeal.GetHashCode();
+    if (SeasonMaxHealthBps != 0) hash ^= SeasonMaxHealthBps.GetHashCode();
+    if (SeasonDefenseBps != 0) hash ^= SeasonDefenseBps.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -444,6 +506,18 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
       output.WriteRawTag(128, 1);
       output.WriteBool(SupportSourcesComplete);
     }
+    if (seasonSeal_ != null) {
+      output.WriteRawTag(138, 1);
+      output.WriteMessage(SeasonSeal);
+    }
+    if (SeasonMaxHealthBps != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(SeasonMaxHealthBps);
+    }
+    if (SeasonDefenseBps != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(SeasonDefenseBps);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -503,6 +577,18 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
       output.WriteRawTag(128, 1);
       output.WriteBool(SupportSourcesComplete);
     }
+    if (seasonSeal_ != null) {
+      output.WriteRawTag(138, 1);
+      output.WriteMessage(SeasonSeal);
+    }
+    if (SeasonMaxHealthBps != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(SeasonMaxHealthBps);
+    }
+    if (SeasonDefenseBps != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(SeasonDefenseBps);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -550,6 +636,15 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     size += supportSources_.CalculateSize(_repeated_supportSources_codec);
     if (SupportSourcesComplete != false) {
       size += 2 + 1;
+    }
+    if (seasonSeal_ != null) {
+      size += 2 + pb::CodedOutputStream.ComputeMessageSize(SeasonSeal);
+    }
+    if (SeasonMaxHealthBps != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SeasonMaxHealthBps);
+    }
+    if (SeasonDefenseBps != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SeasonDefenseBps);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -600,6 +695,18 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
     supportSources_.Add(other.supportSources_);
     if (other.SupportSourcesComplete != false) {
       SupportSourcesComplete = other.SupportSourcesComplete;
+    }
+    if (other.seasonSeal_ != null) {
+      if (seasonSeal_ == null) {
+        SeasonSeal = new global::SeasonSealEffect();
+      }
+      SeasonSeal.MergeFrom(other.SeasonSeal);
+    }
+    if (other.SeasonMaxHealthBps != 0) {
+      SeasonMaxHealthBps = other.SeasonMaxHealthBps;
+    }
+    if (other.SeasonDefenseBps != 0) {
+      SeasonDefenseBps = other.SeasonDefenseBps;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -682,6 +789,21 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
         }
         case 128: {
           SupportSourcesComplete = input.ReadBool();
+          break;
+        }
+        case 138: {
+          if (seasonSeal_ == null) {
+            SeasonSeal = new global::SeasonSealEffect();
+          }
+          input.ReadMessage(SeasonSeal);
+          break;
+        }
+        case 144: {
+          SeasonMaxHealthBps = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          SeasonDefenseBps = input.ReadUInt32();
           break;
         }
       }
@@ -767,6 +889,567 @@ public sealed partial class EquipmentEffects : pb::IMessage<EquipmentEffects>
           SupportSourcesComplete = input.ReadBool();
           break;
         }
+        case 138: {
+          if (seasonSeal_ == null) {
+            SeasonSeal = new global::SeasonSealEffect();
+          }
+          input.ReadMessage(SeasonSeal);
+          break;
+        }
+        case 144: {
+          SeasonMaxHealthBps = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          SeasonDefenseBps = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 赛季印的战斗机制快照：结构与法宝效果一致，但按 (season_id, seal_id) 标识，不借用永久 item_id。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SeasonSealEffect : pb::IMessage<SeasonSealEffect>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SeasonSealEffect> _parser = new pb::MessageParser<SeasonSealEffect>(() => new SeasonSealEffect());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SeasonSealEffect> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::EquipmentEffectsReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SeasonSealEffect() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SeasonSealEffect(SeasonSealEffect other) : this() {
+    seasonId_ = other.seasonId_;
+    sealId_ = other.sealId_;
+    effectId_ = other.effectId_;
+    bonusBps_ = other.bonusBps_;
+    capBps_ = other.capBps_;
+    perRoundLimit_ = other.perRoundLimit_;
+    battleLimit_ = other.battleLimit_;
+    activeRounds_ = other.activeRounds_;
+    healthThresholdBps_ = other.healthThresholdBps_;
+    name_ = other.name_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SeasonSealEffect Clone() {
+    return new SeasonSealEffect(this);
+  }
+
+  /// <summary>Field number for the "season_id" field.</summary>
+  public const int SeasonIdFieldNumber = 1;
+  private uint seasonId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonId {
+    get { return seasonId_; }
+    set {
+      seasonId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seal_id" field.</summary>
+  public const int SealIdFieldNumber = 2;
+  private uint sealId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SealId {
+    get { return sealId_; }
+    set {
+      sealId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "effect_id" field.</summary>
+  public const int EffectIdFieldNumber = 3;
+  private uint effectId_;
+  /// <summary>
+  /// 1 物理削盾、2 法术削盾、6 开局减伤、7 防御回蓝等。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EffectId {
+    get { return effectId_; }
+    set {
+      effectId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "bonus_bps" field.</summary>
+  public const int BonusBpsFieldNumber = 4;
+  private uint bonusBps_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BonusBps {
+    get { return bonusBps_; }
+    set {
+      bonusBps_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cap_bps" field.</summary>
+  public const int CapBpsFieldNumber = 5;
+  private uint capBps_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CapBps {
+    get { return capBps_; }
+    set {
+      capBps_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "per_round_limit" field.</summary>
+  public const int PerRoundLimitFieldNumber = 6;
+  private uint perRoundLimit_;
+  /// <summary>
+  /// 0 不限。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PerRoundLimit {
+    get { return perRoundLimit_; }
+    set {
+      perRoundLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "battle_limit" field.</summary>
+  public const int BattleLimitFieldNumber = 7;
+  private uint battleLimit_;
+  /// <summary>
+  /// 0 不限。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BattleLimit {
+    get { return battleLimit_; }
+    set {
+      battleLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "active_rounds" field.</summary>
+  public const int ActiveRoundsFieldNumber = 8;
+  private uint activeRounds_;
+  /// <summary>
+  /// 0 不限。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActiveRounds {
+    get { return activeRounds_; }
+    set {
+      activeRounds_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "health_threshold_bps" field.</summary>
+  public const int HealthThresholdBpsFieldNumber = 9;
+  private uint healthThresholdBps_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint HealthThresholdBps {
+    get { return healthThresholdBps_; }
+    set {
+      healthThresholdBps_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 10;
+  private string name_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SeasonSealEffect);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SeasonSealEffect other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SeasonId != other.SeasonId) return false;
+    if (SealId != other.SealId) return false;
+    if (EffectId != other.EffectId) return false;
+    if (BonusBps != other.BonusBps) return false;
+    if (CapBps != other.CapBps) return false;
+    if (PerRoundLimit != other.PerRoundLimit) return false;
+    if (BattleLimit != other.BattleLimit) return false;
+    if (ActiveRounds != other.ActiveRounds) return false;
+    if (HealthThresholdBps != other.HealthThresholdBps) return false;
+    if (Name != other.Name) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
+    if (SealId != 0) hash ^= SealId.GetHashCode();
+    if (EffectId != 0) hash ^= EffectId.GetHashCode();
+    if (BonusBps != 0) hash ^= BonusBps.GetHashCode();
+    if (CapBps != 0) hash ^= CapBps.GetHashCode();
+    if (PerRoundLimit != 0) hash ^= PerRoundLimit.GetHashCode();
+    if (BattleLimit != 0) hash ^= BattleLimit.GetHashCode();
+    if (ActiveRounds != 0) hash ^= ActiveRounds.GetHashCode();
+    if (HealthThresholdBps != 0) hash ^= HealthThresholdBps.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SeasonId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SeasonId);
+    }
+    if (SealId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(SealId);
+    }
+    if (EffectId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(EffectId);
+    }
+    if (BonusBps != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(BonusBps);
+    }
+    if (CapBps != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(CapBps);
+    }
+    if (PerRoundLimit != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(PerRoundLimit);
+    }
+    if (BattleLimit != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(BattleLimit);
+    }
+    if (ActiveRounds != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(ActiveRounds);
+    }
+    if (HealthThresholdBps != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(HealthThresholdBps);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(82);
+      output.WriteString(Name);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SeasonId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SeasonId);
+    }
+    if (SealId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(SealId);
+    }
+    if (EffectId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(EffectId);
+    }
+    if (BonusBps != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(BonusBps);
+    }
+    if (CapBps != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(CapBps);
+    }
+    if (PerRoundLimit != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(PerRoundLimit);
+    }
+    if (BattleLimit != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(BattleLimit);
+    }
+    if (ActiveRounds != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(ActiveRounds);
+    }
+    if (HealthThresholdBps != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(HealthThresholdBps);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(82);
+      output.WriteString(Name);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SeasonId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SeasonId);
+    }
+    if (SealId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SealId);
+    }
+    if (EffectId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EffectId);
+    }
+    if (BonusBps != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BonusBps);
+    }
+    if (CapBps != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CapBps);
+    }
+    if (PerRoundLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PerRoundLimit);
+    }
+    if (BattleLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BattleLimit);
+    }
+    if (ActiveRounds != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ActiveRounds);
+    }
+    if (HealthThresholdBps != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(HealthThresholdBps);
+    }
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SeasonSealEffect other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SeasonId != 0) {
+      SeasonId = other.SeasonId;
+    }
+    if (other.SealId != 0) {
+      SealId = other.SealId;
+    }
+    if (other.EffectId != 0) {
+      EffectId = other.EffectId;
+    }
+    if (other.BonusBps != 0) {
+      BonusBps = other.BonusBps;
+    }
+    if (other.CapBps != 0) {
+      CapBps = other.CapBps;
+    }
+    if (other.PerRoundLimit != 0) {
+      PerRoundLimit = other.PerRoundLimit;
+    }
+    if (other.BattleLimit != 0) {
+      BattleLimit = other.BattleLimit;
+    }
+    if (other.ActiveRounds != 0) {
+      ActiveRounds = other.ActiveRounds;
+    }
+    if (other.HealthThresholdBps != 0) {
+      HealthThresholdBps = other.HealthThresholdBps;
+    }
+    if (other.Name.Length != 0) {
+      Name = other.Name;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SeasonId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          SealId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          EffectId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          BonusBps = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          CapBps = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          PerRoundLimit = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          BattleLimit = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          ActiveRounds = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          HealthThresholdBps = input.ReadUInt32();
+          break;
+        }
+        case 82: {
+          Name = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SeasonId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          SealId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          EffectId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          BonusBps = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          CapBps = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          PerRoundLimit = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          BattleLimit = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          ActiveRounds = input.ReadUInt32();
+          break;
+        }
+        case 72: {
+          HealthThresholdBps = input.ReadUInt32();
+          break;
+        }
+        case 82: {
+          Name = input.ReadString();
+          break;
+        }
       }
     }
   }
@@ -789,7 +1472,7 @@ public sealed partial class EquipmentArtifactSource : pb::IMessage<EquipmentArti
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::EquipmentEffectsReflection.Descriptor.MessageTypes[1]; }
+    get { return global::EquipmentEffectsReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

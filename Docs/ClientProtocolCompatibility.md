@@ -179,11 +179,11 @@ pwsh -File tools/build_client.ps1 -Development
   - Go 统一路由服 `client_rpc_router` 新增 `shared/circuitbreaker` 按目标实例（endpoint）隔离的三态熔断（默认连续 5 次拨号/转发故障打开 10 秒），选点自动跳过熔断实例切流向健康节点，全员熔断时快速回 `1003`（`outcome="circuit_open"`），节点下线随 `onRemove` 自动清理，调用方主动取消不误触发熔断。
 - **业务层降级与 UI**：`TeamClient`、`BattleMatchEntryClient` 与 `RankClient` 生产均共享注入 `GameClient.RpcGuard`（零重复计数），业务层只保留降级与界面态（如 `MatchNetworkPreparing` 期间停发后台刷新、`BattleQueuePanel` 在冷却期置灰开始与取消按钮并显示原因，绝不将拦截点击排队延后自动开战）。
 
-## 主角权威状态互斥即时同步与未来 UnityHFSM 接入边界（2026-11-21）
+## 主角权威状态互斥即时同步与 UnityHFSM 接入边界（2026-11-21 / 2026-11-24）
 
-事实源：服务端 `proto/scene/client_player_common.proto` 与 `docs/design/scene-actor-state-sync-and-client-hfsm-boundary.md`。原 `66`（`ActorBaseAttributesS2C`）以 10Hz 节流广播 AOI 旁观者且不携带行为状态，主角本地 UI 与未来实时动作需要服务端态变化即刻到端。
+事实源：服务端 `proto/scene/client_player_common.proto` 与 `docs/design/scene-actor-state-sync-and-client-hfsm-boundary.md`。原 `66`（`ActorBaseAttributesS2C`）以 10Hz 节流广播 AOI 旁观者且不携带行为状态，主角本地 UI 与实时动作演出需要服务端态变化即刻到端。
 
-### 1. 主角即时状态位图同步（已落码并经 EditMode 43/43 验证）
+### 1. 主角即时状态位图同步（已落码并经 EditMode 验证）
 
 - **协议契约**：`SceneClientPlayerCommon.NotifySelfActorStateFlags`（消息号 `440`，`CLIENT_RPC_PUSH`，生成入口为 `SceneClientPlayerCommonRpc.OnNotifySelfActorStateFlags`），载荷 `SelfActorStateFlagsS2C { uint64 action_state_mask, uint64 combat_state_mask, uint64 state_seq }`：
   - `action_state_mask`（`eActorState`）：`bit 0 = Combat`、`bit 1 = TeamFollow`、`bit 2 = Mounted`；
@@ -194,11 +194,14 @@ pwsh -File tools/build_client.ps1 -Development
   - `Assets/Scripts/Game/GameClient.ActorState.cs` & `GameClient.cs`：暴露 `SelfActorState`、`SelfActionStateMask`、`SelfCombatStateMask` 与主线程事件 `OnSelfActorStateChanged(prev, next)`；按单调 `state_seq` 丢弃乱序旧包，同掩码不重复触发事件；`NotifyEnterScene` 与断线统一调用 `ResetSelfActorStateFlags()` 复位并发出回归默认态通知；
   - `Assets/Tests/EditMode/Role/SelfActorStateFlagsTests.cs`（3/3 在 Unity `6000.6.0f1` 隔离 EditMode 通过）：覆盖差异事件、乱序丢弃、同掩码去重与进场复位后 `state_seq=1` 重开窗口。
 
-### 2. `Inspiaaa/UnityHFSM` 选型与强边界（实时 MMO 动作 / 技能演出规划）
+### 2. `Inspiaaa/UnityHFSM` 接入与强制边界（已接入表现层并经 EditMode 验证）
 
-- **何时接入**：当前客户端尚无实时 MMO 角色动作与连招演出系统，**暂不预埋依赖包**；当正式开始制作实时 MMO 角色动作 / 技能演出状态机时，适合接入 `Inspiaaa/UnityHFSM`（建议以本地 `.tgz` 进 `Packages/` 或源码 vendor，并先核对 MIT 许可与源码零禁用 API）。
-- **平台兼容性**：`UnityHFSM` 为纯 C#、单线程 `Update()` 驱动，不使用 `Thread` / `Task.Run` / `System.Reflection.Emit`，满足 [Docs/rules/minigame-and-app-platforms.md](rules/minigame-and-app-platforms.md) 对微信/抖音小游戏 WebGL2 与 App IL2CPP/AOT 的硬约束；内置层级状态与 `needsExitTime` 适合处理攻击前后摇、收刀与受控强切。
+- **依赖引入与平台审计**：已将 MIT 协议的 `Inspiaaa/UnityHFSM` v2.3.0（上游提交 `f8fdc2e`）纯 C# 源码引入 `Assets/Scripts/ThirdParty/UnityHFSM/`（保留 `LICENSE.md`、`README.md` 与全量 `.meta`，其中编辑器可视化类 `Visualization/HfsmAnimatorGraph.cs` 已有 `#if UNITY_EDITOR` 保护，仅在命名空间内补充 `using Vector3 = UnityEngine.Vector3;` 避免与生成 protobuf `global::Vector3` 重名冲突）。经审计，全量源码不使用 `Thread`、`ThreadPool`、`Task.Run`、`Task.Delay`、`Reflection.Emit`、`dynamic` 或 `lock`，满足 [Docs/rules/minigame-and-app-platforms.md](rules/minigame-and-app-platforms.md) 对微信/抖音小游戏 WebGL2 单线程与 App IL2CPP/AOT 的硬约束。
+- **客户端接入落点**：
+  - `Assets/Scripts/Game/ProtagonistPresentationHfsm.cs`：无 `MonoBehaviour` 依赖的纯 C# 表现层层级状态机，顶层为 `Free` / `Combat`（各含 `Idle` / `Move` / `ActionCast(needsExitTime=true)` 子状态机）及受控独占态 `Mounted` / `TeamFollow` / `Controlled`（优先级 `Controlled(Silence) > TeamFollow > Mounted > Combat > Free`）；提供 `CanMoveLocally` / `CanStartLocalActionPresentation` 本地防误触只读检查及 `OnModeChanged` / `OnStateChanged` / `OnCastPresentationEnded` 事件。
+  - `Assets/Scripts/Game/GameClient.cs` & `GameClient.ActorState.cs`：通过 `GameClient.Presentation` 绑定 `OnSelfActorStateChanged`，在 `Tick()` 主线程步进、`SendMoveStart`/`SendMoveStop` 同步移动表现、`NotifySkillUsed`/`NotifySkillInterrupted`（命中本地主角实体时）驱动施法动作演出与打断收口、`ResetSelfActorStateFlags()` 统一复位。
+  - `Assets/Tests/EditMode/Role/ProtagonistPresentationHfsmTests.cs`（7 项测试与 `SelfActorStateFlagsTests` 等一起在 `MmorpgClient.Tests.EditMode.Role` 63/63 通过）：覆盖自由移动、`needsExitTime` 保持与过渡、`Silence`/`TeamFollow`/`Mounted` 无视 `needsExitTime` 立即强切、跨 `Free -> Combat` 施法衔接、`InterruptCastPresentation` 强退、`GameClient` 集成复位及 `Dispose()` 对称退订。
 - **架构红线（「表现层归客户端、状态权威归服务端」）**：
-  1. **只管表现与防误触**：客户端 `UnityHFSM` 只承载移动 / 骑乘 / 施法动作融合、特效挂点、取消窗口动画节奏以及基于 `SelfActorState` 的 UI 按钮置灰；**禁止**在客户端本地裁决状态互斥、强打断逻辑、真实冷却或受击结果。
-  2. **由 `OnSelfActorStateChanged` 单向纠偏**：表现层状态机必须订阅 `GameClient.OnSelfActorStateChanged(prev, next)`（并在 `OnDisable`/`OnDestroy` 对称退订），收到服务端沉默、眩晕、脱离跟随、下马或被强制打断时，直接触发 `ForceRequestStateChange` 向 `SelfActorState` 收敛，不得因本地动画 `needsExitTime` 未结束而拒绝服务端权威状态。
-  3. **单线程有序与周期清零**：全部转换在 Unity 主线程 `Update` 或 `GameClient` 收包回调后有序执行；换场景或断线随 `ResetSelfActorStateFlags()` 同步复位状态机。
+  1. **只管表现与防误触**：客户端 `UnityHFSM` 只承载移动 / 骑乘 / 施法动作融合、特效挂点、取消窗口动画节奏以及基于 `SelfActorState` 的 UI 按钮防误触；**禁止**在客户端本地裁决状态互斥、强打断逻辑、真实冷却或受击结果。
+  2. **由 `OnSelfActorStateChanged` 单向纠偏**：表现层状态机通过 `Bind` 订阅 `GameClient.OnSelfActorStateChanged(prev, next)`（并在 `Dispose` 对称退订），收到服务端沉默、脱离跟随、下马或被强制打断时，直接通过 `RequestStateChange(..., forceInstantly: true)` 向 `SelfActorState` 收敛，不得因本地动画 `needsExitTime` 未结束而拒绝服务端权威状态。
+  3. **单线程有序与周期清零**：全部转换在 Unity 主线程 `Tick()` 或 `GameClient` 收包回调后有序执行；换场景或断线随 `ResetSelfActorStateFlags()` 同步复位状态机。

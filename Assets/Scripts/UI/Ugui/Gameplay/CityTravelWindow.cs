@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MmorpgClient.Game.WorldTravel;
 using MmorpgClient.World.Tianyong;
 using MmorpgClient.World.CurrentMaps;
 using TMPro;
@@ -68,6 +69,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly List<Button> _destinationButtons = new();
         private IReadOnlyList<CityTravelDestination> _destinations;
         private CityTravelDestination _selected;
+        private WorldMapOverviewSnapshot _overview;
         private uint _currentScene;
         private bool _festival, _busy;
 
@@ -155,6 +157,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         /// 跨区要重新连接，不能让上一次的选择留到下一次打开，一次随手的“前往”就把人送去别的区。
         /// 传送途中忽略调用，避免按钮文案在“正在传送”时变来变去。
         /// </summary>
+        public void SetOverview(WorldMapOverviewSnapshot overview)
+        {
+            _overview = overview;
+            Refresh();
+        }
+
         public void SetZones(IReadOnlyList<CityTravelZone> zones)
         {
             if (_busy) return;
@@ -238,7 +246,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 SetTab(_destinationButtons[i], selected);
                 _destinationButtons[i].interactable = !_busy && _destinations[i].Available;
             }
-            _name.text = _selected.Name;
+            string badges = WorldMapOverviewModels.FormatDestinationBadges(_overview, _selected.SceneConfigId);
+            _name.text = string.IsNullOrEmpty(badges) ? _selected.Name : _selected.Name + "  [" + badges + "]";
             _description.text = _selected.Description;
             string path = _selected.TexturePath(_appearance);
             _preview.texture = string.IsNullOrEmpty(path) ? null : Resources.Load<Texture2D>(path);
@@ -260,11 +269,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             SetTab(_zoneButton, crossZone);
             _zoneButton.interactable = !_busy && _selected.OnlineAvailable;
             _zoneButton.gameObject.SetActive(_selected.OnlineAvailable && _zones != null && _zones.Count > 0);
-            _appearanceHint.text = !_selected.OnlineAvailable ? "景色已收录；此地图尚未开放传送。" : crossZone
+            string overviewHint = _selected.OnlineAvailable && !crossZone
+                ? WorldMapOverviewModels.FormatDestinationHint(_overview, _selected.SceneConfigId) : "";
+            string baseHint = !_selected.OnlineAvailable ? "景色已收录；此地图尚未开放传送。" : crossZone
                 ? "将前往其他区服，途中会重新连接，请稍候片刻。"
                 : _selected.HasFestival
                     ? sameScene ? "更换此地景色，继续在原处游历。" : "选好景色，启程前往这片山海。"
                     : "沿着石路自在游历。";
+            _appearanceHint.text = string.IsNullOrEmpty(overviewHint) ? baseHint : overviewHint;
             _travelLabel.text = !_selected.OnlineAvailable ? "尚未开放传送" : _busy ? "正在传送…"
                 : crossZone ? "前往" + zone.Name + " · " + _selected.Name
                 : sameScene ? (_selected.HasFestival ? "应用景色" : "已在此地") : "前往" + _selected.Name;

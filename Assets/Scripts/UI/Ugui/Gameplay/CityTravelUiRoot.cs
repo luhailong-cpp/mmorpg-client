@@ -25,6 +25,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private readonly CityTravelRequest _request = new();
         private AppBootstrap _app;
         private GameClient _game;
+        private SceneChannelClient _channelClient;
         private RectTransform _hud;
         private Button _entry;
         private CityTravelWindow _window;
@@ -82,6 +83,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             { Bind(null); return; }
             _app = AppBootstrap.Instance;
             Bind(_app?.GameClient);
+            BindChannelClient(SceneChannelUiRoot.Instance?.Client);
             bool inGame = _game != null && _game.InGame && _game.IsGateReady;
             bool available = inGame && CanTravelNow();
             _hud.gameObject.SetActive(inGame && !(BattleUiRoot.Instance?.IsBattleLayerVisible ?? false));
@@ -146,10 +148,52 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_window.IsVisible) { HidePanel(); return; }
             if (_game == null || !_game.InGame || !_game.IsGateReady || !CanTravelNow()) return;
             CityPanelRegistry.HideOthers(this);
+            BindChannelClient(SceneChannelUiRoot.Instance?.Client);
+            _channelClient?.RequestOverview();
             _window.SetZones(BuildZones());
             _window.SetDestinations(CreateDestinations());
+            _window.SetOverview(_channelClient?.Overview);
             _window.Show(CurrentScene, _app.WorldMap?.Appearance ?? "normal");
             Refresh();
+        }
+
+        /// <summary>外部入口（如神秘商人跨图一键前往）预检能否通过地图传送状态机发车。</summary>
+        public bool CanAcceptDirectSceneTravel(uint sceneConfigId, out string blockedReason)
+        {
+            blockedReason = "";
+            if (_game == null || !_game.InGame || !_game.IsGateReady || _app?.WorldMap == null)
+            {
+                blockedReason = "请稍候再试。";
+                return false;
+            }
+            if (!CanTravelNow())
+            {
+                blockedReason = "战斗或观战中无法传送。";
+                return false;
+            }
+            if (_request.IsPending)
+            {
+                blockedReason = "正在传送中，请稍候。";
+                return false;
+            }
+            var destination = CurrentMapCatalog.FindForOnline(sceneConfigId);
+            if (destination == null || !destination.CanTravelOnline)
+            {
+                blockedReason = MysteryMerchantUiRoot.OtherMapText;
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>跨图直达指定大世界地图与分线（复用正式传送状态机与跨节点交接超时保护）。</summary>
+        public bool RequestTravelToScene(uint sceneConfigId, ulong sceneId, out string error)
+        {
+            if (!CanAcceptDirectSceneTravel(sceneConfigId, out error)) return false;
+            var destination = CurrentMapCatalog.FindForOnline(sceneConfigId);
+            string appearance = destination.Appearance ?? "normal";
+            if (destination.ForAppearance(appearance) == null) appearance = "normal";
+            BeginTravel(sceneConfigId, appearance, sceneId);
+            return true;
         }
 
         public void RequestTravel(uint sceneConfigId, bool festival)
@@ -195,9 +239,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 #endif
 
-        private void BeginTravel(uint sceneConfigId, string appearance)
+        private void BeginTravel(uint sceneConfigId, string appearance, ulong targetSceneId = 0)
         {
-            if (sceneConfigId == CurrentScene)
+            if (sceneConfigId == CurrentScene && targetSceneId == 0)
             {
                 _status = _app.WorldMap.TrySetAppearance(appearance)
                     ? "景色已更新，愿此行尽兴。" : "景色暂未准备好，请稍后重试。";
@@ -209,8 +253,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _pendingAppearance = appearance;
             _status = "正在启程，请稍候…";
             Refresh();
-            // 编号为零的线路由服务端分配，客户端不修改当前场景和角色位置。
-            StartCoroutine(_game.EnterScene(sceneConfigId, 0,
+            // targetSceneId == 0 由服务端分配聚人线；非 0 时请求直达该分线（如跨图寻神秘商人）。
+            StartCoroutine(_game.EnterScene(sceneConfigId, targetSceneId,
                 () =>
                 {
                     // 受理不等于马上换图：目的地落在别的节点时，服务端要先冻结玩家、存盘、再重发进场请求，
@@ -420,9 +464,27 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private static bool IsTyping() => CityPanelRegistry.IsTyping();
 
+        private void BindChannelClient(SceneChannelClient client)
+        {
+            if (ReferenceEquals(_channelClient, client)) return;
+            if (_channelClient != null) _channelClient.Changed -= HandleChannelClientChanged;
+            _channelClient = client;
+            if (_channelClient != null) _channelClient.Changed += HandleChannelClientChanged;
+            if (_window != null) _window.SetOverview(_channelClient?.Overview);
+        }
+
+        private void HandleChannelClientChanged()
+        {
+            if (_window != null && _window.IsVisible)
+            {
+                _window.SetOverview(_channelClient?.Overview);
+            }
+        }
+
         private void OnDestroy()
         {
             CityPanelRegistry.Unregister(this);
+            BindChannelClient(null);
             Bind(null);
             if (Instance == this) Instance = null;
         }

@@ -32,6 +32,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             foreach (var rect in _mainPanelGroup.GetComponentsInChildren<RectTransform>(true))
             {
                 if (rect == _listContent || (_listContent != null && rect.IsChildOf(_listContent))) continue;
+                if (rect == _seriesTabContent || (_seriesTabContent != null && rect.IsChildOf(_seriesTabContent))) continue;
                 _wideRects[rect] = (rect.anchoredPosition, rect.sizeDelta);
             }
             var main = _mainPanelGroup.transform;
@@ -170,6 +171,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _previewStatus.fontSize = 23;
                 _biographyBody.fontSize = 22; _biographyBody.lineSpacing = 6;
             }
+            ApplySeriesLayout(compact, !compact || !_compactDetail);
             SetReadingFonts(compact);
             ApplyReadingRowLayout(compact);
             ApplyModalReadingLayout(compact);
@@ -178,7 +180,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void ApplyModalReadingLayout(bool compact)
         {
-            foreach (var overlay in new[] { _confirmOverlay, _noCardOverlay, _storyOverlay, _biographyOverlay, _portraitOverlay })
+            foreach (var overlay in new[] { _confirmOverlay, _noCardOverlay, _storyOverlay, _biographyOverlay, _portraitOverlay, _seriesEpilogueOverlay })
             {
                 if (overlay == null) continue;
                 var rect = (RectTransform)overlay.transform;
@@ -233,11 +235,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 MoveReadingElement(portrait, "PortraitMissing", compact ? 140 : 200, compact ? 260 : 360, compact ? 860 : 960, 150);
                 MoveReadingElement(portrait, "PortraitReturn", compact ? 380 : 470, compact ? 526 : 800, compact ? 380 : 420, 76);
             }
+            ApplySeriesModalLayout(compact);
         }
 
         private void SetReadingFonts(bool compact)
         {
             if (_storyRecapLabel != null) _storyRecapLabel.fontSize = compact ? 24 : 23;
+            if (_seriesEpilogueDescLabel != null) _seriesEpilogueDescLabel.fontSize = compact ? 24 : 23;
             if (_biographyPageBody != null) _biographyPageBody.fontSize = compact ? 30 : 34;
             if (_listCountLabel != null) _listCountLabel.fontSize = compact ? 30 : 24;
             foreach (var button in new[] { _trialBtn, _switchBtn })

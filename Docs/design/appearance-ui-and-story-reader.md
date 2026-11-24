@@ -56,3 +56,17 @@
 4. 编写 `AppearanceUiArt.cs` 并升级 `AppearanceUiRoot.cs`：换肤、双弹窗（确认/缺卡）、人物背景摘要、可滚动故事阅读层、输入隔离与安全区适配。
 5. 扩展 `AppearanceClientTests.cs` 覆盖 8 项验收用例（4 人物精确匹配、视觉替代防串、跳过重读、滚动位置保持、无档案无残留、失效条目关闭、先点切换再读故事返回不误扣卡、阅读零网络请求），执行 Roslyn 编译与 NUnit 实测。
 6. 新增 Editor 离线截图验证入口 `Assets/Editor/AppearanceUiVerification.cs`，在 Unity 6000.6 批处理模式下实拍常规横屏与窄横屏截图，目视验收后汇总交付。
+
+## 6. 批次二增量（2026-11-23）：永久多人物收藏衣柜与建角收紧
+
+- **创角范围收紧与衣柜立绘隔离**：`QdaoCharacterCatalog.IsCreatableAppearance` / `CreationOriginalAll` 收紧至 2 名免费初始人物（`00_reference_topright_boy`、`01_ice_sword_girl`），新增 `IsReleasedAppearance` 保留 8 名现役人物在易容衣柜中的轻量立绘租约加载（`AcquireCreationPortrait` / `PrefetchCreationPortraitTexture`），既有职业/性别老号回退路径不变。
+- **永久衣柜状态与防误扣卡**：
+  - `AppearanceClient.SwitchAppearance(targetId, expectFreeSwitch)` 对齐服务端 `SwitchAppearanceRequest.expect_free_switch`，补齐 `KAppearanceNotCardUnlockable`（33007）、`KAppearanceAlreadyOwned`（33008）、`KAppearanceNotOwned`（33009）中文文案并在拒绝时强制刷新快照。
+  - `AppearancePanelState.RequestSwitch` 新增 `targetOwned` / `targetCardUnlockable` 参数与 `ReadyForFreeSwitch` / `LockedExclusive` 结论：已拥有形象直接发起 `expectFreeSwitch: true` 免费切换（免弹窗、0 扣卡）；未拥有且 `card_unlockable=false` 阻断扣卡流程；未拥有且支持卡兑换沿用缺卡引导 / 二次确认弹窗，并明确告知原形象保留在衣柜中。
+  - `AppearanceUiRoot` 与 `AppearanceUiArt` 升级列表标题为「角色衣柜 · 已收集 X/Y」，区分「使用中 / 试用中 / 已获得 / 可试用1小时 / 未获得 / 玩法解锁」角标，已拥有目标禁试用按钮并切换主按钮文案为「免费切换」。
+
+## 7. 批次二·续增量（2026-11-23）：人物收藏系列（纯外观与叙事，零属性）
+
+- **纯 C# 数据与门禁层**：新增 `AppearanceSeriesModels.cs`（`FilterBySeries`、`FindSeries`、`CountCompletedSeries`、`TryGetUnlockedEpilogue`），并在 `AppearanceBiography.cs` 扩展 `SelectedSeriesId`、`AppearanceOverlayKind.SeriesEpilogue`、`SelectSeries`、`SyncSeriesSelection`、`OpenSeriesEpilogue`、`CloseSeriesEpilogue`，严格按服务端权威 `SeriesProgress.Completed == true` 放行合篇故事。
+- **原生 uGUI 与响应式布局**：新增 `AppearanceUiRoot.Series.cs` 并接入 `AppearanceUiRoot.cs` / `AppearanceUiRoot.Layout.cs` / `AppearanceUiRoot.Reading.cs`，在易容左侧补齐「集齐系列 M/N」、横向可滚「系列筛选栏」、选中系列展开的「系列信息条（印章/铭牌/简介/读合篇）」及「系列合篇阅读层」（支持宽屏 2160×1000 与窄屏 1180×650、字号放大滚动与完整输入隔离）。
+- **美术资源槽位与平滑回退**：`AppearanceUiArt` 预留 `Assets/Resources/UI/Ugui/AppearanceSeriesV1/`（`series_tab_normal/selected`、`series_banner_card`、`series_epilogue_card`、`series_badge_dim/lit`、`series_seal[_<series_key>]_dim/lit`），未导入新图前自动回退到现有皮肤与配色，待 Codex 交付去底透明 PNG 后放入即自动生效。

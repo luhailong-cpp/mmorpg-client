@@ -304,6 +304,30 @@ public static class AppearanceUiVerification
                 AssertTrue(transport.SwitchCalls == 0 && transport.StartTrialCalls == 0 && transport.CancelTrialCalls == 0,
                     $"阅读过程不得产生写请求：switch={transport.SwitchCalls}, trial={transport.StartTrialCalls}, cancel={transport.CancelTrialCalls}");
                 summary.Add($"[{width}x{height}] Check 8 PASS: 全程阅读写请求计数=0 (Switch=0, Trial=0, Cancel=0)");
+
+                // 验收 9：人物收藏系列筛选、未集齐禁读合篇、集齐点亮印章与打开合篇阅读（零写请求）
+                AssertTrue(uiRoot.SeriesTabBarRoot.activeSelf, "存在系列进度时应显示系列筛选栏");
+                Click("AppearanceSeriesTab_1");
+                AssertTrue(uiRoot.SeriesBannerRoot.activeSelf, "选中留灯院旧友后应显示系列信息条");
+                AssertTrue(!FindButton("AppearanceReadSeriesEpilogue").interactable, "未集齐系列时读合篇按钮必须不可点");
+                Shoot("08-series-incomplete-lantern");
+
+                Click("AppearanceSeriesTab_3");
+                AssertTrue(FindButton("AppearanceReadSeriesEpilogue").interactable, "已集齐清音济世时应允许读合篇");
+                uiRoot.PanelState.ArmLegacySwitchConfirmation("00_reference_topright_boy", clock);
+                Click("AppearanceReadSeriesEpilogue");
+                AssertTrue(uiRoot.SeriesEpilogueOverlay.activeSelf, "点击读合篇应打开系列合篇阅读层");
+                AssertTrue(!uiRoot.PanelState.HasPendingSwitchConfirmation, "打开系列合篇必须清除旧扣卡确认");
+                AssertTrue(FindText("SeriesEpilogueTitle").text.Contains("青莲闻琴"), "系列合篇标题应匹配权威配表");
+                AssertTrue(uiRoot.SeriesEpilogueBodyText.text.Contains("莲心"), "系列合篇正文应来自权威配表");
+                Shoot("09-series-completed-epilogue");
+                Click("AppearanceSeriesEpilogueBack");
+                AssertTrue(!uiRoot.SeriesEpilogueOverlay.activeSelf, "返回应关闭系列合篇阅读层");
+                Click("AppearanceSeriesTab_All");
+                AssertTrue(!uiRoot.SeriesBannerRoot.activeSelf, "切回全部时应隐藏单系列信息条");
+                AssertTrue(transport.SwitchCalls == 0 && transport.StartTrialCalls == 0 && transport.CancelTrialCalls == 0,
+                    "系列筛选与合篇阅读全程不得产生写请求");
+                summary.Add($"[{width}x{height}] Check 9 PASS: 人物收藏系列筛选、未集齐灰态、集齐读合篇与零写请求验收通过");
             }
             else
             {
@@ -340,6 +364,9 @@ public static class AppearanceUiVerification
         string pbPath = Path.Combine(Application.streamingAssetsPath, "Tables", CharacterAppearanceTableManager.BinaryFileName);
         if (File.Exists(pbPath))
             CharacterAppearanceTableManager.Instance.LoadFromBytes(File.ReadAllBytes(pbPath));
+        string seriesPbPath = Path.Combine(Application.streamingAssetsPath, "Tables", AppearanceSeriesTableManager.BinaryFileName);
+        if (File.Exists(seriesPbPath))
+            AppearanceSeriesTableManager.Instance.LoadFromBytes(File.ReadAllBytes(seriesPbPath));
     }
 
     private static PlayerAppearanceInfo BuildFixtureInfo(uint ownedCards, string activeTrialId)
@@ -358,18 +385,18 @@ public static class AppearanceUiVerification
             MallSkuId = 3402u,
             MallPriceFen = 1000ul,
         };
-        (uint id, string rawId, string name, uint sortOrder, bool trialUsed)[] roster =
+        (uint id, string rawId, string name, uint sortOrder, bool trialUsed, bool owned, uint seriesId)[] roster =
         {
-            (2, "00_reference_topright_boy", "金发带Q道童", 1, false),
-            (3, "01_ice_sword_girl", "冰剑少女", 2, !string.IsNullOrEmpty(activeTrialId)),
-            (4, "02_fire_talisman_boy", "火符少年", 3, true),
-            (5, "03_lotus_healer_girl", "莲花医者", 4, false),
-            (7, "05_celestial_musician_girl", "天音少女", 5, false),
-            (8, "09_bamboo_archer_girl", "竹弓少女", 6, false),
-            (9, "10_crimson_spear_girl", "赤枪少女", 7, false),
-            (10, "15_water_dragon_scholar_boy", "水龙书生", 8, false),
+            (2, "00_reference_topright_boy", "金发带Q道童", 1, false, false, 1u),
+            (3, "01_ice_sword_girl", "冰剑少女", 2, !string.IsNullOrEmpty(activeTrialId), false, 2u),
+            (4, "02_fire_talisman_boy", "火符少年", 3, true, false, 2u),
+            (5, "03_lotus_healer_girl", "莲花医者", 4, false, true, 3u),
+            (7, "05_celestial_musician_girl", "天音少女", 5, false, true, 3u),
+            (8, "09_bamboo_archer_girl", "竹弓少女", 6, false, false, 1u),
+            (9, "10_crimson_spear_girl", "赤枪少女", 7, false, false, 1u),
+            (10, "15_water_dragon_scholar_boy", "水龙书生", 8, false, false, 2u),
         };
-        foreach (var (id, rawId, name, sortOrder, trialUsed) in roster)
+        foreach (var (id, rawId, name, sortOrder, trialUsed, owned, seriesId) in roster)
         {
             info.Appearances.Add(new CharacterAppearanceEntry
             {
@@ -378,8 +405,60 @@ public static class AppearanceUiVerification
                 Name = name,
                 SortOrder = sortOrder,
                 TrialUsed = trialUsed,
+                Owned = owned,
+                CardUnlockable = true,
+                SeriesId = seriesId,
             });
         }
+        var s1 = new CharacterAppearanceSeriesProgress
+        {
+            SeriesId = 1u,
+            SeriesKey = "lantern_courtyard",
+            Name = "留灯院旧友",
+            SortOrder = 1u,
+            OwnedCount = 0u,
+            TotalCount = 3u,
+            Completed = false,
+            CompletionBadgeName = "留灯同袍",
+            EpilogueTitle = "灯下三碗面",
+        };
+        s1.MemberAppearanceIds.Add("00_reference_topright_boy");
+        s1.MemberAppearanceIds.Add("09_bamboo_archer_girl");
+        s1.MemberAppearanceIds.Add("10_crimson_spear_girl");
+        info.SeriesProgress.Add(s1);
+
+        var s2 = new CharacterAppearanceSeriesProgress
+        {
+            SeriesId = 2u,
+            SeriesKey = "elemental_blades",
+            Name = "水火冰锋",
+            SortOrder = 2u,
+            OwnedCount = 0u,
+            TotalCount = 3u,
+            Completed = false,
+            CompletionBadgeName = "三灵同契",
+            EpilogueTitle = "霜火沧澜试",
+        };
+        s2.MemberAppearanceIds.Add("01_ice_sword_girl");
+        s2.MemberAppearanceIds.Add("02_fire_talisman_boy");
+        s2.MemberAppearanceIds.Add("15_water_dragon_scholar_boy");
+        info.SeriesProgress.Add(s2);
+
+        var s3 = new CharacterAppearanceSeriesProgress
+        {
+            SeriesId = 3u,
+            SeriesKey = "lotus_melody",
+            Name = "清音济世",
+            SortOrder = 3u,
+            OwnedCount = 2u,
+            TotalCount = 2u,
+            Completed = true,
+            CompletionBadgeName = "清音杏林",
+            EpilogueTitle = "青莲闻琴",
+        };
+        s3.MemberAppearanceIds.Add("03_lotus_healer_girl");
+        s3.MemberAppearanceIds.Add("05_celestial_musician_girl");
+        info.SeriesProgress.Add(s3);
         return info;
     }
 

@@ -37,66 +37,89 @@ public static partial class PlayerSceneReflection {
           "bmZpZ19pZBgCIAEoDRIjCghjaGFubmVscxgDIAMoCzIRLlNjZW5lQ2hhbm5l",
           "bEluZm8SFQoNdXBkYXRlZF9hdF9tcxgEIAEoBBIfChdzd2l0Y2hfY29vbGRv",
           "d25fc2Vjb25kcxgFIAEoDRIfChdtYXhfcGxheWVyc19wZXJfY2hhbm5lbBgG",
-          "IAEoDRIWCg5zd2l0Y2hfZW5hYmxlZBgHIAEoCCJlCgxTY2VuZUluZm9TMkMS",
-          "IgoKc2NlbmVfaW5mbxgBIAMoCzIOLlNjZW5lSW5mb0NvbXASMQoRY2hhbm5l",
-          "bF9kaXJlY3RvcnkYAiABKAsyFi5TY2VuZUNoYW5uZWxEaXJlY3RvcnkiMgoQ",
-          "U2NlbmVJbmZvUmVxdWVzdBIeChZ3aXRoX2NoYW5uZWxfZGlyZWN0b3J5GAEg",
-          "ASgIIjcKEVNjZW5lSW5mb1Jlc3BvbnNlEiIKCnNjZW5lX2luZm8YASADKAsy",
-          "Di5TY2VuZUluZm9Db21wIrkBCg5BY3RvckNyZWF0ZVMyQxIOCgZlbnRpdHkY",
-          "ASABKAQSHQoJdHJhbnNmb3JtGAIgASgLMgouVHJhbnNmb3JtEh4KCmFjdG9y",
-          "X3R5cGUYAyABKA4yCi5BY3RvclR5cGUSDAoEZ3VpZBgEIAEoBBIRCgljb25m",
-          "aWdfaWQYBSABKAQSFQoNYXBwZWFyYW5jZV9pZBgGIAEoCRIQCghjbGFzc19p",
-          "ZBgHIAEoDRIOCgZnZW5kZXIYCCABKA0iIQoPQWN0b3JEZXN0cm95UzJDEg4K",
-          "BmVudGl0eRgBIAEoBCI5ChJBY3Rvckxpc3RDcmVhdGVTMkMSIwoKYWN0b3Jf",
-          "bGlzdBgBIAMoCzIPLkFjdG9yQ3JlYXRlUzJDIiUKE0FjdG9yTGlzdERlc3Ry",
-          "b3lTMkMSDgoGZW50aXR5GAEgAygEIkYKE1RyYXZlbFRvWm9uZVJlcXVlc3QS",
-          "FgoOdGFyZ2V0X3pvbmVfaWQYASABKA0SFwoPc2NlbmVfY29uZmlnX2lkGAIg",
-          "ASgNIj4KFFRyYXZlbFRvWm9uZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UY",
-          "ASABKAsyDy5UaXBJbmZvTWVzc2FnZSI/Cg9TeW5jRGlnZXN0RW50cnkSGwoG",
-          "ZG9tYWluGAEgASgOMgsuU3luY0RvbWFpbhIPCgd2ZXJzaW9uGAIgASgEIhYK",
-          "FEdldFN5bmNEaWdlc3RSZXF1ZXN0ImkKDVN5bmNEaWdlc3RTMkMSIQoGc3Rh",
-          "dHVzGAEgASgOMhEuU3luY0RpZ2VzdFN0YXR1cxISCgpnZW5lcmF0aW9uGAIg",
-          "ASgEEiEKB2VudHJpZXMYAyADKAsyEC5TeW5jRGlnZXN0RW50cnkq1gEKEVNj",
-          "ZW5lQ2hhbm5lbFN0YXRlEh8KG1NDRU5FX0NIQU5ORUxfU1RBVEVfVU5LTk9X",
-          "ThAAEh4KGlNDRU5FX0NIQU5ORUxfU1RBVEVfU01PT1RIEAESHAoYU0NFTkVf",
-          "Q0hBTk5FTF9TVEFURV9CVVNZEAISHAoYU0NFTkVfQ0hBTk5FTF9TVEFURV9G",
-          "VUxMEAMSHwobU0NFTkVfQ0hBTk5FTF9TVEFURV9DTE9TSU5HEAQSIwofU0NF",
-          "TkVfQ0hBTk5FTF9TVEFURV9VTkFWQUlMQUJMRRAFKksKCUFjdG9yVHlwZRIT",
-          "Cg9BQ1RPUl9UWVBFX05PTkUQABIVChFBQ1RPUl9UWVBFX1BMQVlFUhABEhIK",
-          "DkFDVE9SX1RZUEVfTlBDEAIqsAIKClN5bmNEb21haW4SGwoXU1lOQ19ET01B",
-          "SU5fVU5TUEVDSUZJRUQQABIbChdTWU5DX0RPTUFJTl9GUklFTkRfTElTVBAB",
-          "Eh4KGlNZTkNfRE9NQUlOX0ZSSUVORF9SRVFVRVNUEAISHAoYU1lOQ19ET01B",
-          "SU5fRlJJRU5EX0JMT0NLEAMSFAoQU1lOQ19ET01BSU5fVEVBTRAEEhsKF1NZ",
-          "TkNfRE9NQUlOX1RFQU1fSU5WSVRFEAUSFQoRU1lOQ19ET01BSU5fR1VJTEQQ",
-          "BhIhCh1TWU5DX0RPTUFJTl9HVUlMRF9BUFBMSUNBVElPThAHEh0KGVNZTkNf",
-          "RE9NQUlOX0dVSUxEX0VDT05PTVkQCBIeChpTWU5DX0RPTUFJTl9HVUlMRF9B",
-          "Q1RJVklUWRAJKlEKEFN5bmNEaWdlc3RTdGF0dXMSGQoVU1lOQ19ESUdFU1Rf",
-          "U1RBVFVTX09LEAASIgoeU1lOQ19ESUdFU1RfU1RBVFVTX1VOQVZBSUxBQkxF",
-          "EAEyhgUKFlNjZW5lU2NlbmVDbGllbnRQbGF5ZXISOwoKRW50ZXJTY2VuZRIV",
-          "LkVudGVyU2NlbmVDMlNSZXF1ZXN0GhYuRW50ZXJTY2VuZUMyU1Jlc3BvbnNl",
-          "EjEKEE5vdGlmeUVudGVyU2NlbmUSDi5FbnRlclNjZW5lUzJDGgYuRW1wdHki",
-          "BYiZyAECEjAKDFNjZW5lSW5mb0MyUxIRLlNjZW5lSW5mb1JlcXVlc3QaBi5F",
-          "bXB0eSIFiJnIAQESLwoPTm90aWZ5U2NlbmVJbmZvEg0uU2NlbmVJbmZvUzJD",
-          "GgYuRW1wdHkiBYiZyAECEjMKEU5vdGlmeUFjdG9yQ3JlYXRlEg8uQWN0b3JD",
-          "cmVhdGVTMkMaBi5FbXB0eSIFiJnIAQISNQoSTm90aWZ5QWN0b3JEZXN0cm95",
-          "EhAuQWN0b3JEZXN0cm95UzJDGgYuRW1wdHkiBYiZyAECEjsKFU5vdGlmeUFj",
-          "dG9yTGlzdENyZWF0ZRITLkFjdG9yTGlzdENyZWF0ZVMyQxoGLkVtcHR5IgWI",
-          "mcgBAhI9ChZOb3RpZnlBY3Rvckxpc3REZXN0cm95EhQuQWN0b3JMaXN0RGVz",
-          "dHJveVMyQxoGLkVtcHR5IgWImcgBAhI7CgxUcmF2ZWxUb1pvbmUSFC5UcmF2",
-          "ZWxUb1pvbmVSZXF1ZXN0GhUuVHJhdmVsVG9ab25lUmVzcG9uc2USNQoNR2V0",
-          "U3luY0RpZ2VzdBIVLkdldFN5bmNEaWdlc3RSZXF1ZXN0GgYuRW1wdHkiBYiZ",
-          "yAEBEjEKEE5vdGlmeVN5bmNEaWdlc3QSDi5TeW5jRGlnZXN0UzJDGgYuRW1w",
-          "dHkiBYiZyAECGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
+          "IAEoDRIWCg5zd2l0Y2hfZW5hYmxlZBgHIAEoCCL8AQoVV29ybGRNYXBPdmVy",
+          "dmlld0VudHJ5EhcKD3NjZW5lX2NvbmZpZ19pZBgBIAEoDRIaChJ0b3RhbF9w",
+          "bGF5ZXJfY291bnQYAiABKA0SFQoNY2hhbm5lbF9jb3VudBgDIAEoDRImCgpo",
+          "ZWF0X2xldmVsGAQgASgOMhIuV29ybGRNYXBIZWF0TGV2ZWwSHAoUcmVjb21t",
+          "ZW5kZWRfc2NlbmVfaWQYBSABKAQSHgoWcmVjb21tZW5kZWRfY2hhbm5lbF9u",
+          "bxgGIAEoDRITCgtpc190aWRlX21hcBgHIAEoCBIcChRoYXNfbXlzdGVyeV9t",
+          "ZXJjaGFudBgIIAEoCCLRAQoRV29ybGRUaWRlU25hcHNob3QSDgoGYWN0aXZl",
+          "GAEgASgIEhAKCHJvdW5kX2lkGAIgASgEEhcKD3NjZW5lX2NvbmZpZ19pZBgD",
+          "IAEoDRIcChRyZWNvbW1lbmRlZF9zY2VuZV9pZBgEIAEoBBIeChZyZWNvbW1l",
+          "bmRlZF9jaGFubmVsX25vGAUgASgNEhQKDHN0YXJ0c19hdF9tcxgGIAEoBBIS",
+          "CgplbmRzX2F0X21zGAcgASgEEhkKEW5leHRfc3RhcnRzX2F0X21zGAggASgE",
+          "IsEBChBXb3JsZE1hcE92ZXJ2aWV3Eg8KB3pvbmVfaWQYASABKA0SFQoNdXBk",
+          "YXRlZF9hdF9tcxgCIAEoBBIWCg5zZXJ2ZXJfdGltZV9tcxgDIAEoBBIkCgRt",
+          "YXBzGAQgAygLMhYuV29ybGRNYXBPdmVydmlld0VudHJ5EiAKBHRpZGUYBSAB",
+          "KAsyEi5Xb3JsZFRpZGVTbmFwc2hvdBIlCh1kYWlseV9ob3RzcG90X3NjZW5l",
+          "X2NvbmZpZ19pZBgGIAEoDSKUAQoMU2NlbmVJbmZvUzJDEiIKCnNjZW5lX2lu",
+          "Zm8YASADKAsyDi5TY2VuZUluZm9Db21wEjEKEWNoYW5uZWxfZGlyZWN0b3J5",
+          "GAIgASgLMhYuU2NlbmVDaGFubmVsRGlyZWN0b3J5Ei0KEndvcmxkX21hcF9v",
+          "dmVydmlldxgDIAEoCzIRLldvcmxkTWFwT3ZlcnZpZXciUwoQU2NlbmVJbmZv",
+          "UmVxdWVzdBIeChZ3aXRoX2NoYW5uZWxfZGlyZWN0b3J5GAEgASgIEh8KF3dp",
+          "dGhfd29ybGRfbWFwX292ZXJ2aWV3GAIgASgIIjcKEVNjZW5lSW5mb1Jlc3Bv",
+          "bnNlEiIKCnNjZW5lX2luZm8YASADKAsyDi5TY2VuZUluZm9Db21wIrkBCg5B",
+          "Y3RvckNyZWF0ZVMyQxIOCgZlbnRpdHkYASABKAQSHQoJdHJhbnNmb3JtGAIg",
+          "ASgLMgouVHJhbnNmb3JtEh4KCmFjdG9yX3R5cGUYAyABKA4yCi5BY3RvclR5",
+          "cGUSDAoEZ3VpZBgEIAEoBBIRCgljb25maWdfaWQYBSABKAQSFQoNYXBwZWFy",
+          "YW5jZV9pZBgGIAEoCRIQCghjbGFzc19pZBgHIAEoDRIOCgZnZW5kZXIYCCAB",
+          "KA0iIQoPQWN0b3JEZXN0cm95UzJDEg4KBmVudGl0eRgBIAEoBCI5ChJBY3Rv",
+          "ckxpc3RDcmVhdGVTMkMSIwoKYWN0b3JfbGlzdBgBIAMoCzIPLkFjdG9yQ3Jl",
+          "YXRlUzJDIiUKE0FjdG9yTGlzdERlc3Ryb3lTMkMSDgoGZW50aXR5GAEgAygE",
+          "IkYKE1RyYXZlbFRvWm9uZVJlcXVlc3QSFgoOdGFyZ2V0X3pvbmVfaWQYASAB",
+          "KA0SFwoPc2NlbmVfY29uZmlnX2lkGAIgASgNIj4KFFRyYXZlbFRvWm9uZVJl",
+          "c3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2Fn",
+          "ZSI/Cg9TeW5jRGlnZXN0RW50cnkSGwoGZG9tYWluGAEgASgOMgsuU3luY0Rv",
+          "bWFpbhIPCgd2ZXJzaW9uGAIgASgEIhYKFEdldFN5bmNEaWdlc3RSZXF1ZXN0",
+          "ImkKDVN5bmNEaWdlc3RTMkMSIQoGc3RhdHVzGAEgASgOMhEuU3luY0RpZ2Vz",
+          "dFN0YXR1cxISCgpnZW5lcmF0aW9uGAIgASgEEiEKB2VudHJpZXMYAyADKAsy",
+          "EC5TeW5jRGlnZXN0RW50cnkq1gEKEVNjZW5lQ2hhbm5lbFN0YXRlEh8KG1ND",
+          "RU5FX0NIQU5ORUxfU1RBVEVfVU5LTk9XThAAEh4KGlNDRU5FX0NIQU5ORUxf",
+          "U1RBVEVfU01PT1RIEAESHAoYU0NFTkVfQ0hBTk5FTF9TVEFURV9CVVNZEAIS",
+          "HAoYU0NFTkVfQ0hBTk5FTF9TVEFURV9GVUxMEAMSHwobU0NFTkVfQ0hBTk5F",
+          "TF9TVEFURV9DTE9TSU5HEAQSIwofU0NFTkVfQ0hBTk5FTF9TVEFURV9VTkFW",
+          "QUlMQUJMRRAFKpgBChFXb3JsZE1hcEhlYXRMZXZlbBIgChxXT1JMRF9NQVBf",
+          "SEVBVF9MRVZFTF9VTktOT1dOEAASHgoaV09STERfTUFQX0hFQVRfTEVWRUxf",
+          "UVVJRVQQARIfChtXT1JMRF9NQVBfSEVBVF9MRVZFTF9BQ1RJVkUQAhIgChxX",
+          "T1JMRF9NQVBfSEVBVF9MRVZFTF9DUk9XREVEEAMqSwoJQWN0b3JUeXBlEhMK",
+          "D0FDVE9SX1RZUEVfTk9ORRAAEhUKEUFDVE9SX1RZUEVfUExBWUVSEAESEgoO",
+          "QUNUT1JfVFlQRV9OUEMQAiqwAgoKU3luY0RvbWFpbhIbChdTWU5DX0RPTUFJ",
+          "Tl9VTlNQRUNJRklFRBAAEhsKF1NZTkNfRE9NQUlOX0ZSSUVORF9MSVNUEAES",
+          "HgoaU1lOQ19ET01BSU5fRlJJRU5EX1JFUVVFU1QQAhIcChhTWU5DX0RPTUFJ",
+          "Tl9GUklFTkRfQkxPQ0sQAxIUChBTWU5DX0RPTUFJTl9URUFNEAQSGwoXU1lO",
+          "Q19ET01BSU5fVEVBTV9JTlZJVEUQBRIVChFTWU5DX0RPTUFJTl9HVUlMRBAG",
+          "EiEKHVNZTkNfRE9NQUlOX0dVSUxEX0FQUExJQ0FUSU9OEAcSHQoZU1lOQ19E",
+          "T01BSU5fR1VJTERfRUNPTk9NWRAIEh4KGlNZTkNfRE9NQUlOX0dVSUxEX0FD",
+          "VElWSVRZEAkqUQoQU3luY0RpZ2VzdFN0YXR1cxIZChVTWU5DX0RJR0VTVF9T",
+          "VEFUVVNfT0sQABIiCh5TWU5DX0RJR0VTVF9TVEFUVVNfVU5BVkFJTEFCTEUQ",
+          "ATKGBQoWU2NlbmVTY2VuZUNsaWVudFBsYXllchI7CgpFbnRlclNjZW5lEhUu",
+          "RW50ZXJTY2VuZUMyU1JlcXVlc3QaFi5FbnRlclNjZW5lQzJTUmVzcG9uc2US",
+          "MQoQTm90aWZ5RW50ZXJTY2VuZRIOLkVudGVyU2NlbmVTMkMaBi5FbXB0eSIF",
+          "iJnIAQISMAoMU2NlbmVJbmZvQzJTEhEuU2NlbmVJbmZvUmVxdWVzdBoGLkVt",
+          "cHR5IgWImcgBARIvCg9Ob3RpZnlTY2VuZUluZm8SDS5TY2VuZUluZm9TMkMa",
+          "Bi5FbXB0eSIFiJnIAQISMwoRTm90aWZ5QWN0b3JDcmVhdGUSDy5BY3RvckNy",
+          "ZWF0ZVMyQxoGLkVtcHR5IgWImcgBAhI1ChJOb3RpZnlBY3RvckRlc3Ryb3kS",
+          "EC5BY3RvckRlc3Ryb3lTMkMaBi5FbXB0eSIFiJnIAQISOwoVTm90aWZ5QWN0",
+          "b3JMaXN0Q3JlYXRlEhMuQWN0b3JMaXN0Q3JlYXRlUzJDGgYuRW1wdHkiBYiZ",
+          "yAECEj0KFk5vdGlmeUFjdG9yTGlzdERlc3Ryb3kSFC5BY3Rvckxpc3REZXN0",
+          "cm95UzJDGgYuRW1wdHkiBYiZyAECEjsKDFRyYXZlbFRvWm9uZRIULlRyYXZl",
+          "bFRvWm9uZVJlcXVlc3QaFS5UcmF2ZWxUb1pvbmVSZXNwb25zZRI1Cg1HZXRT",
+          "eW5jRGlnZXN0EhUuR2V0U3luY0RpZ2VzdFJlcXVlc3QaBi5FbXB0eSIFiJnI",
+          "AQESMQoQTm90aWZ5U3luY0RpZ2VzdBIOLlN5bmNEaWdlc3RTMkMaBi5FbXB0",
+          "eSIFiJnIAQIaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::ActorCompReflection.Descriptor, global::SceneInfoReflection.Descriptor, },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SceneChannelState), typeof(global::ActorType), typeof(global::SyncDomain), typeof(global::SyncDigestStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SceneChannelState), typeof(global::WorldMapHeatLevel), typeof(global::ActorType), typeof(global::SyncDomain), typeof(global::SyncDigestStatus), }, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EnterSceneC2SRequest), global::EnterSceneC2SRequest.Parser, new[]{ "SceneInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EnterSceneC2SResponse), global::EnterSceneC2SResponse.Parser, new[]{ "ErrorMessage" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EnterSceneS2C), global::EnterSceneS2C.Parser, new[]{ "SceneInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SceneChannelInfo), global::SceneChannelInfo.Parser, new[]{ "SceneId", "ChannelNo", "PlayerCount", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SceneChannelDirectory), global::SceneChannelDirectory.Parser, new[]{ "ZoneId", "SceneConfigId", "Channels", "UpdatedAtMs", "SwitchCooldownSeconds", "MaxPlayersPerChannel", "SwitchEnabled" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoS2C), global::SceneInfoS2C.Parser, new[]{ "SceneInfo", "ChannelDirectory" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoRequest), global::SceneInfoRequest.Parser, new[]{ "WithChannelDirectory" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::WorldMapOverviewEntry), global::WorldMapOverviewEntry.Parser, new[]{ "SceneConfigId", "TotalPlayerCount", "ChannelCount", "HeatLevel", "RecommendedSceneId", "RecommendedChannelNo", "IsTideMap", "HasMysteryMerchant" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::WorldTideSnapshot), global::WorldTideSnapshot.Parser, new[]{ "Active", "RoundId", "SceneConfigId", "RecommendedSceneId", "RecommendedChannelNo", "StartsAtMs", "EndsAtMs", "NextStartsAtMs" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::WorldMapOverview), global::WorldMapOverview.Parser, new[]{ "ZoneId", "UpdatedAtMs", "ServerTimeMs", "Maps", "Tide", "DailyHotspotSceneConfigId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoS2C), global::SceneInfoS2C.Parser, new[]{ "SceneInfo", "ChannelDirectory", "WorldMapOverview" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoRequest), global::SceneInfoRequest.Parser, new[]{ "WithChannelDirectory", "WithWorldMapOverview" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SceneInfoResponse), global::SceneInfoResponse.Parser, new[]{ "SceneInfo" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorCreateS2C), global::ActorCreateS2C.Parser, new[]{ "Entity", "Transform", "ActorType", "Guid", "ConfigId", "AppearanceId", "ClassId", "Gender" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ActorDestroyS2C), global::ActorDestroyS2C.Parser, new[]{ "Entity" }, null, null, null, null),
@@ -140,6 +163,25 @@ public enum SceneChannelState {
   /// 所在节点暂不可用(刚判死 / 身份歧义 / 映射缺失)
   /// </summary>
   [pbr::OriginalName("SCENE_CHANNEL_STATE_UNAVAILABLE")] Unavailable = 5,
+}
+
+/// <summary>
+/// 大世界地图聚合热度档位(docs/design/world-map-play-v2.md §2.2.3):只暴露聚合档位,不暴露玩家明细。
+/// </summary>
+public enum WorldMapHeatLevel {
+  [pbr::OriginalName("WORLD_MAP_HEAT_LEVEL_UNKNOWN")] Unknown = 0,
+  /// <summary>
+  /// 清幽(0 人)
+  /// </summary>
+  [pbr::OriginalName("WORLD_MAP_HEAT_LEVEL_QUIET")] Quiet = 1,
+  /// <summary>
+  /// 有人
+  /// </summary>
+  [pbr::OriginalName("WORLD_MAP_HEAT_LEVEL_ACTIVE")] Active = 2,
+  /// <summary>
+  /// 热闹
+  /// </summary>
+  [pbr::OriginalName("WORLD_MAP_HEAT_LEVEL_CROWDED")] Crowded = 3,
 }
 
 public enum ActorType {
@@ -1545,6 +1587,1362 @@ public sealed partial class SceneChannelDirectory : pb::IMessage<SceneChannelDir
 
 }
 
+/// <summary>
+/// 单张已开放大世界地图的聚合态势。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class WorldMapOverviewEntry : pb::IMessage<WorldMapOverviewEntry>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<WorldMapOverviewEntry> _parser = new pb::MessageParser<WorldMapOverviewEntry>(() => new WorldMapOverviewEntry());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<WorldMapOverviewEntry> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[5]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldMapOverviewEntry() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldMapOverviewEntry(WorldMapOverviewEntry other) : this() {
+    sceneConfigId_ = other.sceneConfigId_;
+    totalPlayerCount_ = other.totalPlayerCount_;
+    channelCount_ = other.channelCount_;
+    heatLevel_ = other.heatLevel_;
+    recommendedSceneId_ = other.recommendedSceneId_;
+    recommendedChannelNo_ = other.recommendedChannelNo_;
+    isTideMap_ = other.isTideMap_;
+    hasMysteryMerchant_ = other.hasMysteryMerchant_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldMapOverviewEntry Clone() {
+    return new WorldMapOverviewEntry(this);
+  }
+
+  /// <summary>Field number for the "scene_config_id" field.</summary>
+  public const int SceneConfigIdFieldNumber = 1;
+  private uint sceneConfigId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SceneConfigId {
+    get { return sceneConfigId_; }
+    set {
+      sceneConfigId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "total_player_count" field.</summary>
+  public const int TotalPlayerCountFieldNumber = 2;
+  private uint totalPlayerCount_;
+  /// <summary>
+  /// 全线汇总人数(秒级滞后)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TotalPlayerCount {
+    get { return totalPlayerCount_; }
+    set {
+      totalPlayerCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "channel_count" field.</summary>
+  public const int ChannelCountFieldNumber = 3;
+  private uint channelCount_;
+  /// <summary>
+  /// 当前可进分线数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ChannelCount {
+    get { return channelCount_; }
+    set {
+      channelCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "heat_level" field.</summary>
+  public const int HeatLevelFieldNumber = 4;
+  private global::WorldMapHeatLevel heatLevel_ = global::WorldMapHeatLevel.Unknown;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::WorldMapHeatLevel HeatLevel {
+    get { return heatLevel_; }
+    set {
+      heatLevel_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "recommended_scene_id" field.</summary>
+  public const int RecommendedSceneIdFieldNumber = 5;
+  private ulong recommendedSceneId_;
+  /// <summary>
+  /// 推荐聚人线 scene_id(未满最小线号活线;0 = 暂不可用)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong RecommendedSceneId {
+    get { return recommendedSceneId_; }
+    set {
+      recommendedSceneId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "recommended_channel_no" field.</summary>
+  public const int RecommendedChannelNoFieldNumber = 6;
+  private uint recommendedChannelNo_;
+  /// <summary>
+  /// 推荐线号,只用于展示
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RecommendedChannelNo {
+    get { return recommendedChannelNo_; }
+    set {
+      recommendedChannelNo_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "is_tide_map" field.</summary>
+  public const int IsTideMapFieldNumber = 7;
+  private bool isTideMap_;
+  /// <summary>
+  /// true = 本轮五行灵潮目标野外图
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool IsTideMap {
+    get { return isTideMap_; }
+    set {
+      isTideMap_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "has_mystery_merchant" field.</summary>
+  public const int HasMysteryMerchantFieldNumber = 8;
+  private bool hasMysteryMerchant_;
+  /// <summary>
+  /// true = 神秘商人此刻落在这张图上
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasMysteryMerchant {
+    get { return hasMysteryMerchant_; }
+    set {
+      hasMysteryMerchant_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as WorldMapOverviewEntry);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(WorldMapOverviewEntry other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SceneConfigId != other.SceneConfigId) return false;
+    if (TotalPlayerCount != other.TotalPlayerCount) return false;
+    if (ChannelCount != other.ChannelCount) return false;
+    if (HeatLevel != other.HeatLevel) return false;
+    if (RecommendedSceneId != other.RecommendedSceneId) return false;
+    if (RecommendedChannelNo != other.RecommendedChannelNo) return false;
+    if (IsTideMap != other.IsTideMap) return false;
+    if (HasMysteryMerchant != other.HasMysteryMerchant) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SceneConfigId != 0) hash ^= SceneConfigId.GetHashCode();
+    if (TotalPlayerCount != 0) hash ^= TotalPlayerCount.GetHashCode();
+    if (ChannelCount != 0) hash ^= ChannelCount.GetHashCode();
+    if (HeatLevel != global::WorldMapHeatLevel.Unknown) hash ^= HeatLevel.GetHashCode();
+    if (RecommendedSceneId != 0UL) hash ^= RecommendedSceneId.GetHashCode();
+    if (RecommendedChannelNo != 0) hash ^= RecommendedChannelNo.GetHashCode();
+    if (IsTideMap != false) hash ^= IsTideMap.GetHashCode();
+    if (HasMysteryMerchant != false) hash ^= HasMysteryMerchant.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SceneConfigId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SceneConfigId);
+    }
+    if (TotalPlayerCount != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TotalPlayerCount);
+    }
+    if (ChannelCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ChannelCount);
+    }
+    if (HeatLevel != global::WorldMapHeatLevel.Unknown) {
+      output.WriteRawTag(32);
+      output.WriteEnum((int) HeatLevel);
+    }
+    if (RecommendedSceneId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(RecommendedSceneId);
+    }
+    if (RecommendedChannelNo != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(RecommendedChannelNo);
+    }
+    if (IsTideMap != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(IsTideMap);
+    }
+    if (HasMysteryMerchant != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(HasMysteryMerchant);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SceneConfigId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SceneConfigId);
+    }
+    if (TotalPlayerCount != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TotalPlayerCount);
+    }
+    if (ChannelCount != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ChannelCount);
+    }
+    if (HeatLevel != global::WorldMapHeatLevel.Unknown) {
+      output.WriteRawTag(32);
+      output.WriteEnum((int) HeatLevel);
+    }
+    if (RecommendedSceneId != 0UL) {
+      output.WriteRawTag(40);
+      output.WriteUInt64(RecommendedSceneId);
+    }
+    if (RecommendedChannelNo != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(RecommendedChannelNo);
+    }
+    if (IsTideMap != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(IsTideMap);
+    }
+    if (HasMysteryMerchant != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(HasMysteryMerchant);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SceneConfigId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SceneConfigId);
+    }
+    if (TotalPlayerCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalPlayerCount);
+    }
+    if (ChannelCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ChannelCount);
+    }
+    if (HeatLevel != global::WorldMapHeatLevel.Unknown) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) HeatLevel);
+    }
+    if (RecommendedSceneId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RecommendedSceneId);
+    }
+    if (RecommendedChannelNo != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RecommendedChannelNo);
+    }
+    if (IsTideMap != false) {
+      size += 1 + 1;
+    }
+    if (HasMysteryMerchant != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(WorldMapOverviewEntry other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SceneConfigId != 0) {
+      SceneConfigId = other.SceneConfigId;
+    }
+    if (other.TotalPlayerCount != 0) {
+      TotalPlayerCount = other.TotalPlayerCount;
+    }
+    if (other.ChannelCount != 0) {
+      ChannelCount = other.ChannelCount;
+    }
+    if (other.HeatLevel != global::WorldMapHeatLevel.Unknown) {
+      HeatLevel = other.HeatLevel;
+    }
+    if (other.RecommendedSceneId != 0UL) {
+      RecommendedSceneId = other.RecommendedSceneId;
+    }
+    if (other.RecommendedChannelNo != 0) {
+      RecommendedChannelNo = other.RecommendedChannelNo;
+    }
+    if (other.IsTideMap != false) {
+      IsTideMap = other.IsTideMap;
+    }
+    if (other.HasMysteryMerchant != false) {
+      HasMysteryMerchant = other.HasMysteryMerchant;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SceneConfigId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TotalPlayerCount = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ChannelCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          HeatLevel = (global::WorldMapHeatLevel) input.ReadEnum();
+          break;
+        }
+        case 40: {
+          RecommendedSceneId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          RecommendedChannelNo = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          IsTideMap = input.ReadBool();
+          break;
+        }
+        case 64: {
+          HasMysteryMerchant = input.ReadBool();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SceneConfigId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TotalPlayerCount = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          ChannelCount = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          HeatLevel = (global::WorldMapHeatLevel) input.ReadEnum();
+          break;
+        }
+        case 40: {
+          RecommendedSceneId = input.ReadUInt64();
+          break;
+        }
+        case 48: {
+          RecommendedChannelNo = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          IsTideMap = input.ReadBool();
+          break;
+        }
+        case 64: {
+          HasMysteryMerchant = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 微观全服循环「五行灵潮」状态(按墙钟确定性轮换,docs/design/world-map-play-v2.md §2.2.2)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class WorldTideSnapshot : pb::IMessage<WorldTideSnapshot>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<WorldTideSnapshot> _parser = new pb::MessageParser<WorldTideSnapshot>(() => new WorldTideSnapshot());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<WorldTideSnapshot> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[6]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldTideSnapshot() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldTideSnapshot(WorldTideSnapshot other) : this() {
+    active_ = other.active_;
+    roundId_ = other.roundId_;
+    sceneConfigId_ = other.sceneConfigId_;
+    recommendedSceneId_ = other.recommendedSceneId_;
+    recommendedChannelNo_ = other.recommendedChannelNo_;
+    startsAtMs_ = other.startsAtMs_;
+    endsAtMs_ = other.endsAtMs_;
+    nextStartsAtMs_ = other.nextStartsAtMs_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldTideSnapshot Clone() {
+    return new WorldTideSnapshot(this);
+  }
+
+  /// <summary>Field number for the "active" field.</summary>
+  public const int ActiveFieldNumber = 1;
+  private bool active_;
+  /// <summary>
+  /// true = 此刻处于本轮灵潮持续期内
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Active {
+    get { return active_; }
+    set {
+      active_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "round_id" field.</summary>
+  public const int RoundIdFieldNumber = 2;
+  private ulong roundId_;
+  /// <summary>
+  /// 本轮起始 Unix 秒
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong RoundId {
+    get { return roundId_; }
+    set {
+      roundId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "scene_config_id" field.</summary>
+  public const int SceneConfigIdFieldNumber = 3;
+  private uint sceneConfigId_;
+  /// <summary>
+  /// 本轮灵潮所在野外地图(0 = 未配置候选)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SceneConfigId {
+    get { return sceneConfigId_; }
+    set {
+      sceneConfigId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "recommended_scene_id" field.</summary>
+  public const int RecommendedSceneIdFieldNumber = 4;
+  private ulong recommendedSceneId_;
+  /// <summary>
+  /// 灵潮图推荐聚人线 scene_id
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong RecommendedSceneId {
+    get { return recommendedSceneId_; }
+    set {
+      recommendedSceneId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "recommended_channel_no" field.</summary>
+  public const int RecommendedChannelNoFieldNumber = 5;
+  private uint recommendedChannelNo_;
+  /// <summary>
+  /// 灵潮图推荐线号
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RecommendedChannelNo {
+    get { return recommendedChannelNo_; }
+    set {
+      recommendedChannelNo_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "starts_at_ms" field.</summary>
+  public const int StartsAtMsFieldNumber = 6;
+  private ulong startsAtMs_;
+  /// <summary>
+  /// 本轮灵潮开始时刻(毫秒)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong StartsAtMs {
+    get { return startsAtMs_; }
+    set {
+      startsAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "ends_at_ms" field.</summary>
+  public const int EndsAtMsFieldNumber = 7;
+  private ulong endsAtMs_;
+  /// <summary>
+  /// 本轮灵潮结束时刻(毫秒)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong EndsAtMs {
+    get { return endsAtMs_; }
+    set {
+      endsAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_starts_at_ms" field.</summary>
+  public const int NextStartsAtMsFieldNumber = 8;
+  private ulong nextStartsAtMs_;
+  /// <summary>
+  /// 下一轮灵潮开始时刻(毫秒)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextStartsAtMs {
+    get { return nextStartsAtMs_; }
+    set {
+      nextStartsAtMs_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as WorldTideSnapshot);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(WorldTideSnapshot other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Active != other.Active) return false;
+    if (RoundId != other.RoundId) return false;
+    if (SceneConfigId != other.SceneConfigId) return false;
+    if (RecommendedSceneId != other.RecommendedSceneId) return false;
+    if (RecommendedChannelNo != other.RecommendedChannelNo) return false;
+    if (StartsAtMs != other.StartsAtMs) return false;
+    if (EndsAtMs != other.EndsAtMs) return false;
+    if (NextStartsAtMs != other.NextStartsAtMs) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Active != false) hash ^= Active.GetHashCode();
+    if (RoundId != 0UL) hash ^= RoundId.GetHashCode();
+    if (SceneConfigId != 0) hash ^= SceneConfigId.GetHashCode();
+    if (RecommendedSceneId != 0UL) hash ^= RecommendedSceneId.GetHashCode();
+    if (RecommendedChannelNo != 0) hash ^= RecommendedChannelNo.GetHashCode();
+    if (StartsAtMs != 0UL) hash ^= StartsAtMs.GetHashCode();
+    if (EndsAtMs != 0UL) hash ^= EndsAtMs.GetHashCode();
+    if (NextStartsAtMs != 0UL) hash ^= NextStartsAtMs.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Active != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Active);
+    }
+    if (RoundId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(RoundId);
+    }
+    if (SceneConfigId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(SceneConfigId);
+    }
+    if (RecommendedSceneId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(RecommendedSceneId);
+    }
+    if (RecommendedChannelNo != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(RecommendedChannelNo);
+    }
+    if (StartsAtMs != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(StartsAtMs);
+    }
+    if (EndsAtMs != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(EndsAtMs);
+    }
+    if (NextStartsAtMs != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(NextStartsAtMs);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Active != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Active);
+    }
+    if (RoundId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(RoundId);
+    }
+    if (SceneConfigId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(SceneConfigId);
+    }
+    if (RecommendedSceneId != 0UL) {
+      output.WriteRawTag(32);
+      output.WriteUInt64(RecommendedSceneId);
+    }
+    if (RecommendedChannelNo != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(RecommendedChannelNo);
+    }
+    if (StartsAtMs != 0UL) {
+      output.WriteRawTag(48);
+      output.WriteUInt64(StartsAtMs);
+    }
+    if (EndsAtMs != 0UL) {
+      output.WriteRawTag(56);
+      output.WriteUInt64(EndsAtMs);
+    }
+    if (NextStartsAtMs != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(NextStartsAtMs);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Active != false) {
+      size += 1 + 1;
+    }
+    if (RoundId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RoundId);
+    }
+    if (SceneConfigId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SceneConfigId);
+    }
+    if (RecommendedSceneId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RecommendedSceneId);
+    }
+    if (RecommendedChannelNo != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RecommendedChannelNo);
+    }
+    if (StartsAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(StartsAtMs);
+    }
+    if (EndsAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(EndsAtMs);
+    }
+    if (NextStartsAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(NextStartsAtMs);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(WorldTideSnapshot other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Active != false) {
+      Active = other.Active;
+    }
+    if (other.RoundId != 0UL) {
+      RoundId = other.RoundId;
+    }
+    if (other.SceneConfigId != 0) {
+      SceneConfigId = other.SceneConfigId;
+    }
+    if (other.RecommendedSceneId != 0UL) {
+      RecommendedSceneId = other.RecommendedSceneId;
+    }
+    if (other.RecommendedChannelNo != 0) {
+      RecommendedChannelNo = other.RecommendedChannelNo;
+    }
+    if (other.StartsAtMs != 0UL) {
+      StartsAtMs = other.StartsAtMs;
+    }
+    if (other.EndsAtMs != 0UL) {
+      EndsAtMs = other.EndsAtMs;
+    }
+    if (other.NextStartsAtMs != 0UL) {
+      NextStartsAtMs = other.NextStartsAtMs;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Active = input.ReadBool();
+          break;
+        }
+        case 16: {
+          RoundId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          SceneConfigId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          RecommendedSceneId = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          RecommendedChannelNo = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          StartsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          EndsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          NextStartsAtMs = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Active = input.ReadBool();
+          break;
+        }
+        case 16: {
+          RoundId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          SceneConfigId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          RecommendedSceneId = input.ReadUInt64();
+          break;
+        }
+        case 40: {
+          RecommendedChannelNo = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          StartsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 56: {
+          EndsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 64: {
+          NextStartsAtMs = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 一个 zone 全部已开放大世界地图的聚人态势读模型(Redis key: world_map_overview:{ctl:&lt;zone>})。
+/// 由 scene_manager 领导者随分线目录周期发布,scene 节点只读转发,客户端只在显式请求时获取。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class WorldMapOverview : pb::IMessage<WorldMapOverview>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<WorldMapOverview> _parser = new pb::MessageParser<WorldMapOverview>(() => new WorldMapOverview());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<WorldMapOverview> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[7]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldMapOverview() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldMapOverview(WorldMapOverview other) : this() {
+    zoneId_ = other.zoneId_;
+    updatedAtMs_ = other.updatedAtMs_;
+    serverTimeMs_ = other.serverTimeMs_;
+    maps_ = other.maps_.Clone();
+    tide_ = other.tide_ != null ? other.tide_.Clone() : null;
+    dailyHotspotSceneConfigId_ = other.dailyHotspotSceneConfigId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public WorldMapOverview Clone() {
+    return new WorldMapOverview(this);
+  }
+
+  /// <summary>Field number for the "zone_id" field.</summary>
+  public const int ZoneIdFieldNumber = 1;
+  private uint zoneId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ZoneId {
+    get { return zoneId_; }
+    set {
+      zoneId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "updated_at_ms" field.</summary>
+  public const int UpdatedAtMsFieldNumber = 2;
+  private ulong updatedAtMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong UpdatedAtMs {
+    get { return updatedAtMs_; }
+    set {
+      updatedAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "server_time_ms" field.</summary>
+  public const int ServerTimeMsFieldNumber = 3;
+  private ulong serverTimeMs_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ServerTimeMs {
+    get { return serverTimeMs_; }
+    set {
+      serverTimeMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "maps" field.</summary>
+  public const int MapsFieldNumber = 4;
+  private static readonly pb::FieldCodec<global::WorldMapOverviewEntry> _repeated_maps_codec
+      = pb::FieldCodec.ForMessage(34, global::WorldMapOverviewEntry.Parser);
+  private readonly pbc::RepeatedField<global::WorldMapOverviewEntry> maps_ = new pbc::RepeatedField<global::WorldMapOverviewEntry>();
+  /// <summary>
+  /// 按 scene_config_id 升序
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::WorldMapOverviewEntry> Maps {
+    get { return maps_; }
+  }
+
+  /// <summary>Field number for the "tide" field.</summary>
+  public const int TideFieldNumber = 5;
+  private global::WorldTideSnapshot tide_;
+  /// <summary>
+  /// 微观每小时灵潮
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::WorldTideSnapshot Tide {
+    get { return tide_; }
+    set {
+      tide_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "daily_hotspot_scene_config_id" field.</summary>
+  public const int DailyHotspotSceneConfigIdFieldNumber = 6;
+  private uint dailyHotspotSceneConfigId_;
+  /// <summary>
+  /// 宏观每日灵脉旺地(UTC+8 05:00 换日;0 = 未启用)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint DailyHotspotSceneConfigId {
+    get { return dailyHotspotSceneConfigId_; }
+    set {
+      dailyHotspotSceneConfigId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as WorldMapOverview);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(WorldMapOverview other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (ZoneId != other.ZoneId) return false;
+    if (UpdatedAtMs != other.UpdatedAtMs) return false;
+    if (ServerTimeMs != other.ServerTimeMs) return false;
+    if(!maps_.Equals(other.maps_)) return false;
+    if (!object.Equals(Tide, other.Tide)) return false;
+    if (DailyHotspotSceneConfigId != other.DailyHotspotSceneConfigId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (ZoneId != 0) hash ^= ZoneId.GetHashCode();
+    if (UpdatedAtMs != 0UL) hash ^= UpdatedAtMs.GetHashCode();
+    if (ServerTimeMs != 0UL) hash ^= ServerTimeMs.GetHashCode();
+    hash ^= maps_.GetHashCode();
+    if (tide_ != null) hash ^= Tide.GetHashCode();
+    if (DailyHotspotSceneConfigId != 0) hash ^= DailyHotspotSceneConfigId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (ZoneId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ZoneId);
+    }
+    if (UpdatedAtMs != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(UpdatedAtMs);
+    }
+    if (ServerTimeMs != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ServerTimeMs);
+    }
+    maps_.WriteTo(output, _repeated_maps_codec);
+    if (tide_ != null) {
+      output.WriteRawTag(42);
+      output.WriteMessage(Tide);
+    }
+    if (DailyHotspotSceneConfigId != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(DailyHotspotSceneConfigId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ZoneId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(ZoneId);
+    }
+    if (UpdatedAtMs != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(UpdatedAtMs);
+    }
+    if (ServerTimeMs != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(ServerTimeMs);
+    }
+    maps_.WriteTo(ref output, _repeated_maps_codec);
+    if (tide_ != null) {
+      output.WriteRawTag(42);
+      output.WriteMessage(Tide);
+    }
+    if (DailyHotspotSceneConfigId != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(DailyHotspotSceneConfigId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (ZoneId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ZoneId);
+    }
+    if (UpdatedAtMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UpdatedAtMs);
+    }
+    if (ServerTimeMs != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ServerTimeMs);
+    }
+    size += maps_.CalculateSize(_repeated_maps_codec);
+    if (tide_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Tide);
+    }
+    if (DailyHotspotSceneConfigId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DailyHotspotSceneConfigId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(WorldMapOverview other) {
+    if (other == null) {
+      return;
+    }
+    if (other.ZoneId != 0) {
+      ZoneId = other.ZoneId;
+    }
+    if (other.UpdatedAtMs != 0UL) {
+      UpdatedAtMs = other.UpdatedAtMs;
+    }
+    if (other.ServerTimeMs != 0UL) {
+      ServerTimeMs = other.ServerTimeMs;
+    }
+    maps_.Add(other.maps_);
+    if (other.tide_ != null) {
+      if (tide_ == null) {
+        Tide = new global::WorldTideSnapshot();
+      }
+      Tide.MergeFrom(other.Tide);
+    }
+    if (other.DailyHotspotSceneConfigId != 0) {
+      DailyHotspotSceneConfigId = other.DailyHotspotSceneConfigId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          ZoneId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          UpdatedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ServerTimeMs = input.ReadUInt64();
+          break;
+        }
+        case 34: {
+          maps_.AddEntriesFrom(input, _repeated_maps_codec);
+          break;
+        }
+        case 42: {
+          if (tide_ == null) {
+            Tide = new global::WorldTideSnapshot();
+          }
+          input.ReadMessage(Tide);
+          break;
+        }
+        case 48: {
+          DailyHotspotSceneConfigId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          ZoneId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          UpdatedAtMs = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ServerTimeMs = input.ReadUInt64();
+          break;
+        }
+        case 34: {
+          maps_.AddEntriesFrom(ref input, _repeated_maps_codec);
+          break;
+        }
+        case 42: {
+          if (tide_ == null) {
+            Tide = new global::WorldTideSnapshot();
+          }
+          input.ReadMessage(Tide);
+          break;
+        }
+        case 48: {
+          DailyHotspotSceneConfigId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -1560,7 +2958,7 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1582,6 +2980,7 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
   public SceneInfoS2C(SceneInfoS2C other) : this() {
     sceneInfo_ = other.sceneInfo_.Clone();
     channelDirectory_ = other.channelDirectory_ != null ? other.channelDirectory_.Clone() : null;
+    worldMapOverview_ = other.worldMapOverview_ != null ? other.worldMapOverview_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1617,6 +3016,21 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
     }
   }
 
+  /// <summary>Field number for the "world_map_overview" field.</summary>
+  public const int WorldMapOverviewFieldNumber = 3;
+  private global::WorldMapOverview worldMapOverview_;
+  /// <summary>
+  /// 本 zone 已开放大世界地图的热度与灵潮总览。仅客户端请求 with_world_map_overview 且总览已发布时附带。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::WorldMapOverview WorldMapOverview {
+    get { return worldMapOverview_; }
+    set {
+      worldMapOverview_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1634,6 +3048,7 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
     }
     if(!sceneInfo_.Equals(other.sceneInfo_)) return false;
     if (!object.Equals(ChannelDirectory, other.ChannelDirectory)) return false;
+    if (!object.Equals(WorldMapOverview, other.WorldMapOverview)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1643,6 +3058,7 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
     int hash = 1;
     hash ^= sceneInfo_.GetHashCode();
     if (channelDirectory_ != null) hash ^= ChannelDirectory.GetHashCode();
+    if (worldMapOverview_ != null) hash ^= WorldMapOverview.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1666,6 +3082,10 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
       output.WriteRawTag(18);
       output.WriteMessage(ChannelDirectory);
     }
+    if (worldMapOverview_ != null) {
+      output.WriteRawTag(26);
+      output.WriteMessage(WorldMapOverview);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1681,6 +3101,10 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
       output.WriteRawTag(18);
       output.WriteMessage(ChannelDirectory);
     }
+    if (worldMapOverview_ != null) {
+      output.WriteRawTag(26);
+      output.WriteMessage(WorldMapOverview);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1694,6 +3118,9 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
     size += sceneInfo_.CalculateSize(_repeated_sceneInfo_codec);
     if (channelDirectory_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(ChannelDirectory);
+    }
+    if (worldMapOverview_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(WorldMapOverview);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1713,6 +3140,12 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
         ChannelDirectory = new global::SceneChannelDirectory();
       }
       ChannelDirectory.MergeFrom(other.ChannelDirectory);
+    }
+    if (other.worldMapOverview_ != null) {
+      if (worldMapOverview_ == null) {
+        WorldMapOverview = new global::WorldMapOverview();
+      }
+      WorldMapOverview.MergeFrom(other.WorldMapOverview);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1742,6 +3175,13 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
             ChannelDirectory = new global::SceneChannelDirectory();
           }
           input.ReadMessage(ChannelDirectory);
+          break;
+        }
+        case 26: {
+          if (worldMapOverview_ == null) {
+            WorldMapOverview = new global::WorldMapOverview();
+          }
+          input.ReadMessage(WorldMapOverview);
           break;
         }
       }
@@ -1774,6 +3214,13 @@ public sealed partial class SceneInfoS2C : pb::IMessage<SceneInfoS2C>
           input.ReadMessage(ChannelDirectory);
           break;
         }
+        case 26: {
+          if (worldMapOverview_ == null) {
+            WorldMapOverview = new global::WorldMapOverview();
+          }
+          input.ReadMessage(WorldMapOverview);
+          break;
+        }
       }
     }
   }
@@ -1796,7 +3243,7 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1817,6 +3264,7 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public SceneInfoRequest(SceneInfoRequest other) : this() {
     withChannelDirectory_ = other.withChannelDirectory_;
+    withWorldMapOverview_ = other.withWorldMapOverview_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1843,6 +3291,21 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
     }
   }
 
+  /// <summary>Field number for the "with_world_map_overview" field.</summary>
+  public const int WithWorldMapOverviewFieldNumber = 2;
+  private bool withWorldMapOverview_;
+  /// <summary>
+  /// true = 连同本 zone 的大世界地图热度与灵潮总览一起要(SceneInfoS2C.world_map_overview,docs/design/world-map-play-v2.md §2.2)。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool WithWorldMapOverview {
+    get { return withWorldMapOverview_; }
+    set {
+      withWorldMapOverview_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1859,6 +3322,7 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
       return true;
     }
     if (WithChannelDirectory != other.WithChannelDirectory) return false;
+    if (WithWorldMapOverview != other.WithWorldMapOverview) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1867,6 +3331,7 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   public override int GetHashCode() {
     int hash = 1;
     if (WithChannelDirectory != false) hash ^= WithChannelDirectory.GetHashCode();
+    if (WithWorldMapOverview != false) hash ^= WithWorldMapOverview.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1889,6 +3354,10 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
       output.WriteRawTag(8);
       output.WriteBool(WithChannelDirectory);
     }
+    if (WithWorldMapOverview != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(WithWorldMapOverview);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1903,6 +3372,10 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
       output.WriteRawTag(8);
       output.WriteBool(WithChannelDirectory);
     }
+    if (WithWorldMapOverview != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(WithWorldMapOverview);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1914,6 +3387,9 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
   public int CalculateSize() {
     int size = 0;
     if (WithChannelDirectory != false) {
+      size += 1 + 1;
+    }
+    if (WithWorldMapOverview != false) {
       size += 1 + 1;
     }
     if (_unknownFields != null) {
@@ -1930,6 +3406,9 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
     }
     if (other.WithChannelDirectory != false) {
       WithChannelDirectory = other.WithChannelDirectory;
+    }
+    if (other.WithWorldMapOverview != false) {
+      WithWorldMapOverview = other.WithWorldMapOverview;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1952,6 +3431,10 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
           break;
         case 8: {
           WithChannelDirectory = input.ReadBool();
+          break;
+        }
+        case 16: {
+          WithWorldMapOverview = input.ReadBool();
           break;
         }
       }
@@ -1977,6 +3460,10 @@ public sealed partial class SceneInfoRequest : pb::IMessage<SceneInfoRequest>
           WithChannelDirectory = input.ReadBool();
           break;
         }
+        case 16: {
+          WithWorldMapOverview = input.ReadBool();
+          break;
+        }
       }
     }
   }
@@ -1999,7 +3486,7 @@ public sealed partial class SceneInfoResponse : pb::IMessage<SceneInfoResponse>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2186,7 +3673,7 @@ public sealed partial class ActorCreateS2C : pb::IMessage<ActorCreateS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2661,7 +4148,7 @@ public sealed partial class ActorDestroyS2C : pb::IMessage<ActorDestroyS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2862,7 +4349,7 @@ public sealed partial class ActorListCreateS2C : pb::IMessage<ActorListCreateS2C
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3049,7 +4536,7 @@ public sealed partial class ActorListDestroyS2C : pb::IMessage<ActorListDestroyS
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3249,7 +4736,7 @@ public sealed partial class TravelToZoneRequest : pb::IMessage<TravelToZoneReque
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[12]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3487,7 +4974,7 @@ public sealed partial class TravelToZoneResponse : pb::IMessage<TravelToZoneResp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[13]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3697,7 +5184,7 @@ public sealed partial class SyncDigestEntry : pb::IMessage<SyncDigestEntry>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[14]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[17]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3932,7 +5419,7 @@ public sealed partial class GetSyncDigestRequest : pb::IMessage<GetSyncDigestReq
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[15]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[18]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4093,7 +5580,7 @@ public sealed partial class SyncDigestS2C : pb::IMessage<SyncDigestS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[16]; }
+    get { return global::PlayerSceneReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

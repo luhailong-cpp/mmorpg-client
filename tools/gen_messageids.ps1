@@ -265,6 +265,10 @@ $whitelist = @{
     "SceneAppearanceClientPlayerCancelAppearanceTrial"        = "CancelAppearanceTrial"
     "SceneAppearanceClientPlayerNotifyActorAppearanceChanged" = "NotifyActorAppearanceChanged"
     "SceneAppearanceClientPlayerNotifyAppearanceState"        = "NotifyAppearanceState"
+    # 赛季技能与单槽赛季印（proto/scene/player_season.proto;docs/design/season-skills-and-seal-design.md）。
+    "SceneSeasonClientPlayerGetSeasonState"                   = "GetSeasonState"
+    "SceneSeasonClientPlayerEquipSeasonSeal"                  = "EquipSeasonSeal"
+    "SceneSeasonClientPlayerCatchupSeasonSeal"                = "CatchupSeasonSeal"
     "ClientPlayerTeamCreateTeam"                   = "CreateTeam"
     "ClientPlayerTeamGetMyTeam"                    = "GetMyTeam"
     "ClientPlayerTeamApplyJoinTeam"                = "ApplyJoinTeam"
@@ -293,7 +297,10 @@ $optionalUnsupportedMethods = @(
     'SceneAppearanceClientPlayerStartAppearanceTrial',
     'SceneAppearanceClientPlayerCancelAppearanceTrial',
     'SceneAppearanceClientPlayerNotifyActorAppearanceChanged',
-    'SceneAppearanceClientPlayerNotifyAppearanceState'
+    'SceneAppearanceClientPlayerNotifyAppearanceState',
+    'SceneSeasonClientPlayerGetSeasonState',
+    'SceneSeasonClientPlayerEquipSeasonSeal',
+    'SceneSeasonClientPlayerCatchupSeasonSeal'
 )
 $idByMethod = @{}
 foreach ($line in Get-Content -LiteralPath $source) {

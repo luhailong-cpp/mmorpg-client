@@ -22,6 +22,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="../../../Assets/Scripts/Game/Appearance/AppearanceClient.cs" Link="Production/AppearanceClient.cs" />
     <Compile Include="../../../Assets/Scripts/Game/Appearance/AppearanceBiography.cs" Link="Production/AppearanceBiography.cs" />
+    <Compile Include="../../../Assets/Scripts/Game/Appearance/AppearanceSeriesModels.cs" Link="Production/AppearanceSeriesModels.cs" />
     <Compile Include="../../../Assets/Scripts/Game/Battle/IBattleTransport.cs" Link="Production/IBattleTransport.cs" />
     <Compile Include="../../../Assets/Scripts/Net/ClientRequestKeys.cs" Link="Production/ClientRequestKeys.cs" />
     <Compile Include="../../../Assets/Scripts/Net/OutstandingCalls.cs" Link="Production/OutstandingCalls.cs" />

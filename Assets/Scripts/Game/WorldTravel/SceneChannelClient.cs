@@ -108,6 +108,8 @@ namespace MmorpgClient.Game.WorldTravel
         private int _switchToken;
 
         private IReadOnlyList<SceneChannelLine> _lines = SceneChannelModels.NoLines;
+        // 下一次 43 是否顺带拉取本区世界地图总览(with_world_map_overview)。由地图窗按需置位,发出即清。
+        private bool _overviewRequested;
         // 下一次允许发 43 的时刻。存「下次可发时刻」而不是「上次发送时刻」,
         // 是为了让恰好相隔一个间隔的两次发送不被 float 减法的舍入误判为过快(同 TeamClient.TooSoon)。
         private float _nextListAt = float.NegativeInfinity;
@@ -146,6 +148,9 @@ namespace MmorpgClient.Game.WorldTravel
         public IReadOnlyList<SceneChannelLine> Lines => _lines;
         /// <summary>已拿到当前地图的目录。false = 还没拉到,或当前场景没有目录(副本 / 镜像 / 目录未发布)。</summary>
         public bool HasDirectory { get; private set; }
+        /// <summary>最近一次收到的本区大世界地图热度与灵潮总览；未请求或断线后为 null。</summary>
+        public WorldMapOverviewSnapshot Overview { get; private set; }
+        public bool HasOverview => Overview != null;
         /// <summary>
         /// 当前场景有没有「分线」这回事。false = 副本 / 镜像(入场通知或 31 里的场景信息带着镜像 / 副本配置号):
         /// 服务端对这类场景永远不带目录,所以不列线(<see cref="RequestList"/> 直接返回 false、进场也不拉),
@@ -284,6 +289,24 @@ namespace MmorpgClient.Game.WorldTravel
                 if (wasWaiting || Status != statusBefore) Changed?.Invoke();
                 return false;
             }
+            if (_listAwaiting && !force) return true;
+            bool wasQueued = ListQueued;
+            ListQueued = true;
+            bool sent = TrySendList(_clock());
+            if (sent || !wasQueued) Changed?.Invoke();
+            return true;
+        }
+
+        /// <summary>
+        /// 按需通过 SceneInfoC2S(43) 顺带请求本区大世界地图总览（复用同一个最小间隔与 31 处理器，避免额外注册冲突）。
+        /// 即使当前在副本/镜像中仍可请求总览（此时不附带分线目录）。
+        /// </summary>
+        public bool RequestOverview(bool force = false)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!_net.IsReady) return false;
+            _overviewRequested = true;
             if (_listAwaiting && !force) return true;
             bool wasQueued = ListQueued;
             ListQueued = true;
@@ -610,8 +633,8 @@ namespace MmorpgClient.Game.WorldTravel
                     break;
                 }
             }
-            // 这里没有分线:排着队的补发也不必发了。
-            if (!DirectoryApplicable) ListQueued = false;
+            // 这里没有分线且也没待发的总览请求:排着队的补发也不必发了。
+            if (!DirectoryApplicable && !_overviewRequested) ListQueued = false;
             var directory = message.ChannelDirectory;
             uint sceneConfigId = _currentSceneConfigId();
             if (directory != null && sceneConfigId != 0 && directory.SceneConfigId == sceneConfigId)
@@ -622,9 +645,13 @@ namespace MmorpgClient.Game.WorldTravel
                 SwitchEnabled = directory.SwitchEnabled;
                 SwitchCooldownSeconds = directory.SwitchCooldownSeconds;
             }
-            else
+            else if (DirectoryApplicable || HasDirectory)
             {
                 ClearDirectory();
+            }
+            if (message.WorldMapOverview != null)
+            {
+                Overview = WorldMapOverviewModels.FromProto(message.WorldMapOverview);
             }
             // 列线有了答复(带不带目录都算):之前的「获取不到」与本地拒绝提示不再成立,没有目录时界面按
             // HasDirectory == false 自己说明;留着的切线失败文案按它的寿命复核。
@@ -670,10 +697,12 @@ namespace MmorpgClient.Game.WorldTravel
         /// <summary>整体复位并换世代;返回是否有对外可见的状态被改动。宿主写入的标志归宿主管,不动。</summary>
         private bool ResetSession()
         {
-            bool dirty = HasDirectory || _lines.Count != 0 || CurrentChannelNo != 0 || ListPending
+            bool dirty = HasDirectory || HasOverview || _lines.Count != 0 || CurrentChannelNo != 0 || ListPending
                          || SwitchPending || _cooldownRunning || Status.Length != 0 || !DirectoryApplicable;
             ++_generation;
             ClearDirectory();
+            Overview = null;
+            _overviewRequested = false;
             // 新会话在哪个场景还不知道,等入场通知。
             DirectoryApplicable = true;
             _listAwaiting = false;
@@ -703,13 +732,25 @@ namespace MmorpgClient.Game.WorldTravel
         private bool TrySendList(float now)
         {
             if (!ListQueued || !_net.IsReady || now < _nextListAt) return false;
+            bool wantDirectory = DirectoryApplicable;
+            bool wantOverview = _overviewRequested;
+            if (!wantDirectory && !wantOverview)
+            {
+                ListQueued = false;
+                return false;
+            }
             // 先落状态再交给传输层:发送失败时传输层会同步触发断线,复位必须盖在这些赋值之后。
             ListQueued = false;
+            _overviewRequested = false;
             _listAwaiting = true;
             _nextListAt = now + MinListIntervalSeconds;
             _listDeadline = now + ListTimeoutSeconds;
-            // 分线目录是显式开关:不带 WithChannelDirectory 的请求,服务端只回场景信息、不读目录。
-            _net.SendOneWay(MessageIds.SceneInfoC2S, new SceneInfoRequest { WithChannelDirectory = true });
+            // 分线目录与总览均为显式开关:未请求总览时与改动前请求包逐字节相同。
+            _net.SendOneWay(MessageIds.SceneInfoC2S, new SceneInfoRequest
+            {
+                WithChannelDirectory = wantDirectory,
+                WithWorldMapOverview = wantOverview,
+            });
             return true;
         }
 

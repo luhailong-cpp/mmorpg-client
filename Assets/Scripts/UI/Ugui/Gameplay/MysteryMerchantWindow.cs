@@ -22,6 +22,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public ulong RoundId;
         /// <summary>商人所在线号(在场时有效),只用于文案。</summary>
         public uint ChannelNo;
+        /// <summary>商人位于其他地图时的目标地图名(同图时留空),用于按钮与标题展示。</summary>
+        public string TargetMapName;
         /// <summary>货架;只有商人在本线时才有。null 视为空。</summary>
         public IReadOnlyList<global::MysteryMerchantGoodsInfo> Goods;
         /// <summary>数据层能不能发请求(连着、有角色、不需要重连)。</summary>
@@ -328,7 +330,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (elsewhere)
             {
                 _travel.interactable = _view.CanTravel;
-                _travelLabel.text = "前往 " + MysteryMerchantModels.LineName(_view.ChannelNo);
+                string line = MysteryMerchantModels.LineName(_view.ChannelNo);
+                _travelLabel.text = string.IsNullOrEmpty(_view.TargetMapName)
+                    ? "前往 " + line
+                    : "前往 " + _view.TargetMapName + " · " + line;
             }
             bool paged = !elsewhere && PageCount > 1;
             _previous.gameObject.SetActive(paged);

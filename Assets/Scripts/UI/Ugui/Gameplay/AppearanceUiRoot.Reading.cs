@@ -158,7 +158,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void ConfigureModalNavigation()
         {
-            foreach (var controls in new[] { _confirmControls, _noCardControls, _storyControls, _biographyControls, _portraitControls })
+            foreach (var controls in new[] { _confirmControls, _noCardControls, _storyControls, _biographyControls, _portraitControls, _seriesEpilogueControls })
             {
                 if (controls == null || controls.Length == 0) continue;
                 var enabled = new List<Selectable>();

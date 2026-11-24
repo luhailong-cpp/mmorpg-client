@@ -11,6 +11,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         Trialing = 1,
         TrialFree = 2,
         TrialUsed = 3,
+        Owned = 4,
+        ExclusiveLocked = 5,
     }
 
     /// <summary>
@@ -25,6 +27,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public const float MainBodyHeight = 940f;
 
         public const string StyleRoot = "UI/Ugui/AppearanceChronicleV2/";
+        public const string SeriesStyleRoot = "UI/Ugui/AppearanceSeriesV1/";
 
         public static readonly Color JadeInk = QdaoUguiTheme.Html("#304736");
         public static readonly Color DeepJade = QdaoUguiTheme.Html("#205B46");
@@ -36,6 +39,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public static readonly Color ParchmentBorder = QdaoUguiTheme.Html("#C9AB70");
         public static readonly Color ParchmentInner = QdaoUguiTheme.Html("#FBF6EA");
         public static readonly Color PortraitPlaceholderBg = QdaoUguiTheme.Html("#EBE1CB");
+        public static readonly Color SeriesGoldInk = QdaoUguiTheme.Html("#8E651F");
+        public static readonly Color SeriesDimBg = QdaoUguiTheme.Html("#E6DEC9");
+        public static readonly Color SeriesLitBg = QdaoUguiTheme.Html("#2B6A50");
         // Modal hit surfaces still intercept input; outside the actual window there is no painted scenery.
         public static readonly Color OverlayShade = new Color(0.025f, 0.095f, 0.075f, 0.30f);
 
@@ -44,6 +50,24 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (string.IsNullOrWhiteSpace(resourcePath) || resourcePath.Contains("..") || resourcePath.Contains(":"))
                 return null;
             return Resources.Load<Sprite>(resourcePath);
+        }
+
+        public static Sprite LoadSeries(string key)
+        {
+            if (string.IsNullOrWhiteSpace(key)) return null;
+            return LoadSprite(SeriesStyleRoot + key) ?? LoadSprite(StyleRoot + key);
+        }
+
+        /// <summary>加载系列印章图：优先专属系列印章，缺省回退通用点亮/灰态印章。</summary>
+        public static Sprite LoadSeriesSeal(string seriesKey, bool completed)
+        {
+            string suffix = completed ? "_lit" : "_dim";
+            if (!string.IsNullOrWhiteSpace(seriesKey))
+            {
+                var specific = LoadSeries("series_seal_" + seriesKey + suffix);
+                if (specific != null) return specific;
+            }
+            return LoadSeries("series_seal" + suffix);
         }
 
         public static Sprite LoadAppearance(string key)
@@ -262,7 +286,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             switch (kind)
             {
                 case AppearanceBadgeKind.CurrentPermanent:
-                    text = "永久形象";
+                    text = "使用中";
                     fallbackBg = DeepJade;
                     ink = WarmCream;
                     break;
@@ -271,23 +295,78 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     fallbackBg = CrimsonInk;
                     ink = WarmCream;
                     break;
+                case AppearanceBadgeKind.Owned:
+                    text = "已获得";
+                    fallbackBg = TrialGreen;
+                    ink = WarmCream;
+                    break;
+                case AppearanceBadgeKind.ExclusiveLocked:
+                    text = "玩法解锁";
+                    fallbackBg = QdaoUguiTheme.Html("#DDD2BE");
+                    ink = MutedInk;
+                    break;
                 case AppearanceBadgeKind.TrialFree:
                     text = "可试用1小时";
                     fallbackBg = QdaoUguiTheme.Html("#C8D8B9");
                     ink = JadeInk;
                     break;
                 default:
-                    text = "已试用";
+                    text = "未获得";
                     fallbackBg = QdaoUguiTheme.Html("#DDD2BE");
                     ink = MutedInk;
                     break;
             }
             // Team-derived jade/paper badges carry only live text; reading never changes this status.
-            var sprite = LoadTeam(kind == AppearanceBadgeKind.CurrentPermanent || kind == AppearanceBadgeKind.Trialing
+            var sprite = LoadTeam(kind == AppearanceBadgeKind.CurrentPermanent
+                || kind == AppearanceBadgeKind.Trialing
+                || kind == AppearanceBadgeKind.Owned
                 ? "badge_self" : "badge_leader");
             ApplyHorizontalSlice(bg, sprite, targetHeight, fallbackBg);
             label.text = text;
             label.color = ink;
+        }
+
+        public static void ApplySeriesTab(Image bg, TMP_Text label, bool selected, bool completed, float targetHeight)
+        {
+            if (bg == null || label == null) return;
+            var sprite = LoadSeries(selected ? "series_tab_selected" : "series_tab_normal")
+                ?? LoadTeam(selected ? "badge_self" : "badge_leader");
+            Color fallbackBg = selected ? DeepJade : (completed ? QdaoUguiTheme.Html("#DFECDA") : SeriesDimBg);
+            ApplyHorizontalSlice(bg, sprite, targetHeight, fallbackBg);
+            if (sprite != null && !selected && completed)
+                bg.color = QdaoUguiTheme.Html("#EAF3E4");
+            label.color = selected ? WarmCream : (completed ? DeepJade : JadeInk);
+            label.fontStyle = (selected || completed) ? FontStyles.Bold : FontStyles.Normal;
+        }
+
+        public static void ApplySeriesBadge(Image bg, TMP_Text label, string badgeName, bool completed, float targetHeight)
+        {
+            if (bg == null || label == null) return;
+            var sprite = LoadSeries(completed ? "series_badge_lit" : "series_badge_dim")
+                ?? LoadTeam(completed ? "badge_self" : "badge_leader");
+            ApplyHorizontalSlice(bg, sprite, targetHeight, completed ? SeriesLitBg : SeriesDimBg);
+            string display = string.IsNullOrWhiteSpace(badgeName) ? "系列印章" : badgeName;
+            label.text = completed ? $"印章 · {display}" : $"{display}（未点亮）";
+            label.color = completed ? WarmCream : MutedInk;
+            label.fontStyle = completed ? FontStyles.Bold : FontStyles.Normal;
+        }
+
+        public static Image SeriesCard(UnityEngine.Transform parent, string name, string spriteKey,
+            float x, float y, float w, float h, Color fallback)
+        {
+            var sprite = LoadSeries(spriteKey) ?? LoadTeam("application_card");
+            var image = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, sprite);
+            if (sprite != null)
+            {
+                image.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+                image.pixelsPerUnitMultiplier = 1f;
+                image.color = Color.white;
+            }
+            else
+            {
+                image.color = fallback;
+            }
+            return image;
         }
 
         public static void AddVerticalScrollbar(ScrollRect scroll, UnityEngine.Transform parent,

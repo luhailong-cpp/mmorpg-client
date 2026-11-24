@@ -211,6 +211,13 @@ namespace MmorpgClient.Game
         public PetFlipClient PetFlip { get; }
 
         /// <summary>
+        /// 主角表现层层级状态机（基于 Inspiaaa/UnityHFSM）：仅承载客户端动画/特效/防误触预判，
+        /// 订阅 <see cref="OnSelfActorStateChanged"/> 向服务端权威 <see cref="SelfActorState"/> 单向收敛，
+        /// 由 <see cref="Tick"/> 在主线程推进，换场景与断线随 <see cref="ResetSelfActorStateFlags"/> 复位。
+        /// </summary>
+        public ProtagonistPresentationHfsm Presentation { get; }
+
+        /// <summary>
         /// 角色技能书(服务端 docs/design/class-skills.md §4):ListSkills / UpgradeSkill 的业务适配器,
         /// 实现技能 UI 的 ISkillBookSource,由 AppBootstrap 绑到 SkillUiRoot。与 Attributes 平行,纯请求-响应,不需要 Tick。
         /// </summary>
@@ -402,6 +409,8 @@ namespace MmorpgClient.Game
                 new PlayerPrefsSyncDigestStore(PlayerPrefsSyncDigestStore.NamespaceForGateway(gatewayBaseUrl)),
                 s => Log($"[sync] {s}"));
             PetFlip = PetFlipClient.Attach(new PlayerPrefsPetFlipBestRecordStore());
+            Presentation = new ProtagonistPresentationHfsm();
+            Presentation.Bind(this);
         }
 
         public GatewayHttpClient Http => _http;
@@ -455,6 +464,7 @@ namespace MmorpgClient.Game
         }
 
         private float _nextPetListRequestTime;
+        private float _lastPresentationTickTime = -1f;
         public void Tick()
         {
             _gate?.Poll();
@@ -485,6 +495,10 @@ namespace MmorpgClient.Game
                 Status("传送超时,请稍后重试");
             }
             SyncPetFlipHostState();
+            var nowRealtime = Time.realtimeSinceStartup;
+            float presentationDt = _lastPresentationTickTime < 0f ? 0f : Math.Max(0f, nowRealtime - _lastPresentationTickTime);
+            _lastPresentationTickTime = nowRealtime;
+            Presentation?.Tick(presentationDt);
         }
 
         private void SyncPetFlipHostState()
@@ -1980,6 +1994,7 @@ namespace MmorpgClient.Game
                 InputSeq       = NextInputSeq(),
             };
             _isMoving = TrySendOneWay(MessageIds.MoveStart, req);
+            Presentation?.SetMoving(_isMoving);
         }
 
         public void SendMoveStop(UnityEngine.Vector3 endPos, UnityEngine.Vector3 euler)
@@ -1993,6 +2008,7 @@ namespace MmorpgClient.Game
             };
             SendOneWay(MessageIds.MoveStop, req);
             _isMoving = false;
+            Presentation?.SetMoving(false);
         }
 
         public void SendMoveSync(UnityEngine.Vector3 pos, UnityEngine.Vector3 euler, UnityEngine.Vector3 velocity)
@@ -2528,6 +2544,8 @@ namespace MmorpgClient.Game
             {
                 var ev = SkillUsedS2C.Parser.ParseFrom(mc.SerializedMessage);
                 Log($"[skill] caster_entity={ev.Entity} skill={ev.SkillTableId} targets={ev.TargetEntity.Count}");
+                if (World.HasLocalPlayer && ev.Entity == World.LocalEntity)
+                    Presentation?.BeginCastPresentation(ev.SkillTableId);
                 if (World.TryGetActor(ev.Entity, out var caster))
                 {
                     SkillFx.PlayCast(caster.Go);
@@ -2548,6 +2566,8 @@ namespace MmorpgClient.Game
             {
                 var ev = SkillInterruptedS2C.Parser.ParseFrom(mc.SerializedMessage);
                 Log($"[skill] interrupted entity={ev.Entity} skill={ev.SkillTableId} reason={ev.ReasonCode}");
+                if (World.HasLocalPlayer && ev.Entity == World.LocalEntity)
+                    Presentation?.InterruptCastPresentation();
             });
 
             OnNotify(MessageIds.NotifyActorMove, mc =>
@@ -2840,6 +2860,7 @@ namespace MmorpgClient.Game
                 _travelPending = false; // 连接没了,等不到 msg 124 / tip 了;不清的话重连后第一次传送会被"正在传送中"挡住
                 _isMoving = false;
                 _moveInputSeq = 0;
+                _lastPresentationTickTime = -1f;
                 ResetRoleRenameState();
                 gate?.Dispose();
                 // 大厅会话没了,战斗直连的票据与路由也随之作废(§18.2:两连接互不拆台,但

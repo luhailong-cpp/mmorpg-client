@@ -44,7 +44,7 @@ public static partial class PlayerSkillReflection {
           "MhQuUGxheWVyU2tpbGxMaXN0Q29tcBIjCgdjYXRhbG9nGAMgAygLMhIuU2tp",
           "bGxDYXRhbG9nRW50cnkSFAoMcGxheWVyX2xldmVsGAQgASgNEhAKCGNsYXNz",
           "X2lkGAUgASgNEhgKEGN1cnJlbmN5X2JhbGFuY2UYBiABKAQSDgoGcGV0X2lk",
-          "GAcgASgEIpEEChFTa2lsbENhdGFsb2dFbnRyeRIWCg5za2lsbF90YWJsZV9p",
+          "GAcgASgEIqQEChFTa2lsbENhdGFsb2dFbnRyeRIWCg5za2lsbF90YWJsZV9p",
           "ZBgBIAEoDRIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJEhAK",
           "CGljb25fa2V5GAQgASgJEhAKCGNsYXNzX2lkGAUgASgNEhAKCGNhdGVnb3J5",
           "GAYgASgJEg8KB3Bhc3NpdmUYByABKAgSEwoLdGFyZ2V0X3RlYW0YCCABKA0S",
@@ -55,21 +55,21 @@ public static partial class PlayerSkillReflection {
           "Y2tfdGlwX2lkGBEgASgNEhcKD2R1cmF0aW9uX3JvdW5kcxgSIAEoDRIZChFh",
           "bGxvd19kZWFkX3RhcmdldBgTIAEoCBIUCgxhYmlsaXR5X2tpbmQYFCABKA0S",
           "EwoLY2FzdGVyX21hc2sYFSABKA0SEwoLYWN0aW9uX3RhZ3MYFiABKA0SLQoP",
-          "c3VwcG9ydF9wcmV2aWV3GBcgASgLMhQuU3VwcG9ydFNraWxsUHJldmlldyJj",
-          "ChNVcGdyYWRlU2tpbGxSZXF1ZXN0EhYKDnNraWxsX3RhYmxlX2lkGAEgASgN",
-          "EhUKDWV4cGVjdGVkX3JhbmsYAiABKA0SDQoFY291bnQYAyABKA0SDgoGcGV0",
-          "X2lkGAQgASgEIo8BChRVcGdyYWRlU2tpbGxSZXNwb25zZRImCg1lcnJvcl9t",
-          "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIgoFc3RhdGUYAiABKAsy",
-          "Ey5MaXN0U2tpbGxzUmVzcG9uc2USFgoOdXBncmFkZWRfY291bnQYAyABKA0S",
-          "EwoLc3RvcF90aXBfaWQYBCABKA0yxQIKFlNjZW5lU2tpbGxDbGllbnRQbGF5",
-          "ZXISOwoMUmVsZWFzZVNraWxsEhQuUmVsZWFzZVNraWxsUmVxdWVzdBoVLlJl",
-          "bGVhc2VTa2lsbFJlc3BvbnNlEi8KD05vdGlmeVNraWxsVXNlZBINLlNraWxs",
-          "VXNlZFMyQxoGLkVtcHR5IgWImcgBAhI9ChZOb3RpZnlTa2lsbEludGVycnVw",
-          "dGVkEhQuU2tpbGxJbnRlcnJ1cHRlZFMyQxoGLkVtcHR5IgWImcgBAhI1CgpM",
-          "aXN0U2tpbGxzEhIuTGlzdFNraWxsc1JlcXVlc3QaEy5MaXN0U2tpbGxzUmVz",
-          "cG9uc2USOwoMVXBncmFkZVNraWxsEhQuVXBncmFkZVNraWxsUmVxdWVzdBoV",
-          "LlVwZ3JhZGVTa2lsbFJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEB",
-          "mNRhA2IGcHJvdG8z"));
+          "c3VwcG9ydF9wcmV2aWV3GBcgASgLMhQuU3VwcG9ydFNraWxsUHJldmlldxIR",
+          "CglzZWFzb25faWQYGCABKA0iYwoTVXBncmFkZVNraWxsUmVxdWVzdBIWCg5z",
+          "a2lsbF90YWJsZV9pZBgBIAEoDRIVCg1leHBlY3RlZF9yYW5rGAIgASgNEg0K",
+          "BWNvdW50GAMgASgNEg4KBnBldF9pZBgEIAEoBCKPAQoUVXBncmFkZVNraWxs",
+          "UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNz",
+          "YWdlEiIKBXN0YXRlGAIgASgLMhMuTGlzdFNraWxsc1Jlc3BvbnNlEhYKDnVw",
+          "Z3JhZGVkX2NvdW50GAMgASgNEhMKC3N0b3BfdGlwX2lkGAQgASgNMsUCChZT",
+          "Y2VuZVNraWxsQ2xpZW50UGxheWVyEjsKDFJlbGVhc2VTa2lsbBIULlJlbGVh",
+          "c2VTa2lsbFJlcXVlc3QaFS5SZWxlYXNlU2tpbGxSZXNwb25zZRIvCg9Ob3Rp",
+          "ZnlTa2lsbFVzZWQSDS5Ta2lsbFVzZWRTMkMaBi5FbXB0eSIFiJnIAQISPQoW",
+          "Tm90aWZ5U2tpbGxJbnRlcnJ1cHRlZBIULlNraWxsSW50ZXJydXB0ZWRTMkMa",
+          "Bi5FbXB0eSIFiJnIAQISNQoKTGlzdFNraWxscxISLkxpc3RTa2lsbHNSZXF1",
+          "ZXN0GhMuTGlzdFNraWxsc1Jlc3BvbnNlEjsKDFVwZ3JhZGVTa2lsbBIULlVw",
+          "Z3JhZGVTa2lsbFJlcXVlc3QaFS5VcGdyYWRlU2tpbGxSZXNwb25zZRoKgKjD",
+          "AQGIqMMBAUIOWgVzY2VuZYABAZjUYQNiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::BaseCompReflection.Descriptor, global::EmptyReflection.Descriptor, global::PlayerSkillCompReflection.Descriptor, global::ActorCompReflection.Descriptor, global::SupportEffectsReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -79,7 +79,7 @@ public static partial class PlayerSkillReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::SkillUsedS2C), global::SkillUsedS2C.Parser, new[]{ "Entity", "TargetEntity", "SkillTableId", "Position", "TimeStamp" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsRequest), global::ListSkillsRequest.Parser, new[]{ "PetId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ListSkillsResponse), global::ListSkillsResponse.Parser, new[]{ "ErrorMessage", "SkillList", "Catalog", "PlayerLevel", "ClassId", "CurrencyBalance", "PetId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SkillCatalogEntry), global::SkillCatalogEntry.Parser, new[]{ "SkillTableId", "Name", "Description", "IconKey", "ClassId", "Category", "Passive", "TargetTeam", "MaxTargets", "UnlockLevel", "MaxRank", "Rank", "RankLimit", "ManaPercent", "CooldownRounds", "NextRankCost", "UpgradeBlockTipId", "DurationRounds", "AllowDeadTarget", "AbilityKind", "CasterMask", "ActionTags", "SupportPreview" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SkillCatalogEntry), global::SkillCatalogEntry.Parser, new[]{ "SkillTableId", "Name", "Description", "IconKey", "ClassId", "Category", "Passive", "TargetTeam", "MaxTargets", "UnlockLevel", "MaxRank", "Rank", "RankLimit", "ManaPercent", "CooldownRounds", "NextRankCost", "UpgradeBlockTipId", "DurationRounds", "AllowDeadTarget", "AbilityKind", "CasterMask", "ActionTags", "SupportPreview", "SeasonId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillRequest), global::UpgradeSkillRequest.Parser, new[]{ "SkillTableId", "ExpectedRank", "Count", "PetId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpgradeSkillResponse), global::UpgradeSkillResponse.Parser, new[]{ "ErrorMessage", "State", "UpgradedCount", "StopTipId" }, null, null, null, null)
         }));
@@ -2036,6 +2036,7 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     casterMask_ = other.casterMask_;
     actionTags_ = other.actionTags_;
     supportPreview_ = other.supportPreview_ != null ? other.supportPreview_.Clone() : null;
+    seasonId_ = other.seasonId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2363,6 +2364,21 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     }
   }
 
+  /// <summary>Field number for the "season_id" field.</summary>
+  public const int SeasonIdFieldNumber = 24;
+  private uint seasonId_;
+  /// <summary>
+  /// 0 = 常驻永久技能；> 0 = 本季免费限定技能（无需消耗银两修习，随角色等级自动生效）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeasonId {
+    get { return seasonId_; }
+    set {
+      seasonId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2401,6 +2417,7 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     if (CasterMask != other.CasterMask) return false;
     if (ActionTags != other.ActionTags) return false;
     if (!object.Equals(SupportPreview, other.SupportPreview)) return false;
+    if (SeasonId != other.SeasonId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2431,6 +2448,7 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     if (CasterMask != 0) hash ^= CasterMask.GetHashCode();
     if (ActionTags != 0) hash ^= ActionTags.GetHashCode();
     if (supportPreview_ != null) hash ^= SupportPreview.GetHashCode();
+    if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2541,6 +2559,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
       output.WriteRawTag(186, 1);
       output.WriteMessage(SupportPreview);
     }
+    if (SeasonId != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(SeasonId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2643,6 +2665,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
       output.WriteRawTag(186, 1);
       output.WriteMessage(SupportPreview);
     }
+    if (SeasonId != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(SeasonId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2721,6 +2747,9 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
     }
     if (supportPreview_ != null) {
       size += 2 + pb::CodedOutputStream.ComputeMessageSize(SupportPreview);
+    }
+    if (SeasonId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(SeasonId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2805,6 +2834,9 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
         SupportPreview = new global::SupportSkillPreview();
       }
       SupportPreview.MergeFrom(other.SupportPreview);
+    }
+    if (other.SeasonId != 0) {
+      SeasonId = other.SeasonId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2920,6 +2952,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
           input.ReadMessage(SupportPreview);
           break;
         }
+        case 192: {
+          SeasonId = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -3032,6 +3068,10 @@ public sealed partial class SkillCatalogEntry : pb::IMessage<SkillCatalogEntry>
             SupportPreview = new global::SupportSkillPreview();
           }
           input.ReadMessage(SupportPreview);
+          break;
+        }
+        case 192: {
+          SeasonId = input.ReadUInt32();
           break;
         }
       }

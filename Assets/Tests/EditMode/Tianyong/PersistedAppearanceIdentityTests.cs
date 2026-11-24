@@ -170,14 +170,22 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void CurrentCreationWhitelistPreservesCancelledIdentityOnExistingRoles()
         {
-            var ids = new[]
+            var starters = new[]
             {
-                "00_reference_topright_boy", "01_ice_sword_girl", "02_fire_talisman_boy",
-                "03_lotus_healer_girl", "05_celestial_musician_girl",
-                "09_bamboo_archer_girl",
-                "10_crimson_spear_girl", "15_water_dragon_scholar_boy"
+                "00_reference_topright_boy", "01_ice_sword_girl"
             };
-            Assert.That(QdaoCharacterCatalog.CreationOriginalAll.Select(entry => entry.Id), Is.EqualTo(ids));
+            Assert.That(QdaoCharacterCatalog.CreationOriginalAll.Select(entry => entry.Id), Is.EqualTo(starters));
+            foreach (var unlockOnly in new[]
+            {
+                "02_fire_talisman_boy", "03_lotus_healer_girl", "05_celestial_musician_girl",
+                "09_bamboo_archer_girl", "10_crimson_spear_girl", "15_water_dragon_scholar_boy"
+            })
+            {
+                Assert.That(QdaoCharacterCatalog.IsCreatableAppearance(unlockOnly), Is.False, unlockOnly);
+                Assert.That(QdaoCharacterCatalog.IsReleasedAppearance(unlockOnly), Is.True, unlockOnly);
+                Assert.That(QdaoCharacterCatalog.ResolveRole(2, 2, unlockOnly), Is.EqualTo(unlockOnly));
+                Assert.That(QdaoCharacterCatalog.Find(unlockOnly), Is.Not.Null);
+            }
             foreach (var id in new[]
             {
                 "07_moon_shadow_assassin_girl", "14_short_hair_snow_summoner_girl", "20_star_formation_master_girl"
@@ -193,6 +201,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             })
             {
                 Assert.That(QdaoCharacterCatalog.IsCreatableAppearance(removed), Is.False, removed);
+                Assert.That(QdaoCharacterCatalog.IsReleasedAppearance(removed), Is.False, removed);
                 Assert.That(QdaoCharacterCatalog.IsRetainedOriginal(removed), Is.False, removed);
                 Assert.That(QdaoCharacterCatalog.Find(removed), Is.Null, removed);
             }

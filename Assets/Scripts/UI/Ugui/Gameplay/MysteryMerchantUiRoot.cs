@@ -7,6 +7,7 @@ using MmorpgClient.UI.Ugui.Attribute;
 using MmorpgClient.UI.Ugui.Battle;
 using MmorpgClient.UI.Ugui.Pet;
 using MmorpgClient.World;
+using MmorpgClient.World.CurrentMaps;
 using MmorpgClient.World.Tianyong;
 using TMPro;
 using UnityEngine;
@@ -187,7 +188,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         /// 「最近一次购买带回的」与「背包快照」之间挑较新的一份,见 <see cref="DisplayCurrency"/>);只用于显示。
         /// </summary>
         public static MysteryMerchantShopView BuildView(MysteryMerchantClient client, global::CurrencyComp currency,
-            bool canTravel, string travelBlockedText = "")
+            bool canTravel, string travelBlockedText = "", string targetMapName = null)
         {
             if (client == null) return default;
             var info = client.Info;
@@ -196,6 +197,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 Presence = client.Presence,
                 RoundId = info?.RoundId ?? 0,
                 ChannelNo = info?.ChannelNo ?? 0,
+                TargetMapName = targetMapName ?? "",
                 Goods = info?.Goods,
                 Ready = client.Ready && !client.RequiresReconnect,
                 InBattle = client.InBattle,
@@ -319,7 +321,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _bagShown = bag;
             _canTravelShown = canTravel;
             _travelBlockedShown = travelBlocked;
-            _window.SetView(BuildView(_client, DisplayCurrency(_client?.Currency, _bagAtPurchase, bag), canTravel, travelBlocked));
+            string targetMapName = "";
+            var info = _client?.Info;
+            if (info != null && _game != null && info.SceneConfigId != 0 && info.SceneConfigId != _game.CurrentSceneConfigId)
+            {
+                targetMapName = CurrentMapCatalog.FindForOnline(info.SceneConfigId)?.Name ?? "";
+            }
+            _window.SetView(BuildView(_client, DisplayCurrency(_client?.Currency, _bagAtPurchase, bag),
+                canTravel, travelBlocked, targetMapName));
         }
 
         /// <summary>
@@ -379,8 +388,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         }
 
         /// <summary>
-        /// 「前往 N线」能不能点:商人在别的线、与本玩家在同一张地图,且切线功能此刻放行这条线
-        /// (目录里有它、没满、不在冷却 / 战斗 / 队伍跟随中)。判定用的是切线数据层自己的那条规则。
+        /// 「前往」能不能点:商人在别的线或别的已开放大世界地图时分别校验同图切线条件或跨图直达条件。
         /// 不能点时 <paramref name="blockedText"/> 给出原因(给玩家看的一句话);商人不在别的线时为 ""。
         /// </summary>
         private bool EvaluateTravel(out string blockedText)
@@ -388,12 +396,27 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             blockedText = "";
             var info = _client?.Info;
             if (info == null || _game == null || _client.Presence != MysteryMerchantPresence.Elsewhere) return false;
+            var channel = SceneChannelUiRoot.Instance?.Client;
             if (info.SceneConfigId != _game.CurrentSceneConfigId)
             {
-                blockedText = OtherMapText;
-                return false;
+                if (channel != null && channel.TeamFollower)
+                {
+                    blockedText = SceneChannelModels.DescribeBlock(SceneChannelBlockReason.TeamMember);
+                    return false;
+                }
+                if (channel != null && channel.CooldownRemainingSeconds > 0f)
+                {
+                    blockedText = SceneChannelModels.DescribeBlock(SceneChannelBlockReason.CoolingDown, channel.CooldownRemainingSeconds);
+                    return false;
+                }
+                var cityTravel = CityTravelUiRoot.Instance;
+                if (cityTravel == null)
+                {
+                    blockedText = SceneChannelModels.DescribeBlock(SceneChannelBlockReason.NotReady);
+                    return false;
+                }
+                return cityTravel.CanAcceptDirectSceneTravel(info.SceneConfigId, out blockedText);
             }
-            var channel = SceneChannelUiRoot.Instance?.Client;
             if (channel == null || !channel.HasDirectory)
             {
                 blockedText = SceneChannelModels.DescribeBlock(SceneChannelBlockReason.NotReady);
@@ -414,8 +437,23 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void TravelToMerchant()
         {
             var info = _client?.Info;
+            if (!_available || info == null || _game == null) return;
+            if (info.SceneConfigId != _game.CurrentSceneConfigId)
+            {
+                var cityTravel = CityTravelUiRoot.Instance;
+                string crossError = "";
+                if (cityTravel != null && cityTravel.RequestTravelToScene(info.SceneConfigId, info.SceneId, out crossError))
+                {
+                    HidePanel();
+                    string mapName = CurrentMapCatalog.FindForOnline(info.SceneConfigId)?.Name ?? "目标地图";
+                    BattleUiRoot.Instance?.ShowToast("正在前往 " + mapName + " · " + MysteryMerchantModels.LineName(info.ChannelNo) + "…");
+                    return;
+                }
+                BattleUiRoot.Instance?.ShowToast(string.IsNullOrEmpty(crossError) ? TravelUnavailableText : crossError, true);
+                return;
+            }
             var channel = SceneChannelUiRoot.Instance?.Client;
-            if (!_available || info == null || channel == null) return;
+            if (channel == null) return;
             if (channel.RequestSwitch(info.SceneId))
             {
                 // 切线已发出:抵达后数据层会收到入场通知并重新问货架。商店先收起,免得挡住切线过程。

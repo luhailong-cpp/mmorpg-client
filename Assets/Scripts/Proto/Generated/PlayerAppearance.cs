@@ -24,58 +24,69 @@ public static partial class PlayerAppearanceReflection {
         string.Concat(
           "CiNwcm90by9zY2VuZS9wbGF5ZXJfYXBwZWFyYW5jZS5wcm90bxobcHJvdG8v",
           "ZGIvcHJvdG9fb3B0aW9uLnByb3RvGhtwcm90by9jb21tb24vYmFzZS90aXAu",
-          "cHJvdG8aHXByb3RvL2NvbW1vbi9iYXNlL2VtcHR5LnByb3RvInoKGENoYXJh",
-          "Y3RlckFwcGVhcmFuY2VFbnRyeRIRCgljb25maWdfaWQYASABKA0SFQoNYXBw",
-          "ZWFyYW5jZV9pZBgCIAEoCRIMCgRuYW1lGAMgASgJEhIKCnNvcnRfb3JkZXIY",
-          "BCABKA0SEgoKdHJpYWxfdXNlZBgFIAEoCCL/AgoUUGxheWVyQXBwZWFyYW5j",
-          "ZUluZm8SHwoXcGVybWFuZW50X2FwcGVhcmFuY2VfaWQYASABKAkSHAoUYWN0",
-          "aXZlX2FwcGVhcmFuY2VfaWQYAiABKAkSGwoTdHJpYWxfYXBwZWFyYW5jZV9p",
-          "ZBgDIAEoCRIYChB0cmlhbF9leHBpcmVzX2F0GAQgASgEEhIKCnNlcnZlcl9u",
-          "b3cYBSABKAQSFAoMY2FyZF9pdGVtX2lkGAYgASgNEhcKD2NhcmRfaXRlbV9j",
-          "b3VudBgHIAEoDRIYChBvd25lZF9jYXJkX2NvdW50GAggASgNEh4KFnRyaWFs",
-          "X2R1cmF0aW9uX3NlY29uZHMYCSABKA0SEwoLbWFsbF9za3VfaWQYCiABKAQS",
-          "FgoObWFsbF9wcmljZV9mZW4YCyABKAQSFwoPdHJpYWxfdXNlZF9iaXRzGAwg",
-          "ASgMEi4KC2FwcGVhcmFuY2VzGA0gAygLMhkuQ2hhcmFjdGVyQXBwZWFyYW5j",
-          "ZUVudHJ5IhoKGEdldEFwcGVhcmFuY2VJbmZvUmVxdWVzdCJoChlHZXRBcHBl",
-          "YXJhbmNlSW5mb1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5U",
-          "aXBJbmZvTWVzc2FnZRIjCgRpbmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5j",
-          "ZUluZm8iSwoXU3dpdGNoQXBwZWFyYW5jZVJlcXVlc3QSGQoRY2xpZW50X3Jl",
-          "cXVlc3RfaWQYASABKAQSFQoNYXBwZWFyYW5jZV9pZBgCIAEoCSJ5ChhTd2l0",
-          "Y2hBcHBlYXJhbmNlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
-          "LlRpcEluZm9NZXNzYWdlEiMKBGluZm8YAiABKAsyFS5QbGF5ZXJBcHBlYXJh",
-          "bmNlSW5mbxIQCghyZXBsYXllZBgDIAEoCCJPChtTdGFydEFwcGVhcmFuY2VU",
-          "cmlhbFJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASABKAQSFQoNYXBw",
-          "ZWFyYW5jZV9pZBgCIAEoCSJ9ChxTdGFydEFwcGVhcmFuY2VUcmlhbFJlc3Bv",
-          "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIj",
-          "CgRpbmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SEAoIcmVwbGF5",
-          "ZWQYAyABKAgiHgocQ2FuY2VsQXBwZWFyYW5jZVRyaWFsUmVxdWVzdCJsCh1D",
-          "YW5jZWxBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
-          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USIwoEaW5mbxgCIAEoCzIVLlBsYXll",
-          "ckFwcGVhcmFuY2VJbmZvIoEBChlBY3RvckFwcGVhcmFuY2VDaGFuZ2VkUzJD",
-          "Eg4KBmVudGl0eRgBIAEoBBIRCglwbGF5ZXJfaWQYAiABKAQSFQoNYXBwZWFy",
-          "YW5jZV9pZBgDIAEoCRIQCghpc190cmlhbBgEIAEoCBIYChB0cmlhbF9leHBp",
-          "cmVzX2F0GAUgASgEIlMKFUFwcGVhcmFuY2VTdGF0ZU5vdGlmeRIjCgRpbmZv",
-          "GAEgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SFQoNdHJpYWxfZXhwaXJl",
-          "ZBgCIAEoCDL2AwobU2NlbmVBcHBlYXJhbmNlQ2xpZW50UGxheWVyEkoKEUdl",
-          "dEFwcGVhcmFuY2VJbmZvEhkuR2V0QXBwZWFyYW5jZUluZm9SZXF1ZXN0Ghou",
-          "R2V0QXBwZWFyYW5jZUluZm9SZXNwb25zZRJHChBTd2l0Y2hBcHBlYXJhbmNl",
-          "EhguU3dpdGNoQXBwZWFyYW5jZVJlcXVlc3QaGS5Td2l0Y2hBcHBlYXJhbmNl",
-          "UmVzcG9uc2USUwoUU3RhcnRBcHBlYXJhbmNlVHJpYWwSHC5TdGFydEFwcGVh",
-          "cmFuY2VUcmlhbFJlcXVlc3QaHS5TdGFydEFwcGVhcmFuY2VUcmlhbFJlc3Bv",
-          "bnNlElYKFUNhbmNlbEFwcGVhcmFuY2VUcmlhbBIdLkNhbmNlbEFwcGVhcmFu",
-          "Y2VUcmlhbFJlcXVlc3QaHi5DYW5jZWxBcHBlYXJhbmNlVHJpYWxSZXNwb25z",
-          "ZRJJChxOb3RpZnlBY3RvckFwcGVhcmFuY2VDaGFuZ2VkEhouQWN0b3JBcHBl",
-          "YXJhbmNlQ2hhbmdlZFMyQxoGLkVtcHR5IgWImcgBAhI+ChVOb3RpZnlBcHBl",
-          "YXJhbmNlU3RhdGUSFi5BcHBlYXJhbmNlU3RhdGVOb3RpZnkaBi5FbXB0eSIF",
-          "iJnIAQIaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90bzM="));
+          "cHJvdG8aHXByb3RvL2NvbW1vbi9iYXNlL2VtcHR5LnByb3RvIrUBChhDaGFy",
+          "YWN0ZXJBcHBlYXJhbmNlRW50cnkSEQoJY29uZmlnX2lkGAEgASgNEhUKDWFw",
+          "cGVhcmFuY2VfaWQYAiABKAkSDAoEbmFtZRgDIAEoCRISCgpzb3J0X29yZGVy",
+          "GAQgASgNEhIKCnRyaWFsX3VzZWQYBSABKAgSDQoFb3duZWQYBiABKAgSFwoP",
+          "Y2FyZF91bmxvY2thYmxlGAcgASgIEhEKCXNlcmllc19pZBgIIAEoDSL/AQoh",
+          "Q2hhcmFjdGVyQXBwZWFyYW5jZVNlcmllc1Byb2dyZXNzEhEKCXNlcmllc19p",
+          "ZBgBIAEoDRISCgpzZXJpZXNfa2V5GAIgASgJEgwKBG5hbWUYAyABKAkSEgoK",
+          "c29ydF9vcmRlchgEIAEoDRITCgtvd25lZF9jb3VudBgFIAEoDRITCgt0b3Rh",
+          "bF9jb3VudBgGIAEoDRIRCgljb21wbGV0ZWQYByABKAgSHQoVY29tcGxldGlv",
+          "bl9iYWRnZV9uYW1lGAggASgJEhYKDmVwaWxvZ3VlX3RpdGxlGAkgASgJEh0K",
+          "FW1lbWJlcl9hcHBlYXJhbmNlX2lkcxgKIAMoCSLQAwoUUGxheWVyQXBwZWFy",
+          "YW5jZUluZm8SHwoXcGVybWFuZW50X2FwcGVhcmFuY2VfaWQYASABKAkSHAoU",
+          "YWN0aXZlX2FwcGVhcmFuY2VfaWQYAiABKAkSGwoTdHJpYWxfYXBwZWFyYW5j",
+          "ZV9pZBgDIAEoCRIYChB0cmlhbF9leHBpcmVzX2F0GAQgASgEEhIKCnNlcnZl",
+          "cl9ub3cYBSABKAQSFAoMY2FyZF9pdGVtX2lkGAYgASgNEhcKD2NhcmRfaXRl",
+          "bV9jb3VudBgHIAEoDRIYChBvd25lZF9jYXJkX2NvdW50GAggASgNEh4KFnRy",
+          "aWFsX2R1cmF0aW9uX3NlY29uZHMYCSABKA0SEwoLbWFsbF9za3VfaWQYCiAB",
+          "KAQSFgoObWFsbF9wcmljZV9mZW4YCyABKAQSFwoPdHJpYWxfdXNlZF9iaXRz",
+          "GAwgASgMEi4KC2FwcGVhcmFuY2VzGA0gAygLMhkuQ2hhcmFjdGVyQXBwZWFy",
+          "YW5jZUVudHJ5EhIKCm93bmVkX2JpdHMYDiABKAwSOwoPc2VyaWVzX3Byb2dy",
+          "ZXNzGA8gAygLMiIuQ2hhcmFjdGVyQXBwZWFyYW5jZVNlcmllc1Byb2dyZXNz",
+          "IhoKGEdldEFwcGVhcmFuY2VJbmZvUmVxdWVzdCJoChlHZXRBcHBlYXJhbmNl",
+          "SW5mb1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+          "TWVzc2FnZRIjCgRpbmZvGAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8i",
+          "ZwoXU3dpdGNoQXBwZWFyYW5jZVJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3Rf",
+          "aWQYASABKAQSFQoNYXBwZWFyYW5jZV9pZBgCIAEoCRIaChJleHBlY3RfZnJl",
+          "ZV9zd2l0Y2gYAyABKAgieQoYU3dpdGNoQXBwZWFyYW5jZVJlc3BvbnNlEiYK",
+          "DWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIjCgRpbmZv",
+          "GAIgASgLMhUuUGxheWVyQXBwZWFyYW5jZUluZm8SEAoIcmVwbGF5ZWQYAyAB",
+          "KAgiTwobU3RhcnRBcHBlYXJhbmNlVHJpYWxSZXF1ZXN0EhkKEWNsaWVudF9y",
+          "ZXF1ZXN0X2lkGAEgASgEEhUKDWFwcGVhcmFuY2VfaWQYAiABKAkifQocU3Rh",
+          "cnRBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEg",
+          "ASgLMg8uVGlwSW5mb01lc3NhZ2USIwoEaW5mbxgCIAEoCzIVLlBsYXllckFw",
+          "cGVhcmFuY2VJbmZvEhAKCHJlcGxheWVkGAMgASgIIh4KHENhbmNlbEFwcGVh",
+          "cmFuY2VUcmlhbFJlcXVlc3QibAodQ2FuY2VsQXBwZWFyYW5jZVRyaWFsUmVz",
+          "cG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdl",
+          "EiMKBGluZm8YAiABKAsyFS5QbGF5ZXJBcHBlYXJhbmNlSW5mbyKBAQoZQWN0",
+          "b3JBcHBlYXJhbmNlQ2hhbmdlZFMyQxIOCgZlbnRpdHkYASABKAQSEQoJcGxh",
+          "eWVyX2lkGAIgASgEEhUKDWFwcGVhcmFuY2VfaWQYAyABKAkSEAoIaXNfdHJp",
+          "YWwYBCABKAgSGAoQdHJpYWxfZXhwaXJlc19hdBgFIAEoBCJTChVBcHBlYXJh",
+          "bmNlU3RhdGVOb3RpZnkSIwoEaW5mbxgBIAEoCzIVLlBsYXllckFwcGVhcmFu",
+          "Y2VJbmZvEhUKDXRyaWFsX2V4cGlyZWQYAiABKAgy9gMKG1NjZW5lQXBwZWFy",
+          "YW5jZUNsaWVudFBsYXllchJKChFHZXRBcHBlYXJhbmNlSW5mbxIZLkdldEFw",
+          "cGVhcmFuY2VJbmZvUmVxdWVzdBoaLkdldEFwcGVhcmFuY2VJbmZvUmVzcG9u",
+          "c2USRwoQU3dpdGNoQXBwZWFyYW5jZRIYLlN3aXRjaEFwcGVhcmFuY2VSZXF1",
+          "ZXN0GhkuU3dpdGNoQXBwZWFyYW5jZVJlc3BvbnNlElMKFFN0YXJ0QXBwZWFy",
+          "YW5jZVRyaWFsEhwuU3RhcnRBcHBlYXJhbmNlVHJpYWxSZXF1ZXN0Gh0uU3Rh",
+          "cnRBcHBlYXJhbmNlVHJpYWxSZXNwb25zZRJWChVDYW5jZWxBcHBlYXJhbmNl",
+          "VHJpYWwSHS5DYW5jZWxBcHBlYXJhbmNlVHJpYWxSZXF1ZXN0Gh4uQ2FuY2Vs",
+          "QXBwZWFyYW5jZVRyaWFsUmVzcG9uc2USSQocTm90aWZ5QWN0b3JBcHBlYXJh",
+          "bmNlQ2hhbmdlZBIaLkFjdG9yQXBwZWFyYW5jZUNoYW5nZWRTMkMaBi5FbXB0",
+          "eSIFiJnIAQISPgoVTm90aWZ5QXBwZWFyYW5jZVN0YXRlEhYuQXBwZWFyYW5j",
+          "ZVN0YXRlTm90aWZ5GgYuRW1wdHkiBYiZyAECGgqAqMMBAYiowwEBQg5aBXNj",
+          "ZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::CharacterAppearanceEntry), global::CharacterAppearanceEntry.Parser, new[]{ "ConfigId", "AppearanceId", "Name", "SortOrder", "TrialUsed" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerAppearanceInfo), global::PlayerAppearanceInfo.Parser, new[]{ "PermanentAppearanceId", "ActiveAppearanceId", "TrialAppearanceId", "TrialExpiresAt", "ServerNow", "CardItemId", "CardItemCount", "OwnedCardCount", "TrialDurationSeconds", "MallSkuId", "MallPriceFen", "TrialUsedBits", "Appearances" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CharacterAppearanceEntry), global::CharacterAppearanceEntry.Parser, new[]{ "ConfigId", "AppearanceId", "Name", "SortOrder", "TrialUsed", "Owned", "CardUnlockable", "SeriesId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CharacterAppearanceSeriesProgress), global::CharacterAppearanceSeriesProgress.Parser, new[]{ "SeriesId", "SeriesKey", "Name", "SortOrder", "OwnedCount", "TotalCount", "Completed", "CompletionBadgeName", "EpilogueTitle", "MemberAppearanceIds" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerAppearanceInfo), global::PlayerAppearanceInfo.Parser, new[]{ "PermanentAppearanceId", "ActiveAppearanceId", "TrialAppearanceId", "TrialExpiresAt", "ServerNow", "CardItemId", "CardItemCount", "OwnedCardCount", "TrialDurationSeconds", "MallSkuId", "MallPriceFen", "TrialUsedBits", "Appearances", "OwnedBits", "SeriesProgress" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAppearanceInfoRequest), global::GetAppearanceInfoRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetAppearanceInfoResponse), global::GetAppearanceInfoResponse.Parser, new[]{ "ErrorMessage", "Info" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SwitchAppearanceRequest), global::SwitchAppearanceRequest.Parser, new[]{ "ClientRequestId", "AppearanceId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SwitchAppearanceRequest), global::SwitchAppearanceRequest.Parser, new[]{ "ClientRequestId", "AppearanceId", "ExpectFreeSwitch" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SwitchAppearanceResponse), global::SwitchAppearanceResponse.Parser, new[]{ "ErrorMessage", "Info", "Replayed" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::StartAppearanceTrialRequest), global::StartAppearanceTrialRequest.Parser, new[]{ "ClientRequestId", "AppearanceId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::StartAppearanceTrialResponse), global::StartAppearanceTrialResponse.Parser, new[]{ "ErrorMessage", "Info", "Replayed" }, null, null, null, null),
@@ -129,6 +140,9 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
     name_ = other.name_;
     sortOrder_ = other.sortOrder_;
     trialUsed_ = other.trialUsed_;
+    owned_ = other.owned_;
+    cardUnlockable_ = other.cardUnlockable_;
+    seriesId_ = other.seriesId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -157,7 +171,7 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
   public const int AppearanceIdFieldNumber = 2;
   private string appearanceId_ = "";
   /// <summary>
-  /// 稳定资源外观 ID(如 "08_alchemy_prodigy_boy")
+  /// 稳定资源外观 ID(如 "00_reference_topright_boy")
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -213,6 +227,51 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
     }
   }
 
+  /// <summary>Field number for the "owned" field.</summary>
+  public const int OwnedFieldNumber = 6;
+  private bool owned_;
+  /// <summary>
+  /// 是否已永久拥有(含当前永久形象;已拥有可 0 消耗免费切换)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Owned {
+    get { return owned_; }
+    set {
+      owned_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "card_unlockable" field.</summary>
+  public const int CardUnlockableFieldNumber = 7;
+  private bool cardUnlockable_;
+  /// <summary>
+  /// 未拥有时是否允许消耗角色形象卡永久解锁(CharacterAppearance.card_unlockable)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool CardUnlockable {
+    get { return cardUnlockable_; }
+    set {
+      cardUnlockable_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "series_id" field.</summary>
+  public const int SeriesIdFieldNumber = 8;
+  private uint seriesId_;
+  /// <summary>
+  /// 所属人物收藏系列 ID(AppearanceSeries.id,0 = 未归册;纯外观与叙事分册,零属性加成)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeriesId {
+    get { return seriesId_; }
+    set {
+      seriesId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -233,6 +292,9 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
     if (Name != other.Name) return false;
     if (SortOrder != other.SortOrder) return false;
     if (TrialUsed != other.TrialUsed) return false;
+    if (Owned != other.Owned) return false;
+    if (CardUnlockable != other.CardUnlockable) return false;
+    if (SeriesId != other.SeriesId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -245,6 +307,9 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
     if (Name.Length != 0) hash ^= Name.GetHashCode();
     if (SortOrder != 0) hash ^= SortOrder.GetHashCode();
     if (TrialUsed != false) hash ^= TrialUsed.GetHashCode();
+    if (Owned != false) hash ^= Owned.GetHashCode();
+    if (CardUnlockable != false) hash ^= CardUnlockable.GetHashCode();
+    if (SeriesId != 0) hash ^= SeriesId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -283,6 +348,18 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
       output.WriteRawTag(40);
       output.WriteBool(TrialUsed);
     }
+    if (Owned != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(Owned);
+    }
+    if (CardUnlockable != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(CardUnlockable);
+    }
+    if (SeriesId != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(SeriesId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -313,6 +390,18 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
       output.WriteRawTag(40);
       output.WriteBool(TrialUsed);
     }
+    if (Owned != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(Owned);
+    }
+    if (CardUnlockable != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(CardUnlockable);
+    }
+    if (SeriesId != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(SeriesId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -337,6 +426,15 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
     }
     if (TrialUsed != false) {
       size += 1 + 1;
+    }
+    if (Owned != false) {
+      size += 1 + 1;
+    }
+    if (CardUnlockable != false) {
+      size += 1 + 1;
+    }
+    if (SeriesId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SeriesId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -364,6 +462,15 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
     }
     if (other.TrialUsed != false) {
       TrialUsed = other.TrialUsed;
+    }
+    if (other.Owned != false) {
+      Owned = other.Owned;
+    }
+    if (other.CardUnlockable != false) {
+      CardUnlockable = other.CardUnlockable;
+    }
+    if (other.SeriesId != 0) {
+      SeriesId = other.SeriesId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -402,6 +509,18 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
         }
         case 40: {
           TrialUsed = input.ReadBool();
+          break;
+        }
+        case 48: {
+          Owned = input.ReadBool();
+          break;
+        }
+        case 56: {
+          CardUnlockable = input.ReadBool();
+          break;
+        }
+        case 64: {
+          SeriesId = input.ReadUInt32();
           break;
         }
       }
@@ -443,6 +562,571 @@ public sealed partial class CharacterAppearanceEntry : pb::IMessage<CharacterApp
           TrialUsed = input.ReadBool();
           break;
         }
+        case 48: {
+          Owned = input.ReadBool();
+          break;
+        }
+        case 56: {
+          CardUnlockable = input.ReadBool();
+          break;
+        }
+        case 64: {
+          SeriesId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
+/// 角色收藏系列图鉴进度(由服务端按权威拥有位图与配表实时派生,不单独落盘;纯外观印章与合篇故事,零属性加成)。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class CharacterAppearanceSeriesProgress : pb::IMessage<CharacterAppearanceSeriesProgress>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<CharacterAppearanceSeriesProgress> _parser = new pb::MessageParser<CharacterAppearanceSeriesProgress>(() => new CharacterAppearanceSeriesProgress());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<CharacterAppearanceSeriesProgress> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CharacterAppearanceSeriesProgress() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CharacterAppearanceSeriesProgress(CharacterAppearanceSeriesProgress other) : this() {
+    seriesId_ = other.seriesId_;
+    seriesKey_ = other.seriesKey_;
+    name_ = other.name_;
+    sortOrder_ = other.sortOrder_;
+    ownedCount_ = other.ownedCount_;
+    totalCount_ = other.totalCount_;
+    completed_ = other.completed_;
+    completionBadgeName_ = other.completionBadgeName_;
+    epilogueTitle_ = other.epilogueTitle_;
+    memberAppearanceIds_ = other.memberAppearanceIds_.Clone();
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CharacterAppearanceSeriesProgress Clone() {
+    return new CharacterAppearanceSeriesProgress(this);
+  }
+
+  /// <summary>Field number for the "series_id" field.</summary>
+  public const int SeriesIdFieldNumber = 1;
+  private uint seriesId_;
+  /// <summary>
+  /// AppearanceSeries.id
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SeriesId {
+    get { return seriesId_; }
+    set {
+      seriesId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "series_key" field.</summary>
+  public const int SeriesKeyFieldNumber = 2;
+  private string seriesKey_ = "";
+  /// <summary>
+  /// 稳定系列标识符(如 "lantern_courtyard")
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string SeriesKey {
+    get { return seriesKey_; }
+    set {
+      seriesKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 3;
+  private string name_ = "";
+  /// <summary>
+  /// 系列中文名
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "sort_order" field.</summary>
+  public const int SortOrderFieldNumber = 4;
+  private uint sortOrder_;
+  /// <summary>
+  /// 图鉴展示排序(升序)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint SortOrder {
+    get { return sortOrder_; }
+    set {
+      sortOrder_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "owned_count" field.</summary>
+  public const int OwnedCountFieldNumber = 5;
+  private uint ownedCount_;
+  /// <summary>
+  /// 该系列当前已永久拥有的现役成员数(试用不计入)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint OwnedCount {
+    get { return ownedCount_; }
+    set {
+      ownedCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "total_count" field.</summary>
+  public const int TotalCountFieldNumber = 6;
+  private uint totalCount_;
+  /// <summary>
+  /// 该系列当前启用的现役成员总数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TotalCount {
+    get { return totalCount_; }
+    set {
+      totalCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "completed" field.</summary>
+  public const int CompletedFieldNumber = 7;
+  private bool completed_;
+  /// <summary>
+  /// total_count > 0 &amp;&amp; owned_count >= total_count(集齐即点亮印章与解锁合篇)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Completed {
+    get { return completed_; }
+    set {
+      completed_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "completion_badge_name" field.</summary>
+  public const int CompletionBadgeNameFieldNumber = 8;
+  private string completionBadgeName_ = "";
+  /// <summary>
+  /// 集齐印章/铭牌展示名(纯装饰,无数值)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string CompletionBadgeName {
+    get { return completionBadgeName_; }
+    set {
+      completionBadgeName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "epilogue_title" field.</summary>
+  public const int EpilogueTitleFieldNumber = 9;
+  private string epilogueTitle_ = "";
+  /// <summary>
+  /// 集齐解锁合篇故事篇名(正文由客户端查 AppearanceSeries 本地配表)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string EpilogueTitle {
+    get { return epilogueTitle_; }
+    set {
+      epilogueTitle_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "member_appearance_ids" field.</summary>
+  public const int MemberAppearanceIdsFieldNumber = 10;
+  private static readonly pb::FieldCodec<string> _repeated_memberAppearanceIds_codec
+      = pb::FieldCodec.ForString(82);
+  private readonly pbc::RepeatedField<string> memberAppearanceIds_ = new pbc::RepeatedField<string>();
+  /// <summary>
+  /// 该系列当前启用的成员 appearance_id(按 sort_order 升序)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<string> MemberAppearanceIds {
+    get { return memberAppearanceIds_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as CharacterAppearanceSeriesProgress);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(CharacterAppearanceSeriesProgress other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SeriesId != other.SeriesId) return false;
+    if (SeriesKey != other.SeriesKey) return false;
+    if (Name != other.Name) return false;
+    if (SortOrder != other.SortOrder) return false;
+    if (OwnedCount != other.OwnedCount) return false;
+    if (TotalCount != other.TotalCount) return false;
+    if (Completed != other.Completed) return false;
+    if (CompletionBadgeName != other.CompletionBadgeName) return false;
+    if (EpilogueTitle != other.EpilogueTitle) return false;
+    if(!memberAppearanceIds_.Equals(other.memberAppearanceIds_)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SeriesId != 0) hash ^= SeriesId.GetHashCode();
+    if (SeriesKey.Length != 0) hash ^= SeriesKey.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (SortOrder != 0) hash ^= SortOrder.GetHashCode();
+    if (OwnedCount != 0) hash ^= OwnedCount.GetHashCode();
+    if (TotalCount != 0) hash ^= TotalCount.GetHashCode();
+    if (Completed != false) hash ^= Completed.GetHashCode();
+    if (CompletionBadgeName.Length != 0) hash ^= CompletionBadgeName.GetHashCode();
+    if (EpilogueTitle.Length != 0) hash ^= EpilogueTitle.GetHashCode();
+    hash ^= memberAppearanceIds_.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SeriesId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SeriesId);
+    }
+    if (SeriesKey.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(SeriesKey);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Name);
+    }
+    if (SortOrder != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(SortOrder);
+    }
+    if (OwnedCount != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(OwnedCount);
+    }
+    if (TotalCount != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(TotalCount);
+    }
+    if (Completed != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(Completed);
+    }
+    if (CompletionBadgeName.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(CompletionBadgeName);
+    }
+    if (EpilogueTitle.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(EpilogueTitle);
+    }
+    memberAppearanceIds_.WriteTo(output, _repeated_memberAppearanceIds_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SeriesId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(SeriesId);
+    }
+    if (SeriesKey.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(SeriesKey);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Name);
+    }
+    if (SortOrder != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(SortOrder);
+    }
+    if (OwnedCount != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(OwnedCount);
+    }
+    if (TotalCount != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(TotalCount);
+    }
+    if (Completed != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(Completed);
+    }
+    if (CompletionBadgeName.Length != 0) {
+      output.WriteRawTag(66);
+      output.WriteString(CompletionBadgeName);
+    }
+    if (EpilogueTitle.Length != 0) {
+      output.WriteRawTag(74);
+      output.WriteString(EpilogueTitle);
+    }
+    memberAppearanceIds_.WriteTo(ref output, _repeated_memberAppearanceIds_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SeriesId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SeriesId);
+    }
+    if (SeriesKey.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(SeriesKey);
+    }
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (SortOrder != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SortOrder);
+    }
+    if (OwnedCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(OwnedCount);
+    }
+    if (TotalCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TotalCount);
+    }
+    if (Completed != false) {
+      size += 1 + 1;
+    }
+    if (CompletionBadgeName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(CompletionBadgeName);
+    }
+    if (EpilogueTitle.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(EpilogueTitle);
+    }
+    size += memberAppearanceIds_.CalculateSize(_repeated_memberAppearanceIds_codec);
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(CharacterAppearanceSeriesProgress other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SeriesId != 0) {
+      SeriesId = other.SeriesId;
+    }
+    if (other.SeriesKey.Length != 0) {
+      SeriesKey = other.SeriesKey;
+    }
+    if (other.Name.Length != 0) {
+      Name = other.Name;
+    }
+    if (other.SortOrder != 0) {
+      SortOrder = other.SortOrder;
+    }
+    if (other.OwnedCount != 0) {
+      OwnedCount = other.OwnedCount;
+    }
+    if (other.TotalCount != 0) {
+      TotalCount = other.TotalCount;
+    }
+    if (other.Completed != false) {
+      Completed = other.Completed;
+    }
+    if (other.CompletionBadgeName.Length != 0) {
+      CompletionBadgeName = other.CompletionBadgeName;
+    }
+    if (other.EpilogueTitle.Length != 0) {
+      EpilogueTitle = other.EpilogueTitle;
+    }
+    memberAppearanceIds_.Add(other.memberAppearanceIds_);
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SeriesId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          SeriesKey = input.ReadString();
+          break;
+        }
+        case 26: {
+          Name = input.ReadString();
+          break;
+        }
+        case 32: {
+          SortOrder = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          OwnedCount = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          TotalCount = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          Completed = input.ReadBool();
+          break;
+        }
+        case 66: {
+          CompletionBadgeName = input.ReadString();
+          break;
+        }
+        case 74: {
+          EpilogueTitle = input.ReadString();
+          break;
+        }
+        case 82: {
+          memberAppearanceIds_.AddEntriesFrom(input, _repeated_memberAppearanceIds_codec);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SeriesId = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          SeriesKey = input.ReadString();
+          break;
+        }
+        case 26: {
+          Name = input.ReadString();
+          break;
+        }
+        case 32: {
+          SortOrder = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          OwnedCount = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          TotalCount = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          Completed = input.ReadBool();
+          break;
+        }
+        case 66: {
+          CompletionBadgeName = input.ReadString();
+          break;
+        }
+        case 74: {
+          EpilogueTitle = input.ReadString();
+          break;
+        }
+        case 82: {
+          memberAppearanceIds_.AddEntriesFrom(ref input, _repeated_memberAppearanceIds_codec);
+          break;
+        }
       }
     }
   }
@@ -465,7 +1149,7 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[1]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -498,6 +1182,8 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
     mallPriceFen_ = other.mallPriceFen_;
     trialUsedBits_ = other.trialUsedBits_;
     appearances_ = other.appearances_.Clone();
+    ownedBits_ = other.ownedBits_;
+    seriesProgress_ = other.seriesProgress_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -511,7 +1197,7 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
   public const int PermanentAppearanceIdFieldNumber = 1;
   private string permanentAppearanceId_ = "";
   /// <summary>
-  /// 当前永久持有的唯一形象
+  /// 当前永久使用的形象
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -601,7 +1287,7 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
   public const int CardItemCountFieldNumber = 7;
   private uint cardItemCount_;
   /// <summary>
-  /// 每次切换消耗张数(默认 1)
+  /// 每次解锁消耗张数(默认 1)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -676,7 +1362,7 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
   public const int TrialUsedBitsFieldNumber = 12;
   private pb::ByteString trialUsedBits_ = pb::ByteString.Empty;
   /// <summary>
-  /// 紧凑位图原样(低位在前,与 CharacterAppearance bit_index 对应)
+  /// 试用紧凑位图原样(低位在前,与 CharacterAppearance bit_index 对应)
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -699,6 +1385,35 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public pbc::RepeatedField<global::CharacterAppearanceEntry> Appearances {
     get { return appearances_; }
+  }
+
+  /// <summary>Field number for the "owned_bits" field.</summary>
+  public const int OwnedBitsFieldNumber = 14;
+  private pb::ByteString ownedBits_ = pb::ByteString.Empty;
+  /// <summary>
+  /// 已永久拥有紧凑位图(低位在前,含当前永久形象对应位,保留未知高位)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pb::ByteString OwnedBits {
+    get { return ownedBits_; }
+    set {
+      ownedBits_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "series_progress" field.</summary>
+  public const int SeriesProgressFieldNumber = 15;
+  private static readonly pb::FieldCodec<global::CharacterAppearanceSeriesProgress> _repeated_seriesProgress_codec
+      = pb::FieldCodec.ForMessage(122, global::CharacterAppearanceSeriesProgress.Parser);
+  private readonly pbc::RepeatedField<global::CharacterAppearanceSeriesProgress> seriesProgress_ = new pbc::RepeatedField<global::CharacterAppearanceSeriesProgress>();
+  /// <summary>
+  /// 收藏系列图鉴进度(按 sort_order 升序,纯外观零属性)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::CharacterAppearanceSeriesProgress> SeriesProgress {
+    get { return seriesProgress_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -729,6 +1444,8 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
     if (MallPriceFen != other.MallPriceFen) return false;
     if (TrialUsedBits != other.TrialUsedBits) return false;
     if(!appearances_.Equals(other.appearances_)) return false;
+    if (OwnedBits != other.OwnedBits) return false;
+    if(!seriesProgress_.Equals(other.seriesProgress_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -749,6 +1466,8 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
     if (MallPriceFen != 0UL) hash ^= MallPriceFen.GetHashCode();
     if (TrialUsedBits.Length != 0) hash ^= TrialUsedBits.GetHashCode();
     hash ^= appearances_.GetHashCode();
+    if (OwnedBits.Length != 0) hash ^= OwnedBits.GetHashCode();
+    hash ^= seriesProgress_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -816,6 +1535,11 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
       output.WriteBytes(TrialUsedBits);
     }
     appearances_.WriteTo(output, _repeated_appearances_codec);
+    if (OwnedBits.Length != 0) {
+      output.WriteRawTag(114);
+      output.WriteBytes(OwnedBits);
+    }
+    seriesProgress_.WriteTo(output, _repeated_seriesProgress_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -875,6 +1599,11 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
       output.WriteBytes(TrialUsedBits);
     }
     appearances_.WriteTo(ref output, _repeated_appearances_codec);
+    if (OwnedBits.Length != 0) {
+      output.WriteRawTag(114);
+      output.WriteBytes(OwnedBits);
+    }
+    seriesProgress_.WriteTo(ref output, _repeated_seriesProgress_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -922,6 +1651,10 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
       size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrialUsedBits);
     }
     size += appearances_.CalculateSize(_repeated_appearances_codec);
+    if (OwnedBits.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeBytesSize(OwnedBits);
+    }
+    size += seriesProgress_.CalculateSize(_repeated_seriesProgress_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -971,6 +1704,10 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
       TrialUsedBits = other.TrialUsedBits;
     }
     appearances_.Add(other.appearances_);
+    if (other.OwnedBits.Length != 0) {
+      OwnedBits = other.OwnedBits;
+    }
+    seriesProgress_.Add(other.seriesProgress_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1040,6 +1777,14 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
         }
         case 106: {
           appearances_.AddEntriesFrom(input, _repeated_appearances_codec);
+          break;
+        }
+        case 114: {
+          OwnedBits = input.ReadBytes();
+          break;
+        }
+        case 122: {
+          seriesProgress_.AddEntriesFrom(input, _repeated_seriesProgress_codec);
           break;
         }
       }
@@ -1113,6 +1858,14 @@ public sealed partial class PlayerAppearanceInfo : pb::IMessage<PlayerAppearance
           appearances_.AddEntriesFrom(ref input, _repeated_appearances_codec);
           break;
         }
+        case 114: {
+          OwnedBits = input.ReadBytes();
+          break;
+        }
+        case 122: {
+          seriesProgress_.AddEntriesFrom(ref input, _repeated_seriesProgress_codec);
+          break;
+        }
       }
     }
   }
@@ -1135,7 +1888,7 @@ public sealed partial class GetAppearanceInfoRequest : pb::IMessage<GetAppearanc
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[2]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1296,7 +2049,7 @@ public sealed partial class GetAppearanceInfoResponse : pb::IMessage<GetAppearan
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[3]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1535,7 +2288,7 @@ public sealed partial class GetAppearanceInfoResponse : pb::IMessage<GetAppearan
 }
 
 /// <summary>
-/// 消耗角色形象卡永久切换唯一角色形象(带幂等键,与 BuyAfkPass 同口径)。
+/// 切换永久形象(已拥有则 0 消耗免费切换;未拥有且允许卡换则消耗角色形象卡永久解锁并切换;带幂等键)。
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppearanceRequest>
@@ -1552,7 +2305,7 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[4]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1574,6 +2327,7 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
   public SwitchAppearanceRequest(SwitchAppearanceRequest other) : this() {
     clientRequestId_ = other.clientRequestId_;
     appearanceId_ = other.appearanceId_;
+    expectFreeSwitch_ = other.expectFreeSwitch_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1613,6 +2367,21 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
     }
   }
 
+  /// <summary>Field number for the "expect_free_switch" field.</summary>
+  public const int ExpectFreeSwitchFieldNumber = 3;
+  private bool expectFreeSwitch_;
+  /// <summary>
+  /// true = 仅限已拥有免费切换(未拥有则拒绝,绝不误扣形象卡); false = 允许扣卡永久解锁并切换
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool ExpectFreeSwitch {
+    get { return expectFreeSwitch_; }
+    set {
+      expectFreeSwitch_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1630,6 +2399,7 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
     }
     if (ClientRequestId != other.ClientRequestId) return false;
     if (AppearanceId != other.AppearanceId) return false;
+    if (ExpectFreeSwitch != other.ExpectFreeSwitch) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1639,6 +2409,7 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
     int hash = 1;
     if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
     if (AppearanceId.Length != 0) hash ^= AppearanceId.GetHashCode();
+    if (ExpectFreeSwitch != false) hash ^= ExpectFreeSwitch.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1665,6 +2436,10 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
       output.WriteRawTag(18);
       output.WriteString(AppearanceId);
     }
+    if (ExpectFreeSwitch != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(ExpectFreeSwitch);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1683,6 +2458,10 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
       output.WriteRawTag(18);
       output.WriteString(AppearanceId);
     }
+    if (ExpectFreeSwitch != false) {
+      output.WriteRawTag(24);
+      output.WriteBool(ExpectFreeSwitch);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1698,6 +2477,9 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
     }
     if (AppearanceId.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(AppearanceId);
+    }
+    if (ExpectFreeSwitch != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1716,6 +2498,9 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
     }
     if (other.AppearanceId.Length != 0) {
       AppearanceId = other.AppearanceId;
+    }
+    if (other.ExpectFreeSwitch != false) {
+      ExpectFreeSwitch = other.ExpectFreeSwitch;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1742,6 +2527,10 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
         }
         case 18: {
           AppearanceId = input.ReadString();
+          break;
+        }
+        case 24: {
+          ExpectFreeSwitch = input.ReadBool();
           break;
         }
       }
@@ -1771,6 +2560,10 @@ public sealed partial class SwitchAppearanceRequest : pb::IMessage<SwitchAppeara
           AppearanceId = input.ReadString();
           break;
         }
+        case 24: {
+          ExpectFreeSwitch = input.ReadBool();
+          break;
+        }
       }
     }
   }
@@ -1793,7 +2586,7 @@ public sealed partial class SwitchAppearanceResponse : pb::IMessage<SwitchAppear
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2086,7 +2879,7 @@ public sealed partial class StartAppearanceTrialRequest : pb::IMessage<StartAppe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2327,7 +3120,7 @@ public sealed partial class StartAppearanceTrialResponse : pb::IMessage<StartApp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2620,7 +3413,7 @@ public sealed partial class CancelAppearanceTrialRequest : pb::IMessage<CancelAp
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2781,7 +3574,7 @@ public sealed partial class CancelAppearanceTrialResponse : pb::IMessage<CancelA
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3037,7 +3830,7 @@ public sealed partial class ActorAppearanceChangedS2C : pb::IMessage<ActorAppear
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3401,7 +4194,7 @@ public sealed partial class AppearanceStateNotify : pb::IMessage<AppearanceState
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerAppearanceReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

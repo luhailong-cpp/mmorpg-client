@@ -265,6 +265,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             BuildConfirmOverlay(_fittedRoot);
             BuildNoCardOverlay(_fittedRoot);
             BuildStoryOverlay(_fittedRoot);
+            BuildSeriesUi((RectTransform)_mainPanelGroup.transform, _fittedRoot);
             BuildReadingOverlays(_fittedRoot);
 
             _window.gameObject.SetActive(false);
@@ -296,7 +297,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             var ruleBanner = QdaoUguiFactory.CreateText("AppearanceRuleBanner", mainRoot,
                 180f, 92f, 1800f, 34f,
-                "角色仅持有 1 个永久形象，切换消耗 1 张角色形象卡（10元）；每个形象可免费试用 1 小时",
+                "已拥有的形象可随时免费切换；未拥有且支持兑换的形象消耗 1 张角色形象卡永久解锁（保留原形象）；未拥有可免费试用 1 小时",
                 22f, AppearanceUiArt.MutedInk, TextAlignmentOptions.Center);
             ruleBanner.richText = false;
 
@@ -426,7 +427,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _cardInfoLine1.fontStyle = FontStyles.Bold;
 
             _cardInfoLine2 = QdaoUguiFactory.CreateText("CardRuleLine", cardSlot.transform,
-                136f, 72f, 386f, 36f, "每次永久切换消耗 1 张（覆盖原形象）", 20f, AppearanceUiArt.MutedInk, TextAlignmentOptions.MidlineLeft);
+                136f, 72f, 386f, 36f, "消耗 1 张永久解锁新形象（保留原形象，已拥有免费切换）", 20f, AppearanceUiArt.MutedInk, TextAlignmentOptions.MidlineLeft);
             _cardInfoLine2.richText = false;
 
             _buyMallBtn = AppearanceUiArt.GoldMallButton(cardSlot.transform, "AppearanceOpenMall",
@@ -567,7 +568,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _noCardOwnedLabel.richText = false;
 
             var note = QdaoUguiFactory.CreateText("NoCardNote", box, 90f, 314f, w - 180f, 76f,
-                "背包中暂无角色形象卡，前往官方商城购买后即可切换永久形象。",
+                "背包中暂无角色形象卡，前往官方商城购买后即可永久解锁并切换角色形象。",
                 24f, AppearanceUiArt.JadeInk, TextAlignmentOptions.Center);
             note.richText = false;
             note.textWrappingMode = TextWrappingModes.Normal;
@@ -685,6 +686,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 RefreshStoryScrollLayout();
             }
+            if (_state.IsSeriesEpilogueOpen && _seriesEpilogueBodyText != null &&
+                Mathf.Abs(_seriesEpilogueBodyText.fontSize - _lastEpilogueBodyFontSize) > 0.01f)
+            {
+                RefreshSeriesEpilogueScrollLayout();
+            }
             HandleOverlayInputAndFocus();
             ApplyReadingLayout();
             ConfigureModalNavigation();
@@ -761,13 +767,25 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_state.HasOverlay || _client == null || _client.Info == null) return;
             var info = _client.Info;
+            var selected = FindEntry(info, _state.SelectedAppearanceId);
+            if (selected == null) return;
+            bool isOwned = selected.Owned || selected.AppearanceId == info.PermanentAppearanceId;
             _state.SelectAppearance(_state.SelectedAppearanceId, CurrentListPosition());
             var outcome = _state.RequestSwitch(
                 _state.SelectedAppearanceId,
                 info.PermanentAppearanceId,
                 info.OwnedCardCount,
-                info.CardItemCount);
-            if (outcome == AppearanceSwitchIntentOutcome.Ignored) return;
+                info.CardItemCount,
+                targetOwned: isOwned,
+                targetCardUnlockable: selected.CardUnlockable);
+            if (outcome == AppearanceSwitchIntentOutcome.ReadyForFreeSwitch)
+            {
+                _client.SwitchAppearance(_state.SelectedAppearanceId, expectFreeSwitch: true);
+                Render();
+                return;
+            }
+            if (outcome == AppearanceSwitchIntentOutcome.Ignored ||
+                outcome == AppearanceSwitchIntentOutcome.LockedExclusive) return;
             Render();
             FocusFirstControlOfActiveOverlay();
         }
@@ -775,7 +793,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void HandleConfirmSwitchSubmit()
         {
             if (_client == null || !_state.TryConsumePendingSwitchConfirm(out string targetId)) return;
-            _client.SwitchAppearance(targetId);
+            _client.SwitchAppearance(targetId, expectFreeSwitch: false);
             Render();
         }
 
@@ -811,17 +829,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private void HandleDismissOverlay()
         {
             bool wasStory = _state.IsStoryOpen;
+            bool wasSeriesEpilogue = _state.IsSeriesEpilogueOpen;
             SaveReadingPosition();
             if (!_state.DismissActiveOverlay()) return;
             Render();
             if (_state.IsStoryOpen && _storyScroll != null)
                 _storyScroll.verticalNormalizedPosition = _state.SavedStoryScrollNormalized;
             if (_state.HasOverlay) { FocusFirstControlOfActiveOverlay(); return; }
-            if (wasStory) RestoreListScrollPosition();
+            if (wasStory || wasSeriesEpilogue) RestoreListScrollPosition();
             if (EventSystem.current != null)
             {
                 if (wasStory && _readStoryBtn != null && _readStoryBtn.gameObject.activeInHierarchy && _readStoryBtn.interactable)
                     EventSystem.current.SetSelectedGameObject(_readStoryBtn.gameObject);
+                else if (wasSeriesEpilogue && _seriesEpilogueBtn != null && _seriesEpilogueBtn.gameObject.activeInHierarchy && _seriesEpilogueBtn.interactable)
+                    EventSystem.current.SetSelectedGameObject(_seriesEpilogueBtn.gameObject);
                 else
                     EventSystem.current.SetSelectedGameObject(null);
             }
@@ -893,6 +914,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             AppearanceOverlayKind.NoCardGuide => _noCardControls,
             AppearanceOverlayKind.Biography => _biographyControls,
             AppearanceOverlayKind.PortraitPreview => _portraitControls,
+            AppearanceOverlayKind.SeriesEpilogue => _seriesEpilogueControls,
             _ => null,
         };
 
@@ -923,8 +945,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     _validIdsBuffer.Add(info.Appearances[i].AppearanceId);
             }
             _state.SyncAvailableAppearances(_validIdsBuffer, info?.ActiveAppearanceId, info?.PermanentAppearanceId);
+            var visibleEntries = SyncSeriesStateAndFilter(info);
 
-            SyncListRows(info);
+            SyncListRows(info, visibleEntries);
 
             if (info == null)
             {
@@ -938,19 +961,26 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _trialBannerRoot.SetActive(false);
                 HideBiographySection();
                 _cardInfoLine1.text = "角色形象卡  背包持有：—";
-                _cardInfoLine2.text = "每次永久切换消耗 1 张（覆盖原形象）";
+                _cardInfoLine2.text = "消耗 1 张永久解锁新形象（保留原形象，已拥有免费切换）";
                 _trialBtn.interactable = false;
                 _switchBtn.interactable = false;
                 _buyMallBtn.interactable = false;
                 _previewButton.interactable = false;
                 _readOnlyRetryButton.gameObject.SetActive(_client?.InfoPending != true);
                 _readOnlyRetryButton.interactable = _client?.Ready == true;
+                RenderSeriesUi(null);
                 UpdateStatusText();
                 SyncOverlayVisibility();
                 return;
             }
 
-            _listCountLabel.text = $"可选形象 {info.Appearances.Count} 种";
+            int ownedTotal = 0;
+            for (int i = 0; i < info.Appearances.Count; i++)
+            {
+                var e = info.Appearances[i];
+                if (e.Owned || e.AppearanceId == info.PermanentAppearanceId) ownedTotal++;
+            }
+            _listCountLabel.text = $"角色衣柜 · 已收集 {ownedTotal}/{info.Appearances.Count}";
             _readOnlyRetryButton.gameObject.SetActive(info.Appearances.Count == 0);
             _readOnlyRetryButton.interactable = _client.Ready && !_client.InfoPending;
             CharacterAppearanceEntry selected = FindEntry(info, _state.SelectedAppearanceId);
@@ -965,6 +995,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 UpdatePreviewPortrait(selected.AppearanceId);
 
                 bool isPermanent = selected.AppearanceId == info.PermanentAppearanceId;
+                bool isOwned = isPermanent || selected.Owned;
                 bool isTrialing = _client.HasActiveTrial && selected.AppearanceId == info.TrialAppearanceId;
                 if (isTrialing)
                 {
@@ -974,17 +1005,29 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
                 else if (isPermanent)
                 {
-                    _previewStatus.text = "状态：当前唯一永久形象";
+                    _previewStatus.text = "状态：使用中（永久已拥有）";
                     _previewStatus.color = AppearanceUiArt.TrialGreen;
+                }
+                else if (isOwned)
+                {
+                    _previewStatus.text = "状态：已永久拥有（可随时免费切换，0 消耗）";
+                    _previewStatus.color = AppearanceUiArt.TrialGreen;
+                }
+                else if (!selected.CardUnlockable)
+                {
+                    _previewStatus.text = selected.TrialUsed
+                        ? "状态：未获得（专属玩法/活动解锁，已试用过）"
+                        : "状态：未获得（专属玩法/活动解锁，可免费试用 1 小时）";
+                    _previewStatus.color = AppearanceUiArt.MutedInk;
                 }
                 else if (selected.TrialUsed)
                 {
-                    _previewStatus.text = "状态：已免费试用过（可消耗角色形象卡永久切换）";
+                    _previewStatus.text = "状态：未获得（已免费试用过，消耗形象卡可永久解锁）";
                     _previewStatus.color = AppearanceUiArt.MutedInk;
                 }
                 else
                 {
-                    _previewStatus.text = "状态：可免费试用 1 小时 / 消耗形象卡永久切换";
+                    _previewStatus.text = "状态：未获得（可免费试用 1 小时 / 消耗形象卡永久解锁）";
                     _previewStatus.color = AppearanceUiArt.TrialGreen;
                 }
 
@@ -1016,7 +1059,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             uint requiredCards = info.CardItemCount > 0 ? info.CardItemCount : 1u;
             string priceText = info.MallPriceFen > 0 ? AppearanceModels.FormatPriceYuan(info.MallPriceFen) : "价格待同步";
             _cardInfoLine1.text = $"角色形象卡  背包持有：{info.OwnedCardCount} 张";
-            _cardInfoLine2.text = $"每次永久切换消耗 {requiredCards} 张（覆盖原形象）";
+            _cardInfoLine2.text = $"消耗 {requiredCards} 张永久解锁新形象（保留原形象，已拥有免费切换）";
             _buyMallLabel.text = $"商城购买 {priceText}";
             _buyMallBtn.interactable = _client.Ready && !_client.RequiresReconnect &&
                 info.MallSkuId != 0 && info.MallPriceFen > 0;
@@ -1027,29 +1070,35 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
             bool busy = _client.ActionPending || _client.RequiresReconnect || !_client.Ready;
             bool isTargetPermanent = selected != null && selected.AppearanceId == info.PermanentAppearanceId;
+            bool isTargetOwned = selected != null && (isTargetPermanent || selected.Owned);
+            bool isTargetCardUnlockable = selected != null && selected.CardUnlockable;
             bool isTargetTrialUsed = selected != null && selected.TrialUsed;
             bool isTargetTrialing = selected != null && _client.HasActiveTrial && selected.AppearanceId == info.TrialAppearanceId;
 
-            bool trialEnabled = !busy && selected != null && !isTargetPermanent && !isTargetTrialUsed;
+            bool trialEnabled = !busy && selected != null && !isTargetPermanent && !isTargetOwned && !isTargetTrialUsed;
             _trialBtn.interactable = trialEnabled;
             if (_trialBtnImage != null)
             {
                 var trialSprite = AppearanceUiArt.LoadGameplay(trialEnabled ? "button_secondary" : "button_disabled");
                 if (trialSprite != null) _trialBtnImage.sprite = trialSprite;
             }
-            _trialLabel.text = isTargetPermanent ? "已是当前永久形象"
+            _trialLabel.text = isTargetPermanent ? "当前使用中"
+                : isTargetOwned ? "已拥有（免费切换）"
                 : isTargetTrialing ? "正在免费试用中"
                 : isTargetTrialUsed ? "该形象已试用过"
                 : "免费试用 1 小时";
             _trialLabel.color = trialEnabled ? AppearanceUiArt.JadeInk : AppearanceUiArt.MutedInk;
 
-            bool canSwitch = !busy && selected != null && !isTargetPermanent;
+            bool canSwitch = !busy && selected != null && !isTargetPermanent && (isTargetOwned || isTargetCardUnlockable);
             _switchBtn.interactable = canSwitch;
             _switchLabel.text = _client.ActionPending ? "处理中…"
-                : isTargetPermanent ? "已是当前永久形象"
-                : $"切换永久形象（耗{requiredCards}张卡）";
+                : isTargetPermanent ? "当前使用中"
+                : isTargetOwned ? "免费切换"
+                : !isTargetCardUnlockable ? "专属玩法解锁"
+                : $"解锁并切换（耗{requiredCards}张卡）";
 
             UpdateStatusText();
+            RenderSeriesUi(info);
             RenderOverlays(info, requiredCards, priceText);
             SyncOverlayVisibility();
         }
@@ -1068,8 +1117,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _confirmOldName.text = $"原形象 · {oldName}";
                 _confirmNewName.text = $"新形象 · {newName}";
                 _confirmBodyText.text =
-                    $"将消耗 {requiredCards} 张【角色形象卡】，把永久形象切换为【{newName}】。\n" +
-                    "角色仅保留 1 个永久形象，切换后将覆盖原形象（不保留原外观）。";
+                    $"将消耗 {requiredCards} 张【角色形象卡】，永久解锁并切换为【{newName}】。\n" +
+                    $"原形象【{oldName}】将保留在你的角色衣柜中，之后可随时免费切换。";
                 _confirmSubmitBtn.interactable = _client != null && _client.Ready && !_client.ActionPending;
             }
 
@@ -1135,6 +1184,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_confirmOverlay != null) _confirmOverlay.SetActive(_state.IsSwitchConfirmOpen);
             if (_noCardOverlay != null) _noCardOverlay.SetActive(_state.IsNoCardGuideOpen);
             if (_storyOverlay != null) _storyOverlay.SetActive(_state.IsStoryOpen);
+            if (_seriesEpilogueOverlay != null) _seriesEpilogueOverlay.SetActive(_state.IsSeriesEpilogueOpen);
             RenderReadingOverlays();
             if (_mainPanelGroup != null)
             {
@@ -1145,21 +1195,21 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             ApplyReadingLayout();
         }
 
-        private void SyncListRows(PlayerAppearanceInfo info)
+        private void SyncListRows(PlayerAppearanceInfo info, IReadOnlyList<CharacterAppearanceEntry> visibleEntries)
         {
             if (_listContent == null) return;
-            if (info == null || info.Appearances.Count == 0)
+            if (info == null || visibleEntries == null || visibleEntries.Count == 0)
             {
                 ClearRows();
                 return;
             }
 
-            string signature = BuildListSignature(info);
+            string signature = BuildListSignature(visibleEntries);
             if (signature != _listSignature)
             {
                 float savedScroll = _listScroll != null && _listScroll.gameObject.activeInHierarchy
                     ? _listScroll.verticalNormalizedPosition : _state.SavedListScrollNormalized;
-                RebuildRowObjects(info);
+                RebuildRowObjects(visibleEntries);
                 _listSignature = signature;
                 if (_listScroll != null)
                 {
@@ -1168,10 +1218,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
             }
 
-            for (int i = 0; i < _rows.Count && i < info.Appearances.Count; i++)
+            for (int i = 0; i < _rows.Count && i < visibleEntries.Count; i++)
             {
                 var row = _rows[i];
-                var entry = info.Appearances[i];
+                var entry = visibleEntries[i];
                 bool selected = entry.AppearanceId == _state.SelectedAppearanceId;
                 bool isPermanent = entry.AppearanceId == info.PermanentAppearanceId;
                 bool isTrial = _client != null && _client.HasActiveTrial && entry.AppearanceId == info.TrialAppearanceId;
@@ -1191,7 +1241,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
                 else
                 {
-                    row.SubText.text = "暂无人物志";
+                    var series = AppearanceSeriesModels.FindSeries(info, entry.SeriesId);
+                    row.SubText.text = series != null ? $"系列 · {series.Name}" : "暂无人物志";
                     row.SubText.color = AppearanceUiArt.MutedInk;
                 }
 
@@ -1205,15 +1256,18 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 }
                 row.AvatarMissingText.color = AppearanceUiArt.MutedInk;
 
+                bool isOwned = isPermanent || entry.Owned;
                 AppearanceBadgeKind badgeKind = isTrial ? AppearanceBadgeKind.Trialing
                     : isPermanent ? AppearanceBadgeKind.CurrentPermanent
+                    : isOwned ? AppearanceBadgeKind.Owned
+                    : !entry.CardUnlockable ? AppearanceBadgeKind.ExclusiveLocked
                     : entry.TrialUsed ? AppearanceBadgeKind.TrialUsed
                     : AppearanceBadgeKind.TrialFree;
                 AppearanceUiArt.ApplyBadge(row.BadgeBackground, row.BadgeLabel, badgeKind, BadgeHeight);
             }
         }
 
-        private void RebuildRowObjects(PlayerAppearanceInfo info)
+        private void RebuildRowObjects(IReadOnlyList<CharacterAppearanceEntry> entries)
         {
             ClearRows();
             const float rowWidth = 580f;
@@ -1224,9 +1278,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var normalCard = AppearanceUiArt.LoadGameplay("pet_card_normal");
             var avatarFrameSprite = AppearanceUiArt.LoadGameplay("portrait_frame");
 
-            for (int i = 0; i < info.Appearances.Count; i++)
+            for (int i = 0; i < entries.Count; i++)
             {
-                var entry = info.Appearances[i];
+                var entry = entries[i];
                 string id = entry.AppearanceId;
 
                 var btn = QdaoUguiFactory.CreateArtButton("AppearanceOption_" + id, _listContent,
@@ -1427,6 +1481,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             _externalVerificationClient = false;
             _portraitLoaderOverride = null;
+            _seriesEpilogueBodyLookupOverride = null;
             HidePanel();
         }
 
@@ -1464,13 +1519,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return row?.Desc ?? "";
         }
 
-        private static string BuildListSignature(PlayerAppearanceInfo info)
+        private static string BuildListSignature(IReadOnlyList<CharacterAppearanceEntry> entries)
         {
-            var sb = new System.Text.StringBuilder(info.Appearances.Count * 28);
-            for (int i = 0; i < info.Appearances.Count; i++)
+            var sb = new System.Text.StringBuilder(entries.Count * 28);
+            for (int i = 0; i < entries.Count; i++)
             {
                 if (i > 0) sb.Append('|');
-                sb.Append(info.Appearances[i].AppearanceId);
+                sb.Append(entries[i].AppearanceId);
             }
             return sb.ToString();
         }

@@ -75,6 +75,10 @@ internal static class Program
             Math.Abs(state.SavedListScrollNormalized - .37f) < .0001f, "返回保持列表选择和滚动");
         Check(!state.TryConsumePendingSwitchConfirm(out _), "返回后旧确认保持失效");
         Check(state.RequestSwitch(B, A, 2, 1) == AppearanceSwitchIntentOutcome.OpenedSwitchConfirm, "返回后首次点击重新进入确认");
+        Check(state.RequestSwitch(B, A, 0, 1, targetOwned: true, targetCardUnlockable: false) == AppearanceSwitchIntentOutcome.ReadyForFreeSwitch && !state.HasOverlay,
+            "已拥有形象 0 卡直切免费分支且不弹确认");
+        Check(state.RequestSwitch(B, A, 5, 1, targetOwned: false, targetCardUnlockable: false) == AppearanceSwitchIntentOutcome.LockedExclusive && !state.HasOverlay,
+            "非形象卡兑换的玩法专属形象不弹扣卡确认");
         state.OpenStory(.37f);
         state.SyncAvailableAppearances(new[] { A }, A, A);
         Check(state.SelectedAppearanceId == A && !state.IsStoryOpen && !state.TryGetReadingBiography(out _), "服务器移除原条目后选中与阅读同步回退");
@@ -195,11 +199,73 @@ internal static class Program
         Check(second.Info == null && !second.ActionPending, "同连接换角色后旧写回包也无效");
     }
 
+    private static void SeriesCollectionModelsAndState()
+    {
+        var info = new PlayerAppearanceInfo
+        {
+            PermanentAppearanceId = A,
+            ActiveAppearanceId = A,
+            Appearances =
+            {
+                new CharacterAppearanceEntry { ConfigId = 2, AppearanceId = A, Name = "金发带Q道童", Owned = true, SeriesId = 1 },
+                new CharacterAppearanceEntry { ConfigId = 8, AppearanceId = "09_bamboo_archer_girl", Name = "竹弓少女", Owned = true, SeriesId = 1 },
+                new CharacterAppearanceEntry { ConfigId = 9, AppearanceId = B, Name = "赤枪少女", Owned = true, SeriesId = 1 },
+                new CharacterAppearanceEntry { ConfigId = 3, AppearanceId = "01_ice_sword_girl", Name = "冰剑少女", Owned = false, SeriesId = 2 },
+            },
+            SeriesProgress =
+            {
+                new CharacterAppearanceSeriesProgress
+                {
+                    SeriesId = 1, SeriesKey = "lantern_courtyard", Name = "留灯院旧友", SortOrder = 1,
+                    OwnedCount = 3, TotalCount = 3, Completed = true,
+                    CompletionBadgeName = "留灯同袍", EpilogueTitle = "灯下三碗面",
+                    MemberAppearanceIds = { A, "09_bamboo_archer_girl", B }
+                },
+                new CharacterAppearanceSeriesProgress
+                {
+                    SeriesId = 2, SeriesKey = "elemental_blades", Name = "水火冰锋", SortOrder = 2,
+                    OwnedCount = 0, TotalCount = 3, Completed = false,
+                    CompletionBadgeName = "三灵同契", EpilogueTitle = "霜火沧澜试",
+                    MemberAppearanceIds = { "01_ice_sword_girl" }
+                }
+            }
+        };
+
+        Check(AppearanceSeriesModels.FilterBySeries(info, 0).Count == 4, "全部系列不过滤条目");
+        Check(AppearanceSeriesModels.FilterBySeries(info, 1).Count == 3, "按系列 1 仅保留 3 位成员");
+        Check(AppearanceSeriesModels.FilterBySeries(info, 2).Count == 1, "按系列 2 仅保留 1 位成员");
+        Check(AppearanceSeriesModels.CountCompletedSeries(info) == 1, "已集齐系列计数精确");
+        Check(!AppearanceSeriesModels.TryGetUnlockedEpilogue(info, 2, _ => "正文", out _), "未集齐系列严禁解锁合篇");
+        Check(AppearanceSeriesModels.TryGetUnlockedEpilogue(info, 1, _ => "合篇正文内容", out var epilogue)
+            && epilogue.BadgeName == "留灯同袍" && epilogue.EpilogueTitle == "灯下三碗面" && epilogue.EpilogueBody == "合篇正文内容",
+            "集齐系列应解锁印章名与合篇正文");
+
+        var state = new AppearancePanelState();
+        state.SyncAvailableAppearances(new[] { A, B }, A, A);
+        state.SelectAppearance(B, .5f);
+        state.SelectSeries(1, .5f);
+        Check(state.SelectedSeriesId == 1, "系列选中状态保存");
+        state.RequestSwitch(B, A, 2, 1);
+        Check(!state.OpenSeriesEpilogue(2, false, "正文", .5f) && !state.HasPendingSwitchConfirmation,
+            "尝试打开未集齐合篇拒绝且清除旧扣卡确认");
+        Check(state.OpenSeriesEpilogue(1, true, "合篇正文内容", .5f) && state.IsSeriesEpilogueOpen && state.ReadingSeriesEpilogueId == 1,
+            "已集齐合篇可打开");
+        Check(state.RequestSwitch(B, A, 2, 1) == AppearanceSwitchIntentOutcome.Ignored, "阅读系列合篇时隔离资产确认");
+        Check(state.DismissActiveOverlay() && !state.IsSeriesEpilogueOpen && state.ReadingSeriesEpilogueId == 0,
+            "DismissActiveOverlay 可收起合篇层");
+        state.OpenSeriesEpilogue(1, true, "合篇正文内容", .5f);
+        state.SyncSeriesSelection(new uint[] { 2 }, _ => false);
+        Check(state.SelectedSeriesId == 0 && !state.IsSeriesEpilogueOpen, "系列下架或失效时自动回退全部并收起合篇");
+        state.SelectSeries(2, .5f);
+        state.ResetForRoleChange();
+        Check(state.SelectedSeriesId == 0 && !state.HasOverlay, "换角色重置系列筛选");
+    }
+
     private static int Main()
     {
         try
         {
-            CatalogAndState(); BiographyAndPreviewLayers(); UnsupportedIsReadOnly(); ClientLifetime(); WriteRetryRemainsOriginalContract();
+            CatalogAndState(); BiographyAndPreviewLayers(); UnsupportedIsReadOnly(); ClientLifetime(); WriteRetryRemainsOriginalContract(); SeriesCollectionModelsAndState();
             Console.WriteLine($"PASS: {_checks} production biography/state/client/transport checks; Unity and network not started.");
             return 0;
         }

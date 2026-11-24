@@ -123,6 +123,7 @@ namespace MmorpgClient.Game.Appearance
         StoryReader = 3,
         Biography = 4,
         PortraitPreview = 5,
+        SeriesEpilogue = 6,
     }
 
     public enum AppearanceSwitchIntentOutcome
@@ -130,6 +131,8 @@ namespace MmorpgClient.Game.Appearance
         Ignored = 0,
         OpenedNoCardGuide = 1,
         OpenedSwitchConfirm = 2,
+        ReadyForFreeSwitch = 3,
+        LockedExclusive = 4,
     }
 
     public enum AppearanceStoryCloseReason
@@ -147,9 +150,11 @@ namespace MmorpgClient.Game.Appearance
     public sealed class AppearancePanelState
     {
         public string SelectedAppearanceId { get; private set; } = "";
+        public uint SelectedSeriesId { get; private set; }
         public AppearanceOverlayKind ActiveOverlay { get; private set; } = AppearanceOverlayKind.None;
         public string PendingSwitchTargetId { get; private set; } = "";
         public string ReadingAppearanceId { get; private set; } = "";
+        public uint ReadingSeriesEpilogueId { get; private set; }
         public float SavedListScrollNormalized { get; private set; } = 1f;
         public int StoryOpenCount { get; private set; }
         public float SavedStoryScrollNormalized { get; private set; } = 1f;
@@ -166,7 +171,8 @@ namespace MmorpgClient.Game.Appearance
         public bool IsNoCardGuideOpen => ActiveOverlay == AppearanceOverlayKind.NoCardGuide;
         public bool IsBiographyOpen => ActiveOverlay == AppearanceOverlayKind.Biography;
         public bool IsPortraitPreviewOpen => ActiveOverlay == AppearanceOverlayKind.PortraitPreview;
-        public bool IsReadOnlyOverlay => IsStoryOpen || IsBiographyOpen || IsPortraitPreviewOpen;
+        public bool IsSeriesEpilogueOpen => ActiveOverlay == AppearanceOverlayKind.SeriesEpilogue;
+        public bool IsReadOnlyOverlay => IsStoryOpen || IsBiographyOpen || IsPortraitPreviewOpen || IsSeriesEpilogueOpen;
         public bool HasPendingSwitchConfirmation =>
             ActiveOverlay == AppearanceOverlayKind.SwitchConfirm || !string.IsNullOrEmpty(ArmedSwitchAppearanceId);
 
@@ -203,7 +209,7 @@ namespace MmorpgClient.Game.Appearance
             }
 
             // 若正在阅读的原始条目失效（被移除或无档案），立刻收起阅读层，不残留旧正文。
-            if (IsReadOnlyOverlay && (!ContainsId(validAppearanceIds, ReadingAppearanceId) ||
+            if (IsReadOnlyOverlay && !IsSeriesEpilogueOpen && (!ContainsId(validAppearanceIds, ReadingAppearanceId) ||
                 (!IsPortraitPreviewOpen && !AppearanceBiographyCatalog.TryGetByRawAppearanceId(ReadingAppearanceId, out _))))
             {
                 ReadingAppearanceId = "";
@@ -246,7 +252,9 @@ namespace MmorpgClient.Game.Appearance
             string targetAppearanceId,
             string permanentAppearanceId,
             ulong ownedCardCount,
-            uint requiredCardCount)
+            uint requiredCardCount,
+            bool targetOwned = false,
+            bool targetCardUnlockable = true)
         {
             if (IsReadOnlyOverlay) return AppearanceSwitchIntentOutcome.Ignored;
             if (string.IsNullOrEmpty(targetAppearanceId) ||
@@ -256,10 +264,22 @@ namespace MmorpgClient.Game.Appearance
                 return AppearanceSwitchIntentOutcome.Ignored;
             }
 
-            uint needed = requiredCardCount > 0 ? requiredCardCount : 1u;
             ArmedSwitchAppearanceId = "";
             ArmedSwitchAtSeconds = float.NegativeInfinity;
 
+            if (targetOwned)
+            {
+                ClearPendingSwitchConfirmation();
+                return AppearanceSwitchIntentOutcome.ReadyForFreeSwitch;
+            }
+
+            if (!targetCardUnlockable)
+            {
+                ClearPendingSwitchConfirmation();
+                return AppearanceSwitchIntentOutcome.LockedExclusive;
+            }
+
+            uint needed = requiredCardCount > 0 ? requiredCardCount : 1u;
             if (ownedCardCount < needed)
             {
                 PendingSwitchTargetId = targetAppearanceId;
@@ -316,6 +336,7 @@ namespace MmorpgClient.Game.Appearance
         public bool DismissActiveOverlay()
         {
             if (IsPortraitPreviewOpen) return ClosePortraitPreview();
+            if (IsSeriesEpilogueOpen) return CloseSeriesEpilogue();
             if (IsBiographyOpen) return CloseBiography();
             if (IsStoryOpen) return CloseStory(AppearanceStoryCloseReason.Escape);
             if (IsSwitchConfirmOpen || IsNoCardGuideOpen)
@@ -324,6 +345,53 @@ namespace MmorpgClient.Game.Appearance
                 return true;
             }
             return false;
+        }
+
+        public void SelectSeries(uint seriesId, float currentListScrollNormalized)
+        {
+            SavedListScrollNormalized = Clamp01(currentListScrollNormalized);
+            if (SelectedSeriesId != seriesId)
+            {
+                SelectedSeriesId = seriesId;
+                if (IsReadOnlyOverlay) CloseAllOverlaysAndClearSwitchConfirmation();
+            }
+            ClearPendingSwitchConfirmation();
+        }
+
+        public void SyncSeriesSelection(IReadOnlyList<uint> validSeriesIds, Func<uint, bool> isCompleted = null)
+        {
+            if (SelectedSeriesId != 0 && !ContainsSeriesId(validSeriesIds, SelectedSeriesId))
+            {
+                SelectedSeriesId = 0;
+            }
+            if (IsSeriesEpilogueOpen && (!ContainsSeriesId(validSeriesIds, ReadingSeriesEpilogueId) ||
+                (isCompleted != null && !isCompleted(ReadingSeriesEpilogueId))))
+            {
+                ReadingSeriesEpilogueId = 0;
+                ActiveOverlay = AppearanceOverlayKind.None;
+            }
+        }
+
+        public bool OpenSeriesEpilogue(uint seriesId, bool seriesCompleted, string epilogueBody, float currentListScrollNormalized)
+        {
+            // 进入合篇阅读层时一律清除尚未提交的旧扣卡确认。
+            ClearPendingSwitchConfirmation();
+            if (seriesId == 0 || !seriesCompleted || string.IsNullOrWhiteSpace(epilogueBody))
+                return false;
+            SavedListScrollNormalized = Clamp01(currentListScrollNormalized);
+            ReadingAppearanceId = "";
+            ReadingSeriesEpilogueId = seriesId;
+            ActiveOverlay = AppearanceOverlayKind.SeriesEpilogue;
+            return true;
+        }
+
+        public bool CloseSeriesEpilogue()
+        {
+            if (!IsSeriesEpilogueOpen) return false;
+            ReadingSeriesEpilogueId = 0;
+            ActiveOverlay = AppearanceOverlayKind.None;
+            ClearPendingSwitchConfirmation();
+            return true;
         }
 
         public void ClearPendingSwitchConfirmation()
@@ -348,6 +416,7 @@ namespace MmorpgClient.Game.Appearance
         {
             ResetForCloseOrDisconnect();
             SelectedAppearanceId = "";
+            SelectedSeriesId = 0;
             SavedListScrollNormalized = 1f;
         }
 
@@ -399,12 +468,21 @@ namespace MmorpgClient.Game.Appearance
         private void CloseAllOverlaysAndClearSwitchConfirmation()
         {
             ReadingAppearanceId = "";
+            ReadingSeriesEpilogueId = 0;
             PendingSwitchTargetId = "";
             ArmedSwitchAppearanceId = "";
             ArmedSwitchAtSeconds = float.NegativeInfinity;
             ActiveOverlay = AppearanceOverlayKind.None;
             _storyReturnsToBiography = false;
             _previewReturnOverlay = AppearanceOverlayKind.None;
+        }
+
+        private static bool ContainsSeriesId(IReadOnlyList<uint> ids, uint target)
+        {
+            if (ids == null || target == 0) return false;
+            for (int i = 0; i < ids.Count; i++)
+                if (ids[i] == target) return true;
+            return false;
         }
 
         private static bool ContainsId(IReadOnlyList<string> ids, string target)

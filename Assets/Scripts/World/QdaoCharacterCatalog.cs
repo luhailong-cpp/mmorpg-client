@@ -610,11 +610,16 @@ namespace MmorpgClient.World
                id == "15_water_dragon_scholar_boy" ||
                id == "20_star_formation_master_girl";
 
-        /// <summary>The eight identities released for the current creation flow.</summary>
+        /// <summary>The two starter identities released for the current creation flow.</summary>
         public static IReadOnlyList<Definition> CreationOriginalAll { get; } = Array.AsReadOnly(
             Array.FindAll(OriginalEntries, entry => IsCreatableAppearance(entry.Id)));
 
-        public static bool IsCreatableAppearance(string id) => QdaoRunVariants.AllowsCharacter(id);
+        /// <summary>建角仅开放 2 名免费初始形象，其余现役形象通过游戏内永久收藏衣柜解锁。</summary>
+        public static bool IsCreatableAppearance(string id)
+            => id == "00_reference_topright_boy" || id == "01_ice_sword_girl";
+
+        /// <summary>当前现役 8 名可展示/收藏形象（供易容衣柜轻量立绘租约加载，区别于 2 名建角初始形象）。</summary>
+        public static bool IsReleasedAppearance(string id) => QdaoRunVariants.AllowsCharacter(id);
 
         /// <summary>Available artwork for the full historical delivery roster.</summary>
         public static IReadOnlyList<Definition> AvailableAll => SelectAvailableAppearances(entry => entry.ResolveAppearance());
@@ -779,7 +784,7 @@ namespace MmorpgClient.World
             Action<string, Action<Texture2D>> loadTextureAsync, Action<Texture2D> releaseTexture, Action completed)
         {
             var entry = Find(ResolveVisualId(id));
-            var appearance = entry != null && IsCreatableAppearance(entry.Id) && resolveAppearance != null ? resolveAppearance(entry) : null;
+            var appearance = entry != null && IsReleasedAppearance(entry.Id) && resolveAppearance != null ? resolveAppearance(entry) : null;
             bool alreadyLoaded = appearance != null && Portraits.TryGetValue(appearance.CacheKey, out var cached) &&
                 cached != null && cached.texture != null;
             if (appearance == null || appearance.Id != entry.Id || loadTextureAsync == null || alreadyLoaded)
@@ -804,7 +809,7 @@ namespace MmorpgClient.World
             Func<string, Texture2D> loadTexture, bool pin, bool reuseCached, Action<Texture2D> releaseTexture)
         {
             var entry = Find(ResolveVisualId(id));
-            if (entry == null || !IsCreatableAppearance(entry.Id) || resolveAppearance == null || loadTexture == null) return null;
+            if (entry == null || !IsReleasedAppearance(entry.Id) || resolveAppearance == null || loadTexture == null) return null;
             var appearance = resolveAppearance(entry);
             if (appearance == null || appearance.Id != entry.Id) return null;
             if (reuseCached && Portraits.TryGetValue(appearance.CacheKey, out var existing) && existing != null && existing.texture != null)

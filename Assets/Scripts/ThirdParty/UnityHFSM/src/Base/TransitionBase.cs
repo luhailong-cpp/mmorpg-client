@@ -1,0 +1,100 @@
+
+namespace UnityHFSM
+{
+	/// <summary>
+	/// The base class of all transitions.
+	/// </summary>
+	public class TransitionBase<TStateId> : ITransitionListener
+	{
+		public readonly TStateId from;
+		public readonly TStateId to;
+
+		/// <summary>
+		/// If true, the state machine will ignore the current state's needsExitTime behaviour to immediately
+		/// transition to the 'to' state as soon as the condition is met.
+		/// </summary>
+		/// <remarks>
+		/// Changing this value at runtime will only take effect the next time the state machine
+		/// evaluates this transition.
+		/// </remarks>
+		public bool forceInstantly;
+
+		/// <summary>
+		/// Indicates if this transition is specifically designed to exit a nested
+		/// state machine and return control to the parent state machine.
+		/// </summary>
+		/// <remarks>
+		/// Changing this value at runtime will only take effect the next time the state machine
+		/// evaluates this transition. <para/>
+		/// If this field is true, the 'to' state is irrelevant (and can have any value).
+		/// </remarks>
+		public bool isExitTransition;
+
+		public IStateMachine<TStateId> fsm;
+
+		/// <summary>
+		/// Initializes a new instance of the TransitionBase class.
+		/// </summary>
+		/// <param name="from">The name / identifier of the active state.</param>
+		/// <param name="to">The name / identifier of the next state.</param>
+		/// <param name="forceInstantly">Ignores the <c>needsExitTime</c> of the active state
+		///     if <c>forceInstantly</c> is true. => Forces an instant transition</param>
+		public TransitionBase(TStateId from, TStateId to, bool forceInstantly = false)
+		{
+			this.from = from;
+			this.to = to;
+			this.forceInstantly = forceInstantly;
+			this.isExitTransition = false;
+		}
+
+		/// <summary>
+		/// Called to initialize the transition, after values like <c>fsm</c> have been set.
+		/// </summary>
+		public virtual void Init()
+		{
+
+		}
+
+		/// <summary>
+		/// Called when the state machine enters the <c>from</c> state.
+		/// </summary>
+		public virtual void OnEnter()
+		{
+
+		}
+
+		/// <summary>
+		/// Called to determine whether the state machine should transition to the <c>to</c> state.
+		/// </summary>
+		/// <returns>True if the state machine should change states / transition.</returns>
+		public virtual bool ShouldTransition()
+		{
+			return true;
+		}
+
+		/// <summary>
+		/// Callback method that is called just before the transition happens.
+		/// </summary>
+		public virtual void BeforeTransition()
+		{
+
+		}
+
+		/// <summary>
+		/// Callback method that is called just after the transition happens.
+		/// </summary>
+		public virtual void AfterTransition()
+		{
+
+		}
+	}
+
+	/// <inheritdoc />
+	public class TransitionBase : TransitionBase<string>
+	{
+		/// <inheritdoc />
+		public TransitionBase(string @from, string to, bool forceInstantly = false) : base(@from, to, forceInstantly)
+		{
+		}
+	}
+}

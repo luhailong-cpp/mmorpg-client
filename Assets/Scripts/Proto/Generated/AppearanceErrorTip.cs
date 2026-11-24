@@ -23,13 +23,15 @@ public static partial class AppearanceErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "CjNnZW5lcmF0ZWQvY29kZS9wcm90by90aXAvYXBwZWFyYW5jZV9lcnJvcl90",
-          "aXAucHJvdG8q+QEKEGFwcGVhcmFuY2VfZXJyb3ISFwoTa0FwcGVhcmFuY2Vf",
+          "aXAucHJvdG8q1wIKEGFwcGVhcmFuY2VfZXJyb3ISFwoTa0FwcGVhcmFuY2Vf",
           "ZXJyb3JPSxAAEhgKEmtBcHBlYXJhbmNlSW52YWxpZBDogQISHwoZa0FwcGVh",
           "cmFuY2VBbHJlYWR5Q3VycmVudBDpgQISFwoRa0FwcGVhcmFuY2VOb0NhcmQQ",
           "6oECEiEKG2tBcHBlYXJhbmNlVHJpYWxBbHJlYWR5VXNlZBDrgQISHgoYa0Fw",
           "cGVhcmFuY2VOb0FjdGl2ZVRyaWFsEOyBAhIXChFrQXBwZWFyYW5jZUZyb3pl",
-          "bhDtgQISHAoWa0FwcGVhcmFuY2VVbmF2YWlsYWJsZRDugQJCJAoOY29tLmdh",
-          "bWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIGcHJvdG8z"));
+          "bhDtgQISHAoWa0FwcGVhcmFuY2VVbmF2YWlsYWJsZRDugQISIgoca0FwcGVh",
+          "cmFuY2VOb3RDYXJkVW5sb2NrYWJsZRDvgQISHQoXa0FwcGVhcmFuY2VBbHJl",
+          "YWR5T3duZWQQ8IECEhkKE2tBcHBlYXJhbmNlTm90T3duZWQQ8YECQiQKDmNv",
+          "bS5nYW1lLnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::appearance_error), }, null, null));
@@ -47,6 +49,9 @@ public enum appearance_error {
   [pbr::OriginalName("kAppearanceNoActiveTrial")] KAppearanceNoActiveTrial = 33004,
   [pbr::OriginalName("kAppearanceFrozen")] KAppearanceFrozen = 33005,
   [pbr::OriginalName("kAppearanceUnavailable")] KAppearanceUnavailable = 33006,
+  [pbr::OriginalName("kAppearanceNotCardUnlockable")] KAppearanceNotCardUnlockable = 33007,
+  [pbr::OriginalName("kAppearanceAlreadyOwned")] KAppearanceAlreadyOwned = 33008,
+  [pbr::OriginalName("kAppearanceNotOwned")] KAppearanceNotOwned = 33009,
 }
 
 #endregion

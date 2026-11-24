@@ -112,6 +112,61 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(AppearanceModels.DescribeTip((uint)appearance_error.KAppearanceNoCard), Does.Contain("10元"));
             Assert.That(AppearanceModels.DescribeTip((uint)appearance_error.KAppearanceTrialAlreadyUsed), Does.Contain("限试用 1 次"));
             Assert.That(AppearanceModels.DescribeTip((uint)appearance_error.KAppearanceInvalid), Does.Contain("不存在"));
+            Assert.That(AppearanceModels.DescribeTip((uint)appearance_error.KAppearanceNotCardUnlockable), Does.Contain("专属玩法"));
+            Assert.That(AppearanceModels.DescribeTip((uint)appearance_error.KAppearanceAlreadyOwned), Does.Contain("免费切换"));
+            Assert.That(AppearanceModels.DescribeTip((uint)appearance_error.KAppearanceNotOwned), Does.Contain("尚未拥有"));
+        }
+
+        [Test]
+        public void Client_FreeSwitchSetsExpectFreeSwitchFlagAndRefreshesOnNotOwnedTip()
+        {
+            var net = new FakeTransport();
+            float now = 50f;
+            var conn = new object();
+            net.Responder = (msgId, req) =>
+            {
+                if (msgId == Ids.Switch)
+                {
+                    var sw = (SwitchAppearanceRequest)req;
+                    if (sw.AppearanceId == "02_fire_talisman_boy")
+                    {
+                        return (new SwitchAppearanceResponse
+                        {
+                            ErrorMessage = new TipInfoMessage { Id = (uint)appearance_error.KAppearanceNotOwned }
+                        }, null);
+                    }
+                    return (new SwitchAppearanceResponse
+                    {
+                        ErrorMessage = new TipInfoMessage { Id = 0 },
+                        Info = new PlayerAppearanceInfo
+                        {
+                            PermanentAppearanceId = sw.AppearanceId,
+                            ActiveAppearanceId = sw.AppearanceId,
+                            OwnedCardCount = 0,
+                            ServerNow = 1000,
+                        }
+                    }, null);
+                }
+                return (new GetAppearanceInfoResponse
+                {
+                    Info = new PlayerAppearanceInfo { PermanentAppearanceId = "00_reference_topright_boy", ActiveAppearanceId = "00_reference_topright_boy" }
+                }, null);
+            };
+
+            using var client = new AppearanceClient(net, () => conn, () => now, Ids);
+            Assert.That(client.SwitchAppearance("01_ice_sword_girl", expectFreeSwitch: true), Is.True);
+            net.Flush();
+            var freeReq = (SwitchAppearanceRequest)net.Calls[0].req;
+            Assert.That(freeReq.ExpectFreeSwitch, Is.True);
+            Assert.That(client.Status, Is.EqualTo(AppearanceClient.FreeSwitchedMessage));
+
+            now += 2f;
+            Assert.That(client.SwitchAppearance("02_fire_talisman_boy", expectFreeSwitch: true), Is.True);
+            net.Flush();
+            Assert.That(client.StatusIsError, Is.True);
+            Assert.That(client.Status, Does.Contain("尚未拥有"));
+            Assert.That(net.Calls.Count, Is.EqualTo(3), "收到 KAppearanceNotOwned 应强制刷新面板状态");
+            Assert.That(net.Calls[2].msgId, Is.EqualTo(Ids.Get));
         }
 
         [Test]
@@ -351,16 +406,80 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(state.IsStoryOpen, Is.False);
             Assert.That(state.TryGetReadingBiography(out _), Is.False);
 
-            // 背包 0 张卡点击切换 -> 仅弹缺卡商城引导，不触发确认提交
-            var noCardOutcome = state.RequestSwitch("01_ice_sword_girl", "05_celestial_musician_girl", 0, 1);
+            // 背包 0 张卡点击未拥有可兑换形象 -> 仅弹缺卡商城引导，不触发确认提交
+            var noCardOutcome = state.RequestSwitch("01_ice_sword_girl", "05_celestial_musician_girl", 0, 1, targetOwned: false, targetCardUnlockable: true);
             Assert.That(noCardOutcome, Is.EqualTo(AppearanceSwitchIntentOutcome.OpenedNoCardGuide));
             Assert.That(state.IsNoCardGuideOpen, Is.True);
             Assert.That(state.TryConsumePendingSwitchConfirm(out _), Is.False);
+
+            // 已拥有非当前形象 -> 0 卡直接免费切换，不弹确认/缺卡框
+            var freeOutcome = state.RequestSwitch("01_ice_sword_girl", "05_celestial_musician_girl", 0, 1, targetOwned: true, targetCardUnlockable: false);
+            Assert.That(freeOutcome, Is.EqualTo(AppearanceSwitchIntentOutcome.ReadyForFreeSwitch));
+            Assert.That(state.HasOverlay, Is.False);
+
+            // 未拥有且非卡兑换（玩法专属）-> 拒绝扣卡，不弹确认/缺卡框
+            var lockedOutcome = state.RequestSwitch("01_ice_sword_girl", "05_celestial_musician_girl", 5, 1, targetOwned: false, targetCardUnlockable: false);
+            Assert.That(lockedOutcome, Is.EqualTo(AppearanceSwitchIntentOutcome.LockedExclusive));
+            Assert.That(state.HasOverlay, Is.False);
 
             // 断线/关闭重置清空全部弹层
             state.ResetForCloseOrDisconnect();
             Assert.That(state.HasOverlay, Is.False);
             Assert.That(state.HasPendingSwitchConfirmation, Is.False);
+        }
+
+        [Test]
+        public void SeriesModelsAndPanelState_FilterAndGateEpilogueByAuthoritativeCompletion()
+        {
+            var info = new PlayerAppearanceInfo
+            {
+                PermanentAppearanceId = "00_reference_topright_boy",
+                ActiveAppearanceId = "00_reference_topright_boy",
+                Appearances =
+                {
+                    new CharacterAppearanceEntry { ConfigId = 2, AppearanceId = "00_reference_topright_boy", Owned = true, SeriesId = 1 },
+                    new CharacterAppearanceEntry { ConfigId = 8, AppearanceId = "09_bamboo_archer_girl", Owned = true, SeriesId = 1 },
+                    new CharacterAppearanceEntry { ConfigId = 9, AppearanceId = "10_crimson_spear_girl", Owned = true, SeriesId = 1 },
+                    new CharacterAppearanceEntry { ConfigId = 3, AppearanceId = "01_ice_sword_girl", Owned = false, SeriesId = 2 },
+                },
+                SeriesProgress =
+                {
+                    new CharacterAppearanceSeriesProgress
+                    {
+                        SeriesId = 1, SeriesKey = "lantern_courtyard", Name = "留灯院旧友",
+                        OwnedCount = 3, TotalCount = 3, Completed = true,
+                        CompletionBadgeName = "留灯同袍", EpilogueTitle = "灯下三碗面"
+                    },
+                    new CharacterAppearanceSeriesProgress
+                    {
+                        SeriesId = 2, SeriesKey = "elemental_blades", Name = "水火冰锋",
+                        OwnedCount = 0, TotalCount = 3, Completed = false,
+                        CompletionBadgeName = "三灵同契", EpilogueTitle = "霜火沧澜试"
+                    }
+                }
+            };
+
+            Assert.That(AppearanceSeriesModels.FilterBySeries(info, 0).Count, Is.EqualTo(4));
+            Assert.That(AppearanceSeriesModels.FilterBySeries(info, 1).Count, Is.EqualTo(3));
+            Assert.That(AppearanceSeriesModels.CountCompletedSeries(info), Is.EqualTo(1));
+            Assert.That(AppearanceSeriesModels.TryGetUnlockedEpilogue(info, 2, _ => "正文", out _), Is.False);
+            Assert.That(AppearanceSeriesModels.TryGetUnlockedEpilogue(info, 1, _ => "灯下三碗面正文", out var epilogue), Is.True);
+            Assert.That(epilogue.BadgeName, Is.EqualTo("留灯同袍"));
+            Assert.That(epilogue.EpilogueBody, Is.EqualTo("灯下三碗面正文"));
+
+            var state = new AppearancePanelState();
+            state.SyncAvailableAppearances(new[] { "00_reference_topright_boy", "10_crimson_spear_girl" },
+                "00_reference_topright_boy", "00_reference_topright_boy");
+            state.SelectSeries(1, 0.4f);
+            Assert.That(state.SelectedSeriesId, Is.EqualTo(1u));
+            state.RequestSwitch("10_crimson_spear_girl", "00_reference_topright_boy", 2, 1);
+            Assert.That(state.OpenSeriesEpilogue(1, true, epilogue.EpilogueBody, 0.4f), Is.True);
+            Assert.That(state.IsSeriesEpilogueOpen, Is.True);
+            Assert.That(state.HasPendingSwitchConfirmation, Is.False);
+            Assert.That(state.RequestSwitch("10_crimson_spear_girl", "00_reference_topright_boy", 2, 1),
+                Is.EqualTo(AppearanceSwitchIntentOutcome.Ignored));
+            Assert.That(state.CloseSeriesEpilogue(), Is.True);
+            Assert.That(state.IsSeriesEpilogueOpen, Is.False);
         }
     }
 }

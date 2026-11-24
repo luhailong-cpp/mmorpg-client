@@ -80,6 +80,9 @@ namespace MmorpgClient.Game.Appearance
             (uint)appearance_error.KAppearanceNoActiveTrial => "当前没有正在进行中的试用形象。",
             (uint)appearance_error.KAppearanceFrozen => "角色当前状态暂不可变更形象，请稍后再试。",
             (uint)appearance_error.KAppearanceUnavailable => "角色形象服务暂时不可用，请稍后再试。",
+            (uint)appearance_error.KAppearanceNotCardUnlockable => "该角色形象需通过专属玩法或活动解锁，暂不可使用形象卡兑换。",
+            (uint)appearance_error.KAppearanceAlreadyOwned => "已拥有该角色形象，可直接免费切换，无需试用。",
+            (uint)appearance_error.KAppearanceNotOwned => "尚未拥有该角色形象，请先解锁后再切换。",
             (uint)common_error.KRateLimitExceeded => "操作太快了，请稍候再试。",
             (uint)common_error.KServiceUnavailable => "服务暂时不可用，请稍后再试。",
             (uint)common_error.KInvalidParameter => "请求参数无效，请刷新页面后再试。",
@@ -100,7 +103,8 @@ namespace MmorpgClient.Game.Appearance
         public const string NotConnectedMessage = "尚未连接到游戏。";
         public const string InfoUnavailableMessage = "暂时无法获取角色形象信息。";
         public const string SwitchPendingMessage = "正在切换角色形象…";
-        public const string SwitchedMessage = "角色永久形象已切换。";
+        public const string SwitchedMessage = "已永久解锁并切换角色形象。";
+        public const string FreeSwitchedMessage = "已免费切换永久形象。";
         public const string TrialPendingMessage = "正在开启 1 小时免费试用…";
         public const string TrialStartedMessage = "已开启 1 小时免费试用，到期将自动恢复原形象。";
         public const string CancelPendingMessage = "正在恢复原形象…";
@@ -222,7 +226,7 @@ namespace MmorpgClient.Game.Appearance
                 });
         }
 
-        public bool SwitchAppearance(string targetAppearanceId)
+        public bool SwitchAppearance(string targetAppearanceId, bool expectFreeSwitch = false)
         {
             if (!PrepareWriteAction(targetAppearanceId, out ulong requestKey, out float now)) return false;
             _nextActionAt = now + MinActionIntervalSeconds;
@@ -235,6 +239,7 @@ namespace MmorpgClient.Game.Appearance
             {
                 ClientRequestId = requestKey,
                 AppearanceId = targetAppearanceId,
+                ExpectFreeSwitch = expectFreeSwitch,
             };
             int attempt = 0;
             bool resent = false;
@@ -253,7 +258,7 @@ namespace MmorpgClient.Game.Appearance
                             return;
                         }
                         if (response.Info != null) ApplyInfo(response.Info);
-                        SetStatus(SwitchedMessage, false);
+                        SetStatus(expectFreeSwitch ? FreeSwitchedMessage : SwitchedMessage, false);
                         Changed?.Invoke();
                     },
                     error =>
@@ -428,7 +433,11 @@ namespace MmorpgClient.Game.Appearance
             if (tipId == (uint)common_error.KInvalidParameter) ClientRequestKeys.ReportKeyReused(opName);
             if (tipId == (uint)common_error.KRateLimitExceeded) _nextActionAt = _clock() + MinInfoIntervalSeconds;
             SetStatus(AppearanceModels.DescribeTip(tipId), true);
-            if (tipId == (uint)appearance_error.KAppearanceNoCard || tipId == (uint)appearance_error.KAppearanceTrialAlreadyUsed)
+            if (tipId == (uint)appearance_error.KAppearanceNoCard
+                || tipId == (uint)appearance_error.KAppearanceTrialAlreadyUsed
+                || tipId == (uint)appearance_error.KAppearanceNotOwned
+                || tipId == (uint)appearance_error.KAppearanceNotCardUnlockable
+                || tipId == (uint)appearance_error.KAppearanceAlreadyOwned)
                 RequestInfo(force: true);
             Changed?.Invoke();
         }
