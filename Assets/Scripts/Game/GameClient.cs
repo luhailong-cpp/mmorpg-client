@@ -8,6 +8,7 @@ using MmorpgClient.Game.Pet;
 using MmorpgClient.Game.PetFlip;
 using MmorpgClient.Game.PlayerFeatures;
 using MmorpgClient.Game.Ranked;
+using MmorpgClient.Game.Tournament;
 using MmorpgClient.Game.Role;
 using MmorpgClient.Game.Season;
 using MmorpgClient.Game.TrialJournal;
@@ -179,6 +180,9 @@ namespace MmorpgClient.Game
 
         /// <summary>论剑排位首发 V1 网络层（RPC 448–451，走大厅 gate -> match 路由）。</summary>
         public RankedClient Ranked { get; }
+
+        /// <summary>全服赛季战队锦标赛《群仙问道赛》V1 网络层（RPC 465–475，走大厅 gate -> match 路由）。</summary>
+        public TournamentClient Tournament { get; }
 
         /// <summary>五行试炼志 V2 网络层（RPC 456–458，走大厅 gate -> scene 路由）。</summary>
         public TrialJournalClient TrialJournal { get; }
@@ -397,6 +401,8 @@ namespace MmorpgClient.Game
                 s => Log($"[battle-report] {s}"));
             Ranked = RankedClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => Time.realtimeSinceStartup, RpcGuard);
+            Tournament = TournamentClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup, RpcGuard);
             TrialJournal = new TrialJournalClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 () => Time.realtimeSinceStartup);
             Season = SeasonClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
@@ -514,6 +520,7 @@ namespace MmorpgClient.Game
             TickMinorPlayTimeReminder(); // 未成年人到点前 10 / 5 / 1 分钟提醒(GameClient.AntiAddiction.cs)
             BattleResults?.Tick(); // 近期战斗结果:落地补查、失败退避、补发确认
             Ranked?.Tick(); // 论剑结算权威结果有界轮询与会话边界观察
+            Tournament?.ObserveConnection(); // 群仙问道赛会话边界观察（切号/换 Gate 自动作废旧回调）
             TrialJournal?.Tick(); // 五行试炼志:快照节流队列与会话边界观察
             Season?.Tick(); // 赛季印与赛季技能:快照节流队列与会话边界观察
             if (InGame) Features?.TickEquipmentCraftRecovery();
