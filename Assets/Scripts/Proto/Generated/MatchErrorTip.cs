@@ -23,7 +23,7 @@ public static partial class MatchErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvbWF0Y2hfZXJyb3JfdGlwLnBy",
-          "b3RvKpQJCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
+          "b3RvKqwNCgttYXRjaF9lcnJvchISCg5rTWF0Y2hfZXJyb3JPSxAAEhMKDmtN",
           "YXRjaEluQmF0dGxlEIB9EhgKE2tNYXRjaEFscmVhZHlRdWV1ZWQQgX0SFgoR",
           "a01hdGNoTW9kZU5vdE9wZW4Qgn0SIAoba01hdGNoVGVhbVNpemVOb3RDb25m",
           "aWd1cmVkEIN9EhMKDmtNYXRjaEludGVybmFsEIR9EhkKFGtNYXRjaFRpY2tl",
@@ -49,8 +49,20 @@ public static partial class MatchErrorTipReflection {
           "ZBCgfRIiCh1rTWF0Y2hCYXR0bGVTY3JpcHRMb2Fkb3V0RnVsbBChfRIfChpr",
           "TWF0Y2hSYW5rZWRTZWFzb25TZXR0bGluZxCifRIeChlrTWF0Y2hSYW5rZWRQ",
           "cmVzZXRJbnZhbGlkEKN9EiQKH2tNYXRjaFJhbmtlZFJ1bGVWZXJzaW9uTWlz",
-          "bWF0Y2gQpH1CJAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJs",
-          "ZWIGcHJvdG8z"));
+          "bWF0Y2gQpH0SHAoXa01hdGNoVG91cm5hbWVudE5vdE9wZW4QpX0SIAoba01h",
+          "dGNoVG91cm5hbWVudFN0YWdlQ2xvc2VkEKZ9EiUKIGtNYXRjaFRvdXJuYW1l",
+          "bnRTcXVhZE5hbWVJbnZhbGlkEKd9EiMKHmtNYXRjaFRvdXJuYW1lbnRBbHJl",
+          "YWR5SW5TcXVhZBCofRIiCh1rTWF0Y2hUb3VybmFtZW50U3F1YWROb3RGb3Vu",
+          "ZBCpfRIfChprTWF0Y2hUb3VybmFtZW50Tm90Q2FwdGFpbhCqfRIeChlrTWF0",
+          "Y2hUb3VybmFtZW50U3F1YWRGdWxsEKt9EiAKG2tNYXRjaFRvdXJuYW1lbnRT",
+          "cXVhZExvY2tlZBCsfRIjCh5rTWF0Y2hUb3VybmFtZW50SW52aXRlTm90Rm91",
+          "bmQQrX0SJAofa01hdGNoVG91cm5hbWVudE1lbWJlck5vdEVub3VnaBCufRIi",
+          "Ch1rTWF0Y2hUb3VybmFtZW50TGluZXVwSW52YWxpZBCvfRIjCh5rTWF0Y2hU",
+          "b3VybmFtZW50UXVhbGlmaWVyTGltaXQQsH0SIgoda01hdGNoVG91cm5hbWVu",
+          "dE1hdGNoTm90UmVhZHkQsX0SIwoea01hdGNoVG91cm5hbWVudEFscmVhZHlD",
+          "aGVlcmVkELJ9EiYKIWtNYXRjaFRvdXJuYW1lbnRSZXdhcmRVbmF2YWlsYWJs",
+          "ZRCzfUIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3BiL3RhYmxlYgZw",
+          "cm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::match_error), }, null, null));
@@ -98,6 +110,21 @@ public enum match_error {
   [pbr::OriginalName("kMatchRankedSeasonSettling")] KMatchRankedSeasonSettling = 16034,
   [pbr::OriginalName("kMatchRankedPresetInvalid")] KMatchRankedPresetInvalid = 16035,
   [pbr::OriginalName("kMatchRankedRuleVersionMismatch")] KMatchRankedRuleVersionMismatch = 16036,
+  [pbr::OriginalName("kMatchTournamentNotOpen")] KMatchTournamentNotOpen = 16037,
+  [pbr::OriginalName("kMatchTournamentStageClosed")] KMatchTournamentStageClosed = 16038,
+  [pbr::OriginalName("kMatchTournamentSquadNameInvalid")] KMatchTournamentSquadNameInvalid = 16039,
+  [pbr::OriginalName("kMatchTournamentAlreadyInSquad")] KMatchTournamentAlreadyInSquad = 16040,
+  [pbr::OriginalName("kMatchTournamentSquadNotFound")] KMatchTournamentSquadNotFound = 16041,
+  [pbr::OriginalName("kMatchTournamentNotCaptain")] KMatchTournamentNotCaptain = 16042,
+  [pbr::OriginalName("kMatchTournamentSquadFull")] KMatchTournamentSquadFull = 16043,
+  [pbr::OriginalName("kMatchTournamentSquadLocked")] KMatchTournamentSquadLocked = 16044,
+  [pbr::OriginalName("kMatchTournamentInviteNotFound")] KMatchTournamentInviteNotFound = 16045,
+  [pbr::OriginalName("kMatchTournamentMemberNotEnough")] KMatchTournamentMemberNotEnough = 16046,
+  [pbr::OriginalName("kMatchTournamentLineupInvalid")] KMatchTournamentLineupInvalid = 16047,
+  [pbr::OriginalName("kMatchTournamentQualifierLimit")] KMatchTournamentQualifierLimit = 16048,
+  [pbr::OriginalName("kMatchTournamentMatchNotReady")] KMatchTournamentMatchNotReady = 16049,
+  [pbr::OriginalName("kMatchTournamentAlreadyCheered")] KMatchTournamentAlreadyCheered = 16050,
+  [pbr::OriginalName("kMatchTournamentRewardUnavailable")] KMatchTournamentRewardUnavailable = 16051,
 }
 
 #endregion

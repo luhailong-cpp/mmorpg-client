@@ -16,7 +16,8 @@ namespace MmorpgClient.UI.Ugui
         BattleScript, // 追加在末尾:不挪动已有入口的枚举值
         AfkPass, // 挂机月卡(AfkPassUiRoot);未单独归类,落在「历练」
         BattleReport, // PVP 战报回放(BattleUiRoot);未单独归类,落在「历练」
-        Appearance // 角色形象切换与 1 小时免费试用(AppearanceUiRoot);落在「修行」
+        Appearance, // 角色形象切换与 1 小时免费试用(AppearanceUiRoot);落在「修行」
+        Ranked // 论剑排位首发 V1(RankedUiRoot);落在「历练」
     }
 
     /// <summary>
@@ -505,6 +506,7 @@ namespace MmorpgClient.UI.Ugui
             WorldHudEntry.AfkPass => "离线托管",
             WorldHudEntry.BattleReport => "战报复盘",
             WorldHudEntry.Appearance => "形象切换",
+            WorldHudEntry.Ranked => "论剑排位",
             _ => string.Empty
         };
 

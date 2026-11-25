@@ -20,12 +20,18 @@ namespace MmorpgClient.Game.PlayerFeatures
         public bool Success { get; }
         /// <summary>操作后的强化等级(成功 = 原等级 + 1;没过时按表不变或回落)。</summary>
         public uint Level { get; }
+        /// <summary>操作后的保底累计失败次数（0 = 无保底或已成功清零）。</summary>
+        public uint PityCount { get; }
+        /// <summary>目标档保底阈值（0 = 必成档，非 0 如 20 表示第 20 次必成）。</summary>
+        public uint PityLimit { get; }
 
-        public EquipEnhanceOutcome(ulong itemId, bool success, uint level)
+        public EquipEnhanceOutcome(ulong itemId, bool success, uint level, uint pityCount = 0, uint pityLimit = 0)
         {
             ItemId = itemId;
             Success = success;
             Level = level;
+            PityCount = pityCount;
+            PityLimit = pityLimit;
         }
     }
 
@@ -302,6 +308,7 @@ namespace MmorpgClient.Game.PlayerFeatures
             // 「本来就知道不够」(不重拉)与「本地以为够」(快照过期,重拉)。
             var knownAtSend = EquipEnhanceCheck.Unknown;
             uint expectedLevel = 0;
+            uint? expectedPityCount = null;
             ulong requestKey = 0;
             string RejectLocally()
             {
@@ -313,10 +320,18 @@ namespace MmorpgClient.Game.PlayerFeatures
                     if (target.EnhanceLevel >= target.EnhanceMaxLevel) return $"{EnhanceOperation}:{EnhanceMaxLevelText}";
                     knownAtSend = EquipBagModel.CheckEnhance(target, CharacterBag);
                     expectedLevel = target.EnhanceLevel;
+                    if (target.EnhanceNext != null && target.EnhanceNext.PityLimit > 0)
+                        expectedPityCount = target.EnhancePityCount;
                 }
                 // 两份快照有一份还没拉到:不做本地拒绝,直接发包。期望等级取还在的那份快照里的这一件,
                 // 哪份都没有就填 0 —— 对不上时服务器回 kEquipEnhanceLevelChanged、什么都不扣,两份快照随即重拉。
-                else expectedLevel = FindInAnySnapshot(itemId)?.EnhanceLevel ?? 0;
+                else
+                {
+                    var partial = FindInAnySnapshot(itemId);
+                    expectedLevel = partial?.EnhanceLevel ?? 0;
+                    if (partial?.EnhanceNext != null && partial.EnhanceNext.PityLimit > 0)
+                        expectedPityCount = partial.EnhancePityCount;
+                }
                 // 本地检查都过了才生成键:被本地拦下的点击不算一次操作。
                 if (!ClientRequestKeys.TryCreate(out requestKey)) return $"{EnhanceOperation}:{ClientRequestKeys.UnavailableText}";
                 return null;
@@ -325,8 +340,12 @@ namespace MmorpgClient.Game.PlayerFeatures
             PerformEquipAction(EnhanceOperation, true, RejectLocally,
                 (complete, fail) =>
                 {
-                    // 只构造一次:结果不明时的重发必须逐字节相同(同一个键、同一个期望等级),服务端按参数指纹认重发。
-                    request ??= new EnhanceEquipRequest { ItemId = itemId, ExpectedLevel = expectedLevel, ClientRequestId = requestKey };
+                    // 只构造一次:结果不明时的重发必须逐字节相同(同一个键、同一个期望等级与保底次数),服务端按参数指纹认重发。
+                    if (request == null)
+                    {
+                        request = new EnhanceEquipRequest { ItemId = itemId, ExpectedLevel = expectedLevel, ClientRequestId = requestKey };
+                        if (expectedPityCount.HasValue) request.ExpectedPityCount = expectedPityCount.Value;
+                    }
                     _net.Call(MessageIds.EnhanceEquip, request, EnhanceEquipResponse.Parser,
                         response =>
                         {
@@ -335,7 +354,9 @@ namespace MmorpgClient.Game.PlayerFeatures
                             // replayed = true 是首次那一次的结果(重发命中了已受理的那一次,没有再扣、再掷):
                             // 按首次结果照常发布。每次点击至多发布一次结果,结果不明的那一次没有发布过,所以特效只播一次。
                             complete(response.ErrorMessage, response.Bag, response.Equipment,
-                                () => LastEnhanceOutcome = new EquipEnhanceOutcome(itemId, response.Success, response.EnhanceLevel));
+                                () => LastEnhanceOutcome = new EquipEnhanceOutcome(
+                                    itemId, response.Success, response.EnhanceLevel,
+                                    response.EnhancePityCount, response.EnhancePityLimit));
                         },
                         fail);
                 },
@@ -815,6 +836,14 @@ namespace MmorpgClient.Game.PlayerFeatures
                 // 发包时的期望等级与服务器的有效等级对不上(本地快照过期,或这是一次旧请求的重发):
                 // 什么都没扣、没掷骰。两份快照随即重拉(IsRuleRejection 不收它),玩家看过新等级再决定点不点。
                 (uint)equip_error.KEquipEnhanceLevelChanged => "装备强化等级已变化,请刷新后再试",
+                (uint)equip_error.KEquipAffixAlreadyMaxQuality => "该词条已达最高极品品相",
+                (uint)equip_error.KEquipAffixPolishExempt => "速度词条固定满值，无需打磨",
+                (uint)equip_error.KEquipAffixSlotEmpty => "该词条槽尚未安装词条",
+                (uint)equip_error.KEquipAffixReforgeSame => "目标词条与当前词条相同",
+                (uint)equip_error.KEquipBindConfirmRequired => "可交易装备混用绑定材料将永久变为仅自用，请二次确认",
+                (uint)equip_error.KEquipPolishPityChanged => "打磨保底进度已变化，请刷新后再试",
+                (uint)equip_error.KEquipCraftGoldNotEnough => "银两不足，无法完成打造或打磨",
+                (uint)equip_error.KEquipProxyMasterUnavailable => "该名匠代打摊位当前不可用，请刷新列表",
                 _ => null,
             };
             return text == null ? DescribeTip(operation, tip) : $"{operation}:{text}";

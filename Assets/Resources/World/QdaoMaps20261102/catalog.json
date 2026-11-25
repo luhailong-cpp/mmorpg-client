@@ -2,6 +2,30 @@
   "schemaVersion": 2,
   "maps": [
     {
+      "key": "main",
+      "sceneId": 1,
+      "name": "主城（临时·碧渊水宫）",
+      "revision": "biyuan-body-20261123",
+      "assetKey": "biyuan-water-palace",
+      "assetSceneId": 5,
+      "clientOnly": false,
+      "defaultAppearance": "spring",
+      "appearances": [
+        {
+          "id": "spring",
+          "resourceRoot": "World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261123/spring/eb739b3889761c5ddffccd647418595b2d47d73b3f7b35fddc12957ca3979dbb/",
+          "layoutSha256": "eb739b3889761c5ddffccd647418595b2d47d73b3f7b35fddc12957ca3979dbb",
+          "artStatus": "formal_art_delivery"
+        },
+        {
+          "id": "mid-autumn",
+          "resourceRoot": "World/QdaoMaps20261102/biyuan-water-palace/biyuan-body-20261123/mid-autumn/2a582105780545811bf5a7e24539f492255402b42fccf6ff008eeb061463b910/",
+          "layoutSha256": "2a582105780545811bf5a7e24539f492255402b42fccf6ff008eeb061463b910",
+          "artStatus": "formal_art_delivery"
+        }
+      ]
+    },
+    {
       "key": "map21003",
       "sceneId": 21003,
       "name": "地图 21003",
@@ -186,7 +210,7 @@
       "sceneId": 3,
       "name": "月汐湾",
       "revision": "yuexi-bay-20261115",
-      "clientOnly": true,
+      "clientOnly": false,
       "defaultAppearance": "spring",
       "appearances": [
         {
@@ -208,7 +232,7 @@
       "sceneId": 2,
       "name": "八景岛",
       "revision": "bajingbody20261114",
-      "clientOnly": true,
+      "clientOnly": false,
       "defaultAppearance": "spring",
       "appearances": [
         {

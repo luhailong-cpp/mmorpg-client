@@ -157,7 +157,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             IReadOnlyList<string> lines;
             if (view.HasNextLevel)
             {
-                string rate = view.SuccessRateText + (item.EnhanceNext.SuccessRate == 10000 ? " · 必成" : string.Empty);
+                string pitySuffix = item.EnhanceNext.PityLimit > 0
+                    ? (item.EnhanceNext.PityGuaranteedNext
+                        ? $" · 本手保底必成 ({item.EnhanceNext.CurrentPityCount}/{item.EnhanceNext.PityLimit})"
+                        : $" · 保底 {item.EnhanceNext.CurrentPityCount}/{item.EnhanceNext.PityLimit} 必成")
+                    : (item.EnhanceNext.SuccessRate == 10000 ? " · 必成" : string.Empty);
+                string rate = view.SuccessRateText + pitySuffix;
                 EquipmentUiArt.Label(parent, "EnhancementSuccessRate", rate, 48, 200, 1310, 60, 46);
                 EquipmentUiArt.Label(parent, "EnhancementCost", view.CostText, 48, 280, 1310, 110, 44, true);
                 EquipmentUiArt.Label(parent, "EnhancementOwned", view.OwnedText, 48, 400, 1310, 110, 44, true);

@@ -23,7 +23,7 @@ public static partial class SkillErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvc2tpbGxfZXJyb3JfdGlwLnBy",
-          "b3RvKsEDCgtza2lsbF9lcnJvchISCg5rU2tpbGxfZXJyb3JPSxAAEhoKFWtT",
+          "b3RvKtcFCgtza2lsbF9lcnJvchISCg5rU2tpbGxfZXJyb3JPSxAAEhoKFWtT",
           "a2lsbFVuSW50ZXJydXB0aWJsZRDYNhIaChVrU2tpbGxJbnZhbGlkVGFyZ2V0",
           "SWQQ2TYSGAoTa1NraWxsSW52YWxpZFRhcmdldBDaNhIbChZrU2tpbGxDb29s",
           "ZG93bk5vdFJlYWR5ENs2EiUKIGtTa2lsbENhbm5vdEJlQ2FzdEluQ3VycmVu",
@@ -33,8 +33,14 @@ public static partial class SkillErrorTipReflection {
           "ZBDgNhIeChlrU2tpbGxVcGdyYWRlQ291bnRJbnZhbGlkEOE2EhkKFGtTa2ls",
           "bExldmVsTm90RW5vdWdoEOI2EhkKFGtTa2lsbE1heFJhbmtSZWFjaGVkEOM2",
           "EhgKE2tTa2lsbEdvbGROb3RFbm91Z2gQ5DYSFgoRa1NraWxsVXBncmFkZUJ1",
-          "c3kQ5TZCJAoOY29tLmdhbWUudGFibGVaEmdlbmVyYXRlZC9wYi90YWJsZWIG",
-          "cHJvdG8z"));
+          "c3kQ5TYSGAoTa1NraWxsU2Nyb2xsSW52YWxpZBDmNhIXChJrU2tpbGxCb29r",
+          "Tm90Rm91bmQQ5zYSHgoZa1NraWxsQm9va05vdERpc21hbnRsYWJsZRDoNhIh",
+          "ChxrU2tpbGxDcmFmdE1hdGVyaWFsTm90RW5vdWdoEOk2Eh8KGmtTa2lsbENy",
+          "YWZ0UmV2aXNpb25DaGFuZ2VkEOo2EhwKF2tTa2lsbENyYWZ0Qm9va1JlcXVp",
+          "cmVkEOs2Eh4KGWtTa2lsbEFscmVhZHlCb29rVW5sb2NrZWQQ7DYSIwoea1Nr",
+          "aWxsUHJveHlTdGFsbFJlcXVpcmVzTWFzdGVyEO02EhoKFWtTa2lsbFByb3h5",
+          "RmVlSW52YWxpZBDuNkIkCg5jb20uZ2FtZS50YWJsZVoSZ2VuZXJhdGVkL3Bi",
+          "L3RhYmxlYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::skill_error), }, null, null));
@@ -59,6 +65,15 @@ public enum skill_error {
   [pbr::OriginalName("kSkillMaxRankReached")] KSkillMaxRankReached = 7011,
   [pbr::OriginalName("kSkillGoldNotEnough")] KSkillGoldNotEnough = 7012,
   [pbr::OriginalName("kSkillUpgradeBusy")] KSkillUpgradeBusy = 7013,
+  [pbr::OriginalName("kSkillScrollInvalid")] KSkillScrollInvalid = 7014,
+  [pbr::OriginalName("kSkillBookNotFound")] KSkillBookNotFound = 7015,
+  [pbr::OriginalName("kSkillBookNotDismantlable")] KSkillBookNotDismantlable = 7016,
+  [pbr::OriginalName("kSkillCraftMaterialNotEnough")] KSkillCraftMaterialNotEnough = 7017,
+  [pbr::OriginalName("kSkillCraftRevisionChanged")] KSkillCraftRevisionChanged = 7018,
+  [pbr::OriginalName("kSkillCraftBookRequired")] KSkillCraftBookRequired = 7019,
+  [pbr::OriginalName("kSkillAlreadyBookUnlocked")] KSkillAlreadyBookUnlocked = 7020,
+  [pbr::OriginalName("kSkillProxyStallRequiresMaster")] KSkillProxyStallRequiresMaster = 7021,
+  [pbr::OriginalName("kSkillProxyFeeInvalid")] KSkillProxyFeeInvalid = 7022,
 }
 
 #endregion

@@ -42,7 +42,8 @@ namespace MmorpgClient.UI.Ugui.Skills
         public static bool CanUpgrade(SkillBookViewState state, SkillEntryState entry) =>
             state != null && state.IsConnected && !state.IsReadOnly && !state.IsLoading && !state.IsBusy &&
             string.IsNullOrEmpty(state.Error) &&
-            state.Snapshot != null && entry?.Definition != null && entry.Rank < entry.RankLimit &&
+            state.Snapshot != null && entry?.Definition != null && !entry.NeedsCraftUnlock &&
+            entry.Rank < entry.RankLimit &&
             (entry.Definition.maxRank == 0 || entry.Rank < entry.Definition.maxRank) &&
             string.IsNullOrEmpty(entry.LockedReason) && entry.NextRankCost <= state.Snapshot.CurrencyBalance;
     }
@@ -55,6 +56,13 @@ namespace MmorpgClient.UI.Ugui.Skills
         public uint RankLimit;
         public ulong NextRankCost;
         public string LockedReason;
+        public uint SeasonId;
+        public uint ScrollId;
+        public uint RarityTier;
+        public bool CraftUnlockRequired;
+        public bool UnlockedByBook;
+        public bool IsRare => RarityTier == 1;
+        public bool NeedsCraftUnlock => CraftUnlockRequired && !UnlockedByBook;
     }
 
     /// <summary>一次完整替换的展示快照，不在 UI 中模拟升级、扣款或学习结果。</summary>
@@ -92,7 +100,10 @@ namespace MmorpgClient.UI.Ugui.Skills
         public string description;
         public string iconPath;
         public string iconResource;
+        public uint scrollId;
+        public uint rarityTier;
         public uint skillId => id;
+        public bool IsRare => rarityTier == 1;
         public bool IsPassive => string.Equals(type, "passive", StringComparison.OrdinalIgnoreCase);
         public string IconResource => CharacterPetArt.SkillPath(id) ??
             (string.IsNullOrEmpty(iconResource) ? "UI/Skills/" + id : iconResource);

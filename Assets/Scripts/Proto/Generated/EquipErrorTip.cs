@@ -23,7 +23,7 @@ public static partial class EquipErrorTipReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ci5nZW5lcmF0ZWQvY29kZS9wcm90by90aXAvZXF1aXBfZXJyb3JfdGlwLnBy",
-          "b3RvKpEFCgtlcXVpcF9lcnJvchISCg5rRXF1aXBfZXJyb3JPSxAAEhgKEmtF",
+          "b3RvKpIHCgtlcXVpcF9lcnJvchISCg5rRXF1aXBfZXJyb3JPSxAAEhgKEmtF",
           "cXVpcEl0ZW1Ob3RGb3VuZBDg2gESGAoSa0VxdWlwTm90RXF1aXBtZW50EOHa",
           "ARIaChRrRXF1aXBMZXZlbE5vdEVub3VnaBDi2gESGQoTa0VxdWlwQ2xhc3NN",
           "aXNtYXRjaBDj2gESEgoMa0VxdWlwTm9TbG90EOTaARIXChFrRXF1aXBOb3RF",
@@ -37,8 +37,14 @@ public static partial class EquipErrorTipReflection {
           "dWlwR2VtU29ja2V0SW52YWxpZBDx2gESHQoXa0VxdWlwR2VtU29ja2V0T2Nj",
           "dXBpZWQQ8toBEhoKFGtFcXVpcEdlbVNvY2tldEVtcHR5EPPaARIbChVrRXF1",
           "aXBHZW1UeXBlTWlzbWF0Y2gQ9NoBEhYKEGtFcXVpcEdlbUJhZ0Z1bGwQ9doB",
-          "Eh8KGWtFcXVpcEVuaGFuY2VMZXZlbENoYW5nZWQQ9toBQiQKDmNvbS5nYW1l",
-          "LnRhYmxlWhJnZW5lcmF0ZWQvcGIvdGFibGViBnByb3RvMw=="));
+          "Eh8KGWtFcXVpcEVuaGFuY2VMZXZlbENoYW5nZWQQ9toBEiIKHGtFcXVpcEFm",
+          "Zml4QWxyZWFkeU1heFF1YWxpdHkQ99oBEh0KF2tFcXVpcEFmZml4UG9saXNo",
+          "RXhlbXB0EPjaARIaChRrRXF1aXBBZmZpeFNsb3RFbXB0eRD52gESHAoWa0Vx",
+          "dWlwQWZmaXhSZWZvcmdlU2FtZRD62gESHwoZa0VxdWlwQmluZENvbmZpcm1S",
+          "ZXF1aXJlZBD72gESHQoXa0VxdWlwUG9saXNoUGl0eUNoYW5nZWQQ/NoBEh4K",
+          "GGtFcXVpcENyYWZ0R29sZE5vdEVub3VnaBD92gESIgoca0VxdWlwUHJveHlN",
+          "YXN0ZXJVbmF2YWlsYWJsZRD+2gFCJAoOY29tLmdhbWUudGFibGVaEmdlbmVy",
+          "YXRlZC9wYi90YWJsZWIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::equip_error), }, null, null));
@@ -72,6 +78,14 @@ public enum equip_error {
   [pbr::OriginalName("kEquipGemTypeMismatch")] KEquipGemTypeMismatch = 28020,
   [pbr::OriginalName("kEquipGemBagFull")] KEquipGemBagFull = 28021,
   [pbr::OriginalName("kEquipEnhanceLevelChanged")] KEquipEnhanceLevelChanged = 28022,
+  [pbr::OriginalName("kEquipAffixAlreadyMaxQuality")] KEquipAffixAlreadyMaxQuality = 28023,
+  [pbr::OriginalName("kEquipAffixPolishExempt")] KEquipAffixPolishExempt = 28024,
+  [pbr::OriginalName("kEquipAffixSlotEmpty")] KEquipAffixSlotEmpty = 28025,
+  [pbr::OriginalName("kEquipAffixReforgeSame")] KEquipAffixReforgeSame = 28026,
+  [pbr::OriginalName("kEquipBindConfirmRequired")] KEquipBindConfirmRequired = 28027,
+  [pbr::OriginalName("kEquipPolishPityChanged")] KEquipPolishPityChanged = 28028,
+  [pbr::OriginalName("kEquipCraftGoldNotEnough")] KEquipCraftGoldNotEnough = 28029,
+  [pbr::OriginalName("kEquipProxyMasterUnavailable")] KEquipProxyMasterUnavailable = 28030,
 }
 
 #endregion

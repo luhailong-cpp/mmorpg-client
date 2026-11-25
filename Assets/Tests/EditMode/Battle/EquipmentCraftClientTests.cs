@@ -480,5 +480,71 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_applied, Is.Empty);
             Assert.That(_store.Load(Player), Is.Empty);
         }
+
+        [Test]
+        public void PolishAffixForwardsExpectedPityCharmBoundAndProxyAndRejectsWrongItemReceipt()
+        {
+            _client.PreviewPolishEquipAffix(ItemId, 1, useGuaranteeCharm: true, allowBoundMaterials: true,
+                proxyMasterPlayerId: 5001UL, expectedPolishPityCount: 7u);
+            var choice = ((PreviewEquipmentCraftRequest)Last.Request).Choice;
+            Assert.That(choice.Operation, Is.EqualTo(EquipmentCraftChoice.Types.Operation.PolishAffix));
+            Assert.That(choice.ItemId, Is.EqualTo(ItemId));
+            Assert.That(choice.AffixSlot, Is.EqualTo(1u));
+            Assert.That(choice.AffixId, Is.Zero);
+            Assert.That(choice.UseGuaranteeCharm, Is.True);
+            Assert.That(choice.AllowBoundMaterials, Is.True);
+            Assert.That(choice.ProxyMasterPlayerId, Is.EqualTo(5001UL));
+            Assert.That(choice.HasExpectedPolishPityCount, Is.True);
+            Assert.That(choice.ExpectedPolishPityCount, Is.EqualTo(7u));
+
+            Last.Respond(new PreviewEquipmentCraftResponse { Preview = Preview(choice) });
+            _client.CommitEquipmentCraft(_client.CraftPreview);
+            Assert.That(LastWrite.Choice, Is.EqualTo(choice));
+
+            // 返回错误的 item_id 不得误清未决打磨意图。
+            var wrong = Receipt();
+            wrong.ItemId = ItemId + 1;
+            Writes.Last().Respond(wrong);
+            Assert.That(_client.HasPendingEquipmentCraft, Is.True);
+            Assert.That(_applied, Is.Empty);
+
+            Later();
+            _client.RecoverEquipmentCraft();
+            var ok = Receipt();
+            ok.ResultQualityTier = 5;
+            ok.ResultPolishPityCount = 0;
+            ok.GuaranteedByPity = true;
+            Writes.Last().Respond(ok);
+            Assert.That(_client.HasPendingEquipmentCraft, Is.False);
+            Assert.That(_applied.Single().ResultQualityTier, Is.EqualTo(5u));
+            Assert.That(_applied.Single().GuaranteedByPity, Is.True);
+        }
+
+        [Test]
+        public void ReforgeAffixValidatesParametersAndSurfacesChineseTips()
+        {
+            // 非法组合（重铸不允许带保底符或代打宗师）在发包前直接拦截。
+            _client.PreviewEquipmentCraft(new EquipmentCraftChoice
+            {
+                Operation = EquipmentCraftChoice.Types.Operation.ReforgeAffix,
+                ItemId = ItemId, AffixSlot = 1, AffixId = 102, UseGuaranteeCharm = true,
+            });
+            Assert.That(_net.Calls, Is.Empty);
+            Assert.That(_client.EquipmentCraftError, Is.Not.Empty);
+
+            _client.PreviewReforgeEquipAffix(ItemId, 1, 102, allowBoundMaterials: true);
+            var choice = ((PreviewEquipmentCraftRequest)Last.Request).Choice;
+            Assert.That(choice.Operation, Is.EqualTo(EquipmentCraftChoice.Types.Operation.ReforgeAffix));
+            Assert.That(choice.AllowBoundMaterials, Is.True);
+            Last.Respond(new PreviewEquipmentCraftResponse
+            {
+                ErrorMessage = new TipInfoMessage { Id = (uint)equip_error.KEquipBindConfirmRequired },
+            });
+            Assert.That(_client.EquipmentCraftError, Does.Contain("二次确认"));
+            Assert.That(PlayerFeaturesClient.DescribeEquipTip("打磨",
+                new TipInfoMessage { Id = (uint)equip_error.KEquipAffixPolishExempt }), Does.Contain("固定满值"));
+            Assert.That(PlayerFeaturesClient.DescribeEquipTip("打磨",
+                new TipInfoMessage { Id = (uint)equip_error.KEquipProxyMasterUnavailable }), Does.Contain("代打摊位"));
+        }
     }
 }

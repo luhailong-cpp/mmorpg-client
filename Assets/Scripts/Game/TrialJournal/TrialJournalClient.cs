@@ -146,8 +146,18 @@ namespace MmorpgClient.Game.TrialJournal
             if (_disposed) return;
             if (!IsSupported) { SetStatus(UnsupportedMessage, false); return; }
             ObserveConnection();
-            if (!Ready || SnapshotPending) return;
+            if (!Ready) return;
             float now = _clock();
+            if (SnapshotPending)
+            {
+                // 战斗结算触发的强制刷新遇到在途拉取时排队补查一次，避免吞掉新印记。
+                if (force)
+                {
+                    _snapshotQueued = true;
+                    _nextSnapshotAt = now;
+                }
+                return;
+            }
             if (!force && now < _nextSnapshotAt)
             {
                 _snapshotQueued = true;

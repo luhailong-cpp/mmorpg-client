@@ -34,174 +34,214 @@ public static partial class PlayerBagReflection {
           "dBgBIAEoDRIQCghnZW1fdHlwZRgCIAEoDRIVCg1nZW1fY29uZmlnX2lkGAMg",
           "ASgNEhAKCGdlbV9uYW1lGAQgASgJEhQKDGdlbV9pY29uX2tleRgFIAEoCRIg",
           "CgRhdHRyGAYgASgLMhIuRXF1aXBBdHRyTGluZUluZm8SDAoEbmFtZRgHIAEo",
-          "CSLqAQoTRXF1aXBFbmhhbmNlUHJldmlldxISCgpuZXh0X2xldmVsGAEgASgN",
+          "CSK4AgoTRXF1aXBFbmhhbmNlUHJldmlldxISCgpuZXh0X2xldmVsGAEgASgN",
           "EhQKDHN1Y2Nlc3NfcmF0ZRgCIAEoDRIRCgljb3N0X2dvbGQYAyABKAQSGgoS",
           "bWF0ZXJpYWxfY29uZmlnX2lkGAQgASgNEhUKDW1hdGVyaWFsX25hbWUYBSAB",
           "KAkSFgoObWF0ZXJpYWxfY291bnQYBiABKA0SFwoPYm9udXNfcGVybXlyaWFk",
           "GAcgASgNEhcKD2ZhaWxfbGV2ZWxfbG9zcxgIIAEoDRIZChFtYXRlcmlhbF9p",
-          "Y29uX2tleRgJIAEoCSKABQoLQmFnSXRlbUluZm8SDwoHaXRlbV9pZBgBIAEo",
-          "BBIRCgljb25maWdfaWQYAiABKA0SDQoFY291bnQYAyABKA0SEQoJbWF4X3N0",
-          "YWNrGAQgASgNEhIKCmVxdWlwX2tpbmQYBSABKA0SDAoEbmFtZRgGIAEoCRIT",
-          "CgtkZXNjcmlwdGlvbhgHIAEoCRIQCghpY29uX2tleRgIIAEoCRITCgtlcXVp",
-          "cF9sZXZlbBgJIAEoDRITCgtlcXVpcF9jbGFzcxgKIAEoDRIYChBlcXVpcF9j",
-          "bGFzc19uYW1lGAsgASgJEiYKCmJhc2VfYXR0cnMYDCADKAsyEi5FcXVpcEF0",
-          "dHJMaW5lSW5mbxIjCgdhZmZpeGVzGA0gAygLMhIuRXF1aXBBdHRyTGluZUlu",
-          "Zm8SFQoNZW5oYW5jZV9sZXZlbBgOIAEoDRIZChFlbmhhbmNlX21heF9sZXZl",
-          "bBgPIAEoDRIqCgxlbmhhbmNlX25leHQYECABKAsyFC5FcXVpcEVuaGFuY2VQ",
-          "cmV2aWV3EigKC2dlbV9zb2NrZXRzGBEgAygLMhMuRXF1aXBHZW1Tb2NrZXRJ",
-          "bmZvEhAKCGdlbV90eXBlGBIgASgNEiQKCGdlbV9hdHRyGBMgASgLMhIuRXF1",
-          "aXBBdHRyTGluZUluZm8SHwoXZW5oYW5jZV9ib251c19wZXJteXJpYWQYFCAB",
-          "KA0SFQoNZXF1aXBfcHJvZmlsZRgVIAEoDRIzChFmaXhlZF9hZmZpeF9zbG90",
-          "cxgWIAMoCzIYLkVxdWlwRml4ZWRBZmZpeFNsb3RJbmZvEiQKCGFydGlmYWN0",
-          "GBcgASgLMhIuRXF1aXBBcnRpZmFjdEluZm8iSwoLQmFnU2xvdEluZm8SDAoE",
-          "c2xvdBgBIAEoDRIPCgdpdGVtX2lkGAIgASgEEg0KBXdpZHRoGAMgASgNEg4K",
-          "BmhlaWdodBgEIAEoDSKHAQoNQmFnTGF5b3V0SW5mbxIQCghiYWdfdHlwZRgB",
-          "IAEoDRIQCghjYXBhY2l0eRgCIAEoDRIbCgVzbG90cxgDIAMoCzIMLkJhZ1Ns",
-          "b3RJbmZvEhAKCGNhbl9zb3J0GAQgASgIEiMKC2VxdWlwX3Nsb3RzGAUgAygL",
-          "Mg4uRXF1aXBTbG90SW5mbyIzCg9CYWdIZWxkSXRlbUluZm8SEQoJY29uZmln",
-          "X2lkGAEgASgNEg0KBWNvdW50GAIgASgEIo0BCgdCYWdJbmZvEhsKBWl0ZW1z",
-          "GAEgAygLMgwuQmFnSXRlbUluZm8SHgoGbGF5b3V0GAIgASgLMg4uQmFnTGF5",
-          "b3V0SW5mbxIfCghjdXJyZW5jeRgDIAEoCzINLkN1cnJlbmN5Q29tcBIkCgpo",
-          "ZWxkX2l0ZW1zGAQgAygLMhAuQmFnSGVsZEl0ZW1JbmZvIiEKDUdldEJhZ1Jl",
-          "cXVlc3QSEAoIYmFnX3R5cGUYASABKA0iTwoOR2V0QmFnUmVzcG9uc2USJgoN",
-          "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhUKA2JhZxgC",
-          "IAEoCzIILkJhZ0luZm8iIgoOU29ydEJhZ1JlcXVlc3QSEAoIYmFnX3R5cGUY",
-          "ASABKA0iYQoPU29ydEJhZ1Jlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASAB",
-          "KAsyDy5UaXBJbmZvTWVzc2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJbmZvEg8K",
-          "B2NoYW5nZWQYAyABKAgiTQoQRXF1aXBJdGVtUmVxdWVzdBIPCgdpdGVtX2lk",
-          "GAEgASgEEhgKC3RhcmdldF9zbG90GAIgASgNSACIAQFCDgoMX3RhcmdldF9z",
-          "bG90Im8KEUVxdWlwSXRlbVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASAB",
-          "KAsyDy5UaXBJbmZvTWVzc2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJbmZvEhsK",
-          "CWVxdWlwbWVudBgDIAEoCzIILkJhZ0luZm8iJQoSVW5lcXVpcEl0ZW1SZXF1",
-          "ZXN0Eg8KB2l0ZW1faWQYASABKAQicQoTVW5lcXVpcEl0ZW1SZXNwb25zZRIm",
-          "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoDYmFn",
-          "GAIgASgLMgguQmFnSW5mbxIbCgllcXVpcG1lbnQYAyABKAsyCC5CYWdJbmZv",
-          "IjYKEkdtR3JhbnRJdGVtUmVxdWVzdBIRCgljb25maWdfaWQYASABKA0SDQoF",
-          "Y291bnQYAiABKA0iVAoTR21HcmFudEl0ZW1SZXNwb25zZRImCg1lcnJvcl9t",
-          "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoDYmFnGAIgASgLMggu",
-          "QmFnSW5mbyJZChNFbmhhbmNlRXF1aXBSZXF1ZXN0Eg8KB2l0ZW1faWQYASAB",
-          "KAQSFgoOZXhwZWN0ZWRfbGV2ZWwYAiABKA0SGQoRY2xpZW50X3JlcXVlc3Rf",
-          "aWQYAyABKAQirAEKFEVuaGFuY2VFcXVpcFJlc3BvbnNlEiYKDWVycm9yX21l",
+          "Y29uX2tleRgJIAEoCRISCgpwaXR5X2xpbWl0GAogASgNEhoKEmN1cnJlbnRf",
+          "cGl0eV9jb3VudBgLIAEoDRIcChRwaXR5X2d1YXJhbnRlZWRfbmV4dBgMIAEo",
+          "CCLcBQoLQmFnSXRlbUluZm8SDwoHaXRlbV9pZBgBIAEoBBIRCgljb25maWdf",
+          "aWQYAiABKA0SDQoFY291bnQYAyABKA0SEQoJbWF4X3N0YWNrGAQgASgNEhIK",
+          "CmVxdWlwX2tpbmQYBSABKA0SDAoEbmFtZRgGIAEoCRITCgtkZXNjcmlwdGlv",
+          "bhgHIAEoCRIQCghpY29uX2tleRgIIAEoCRITCgtlcXVpcF9sZXZlbBgJIAEo",
+          "DRITCgtlcXVpcF9jbGFzcxgKIAEoDRIYChBlcXVpcF9jbGFzc19uYW1lGAsg",
+          "ASgJEiYKCmJhc2VfYXR0cnMYDCADKAsyEi5FcXVpcEF0dHJMaW5lSW5mbxIj",
+          "CgdhZmZpeGVzGA0gAygLMhIuRXF1aXBBdHRyTGluZUluZm8SFQoNZW5oYW5j",
+          "ZV9sZXZlbBgOIAEoDRIZChFlbmhhbmNlX21heF9sZXZlbBgPIAEoDRIqCgxl",
+          "bmhhbmNlX25leHQYECABKAsyFC5FcXVpcEVuaGFuY2VQcmV2aWV3EigKC2dl",
+          "bV9zb2NrZXRzGBEgAygLMhMuRXF1aXBHZW1Tb2NrZXRJbmZvEhAKCGdlbV90",
+          "eXBlGBIgASgNEiQKCGdlbV9hdHRyGBMgASgLMhIuRXF1aXBBdHRyTGluZUlu",
+          "Zm8SHwoXZW5oYW5jZV9ib251c19wZXJteXJpYWQYFCABKA0SFQoNZXF1aXBf",
+          "cHJvZmlsZRgVIAEoDRIzChFmaXhlZF9hZmZpeF9zbG90cxgWIAMoCzIYLkVx",
+          "dWlwRml4ZWRBZmZpeFNsb3RJbmZvEiQKCGFydGlmYWN0GBcgASgLMhIuRXF1",
+          "aXBBcnRpZmFjdEluZm8SGgoSZW5oYW5jZV9waXR5X2NvdW50GBggASgNEg0K",
+          "BWJvdW5kGBkgASgIEhQKDGNyYWZ0ZXJfbmFtZRgaIAEoCRIZChFjcmFmdGVy",
+          "X3BsYXllcl9pZBgbIAEoBCJLCgtCYWdTbG90SW5mbxIMCgRzbG90GAEgASgN",
+          "Eg8KB2l0ZW1faWQYAiABKAQSDQoFd2lkdGgYAyABKA0SDgoGaGVpZ2h0GAQg",
+          "ASgNIocBCg1CYWdMYXlvdXRJbmZvEhAKCGJhZ190eXBlGAEgASgNEhAKCGNh",
+          "cGFjaXR5GAIgASgNEhsKBXNsb3RzGAMgAygLMgwuQmFnU2xvdEluZm8SEAoI",
+          "Y2FuX3NvcnQYBCABKAgSIwoLZXF1aXBfc2xvdHMYBSADKAsyDi5FcXVpcFNs",
+          "b3RJbmZvIjMKD0JhZ0hlbGRJdGVtSW5mbxIRCgljb25maWdfaWQYASABKA0S",
+          "DQoFY291bnQYAiABKAQijQEKB0JhZ0luZm8SGwoFaXRlbXMYASADKAsyDC5C",
+          "YWdJdGVtSW5mbxIeCgZsYXlvdXQYAiABKAsyDi5CYWdMYXlvdXRJbmZvEh8K",
+          "CGN1cnJlbmN5GAMgASgLMg0uQ3VycmVuY3lDb21wEiQKCmhlbGRfaXRlbXMY",
+          "BCADKAsyEC5CYWdIZWxkSXRlbUluZm8iIQoNR2V0QmFnUmVxdWVzdBIQCghi",
+          "YWdfdHlwZRgBIAEoDSJPCg5HZXRCYWdSZXNwb25zZRImCg1lcnJvcl9tZXNz",
+          "YWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoDYmFnGAIgASgLMgguQmFn",
+          "SW5mbyIiCg5Tb3J0QmFnUmVxdWVzdBIQCghiYWdfdHlwZRgBIAEoDSJhCg9T",
+          "b3J0QmFnUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcElu",
+          "Zm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8SDwoHY2hhbmdlZBgD",
+          "IAEoCCJNChBFcXVpcEl0ZW1SZXF1ZXN0Eg8KB2l0ZW1faWQYASABKAQSGAoL",
+          "dGFyZ2V0X3Nsb3QYAiABKA1IAIgBAUIOCgxfdGFyZ2V0X3Nsb3QibwoRRXF1",
+          "aXBJdGVtUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcElu",
+          "Zm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8SGwoJZXF1aXBtZW50",
+          "GAMgASgLMgguQmFnSW5mbyIlChJVbmVxdWlwSXRlbVJlcXVlc3QSDwoHaXRl",
+          "bV9pZBgBIAEoBCJxChNVbmVxdWlwSXRlbVJlc3BvbnNlEiYKDWVycm9yX21l",
           "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIVCgNiYWcYAiABKAsyCC5C",
-          "YWdJbmZvEhsKCWVxdWlwbWVudBgDIAEoCzIILkJhZ0luZm8SDwoHc3VjY2Vz",
-          "cxgEIAEoCBIVCg1lbmhhbmNlX2xldmVsGAUgASgNEhAKCHJlcGxheWVkGAYg",
-          "ASgIIkkKD0lubGF5R2VtUmVxdWVzdBIPCgdpdGVtX2lkGAEgASgEEg4KBnNv",
-          "Y2tldBgCIAEoDRIVCg1nZW1fY29uZmlnX2lkGAMgASgNIm4KEElubGF5R2Vt",
-          "UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNz",
-          "YWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8SGwoJZXF1aXBtZW50GAMgASgL",
-          "MgguQmFnSW5mbyIzChBSZW1vdmVHZW1SZXF1ZXN0Eg8KB2l0ZW1faWQYASAB",
-          "KAQSDgoGc29ja2V0GAIgASgNIm8KEVJlbW92ZUdlbVJlc3BvbnNlEiYKDWVy",
-          "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIVCgNiYWcYAiAB",
-          "KAsyCC5CYWdJbmZvEhsKCWVxdWlwbWVudBgDIAEoCzIILkJhZ0luZm8iQgod",
-          "UmV0cmlldmVUZW1wb3JhcnlJdGVtc1JlcXVlc3QSDwoHaXRlbV9pZBgBIAEo",
-          "BBIQCgh0YWtlX2FsbBgCIAEoCCJ8Ch5SZXRyaWV2ZVRlbXBvcmFyeUl0ZW1z",
-          "UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNz",
-          "YWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8SGwoJdGVtcG9yYXJ5GAMgASgL",
-          "MgguQmFnSW5mbyLrAQoTRXF1aXBGaXhlZEFmZml4SW5mbxIQCghhZmZpeF9p",
-          "ZBgBIAEoDRIMCgRwb29sGAIgASgNEgwKBG5hbWUYAyABKAkSEwoLZGVzY3Jp",
-          "cHRpb24YBCABKAkSEQoJdmFsdWVfYnBzGAUgASgNEhYKDnNvdXJjZV9jYXBf",
-          "YnBzGAYgASgNEg4KBmVmZmVjdBgHIAEoDRIUCgxlZmZlY3RfcGFyYW0YCCAB",
-          "KA0SDAoEdW5pdBgJIAEoDRIaChJtYXRlcmlhbF9jb25maWdfaWQYCiABKA0S",
-          "FgoObWF0ZXJpYWxfY291bnQYCyABKA0iXQoXRXF1aXBGaXhlZEFmZml4U2xv",
-          "dEluZm8SDAoEc2xvdBgBIAEoDRIMCgRwb29sGAIgASgNEiYKCHNlbGVjdGVk",
-          "GAMgASgLMhQuRXF1aXBGaXhlZEFmZml4SW5mbyLRAQoRRXF1aXBBcnRpZmFj",
-          "dEluZm8SEQoJZWZmZWN0X2lkGAEgASgNEgwKBG5hbWUYAiABKAkSEwoLZGVz",
-          "Y3JpcHRpb24YAyABKAkSEQoJYm9udXNfYnBzGAQgASgNEg8KB2NhcF9icHMY",
-          "BSABKA0SFwoPcGVyX3JvdW5kX2xpbWl0GAYgASgNEhQKDGJhdHRsZV9saW1p",
-          "dBgHIAEoDRIVCg1hY3RpdmVfcm91bmRzGAggASgNEhwKFGhlYWx0aF90aHJl",
-          "c2hvbGRfYnBzGAkgASgNItYBChRFcXVpcG1lbnRDcmFmdENob2ljZRIyCglv",
-          "cGVyYXRpb24YASABKA4yHy5FcXVpcG1lbnRDcmFmdENob2ljZS5PcGVyYXRp",
-          "b24SEQoJY29uZmlnX2lkGAIgASgNEg8KB2l0ZW1faWQYAyABKAQSEgoKYWZm",
-          "aXhfc2xvdBgEIAEoDRIQCghhZmZpeF9pZBgFIAEoDSJACglPcGVyYXRpb24S",
-          "DwoLVU5TUEVDSUZJRUQQABIPCgtDUkVBVEVfSVRFTRABEhEKDUlOU1RBTExf",
-          "QUZGSVgQAiJ8ChZFcXVpcG1lbnRDcmFmdE1hdGVyaWFsEhEKCWNvbmZpZ19p",
-          "ZBgBIAEoDRIMCgRuYW1lGAIgASgJEhAKCGljb25fa2V5GAMgASgJEg0KBWNv",
-          "dW50GAQgASgNEg0KBW93bmVkGAUgASgEEhEKCWF2YWlsYWJsZRgGIAEoBCJp",
-          "ChRFcXVpcG1lbnRDcmFmdFJlY2lwZRIdCgdwcm9kdWN0GAEgASgLMgwuQmFn",
-          "SXRlbUluZm8SGgoSbWF0ZXJpYWxfY29uZmlnX2lkGAIgASgNEhYKDm1hdGVy",
-          "aWFsX2NvdW50GAMgASgNIh8KHUdldEVxdWlwbWVudENyYWZ0UnVsZXNSZXF1",
-          "ZXN0IsoBCh5HZXRFcXVpcG1lbnRDcmFmdFJ1bGVzUmVzcG9uc2USJgoNZXJy",
-          "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEhkKEXJ1bGVzX2Zp",
-          "bmdlcnByaW50GAIgASgMEhYKDmZvcmdlX3JldmlzaW9uGAMgASgEEiYKB3Jl",
-          "Y2lwZXMYBCADKAsyFS5FcXVpcG1lbnRDcmFmdFJlY2lwZRIlCgdhZmZpeGVz",
-          "GAUgAygLMhQuRXF1aXBGaXhlZEFmZml4SW5mbyLvAQoVRXF1aXBtZW50Q3Jh",
-          "ZnRQcmV2aWV3EiUKBmNob2ljZRgBIAEoCzIVLkVxdWlwbWVudENyYWZ0Q2hv",
-          "aWNlEhkKEXJ1bGVzX2ZpbmdlcnByaW50GAIgASgMEh8KF2V4cGVjdGVkX2Zv",
-          "cmdlX3JldmlzaW9uGAMgASgEEhwKBnJlc3VsdBgEIAEoCzIMLkJhZ0l0ZW1J",
-          "bmZvEikKCG1hdGVyaWFsGAUgASgLMhcuRXF1aXBtZW50Q3JhZnRNYXRlcmlh",
-          "bBIRCglhdmFpbGFibGUYBiABKAgSFwoPdW5hdmFpbGFibGVfdGlwGAcgASgN",
-          "IkUKHFByZXZpZXdFcXVpcG1lbnRDcmFmdFJlcXVlc3QSJQoGY2hvaWNlGAEg",
-          "ASgLMhUuRXF1aXBtZW50Q3JhZnRDaG9pY2UicAodUHJldmlld0VxdWlwbWVu",
-          "dENyYWZ0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcElu",
-          "Zm9NZXNzYWdlEicKB3ByZXZpZXcYAiABKAsyFi5FcXVpcG1lbnRDcmFmdFBy",
-          "ZXZpZXcimwEKG0NvbW1pdEVxdWlwbWVudENyYWZ0UmVxdWVzdBIlCgZjaG9p",
-          "Y2UYASABKAsyFS5FcXVpcG1lbnRDcmFmdENob2ljZRIZChFydWxlc19maW5n",
-          "ZXJwcmludBgCIAEoDBIfChdleHBlY3RlZF9mb3JnZV9yZXZpc2lvbhgDIAEo",
-          "BBIZChFjbGllbnRfcmVxdWVzdF9pZBgEIAEoBCLzAgocQ29tbWl0RXF1aXBt",
-          "ZW50Q3JhZnRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlw",
-          "SW5mb01lc3NhZ2USGQoRY2xpZW50X3JlcXVlc3RfaWQYAiABKAQSNgoHb3V0",
-          "Y29tZRgDIAEoDjIlLkNvbW1pdEVxdWlwbWVudENyYWZ0UmVzcG9uc2UuT3V0",
-          "Y29tZRIPCgdkdXJhYmxlGAQgASgIEhAKCHJlcGxheWVkGAUgASgIEg8KB2l0",
-          "ZW1faWQYBiABKAQSHQoVcmVzdWx0X2ZvcmdlX3JldmlzaW9uGAcgASgEEh4K",
-          "FmN1cnJlbnRfZm9yZ2VfcmV2aXNpb24YCCABKAQSFQoDYmFnGAkgASgLMggu",
-          "QmFnSW5mbxIbCgllcXVpcG1lbnQYCiABKAsyCC5CYWdJbmZvIjEKB091dGNv",
-          "bWUSCwoHVU5LTk9XThAAEgwKCFJFSkVDVEVEEAESCwoHQVBQTElFRBACIuoC",
-          "Ch9FcXVpcG1lbnRNYXRlcmlhbFJld2FyZFNuYXBzaG90EhEKCWF2YWlsYWJs",
-          "ZRgBIAEoCBIaChJ1bmF2YWlsYWJsZV9yZWFzb24YAiABKAkSGAoQZGF5X3N0",
-          "YXJ0c19hdF9tcxgDIAEoBBIYChBuZXh0X3Jlc2V0X2F0X21zGAQgASgEEhQK",
-          "DGVhcm5lZF90b2RheRgFIAEoDRITCgtkYWlseV9saW1pdBgGIAEoDRIXCg9h",
-          "dmFpbGFibGVfdW5pdHMYByABKAQSEwoLYmF0Y2hfdW5pdHMYCCABKA0SEAoI",
-          "cmV2aXNpb24YCSABKAQSMgoRY3JhZnRpbmdfbWF0ZXJpYWwYCiABKAsyFy5F",
-          "cXVpcG1lbnRDcmFmdE1hdGVyaWFsEjIKEWVuaGFuY2VtZW50X3N0b25lGAsg",
-          "ASgLMhcuRXF1aXBtZW50Q3JhZnRNYXRlcmlhbBIRCgljYW5fY2xhaW0YDCAB",
-          "KAgiIwohR2V0RXF1aXBtZW50TWF0ZXJpYWxSZXdhcmRSZXF1ZXN0IoABCiJH",
-          "ZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlc3BvbnNlEiYKDWVycm9yX21l",
-          "c3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIyCghzbmFwc2hvdBgCIAEo",
-          "CzIgLkVxdWlwbWVudE1hdGVyaWFsUmV3YXJkU25hcHNob3QinQEKI0NsYWlt",
-          "RXF1aXBtZW50TWF0ZXJpYWxSZXdhcmRSZXF1ZXN0EhkKEWNsaWVudF9yZXF1",
-          "ZXN0X2lkGAEgASgEEhkKEWV4cGVjdGVkX3JldmlzaW9uGAIgASgEEh8KF2Ny",
-          "YWZ0aW5nX21hdGVyaWFsX2NvdW50GAMgASgNEh8KF2VuaGFuY2VtZW50X3N0",
-          "b25lX2NvdW50GAQgASgNIv0CCiRDbGFpbUVxdWlwbWVudE1hdGVyaWFsUmV3",
-          "YXJkUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
-          "ZXNzYWdlEhkKEWNsaWVudF9yZXF1ZXN0X2lkGAIgASgEEj4KB291dGNvbWUY",
-          "AyABKA4yLS5DbGFpbUVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVzcG9uc2Uu",
-          "T3V0Y29tZRIPCgdkdXJhYmxlGAQgASgIEhAKCHJlcGxheWVkGAUgASgIEhcK",
-          "D3Jlc3VsdF9yZXZpc2lvbhgGIAEoBBIYChBjdXJyZW50X3JldmlzaW9uGAcg",
-          "ASgEEhUKA2JhZxgIIAEoCzIILkJhZ0luZm8SMgoIc25hcHNob3QYCSABKAsy",
-          "IC5FcXVpcG1lbnRNYXRlcmlhbFJld2FyZFNuYXBzaG90IjEKB091dGNvbWUS",
-          "CwoHVU5LTk9XThAAEgwKCFJFSkVDVEVEEAESCwoHQVBQTElFRBACMvwHChRT",
-          "Y2VuZUJhZ0NsaWVudFBsYXllchIpCgZHZXRCYWcSDi5HZXRCYWdSZXF1ZXN0",
-          "Gg8uR2V0QmFnUmVzcG9uc2USLAoHU29ydEJhZxIPLlNvcnRCYWdSZXF1ZXN0",
-          "GhAuU29ydEJhZ1Jlc3BvbnNlEjIKCUVxdWlwSXRlbRIRLkVxdWlwSXRlbVJl",
-          "cXVlc3QaEi5FcXVpcEl0ZW1SZXNwb25zZRI4CgtVbmVxdWlwSXRlbRITLlVu",
-          "ZXF1aXBJdGVtUmVxdWVzdBoULlVuZXF1aXBJdGVtUmVzcG9uc2USOAoLR21H",
-          "cmFudEl0ZW0SEy5HbUdyYW50SXRlbVJlcXVlc3QaFC5HbUdyYW50SXRlbVJl",
-          "c3BvbnNlEjsKDEVuaGFuY2VFcXVpcBIULkVuaGFuY2VFcXVpcFJlcXVlc3Qa",
-          "FS5FbmhhbmNlRXF1aXBSZXNwb25zZRIvCghJbmxheUdlbRIQLklubGF5R2Vt",
-          "UmVxdWVzdBoRLklubGF5R2VtUmVzcG9uc2USMgoJUmVtb3ZlR2VtEhEuUmVt",
-          "b3ZlR2VtUmVxdWVzdBoSLlJlbW92ZUdlbVJlc3BvbnNlElkKFlJldHJpZXZl",
-          "VGVtcG9yYXJ5SXRlbXMSHi5SZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zUmVxdWVz",
-          "dBofLlJldHJpZXZlVGVtcG9yYXJ5SXRlbXNSZXNwb25zZRJZChZHZXRFcXVp",
-          "cG1lbnRDcmFmdFJ1bGVzEh4uR2V0RXF1aXBtZW50Q3JhZnRSdWxlc1JlcXVl",
-          "c3QaHy5HZXRFcXVpcG1lbnRDcmFmdFJ1bGVzUmVzcG9uc2USVgoVUHJldmll",
-          "d0VxdWlwbWVudENyYWZ0Eh0uUHJldmlld0VxdWlwbWVudENyYWZ0UmVxdWVz",
-          "dBoeLlByZXZpZXdFcXVpcG1lbnRDcmFmdFJlc3BvbnNlElMKFENvbW1pdEVx",
-          "dWlwbWVudENyYWZ0EhwuQ29tbWl0RXF1aXBtZW50Q3JhZnRSZXF1ZXN0Gh0u",
-          "Q29tbWl0RXF1aXBtZW50Q3JhZnRSZXNwb25zZRJlChpHZXRFcXVpcG1lbnRN",
-          "YXRlcmlhbFJld2FyZBIiLkdldEVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVx",
-          "dWVzdBojLkdldEVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVzcG9uc2USawoc",
-          "Q2xhaW1FcXVpcG1lbnRNYXRlcmlhbFJld2FyZBIkLkNsYWltRXF1aXBtZW50",
-          "TWF0ZXJpYWxSZXdhcmRSZXF1ZXN0GiUuQ2xhaW1FcXVpcG1lbnRNYXRlcmlh",
-          "bFJld2FyZFJlc3BvbnNlGgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IG",
-          "cHJvdG8z"));
+          "YWdJbmZvEhsKCWVxdWlwbWVudBgDIAEoCzIILkJhZ0luZm8iNgoSR21HcmFu",
+          "dEl0ZW1SZXF1ZXN0EhEKCWNvbmZpZ19pZBgBIAEoDRINCgVjb3VudBgCIAEo",
+          "DSJUChNHbUdyYW50SXRlbVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASAB",
+          "KAsyDy5UaXBJbmZvTWVzc2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJbmZvIpMB",
+          "ChNFbmhhbmNlRXF1aXBSZXF1ZXN0Eg8KB2l0ZW1faWQYASABKAQSFgoOZXhw",
+          "ZWN0ZWRfbGV2ZWwYAiABKA0SGQoRY2xpZW50X3JlcXVlc3RfaWQYAyABKAQS",
+          "IAoTZXhwZWN0ZWRfcGl0eV9jb3VudBgEIAEoDUgAiAEBQhYKFF9leHBlY3Rl",
+          "ZF9waXR5X2NvdW50IuQBChRFbmhhbmNlRXF1aXBSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USFQoDYmFnGAIgASgL",
+          "MgguQmFnSW5mbxIbCgllcXVpcG1lbnQYAyABKAsyCC5CYWdJbmZvEg8KB3N1",
+          "Y2Nlc3MYBCABKAgSFQoNZW5oYW5jZV9sZXZlbBgFIAEoDRIQCghyZXBsYXll",
+          "ZBgGIAEoCBIaChJlbmhhbmNlX3BpdHlfY291bnQYByABKA0SGgoSZW5oYW5j",
+          "ZV9waXR5X2xpbWl0GAggASgNIkkKD0lubGF5R2VtUmVxdWVzdBIPCgdpdGVt",
+          "X2lkGAEgASgEEg4KBnNvY2tldBgCIAEoDRIVCg1nZW1fY29uZmlnX2lkGAMg",
+          "ASgNIm4KEElubGF5R2VtUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
+          "CzIPLlRpcEluZm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8SGwoJ",
+          "ZXF1aXBtZW50GAMgASgLMgguQmFnSW5mbyIzChBSZW1vdmVHZW1SZXF1ZXN0",
+          "Eg8KB2l0ZW1faWQYASABKAQSDgoGc29ja2V0GAIgASgNIm8KEVJlbW92ZUdl",
+          "bVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVz",
+          "c2FnZRIVCgNiYWcYAiABKAsyCC5CYWdJbmZvEhsKCWVxdWlwbWVudBgDIAEo",
+          "CzIILkJhZ0luZm8iQgodUmV0cmlldmVUZW1wb3JhcnlJdGVtc1JlcXVlc3QS",
+          "DwoHaXRlbV9pZBgBIAEoBBIQCgh0YWtlX2FsbBgCIAEoCCJ8Ch5SZXRyaWV2",
+          "ZVRlbXBvcmFyeUl0ZW1zUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEo",
+          "CzIPLlRpcEluZm9NZXNzYWdlEhUKA2JhZxgCIAEoCzIILkJhZ0luZm8SGwoJ",
+          "dGVtcG9yYXJ5GAMgASgLMgguQmFnSW5mbyLRBAoTRXF1aXBGaXhlZEFmZml4",
+          "SW5mbxIQCghhZmZpeF9pZBgBIAEoDRIMCgRwb29sGAIgASgNEgwKBG5hbWUY",
+          "AyABKAkSEwoLZGVzY3JpcHRpb24YBCABKAkSEQoJdmFsdWVfYnBzGAUgASgN",
+          "EhYKDnNvdXJjZV9jYXBfYnBzGAYgASgNEg4KBmVmZmVjdBgHIAEoDRIUCgxl",
+          "ZmZlY3RfcGFyYW0YCCABKA0SDAoEdW5pdBgJIAEoDRIaChJtYXRlcmlhbF9j",
+          "b25maWdfaWQYCiABKA0SFgoObWF0ZXJpYWxfY291bnQYCyABKA0SFAoMcXVh",
+          "bGl0eV90aWVyGAwgASgNEhQKDHF1YWxpdHlfbmFtZRgNIAEoCRIZChFxdWFs",
+          "aXR5X3JhdGlvX3BjdBgOIAEoDRIVCg1tYXhfdmFsdWVfYnBzGA8gASgNEhkK",
+          "EXBvbGlzaF9waXR5X2NvdW50GBAgASgNEhkKEXBvbGlzaF9waXR5X2xpbWl0",
+          "GBEgASgNEhUKDXBvbGlzaF9leGVtcHQYEiABKAgSIQoZcG9saXNoX21hdGVy",
+          "aWFsX2NvbmZpZ19pZBgTIAEoDRIdChVwb2xpc2hfbWF0ZXJpYWxfY291bnQY",
+          "FCABKA0SGAoQcG9saXNoX2dvbGRfY29zdBgVIAEoBBIiChpyZWZvcmdlX21h",
+          "dGVyaWFsX2NvbmZpZ19pZBgWIAEoDRIeChZyZWZvcmdlX21hdGVyaWFsX2Nv",
+          "dW50GBcgASgNEhkKEXJlZm9yZ2VfZ29sZF9jb3N0GBggASgEIp4BChVFcXVp",
+          "cEFmZml4UXVhbGl0eUluZm8SFAoMcXVhbGl0eV90aWVyGAEgASgNEgwKBG5h",
+          "bWUYAiABKAkSEQoJcmF0aW9fcGN0GAMgASgNEhsKE2FwcHJlbnRpY2VfcmF0",
+          "ZV9icHMYBCABKA0SGAoQYXJ0aXNhbl9yYXRlX2JwcxgFIAEoDRIXCg9tYXN0",
+          "ZXJfcmF0ZV9icHMYBiABKA0idQoQQ3JhZnRNYXN0ZXJ5SW5mbxIMCgR0aWVy",
+          "GAEgASgNEhEKCXRpZXJfbmFtZRgCIAEoCRILCgNleHAYAyABKA0SFQoNbmV4",
+          "dF90aWVyX2V4cBgEIAEoDRIcChR0b3BfcXVhbGl0eV9yYXRlX2JwcxgFIAEo",
+          "DSJdChdFcXVpcEZpeGVkQWZmaXhTbG90SW5mbxIMCgRzbG90GAEgASgNEgwK",
+          "BHBvb2wYAiABKA0SJgoIc2VsZWN0ZWQYAyABKAsyFC5FcXVpcEZpeGVkQWZm",
+          "aXhJbmZvItEBChFFcXVpcEFydGlmYWN0SW5mbxIRCgllZmZlY3RfaWQYASAB",
+          "KA0SDAoEbmFtZRgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRIRCglib251",
+          "c19icHMYBCABKA0SDwoHY2FwX2JwcxgFIAEoDRIXCg9wZXJfcm91bmRfbGlt",
+          "aXQYBiABKA0SFAoMYmF0dGxlX2xpbWl0GAcgASgNEhUKDWFjdGl2ZV9yb3Vu",
+          "ZHMYCCABKA0SHAoUaGVhbHRoX3RocmVzaG9sZF9icHMYCSABKA0inwMKFEVx",
+          "dWlwbWVudENyYWZ0Q2hvaWNlEjIKCW9wZXJhdGlvbhgBIAEoDjIfLkVxdWlw",
+          "bWVudENyYWZ0Q2hvaWNlLk9wZXJhdGlvbhIRCgljb25maWdfaWQYAiABKA0S",
+          "DwoHaXRlbV9pZBgDIAEoBBISCgphZmZpeF9zbG90GAQgASgNEhAKCGFmZml4",
+          "X2lkGAUgASgNEhsKE3VzZV9ndWFyYW50ZWVfY2hhcm0YBiABKAgSHQoVYWxs",
+          "b3dfYm91bmRfbWF0ZXJpYWxzGAcgASgIEh4KFnByb3h5X21hc3Rlcl9wbGF5",
+          "ZXJfaWQYCCABKAQSJwoaZXhwZWN0ZWRfcG9saXNoX3BpdHlfY291bnQYCSAB",
+          "KA1IAIgBASJlCglPcGVyYXRpb24SDwoLVU5TUEVDSUZJRUQQABIPCgtDUkVB",
+          "VEVfSVRFTRABEhEKDUlOU1RBTExfQUZGSVgQAhIRCg1SRUZPUkdFX0FGRklY",
+          "EAMSEAoMUE9MSVNIX0FGRklYEARCHQobX2V4cGVjdGVkX3BvbGlzaF9waXR5",
+          "X2NvdW50InwKFkVxdWlwbWVudENyYWZ0TWF0ZXJpYWwSEQoJY29uZmlnX2lk",
+          "GAEgASgNEgwKBG5hbWUYAiABKAkSEAoIaWNvbl9rZXkYAyABKAkSDQoFY291",
+          "bnQYBCABKA0SDQoFb3duZWQYBSABKAQSEQoJYXZhaWxhYmxlGAYgASgEImkK",
+          "FEVxdWlwbWVudENyYWZ0UmVjaXBlEh0KB3Byb2R1Y3QYASABKAsyDC5CYWdJ",
+          "dGVtSW5mbxIaChJtYXRlcmlhbF9jb25maWdfaWQYAiABKA0SFgoObWF0ZXJp",
+          "YWxfY291bnQYAyABKA0iHwodR2V0RXF1aXBtZW50Q3JhZnRSdWxlc1JlcXVl",
+          "c3QiowIKHkdldEVxdWlwbWVudENyYWZ0UnVsZXNSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USGQoRcnVsZXNfZmlu",
+          "Z2VycHJpbnQYAiABKAwSFgoOZm9yZ2VfcmV2aXNpb24YAyABKAQSJgoHcmVj",
+          "aXBlcxgEIAMoCzIVLkVxdWlwbWVudENyYWZ0UmVjaXBlEiUKB2FmZml4ZXMY",
+          "BSADKAsyFC5FcXVpcEZpeGVkQWZmaXhJbmZvEi0KDXF1YWxpdHlfdGllcnMY",
+          "BiADKAsyFi5FcXVpcEFmZml4UXVhbGl0eUluZm8SKAoNZm9yZ2VfbWFzdGVy",
+          "eRgHIAEoCzIRLkNyYWZ0TWFzdGVyeUluZm8i/gIKFUVxdWlwbWVudENyYWZ0",
+          "UHJldmlldxIlCgZjaG9pY2UYASABKAsyFS5FcXVpcG1lbnRDcmFmdENob2lj",
+          "ZRIZChFydWxlc19maW5nZXJwcmludBgCIAEoDBIfChdleHBlY3RlZF9mb3Jn",
+          "ZV9yZXZpc2lvbhgDIAEoBBIcCgZyZXN1bHQYBCABKAsyDC5CYWdJdGVtSW5m",
+          "bxIpCghtYXRlcmlhbBgFIAEoCzIXLkVxdWlwbWVudENyYWZ0TWF0ZXJpYWwS",
+          "EQoJYXZhaWxhYmxlGAYgASgIEhcKD3VuYXZhaWxhYmxlX3RpcBgHIAEoDRIR",
+          "Cglnb2xkX2Nvc3QYCCABKAQSLwoOZXh0cmFfbWF0ZXJpYWwYCSABKAsyFy5F",
+          "cXVpcG1lbnRDcmFmdE1hdGVyaWFsEhYKDnByb3h5X2ZlZV9nb2xkGAogASgE",
+          "EhkKEXByb3h5X21hc3Rlcl9uYW1lGAsgASgJEhYKDndpbGxfYmluZF9pdGVt",
+          "GAwgASgIIkUKHFByZXZpZXdFcXVpcG1lbnRDcmFmdFJlcXVlc3QSJQoGY2hv",
+          "aWNlGAEgASgLMhUuRXF1aXBtZW50Q3JhZnRDaG9pY2UicAodUHJldmlld0Vx",
+          "dWlwbWVudENyYWZ0UmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIP",
+          "LlRpcEluZm9NZXNzYWdlEicKB3ByZXZpZXcYAiABKAsyFi5FcXVpcG1lbnRD",
+          "cmFmdFByZXZpZXcimwEKG0NvbW1pdEVxdWlwbWVudENyYWZ0UmVxdWVzdBIl",
+          "CgZjaG9pY2UYASABKAsyFS5FcXVpcG1lbnRDcmFmdENob2ljZRIZChFydWxl",
+          "c19maW5nZXJwcmludBgCIAEoDBIfChdleHBlY3RlZF9mb3JnZV9yZXZpc2lv",
+          "bhgDIAEoBBIZChFjbGllbnRfcmVxdWVzdF9pZBgEIAEoBCL4AwocQ29tbWl0",
+          "RXF1aXBtZW50Q3JhZnRSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdlGAEgASgL",
+          "Mg8uVGlwSW5mb01lc3NhZ2USGQoRY2xpZW50X3JlcXVlc3RfaWQYAiABKAQS",
+          "NgoHb3V0Y29tZRgDIAEoDjIlLkNvbW1pdEVxdWlwbWVudENyYWZ0UmVzcG9u",
+          "c2UuT3V0Y29tZRIPCgdkdXJhYmxlGAQgASgIEhAKCHJlcGxheWVkGAUgASgI",
+          "Eg8KB2l0ZW1faWQYBiABKAQSHQoVcmVzdWx0X2ZvcmdlX3JldmlzaW9uGAcg",
+          "ASgEEh4KFmN1cnJlbnRfZm9yZ2VfcmV2aXNpb24YCCABKAQSFQoDYmFnGAkg",
+          "ASgLMgguQmFnSW5mbxIbCgllcXVpcG1lbnQYCiABKAsyCC5CYWdJbmZvEhsK",
+          "E3Jlc3VsdF9xdWFsaXR5X3RpZXIYCyABKA0SIAoYcmVzdWx0X3BvbGlzaF9w",
+          "aXR5X2NvdW50GAwgASgNEhoKEmd1YXJhbnRlZWRfYnlfcGl0eRgNIAEoCBIo",
+          "Cg1mb3JnZV9tYXN0ZXJ5GA4gASgLMhEuQ3JhZnRNYXN0ZXJ5SW5mbyIxCgdP",
+          "dXRjb21lEgsKB1VOS05PV04QABIMCghSRUpFQ1RFRBABEgsKB0FQUExJRUQQ",
+          "AiKiBQofRXF1aXBtZW50TWF0ZXJpYWxSZXdhcmRTbmFwc2hvdBIRCglhdmFp",
+          "bGFibGUYASABKAgSGgoSdW5hdmFpbGFibGVfcmVhc29uGAIgASgJEhgKEGRh",
+          "eV9zdGFydHNfYXRfbXMYAyABKAQSGAoQbmV4dF9yZXNldF9hdF9tcxgEIAEo",
+          "BBIUCgxlYXJuZWRfdG9kYXkYBSABKA0SEwoLZGFpbHlfbGltaXQYBiABKA0S",
+          "FwoPYXZhaWxhYmxlX3VuaXRzGAcgASgEEhMKC2JhdGNoX3VuaXRzGAggASgN",
+          "EhAKCHJldmlzaW9uGAkgASgEEjIKEWNyYWZ0aW5nX21hdGVyaWFsGAogASgL",
+          "MhcuRXF1aXBtZW50Q3JhZnRNYXRlcmlhbBIyChFlbmhhbmNlbWVudF9zdG9u",
+          "ZRgLIAEoCzIXLkVxdWlwbWVudENyYWZ0TWF0ZXJpYWwSEQoJY2FuX2NsYWlt",
+          "GAwgASgIEhcKD2xpZmV0aW1lX2Vhcm5lZBgNIAEoDRIWCg5saWZldGltZV9s",
+          "aW1pdBgOIAEoDRIdChV0cmFkYWJsZV9lYXJuZWRfdG90YWwYDyABKA0SHwoX",
+          "dHJhZGFibGVfbGlmZXRpbWVfbGltaXQYECABKA0SIAoYYXZhaWxhYmxlX3Ry",
+          "YWRhYmxlX3VuaXRzGBEgASgEEhwKFGJhdGNoX3RyYWRhYmxlX3VuaXRzGBIg",
+          "ASgNEhsKE3dlZWtseV9waGFzZV9hY3RpdmUYEyABKAgSGQoRd2Vla19zdGFy",
+          "dHNfYXRfbXMYFCABKAQSHQoVbmV4dF93ZWVrX3Jlc2V0X2F0X21zGBUgASgE",
+          "EhgKEGVhcm5lZF90aGlzX3dlZWsYFiABKA0SFAoMd2Vla2x5X2xpbWl0GBcg",
+          "ASgNIiMKIUdldEVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVxdWVzdCKAAQoi",
+          "R2V0RXF1aXBtZW50TWF0ZXJpYWxSZXdhcmRSZXNwb25zZRImCg1lcnJvcl9t",
+          "ZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USMgoIc25hcHNob3QYAiAB",
+          "KAsyIC5FcXVpcG1lbnRNYXRlcmlhbFJld2FyZFNuYXBzaG90Ip0BCiNDbGFp",
+          "bUVxdWlwbWVudE1hdGVyaWFsUmV3YXJkUmVxdWVzdBIZChFjbGllbnRfcmVx",
+          "dWVzdF9pZBgBIAEoBBIZChFleHBlY3RlZF9yZXZpc2lvbhgCIAEoBBIfChdj",
+          "cmFmdGluZ19tYXRlcmlhbF9jb3VudBgDIAEoDRIfChdlbmhhbmNlbWVudF9z",
+          "dG9uZV9jb3VudBgEIAEoDSL9AgokQ2xhaW1FcXVpcG1lbnRNYXRlcmlhbFJl",
+          "d2FyZFJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZv",
+          "TWVzc2FnZRIZChFjbGllbnRfcmVxdWVzdF9pZBgCIAEoBBI+CgdvdXRjb21l",
+          "GAMgASgOMi0uQ2xhaW1FcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlc3BvbnNl",
+          "Lk91dGNvbWUSDwoHZHVyYWJsZRgEIAEoCBIQCghyZXBsYXllZBgFIAEoCBIX",
+          "Cg9yZXN1bHRfcmV2aXNpb24YBiABKAQSGAoQY3VycmVudF9yZXZpc2lvbhgH",
+          "IAEoBBIVCgNiYWcYCCABKAsyCC5CYWdJbmZvEjIKCHNuYXBzaG90GAkgASgL",
+          "MiAuRXF1aXBtZW50TWF0ZXJpYWxSZXdhcmRTbmFwc2hvdCIxCgdPdXRjb21l",
+          "EgsKB1VOS05PV04QABIMCghSRUpFQ1RFRBABEgsKB0FQUExJRUQQAjL8BwoU",
+          "U2NlbmVCYWdDbGllbnRQbGF5ZXISKQoGR2V0QmFnEg4uR2V0QmFnUmVxdWVz",
+          "dBoPLkdldEJhZ1Jlc3BvbnNlEiwKB1NvcnRCYWcSDy5Tb3J0QmFnUmVxdWVz",
+          "dBoQLlNvcnRCYWdSZXNwb25zZRIyCglFcXVpcEl0ZW0SES5FcXVpcEl0ZW1S",
+          "ZXF1ZXN0GhIuRXF1aXBJdGVtUmVzcG9uc2USOAoLVW5lcXVpcEl0ZW0SEy5V",
+          "bmVxdWlwSXRlbVJlcXVlc3QaFC5VbmVxdWlwSXRlbVJlc3BvbnNlEjgKC0dt",
+          "R3JhbnRJdGVtEhMuR21HcmFudEl0ZW1SZXF1ZXN0GhQuR21HcmFudEl0ZW1S",
+          "ZXNwb25zZRI7CgxFbmhhbmNlRXF1aXASFC5FbmhhbmNlRXF1aXBSZXF1ZXN0",
+          "GhUuRW5oYW5jZUVxdWlwUmVzcG9uc2USLwoISW5sYXlHZW0SEC5JbmxheUdl",
+          "bVJlcXVlc3QaES5JbmxheUdlbVJlc3BvbnNlEjIKCVJlbW92ZUdlbRIRLlJl",
+          "bW92ZUdlbVJlcXVlc3QaEi5SZW1vdmVHZW1SZXNwb25zZRJZChZSZXRyaWV2",
+          "ZVRlbXBvcmFyeUl0ZW1zEh4uUmV0cmlldmVUZW1wb3JhcnlJdGVtc1JlcXVl",
+          "c3QaHy5SZXRyaWV2ZVRlbXBvcmFyeUl0ZW1zUmVzcG9uc2USWQoWR2V0RXF1",
+          "aXBtZW50Q3JhZnRSdWxlcxIeLkdldEVxdWlwbWVudENyYWZ0UnVsZXNSZXF1",
+          "ZXN0Gh8uR2V0RXF1aXBtZW50Q3JhZnRSdWxlc1Jlc3BvbnNlElYKFVByZXZp",
+          "ZXdFcXVpcG1lbnRDcmFmdBIdLlByZXZpZXdFcXVpcG1lbnRDcmFmdFJlcXVl",
+          "c3QaHi5QcmV2aWV3RXF1aXBtZW50Q3JhZnRSZXNwb25zZRJTChRDb21taXRF",
+          "cXVpcG1lbnRDcmFmdBIcLkNvbW1pdEVxdWlwbWVudENyYWZ0UmVxdWVzdBod",
+          "LkNvbW1pdEVxdWlwbWVudENyYWZ0UmVzcG9uc2USZQoaR2V0RXF1aXBtZW50",
+          "TWF0ZXJpYWxSZXdhcmQSIi5HZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJl",
+          "cXVlc3QaIy5HZXRFcXVpcG1lbnRNYXRlcmlhbFJld2FyZFJlc3BvbnNlEmsK",
+          "HENsYWltRXF1aXBtZW50TWF0ZXJpYWxSZXdhcmQSJC5DbGFpbUVxdWlwbWVu",
+          "dE1hdGVyaWFsUmV3YXJkUmVxdWVzdBolLkNsYWltRXF1aXBtZW50TWF0ZXJp",
+          "YWxSZXdhcmRSZXNwb25zZRoKgKjDAQGIqMMBAUIOWgVzY2VuZYABAZjUYQNi",
+          "BnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::CurrencyCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipAttrLineInfo), global::EquipAttrLineInfo.Parser, new[]{ "AttrId", "Name", "Tier", "Value", "Cap", "Percent", "Seq", "EnhanceBonus", "EnhanceNextValue" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipSlotInfo), global::EquipSlotInfo.Parser, new[]{ "Slot", "EquipKind", "Name" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipGemSocketInfo), global::EquipGemSocketInfo.Parser, new[]{ "Socket", "GemType", "GemConfigId", "GemName", "GemIconKey", "Attr", "Name" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipEnhancePreview), global::EquipEnhancePreview.Parser, new[]{ "NextLevel", "SuccessRate", "CostGold", "MaterialConfigId", "MaterialName", "MaterialCount", "BonusPermyriad", "FailLevelLoss", "MaterialIconKey" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BagItemInfo), global::BagItemInfo.Parser, new[]{ "ItemId", "ConfigId", "Count", "MaxStack", "EquipKind", "Name", "Description", "IconKey", "EquipLevel", "EquipClass", "EquipClassName", "BaseAttrs", "Affixes", "EnhanceLevel", "EnhanceMaxLevel", "EnhanceNext", "GemSockets", "GemType", "GemAttr", "EnhanceBonusPermyriad", "EquipProfile", "FixedAffixSlots", "Artifact" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipEnhancePreview), global::EquipEnhancePreview.Parser, new[]{ "NextLevel", "SuccessRate", "CostGold", "MaterialConfigId", "MaterialName", "MaterialCount", "BonusPermyriad", "FailLevelLoss", "MaterialIconKey", "PityLimit", "CurrentPityCount", "PityGuaranteedNext" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BagItemInfo), global::BagItemInfo.Parser, new[]{ "ItemId", "ConfigId", "Count", "MaxStack", "EquipKind", "Name", "Description", "IconKey", "EquipLevel", "EquipClass", "EquipClassName", "BaseAttrs", "Affixes", "EnhanceLevel", "EnhanceMaxLevel", "EnhanceNext", "GemSockets", "GemType", "GemAttr", "EnhanceBonusPermyriad", "EquipProfile", "FixedAffixSlots", "Artifact", "EnhancePityCount", "Bound", "CrafterName", "CrafterPlayerId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BagSlotInfo), global::BagSlotInfo.Parser, new[]{ "Slot", "ItemId", "Width", "Height" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BagLayoutInfo), global::BagLayoutInfo.Parser, new[]{ "BagType", "Capacity", "Slots", "CanSort", "EquipSlots" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BagHeldItemInfo), global::BagHeldItemInfo.Parser, new[]{ "ConfigId", "Count" }, null, null, null, null),
@@ -216,28 +256,30 @@ public static partial class PlayerBagReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::UnequipItemResponse), global::UnequipItemResponse.Parser, new[]{ "ErrorMessage", "Bag", "Equipment" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GmGrantItemRequest), global::GmGrantItemRequest.Parser, new[]{ "ConfigId", "Count" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GmGrantItemResponse), global::GmGrantItemResponse.Parser, new[]{ "ErrorMessage", "Bag" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EnhanceEquipRequest), global::EnhanceEquipRequest.Parser, new[]{ "ItemId", "ExpectedLevel", "ClientRequestId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EnhanceEquipResponse), global::EnhanceEquipResponse.Parser, new[]{ "ErrorMessage", "Bag", "Equipment", "Success", "EnhanceLevel", "Replayed" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EnhanceEquipRequest), global::EnhanceEquipRequest.Parser, new[]{ "ItemId", "ExpectedLevel", "ClientRequestId", "ExpectedPityCount" }, new[]{ "ExpectedPityCount" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EnhanceEquipResponse), global::EnhanceEquipResponse.Parser, new[]{ "ErrorMessage", "Bag", "Equipment", "Success", "EnhanceLevel", "Replayed", "EnhancePityCount", "EnhancePityLimit" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::InlayGemRequest), global::InlayGemRequest.Parser, new[]{ "ItemId", "Socket", "GemConfigId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::InlayGemResponse), global::InlayGemResponse.Parser, new[]{ "ErrorMessage", "Bag", "Equipment" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RemoveGemRequest), global::RemoveGemRequest.Parser, new[]{ "ItemId", "Socket" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RemoveGemResponse), global::RemoveGemResponse.Parser, new[]{ "ErrorMessage", "Bag", "Equipment" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RetrieveTemporaryItemsRequest), global::RetrieveTemporaryItemsRequest.Parser, new[]{ "ItemId", "TakeAll" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RetrieveTemporaryItemsResponse), global::RetrieveTemporaryItemsResponse.Parser, new[]{ "ErrorMessage", "Bag", "Temporary" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipFixedAffixInfo), global::EquipFixedAffixInfo.Parser, new[]{ "AffixId", "Pool", "Name", "Description", "ValueBps", "SourceCapBps", "Effect", "EffectParam", "Unit", "MaterialConfigId", "MaterialCount" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipFixedAffixInfo), global::EquipFixedAffixInfo.Parser, new[]{ "AffixId", "Pool", "Name", "Description", "ValueBps", "SourceCapBps", "Effect", "EffectParam", "Unit", "MaterialConfigId", "MaterialCount", "QualityTier", "QualityName", "QualityRatioPct", "MaxValueBps", "PolishPityCount", "PolishPityLimit", "PolishExempt", "PolishMaterialConfigId", "PolishMaterialCount", "PolishGoldCost", "ReforgeMaterialConfigId", "ReforgeMaterialCount", "ReforgeGoldCost" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipAffixQualityInfo), global::EquipAffixQualityInfo.Parser, new[]{ "QualityTier", "Name", "RatioPct", "ApprenticeRateBps", "ArtisanRateBps", "MasterRateBps" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CraftMasteryInfo), global::CraftMasteryInfo.Parser, new[]{ "Tier", "TierName", "Exp", "NextTierExp", "TopQualityRateBps" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipFixedAffixSlotInfo), global::EquipFixedAffixSlotInfo.Parser, new[]{ "Slot", "Pool", "Selected" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipArtifactInfo), global::EquipArtifactInfo.Parser, new[]{ "EffectId", "Name", "Description", "BonusBps", "CapBps", "PerRoundLimit", "BattleLimit", "ActiveRounds", "HealthThresholdBps" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftChoice), global::EquipmentCraftChoice.Parser, new[]{ "Operation", "ConfigId", "ItemId", "AffixSlot", "AffixId" }, null, new[]{ typeof(global::EquipmentCraftChoice.Types.Operation) }, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftChoice), global::EquipmentCraftChoice.Parser, new[]{ "Operation", "ConfigId", "ItemId", "AffixSlot", "AffixId", "UseGuaranteeCharm", "AllowBoundMaterials", "ProxyMasterPlayerId", "ExpectedPolishPityCount" }, new[]{ "ExpectedPolishPityCount" }, new[]{ typeof(global::EquipmentCraftChoice.Types.Operation) }, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftMaterial), global::EquipmentCraftMaterial.Parser, new[]{ "ConfigId", "Name", "IconKey", "Count", "Owned", "Available" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftRecipe), global::EquipmentCraftRecipe.Parser, new[]{ "Product", "MaterialConfigId", "MaterialCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentCraftRulesRequest), global::GetEquipmentCraftRulesRequest.Parser, null, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentCraftRulesResponse), global::GetEquipmentCraftRulesResponse.Parser, new[]{ "ErrorMessage", "RulesFingerprint", "ForgeRevision", "Recipes", "Affixes" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftPreview), global::EquipmentCraftPreview.Parser, new[]{ "Choice", "RulesFingerprint", "ExpectedForgeRevision", "Result", "Material", "Available", "UnavailableTip" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentCraftRulesResponse), global::GetEquipmentCraftRulesResponse.Parser, new[]{ "ErrorMessage", "RulesFingerprint", "ForgeRevision", "Recipes", "Affixes", "QualityTiers", "ForgeMastery" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentCraftPreview), global::EquipmentCraftPreview.Parser, new[]{ "Choice", "RulesFingerprint", "ExpectedForgeRevision", "Result", "Material", "Available", "UnavailableTip", "GoldCost", "ExtraMaterial", "ProxyFeeGold", "ProxyMasterName", "WillBindItem" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PreviewEquipmentCraftRequest), global::PreviewEquipmentCraftRequest.Parser, new[]{ "Choice" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PreviewEquipmentCraftResponse), global::PreviewEquipmentCraftResponse.Parser, new[]{ "ErrorMessage", "Preview" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CommitEquipmentCraftRequest), global::CommitEquipmentCraftRequest.Parser, new[]{ "Choice", "RulesFingerprint", "ExpectedForgeRevision", "ClientRequestId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::CommitEquipmentCraftResponse), global::CommitEquipmentCraftResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Outcome", "Durable", "Replayed", "ItemId", "ResultForgeRevision", "CurrentForgeRevision", "Bag", "Equipment" }, null, new[]{ typeof(global::CommitEquipmentCraftResponse.Types.Outcome) }, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentMaterialRewardSnapshot), global::EquipmentMaterialRewardSnapshot.Parser, new[]{ "Available", "UnavailableReason", "DayStartsAtMs", "NextResetAtMs", "EarnedToday", "DailyLimit", "AvailableUnits", "BatchUnits", "Revision", "CraftingMaterial", "EnhancementStone", "CanClaim" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CommitEquipmentCraftResponse), global::CommitEquipmentCraftResponse.Parser, new[]{ "ErrorMessage", "ClientRequestId", "Outcome", "Durable", "Replayed", "ItemId", "ResultForgeRevision", "CurrentForgeRevision", "Bag", "Equipment", "ResultQualityTier", "ResultPolishPityCount", "GuaranteedByPity", "ForgeMastery" }, null, new[]{ typeof(global::CommitEquipmentCraftResponse.Types.Outcome) }, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::EquipmentMaterialRewardSnapshot), global::EquipmentMaterialRewardSnapshot.Parser, new[]{ "Available", "UnavailableReason", "DayStartsAtMs", "NextResetAtMs", "EarnedToday", "DailyLimit", "AvailableUnits", "BatchUnits", "Revision", "CraftingMaterial", "EnhancementStone", "CanClaim", "LifetimeEarned", "LifetimeLimit", "TradableEarnedTotal", "TradableLifetimeLimit", "AvailableTradableUnits", "BatchTradableUnits", "WeeklyPhaseActive", "WeekStartsAtMs", "NextWeekResetAtMs", "EarnedThisWeek", "WeeklyLimit" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentMaterialRewardRequest), global::GetEquipmentMaterialRewardRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetEquipmentMaterialRewardResponse), global::GetEquipmentMaterialRewardResponse.Parser, new[]{ "ErrorMessage", "Snapshot" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClaimEquipmentMaterialRewardRequest), global::ClaimEquipmentMaterialRewardRequest.Parser, new[]{ "ClientRequestId", "ExpectedRevision", "CraftingMaterialCount", "EnhancementStoneCount" }, null, null, null, null),
@@ -1551,6 +1593,9 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
     bonusPermyriad_ = other.bonusPermyriad_;
     failLevelLoss_ = other.failLevelLoss_;
     materialIconKey_ = other.materialIconKey_;
+    pityLimit_ = other.pityLimit_;
+    currentPityCount_ = other.currentPityCount_;
+    pityGuaranteedNext_ = other.pityGuaranteedNext_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1686,6 +1731,51 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
     }
   }
 
+  /// <summary>Field number for the "pity_limit" field.</summary>
+  public const int PityLimitFieldNumber = 10;
+  private uint pityLimit_;
+  /// <summary>
+  /// 保底必成上限次数（0 = 无保底；>0 时满 pity_limit 次必成，客户端须精确公示）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PityLimit {
+    get { return pityLimit_; }
+    set {
+      pityLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "current_pity_count" field.</summary>
+  public const int CurrentPityCountFieldNumber = 11;
+  private uint currentPityCount_;
+  /// <summary>
+  /// 当前已累计失败次数（0..pity_limit-1）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint CurrentPityCount {
+    get { return currentPityCount_; }
+    set {
+      currentPityCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "pity_guaranteed_next" field.</summary>
+  public const int PityGuaranteedNextFieldNumber = 12;
+  private bool pityGuaranteedNext_;
+  /// <summary>
+  /// true = 本次点击已达保底（100% 必成）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool PityGuaranteedNext {
+    get { return pityGuaranteedNext_; }
+    set {
+      pityGuaranteedNext_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1710,6 +1800,9 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
     if (BonusPermyriad != other.BonusPermyriad) return false;
     if (FailLevelLoss != other.FailLevelLoss) return false;
     if (MaterialIconKey != other.MaterialIconKey) return false;
+    if (PityLimit != other.PityLimit) return false;
+    if (CurrentPityCount != other.CurrentPityCount) return false;
+    if (PityGuaranteedNext != other.PityGuaranteedNext) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1726,6 +1819,9 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
     if (BonusPermyriad != 0) hash ^= BonusPermyriad.GetHashCode();
     if (FailLevelLoss != 0) hash ^= FailLevelLoss.GetHashCode();
     if (MaterialIconKey.Length != 0) hash ^= MaterialIconKey.GetHashCode();
+    if (PityLimit != 0) hash ^= PityLimit.GetHashCode();
+    if (CurrentPityCount != 0) hash ^= CurrentPityCount.GetHashCode();
+    if (PityGuaranteedNext != false) hash ^= PityGuaranteedNext.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1780,6 +1876,18 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
       output.WriteRawTag(74);
       output.WriteString(MaterialIconKey);
     }
+    if (PityLimit != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(PityLimit);
+    }
+    if (CurrentPityCount != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(CurrentPityCount);
+    }
+    if (PityGuaranteedNext != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(PityGuaranteedNext);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1826,6 +1934,18 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
       output.WriteRawTag(74);
       output.WriteString(MaterialIconKey);
     }
+    if (PityLimit != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(PityLimit);
+    }
+    if (CurrentPityCount != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(CurrentPityCount);
+    }
+    if (PityGuaranteedNext != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(PityGuaranteedNext);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1862,6 +1982,15 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
     }
     if (MaterialIconKey.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(MaterialIconKey);
+    }
+    if (PityLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PityLimit);
+    }
+    if (CurrentPityCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CurrentPityCount);
+    }
+    if (PityGuaranteedNext != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1901,6 +2030,15 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
     }
     if (other.MaterialIconKey.Length != 0) {
       MaterialIconKey = other.MaterialIconKey;
+    }
+    if (other.PityLimit != 0) {
+      PityLimit = other.PityLimit;
+    }
+    if (other.CurrentPityCount != 0) {
+      CurrentPityCount = other.CurrentPityCount;
+    }
+    if (other.PityGuaranteedNext != false) {
+      PityGuaranteedNext = other.PityGuaranteedNext;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1957,6 +2095,18 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
           MaterialIconKey = input.ReadString();
           break;
         }
+        case 80: {
+          PityLimit = input.ReadUInt32();
+          break;
+        }
+        case 88: {
+          CurrentPityCount = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          PityGuaranteedNext = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -2010,6 +2160,18 @@ public sealed partial class EquipEnhancePreview : pb::IMessage<EquipEnhancePrevi
         }
         case 74: {
           MaterialIconKey = input.ReadString();
+          break;
+        }
+        case 80: {
+          PityLimit = input.ReadUInt32();
+          break;
+        }
+        case 88: {
+          CurrentPityCount = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          PityGuaranteedNext = input.ReadBool();
           break;
         }
       }
@@ -2080,6 +2242,10 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
     equipProfile_ = other.equipProfile_;
     fixedAffixSlots_ = other.fixedAffixSlots_.Clone();
     artifact_ = other.artifact_ != null ? other.artifact_.Clone() : null;
+    enhancePityCount_ = other.enhancePityCount_;
+    bound_ = other.bound_;
+    crafterName_ = other.crafterName_;
+    crafterPlayerId_ = other.crafterPlayerId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2400,6 +2566,66 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
     }
   }
 
+  /// <summary>Field number for the "enhance_pity_count" field.</summary>
+  public const int EnhancePityCountFieldNumber = 24;
+  private uint enhancePityCount_;
+  /// <summary>
+  /// 装备：当前目标强化等级的失败保底累计次数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EnhancePityCount {
+    get { return enhancePityCount_; }
+    set {
+      enhancePityCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "bound" field.</summary>
+  public const int BoundFieldNumber = 25;
+  private bool bound_;
+  /// <summary>
+  /// true = 仅自用绑定（不可交易/上架/赠送）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Bound {
+    get { return bound_; }
+    set {
+      bound_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "crafter_name" field.</summary>
+  public const int CrafterNameFieldNumber = 26;
+  private string crafterName_ = "";
+  /// <summary>
+  /// 宗师打造/打磨极品永久署名（空 = 无署名）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string CrafterName {
+    get { return crafterName_; }
+    set {
+      crafterName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "crafter_player_id" field.</summary>
+  public const int CrafterPlayerIdFieldNumber = 27;
+  private ulong crafterPlayerId_;
+  /// <summary>
+  /// 宗师玩家 ID（仅追溯）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong CrafterPlayerId {
+    get { return crafterPlayerId_; }
+    set {
+      crafterPlayerId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -2438,6 +2664,10 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
     if (EquipProfile != other.EquipProfile) return false;
     if(!fixedAffixSlots_.Equals(other.fixedAffixSlots_)) return false;
     if (!object.Equals(Artifact, other.Artifact)) return false;
+    if (EnhancePityCount != other.EnhancePityCount) return false;
+    if (Bound != other.Bound) return false;
+    if (CrafterName != other.CrafterName) return false;
+    if (CrafterPlayerId != other.CrafterPlayerId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2468,6 +2698,10 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
     if (EquipProfile != 0) hash ^= EquipProfile.GetHashCode();
     hash ^= fixedAffixSlots_.GetHashCode();
     if (artifact_ != null) hash ^= Artifact.GetHashCode();
+    if (EnhancePityCount != 0) hash ^= EnhancePityCount.GetHashCode();
+    if (Bound != false) hash ^= Bound.GetHashCode();
+    if (CrafterName.Length != 0) hash ^= CrafterName.GetHashCode();
+    if (CrafterPlayerId != 0UL) hash ^= CrafterPlayerId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2566,6 +2800,22 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
       output.WriteRawTag(186, 1);
       output.WriteMessage(Artifact);
     }
+    if (EnhancePityCount != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(EnhancePityCount);
+    }
+    if (Bound != false) {
+      output.WriteRawTag(200, 1);
+      output.WriteBool(Bound);
+    }
+    if (CrafterName.Length != 0) {
+      output.WriteRawTag(210, 1);
+      output.WriteString(CrafterName);
+    }
+    if (CrafterPlayerId != 0UL) {
+      output.WriteRawTag(216, 1);
+      output.WriteUInt64(CrafterPlayerId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -2656,6 +2906,22 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
       output.WriteRawTag(186, 1);
       output.WriteMessage(Artifact);
     }
+    if (EnhancePityCount != 0) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt32(EnhancePityCount);
+    }
+    if (Bound != false) {
+      output.WriteRawTag(200, 1);
+      output.WriteBool(Bound);
+    }
+    if (CrafterName.Length != 0) {
+      output.WriteRawTag(210, 1);
+      output.WriteString(CrafterName);
+    }
+    if (CrafterPlayerId != 0UL) {
+      output.WriteRawTag(216, 1);
+      output.WriteUInt64(CrafterPlayerId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -2726,6 +2992,18 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
     size += fixedAffixSlots_.CalculateSize(_repeated_fixedAffixSlots_codec);
     if (artifact_ != null) {
       size += 2 + pb::CodedOutputStream.ComputeMessageSize(Artifact);
+    }
+    if (EnhancePityCount != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(EnhancePityCount);
+    }
+    if (Bound != false) {
+      size += 2 + 1;
+    }
+    if (CrafterName.Length != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeStringSize(CrafterName);
+    }
+    if (CrafterPlayerId != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(CrafterPlayerId);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -2808,6 +3086,18 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
         Artifact = new global::EquipArtifactInfo();
       }
       Artifact.MergeFrom(other.Artifact);
+    }
+    if (other.EnhancePityCount != 0) {
+      EnhancePityCount = other.EnhancePityCount;
+    }
+    if (other.Bound != false) {
+      Bound = other.Bound;
+    }
+    if (other.CrafterName.Length != 0) {
+      CrafterName = other.CrafterName;
+    }
+    if (other.CrafterPlayerId != 0UL) {
+      CrafterPlayerId = other.CrafterPlayerId;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -2929,6 +3219,22 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
           input.ReadMessage(Artifact);
           break;
         }
+        case 192: {
+          EnhancePityCount = input.ReadUInt32();
+          break;
+        }
+        case 200: {
+          Bound = input.ReadBool();
+          break;
+        }
+        case 210: {
+          CrafterName = input.ReadString();
+          break;
+        }
+        case 216: {
+          CrafterPlayerId = input.ReadUInt64();
+          break;
+        }
       }
     }
   #endif
@@ -3047,6 +3353,22 @@ public sealed partial class BagItemInfo : pb::IMessage<BagItemInfo>
             Artifact = new global::EquipArtifactInfo();
           }
           input.ReadMessage(Artifact);
+          break;
+        }
+        case 192: {
+          EnhancePityCount = input.ReadUInt32();
+          break;
+        }
+        case 200: {
+          Bound = input.ReadBool();
+          break;
+        }
+        case 210: {
+          CrafterName = input.ReadString();
+          break;
+        }
+        case 216: {
+          CrafterPlayerId = input.ReadUInt64();
           break;
         }
       }
@@ -6769,6 +7091,7 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
 {
   private static readonly pb::MessageParser<EnhanceEquipRequest> _parser = new pb::MessageParser<EnhanceEquipRequest>(() => new EnhanceEquipRequest());
   private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<EnhanceEquipRequest> Parser { get { return _parser; } }
@@ -6796,9 +7119,11 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public EnhanceEquipRequest(EnhanceEquipRequest other) : this() {
+    _hasBits0 = other._hasBits0;
     itemId_ = other.itemId_;
     expectedLevel_ = other.expectedLevel_;
     clientRequestId_ = other.clientRequestId_;
+    expectedPityCount_ = other.expectedPityCount_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -6853,6 +7178,37 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
     }
   }
 
+  /// <summary>Field number for the "expected_pity_count" field.</summary>
+  public const int ExpectedPityCountFieldNumber = 4;
+  private readonly static uint ExpectedPityCountDefaultValue = 0;
+
+  private uint expectedPityCount_;
+  /// <summary>
+  /// 乐观比较当前保底累计次数（+11 等概率保底行使用）：客户端显式携带时须与服务器一致，否则拒回 kEquipEnhanceLevelChanged，
+  /// 配合 client_request_id 杜绝概率失败不改等级场景下的弱网重复扣料。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExpectedPityCount {
+    get { if ((_hasBits0 & 1) != 0) { return expectedPityCount_; } else { return ExpectedPityCountDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      expectedPityCount_ = value;
+    }
+  }
+  /// <summary>Gets whether the "expected_pity_count" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasExpectedPityCount {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "expected_pity_count" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearExpectedPityCount() {
+    _hasBits0 &= ~1;
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -6871,6 +7227,7 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
     if (ItemId != other.ItemId) return false;
     if (ExpectedLevel != other.ExpectedLevel) return false;
     if (ClientRequestId != other.ClientRequestId) return false;
+    if (ExpectedPityCount != other.ExpectedPityCount) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -6881,6 +7238,7 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
     if (ItemId != 0UL) hash ^= ItemId.GetHashCode();
     if (ExpectedLevel != 0) hash ^= ExpectedLevel.GetHashCode();
     if (ClientRequestId != 0UL) hash ^= ClientRequestId.GetHashCode();
+    if (HasExpectedPityCount) hash ^= ExpectedPityCount.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -6911,6 +7269,10 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
       output.WriteRawTag(24);
       output.WriteUInt64(ClientRequestId);
     }
+    if (HasExpectedPityCount) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ExpectedPityCount);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -6933,6 +7295,10 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
       output.WriteRawTag(24);
       output.WriteUInt64(ClientRequestId);
     }
+    if (HasExpectedPityCount) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ExpectedPityCount);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -6951,6 +7317,9 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
     }
     if (ClientRequestId != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientRequestId);
+    }
+    if (HasExpectedPityCount) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedPityCount);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -6972,6 +7341,9 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
     }
     if (other.ClientRequestId != 0UL) {
       ClientRequestId = other.ClientRequestId;
+    }
+    if (other.HasExpectedPityCount) {
+      ExpectedPityCount = other.ExpectedPityCount;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -7004,6 +7376,10 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
           ClientRequestId = input.ReadUInt64();
           break;
         }
+        case 32: {
+          ExpectedPityCount = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -7033,6 +7409,10 @@ public sealed partial class EnhanceEquipRequest : pb::IMessage<EnhanceEquipReque
         }
         case 24: {
           ClientRequestId = input.ReadUInt64();
+          break;
+        }
+        case 32: {
+          ExpectedPityCount = input.ReadUInt32();
           break;
         }
       }
@@ -7083,6 +7463,8 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
     success_ = other.success_;
     enhanceLevel_ = other.enhanceLevel_;
     replayed_ = other.replayed_;
+    enhancePityCount_ = other.enhancePityCount_;
+    enhancePityLimit_ = other.enhancePityLimit_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -7181,6 +7563,36 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
     }
   }
 
+  /// <summary>Field number for the "enhance_pity_count" field.</summary>
+  public const int EnhancePityCountFieldNumber = 7;
+  private uint enhancePityCount_;
+  /// <summary>
+  /// 操作后的保底累计次数（成功归零，失败 +1）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EnhancePityCount {
+    get { return enhancePityCount_; }
+    set {
+      enhancePityCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "enhance_pity_limit" field.</summary>
+  public const int EnhancePityLimitFieldNumber = 8;
+  private uint enhancePityLimit_;
+  /// <summary>
+  /// 本级保底上限（0 = 无保底）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EnhancePityLimit {
+    get { return enhancePityLimit_; }
+    set {
+      enhancePityLimit_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -7202,6 +7614,8 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
     if (Success != other.Success) return false;
     if (EnhanceLevel != other.EnhanceLevel) return false;
     if (Replayed != other.Replayed) return false;
+    if (EnhancePityCount != other.EnhancePityCount) return false;
+    if (EnhancePityLimit != other.EnhancePityLimit) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -7215,6 +7629,8 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
     if (Success != false) hash ^= Success.GetHashCode();
     if (EnhanceLevel != 0) hash ^= EnhanceLevel.GetHashCode();
     if (Replayed != false) hash ^= Replayed.GetHashCode();
+    if (EnhancePityCount != 0) hash ^= EnhancePityCount.GetHashCode();
+    if (EnhancePityLimit != 0) hash ^= EnhancePityLimit.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -7257,6 +7673,14 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
       output.WriteRawTag(48);
       output.WriteBool(Replayed);
     }
+    if (EnhancePityCount != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(EnhancePityCount);
+    }
+    if (EnhancePityLimit != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(EnhancePityLimit);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -7291,6 +7715,14 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
       output.WriteRawTag(48);
       output.WriteBool(Replayed);
     }
+    if (EnhancePityCount != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(EnhancePityCount);
+    }
+    if (EnhancePityLimit != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(EnhancePityLimit);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -7318,6 +7750,12 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
     }
     if (Replayed != false) {
       size += 1 + 1;
+    }
+    if (EnhancePityCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EnhancePityCount);
+    }
+    if (EnhancePityLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(EnhancePityLimit);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -7357,6 +7795,12 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
     }
     if (other.Replayed != false) {
       Replayed = other.Replayed;
+    }
+    if (other.EnhancePityCount != 0) {
+      EnhancePityCount = other.EnhancePityCount;
+    }
+    if (other.EnhancePityLimit != 0) {
+      EnhancePityLimit = other.EnhancePityLimit;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -7410,6 +7854,14 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
           Replayed = input.ReadBool();
           break;
         }
+        case 56: {
+          EnhancePityCount = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          EnhancePityLimit = input.ReadUInt32();
+          break;
+        }
       }
     }
   #endif
@@ -7460,6 +7912,14 @@ public sealed partial class EnhanceEquipResponse : pb::IMessage<EnhanceEquipResp
         }
         case 48: {
           Replayed = input.ReadBool();
+          break;
+        }
+        case 56: {
+          EnhancePityCount = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          EnhancePityLimit = input.ReadUInt32();
           break;
         }
       }
@@ -9209,6 +9669,19 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
     unit_ = other.unit_;
     materialConfigId_ = other.materialConfigId_;
     materialCount_ = other.materialCount_;
+    qualityTier_ = other.qualityTier_;
+    qualityName_ = other.qualityName_;
+    qualityRatioPct_ = other.qualityRatioPct_;
+    maxValueBps_ = other.maxValueBps_;
+    polishPityCount_ = other.polishPityCount_;
+    polishPityLimit_ = other.polishPityLimit_;
+    polishExempt_ = other.polishExempt_;
+    polishMaterialConfigId_ = other.polishMaterialConfigId_;
+    polishMaterialCount_ = other.polishMaterialCount_;
+    polishGoldCost_ = other.polishGoldCost_;
+    reforgeMaterialConfigId_ = other.reforgeMaterialConfigId_;
+    reforgeMaterialCount_ = other.reforgeMaterialCount_;
+    reforgeGoldCost_ = other.reforgeGoldCost_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -9356,6 +9829,201 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
     }
   }
 
+  /// <summary>Field number for the "quality_tier" field.</summary>
+  public const int QualityTierFieldNumber = 12;
+  private uint qualityTier_;
+  /// <summary>
+  /// 5 档品相（1凡品..5极品，0 = 规则目录展示满值）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint QualityTier {
+    get { return qualityTier_; }
+    set {
+      qualityTier_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "quality_name" field.</summary>
+  public const int QualityNameFieldNumber = 13;
+  private string qualityName_ = "";
+  /// <summary>
+  /// 品相展示名（凡品/良品/上品/珍品/极品）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string QualityName {
+    get { return qualityName_; }
+    set {
+      qualityName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "quality_ratio_pct" field.</summary>
+  public const int QualityRatioPctFieldNumber = 14;
+  private uint qualityRatioPct_;
+  /// <summary>
+  /// 占满值百分比（80/85/90/95/100）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint QualityRatioPct {
+    get { return qualityRatioPct_; }
+    set {
+      qualityRatioPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "max_value_bps" field.</summary>
+  public const int MaxValueBpsFieldNumber = 15;
+  private uint maxValueBps_;
+  /// <summary>
+  /// 该词条满值万分比（与表 value_permyriad 一致）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaxValueBps {
+    get { return maxValueBps_; }
+    set {
+      maxValueBps_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "polish_pity_count" field.</summary>
+  public const int PolishPityCountFieldNumber = 16;
+  private uint polishPityCount_;
+  /// <summary>
+  /// 当前累计未出极品次数（0..7）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PolishPityCount {
+    get { return polishPityCount_; }
+    set {
+      polishPityCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "polish_pity_limit" field.</summary>
+  public const int PolishPityLimitFieldNumber = 17;
+  private uint polishPityLimit_;
+  /// <summary>
+  /// 保底上限（8 次必出极品；豁免速度词条为 0）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PolishPityLimit {
+    get { return polishPityLimit_; }
+    set {
+      polishPityLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "polish_exempt" field.</summary>
+  public const int PolishExemptFieldNumber = 18;
+  private bool polishExempt_;
+  /// <summary>
+  /// true = G02 速度词条豁免品相随机，固定满值。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool PolishExempt {
+    get { return polishExempt_; }
+    set {
+      polishExempt_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "polish_material_config_id" field.</summary>
+  public const int PolishMaterialConfigIdFieldNumber = 19;
+  private uint polishMaterialConfigId_;
+  /// <summary>
+  /// 打磨消耗材料（3403 重铸砂）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PolishMaterialConfigId {
+    get { return polishMaterialConfigId_; }
+    set {
+      polishMaterialConfigId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "polish_material_count" field.</summary>
+  public const int PolishMaterialCountFieldNumber = 20;
+  private uint polishMaterialCount_;
+  /// <summary>
+  /// 打磨消耗数（1）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint PolishMaterialCount {
+    get { return polishMaterialCount_; }
+    set {
+      polishMaterialCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "polish_gold_cost" field.</summary>
+  public const int PolishGoldCostFieldNumber = 21;
+  private ulong polishGoldCost_;
+  /// <summary>
+  /// 打磨消耗银两（20）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong PolishGoldCost {
+    get { return polishGoldCost_; }
+    set {
+      polishGoldCost_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reforge_material_config_id" field.</summary>
+  public const int ReforgeMaterialConfigIdFieldNumber = 22;
+  private uint reforgeMaterialConfigId_;
+  /// <summary>
+  /// 重铸换词条消耗材料（3403 重铸砂）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ReforgeMaterialConfigId {
+    get { return reforgeMaterialConfigId_; }
+    set {
+      reforgeMaterialConfigId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reforge_material_count" field.</summary>
+  public const int ReforgeMaterialCountFieldNumber = 23;
+  private uint reforgeMaterialCount_;
+  /// <summary>
+  /// 重铸消耗数（1）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ReforgeMaterialCount {
+    get { return reforgeMaterialCount_; }
+    set {
+      reforgeMaterialCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "reforge_gold_cost" field.</summary>
+  public const int ReforgeGoldCostFieldNumber = 24;
+  private ulong reforgeGoldCost_;
+  /// <summary>
+  /// 重铸消耗银两（20）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ReforgeGoldCost {
+    get { return reforgeGoldCost_; }
+    set {
+      reforgeGoldCost_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -9382,6 +10050,19 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
     if (Unit != other.Unit) return false;
     if (MaterialConfigId != other.MaterialConfigId) return false;
     if (MaterialCount != other.MaterialCount) return false;
+    if (QualityTier != other.QualityTier) return false;
+    if (QualityName != other.QualityName) return false;
+    if (QualityRatioPct != other.QualityRatioPct) return false;
+    if (MaxValueBps != other.MaxValueBps) return false;
+    if (PolishPityCount != other.PolishPityCount) return false;
+    if (PolishPityLimit != other.PolishPityLimit) return false;
+    if (PolishExempt != other.PolishExempt) return false;
+    if (PolishMaterialConfigId != other.PolishMaterialConfigId) return false;
+    if (PolishMaterialCount != other.PolishMaterialCount) return false;
+    if (PolishGoldCost != other.PolishGoldCost) return false;
+    if (ReforgeMaterialConfigId != other.ReforgeMaterialConfigId) return false;
+    if (ReforgeMaterialCount != other.ReforgeMaterialCount) return false;
+    if (ReforgeGoldCost != other.ReforgeGoldCost) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -9400,6 +10081,19 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
     if (Unit != 0) hash ^= Unit.GetHashCode();
     if (MaterialConfigId != 0) hash ^= MaterialConfigId.GetHashCode();
     if (MaterialCount != 0) hash ^= MaterialCount.GetHashCode();
+    if (QualityTier != 0) hash ^= QualityTier.GetHashCode();
+    if (QualityName.Length != 0) hash ^= QualityName.GetHashCode();
+    if (QualityRatioPct != 0) hash ^= QualityRatioPct.GetHashCode();
+    if (MaxValueBps != 0) hash ^= MaxValueBps.GetHashCode();
+    if (PolishPityCount != 0) hash ^= PolishPityCount.GetHashCode();
+    if (PolishPityLimit != 0) hash ^= PolishPityLimit.GetHashCode();
+    if (PolishExempt != false) hash ^= PolishExempt.GetHashCode();
+    if (PolishMaterialConfigId != 0) hash ^= PolishMaterialConfigId.GetHashCode();
+    if (PolishMaterialCount != 0) hash ^= PolishMaterialCount.GetHashCode();
+    if (PolishGoldCost != 0UL) hash ^= PolishGoldCost.GetHashCode();
+    if (ReforgeMaterialConfigId != 0) hash ^= ReforgeMaterialConfigId.GetHashCode();
+    if (ReforgeMaterialCount != 0) hash ^= ReforgeMaterialCount.GetHashCode();
+    if (ReforgeGoldCost != 0UL) hash ^= ReforgeGoldCost.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -9462,6 +10156,58 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
       output.WriteRawTag(88);
       output.WriteUInt32(MaterialCount);
     }
+    if (QualityTier != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(QualityTier);
+    }
+    if (QualityName.Length != 0) {
+      output.WriteRawTag(106);
+      output.WriteString(QualityName);
+    }
+    if (QualityRatioPct != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(QualityRatioPct);
+    }
+    if (MaxValueBps != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(MaxValueBps);
+    }
+    if (PolishPityCount != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(PolishPityCount);
+    }
+    if (PolishPityLimit != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(PolishPityLimit);
+    }
+    if (PolishExempt != false) {
+      output.WriteRawTag(144, 1);
+      output.WriteBool(PolishExempt);
+    }
+    if (PolishMaterialConfigId != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(PolishMaterialConfigId);
+    }
+    if (PolishMaterialCount != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(PolishMaterialCount);
+    }
+    if (PolishGoldCost != 0UL) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt64(PolishGoldCost);
+    }
+    if (ReforgeMaterialConfigId != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(ReforgeMaterialConfigId);
+    }
+    if (ReforgeMaterialCount != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(ReforgeMaterialCount);
+    }
+    if (ReforgeGoldCost != 0UL) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt64(ReforgeGoldCost);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -9516,6 +10262,58 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
       output.WriteRawTag(88);
       output.WriteUInt32(MaterialCount);
     }
+    if (QualityTier != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(QualityTier);
+    }
+    if (QualityName.Length != 0) {
+      output.WriteRawTag(106);
+      output.WriteString(QualityName);
+    }
+    if (QualityRatioPct != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(QualityRatioPct);
+    }
+    if (MaxValueBps != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(MaxValueBps);
+    }
+    if (PolishPityCount != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(PolishPityCount);
+    }
+    if (PolishPityLimit != 0) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt32(PolishPityLimit);
+    }
+    if (PolishExempt != false) {
+      output.WriteRawTag(144, 1);
+      output.WriteBool(PolishExempt);
+    }
+    if (PolishMaterialConfigId != 0) {
+      output.WriteRawTag(152, 1);
+      output.WriteUInt32(PolishMaterialConfigId);
+    }
+    if (PolishMaterialCount != 0) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt32(PolishMaterialCount);
+    }
+    if (PolishGoldCost != 0UL) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt64(PolishGoldCost);
+    }
+    if (ReforgeMaterialConfigId != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(ReforgeMaterialConfigId);
+    }
+    if (ReforgeMaterialCount != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(ReforgeMaterialCount);
+    }
+    if (ReforgeGoldCost != 0UL) {
+      output.WriteRawTag(192, 1);
+      output.WriteUInt64(ReforgeGoldCost);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -9558,6 +10356,45 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
     }
     if (MaterialCount != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaterialCount);
+    }
+    if (QualityTier != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(QualityTier);
+    }
+    if (QualityName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(QualityName);
+    }
+    if (QualityRatioPct != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(QualityRatioPct);
+    }
+    if (MaxValueBps != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxValueBps);
+    }
+    if (PolishPityCount != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(PolishPityCount);
+    }
+    if (PolishPityLimit != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(PolishPityLimit);
+    }
+    if (PolishExempt != false) {
+      size += 2 + 1;
+    }
+    if (PolishMaterialConfigId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(PolishMaterialConfigId);
+    }
+    if (PolishMaterialCount != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(PolishMaterialCount);
+    }
+    if (PolishGoldCost != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(PolishGoldCost);
+    }
+    if (ReforgeMaterialConfigId != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(ReforgeMaterialConfigId);
+    }
+    if (ReforgeMaterialCount != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(ReforgeMaterialCount);
+    }
+    if (ReforgeGoldCost != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(ReforgeGoldCost);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -9603,6 +10440,45 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
     }
     if (other.MaterialCount != 0) {
       MaterialCount = other.MaterialCount;
+    }
+    if (other.QualityTier != 0) {
+      QualityTier = other.QualityTier;
+    }
+    if (other.QualityName.Length != 0) {
+      QualityName = other.QualityName;
+    }
+    if (other.QualityRatioPct != 0) {
+      QualityRatioPct = other.QualityRatioPct;
+    }
+    if (other.MaxValueBps != 0) {
+      MaxValueBps = other.MaxValueBps;
+    }
+    if (other.PolishPityCount != 0) {
+      PolishPityCount = other.PolishPityCount;
+    }
+    if (other.PolishPityLimit != 0) {
+      PolishPityLimit = other.PolishPityLimit;
+    }
+    if (other.PolishExempt != false) {
+      PolishExempt = other.PolishExempt;
+    }
+    if (other.PolishMaterialConfigId != 0) {
+      PolishMaterialConfigId = other.PolishMaterialConfigId;
+    }
+    if (other.PolishMaterialCount != 0) {
+      PolishMaterialCount = other.PolishMaterialCount;
+    }
+    if (other.PolishGoldCost != 0UL) {
+      PolishGoldCost = other.PolishGoldCost;
+    }
+    if (other.ReforgeMaterialConfigId != 0) {
+      ReforgeMaterialConfigId = other.ReforgeMaterialConfigId;
+    }
+    if (other.ReforgeMaterialCount != 0) {
+      ReforgeMaterialCount = other.ReforgeMaterialCount;
+    }
+    if (other.ReforgeGoldCost != 0UL) {
+      ReforgeGoldCost = other.ReforgeGoldCost;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -9665,6 +10541,58 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
         }
         case 88: {
           MaterialCount = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          QualityTier = input.ReadUInt32();
+          break;
+        }
+        case 106: {
+          QualityName = input.ReadString();
+          break;
+        }
+        case 112: {
+          QualityRatioPct = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          MaxValueBps = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          PolishPityCount = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          PolishPityLimit = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          PolishExempt = input.ReadBool();
+          break;
+        }
+        case 152: {
+          PolishMaterialConfigId = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          PolishMaterialCount = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          PolishGoldCost = input.ReadUInt64();
+          break;
+        }
+        case 176: {
+          ReforgeMaterialConfigId = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          ReforgeMaterialCount = input.ReadUInt32();
+          break;
+        }
+        case 192: {
+          ReforgeGoldCost = input.ReadUInt64();
           break;
         }
       }
@@ -9730,6 +10658,796 @@ public sealed partial class EquipFixedAffixInfo : pb::IMessage<EquipFixedAffixIn
           MaterialCount = input.ReadUInt32();
           break;
         }
+        case 96: {
+          QualityTier = input.ReadUInt32();
+          break;
+        }
+        case 106: {
+          QualityName = input.ReadString();
+          break;
+        }
+        case 112: {
+          QualityRatioPct = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          MaxValueBps = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          PolishPityCount = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          PolishPityLimit = input.ReadUInt32();
+          break;
+        }
+        case 144: {
+          PolishExempt = input.ReadBool();
+          break;
+        }
+        case 152: {
+          PolishMaterialConfigId = input.ReadUInt32();
+          break;
+        }
+        case 160: {
+          PolishMaterialCount = input.ReadUInt32();
+          break;
+        }
+        case 168: {
+          PolishGoldCost = input.ReadUInt64();
+          break;
+        }
+        case 176: {
+          ReforgeMaterialConfigId = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          ReforgeMaterialCount = input.ReadUInt32();
+          break;
+        }
+        case 192: {
+          ReforgeGoldCost = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class EquipAffixQualityInfo : pb::IMessage<EquipAffixQualityInfo>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<EquipAffixQualityInfo> _parser = new pb::MessageParser<EquipAffixQualityInfo>(() => new EquipAffixQualityInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<EquipAffixQualityInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[28]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipAffixQualityInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipAffixQualityInfo(EquipAffixQualityInfo other) : this() {
+    qualityTier_ = other.qualityTier_;
+    name_ = other.name_;
+    ratioPct_ = other.ratioPct_;
+    apprenticeRateBps_ = other.apprenticeRateBps_;
+    artisanRateBps_ = other.artisanRateBps_;
+    masterRateBps_ = other.masterRateBps_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public EquipAffixQualityInfo Clone() {
+    return new EquipAffixQualityInfo(this);
+  }
+
+  /// <summary>Field number for the "quality_tier" field.</summary>
+  public const int QualityTierFieldNumber = 1;
+  private uint qualityTier_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint QualityTier {
+    get { return qualityTier_; }
+    set {
+      qualityTier_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 2;
+  private string name_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "ratio_pct" field.</summary>
+  public const int RatioPctFieldNumber = 3;
+  private uint ratioPct_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint RatioPct {
+    get { return ratioPct_; }
+    set {
+      ratioPct_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "apprentice_rate_bps" field.</summary>
+  public const int ApprenticeRateBpsFieldNumber = 4;
+  private uint apprenticeRateBps_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ApprenticeRateBps {
+    get { return apprenticeRateBps_; }
+    set {
+      apprenticeRateBps_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "artisan_rate_bps" field.</summary>
+  public const int ArtisanRateBpsFieldNumber = 5;
+  private uint artisanRateBps_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ArtisanRateBps {
+    get { return artisanRateBps_; }
+    set {
+      artisanRateBps_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "master_rate_bps" field.</summary>
+  public const int MasterRateBpsFieldNumber = 6;
+  private uint masterRateBps_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MasterRateBps {
+    get { return masterRateBps_; }
+    set {
+      masterRateBps_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as EquipAffixQualityInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(EquipAffixQualityInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (QualityTier != other.QualityTier) return false;
+    if (Name != other.Name) return false;
+    if (RatioPct != other.RatioPct) return false;
+    if (ApprenticeRateBps != other.ApprenticeRateBps) return false;
+    if (ArtisanRateBps != other.ArtisanRateBps) return false;
+    if (MasterRateBps != other.MasterRateBps) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (QualityTier != 0) hash ^= QualityTier.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (RatioPct != 0) hash ^= RatioPct.GetHashCode();
+    if (ApprenticeRateBps != 0) hash ^= ApprenticeRateBps.GetHashCode();
+    if (ArtisanRateBps != 0) hash ^= ArtisanRateBps.GetHashCode();
+    if (MasterRateBps != 0) hash ^= MasterRateBps.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (QualityTier != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(QualityTier);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(Name);
+    }
+    if (RatioPct != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(RatioPct);
+    }
+    if (ApprenticeRateBps != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ApprenticeRateBps);
+    }
+    if (ArtisanRateBps != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ArtisanRateBps);
+    }
+    if (MasterRateBps != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(MasterRateBps);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (QualityTier != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(QualityTier);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(Name);
+    }
+    if (RatioPct != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(RatioPct);
+    }
+    if (ApprenticeRateBps != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(ApprenticeRateBps);
+    }
+    if (ArtisanRateBps != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(ArtisanRateBps);
+    }
+    if (MasterRateBps != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(MasterRateBps);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (QualityTier != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(QualityTier);
+    }
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (RatioPct != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RatioPct);
+    }
+    if (ApprenticeRateBps != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ApprenticeRateBps);
+    }
+    if (ArtisanRateBps != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ArtisanRateBps);
+    }
+    if (MasterRateBps != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MasterRateBps);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(EquipAffixQualityInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.QualityTier != 0) {
+      QualityTier = other.QualityTier;
+    }
+    if (other.Name.Length != 0) {
+      Name = other.Name;
+    }
+    if (other.RatioPct != 0) {
+      RatioPct = other.RatioPct;
+    }
+    if (other.ApprenticeRateBps != 0) {
+      ApprenticeRateBps = other.ApprenticeRateBps;
+    }
+    if (other.ArtisanRateBps != 0) {
+      ArtisanRateBps = other.ArtisanRateBps;
+    }
+    if (other.MasterRateBps != 0) {
+      MasterRateBps = other.MasterRateBps;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          QualityTier = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          Name = input.ReadString();
+          break;
+        }
+        case 24: {
+          RatioPct = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          ApprenticeRateBps = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ArtisanRateBps = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          MasterRateBps = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          QualityTier = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          Name = input.ReadString();
+          break;
+        }
+        case 24: {
+          RatioPct = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          ApprenticeRateBps = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          ArtisanRateBps = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          MasterRateBps = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class CraftMasteryInfo : pb::IMessage<CraftMasteryInfo>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<CraftMasteryInfo> _parser = new pb::MessageParser<CraftMasteryInfo>(() => new CraftMasteryInfo());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<CraftMasteryInfo> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[29]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CraftMasteryInfo() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CraftMasteryInfo(CraftMasteryInfo other) : this() {
+    tier_ = other.tier_;
+    tierName_ = other.tierName_;
+    exp_ = other.exp_;
+    nextTierExp_ = other.nextTierExp_;
+    topQualityRateBps_ = other.topQualityRateBps_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CraftMasteryInfo Clone() {
+    return new CraftMasteryInfo(this);
+  }
+
+  /// <summary>Field number for the "tier" field.</summary>
+  public const int TierFieldNumber = 1;
+  private uint tier_;
+  /// <summary>
+  /// 1学徒、2巧匠、3宗师。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Tier {
+    get { return tier_; }
+    set {
+      tier_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "tier_name" field.</summary>
+  public const int TierNameFieldNumber = 2;
+  private string tierName_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string TierName {
+    get { return tierName_; }
+    set {
+      tierName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "exp" field.</summary>
+  public const int ExpFieldNumber = 3;
+  private uint exp_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Exp {
+    get { return exp_; }
+    set {
+      exp_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_tier_exp" field.</summary>
+  public const int NextTierExpFieldNumber = 4;
+  private uint nextTierExp_;
+  /// <summary>
+  /// 满级宗师为 0。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint NextTierExp {
+    get { return nextTierExp_; }
+    set {
+      nextTierExp_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "top_quality_rate_bps" field.</summary>
+  public const int TopQualityRateBpsFieldNumber = 5;
+  private uint topQualityRateBps_;
+  /// <summary>
+  /// 当前生效的极品概率（万分比：500/700/1000）或制卷返页概率。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TopQualityRateBps {
+    get { return topQualityRateBps_; }
+    set {
+      topQualityRateBps_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as CraftMasteryInfo);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(CraftMasteryInfo other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Tier != other.Tier) return false;
+    if (TierName != other.TierName) return false;
+    if (Exp != other.Exp) return false;
+    if (NextTierExp != other.NextTierExp) return false;
+    if (TopQualityRateBps != other.TopQualityRateBps) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Tier != 0) hash ^= Tier.GetHashCode();
+    if (TierName.Length != 0) hash ^= TierName.GetHashCode();
+    if (Exp != 0) hash ^= Exp.GetHashCode();
+    if (NextTierExp != 0) hash ^= NextTierExp.GetHashCode();
+    if (TopQualityRateBps != 0) hash ^= TopQualityRateBps.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Tier != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Tier);
+    }
+    if (TierName.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(TierName);
+    }
+    if (Exp != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Exp);
+    }
+    if (NextTierExp != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(NextTierExp);
+    }
+    if (TopQualityRateBps != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(TopQualityRateBps);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Tier != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Tier);
+    }
+    if (TierName.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(TierName);
+    }
+    if (Exp != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Exp);
+    }
+    if (NextTierExp != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(NextTierExp);
+    }
+    if (TopQualityRateBps != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(TopQualityRateBps);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Tier != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Tier);
+    }
+    if (TierName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(TierName);
+    }
+    if (Exp != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Exp);
+    }
+    if (NextTierExp != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NextTierExp);
+    }
+    if (TopQualityRateBps != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TopQualityRateBps);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(CraftMasteryInfo other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Tier != 0) {
+      Tier = other.Tier;
+    }
+    if (other.TierName.Length != 0) {
+      TierName = other.TierName;
+    }
+    if (other.Exp != 0) {
+      Exp = other.Exp;
+    }
+    if (other.NextTierExp != 0) {
+      NextTierExp = other.NextTierExp;
+    }
+    if (other.TopQualityRateBps != 0) {
+      TopQualityRateBps = other.TopQualityRateBps;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Tier = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          TierName = input.ReadString();
+          break;
+        }
+        case 24: {
+          Exp = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          NextTierExp = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          TopQualityRateBps = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Tier = input.ReadUInt32();
+          break;
+        }
+        case 18: {
+          TierName = input.ReadString();
+          break;
+        }
+        case 24: {
+          Exp = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          NextTierExp = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          TopQualityRateBps = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -9752,7 +11470,7 @@ public sealed partial class EquipFixedAffixSlotInfo : pb::IMessage<EquipFixedAff
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[28]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[30]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10036,7 +11754,7 @@ public sealed partial class EquipArtifactInfo : pb::IMessage<EquipArtifactInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[29]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[31]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10523,6 +12241,7 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
 {
   private static readonly pb::MessageParser<EquipmentCraftChoice> _parser = new pb::MessageParser<EquipmentCraftChoice>(() => new EquipmentCraftChoice());
   private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<EquipmentCraftChoice> Parser { get { return _parser; } }
@@ -10530,7 +12249,7 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[30]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[32]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10550,11 +12269,16 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public EquipmentCraftChoice(EquipmentCraftChoice other) : this() {
+    _hasBits0 = other._hasBits0;
     operation_ = other.operation_;
     configId_ = other.configId_;
     itemId_ = other.itemId_;
     affixSlot_ = other.affixSlot_;
     affixId_ = other.affixId_;
+    useGuaranteeCharm_ = other.useGuaranteeCharm_;
+    allowBoundMaterials_ = other.allowBoundMaterials_;
+    proxyMasterPlayerId_ = other.proxyMasterPlayerId_;
+    expectedPolishPityCount_ = other.expectedPolishPityCount_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -10580,7 +12304,7 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
   public const int ConfigIdFieldNumber = 2;
   private uint configId_;
   /// <summary>
-  /// CREATE_ITEM使用；INSTALL_AFFIX必须为0。
+  /// CREATE_ITEM使用；其余操作必须为0。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -10595,7 +12319,7 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
   public const int ItemIdFieldNumber = 3;
   private ulong itemId_;
   /// <summary>
-  /// INSTALL_AFFIX使用；CREATE_ITEM必须为0。
+  /// INSTALL_AFFIX / REFORGE_AFFIX / POLISH_AFFIX使用；CREATE_ITEM必须为0。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -10621,6 +12345,9 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
   /// <summary>Field number for the "affix_id" field.</summary>
   public const int AffixIdFieldNumber = 5;
   private uint affixId_;
+  /// <summary>
+  /// INSTALL_AFFIX / REFORGE_AFFIX使用；POLISH_AFFIX为0。
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public uint AffixId {
@@ -10628,6 +12355,81 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     set {
       affixId_ = value;
     }
+  }
+
+  /// <summary>Field number for the "use_guarantee_charm" field.</summary>
+  public const int UseGuaranteeCharmFieldNumber = 6;
+  private bool useGuaranteeCharm_;
+  /// <summary>
+  /// POLISH_AFFIX可选：额外消耗1张绑定「定星保底符(3405)」直接必达极品。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool UseGuaranteeCharm {
+    get { return useGuaranteeCharm_; }
+    set {
+      useGuaranteeCharm_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "allow_bound_materials" field.</summary>
+  public const int AllowBoundMaterialsFieldNumber = 7;
+  private bool allowBoundMaterials_;
+  /// <summary>
+  /// 防染毒确认：可交易装备默认仅耗可交易材料，需玩家二次确认后传true才可混扣绑定材料。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool AllowBoundMaterials {
+    get { return allowBoundMaterials_; }
+    set {
+      allowBoundMaterials_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "proxy_master_player_id" field.</summary>
+  public const int ProxyMasterPlayerIdFieldNumber = 8;
+  private ulong proxyMasterPlayerId_;
+  /// <summary>
+  /// 主城宗师原子代打摊位摊主ID（0=本人打造）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ProxyMasterPlayerId {
+    get { return proxyMasterPlayerId_; }
+    set {
+      proxyMasterPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "expected_polish_pity_count" field.</summary>
+  public const int ExpectedPolishPityCountFieldNumber = 9;
+  private readonly static uint ExpectedPolishPityCountDefaultValue = 0;
+
+  private uint expectedPolishPityCount_;
+  /// <summary>
+  /// POLISH_AFFIX可选乐观保底计数校验，配合client_request_id防重放。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExpectedPolishPityCount {
+    get { if ((_hasBits0 & 1) != 0) { return expectedPolishPityCount_; } else { return ExpectedPolishPityCountDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      expectedPolishPityCount_ = value;
+    }
+  }
+  /// <summary>Gets whether the "expected_polish_pity_count" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasExpectedPolishPityCount {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "expected_polish_pity_count" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearExpectedPolishPityCount() {
+    _hasBits0 &= ~1;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10650,6 +12452,10 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     if (ItemId != other.ItemId) return false;
     if (AffixSlot != other.AffixSlot) return false;
     if (AffixId != other.AffixId) return false;
+    if (UseGuaranteeCharm != other.UseGuaranteeCharm) return false;
+    if (AllowBoundMaterials != other.AllowBoundMaterials) return false;
+    if (ProxyMasterPlayerId != other.ProxyMasterPlayerId) return false;
+    if (ExpectedPolishPityCount != other.ExpectedPolishPityCount) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -10662,6 +12468,10 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     if (ItemId != 0UL) hash ^= ItemId.GetHashCode();
     if (AffixSlot != 0) hash ^= AffixSlot.GetHashCode();
     if (AffixId != 0) hash ^= AffixId.GetHashCode();
+    if (UseGuaranteeCharm != false) hash ^= UseGuaranteeCharm.GetHashCode();
+    if (AllowBoundMaterials != false) hash ^= AllowBoundMaterials.GetHashCode();
+    if (ProxyMasterPlayerId != 0UL) hash ^= ProxyMasterPlayerId.GetHashCode();
+    if (HasExpectedPolishPityCount) hash ^= ExpectedPolishPityCount.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -10700,6 +12510,22 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
       output.WriteRawTag(40);
       output.WriteUInt32(AffixId);
     }
+    if (UseGuaranteeCharm != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(UseGuaranteeCharm);
+    }
+    if (AllowBoundMaterials != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(AllowBoundMaterials);
+    }
+    if (ProxyMasterPlayerId != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(ProxyMasterPlayerId);
+    }
+    if (HasExpectedPolishPityCount) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ExpectedPolishPityCount);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -10730,6 +12556,22 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
       output.WriteRawTag(40);
       output.WriteUInt32(AffixId);
     }
+    if (UseGuaranteeCharm != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(UseGuaranteeCharm);
+    }
+    if (AllowBoundMaterials != false) {
+      output.WriteRawTag(56);
+      output.WriteBool(AllowBoundMaterials);
+    }
+    if (ProxyMasterPlayerId != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(ProxyMasterPlayerId);
+    }
+    if (HasExpectedPolishPityCount) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ExpectedPolishPityCount);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -10754,6 +12596,18 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     }
     if (AffixId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(AffixId);
+    }
+    if (UseGuaranteeCharm != false) {
+      size += 1 + 1;
+    }
+    if (AllowBoundMaterials != false) {
+      size += 1 + 1;
+    }
+    if (ProxyMasterPlayerId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ProxyMasterPlayerId);
+    }
+    if (HasExpectedPolishPityCount) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExpectedPolishPityCount);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -10781,6 +12635,18 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
     }
     if (other.AffixId != 0) {
       AffixId = other.AffixId;
+    }
+    if (other.UseGuaranteeCharm != false) {
+      UseGuaranteeCharm = other.UseGuaranteeCharm;
+    }
+    if (other.AllowBoundMaterials != false) {
+      AllowBoundMaterials = other.AllowBoundMaterials;
+    }
+    if (other.ProxyMasterPlayerId != 0UL) {
+      ProxyMasterPlayerId = other.ProxyMasterPlayerId;
+    }
+    if (other.HasExpectedPolishPityCount) {
+      ExpectedPolishPityCount = other.ExpectedPolishPityCount;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -10819,6 +12685,22 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
         }
         case 40: {
           AffixId = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          UseGuaranteeCharm = input.ReadBool();
+          break;
+        }
+        case 56: {
+          AllowBoundMaterials = input.ReadBool();
+          break;
+        }
+        case 64: {
+          ProxyMasterPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          ExpectedPolishPityCount = input.ReadUInt32();
           break;
         }
       }
@@ -10860,6 +12742,22 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
           AffixId = input.ReadUInt32();
           break;
         }
+        case 48: {
+          UseGuaranteeCharm = input.ReadBool();
+          break;
+        }
+        case 56: {
+          AllowBoundMaterials = input.ReadBool();
+          break;
+        }
+        case 64: {
+          ProxyMasterPlayerId = input.ReadUInt64();
+          break;
+        }
+        case 72: {
+          ExpectedPolishPityCount = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -10874,6 +12772,14 @@ public sealed partial class EquipmentCraftChoice : pb::IMessage<EquipmentCraftCh
       [pbr::OriginalName("UNSPECIFIED")] Unspecified = 0,
       [pbr::OriginalName("CREATE_ITEM")] CreateItem = 1,
       [pbr::OriginalName("INSTALL_AFFIX")] InstallAffix = 2,
+      /// <summary>
+      /// 同槽重铸换词条（1重铸砂+20银两，100%无损保留当前品相与保底进度）。
+      /// </summary>
+      [pbr::OriginalName("REFORGE_AFFIX")] ReforgeAffix = 3,
+      /// <summary>
+      /// 单条打磨淬炼（1重铸砂+20银两，只升不降，累计第8次必达极品100%）。
+      /// </summary>
+      [pbr::OriginalName("POLISH_AFFIX")] PolishAffix = 4,
     }
 
   }
@@ -10896,7 +12802,7 @@ public sealed partial class EquipmentCraftMaterial : pb::IMessage<EquipmentCraft
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[31]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[33]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11282,7 +13188,7 @@ public sealed partial class EquipmentCraftRecipe : pb::IMessage<EquipmentCraftRe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[32]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[34]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11563,7 +13469,7 @@ public sealed partial class GetEquipmentCraftRulesRequest : pb::IMessage<GetEqui
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[33]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[35]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11724,7 +13630,7 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[34]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[36]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11749,6 +13655,8 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
     forgeRevision_ = other.forgeRevision_;
     recipes_ = other.recipes_.Clone();
     affixes_ = other.affixes_.Clone();
+    qualityTiers_ = other.qualityTiers_.Clone();
+    forgeMastery_ = other.forgeMastery_ != null ? other.forgeMastery_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -11819,6 +13727,35 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
     get { return affixes_; }
   }
 
+  /// <summary>Field number for the "quality_tiers" field.</summary>
+  public const int QualityTiersFieldNumber = 6;
+  private static readonly pb::FieldCodec<global::EquipAffixQualityInfo> _repeated_qualityTiers_codec
+      = pb::FieldCodec.ForMessage(50, global::EquipAffixQualityInfo.Parser);
+  private readonly pbc::RepeatedField<global::EquipAffixQualityInfo> qualityTiers_ = new pbc::RepeatedField<global::EquipAffixQualityInfo>();
+  /// <summary>
+  /// 5 档品相与概率公示表。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::EquipAffixQualityInfo> QualityTiers {
+    get { return qualityTiers_; }
+  }
+
+  /// <summary>Field number for the "forge_mastery" field.</summary>
+  public const int ForgeMasteryFieldNumber = 7;
+  private global::CraftMasteryInfo forgeMastery_;
+  /// <summary>
+  /// 本人铸器手艺熟练度快照。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CraftMasteryInfo ForgeMastery {
+    get { return forgeMastery_; }
+    set {
+      forgeMastery_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -11839,6 +13776,8 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
     if (ForgeRevision != other.ForgeRevision) return false;
     if(!recipes_.Equals(other.recipes_)) return false;
     if(!affixes_.Equals(other.affixes_)) return false;
+    if(!qualityTiers_.Equals(other.qualityTiers_)) return false;
+    if (!object.Equals(ForgeMastery, other.ForgeMastery)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -11851,6 +13790,8 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
     if (ForgeRevision != 0UL) hash ^= ForgeRevision.GetHashCode();
     hash ^= recipes_.GetHashCode();
     hash ^= affixes_.GetHashCode();
+    hash ^= qualityTiers_.GetHashCode();
+    if (forgeMastery_ != null) hash ^= ForgeMastery.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -11883,6 +13824,11 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
     }
     recipes_.WriteTo(output, _repeated_recipes_codec);
     affixes_.WriteTo(output, _repeated_affixes_codec);
+    qualityTiers_.WriteTo(output, _repeated_qualityTiers_codec);
+    if (forgeMastery_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(ForgeMastery);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -11907,6 +13853,11 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
     }
     recipes_.WriteTo(ref output, _repeated_recipes_codec);
     affixes_.WriteTo(ref output, _repeated_affixes_codec);
+    qualityTiers_.WriteTo(ref output, _repeated_qualityTiers_codec);
+    if (forgeMastery_ != null) {
+      output.WriteRawTag(58);
+      output.WriteMessage(ForgeMastery);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -11928,6 +13879,10 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
     }
     size += recipes_.CalculateSize(_repeated_recipes_codec);
     size += affixes_.CalculateSize(_repeated_affixes_codec);
+    size += qualityTiers_.CalculateSize(_repeated_qualityTiers_codec);
+    if (forgeMastery_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ForgeMastery);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -11954,6 +13909,13 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
     }
     recipes_.Add(other.recipes_);
     affixes_.Add(other.affixes_);
+    qualityTiers_.Add(other.qualityTiers_);
+    if (other.forgeMastery_ != null) {
+      if (forgeMastery_ == null) {
+        ForgeMastery = new global::CraftMasteryInfo();
+      }
+      ForgeMastery.MergeFrom(other.ForgeMastery);
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -11994,6 +13956,17 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
         }
         case 42: {
           affixes_.AddEntriesFrom(input, _repeated_affixes_codec);
+          break;
+        }
+        case 50: {
+          qualityTiers_.AddEntriesFrom(input, _repeated_qualityTiers_codec);
+          break;
+        }
+        case 58: {
+          if (forgeMastery_ == null) {
+            ForgeMastery = new global::CraftMasteryInfo();
+          }
+          input.ReadMessage(ForgeMastery);
           break;
         }
       }
@@ -12038,6 +14011,17 @@ public sealed partial class GetEquipmentCraftRulesResponse : pb::IMessage<GetEqu
           affixes_.AddEntriesFrom(ref input, _repeated_affixes_codec);
           break;
         }
+        case 50: {
+          qualityTiers_.AddEntriesFrom(ref input, _repeated_qualityTiers_codec);
+          break;
+        }
+        case 58: {
+          if (forgeMastery_ == null) {
+            ForgeMastery = new global::CraftMasteryInfo();
+          }
+          input.ReadMessage(ForgeMastery);
+          break;
+        }
       }
     }
   }
@@ -12060,7 +14044,7 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[35]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[37]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12087,6 +14071,11 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     material_ = other.material_ != null ? other.material_.Clone() : null;
     available_ = other.available_;
     unavailableTip_ = other.unavailableTip_;
+    goldCost_ = other.goldCost_;
+    extraMaterial_ = other.extraMaterial_ != null ? other.extraMaterial_.Clone() : null;
+    proxyFeeGold_ = other.proxyFeeGold_;
+    proxyMasterName_ = other.proxyMasterName_;
+    willBindItem_ = other.willBindItem_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -12180,6 +14169,78 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     }
   }
 
+  /// <summary>Field number for the "gold_cost" field.</summary>
+  public const int GoldCostFieldNumber = 8;
+  private ulong goldCost_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong GoldCost {
+    get { return goldCost_; }
+    set {
+      goldCost_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "extra_material" field.</summary>
+  public const int ExtraMaterialFieldNumber = 9;
+  private global::EquipmentCraftMaterial extraMaterial_;
+  /// <summary>
+  /// 定星保底符等可选附加材料展示。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::EquipmentCraftMaterial ExtraMaterial {
+    get { return extraMaterial_; }
+    set {
+      extraMaterial_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "proxy_fee_gold" field.</summary>
+  public const int ProxyFeeGoldFieldNumber = 10;
+  private ulong proxyFeeGold_;
+  /// <summary>
+  /// 主城宗师代打手工费（银两）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ProxyFeeGold {
+    get { return proxyFeeGold_; }
+    set {
+      proxyFeeGold_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "proxy_master_name" field.</summary>
+  public const int ProxyMasterNameFieldNumber = 11;
+  private string proxyMasterName_ = "";
+  /// <summary>
+  /// 代打宗师名。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string ProxyMasterName {
+    get { return proxyMasterName_; }
+    set {
+      proxyMasterName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "will_bind_item" field.</summary>
+  public const int WillBindItemFieldNumber = 12;
+  private bool willBindItem_;
+  /// <summary>
+  /// true = 本次混用绑定材料将使原可交易装备变为仅自用。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool WillBindItem {
+    get { return willBindItem_; }
+    set {
+      willBindItem_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -12202,6 +14263,11 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     if (!object.Equals(Material, other.Material)) return false;
     if (Available != other.Available) return false;
     if (UnavailableTip != other.UnavailableTip) return false;
+    if (GoldCost != other.GoldCost) return false;
+    if (!object.Equals(ExtraMaterial, other.ExtraMaterial)) return false;
+    if (ProxyFeeGold != other.ProxyFeeGold) return false;
+    if (ProxyMasterName != other.ProxyMasterName) return false;
+    if (WillBindItem != other.WillBindItem) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -12216,6 +14282,11 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     if (material_ != null) hash ^= Material.GetHashCode();
     if (Available != false) hash ^= Available.GetHashCode();
     if (UnavailableTip != 0) hash ^= UnavailableTip.GetHashCode();
+    if (GoldCost != 0UL) hash ^= GoldCost.GetHashCode();
+    if (extraMaterial_ != null) hash ^= ExtraMaterial.GetHashCode();
+    if (ProxyFeeGold != 0UL) hash ^= ProxyFeeGold.GetHashCode();
+    if (ProxyMasterName.Length != 0) hash ^= ProxyMasterName.GetHashCode();
+    if (WillBindItem != false) hash ^= WillBindItem.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -12262,6 +14333,26 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
       output.WriteRawTag(56);
       output.WriteUInt32(UnavailableTip);
     }
+    if (GoldCost != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(GoldCost);
+    }
+    if (extraMaterial_ != null) {
+      output.WriteRawTag(74);
+      output.WriteMessage(ExtraMaterial);
+    }
+    if (ProxyFeeGold != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(ProxyFeeGold);
+    }
+    if (ProxyMasterName.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteString(ProxyMasterName);
+    }
+    if (WillBindItem != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(WillBindItem);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -12300,6 +14391,26 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
       output.WriteRawTag(56);
       output.WriteUInt32(UnavailableTip);
     }
+    if (GoldCost != 0UL) {
+      output.WriteRawTag(64);
+      output.WriteUInt64(GoldCost);
+    }
+    if (extraMaterial_ != null) {
+      output.WriteRawTag(74);
+      output.WriteMessage(ExtraMaterial);
+    }
+    if (ProxyFeeGold != 0UL) {
+      output.WriteRawTag(80);
+      output.WriteUInt64(ProxyFeeGold);
+    }
+    if (ProxyMasterName.Length != 0) {
+      output.WriteRawTag(90);
+      output.WriteString(ProxyMasterName);
+    }
+    if (WillBindItem != false) {
+      output.WriteRawTag(96);
+      output.WriteBool(WillBindItem);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -12330,6 +14441,21 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     }
     if (UnavailableTip != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnavailableTip);
+    }
+    if (GoldCost != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(GoldCost);
+    }
+    if (extraMaterial_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ExtraMaterial);
+    }
+    if (ProxyFeeGold != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ProxyFeeGold);
+    }
+    if (ProxyMasterName.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(ProxyMasterName);
+    }
+    if (WillBindItem != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -12372,6 +14498,24 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
     }
     if (other.UnavailableTip != 0) {
       UnavailableTip = other.UnavailableTip;
+    }
+    if (other.GoldCost != 0UL) {
+      GoldCost = other.GoldCost;
+    }
+    if (other.extraMaterial_ != null) {
+      if (extraMaterial_ == null) {
+        ExtraMaterial = new global::EquipmentCraftMaterial();
+      }
+      ExtraMaterial.MergeFrom(other.ExtraMaterial);
+    }
+    if (other.ProxyFeeGold != 0UL) {
+      ProxyFeeGold = other.ProxyFeeGold;
+    }
+    if (other.ProxyMasterName.Length != 0) {
+      ProxyMasterName = other.ProxyMasterName;
+    }
+    if (other.WillBindItem != false) {
+      WillBindItem = other.WillBindItem;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -12427,6 +14571,29 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
         }
         case 56: {
           UnavailableTip = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          GoldCost = input.ReadUInt64();
+          break;
+        }
+        case 74: {
+          if (extraMaterial_ == null) {
+            ExtraMaterial = new global::EquipmentCraftMaterial();
+          }
+          input.ReadMessage(ExtraMaterial);
+          break;
+        }
+        case 80: {
+          ProxyFeeGold = input.ReadUInt64();
+          break;
+        }
+        case 90: {
+          ProxyMasterName = input.ReadString();
+          break;
+        }
+        case 96: {
+          WillBindItem = input.ReadBool();
           break;
         }
       }
@@ -12485,6 +14652,29 @@ public sealed partial class EquipmentCraftPreview : pb::IMessage<EquipmentCraftP
           UnavailableTip = input.ReadUInt32();
           break;
         }
+        case 64: {
+          GoldCost = input.ReadUInt64();
+          break;
+        }
+        case 74: {
+          if (extraMaterial_ == null) {
+            ExtraMaterial = new global::EquipmentCraftMaterial();
+          }
+          input.ReadMessage(ExtraMaterial);
+          break;
+        }
+        case 80: {
+          ProxyFeeGold = input.ReadUInt64();
+          break;
+        }
+        case 90: {
+          ProxyMasterName = input.ReadString();
+          break;
+        }
+        case 96: {
+          WillBindItem = input.ReadBool();
+          break;
+        }
       }
     }
   }
@@ -12507,7 +14697,7 @@ public sealed partial class PreviewEquipmentCraftRequest : pb::IMessage<PreviewE
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[36]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[38]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12714,7 +14904,7 @@ public sealed partial class PreviewEquipmentCraftResponse : pb::IMessage<Preview
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[37]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[39]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12970,7 +15160,7 @@ public sealed partial class CommitEquipmentCraftRequest : pb::IMessage<CommitEqu
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[38]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[40]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13291,7 +15481,7 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[39]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[41]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13321,6 +15511,10 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     currentForgeRevision_ = other.currentForgeRevision_;
     bag_ = other.bag_ != null ? other.bag_.Clone() : null;
     equipment_ = other.equipment_ != null ? other.equipment_.Clone() : null;
+    resultQualityTier_ = other.resultQualityTier_;
+    resultPolishPityCount_ = other.resultPolishPityCount_;
+    guaranteedByPity_ = other.guaranteedByPity_;
+    forgeMastery_ = other.forgeMastery_ != null ? other.forgeMastery_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -13453,6 +15647,66 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     }
   }
 
+  /// <summary>Field number for the "result_quality_tier" field.</summary>
+  public const int ResultQualityTierFieldNumber = 11;
+  private uint resultQualityTier_;
+  /// <summary>
+  /// 装条/打磨后的品相档位（1..5）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ResultQualityTier {
+    get { return resultQualityTier_; }
+    set {
+      resultQualityTier_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "result_polish_pity_count" field.</summary>
+  public const int ResultPolishPityCountFieldNumber = 12;
+  private uint resultPolishPityCount_;
+  /// <summary>
+  /// 打磨后的单条保底计数（出极品归0）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ResultPolishPityCount {
+    get { return resultPolishPityCount_; }
+    set {
+      resultPolishPityCount_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "guaranteed_by_pity" field.</summary>
+  public const int GuaranteedByPityFieldNumber = 13;
+  private bool guaranteedByPity_;
+  /// <summary>
+  /// true = 本次由8次硬保底或定星保底符保底出极品。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool GuaranteedByPity {
+    get { return guaranteedByPity_; }
+    set {
+      guaranteedByPity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "forge_mastery" field.</summary>
+  public const int ForgeMasteryFieldNumber = 14;
+  private global::CraftMasteryInfo forgeMastery_;
+  /// <summary>
+  /// 操作后的最新铸器熟练度。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CraftMasteryInfo ForgeMastery {
+    get { return forgeMastery_; }
+    set {
+      forgeMastery_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -13478,6 +15732,10 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     if (CurrentForgeRevision != other.CurrentForgeRevision) return false;
     if (!object.Equals(Bag, other.Bag)) return false;
     if (!object.Equals(Equipment, other.Equipment)) return false;
+    if (ResultQualityTier != other.ResultQualityTier) return false;
+    if (ResultPolishPityCount != other.ResultPolishPityCount) return false;
+    if (GuaranteedByPity != other.GuaranteedByPity) return false;
+    if (!object.Equals(ForgeMastery, other.ForgeMastery)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -13495,6 +15753,10 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     if (CurrentForgeRevision != 0UL) hash ^= CurrentForgeRevision.GetHashCode();
     if (bag_ != null) hash ^= Bag.GetHashCode();
     if (equipment_ != null) hash ^= Equipment.GetHashCode();
+    if (ResultQualityTier != 0) hash ^= ResultQualityTier.GetHashCode();
+    if (ResultPolishPityCount != 0) hash ^= ResultPolishPityCount.GetHashCode();
+    if (GuaranteedByPity != false) hash ^= GuaranteedByPity.GetHashCode();
+    if (forgeMastery_ != null) hash ^= ForgeMastery.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -13553,6 +15815,22 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
       output.WriteRawTag(82);
       output.WriteMessage(Equipment);
     }
+    if (ResultQualityTier != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(ResultQualityTier);
+    }
+    if (ResultPolishPityCount != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(ResultPolishPityCount);
+    }
+    if (GuaranteedByPity != false) {
+      output.WriteRawTag(104);
+      output.WriteBool(GuaranteedByPity);
+    }
+    if (forgeMastery_ != null) {
+      output.WriteRawTag(114);
+      output.WriteMessage(ForgeMastery);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -13603,6 +15881,22 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
       output.WriteRawTag(82);
       output.WriteMessage(Equipment);
     }
+    if (ResultQualityTier != 0) {
+      output.WriteRawTag(88);
+      output.WriteUInt32(ResultQualityTier);
+    }
+    if (ResultPolishPityCount != 0) {
+      output.WriteRawTag(96);
+      output.WriteUInt32(ResultPolishPityCount);
+    }
+    if (GuaranteedByPity != false) {
+      output.WriteRawTag(104);
+      output.WriteBool(GuaranteedByPity);
+    }
+    if (forgeMastery_ != null) {
+      output.WriteRawTag(114);
+      output.WriteMessage(ForgeMastery);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -13642,6 +15936,18 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
     }
     if (equipment_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Equipment);
+    }
+    if (ResultQualityTier != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ResultQualityTier);
+    }
+    if (ResultPolishPityCount != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ResultPolishPityCount);
+    }
+    if (GuaranteedByPity != false) {
+      size += 1 + 1;
+    }
+    if (forgeMastery_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ForgeMastery);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -13693,6 +15999,21 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
         Equipment = new global::BagInfo();
       }
       Equipment.MergeFrom(other.Equipment);
+    }
+    if (other.ResultQualityTier != 0) {
+      ResultQualityTier = other.ResultQualityTier;
+    }
+    if (other.ResultPolishPityCount != 0) {
+      ResultPolishPityCount = other.ResultPolishPityCount;
+    }
+    if (other.GuaranteedByPity != false) {
+      GuaranteedByPity = other.GuaranteedByPity;
+    }
+    if (other.forgeMastery_ != null) {
+      if (forgeMastery_ == null) {
+        ForgeMastery = new global::CraftMasteryInfo();
+      }
+      ForgeMastery.MergeFrom(other.ForgeMastery);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -13760,6 +16081,25 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
             Equipment = new global::BagInfo();
           }
           input.ReadMessage(Equipment);
+          break;
+        }
+        case 88: {
+          ResultQualityTier = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          ResultPolishPityCount = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          GuaranteedByPity = input.ReadBool();
+          break;
+        }
+        case 114: {
+          if (forgeMastery_ == null) {
+            ForgeMastery = new global::CraftMasteryInfo();
+          }
+          input.ReadMessage(ForgeMastery);
           break;
         }
       }
@@ -13830,6 +16170,25 @@ public sealed partial class CommitEquipmentCraftResponse : pb::IMessage<CommitEq
           input.ReadMessage(Equipment);
           break;
         }
+        case 88: {
+          ResultQualityTier = input.ReadUInt32();
+          break;
+        }
+        case 96: {
+          ResultPolishPityCount = input.ReadUInt32();
+          break;
+        }
+        case 104: {
+          GuaranteedByPity = input.ReadBool();
+          break;
+        }
+        case 114: {
+          if (forgeMastery_ == null) {
+            ForgeMastery = new global::CraftMasteryInfo();
+          }
+          input.ReadMessage(ForgeMastery);
+          break;
+        }
       }
     }
   }
@@ -13876,7 +16235,7 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[40]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[42]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13908,6 +16267,17 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
     craftingMaterial_ = other.craftingMaterial_ != null ? other.craftingMaterial_.Clone() : null;
     enhancementStone_ = other.enhancementStone_ != null ? other.enhancementStone_.Clone() : null;
     canClaim_ = other.canClaim_;
+    lifetimeEarned_ = other.lifetimeEarned_;
+    lifetimeLimit_ = other.lifetimeLimit_;
+    tradableEarnedTotal_ = other.tradableEarnedTotal_;
+    tradableLifetimeLimit_ = other.tradableLifetimeLimit_;
+    availableTradableUnits_ = other.availableTradableUnits_;
+    batchTradableUnits_ = other.batchTradableUnits_;
+    weeklyPhaseActive_ = other.weeklyPhaseActive_;
+    weekStartsAtMs_ = other.weekStartsAtMs_;
+    nextWeekResetAtMs_ = other.nextWeekResetAtMs_;
+    earnedThisWeek_ = other.earnedThisWeek_;
+    weeklyLimit_ = other.weeklyLimit_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -14061,6 +16431,171 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
     }
   }
 
+  /// <summary>Field number for the "lifetime_earned" field.</summary>
+  public const int LifetimeEarnedFieldNumber = 13;
+  private uint lifetimeEarned_;
+  /// <summary>
+  /// 阶段一永久首套累计已获份数（上限 660）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LifetimeEarned {
+    get { return lifetimeEarned_; }
+    set {
+      lifetimeEarned_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "lifetime_limit" field.</summary>
+  public const int LifetimeLimitFieldNumber = 14;
+  private uint lifetimeLimit_;
+  /// <summary>
+  /// 阶段一首套上限（660）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint LifetimeLimit {
+    get { return lifetimeLimit_; }
+    set {
+      lifetimeLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "tradable_earned_total" field.</summary>
+  public const int TradableEarnedTotalFieldNumber = 15;
+  private uint tradableEarnedTotal_;
+  /// <summary>
+  /// 阶段一累计已获可交易份数（上限 60）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TradableEarnedTotal {
+    get { return tradableEarnedTotal_; }
+    set {
+      tradableEarnedTotal_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "tradable_lifetime_limit" field.</summary>
+  public const int TradableLifetimeLimitFieldNumber = 16;
+  private uint tradableLifetimeLimit_;
+  /// <summary>
+  /// 阶段一可交易上限（60）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint TradableLifetimeLimit {
+    get { return tradableLifetimeLimit_; }
+    set {
+      tradableLifetimeLimit_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "available_tradable_units" field.</summary>
+  public const int AvailableTradableUnitsFieldNumber = 17;
+  private ulong availableTradableUnits_;
+  /// <summary>
+  /// 当前未领总余额中可交易子集
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong AvailableTradableUnits {
+    get { return availableTradableUnits_; }
+    set {
+      availableTradableUnits_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "batch_tradable_units" field.</summary>
+  public const int BatchTradableUnitsFieldNumber = 18;
+  private uint batchTradableUnits_;
+  /// <summary>
+  /// 本次可领批次中包含的可交易份数（优先分给打造的份数，余数分给强化石）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint BatchTradableUnits {
+    get { return batchTradableUnits_; }
+    set {
+      batchTradableUnits_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_phase_active" field.</summary>
+  public const int WeeklyPhaseActiveFieldNumber = 19;
+  private bool weeklyPhaseActive_;
+  /// <summary>
+  /// true = 已满 660 进入阶段二（+11 顶格周平滑精进期，每周 100 绑定）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool WeeklyPhaseActive {
+    get { return weeklyPhaseActive_; }
+    set {
+      weeklyPhaseActive_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "week_starts_at_ms" field.</summary>
+  public const int WeekStartsAtMsFieldNumber = 20;
+  private ulong weekStartsAtMs_;
+  /// <summary>
+  /// 阶段二当前游戏周起点（UTC+8 周一 05:00）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong WeekStartsAtMs {
+    get { return weekStartsAtMs_; }
+    set {
+      weekStartsAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_week_reset_at_ms" field.</summary>
+  public const int NextWeekResetAtMsFieldNumber = 21;
+  private ulong nextWeekResetAtMs_;
+  /// <summary>
+  /// 阶段二下次周重置时刻
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong NextWeekResetAtMs {
+    get { return nextWeekResetAtMs_; }
+    set {
+      nextWeekResetAtMs_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "earned_this_week" field.</summary>
+  public const int EarnedThisWeekFieldNumber = 22;
+  private uint earnedThisWeek_;
+  /// <summary>
+  /// 阶段二本周已获绑定份数
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint EarnedThisWeek {
+    get { return earnedThisWeek_; }
+    set {
+      earnedThisWeek_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "weekly_limit" field.</summary>
+  public const int WeeklyLimitFieldNumber = 23;
+  private uint weeklyLimit_;
+  /// <summary>
+  /// 阶段二每周上限（100）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint WeeklyLimit {
+    get { return weeklyLimit_; }
+    set {
+      weeklyLimit_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -14088,6 +16623,17 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
     if (!object.Equals(CraftingMaterial, other.CraftingMaterial)) return false;
     if (!object.Equals(EnhancementStone, other.EnhancementStone)) return false;
     if (CanClaim != other.CanClaim) return false;
+    if (LifetimeEarned != other.LifetimeEarned) return false;
+    if (LifetimeLimit != other.LifetimeLimit) return false;
+    if (TradableEarnedTotal != other.TradableEarnedTotal) return false;
+    if (TradableLifetimeLimit != other.TradableLifetimeLimit) return false;
+    if (AvailableTradableUnits != other.AvailableTradableUnits) return false;
+    if (BatchTradableUnits != other.BatchTradableUnits) return false;
+    if (WeeklyPhaseActive != other.WeeklyPhaseActive) return false;
+    if (WeekStartsAtMs != other.WeekStartsAtMs) return false;
+    if (NextWeekResetAtMs != other.NextWeekResetAtMs) return false;
+    if (EarnedThisWeek != other.EarnedThisWeek) return false;
+    if (WeeklyLimit != other.WeeklyLimit) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -14107,6 +16653,17 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
     if (craftingMaterial_ != null) hash ^= CraftingMaterial.GetHashCode();
     if (enhancementStone_ != null) hash ^= EnhancementStone.GetHashCode();
     if (CanClaim != false) hash ^= CanClaim.GetHashCode();
+    if (LifetimeEarned != 0) hash ^= LifetimeEarned.GetHashCode();
+    if (LifetimeLimit != 0) hash ^= LifetimeLimit.GetHashCode();
+    if (TradableEarnedTotal != 0) hash ^= TradableEarnedTotal.GetHashCode();
+    if (TradableLifetimeLimit != 0) hash ^= TradableLifetimeLimit.GetHashCode();
+    if (AvailableTradableUnits != 0UL) hash ^= AvailableTradableUnits.GetHashCode();
+    if (BatchTradableUnits != 0) hash ^= BatchTradableUnits.GetHashCode();
+    if (WeeklyPhaseActive != false) hash ^= WeeklyPhaseActive.GetHashCode();
+    if (WeekStartsAtMs != 0UL) hash ^= WeekStartsAtMs.GetHashCode();
+    if (NextWeekResetAtMs != 0UL) hash ^= NextWeekResetAtMs.GetHashCode();
+    if (EarnedThisWeek != 0) hash ^= EarnedThisWeek.GetHashCode();
+    if (WeeklyLimit != 0) hash ^= WeeklyLimit.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -14173,6 +16730,50 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
       output.WriteRawTag(96);
       output.WriteBool(CanClaim);
     }
+    if (LifetimeEarned != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(LifetimeEarned);
+    }
+    if (LifetimeLimit != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(LifetimeLimit);
+    }
+    if (TradableEarnedTotal != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(TradableEarnedTotal);
+    }
+    if (TradableLifetimeLimit != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(TradableLifetimeLimit);
+    }
+    if (AvailableTradableUnits != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(AvailableTradableUnits);
+    }
+    if (BatchTradableUnits != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(BatchTradableUnits);
+    }
+    if (WeeklyPhaseActive != false) {
+      output.WriteRawTag(152, 1);
+      output.WriteBool(WeeklyPhaseActive);
+    }
+    if (WeekStartsAtMs != 0UL) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt64(WeekStartsAtMs);
+    }
+    if (NextWeekResetAtMs != 0UL) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt64(NextWeekResetAtMs);
+    }
+    if (EarnedThisWeek != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(EarnedThisWeek);
+    }
+    if (WeeklyLimit != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(WeeklyLimit);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -14231,6 +16832,50 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
       output.WriteRawTag(96);
       output.WriteBool(CanClaim);
     }
+    if (LifetimeEarned != 0) {
+      output.WriteRawTag(104);
+      output.WriteUInt32(LifetimeEarned);
+    }
+    if (LifetimeLimit != 0) {
+      output.WriteRawTag(112);
+      output.WriteUInt32(LifetimeLimit);
+    }
+    if (TradableEarnedTotal != 0) {
+      output.WriteRawTag(120);
+      output.WriteUInt32(TradableEarnedTotal);
+    }
+    if (TradableLifetimeLimit != 0) {
+      output.WriteRawTag(128, 1);
+      output.WriteUInt32(TradableLifetimeLimit);
+    }
+    if (AvailableTradableUnits != 0UL) {
+      output.WriteRawTag(136, 1);
+      output.WriteUInt64(AvailableTradableUnits);
+    }
+    if (BatchTradableUnits != 0) {
+      output.WriteRawTag(144, 1);
+      output.WriteUInt32(BatchTradableUnits);
+    }
+    if (WeeklyPhaseActive != false) {
+      output.WriteRawTag(152, 1);
+      output.WriteBool(WeeklyPhaseActive);
+    }
+    if (WeekStartsAtMs != 0UL) {
+      output.WriteRawTag(160, 1);
+      output.WriteUInt64(WeekStartsAtMs);
+    }
+    if (NextWeekResetAtMs != 0UL) {
+      output.WriteRawTag(168, 1);
+      output.WriteUInt64(NextWeekResetAtMs);
+    }
+    if (EarnedThisWeek != 0) {
+      output.WriteRawTag(176, 1);
+      output.WriteUInt32(EarnedThisWeek);
+    }
+    if (WeeklyLimit != 0) {
+      output.WriteRawTag(184, 1);
+      output.WriteUInt32(WeeklyLimit);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -14276,6 +16921,39 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
     }
     if (CanClaim != false) {
       size += 1 + 1;
+    }
+    if (LifetimeEarned != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LifetimeEarned);
+    }
+    if (LifetimeLimit != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LifetimeLimit);
+    }
+    if (TradableEarnedTotal != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TradableEarnedTotal);
+    }
+    if (TradableLifetimeLimit != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(TradableLifetimeLimit);
+    }
+    if (AvailableTradableUnits != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(AvailableTradableUnits);
+    }
+    if (BatchTradableUnits != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(BatchTradableUnits);
+    }
+    if (WeeklyPhaseActive != false) {
+      size += 2 + 1;
+    }
+    if (WeekStartsAtMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(WeekStartsAtMs);
+    }
+    if (NextWeekResetAtMs != 0UL) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt64Size(NextWeekResetAtMs);
+    }
+    if (EarnedThisWeek != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(EarnedThisWeek);
+    }
+    if (WeeklyLimit != 0) {
+      size += 2 + pb::CodedOutputStream.ComputeUInt32Size(WeeklyLimit);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -14330,6 +17008,39 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
     }
     if (other.CanClaim != false) {
       CanClaim = other.CanClaim;
+    }
+    if (other.LifetimeEarned != 0) {
+      LifetimeEarned = other.LifetimeEarned;
+    }
+    if (other.LifetimeLimit != 0) {
+      LifetimeLimit = other.LifetimeLimit;
+    }
+    if (other.TradableEarnedTotal != 0) {
+      TradableEarnedTotal = other.TradableEarnedTotal;
+    }
+    if (other.TradableLifetimeLimit != 0) {
+      TradableLifetimeLimit = other.TradableLifetimeLimit;
+    }
+    if (other.AvailableTradableUnits != 0UL) {
+      AvailableTradableUnits = other.AvailableTradableUnits;
+    }
+    if (other.BatchTradableUnits != 0) {
+      BatchTradableUnits = other.BatchTradableUnits;
+    }
+    if (other.WeeklyPhaseActive != false) {
+      WeeklyPhaseActive = other.WeeklyPhaseActive;
+    }
+    if (other.WeekStartsAtMs != 0UL) {
+      WeekStartsAtMs = other.WeekStartsAtMs;
+    }
+    if (other.NextWeekResetAtMs != 0UL) {
+      NextWeekResetAtMs = other.NextWeekResetAtMs;
+    }
+    if (other.EarnedThisWeek != 0) {
+      EarnedThisWeek = other.EarnedThisWeek;
+    }
+    if (other.WeeklyLimit != 0) {
+      WeeklyLimit = other.WeeklyLimit;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -14402,6 +17113,50 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
         }
         case 96: {
           CanClaim = input.ReadBool();
+          break;
+        }
+        case 104: {
+          LifetimeEarned = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          LifetimeLimit = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          TradableEarnedTotal = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          TradableLifetimeLimit = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          AvailableTradableUnits = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          BatchTradableUnits = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          WeeklyPhaseActive = input.ReadBool();
+          break;
+        }
+        case 160: {
+          WeekStartsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 168: {
+          NextWeekResetAtMs = input.ReadUInt64();
+          break;
+        }
+        case 176: {
+          EarnedThisWeek = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          WeeklyLimit = input.ReadUInt32();
           break;
         }
       }
@@ -14477,6 +17232,50 @@ public sealed partial class EquipmentMaterialRewardSnapshot : pb::IMessage<Equip
           CanClaim = input.ReadBool();
           break;
         }
+        case 104: {
+          LifetimeEarned = input.ReadUInt32();
+          break;
+        }
+        case 112: {
+          LifetimeLimit = input.ReadUInt32();
+          break;
+        }
+        case 120: {
+          TradableEarnedTotal = input.ReadUInt32();
+          break;
+        }
+        case 128: {
+          TradableLifetimeLimit = input.ReadUInt32();
+          break;
+        }
+        case 136: {
+          AvailableTradableUnits = input.ReadUInt64();
+          break;
+        }
+        case 144: {
+          BatchTradableUnits = input.ReadUInt32();
+          break;
+        }
+        case 152: {
+          WeeklyPhaseActive = input.ReadBool();
+          break;
+        }
+        case 160: {
+          WeekStartsAtMs = input.ReadUInt64();
+          break;
+        }
+        case 168: {
+          NextWeekResetAtMs = input.ReadUInt64();
+          break;
+        }
+        case 176: {
+          EarnedThisWeek = input.ReadUInt32();
+          break;
+        }
+        case 184: {
+          WeeklyLimit = input.ReadUInt32();
+          break;
+        }
       }
     }
   }
@@ -14499,7 +17298,7 @@ public sealed partial class GetEquipmentMaterialRewardRequest : pb::IMessage<Get
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[41]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[43]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14660,7 +17459,7 @@ public sealed partial class GetEquipmentMaterialRewardResponse : pb::IMessage<Ge
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[42]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[44]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14916,7 +17715,7 @@ public sealed partial class ClaimEquipmentMaterialRewardRequest : pb::IMessage<C
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[43]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[45]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15225,7 +18024,7 @@ public sealed partial class ClaimEquipmentMaterialRewardResponse : pb::IMessage<
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBagReflection.Descriptor.MessageTypes[44]; }
+    get { return global::PlayerBagReflection.Descriptor.MessageTypes[46]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -5,20 +5,10 @@ using MmorpgClient.World.CurrentMaps;
 
 namespace MmorpgClient.Editor.CurrentMaps
 {
-    /// <summary>只处理当前三张地图原生分片，保留已交付的每一个像素。</summary>
+    /// <summary>处理 QdaoMaps20261102 正式地图分片与总览底图导入设置。</summary>
     public sealed class CurrentMapTileImporter : AssetPostprocessor
     {
-        public static bool IsTilePath(string path)
-        {
-            if (IsModernTilePath(path)) return true;
-            const string root = "Assets/Resources/World/CurrentMaps20261009/";
-            if (path == null || !path.StartsWith(root, StringComparison.Ordinal) ||
-                !path.EndsWith(".png", StringComparison.OrdinalIgnoreCase)) return false;
-            var relative = path.Substring(root.Length);
-            return relative.StartsWith("main/tiles/", StringComparison.Ordinal) ||
-                relative.StartsWith("island/tiles/", StringComparison.Ordinal) ||
-                relative.StartsWith("village/tiles/", StringComparison.Ordinal);
-        }
+        public static bool IsTilePath(string path) => IsModernTilePath(path);
 
         public static bool IsModernTilePath(string path)
         {
@@ -41,7 +31,7 @@ namespace MmorpgClient.Editor.CurrentMaps
             bool modernLayout = IsModernLayoutPath(assetPath);
             if (!IsTilePath(assetPath) && !modernLayout) return;
             var importer = (TextureImporter)assetImporter;
-            int pixels = modernLayout ? 8192 : IsModernTilePath(assetPath) ? MapDeliveryContract.RuntimeTilePixels : 4096;
+            int pixels = modernLayout ? 8192 : MapDeliveryContract.RuntimeTilePixels;
             importer.textureType = TextureImporterType.Default;
             importer.textureShape = TextureImporterShape.Texture2D;
             importer.maxTextureSize = pixels;

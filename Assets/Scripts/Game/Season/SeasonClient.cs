@@ -1,0 +1,402 @@
+using System;
+using MmorpgClient.Game.Battle;
+using MmorpgClient.Net;
+
+namespace MmorpgClient.Game.Season
+{
+    /// <summary>
+    /// 赛季技能与赛季印客户端网络协调器（RPC 453–455，纯 C#，零 UnityEngine 依赖，WebGL2/IL2CPP 安全）。
+    /// 负责拉取赛季快照、按 Revision 单调更新、切换赛季印与幂等追赶，以及断线/切角复位。
+    /// </summary>
+    public sealed class SeasonClient : IDisposable
+    {
+        public static SeasonClient Instance { get; private set; }
+
+        public const float MinStateIntervalSeconds = 2.0f;
+        public const float MinActionIntervalSeconds = 0.8f;
+
+        public const string UnsupportedMessage = "当前服务器暂未开放赛季系统。";
+        public const string NotConnectedMessage = "尚未连接到游戏。";
+        public const string StateUnavailableMessage = "暂时无法获取赛季数据。";
+        public const string EquipPendingMessage = "正在切换赛季印…";
+        public const string EquippedMessage = "已切换赛季印。";
+        public const string CatchupPendingMessage = "正在追赶赛季印进度…";
+        public const string CatchupDoneMessage = "赛季印进度已更新。";
+        public const string TooFastMessage = "操作太快了，请稍候再试。";
+        public const string RecoveryMessage = "网络异常，操作结果未知。请重新登录后查看。";
+
+        private readonly IBattleTransport _net;
+        private readonly SeasonMessageIds _messageIds;
+        private readonly Func<object> _connectionIdentity;
+        private readonly Func<float> _clock;
+
+        private object _observedConnection;
+        private ulong _observedPlayerId;
+        private bool _disposed;
+        private int _generation;
+        private float _nextStateAt = float.NegativeInfinity;
+        private float _nextActionAt = float.NegativeInfinity;
+        private bool _stateQueued;
+
+        public event Action Changed;
+        public event Action<string> Notice;
+        public event Action<SeasonSealCatchupEvent> SealCatchupCompleted;
+
+        public global::SeasonStateSnapshot Snapshot { get; private set; }
+        public bool StatePending { get; private set; }
+        public bool ActionPending { get; private set; }
+        public bool RequiresReconnect { get; private set; }
+        public string Status { get; private set; } = "";
+        public bool StatusIsError { get; private set; }
+
+        public bool IsSupported => _messageIds.IsSupported;
+        public bool Ready => IsSupported && !_disposed && _net.IsReady && _net.PlayerId != 0;
+
+        public SeasonClient(
+            IBattleTransport transport,
+            Func<object> connectionIdentity,
+            Func<float> clock,
+            SeasonMessageIds? messageIds = null)
+        {
+            _net = transport ?? throw new ArgumentNullException(nameof(transport));
+            _connectionIdentity = connectionIdentity ?? throw new ArgumentNullException(nameof(connectionIdentity));
+            _clock = clock ?? throw new ArgumentNullException(nameof(clock));
+            _messageIds = messageIds ?? SeasonMessageIds.Generated;
+            _observedConnection = _connectionIdentity();
+            _observedPlayerId = _net.PlayerId;
+            _net.Disconnected += HandleDisconnected;
+            if (!IsSupported) SetStatus(UnsupportedMessage, false);
+        }
+
+        public static SeasonClient Attach(
+            IBattleTransport transport,
+            Func<object> connectionIdentity,
+            Func<float> clock,
+            SeasonMessageIds? messageIds = null)
+        {
+            Instance?.Dispose();
+            var client = new SeasonClient(transport, connectionIdentity, clock, messageIds);
+            Instance = client;
+            return client;
+        }
+
+        public void Dispose()
+        {
+            if (_disposed) return;
+            _net.Disconnected -= HandleDisconnected;
+            _disposed = true;
+            ++_generation;
+            StatePending = false;
+            ActionPending = false;
+            if (Instance == this) Instance = null;
+        }
+
+        public void RequestState(bool force = false)
+        {
+            if (_disposed) return;
+            if (!IsSupported) { SetStatus(UnsupportedMessage, false); return; }
+            ObserveConnection();
+            if (!Ready) return;
+            float now = _clock();
+            if (StatePending)
+            {
+                if (force)
+                {
+                    _stateQueued = true;
+                    _nextStateAt = now;
+                }
+                return;
+            }
+            if (!force && now < _nextStateAt)
+            {
+                _stateQueued = true;
+                return;
+            }
+            SendGetState(now);
+        }
+
+        public bool EquipSeal(uint sealId)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsSupported) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (ActionPending) return false;
+            if (Snapshot == null || !Snapshot.Available || Snapshot.SeasonId == 0)
+                return RejectLocally(SeasonModels.DescribeTip((uint)season_error.KSeasonNotOpen));
+            if (sealId == 0)
+                return RejectLocally(SeasonModels.DescribeTip((uint)season_error.KSeasonSealInvalid));
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus(EquipPendingMessage, false);
+            Changed?.Invoke();
+
+            var request = new global::EquipSeasonSealRequest
+            {
+                SeasonId = Snapshot.SeasonId,
+                SealId = sealId,
+            };
+            _net.Call(_messageIds.EquipSeal, request, global::EquipSeasonSealResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    if (response.State != null) ApplySnapshot(response.State);
+                    uint tipId = response.ErrorMessage?.Id ?? 0;
+                    if (tipId != 0)
+                    {
+                        HandleWriteTip("EquipSeasonSeal", tipId);
+                        return;
+                    }
+                    SetStatus(EquippedMessage, false);
+                    Notice?.Invoke(EquippedMessage);
+                    Changed?.Invoke();
+                },
+                error =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    ActionPending = false;
+                    uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
+                    SetStatus(tipId != 0 ? SeasonModels.DescribeTip(tipId) : StateUnavailableMessage, true);
+                    Changed?.Invoke();
+                });
+            return true;
+        }
+
+        /// <summary>幂等追赶赛季印进度；pointsToBuy 为 0 表示按服务端当前剩余上限一次性补满。</summary>
+        public bool CatchupSeal(uint pointsToBuy = 0u)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            if (!IsSupported) return RejectLocally(UnsupportedMessage);
+            if (!Ready) return RejectLocally(NotConnectedMessage);
+            if (RequiresReconnect) return RejectLocally(RecoveryMessage);
+            if (ActionPending) return false;
+            if (Snapshot == null || !Snapshot.Available || Snapshot.SeasonId == 0)
+                return RejectLocally(SeasonModels.DescribeTip((uint)season_error.KSeasonNotOpen));
+            uint remaining = SeasonModels.RemainingCatchupPoints(Snapshot);
+            if (remaining == 0)
+                return RejectLocally(SeasonModels.DescribeTip((uint)season_error.KSeasonSealAlreadyMax));
+            if (!Snapshot.CanCatchup)
+                return RejectLocally(string.IsNullOrEmpty(Snapshot.ActionUnavailableReason)
+                    ? SeasonModels.DescribeTip((uint)season_error.KSeasonCatchupDisabled)
+                    : Snapshot.ActionUnavailableReason);
+            uint effectivePoints = pointsToBuy == 0 || pointsToBuy > remaining ? remaining : pointsToBuy;
+            ulong expectedTotal = effectivePoints == remaining && Snapshot.CatchupRemainingTotalPrice != 0
+                ? Snapshot.CatchupRemainingTotalPrice
+                : Snapshot.CatchupPricePerPoint * effectivePoints;
+            float now = _clock();
+            if (now < _nextActionAt) return RejectLocally(TooFastMessage);
+            if (!ClientRequestKeys.TryCreate(out ulong requestKey)) return RejectLocally(ClientRequestKeys.UnavailableText);
+
+            _nextActionAt = now + MinActionIntervalSeconds;
+            ActionPending = true;
+            int generation = _generation;
+            SetStatus(CatchupPendingMessage, false);
+            Changed?.Invoke();
+
+            var request = new global::CatchupSeasonSealRequest
+            {
+                ClientRequestId = requestKey,
+                SeasonId = Snapshot.SeasonId,
+                PointsToBuy = effectivePoints,
+                ExpectedCurrencyType = Snapshot.CatchupCurrencyType,
+                ExpectedTotalPrice = expectedTotal,
+            };
+            int attempt = 0;
+            bool resent = false;
+            void Send()
+            {
+                int mine = ++attempt;
+                _net.Call(_messageIds.CatchupSeal, request, global::CatchupSeasonSealResponse.Parser,
+                    response =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        ActionPending = false;
+                        if (response.State != null) ApplySnapshot(response.State);
+                        uint tipId = response.ErrorMessage?.Id ?? 0;
+                        if (tipId != 0)
+                        {
+                            HandleWriteTip("CatchupSeasonSeal", tipId);
+                            return;
+                        }
+                        SetStatus(CatchupDoneMessage, false);
+                        Notice?.Invoke(CatchupDoneMessage);
+                        SealCatchupCompleted?.Invoke(new SeasonSealCatchupEvent(
+                            request.SeasonId,
+                            response.AddedPoints,
+                            response.SpentCurrency,
+                            response.Replayed));
+                        Changed?.Invoke();
+                    },
+                    error =>
+                    {
+                        if (!IsCurrent(generation) || mine != attempt) return;
+                        if (!resent && ClientRequestKeys.ShouldResendOnce(error))
+                        {
+                            resent = true;
+                            Send();
+                            return;
+                        }
+                        HandleCatchupTransportError(error, resent);
+                    });
+            }
+            Send();
+            return true;
+        }
+
+        public void HandleSceneEntered()
+        {
+            if (_disposed) return;
+            ObserveConnection();
+            if (Snapshot == null && !StatePending) RequestState();
+        }
+
+        public void HandleBattleSettled()
+        {
+            if (_disposed) return;
+            ObserveConnection();
+            if (Ready) RequestState(force: true);
+        }
+
+        public void HandleDisconnected()
+        {
+            if (_disposed) return;
+            Reset();
+            Changed?.Invoke();
+        }
+
+        public void Tick()
+        {
+            if (_disposed || !IsSupported) return;
+            ObserveConnection();
+            float now = _clock();
+            if (_stateQueued && Ready && !StatePending && now >= _nextStateAt)
+                SendGetState(now);
+        }
+
+        private void SendGetState(float now)
+        {
+            _stateQueued = false;
+            StatePending = true;
+            _nextStateAt = now + MinStateIntervalSeconds;
+            int generation = _generation;
+            Changed?.Invoke();
+
+            _net.Call(_messageIds.GetState, new global::GetSeasonStateRequest(), global::GetSeasonStateResponse.Parser,
+                response =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    StatePending = false;
+                    uint tipId = response.ErrorMessage?.Id ?? 0;
+                    if (tipId != 0 || response.State == null)
+                    {
+                        SetInfoStatus(tipId != 0 ? SeasonModels.DescribeTip(tipId) : StateUnavailableMessage, true);
+                    }
+                    else
+                    {
+                        ApplySnapshot(response.State);
+                        if (Status == StateUnavailableMessage) SetInfoStatus("", false);
+                    }
+                    Changed?.Invoke();
+                },
+                _ =>
+                {
+                    if (!IsCurrent(generation)) return;
+                    StatePending = false;
+                    SetInfoStatus(StateUnavailableMessage, true);
+                    Changed?.Invoke();
+                });
+        }
+
+        private void HandleWriteTip(string opName, uint tipId)
+        {
+            if (tipId == (uint)common_error.KInvalidParameter) ClientRequestKeys.ReportKeyReused(opName);
+            if (tipId == (uint)common_error.KRateLimitExceeded) _nextActionAt = _clock() + MinStateIntervalSeconds;
+            SetStatus(SeasonModels.DescribeTip(tipId), true);
+            if (tipId == (uint)season_error.KSeasonMismatch
+                || tipId == (uint)season_error.KSeasonCatchupPriceChanged
+                || tipId == (uint)season_error.KSeasonSealAlreadyMax)
+            {
+                RequestState(force: true);
+            }
+            Changed?.Invoke();
+        }
+
+        private void HandleCatchupTransportError(string error, bool resent)
+        {
+            ActionPending = false;
+            uint tipId = RpcStatus.TryParseLegacyServerTip(error, out uint parsed) ? parsed : 0;
+            if (!resent && tipId != 0 && tipId != (uint)common_error.KServiceUnavailable)
+            {
+                if (tipId == (uint)common_error.KRateLimitExceeded) _nextActionAt = _clock() + MinStateIntervalSeconds;
+                SetStatus(SeasonModels.DescribeTip(tipId), true);
+            }
+            else
+            {
+                RequiresReconnect = true;
+                SetStatus(RecoveryMessage, true);
+            }
+            Changed?.Invoke();
+        }
+
+        private void ApplySnapshot(global::SeasonStateSnapshot incoming)
+        {
+            if (incoming == null) return;
+            if (Snapshot != null && incoming.SeasonId == Snapshot.SeasonId && incoming.Revision < Snapshot.Revision)
+                return;
+            Snapshot = incoming.Clone();
+        }
+
+        private void ObserveConnection()
+        {
+            var current = _connectionIdentity();
+            ulong currentPlayerId = _net.PlayerId;
+            if (ReferenceEquals(current, _observedConnection) && currentPlayerId == _observedPlayerId) return;
+            _observedConnection = current;
+            _observedPlayerId = currentPlayerId;
+            Reset();
+        }
+
+        private void Reset()
+        {
+            ++_generation;
+            Snapshot = null;
+            StatePending = false;
+            ActionPending = false;
+            RequiresReconnect = false;
+            _stateQueued = false;
+            SetStatus(IsSupported ? "" : UnsupportedMessage, false);
+        }
+
+        private bool IsCurrent(int generation)
+        {
+            if (_disposed) return false;
+            ObserveConnection();
+            return generation == _generation;
+        }
+
+        private bool RejectLocally(string message)
+        {
+            SetStatus(message, true);
+            Changed?.Invoke();
+            return false;
+        }
+
+        private void SetInfoStatus(string message, bool isError)
+        {
+            if (RequiresReconnect) return;
+            SetStatus(message, isError);
+        }
+
+        private void SetStatus(string message, bool isError)
+        {
+            Status = message ?? "";
+            StatusIsError = isError && Status.Length != 0;
+        }
+    }
+}

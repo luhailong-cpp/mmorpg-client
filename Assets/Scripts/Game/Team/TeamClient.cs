@@ -386,8 +386,22 @@ namespace MmorpgClient.Game.Team
                 TeamResponse.Parser, false,
                 reply => FinishWrite(TeamAction.Disband, 0, reply, "队伍已解散。"));
 
+        /// <summary>RPC 452：队员确认本人在本队排位中的人物与宝宝战法预设。</summary>
+        public bool ConfirmRankedPreset(uint characterPresetId, uint petPresetId, uint ruleVersion = 0) =>
+            Send(TeamAction.ConfirmRankedPreset, 0, ClientPlayerTeamRpc.ConfirmRankedPresetMessageId,
+                new ConfirmRankedPresetRequest
+                {
+                    ExpectedTeamId = Snapshot.TeamId,
+                    CharacterPresetId = characterPresetId,
+                    PetPresetId = petPresetId,
+                    RuleVersion = ruleVersion != 0 ? ruleVersion : Snapshot.RankedRuleVersion,
+                },
+                TeamResponse.Parser, false,
+                reply => FinishWrite(TeamAction.ConfirmRankedPreset, 0, reply, "论剑战法预设已确认。"));
+
         /// <param name="targetTeamSize">0 为直接开局；目标人数更大时等待补位，必须由服务端明确声明支持。</param>
-        public bool StartMatch(uint battleConfigId, uint targetTeamSize = 0, Match.MatchMode matchMode = Match.MatchMode.PveTeam)
+        public bool StartMatch(uint battleConfigId, uint targetTeamSize = 0, Match.MatchMode matchMode = Match.MatchMode.PveTeam,
+                               uint rankedRuleVersion = 0)
         {
             if (MatchNetworkPreparing) { Status = "正在准备匹配网络，请稍候…"; Changed?.Invoke(); return false; }
             if (matchMode == Match.MatchMode.Unspecified) matchMode = Match.MatchMode.PveTeam;
@@ -403,7 +417,7 @@ namespace MmorpgClient.Game.Team
                 Changed?.Invoke();
                 return false;
             }
-            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId, targetTeamSize, matchMode);
+            if (PrepareMatchNetwork == null) return SendStartMatch(battleConfigId, targetTeamSize, matchMode, rankedRuleVersion);
             int generation = _generation; ulong teamId = Snapshot.TeamId;
             int prepareVersion = ++_matchPrepareVersion;
             MatchNetworkPreparing = true;
@@ -414,7 +428,7 @@ namespace MmorpgClient.Game.Team
                     if (_disposed || prepareVersion != _matchPrepareVersion) return;
                     MatchNetworkPreparing = false;
                     if (generation == _generation && Snapshot.TeamId == teamId && HasFreshView)
-                        SendStartMatch(battleConfigId, targetTeamSize, matchMode);
+                        SendStartMatch(battleConfigId, targetTeamSize, matchMode, rankedRuleVersion);
                     else { Status = "队伍信息已变化，请重新发起战斗。"; Changed?.Invoke(); }
                 },
                 error => { if (!_disposed && prepareVersion == _matchPrepareVersion) { MatchNetworkPreparing = false; Status = error; Changed?.Invoke(); } });
@@ -423,9 +437,9 @@ namespace MmorpgClient.Game.Team
 
         private static Match.MatchMode EffectiveMode(Match.MatchMode mode) => mode == Match.MatchMode.Unspecified ? Match.MatchMode.PveTeam : mode;
 
-        private bool SendStartMatch(uint battleConfigId, uint targetTeamSize, Match.MatchMode matchMode)
+        private bool SendStartMatch(uint battleConfigId, uint targetTeamSize, Match.MatchMode matchMode, uint rankedRuleVersion = 0)
         {
-            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,TargetTeamSize=targetTeamSize,MatchMode=matchMode,RequestId=Guid.NewGuid().ToString("D")};
+            var request=_pendingStart??new StartTeamMatchRequest{BattleConfigId=battleConfigId,ExpectedTeamId=Snapshot.TeamId,TargetTeamSize=targetTeamSize,MatchMode=matchMode,RankedRuleVersion=rankedRuleVersion,RequestId=Guid.NewGuid().ToString("D")};
             bool backfill = EffectiveMode(request.MatchMode) == Match.MatchMode.PvpTeam || request.TargetTeamSize > Snapshot.Members.Count;
             return Send(TeamAction.StartMatch,0,MessageIds.StartTeamMatch,request,TeamResponse.Parser,false,reply=>{
                 FinishWrite(TeamAction.StartMatch,0,reply,"已发起队伍战斗，正在集合队员…");
@@ -547,6 +561,8 @@ namespace MmorpgClient.Game.Team
                 case (uint)team_error.KTeamInternal: return "服务器繁忙，请稍后再试。";
                 case (uint)team_error.KTeamPvpPartySizeNotAllowed: return PvpFourStackMessage;
                 case (uint)team_error.KTeamRatingGapTooLarge: return PvpRatingGapMessage;
+                case (uint)team_error.KTeamRankedPresetUnconfirmed: return "还有队员未确认论剑战法预设。";
+                case (uint)team_error.KTeamRankedPresetInvalid: return "论剑战法预设无效或规则已更新，请重新确认。";
                 // 含保留码 4000 / 4009 / 4010 / 4012 / 4015 / 4016。
                 default: return $"组队服务暂未完成请求（{tip.Id}），请稍后重试。";
             }
@@ -1097,6 +1113,9 @@ namespace MmorpgClient.Game.Team
                 case TeamAction.Disband:
                     if (!IsLeader) return "只有队长可以解散队伍。";
                     return MatchStarting ? MatchLockedMessage : null;
+                case TeamAction.ConfirmRankedPreset:
+                    if (!HasTeam) return "你当前不在队伍中。";
+                    return MatchStarting ? MatchLockedMessage : null;
                 case TeamAction.StartMatch:
                     if (!HasFreshView) return "队伍信息已过期，请先刷新。";
                     if (!IsLeader) return "只有队长可以开始战斗。";
@@ -1144,6 +1163,7 @@ namespace MmorpgClient.Game.Team
                 case TeamAction.Kick: return "正在请离队员…";
                 case TeamAction.Transfer: return "正在转让队长…";
                 case TeamAction.Disband: return "正在解散队伍…";
+                case TeamAction.ConfirmRankedPreset: return "正在确认论剑战法预设…";
                 case TeamAction.StartMatch: return "正在发起队伍战斗…";
                 default: return string.Empty;
             }

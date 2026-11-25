@@ -376,6 +376,7 @@ namespace MmorpgClient.UI.Ugui
             _landingAccount.onClick.AddListener(OnLandingAccount);
             _appleSignInButton.onClick.AddListener(OnAppleSignInClicked);
             _googleSignInButton.onClick.AddListener(OnGoogleSignInClicked);
+            BindPassportEvents();
             BindLoginUtilityEvents();
         }
 
@@ -386,6 +387,7 @@ namespace MmorpgClient.UI.Ugui
             _landingAccount.onClick.RemoveListener(OnLandingAccount);
             _appleSignInButton.onClick.RemoveListener(OnAppleSignInClicked);
             _googleSignInButton.onClick.RemoveListener(OnGoogleSignInClicked);
+            UnbindPassportEvents();
             UnbindLoginUtilityEvents();
         }
 

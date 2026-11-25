@@ -8,6 +8,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     public sealed partial class AppearanceUiRoot
     {
         private bool _compactLayout, _compactDetail, _layoutCaptured;
+        private bool _layoutDirty = true;
+        private Vector2 _lastLayoutPixelSize = new Vector2(-1f, -1f);
+        private Rect _lastSafeArea;
         private readonly Dictionary<RectTransform, (Vector2 Position, Vector2 Size)> _wideRects = new();
         private TMP_Text _compactListStatus;
         private Button _compactListRetry;
@@ -42,7 +45,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 40, 80, 300, 76, () =>
                 {
                     _compactDetail = false;
-                    ApplyReadingLayout();
+                    MarkReadingLayoutDirty();
+                    ApplyReadingLayoutIfNeeded();
                     Canvas.ForceUpdateCanvases();
                     RestoreListScrollPosition();
                 }, fontSize: 28);
@@ -62,6 +66,20 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _compactBioScroll.movementType = ScrollRect.MovementType.Clamped;
             _compactBioViewport.gameObject.SetActive(false);
             _layoutCaptured = true;
+        }
+
+        private void MarkReadingLayoutDirty() => _layoutDirty = true;
+
+        private void ApplyReadingLayoutIfNeeded()
+        {
+            if (!_layoutCaptured || _mainPanelGroup == null || _windowFit == null) return;
+            var pixels = _canvas != null ? _canvas.pixelRect.size : new Vector2(Screen.width, Screen.height);
+            var safeArea = Screen.safeArea;
+            if (!_layoutDirty && pixels == _lastLayoutPixelSize && safeArea == _lastSafeArea) return;
+            _lastLayoutPixelSize = pixels;
+            _lastSafeArea = safeArea;
+            _layoutDirty = false;
+            ApplyReadingLayout();
         }
 
         private void ApplyReadingLayout()
@@ -91,6 +109,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     card.type = compact ? Image.Type.Sliced : Image.Type.Simple;
                     card.preserveAspect = !compact;
                 }
+                if (!compact)
+                {
+                    RefreshFrameScale(main, "AppearanceMainFrame", AppearanceUiArt.FrameWidth, AppearanceUiArt.MainBodyHeight);
+                    var trialBarImage = _trialBannerRoot != null ? _trialBannerRoot.GetComponent<Image>() : null;
+                    if (trialBarImage != null)
+                        AppearanceUiArt.ApplyHorizontalSlice(trialBarImage, trialBarImage.sprite, 76f, AppearanceUiArt.DeepJade);
+                    if (_trialCountdownText != null)
+                    {
+                        _trialCountdownText.alignment = TextAlignmentOptions.MidlineLeft;
+                        _trialCountdownText.fontSizeMin = 15f;
+                        _trialCountdownText.fontSizeMax = 20f;
+                    }
+                }
             }
             bool detail = !compact || _compactDetail;
             foreach (string name in _listElementNames) SetReadingElementVisible(main, name, !compact || !_compactDetail);
@@ -102,7 +133,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_biographySection != null) _biographySection.SetActive(detail && _state.TryGetSelectedBiography(out _));
             if (_previewMissingBox != null) _previewMissingBox.SetActive(detail && !string.IsNullOrEmpty(_state.SelectedAppearanceId) && _loadedPreviewPortraitSprite == null);
             bool activeTrial = _client?.HasActiveTrial == true;
-            if (_trialBannerRoot != null) _trialBannerRoot.SetActive(!compact && detail && activeTrial);
+            if (_trialBannerRoot != null) _trialBannerRoot.SetActive(detail && activeTrial);
             if (_cancelTrialBtn != null) _cancelTrialBtn.gameObject.SetActive(!compact || (detail && activeTrial));
             bool empty = _client?.Info == null || _client.Info.Appearances.Count == 0;
             if (_readOnlyRetryButton != null)
@@ -118,6 +149,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 PlaceTopLeft((RectTransform)main, 0, 54, 1180, 596);
                 MoveReadingElement(main, "AppearanceMainFrame", 0, 0, 1180, 596);
+                RefreshFrameScale(main, "AppearanceMainFrame", 1180, 596);
                 MoveReadingElement(main, "AppearanceTitlePlate", 232, -60, 716, 145);
                 MoveReadingElement(main, "TitleTaiji", 562, -52, 56, 56);
                 MoveReadingElement(main, "AppearanceClose", 1090, 8, 76, 76);
@@ -130,7 +162,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 MoveReadingElement(main, "AppearancePortraitMissing", 40, 260, 330, 130);
                 MoveReadingElement(main, "AppearanceViewPortrait", 40, 468, activeTrial ? 156 : 330, 76);
                 MoveReadingElement(main, "AppearanceCancelTrial", 214, 468, 156, 76);
-                MoveReadingElement(main, "AppearancePreviewName", 410, 102, 720, 48);
+                MoveReadingElement(main, "AppearancePreviewName", 410, 102, activeTrial ? 290 : 720, 48);
                 MoveReadingElement(main, "AppearanceArchiveTag", 410, 154, 720, 30);
                 MoveReadingElement(main, "AppearancePreviewStatus", 410, 188, 720, 34);
                 MoveReadingElement(main, "AppearanceBiographySection", 410, 230, 720, 146);
@@ -138,7 +170,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 MoveReadingElement(bio, "BiographyIdentity", 164, 18, 330, 28);
                 MoveReadingElement(bio, "AppearanceReadStory", 512, 0, 186, 76);
                 MoveReadingElement(bio, "BiographyDivider", 22, 76, 676, 2);
-                MoveReadingElement(main, "AppearanceTrialBanner", 40, 94, 330, 64);
+                MoveReadingElement(main, "AppearanceTrialBanner", 710, 96, 420, 54);
+                var compactTrialBar = _trialBannerRoot != null ? _trialBannerRoot.GetComponent<Image>() : null;
+                if (compactTrialBar != null)
+                    AppearanceUiArt.ApplyHorizontalSlice(compactTrialBar, compactTrialBar.sprite, 54f, AppearanceUiArt.DeepJade);
+                if (_trialCountdownText != null)
+                {
+                    PlaceTopLeft(_trialCountdownText.rectTransform, 64f, 4f, 304f, 46f);
+                    _trialCountdownText.alignment = TextAlignmentOptions.Center;
+                    _trialCountdownText.fontSizeMin = 12f;
+                    _trialCountdownText.fontSizeMax = 17f;
+                }
                 MoveReadingElement(main, "AppearanceCardSlot", 410, 386, 720, 92);
                 var card = main.Find("AppearanceCardSlot");
                 MoveReadingElement(card, "AppearanceCardIcon", 16, 12, 68, 68);
@@ -152,8 +194,6 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _previewArchiveTag.alignment = TextAlignmentOptions.MidlineLeft;
                 _previewStatus.fontSize = 24;
                 _previewStatus.textWrappingMode = TextWrappingModes.Normal;
-                if (activeTrial && _client.Info.TrialAppearanceId == _state.SelectedAppearanceId)
-                    _previewStatus.text = "试用中 · 剩余 " + MmorpgClient.Game.Appearance.AppearanceModels.FormatTrialCountdown(_client.TrialRemainingSeconds);
                 _biographyBody.fontSize = 30;
                 _biographyBody.lineSpacing = 0;
                 float textHeight = Mathf.Max(64, _biographyBody.GetPreferredValues(_biographyBody.text, 676, 100000).y + 12);
@@ -171,6 +211,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _previewStatus.fontSize = 23;
                 _biographyBody.fontSize = 22; _biographyBody.lineSpacing = 6;
             }
+            UpdateTrialCountdownText(force: true);
             ApplySeriesLayout(compact, !compact || !_compactDetail);
             SetReadingFonts(compact);
             ApplyReadingRowLayout(compact);
@@ -180,22 +221,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void ApplyModalReadingLayout(bool compact)
         {
-            foreach (var overlay in new[] { _confirmOverlay, _noCardOverlay, _storyOverlay, _biographyOverlay, _portraitOverlay, _seriesEpilogueOverlay })
-            {
-                if (overlay == null) continue;
-                var rect = (RectTransform)overlay.transform;
-                rect.sizeDelta = compact ? new Vector2(1180, 650) : new Vector2(AppearanceUiArt.FrameWidth, AppearanceUiArt.FrameHeight);
-                var dim = rect.Find("WindowDim") as RectTransform;
-                if (dim != null) PlaceTopLeft(dim, compact ? 12 : 16, compact ? 12 : AppearanceUiArt.MainBodyTopOffset + 12,
-                    compact ? 1156 : AppearanceUiArt.FrameWidth - 32, compact ? 626 : AppearanceUiArt.MainBodyHeight - 24);
-            }
+            ResizeModalOverlay(_confirmOverlay, compact);
+            ResizeModalOverlay(_noCardOverlay, compact);
+            ResizeModalOverlay(_storyOverlay, compact);
+            ResizeModalOverlay(_biographyOverlay, compact);
+            ResizeModalOverlay(_portraitOverlay, compact);
+            ResizeModalOverlay(_seriesEpilogueOverlay, compact);
             var story = _storyOverlay != null ? _storyOverlay.transform.Find("StoryReaderFrame") as RectTransform : null;
             var bio = _biographyOverlay != null ? _biographyOverlay.transform.Find("BiographyFrame") as RectTransform : null;
             var portrait = _portraitOverlay != null ? _portraitOverlay.transform.Find("PortraitFrame") as RectTransform : null;
             if (story != null)
             {
-                story.sizeDelta = compact ? new Vector2(1140, 620) : new Vector2(1360, 820);
-                MoveReadingElement(story, "StoryFrameBg", 0, 0, compact ? 1140 : 1360, compact ? 620 : 820);
+                float storyW = compact ? 1140 : 1360;
+                float storyH = compact ? 620 : 820;
+                story.sizeDelta = new Vector2(storyW, storyH);
+                MoveReadingElement(story, "StoryFrameBg", 0, 0, storyW, storyH);
+                RefreshFrameScale(story, "StoryFrameBg", storyW, storyH);
                 MoveReadingElement(story, "AppearanceStoryBack", compact ? 36 : 76, compact ? 28 : 46, 160, compact ? 76 : 60);
                 MoveReadingElement(story, "StoryTitle", compact ? 240 : 256, 32, compact ? 660 : 848, 52);
                 MoveReadingElement(story, "StoryCharacter", compact ? 240 : 256, 88, compact ? 660 : 848, 34);
@@ -203,15 +244,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 MoveReadingElement(story, "StoryPaperCard", compact ? 70 : 84, 154, compact ? 1000 : 1192, compact ? 320 : 528);
                 MoveReadingElement(story, "StoryViewport", compact ? 84 : 98, 168, compact ? 954 : StoryViewportWidth, compact ? 292 : StoryViewportHeight);
                 MoveReadingElement(story, "StoryScrollbar", compact ? 1050 : 1250, 168, 14, compact ? 292 : StoryViewportHeight);
-                MoveReadingElement(story, "AppearanceStoryFinish", compact ? 410 : 520, compact ? 506 : 706, 320, compact ? 76 : 68);
+                MoveReadingElement(story, "StoryViewPortrait", compact ? 220 : 372, compact ? 506 : 706, 260, compact ? 76 : 68);
+                MoveReadingElement(story, "AppearanceStoryFinish", compact ? 510 : 668, compact ? 506 : 706, 320, compact ? 76 : 68);
                 MoveReadingElement(story, "StoryCloseWindow", compact ? 1026 : 1246, compact ? 498 : 698, 76, 76);
                 RefreshStoryScrollLayout();
             }
             if (bio != null)
             {
-                bio.sizeDelta = compact ? new Vector2(1140, 620) : new Vector2(1360, 800);
+                float bioW = compact ? 1140 : 1360;
+                float bioH = compact ? 620 : 800;
+                bio.sizeDelta = new Vector2(bioW, bioH);
                 bio.anchoredPosition = compact ? Vector2.zero : new Vector2(0f, -48f);
-                MoveReadingElement(bio, "BiographyFrameBg", 0, 0, compact ? 1140 : 1360, compact ? 620 : 800);
+                MoveReadingElement(bio, "BiographyFrameBg", 0, 0, bioW, bioH);
+                RefreshFrameScale(bio, "BiographyFrameBg", bioW, bioH);
                 MoveReadingElement(bio, "BiographyTitlePlate", compact ? 290 : 400, -24, 560, 114);
                 MoveReadingElement(bio, "BiographyName", compact ? 330 : 440, -6, 480, 62);
                 MoveReadingElement(bio, "BiographyBack", compact ? 34 : 70, compact ? 28 : 40, 170, compact ? 76 : 66);
@@ -231,9 +276,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             if (portrait != null)
             {
-                portrait.sizeDelta = compact ? new Vector2(1140, 620) : new Vector2(1360, 800);
+                float portraitW = compact ? 1140 : 1360;
+                float portraitH = compact ? 620 : 800;
+                portrait.sizeDelta = new Vector2(portraitW, portraitH);
                 portrait.anchoredPosition = compact ? Vector2.zero : new Vector2(0f, -48f);
-                MoveReadingElement(portrait, "PortraitFrameBg", 0, 0, compact ? 1140 : 1360, compact ? 620 : 800);
+                MoveReadingElement(portrait, "PortraitFrameBg", 0, 0, portraitW, portraitH);
+                RefreshFrameScale(portrait, "PortraitFrameBg", portraitW, portraitH);
                 MoveReadingElement(portrait, "PortraitTitlePlate", compact ? 290 : 400, -24, 560, 114);
                 MoveReadingElement(portrait, "PortraitName", compact ? 330 : 440, -6, 480, 62);
                 MoveReadingElement(portrait, "PortraitBack", compact ? 34 : 70, compact ? 28 : 40, 170, compact ? 76 : 66);
@@ -245,20 +293,34 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             ApplySeriesModalLayout(compact);
         }
 
+        private static void ResizeModalOverlay(GameObject overlay, bool compact)
+        {
+            if (overlay == null) return;
+            var rect = (RectTransform)overlay.transform;
+            rect.sizeDelta = compact ? new Vector2(1180, 650) : new Vector2(AppearanceUiArt.FrameWidth, AppearanceUiArt.FrameHeight);
+            var dim = rect.Find("WindowDim") as RectTransform;
+            if (dim != null)
+                PlaceTopLeft(dim, compact ? 12 : 16, compact ? 12 : AppearanceUiArt.MainBodyTopOffset + 12,
+                    compact ? 1156 : AppearanceUiArt.FrameWidth - 32, compact ? 626 : AppearanceUiArt.MainBodyHeight - 24);
+        }
+
         private void SetReadingFonts(bool compact)
         {
             if (_storyRecapLabel != null) _storyRecapLabel.fontSize = compact ? 24 : 23;
             if (_seriesEpilogueDescLabel != null) _seriesEpilogueDescLabel.fontSize = compact ? 24 : 23;
             if (_biographyPageBody != null) _biographyPageBody.fontSize = compact ? 30 : 34;
-            if (_listCountLabel != null) _listCountLabel.fontSizeMax = compact ? 26 : 22;
-            foreach (var button in new[] { _trialBtn, _switchBtn })
-            {
-                var label = button != null ? button.GetComponentInChildren<TMP_Text>(true) : null;
-                if (label == null) continue;
-                label.textWrappingMode = compact ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
-                label.fontSizeMin = compact ? 26 : 18;
-                label.fontSizeMax = compact ? 30 : 26;
-            }
+            if (_listCountLabel != null) _listCountLabel.fontSizeMax = compact ? 24 : 20;
+            ApplyActionButtonFont(_trialBtn, compact);
+            ApplyActionButtonFont(_switchBtn, compact);
+        }
+
+        private static void ApplyActionButtonFont(Button button, bool compact)
+        {
+            var label = button != null ? button.GetComponentInChildren<TMP_Text>(true) : null;
+            if (label == null) return;
+            label.textWrappingMode = compact ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
+            label.fontSizeMin = compact ? 26 : 18;
+            label.fontSizeMax = compact ? 30 : 26;
         }
 
         private void ApplyReadingRowLayout(bool compact)
@@ -279,6 +341,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 row.BadgeLabel.fontSize = compact ? 24 : 20;
             }
             if (_listContent != null) _listContent.sizeDelta = new Vector2(compact ? 1036 : 594, _listContent.sizeDelta.y);
+        }
+
+        private static void RefreshFrameScale(UnityEngine.Transform parent, string name, float width, float height)
+        {
+            var img = parent != null ? parent.Find(name)?.GetComponent<Image>() : null;
+            AppearanceUiArt.RefreshFrameScale(img, width, height);
         }
 
         private static void MoveReadingElement(UnityEngine.Transform parent, string name, float x, float y, float width, float height)

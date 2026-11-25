@@ -59,7 +59,7 @@ public static partial class PlayerTrialJournalReflection {
           "CgljbGFpbWFibGUYEyABKAginQEKHVRyaWFsUmVkZWVtYWJsZUFydGlmYWN0",
           "T3B0aW9uEhYKDml0ZW1fY29uZmlnX2lkGAEgASgNEhoKEmFydGlmYWN0X2Vm",
           "ZmVjdF9pZBgCIAEoDRIMCgRuYW1lGAMgASgJEhMKC2Rlc2NyaXB0aW9uGAQg",
-          "ASgJEhAKCGljb25fa2V5GAUgASgJEhMKC293bmVkX2NvdW50GAYgASgNIr0D",
+          "ASgJEhAKCGljb25fa2V5GAUgASgJEhMKC293bmVkX2NvdW50GAYgASgNIt8D",
           "ChRUcmlhbEpvdXJuYWxTbmFwc2hvdBIRCglhdmFpbGFibGUYASABKAgSGgoS",
           "dW5hdmFpbGFibGVfcmVhc29uGAIgASgJEhYKDnN0YXRlX3JldmlzaW9uGAMg",
           "ASgEEhUKDXNlcnZlcl9ub3dfbXMYBCABKAQSIQoZdG90YWxfcGVybWFuZW50",
@@ -69,32 +69,32 @@ public static partial class PlayerTrialJournalReflection {
           "dmFpbGFibGVfcmVhc29uGAogASgJEioKCGNoYXB0ZXJzGAsgAygLMhguVHJp",
           "YWxKb3VybmFsQ2hhcHRlclZpZXcSLgoKbWlsZXN0b25lcxgMIAMoCzIaLlRy",
           "aWFsSm91cm5hbE1pbGVzdG9uZVZpZXcSPAoUcmVkZWVtYWJsZV9hcnRpZmFj",
-          "dHMYDSADKAsyHi5UcmlhbFJlZGVlbWFibGVBcnRpZmFjdE9wdGlvbiIYChZH",
-          "ZXRUcmlhbEpvdXJuYWxSZXF1ZXN0ImoKF0dldFRyaWFsSm91cm5hbFJlc3Bv",
-          "bnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRIn",
-          "CghzbmFwc2hvdBgCIAEoCzIVLlRyaWFsSm91cm5hbFNuYXBzaG90IlQKIUNs",
-          "YWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVxdWVzdBIZChFjbGllbnRfcmVx",
-          "dWVzdF9pZBgBIAEoBBIUCgxtaWxlc3RvbmVfaWQYAiABKA0i4QEKIkNsYWlt",
-          "VHJpYWxKb3VybmFsTWlsZXN0b25lUmVzcG9uc2USJgoNZXJyb3JfbWVzc2Fn",
-          "ZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEicKCHNuYXBzaG90GAIgASgLMhUu",
-          "VHJpYWxKb3VybmFsU25hcHNob3QSEAoIcmVwbGF5ZWQYAyABKAgSGgoSZ3Jh",
-          "bnRlZF9zYW5kX2NvdW50GAQgASgNEh0KFWdyYW50ZWRfdm91Y2hlcl9jb3Vu",
-          "dBgFIAEoDRIdChVncmFudGVkX2FwcGVhcmFuY2VfaWQYBiABKAkiXwohUmVk",
-          "ZWVtQm91bmRBcnRpZmFjdFZvdWNoZXJSZXF1ZXN0EhkKEWNsaWVudF9yZXF1",
-          "ZXN0X2lkGAEgASgEEh8KF2FydGlmYWN0X2l0ZW1fY29uZmlnX2lkGAIgASgN",
-          "IsEBCiJSZWRlZW1Cb3VuZEFydGlmYWN0Vm91Y2hlclJlc3BvbnNlEiYKDWVy",
-          "cm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZRInCghzbmFwc2hv",
-          "dBgCIAEoCzIVLlRyaWFsSm91cm5hbFNuYXBzaG90EhAKCHJlcGxheWVkGAMg",
-          "ASgIEhcKD2NyZWF0ZWRfaXRlbV9pZBgEIAEoBBIfChdhcnRpZmFjdF9pdGVt",
-          "X2NvbmZpZ19pZBgFIAEoDTK/AgodU2NlbmVUcmlhbEpvdXJuYWxDbGllbnRQ",
-          "bGF5ZXISRAoPR2V0VHJpYWxKb3VybmFsEhcuR2V0VHJpYWxKb3VybmFsUmVx",
-          "dWVzdBoYLkdldFRyaWFsSm91cm5hbFJlc3BvbnNlEmUKGkNsYWltVHJpYWxK",
-          "b3VybmFsTWlsZXN0b25lEiIuQ2xhaW1UcmlhbEpvdXJuYWxNaWxlc3RvbmVS",
-          "ZXF1ZXN0GiMuQ2xhaW1UcmlhbEpvdXJuYWxNaWxlc3RvbmVSZXNwb25zZRJl",
-          "ChpSZWRlZW1Cb3VuZEFydGlmYWN0Vm91Y2hlchIiLlJlZGVlbUJvdW5kQXJ0",
-          "aWZhY3RWb3VjaGVyUmVxdWVzdBojLlJlZGVlbUJvdW5kQXJ0aWZhY3RWb3Vj",
-          "aGVyUmVzcG9uc2UaCoCowwEBiKjDAQFCDloFc2NlbmWAAQGY1GEDYgZwcm90",
-          "bzM="));
+          "dHMYDSADKAsyHi5UcmlhbFJlZGVlbWFibGVBcnRpZmFjdE9wdGlvbhIgChho",
+          "YXJkX2Jvc3NfdHJpYWxfdW5sb2NrZWQYDiABKAgiGAoWR2V0VHJpYWxKb3Vy",
+          "bmFsUmVxdWVzdCJqChdHZXRUcmlhbEpvdXJuYWxSZXNwb25zZRImCg1lcnJv",
+          "cl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJwoIc25hcHNob3QY",
+          "AiABKAsyFS5UcmlhbEpvdXJuYWxTbmFwc2hvdCJUCiFDbGFpbVRyaWFsSm91",
+          "cm5hbE1pbGVzdG9uZVJlcXVlc3QSGQoRY2xpZW50X3JlcXVlc3RfaWQYASAB",
+          "KAQSFAoMbWlsZXN0b25lX2lkGAIgASgNIuEBCiJDbGFpbVRyaWFsSm91cm5h",
+          "bE1pbGVzdG9uZVJlc3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5U",
+          "aXBJbmZvTWVzc2FnZRInCghzbmFwc2hvdBgCIAEoCzIVLlRyaWFsSm91cm5h",
+          "bFNuYXBzaG90EhAKCHJlcGxheWVkGAMgASgIEhoKEmdyYW50ZWRfc2FuZF9j",
+          "b3VudBgEIAEoDRIdChVncmFudGVkX3ZvdWNoZXJfY291bnQYBSABKA0SHQoV",
+          "Z3JhbnRlZF9hcHBlYXJhbmNlX2lkGAYgASgJIl8KIVJlZGVlbUJvdW5kQXJ0",
+          "aWZhY3RWb3VjaGVyUmVxdWVzdBIZChFjbGllbnRfcmVxdWVzdF9pZBgBIAEo",
+          "BBIfChdhcnRpZmFjdF9pdGVtX2NvbmZpZ19pZBgCIAEoDSLBAQoiUmVkZWVt",
+          "Qm91bmRBcnRpZmFjdFZvdWNoZXJSZXNwb25zZRImCg1lcnJvcl9tZXNzYWdl",
+          "GAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJwoIc25hcHNob3QYAiABKAsyFS5U",
+          "cmlhbEpvdXJuYWxTbmFwc2hvdBIQCghyZXBsYXllZBgDIAEoCBIXCg9jcmVh",
+          "dGVkX2l0ZW1faWQYBCABKAQSHwoXYXJ0aWZhY3RfaXRlbV9jb25maWdfaWQY",
+          "BSABKA0yvwIKHVNjZW5lVHJpYWxKb3VybmFsQ2xpZW50UGxheWVyEkQKD0dl",
+          "dFRyaWFsSm91cm5hbBIXLkdldFRyaWFsSm91cm5hbFJlcXVlc3QaGC5HZXRU",
+          "cmlhbEpvdXJuYWxSZXNwb25zZRJlChpDbGFpbVRyaWFsSm91cm5hbE1pbGVz",
+          "dG9uZRIiLkNsYWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVxdWVzdBojLkNs",
+          "YWltVHJpYWxKb3VybmFsTWlsZXN0b25lUmVzcG9uc2USZQoaUmVkZWVtQm91",
+          "bmRBcnRpZmFjdFZvdWNoZXISIi5SZWRlZW1Cb3VuZEFydGlmYWN0Vm91Y2hl",
+          "clJlcXVlc3QaIy5SZWRlZW1Cb3VuZEFydGlmYWN0Vm91Y2hlclJlc3BvbnNl",
+          "GgqAqMMBAYiowwEBQg5aBXNjZW5lgAEBmNRhA2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::PlayerTrialJournalCompReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -103,7 +103,7 @@ public static partial class PlayerTrialJournalReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalChapterView), global::TrialJournalChapterView.Parser, new[]{ "ChapterId", "SeasonId", "ChapterName", "LitSealCount", "TotalSealCount", "Entries" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalMilestoneView), global::TrialJournalMilestoneView.Parser, new[]{ "MilestoneId", "ScopeChapterId", "SeasonId", "RequiredSeals", "CurrentSeals", "Title", "Desc", "BoundSandCount", "BoundArtifactVoucherCount", "BadgeKey", "BadgeName", "CommentaryKey", "CommentaryTitle", "CommentaryBody", "GrantAppearanceId", "GrantAppearanceName", "Reached", "Claimed", "Claimable" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialRedeemableArtifactOption), global::TrialRedeemableArtifactOption.Parser, new[]{ "ItemConfigId", "ArtifactEffectId", "Name", "Description", "IconKey", "OwnedCount" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalSnapshot), global::TrialJournalSnapshot.Parser, new[]{ "Available", "UnavailableReason", "StateRevision", "ServerNowMs", "TotalPermanentLitSeals", "TotalPermanentSeals", "VoucherBalance", "BoundSandBalance", "CanOperate", "ActionUnavailableReason", "Chapters", "Milestones", "RedeemableArtifacts" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalSnapshot), global::TrialJournalSnapshot.Parser, new[]{ "Available", "UnavailableReason", "StateRevision", "ServerNowMs", "TotalPermanentLitSeals", "TotalPermanentSeals", "VoucherBalance", "BoundSandBalance", "CanOperate", "ActionUnavailableReason", "Chapters", "Milestones", "RedeemableArtifacts", "HardBossTrialUnlocked" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetTrialJournalRequest), global::GetTrialJournalRequest.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::GetTrialJournalResponse), global::GetTrialJournalResponse.Parser, new[]{ "ErrorMessage", "Snapshot" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ClaimTrialJournalMilestoneRequest), global::ClaimTrialJournalMilestoneRequest.Parser, new[]{ "ClientRequestId", "MilestoneId" }, null, null, null, null),
@@ -3243,6 +3243,7 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
     chapters_ = other.chapters_.Clone();
     milestones_ = other.milestones_.Clone();
     redeemableArtifacts_ = other.redeemableArtifacts_.Clone();
+    hardBossTrialUnlocked_ = other.hardBossTrialUnlocked_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -3411,6 +3412,21 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
     get { return redeemableArtifacts_; }
   }
 
+  /// <summary>Field number for the "hard_boss_trial_unlocked" field.</summary>
+  public const int HardBossTrialUnlockedFieldNumber = 14;
+  private bool hardBossTrialUnlocked_;
+  /// <summary>
+  /// true = 本角色已通关任意普通难度首领试炼，具备困难难度首领试炼准入资格（组队困难需全员均为 true）。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HardBossTrialUnlocked {
+    get { return hardBossTrialUnlocked_; }
+    set {
+      hardBossTrialUnlocked_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -3439,6 +3455,7 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
     if(!chapters_.Equals(other.chapters_)) return false;
     if(!milestones_.Equals(other.milestones_)) return false;
     if(!redeemableArtifacts_.Equals(other.redeemableArtifacts_)) return false;
+    if (HardBossTrialUnlocked != other.HardBossTrialUnlocked) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -3459,6 +3476,7 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
     hash ^= chapters_.GetHashCode();
     hash ^= milestones_.GetHashCode();
     hash ^= redeemableArtifacts_.GetHashCode();
+    if (HardBossTrialUnlocked != false) hash ^= HardBossTrialUnlocked.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -3520,6 +3538,10 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
     chapters_.WriteTo(output, _repeated_chapters_codec);
     milestones_.WriteTo(output, _repeated_milestones_codec);
     redeemableArtifacts_.WriteTo(output, _repeated_redeemableArtifacts_codec);
+    if (HardBossTrialUnlocked != false) {
+      output.WriteRawTag(112);
+      output.WriteBool(HardBossTrialUnlocked);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -3573,6 +3595,10 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
     chapters_.WriteTo(ref output, _repeated_chapters_codec);
     milestones_.WriteTo(ref output, _repeated_milestones_codec);
     redeemableArtifacts_.WriteTo(ref output, _repeated_redeemableArtifacts_codec);
+    if (HardBossTrialUnlocked != false) {
+      output.WriteRawTag(112);
+      output.WriteBool(HardBossTrialUnlocked);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -3616,6 +3642,9 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
     size += chapters_.CalculateSize(_repeated_chapters_codec);
     size += milestones_.CalculateSize(_repeated_milestones_codec);
     size += redeemableArtifacts_.CalculateSize(_repeated_redeemableArtifacts_codec);
+    if (HardBossTrialUnlocked != false) {
+      size += 1 + 1;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -3661,6 +3690,9 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
     chapters_.Add(other.chapters_);
     milestones_.Add(other.milestones_);
     redeemableArtifacts_.Add(other.redeemableArtifacts_);
+    if (other.HardBossTrialUnlocked != false) {
+      HardBossTrialUnlocked = other.HardBossTrialUnlocked;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -3732,6 +3764,10 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
           redeemableArtifacts_.AddEntriesFrom(input, _repeated_redeemableArtifacts_codec);
           break;
         }
+        case 112: {
+          HardBossTrialUnlocked = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -3801,6 +3837,10 @@ public sealed partial class TrialJournalSnapshot : pb::IMessage<TrialJournalSnap
         }
         case 106: {
           redeemableArtifacts_.AddEntriesFrom(ref input, _repeated_redeemableArtifacts_codec);
+          break;
+        }
+        case 112: {
+          HardBossTrialUnlocked = input.ReadBool();
           break;
         }
       }

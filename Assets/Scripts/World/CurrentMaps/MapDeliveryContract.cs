@@ -108,6 +108,9 @@ namespace MmorpgClient.World.CurrentMaps
     {
         public string key, name, revision, defaultAppearance;
         public uint sceneId;
+        // 临时复用已有正式图资产（如新主城出图前 sceneId=1 复用碧渊水宫），缺省与 key/sceneId 一致。
+        public string assetKey;
+        public uint assetSceneId;
         // Client-only identities are not authoritative server scene registrations.
         public bool clientOnly;
         public MapAppearanceDelivery[] appearances;
@@ -115,12 +118,18 @@ namespace MmorpgClient.World.CurrentMaps
         // Earlier schemaVersion2 catalogs did not serialize a default and selected normal.
         // A holiday-only formal delivery must opt in explicitly rather than invent normal art.
         public string DefaultAppearance => string.IsNullOrEmpty(defaultAppearance) ? "normal" : defaultAppearance;
+        public string AssetKey => string.IsNullOrEmpty(assetKey) ? key : assetKey;
+        public uint AssetSceneId => assetSceneId != 0 ? assetSceneId : sceneId;
 
         public void Validate()
         {
             if (sceneId == 0 || !MapDeliveryContract.IsKey(key) || string.IsNullOrWhiteSpace(name) ||
                 !MapDeliveryContract.IsKey(revision) || appearances == null || appearances.Length == 0)
                 throw new InvalidOperationException("Map identity, authoritative sceneId, revision and appearances are required.");
+            if (!string.IsNullOrEmpty(assetKey) && !MapDeliveryContract.IsKey(assetKey))
+                throw new InvalidOperationException("Invalid shared map assetKey.");
+            if (!string.IsNullOrEmpty(assetKey) && assetSceneId == 0)
+                throw new InvalidOperationException("Shared map assetKey requires non-zero assetSceneId.");
             var ids = new HashSet<string>(StringComparer.Ordinal);
             var roots = new HashSet<string>(StringComparer.Ordinal);
             foreach (var appearance in appearances)
@@ -130,7 +139,7 @@ namespace MmorpgClient.World.CurrentMaps
                     appearance.artStatus != "formal_art_delivery" ||
                     !MapDeliveryContract.IsResourcePath(appearance.resourceRoot, true) ||
                     !MapDeliveryContract.IsSha256(appearance.layoutSha256) || appearance.resourceRoot !=
-                        MapDeliveryContract.ResourceRoot + key + "/" + revision + "/" + appearance.id + "/" + appearance.layoutSha256 + "/")
+                        MapDeliveryContract.ResourceRoot + AssetKey + "/" + revision + "/" + appearance.id + "/" + appearance.layoutSha256 + "/")
                     throw new InvalidOperationException("Only explicit source-bound formal appearances can enter the runtime catalog.");
             }
             if (!MapDeliveryContract.IsAppearance(DefaultAppearance) || !ids.Contains(DefaultAppearance))
@@ -147,6 +156,7 @@ namespace MmorpgClient.World.CurrentMaps
         public MapDeliveryRegistration Snapshot()
         {
             var copy = new MapDeliveryRegistration { key = key, name = name, revision = revision, sceneId = sceneId,
+                assetKey = assetKey, assetSceneId = assetSceneId,
                 clientOnly = clientOnly,
                 defaultAppearance = defaultAppearance,
                 appearances = new MapAppearanceDelivery[appearances.Length] };

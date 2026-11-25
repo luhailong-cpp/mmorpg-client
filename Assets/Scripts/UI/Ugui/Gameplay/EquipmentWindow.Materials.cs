@@ -8,6 +8,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private uint _materialBatch, _materialCraft, _materialStone;
         private bool _materialSelectionReady;
 
+        public void OpenMaterialRewardModal()
+        {
+            Show();
+            OpenMaterials();
+        }
+
         private void OpenMaterials()
         {
             _modal = Modal.Materials;
@@ -76,7 +82,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Label(_modalLayer, "MaterialChoiceStatus", status, 810, 335, 2350, 125, 44, true, Muted);
             if (snapshot != null && snapshot.Available)
             {
-                Label(_modalLayer, "MaterialChoiceDaily", $"今日已获得 {snapshot.EarnedToday}/{snapshot.DailyLimit} 份 · 两种材料共享份额，未领取份额保留", 810, 465, 2350, 100, 35, true, Muted);
+                string quotaText = snapshot.WeeklyPhaseActive
+                    ? $"本周已获得 {snapshot.EarnedThisWeek}/{snapshot.WeeklyLimit} 份（全绑定）· 未领取份额保留"
+                    : $"首套总池 {snapshot.LifetimeEarned}/{snapshot.LifetimeLimit} 份（无每日限制）· 本批含可交易 {snapshot.BatchTradableUnits} 份";
+                Label(_modalLayer, "MaterialChoiceDaily", quotaText, 810, 465, 2350, 100, 35, true, Muted);
                 RenderMaterialCard(snapshot.CraftingMaterial, true, _materialCraft, 810, editable);
                 RenderMaterialCard(snapshot.EnhancementStone, false, _materialStone, 2130, editable);
             }

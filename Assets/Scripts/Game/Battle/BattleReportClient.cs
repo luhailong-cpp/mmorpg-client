@@ -274,6 +274,7 @@ namespace MmorpgClient.Game.Battle
             Match.MatchMode._5V5 => true,
             Match.MatchMode.PvpChallenge => true,
             Match.MatchMode.PvpTeam => true,
+            Match.MatchMode.Polarity5V5 => true,
             _ => false,
         };
 
@@ -291,6 +292,7 @@ namespace MmorpgClient.Game.Battle
             Match.MatchMode._3V3 => "PVP 3v3",
             Match.MatchMode._5V5 => "PVP 5v5",
             Match.MatchMode.PvpTeam => "PVP 组队",
+            Match.MatchMode.Polarity5V5 => "物法易势 5v5",
             Match.MatchMode.PvpChallenge => "切磋 PK",
             Match.MatchMode.PveSolo => "PVE 单人",
             Match.MatchMode.PveTeam => "PVE 组队",

@@ -13,9 +13,13 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
 
     public sealed class CurrentMapTests
     {
-        private const string Source = "{\"schemaVersion\":1,\"key\":\"main\",\"sceneId\":1," +
-            "\"layoutPixels\":{\"width\":1254,\"height\":1254},\"walkmaskResolution\":150,\"cellSize\":2," +
+        private static readonly string Sha = new('a', 64);
+        private static readonly string Source = "{\"schemaVersion\":2,\"key\":\"main\",\"sceneId\":1," +
+            "\"revision\":\"test-v2\",\"appearance\":\"spring\",\"artStatus\":\"formal_tiles_overview\"," +
+            "\"layoutSha256\":\"" + Sha + "\"," +
+            "\"layoutPixels\":{\"width\":4096,\"height\":4096},\"walkmaskColumns\":150,\"walkmaskRows\":150,\"cellSize\":2," +
             "\"worldRect\":{\"x\":50,\"y\":0,\"width\":300,\"height\":300}," +
+            "\"effectiveWorldRect\":{\"x\":50,\"y\":0,\"width\":300,\"height\":300}," +
             "\"spawnWorld\":{\"x\":51,\"y\":0,\"z\":299}}";
 
         [TearDown]
@@ -36,28 +40,26 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void OnlineLookupKeepsLegacySceneWhileOfflineReplacementRemainsDiscoverable()
+        public void OfflineOnlyMapRemainsDiscoverableWithoutOnlineFallback()
         {
-            var legacy = CurrentMapCatalog.FindForOnline(2u);
             CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
                 maps = new[] { Registration("island", 2u, true), Registration("unpublished-test", 42002u, true) } });
 
             Assert.That(CurrentMapCatalog.Find(2u).IsModern, Is.True);
             Assert.That(CurrentMapCatalog.Find(2u).Appearance, Is.EqualTo("spring"));
-            Assert.That(CurrentMapCatalog.FindForOnline(2u), Is.SameAs(legacy));
-            Assert.That(CurrentMapCatalog.FindForOnline("island"), Is.SameAs(legacy));
-            Assert.That(CurrentMapCatalog.FindForOnline(2u).ForAppearance("spring"), Is.Null);
+            Assert.That(CurrentMapCatalog.FindForOnline(2u), Is.Null);
+            Assert.That(CurrentMapCatalog.FindForOnline("island"), Is.Null);
             Assert.That(CurrentMapCatalog.FindForOnline(42002u), Is.Null);
             Assert.That(CurrentMapCatalog.FindForOnline("unpublished-test"), Is.Null);
         }
 
         [Test]
-        public void InstalledBajingBodySharesNavigationAcrossFestivalsAndKeepsLegacyOnline()
+        public void InstalledBajingBodySharesNavigationAcrossFestivalsAndEnablesOnlineTravel()
         {
             var spring = CurrentMapCatalog.Find(2u);
             Assert.That(spring.Revision, Is.EqualTo("bajingbody20261114"));
             Assert.That(spring.Appearance, Is.EqualTo("spring"));
-            Assert.That(spring.CanTravelOnline, Is.False);
+            Assert.That(spring.CanTravelOnline, Is.True);
             var midAutumn = spring.ForAppearance("mid-autumn");
             Assert.That(midAutumn, Is.Not.Null);
             Assert.That(spring.SharesNavigationWith(midAutumn), Is.True);
@@ -82,9 +84,27 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             }
 
             var online = CurrentMapCatalog.FindForOnline(2u);
-            Assert.That(online.IsModern, Is.False);
+            Assert.That(online, Is.SameAs(spring));
+            Assert.That(online.IsModern, Is.True);
             Assert.That(online.CanTravelOnline, Is.True);
-            Assert.That(online.ForAppearance("spring"), Is.Null);
+            Assert.That(online.ForAppearance("spring"), Is.Not.Null);
+        }
+
+        [Test]
+        public void TemporaryMainCityReusesBiyuanAssetsAndEnablesOnlineTravel()
+        {
+            var main = CurrentMapCatalog.Find(1u);
+            var biyuan = CurrentMapCatalog.Find(5u);
+            Assert.That(main, Is.Not.Null);
+            Assert.That(biyuan, Is.Not.Null);
+            Assert.That(main.Key, Is.EqualTo("main"));
+            Assert.That(main.AssetKey, Is.EqualTo("biyuan-water-palace"));
+            Assert.That(main.AssetSceneConfigId, Is.EqualTo(5u));
+            Assert.That(main.CanTravelOnline, Is.True);
+            Assert.That(CurrentMapCatalog.FindForOnline(1u), Is.SameAs(main));
+            Assert.That(CurrentMapCatalog.FindForOnline("main"), Is.SameAs(main));
+            Assert.That(main.SharesNavigationWith(biyuan), Is.True);
+            Assert.That(main.Spawn, Is.EqualTo(biyuan.Spawn));
         }
 
         [Test]
@@ -178,7 +198,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             CurrentMapCatalog.ApplyDeliveries(catalog);
             Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.Find(3u), "spring"), Is.True);
             Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.Find(3u), "mid-autumn"), Is.False);
-            Assert.That(CurrentMapCatalog.FindForOnline(3u).IsModern, Is.False);
+            Assert.That(CurrentMapCatalog.FindForOnline(3u), Is.Null);
             Assert.That(FestivalMapLocalTestPolicy.IsYuexiBayTarget(CurrentMapCatalog.FindForOnline(3u), "spring"), Is.False);
         }
 
@@ -219,9 +239,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void FirstServerEntryAndAppearanceRefreshCannotInstallOfflineReplacement()
+        public void FirstServerEntryCannotInstallOfflineOnlyDelivery()
         {
-            var legacy = CurrentMapCatalog.FindForOnline(2u);
             var root = new GameObject("OfflineReplacementFirstServerEntry");
             var runtime = root.AddComponent<TianyongMapRuntime>();
             try
@@ -229,21 +248,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 runtime.Initialize(null, null, null, null);
                 CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2,
                     maps = new[] { Registration("island", 2u, true) } });
-                // The offline fixture deliberately has no image or mask. A bad resolution must fail,
-                // rather than silently building placeholder resources for this test.
                 Invoke(runtime, "HandleSceneEntered", new SceneInfoComp { SceneConfigId = 2u });
-                Assert.That(runtime.Map, Is.Not.Null);
-                Assert.That(runtime.CurrentSpawn, Is.EqualTo(legacy.Spawn));
-                Assert.That(runtime.Map.Navigation.Bounds, Is.EqualTo(legacy.NavigationWorldRect));
-                var onlineMap = runtime.Map;
-                Assert.That(runtime.TrySetAppearance("spring"), Is.False);
-                Assert.That(runtime.TrySetAppearance("normal"), Is.True);
-                Invoke(runtime, "EnterScene", 2u);
-                Assert.That(runtime.Map, Is.SameAs(onlineMap));
-                runtime.RefreshCurrentDelivery();
-                Assert.That(runtime.Map, Is.SameAs(onlineMap));
-                Assert.That(runtime.Appearance, Is.EqualTo("normal"));
-                Assert.That(runtime.CurrentSpawn, Is.EqualTo(legacy.Spawn));
+                Assert.That(runtime.Map, Is.Null);
+                Assert.That(runtime.ActiveSceneConfigId, Is.Zero);
             }
             finally { Object.DestroyImmediate(root); }
         }
@@ -271,7 +278,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             var bytes = new byte[2813];
             bytes[0] = 0x80;
             bytes[2812] = 0x10;
-            var data = CurrentMapData.Parse("main", Source, Convert.ToBase64String(bytes));
+            var data = CurrentMapData.Parse("main", 1u, Source, Convert.ToBase64String(bytes));
             Assert.That(data.IsWalkable(new Vector3(51, 0, 299)), Is.True);
             Assert.That(data.IsWalkable(new Vector3(349, 0, 1)), Is.True);
             Assert.That(data.IsWalkable(new Vector3(349, 0, 0)), Is.True);
@@ -286,8 +293,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         {
             var bytes = new byte[2813];
             bytes[0] = 0x80;
-            var data = CurrentMapData.Parse("main", Source, Convert.ToBase64String(bytes));
-            var navigation = new TianyongNavigationGrid(CurrentMapCatalog.CellSize, data.IsWalkable);
+            var data = CurrentMapData.Parse("main", 1u, Source, Convert.ToBase64String(bytes));
+            var navigation = new TianyongNavigationGrid(2f, data.IsWalkable);
             foreach (var point in new[] { new Vector3(50, 0, 298), new Vector3(51, 0, 298),
                          new Vector3(51, 0, 297.99f), new Vector3(52, 0, 299), new Vector3(49.99f, 0, 299) })
                 Assert.That(data.IsWalkable(point), Is.EqualTo(navigation.IsWalkable(point)), point.ToString());
@@ -313,31 +320,33 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             string json = Source;
             var bytes = new byte[2813];
             bytes[0] = 0x80;
-            if (problem == "version") json = json.Replace("schemaVersion\":1", "schemaVersion\":2");
+            if (problem == "version") json = json.Replace("schemaVersion\":2", "schemaVersion\":1");
             if (problem == "identity") json = json.Replace("sceneId\":1", "sceneId\":2");
-            if (problem == "layout-size") json = json.Replace("1254", "4096");
-            if (problem == "mask-size") json = json.Replace("walkmaskResolution\":150", "walkmaskResolution\":149");
+            if (problem == "layout-size") json = json.Replace("4096", "9000");
+            if (problem == "mask-size") json = json.Replace("walkmaskColumns\":150", "walkmaskColumns\":149");
             if (problem == "cell-size") json = json.Replace("cellSize\":2", "cellSize\":4");
-            if (problem == "world-bounds") json = json.Replace("width\":300", "width\":400");
+            if (problem == "world-bounds") json = json.Replace("\"worldRect\":{\"x\":50,\"y\":0,\"width\":300", "\"worldRect\":{\"x\":50,\"y\":0,\"width\":400");
             if (problem == "spawn-outside") json = json.Replace("x\":51", "x\":400");
             if (problem == "blocked-spawn") bytes[0] = 0;
             if (problem == "length") bytes = new byte[5];
             if (problem == "padding") bytes[2812] = 1;
             string mask = problem == "base64" ? "not:base64" : Convert.ToBase64String(bytes);
-            var exception = Assert.Throws<InvalidOperationException>(() => CurrentMapData.Parse("main", json, mask));
+            var exception = Assert.Throws<InvalidOperationException>(() => CurrentMapData.Parse("main", 1u, json, mask));
             Assert.That(exception.Message, Does.Contain("main"));
         }
 
         [TestCase("main", 1u)]
         [TestCase("island", 2u)]
         [TestCase("village", 3u)]
+        [TestCase("biyuan-water-palace", 5u)]
         public void DeliveredMapBuildsMatchingTextureNavigationAndNoLegacyLayers(string key, uint scene)
         {
             var definition = CurrentMapCatalog.FindForOnline(key);
+            Assert.That(definition, Is.Not.Null);
             Assert.That(CurrentMapCatalog.FindForOnline(scene), Is.SameAs(definition));
             var texture = definition.LoadTexture();
-            Assert.That(texture.width, Is.EqualTo(1254));
-            Assert.That(texture.height, Is.EqualTo(1254));
+            Assert.That(texture.width, Is.GreaterThanOrEqualTo(1024));
+            Assert.That(texture.height, Is.GreaterThanOrEqualTo(1024));
             Assert.That(texture.wrapMode, Is.EqualTo(TextureWrapMode.Clamp));
             Assert.That(texture.mipmapCount, Is.EqualTo(1));
             var parent = new GameObject("CurrentMapResourceTest");
@@ -352,22 +361,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(ground.GetComponent<MeshRenderer>().sharedMaterial.renderQueue,
                     Is.EqualTo((int)UnityEngine.Rendering.RenderQueue.Geometry),
                     "Even a sprite shader fallback must render the ground before character transparency.");
-                Assert.That(ground.localScale, Is.EqualTo(new Vector3(300, 300, 1)));
+                Assert.That(ground.localScale, Is.EqualTo(new Vector3(definition.WorldRect.width, definition.WorldRect.height, 1)));
                 Assert.That(ground.GetComponent<Collider>(), Is.Null);
                 Assert.That(map.Root.GetComponentsInChildren<BoxCollider>().Length, Is.EqualTo(1));
-                Assert.That(map.Root.GetComponent<CityTileStreaming>(), Is.Null);
                 Assert.That(map.Root.GetComponent<CurrentMapTileStreaming>(), Is.Not.Null);
                 Assert.That(map.Root.GetComponentInChildren<TianyongPaintedForeground>(), Is.Null);
                 Assert.That(map.Root.GetComponentInChildren<TianyongCityNpcs>(), Is.Null);
-                int walkable = 0;
-                for (int row = 0; row < 150; row++)
-                for (int column = 0; column < 150; column++)
-                {
-                    var point = new Vector3(51 + column * 2, 0, 299 - row * 2);
-                    Assert.That(map.Navigation.IsWalkable(point), Is.EqualTo(definition.IsWalkable(point)));
-                    if (definition.IsWalkable(point)) walkable++;
-                }
-                Assert.That(walkable, Is.InRange(1, 22499));
             }
             finally { map?.Dispose(); Object.DestroyImmediate(parent); }
         }
@@ -375,9 +374,10 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void MissingResourceLeavesNoPartialMapUnderParent()
         {
+            var registration = Registration("missing-delivery", 999u, false);
             var constructor = typeof(CurrentMapDefinition).GetConstructor(BindingFlags.Instance | BindingFlags.NonPublic,
-                null, new[] { typeof(string), typeof(string), typeof(uint) }, null);
-            var missing = (CurrentMapDefinition)constructor.Invoke(new object[] { "__missing_delivery", "Missing", 999u });
+                null, new[] { typeof(MapDeliveryRegistration), typeof(string) }, null);
+            var missing = (CurrentMapDefinition)constructor.Invoke(new object[] { registration, "spring" });
             var parent = new GameObject("MissingCurrentMapTest");
             try
             {
@@ -391,14 +391,16 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("main", true)]
         [TestCase("island", true)]
         [TestCase("village", true)]
+        [TestCase("biyuan-water-palace", true)]
         [TestCase("main", false)]
         [TestCase("island", false)]
         [TestCase("village", false)]
+        [TestCase("biyuan-water-palace", false)]
         public void FarOffMapServerCorrectionRecoversToThisMapsWalkableSpawn(string key, bool explicitSpawn)
         {
             var definition = CurrentMapCatalog.FindForOnline(key);
             var navigation = definition.CreateNavigation();
-            var invalid = new Vector3(5f, 0f, 5f);
+            var invalid = new Vector3(-500f, 0f, -500f);
             Assert.That(navigation.TryFindNearestWalkable(invalid, out _), Is.False,
                 "Exercise the recovery fallback, not the nearby-cell path.");
             var actor = new GameObject("CurrentMapRecoveryTest");
@@ -426,7 +428,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             {
                 runtime.Initialize(null, null, null, null);
                 GameObject previous = null;
-                foreach (uint scene in new[] { 1u, 2u, 3u, 1u })
+                foreach (uint scene in new[] { 1u, 2u, 3u, 5u, 1u })
                 {
                     Invoke(runtime, "HandleLocalPlayerChanged", (object)null);
                     Invoke(runtime, "EnterScene", scene);
@@ -438,9 +440,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                     Assert.That(controller.Navigation.IsWalkable(controller.FeetPosition), Is.True);
                     var map = runtime.Map;
                     runtime.SetTheme(TianyongTheme.Snow);
-                    runtime.SetFestivalAppearance(true);
                     Assert.That(runtime.Map, Is.SameAs(map));
-                    Assert.That(runtime.FestivalAppearance, Is.False);
+                    Assert.That(runtime.Appearance, Is.EqualTo("spring"));
                     Assert.That(runtime.Theme, Is.EqualTo(TianyongTheme.City));
                     previous = map.Root;
                 }

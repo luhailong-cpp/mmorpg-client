@@ -189,6 +189,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _equipmentWindow.Show();
             AttributeClient.Instance?.RequestPanel();
         }
+        public void OpenEquipmentPolish(ulong proxyMasterPlayerId = 0)
+        {
+            if (!HasView || !_available) return;
+            PrepareOpen(); _window.Hide(); Changed();
+            _equipmentWindow.Bind(_client, AttributeClient.Instance);
+            _equipmentWindow.OpenPolishForItem(0, proxyMasterPlayerId);
+            AttributeClient.Instance?.RequestPanel();
+        }
+        public void OpenEquipmentMaterials()
+        {
+            if (!HasView || !_available) return;
+            PrepareOpen(); _window.Hide(); Changed();
+            _equipmentWindow.Bind(_client, AttributeClient.Instance);
+            _equipmentWindow.OpenMaterialRewardModal();
+            AttributeClient.Instance?.RequestPanel();
+        }
         private void Toggle(GameplayPage page)
         { if (!HasView) return; if (_window.IsVisible && _window.Page == page) HidePanel(); else Open(page); }
         private void Open(GameplayPage page)

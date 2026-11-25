@@ -239,6 +239,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_windowFit == null) return;
             _windowFit.extraSafeInsetsPx = insetsPx;
+            MarkReadingLayoutDirty();
+            ApplyReadingLayoutIfNeeded();
             _windowFit.Fit();
         }
 
@@ -246,6 +248,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             RefreshStoryScrollLayout();
         }
+
+        public GameObject StepOverlayFocusForVerification(GameObject currentSelected, bool reverse = false)
+            => ResolveNextOverlayFocus(currentSelected, reverse);
 #endif
 
         private void BuildWindow(UnityEngine.Transform canvasRoot)
@@ -280,16 +285,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             AppearanceUiArt.Frame(mainRoot, "AppearanceMainFrame", 0f, 0f,
                 AppearanceUiArt.FrameWidth, AppearanceUiArt.MainBodyHeight);
 
-            // 顶部标题牌 + 太极徽记 + 关闭按钮 + 规则说明
+            // 顶部标题牌 + 副标题牌 + 关闭按钮 + 规则说明
             var titlePlate = AppearanceUiArt.TitlePlate(mainRoot, "AppearanceTitlePlate",
                 722f, -60f, 716f, 145f);
             var mainTitle = QdaoUguiFactory.CreateText("TitleMain", titlePlate.transform,
-                68f, 26f, 580f, 50f, "易 容", 42f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
+                68f, 44f, 580f, 54f, "易 容", 42f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             mainTitle.richText = false;
             mainTitle.fontStyle = FontStyles.Bold;
             var subTitle = QdaoUguiFactory.CreateText("TitleSub", titlePlate.transform,
-                68f, 82f, 580f, 28f, "形象与人物志", 20f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
+                228f, 110f, 260f, 26f, "形象与人物志", 18f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             subTitle.richText = false;
+            subTitle.enableAutoSizing = true;
+            subTitle.fontSizeMin = 13f;
+            subTitle.fontSizeMax = 18f;
 
             var close = AppearanceUiArt.CloseButton(mainRoot, "AppearanceClose",
                 AppearanceUiArt.FrameWidth - 96f, 18f, 76f, HidePanel);
@@ -307,12 +315,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var listHeader = AppearanceUiArt.SectionHeader(mainRoot, "AppearanceListHeader",
                 68f, 148f, 340f, 52f);
             _listCountLabel = QdaoUguiFactory.CreateText("AppearanceListCount", listHeader.transform,
-                38f, 0f, 264f, 52f, "可选形象", 22f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
+                58f, 0f, 224f, 52f, "可选形象", 20f, AppearanceUiArt.WarmCream, TextAlignmentOptions.Center);
             _listCountLabel.richText = false;
             _listCountLabel.fontStyle = FontStyles.Bold;
             _listCountLabel.enableAutoSizing = true;
-            _listCountLabel.fontSizeMin = 15f;
-            _listCountLabel.fontSizeMax = 22f;
+            _listCountLabel.fontSizeMin = 14f;
+            _listCountLabel.fontSizeMax = 20f;
 
             var listViewport = QdaoUguiFactory.CreateRect("AppearanceListViewport", mainRoot, 68f, 210f, 594f, 660f);
             var listHit = listViewport.gameObject.AddComponent<Image>();
@@ -502,7 +510,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 "", 23f, AppearanceUiArt.JadeInk, TextAlignmentOptions.Center);
             _confirmOldName.richText = false;
 
-            var arrow = QdaoUguiFactory.CreateText("SwitchArrow", box, 420f, 148f, 140f, 70f,
+            var arrow = QdaoUguiFactory.CreateText("SwitchArrow", box, 420f, 118f, 140f, 68f,
                 "→", 56f, QdaoUguiTheme.Html("#B28436"), TextAlignmentOptions.Center);
             arrow.richText = false;
             arrow.fontStyle = FontStyles.Bold;
@@ -658,9 +666,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _storyBodyText.paragraphSpacing = 18f;
             _lastStoryBodyFontSize = _storyBodyText.fontSize;
 
-            // 底部：读完返回
+            // 底部：查看形象（在 BuildReadingOverlays 挂载）+ 读完返回
             _storyFinishBtn = AppearanceUiArt.ActionButton(box, "AppearanceStoryFinish",
-                "读完返回", (w - 320f) * 0.5f, 706f, 320f, 68f,
+                "读完返回", 668f, 706f, 320f, 68f,
                 () => HandleCloseStory(AppearanceStoryCloseReason.Finished), primary: true, fontSize: 27f);
 
             _storyControls = new Selectable[] { _storyBackBtn, _storyFinishBtn, _storySkipBtn };
@@ -699,8 +707,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 RefreshSeriesEpilogueScrollLayout();
             }
             HandleOverlayInputAndFocus();
-            ApplyReadingLayout();
-            ConfigureModalNavigation();
+            ApplyReadingLayoutIfNeeded();
         }
 
         private void OnDisable()
@@ -878,7 +885,8 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 else if (_compactLayout && _compactDetail)
                 {
                     _compactDetail = false;
-                    ApplyReadingLayout();
+                    MarkReadingLayoutDirty();
+                    ApplyReadingLayoutIfNeeded();
                     Canvas.ForceUpdateCanvases();
                     RestoreListScrollPosition();
                 }
@@ -892,15 +900,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (system == null || controls == null || controls.Length == 0) return;
 
             var selected = system.currentSelectedGameObject;
-            int index = -1;
-            for (int i = 0; i < controls.Length; i++)
-            {
-                if (controls[i] != null && controls[i].gameObject == selected && controls[i].interactable)
-                {
-                    index = i;
-                    break;
-                }
-            }
+            int index = FindSelectedFocusableIndex(controls, selected);
             if (index < 0)
             {
                 FocusFirstControlOfActiveOverlay();
@@ -908,10 +908,53 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             }
             if (tab)
             {
-                int next = (index + (reverse ? controls.Length - 1 : 1)) % controls.Length;
-                if (controls[next] != null && controls[next].interactable)
-                    system.SetSelectedGameObject(controls[next].gameObject);
+                StepActiveOverlayFocus(reverse);
             }
+        }
+
+        private static bool IsFocusableControl(Selectable control)
+            => control != null && control.gameObject.activeInHierarchy && control.interactable;
+
+        private static int FindSelectedFocusableIndex(Selectable[] controls, GameObject selected)
+        {
+            if (controls == null || selected == null) return -1;
+            for (int i = 0; i < controls.Length; i++)
+            {
+                if (IsFocusableControl(controls[i]) && controls[i].gameObject == selected)
+                    return i;
+            }
+            return -1;
+        }
+
+        private GameObject ResolveNextOverlayFocus(GameObject currentSelected, bool reverse)
+        {
+            var controls = ActiveOverlayControls();
+            if (controls == null || controls.Length == 0) return null;
+            int index = FindSelectedFocusableIndex(controls, currentSelected);
+            if (index < 0)
+            {
+                for (int i = 0; i < controls.Length; i++)
+                    if (IsFocusableControl(controls[i])) return controls[i].gameObject;
+                return null;
+            }
+            int step = reverse ? -1 : 1;
+            for (int offset = 1; offset <= controls.Length; offset++)
+            {
+                int candidate = (index + offset * step + controls.Length) % controls.Length;
+                if (IsFocusableControl(controls[candidate]))
+                    return controls[candidate].gameObject;
+            }
+            return null;
+        }
+
+        private bool StepActiveOverlayFocus(bool reverse)
+        {
+            var system = EventSystem.current;
+            if (system == null) return false;
+            var next = ResolveNextOverlayFocus(system.currentSelectedGameObject, reverse);
+            if (next == null) return false;
+            system.SetSelectedGameObject(next);
+            return true;
         }
 
         private Selectable[] ActiveOverlayControls() => _state.ActiveOverlay switch
@@ -1199,7 +1242,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 _mainPanelGroup.interactable = !blocked;
                 _mainPanelGroup.blocksRaycasts = !blocked;
             }
-            ApplyReadingLayout();
+            MarkReadingLayoutDirty();
+            ApplyReadingLayoutIfNeeded();
+            ConfigureModalNavigation();
         }
 
         private void SyncListRows(PlayerAppearanceInfo info, IReadOnlyList<CharacterAppearanceEntry> visibleEntries)
@@ -1433,17 +1478,37 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             return lease?.Sprite;
         }
 
-        private void UpdateTrialCountdownText()
+        private void UpdateTrialCountdownText(bool force = false)
         {
             if (_trialBannerRoot == null || _trialCountdownText == null) return;
             bool active = _client != null && _client.HasActiveTrial;
             ulong remaining = active ? _client.TrialRemainingSeconds : 0ul;
-            if (active == _lastCountdownActive && remaining == _lastCountdownSeconds) return;
+            if (!force && active == _lastCountdownActive && remaining == _lastCountdownSeconds) return;
+            bool activeChanged = active != _lastCountdownActive;
             _lastCountdownActive = active;
             _lastCountdownSeconds = remaining;
-            _trialBannerRoot.SetActive(active);
+            bool showBanner = active && (!_compactLayout || _compactDetail);
+            _trialBannerRoot.SetActive(showBanner);
             if (active)
-                _trialCountdownText.text = $"试用中 · 剩余 {AppearanceModels.FormatTrialCountdown(remaining)}";
+            {
+                string countdown = AppearanceModels.FormatTrialCountdown(remaining);
+                bool viewingTrialTarget = _client?.Info != null &&
+                    _client.Info.TrialAppearanceId == _state.SelectedAppearanceId;
+                if (_compactLayout && !viewingTrialTarget && _client?.Info != null)
+                {
+                    string trialName = ResolveEntryName(_client.Info, _client.Info.TrialAppearanceId);
+                    _trialCountdownText.text = $"试用 {trialName} · 剩 {countdown}";
+                }
+                else
+                {
+                    _trialCountdownText.text = _compactLayout
+                        ? $"试用中 · 剩 {countdown}"
+                        : $"试用中 · 剩余 {countdown}";
+                }
+                if (_compactLayout && viewingTrialTarget && _previewStatus != null)
+                    _previewStatus.text = "试用中 · 剩余 " + countdown;
+            }
+            if (activeChanged) MarkReadingLayoutDirty();
         }
 
         private void UpdateStatusText()

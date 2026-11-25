@@ -184,7 +184,6 @@ namespace MmorpgClient.World.Tianyong
             else
                 CreateSingleImageGround(instance, root.transform, fallback,
                     new Rect(0f, 0f, TianyongMapDefinition.Width, TianyongMapDefinition.Depth));
-            instance.ConfigureCityTiles("tianyong", "festival");
             return true;
         }
 

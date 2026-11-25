@@ -18,9 +18,12 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         private ScrollRect _biographyPageScroll;
         private Image _portraitPageImage;
         private Button _previewButton, _readOnlyRetryButton;
-        private Button _storyCloseButton;
+        private Button _storyViewPortraitBtn, _storyCloseButton;
         private Button _readBeforeConfirm;
         private Selectable[] _biographyControls, _portraitControls;
+        private readonly List<Selectable> _modalNavBuffer = new(8);
+        private string _lastBioText;
+        private float _lastBioScrollW = -1f, _lastBioScrollH = -1f, _lastBioFontSize = -1f;
         private readonly Dictionary<string, QdaoCharacterCatalog.CreationPortraitLease> _portraitLeases = new(StringComparer.Ordinal);
         private object _readingConnection;
         private ulong _readingPlayerId;
@@ -85,11 +88,13 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _portraitOverlay = root.gameObject;
             _portraitOverlay.SetActive(false);
             var storyFrame = _storyOverlay.transform.Find("StoryReaderFrame");
+            _storyViewPortraitBtn = AppearanceUiArt.ActionButton(storyFrame, "StoryViewPortrait", "查看形象",
+                372, 706, 260, 68, HandleViewPortraitClicked, primary: false, fontSize: 26);
             _storyCloseButton = AppearanceUiArt.CloseButton(storyFrame, "StoryCloseWindow", 1246, 698, 76, HidePanel);
-            _storyControls = new Selectable[] { _storyBackBtn, _storyFinishBtn, _storySkipBtn, _storyCloseButton };
+            _storyControls = new Selectable[] { _storyBackBtn, _storyViewPortraitBtn, _storyFinishBtn, _storySkipBtn, _storyCloseButton };
             var confirmFrame = _confirmOverlay.transform.Find("ConfirmDialogFrame");
             _readBeforeConfirm = AppearanceUiArt.ActionButton(confirmFrame, "ReadBeforeSwitch", "先读人物志",
-                350, 204, 280, 64, HandleReadStoryClicked, fontSize: 27);
+                350, 208, 280, 64, HandleReadStoryClicked, fontSize: 27);
             _confirmControls = new Selectable[] { _confirmCancelBtn, _confirmSubmitBtn, _readBeforeConfirm, _confirmCloseBtn };
             ConfigureModalNavigation();
             CaptureReadingLayout();
@@ -156,6 +161,17 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var scrollRect = (RectTransform)_biographyPageScroll.transform;
             float scrollW = scrollRect.sizeDelta.x > 1f ? scrollRect.sizeDelta.x : _biographyPageScroll.viewport.rect.width + 18f;
             float scrollH = scrollRect.sizeDelta.y > 1f ? scrollRect.sizeDelta.y : _biographyPageScroll.viewport.rect.height;
+            if (_lastBioText == _biographyPageBody.text &&
+                Mathf.Approximately(_lastBioScrollW, scrollW) &&
+                Mathf.Approximately(_lastBioScrollH, scrollH) &&
+                Mathf.Approximately(_lastBioFontSize, _biographyPageBody.fontSize))
+            {
+                return;
+            }
+            _lastBioText = _biographyPageBody.text;
+            _lastBioScrollW = scrollW;
+            _lastBioScrollH = scrollH;
+            _lastBioFontSize = _biographyPageBody.fontSize;
             float viewW = Mathf.Max(100f, scrollW - 18f);
             float width = Mathf.Max(100f, viewW - 24f);
             float height = Mathf.Max(scrollH,
@@ -166,24 +182,36 @@ namespace MmorpgClient.UI.Ugui.Gameplay
 
         private void ConfigureModalNavigation()
         {
-            foreach (var controls in new[] { _confirmControls, _noCardControls, _storyControls, _biographyControls, _portraitControls, _seriesEpilogueControls })
+            ConfigureControlRing(_confirmControls);
+            ConfigureControlRing(_noCardControls);
+            ConfigureControlRing(_storyControls);
+            ConfigureControlRing(_biographyControls);
+            ConfigureControlRing(_portraitControls);
+            ConfigureControlRing(_seriesEpilogueControls);
+        }
+
+        private void ConfigureControlRing(Selectable[] controls)
+        {
+            if (controls == null || controls.Length == 0) return;
+            _modalNavBuffer.Clear();
+            for (int i = 0; i < controls.Length; i++)
             {
-                if (controls == null || controls.Length == 0) continue;
-                var enabled = new List<Selectable>();
-                foreach (var item in controls)
-                    if (item != null && item.gameObject.activeSelf && item.interactable) enabled.Add(item);
-                for (int i = 0; i < enabled.Count; i++)
+                var item = controls[i];
+                if (item != null && item.gameObject.activeSelf && item.interactable)
+                    _modalNavBuffer.Add(item);
+            }
+            int count = _modalNavBuffer.Count;
+            for (int i = 0; i < count; i++)
+            {
+                var control = _modalNavBuffer[i];
+                control.navigation = new Navigation
                 {
-                    var control = enabled[i];
-                    control.navigation = new Navigation
-                    {
-                        mode = Navigation.Mode.Explicit,
-                        selectOnDown = enabled[(i + 1) % enabled.Count],
-                        selectOnRight = enabled[(i + 1) % enabled.Count],
-                        selectOnUp = enabled[(i + enabled.Count - 1) % enabled.Count],
-                        selectOnLeft = enabled[(i + enabled.Count - 1) % enabled.Count]
-                    };
-                }
+                    mode = Navigation.Mode.Explicit,
+                    selectOnDown = _modalNavBuffer[(i + 1) % count],
+                    selectOnRight = _modalNavBuffer[(i + 1) % count],
+                    selectOnUp = _modalNavBuffer[(i + count - 1) % count],
+                    selectOnLeft = _modalNavBuffer[(i + count - 1) % count],
+                };
             }
         }
 

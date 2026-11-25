@@ -63,8 +63,7 @@ internal static class Program
             catalog.Validate();
             var historicFestivalKeys = FestivalMapLocalTestPolicy.MapIds.Select(id => "map" + id).ToHashSet(StringComparer.Ordinal);
             var festivalMaps = catalog.maps.Where(map => historicFestivalKeys.Contains(map.key)).ToArray();
-            var legacySceneIds = new[] { 1u, 2u, 3u };
-            int expectedRegisteredScenes = catalog.maps.Select(map => map.sceneId).Union(legacySceneIds).Count();
+            int expectedRegisteredScenes = catalog.maps.Length;
             Check("Real production catalog parses the requested 20261106/07 festival registrations", () =>
             {
                 Require(festivalMaps.Length == expectedMaps);
@@ -75,10 +74,10 @@ internal static class Program
                 Require(CurrentMapCatalog.Find(1u).Key == "main" && CurrentMapCatalog.Find(2u).Key == "island" && CurrentMapCatalog.Find(3u).Key == "village");
             });
 
-            Check("Pending island replacement stays offline while online lookup retains the published legacy island", () =>
+            Check("Pending island replacement stays offline without legacy fallback", () =>
             {
                 var publishedIsland = CurrentMapCatalog.FindForOnline(2u);
-                Require(publishedIsland != null && !publishedIsland.IsModern && publishedIsland.CanTravelOnline);
+                Require(publishedIsland != null && publishedIsland.IsModern && publishedIsland.CanTravelOnline);
                 var pending = festivalMaps[0].Snapshot();
                 pending.key = "island";
                 pending.name = "Synthetic pending island registration";
@@ -94,10 +93,8 @@ internal static class Program
                     var offlineIsland = CurrentMapCatalog.Find(2u);
                     Require(offlineIsland != null && offlineIsland.IsModern && !offlineIsland.CanTravelOnline);
                     Require(offlineIsland.Revision == pending.revision && offlineIsland.Appearance == pending.DefaultAppearance);
-                    Require(ReferenceEquals(CurrentMapCatalog.FindForOnline(2u), publishedIsland));
-                    Require(ReferenceEquals(CurrentMapCatalog.FindForOnline("island"), publishedIsland));
-                    Require(publishedIsland.ForAppearance(pending.DefaultAppearance) == null,
-                        "A pending holiday appearance leaked into the old online island.");
+                    Require(CurrentMapCatalog.FindForOnline(2u) == null);
+                    Require(CurrentMapCatalog.FindForOnline("island") == null);
                     foreach (var registration in festivalMaps)
                     {
                         Require(CurrentMapCatalog.Find(registration.sceneId) != null);

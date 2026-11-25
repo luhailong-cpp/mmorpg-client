@@ -169,6 +169,7 @@ namespace MmorpgClient.UI.Ugui
             _passwordInput.characterLimit = 1024;
             if (QdaoUguiTheme.ResolveFont() == null)
                 throw new MissingReferenceException("The qdao uGUI TMP font asset is missing.");
+            EnsurePassportUi();
             BindEvents();
             BindClientEvents();
 
@@ -237,7 +238,7 @@ namespace MmorpgClient.UI.Ugui
 
         public void Tick(float deltaTime)
         {
-            _ = deltaTime;
+            if (_passportWaitingOpen) { TickPassportWaiting(deltaTime); return; }
             if (LoginUtilityOpen && Input.GetKeyDown(KeyCode.Escape)) CloseLoginUtilities();
         }
 
@@ -533,6 +534,7 @@ namespace MmorpgClient.UI.Ugui
         private void OnDestroy()
         {
             _serverListRequestGen++;
+            CleanupPassportOnDestroy();
             if (_eventsBound)
                 UnbindEvents();
             UnbindClientEvents();
@@ -864,16 +866,26 @@ namespace MmorpgClient.UI.Ugui
             if (zone == null || _app?.GameClient == null) return;
             _busy = true;
             int runId = ++_enterRunId;
-            RefreshVisualState();
+            if (authType == LoginAuthTypes.Passport)
+            {
+                ShowCredentialPanel(false);
+                ShowPassportWaitingDialog(true);
+            }
+            else
+            {
+                RefreshVisualState();
+            }
             SetStatus("正在等待授权…");
             RequestChannel(authType, result =>
             {
                 if (this == null || runId != _enterRunId) return;
+                if (authType == LoginAuthTypes.Passport) ShowPassportWaitingDialog(false);
                 if (!result.Ok)
                 {
                     _busy = false;
                     RefreshVisualState();
-                    SetStatus(PlatformSignIn.DescribeFailure(result.Error));
+                    if (authType == LoginAuthTypes.Passport) HandlePassportSignInFailure(result.Error, forDeletion: false);
+                    else SetStatus(PlatformSignIn.DescribeFailure(result.Error));
                     return;
                 }
                 ShowCredentialPanel(false);
@@ -885,6 +897,7 @@ namespace MmorpgClient.UI.Ugui
         {
             if (authType == LoginAuthTypes.Apple) PlatformSignIn.RequestApple(onDone);
             else if (authType == LoginAuthTypes.Google) PlatformSignIn.RequestGoogle(onDone);
+            else if (authType == LoginAuthTypes.Passport) PassportSignIn.Request(onDone);
             else MiniGameLogin.Request(onDone); // 微信 / 抖音小游戏:宿主给的一次性登录 code(wx.login / tt.login)
         }
 
@@ -969,6 +982,7 @@ namespace MmorpgClient.UI.Ugui
             _googleSignInButton.gameObject.SetActive(PlatformSignIn.GoogleAvailable && !_credentialForRealName);
             _appleSignInButton.interactable = canInteract;
             _googleSignInButton.interactable = canInteract;
+            RefreshPassportUiState(canInteract);
             _landingServers.interactable = canInteract;
             _landingAccount.interactable = canInteract;
             _landingEnter.interactable = canInteract && !_serverListLoading && (chosen == null || enterable);

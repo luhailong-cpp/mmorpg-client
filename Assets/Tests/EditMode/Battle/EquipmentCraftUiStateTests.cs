@@ -427,5 +427,43 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(_applied, Is.Empty);
             Assert.That(_ui.CanCommit || _ui.Pending || _ui.Busy, Is.False);
         }
+
+        [Test]
+        public void PolishBindConfirmationAndAppliedReceiptExposeServerState()
+        {
+            CommitEquipmentCraftResponse received = null;
+            _ui.AppliedReceipt += r => received = r;
+
+            _ui.SelectPolishAffix(ItemId, 1, useGuaranteeCharm: false, allowBoundMaterials: false,
+                proxyMasterPlayerId: 0, expectedPolishPityCount: 6u);
+            var blockedChoice = ((PreviewEquipmentCraftRequest)Last.Request).Choice;
+            var blockedPreview = PreviewFor(blockedChoice, available: false);
+            blockedPreview.UnavailableTip = (uint)equip_error.KEquipBindConfirmRequired;
+            blockedPreview.WillBindItem = true;
+            Last.Respond(new PreviewEquipmentCraftResponse { Preview = blockedPreview });
+
+            Assert.That(_ui.RequiresBindConfirmation, Is.True);
+            Assert.That(_ui.CanCommit, Is.False);
+
+            _ui.SelectPolishAffix(ItemId, 1, useGuaranteeCharm: false, allowBoundMaterials: true,
+                proxyMasterPlayerId: 0, expectedPolishPityCount: 6u);
+            var allowedChoice = ((PreviewEquipmentCraftRequest)Last.Request).Choice;
+            var allowedPreview = PreviewFor(allowedChoice, available: true);
+            allowedPreview.WillBindItem = true;
+            Last.Respond(new PreviewEquipmentCraftResponse { Preview = allowedPreview });
+
+            Assert.That(_ui.RequiresBindConfirmation, Is.False);
+            Assert.That(_ui.CanCommit, Is.True);
+
+            _ui.Commit();
+            var receipt = Receipt();
+            receipt.ResultQualityTier = 5;
+            receipt.GuaranteedByPity = true;
+            Writes.Last().Respond(receipt);
+
+            Assert.That(received, Is.Not.Null);
+            Assert.That(received.ResultQualityTier, Is.EqualTo(5u));
+            Assert.That(_ui.LastApplied.GuaranteedByPity, Is.True);
+        }
     }
 }

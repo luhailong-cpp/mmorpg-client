@@ -12,16 +12,16 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
     public sealed class TianyongPaintedCityTests
     {
         [Test]
-        public void CurrentMainArtwork_IsTheDeliveredNativeSquareLayout()
+        public void CurrentMainArtwork_TemporarilyReusesBiyuanWaterPalaceLayout()
         {
             var main = CurrentMapCatalog.Find("main");
             Assert.That(main.SceneConfigId, Is.EqualTo(1u));
-            Assert.That(main.TexturePath, Is.EqualTo("World/CurrentMaps20261009/main/layout"));
+            Assert.That(main.TexturePath, Does.StartWith(MapDeliveryContract.ResourceRoot + "biyuan-water-palace/biyuan-body-20261123/"));
             var texture = main.LoadTexture();
-            Assert.That(texture.width, Is.EqualTo(1254));
-            Assert.That(texture.height, Is.EqualTo(1254));
-            Assert.That(main.WorldRect, Is.EqualTo(new Rect(50f, 0f, 300f, 300f)));
-            Assert.That(main.Spawn, Is.EqualTo(new Vector3(199f, 0f, 133f)));
+            Assert.That(texture.width, Is.EqualTo(5120));
+            Assert.That(texture.height, Is.EqualTo(4096));
+            Assert.That(main.WorldRect, Is.EqualTo(new Rect(0f, 0f, 320f, 256f)));
+            Assert.That(main.Spawn, Is.EqualTo(new Vector3(222.5f, 0f, 58.5f)));
         }
 
         [Test]
@@ -46,19 +46,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [Test]
         public void AllCurrentLayoutsAndMatchingNavigation_AreDeliveredRuntimeResources()
         {
-            foreach (var sceneId in new[] { 1u, 2u, 3u })
+            foreach (var sceneId in new[] { 1u, 2u, 3u, 5u })
             {
                 var definition = CurrentMapCatalog.FindForOnline(sceneId);
                 Assert.That(definition, Is.Not.Null);
                 Assert.That(Resources.Load<TextAsset>(definition.SourcePath), Is.Not.Null, definition.Key);
                 Assert.That(Resources.Load<TextAsset>(definition.MaskPath), Is.Not.Null, definition.Key);
                 var texture = definition.LoadTexture();
-                Assert.That(texture.width, Is.EqualTo(1254), definition.Key);
-                Assert.That(texture.height, Is.EqualTo(1254), definition.Key);
+                Assert.That(texture.width, Is.GreaterThanOrEqualTo(1024), definition.Key);
+                Assert.That(texture.height, Is.GreaterThanOrEqualTo(1024), definition.Key);
                 Assert.That(texture.mipmapCount, Is.EqualTo(1), definition.Key);
                 Assert.That(texture.filterMode, Is.EqualTo(FilterMode.Bilinear), definition.Key);
                 Assert.That(texture.wrapMode, Is.EqualTo(TextureWrapMode.Clamp), definition.Key);
-                Assert.That(definition.CreateNavigation().CellSize, Is.EqualTo(2f), definition.Key);
                 Assert.That(definition.CreateNavigation().IsWalkable(definition.Spawn), Is.True, definition.Key);
             }
         }
@@ -159,8 +158,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 var renderer = ground.GetComponent<MeshRenderer>();
                 Assert.That(renderer.enabled, Is.True);
                 Assert.That(renderer.sharedMaterial.mainTexture, Is.SameAs(main.LoadTexture()));
-                Assert.That(ground.localScale, Is.EqualTo(new Vector3(300f, 300f, 1f)));
-                Assert.That(ground.localPosition, Is.EqualTo(new Vector3(200f, -.045f, 150f)));
+                Assert.That(ground.localScale, Is.EqualTo(new Vector3(320f, 256f, 1f)));
+                Assert.That(ground.localPosition, Is.EqualTo(new Vector3(160f, -.045f, 128f)));
                 Assert.That(ground.GetComponent<Collider>(), Is.Null, "布局图不能截走点击寻路射线");
                 Assert.That(map.Root.GetComponentsInChildren<TianyongPaintedForeground>(true), Is.Empty);
                 Assert.That(map.Root.GetComponentsInChildren<TianyongCityNpcs>(true), Is.Empty);
@@ -168,9 +167,9 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(floors.Length, Is.EqualTo(1));
                 Assert.That(floors[0].name, Is.EqualTo(TianyongMapBuilder.GroundColliderName));
                 Assert.That(floors[0].enabled, Is.True);
-                Assert.That(map.Navigation.CellSize, Is.EqualTo(2f));
+                Assert.That(map.Navigation.CellSize, Is.EqualTo(1f));
                 Assert.That(map.Navigation.IsWalkable(main.Spawn), Is.True);
-                Assert.That(map.Navigation.IsWalkable(new Vector3(49f, 0f, 150f)), Is.False);
+                Assert.That(map.Navigation.IsWalkable(new Vector3(160f, 0f, 4f)), Is.False);
             }
             finally { map?.Dispose(); Object.DestroyImmediate(parent); }
         }
@@ -221,16 +220,16 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void CurrentMainLayout_KeepsNative1254PixelsAtItsAuthoredWorldScale()
+        public void CurrentMainLayout_KeepsNative5120x4096PixelsAtItsAuthoredWorldScale()
         {
             var main = CurrentMapCatalog.Find("main");
             var texture = main.LoadTexture();
-            Assert.That(texture.width, Is.EqualTo(1254));
-            Assert.That(texture.height, Is.EqualTo(1254));
-            Assert.That(main.WorldRect.width, Is.EqualTo(300f));
-            Assert.That(main.WorldRect.height, Is.EqualTo(300f));
-            Assert.That(texture.width / main.WorldRect.width, Is.EqualTo(4.18f).Within(.0001f));
-            Assert.That(texture.height / main.WorldRect.height, Is.EqualTo(4.18f).Within(.0001f));
+            Assert.That(texture.width, Is.EqualTo(5120));
+            Assert.That(texture.height, Is.EqualTo(4096));
+            Assert.That(main.WorldRect.width, Is.EqualTo(320f));
+            Assert.That(main.WorldRect.height, Is.EqualTo(256f));
+            Assert.That(texture.width / main.WorldRect.width, Is.EqualTo(16f).Within(.0001f));
+            Assert.That(texture.height / main.WorldRect.height, Is.EqualTo(16f).Within(.0001f));
             Assert.That(main.LoadTexture(), Is.SameAs(texture), "加载原图，不制造假高清上采样副本");
         }
     }

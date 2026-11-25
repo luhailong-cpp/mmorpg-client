@@ -7,7 +7,10 @@ using MmorpgClient.Game.Battle;
 using MmorpgClient.Game.Pet;
 using MmorpgClient.Game.PetFlip;
 using MmorpgClient.Game.PlayerFeatures;
+using MmorpgClient.Game.Ranked;
 using MmorpgClient.Game.Role;
+using MmorpgClient.Game.Season;
+using MmorpgClient.Game.TrialJournal;
 using MmorpgClient.Game.Skills;
 using MmorpgClient.Game.Sync;
 using MmorpgClient.Game.WorldTravel;
@@ -174,6 +177,15 @@ namespace MmorpgClient.Game
         /// </summary>
         public BattleReportClient BattleReports { get; }
 
+        /// <summary>论剑排位首发 V1 网络层（RPC 448–451，走大厅 gate -> match 路由）。</summary>
+        public RankedClient Ranked { get; }
+
+        /// <summary>五行试炼志 V2 网络层（RPC 456–458，走大厅 gate -> scene 路由）。</summary>
+        public TrialJournalClient TrialJournal { get; }
+
+        /// <summary>赛季技能与赛季印网络层（RPC 453–455，走大厅 gate -> scene 路由）。</summary>
+        public SeasonClient Season { get; }
+
         /// <summary>
         /// 观战网络层(与 Battle 平行的只读状态机,消息号不同互不干扰)。
         /// 与 Battle 共用同一个 DirectRoutingBattleTransport(消息号不相交,注册覆盖语义不冲突)
@@ -222,6 +234,8 @@ namespace MmorpgClient.Game
         /// 实现技能 UI 的 ISkillBookSource,由 AppBootstrap 绑到 SkillUiRoot。与 Attributes 平行,纯请求-响应,不需要 Tick。
         /// </summary>
         public SkillBookClient Skills { get; }
+        /// <summary>率土式分卷宗技能制书、未学书架与主城名匠代打摊位业务适配器。</summary>
+        public SkillCraftClient SkillCraft { get; }
         public DurableRequestFileStore TeamMatchRecovery { get; }
         public DurableRequestFileStore TeamActionRecovery { get; }
 
@@ -381,6 +395,22 @@ namespace MmorpgClient.Game
             // PVP 战报回放只走大厅连接(gate → match),不碰 BattleLink 直连。
             BattleReports = BattleReportClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
                 s => Log($"[battle-report] {s}"));
+            Ranked = RankedClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup, RpcGuard);
+            TrialJournal = new TrialJournalClient(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup);
+            Season = SeasonClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity,
+                () => Time.realtimeSinceStartup);
+            Battle.OnBattleEnd += _ =>
+            {
+                TrialJournal.HandleBattleSettled();
+                Season.HandleBattleSettled();
+            };
+            BattleResults.OnRecoveredResult += result =>
+            {
+                if (result != null && result.TrialJournalEntryId != 0)
+                    TrialJournal.HandleBattleSettled();
+            };
             Battle.OnBattleEndWithoutContext += (end, notified) => BattleResults.HandleEndWithoutContext(end?.BattleId ?? 0, notified);
             Battle.RegionProbe = new RegionProbeClient(battleRoute, () => ClientTransport.Create(_codec), ClientTransport.ConnectRunner);
             // 本机待确认记录一律带上归属修订号来源:角色换主人之前留下的记录不恢复、不重发。
@@ -393,6 +423,9 @@ namespace MmorpgClient.Game
             Attributes = AttributeClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity, cultivationWritesBlocked);
             Pets = PetClient.Attach(new GameClientBattleTransport(this), cultivationWritesBlocked);
             Skills = SkillBookClient.Attach(new GameClientBattleTransport(this), this, () => GateConnectionIdentity, cultivationWritesBlocked);
+            SkillCraft = SkillCraftClient.Attach(new GameClientBattleTransport(this), this, () => GateConnectionIdentity, cultivationWritesBlocked);
+            SkillCraft.RecoveryStore = DurableRequestFileStore.ForOrigin(
+                System.IO.Path.Combine(Application.persistentDataPath, "skill-craft-intents"), gatewayBaseUrl, ownerRevision);
             var companion = World.Root.GetComponent<QdaoPetCompanion>() ?? World.Root.gameObject.AddComponent<QdaoPetCompanion>();
             companion.Bind(World, Pets);
             Features = PlayerFeaturesClient.Attach(new GameClientBattleTransport(this), () => GateConnectionIdentity);
@@ -480,7 +513,11 @@ namespace MmorpgClient.Game
             LandingSync?.Tick();
             TickMinorPlayTimeReminder(); // 未成年人到点前 10 / 5 / 1 分钟提醒(GameClient.AntiAddiction.cs)
             BattleResults?.Tick(); // 近期战斗结果:落地补查、失败退避、补发确认
+            Ranked?.Tick(); // 论剑结算权威结果有界轮询与会话边界观察
+            TrialJournal?.Tick(); // 五行试炼志:快照节流队列与会话边界观察
+            Season?.Tick(); // 赛季印与赛季技能:快照节流队列与会话边界观察
             if (InGame) Features?.TickEquipmentCraftRecovery();
+            if (InGame) SkillCraft?.TickRecovery();
             if (InGame) Features?.TickMaterialRewardRecovery();
             if (InGame) Features?.TickActivityRewardRecovery();
             MaybeRefreshToken();
@@ -2474,6 +2511,8 @@ namespace MmorpgClient.Game
                 ResetSelfActorStateFlags();
                 SceneEntryEpoch++;
                 _sceneAppearances.Clear();
+                TrialJournal?.HandleSceneEntered();
+                Season?.HandleSceneEntered();
                 OnSceneEntered?.Invoke(ev.SceneInfo);
             });
 

@@ -36,6 +36,37 @@ namespace MmorpgClient.Tests.EditMode.Battle
         }
 
         [Test]
+        public void BossTrialMonstersReuseDeliveredPetArtWithoutEnablingCapture()
+        {
+            for (uint monsterId = 101; monsterId <= 107; monsterId++)
+            {
+                uint mappedPetId = BattleArtCatalog.ResolveMonsterVisualPetTableId(monsterId);
+                Assert.That(mappedPetId, Is.GreaterThan(0u), $"试炼怪物 {monsterId} 必须映射到已交付宝宝图");
+                var petEntry = QdaoPetCatalog.Resolve(mappedPetId);
+                Assert.That(petEntry, Is.Not.Null, $"试炼怪物 {monsterId} 映射的宝宝 {mappedPetId} 不在 QdaoPetCatalog");
+
+                var actor = new BattleActorState
+                {
+                    ActorType = eBattleActorType.BattleActorTypeMonster,
+                    MonsterTableId = monsterId,
+                    CapturePetTableId = 0,
+                };
+                Assert.That(BattleArtCatalog.VisualPetTableId(actor), Is.EqualTo(mappedPetId));
+                Assert.That(BattleArtCatalog.CharacterIdFor(actor), Is.EqualTo(petEntry.id));
+                Assert.That(actor.CapturePetTableId, Is.Zero, "复用宝宝外观不得开启试炼怪捕捉资格");
+                Assert.That(QdaoPetCatalog.HasAction(petEntry.id, "idle", "E"), Is.True, $"{petEntry.id} 缺少 idle/E");
+                Assert.That(QdaoPetCatalog.HasAction(petEntry.id, "attack", "E"), Is.True, $"{petEntry.id} 缺少 attack/E");
+                Assert.That(BattleArtCatalog.LoadMonsterPortrait(monsterId), Is.SameAs(QdaoPetCatalog.LoadPortrait(petEntry.id)));
+                Assert.That(BattleArtCatalog.ResolveMonsterDisplayName(monsterId), Is.Not.Null.And.Not.Empty);
+            }
+            for (uint ordinary = 1; ordinary <= 6; ordinary++)
+            {
+                Assert.That(BattleArtCatalog.ResolveMonsterVisualPetTableId(ordinary), Is.Zero,
+                    $"已有独立怪物贴图的普通怪 {ordinary} 不应被改写为宝宝图");
+            }
+        }
+
+        [Test]
         public void SpawnRingReloadsAfterCachedSpriteIsDestroyed()
         {
             CreateTemporarySprite();

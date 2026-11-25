@@ -525,7 +525,7 @@ namespace MmorpgClient.Editor.NavigationAuthoring
         }
         private void NewImage() { string file = EditorUtility.OpenFilePanel("选择新地图PNG整图", "", "png"); if (file.Length == 0) return; string path = NewPath(); if (path.Length > 0) SelectDraft(NavMeshAuthoringAssetIO.CreateFromImage(file, path)); }
         private void NewTiles() { string folder = EditorUtility.OpenFolderPanel("选择完整分块目录（r01_c01.png）", "", ""); if (folder.Length == 0) return; string path = NewPath(); if (path.Length > 0) SelectDraft(NavMeshAuthoringAssetIO.CreateFromTileFolder(folder, path)); }
-        private void ImportOld() { string folder = EditorUtility.OpenFolderPanel("选择含layout/source/navigation.json的旧图目录", "Assets/Resources/World/CurrentMaps20261009", ""); if (folder.Length == 0) return; string path = NewPath(); if (path.Length > 0) SelectDraft(NavMeshAuthoringAssetIO.ImportExistingMap(folder, path)); }
+        private void ImportOld() { string folder = EditorUtility.OpenFolderPanel("选择含layout/source/navigation.json的地图目录", "Assets/Resources/World/QdaoMaps20261102", ""); if (folder.Length == 0) return; string path = NewPath(); if (path.Length > 0) SelectDraft(NavMeshAuthoringAssetIO.ImportExistingMap(folder, path)); }
         private void Save()
         {
             if (_draft == null)

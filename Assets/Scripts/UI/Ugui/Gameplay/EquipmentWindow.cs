@@ -11,12 +11,12 @@ using static MmorpgClient.UI.Ugui.Gameplay.EquipmentUiArt;
 
 namespace MmorpgClient.UI.Ugui.Gameplay
 {
-    public enum EquipmentPage { Overview, Craft, Enhance, Artifacts }
+    public enum EquipmentPage { Overview, Craft, Enhance, Artifacts, Polish }
 
     /// <summary>Live equipment UI. Painted screens are references only; every value comes from a server snapshot.</summary>
     public sealed partial class EquipmentWindow : IDisposable
     {
-        private enum Modal { None, Compare, Affix, Detail, Materials }
+        private enum Modal { None, Compare, Affix, Detail, Materials, PolishOdds, Reforge, BindConfirm }
         private readonly RectTransform _root, _frame, _surface, _body, _modalLayer;
         private readonly CanvasGroup _surfaceInput;
         private readonly EquipWishDialogInput _input;
@@ -55,7 +55,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             _input = _root.gameObject.AddComponent<EquipWishDialogInput>();
             _input.CancelRequested = Back;
             _legacyForge = new EquipForgeDialog(_root, _forge);
-            _craft.Changed += Render; _craft.Applied += Applied;
+            _craft.Changed += Render; _craft.Applied += Applied; _craft.AppliedReceipt += AppliedCraftReceipt;
             _forge.Changed += Render;
             _root.gameObject.SetActive(false);
         }
@@ -140,6 +140,22 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             { _craftOwnedMode = true; _notice = "装备已保存，可继续选择尚未安装的词条位置"; }
             Render(); _attributes?.RequestPanel();
         }
+        private void AppliedCraftReceipt(CommitEquipmentCraftResponse response)
+        {
+            if (response == null) return;
+            if (_page == EquipmentPage.Polish)
+            {
+                string tier = EquipmentScreenModel.QualityTierName(response.ResultQualityTier);
+                _notice = response.GuaranteedByPity
+                    ? $"打磨触发保底，成功达成【{tier}】！"
+                    : !string.IsNullOrEmpty(tier)
+                        ? $"打磨完成，当前品相：【{tier}】（保底 {response.ResultPolishPityCount}/8）"
+                        : "词条处理已完成";
+                _polishAllowBound = false;
+                _reforgeAllowBound = false;
+                Render();
+            }
+        }
         private void ChangePage(EquipmentPage page)
         {
             _page = page; _modal = Modal.None; _notice = string.Empty; _scroll.Clear();
@@ -166,15 +182,19 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                     string focus = EventSystem.current?.currentSelectedGameObject?.name;
                     foreach (var scroll in _frame.GetComponentsInChildren<ScrollRect>()) _scroll[scroll.name] = scroll.verticalNormalizedPosition;
                     Clear(_body); Clear(_modalLayer);
-                    string[] names = { "装备", "打造", "强化", "法宝" };
-                    for (int i = 0; i < names.Length; ++i)
+                    string[] names = { "装备", "打造", "强化", "法宝", "打磨" };
+                    for (int i = 0; i < 4; ++i)
                     {
                         var page = (EquipmentPage)i;
                         Button(_body, "EquipmentTab_" + i, names[i], 180 + i * 365, 150, 355,
                             () => ChangePage(page), _page == page);
                     }
-                    Label(_body, "EquipmentHeading", _page == EquipmentPage.Craft ? "装备打造" : _page == EquipmentPage.Enhance ? "装备强化" : names[(int)_page],
-                        1680, 65, 1100, 130, 68, color: Jade);
+                    Button(_body, "EquipmentTab_4", names[4], 2660, 135, 355,
+                        () => ChangePage(EquipmentPage.Polish), _page == EquipmentPage.Polish);
+                    string heading = _page == EquipmentPage.Craft ? "装备打造" :
+                        _page == EquipmentPage.Enhance ? "装备强化" :
+                        _page == EquipmentPage.Polish ? "装备打磨" : names[(int)_page];
+                    Label(_body, "EquipmentHeading", heading, 1680, 65, 960, 130, 68, color: Jade);
                     Button(_body, "EquipmentRefresh", "刷新", 3040, 135, 355, Refresh, enabled: !_craft.LoadingRules && !_craft.Busy);
                     Button(_body, "EquipmentClose", "关闭", 3420, 135, 355, Hide);
                     switch (_page)
@@ -183,6 +203,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                         case EquipmentPage.Craft: RenderCraft(); break;
                         case EquipmentPage.Enhance: EquipmentEnhancementView.Render(_body, _client, _forge, SelectEnhancement, WriteBlocked); break;
                         case EquipmentPage.Artifacts: RenderArtifacts(); break;
+                        case EquipmentPage.Polish: RenderPolish(); break;
                     }
                     string status = _craft.Pending ? "正在确认结果。关闭页面不会取消操作，请恢复原操作。" :
                         _client?.HasPendingMaterialReward == true ? "正在确认材料领取。关闭页面不会取消领取，请确认上次结果。" :
@@ -227,7 +248,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         {
             if (_disposed) return;
             Hide(); Bind(null, null); _disposed = true;
-            _craft.Changed -= Render; _craft.Applied -= Applied; _forge.Changed -= Render;
+            _craft.Changed -= Render; _craft.Applied -= Applied; _craft.AppliedReceipt -= AppliedCraftReceipt; _forge.Changed -= Render;
             _legacyForge.Dispose(); _craft.Dispose(); _forge.Dispose();
             if (_root != null) { if (Application.isPlaying) UnityEngine.Object.Destroy(_root.gameObject); else UnityEngine.Object.DestroyImmediate(_root.gameObject); }
         }

@@ -177,5 +177,125 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(summary, Does.Contain("破障锥 / 清心符"));
             Assert.That(summary, Does.Contain("赛季印·破障印"));
         }
+
+        [Test]
+        public void Models_ParseAllElevenJumpTargetsAndEntryMonstersAndBattleSummary()
+        {
+            var expected = new (string raw, TrialJumpKind kind, uint dungeonId, uint difficulty)[]
+            {
+                ("boss_trial:normal:rejuvenation", TrialJumpKind.BossTrial, 101u, 1u),
+                ("boss_trial:hard:rejuvenation", TrialJumpKind.BossTrial, 102u, 2u),
+                ("boss_trial:normal:bulwark", TrialJumpKind.BossTrial, 103u, 1u),
+                ("boss_trial:hard:bulwark", TrialJumpKind.BossTrial, 104u, 2u),
+                ("boss_trial:normal:barrier", TrialJumpKind.BossTrial, 105u, 1u),
+                ("boss_trial:hard:barrier", TrialJumpKind.BossTrial, 106u, 2u),
+                ("boss_trial:normal:venom", TrialJumpKind.BossTrial, 107u, 1u),
+                ("boss_trial:hard:venom", TrialJumpKind.BossTrial, 108u, 2u),
+                ("boss_trial:normal:rescue", TrialJumpKind.BossTrial, 109u, 1u),
+                ("polarity_5v5:110", TrialJumpKind.Polarity5v5, 110u, 0u),
+                ("ranked_pvp:5", TrialJumpKind.RankedPvp, 5u, 0u),
+            };
+            foreach (var item in expected)
+            {
+                Assert.That(TrialJournalModels.TryParseJumpTarget(item.raw, out var target), Is.True, item.raw);
+                Assert.That(target.IsValid, Is.True, item.raw);
+                Assert.That(target.Kind, Is.EqualTo(item.kind), item.raw);
+                Assert.That(target.DungeonConfigId, Is.EqualTo(item.dungeonId), item.raw);
+                Assert.That(target.Difficulty, Is.EqualTo(item.difficulty), item.raw);
+            }
+            Assert.That(TrialJournalModels.TryParseJumpTarget("", out _), Is.False);
+            Assert.That(TrialJournalModels.TryParseJumpTarget("unknown:0", out _), Is.False);
+
+            Assert.That(TrialJournalModels.TryGetEntryMonsterIds(101u, out uint b1, out uint g1), Is.True);
+            Assert.That((b1, g1), Is.EqualTo((101u, 102u)));
+            Assert.That(TrialJournalModels.TryGetEntryMonsterIds(102u, out uint b2, out uint g2), Is.True);
+            Assert.That((b2, g2), Is.EqualTo((101u, 103u)));
+            Assert.That(TrialJournalModels.TryGetEntryMonsterIds(201u, out uint b3, out uint g3), Is.True);
+            Assert.That((b3, g3), Is.EqualTo((104u, 105u)));
+            Assert.That(TrialJournalModels.TryGetEntryMonsterIds(204u, out uint b4, out uint g4), Is.True);
+            Assert.That((b4, g4), Is.EqualTo((106u, 107u)));
+            Assert.That(TrialJournalModels.TryGetEntryMonsterIds(301u, out uint b5, out uint g5), Is.True);
+            Assert.That((b5, g5), Is.EqualTo((101u, 102u)));
+            Assert.That(TrialJournalModels.TryGetEntryMonsterIds(302u, out _, out _), Is.False);
+            Assert.That(TrialJournalModels.TryGetEntryMonsterIds(303u, out _, out _), Is.False);
+
+            var snapshot = new TrialJournalSnapshot { Available = true, CanOperate = true };
+            var ch2 = new TrialJournalChapterView { ChapterId = 2 };
+            var entry201 = new TrialJournalEntryView { EntryId = 201 };
+            entry201.Seals.Add(new TrialJournalSealView { SealId = 2011, Title = "灵障初破" });
+            entry201.Seals.Add(new TrialJournalSealView { SealId = 2013, Title = "碎障之锋" });
+            ch2.Entries.Add(entry201);
+            snapshot.Chapters.Add(ch2);
+            snapshot.Milestones.Add(new TrialJournalMilestoneView
+            {
+                MilestoneId = 901,
+                ScopeChapterId = 0,
+                RequiredSeals = 18,
+                GrantAppearanceId = "20_star_formation_master_girl",
+            });
+
+            var gm = TrialJournalModels.FindGrandmasterMilestone(snapshot);
+            Assert.That(gm?.MilestoneId, Is.EqualTo(901u));
+            Assert.That(gm?.GrantAppearanceId, Is.EqualTo("20_star_formation_master_girl"));
+
+            var battleResult = new PlayerBattleResult
+            {
+                TrialJournalEntryId = 201,
+                TrialNewSoloBest = true,
+                TotalRounds = 5,
+            };
+            battleResult.TrialNewlyLitSealIds.Add(2011);
+            battleResult.TrialNewlyLitSealIds.Add(2013);
+            string formatted = TrialJournalModels.FormatBattleResultSummary(battleResult, snapshot);
+            Assert.That(formatted, Does.Contain("灵障初破、碎障之锋"));
+            Assert.That(formatted, Does.Contain("刷新单人破阵纪录（5回合）"));
+
+            Assert.That(BattleReportClient.IsPvpMode(Match.MatchMode.Polarity5V5), Is.True);
+            Assert.That(BattleReportClient.ModeName(Match.MatchMode.Polarity5V5), Is.EqualTo("物法易势 5v5"));
+        }
+
+        [Test]
+        public void Client_QueuesForcedRefreshDuringPendingSnapshotAndEmitsGrandmasterAppearance()
+        {
+            var net = new FakeTransport();
+            object connection = new object();
+            ulong rev = 1;
+            net.Responder = (msgId, _) =>
+            {
+                if (msgId == TrialJournalMessageIds.Generated.ClaimMilestone)
+                {
+                    return (new ClaimTrialJournalMilestoneResponse
+                    {
+                        GrantedAppearanceId = "20_star_formation_master_girl",
+                        Snapshot = new TrialJournalSnapshot { Available = true, CanOperate = true, StateRevision = ++rev },
+                    }, null);
+                }
+                return (new GetTrialJournalResponse
+                {
+                    Snapshot = new TrialJournalSnapshot { Available = true, CanOperate = true, StateRevision = rev },
+                }, null);
+            };
+
+            float now = 10f;
+            using var client = new TrialJournalClient(net, () => connection, () => now);
+            client.RequestSnapshot(force: true);
+            Assert.That(client.SnapshotPending, Is.True);
+            // 战斗结算触发的强制刷新遇到在途拉取时排队，完成后由 Tick 补发一次。
+            rev = 2;
+            client.HandleBattleSettled();
+            net.Flush();
+            Assert.That(client.Snapshot?.StateRevision, Is.EqualTo(1ul));
+            client.Tick();
+            net.Flush();
+            Assert.That(client.Snapshot?.StateRevision, Is.EqualTo(2ul));
+
+            TrialMilestoneClaimedEvent? claimed = null;
+            client.MilestoneClaimed += ev => claimed = ev;
+            now = 20f;
+            Assert.That(client.ClaimMilestone(901), Is.True);
+            net.Flush();
+            Assert.That(claimed.HasValue, Is.True);
+            Assert.That(claimed.Value.GrantedAppearanceId, Is.EqualTo("20_star_formation_master_girl"));
+        }
     }
 }

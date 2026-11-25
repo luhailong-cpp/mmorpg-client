@@ -148,8 +148,13 @@ namespace MmorpgClient.Game.Battle
         private Match.MatchMode _lastQueueMode;
         private uint _lastQueueConfigId;
         private uint _lastQueueTeamSize;
+        private uint _lastQueueCharacterPresetId;
+        private uint _lastQueuePetPresetId;
+        private uint _lastQueueRankedRuleVersion;
         private bool _hasQueueMemory;
         private bool _endAckPending;         // 战斗已结束、等 UI AckBattleEnd(连续战斗的触发闸)
+        private bool _localCancelInFlight;   // 非全局取消回包在途
+        private Match.GetQueueStatusResponse _lastQueueStatus;
 
         // 战斗直连(turn-based §22 D74)
         private bool _autoResendPending;     // 自动战斗意愿待直连就绪后补发(值取 AutoBattleLatched)
@@ -166,6 +171,18 @@ namespace MmorpgClient.Game.Battle
         // ── 契约属性 ────────────────────────────────────────
 
         public BattlePhase Phase { get; private set; } = BattlePhase.None;
+
+        /// <summary>最近一次 GetQueueStatus 回包（含等待时长、120s 提示阈值、当前分差、人数档与赛季 ID）；离开队列后清零。</summary>
+        public Match.GetQueueStatusResponse LastQueueStatus => _lastQueueStatus?.Clone();
+
+        /// <summary>正在提交 JoinQueue（含地域探测或 RPC 在途，尚未收到回包确认）。</summary>
+        public bool IsJoinPending => _inFlightJoinRequest != null || (Phase == BattlePhase.Queued && !_joinSent && !QueueAdopted);
+
+        /// <summary>正在取消排队并等待服务端确认退出（NotQueued）。</summary>
+        public bool IsCancellingQueue => _cancelRequested || _cancelVerifyPending || _localCancelInFlight;
+
+        /// <summary>最近一次显式排队的每侧人数（用于结算页「同规模再排」）。</summary>
+        public uint LastQueueTeamSize => _lastQueueTeamSize;
 
         /// <summary>
         /// 当前的排队不是本机 JoinQueue 发起的,而是随队伍被带进队列的(队伍补位匹配,见 <see cref="AdoptQueue"/>)。
@@ -185,6 +202,9 @@ namespace MmorpgClient.Game.Battle
 
         /// <summary>最新权威战斗状态(开战/回合结算/补拉时更新;断线清空)。</summary>
         public BattleStateS2C State { get; private set; }
+
+        /// <summary>最近一次已收到的权威终局结算快照（供通用结算页与核心循环模型读取材料增量/反挂机标记；断线清空）。</summary>
+        public BattleEndS2C LastBattleEnd { get; private set; }
 
         /// <summary>本地玩家 id(战斗内 actor_id 即 player_id)。</summary>
         public ulong MyPlayerId => _net.PlayerId;
@@ -414,7 +434,8 @@ namespace MmorpgClient.Game.Battle
         /// PVE 人数档(JoinQueueRequest.team_size,只有 PveTeam 模式读它):想凑成几人的队伍,
         /// 怪物数量跟参战人数走(每人一整组)。0 = 该副本的人数上限;其余模式传 0。
         /// </param>
-        public void JoinQueue(Match.MatchMode mode, uint battleConfigId, uint teamSize = 0)
+        public void JoinQueue(Match.MatchMode mode, uint battleConfigId, uint teamSize = 0,
+                              uint characterPresetId = 0, uint petPresetId = 0, uint rankedRuleVersion = 0)
         {
             RestoreQueueIntent();
             if (Phase != BattlePhase.None)
@@ -427,6 +448,10 @@ namespace MmorpgClient.Game.Battle
             _lastQueueMode = mode;
             _lastQueueConfigId = battleConfigId;
             _lastQueueTeamSize = teamSize;
+            _lastQueueCharacterPresetId = characterPresetId;
+            _lastQueuePetPresetId = petPresetId;
+            _lastQueueRankedRuleVersion = rankedRuleVersion;
+            _lastQueueStatus = null;
             _hasQueueMemory = true;
             _endAckPending = false;
 
@@ -443,6 +468,9 @@ namespace MmorpgClient.Game.Battle
                 Mode = mode,
                 BattleConfigId = battleConfigId,
                 TeamSize = teamSize,
+                CharacterPresetId = characterPresetId,
+                PetPresetId = petPresetId,
+                RankedRuleVersion = rankedRuleVersion,
                 RequestId = Guid.NewGuid().ToString("D"),
             };
             int generation = ++_queueGeneration;
@@ -609,18 +637,16 @@ namespace MmorpgClient.Game.Battle
                 QueueTicket = _queueTicket,
             };
             int session = _queueSession;
+            _localCancelInFlight = true;
             _net.Call(MessageIds.CancelQueue, req, Empty.Parser,
                 _ =>
                 {
-                    // 上一次排队的取消回包迟到了:与这一次排队无关。
                     if (session != _queueSession) return;
+                    _localCancelInFlight = false;
                     // 收敛:仍在排队才回 None(若期间已开战则维持战斗相位)
                     if (Phase != BattlePhase.Queued) return;
                     if (QueueAdopted)
                     {
-                        // 队伍补位:回包是 Empty,分不出「整队已退出」还是「太迟」(队伍已凑满弹出,取消被忽略)。
-                        // 太迟之后若开局失败,整队会回到队列 —— 此时直接回空闲,本机就再也看不到自己还在排。
-                        // 所以不改相位,立刻问一次服务端:已不在排才回空闲;仍在排 / 已凑满则照实处理。
                         _cancelVerifyPending = true;
                         _nextQueuePollAt = _now;
                         return;
@@ -629,6 +655,7 @@ namespace MmorpgClient.Game.Battle
                 },
                 err =>
                 {
+                    if (session == _queueSession) _localCancelInFlight = false;
                     // 取消失败(可能恰好被凑单):不强行回 None,
                     // 交由 GetQueueStatus 轮询 / NotifyBattleStart 收敛。
                     OnError?.Invoke($"取消排队失败:{err}");
@@ -665,6 +692,7 @@ namespace MmorpgClient.Game.Battle
                         // 若这一次的轮询曾被单飞压住,EndQueuePoll 已经安排了回来后补问。
                         return;
                     }
+                    _lastQueueStatus = resp?.Clone();
                     OnQueueStatus?.Invoke(resp);
                     if (RegionProbe != null && resp.QueueTicket.Length > 0)
                     {
@@ -958,7 +986,8 @@ namespace MmorpgClient.Game.Battle
             if (Phase != BattlePhase.None) return; // 已在新排队/新战斗(重连等):不抢入口
             if (ContinuousMatchRequested != null) { ContinuousMatchRequested(); return; }
             if (!_hasQueueMemory) return;
-            JoinQueue(_lastQueueMode, _lastQueueConfigId, _lastQueueTeamSize);
+            JoinQueue(_lastQueueMode, _lastQueueConfigId, _lastQueueTeamSize,
+                _lastQueueCharacterPresetId, _lastQueuePetPresetId, _lastQueueRankedRuleVersion);
         }
 
         /// <summary>
@@ -1094,6 +1123,7 @@ namespace MmorpgClient.Game.Battle
             }
             if (!lateEndOfSettledBattle && ev.BattleId != 0 && ev.BattleId != _battleId) return;
             _endPendingBattleId = 0;
+            LastBattleEnd = ev.Clone();
 
             SetPhase(BattlePhase.Ended);
             OnBattleEnd?.Invoke(ev);   // 先抛事件(UI 记结算/排队播完),再收尾回 None
@@ -1201,6 +1231,7 @@ namespace MmorpgClient.Game.Battle
             // 未消费的结束 Ack 一并作废:断线重连后不允许凭旧 Ack 自动入队。
             ClearBattleContext();
             State = null;
+            LastBattleEnd = null;
             _endAckPending = false;
             _endPendingBattleId = 0;
             // 在途的排队查询随连接作废(GameClient 会以 disconnected 失败回调):解除在途,旧会话的回包一律丢弃。
@@ -1391,7 +1422,12 @@ namespace MmorpgClient.Game.Battle
                 AdoptedQueueHint = string.Empty;
             }
             _endedByTicket = false;
-            if (phase != BattlePhase.Queued) _cancelVerifyPending = false;
+            if (phase != BattlePhase.Queued)
+            {
+                _cancelVerifyPending = false;
+                _localCancelInFlight = false;
+                if (phase != BattlePhase.Preparing) _lastQueueStatus = null;
+            }
             Phase = phase;
             OnPhaseChanged?.Invoke(phase);
         }
@@ -1408,9 +1444,19 @@ namespace MmorpgClient.Game.Battle
         private static string DescribeTip(string what, TipInfoMessage tip, uint errorCode = 0)
         {
             if (tip == null || tip.Id == 0) return $"{what}(code={errorCode})";
-            return tip.Id == (uint)common_error.KServiceUnavailable
-                ? $"{what}:战斗服务暂不可用,请稍后再试(tip={tip.Id})"
-                : $"{what}(tip={tip.Id})";
+            switch (tip.Id)
+            {
+                case (uint)common_error.KServiceUnavailable:
+                    return $"{what}:战斗服务暂不可用,请稍后再试(tip={tip.Id})";
+                case (uint)match_error.KMatchRankedSeasonSettling:
+                    return "上季结算中，暂时无法报名论剑排位。";
+                case (uint)match_error.KMatchRankedPresetInvalid:
+                    return "论剑战法预设无效，请重新选择后再报名。";
+                case (uint)match_error.KMatchRankedRuleVersionMismatch:
+                    return "论剑规则版本已更新，请刷新论剑界面后重试。";
+                default:
+                    return $"{what}(tip={tip.Id})";
+            }
         }
 
         /// <summary>

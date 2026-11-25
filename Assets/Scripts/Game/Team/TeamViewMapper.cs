@@ -37,6 +37,9 @@ namespace MmorpgClient.Game.Team
             // 补位匹配中:目标人数等三项只在这个状态下有意义,其余状态保持零值,免得界面读到无关的数。
             snapshot.MatchFillSupported = view.MatchFillSupported;
             snapshot.PvpMatchSupported = view.PvpMatchSupported;
+            snapshot.RankedPresetsAllConfirmed = view.RankedPresetsAllConfirmed;
+            snapshot.RankedSeasonId = view.RankedSeasonId;
+            snapshot.RankedRuleVersion = view.RankedRuleVersion;
             snapshot.MatchQueued = view.MatchState == TeamBackfillProtocol.QueuedState;
             if (snapshot.MatchQueued)
             {
@@ -99,7 +102,11 @@ namespace MmorpgClient.Game.Team
                 InBattle = member.InBattle,
                 ZoneId = member.ZoneId,
                 JoinSeq = member.JoinSeq,
-                ExpireAtMs = expireAtMs
+                ExpireAtMs = expireAtMs,
+                RankedCharacterPresetId = member.RankedCharacterPresetId,
+                RankedPetPresetId = member.RankedPetPresetId,
+                RankedRuleVersion = member.RankedRuleVersion,
+                RankedPresetConfirmed = member.RankedPresetConfirmed,
             };
         }
 

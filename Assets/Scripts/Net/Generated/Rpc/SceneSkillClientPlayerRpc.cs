@@ -57,5 +57,38 @@ namespace MmorpgClient.Net.Generated
         public static void UpgradeSkill(IRpcChannel channel, global::UpgradeSkillRequest request,
             RpcDone<global::UpgradeSkillResponse> done)
             => channel.CallMethod(UpgradeSkillMessageId, request, global::UpgradeSkillResponse.Parser, done);
+
+        public const uint GetSkillCraftingStateMessageId = 459;
+        /// <summary>
+        /// ── 以下按 method index 顺序追加，不可重排 ──
+        /// </summary>
+        public static void GetSkillCraftingState(IRpcChannel channel, global::GetSkillCraftingStateRequest request,
+            RpcDone<global::GetSkillCraftingStateResponse> done)
+            => channel.CallMethod(GetSkillCraftingStateMessageId, request, global::GetSkillCraftingStateResponse.Parser, done);
+
+        public const uint CraftSkillBookMessageId = 460;
+        public static void CraftSkillBook(IRpcChannel channel, global::CraftSkillBookRequest request,
+            RpcDone<global::CraftSkillBookResponse> done)
+            => channel.CallMethod(CraftSkillBookMessageId, request, global::CraftSkillBookResponse.Parser, done);
+
+        public const uint LearnSkillBookMessageId = 461;
+        public static void LearnSkillBook(IRpcChannel channel, global::LearnSkillBookRequest request,
+            RpcDone<global::LearnSkillBookResponse> done)
+            => channel.CallMethod(LearnSkillBookMessageId, request, global::LearnSkillBookResponse.Parser, done);
+
+        public const uint DismantleSkillBookMessageId = 462;
+        public static void DismantleSkillBook(IRpcChannel channel, global::DismantleSkillBookRequest request,
+            RpcDone<global::DismantleSkillBookResponse> done)
+            => channel.CallMethod(DismantleSkillBookMessageId, request, global::DismantleSkillBookResponse.Parser, done);
+
+        public const uint SetCraftProxyStallMessageId = 463;
+        public static void SetCraftProxyStall(IRpcChannel channel, global::SetCraftProxyStallRequest request,
+            RpcDone<global::SetCraftProxyStallResponse> done)
+            => channel.CallMethod(SetCraftProxyStallMessageId, request, global::SetCraftProxyStallResponse.Parser, done);
+
+        public const uint ListCraftProxyStallsMessageId = 464;
+        public static void ListCraftProxyStalls(IRpcChannel channel, global::ListCraftProxyStallsRequest request,
+            RpcDone<global::ListCraftProxyStallsResponse> done)
+            => channel.CallMethod(ListCraftProxyStallsMessageId, request, global::ListCraftProxyStallsResponse.Parser, done);
     }
 }

@@ -364,6 +364,8 @@ namespace MmorpgClient.UI.Ugui.Battle
                 : state.Name;
             if (IsMonster && state.CapturePetTableId != 0)
                 name = MmorpgClient.World.QdaoPetCatalog.Resolve(state.CapturePetTableId)?.displayName ?? name;
+            else if (IsMonster && (string.IsNullOrEmpty(state.Name) || state.Name == "野怪"))
+                name = BattleArtCatalog.ResolveMonsterDisplayName(state.MonsterTableId) ?? name;
             _name.text = IsSelf ? $"★{name}" : name;
             _name.color = NameColor(IsMonster);
 

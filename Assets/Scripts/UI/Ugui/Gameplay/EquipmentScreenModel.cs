@@ -13,6 +13,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     public static class EquipmentScreenModel
     {
         private const string IconRoot = "UI/Ugui/Equipment20261117/Icons/";
+        private const string CraftIconRoot = "UI/Ugui/CraftQualitySkill/Icons/";
 
         public static IReadOnlyList<string> DetailLines(BagItemInfo item)
         {
@@ -38,7 +39,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var affix = slot.Selected;
                 string cap = affix.SourceCapBps == 0 ? string.Empty :
                     $"（装备同类上限 {FixedAmount(affix.SourceCapBps, affix.Unit)}）";
-                lines.Add($"{label}：{AffixName(affix)} {AffixValue(affix)}{cap}");
+                string quality = FormatAffixQualityTag(affix);
+                lines.Add($"{label}：{AffixName(affix)} {AffixValue(affix)}{quality}{cap}");
+                string pity = FormatPolishPity(affix);
+                if (!string.IsNullOrEmpty(pity)) lines.Add(pity);
                 if (!string.IsNullOrWhiteSpace(affix.Description)) lines.Add(affix.Description);
             }
 
@@ -51,6 +55,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (item.EquipKind != 0) AddEnhanceLines(item, lines);
             foreach (var socket in EquipDisplay.SocketsOf(item)) lines.Add(EquipDisplay.FormatSocketLine(socket));
             if (item.GemAttr != null) lines.Add(EquipDisplay.FormatGemAttr(item.GemAttr));
+            if (!string.IsNullOrWhiteSpace(item.CrafterName)) lines.Add($"宗师·{item.CrafterName} 亲手铸造");
             return lines;
         }
 
@@ -115,6 +120,112 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (affix == null) return string.Empty;
             string sign = affix.Effect == 13 && affix.Unit == 1 ? "-" : "+";
             return sign + FixedAmount(affix.ValueBps, affix.Unit);
+        }
+
+        /// <summary>词条满值显示文本；无满值配置时回落现值。</summary>
+        public static string AffixMaxValue(EquipFixedAffixInfo affix)
+        {
+            if (affix == null) return string.Empty;
+            uint maxBps = affix.MaxValueBps != 0 ? affix.MaxValueBps : affix.ValueBps;
+            string sign = affix.Effect == 13 && affix.Unit == 1 ? "-" : "+";
+            return sign + FixedAmount(maxBps, affix.Unit);
+        }
+
+        public static string QualityTierName(uint tier, string serverName = null)
+        {
+            if (!string.IsNullOrWhiteSpace(serverName)) return serverName;
+            return tier switch
+            {
+                1 => "凡品",
+                2 => "良品",
+                3 => "上品",
+                4 => "珍品",
+                5 => "极品",
+                _ => string.Empty,
+            };
+        }
+
+        /// <summary>词条品相附加标签；旧快照未下发品相字段时返回空串以保持既有文案不变。</summary>
+        public static string FormatAffixQualityTag(EquipFixedAffixInfo affix)
+        {
+            if (affix == null) return string.Empty;
+            if (affix.PolishExempt) return " [固定满值]";
+            if (affix.QualityTier == 0) return string.Empty;
+            string name = QualityTierName(affix.QualityTier, affix.QualityName);
+            string maxPart = affix.MaxValueBps != 0 && affix.MaxValueBps != affix.ValueBps
+                ? $" / 满值 {AffixMaxValue(affix)}" : string.Empty;
+            return $" [{name}{maxPart}]";
+        }
+
+        /// <summary>单条词条的打磨保底进度提示；豁免或已满极品返回空串。</summary>
+        public static string FormatPolishPity(EquipFixedAffixInfo affix)
+        {
+            if (affix == null || affix.PolishExempt || affix.QualityTier == 0 || affix.QualityTier >= 5 || affix.PolishPityLimit == 0)
+                return string.Empty;
+            if (affix.PolishPityCount + 1 >= affix.PolishPityLimit)
+                return $"打磨保底：{Number(affix.PolishPityCount)} / {Number(affix.PolishPityLimit)}（本次打磨 100% 必出极品）";
+            return $"打磨保底：{Number(affix.PolishPityCount)} / {Number(affix.PolishPityLimit)}（只升不降）";
+        }
+
+        /// <summary>合规概率公示行（全取服务端 quality_tiers，不本地硬编码权重）。</summary>
+        public static IReadOnlyList<string> FormatQualityOddsLines(GetEquipmentCraftRulesResponse rules)
+        {
+            var lines = new List<string>();
+            if (rules == null || rules.QualityTiers.Count == 0)
+            {
+                lines.Add("品相概率表暂未同步，请刷新。");
+                return lines;
+            }
+            uint masteryTier = rules.ForgeMastery?.Tier ?? 1;
+            foreach (var row in rules.QualityTiers.OrderBy(t => t.QualityTier))
+            {
+                uint activeRate = masteryTier >= 3 ? row.MasterRateBps : masteryTier == 2 ? row.ArtisanRateBps : row.ApprenticeRateBps;
+                string name = QualityTierName(row.QualityTier, row.Name);
+                lines.Add($"{name}（满值 {Number(row.RatioPct)}%）：当前 {EquipDisplay.FormatSuccessRate(activeRate)}（学徒 {EquipDisplay.FormatSuccessRate(row.ApprenticeRateBps)} / 巧匠 {EquipDisplay.FormatSuccessRate(row.ArtisanRateBps)} / 宗师 {EquipDisplay.FormatSuccessRate(row.MasterRateBps)}）");
+            }
+            lines.Add("规则：只升不降，累计第 8 次必出极品（100%）；速度词条固定满值，无需打磨；换词条 100% 保留当前品相与保底进度。");
+            return lines;
+        }
+
+        /// <summary>铸器手艺轻徽章文案（无体力条、无日常红点）。</summary>
+        public static string FormatForgeMastery(CraftMasteryInfo mastery)
+        {
+            if (mastery == null || mastery.Tier == 0) return "铸器手艺：未同步";
+            string name = string.IsNullOrWhiteSpace(mastery.TierName) ? $"档位 {Number(mastery.Tier)}" : mastery.TierName;
+            string progress = mastery.NextTierExp == 0 ? "已满宗师" : $"{Number(mastery.Exp)}/{Number(mastery.NextTierExp)}";
+            return $"铸器手艺 · {name}（极品率 {EquipDisplay.FormatSuccessRate(mastery.TopQualityRateBps)} · {progress}）";
+        }
+
+        /// <summary>打磨 / 换词条预览成本汇总（含可选定星保底符、银两、名匠手工费与防染毒提示）。</summary>
+        public static string FormatCraftPreviewSummary(EquipmentCraftPreview preview)
+        {
+            if (preview == null) return "选择词条后读取当前消耗与资格";
+            var parts = new List<string>();
+            if (preview.Material != null && preview.Material.Count != 0)
+            {
+                string mat = $"{preview.Material.Name} 需要 {Number(preview.Material.Count)} · 持有 {Number(preview.Material.Owned)} · 可用 {Number(preview.Material.Available)}";
+                if (preview.Material.Available < preview.Material.Count)
+                    mat += $"（缺 {Number(preview.Material.Count - preview.Material.Available)}）";
+                parts.Add(mat);
+            }
+            if (preview.ExtraMaterial != null && preview.ExtraMaterial.Count != 0)
+            {
+                string extra = $"{preview.ExtraMaterial.Name} 需要 {Number(preview.ExtraMaterial.Count)} · 可用 {Number(preview.ExtraMaterial.Available)}";
+                parts.Add(extra);
+            }
+            if (preview.GoldCost != 0 || preview.ProxyFeeGold != 0)
+            {
+                string gold = $"银两 {Number(preview.GoldCost)}";
+                if (preview.ProxyFeeGold != 0)
+                {
+                    string master = string.IsNullOrWhiteSpace(preview.ProxyMasterName) ? "名匠" : preview.ProxyMasterName;
+                    gold += $" + {master}手工费 {Number(preview.ProxyFeeGold)} 银两（零风险代打，装备不离身）";
+                }
+                parts.Add(gold);
+            }
+            if (preview.WillBindItem)
+                parts.Add("注意：本次将消耗绑定材料，完成后装备永久转为仅自用");
+            return string.Join("\n", parts);
         }
 
         /// <summary>
@@ -219,6 +330,10 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             {
                 if (item.ConfigId == 3001) return IconRoot + "material_crafting";
                 if (item.ConfigId == 3002) return IconRoot + "material_enhancement";
+                if (item.ConfigId == 3405) return CraftIconRoot + "item_star_guarantee_charm";
+                if (item.ConfigId == 3406) return CraftIconRoot + "item_enlightenment_page";
+                if (item.ConfigId == 3407) return CraftIconRoot + "item_rare_scroll_fragment";
+                if (item.ConfigId == 3408) return CraftIconRoot + "item_celestial_ink";
                 return IsIcon(item.IconKey, "reward_choice") ? IconRoot + "reward_choice" : null;
             }
             if (item.EquipProfile == 1)

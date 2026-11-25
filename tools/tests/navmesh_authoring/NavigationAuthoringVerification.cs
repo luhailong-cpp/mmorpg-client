@@ -311,11 +311,11 @@ public static class NavigationAuthoringVerification
 
     private static void TestExistingIslandImport()
     {
-        var folder = Path.Combine(SourceProject,"Assets/Resources/World/CurrentMaps20261009/island");
+        var folder = Path.Combine(SourceProject,"Assets/Resources/World/QdaoMaps20261102/island/bajingbody20261114/spring/89b2b51459c2a3f04670d6ba1c90521504795db18cc252f76cc5abb3a4d8bfd8");
         var d = (NavMeshAuthoringDraft)InvokeIO("ImportExistingMap", folder, _caseRoot + "/ImportedIsland.asset");
-        Assert(d.mapKey == "island" && d.imageWidth == 1254 && d.imageHeight == 1254, "Legacy island identity/dimensions differ");
-        Assert(d.polygons.Any(p=>!p.blocked) && d.spawnSet, "Legacy island lost polygon authoring/spawn");
-        Assert(d.backgroundTiles[0].sha256 == Sha(File.ReadAllBytes(Path.Combine(folder,"layout.png"))), "Legacy import changed source art identity");
+        Assert(d.mapKey == "island" && d.imageWidth == 4096 && d.imageHeight == 2979, "Delivered island identity/dimensions differ");
+        Assert(d.polygons.Any(p=>!p.blocked) && d.spawnSet, "Delivered island lost polygon authoring/spawn");
+        Assert(d.backgroundTiles[0].sha256 == Sha(File.ReadAllBytes(Path.Combine(folder,"layout.png"))), "Delivered import changed source art identity");
     }
 
     private static void TestMissingTile()

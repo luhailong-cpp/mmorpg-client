@@ -233,7 +233,16 @@ public static class AppearanceUiVerification
                     AssertTrue(uiRoot.StoryOverlay.activeSelf, $"从小传进入应打开故事阅读层：{rawId}");
                     AssertTrue(FindText("StoryTitle").text == storyTitle, $"故事篇名不匹配：{storyTitle}");
                     AssertTrue(uiRoot.StoryBodyText.text.Contains(bodySnippet), $"故事正文不匹配：{bodySnippet}");
-                    if (rawId == "00_reference_topright_boy") Shoot("02c-story-reader-ahe");
+                    if (rawId == "00_reference_topright_boy")
+                    {
+                        Shoot("02c-story-reader-ahe");
+                        uiRoot.StoryScroll.verticalNormalizedPosition = 0.42f;
+                        Click("StoryViewPortrait");
+                        AssertTrue(portraitOverlay.activeSelf && !uiRoot.StoryOverlay.activeSelf, "从往事正文点击查看形象应打开独立大图层");
+                        Click("PortraitReturn");
+                        AssertTrue(!portraitOverlay.activeSelf && uiRoot.StoryOverlay.activeSelf, "独立大图返回应回到往事正文层");
+                        AssertTrue(Mathf.Abs(uiRoot.StoryScroll.verticalNormalizedPosition - 0.42f) < 0.02f, "从大图返回往事后应保留原阅读滚动位置");
+                    }
 
                     Click("AppearanceStoryBack");
                     AssertTrue(!uiRoot.StoryOverlay.activeSelf && biographyOverlay.activeSelf, "故事普通返回应逐层回到人物小传");
@@ -280,6 +289,10 @@ public static class AppearanceUiVerification
                 Click("AppearanceOption_00_reference_topright_boy");
                 Click("AppearanceConfirmSwitch");
                 AssertTrue(uiRoot.ConfirmOverlay.activeSelf, "首次点切换应弹出二次确认弹窗");
+                var arrowRect = (RectTransform)FindObject("SwitchArrow").transform;
+                var readConfirmRect = (RectTransform)FindObject("ReadBeforeSwitch").transform;
+                AssertTrue(-arrowRect.anchoredPosition.y + arrowRect.sizeDelta.y <= -readConfirmRect.anchoredPosition.y,
+                    "扣卡确认窗箭头与先读人物志按钮包围盒不得重叠");
                 Shoot("05-switch-confirm-dialog");
                 uiRoot.PanelState.ArmLegacySwitchConfirmation("00_reference_topright_boy", clock);
                 Click("ReadBeforeSwitch");
@@ -290,9 +303,25 @@ public static class AppearanceUiVerification
                 AssertTrue(uiRoot.ConfirmOverlay.activeSelf, "返回后首次点切换必须重进确认弹窗");
                 AssertTrue(transport.SwitchCalls == 0, "不得直接扣卡发包");
                 Click("AppearanceConfirmCancel");
-                summary.Add($"[{width}x{height}] Check 7 PASS: 扣卡确认→先读人物志→返回→再点切换仅重进确认，SwitchCalls=0");
 
-                // 额外视觉核验：背包 0 张卡弹出官方商城引导窗（04）
+                // 额外核验：无传记人物扣卡确认窗 Tab 焦点跳过隐藏的 ReadBeforeSwitch；缺卡价格未同步时跳过禁用的商城按钮
+                Click("AppearanceOption_01_ice_sword_girl");
+                Click("AppearanceConfirmSwitch");
+                AssertTrue(!FindObject("ReadBeforeSwitch").activeSelf, "无传记人物确认窗应隐藏先读人物志按钮");
+                var confirmVisited = new HashSet<string>();
+                GameObject focused = null;
+                for (int step = 0; step < 5; step++)
+                {
+                    focused = uiRoot.StepOverlayFocusForVerification(focused, reverse: false);
+                    AssertTrue(focused != null && focused.name != "ReadBeforeSwitch" && focused.activeInHierarchy,
+                        "确认窗 Tab 不得落入隐藏的 ReadBeforeSwitch");
+                    confirmVisited.Add(focused.name);
+                }
+                AssertTrue(confirmVisited.Contains("AppearanceConfirmCancel") && confirmVisited.Contains("AppearanceConfirmSubmit")
+                    && confirmVisited.Contains("AppearanceConfirmClose"), "确认窗 Tab 应完整循环全部可见按钮");
+                Click("AppearanceConfirmCancel");
+
+                // 额外视觉核验：背包 0 张卡弹出官方商城引导窗（04），并验证价格未同步时 Tab 跳过禁用商城按钮
                 transport.Snapshot = BuildFixtureInfo(ownedCards: 0, activeTrialId: "");
                 client.RequestInfo(force: true);
                 Click("AppearanceOption_00_reference_topright_boy");
@@ -300,6 +329,25 @@ public static class AppearanceUiVerification
                 AssertTrue(uiRoot.NoCardOverlay.activeSelf, "背包 0 张卡应弹缺卡商城引导");
                 Shoot("06-no-card-mall-guide");
                 Click("AppearanceNoCardCancel");
+
+                var unsyncedInfo = BuildFixtureInfo(ownedCards: 0, activeTrialId: "");
+                unsyncedInfo.MallPriceFen = 0;
+                transport.Snapshot = unsyncedInfo;
+                client.RequestInfo(force: true);
+                Click("AppearanceConfirmSwitch");
+                AssertTrue(!FindButton("AppearanceNoCardGoMall").interactable, "价格未同步时商城按钮必须禁用");
+                var noCardVisited = new HashSet<string>();
+                focused = null;
+                for (int step = 0; step < 4; step++)
+                {
+                    focused = uiRoot.StepOverlayFocusForVerification(focused, reverse: false);
+                    AssertTrue(focused != null && focused.name != "AppearanceNoCardGoMall", "缺卡窗 Tab 不得卡在禁用商城按钮");
+                    noCardVisited.Add(focused.name);
+                }
+                AssertTrue(noCardVisited.Contains("AppearanceNoCardCancel") && noCardVisited.Contains("AppearanceNoCardClose"),
+                    "缺卡窗 Tab 应在取消与关闭之间正常循环");
+                Click("AppearanceNoCardCancel");
+                summary.Add($"[{width}x{height}] Check 7 PASS: 扣卡确认无重叠、先读人物志清空确认、Tab 焦点跳过隐藏与禁用按钮，SwitchCalls=0");
 
                 // 验收 5：缺立绘仍可读人物小传与故事，显示缺图占位不借用他人立绘
                 transport.Snapshot = BuildFixtureInfo(ownedCards: 2, activeTrialId: "");
@@ -384,9 +432,15 @@ public static class AppearanceUiVerification
                 Canvas.ForceUpdateCanvases();
                 Shoot("13-compact-story-scroll-end");
                 Click("AppearanceStorySkip");
+                // 窄横屏下试用其他形象时，浏览非试用条目仍应显示试用对象与剩余倒计时
+                transport.Snapshot = BuildFixtureInfo(ownedCards: 2, activeTrialId: "01_ice_sword_girl");
+                client.RequestInfo(force: true);
+                AssertTrue(FindObject("AppearanceTrialBanner").activeSelf, "窄横屏查看非试用条目时应继续显示试用倒计时横幅");
+                AssertTrue(FindText("TrialCountdownLabel").text.Contains("冰剑少女"), "窄横屏非试用条目横幅应标明当前试用角色");
+                Shoot("15-compact-detail-other-trialing");
                 Click("AppearanceBackToList");
                 AssertTrue(!FindObject("AppearanceBackToList").activeSelf, "返回列表后应隐藏返回列表按钮");
-                summary.Add($"[{width}x{height}] Compact+SafeArea+EnlargedFontScroll PASS: contentH={uiRoot.StoryScroll.content.rect.height:F0} > viewportH={uiRoot.StoryScroll.viewport.rect.height:F0}");
+                summary.Add($"[{width}x{height}] Compact+SafeArea+EnlargedFontScroll+CrossTrialBanner PASS: contentH={uiRoot.StoryScroll.content.rect.height:F0} > viewportH={uiRoot.StoryScroll.viewport.rect.height:F0}");
             }
             else
             {

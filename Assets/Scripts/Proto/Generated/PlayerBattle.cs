@@ -25,99 +25,109 @@ public static partial class PlayerBattleReflection {
           "CiBwcm90by9iYXR0bGUvcGxheWVyX2JhdHRsZS5wcm90bxobcHJvdG8vZGIv",
           "cHJvdG9fb3B0aW9uLnByb3RvGhtwcm90by9jb21tb24vYmFzZS90aXAucHJv",
           "dG8aHXByb3RvL2NvbW1vbi9iYXNlL2VtcHR5LnByb3RvGh5wcm90by9iYXR0",
-          "bGUvYmF0dGxlX2RhdGEucHJvdG8i2gEKDkJhdHRsZVN0YXRlUzJDEhEKCWJh",
-          "dHRsZV9pZBgBIAEoBBITCgtyb3VuZF9pbmRleBgCIAEoDRIhCgZhY3RvcnMY",
-          "AyADKAsyES5CYXR0bGVBY3RvclN0YXRlEhoKEmFjdGlvbl9kZWFkbGluZV9t",
-          "cxgEIAEoBBIgCgdvdXRjb21lGAUgASgOMg8uZUJhdHRsZU91dGNvbWUSGQoR",
-          "cGVuZGluZ19hY3Rvcl9pZHMYBiADKAQSJAoKc2VsZl9pdGVtcxgHIAMoCzIQ",
-          "LkJhdHRsZUl0ZW1FbnRyeSJDCg5CYXR0bGVTdGFydFMyQxIRCgliYXR0bGVf",
-          "aWQYASABKAQSHgoFc3RhdGUYAiABKAsyDy5CYXR0bGVTdGF0ZVMyQyKPAQoN",
-          "VHVyblJlc3VsdFMyQxIRCgliYXR0bGVfaWQYASABKAQSEwoLcm91bmRfaW5k",
-          "ZXgYAiABKA0SIAoGZXZlbnRzGAMgAygLMhAuQmF0dGxlRXZlbnRJdGVtEh4K",
-          "BXN0YXRlGAQgASgLMg8uQmF0dGxlU3RhdGVTMkMSFAoMYWN0aW9uX29yZGVy",
-          "GAUgAygEIrwBCgxCYXR0bGVFbmRTMkMSEQoJYmF0dGxlX2lkGAEgASgEEiAK",
-          "B291dGNvbWUYAiABKA4yDy5lQmF0dGxlT3V0Y29tZRIpCgpzZXR0bGVtZW50",
-          "GAMgASgLMhUuQmF0dGxlU2V0dGxlbWVudERhdGESFAoMaXRlbXNfbWFpbGVk",
-          "GAQgASgIEiMKG21hdGVyaWFsX2NyZWRpdF91bml0c19hZGRlZBgFIAEoDRIR",
-          "CglzZWFzb25faWQYBiABKA0iJwoSQmF0dGxlUmVjb25uZWN0UzJDEhEKCWJh",
-          "dHRsZV9pZBgBIAEoBCJKChBTcGVjdGF0ZVN0YXRlUzJDEh4KBXN0YXRlGAEg",
-          "ASgLMg8uQmF0dGxlU3RhdGVTMkMSFgoOb2JzZXJ2ZXJfY291bnQYAiABKA0i",
-          "agoOU3BlY3RhdGVFbmRTMkMSEQoJYmF0dGxlX2lkGAEgASgEEiAKB291dGNv",
-          "bWUYAiABKA4yDy5lQmF0dGxlT3V0Y29tZRIjCgZyZWFzb24YAyABKA4yEy5l",
-          "U3BlY3RhdGVFbmRSZWFzb24idAoZU3VibWl0QmF0dGxlQWN0aW9uUmVxdWVz",
-          "dBIRCgliYXR0bGVfaWQYASABKAQSHQoGYWN0aW9uGAIgASgLMg0uQmF0dGxl",
-          "QWN0aW9uEhAKCGFjdG9yX2lkGAMgASgEEhMKC3JvdW5kX2luZGV4GAQgASgN",
-          "IkQKGlN1Ym1pdEJhdHRsZUFjdGlvblJlc3BvbnNlEiYKDWVycm9yX21lc3Nh",
-          "Z2UYASABKAsyDy5UaXBJbmZvTWVzc2FnZSIqChVHZXRCYXR0bGVTdGF0ZVJl",
-          "cXVlc3QSEQoJYmF0dGxlX2lkGAEgASgEIisKFlN0b3BXYXRjaEJhdHRsZVJl",
-          "cXVlc3QSEQoJYmF0dGxlX2lkGAEgASgEIkEKF1N0b3BXYXRjaEJhdHRsZVJl",
-          "c3BvbnNlEiYKDWVycm9yX21lc3NhZ2UYASABKAsyDy5UaXBJbmZvTWVzc2Fn",
-          "ZSI6ChRTZXRBdXRvQmF0dGxlUmVxdWVzdBIRCgliYXR0bGVfaWQYASABKAQS",
-          "DwoHZW5hYmxlZBgCIAEoCCI/ChVTZXRBdXRvQmF0dGxlUmVzcG9uc2USJgoN",
-          "ZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlIscBChNCYXR0",
-          "bGVUaWNrZXRQYXlsb2FkEhEKCWJhdHRsZV9pZBgBIAEoBBIRCglwbGF5ZXJf",
-          "aWQYAiABKAQSFgoOYmF0dGxlX25vZGVfaWQYAyABKA0SGgoSYmF0dGxlX2lu",
-          "c3RhbmNlX2lkGAQgASgJEhQKDGV4cGlyZV9hdF9tcxgFIAEoBBIgCgRyb2xl",
-          "GAYgASgOMhIuZUJhdHRsZVRpY2tldFJvbGUSHgoWc3BlY3RhdG9yX29wZXJh",
-          "dGlvbl9pZBgHIAEoCSI+ChhCYXR0bGVUb2tlblZlcmlmeVJlcXVlc3QSDwoH",
-          "cGF5bG9hZBgBIAEoDBIRCglzaWduYXR1cmUYAiABKAwiiwEKGUJhdHRsZVRv",
-          "a2VuVmVyaWZ5UmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBINCgVlcnJvchgC",
-          "IAEoCRIRCgliYXR0bGVfaWQYAyABKAQSHQoVaGVhcnRiZWF0X2ludGVydmFs",
-          "X21zGAQgASgNEhwKFGhlYXJ0YmVhdF90aW1lb3V0X21zGAUgASgNIroBChFC",
-          "YXR0bGVBc3NpZ25lZFMyQxIRCgliYXR0bGVfaWQYASABKAQSDAoEaG9zdBgC",
-          "IAEoCRIMCgRwb3J0GAMgASgNEhUKDXRva2VuX3BheWxvYWQYBCABKAwSFwoP",
-          "dG9rZW5fc2lnbmF0dXJlGAUgASgMEhQKDGV4cGlyZV9hdF9tcxgGIAEoBBIg",
-          "CgRyb2xlGAcgASgOMhIuZUJhdHRsZVRpY2tldFJvbGUSDgoGd3NfdXJsGAgg",
-          "ASgJIi8KGlJlcXVlc3RCYXR0bGVUaWNrZXRSZXF1ZXN0EhEKCWJhdHRsZV9p",
-          "ZBgBIAEoBCJtChtSZXF1ZXN0QmF0dGxlVGlja2V0UmVzcG9uc2USJgoNZXJy",
-          "b3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlEiYKCmFzc2lnbm1l",
-          "bnQYAiABKAsyEi5CYXR0bGVBc3NpZ25lZFMyQyL9AgoMQmF0dGxlUmVwbGF5",
-          "EhEKCWJhdHRsZV9pZBgBIAEoBBISCgptYXRjaF9tb2RlGAIgASgNEhgKEGJh",
-          "dHRsZV9jb25maWdfaWQYAyABKA0SFQoNc3RhcnRlZF9hdF9tcxgEIAEoBBIW",
-          "Cg5maW5pc2hlZF9hdF9tcxgFIAEoBBIgCgdvdXRjb21lGAYgASgOMg8uZUJh",
-          "dHRsZU91dGNvbWUSKwoKZW5kX3JlYXNvbhgHIAEoDjIXLmVCYXR0bGVSZXBs",
-          "YXlFbmRSZWFzb24SFAoMdG90YWxfcm91bmRzGAggASgNEhkKEXRhYmxlX2Zp",
-          "bmdlcnByaW50GAkgASgJEiQKC3N0YXJ0X3N0YXRlGAogASgLMg8uQmF0dGxl",
-          "U3RhdGVTMkMSHgoGcm91bmRzGAsgAygLMg4uVHVyblJlc3VsdFMyQxIkCgtm",
-          "aW5hbF9zdGF0ZRgMIAEoCzIPLkJhdHRsZVN0YXRlUzJDEhEKCXRydW5jYXRl",
-          "ZBgNIAEoCCJ2ChRCYXR0bGVSZXBsYXlFbnZlbG9wZRIWCg5mb3JtYXRfdmVy",
-          "c2lvbhgBIAEoDRIiCgVjb2RlYxgCIAEoDjITLmVCYXR0bGVSZXBsYXlDb2Rl",
-          "YxIRCglyYXdfYnl0ZXMYAyABKA0SDwoHcGF5bG9hZBgEIAEoDCqmAQoSZVNw",
-          "ZWN0YXRlRW5kUmVhc29uEhUKEVNQRUNUQVRFX0VORF9OT05FEAASIAocU1BF",
-          "Q1RBVEVfRU5EX0JBVFRMRV9GSU5JU0hFRBABEh8KG1NQRUNUQVRFX0VORF9C",
-          "QVRUTEVfQUJPUlRFRBACEhgKFFNQRUNUQVRFX0VORF9SRU1PVkVEEAMSHAoY",
-          "U1BFQ1RBVEVfRU5EX1NPVVJDRV9MT1NUEAQqdQoRZUJhdHRsZVRpY2tldFJv",
-          "bGUSGwoXQkFUVExFX1RJQ0tFVF9ST0xFX05PTkUQABIiCh5CQVRUTEVfVElD",
-          "S0VUX1JPTEVfUEFSVElDSVBBTlQQARIfChtCQVRUTEVfVElDS0VUX1JPTEVf",
-          "T0JTRVJWRVIQAipQChJlQmF0dGxlUmVwbGF5Q29kZWMSHAoYQkFUVExFX1JF",
-          "UExBWV9DT0RFQ19OT05FEAASHAoYQkFUVExFX1JFUExBWV9DT0RFQ19HWklQ",
-          "EAEqgAEKFmVCYXR0bGVSZXBsYXlFbmRSZWFzb24SIQodQkFUVExFX1JFUExB",
-          "WV9FTkRfVU5TUEVDSUZJRUQQABIeChpCQVRUTEVfUkVQTEFZX0VORF9GSU5J",
-          "U0hFRBABEiMKH0JBVFRMRV9SRVBMQVlfRU5EX0RFQURMSU5FX0RSQVcQAjLl",
-          "BQoSQmF0dGxlQ2xpZW50UGxheWVyEk0KElN1Ym1pdEJhdHRsZUFjdGlvbhIa",
-          "LlN1Ym1pdEJhdHRsZUFjdGlvblJlcXVlc3QaGy5TdWJtaXRCYXR0bGVBY3Rp",
-          "b25SZXNwb25zZRI5Cg5HZXRCYXR0bGVTdGF0ZRIWLkdldEJhdHRsZVN0YXRl",
-          "UmVxdWVzdBoPLkJhdHRsZVN0YXRlUzJDEjMKEU5vdGlmeUJhdHRsZVN0YXJ0",
-          "Eg8uQmF0dGxlU3RhcnRTMkMaBi5FbXB0eSIFiJnIAQISMQoQTm90aWZ5VHVy",
-          "blJlc3VsdBIOLlR1cm5SZXN1bHRTMkMaBi5FbXB0eSIFiJnIAQISLwoPTm90",
-          "aWZ5QmF0dGxlRW5kEg0uQmF0dGxlRW5kUzJDGgYuRW1wdHkiBYiZyAECEjsK",
-          "FU5vdGlmeUJhdHRsZVJlY29ubmVjdBITLkJhdHRsZVJlY29ubmVjdFMyQxoG",
-          "LkVtcHR5IgWImcgBAhJECg9TdG9wV2F0Y2hCYXR0bGUSFy5TdG9wV2F0Y2hC",
-          "YXR0bGVSZXF1ZXN0GhguU3RvcFdhdGNoQmF0dGxlUmVzcG9uc2USPgoNU2V0",
-          "QXV0b0JhdHRsZRIVLlNldEF1dG9CYXR0bGVSZXF1ZXN0GhYuU2V0QXV0b0Jh",
-          "dHRsZVJlc3BvbnNlEjcKE05vdGlmeVNwZWN0YXRlU3RhdGUSES5TcGVjdGF0",
-          "ZVN0YXRlUzJDGgYuRW1wdHkiBYiZyAECEjkKGE5vdGlmeVNwZWN0YXRlVHVy",
-          "blJlc3VsdBIOLlR1cm5SZXN1bHRTMkMaBi5FbXB0eSIFiJnIAQISMwoRTm90",
-          "aWZ5U3BlY3RhdGVFbmQSDy5TcGVjdGF0ZUVuZFMyQxoGLkVtcHR5IgWImcgB",
-          "AhI5ChROb3RpZnlCYXR0bGVBc3NpZ25lZBISLkJhdHRsZUFzc2lnbmVkUzJD",
-          "GgYuRW1wdHkiBYiZyAECGgWIqMMBAUIMWgZiYXR0bGWY1GEeYgZwcm90bzM="));
+          "bGUvYmF0dGxlX2RhdGEucHJvdG8ikwEKFEJhdHRsZVRlbGVncmFwaEVudHJ5",
+          "EhcKD3NvdXJjZV9hY3Rvcl9pZBgBIAEoBBIXCg90YXJnZXRfYWN0b3JfaWQY",
+          "AiABKAQSFQoNZXhlY3V0ZV9yb3VuZBgDIAEoDRITCgtpbnRlbnRfa2luZBgE",
+          "IAEoDRIOCgZzdGF0dXMYBSABKA0SDQoFbGFiZWwYBiABKAki5AIKDkJhdHRs",
+          "ZVN0YXRlUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBITCgtyb3VuZF9pbmRleBgC",
+          "IAEoDRIhCgZhY3RvcnMYAyADKAsyES5CYXR0bGVBY3RvclN0YXRlEhoKEmFj",
+          "dGlvbl9kZWFkbGluZV9tcxgEIAEoBBIgCgdvdXRjb21lGAUgASgOMg8uZUJh",
+          "dHRsZU91dGNvbWUSGQoRcGVuZGluZ19hY3Rvcl9pZHMYBiADKAQSJAoKc2Vs",
+          "Zl9pdGVtcxgHIAMoCzIQLkJhdHRsZUl0ZW1FbnRyeRIpCgp0ZWxlZ3JhcGhz",
+          "GAggAygLMhUuQmF0dGxlVGVsZWdyYXBoRW50cnkSFwoPYWN0aXZlX3BvbGFy",
+          "aXR5GAkgASgNEiIKGm5leHRfcG9sYXJpdHlfc3dpdGNoX3JvdW5kGAogASgN",
+          "EiAKGHByb3RlY3RlZF9ndWFyZF9hY3Rvcl9pZBgLIAEoBCJDCg5CYXR0bGVT",
+          "dGFydFMyQxIRCgliYXR0bGVfaWQYASABKAQSHgoFc3RhdGUYAiABKAsyDy5C",
+          "YXR0bGVTdGF0ZVMyQyKPAQoNVHVyblJlc3VsdFMyQxIRCgliYXR0bGVfaWQY",
+          "ASABKAQSEwoLcm91bmRfaW5kZXgYAiABKA0SIAoGZXZlbnRzGAMgAygLMhAu",
+          "QmF0dGxlRXZlbnRJdGVtEh4KBXN0YXRlGAQgASgLMg8uQmF0dGxlU3RhdGVT",
+          "MkMSFAoMYWN0aW9uX29yZGVyGAUgAygEIokCCgxCYXR0bGVFbmRTMkMSEQoJ",
+          "YmF0dGxlX2lkGAEgASgEEiAKB291dGNvbWUYAiABKA4yDy5lQmF0dGxlT3V0",
+          "Y29tZRIpCgpzZXR0bGVtZW50GAMgASgLMhUuQmF0dGxlU2V0dGxlbWVudERh",
+          "dGESFAoMaXRlbXNfbWFpbGVkGAQgASgIEiMKG21hdGVyaWFsX2NyZWRpdF91",
+          "bml0c19hZGRlZBgFIAEoDRIRCglzZWFzb25faWQYBiABKA0SJQodbWF0ZXJp",
+          "YWxfdHJhZGFibGVfdW5pdHNfYWRkZWQYByABKA0SJAocbWF0ZXJpYWxfcHZw",
+          "X2xvc3NfaW5lbGlnaWJsZRgIIAEoCCInChJCYXR0bGVSZWNvbm5lY3RTMkMS",
+          "EQoJYmF0dGxlX2lkGAEgASgEIkoKEFNwZWN0YXRlU3RhdGVTMkMSHgoFc3Rh",
+          "dGUYASABKAsyDy5CYXR0bGVTdGF0ZVMyQxIWCg5vYnNlcnZlcl9jb3VudBgC",
+          "IAEoDSJqCg5TcGVjdGF0ZUVuZFMyQxIRCgliYXR0bGVfaWQYASABKAQSIAoH",
+          "b3V0Y29tZRgCIAEoDjIPLmVCYXR0bGVPdXRjb21lEiMKBnJlYXNvbhgDIAEo",
+          "DjITLmVTcGVjdGF0ZUVuZFJlYXNvbiJ0ChlTdWJtaXRCYXR0bGVBY3Rpb25S",
+          "ZXF1ZXN0EhEKCWJhdHRsZV9pZBgBIAEoBBIdCgZhY3Rpb24YAiABKAsyDS5C",
+          "YXR0bGVBY3Rpb24SEAoIYWN0b3JfaWQYAyABKAQSEwoLcm91bmRfaW5kZXgY",
+          "BCABKA0iRAoaU3VibWl0QmF0dGxlQWN0aW9uUmVzcG9uc2USJgoNZXJyb3Jf",
+          "bWVzc2FnZRgBIAEoCzIPLlRpcEluZm9NZXNzYWdlIioKFUdldEJhdHRsZVN0",
+          "YXRlUmVxdWVzdBIRCgliYXR0bGVfaWQYASABKAQiKwoWU3RvcFdhdGNoQmF0",
+          "dGxlUmVxdWVzdBIRCgliYXR0bGVfaWQYASABKAQiQQoXU3RvcFdhdGNoQmF0",
+          "dGxlUmVzcG9uc2USJgoNZXJyb3JfbWVzc2FnZRgBIAEoCzIPLlRpcEluZm9N",
+          "ZXNzYWdlIjoKFFNldEF1dG9CYXR0bGVSZXF1ZXN0EhEKCWJhdHRsZV9pZBgB",
+          "IAEoBBIPCgdlbmFibGVkGAIgASgIIj8KFVNldEF1dG9CYXR0bGVSZXNwb25z",
+          "ZRImCg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2UixwEK",
+          "E0JhdHRsZVRpY2tldFBheWxvYWQSEQoJYmF0dGxlX2lkGAEgASgEEhEKCXBs",
+          "YXllcl9pZBgCIAEoBBIWCg5iYXR0bGVfbm9kZV9pZBgDIAEoDRIaChJiYXR0",
+          "bGVfaW5zdGFuY2VfaWQYBCABKAkSFAoMZXhwaXJlX2F0X21zGAUgASgEEiAK",
+          "BHJvbGUYBiABKA4yEi5lQmF0dGxlVGlja2V0Um9sZRIeChZzcGVjdGF0b3Jf",
+          "b3BlcmF0aW9uX2lkGAcgASgJIj4KGEJhdHRsZVRva2VuVmVyaWZ5UmVxdWVz",
+          "dBIPCgdwYXlsb2FkGAEgASgMEhEKCXNpZ25hdHVyZRgCIAEoDCKLAQoZQmF0",
+          "dGxlVG9rZW5WZXJpZnlSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg0KBWVy",
+          "cm9yGAIgASgJEhEKCWJhdHRsZV9pZBgDIAEoBBIdChVoZWFydGJlYXRfaW50",
+          "ZXJ2YWxfbXMYBCABKA0SHAoUaGVhcnRiZWF0X3RpbWVvdXRfbXMYBSABKA0i",
+          "ugEKEUJhdHRsZUFzc2lnbmVkUzJDEhEKCWJhdHRsZV9pZBgBIAEoBBIMCgRo",
+          "b3N0GAIgASgJEgwKBHBvcnQYAyABKA0SFQoNdG9rZW5fcGF5bG9hZBgEIAEo",
+          "DBIXCg90b2tlbl9zaWduYXR1cmUYBSABKAwSFAoMZXhwaXJlX2F0X21zGAYg",
+          "ASgEEiAKBHJvbGUYByABKA4yEi5lQmF0dGxlVGlja2V0Um9sZRIOCgZ3c191",
+          "cmwYCCABKAkiLwoaUmVxdWVzdEJhdHRsZVRpY2tldFJlcXVlc3QSEQoJYmF0",
+          "dGxlX2lkGAEgASgEIm0KG1JlcXVlc3RCYXR0bGVUaWNrZXRSZXNwb25zZRIm",
+          "Cg1lcnJvcl9tZXNzYWdlGAEgASgLMg8uVGlwSW5mb01lc3NhZ2USJgoKYXNz",
+          "aWdubWVudBgCIAEoCzISLkJhdHRsZUFzc2lnbmVkUzJDIv0CCgxCYXR0bGVS",
+          "ZXBsYXkSEQoJYmF0dGxlX2lkGAEgASgEEhIKCm1hdGNoX21vZGUYAiABKA0S",
+          "GAoQYmF0dGxlX2NvbmZpZ19pZBgDIAEoDRIVCg1zdGFydGVkX2F0X21zGAQg",
+          "ASgEEhYKDmZpbmlzaGVkX2F0X21zGAUgASgEEiAKB291dGNvbWUYBiABKA4y",
+          "Dy5lQmF0dGxlT3V0Y29tZRIrCgplbmRfcmVhc29uGAcgASgOMhcuZUJhdHRs",
+          "ZVJlcGxheUVuZFJlYXNvbhIUCgx0b3RhbF9yb3VuZHMYCCABKA0SGQoRdGFi",
+          "bGVfZmluZ2VycHJpbnQYCSABKAkSJAoLc3RhcnRfc3RhdGUYCiABKAsyDy5C",
+          "YXR0bGVTdGF0ZVMyQxIeCgZyb3VuZHMYCyADKAsyDi5UdXJuUmVzdWx0UzJD",
+          "EiQKC2ZpbmFsX3N0YXRlGAwgASgLMg8uQmF0dGxlU3RhdGVTMkMSEQoJdHJ1",
+          "bmNhdGVkGA0gASgIInYKFEJhdHRsZVJlcGxheUVudmVsb3BlEhYKDmZvcm1h",
+          "dF92ZXJzaW9uGAEgASgNEiIKBWNvZGVjGAIgASgOMhMuZUJhdHRsZVJlcGxh",
+          "eUNvZGVjEhEKCXJhd19ieXRlcxgDIAEoDRIPCgdwYXlsb2FkGAQgASgMKqYB",
+          "ChJlU3BlY3RhdGVFbmRSZWFzb24SFQoRU1BFQ1RBVEVfRU5EX05PTkUQABIg",
+          "ChxTUEVDVEFURV9FTkRfQkFUVExFX0ZJTklTSEVEEAESHwobU1BFQ1RBVEVf",
+          "RU5EX0JBVFRMRV9BQk9SVEVEEAISGAoUU1BFQ1RBVEVfRU5EX1JFTU9WRUQQ",
+          "AxIcChhTUEVDVEFURV9FTkRfU09VUkNFX0xPU1QQBCp1ChFlQmF0dGxlVGlj",
+          "a2V0Um9sZRIbChdCQVRUTEVfVElDS0VUX1JPTEVfTk9ORRAAEiIKHkJBVFRM",
+          "RV9USUNLRVRfUk9MRV9QQVJUSUNJUEFOVBABEh8KG0JBVFRMRV9USUNLRVRf",
+          "Uk9MRV9PQlNFUlZFUhACKlAKEmVCYXR0bGVSZXBsYXlDb2RlYxIcChhCQVRU",
+          "TEVfUkVQTEFZX0NPREVDX05PTkUQABIcChhCQVRUTEVfUkVQTEFZX0NPREVD",
+          "X0daSVAQASqAAQoWZUJhdHRsZVJlcGxheUVuZFJlYXNvbhIhCh1CQVRUTEVf",
+          "UkVQTEFZX0VORF9VTlNQRUNJRklFRBAAEh4KGkJBVFRMRV9SRVBMQVlfRU5E",
+          "X0ZJTklTSEVEEAESIwofQkFUVExFX1JFUExBWV9FTkRfREVBRExJTkVfRFJB",
+          "VxACMuUFChJCYXR0bGVDbGllbnRQbGF5ZXISTQoSU3VibWl0QmF0dGxlQWN0",
+          "aW9uEhouU3VibWl0QmF0dGxlQWN0aW9uUmVxdWVzdBobLlN1Ym1pdEJhdHRs",
+          "ZUFjdGlvblJlc3BvbnNlEjkKDkdldEJhdHRsZVN0YXRlEhYuR2V0QmF0dGxl",
+          "U3RhdGVSZXF1ZXN0Gg8uQmF0dGxlU3RhdGVTMkMSMwoRTm90aWZ5QmF0dGxl",
+          "U3RhcnQSDy5CYXR0bGVTdGFydFMyQxoGLkVtcHR5IgWImcgBAhIxChBOb3Rp",
+          "ZnlUdXJuUmVzdWx0Eg4uVHVyblJlc3VsdFMyQxoGLkVtcHR5IgWImcgBAhIv",
+          "Cg9Ob3RpZnlCYXR0bGVFbmQSDS5CYXR0bGVFbmRTMkMaBi5FbXB0eSIFiJnI",
+          "AQISOwoVTm90aWZ5QmF0dGxlUmVjb25uZWN0EhMuQmF0dGxlUmVjb25uZWN0",
+          "UzJDGgYuRW1wdHkiBYiZyAECEkQKD1N0b3BXYXRjaEJhdHRsZRIXLlN0b3BX",
+          "YXRjaEJhdHRsZVJlcXVlc3QaGC5TdG9wV2F0Y2hCYXR0bGVSZXNwb25zZRI+",
+          "Cg1TZXRBdXRvQmF0dGxlEhUuU2V0QXV0b0JhdHRsZVJlcXVlc3QaFi5TZXRB",
+          "dXRvQmF0dGxlUmVzcG9uc2USNwoTTm90aWZ5U3BlY3RhdGVTdGF0ZRIRLlNw",
+          "ZWN0YXRlU3RhdGVTMkMaBi5FbXB0eSIFiJnIAQISOQoYTm90aWZ5U3BlY3Rh",
+          "dGVUdXJuUmVzdWx0Eg4uVHVyblJlc3VsdFMyQxoGLkVtcHR5IgWImcgBAhIz",
+          "ChFOb3RpZnlTcGVjdGF0ZUVuZBIPLlNwZWN0YXRlRW5kUzJDGgYuRW1wdHki",
+          "BYiZyAECEjkKFE5vdGlmeUJhdHRsZUFzc2lnbmVkEhIuQmF0dGxlQXNzaWdu",
+          "ZWRTMkMaBi5FbXB0eSIFiJnIAQIaBYiowwEBQgxaBmJhdHRsZZjUYR5iBnBy",
+          "b3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::ProtoOptionReflection.Descriptor, global::TipReflection.Descriptor, global::EmptyReflection.Descriptor, global::BattleDataReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::eSpectateEndReason), typeof(global::eBattleTicketRole), typeof(global::eBattleReplayCodec), typeof(global::eBattleReplayEndReason), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleStateS2C), global::BattleStateS2C.Parser, new[]{ "BattleId", "RoundIndex", "Actors", "ActionDeadlineMs", "Outcome", "PendingActorIds", "SelfItems" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleTelegraphEntry), global::BattleTelegraphEntry.Parser, new[]{ "SourceActorId", "TargetActorId", "ExecuteRound", "IntentKind", "Status", "Label" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleStateS2C), global::BattleStateS2C.Parser, new[]{ "BattleId", "RoundIndex", "Actors", "ActionDeadlineMs", "Outcome", "PendingActorIds", "SelfItems", "Telegraphs", "ActivePolarity", "NextPolaritySwitchRound", "ProtectedGuardActorId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleStartS2C), global::BattleStartS2C.Parser, new[]{ "BattleId", "State" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TurnResultS2C), global::TurnResultS2C.Parser, new[]{ "BattleId", "RoundIndex", "Events", "State", "ActionOrder" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::BattleEndS2C), global::BattleEndS2C.Parser, new[]{ "BattleId", "Outcome", "Settlement", "ItemsMailed", "MaterialCreditUnitsAdded", "SeasonId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::BattleEndS2C), global::BattleEndS2C.Parser, new[]{ "BattleId", "Outcome", "Settlement", "ItemsMailed", "MaterialCreditUnitsAdded", "SeasonId", "MaterialTradableUnitsAdded", "MaterialPvpLossIneligible" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::BattleReconnectS2C), global::BattleReconnectS2C.Parser, new[]{ "BattleId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SpectateStateS2C), global::SpectateStateS2C.Parser, new[]{ "State", "ObserverCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SpectateEndS2C), global::SpectateEndS2C.Parser, new[]{ "BattleId", "Outcome", "Reason" }, null, null, null, null),
@@ -214,6 +224,401 @@ public enum eBattleReplayEndReason {
 
 #region Messages
 /// <summary>
+/// 敌方公开预告条目（首领慢重劈、回春治疗、护势切换、灵障蓄盾、玄毒封灵等；由 battle 权威生成并随重连/回放还原）。
+/// </summary>
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class BattleTelegraphEntry : pb::IMessage<BattleTelegraphEntry>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<BattleTelegraphEntry> _parser = new pb::MessageParser<BattleTelegraphEntry>(() => new BattleTelegraphEntry());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<BattleTelegraphEntry> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[0]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattleTelegraphEntry() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattleTelegraphEntry(BattleTelegraphEntry other) : this() {
+    sourceActorId_ = other.sourceActorId_;
+    targetActorId_ = other.targetActorId_;
+    executeRound_ = other.executeRound_;
+    intentKind_ = other.intentKind_;
+    status_ = other.status_;
+    label_ = other.label_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public BattleTelegraphEntry Clone() {
+    return new BattleTelegraphEntry(this);
+  }
+
+  /// <summary>Field number for the "source_actor_id" field.</summary>
+  public const int SourceActorIdFieldNumber = 1;
+  private ulong sourceActorId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong SourceActorId {
+    get { return sourceActorId_; }
+    set {
+      sourceActorId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_actor_id" field.</summary>
+  public const int TargetActorIdFieldNumber = 2;
+  private ulong targetActorId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong TargetActorId {
+    get { return targetActorId_; }
+    set {
+      targetActorId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "execute_round" field.</summary>
+  public const int ExecuteRoundFieldNumber = 3;
+  private uint executeRound_;
+  /// <summary>
+  /// 兑现回合号
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ExecuteRound {
+    get { return executeRound_; }
+    set {
+      executeRound_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "intent_kind" field.</summary>
+  public const int IntentKindFieldNumber = 4;
+  private uint intentKind_;
+  /// <summary>
+  /// 意图种类：1=慢动作重劈，2=回春治疗，3=物防护势，4=法防护势，5=灵障蓄盾，6=玄毒封灵。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint IntentKind {
+    get { return intentKind_; }
+    set {
+      intentKind_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "status" field.</summary>
+  public const int StatusFieldNumber = 5;
+  private uint status_;
+  /// <summary>
+  /// 预告状态：1=即将发动，2=本回合发动，3=已发动，4=已受控取消，5=目标失效取消。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Status {
+    get { return status_; }
+    set {
+      status_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "label" field.</summary>
+  public const int LabelFieldNumber = 6;
+  private string label_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Label {
+    get { return label_; }
+    set {
+      label_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as BattleTelegraphEntry);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(BattleTelegraphEntry other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (SourceActorId != other.SourceActorId) return false;
+    if (TargetActorId != other.TargetActorId) return false;
+    if (ExecuteRound != other.ExecuteRound) return false;
+    if (IntentKind != other.IntentKind) return false;
+    if (Status != other.Status) return false;
+    if (Label != other.Label) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (SourceActorId != 0UL) hash ^= SourceActorId.GetHashCode();
+    if (TargetActorId != 0UL) hash ^= TargetActorId.GetHashCode();
+    if (ExecuteRound != 0) hash ^= ExecuteRound.GetHashCode();
+    if (IntentKind != 0) hash ^= IntentKind.GetHashCode();
+    if (Status != 0) hash ^= Status.GetHashCode();
+    if (Label.Length != 0) hash ^= Label.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (SourceActorId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(SourceActorId);
+    }
+    if (TargetActorId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(TargetActorId);
+    }
+    if (ExecuteRound != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ExecuteRound);
+    }
+    if (IntentKind != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(IntentKind);
+    }
+    if (Status != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(Status);
+    }
+    if (Label.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Label);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (SourceActorId != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(SourceActorId);
+    }
+    if (TargetActorId != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(TargetActorId);
+    }
+    if (ExecuteRound != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(ExecuteRound);
+    }
+    if (IntentKind != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(IntentKind);
+    }
+    if (Status != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(Status);
+    }
+    if (Label.Length != 0) {
+      output.WriteRawTag(50);
+      output.WriteString(Label);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (SourceActorId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(SourceActorId);
+    }
+    if (TargetActorId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TargetActorId);
+    }
+    if (ExecuteRound != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ExecuteRound);
+    }
+    if (IntentKind != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(IntentKind);
+    }
+    if (Status != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Status);
+    }
+    if (Label.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Label);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(BattleTelegraphEntry other) {
+    if (other == null) {
+      return;
+    }
+    if (other.SourceActorId != 0UL) {
+      SourceActorId = other.SourceActorId;
+    }
+    if (other.TargetActorId != 0UL) {
+      TargetActorId = other.TargetActorId;
+    }
+    if (other.ExecuteRound != 0) {
+      ExecuteRound = other.ExecuteRound;
+    }
+    if (other.IntentKind != 0) {
+      IntentKind = other.IntentKind;
+    }
+    if (other.Status != 0) {
+      Status = other.Status;
+    }
+    if (other.Label.Length != 0) {
+      Label = other.Label;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          SourceActorId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          TargetActorId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ExecuteRound = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          IntentKind = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Status = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          Label = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          SourceActorId = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          TargetActorId = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          ExecuteRound = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          IntentKind = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Status = input.ReadUInt32();
+          break;
+        }
+        case 50: {
+          Label = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+/// <summary>
 /// ---- 战斗全量状态(开战下发 / 回合后同步 / 重连补拉,v1 全量同步免客户端预测) ----
 /// </summary>
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
@@ -231,7 +636,7 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[0]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[1]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -258,6 +663,10 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     outcome_ = other.outcome_;
     pendingActorIds_ = other.pendingActorIds_.Clone();
     selfItems_ = other.selfItems_.Clone();
+    telegraphs_ = other.telegraphs_.Clone();
+    activePolarity_ = other.activePolarity_;
+    nextPolaritySwitchRound_ = other.nextPolaritySwitchRound_;
+    protectedGuardActorId_ = other.protectedGuardActorId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -362,6 +771,65 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     get { return selfItems_; }
   }
 
+  /// <summary>Field number for the "telegraphs" field.</summary>
+  public const int TelegraphsFieldNumber = 8;
+  private static readonly pb::FieldCodec<global::BattleTelegraphEntry> _repeated_telegraphs_codec
+      = pb::FieldCodec.ForMessage(66, global::BattleTelegraphEntry.Parser);
+  private readonly pbc::RepeatedField<global::BattleTelegraphEntry> telegraphs_ = new pbc::RepeatedField<global::BattleTelegraphEntry>();
+  /// <summary>
+  /// 首领/护卫公开预告
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public pbc::RepeatedField<global::BattleTelegraphEntry> Telegraphs {
+    get { return telegraphs_; }
+  }
+
+  /// <summary>Field number for the "active_polarity" field.</summary>
+  public const int ActivePolarityFieldNumber = 9;
+  private uint activePolarity_;
+  /// <summary>
+  /// 物法易势当前强势类型：0=无，1=物势(物理直伤×1.15)，2=法势(法术直伤×1.15)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint ActivePolarity {
+    get { return activePolarity_; }
+    set {
+      activePolarity_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "next_polarity_switch_round" field.</summary>
+  public const int NextPolaritySwitchRoundFieldNumber = 10;
+  private uint nextPolaritySwitchRound_;
+  /// <summary>
+  /// 物法易势下次换势回合号（非易势为 0）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint NextPolaritySwitchRound {
+    get { return nextPolaritySwitchRound_; }
+    set {
+      nextPolaritySwitchRound_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "protected_guard_actor_id" field.</summary>
+  public const int ProtectedGuardActorIdFieldNumber = 11;
+  private ulong protectedGuardActorId_;
+  /// <summary>
+  /// 护卫救援模式须保全的护卫局内 actor_id（非救援为 0）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong ProtectedGuardActorId {
+    get { return protectedGuardActorId_; }
+    set {
+      protectedGuardActorId_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -384,6 +852,10 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     if (Outcome != other.Outcome) return false;
     if(!pendingActorIds_.Equals(other.pendingActorIds_)) return false;
     if(!selfItems_.Equals(other.selfItems_)) return false;
+    if(!telegraphs_.Equals(other.telegraphs_)) return false;
+    if (ActivePolarity != other.ActivePolarity) return false;
+    if (NextPolaritySwitchRound != other.NextPolaritySwitchRound) return false;
+    if (ProtectedGuardActorId != other.ProtectedGuardActorId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -398,6 +870,10 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     if (Outcome != global::eBattleOutcome.BattleOutcomeOngoing) hash ^= Outcome.GetHashCode();
     hash ^= pendingActorIds_.GetHashCode();
     hash ^= selfItems_.GetHashCode();
+    hash ^= telegraphs_.GetHashCode();
+    if (ActivePolarity != 0) hash ^= ActivePolarity.GetHashCode();
+    if (NextPolaritySwitchRound != 0) hash ^= NextPolaritySwitchRound.GetHashCode();
+    if (ProtectedGuardActorId != 0UL) hash ^= ProtectedGuardActorId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -435,6 +911,19 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     }
     pendingActorIds_.WriteTo(output, _repeated_pendingActorIds_codec);
     selfItems_.WriteTo(output, _repeated_selfItems_codec);
+    telegraphs_.WriteTo(output, _repeated_telegraphs_codec);
+    if (ActivePolarity != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ActivePolarity);
+    }
+    if (NextPolaritySwitchRound != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(NextPolaritySwitchRound);
+    }
+    if (ProtectedGuardActorId != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(ProtectedGuardActorId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -464,6 +953,19 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     }
     pendingActorIds_.WriteTo(ref output, _repeated_pendingActorIds_codec);
     selfItems_.WriteTo(ref output, _repeated_selfItems_codec);
+    telegraphs_.WriteTo(ref output, _repeated_telegraphs_codec);
+    if (ActivePolarity != 0) {
+      output.WriteRawTag(72);
+      output.WriteUInt32(ActivePolarity);
+    }
+    if (NextPolaritySwitchRound != 0) {
+      output.WriteRawTag(80);
+      output.WriteUInt32(NextPolaritySwitchRound);
+    }
+    if (ProtectedGuardActorId != 0UL) {
+      output.WriteRawTag(88);
+      output.WriteUInt64(ProtectedGuardActorId);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -489,6 +991,16 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     }
     size += pendingActorIds_.CalculateSize(_repeated_pendingActorIds_codec);
     size += selfItems_.CalculateSize(_repeated_selfItems_codec);
+    size += telegraphs_.CalculateSize(_repeated_telegraphs_codec);
+    if (ActivePolarity != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ActivePolarity);
+    }
+    if (NextPolaritySwitchRound != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(NextPolaritySwitchRound);
+    }
+    if (ProtectedGuardActorId != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ProtectedGuardActorId);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -516,6 +1028,16 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
     }
     pendingActorIds_.Add(other.pendingActorIds_);
     selfItems_.Add(other.selfItems_);
+    telegraphs_.Add(other.telegraphs_);
+    if (other.ActivePolarity != 0) {
+      ActivePolarity = other.ActivePolarity;
+    }
+    if (other.NextPolaritySwitchRound != 0) {
+      NextPolaritySwitchRound = other.NextPolaritySwitchRound;
+    }
+    if (other.ProtectedGuardActorId != 0UL) {
+      ProtectedGuardActorId = other.ProtectedGuardActorId;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -562,6 +1084,22 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
         }
         case 58: {
           selfItems_.AddEntriesFrom(input, _repeated_selfItems_codec);
+          break;
+        }
+        case 66: {
+          telegraphs_.AddEntriesFrom(input, _repeated_telegraphs_codec);
+          break;
+        }
+        case 72: {
+          ActivePolarity = input.ReadUInt32();
+          break;
+        }
+        case 80: {
+          NextPolaritySwitchRound = input.ReadUInt32();
+          break;
+        }
+        case 88: {
+          ProtectedGuardActorId = input.ReadUInt64();
           break;
         }
       }
@@ -612,6 +1150,22 @@ public sealed partial class BattleStateS2C : pb::IMessage<BattleStateS2C>
           selfItems_.AddEntriesFrom(ref input, _repeated_selfItems_codec);
           break;
         }
+        case 66: {
+          telegraphs_.AddEntriesFrom(ref input, _repeated_telegraphs_codec);
+          break;
+        }
+        case 72: {
+          ActivePolarity = input.ReadUInt32();
+          break;
+        }
+        case 80: {
+          NextPolaritySwitchRound = input.ReadUInt32();
+          break;
+        }
+        case 88: {
+          ProtectedGuardActorId = input.ReadUInt64();
+          break;
+        }
       }
     }
   }
@@ -634,7 +1188,7 @@ public sealed partial class BattleStartS2C : pb::IMessage<BattleStartS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[1]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -878,7 +1432,7 @@ public sealed partial class TurnResultS2C : pb::IMessage<TurnResultS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[2]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1229,7 +1783,7 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[3]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1255,6 +1809,8 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     itemsMailed_ = other.itemsMailed_;
     materialCreditUnitsAdded_ = other.materialCreditUnitsAdded_;
     seasonId_ = other.seasonId_;
+    materialTradableUnitsAdded_ = other.materialTradableUnitsAdded_;
+    materialPvpLossIneligible_ = other.materialPvpLossIneligible_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1323,7 +1879,7 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
   public const int MaterialCreditUnitsAddedFieldNumber = 5;
   private uint materialCreditUnitsAdded_;
   /// <summary>
-  /// 本局实际新增的装备材料可领额度(0 或 10;日额度已满或不合格局为 0),与 PlayerBattleResult.material_credit_units_added 同源。
+  /// 本局实际新增的装备材料可领额度(0/5/10/15),与 PlayerBattleResult.material_credit_units_added 同源。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1349,6 +1905,36 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
   }
 
+  /// <summary>Field number for the "material_tradable_units_added" field.</summary>
+  public const int MaterialTradableUnitsAddedFieldNumber = 7;
+  private uint materialTradableUnitsAdded_;
+  /// <summary>
+  /// 本局实际新增材料中可交易份数（0 或 1）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint MaterialTradableUnitsAdded {
+    get { return materialTradableUnitsAdded_; }
+    set {
+      materialTradableUnitsAdded_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "material_pvp_loss_ineligible" field.</summary>
+  public const int MaterialPvpLossIneligibleFieldNumber = 8;
+  private bool materialPvpLossIneligible_;
+  /// <summary>
+  /// true = PVP 负/平未达有效对抗门槛（+0 且不扣永久 660 额度）
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool MaterialPvpLossIneligible {
+    get { return materialPvpLossIneligible_; }
+    set {
+      materialPvpLossIneligible_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1370,6 +1956,8 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     if (ItemsMailed != other.ItemsMailed) return false;
     if (MaterialCreditUnitsAdded != other.MaterialCreditUnitsAdded) return false;
     if (SeasonId != other.SeasonId) return false;
+    if (MaterialTradableUnitsAdded != other.MaterialTradableUnitsAdded) return false;
+    if (MaterialPvpLossIneligible != other.MaterialPvpLossIneligible) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1383,6 +1971,8 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     if (ItemsMailed != false) hash ^= ItemsMailed.GetHashCode();
     if (MaterialCreditUnitsAdded != 0) hash ^= MaterialCreditUnitsAdded.GetHashCode();
     if (SeasonId != 0) hash ^= SeasonId.GetHashCode();
+    if (MaterialTradableUnitsAdded != 0) hash ^= MaterialTradableUnitsAdded.GetHashCode();
+    if (MaterialPvpLossIneligible != false) hash ^= MaterialPvpLossIneligible.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1425,6 +2015,14 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
       output.WriteRawTag(48);
       output.WriteUInt32(SeasonId);
     }
+    if (MaterialTradableUnitsAdded != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(MaterialTradableUnitsAdded);
+    }
+    if (MaterialPvpLossIneligible != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(MaterialPvpLossIneligible);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1459,6 +2057,14 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
       output.WriteRawTag(48);
       output.WriteUInt32(SeasonId);
     }
+    if (MaterialTradableUnitsAdded != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(MaterialTradableUnitsAdded);
+    }
+    if (MaterialPvpLossIneligible != false) {
+      output.WriteRawTag(64);
+      output.WriteBool(MaterialPvpLossIneligible);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1486,6 +2092,12 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
     if (SeasonId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SeasonId);
+    }
+    if (MaterialTradableUnitsAdded != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaterialTradableUnitsAdded);
+    }
+    if (MaterialPvpLossIneligible != false) {
+      size += 1 + 1;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1519,6 +2131,12 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
     }
     if (other.SeasonId != 0) {
       SeasonId = other.SeasonId;
+    }
+    if (other.MaterialTradableUnitsAdded != 0) {
+      MaterialTradableUnitsAdded = other.MaterialTradableUnitsAdded;
+    }
+    if (other.MaterialPvpLossIneligible != false) {
+      MaterialPvpLossIneligible = other.MaterialPvpLossIneligible;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1564,6 +2182,14 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
         }
         case 48: {
           SeasonId = input.ReadUInt32();
+          break;
+        }
+        case 56: {
+          MaterialTradableUnitsAdded = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          MaterialPvpLossIneligible = input.ReadBool();
           break;
         }
       }
@@ -1612,6 +2238,14 @@ public sealed partial class BattleEndS2C : pb::IMessage<BattleEndS2C>
           SeasonId = input.ReadUInt32();
           break;
         }
+        case 56: {
+          MaterialTradableUnitsAdded = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          MaterialPvpLossIneligible = input.ReadBool();
+          break;
+        }
       }
     }
   }
@@ -1638,7 +2272,7 @@ public sealed partial class BattleReconnectS2C : pb::IMessage<BattleReconnectS2C
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[4]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1842,7 +2476,7 @@ public sealed partial class SpectateStateS2C : pb::IMessage<SpectateStateS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[5]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2089,7 +2723,7 @@ public sealed partial class SpectateEndS2C : pb::IMessage<SpectateEndS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[6]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2367,7 +3001,7 @@ public sealed partial class SubmitBattleActionRequest : pb::IMessage<SubmitBattl
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[7]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2691,7 +3325,7 @@ public sealed partial class SubmitBattleActionResponse : pb::IMessage<SubmitBatt
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[8]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2898,7 +3532,7 @@ public sealed partial class GetBattleStateRequest : pb::IMessage<GetBattleStateR
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[9]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3099,7 +3733,7 @@ public sealed partial class StopWatchBattleRequest : pb::IMessage<StopWatchBattl
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[10]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3297,7 +3931,7 @@ public sealed partial class StopWatchBattleResponse : pb::IMessage<StopWatchBatt
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[11]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3507,7 +4141,7 @@ public sealed partial class SetAutoBattleRequest : pb::IMessage<SetAutoBattleReq
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[12]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3742,7 +4376,7 @@ public sealed partial class SetAutoBattleResponse : pb::IMessage<SetAutoBattleRe
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[13]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3955,7 +4589,7 @@ public sealed partial class BattleTicketPayload : pb::IMessage<BattleTicketPaylo
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[14]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4390,7 +5024,7 @@ public sealed partial class BattleTokenVerifyRequest : pb::IMessage<BattleTokenV
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[15]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4637,7 +5271,7 @@ public sealed partial class BattleTokenVerifyResponse : pb::IMessage<BattleToken
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[16]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[17]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5001,7 +5635,7 @@ public sealed partial class BattleAssignedS2C : pb::IMessage<BattleAssignedS2C>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[17]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[18]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5480,7 +6114,7 @@ public sealed partial class RequestBattleTicketRequest : pb::IMessage<RequestBat
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[18]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5678,7 +6312,7 @@ public sealed partial class RequestBattleTicketResponse : pb::IMessage<RequestBa
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[19]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[20]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5935,7 +6569,7 @@ public sealed partial class BattleReplay : pb::IMessage<BattleReplay>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[20]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[21]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6614,7 +7248,7 @@ public sealed partial class BattleReplayEnvelope : pb::IMessage<BattleReplayEnve
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[21]; }
+    get { return global::PlayerBattleReflection.Descriptor.MessageTypes[22]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

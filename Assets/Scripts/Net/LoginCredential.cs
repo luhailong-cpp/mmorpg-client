@@ -15,6 +15,7 @@ namespace MmorpgClient.Net
         public const string DouyinMiniGame = "douyin_minigame"; // 抖音小游戏 tt.login() 的 code
         public const string Apple = "apple";                    // Sign in with Apple 的 identity token
         public const string Google = "google";                  // Google 登录的 ID token
+        public const string Passport = "passport";              // 官方通行证(Casdoor OIDC 的 id_token)
 
         /// <summary>只用于 gate 上的会话绑定,不是首次登录方式。</summary>
         public const string AccessToken = "access_token";

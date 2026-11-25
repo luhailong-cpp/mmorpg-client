@@ -9,9 +9,11 @@ namespace MmorpgClient.UI.Ugui.Skills
     {
         public static SkillUiRoot Instance { get; private set; }
         public ISkillBookSource Source { get; private set; }
+        public MmorpgClient.Game.Skills.SkillCraftClient CraftSource { get; private set; }
         public SkillBookContext Context { get; private set; } = SkillBookContext.Character();
-        public bool IsVisible => _panel?.IsVisible == true;
+        public bool IsVisible => _panel?.IsVisible == true || _craftWindow?.IsVisible == true;
         private SkillPanel _panel;
+        private SkillCraftWindow _craftWindow;
         private Canvas _canvas;
         private bool BattleReadOnly => MmorpgClient.Game.Battle.BattleClient.Instance?.HasActiveBattle == true ||
             Battle.BattleUiRoot.Instance?.IsBattleLayerVisible == true;
@@ -42,6 +44,16 @@ namespace MmorpgClient.UI.Ugui.Skills
             EnsureSpawned();
             Instance.ShowContext(SkillBookContext.Pet(petId, name));
         }
+        public static void OpenCrafting(uint scrollId = 0)
+        {
+            EnsureSpawned();
+            Instance.ShowCraftWindow(SkillCraftPage.Scrolls, scrollId);
+        }
+        public static void OpenProxyStalls()
+        {
+            EnsureSpawned();
+            Instance.ShowCraftWindow(SkillCraftPage.ProxyStalls, 0);
+        }
         /// <summary>战斗列表仅取展示元数据；不据此判断技能归属或施放合法性。</summary>
         public static SkillDefinition FindPresentation(uint id)
         {
@@ -64,13 +76,27 @@ namespace MmorpgClient.UI.Ugui.Skills
         private void ShowContext(SkillBookContext context)
         {
             CityPanelRegistry.HideOthers(this);
+            _craftWindow?.Hide();
             Context = context;
             EnsurePanel();
             ApplySource();
             _panel.Show();
             RequestRefresh();
         }
-        public void HidePanel() => _panel?.Hide();
+        private void ShowCraftWindow(SkillCraftPage page, uint scrollId)
+        {
+            CityPanelRegistry.HideOthers(this);
+            _panel?.Hide();
+            EnsurePanel();
+            _craftWindow.Bind(CraftSource ?? MmorpgClient.Game.Skills.SkillCraftClient.Instance);
+            _craftWindow.Show(page, scrollId);
+        }
+        public void HidePanel() { _panel?.Hide(); _craftWindow?.Hide(); }
+        public void BindCraft(MmorpgClient.Game.Skills.SkillCraftClient source)
+        {
+            CraftSource = source;
+            _craftWindow?.Bind(source);
+        }
         public void Bind(ISkillBookSource source)
         {
             if (ReferenceEquals(Source, source)) return;
@@ -147,6 +173,10 @@ namespace MmorpgClient.UI.Ugui.Skills
             var root = QdaoUguiFactory.CreateCenteredRect("SkillWindowRoot", canvasObject.transform,
                 QdaoUguiTheme.DesignWidth, QdaoUguiTheme.DesignHeight);
             _panel = new SkillPanel(this, root);
+            _craftWindow = new SkillCraftWindow(canvasObject.transform);
+            _craftWindow.RequestProxyEquipmentPolish += masterId =>
+                Gameplay.GameplayUiRoot.Instance?.OpenEquipmentPolish(masterId);
+            if (CraftSource != null) _craftWindow.Bind(CraftSource);
         }
         private void Update()
         {
@@ -166,6 +196,9 @@ namespace MmorpgClient.UI.Ugui.Skills
             CityPanelRegistry.Unregister(this);
             if (Source != null) Source.Changed -= ApplySource;
             Source = null;
+            CraftSource = null;
+            _craftWindow?.Dispose();
+            _craftWindow = null;
             if (Instance == this) Instance = null;
         }
 

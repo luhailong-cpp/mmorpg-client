@@ -53,7 +53,7 @@ namespace MmorpgClient.Game.PlayerFeatures
                     ++_craftRulesRequest;
                     EquipmentCraftRulesLoading = false;
                     if (HasTip(response.ErrorMessage) || response.RulesFingerprint.Length == 0)
-                    { CraftFailure(HasTip(response.ErrorMessage) ? DescribeTip("读取打造规则失败", response.ErrorMessage) : "打造规则不完整，请刷新"); return; }
+                    { CraftFailure(HasTip(response.ErrorMessage) ? DescribeEquipTip("读取打造规则失败", response.ErrorMessage) : "打造规则不完整，请刷新"); return; }
                     _craftRules = response.Clone();
                     OnChanged?.Invoke();
                 },
@@ -71,6 +71,32 @@ namespace MmorpgClient.Game.PlayerFeatures
 
         public void PreviewEquipAffix(ulong itemId, uint affixSlot, uint affixId) => PreviewEquipmentCraft(new EquipmentCraftChoice
         { Operation = EquipmentCraftChoice.Types.Operation.InstallAffix, ItemId = itemId, AffixSlot = affixSlot, AffixId = affixId });
+
+        public void PreviewReforgeEquipAffix(ulong itemId, uint affixSlot, uint affixId, bool allowBoundMaterials = false) =>
+            PreviewEquipmentCraft(new EquipmentCraftChoice
+            {
+                Operation = EquipmentCraftChoice.Types.Operation.ReforgeAffix,
+                ItemId = itemId,
+                AffixSlot = affixSlot,
+                AffixId = affixId,
+                AllowBoundMaterials = allowBoundMaterials,
+            });
+
+        public void PreviewPolishEquipAffix(ulong itemId, uint affixSlot, bool useGuaranteeCharm = false,
+            bool allowBoundMaterials = false, ulong proxyMasterPlayerId = 0, uint? expectedPolishPityCount = null)
+        {
+            var choice = new EquipmentCraftChoice
+            {
+                Operation = EquipmentCraftChoice.Types.Operation.PolishAffix,
+                ItemId = itemId,
+                AffixSlot = affixSlot,
+                UseGuaranteeCharm = useGuaranteeCharm,
+                AllowBoundMaterials = allowBoundMaterials,
+                ProxyMasterPlayerId = proxyMasterPlayerId,
+            };
+            if (expectedPolishPityCount.HasValue) choice.ExpectedPolishPityCount = expectedPolishPityCount.Value;
+            PreviewEquipmentCraft(choice);
+        }
 
         public void PreviewEquipmentCraft(EquipmentCraftChoice choice)
         {
@@ -96,7 +122,7 @@ namespace MmorpgClient.Game.PlayerFeatures
                     ++_craftPreviewRequest;
                     EquipmentCraftPreviewLoading = false;
                     var preview = response.Preview;
-                    if (HasTip(response.ErrorMessage)) { CraftFailure(DescribeTip("打造预览失败", response.ErrorMessage)); return; }
+                    if (HasTip(response.ErrorMessage)) { CraftFailure(DescribeEquipTip("打造预览失败", response.ErrorMessage)); return; }
                     if (preview?.Choice == null || !preview.Choice.Equals(selected) || preview.RulesFingerprint.Length == 0)
                     { CraftFailure("打造预览身份不符，请重新选择"); return; }
                     _craftPreview = preview.Clone();
@@ -219,14 +245,14 @@ namespace MmorpgClient.Game.PlayerFeatures
                     bool rejected = response.Outcome == CommitEquipmentCraftResponse.Types.Outcome.Rejected;
                     bool applied = response.Outcome == CommitEquipmentCraftResponse.Types.Outcome.Applied
                         && !HasTip(response.ErrorMessage) && response.ItemId != 0
-                        && (request.Choice.Operation != EquipmentCraftChoice.Types.Operation.InstallAffix || response.ItemId == request.Choice.ItemId)
+                        && (request.Choice.Operation == EquipmentCraftChoice.Types.Operation.CreateItem || response.ItemId == request.Choice.ItemId)
                         && request.ExpectedForgeRevision != ulong.MaxValue
                         && response.ResultForgeRevision == request.ExpectedForgeRevision + 1
                         && response.CurrentForgeRevision >= response.ResultForgeRevision;
                     if (rejected)
                     {
                         if (!ClearCraftRecord(playerId, record)) return;
-                        CraftFailure(HasTip(response.ErrorMessage) ? DescribeTip("打造被拒绝", response.ErrorMessage) : "打造被拒绝，请重新预览");
+                        CraftFailure(HasTip(response.ErrorMessage) ? DescribeEquipTip("打造被拒绝", response.ErrorMessage) : "打造被拒绝，请重新预览");
                         SendDeferredReads(epoch, playerId);
                         return;
                     }
@@ -293,10 +319,21 @@ namespace MmorpgClient.Game.PlayerFeatures
         private static bool ValidCraftChoice(EquipmentCraftChoice choice)
         {
             if (choice == null) return false;
-            if (choice.Operation == EquipmentCraftChoice.Types.Operation.CreateItem)
-                return choice.ConfigId != 0 && choice.ItemId == 0 && choice.AffixSlot == 0 && choice.AffixId == 0;
-            return choice.Operation == EquipmentCraftChoice.Types.Operation.InstallAffix
-                && choice.ConfigId == 0 && choice.ItemId != 0 && choice.AffixId != 0;
+            return choice.Operation switch
+            {
+                EquipmentCraftChoice.Types.Operation.CreateItem =>
+                    choice.ConfigId != 0 && choice.ItemId == 0 && choice.AffixSlot == 0 && choice.AffixId == 0
+                    && !choice.UseGuaranteeCharm && !choice.HasExpectedPolishPityCount,
+                EquipmentCraftChoice.Types.Operation.InstallAffix =>
+                    choice.ConfigId == 0 && choice.ItemId != 0 && choice.AffixId != 0
+                    && !choice.UseGuaranteeCharm && !choice.HasExpectedPolishPityCount,
+                EquipmentCraftChoice.Types.Operation.ReforgeAffix =>
+                    choice.ConfigId == 0 && choice.ItemId != 0 && choice.AffixId != 0
+                    && !choice.UseGuaranteeCharm && choice.ProxyMasterPlayerId == 0 && !choice.HasExpectedPolishPityCount,
+                EquipmentCraftChoice.Types.Operation.PolishAffix =>
+                    choice.ConfigId == 0 && choice.ItemId != 0 && choice.AffixId == 0,
+                _ => false,
+            };
         }
 
         private void ResetEquipmentCraftSession()

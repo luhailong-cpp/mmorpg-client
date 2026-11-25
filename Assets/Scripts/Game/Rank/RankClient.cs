@@ -106,6 +106,15 @@ namespace MmorpgClient.Game.Rank
         /// </summary>
         public static RankBoardKey LatestBoard(uint boardType) => new() { BoardType = boardType, Scope = RankScope.Global };
 
+        /// <summary>指定赛季与代次的论剑排行榜键（period 如 "s1"，generation 为赛季 rank_generation）。</summary>
+        public static RankBoardKey SeasonBoard(string seasonKey, ulong generation, uint boardType = DefaultBoardType) => new()
+        {
+            BoardType = boardType,
+            Scope = RankScope.Global,
+            Period = seasonKey ?? string.Empty,
+            Generation = generation,
+        };
+
         /// <summary>
         /// 切到另一种榜,读它最新一代的第 1 页;点已选中的榜不重发(刷新走 <see cref="Refresh"/>)。
         /// 在途请求不作废,新榜的请求排在它后面,只保留最后一次切换。

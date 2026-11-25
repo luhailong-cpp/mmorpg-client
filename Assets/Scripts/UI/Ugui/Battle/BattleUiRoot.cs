@@ -29,6 +29,11 @@ namespace MmorpgClient.UI.Ugui.Battle
     {
         public static BattleUiRoot Instance { get; private set; }
 
+        /// <summary>论剑排位结算接管钩子（RankedUiRoot 注册；返回 true 时由论剑结算页接管展示）。</summary>
+        public static System.Func<BattleEndS2C, uint, bool> InterceptRankedBattleEnd;
+        /// <summary>重登补查的论剑排位结算接管钩子（RankedUiRoot 注册）。</summary>
+        public static System.Func<PlayerBattleResult, bool> InterceptRankedRecoveredResult;
+
         /// <summary>
         /// 全局 toast 文字矩形(设计坐标,y 向下;ToastRoot 在战斗层之上)。战斗屏内的居中常驻提示
         /// (直连横幅 <see cref="BattleScreen.ChannelBannerRect"/>)必须让开这一带,否则 toast 期间叠字。
@@ -1123,12 +1128,38 @@ namespace MmorpgClient.UI.Ugui.Battle
 
         private void ShowResult(BattleEndS2C end)
         {
+            uint localTeam = _battleScreen?.MyTeamIndex ?? 0;
+            if (end != null && InterceptRankedBattleEnd != null && InterceptRankedBattleEnd(end, localTeam))
+            {
+                _resultShowing = true;
+                _recoveredShowingId = 0;
+                _resultPanel?.Hide();
+                RefreshModalDim();
+                _recovery?.NoteShown(end.BattleId);
+                return;
+            }
             _resultShowing = true;
             _recoveredShowingId = 0; // 现场结算盖过面板上的补弹局:它弹出时已经确认过,不再排回去
-            _resultPanel?.Show(end, _battleScreen?.MyTeamIndex ?? 0);
+            _resultPanel?.Show(end, localTeam);
             RefreshModalDim();
             // 现场结算面板展示过,也要确认已读;否则下次落地补查还会把这一局再弹一次(设计 §7 第 5 条)。
             if (end != null) _recovery?.NoteShown(end.BattleId);
+        }
+
+        /// <summary>由接管排位结算的 RankedUiRoot 在玩家点击「返回」或「同规模再排」后调用，完成收屏与 AckBattleEnd。</summary>
+        public void FinishInterceptedBattleResult(bool fromRecovery)
+        {
+            _resultShowing = false;
+            RefreshModalDim();
+            if (fromRecovery || _recoveredShowingId != 0)
+            {
+                _recoveredShowingId = 0;
+                ShowNextRecoveredResult();
+                return;
+            }
+            CloseBattle();
+            _client?.AckBattleEnd();
+            ShowNextRecoveredResult();
         }
 
         private void OnResultConfirmed()
@@ -1181,6 +1212,14 @@ namespace MmorpgClient.UI.Ugui.Battle
             if (_client != null && _client.Phase != BattlePhase.None) return;
             if (_recoveredResults.Count == 0) return;
             var result = _recoveredResults.Dequeue();
+            if (InterceptRankedRecoveredResult != null && InterceptRankedRecoveredResult(result))
+            {
+                _resultShowing = true;
+                _recoveredShowingId = result.BattleId;
+                RefreshModalDim();
+                _recovery?.NoteShown(result.BattleId);
+                return;
+            }
             _resultPanel.ShowRecovered(result);
             // 画布已随退出 Play / 换场景销毁时面板弹不出来:这一局没有真正展示,不确认,下次落地补查再交。
             if (!_resultPanel.IsVisible) return;

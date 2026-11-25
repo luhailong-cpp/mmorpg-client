@@ -28,24 +28,37 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             => owner.GetType().GetMethod(name, PrivateInstance).Invoke(owner, args);
         private static object Static(string name, params object[] args) => StreamType.GetMethod(name, PrivateStatic).Invoke(null, args);
 
-        private static CurrentMapTilesManifest Manifest(string key = "main", int count = 1)
+        private static string RootFor(string key) => $"World/QdaoMaps20261102/{key}/test-rev/spring/{Sha}/";
+
+        private static CurrentMapTilesManifest Manifest(string key = "main", int count = 1, int grid = 0)
         {
-            int grid = key == "main" ? 16 : 14;
-            var manifest = new CurrentMapTilesManifest { schemaVersion = 1, deliveryStatus = "partial_native_tiles",
+            if (grid <= 0) grid = key == "main" ? 16 : 14;
+            string root = RootFor(key);
+            var manifest = new CurrentMapTilesManifest { schemaVersion = 2, deliveryStatus = "formal_runtime_tiles",
                 key = key, sceneId = key == "main" ? 1u : key == "island" ? 2u : 3u,
-                layoutSha256 = Sha, columns = grid, rows = grid, tilePixels = 4096,
-                worldRect = new Rect(50, 0, 300, 300), tiles = new CurrentMapTilesManifest.Entry[count] };
+                revision = "test-rev", appearance = "spring", resourceRoot = root,
+                layoutSha256 = Sha, columns = grid, rows = grid, tilePixels = 1024,
+                worldRect = new Rect(50, 0, 300, 300),
+                effectiveWorldRect = new MapDeliveryRect { x = 50, y = 0, width = 300, height = 300 },
+                imageRect = new MapDeliveryRect { x = 0, y = 0, width = grid * 1024, height = grid * 1024 },
+                referenceWidth = grid * 1024, referenceHeight = grid * 1024,
+                tiles = new CurrentMapTilesManifest.Entry[count] };
             for (int i = 0; i < count; i++)
             {
                 int row = i / grid + 1, column = i % grid + 1;
                 manifest.tiles[i] = new CurrentMapTilesManifest.Entry { row = row, column = column,
-                    resourcePath = $"World/CurrentMaps20261009/{key}/tiles/r{row:00}_c{column:00}", sha256 = Sha, bytes = 1024 };
+                    resourcePath = $"{root}tiles/r{row:00}_c{column:00}", sha256 = Sha,
+                    nativeSha256 = Sha, nativePixels = 1024, bytes = 1024 };
             }
             return manifest;
         }
 
         private static string Source(CurrentMapTilesManifest manifest)
-            => $"{{\"schemaVersion\":1,\"key\":\"{manifest.key}\",\"sceneId\":{manifest.sceneId},\"layoutSha256\":\"{Sha}\"}}";
+            => $"{{\"schemaVersion\":2,\"key\":\"{manifest.key}\",\"sceneId\":{manifest.sceneId}," +
+               $"\"revision\":\"{manifest.revision}\",\"appearance\":\"{manifest.appearance}\"," +
+               $"\"artStatus\":\"formal_tiles_overview\",\"layoutSha256\":\"{Sha}\"," +
+               $"\"worldRect\":{{\"x\":50,\"y\":0,\"width\":300,\"height\":300}}," +
+               $"\"effectiveWorldRect\":{{\"x\":50,\"y\":0,\"width\":300,\"height\":300}}}}";
 
         [UnityTest]
         public IEnumerator FestivalVisibleEvidenceRequiresActualActiveLoadedTileQuads()
@@ -76,18 +89,18 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             finally { stream.ReleaseAll(); Object.DestroyImmediate(root); }
         }
 
-        [TestCase("main", 16)]
-        [TestCase("island", 14)]
-        [TestCase("village", 14)]
-        public void SparseAndEmptyDeliveriesMatchCurrentLayout(string key, int grid)
+        [TestCase("main", 4)]
+        [TestCase("island", 4)]
+        [TestCase("village", 4)]
+        public void CompleteFormalDeliveriesMatchCurrentLayoutAndRejectPartial(string key, int grid)
         {
-            var manifest = Manifest(key, 2);
-            manifest.tiles[1] = new CurrentMapTilesManifest.Entry { row = grid, column = grid,
-                resourcePath = $"World/CurrentMaps20261009/{key}/tiles/r{grid:00}_c{grid:00}", sha256 = Sha, bytes = 1234 };
-            var parsed = CurrentMapTilesManifest.Parse(key, Source(manifest), JsonUtility.ToJson(manifest));
-            Assert.That(parsed.tiles.Length, Is.EqualTo(2));
+            var manifest = Manifest(key, grid * grid, grid);
+            var parsed = CurrentMapTilesManifest.Parse(key, Source(manifest), JsonUtility.ToJson(manifest),
+                manifest.resourceRoot, manifest.revision, manifest.appearance);
+            Assert.That(parsed.tiles.Length, Is.EqualTo(grid * grid));
             manifest.tiles = Array.Empty<CurrentMapTilesManifest.Entry>();
-            Assert.DoesNotThrow(() => CurrentMapTilesManifest.Parse(key, Source(manifest), JsonUtility.ToJson(manifest)));
+            Assert.Throws<InvalidOperationException>(() => CurrentMapTilesManifest.Parse(key, Source(manifest), JsonUtility.ToJson(manifest),
+                manifest.resourceRoot, manifest.revision, manifest.appearance));
         }
 
         [TestCase("layout-sha")]
@@ -102,19 +115,20 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [TestCase("world-rect")]
         public void WrongLayoutOrInvalidTileCannotActivate(string problem)
         {
-            var manifest = Manifest(count: 2);
+            var manifest = Manifest("main", 16, 4);
             string source = Source(manifest);
             if (problem == "layout-sha") manifest.layoutSha256 = new string('a', 64);
             if (problem == "source-sha") source = source.Replace(Sha, new string('b', 64));
             if (problem == "scene") manifest.sceneId = 3;
-            if (problem == "grid") manifest.columns = manifest.rows = 14;
-            if (problem == "path") manifest.tiles[0].resourcePath = "World/CityTiles4K/old/tiles/r01_c01";
+            if (problem == "grid") manifest.columns = manifest.rows = 16;
+            if (problem == "path") manifest.tiles[0].resourcePath = "World/QdaoMaps20261102/old/tiles/r01_c01";
             if (problem == "duplicate") manifest.tiles[1] = manifest.tiles[0];
             if (problem == "non-native") manifest.tilePixels = 2048;
             if (problem == "tile-sha") manifest.tiles[0].sha256 = "not-a-sha";
-            if (problem == "status") manifest.deliveryStatus = "accepted_complete";
+            if (problem == "status") manifest.deliveryStatus = "partial_native_tiles";
             if (problem == "world-rect") manifest.worldRect = new Rect(float.NaN, 0, 300, 300);
-            Assert.Throws<InvalidOperationException>(() => CurrentMapTilesManifest.Parse("main", source, JsonUtility.ToJson(manifest)));
+            Assert.Throws<InvalidOperationException>(() => CurrentMapTilesManifest.Parse("main", source, JsonUtility.ToJson(manifest),
+                manifest.resourceRoot, manifest.revision, manifest.appearance));
         }
 
         [TestCase("main")]
@@ -183,7 +197,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 var manifest = Manifest();
                 manifest.tiles[0].row = 8;
                 manifest.tiles[0].column = 10;
-                manifest.tiles[0].resourcePath = "World/CurrentMaps20261009/main/tiles/r08_c10";
+                manifest.tiles[0].resourcePath = RootFor("main") + "tiles/r08_c10";
                 Invoke(stream, "Prepare", manifest);
                 Invoke(stream, "SelectTiles", new Rect(189, 158, 2, 2), 100f);
                 var tile = ((Array)Field(stream, "_tiles")).GetValue(0);
@@ -252,7 +266,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             try
             {
                 var manifest = Manifest(count: 7);
-                manifest.tiles[6].resourcePath = "World/CurrentMaps20261009/__pressure_async_fixture";
+                manifest.tiles[6].resourcePath = "World/QdaoMaps20261102/__pressure_async_fixture";
                 Invoke(stream, "Prepare", manifest);
                 var tiles = (Array)Field(stream, "_tiles");
                 for (int i = 0; i < 6; i++)
@@ -394,7 +408,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         [UnityTest]
         public IEnumerator NewOwnerKeepsSharedPendingLeaseAfterPreviousMapDisposal()
         {
-            const string path = "World/CurrentMaps20261009/__shared_async_fixture";
+            const string path = "World/QdaoMaps20261102/__shared_async_fixture";
             TianyongMapInstance firstMap = null;
             TianyongMapInstance secondMap = null;
             try
@@ -442,7 +456,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 stream.ReleaseAll();
                 var manifest = Manifest();
                 // 只在隔离测试中使用不可能交付的路径触发真实异步完成，不发布伪4K图片。
-                manifest.tiles[0].resourcePath = "World/CurrentMaps20261009/__missing_async_fixture";
+                manifest.tiles[0].resourcePath = "World/QdaoMaps20261102/__missing_async_fixture";
                 Invoke(stream, "Prepare", manifest);
                 Invoke(stream, "TickView", new Rect(50, 280, 20, 20), 10f);
                 var lease = Field(((Array)Field(stream, "_tiles")).GetValue(0), "Lease");

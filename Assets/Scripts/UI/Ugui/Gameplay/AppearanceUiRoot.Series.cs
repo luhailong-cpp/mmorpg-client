@@ -649,8 +649,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var frame = _seriesEpilogueOverlay != null
                 ? _seriesEpilogueOverlay.transform.Find("SeriesEpilogueFrame") as RectTransform : null;
             if (frame == null) return;
-            frame.sizeDelta = compact ? new Vector2(1140f, 620f) : new Vector2(1360f, 820f);
-            MoveReadingElement(frame, "SeriesEpilogueFrameBg", 0f, 0f, compact ? 1140f : 1360f, compact ? 620f : 820f);
+            float epilogueW = compact ? 1140f : 1360f;
+            float epilogueH = compact ? 620f : 820f;
+            frame.sizeDelta = new Vector2(epilogueW, epilogueH);
+            MoveReadingElement(frame, "SeriesEpilogueFrameBg", 0f, 0f, epilogueW, epilogueH);
+            RefreshFrameScale(frame, "SeriesEpilogueFrameBg", epilogueW, epilogueH);
             MoveReadingElement(frame, "AppearanceSeriesEpilogueBack", compact ? 36f : 76f, compact ? 28f : 46f, 160f, compact ? 76f : 60f);
             MoveReadingElement(frame, "SeriesEpilogueSealSlot", compact ? 212f : 256f, compact ? 30f : 34f, compact ? 64f : 76f, compact ? 64f : 76f);
             MoveReadingElement(frame, "SeriesEpilogueTitle", compact ? 288f : 348f, 30f, compact ? 680f : 664f, 52f);

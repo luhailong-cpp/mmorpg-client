@@ -21,6 +21,46 @@ namespace MmorpgClient.Core
         private const string K_Zone     = "mmorpg.zone";
         private const string K_RecentZones = "mmorpg.recentzones";
         private const string K_LoginMethod = "mmorpg.loginmethod";
+        private const string K_PassportOrigin = "mmorpg.passport.origin";
+        private const string K_PassportClientId = "mmorpg.passport.clientid";
+        private const string K_PassportRedirectUri = "mmorpg.passport.redirecturi";
+
+        /// <summary>
+        /// 官方通行证(Casdoor OIDC)的默认构建参数。默认 Origin 为空串 = 本安装包未启用官方通行证入口;
+        /// 可通过构建常量、启动参数(-passport-origin / -passport-client-id / -passport-redirect-uri)或设置注入。
+        /// 仅存公开端点与公开 ClientId,绝不存任何 client_secret 或用户令牌。
+        /// </summary>
+        public const string DefaultPassportOrigin = "";
+        public const string DefaultPassportClientId = "xuanming-game-client";
+        public const string DefaultDesktopPassportRedirectUri = "http://127.0.0.1:18765/passport/callback";
+        public const string DefaultMobilePassportRedirectUri = "xuanming://passport/callback";
+
+        public static string PassportOrigin
+        {
+            get => ClientLaunchArguments.PassportOriginOverride ?? PlayerPrefs.GetString(K_PassportOrigin, DefaultPassportOrigin);
+            set { PlayerPrefs.SetString(K_PassportOrigin, value ?? ""); PlayerPrefs.Save(); }
+        }
+
+        public static string PassportClientId
+        {
+            get => ClientLaunchArguments.PassportClientIdOverride ?? PlayerPrefs.GetString(K_PassportClientId, DefaultPassportClientId);
+            set { PlayerPrefs.SetString(K_PassportClientId, value ?? ""); PlayerPrefs.Save(); }
+        }
+
+        public static string PassportRedirectUri
+        {
+            get
+            {
+                string fallback =
+#if (UNITY_IOS || UNITY_ANDROID) && !UNITY_EDITOR
+                    DefaultMobilePassportRedirectUri;
+#else
+                    DefaultDesktopPassportRedirectUri;
+#endif
+                return ClientLaunchArguments.PassportRedirectUriOverride ?? PlayerPrefs.GetString(K_PassportRedirectUri, fallback);
+            }
+            set { PlayerPrefs.SetString(K_PassportRedirectUri, value ?? ""); PlayerPrefs.Save(); }
+        }
 
         /// <summary>
         /// Google 登录(安卓 Credential Manager)的 serverClientId,构建常量:必须等于服务端 AuthProviders.Google.ClientId,

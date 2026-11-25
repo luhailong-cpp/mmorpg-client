@@ -34,42 +34,42 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void CurrentDayOnlyCity_CannotEnableLegacyFestivalAppearance()
+        public void CurrentDualFestivalCity_SwitchesBetweenSpringAndMidAutumnAppearances()
         {
-            _window.Show(2, false);
+            _window.Show(2, "spring");
             Click("OpenCityTravelOptions");
             Assert.That(_window.SelectedSceneConfigId, Is.EqualTo(2));
+            Assert.That(_window.SelectedAppearance, Is.EqualTo("spring"));
             Assert.That(_window.TravelEnabled, Is.False);
-            Click("FestivalAppearance");
-            Assert.That(_window.SelectedFestival, Is.False);
-            Assert.That(_window.TravelEnabled, Is.False);
-            Assert.That(FindButton("FestivalAppearance").gameObject.activeSelf, Is.False);
-            _window.SetState(2, true, false, "");
+            Assert.That(FindButton("DayAppearance").gameObject.activeSelf, Is.False);
+            ClickAppearance("mid-autumn");
+            Assert.That(_window.SelectedAppearance, Is.EqualTo("mid-autumn"));
+            Assert.That(_window.TravelEnabled, Is.True);
+            _window.SetState(2, "mid-autumn", false, "");
             Assert.That(_window.TravelEnabled, Is.False);
         }
 
         [Test]
-        public void CurrentMapTravel_EmitsChosenServerDestinationWithDayAppearance()
+        public void CurrentMapTravel_EmitsChosenServerDestinationWithSpringAppearance()
         {
             uint scene = 0;
-            bool festival = false;
-            _window.TravelRequested += (id, value) => { scene = id; festival = value; };
-            _window.Show(1, false);
+            string appearance = null;
+            _window.AppearanceTravelRequested += (id, value) => { scene = id; appearance = value; };
+            _window.Show(1, "spring");
             Click("OpenCityTravelOptions");
             Click("CityDestination_3");
-            Click("FestivalAppearance");
             Click("TravelToSelectedCity");
             Assert.That(scene, Is.EqualTo(3));
-            Assert.That(festival, Is.False);
+            Assert.That(appearance, Is.EqualTo("spring"));
         }
 
         [Test]
         public void PendingTravel_DisablesDestinationAndAppearanceControls()
         {
-            _window.Show(1, false);
+            _window.Show(1, "spring");
             Click("OpenCityTravelOptions");
             Click("CityDestination_3");
-            _window.SetState(1, false, true, "正在传送");
+            _window.SetState(1, "spring", true, "正在传送");
             Assert.That(_window.TravelEnabled, Is.False);
             Assert.That(FindButton("CityDestination_2").interactable, Is.False);
             Assert.That(FindButton("FestivalAppearance").interactable, Is.False);
@@ -77,19 +77,19 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void DynamicDestinations_OnlyListRegisteredIdentitiesAndRetainOldCities()
+        public void DynamicDestinations_OnlyListRegisteredModernIdentities()
         {
             var destinations = CityTravelUiRoot.CreateDestinations();
             Assert.That(destinations.Length, Is.EqualTo(CurrentMapCatalog.All.Count + (CurrentMapCatalog.Find(4u) == null ? 1 : 0)));
             Assert.That(destinations.Select(x => x.SceneConfigId).Distinct().Count(), Is.EqualTo(destinations.Length));
             Assert.That(destinations.Any(x => x.SceneConfigId == uint.MaxValue), Is.False);
-            foreach (uint id in new uint[] { 1, 2, 3 })
+            foreach (uint id in new uint[] { 1, 2, 3, 5 })
             {
                 var destination = destinations.Single(x => x.SceneConfigId == id);
-                Assert.That(destination.DayResourcePath, Does.StartWith("World/CurrentMaps20261009/"));
-                Assert.That(destination.HasFestival, Is.False);
+                Assert.That(destination.FestivalResourcePath, Does.StartWith(MapDeliveryContract.ResourceRoot));
+                Assert.That(destination.HasFestival, Is.True);
                 Assert.That(destination.OnlineAvailable, Is.True);
-                Assert.That(destination.DefaultAppearance, Is.EqualTo("normal"));
+                Assert.That(destination.DefaultAppearance, Is.EqualTo("spring"));
             }
             var formal = destinations.Where(x => x.SceneConfigId == 21003 || x.SceneConfigId == 28007 || x.SceneConfigId == 35004).ToArray();
             Assert.That(formal.Length, Is.EqualTo(3));
@@ -99,9 +99,8 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
         }
 
         [Test]
-        public void OfflineReplacementKeepsOldIslandTravelAndHidesItsUnpublishedAppearances()
+        public void OfflineOnlyReplacementDisablesOnlineTravelWithoutLegacyFallback()
         {
-            var legacy = CurrentMapCatalog.FindForOnline(2u);
             var sha = new string('a', 64);
             CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = new[] {
                 new MapDeliveryRegistration {
@@ -114,18 +113,16 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             } });
             var destinations = CityTravelUiRoot.CreateDestinations();
             var island = destinations.Single(x => x.SceneConfigId == 2);
-            Assert.That(island.Map, Is.SameAs(legacy));
-            Assert.That(island.OnlineAvailable, Is.True);
-            Assert.That(island.DefaultAppearance, Is.EqualTo("normal"));
-            Assert.That(island.TexturePath("spring"), Is.Null);
+            Assert.That(island.OnlineAvailable, Is.False);
+            Assert.That(island.DefaultAppearance, Is.EqualTo("spring"));
             _window.SetDestinations(destinations);
-            _window.Show(1, false);
+            _window.Show(1, "spring");
             Click("OpenCityTravelOptions");
             Click("CityDestination_2");
             uint requested = 0;
-            _window.TravelRequested += (id, _) => requested = id;
+            _window.AppearanceTravelRequested += (id, _) => requested = id;
             Click("TravelToSelectedCity");
-            Assert.That(requested, Is.EqualTo(2));
+            Assert.That(requested, Is.Zero);
         }
 
         [Test]

@@ -68,6 +68,11 @@ namespace MmorpgClient.Game.Skills
                     RankLimit = row.RankLimit,
                     NextRankCost = row.NextRankCost,
                     LockedReason = row.UpgradeBlockTipId == 0 ? null : DescribeTip(row.UpgradeBlockTipId),
+                    SeasonId = row.SeasonId,
+                    ScrollId = row.ScrollId,
+                    RarityTier = row.RarityTier,
+                    CraftUnlockRequired = row.CraftUnlockRequired,
+                    UnlockedByBook = row.UnlockedByBook,
                     Definition = new Ui.SkillDefinition
                     {
                         id = row.SkillTableId,
@@ -90,6 +95,8 @@ namespace MmorpgClient.Game.Skills
                         description = row.Description,
                         iconPath = local?.iconPath,
                         iconResource = NormalizeIconKey(row.IconKey, row.SkillTableId),
+                        scrollId = row.ScrollId,
+                        rarityTier = row.RarityTier,
                     },
                 });
             }
@@ -110,6 +117,16 @@ namespace MmorpgClient.Game.Skills
             (uint)skill_error.KSkillMaxRankReached => "技能已修至最高重",
             (uint)skill_error.KSkillGoldNotEnough => "银两不足",
             (uint)skill_error.KSkillUpgradeBusy => "战斗中或角色迁移中不能修习技能",
+            (uint)skill_error.KSkillScrollInvalid => "所选卷宗或目标技能无效",
+            (uint)skill_error.KSkillBookNotFound => "未找到该未学技能书，请刷新书架",
+            (uint)skill_error.KSkillBookNotDismantlable => "稀世绝学书不可拆页，仅常规技能书可拆解返页",
+            (uint)skill_error.KSkillCraftMaterialNotEnough => "制书所需残页、残卷或天工秘墨不足",
+            (uint)skill_error.KSkillCraftRevisionChanged => "书架状态已变化，请刷新后再试",
+            (uint)skill_error.KSkillCraftBookRequired => "请先在「典籍制书」中制成并研习该技能书",
+            (uint)skill_error.KSkillAlreadyBookUnlocked => "该技能已通过技能书永久解锁",
+            (uint)skill_error.KSkillProxyStallRequiresMaster => "铸器或制卷达到宗师后方可开设代打摊位",
+            (uint)skill_error.KSkillProxyFeeInvalid => "代打手工费须在 50 至 100 银两之间",
+            (uint)equip_error.KEquipProxyMasterUnavailable => "该名匠代打摊位当前不可用，请刷新列表",
             (uint)common_error.KInvalidTableId => "技能不存在",
             (uint)common_error.KServiceUnavailable => "技能服务暂不可用,请稍后再试",
             (uint)common_error.KEntityIsNull => "角色尚未就绪",

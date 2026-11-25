@@ -8,6 +8,9 @@ namespace MmorpgClient.Core
     {
         public static bool ManualPlay => HasFlag(Environment.GetCommandLineArgs(), "-manual-play");
         public static string GatewayOverride => GetValue(Environment.GetCommandLineArgs(), "-gateway");
+        public static string PassportOriginOverride => GetValue(Environment.GetCommandLineArgs(), "-passport-origin");
+        public static string PassportClientIdOverride => GetValue(Environment.GetCommandLineArgs(), "-passport-client-id");
+        public static string PassportRedirectUriOverride => GetValue(Environment.GetCommandLineArgs(), "-passport-redirect-uri");
 
         internal static bool HasFlag(IReadOnlyList<string> args, string flag)
         {

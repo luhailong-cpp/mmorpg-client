@@ -1,0 +1,362 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using MmorpgClient.Game.PlayerFeatures;
+using MmorpgClient.Game.Skills;
+using MmorpgClient.UI.Ugui.Skills;
+using UnityEngine;
+using static MmorpgClient.UI.Ugui.Gameplay.EquipmentUiArt;
+
+namespace MmorpgClient.UI.Ugui.Gameplay
+{
+    /// <summary>
+    /// 装备 5 档品相打磨、无损换词条重铸、防误绑二次确认与合规概率公示界面。
+    /// 所有消耗、品相档位、保底进度、可交易/绑定态与名匠代打费用一律取自服务端权威快照。
+    /// </summary>
+    public sealed partial class EquipmentWindow
+    {
+        private ulong _polishItemId;
+        private uint _polishSlot;
+        private bool _polishUseCharm;
+        private bool _polishAllowBound;
+        private ulong _polishProxyMasterId;
+        private uint _reforgeTargetAffixId;
+        private bool _reforgeAllowBound;
+        private bool _bindConfirmForReforge;
+        private bool _bindConfirmAcknowledged;
+
+        public void OpenPolishForItem(ulong itemId = 0, ulong proxyMasterPlayerId = 0)
+        {
+            if (_disposed) return;
+            if (!IsVisible) Show(EquipmentPage.Polish);
+            else _page = EquipmentPage.Polish;
+            _modal = Modal.None;
+            _polishItemId = itemId;
+            _polishUseCharm = false;
+            _polishAllowBound = false;
+            _reforgeAllowBound = false;
+            _polishProxyMasterId = proxyMasterPlayerId;
+            _craft.ClearSelection();
+            SkillCraftClient.Instance?.RefreshProxyStalls();
+            Render();
+            if (_craft.Rules == null && !_craft.LoadingRules) _craft.RefreshRules();
+        }
+
+        private void RenderPolish()
+        {
+            var rules = _craft.Rules;
+            Label(_body, "PolishMasteryBadge", EquipmentScreenModel.FormatForgeMastery(rules?.ForgeMastery),
+                180, 290, 2400, 70, 40, color: Jade);
+            Button(_body, "PolishOddsButton", "品相概率", 3280, 270, 500, () =>
+            {
+                _modal = Modal.PolishOdds;
+                Render();
+                if (_craft.Rules == null && !_craft.LoadingRules) _craft.RefreshRules();
+            });
+
+            Panel(_body, "PolishItemsPaper", 130, 415, 860, 965);
+            Label(_body, "PolishItemsTitle", "选择打磨装备", 200, 465, 720, 70, 48, color: Jade);
+            var items = OwnedEquipment().Where(i => i.FixedAffixSlots.Count > 0 && i.Artifact == null).ToList();
+            if (_polishItemId == 0 || !items.Any(i => i.ItemId == _polishItemId))
+            {
+                _polishItemId = items.FirstOrDefault()?.ItemId ?? 0;
+                _polishSlot = 0;
+            }
+            var itemList = Scroll(_body, "PolishItemList", 190, 560, 740, 760, Math.Max(760, items.Count * 165));
+            for (int i = 0; i < items.Count; ++i)
+            {
+                var item = items[i];
+                bool selected = item.ItemId == _polishItemId;
+                var row = ChoiceRow(itemList, "PolishItem_" + item.ItemId, "", 5, i * 165, 695, 145, () =>
+                {
+                    if (_craft.Busy || _craft.Pending) return;
+                    _polishItemId = item.ItemId;
+                    _polishSlot = 0;
+                    _polishAllowBound = false;
+                    _polishUseCharm = false;
+                    _craft.ClearSelection();
+                    Render();
+                }, selected, !_craft.Pending && !_craft.Busy);
+                Icon(row.transform, item, 12, 12, 115);
+                string bindText = item.Bound ? "仅自用" : "可交易";
+                Label(row.transform, "PolishItemLabel", $"{Name(item)}\n{item.EquipLevel}级 · {bindText}", 145, 15, 530, 115, 36, true);
+            }
+            if (items.Count == 0)
+                Label(_body, "PolishItemsEmpty", "暂无可打磨的固定词条装备", 210, 680, 700, 160, 42, true, Muted);
+
+            var current = items.FirstOrDefault(i => i.ItemId == _polishItemId);
+            Panel(_body, "PolishSlotsPaper", 1030, 415, 1180, 965);
+            Label(_body, "PolishSlotsTitle", "词条品相与重铸", 1110, 465, 980, 70, 48, color: Jade);
+            if (current == null)
+            {
+                Label(_body, "PolishNoItemHint", "先在左侧选择一件已打造装备，再点选需要打磨或更换的词条槽。", 1110, 620, 1000, 260, 44, true, Muted);
+                return;
+            }
+
+            Icon(_body, current, 1110, 550, 180);
+            string header = $"{Name(current)} · {current.EquipLevel}级 · {(current.Bound ? "仅自用" : "可交易")}";
+            if (!string.IsNullOrWhiteSpace(current.CrafterName)) header += $"\n宗师·{current.CrafterName} 亲手铸造";
+            Label(_body, "PolishCurrentItem", header, 1320, 550, 820, 175, 40, true);
+
+            var slots = current.FixedAffixSlots.OrderBy(s => s.Slot).ToList();
+            if (slots.All(s => s.Slot != _polishSlot)) _polishSlot = slots.FirstOrDefault()?.Slot ?? 0;
+            for (int i = 0; i < slots.Count && i < 2; ++i)
+            {
+                var slot = slots[i];
+                var affix = slot.Selected;
+                bool selected = slot.Slot == _polishSlot;
+                float y = 760 + i * 285;
+                string summary = affix == null
+                    ? $"{EquipmentScreenModel.PoolName(slot.Pool)} {slot.Slot}：空位（请先在打造页安装词条）"
+                    : $"{EquipmentScreenModel.PoolName(slot.Pool)}：{affix.Name} {EquipmentScreenModel.AffixValue(affix)}{EquipmentScreenModel.FormatAffixQualityTag(affix)}";
+                if (affix != null)
+                {
+                    string pity = EquipmentScreenModel.FormatPolishPity(affix);
+                    if (!string.IsNullOrEmpty(pity)) summary += "\n" + pity;
+                    else if (affix.PolishExempt) summary += "\n速度词条固定满值，无需打磨";
+                    else if (affix.QualityTier >= 5) summary += "\n已达最高极品品相（100%）";
+                }
+                ChoiceRow(_body, "PolishSlot_" + slot.Slot, summary, 1100, y, 1040, 165, () =>
+                {
+                    if (_craft.Busy || _craft.Pending) return;
+                    _polishSlot = slot.Slot;
+                    _polishAllowBound = false;
+                    RequestPolishPreview(current, slot);
+                    Render();
+                }, selected, !_craft.Pending && !_craft.Busy);
+
+                if (affix != null)
+                {
+                    Button(_body, "PolishReforgeBtn_" + slot.Slot, "更换词条", 1740, y + 170, 400, () =>
+                    {
+                        if (WriteBlocked) return;
+                        _polishSlot = slot.Slot;
+                        _reforgeTargetAffixId = 0;
+                        _reforgeAllowBound = false;
+                        _craft.ClearSelection();
+                        _modal = Modal.Reforge;
+                        Render();
+                    }, false, !WriteBlocked);
+                }
+            }
+
+            var selectedSlot = slots.FirstOrDefault(s => s.Slot == _polishSlot);
+            var selectedAffix = selectedSlot?.Selected;
+            Panel(_body, "PolishDeskPaper", 2250, 415, 1580, 965);
+            Label(_body, "PolishDeskTitle", "淬炼打磨台", 2330, 465, 980, 70, 48, color: Jade);
+            Label(_body, "PolishTierLadder", "品相阶梯：凡品 80% → 良品 85% → 上品 90% → 珍品 95% → 极品 100%\n只升不降 · 累计第 8 次必出极品",
+                2330, 550, 1420, 115, 36, true, Muted);
+
+            if (selectedAffix == null)
+            {
+                Label(_body, "PolishSlotEmptyHint", "所选槽位尚未安装词条，无法打磨。", 2330, 710, 1420, 120, 42, true, Muted);
+                return;
+            }
+            if (selectedAffix.PolishExempt)
+            {
+                Label(_body, "PolishExemptHint", "速度词条固定满值，不参与品相随机与打磨消耗。", 2330, 710, 1420, 120, 42, true, Jade);
+                return;
+            }
+            if (selectedAffix.QualityTier >= 5)
+            {
+                Label(_body, "PolishMaxHint", "该词条已达极品（100% 满值），无需继续打磨；如需换流派可点左侧「更换词条」，品相 100% 保留。",
+                    2330, 710, 1420, 160, 42, true, Jade);
+                return;
+            }
+
+            // 首次进入或切换参数后自动向服务端拉取权威预览，不本地猜测消耗。
+            var choice = _craft.Choice;
+            bool matchingChoice = choice?.Operation == EquipmentCraftChoice.Types.Operation.PolishAffix
+                && choice.ItemId == current.ItemId && choice.AffixSlot == selectedSlot.Slot
+                && choice.UseGuaranteeCharm == _polishUseCharm && choice.AllowBoundMaterials == _polishAllowBound
+                && choice.ProxyMasterPlayerId == _polishProxyMasterId;
+            if (!matchingChoice && !_craft.LoadingPreview && !_craft.Busy && !_craft.Pending && string.IsNullOrEmpty(_craft.Error))
+            {
+                RequestPolishPreview(current, selectedSlot);
+            }
+
+            Button(_body, "PolishCharmToggle", _polishUseCharm ? "✓ 已选：定星保底符（必出极品）" : "使用定星保底符（仅自用 · 必出极品）",
+                2330, 690, 1420, () =>
+                {
+                    if (_craft.Busy || _craft.Pending) return;
+                    _polishUseCharm = !_polishUseCharm;
+                    _polishAllowBound = false;
+                    RequestPolishPreview(current, selectedSlot);
+                    Render();
+                }, _polishUseCharm, !_craft.Busy && !_craft.Pending);
+
+            var forgeMasters = ActiveForgeMasters();
+            string masterLabel = _polishProxyMasterId == 0
+                ? "当前方式：亲自打磨（点击切换主城名匠代打）"
+                : FormatSelectedForgeMaster(forgeMasters, _polishProxyMasterId);
+            Button(_body, "PolishProxyCycle", masterLabel, 2330, 845, 1020, () =>
+            {
+                if (_craft.Busy || _craft.Pending) return;
+                CycleForgeMaster(forgeMasters);
+                RequestPolishPreview(current, selectedSlot);
+                Render();
+            }, _polishProxyMasterId != 0, !_craft.Busy && !_craft.Pending);
+            Button(_body, "PolishProxyRefresh", "刷新名匠", 3380, 845, 370, () =>
+            {
+                SkillCraftClient.Instance?.RefreshProxyStalls();
+                Render();
+            });
+
+            var preview = _craft.Preview;
+            string previewText = EquipmentScreenModel.FormatCraftPreviewSummary(preview);
+            if (preview != null && !preview.Available && preview.UnavailableTip != 0)
+                previewText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可打磨", new TipInfoMessage { Id = preview.UnavailableTip });
+            Label(_body, "PolishPreviewCost", previewText, 2330, 1005, 1420, 185, 36, true,
+                preview?.Available == true ? Jade : Danger);
+
+            if (_craft.RequiresBindConfirmation)
+            {
+                Button(_body, "PolishBindConfirmOpen", "允许混用绑定材料（二次确认）", 2330, 1210, 840, () =>
+                {
+                    _bindConfirmForReforge = false;
+                    _bindConfirmAcknowledged = false;
+                    _modal = Modal.BindConfirm;
+                    Render();
+                }, true, !WriteBlocked);
+            }
+            bool canPolish = _craft.CanCommit && !WriteBlocked && matchingChoice;
+            Button(_body, "PolishCommit", _craft.Busy ? "打磨中…" : "打磨一次", 3220, 1210, 530,
+                () => { if (canPolish) _craft.Commit(); }, true, canPolish);
+        }
+
+        private void RequestPolishPreview(BagItemInfo item, EquipFixedAffixSlotInfo slot)
+        {
+            var affix = slot?.Selected;
+            if (item == null || slot == null || affix == null || affix.PolishExempt || affix.QualityTier >= 5) return;
+            _craft.SelectPolishAffix(item.ItemId, slot.Slot, _polishUseCharm, _polishAllowBound,
+                _polishProxyMasterId, affix.PolishPityCount);
+        }
+
+        private static List<CraftProxyStallInfo> ActiveForgeMasters()
+        {
+            var stalls = SkillCraftClient.Instance?.ProxyStalls;
+            if (stalls == null) return new List<CraftProxyStallInfo>();
+            return stalls.Where(s => s != null && s.ForgeMasteryTier >= SkillCraftModels.MasterTier && s.ProxyForgeFeeGold > 0).ToList();
+        }
+
+        private void CycleForgeMaster(List<CraftProxyStallInfo> masters)
+        {
+            if (masters.Count == 0) { _polishProxyMasterId = 0; return; }
+            if (_polishProxyMasterId == 0) { _polishProxyMasterId = masters[0].MasterPlayerId; return; }
+            int idx = masters.FindIndex(m => m.MasterPlayerId == _polishProxyMasterId);
+            _polishProxyMasterId = idx < 0 || idx + 1 >= masters.Count ? 0 : masters[idx + 1].MasterPlayerId;
+        }
+
+        private static string FormatSelectedForgeMaster(List<CraftProxyStallInfo> masters, ulong id)
+        {
+            var found = masters.FirstOrDefault(m => m.MasterPlayerId == id);
+            return found == null
+                ? $"代打宗师 #{id}（点击切换 / 刷新）"
+                : $"名匠代打：{found.MasterName}（极品率 {EquipDisplay.FormatSuccessRate(found.TopQualityRateBps)} · {found.ProxyForgeFeeGold} 银两）";
+        }
+
+        private void RenderPolishOddsModal()
+        {
+            Label(_modalLayer, "PolishOddsTitle", "装备词条品相概率公示", 750, 210, 2380, 100, 62, color: Jade);
+            TextLines(_modalLayer, "PolishOddsLines", EquipmentScreenModel.FormatQualityOddsLines(_craft.Rules),
+                750, 350, 2400, 860, 42);
+            Button(_modalLayer, "PolishOddsClose", "我知道了", 1620, 1280, 700, CloseModal, true);
+        }
+
+        private void RenderReforgeModal()
+        {
+            var item = FindItem(_polishItemId);
+            var position = item?.FixedAffixSlots.FirstOrDefault(s => s.Slot == _polishSlot);
+            var currentAffix = position?.Selected;
+            Label(_modalLayer, "ReforgeTitle", "更换词条（无损保留品相）", 750, 195, 2380, 90, 60, color: Jade);
+            Label(_modalLayer, "ReforgeBanner",
+                currentAffix == null ? "当前槽位无词条" :
+                $"当前：{currentAffix.Name} {EquipmentScreenModel.AffixValue(currentAffix)}{EquipmentScreenModel.FormatAffixQualityTag(currentAffix)}  |  更换词条 100% 保留当前品相与保底进度",
+                750, 300, 2400, 80, 38, true, Jade);
+
+            var candidates = _craft.Rules?.Affixes
+                .Where(a => a.Pool == position?.Pool)
+                .OrderBy(a => a.AffixId).ToList() ?? new List<EquipFixedAffixInfo>();
+            var list = Scroll(_modalLayer, "ReforgeCandidateList", 740, 410, 1250, 740, Math.Max(740, candidates.Count * 155));
+            for (int i = 0; i < candidates.Count; ++i)
+            {
+                var affix = candidates[i];
+                bool occupied = item != null && item.FixedAffixSlots.Any(s => s.Selected?.AffixId == affix.AffixId);
+                string label = $"{affix.Name}  {EquipmentScreenModel.AffixValue(affix)}" + (occupied ? "（本件已有）" : "");
+                ChoiceRow(list, "ReforgeOption_" + affix.AffixId, label, 5, i * 155, 1190, 138, () =>
+                {
+                    if (_craft.Busy || _craft.Pending) return;
+                    _reforgeTargetAffixId = affix.AffixId;
+                    _reforgeAllowBound = false;
+                    _craft.SelectReforgeAffix(_polishItemId, _polishSlot, affix.AffixId, false);
+                    Render();
+                }, _reforgeTargetAffixId == affix.AffixId, !occupied && currentAffix != null && !_craft.Busy && !_craft.Pending);
+            }
+
+            var preview = _craft.Preview;
+            string costText = EquipmentScreenModel.FormatCraftPreviewSummary(preview);
+            if (preview != null && !preview.Available && preview.UnavailableTip != 0)
+                costText += "\n" + PlayerFeaturesClient.DescribeEquipTip("不可更换", new TipInfoMessage { Id = preview.UnavailableTip });
+            Label(_modalLayer, "ReforgePreviewCost", costText, 2080, 430, 1080, 520, 38, true,
+                preview?.Available == true ? Jade : Danger);
+
+            if (_craft.RequiresBindConfirmation)
+            {
+                Button(_modalLayer, "ReforgeBindConfirmOpen", "允许混用绑定材料（二次确认）", 2080, 1020, 1020, () =>
+                {
+                    _bindConfirmForReforge = true;
+                    _bindConfirmAcknowledged = false;
+                    _modal = Modal.BindConfirm;
+                    Render();
+                }, true, !WriteBlocked);
+            }
+
+            bool canCommit = _craft.CanCommit && !WriteBlocked
+                && preview?.Choice?.Operation == EquipmentCraftChoice.Types.Operation.ReforgeAffix
+                && preview.Choice.ItemId == _polishItemId && preview.Choice.AffixSlot == _polishSlot
+                && preview.Choice.AffixId == _reforgeTargetAffixId;
+            Button(_modalLayer, "ReforgeCancel", "取消", 870, 1280, 700, CloseModal);
+            Button(_modalLayer, "ReforgeCommit", _craft.Busy ? "更换中…" : "确认更换", 2280, 1280, 850,
+                () => { if (canCommit) _craft.Commit(); }, true, canCommit);
+        }
+
+        private void RenderBindConfirmModal()
+        {
+            Label(_modalLayer, "BindConfirmTitle", "转为仅自用二次确认", 750, 210, 2380, 100, 64, color: Danger);
+            Label(_modalLayer, "BindConfirmBody",
+                "当前装备为【可交易】状态；背包内可交易材料不足。\n\n若继续混用绑定重铸砂或绑定定星保底符，该装备将永久变为【仅自用】，此后不可再挂集市或摆摊交易。\n\n请勾选下方确认项后继续。",
+                760, 370, 2380, 420, 44, true, Ink);
+            Button(_modalLayer, "BindConfirmToggle",
+                _bindConfirmAcknowledged ? "✓ 我已知晓：装备将永久转为仅自用" : "□ 我已知晓并允许混用绑定材料（装备永久仅自用）",
+                760, 870, 2380, () =>
+                {
+                    _bindConfirmAcknowledged = !_bindConfirmAcknowledged;
+                    Render();
+                }, _bindConfirmAcknowledged);
+            Button(_modalLayer, "BindConfirmCancel", "取消", 870, 1250, 700, () =>
+            {
+                _modal = _bindConfirmForReforge ? Modal.Reforge : Modal.None;
+                Render();
+            });
+            Button(_modalLayer, "BindConfirmProceed", "确认并重新预览", 2180, 1250, 950, () =>
+            {
+                if (!_bindConfirmAcknowledged) return;
+                if (_bindConfirmForReforge)
+                {
+                    _reforgeAllowBound = true;
+                    _modal = Modal.Reforge;
+                    _craft.SelectReforgeAffix(_polishItemId, _polishSlot, _reforgeTargetAffixId, true);
+                }
+                else
+                {
+                    _polishAllowBound = true;
+                    _modal = Modal.None;
+                    var item = FindItem(_polishItemId);
+                    var slot = item?.FixedAffixSlots.FirstOrDefault(s => s.Slot == _polishSlot);
+                    RequestPolishPreview(item, slot);
+                }
+                Render();
+            }, true, _bindConfirmAcknowledged);
+        }
+    }
+}

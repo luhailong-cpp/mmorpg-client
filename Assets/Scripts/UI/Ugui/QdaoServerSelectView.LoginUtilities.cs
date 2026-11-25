@@ -41,7 +41,8 @@ namespace MmorpgClient.UI.Ugui
         private const string AppleRevokeHint = "\n如需同时解除 Apple 授权，可在 设置 > Apple ID > 使用 Apple 登录 中移除本游戏。";
 
         private bool LoginUtilityOpen => (_announcementPanel != null && _announcementPanel.gameObject.activeSelf)
-            || (_settingsPanel != null && _settingsPanel.gameObject.activeSelf) || AccountDialogOpen;
+            || (_settingsPanel != null && _settingsPanel.gameObject.activeSelf)
+            || AccountDialogOpen || _passportWaitingOpen;
 
         private bool AccountDialogOpen => _accountDialog != null && _accountDialog.gameObject.activeSelf;
 
@@ -340,6 +341,7 @@ namespace MmorpgClient.UI.Ugui
             CloseAccountDialog();
             string method = ClientSettings.LastLoginMethod;
             if (method == LoginAuthTypes.Apple || method == LoginAuthTypes.Google ||
+                method == LoginAuthTypes.Passport ||
                 method == LoginAuthTypes.WeChatMiniGame || method == LoginAuthTypes.DouyinMiniGame)
             {
                 RequestChannelDeletion(method);
@@ -384,16 +386,19 @@ namespace MmorpgClient.UI.Ugui
             ShowCredentialPanel(false);
             _busy = true;
             int runId = ++_enterRunId;
-            RefreshVisualState();
+            if (authType == LoginAuthTypes.Passport) ShowPassportWaitingDialog(true);
+            else RefreshVisualState();
             SetStatus("正在等待授权…");
             RequestChannel(authType, result =>
             {
                 if (this == null || runId != _enterRunId) return;
+                if (authType == LoginAuthTypes.Passport) ShowPassportWaitingDialog(false);
                 if (!result.Ok)
                 {
                     _busy = false;
                     RefreshVisualState();
-                    SetStatus(PlatformSignIn.DescribeFailure(result.Error));
+                    if (authType == LoginAuthTypes.Passport) HandlePassportSignInFailure(result.Error, forDeletion: true);
+                    else SetStatus(PlatformSignIn.DescribeFailure(result.Error));
                     return;
                 }
                 SubmitDeletion(LoginCredential.ForThirdParty(authType, result.IdentityToken),
@@ -443,7 +448,8 @@ namespace MmorpgClient.UI.Ugui
             }
             if (step == GameClient.AccountDeletionStep.Reauthorize || step == GameClient.AccountDeletionStep.CredentialRejected)
             {
-                if (authType != LoginAuthTypes.Apple && authType != LoginAuthTypes.Google)
+                if (authType != LoginAuthTypes.Apple && authType != LoginAuthTypes.Google &&
+                    authType != LoginAuthTypes.Passport)
                 {
                     OpenDeletionCredentialPanel("账号或密码错误");
                     return;

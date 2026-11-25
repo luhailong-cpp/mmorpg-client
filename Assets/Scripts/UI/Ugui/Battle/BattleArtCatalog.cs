@@ -332,10 +332,49 @@ namespace MmorpgClient.UI.Ugui.Battle
             return CharacterIds[index];
         }
 
-        /// <summary>可捕捉野生单位与捕获后的宠物使用同一物种外观。</summary>
+        /// <summary>无独立怪物贴图的首领试炼怪物复用宝宝美术库(仅视觉与头像，不影响捕捉判定)。</summary>
+        public static uint ResolveMonsterVisualPetTableId(uint monsterTableId)
+        {
+            switch (monsterTableId)
+            {
+                case 101: return 12; // 破阵首领 → 苍嶂麟
+                case 102: return 17; // 回春护卫 → 露华灵
+                case 103: return 15; // 护势护卫 → 玄潮龟
+                case 104: return 10; // 灵障首领 → 岚铎仙
+                case 105: return 11; // 灵障护卫 → 汐螺
+                case 106: return 14; // 玄毒首领 → 赤砂魁
+                case 107: return 16; // 缚灵护卫 → 月弦师
+                default: return 0;
+            }
+        }
+
+        /// <summary>首领试炼怪物默认展示名(服务器未下发专名或仍为通用"野怪"时使用)。</summary>
+        public static string ResolveMonsterDisplayName(uint monsterTableId)
+        {
+            switch (monsterTableId)
+            {
+                case 101: return "破阵首领";
+                case 102: return "回春护卫";
+                case 103: return "护势护卫";
+                case 104: return "灵障首领";
+                case 105: return "灵障护卫";
+                case 106: return "玄毒首领";
+                case 107: return "缚灵护卫";
+                default: return null;
+            }
+        }
+
+        /// <summary>可捕捉野生单位与复用宝宝美术库的试炼怪物走宠物视觉管线(不改变捕捉判定)。</summary>
         public static uint VisualPetTableId(BattleActorState actor)
-            => actor?.ActorType == eBattleActorType.BattleActorTypePet ? actor.PetTableId
-                : actor?.ActorType == eBattleActorType.BattleActorTypeMonster ? actor.CapturePetTableId : 0;
+        {
+            if (actor == null) return 0;
+            if (actor.ActorType == eBattleActorType.BattleActorTypePet) return actor.PetTableId;
+            if (actor.ActorType == eBattleActorType.BattleActorTypeMonster)
+                return actor.CapturePetTableId != 0
+                    ? actor.CapturePetTableId
+                    : ResolveMonsterVisualPetTableId(actor.MonsterTableId);
+            return 0;
+        }
 
         /// <summary>Only real player actor IDs identify account roles; OwnerPlayerId belongs to pets.</summary>
         public static string CharacterIdFor(BattleActorState actor, Func<ulong, string> resolveCharacterId)
@@ -394,13 +433,29 @@ namespace MmorpgClient.UI.Ugui.Battle
             return LoadRosterDirection(appearance, facingEast ? "E" : "W", false);
         }
 
-        /// <summary>怪物动作帧条;缺图返回 null(调用方用剪影)。</summary>
+        /// <summary>怪物动作帧条;缺独立怪物贴图时复用映射宝宝动作,仍缺返回 null(调用方用剪影)。</summary>
         public static StripAnim LoadMonsterAction(uint monsterId, string action, bool facingEast)
-            => LoadDirectionalStrip($"{MonstersRoot}/{monsterId}/{action}", action, facingEast);
+        {
+            var direct = LoadDirectionalStrip($"{MonstersRoot}/{monsterId}/{action}", action, facingEast);
+            if (direct != null) return direct;
+            uint petId = ResolveMonsterVisualPetTableId(monsterId);
+            string petArtId = petId != 0 ? QdaoPetCatalog.Resolve(petId)?.id : null;
+            return string.IsNullOrEmpty(petArtId) ? null : LoadCharacterAction(petArtId, action, facingEast);
+        }
 
-        /// <summary>怪物头像(行动预告条);缺图返回剪影。</summary>
+        /// <summary>怪物头像(行动预告条);缺独立怪物头像时复用映射宝宝头像,仍缺返回剪影。</summary>
         public static Sprite LoadMonsterPortrait(uint monsterId)
-            => LoadSprite($"{MonstersRoot}/{monsterId}/portrait") ?? GetMonsterSilhouette(monsterId);
+        {
+            var direct = LoadSprite($"{MonstersRoot}/{monsterId}/portrait");
+            if (direct != null) return direct;
+            uint petId = ResolveMonsterVisualPetTableId(monsterId);
+            if (petId != 0)
+            {
+                var petPortrait = QdaoPetCatalog.LoadPortrait(QdaoPetCatalog.Resolve(petId)?.id);
+                if (petPortrait != null) return petPortrait;
+            }
+            return GetMonsterSilhouette(monsterId);
+        }
 
         /// <summary>Default players use the current delivered identity and its authored run.</summary>
         public static StripAnim LoadPlayerWalk(bool facingEast)

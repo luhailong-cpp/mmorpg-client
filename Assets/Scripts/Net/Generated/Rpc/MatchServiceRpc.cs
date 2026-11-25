@@ -192,5 +192,63 @@ namespace MmorpgClient.Net.Generated
         public static void GetRankedBattleResult(IRpcChannel channel, global::Match.GetRankedBattleResultRequest request,
             RpcDone<global::Match.GetRankedBattleResultResponse> done)
             => channel.CallMethod(GetRankedBattleResultMessageId, request, global::Match.GetRankedBattleResultResponse.Parser, done);
+
+        public const uint GetTournamentOverviewMessageId = 465;
+        /// <summary>
+        /// ---- 全服赛季战队锦标赛《群仙问道赛》V1(docs/design/season-team-tournament-v1.md):请求只认会话本人 ----
+        /// </summary>
+        public static void GetTournamentOverview(IRpcChannel channel, global::Match.GetTournamentOverviewRequest request,
+            RpcDone<global::Match.GetTournamentOverviewResponse> done)
+            => channel.CallMethod(GetTournamentOverviewMessageId, request, global::Match.GetTournamentOverviewResponse.Parser, done);
+
+        public const uint CreateTournamentSquadMessageId = 466;
+        public static void CreateTournamentSquad(IRpcChannel channel, global::Match.CreateTournamentSquadRequest request,
+            RpcDone<global::Match.CreateTournamentSquadResponse> done)
+            => channel.CallMethod(CreateTournamentSquadMessageId, request, global::Match.CreateTournamentSquadResponse.Parser, done);
+
+        public const uint InviteTournamentMemberMessageId = 467;
+        public static void InviteTournamentMember(IRpcChannel channel, global::Match.InviteTournamentMemberRequest request,
+            RpcDone<global::Match.InviteTournamentMemberResponse> done)
+            => channel.CallMethod(InviteTournamentMemberMessageId, request, global::Match.InviteTournamentMemberResponse.Parser, done);
+
+        public const uint RespondTournamentInviteMessageId = 468;
+        public static void RespondTournamentInvite(IRpcChannel channel, global::Match.RespondTournamentInviteRequest request,
+            RpcDone<global::Match.RespondTournamentInviteResponse> done)
+            => channel.CallMethod(RespondTournamentInviteMessageId, request, global::Match.RespondTournamentInviteResponse.Parser, done);
+
+        public const uint LeaveTournamentSquadMessageId = 469;
+        public static void LeaveTournamentSquad(IRpcChannel channel, global::Match.LeaveTournamentSquadRequest request,
+            RpcDone<global::Match.LeaveTournamentSquadResponse> done)
+            => channel.CallMethod(LeaveTournamentSquadMessageId, request, global::Match.LeaveTournamentSquadResponse.Parser, done);
+
+        public const uint UpdateTournamentLineupMessageId = 470;
+        public static void UpdateTournamentLineup(IRpcChannel channel, global::Match.UpdateTournamentLineupRequest request,
+            RpcDone<global::Match.UpdateTournamentLineupResponse> done)
+            => channel.CallMethod(UpdateTournamentLineupMessageId, request, global::Match.UpdateTournamentLineupResponse.Parser, done);
+
+        public const uint RegisterTournamentSquadMessageId = 471;
+        public static void RegisterTournamentSquad(IRpcChannel channel, global::Match.RegisterTournamentSquadRequest request,
+            RpcDone<global::Match.RegisterTournamentSquadResponse> done)
+            => channel.CallMethod(RegisterTournamentSquadMessageId, request, global::Match.RegisterTournamentSquadResponse.Parser, done);
+
+        public const uint ListTournamentStandingsMessageId = 472;
+        public static void ListTournamentStandings(IRpcChannel channel, global::Match.ListTournamentStandingsRequest request,
+            RpcDone<global::Match.ListTournamentStandingsResponse> done)
+            => channel.CallMethod(ListTournamentStandingsMessageId, request, global::Match.ListTournamentStandingsResponse.Parser, done);
+
+        public const uint StartTournamentMatchMessageId = 473;
+        public static void StartTournamentMatch(IRpcChannel channel, global::Match.StartTournamentMatchRequest request,
+            RpcDone<global::Match.StartTournamentMatchResponse> done)
+            => channel.CallMethod(StartTournamentMatchMessageId, request, global::Match.StartTournamentMatchResponse.Parser, done);
+
+        public const uint CheerTournamentSquadMessageId = 474;
+        public static void CheerTournamentSquad(IRpcChannel channel, global::Match.CheerTournamentSquadRequest request,
+            RpcDone<global::Match.CheerTournamentSquadResponse> done)
+            => channel.CallMethod(CheerTournamentSquadMessageId, request, global::Match.CheerTournamentSquadResponse.Parser, done);
+
+        public const uint ClaimTournamentRewardMessageId = 475;
+        public static void ClaimTournamentReward(IRpcChannel channel, global::Match.ClaimTournamentRewardRequest request,
+            RpcDone<global::Match.ClaimTournamentRewardResponse> done)
+            => channel.CallMethod(ClaimTournamentRewardMessageId, request, global::Match.ClaimTournamentRewardResponse.Parser, done);
     }
 }

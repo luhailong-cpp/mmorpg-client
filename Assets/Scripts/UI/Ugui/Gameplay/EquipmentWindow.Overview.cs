@@ -129,6 +129,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 case Modal.Affix: RenderAffixPicker(); break;
                 case Modal.Detail: RenderFullDetail(); break;
                 case Modal.Materials: RenderMaterials(); break;
+                case Modal.PolishOdds: RenderPolishOddsModal(); break;
+                case Modal.Reforge: RenderReforgeModal(); break;
+                case Modal.BindConfirm: RenderBindConfirmModal(); break;
             }
         }
 
@@ -171,6 +174,9 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 var empty = item.FixedAffixSlots.FirstOrDefault(s => s.Selected == null);
                 if (empty != null) Button(_modalLayer, "EquipmentInstallAffix", "安装" + EquipmentScreenModel.PoolName(empty.Pool), 1490, 1290, 820,
                     () => OpenAffix(item.ItemId, empty.Slot), true, !WriteBlocked);
+                else if (item.FixedAffixSlots.Any(s => s.Selected != null))
+                    Button(_modalLayer, "EquipmentOpenPolish", "打磨 / 换词条", 1490, 1290, 820,
+                        () => OpenPolishForItem(item.ItemId, 0), true, !WriteBlocked);
                 if (item.EquipProfile == 0) Button(_modalLayer, "EquipmentLegacyForge", "强化 / 宝石", 2390, 1290, 800, () =>
                 { _modal = Modal.None; _forge.Open(item.ItemId); _legacyForge.Show(() => { _input.enabled = true; Render(); }); _input.enabled = false; }, enabled: !WriteBlocked);
             }

@@ -481,5 +481,30 @@ namespace MmorpgClient.Tests.EditMode.Role
             Assert.That(state.CloseSeriesEpilogue(), Is.True);
             Assert.That(state.IsSeriesEpilogueOpen, Is.False);
         }
+
+        [Test]
+        public void PanelState_BiographyToStoryToPortraitPreviewReturnsLayerByLayerAndKeepsStoryScroll()
+        {
+            var state = new AppearancePanelState();
+            state.SyncAvailableAppearances(new[] { "00_reference_topright_boy", "10_crimson_spear_girl" },
+                "00_reference_topright_boy", "00_reference_topright_boy");
+            state.SelectAppearance("10_crimson_spear_girl", 0.41f);
+
+            Assert.That(state.OpenBiography(0.41f), Is.True);
+            Assert.That(state.OpenStory(0.41f), Is.True);
+            state.SaveStoryPosition(0.28f);
+
+            Assert.That(state.OpenPortraitPreview(0.41f), Is.True);
+            Assert.That(state.IsPortraitPreviewOpen, Is.True);
+            Assert.That(state.DismissActiveOverlay(), Is.True);
+            Assert.That(state.IsStoryOpen, Is.True, "大图返回应回到往事正文层");
+            Assert.That(state.SavedStoryScrollNormalized, Is.EqualTo(0.28f).Within(0.0001f));
+
+            Assert.That(state.DismissActiveOverlay(), Is.True);
+            Assert.That(state.IsBiographyOpen, Is.True, "往事普通返回应回到人物小传层");
+            Assert.That(state.DismissActiveOverlay(), Is.True);
+            Assert.That(state.HasOverlay, Is.False);
+            Assert.That(state.SavedListScrollNormalized, Is.EqualTo(0.41f).Within(0.0001f));
+        }
     }
 }

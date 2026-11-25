@@ -108,9 +108,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             var img = QdaoUguiFactory.CreateImage(name, parent, x, y, w, h, sprite);
             if (sprite != null)
             {
-                img.type = sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
-                // Scale corner ornaments uniformly with the frame width; stretch only the paper/edge runs.
-                img.pixelsPerUnitMultiplier = Mathf.Max(.01f, sprite.rect.width / Mathf.Max(1f, w));
+                RefreshFrameScale(img, w, h);
                 img.color = Color.white;
             }
             else
@@ -118,6 +116,16 @@ namespace MmorpgClient.UI.Ugui.Gameplay
                 img.color = fallback ?? ParchmentCard;
             }
             return img;
+        }
+
+        public static void RefreshFrameScale(Image img, float w, float h)
+        {
+            if (img == null || img.sprite == null) return;
+            img.type = img.sprite.border.sqrMagnitude > 0f ? Image.Type.Sliced : Image.Type.Simple;
+            // 按宽/高较紧一边等比缩放四角与边框，窄横屏缩窗时不挤压内部纸面。
+            float scaleX = img.sprite.rect.width / Mathf.Max(1f, w);
+            float scaleY = img.sprite.rect.height / Mathf.Max(1f, h);
+            img.pixelsPerUnitMultiplier = Mathf.Max(.01f, Mathf.Max(scaleX, scaleY));
         }
 
         public static Image TitlePlate(UnityEngine.Transform parent, string name,

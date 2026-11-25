@@ -117,5 +117,43 @@ namespace MmorpgClient.Tests.EditMode.Skills
             Assert.That(SkillBookMapper.DescribeUpgrade("破阵惊锋", 2, (uint)skill_error.KSkillGoldNotEnough),
                 Does.EndWith("(已停止:银两不足)"));
         }
+
+        [Test]
+        public void MapsScrollRarityBookUnlockFieldsAndNewCraftTips()
+        {
+            var row = new SkillCatalogEntry
+            {
+                SkillTableId = 12020, Name = "愈战愈勇", Passive = true, TargetTeam = 3,
+                MaxRank = 10, Rank = 0, RankLimit = 10, NextRankCost = 100,
+                ScrollId = 3, RarityTier = 0, CraftUnlockRequired = true, UnlockedByBook = false,
+            };
+            var rare = new SkillCatalogEntry
+            {
+                SkillTableId = 10041, Name = "玄镜映法", Passive = false, TargetTeam = 1,
+                MaxRank = 10, Rank = 0, RankLimit = 10, NextRankCost = 100,
+                ScrollId = 2, RarityTier = 1, CraftUnlockRequired = true, UnlockedByBook = true,
+            };
+            var book = new ListSkillsResponse { ClassId = 1, PlayerLevel = 60, CurrencyBalance = 5000 };
+            book.Catalog.Add(row);
+            book.Catalog.Add(rare);
+            var snapshot = SkillBookMapper.ToSnapshot(book, _ => null);
+
+            var locked = snapshot.Find(12020);
+            Assert.That(locked.ScrollId, Is.EqualTo(3u));
+            Assert.That(locked.NeedsCraftUnlock, Is.True);
+            var view = new SkillBookViewState { IsConnected = true, Snapshot = snapshot };
+            Assert.That(SkillBookViewState.CanUpgrade(view, locked), Is.False, "未研习技能书解锁时不可直接修习");
+
+            var unlockedRare = snapshot.Find(10041);
+            Assert.That(unlockedRare.IsRare, Is.True);
+            Assert.That(unlockedRare.Definition.IsRare, Is.True);
+            Assert.That(unlockedRare.NeedsCraftUnlock, Is.False);
+            Assert.That(SkillBookViewState.CanUpgrade(view, unlockedRare), Is.True);
+
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillBookNotDismantlable), Does.Contain("稀世"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillCraftBookRequired), Does.Contain("典籍制书"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)skill_error.KSkillProxyFeeInvalid), Does.Contain("50"));
+            Assert.That(SkillBookMapper.DescribeTip((uint)equip_error.KEquipProxyMasterUnavailable), Does.Contain("代打摊位"));
+        }
     }
 }

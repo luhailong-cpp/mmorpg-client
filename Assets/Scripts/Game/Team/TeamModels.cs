@@ -26,6 +26,11 @@ namespace MmorpgClient.Game.Team
         public uint JoinSeq;
         // 申请 / 已发邀请的服务端截止毫秒;成员恒为 0。
         public ulong ExpireAtMs;
+        // 论剑排位成员预设确认状态(仅成员行有效)。
+        public uint RankedCharacterPresetId;
+        public uint RankedPetPresetId;
+        public uint RankedRuleVersion;
+        public bool RankedPresetConfirmed;
 
         public TeamRole Clone() => (TeamRole)MemberwiseClone();
     }
@@ -54,6 +59,9 @@ namespace MmorpgClient.Game.Team
         // 服务端声明支持队伍补位匹配(且开关没关)。为真才给出「目标人数」选项:
         // 不认识目标人数的服务端(旧版本 / 另一版服务端)会把它静默当成直接开战。
         public bool MatchFillSupported;
+        public bool RankedPresetsAllConfirmed;
+        public uint RankedSeasonId;
+        public uint RankedRuleVersion;
         public uint ApplicationCount;
         public ulong ServerTimeMs;
         public List<TeamRole> Members = new List<TeamRole>();
@@ -72,6 +80,8 @@ namespace MmorpgClient.Game.Team
                 MatchQueued = MatchQueued, MatchTargetSize = MatchTargetSize, MatchQueuedAtMs = MatchQueuedAtMs,
                 MatchBattleConfigId = MatchBattleConfigId, MatchFillSupported = MatchFillSupported,
                 MatchMode = MatchMode, PvpMatchSupported = PvpMatchSupported,
+                RankedPresetsAllConfirmed = RankedPresetsAllConfirmed,
+                RankedSeasonId = RankedSeasonId, RankedRuleVersion = RankedRuleVersion,
                 Members = CloneRoles(Members), Applications = CloneRoles(Applications),
                 PendingInvites = CloneRoles(PendingInvites), Approved = CloneRoles(Approved)
             };
@@ -110,7 +120,7 @@ namespace MmorpgClient.Game.Team
     public enum TeamAction
     {
         None, Refresh, ListInvites, Create, Apply, Decide, Invite, RespondInvite,
-        Leave, Kick, Transfer, Disband, StartMatch
+        Leave, Kick, Transfer, Disband, StartMatch, ConfirmRankedPreset
     }
 
     /// <summary>新视图相对当前视图的先后:Accept 应用;Stale 丢弃;Conflict 同 epoch 换了队,丢弃并重拉。</summary>

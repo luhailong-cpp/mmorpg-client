@@ -37,12 +37,12 @@ public static partial class PlayerTrialJournalCompReflection {
           "ZXN0GAQgASgLMhcuVHJpYWxKb3VybmFsQ29vcFJlY29yZCJjChlTZWFzb25U",
           "cmlhbEpvdXJuYWxBcmNoaXZlEhEKCXNlYXNvbl9pZBgBIAEoDRIUCgxsaXRf",
           "c2VhbF9pZHMYAiADKA0SHQoVY2xhaW1lZF9taWxlc3RvbmVfaWRzGAMgAygN",
-          "IsYBChZQbGF5ZXJUcmlhbEpvdXJuYWxDb21wEhUKDWxpdF9zZWFsX2JpdHMY",
+          "IukBChZQbGF5ZXJUcmlhbEpvdXJuYWxDb21wEhUKDWxpdF9zZWFsX2JpdHMY",
           "ASABKAwSHgoWY2xhaW1lZF9taWxlc3RvbmVfYml0cxgCIAEoDBIWCg5zdGF0",
           "ZV9yZXZpc2lvbhgDIAEoBBIpCgdyZWNvcmRzGAQgAygLMhguVHJpYWxKb3Vy",
           "bmFsRW50cnlSZWNvcmQSMgoOc2Vhc29uX3JlY29yZHMYBSADKAsyGi5TZWFz",
-          "b25UcmlhbEpvdXJuYWxBcmNoaXZlQhJaEGNvbW1vbi9jb21wb25lbnRiBnBy",
-          "b3RvMw=="));
+          "b25UcmlhbEpvdXJuYWxBcmNoaXZlEiEKGW5vcm1hbF9ib3NzX3RyaWFsX2Ns",
+          "ZWFyZWQYBiABKAhCEloQY29tbW9uL2NvbXBvbmVudGIGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -51,7 +51,7 @@ public static partial class PlayerTrialJournalCompReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalCoopRecord), global::TrialJournalCoopRecord.Parser, new[]{ "BestRounds", "PartySize", "AchievedAtMs", "PetTableId", "TeammateNames" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::TrialJournalEntryRecord), global::TrialJournalEntryRecord.Parser, new[]{ "EntryId", "RuleVersion", "SoloBest", "CoopBest" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SeasonTrialJournalArchive), global::SeasonTrialJournalArchive.Parser, new[]{ "SeasonId", "LitSealIds", "ClaimedMilestoneIds" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerTrialJournalComp), global::PlayerTrialJournalComp.Parser, new[]{ "LitSealBits", "ClaimedMilestoneBits", "StateRevision", "Records", "SeasonRecords" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerTrialJournalComp), global::PlayerTrialJournalComp.Parser, new[]{ "LitSealBits", "ClaimedMilestoneBits", "StateRevision", "Records", "SeasonRecords", "NormalBossTrialCleared" }, null, null, null, null)
         }));
   }
   #endregion
@@ -1585,6 +1585,7 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
     stateRevision_ = other.stateRevision_;
     records_ = other.records_.Clone();
     seasonRecords_ = other.seasonRecords_.Clone();
+    normalBossTrialCleared_ = other.normalBossTrialCleared_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1661,6 +1662,21 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
     get { return seasonRecords_; }
   }
 
+  /// <summary>Field number for the "normal_boss_trial_cleared" field.</summary>
+  public const int NormalBossTrialClearedFieldNumber = 6;
+  private bool normalBossTrialCleared_;
+  /// <summary>
+  /// true = 至少通关过任意一只普通难度首领试炼（boss_trial_kind 1..4 &amp;&amp; difficulty == 1），解锁全部困难首领试炼准入。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool NormalBossTrialCleared {
+    get { return normalBossTrialCleared_; }
+    set {
+      normalBossTrialCleared_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
@@ -1681,6 +1697,7 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
     if (StateRevision != other.StateRevision) return false;
     if(!records_.Equals(other.records_)) return false;
     if(!seasonRecords_.Equals(other.seasonRecords_)) return false;
+    if (NormalBossTrialCleared != other.NormalBossTrialCleared) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1693,6 +1710,7 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
     if (StateRevision != 0UL) hash ^= StateRevision.GetHashCode();
     hash ^= records_.GetHashCode();
     hash ^= seasonRecords_.GetHashCode();
+    if (NormalBossTrialCleared != false) hash ^= NormalBossTrialCleared.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1725,6 +1743,10 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
     }
     records_.WriteTo(output, _repeated_records_codec);
     seasonRecords_.WriteTo(output, _repeated_seasonRecords_codec);
+    if (NormalBossTrialCleared != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(NormalBossTrialCleared);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1749,6 +1771,10 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
     }
     records_.WriteTo(ref output, _repeated_records_codec);
     seasonRecords_.WriteTo(ref output, _repeated_seasonRecords_codec);
+    if (NormalBossTrialCleared != false) {
+      output.WriteRawTag(48);
+      output.WriteBool(NormalBossTrialCleared);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
     }
@@ -1770,6 +1796,9 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
     }
     size += records_.CalculateSize(_repeated_records_codec);
     size += seasonRecords_.CalculateSize(_repeated_seasonRecords_codec);
+    if (NormalBossTrialCleared != false) {
+      size += 1 + 1;
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1793,6 +1822,9 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
     }
     records_.Add(other.records_);
     seasonRecords_.Add(other.seasonRecords_);
+    if (other.NormalBossTrialCleared != false) {
+      NormalBossTrialCleared = other.NormalBossTrialCleared;
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1832,6 +1864,10 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
           seasonRecords_.AddEntriesFrom(input, _repeated_seasonRecords_codec);
           break;
         }
+        case 48: {
+          NormalBossTrialCleared = input.ReadBool();
+          break;
+        }
       }
     }
   #endif
@@ -1869,6 +1905,10 @@ public sealed partial class PlayerTrialJournalComp : pb::IMessage<PlayerTrialJou
         }
         case 42: {
           seasonRecords_.AddEntriesFrom(ref input, _repeated_seasonRecords_codec);
+          break;
+        }
+        case 48: {
+          NormalBossTrialCleared = input.ReadBool();
           break;
         }
       }

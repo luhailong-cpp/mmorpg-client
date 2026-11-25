@@ -561,9 +561,6 @@ namespace MmorpgClient.App
             var native = region.LoadTexture();
             evidence.nativeWidth = native.width;
             evidence.nativeHeight = native.height;
-            if (!region.IsModern && (evidence.nativeWidth != CurrentMapCatalog.LayoutPixels ||
-                evidence.nativeHeight != CurrentMapCatalog.LayoutPixels))
-            { Finish(false, "当前地图未按原始尺寸导入。"); yield break; }
             evidence.passed = true;
             SaveReport();
         }
@@ -714,13 +711,12 @@ namespace MmorpgClient.App
             if (region == null) return false;
             var expected = region.LoadTexture();
             if (expected == null || _app.WorldMap.ActiveSceneConfigId != region.SceneConfigId ||
-                _app.WorldMap.Appearance != region.Appearance ||
-                (!region.IsModern && (expected.width != 1254 || expected.height != 1254))) return false;
+                _app.WorldMap.Appearance != region.Appearance) return false;
             if (region.IsModern)
             {
                 var tiles = map.Root.GetComponent<CurrentMapTileStreaming>();
-                if (tiles?.Manifest == null || tiles.Manifest.key != region.Key ||
-                    tiles.Manifest.sceneId != region.SceneConfigId || tiles.Manifest.appearance != region.Appearance ||
+                if (tiles?.Manifest == null || tiles.Manifest.key != region.AssetKey ||
+                    tiles.Manifest.sceneId != region.AssetSceneConfigId || tiles.Manifest.appearance != region.Appearance ||
                     tiles.Manifest.revision != region.Revision || tiles.Manifest.resourceRoot != region.ResourceFolder ||
                     tiles.VisibleTileCount == 0 || tiles.PendingTileCount != 0 ||
                     tiles.LoadedVisibleTilePaths.Length != tiles.VisibleTileCount) return false;

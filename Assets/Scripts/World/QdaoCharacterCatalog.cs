@@ -618,8 +618,9 @@ namespace MmorpgClient.World
         public static bool IsCreatableAppearance(string id)
             => id == "00_reference_topright_boy" || id == "01_ice_sword_girl";
 
-        /// <summary>当前现役 8 名可展示/收藏形象（供易容衣柜轻量立绘租约加载，区别于 2 名建角初始形象）。</summary>
-        public static bool IsReleasedAppearance(string id) => QdaoRunVariants.AllowsCharacter(id);
+        /// <summary>当前现役可展示/收藏形象（供易容衣柜轻量立绘租约加载，区别于 2 名建角初始形象；含 M901 五行试炼志专属「星阵宗师」）。</summary>
+        public static bool IsReleasedAppearance(string id)
+            => QdaoRunVariants.AllowsCharacter(id) || id == "20_star_formation_master_girl";
 
         /// <summary>Available artwork for the full historical delivery roster.</summary>
         public static IReadOnlyList<Definition> AvailableAll => SelectAvailableAppearances(entry => entry.ResolveAppearance());

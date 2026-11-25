@@ -373,5 +373,41 @@ namespace MmorpgClient.Tests.EditMode.Battle
             Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3002 }), Is.EqualTo(Icons + "material_enhancement"));
             Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { IconKey = "reward_choice" }), Is.EqualTo(Icons + "reward_choice"));
         }
+
+        [Test]
+        public void QualityTierPitySpeedExemptCrafterSignatureAndOddsFormatFromServerFields()
+        {
+            var item = new BagItemInfo { EquipKind = 15, EquipProfile = 2, CrafterName = "清风道人" };
+            var hp = Affix(301, 5, 0, 1, 380, "气血上限");
+            hp.QualityTier = 4; hp.QualityName = "珍品"; hp.MaxValueBps = 400; hp.PolishPityCount = 7; hp.PolishPityLimit = 8;
+            var speed = Affix(302, 6, 0, 1, 100, "速度");
+            speed.PolishExempt = true; speed.QualityTier = 5; speed.MaxValueBps = 100;
+            Select(item, 1, 3, hp);
+            Select(item, 2, 3, speed);
+
+            var lines = EquipmentScreenModel.DetailLines(item);
+            Assert.That(lines, Does.Contain("通用词条 1：气血上限 +3.8% [珍品 / 满值 +4%]"));
+            Assert.That(lines, Does.Contain("打磨保底：7 / 8（本次打磨 100% 必出极品）"));
+            Assert.That(lines, Does.Contain("通用词条 2：速度 +1% [固定满值]"));
+            Assert.That(lines, Does.Contain("宗师·清风道人 亲手铸造"));
+
+            var rules = new GetEquipmentCraftRulesResponse
+            {
+                ForgeMastery = new CraftMasteryInfo { Tier = 2, TierName = "巧匠", Exp = 25, NextTierExp = 50, TopQualityRateBps = 700 },
+            };
+            rules.QualityTiers.Add(new EquipAffixQualityInfo
+            {
+                QualityTier = 5, Name = "极品", RatioPct = 100,
+                ApprenticeRateBps = 500, ArtisanRateBps = 700, MasterRateBps = 1000,
+            });
+            var odds = EquipmentScreenModel.FormatQualityOddsLines(rules);
+            Assert.That(odds[0], Does.Contain("极品（满值 100%）：当前 7%"));
+            Assert.That(EquipmentScreenModel.FormatForgeMastery(rules.ForgeMastery), Does.Contain("巧匠").And.Contain("7%"));
+
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3405 }), Does.EndWith("item_star_guarantee_charm"));
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3406 }), Does.EndWith("item_enlightenment_page"));
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3407 }), Does.EndWith("item_rare_scroll_fragment"));
+            Assert.That(EquipmentScreenModel.IconKey(new BagItemInfo { ConfigId = 3408 }), Does.EndWith("item_celestial_ink"));
+        }
     }
 }

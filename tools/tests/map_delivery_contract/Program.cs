@@ -187,15 +187,13 @@ internal static class Program
             Check("duplicate runtime coordinates rejected", () => { var m = ModernManifest(); m.tiles[1] = m.tiles[0]; Require(!Valid(m)); });
             Check("wrong runtime artifact dimensions rejected", () => { var m = ModernManifest(); m.tilePixels = 1254; Require(!Valid(m)); });
             Check("preview-like delivery gate rejected", () => { var m = ModernManifest(); m.deliveryStatus = "partial_native_tiles"; Require(!Valid(m)); });
-            foreach (var key in new[] { "main", "island", "village" })
-                Check("old4096 remains valid " + key, () =>
-                {
-                    int side = key == "main" ? 16 : 14; uint scene = key == "main" ? 1u : key == "island" ? 2u : 3u;
-                    var m = new CurrentMapTilesManifest { schemaVersion = 1, key = key, sceneId = scene,
-                        layoutSha256 = Sha, columns = side, rows = side, tilePixels = 4096, deliveryStatus = "partial_native_tiles",
-                        worldRect = new UnityEngine.Rect(50,0,300,300), tiles = Array.Empty<CurrentMapTilesManifest.Entry>() };
-                    Require(m.Validate(key,scene,Sha,out _));
-                });
+            Check("retired schemaVersion 1 rejected", () =>
+            {
+                var m = new CurrentMapTilesManifest { schemaVersion = 1, key = "main", sceneId = 1u,
+                    layoutSha256 = Sha, columns = 16, rows = 16, tilePixels = 4096, deliveryStatus = "partial_native_tiles",
+                    worldRect = new UnityEngine.Rect(50,0,300,300), tiles = Array.Empty<CurrentMapTilesManifest.Entry>() };
+                Require(!m.Validate("main", 1u, Sha, out _));
+            });
             Check("actual new tile shared borders stay exact", () =>
             {
                 var m = ModernManifest();
@@ -261,17 +259,17 @@ internal static class Program
                 Reject(() => n.ResolveFallbackSpawn(interior,edge));
                 Require(n.IsWalkable(n.ResolveFallbackSpawn(interior,interior)));
             });
-            Check("empty modern registry retains all three legacy scene IDs", () =>
+            Check("empty modern registry has no retired legacy fallback", () =>
             {
                 CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = Array.Empty<MapDeliveryRegistration>() });
-                Require(CurrentMapCatalog.All.Count == 3 && CurrentMapCatalog.Find(1u).Key == "main" &&
-                    CurrentMapCatalog.Find(2u).Key == "island" && CurrentMapCatalog.Find(3u).Key == "village");
+                Require(CurrentMapCatalog.All.Count == 0 && CurrentMapCatalog.Find(1u) == null &&
+                    CurrentMapCatalog.Find(2u) == null && CurrentMapCatalog.Find(3u) == null);
             });
             Check("extensible registry has no16-map whitelist", () =>
             {
                 var maps = Enumerable.Range(100,40).Select(i => Map((uint)i,"map-"+i)).ToArray();
                 CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = maps });
-                Require(CurrentMapCatalog.All.Count == 43 && CurrentMapCatalog.Find(139u).Key == "map-139");
+                Require(CurrentMapCatalog.All.Count == 40 && CurrentMapCatalog.Find(139u).Key == "map-139");
             });
             Check("catalog snapshots source identity for revision detection", () =>
             {
@@ -302,8 +300,7 @@ internal static class Program
                 CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = new[] { m } });
                 var selected = CurrentMapCatalog.Find(21003u);
                 Require(selected.Appearance == "spring" && selected.ResourceFolder == m.appearances[0].resourceRoot &&
-                    selected.ForAppearance("normal") == null && selected.ForAppearance("mid-autumn") != null &&
-                    CurrentMapCatalog.Find(1u).Key == "main");
+                    selected.ForAppearance("normal") == null && selected.ForAppearance("mid-autumn") != null);
                 m.defaultAppearance = "mid-autumn";
                 Require(selected.Appearance == "spring");
                 CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = new[] { Map() } });
@@ -323,8 +320,6 @@ internal static class Program
                     Require(!selected.CanTravelOnline && !selected.ForAppearance("spring").CanTravelOnline);
                     m.clientOnly = false; Require(!selected.CanTravelOnline);
                 }
-                Require(CurrentMapCatalog.Find(1u).CanTravelOnline && CurrentMapCatalog.Find(2u).CanTravelOnline &&
-                    CurrentMapCatalog.Find(3u).CanTravelOnline);
                 CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = new[] { Map() } });
                 Require(CurrentMapCatalog.Find(21u).CanTravelOnline);
             });
@@ -334,8 +329,6 @@ internal static class Program
                 Reject(() => CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = new[] { Map(),Map() } }));
                 Require(CurrentMapCatalog.Find(21u).ContentIdentity == before);
             });
-            Check("legacy key cannot silently change authoritative server scene ID", () =>
-                Reject(() => CurrentMapCatalog.ApplyDeliveries(new MapDeliveryCatalog { schemaVersion = 2, maps = new[] { Map(80,"main") } })));
 #endif
             Console.WriteLine(JsonSerializer.Serialize(new { passed = Passed.Count, failed = 0, scope = "Actual production contract/managed geometry and CSharp9 syntax; no Unity native JSON, renderer, device or deployment acceptance.", tests = Passed }));
             return 0;

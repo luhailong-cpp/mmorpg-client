@@ -20,7 +20,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
             "Assets/Prefabs/World/Tianyong/TianyongDebugPlayer.prefab";
         private const string ConfigPath =
             "Assets/Resources/World/Tianyong/TianyongMapConfig.asset";
-        private static readonly uint[] StandardOnlineScenes = { 1u, 2u, 3u };
+        private static readonly uint[] StandardOnlineScenes = { 1u, 2u, 3u, 5u };
 
         private static readonly string[] TexturePaths =
         {
@@ -55,7 +55,7 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(definition?.SceneConfigId, Is.EqualTo(sceneId));
                 Assert.That(Resources.Load<TextAsset>(definition.SourcePath), Is.Not.Null, definition.Key);
                 Assert.That(Resources.Load<TextAsset>(definition.MaskPath), Is.Not.Null, definition.Key);
-                Assert.That(definition.LoadTexture().width, Is.EqualTo(1254), definition.Key);
+                Assert.That(definition.LoadTexture().width, Is.GreaterThanOrEqualTo(1024), definition.Key);
                 Assert.That(definition.CreateNavigation().IsWalkable(definition.Spawn), Is.True, definition.Key);
             }
         }
@@ -133,11 +133,12 @@ namespace MmorpgClient.Tests.EditMode.Tianyong
                 Assert.That(importer.npotScale, Is.EqualTo(TextureImporterNPOTScale.None), path);
                 Assert.That(importer.mipmapEnabled, Is.False, path);
                 Assert.That(importer.anisoLevel, Is.EqualTo(1), path);
-                Assert.That(importer.maxTextureSize, Is.EqualTo(2048), path);
+                Assert.That(importer.maxTextureSize, Is.EqualTo(8192), path);
                 Assert.That(importer.textureCompression, Is.EqualTo(TextureImporterCompression.Uncompressed), path);
                 Assert.That(importer.isReadable, Is.False, path);
-                Assert.That(definition.LoadTexture().width, Is.EqualTo(1254), path);
-                Assert.That(definition.LoadTexture().height, Is.EqualTo(1254), path);
+                var layout = definition.LoadTexture();
+                Assert.That(layout.width, Is.GreaterThanOrEqualTo(1024), path);
+                Assert.That(layout.height, Is.GreaterThanOrEqualTo(1024), path);
             }
         }
     }

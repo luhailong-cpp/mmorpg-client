@@ -1219,6 +1219,12 @@ namespace MmorpgClient.UI.Ugui.Battle
         {
             var actor = FindActor(actorId);
             if (actor == null) return $"单位{actorId}";
+            if (actor.ActorType == eBattleActorType.BattleActorTypeMonster && actor.CapturePetTableId == 0 &&
+                (string.IsNullOrEmpty(actor.Name) || actor.Name == "野怪"))
+            {
+                var trialName = BattleArtCatalog.ResolveMonsterDisplayName(actor.MonsterTableId);
+                if (!string.IsNullOrEmpty(trialName)) return trialName;
+            }
             if (!string.IsNullOrEmpty(actor.Name)) return actor.Name;
             return actor.ActorType == eBattleActorType.BattleActorTypeMonster
                 ? $"怪物{actor.MonsterTableId}"

@@ -94,7 +94,6 @@ namespace MmorpgClient.World.Tianyong
                 renderer.sharedMaterial = material;
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
-                instance.ConfigureCityTiles(region.Key, festival ? "festival" : "day");
                 return instance;
             }
             catch { instance.Dispose(); throw; }
@@ -106,25 +105,21 @@ namespace MmorpgClient.World.Tianyong
             var texture = Resources.Load<Texture2D>(region.TexturePath(festival));
             var ground = map?.Root?.transform.Find(GroundName);
             if (texture == null || ground == null) throw new InvalidOperationException($"地区外观无法载入：{region.Name}");
-            map.ConfigureCityTiles(region.Key, festival ? "festival" : "day", () =>
+            var material = ground.GetComponent<MeshRenderer>().sharedMaterial;
+            var oldTexture = material.mainTexture;
+            var oldName = map.Root.name;
+            try
             {
-                if (map.Root == null || ground == null) return;
-                var material = ground.GetComponent<MeshRenderer>().sharedMaterial;
-                var oldTexture = material.mainTexture;
-                var oldName = map.Root.name;
-                try
-                {
-                    material.mainTexture = texture;
-                    map.Root.name = $"[FestivalRegion:{region.Key}:{(festival ? "festival" : "day")}]";
-                    onApplied?.Invoke();
-                }
-                catch
-                {
-                    material.mainTexture = oldTexture;
-                    map.Root.name = oldName;
-                    throw;
-                }
-            });
+                material.mainTexture = texture;
+                map.Root.name = $"[FestivalRegion:{region.Key}:{(festival ? "festival" : "day")}]";
+                onApplied?.Invoke();
+            }
+            catch
+            {
+                material.mainTexture = oldTexture;
+                map.Root.name = oldName;
+                throw;
+            }
         }
     }
 }

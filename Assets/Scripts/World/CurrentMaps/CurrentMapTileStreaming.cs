@@ -86,6 +86,7 @@ namespace MmorpgClient.World.CurrentMaps
             ReleaseAll();
             if (definition == null) return;
             string key = definition.Key;
+            string assetKey = definition.AssetKey;
             string root = definition.ResourceFolder;
             var manifestText = Resources.Load<TextAsset>(root + "tiles");
             if (manifestText == null) return;
@@ -93,7 +94,7 @@ namespace MmorpgClient.World.CurrentMaps
             {
                 var source = Resources.Load<TextAsset>(root + "source");
                 if (source == null) throw new InvalidOperationException("当前布局 source.json 缺失。");
-                Prepare(CurrentMapTilesManifest.Parse(key, source.text, manifestText.text,
+                Prepare(CurrentMapTilesManifest.Parse(assetKey, source.text, manifestText.text,
                     definition.IsModern ? root : null, definition.IsModern ? definition.Revision : null,
                     definition.IsModern ? definition.Appearance : null));
             }

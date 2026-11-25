@@ -12,6 +12,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
     {
         private PlayerFeaturesClient _client;
         private EquipmentCraftChoice _choice;
+        private CommitEquipmentCraftResponse _lastApplied;
         private ulong _playerId;
         private bool _disposed;
         private Action _clientChanged;
@@ -20,9 +21,14 @@ namespace MmorpgClient.UI.Ugui.Gameplay
         public event Action Changed;
         /// <summary>仅在业务层确认成功已持久化后发布目标实例 ID。</summary>
         public event Action<ulong> Applied;
+        /// <summary>仅在业务层确认成功已持久化后发布完整回执副本（含品相档位、保底与铸器熟练度）。</summary>
+        public event Action<CommitEquipmentCraftResponse> AppliedReceipt;
 
         public GetEquipmentCraftRulesResponse Rules => _client?.EquipmentCraftRules;
         public EquipmentCraftChoice Choice => _choice?.Clone();
+        public CommitEquipmentCraftResponse LastApplied => _lastApplied?.Clone();
+        public bool RequiresBindConfirmation => Preview != null && !Preview.Available
+            && Preview.UnavailableTip == (uint)equip_error.KEquipBindConfirmRequired;
         public string Error
         {
             get
@@ -68,6 +74,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Unbind();
             _client = client;
             _choice = null;
+            _lastApplied = null;
             _playerId = client?.SnapshotPlayerId ?? 0;
             if (_client != null)
             {
@@ -84,19 +91,52 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (!_disposed && !LoadingRules) _client?.RequestEquipmentCraftRules();
         }
 
-        public void SelectRecipe(uint configId) => Select(new EquipmentCraftChoice
+        public void SelectRecipe(uint configId) => SelectRecipe(configId, false, 0);
+
+        public void SelectRecipe(uint configId, bool allowBoundMaterials, ulong proxyMasterPlayerId = 0) => Select(new EquipmentCraftChoice
         {
             Operation = EquipmentCraftChoice.Types.Operation.CreateItem,
             ConfigId = configId,
+            AllowBoundMaterials = allowBoundMaterials,
+            ProxyMasterPlayerId = proxyMasterPlayerId,
         });
 
-        public void SelectAffix(ulong itemId, uint slot, uint affixId) => Select(new EquipmentCraftChoice
+        public void SelectAffix(ulong itemId, uint slot, uint affixId) => SelectAffix(itemId, slot, affixId, false, 0);
+
+        public void SelectAffix(ulong itemId, uint slot, uint affixId, bool allowBoundMaterials, ulong proxyMasterPlayerId = 0) => Select(new EquipmentCraftChoice
         {
             Operation = EquipmentCraftChoice.Types.Operation.InstallAffix,
             ItemId = itemId,
             AffixSlot = slot,
             AffixId = affixId,
+            AllowBoundMaterials = allowBoundMaterials,
+            ProxyMasterPlayerId = proxyMasterPlayerId,
         });
+
+        public void SelectReforgeAffix(ulong itemId, uint slot, uint affixId, bool allowBoundMaterials = false) => Select(new EquipmentCraftChoice
+        {
+            Operation = EquipmentCraftChoice.Types.Operation.ReforgeAffix,
+            ItemId = itemId,
+            AffixSlot = slot,
+            AffixId = affixId,
+            AllowBoundMaterials = allowBoundMaterials,
+        });
+
+        public void SelectPolishAffix(ulong itemId, uint slot, bool useGuaranteeCharm = false,
+            bool allowBoundMaterials = false, ulong proxyMasterPlayerId = 0, uint? expectedPolishPityCount = null)
+        {
+            var choice = new EquipmentCraftChoice
+            {
+                Operation = EquipmentCraftChoice.Types.Operation.PolishAffix,
+                ItemId = itemId,
+                AffixSlot = slot,
+                UseGuaranteeCharm = useGuaranteeCharm,
+                AllowBoundMaterials = allowBoundMaterials,
+                ProxyMasterPlayerId = proxyMasterPlayerId,
+            };
+            if (expectedPolishPityCount.HasValue) choice.ExpectedPolishPityCount = expectedPolishPityCount.Value;
+            Select(choice);
+        }
 
         private void Select(EquipmentCraftChoice choice)
         {
@@ -129,7 +169,7 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_disposed || !ReferenceEquals(_client, client)) return;
             ulong playerId = client.SnapshotPlayerId;
             // 首次请求从 0 绑定角色时保留新选择；断线、换角的清快照通知则作废旧选择。
-            if (_playerId != 0 && _playerId != playerId) _choice = null;
+            if (_playerId != 0 && _playerId != playerId) { _choice = null; _lastApplied = null; }
             _playerId = playerId;
             Changed?.Invoke();
         }
@@ -139,10 +179,15 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             if (_disposed || !ReferenceEquals(_client, client)) return;
             ulong playerId = _playerId;
             _choice = null;
+            _lastApplied = response?.Clone();
             Changed?.Invoke();
             // 重绘监听者可能已经切角或换绑；不把旧角色的成功通知送进新窗口。
             if (!_disposed && ReferenceEquals(_client, client) && _playerId == playerId)
+            {
                 Applied?.Invoke(response.ItemId);
+                if (!_disposed && ReferenceEquals(_client, client) && _playerId == playerId)
+                    AppliedReceipt?.Invoke(response.Clone());
+            }
         }
 
         private void Unbind()
@@ -161,9 +206,11 @@ namespace MmorpgClient.UI.Ugui.Gameplay
             Unbind();
             _client = null;
             _choice = null;
+            _lastApplied = null;
             _playerId = 0;
             Changed = null;
             Applied = null;
+            AppliedReceipt = null;
         }
     }
 }
